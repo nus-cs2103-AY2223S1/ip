@@ -45,6 +45,7 @@ public class Duke {
                     System.out.println(e.getMessage());
                 }
             }
+            // case 4: todo
             else if(command.startsWith("todo")){
                 String substr = command.substring(4).trim();
                 ls.add(new Todo(substr));
@@ -52,6 +53,7 @@ public class Duke {
                 System.out.println(ls.get(ls.size() - 1));
                 System.out.println("Now you have " + tm.getSize() + " tasks in the list.");
             }
+            //case 5: deadline
             else if(command.startsWith("deadline")){
                 String[] s = command.split("/by");
                 String by = s[1].trim();
@@ -62,6 +64,7 @@ public class Duke {
                 System.out.println("Now you have " + tm.getSize() + " tasks in the list.");
 
             }
+            //case 6: event
             else if(command.startsWith("event")){
                 String[] s = command.split("/at");
                 String at = s[1].trim();
@@ -71,6 +74,7 @@ public class Duke {
                 System.out.println(ls.get(ls.size() - 1));
                 System.out.println("Now you have " + tm.getSize() + " tasks in the list.");
             }
+            //case 7: delete
             else if(command.startsWith("delete")){
                 String[] s = command.split(" ");
                 int index = Integer.parseInt(s[1].trim());
