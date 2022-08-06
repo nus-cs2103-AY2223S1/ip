@@ -1,3 +1,6 @@
+import Exceptions.InvalidInstructionException;
+import Exceptions.InvalidNumberException;
+
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -18,17 +21,29 @@ public class Duke {
             }
             //case 2: mark
             else if(command.startsWith("mark")){
-                System.out.println("Nice! I've marked this task as done:");
-                String[] s = command.split(" ");
-                int index = Integer.parseInt(s[1]);
-                ls.get(index - 1).setDone(); // minus -1 because of list starts from 1.
+                try{
+                    String[] s = command.split(" ");
+                    int index = Integer.parseInt(s[1]);
+                    if(index < 0 || index > tm.getSize())
+                        throw new InvalidNumberException();
+                    ls.get(index - 1).setDone(); // minus -1 because of list starts from 1.
+                    System.out.println("Nice! I've marked this task as done:");
+                }catch(InvalidNumberException e){
+                    System.out.println(e.getMessage());
+                }
             }
             // case 3: unmark
             else if(command.startsWith("unmark")) {
-                System.out.println("OK, I've marked this task as not done yet:");
-                String[] s = command.split(" ");
-                int index = Integer.parseInt(s[1]);
-                ls.get(index - 1).setNotDone();
+                try{
+                    String[] s = command.split(" ");
+                    int index = Integer.parseInt(s[1]);
+                    if(index < 0 || index > tm.getSize())
+                        throw new InvalidNumberException();
+                    ls.get(index - 1).setNotDone();
+                    System.out.println("OK, I've marked this task as not done yet:");
+                }catch(InvalidNumberException e){
+                    System.out.println(e.getMessage());
+                }
             }
             else if(command.startsWith("todo")){
                 String substr = command.substring(4).trim();
@@ -56,9 +71,20 @@ public class Duke {
                 System.out.println(ls.get(ls.size() - 1));
                 System.out.println("Now you have " + tm.getSize() + " tasks in the list.");
             }
+            else if(command.startsWith("delete")){
+                String[] s = command.split(" ");
+                int index = Integer.parseInt(s[1].trim());
+                System.out.println("Noted. I've removed this task:");
+                System.out.println(ls.get(index - 1));
+                tm.remove(index - 1);
+                System.out.println("Now you have " + tm.getSize() + " tasks in the list.");
+            }
             else{   // add commands
-                ls.add(new Task(command));
-                System.out.println("added: " + command);
+                try{
+                    throw new InvalidInstructionException();
+                }catch(InvalidInstructionException e) {
+                    System.out.println(e.getMessage());
+                }
             }
             // remember to update to the next line
             command = sc.nextLine();

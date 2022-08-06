@@ -7,6 +7,10 @@ public class TaskManager {
         this.tasks = tasks;
     }
 
+    public void remove(int index){
+        tasks.remove(index);
+    }
+
     public int getSize(){
         return tasks.size();
     }

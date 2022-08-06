@@ -1,7 +1,5 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
+Got it. I've added this task:
+[D][ ] project meeting (at: Mon 2-4pm)
+Now you have 1 tasks in the list.
+Here are the tasks in your list:
+1. [D][ ] project meeting (at: Mon 2-4pm)
