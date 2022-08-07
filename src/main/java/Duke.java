@@ -5,6 +5,7 @@ public class Duke {
     private static String EXIT_MSG = "Bye. Hope to see you again soon!";
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        Storage storage = new Storage();
         System.out.println(GREETING);
 
         while (scanner.hasNext()) {
@@ -13,9 +14,15 @@ public class Duke {
                 System.out.println(EXIT_MSG);
                 scanner.close();
                 break;
-            } else {
-                System.out.println(nextCommand);
             }
+
+            if (nextCommand.equals("list")) {
+                storage.listTasks();
+                continue;
+            }
+
+            // Handle list addition
+            storage.addTaskToList(nextCommand);
         }
     }
 }
