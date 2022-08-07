@@ -18,4 +18,13 @@ public class Task {
     public void removeDone() {
         isDone = false;
     }
+
+    public String fullStatusIcon() {
+        return "[" + getStatusIcon() + "]";
+    }
+
+    @Override
+    public String toString() {
+        return fullStatusIcon() + " " + description;
+    }
 }
