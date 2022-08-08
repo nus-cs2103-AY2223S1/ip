@@ -8,12 +8,15 @@ public class Duke {
     private static final String ENDING_MESSAGE = "That's all? Hope to see you again soon :)";
     private static final String LIST_HEADER = "Here are the tasks in your list:";
     private static final String DONE_MESSAGE = "Nice! I've marked this task as done:";
+
     private static final String UNDONE_MESSAGE = "OK, I've marked this task as not done yet:";
 
+    private static final List<String> PERMISSABLE_TASKS = new ArrayList<>(Arrays.asList("todo", "event", "deadline"));
 
 
 
-    public static void main(String[] args) {
+
+    public static void main(String[] args) throws InvalidCommandException, EmptyTaskException {
             String logo = " ____        _        \n"
                     + "|  _ \\ _   _| | _____ \n"
                     + "| | | | | | | |/ / _ \\\n"
@@ -29,6 +32,7 @@ public class Duke {
             while (true) {
                 // Read the input
                 input = sc.nextLine();
+
                 if (input.startsWith("mark")) {
                     //split by space, then the second value
                     int taskIndex = Integer.valueOf(input.split(" ", 0)[1]) - 1;
@@ -59,6 +63,7 @@ public class Duke {
 
                 //handles the addition of tasks
                 else {
+                    validateTask(input);
                     Task newTask = GenerateTask(input);
                     dukeInputs.add(newTask);
                     System.out.println("Got it. I've added this task:\n" + " " + newTask);
@@ -68,13 +73,27 @@ public class Duke {
             }
         }
 
+        private static void validateTask(String input) throws InvalidCommandException, EmptyTaskException {
+            String tempArr[] = input.split(" ", 0); //splits into words
 
-        public static Task GenerateTask(String input) {
+            //first word is invalid
+            if (! PERMISSABLE_TASKS.contains(tempArr[0])) {
+                throw new InvalidCommandException("I'm sorry, I don't understand what that means \n"
+                       + "Please enter a valid response in the future");
+            }
+
+            if (tempArr.length <= 1) {
+                throw new EmptyTaskException("The description of a task cannot be empty.");
+            }
+
+        }
+
+
+        private static Task GenerateTask (String input) {
             String tempArr[] = input.split(" ", 2);
             if (input.startsWith("todo")) {
                 return new Todo(tempArr[1]);
-            }
-            else if (input.startsWith("deadline")) {
+            } else if (input.startsWith("deadline")) {
                 int firstSplit = tempArr[1].indexOf("/by");
                 String eventName = tempArr[1].substring(0, firstSplit);
                 String date = tempArr[1].substring(firstSplit + 3);
@@ -85,6 +104,6 @@ public class Duke {
                 String date = tempArr[1].substring(firstSplit + 3);
                 return new Event(eventName, date);
             }
-    }
+        }
 }
 
