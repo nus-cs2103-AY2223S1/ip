@@ -7,16 +7,17 @@ public class Duke {
     private static List<Task> dukeInputs = new ArrayList<>();
     private static final String ENDING_MESSAGE = "That's all? Hope to see you again soon :)";
     private static final String LIST_HEADER = "Here are the tasks in your list:";
+    private static final String DELETE_HEADER = "Noted. I've removed this task:";
     private static final String DONE_MESSAGE = "Nice! I've marked this task as done:";
 
     private static final String UNDONE_MESSAGE = "OK, I've marked this task as not done yet:";
 
-    private static final List<String> PERMISSABLE_TASKS = new ArrayList<>(Arrays.asList("todo", "event", "deadline"));
+
+    private static final List<String> PERMISSIBLE_TASKS = new ArrayList<>(Arrays.asList("todo", "event", "deadline"));
 
 
 
-
-    public static void main(String[] args) throws InvalidCommandException, EmptyTaskException {
+    public static void main(String[] args)  {
             String logo = " ____        _        \n"
                     + "|  _ \\ _   _| | _____ \n"
                     + "| | | | | | | |/ / _ \\\n"
@@ -59,11 +60,32 @@ public class Duke {
                         Task currentTask = dukeInputs.get(i);
                         System.out.println(i + 1 + ". " + currentTask);
                     }
+                } else if (input.startsWith("delete")) {
+                    int taskIndex = Integer.valueOf(input.split(" ", 0)[1]) - 1;
+                    Task deletedTask = dukeInputs.get(taskIndex);
+                    dukeInputs.remove(taskIndex);
+                    System.out.println(DELETE_HEADER);
+                    System.out.println("  " + deletedTask);
+                    System.out.println("Now you have " + dukeInputs.size() + " tasks in the list");
                 }
 
                 //handles the addition of tasks
                 else {
-                    validateTask(input);
+
+                    try {
+                        ValidateTask(input);
+                    } catch (InvalidCommandException ICE) {
+                        System.out.println(ICE);
+                        System.out.println("This was your invalid command: " + input);
+                    } catch (EmptyTaskException ETE) {
+                        System.out.println(ETE);
+                        String tempArr[] = input.split(" ", 0);
+                        if (tempArr[0] == "todo") {
+                            System.out.println("todo requires at least a task description");
+                        } else {
+                            System.out.println("Event/Deadline requires both a task description and a date");
+                        }
+                    }
                     Task newTask = GenerateTask(input);
                     dukeInputs.add(newTask);
                     System.out.println("Got it. I've added this task:\n" + " " + newTask);
@@ -73,11 +95,11 @@ public class Duke {
             }
         }
 
-        private static void validateTask(String input) throws InvalidCommandException, EmptyTaskException {
+        private static void ValidateTask(String input) throws InvalidCommandException, EmptyTaskException {
             String tempArr[] = input.split(" ", 0); //splits into words
 
             //first word is invalid
-            if (! PERMISSABLE_TASKS.contains(tempArr[0])) {
+            if (! PERMISSIBLE_TASKS.contains(tempArr[0])) {
                 throw new InvalidCommandException("I'm sorry, I don't understand what that means \n"
                        + "Please enter a valid response in the future");
             }
