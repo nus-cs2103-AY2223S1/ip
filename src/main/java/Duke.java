@@ -2,9 +2,10 @@ import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.io.*;
 public class Duke {
 
-    private static List<Task> dukeInputs = new ArrayList<>();
+    private static List<Task> dukeInputs;
     private static final String ENDING_MESSAGE = "That's all? Hope to see you again soon :)";
     private static final String LIST_HEADER = "Here are the tasks in your list:";
     private static final String DELETE_HEADER = "Noted. I've removed this task:";
@@ -27,9 +28,12 @@ public class Duke {
 
 
             System.out.println("Hello! I'm Duke \n" + "What can I do for you?");
+            //Read the inputs, if not initialize new empty ArrayList;
+            dukeInputs = SaveData.ReadItems();
 
             Scanner sc = new Scanner(System.in);
             String input;
+            dukeInputs = SaveData.ReadItems();
             while (true) {
                 // Read the input
                 input = sc.nextLine();
@@ -53,6 +57,7 @@ public class Duke {
 
                 } else if (input.equals("bye")) {
                     System.out.println(ENDING_MESSAGE);
+                    SaveData.Save(dukeInputs);
                     break;
                 } else if (input.equals("list")) {
                     System.out.println(LIST_HEADER);
