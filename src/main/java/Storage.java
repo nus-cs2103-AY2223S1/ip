@@ -1,7 +1,12 @@
 import java.io.*;
 import java.util.List;
 import java.util.ArrayList;
-public class SaveData {
+
+/*
+   Deals with Saving/Loading data
+   Methods are mostly static
+ */
+public class Storage {
     private static final String FILENAME = "SaveData.txt";
 
     public static void Save(List<Task> saveItems) {
@@ -30,7 +35,7 @@ public class SaveData {
 
 
         } catch (FileNotFoundException e) {
-            return new ArrayList<Task>(); //empty Task list for initial initialization
+            return new ArrayList<>(); //empty Task list for initial initialization
         } catch (IOException e) {
             System.out.println("Cannot Initialize Stream");
         } catch (ClassNotFoundException e) {
@@ -40,5 +45,10 @@ public class SaveData {
         return null;
     }
 
+    public static TaskList load() {
+        List<Task> currItems = ReadItems();
+        return new TaskList(currItems);
+
+    }
 
 }

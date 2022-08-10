@@ -20,6 +20,6 @@ public class Event extends Task {
     @Override
     public String toString() {
 
-        return TYPE + super.toString() + "(at:" + CustomFormatter(by) + ")";
+        return TYPE + super.toString() + "(at: " + CustomFormatter(by) + ")";
     }
 }
