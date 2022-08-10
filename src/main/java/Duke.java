@@ -46,6 +46,7 @@ public class Duke {
 
                     System.out.println(DONE_MESSAGE);
                     System.out.println("  " + dukeInputs.get(taskIndex));
+                    SaveData.Save(dukeInputs);
 
                 } else if (input.startsWith("unmark")) {
                     int taskIndex = Integer.valueOf(input.split(" ", 0)[1]) - 1;
@@ -54,6 +55,7 @@ public class Duke {
 
                     System.out.println(UNDONE_MESSAGE);
                     System.out.println("  " + dukeInputs.get(taskIndex));
+                    SaveData.Save(dukeInputs);
 
                 } else if (input.equals("bye")) {
                     System.out.println(ENDING_MESSAGE);
@@ -72,6 +74,7 @@ public class Duke {
                     System.out.println(DELETE_HEADER);
                     System.out.println("  " + deletedTask);
                     System.out.println("Now you have " + dukeInputs.size() + " tasks in the list");
+                    SaveData.Save(dukeInputs);
                 }
 
                 //handles the addition of tasks
@@ -93,11 +96,12 @@ public class Duke {
                     }
                     Task newTask = GenerateTask(input);
                     dukeInputs.add(newTask);
+                    SaveData.Save(dukeInputs);
                     System.out.println("Got it. I've added this task:\n" + " " + newTask);
                     System.out.println("Now you have " + dukeInputs.size() + " tasks in the list");
 
                 }
-                SaveData.Save(dukeInputs);
+
             }
         }
 
