@@ -57,7 +57,7 @@ public class Duke {
 
                 } else if (input.equals("bye")) {
                     System.out.println(ENDING_MESSAGE);
-                    SaveData.Save(dukeInputs);
+
                     break;
                 } else if (input.equals("list")) {
                     System.out.println(LIST_HEADER);
@@ -97,6 +97,7 @@ public class Duke {
                     System.out.println("Now you have " + dukeInputs.size() + " tasks in the list");
 
                 }
+                SaveData.Save(dukeInputs);
             }
         }
 
