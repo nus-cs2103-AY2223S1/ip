@@ -7,7 +7,7 @@ import java.util.ArrayList;
    Methods are mostly static
  */
 public class Storage {
-    private static final String FILENAME = "SaveData.txt";
+    private static final String FILENAME = "SavedData/SaveData.txt";
 
     public static void Save(List<Task> saveItems) {
         try {
