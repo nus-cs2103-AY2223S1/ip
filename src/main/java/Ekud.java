@@ -38,6 +38,8 @@ public class Ekud {
                     addTask(command, TaskType.DEADLINE);
                 } else if (command.startsWith("event")) {
                     addTask(command, TaskType.EVENT);
+                } else if (command.startsWith("delete")) {
+                    this.deleteTask(command);
                 } else {
                     throw new EkudException("Invalid command.");
                 }
@@ -46,6 +48,19 @@ public class Ekud {
             }
         }
         sc.close();
+    }
+
+    private void deleteTask(String message) throws EkudException {
+        if (message.matches("^delete \\d+$")) {
+            int idx = Integer.parseInt(message.substring("delete ".length()));
+            if (idx > this.taskList.size() || idx < 1) {
+                throw new EkudException("Invalid index. Type 'list' to see available tasks and their indexes.");
+            }
+            Task task = this.taskList.remove(idx - 1);
+            this.sendMessage(String.format("Noted. I've removed this task:\n%s\nNow you have %d tasks in the list.", task.toString(), taskList.size()));
+        } else {
+            throw new EkudException(("Invalid syntax. Use delete <index>"));
+        }
     }
 
     private void markAsDone(String message) throws EkudException {
