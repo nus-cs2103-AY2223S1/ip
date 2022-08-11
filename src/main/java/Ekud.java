@@ -20,19 +20,16 @@ public class Ekud {
 
         while (active) {
             String command = sc.nextLine();
-            switch(command) {
-                case "bye":
-                    this.sendMessage("Bye. Hope to see you again soon!");
-                    active = false;
-                    break;
-                case "list":
-                    this.printTasks();
-                    break;
-                default:
-                    if(!addTask(command)) {
-                        this.sendMessage("Sorry, you've reached the maximum limit of 100 tasks.");
-                    }
-                    this.sendMessage(String.format("added: %s", command));
+            if (command.equals("bye")) {
+                this.sendMessage("Bye. Hope to see you again soon!");
+                active = false;
+            } else if (command.equals("list")) {
+                this.printTasks();
+            } else {
+                if(!addTask(command)) {
+                    this.sendMessage("Sorry, you've reached the maximum limit of 100 tasks.");
+                }
+                this.sendMessage(String.format("added: %s", command));
             }
         }
         sc.close();
