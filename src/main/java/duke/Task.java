@@ -1,3 +1,4 @@
+package duke;
 import java.io.*;
 public class Task implements Serializable {
     protected String description;
