@@ -1,3 +1,5 @@
+import java.util.Arrays;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class Ekud {
@@ -29,11 +31,14 @@ public class Ekud {
                 this.markAsDone(command);
             } else if (command.startsWith("unmark")) {
                 this.markAsUndone(command);
+            } else if (command.startsWith("todo")) {
+                addTask(command, TaskType.TODO);
+            } else if (command.startsWith("deadline")) {
+                addTask(command, TaskType.DEADLINE);
+            } else if (command.startsWith("event")) {
+                addTask(command, TaskType.EVENT);
             } else {
-                if(!addTask(command)) {
-                    this.sendMessage("Sorry, you've reached the maximum limit of 100 tasks.");
-                }
-                this.sendMessage(String.format("added: %s", command));
+                this.sendMessage("Invalid command");
             }
         }
         sc.close();
@@ -78,20 +83,66 @@ public class Ekud {
     }
 
     private void printTasks() {
-        StringBuilder builder = new StringBuilder();
+        StringBuilder builder = new StringBuilder("Here are the tasks in your list:\n");
         for (int i = 0; i < this.numberOfTasks; i++) {
             builder.append(String.format("%d.%s\n", i + 1, this.taskList[i].toString()));
         }
         this.sendMessage(builder.toString());
     }
 
-    private boolean addTask(String description) {
+    private void addTask(String description, TaskType type) {
         if (this.numberOfTasks == 100) {
-            return false;
+            this.sendMessage("Sorry, you've reached the maximum limit of 100 tasks.");
         }
-        Task task = new Task(description);
-        this.taskList[this.numberOfTasks++] = task;
-        return true;
+        Optional<Task> task = parseSpecialTask(description, type);
+        if (task.isEmpty()) {
+            return;
+        } else {
+            this.taskList[this.numberOfTasks++] = task.get();
+            this.sendMessage(String.format("Got it. I've added this task: %s", task.get().toString()));     
+        }
+   
+    }
+
+    private Optional<Task> parseSpecialTask(String description, TaskType type) {
+        Optional<Task> task = Optional.empty();
+        String[] parts = description.split(" ");
+        switch (type) {
+            case TODO:
+                if (parts.length < 2) {
+                    this.sendMessage("Description of a TODO cannot be empty.");
+                } else {
+                    task = Optional.of(new ToDo(String.join(" ", Arrays.copyOfRange(parts, 1, parts.length))));
+                }
+                break;
+            default: 
+                int idxOfSeparator = 0;
+                for (int i = 0; i < parts.length; i++) {
+                    if (type == TaskType.EVENT && parts[i].equals("/at")) {
+                        idxOfSeparator = i;
+                    } else if (type == TaskType.DEADLINE && parts[i].equals("/by")) {
+                        idxOfSeparator = i;
+                    }
+                }
+                if (idxOfSeparator == 0) {
+                    String separator = type == TaskType.EVENT ? "/at" : "/by";
+                    this.sendMessage(String.format("Invalid syntax. Use %s <task> %s <date/time>", type.toString(), separator));
+                } else if (idxOfSeparator == 1) {
+                    this.sendMessage(String.format("Description of an %s cannot be empty.", type.toString()));
+                } else if (idxOfSeparator == parts.length - 1) {
+                    this.sendMessage("Date/Time cannot be empty.");
+                } else {
+                    String taskDesc = String.join(" ", Arrays.copyOfRange(parts, 1, idxOfSeparator));
+                    String taskDueDate = String.join(" ", Arrays.copyOfRange(parts, idxOfSeparator + 1, parts.length));
+                    if (type == TaskType.EVENT) {
+                        task = Optional.of(new Event(taskDesc, taskDueDate));
+                    } else {
+                        task = Optional.of(new Deadline(taskDesc, taskDueDate));
+                    }
+                }
+                break;
+        }
+        return task;
     }
 
     private String indentMessage(String message) {
