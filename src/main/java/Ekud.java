@@ -49,7 +49,7 @@ public class Ekud {
             Task task = this.taskList[idx - 1];
             boolean result = task.markAsDone();
             if (result) {
-                this.sendMessage(String.format("Nice! I've marked this task as done:\n[X] %s", task.getDescription()));
+                this.sendMessage(String.format("Nice! I've marked this task as done:\n%s", task.toString()));
             } else {
                 this.sendMessage("That task is already marked as done!");
             }
@@ -68,7 +68,7 @@ public class Ekud {
             Task task = this.taskList[idx - 1];
             boolean result = task.markAsUndone();
             if (result) {
-                this.sendMessage(String.format("OK, I've marked this task as not done yet:\n[ ] %s", task.getDescription()));
+                this.sendMessage(String.format("OK, I've marked this task as not done yet:\n%s", task.toString()));
             } else {
                 this.sendMessage("This task is already marked as undone!");
             }
@@ -80,7 +80,7 @@ public class Ekud {
     private void printTasks() {
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < this.numberOfTasks; i++) {
-            builder.append(String.format("%d.[%s] %s\n", i + 1, this.taskList[i].getStatusIcon(), this.taskList[i].getDescription()));
+            builder.append(String.format("%d.%s\n", i + 1, this.taskList[i].toString()));
         }
         this.sendMessage(builder.toString());
     }
