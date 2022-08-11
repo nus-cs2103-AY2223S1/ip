@@ -1,17 +1,17 @@
 import java.util.Arrays;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.Scanner;
 
 public class Ekud {
-    private final Task[] taskList;
-    private int numberOfTasks;
+    private final List<Task> taskList;
     private final String logo = "_____________             .___\n" + "\\_   _____/  | ____ __  __| _/\n" + 
     " |    __)_|  |/ /  |  \\/ __ |\n" + " |        \\    <|  |  / /_/ | \n" + "/_______  /__|_ \\____/\\____ | \n" + 
     "        \\/     \\/          \\/ \n";
 
     public Ekud() {
-        this.taskList = new Task[100];
-        this.numberOfTasks = 0;
+        this.taskList = new ArrayList<Task>();
     }
 
     public void start() {
@@ -51,10 +51,10 @@ public class Ekud {
     private void markAsDone(String message) throws EkudException {
         if (message.matches("^mark \\d+$")) {
             int idx = Integer.parseInt(message.substring("mark ".length()));
-            if (idx > this.numberOfTasks || idx < 1) {
+            if (idx > this.taskList.size() || idx < 1) {
                 throw new EkudException("Invalid index. Type 'list' to see available tasks and their indexes.");
             } 
-            Task task = this.taskList[idx - 1];
+            Task task = this.taskList.get(idx - 1);
             boolean result = task.markAsDone();
             if (result) {
                 this.sendMessage(String.format("Nice! I've marked this task as done:\n%s", task.toString()));
@@ -69,10 +69,10 @@ public class Ekud {
     private void markAsUndone(String message) throws EkudException {
         if (message.matches("^unmark \\d+$")) {
             int idx = Integer.parseInt(message.substring("unmark ".length()));
-            if (idx > this.numberOfTasks || idx < 1) {
+            if (idx > this.taskList.size() || idx < 1) {
                 throw new EkudException("Invalid index. Type 'list' to see available tasks and their indexes.");
             }
-            Task task = this.taskList[idx - 1];
+            Task task = this.taskList.get(idx - 1);
             boolean result = task.markAsUndone();
             if (result) {
                 this.sendMessage(String.format("OK, I've marked this task as not done yet:\n%s", task.toString()));
@@ -86,18 +86,18 @@ public class Ekud {
 
     private void printTasks() {
         StringBuilder builder = new StringBuilder("Here are the tasks in your list:\n");
-        for (int i = 0; i < this.numberOfTasks; i++) {
-            builder.append(String.format("%d.%s\n", i + 1, this.taskList[i].toString()));
+        for (int i = 0; i < this.taskList.size(); i++) {
+            builder.append(String.format("%d.%s\n", i + 1, this.taskList.get(i).toString()));
         }
         this.sendMessage(builder.toString());
     }
 
     private void addTask(String description, TaskType type) throws EkudException {
-        if (this.numberOfTasks == 100) {
+        if (this.taskList.size() == 100) {
             throw new EkudException("Sorry, you've reached the maximum limit of 100 tasks.");
         }
         Task task = parseSpecialTask(description, type);
-        this.taskList[this.numberOfTasks++] = task;
+        this.taskList.add(task);
         this.sendMessage(String.format("Got it. I've added this task: %s", task.toString())); 
     }
 
