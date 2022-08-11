@@ -28,7 +28,7 @@ public class Ekud {
             } else if (command.startsWith("mark")) {
                 this.markAsDone(command);
             } else if (command.startsWith("unmark")) {
-
+                this.markAsUndone(command);
             } else {
                 if(!addTask(command)) {
                     this.sendMessage("Sorry, you've reached the maximum limit of 100 tasks.");
@@ -42,7 +42,7 @@ public class Ekud {
     private void markAsDone(String message) {
         if (message.matches("^mark \\d+$")) {
             int idx = Integer.parseInt(message.substring("mark ".length()));
-            if (idx > this.numberOfTasks) {
+            if (idx > this.numberOfTasks || idx < 1) {
                 this.sendMessage("Invalid index. Type 'list' to see available tasks and their indexes.");
                 return;
             } 
@@ -51,10 +51,29 @@ public class Ekud {
             if (result) {
                 this.sendMessage(String.format("Nice! I've marked this task as done:\n[X] %s", task.getDescription()));
             } else {
-                this.sendMessage("That task is already done!");
+                this.sendMessage("That task is already marked as done!");
             }
         } else {
             this.sendMessage("Invalid syntax. Use mark <index>");
+        }
+    }
+
+    private void markAsUndone(String message) {
+        if (message.matches("^unmark \\d+$")) {
+            int idx = Integer.parseInt(message.substring("unmark ".length()));
+            if (idx > this.numberOfTasks || idx < 1) {
+                this.sendMessage("Invalid index. Type 'list' to see available tasks and their indexes.");
+                return;
+            }
+            Task task = this.taskList[idx - 1];
+            boolean result = task.markAsUndone();
+            if (result) {
+                this.sendMessage(String.format("OK, I've marked this task as not done yet:\n[ ] %s", task.getDescription()));
+            } else {
+                this.sendMessage("This task is already marked as undone!");
+            }
+        } else {
+            this.sendMessage("Invalid syntax. Use unmark <index>");
         }
     }
 
