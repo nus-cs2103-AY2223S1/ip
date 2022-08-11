@@ -1,3 +1,6 @@
+randomcmd
+cmd
+test
 todo
 todo eat
 deadline Eat Supper /by Monday
