@@ -10,6 +10,9 @@ event Sleep /at Thurs 9-10pm
 event Sleep at Thurs 9-10pm
 event
 list
+mark 3
+delete 3
+list
 deadline Project /by Today 4am
 mark 1
 mark
@@ -17,7 +20,14 @@ list
 mark 3
 list
 mark 2
+deadline Project /by Today 1800
 list
 unmark 1
+deadline Eat Durians /by Sunday
 unmark
+mark 4
+unmark 4
+delete 2
+list
+delete 3
 list
