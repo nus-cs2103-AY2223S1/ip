@@ -22,63 +22,65 @@ public class Ekud {
 
         while (active) {
             String command = sc.nextLine();
-            if (command.equals("bye")) {
-                this.sendMessage("Bye. Hope to see you again soon!");
-                active = false;
-            } else if (command.equals("list")) {
-                this.printTasks();
-            } else if (command.startsWith("mark")) {
-                this.markAsDone(command);
-            } else if (command.startsWith("unmark")) {
-                this.markAsUndone(command);
-            } else if (command.startsWith("todo")) {
-                addTask(command, TaskType.TODO);
-            } else if (command.startsWith("deadline")) {
-                addTask(command, TaskType.DEADLINE);
-            } else if (command.startsWith("event")) {
-                addTask(command, TaskType.EVENT);
-            } else {
-                this.sendMessage("Invalid command");
+            try {
+                if (command.equals("bye")) {
+                    this.sendMessage("Bye. Hope to see you again soon!");
+                    active = false;
+                } else if (command.equals("list")) {
+                    this.printTasks();
+                } else if (command.startsWith("mark")) {
+                    this.markAsDone(command);
+                } else if (command.startsWith("unmark")) {
+                    this.markAsUndone(command);
+                } else if (command.startsWith("todo")) {
+                    addTask(command, TaskType.TODO);
+                } else if (command.startsWith("deadline")) {
+                    addTask(command, TaskType.DEADLINE);
+                } else if (command.startsWith("event")) {
+                    addTask(command, TaskType.EVENT);
+                } else {
+                    throw new EkudException("Invalid command.");
+                }
+            } catch (EkudException exception) {
+                this.sendMessage(exception.getMessage());
             }
         }
         sc.close();
     }
 
-    private void markAsDone(String message) {
+    private void markAsDone(String message) throws EkudException {
         if (message.matches("^mark \\d+$")) {
             int idx = Integer.parseInt(message.substring("mark ".length()));
             if (idx > this.numberOfTasks || idx < 1) {
-                this.sendMessage("Invalid index. Type 'list' to see available tasks and their indexes.");
-                return;
+                throw new EkudException("Invalid index. Type 'list' to see available tasks and their indexes.");
             } 
             Task task = this.taskList[idx - 1];
             boolean result = task.markAsDone();
             if (result) {
                 this.sendMessage(String.format("Nice! I've marked this task as done:\n%s", task.toString()));
             } else {
-                this.sendMessage("That task is already marked as done!");
+                throw new EkudException("That task is already marked as done!");
             }
         } else {
-            this.sendMessage("Invalid syntax. Use mark <index>");
+            throw new EkudException("Invalid syntax. Use mark <index>");
         }
     }
 
-    private void markAsUndone(String message) {
+    private void markAsUndone(String message) throws EkudException {
         if (message.matches("^unmark \\d+$")) {
             int idx = Integer.parseInt(message.substring("unmark ".length()));
             if (idx > this.numberOfTasks || idx < 1) {
-                this.sendMessage("Invalid index. Type 'list' to see available tasks and their indexes.");
-                return;
+                throw new EkudException("Invalid index. Type 'list' to see available tasks and their indexes.");
             }
             Task task = this.taskList[idx - 1];
             boolean result = task.markAsUndone();
             if (result) {
                 this.sendMessage(String.format("OK, I've marked this task as not done yet:\n%s", task.toString()));
             } else {
-                this.sendMessage("This task is already marked as undone!");
+                throw new EkudException("This task is already marked as undone!");
             }
         } else {
-            this.sendMessage("Invalid syntax. Use unmark <index>");
+            throw new EkudException("Invalid syntax. Use unmark <index>");
         }
     }
 
@@ -90,27 +92,22 @@ public class Ekud {
         this.sendMessage(builder.toString());
     }
 
-    private void addTask(String description, TaskType type) {
+    private void addTask(String description, TaskType type) throws EkudException {
         if (this.numberOfTasks == 100) {
-            this.sendMessage("Sorry, you've reached the maximum limit of 100 tasks.");
+            throw new EkudException("Sorry, you've reached the maximum limit of 100 tasks.");
         }
-        Optional<Task> task = parseSpecialTask(description, type);
-        if (task.isEmpty()) {
-            return;
-        } else {
-            this.taskList[this.numberOfTasks++] = task.get();
-            this.sendMessage(String.format("Got it. I've added this task: %s", task.get().toString()));     
-        }
-   
+        Task task = parseSpecialTask(description, type);
+        this.taskList[this.numberOfTasks++] = task;
+        this.sendMessage(String.format("Got it. I've added this task: %s", task.toString())); 
     }
 
-    private Optional<Task> parseSpecialTask(String description, TaskType type) {
+    private Task parseSpecialTask(String description, TaskType type) throws EkudException {
         Optional<Task> task = Optional.empty();
         String[] parts = description.split(" ");
         switch (type) {
             case TODO:
                 if (parts.length < 2) {
-                    this.sendMessage("Description of a TODO cannot be empty.");
+                    throw new EkudException("Description of a TODO cannot be empty.");
                 } else {
                     task = Optional.of(new ToDo(String.join(" ", Arrays.copyOfRange(parts, 1, parts.length))));
                 }
@@ -126,11 +123,11 @@ public class Ekud {
                 }
                 if (idxOfSeparator == 0) {
                     String separator = type == TaskType.EVENT ? "/at" : "/by";
-                    this.sendMessage(String.format("Invalid syntax. Use %s <task> %s <date/time>", type.toString(), separator));
+                    throw new EkudException(String.format("Invalid syntax. Use %s <task> %s <date/time>", type.toString(), separator));
                 } else if (idxOfSeparator == 1) {
-                    this.sendMessage(String.format("Description of an %s cannot be empty.", type.toString()));
+                    throw new EkudException(String.format("Description of an %s cannot be empty.", type.toString()));
                 } else if (idxOfSeparator == parts.length - 1) {
-                    this.sendMessage("Date/Time cannot be empty.");
+                    throw new EkudException("Date/Time cannot be empty.");
                 } else {
                     String taskDesc = String.join(" ", Arrays.copyOfRange(parts, 1, idxOfSeparator));
                     String taskDueDate = String.join(" ", Arrays.copyOfRange(parts, idxOfSeparator + 1, parts.length));
@@ -142,7 +139,11 @@ public class Ekud {
                 }
                 break;
         }
-        return task;
+        if (task.isEmpty()) {
+            throw new EkudException("Unexpected error.");
+        } else {
+            return task.get();
+        }
     }
 
     private String indentMessage(String message) {
