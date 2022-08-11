@@ -100,6 +100,52 @@
     ___________________________________
     
     ___________________________________
+    Error: Invalid index. Type 'list' to see available tasks and their indexes.
+    ___________________________________
+    
+    ___________________________________
+    Noted. I've removed this task:
+    [D][ ] return book (by: Sunday)
+    Now you have 2 tasks in the list.
+    ___________________________________
+    
+    ___________________________________
+    Here are the tasks in your list:
+    1.[T][ ] borrow book
+    2.[E][ ] project meeting (at: Mon 2-4pm)
+    
+    ___________________________________
+    
+    ___________________________________
+    Nice! I've marked this task as done:
+    [T][X] borrow book
+    ___________________________________
+    
+    ___________________________________
+    Here are the tasks in your list:
+    1.[T][X] borrow book
+    2.[E][ ] project meeting (at: Mon 2-4pm)
+    
+    ___________________________________
+    
+    ___________________________________
+    Noted. I've removed this task:
+    [T][X] borrow book
+    Now you have 1 tasks in the list.
+    ___________________________________
+    
+    ___________________________________
+    Nice! I've marked this task as done:
+    [E][X] project meeting (at: Mon 2-4pm)
+    ___________________________________
+    
+    ___________________________________
+    Here are the tasks in your list:
+    1.[E][X] project meeting (at: Mon 2-4pm)
+    
+    ___________________________________
+    
+    ___________________________________
     Bye. Hope to see you again soon!
     ___________________________________
     
