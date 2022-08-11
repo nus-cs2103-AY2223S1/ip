@@ -10,10 +10,16 @@ public class Ekud {
     " |    __)_|  |/ /  |  \\/ __ |\n" + " |        \\    <|  |  / /_/ | \n" + "/_______  /__|_ \\____/\\____ | \n" + 
     "        \\/     \\/          \\/ \n";
 
+    /**
+     * Constructor that instantiates new Ekud instance.
+     */
     public Ekud() {
         this.taskList = new ArrayList<Task>();
     }
 
+    /**
+     * Starts the chat bot.
+     */
     public void start() {
         this.sendMessage("Hello from\n" + this.logo + "What can I do for you?");
         Scanner sc = new Scanner(System.in);
