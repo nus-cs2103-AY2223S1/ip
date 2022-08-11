@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class Storage {
     private final List<Task> taskList;
+    static String NO_SUCH_INDEX = "No such index in the list, please try again.";
 
     Storage() {
         this.taskList = new ArrayList<>();
@@ -21,10 +21,26 @@ public class Storage {
         }
     }
 
+    void removeTaskFromList(int id) {
+        try {
+            if (id <= 0 || id > taskList.size()) {
+                throw new DukeException(NO_SUCH_INDEX);
+            }
+
+            Task taskToRemove = this.taskList.get(id-1);
+            this.taskList.remove(id-1);
+            String taskRemovedOutput = String.format("Noted. I've removed this task:\n %s\n%s\n",
+                    taskToRemove.toString(), getItemsLeft());
+            System.out.println(taskRemovedOutput);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
     void addTaskToList(Task task) {
         try {
             this.taskList.add(task);
-            String taskAddedOutput = String.format("Got it. I've added this task:\n  %s\n%s",
+            String taskAddedOutput = String.format("Got it. I've added this task:\n  %s\n%s\n",
                     task.toString(), getItemsLeft());
             System.out.println(taskAddedOutput);
         } catch (Exception e) {
@@ -44,13 +60,13 @@ public class Storage {
             toPrint = String.format("%s\n%s", toPrint, toConcat);
         }
 
-        System.out.println(toPrint);
+        System.out.println(toPrint.substring(1) + "\n");
     }
 
     void markTaskAsDone(int id) {
         try {
             if (id <= 0 || id > taskList.size()) {
-                throw new Exception("No such index in the list, please try again.");
+                throw new DukeException(NO_SUCH_INDEX);
             }
             Task targetTask = taskList.get(id-1);
             targetTask.markAsDone();
@@ -62,7 +78,7 @@ public class Storage {
     void markTaskAsUnDone(int id) {
         try {
             if (id <= 0 || id > taskList.size()) {
-                throw new Exception("No such index in the list, please try again.");
+                throw new DukeException(NO_SUCH_INDEX);
             }
             Task targetTask = taskList.get(id-1);
             targetTask.markAsUnDone();
