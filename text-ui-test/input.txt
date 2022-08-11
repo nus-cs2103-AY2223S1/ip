@@ -1,0 +1,13 @@
+todo eat
+deadline Eat Supper /by Monday
+event Sleep /at Thurs 9-10pm
+list
+deadline Project /by Today 4am
+mark 1
+list
+mark 3
+list
+mark 2
+list
+unmark 1
+list
