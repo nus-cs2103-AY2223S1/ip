@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class Storage {
     private final List<Task> taskList;
@@ -9,13 +10,22 @@ public class Storage {
     }
 
     String handleTaskOutput(Task task, int id) {
-        return String.format("%d. %s %s", id, task.getMarkedStatus(), task.description);
+        return String.format("%d. %s", id, task.toString());
+    }
+
+    String getItemsLeft() {
+        if (taskList.isEmpty()) {
+            return "List is empty";
+        } else {
+            return String.format("Now you have %d tasks in the list", taskList.size());
+        }
     }
 
     void addTaskToList(Task task) {
         try {
             this.taskList.add(task);
-            String taskAddedOutput = String.format("added: %s", task.description);
+            String taskAddedOutput = String.format("Got it. I've added this task:\n  %s\n%s",
+                    task.toString(), getItemsLeft());
             System.out.println(taskAddedOutput);
         } catch (Exception e) {
             System.out.println(e);

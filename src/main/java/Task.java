@@ -13,15 +13,23 @@ public class Task {
         return isDone ? "[X]" : "[ ]";
     }
 
+    String determineTextOutput() {
+        return isDone ? MARKED_TXT : UNMARKED_TEXT;
+    }
+
     void markAsDone() {
         this.isDone = true;
-        String toPrint = String.format("%s\n [X] %s", MARKED_TXT, this.description);
-        System.out.println(toPrint);
+        System.out.println(determineTextOutput() + "\n" + this);
     }
 
     void markAsUnDone() {
         this.isDone = false;
-        String toPrint = String.format("%s\n [] %s", UNMARKED_TEXT, this.description);
-        System.out.println(toPrint);
+        System.out.println(determineTextOutput() + "\n" + this);
+    }
+
+    @Override
+    public String toString() {
+        String toPrint = String.format("%s %s", this.getMarkedStatus(), this.description);
+        return toPrint;
     }
 }
