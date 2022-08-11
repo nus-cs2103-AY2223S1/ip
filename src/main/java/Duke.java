@@ -21,8 +21,31 @@ public class Duke {
                 continue;
             }
 
+            if (nextCommand.startsWith("mark")) {
+                try {
+                    Integer targetIndex = Integer.parseInt(nextCommand.substring(5));
+                    storage.markTaskAsDone(targetIndex);
+                    continue;
+                } catch (Exception e) {
+                    System.out.println(e + "\nPlease input an integer");
+                    continue;
+                }
+            }
+
+            if (nextCommand.startsWith("unmark") || nextCommand.startsWith("Unmark")) {
+                try {
+                    Integer targetIndex = Integer.parseInt(nextCommand.substring(7));
+                    storage.markTaskAsUnDone(targetIndex);
+                    continue;
+                } catch (Exception e) {
+                    System.out.println(e + "\nPlease input an integer");
+                    continue;
+                }
+            }
+
             // Handle list addition
-            storage.addTaskToList(nextCommand);
+            Task taskToAdd = new Task(nextCommand);
+            storage.addTaskToList(taskToAdd);
         }
     }
 }
