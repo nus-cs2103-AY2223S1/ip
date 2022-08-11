@@ -7,6 +7,18 @@ public class Task {
     this.isDone = false;
   }
 
+  public boolean markAsDone() {
+    if (this.isDone) return false;
+    this.isDone = true;
+    return true;
+  }
+
+  public boolean markAsUndone() {
+    if (!this.isDone) return false;
+    this.isDone = false;
+    return true;
+  }
+
   public String getDescription() {
     return this.description;
   }
