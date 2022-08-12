@@ -1,14 +1,32 @@
-test
+blah
 todo
 todo test1
+list 1
 list
+deadline
+deadline test2
 deadline test2 /by 2
+list
+event
+event test3
 event test3 /at 3
 list
+mark
+mark x
+mark 0
+mark 4
 mark 1
 list
+unmark
+unmark x
+unmark 0
+unmark 4
 unmark 1
 list
+delete
+delete x
+delete 0
+delete 4
 delete 1
 list
 bye
