@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
@@ -31,25 +32,26 @@ public class Duke {
         printLine();
     }
 
-    public static boolean isExit(String input) {
-        return input.equals("bye");
-    }
-
     public static void exit() {
         printLine();
         printWithIndent("Bye. Hope to see you again soon!");
         printLine();
     }
+
     public static void main(String[] args) {
         greet();
         Scanner scanner = new Scanner(System.in);
-        while (true) {
+        boolean stillRunning = true;
+        while (stillRunning) {
             String input = scanner.nextLine().strip();
-            if (isExit(input)) {
-                exit();
-                break;
-            } else {
-                echo(input);
+            switch (input) {
+                case "bye":
+                    exit();
+                    stillRunning = false;
+                    break;
+                default:
+                    echo(input);
+                    break;
             }
         }
     }
