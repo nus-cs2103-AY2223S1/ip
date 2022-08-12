@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class Duke {
+    private static final String minorIndentation = "  ";
     private static final String indentation = "    ";
     private static final String horizontalLine = indentation + "____________________________________________________________";
 
@@ -32,6 +33,24 @@ public class Duke {
                 for (int i = 0; i < index; i++) {
                     System.out.printf(indentation + "%d: %s\n", i + 1, tasks[i]);
                 }
+            } else if (input.startsWith("mark")) {
+                String indexInput = input.substring(5);
+                int i = Integer.parseInt(indexInput);
+
+                // subtract 1 to account for 0-index data structure
+                Task task = tasks[i - 1];
+                task.markAsDone();
+                System.out.printf(indentation + "Marked task %d as done!\n", i);
+                System.out.println(indentation + minorIndentation + task);
+            } else if (input.startsWith("unmark")) {
+                String indexInput = input.substring(7);
+                int i = Integer.parseInt(indexInput);
+
+                // subtract 1 to account for 0-index data structure
+                Task task = tasks[i - 1];
+                task.markAsUndone();
+                System.out.printf(indentation + "Marked task %d as not done!\n", i);
+                System.out.println(indentation + minorIndentation + task);
             } else {
                 tasks[index++] = new Task(input);
                 System.out.println(indentation + "added: " + input);
