@@ -95,15 +95,15 @@ public class Duke {
                 System.out.printf("OK, I've marked this task as not done yet:%n%s%n", list.get(idx - 1).unmark());
             } else if (inputArr[0].equals("todo")) {
                 list.add(new Todo(inputArr[1]));
-                System.out.printf("Got it. I've added this task: %n%s%nNow you have %d tasks in the list.%n", list.getLast(), list.size());
+                System.out.printf("Got it. I've added this task:%n%s%nNow you have %d tasks in the list.%n", list.getLast(), list.size());
             } else if (inputArr[0].equals("deadline")) {
                 String[] split = inputArr[1].split(" /by ");
                 list.add(new Deadline(split[0], split[1]));
-                System.out.printf("Got it. I've added this task: %n%s%nNow you have %d tasks in the list.%n", list.getLast(), list.size());
+                System.out.printf("Got it. I've added this task:%n%s%nNow you have %d tasks in the list.%n", list.getLast(), list.size());
             } else if (inputArr[0].equals("event")) {
                 String[] split = inputArr[1].split(" /at ");
                 list.add(new Event(split[0], split[1]));
-                System.out.printf("Got it. I've added this task: %n%s%nNow you have %d tasks in the list.%n", list.getLast(), list.size());
+                System.out.printf("Got it. I've added this task:%n%s%nNow you have %d tasks in the list.%n", list.getLast(), list.size());
             } else {
                 System.out.println("Unknown command");
             }
