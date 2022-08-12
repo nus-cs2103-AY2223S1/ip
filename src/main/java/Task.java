@@ -1,4 +1,4 @@
-public class Task {
+public abstract class Task implements SetStatus {
     private final String title;
     private final boolean status; 
 
@@ -7,8 +7,12 @@ public class Task {
         this.status = status;
     }
 
-    Task setStatus(boolean status) {
-        return new Task(this.title, status);
+    String getTitle() {
+        return this.title;
+    }
+
+    boolean getStatus() {
+        return this.status;
     }
 
     @Override

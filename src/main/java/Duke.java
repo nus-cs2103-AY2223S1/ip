@@ -41,6 +41,19 @@ public class Duke {
                 for (int i = 0; i < list.size(); i++) {
                     System.out.println((i + 1) + ") " + list.get(i).toString());
                 }
+            } else if (command.equals("todo")) {
+                Task task = new Todo(input[1], false);
+                list.add(task);
+
+                System.out.println("Task added to list!: " + task.toString());
+                System.out.println("Now you have " + list.size() + " tasks in the list");
+            } else if (command.equals("deadline")) {
+                input = input[1].split(" /by ", 2);
+                Task task = new Deadline(input[0], false, input[1]);
+                list.add(task);
+
+                System.out.println("Task added to list!: " + task.toString());
+                System.out.println("Now you have " + list.size() + " tasks in the list");
             } else {
                 System.out.println("Sorry, I don't know what do you mean by that.");
             }
