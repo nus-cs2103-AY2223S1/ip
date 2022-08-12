@@ -46,6 +46,17 @@ public class Duke {
                 } catch(Exception e) {
                     System.out.println("Invalid task index!");
                 }
+            } else if (command.equals("delete")) {
+                try {
+                    int index = Integer.parseInt(input[1]) - 1;
+                    Task task = list.get(index);
+                    list.remove(index);
+
+                    System.out.println("Task has been deleted!: " + task.toString());
+                    System.out.println("Now you have " + list.size() + " tasks in the list");
+                } catch(Exception e) {
+                    System.out.println("Invalid task index!");
+                }
             } else if (command.equals("list")) {
                 for (int i = 0; i < list.size(); i++) {
                     System.out.println((i + 1) + ") " + list.get(i).toString());

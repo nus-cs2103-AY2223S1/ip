@@ -14,4 +14,8 @@ todo
 deadline say hi to bob
 event meet bob
 blah
+delete 3
+mark 3
+delete
+list
 bye

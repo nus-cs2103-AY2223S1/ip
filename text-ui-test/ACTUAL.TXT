@@ -34,4 +34,10 @@ Now you have 3 tasks in the list
 > The description and deadline date cannot be empty!
 > The description and event date cannot be empty!
 > Sorry, I don't know what do you mean by that.
+> Task has been deleted!: [E][ ] meet bob (at: 10pm)
+Now you have 2 tasks in the list
+> Invalid task index!
+> Invalid task index!
+> 1) [T][ ] hi bob
+2) [D][ ] say hi to bob (by: 10pm)
 > Goodbye!
