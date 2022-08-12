@@ -8,5 +8,10 @@ mark 2
 unmark 2
 mark 3
 unmark 3
+mark 4
+unmark 4
+todo
+deadline say hi to bob
+event meet bob
 blah
 bye

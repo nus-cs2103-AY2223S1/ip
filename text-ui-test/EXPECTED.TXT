@@ -28,5 +28,10 @@ Now you have 3 tasks in the list
 [E][X] meet bob (at: 10pm)
 > Task marked as not done!
 [E][ ] meet bob (at: 10pm)
+> Invalid task index!
+> Invalid task index!
+> The description cannot be empty!
+> The description and deadline date cannot be empty!
+> The description and event date cannot be empty!
 > Sorry, I don't know what do you mean by that.
 > Goodbye!

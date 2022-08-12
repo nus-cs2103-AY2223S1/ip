@@ -26,22 +26,36 @@ public class Duke {
                 System.out.println("Goodbye!");
                 break;
             } else if (command.equals("mark")) {
-                int index = Integer.parseInt(input[1]) - 1;
-                list.set(index, list.get(index).setStatus(true));
+                try {
+                    int index = Integer.parseInt(input[1]) - 1;
+                
+                    list.set(index, list.get(index).setStatus(true));
 
-                System.out.println("Task marked as done!");
-                System.out.println(list.get(index).toString());
+                    System.out.println("Task marked as done!");
+                    System.out.println(list.get(index).toString());
+                } catch(Exception e) {
+                    System.out.println("Invalid task index!");
+                }
             } else if (command.equals("unmark")) {
-                int index = Integer.parseInt(input[1]) - 1;
-                list.set(index, list.get(index).setStatus(false));
+                try {
+                    int index = Integer.parseInt(input[1]) - 1;
+                    list.set(index, list.get(index).setStatus(false));
 
-                System.out.println("Task marked as not done!");
-                System.out.println(list.get(index).toString());
+                    System.out.println("Task marked as not done!");
+                    System.out.println(list.get(index).toString());
+                } catch(Exception e) {
+                    System.out.println("Invalid task index!");
+                }
             } else if (command.equals("list")) {
                 for (int i = 0; i < list.size(); i++) {
                     System.out.println((i + 1) + ") " + list.get(i).toString());
                 }
             } else if (command.equals("todo")) {
+                if (input.length < 2) {
+                    System.out.println("The description cannot be empty!");
+                    continue;
+                }
+
                 Task task = new Todo(input[1], false);
                 list.add(task);
 
@@ -49,6 +63,11 @@ public class Duke {
                 System.out.println("Now you have " + list.size() + " tasks in the list");
             } else if (command.equals("deadline")) {
                 input = input[1].split(" /by ", 2);
+                if (input.length < 2) {
+                    System.out.println("The description and deadline date cannot be empty!");
+                    continue;
+                }
+
                 Task task = new Deadline(input[0], false, input[1]);
                 list.add(task);
 
@@ -56,6 +75,11 @@ public class Duke {
                 System.out.println("Now you have " + list.size() + " tasks in the list");
             } else if (command.equals("event")) {
                 input = input[1].split(" /at ", 2);
+                if (input.length < 2) {
+                    System.out.println("The description and event date cannot be empty!");
+                    continue;
+                }
+
                 Task task = new Event(input[0], false, input[1]);
                 list.add(task);
 
