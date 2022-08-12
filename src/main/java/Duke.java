@@ -1,47 +1,8 @@
-import java.awt.*;
 import java.util.*;
 import java.util.List;
 
 public class Duke {
     private List<Task> storage = new ArrayList<Task>();
-
-    private class Task {
-        private String description;
-        private boolean isDone;
-
-        public Task(String description) {
-            this.description = description;
-            this.isDone = false;
-        }
-
-        public void markAsDone() {
-            if (this.isDone) {
-                System.out.println("Task already marked as done\n" + this);
-            } else {
-                this.isDone = true;
-                System.out.println("Nice! I've marked this task as done\n" +
-                        this);
-            }
-        }
-
-        public void markAsNotDone() {
-            if (!this.isDone) {
-                System.out.println("Task already marked as done\n" + this);
-            } else {
-                this.isDone = false;
-                System.out.println("Ok! I've unmarked this task\n" + this);
-            }
-        }
-
-        private String getStatusIcon() {
-            return (isDone ? "X" : " ");
-        }
-
-        @Override
-        public String toString() {
-            return "[" + getStatusIcon() + "] " + description;
-        }
-    }
 
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -101,9 +62,28 @@ public class Duke {
                 }
 
             } else {
-                Task t = new Task(next);
-                storage.add(t);
-                System.out.printf("added %s\n", next);
+
+                if (next.contains("todo")) {
+                    Todo todo = new Todo(next.substring(5));
+                    storage.add(todo);
+                    System.out.printf("added %s\n", todo);
+                } else if (next.contains("deadline")) {
+                    int idxDate = next.indexOf("/by");
+                    Deadline deadline = new Deadline(next.substring(9, idxDate),
+                            next.substring(idxDate + 4));
+                    storage.add(deadline);
+                    System.out.printf("added %s\n", deadline);
+                } else if (next.contains("event")) {
+                    int idxDate = next.indexOf("/at");
+                    Event event = new Event(next.substring(6, idxDate),
+                            next.substring(idxDate + 4));
+                    storage.add(event);
+                    System.out.printf("added %s\n", event);
+                } else {
+                    System.out.println("Invalid action");
+                }
+                System.out.printf("Now you have %d tasks in the list\n",
+                        this.storage.size());
             }
         }
     }
