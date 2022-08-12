@@ -15,7 +15,7 @@ public class Duke {
 
         Scanner sc = new Scanner(System.in);
         while (true) {
-            if (!duke.callback(sc.next())) {
+            if (!duke.callback(sc.nextLine())) {
                 break;
             }
         }
