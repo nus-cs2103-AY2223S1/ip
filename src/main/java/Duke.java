@@ -20,24 +20,21 @@ public class Duke {
         Task[] tasks = new Task[100];
         int index = 0;
 
-        inputLoop:
         while (true) {
             String input = scanner.nextLine();
 
             System.out.println(horizontalLine);
 
-            switch (input) {
-                case "bye":
-                    System.out.println(indentation + "Bye, hope to see you soon!");
-                    break inputLoop;
-                case "list":
-                    for (int i = 0; i < index; i++) {
-                        System.out.printf(indentation + "%d: %s\n", i + 1, tasks[i]);
-                    }
-                    break;
-                default:
-                    tasks[index++] = new Task(input);
-                    System.out.println(indentation + "added: " + input);
+            if (input.equals("bye")) {
+                System.out.println(indentation + "Bye, hope to see you soon!");
+                break;
+            } else if (input.equals("list")) {
+                for (int i = 0; i < index; i++) {
+                    System.out.printf(indentation + "%d: %s\n", i + 1, tasks[i]);
+                }
+            } else {
+                tasks[index++] = new Task(input);
+                System.out.println(indentation + "added: " + input);
             }
 
             System.out.println(horizontalLine);
