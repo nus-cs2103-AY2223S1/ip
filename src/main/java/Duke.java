@@ -6,6 +6,8 @@ public class Duke {
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_RESET = "\u001B[0m";
 
+    public static ArrayList<String> taskList = new ArrayList<>();
+
     public static void printWithIndent(String toPrint) {
         System.out.println("\t" + toPrint.replace("\n", "\n\t"));
     }
@@ -38,6 +40,22 @@ public class Duke {
         printLine();
     }
 
+    public static void addTask(String item) {
+        taskList.add(item);
+        printLine();
+        printWithIndent("added: " + item);
+        printLine();
+    }
+
+    public static void listTasks() {
+        printLine();
+        for (int i = 0; i < taskList.size(); i++) {
+            String task =  taskList.get(i);
+            printWithIndent(String.valueOf(i + 1) + ". " + task);
+        }
+        printLine();
+    }
+
     public static void main(String[] args) {
         greet();
         Scanner scanner = new Scanner(System.in);
@@ -49,8 +67,11 @@ public class Duke {
                     exit();
                     stillRunning = false;
                     break;
+                case "list":
+                    listTasks();
+                    break;
                 default:
-                    echo(input);
+                    addTask(input);
                     break;
             }
         }
