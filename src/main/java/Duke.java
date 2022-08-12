@@ -17,7 +17,7 @@ public class Duke {
 
         Scanner scanner = new Scanner(System.in);
 
-        String[] tasks = new String[100];
+        Task[] tasks = new Task[100];
         int index = 0;
 
         inputLoop:
@@ -36,7 +36,7 @@ public class Duke {
                     }
                     break;
                 default:
-                    tasks[index++] = input;
+                    tasks[index++] = new Task(input);
                     System.out.println(indentation + "added: " + input);
             }
 
