@@ -79,8 +79,7 @@ public class Duke {
         list = new LinkedList<>();
         Scanner sc = new Scanner(System.in);
         System.out.printf("%s%n%s%n%s%n%s%n", LINE, "Hello! I'm Cortana", "What can I do for you?", LINE);
-
-
+        
         while (true) {
             try {
                 String input = sc.nextLine().trim();
@@ -91,30 +90,48 @@ public class Duke {
                     System.out.printf("%s%n", "Bye. Hope to see you again soon!");
                     break;
                 } else if (input.equals("list")) {
-                    System.out.println("Here are the tasks in your list:");
+                    int size = list.size();
+                    System.out.printf("Here %s the task%s in your list:%n",
+                            size > 1 ? "are" : "is", size > 1 ? "s" : "");
                     for (int i = 1; i <= list.size(); i++) {
                         System.out.printf("%d.%s%n", i, list.get(i - 1));
                     }
                 } else if (inputArr[0].equals("mark")) {
                     int idx = Integer.parseInt(inputArr[1]);
-                    System.out.printf("Nice! I've marked this task as done:%n%s%n", list.get(idx - 1).mark());
+                    System.out.printf("Nice! I've marked this task as done:%n%s%n",
+                            list.get(idx - 1).mark());
                 } else if (inputArr[0].equals("unmark")) {
                     int idx = Integer.parseInt(inputArr[1]);
-                    System.out.printf("OK, I've marked this task as not done yet:%n%s%n", list.get(idx - 1).unmark());
+                    System.out.printf("OK, I've marked this task as not done yet:%n%s%n",
+                            list.get(idx - 1).unmark());
                 } else if (inputArr[0].equals("todo")) {
                     if (inputArr.length == 1) throw new DukeException("The description of a todo cannot be empty.");
-                    list.add(new Todo(inputArr[1]));
-                    System.out.printf("Got it. I've added this task:%n%s%nNow you have %d tasks in the list.%n", list.getLast(), list.size());
+                    Todo temp = new Todo(inputArr[1]);
+                    list.add(temp);
+                    int size = list.size();
+                    System.out.printf("Got it. I've added this task:%n%s%nNow you have %d task%s in the list.%n",
+                            temp, size, size > 1 ? "s" : "");
                 } else if (inputArr[0].equals("deadline")) {
                     if (inputArr.length == 1) throw new DukeException("The description of a deadline cannot be empty.");
                     String[] split = inputArr[1].split(" /by ");
-                    list.add(new Deadline(split[0], split[1]));
-                    System.out.printf("Got it. I've added this task:%n%s%nNow you have %d tasks in the list.%n", list.getLast(), list.size());
+                    Deadline temp = new Deadline(split[0], split[1]);
+                    list.add(temp);
+                    int size = list.size();
+                    System.out.printf("Got it. I've added this task:%n%s%nNow you have %d task%s in the list.%n",
+                            temp, size, size > 1 ? "s" : "");
                 } else if (inputArr[0].equals("event")) {
                     if (inputArr.length == 1) throw new DukeException("The description of an event cannot be empty.");
                     String[] split = inputArr[1].split(" /at ");
-                    list.add(new Event(split[0], split[1]));
-                    System.out.printf("Got it. I've added this task:%n%s%nNow you have %d tasks in the list.%n", list.getLast(), list.size());
+                    Event temp = new Event(split[0], split[1]);
+                    list.add(temp);
+                    int size = list.size();
+                    System.out.printf("Got it. I've added this task:%n%s%nNow you have %d task%s in the list.%n",
+                            temp, size, size > 1 ? "s" : "");
+                } else if (inputArr[0].equals("delete")) {
+                    Task temp = list.remove(Integer.parseInt(inputArr[1]) - 1);
+                    int size = list.size();
+                    System.out.printf("Noted. I've removed this task:%n%s%nNow you have %d task%s in the list.%n",
+                            temp, size, size > 1 ? "s" : "");
                 } else {
                     throw new DukeException("I'm sorry, but I don't know what that means");
                 }

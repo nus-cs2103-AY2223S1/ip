@@ -11,7 +11,11 @@ The description of a todo cannot be empty.
 --------------------------------------------------
 Got it. I've added this task:
 [T][ ] test1
-Now you have 1 tasks in the list.
+Now you have 1 task in the list.
+--------------------------------------------------
+--------------------------------------------------
+Here is the task in your list:
+1.[T][ ] test1
 --------------------------------------------------
 --------------------------------------------------
 Got it. I've added this task:
@@ -48,6 +52,16 @@ Here are the tasks in your list:
 1.[T][ ] test1
 2.[D][ ] test2 (by: 2)
 3.[E][ ] test3 (at: 3)
+--------------------------------------------------
+--------------------------------------------------
+Noted. I've removed this task:
+[T][ ] test1
+Now you have 2 tasks in the list.
+--------------------------------------------------
+--------------------------------------------------
+Here are the tasks in your list:
+1.[D][ ] test2 (by: 2)
+2.[E][ ] test3 (at: 3)
 --------------------------------------------------
 --------------------------------------------------
 Bye. Hope to see you again soon!
