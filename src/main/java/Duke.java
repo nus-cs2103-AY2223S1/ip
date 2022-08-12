@@ -17,6 +17,9 @@ public class Duke {
 
         Scanner scanner = new Scanner(System.in);
 
+        String[] tasks = new String[100];
+        int index = 0;
+
         inputLoop:
         while (true) {
             String input = scanner.nextLine();
@@ -28,7 +31,8 @@ public class Duke {
                     System.out.println(indentation + "Bye, hope to see you soon!");
                     break inputLoop;
                 default:
-                    System.out.println(indentation + input);
+                    tasks[index++] = input;
+                    System.out.println(indentation + "added: " + input);
             }
 
             System.out.println(horizontalLine);
