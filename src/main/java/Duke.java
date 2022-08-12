@@ -15,7 +15,7 @@ public class Duke {
         System.out.println("Hello from\n" + logo);
         System.out.println("What can I do for you?");
 
-        List < String > list = new ArrayList < String > ();
+        List<Task> list = new ArrayList<Task>();
 
         while (true) {
             System.out.print("> ");
@@ -26,11 +26,11 @@ public class Duke {
                 break;
             } else if (input.equals("list")) {
                 for (int i = 0; i < list.size(); i++) {
-                    System.out.println((i + 1) + ") " + list.get(i));
+                    System.out.println((i + 1) + ") " + list.get(i).toString());
                 }
             } else {
                 System.out.println("Added: " + input);
-                list.add(input);
+                list.add(new Task(input, false));
             }
         }
     }
