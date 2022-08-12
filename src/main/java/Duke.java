@@ -2,12 +2,12 @@ import java.util.Scanner;
 import java.util.stream.IntStream;
 
 public class Duke {
-    private final String[] history;
+    private final Task[] tasks;
     private int id = 0;
 
     public Duke(String name) {
-        this.history = new String[100];
-        speak(String.format("Hello! I'm %s\nWhat can I do for you?", name));
+        this.tasks = new Task[100];
+        speak(String.format("Hello! I'm %s\nWhat do you need to do?", name));
     }
 
     public static void main(String[] args) {
@@ -30,10 +30,32 @@ public class Duke {
                 listHistory();
                 return true;
             default:
-                history[id++] = input;
-                speak(input);
+                if (input.matches("^mark \\d+$")) {
+                    int task = getIdFromCommand(input);
+                    if (task < id && task >= 0) {
+                        tasks[task].setDone(true);
+                        speak(String.format("Nice! I've marked this task as done:\n%s", tasks[task]));
+                    } else {
+                        speak("Invalid task number");
+                    }
+                } else if (input.matches("^unmark \\d+$")) {
+                    int task = getIdFromCommand(input);
+                    if (task < id && task >= 0) {
+                        tasks[task].setDone(false);
+                        speak(String.format("Ok, I've marked this task as not done yet:\n%s", tasks[task]));
+                    } else {
+                        speak("Invalid task number");
+                    }
+                } else {
+                    tasks[id++] = new Task(input);
+                    speak(String.format("Nice! I've added this task to your list:\n%s", input));
+                }
                 return true;
         }
+    }
+
+    private int getIdFromCommand(String input) {
+        return Integer.parseInt(input.split(" ")[1]) - 1;
     }
 
     private void speak(String text) {
@@ -45,7 +67,7 @@ public class Duke {
 
     public void listHistory() {
         StringBuilder output = new StringBuilder();
-        IntStream.range(0, this.id).forEach(i -> output.append(String.format("%d. %s%n", i + 1, history[i])));
+        IntStream.range(0, this.id).forEach(i -> output.append(String.format("%d. %s%n", i + 1, tasks[i])));
         speak(output.toString());
     }
 
