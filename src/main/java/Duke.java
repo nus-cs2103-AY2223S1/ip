@@ -8,7 +8,7 @@ public class Duke {
     /**
      * 'List' attribute to store inputs.
      */
-    private List<String> dukeList = new ArrayList<>();
+    private static List<String> dukeList = new ArrayList<>();
 
     /**
      * Function to echo an input string onto stdout.
@@ -18,6 +18,10 @@ public class Duke {
         System.out.println(input);
     }
 
+    /**
+     * Main function with program logic.
+     * @param args
+     */
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
