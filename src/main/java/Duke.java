@@ -54,6 +54,13 @@ public class Duke {
 
                 System.out.println("Task added to list!: " + task.toString());
                 System.out.println("Now you have " + list.size() + " tasks in the list");
+            } else if (command.equals("event")) {
+                input = input[1].split(" /at ", 2);
+                Task task = new Event(input[0], false, input[1]);
+                list.add(task);
+
+                System.out.println("Task added to list!: " + task.toString());
+                System.out.println("Now you have " + list.size() + " tasks in the list");
             } else {
                 System.out.println("Sorry, I don't know what do you mean by that.");
             }
