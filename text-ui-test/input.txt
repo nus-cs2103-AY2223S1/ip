@@ -1,0 +1,12 @@
+todo hi bob
+deadline say hi to bob /by 10pm
+event meet bob /at 10pm
+list
+mark 1
+unmark 1
+mark 2
+unmark 2
+mark 3
+unmark 3
+blah
+bye
