@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.ListIterator;
 
 public class Duke {
     public static void main(String[] args) {
@@ -9,23 +11,32 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
 
-        System.out.println("____________________________________________________________");
-        System.out.println(" Hello! I'm Duke");
-        System.out.println(" What can I do for you?");
-        System.out.println("____________________________________________________________");
+        myPrinter(" Hello! I'm Duke\n What can I do for you?");
+        ArrayList<String> myList = new ArrayList<String>();
 
         while (true) {
             Scanner myObj = new Scanner(System.in);
             String userInput = myObj.nextLine();
             if (userInput.equals("bye")) {
-                System.out.println("____________________________________________________________");
-                System.out.println("Bye. Hope to see you again soon!");
-                System.out.println("____________________________________________________________");
+                myPrinter("Bye. Hope to see you again soon!");
                 break;
+            } else if (userInput.equals("list")) {
+                String toPrint = "";
+                for(int i = 0; i<myList.size(); i++) {
+                    toPrint += (i+1) + ". " + myList.get(i) + "\n";
+                }
+                myPrinter(toPrint.substring(0, toPrint.length()-1));
+            } else {
+                myList.add(userInput);
+                myPrinter("added: " + userInput);
             }
-            System.out.println("____________________________________________________________");
-            System.out.println(userInput);
-            System.out.println("____________________________________________________________");
+
         }
+    }
+
+    private static void myPrinter(String myString) {
+        System.out.println("____________________________________________________________");
+        System.out.println(myString);
+        System.out.println("____________________________________________________________");
     }
 }
