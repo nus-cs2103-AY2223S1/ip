@@ -30,6 +30,11 @@ public class Duke {
                 case "bye":
                     System.out.println(indentation + "Bye, hope to see you soon!");
                     break inputLoop;
+                case "list":
+                    for (int i = 0; i < index; i++) {
+                        System.out.printf(indentation + "%d: %s\n", i + 1, tasks[i]);
+                    }
+                    break;
                 default:
                     tasks[index++] = input;
                     System.out.println(indentation + "added: " + input);
