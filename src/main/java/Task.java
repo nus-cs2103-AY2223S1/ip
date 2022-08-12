@@ -19,10 +19,17 @@ public class Task {
     }
 
     /**
-     * Toggles whether a task is done.
+     * Marks a task as done.
      */
-    public void toggleDone() {
-        this.isDone = !this.isDone;
+    public void markAsDone() {
+        this.isDone = true;
+    }
+
+    /**
+     * Marks a task as undone.
+     */
+    public void markAsUndone() {
+        this.isDone = false;
     }
 
     /**
