@@ -24,6 +24,16 @@ public class Duke {
             if (input.equals("bye")) {
                 System.out.println("Goodbye!");
                 break;
+            } else if (input.split(" ")[0].equals("mark")) {
+                int index = Integer.parseInt(input.split(" ")[1]) - 1;
+                list.set(index, list.get(index).setStatus(true));
+                System.out.println("Task marked as done!");
+                System.out.println(list.get(index).toString());
+            } else if (input.split(" ")[0].equals("unmark")) {
+                int index = Integer.parseInt(input.split(" ")[1]) - 1;
+                list.set(index, list.get(index).setStatus(false));
+                System.out.println("Task marked as not done!");
+                System.out.println(list.get(index).toString());
             } else if (input.equals("list")) {
                 for (int i = 0; i < list.size(); i++) {
                     System.out.println((i + 1) + ") " + list.get(i).toString());
