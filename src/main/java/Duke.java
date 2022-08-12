@@ -1,14 +1,12 @@
 package main.java;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
     /**
      * 'List' attribute to store inputs.
      */
-    private static List<String> dukeList = new ArrayList<>();
+    private static DukeList dukeList = new DukeList();
 
     /**
      * Function to echo an input string onto stdout.
@@ -42,6 +40,7 @@ public class Duke {
                     return;
                 default:
                     echo(userInput);
+                    dukeList.add(userInput);
             }
         }
     }
