@@ -36,10 +36,19 @@ public class Duke {
             userInput = myScanner.nextLine();
             switch(userInput) {
                 case "bye":
+                    // Exit
                     echo("Bye. Hope to see you again soon!");
                     return;
+                case "list":
+                    // List inputs in 'userInput' list.
+                    dukeList.print();
+                    break;
+                case "":
+                    // Do nothing if no input is given before newline.
+                    break;
                 default:
-                    echo(userInput);
+                    // Echo and add to 'userInput' list.
+                    echo("Added: " + userInput);
                     dukeList.add(userInput);
             }
         }
