@@ -66,6 +66,12 @@ public class Duke {
         }
     }
 
+    public class DukeException extends Exception {
+        public DukeException(String message) {
+            super(message);
+        }
+    }
+
     private LinkedList<Task> list;
     private static final String LINE = "--------------------------------------------------";
 
@@ -74,41 +80,49 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
         System.out.printf("%s%n%s%n%s%n%s%n", LINE, "Hello! I'm Cortana", "What can I do for you?", LINE);
 
+
         while (true) {
-            String input = sc.nextLine().trim();
-            String[] inputArr = input.split(" ", 2);
-            System.out.println(LINE);
+            try {
+                String input = sc.nextLine().trim();
+                String[] inputArr = input.split(" ", 2);
+                System.out.println(LINE);
 
-            if (input.equals("bye")) {
-                System.out.printf("%s%n%s%n","Bye. Hope to see you again soon!", LINE);
-                break;
-            } else if (input.equals("list")) {
-                System.out.println("Here are the tasks in your list:");
-                for (int i = 1; i <= list.size(); i++) {
-                    System.out.printf("%d.%s%n", i, list.get(i - 1));
+                if (input.equals("bye")) {
+                    System.out.printf("%s%n", "Bye. Hope to see you again soon!");
+                    break;
+                } else if (input.equals("list")) {
+                    System.out.println("Here are the tasks in your list:");
+                    for (int i = 1; i <= list.size(); i++) {
+                        System.out.printf("%d.%s%n", i, list.get(i - 1));
+                    }
+                } else if (inputArr[0].equals("mark")) {
+                    int idx = Integer.parseInt(inputArr[1]);
+                    System.out.printf("Nice! I've marked this task as done:%n%s%n", list.get(idx - 1).mark());
+                } else if (inputArr[0].equals("unmark")) {
+                    int idx = Integer.parseInt(inputArr[1]);
+                    System.out.printf("OK, I've marked this task as not done yet:%n%s%n", list.get(idx - 1).unmark());
+                } else if (inputArr[0].equals("todo")) {
+                    if (inputArr.length == 1) throw new DukeException("The description of a todo cannot be empty.");
+                    list.add(new Todo(inputArr[1]));
+                    System.out.printf("Got it. I've added this task:%n%s%nNow you have %d tasks in the list.%n", list.getLast(), list.size());
+                } else if (inputArr[0].equals("deadline")) {
+                    if (inputArr.length == 1) throw new DukeException("The description of a deadline cannot be empty.");
+                    String[] split = inputArr[1].split(" /by ");
+                    list.add(new Deadline(split[0], split[1]));
+                    System.out.printf("Got it. I've added this task:%n%s%nNow you have %d tasks in the list.%n", list.getLast(), list.size());
+                } else if (inputArr[0].equals("event")) {
+                    if (inputArr.length == 1) throw new DukeException("The description of an event cannot be empty.");
+                    String[] split = inputArr[1].split(" /at ");
+                    list.add(new Event(split[0], split[1]));
+                    System.out.printf("Got it. I've added this task:%n%s%nNow you have %d tasks in the list.%n", list.getLast(), list.size());
+                } else {
+                    throw new DukeException("I'm sorry, but I don't know what that means");
                 }
-            } else if (inputArr[0].equals("mark")) {
-                int idx = Integer.parseInt(inputArr[1]);
-                System.out.printf("Nice! I've marked this task as done:%n%s%n", list.get(idx - 1).mark());
-            } else if (inputArr[0].equals("unmark")) {
-                int idx = Integer.parseInt(inputArr[1]);
-                System.out.printf("OK, I've marked this task as not done yet:%n%s%n", list.get(idx - 1).unmark());
-            } else if (inputArr[0].equals("todo")) {
-                list.add(new Todo(inputArr[1]));
-                System.out.printf("Got it. I've added this task:%n%s%nNow you have %d tasks in the list.%n", list.getLast(), list.size());
-            } else if (inputArr[0].equals("deadline")) {
-                String[] split = inputArr[1].split(" /by ");
-                list.add(new Deadline(split[0], split[1]));
-                System.out.printf("Got it. I've added this task:%n%s%nNow you have %d tasks in the list.%n", list.getLast(), list.size());
-            } else if (inputArr[0].equals("event")) {
-                String[] split = inputArr[1].split(" /at ");
-                list.add(new Event(split[0], split[1]));
-                System.out.printf("Got it. I've added this task:%n%s%nNow you have %d tasks in the list.%n", list.getLast(), list.size());
-            } else {
-                System.out.println("Unknown command");
+            } catch (DukeException e) {
+                System.out.println(e.getMessage());
+            } finally {
+                System.out.println(LINE);
             }
-
-            System.out.println(LINE);
         }
     }
 

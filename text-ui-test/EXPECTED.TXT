@@ -3,6 +3,12 @@ Hello! I'm Cortana
 What can I do for you?
 --------------------------------------------------
 --------------------------------------------------
+I'm sorry, but I don't know what that means
+--------------------------------------------------
+--------------------------------------------------
+The description of a todo cannot be empty.
+--------------------------------------------------
+--------------------------------------------------
 Got it. I've added this task:
 [T][ ] test1
 Now you have 1 tasks in the list.

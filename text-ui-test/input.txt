@@ -1,3 +1,5 @@
+test
+todo
 todo test1
 deadline test2 /by 2
 event test3 /at 3
