@@ -8,7 +8,7 @@ public class Task {
     }
 
     public String getIcon() {
-        return isDone ? "X" : " ";
+        return isDone ? "✔" : " ";
     }
 
     public String toString() {
