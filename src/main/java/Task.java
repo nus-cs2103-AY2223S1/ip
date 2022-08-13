@@ -41,4 +41,14 @@ public class Task {
     public void markUnDone() {
         this.isDone = false;
     }
+
+    /**
+     * Override 'toString' method to return status and description of Task.
+     * @return
+     */
+    @Override
+    public String toString() {
+        return String.format("[%s] %s",
+                this.getStatusIcon(), this.description);
+    }
 }
