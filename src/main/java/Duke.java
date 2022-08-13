@@ -13,29 +13,37 @@ public class Duke {
         greetUser();
         Scanner sc = new Scanner(System.in);
         while(!hasExited) {
-            String input = sc.nextLine();
-            if (input.equals("bye")) {
-                hasExited = true;
-            } else if (input.equals("list")) {
-                printList();
-            } else if (input.startsWith("mark ")) {
-                int taskNum = Integer.parseInt(input.replace("mark ", ""));
-                markTaskAsDone(taskNum);
-            } else if (input.startsWith("unmark ")) {
-                int taskNum = Integer.parseInt(input.replace("unmark ", ""));
-                markTaskAsNotDone(taskNum);
-            } else if (input.startsWith("todo ")) {
-                String t = input.replace("todo ", "");
-                addTodo(t);
-            } else if (input.startsWith("deadline ")) {
-                String[] deadlineInfo = input.replace("deadline ", "").split(" /by ");
-                addDeadline(deadlineInfo[0], deadlineInfo[1]);
-            } else if (input.startsWith("event ")) {
-                String[] eventInfo = input.replace("event ", "").split(" /at ");
-                addEvent(eventInfo[0], eventInfo[1]);
-            } else {
-                echo(input);
-                addToList(input);
+            try {
+                String input = sc.nextLine().trim();
+                if (input.equals("bye")) {
+                    hasExited = true;
+                } else if (input.equals("list")) {
+                    printList();
+                } else if (input.startsWith("mark")) {
+                    int taskNum = Integer.parseInt(input.replace("mark ", "").trim());
+                    markTaskAsDone(taskNum);
+                } else if (input.startsWith("unmark")) {
+                    int taskNum = Integer.parseInt(input.replace("unmark ", "").trim());
+                    markTaskAsNotDone(taskNum);
+                } else if (input.startsWith("todo")) {
+                    String t = input.replace("todo", "").trim();
+                    if (t.isEmpty()) {
+                        throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+                    }
+                    addTodo(t);
+                } else if (input.startsWith("deadline")) {
+                    String[] deadlineInfo = input.replace("deadline ", "").split(" /by ");
+                    addDeadline(deadlineInfo[0], deadlineInfo[1]);
+                } else if (input.startsWith("event")) {
+                    String[] eventInfo = input.replace("event ", "").split(" /at ");
+                    addEvent(eventInfo[0], eventInfo[1]);
+                } else {
+                    throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                }
+            } catch (DukeException exception) {
+                generateLine();
+                printFormatted(exception.getMessage());
+                generateLine();
             }
         }
         exitMessage();
