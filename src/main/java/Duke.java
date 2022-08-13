@@ -6,7 +6,6 @@ public class Duke {
     private static List<Task> dukeTasks;
     private static Scanner sc;
 
-
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -17,7 +16,7 @@ public class Duke {
         dukeTasks = new ArrayList<Task>();
         startService();
     }
-    
+
     private static void startService() {
         dukePrint("Hello! I'm Duke\nWhat can I do for you?\n");
         sc = new Scanner(System.in);
@@ -25,9 +24,9 @@ public class Duke {
     }
 
     private static void dukePrint(String str) {
-        System.out.println("===========================================\n");
+        System.out.println("===========================================");
         System.out.println(str);
-        System.out.println("===========================================\n");
+        System.out.println("===========================================");
     }
 
     private static void dukeStoreTask(String str, char type, String dateTime) {
@@ -55,9 +54,17 @@ public class Duke {
             }
         }
         dukeTasks.add(newTask);
-        dukePrint(String.format("Got it. I've added this task: \n %s\n Now you have %d tasks in the list",newTask.toString(), dukeTasks.size()));
+        dukePrint(String.format("Got it. I've added this task: \n %s\n %s",newTask.toString(), getNoOfTasks()));
     }
 
+    private static String getNoOfTasks() {
+        int size = dukeTasks.size();
+        if (size <= 1) {
+            return String.format("Now you have %d task in the list\n",size);
+        } else {
+            return String.format("Now you have %d tasks in the list\n",size);
+        }
+    }
     private static void dukeShowList() {
         String tasks = "List of tasks to be done:\n";
         for (int i = 0; i < dukeTasks.size(); i ++) {
@@ -81,6 +88,16 @@ public class Duke {
             dukeTasks.get(i).markIncomplete();
             String str = dukeTasks.get(i).toString();
             dukePrint(String.format("OK, I've marked this task as not done yet:\n %s\n", str));
+        } else {
+            dukePrint("Error. Task is not in the list");
+        }
+    }
+
+    private static void dukeRemoveTask(int i) {
+        if ((0 <= i) && (i < dukeTasks.size())) {
+            Task remove = dukeTasks.remove(i);
+            String str = remove.toString();
+            dukePrint(String.format("OK, I've remove this task:\n %s\n %s", str, getNoOfTasks()));
         } else {
             dukePrint("Error. Task is not in the list");
         }
@@ -119,6 +136,12 @@ public class Duke {
                 int index = Integer.parseInt(str.split(" ")[1]);
                 dukeUnmarkTask(index - 1);
                 break;
+            } case "delete": {
+                //Fallthrough
+            } case "remove": {
+                int index = Integer.parseInt(str.split(" ")[1]);
+                dukeRemoveTask(index - 1);
+                break;
             } case "todo": {
                 try {
                     Pattern p = Pattern.compile("todo (.*)");
@@ -145,9 +168,9 @@ public class Duke {
                     Pattern p = Pattern.compile("event(.*)/at(.*)");
                     Matcher m = p.matcher(str);
                     m.find();
-                    dukeStoreTask(m.group(1).trim(), 'E', m.group(2));
+                    dukeStoreTask(m.group(1).trim(), 'E', m.group(2).trim());
                 } catch (IllegalStateException e) {
-                    dukePrint("Are you missing a /by ?");
+                    dukePrint("Are you missing a /at ?");
                 }
                 break;
             } default: {

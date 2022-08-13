@@ -8,6 +8,6 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return String.format(super.toString() + "(at: %s)", at);
+        return String.format(super.toString() + " (at: %s)", at);
     }
 }
