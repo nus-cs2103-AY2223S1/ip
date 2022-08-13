@@ -21,44 +21,93 @@ public class Duke {
         sendMessage(getList(tasks));
     }
 
-    public static void markMessage(String userAction) {
-        int index = Integer.parseInt(userAction) - 1;
-        if (index < tasks.size()) {
-            Task task = tasks.get(index);
-            task.markAsDone();
-            sendMessage(" Nice! I've marked this task as done:\n" + "   " + task.toString());
+    public static void markMessage(String userAction) throws DukeException {
+        try {
+            if (!isNumeric(userAction)) {
+                throw new DukeException("I'm sorry, the input you provided is not a number!");
+            } else {
+                int index = Integer.parseInt(userAction) - 1;
+                if (index >= tasks.size() || index < 0) {
+                    throw new DukeException("I'm sorry, but the index you provided is out of range :-(");
+                } else {
+                    Task task = tasks.get(index);
+                    task.markAsDone();
+                    sendMessage(" Nice! I've marked this task as done:\n" + "   " + task.toString());
+                }
+            }
+        } catch (DukeException e) {
+            sendMessage(e.getMessage());
         }
     }
-    public static void unmarkMessage(String userAction) {
-        int index = Integer.parseInt(userAction) - 1;
-        if (index < tasks.size()) {
-            Task task = tasks.get(index);
-            task.markAsUndone();
-            sendMessage(" Nice! I've marked this task as undone:\n" + "   " + task.toString());
+
+    public static void unmarkMessage(String userAction) throws DukeException {
+        try {
+            if (isNumeric(userAction)) {
+                throw new DukeException("I'm sorry, but the index you provided is out of range :-(");
+            } else {
+                int index = Integer.parseInt(userAction) - 1;
+                if (index >= tasks.size() || index < 0) {
+                    throw new DukeException("I'm sorry, but the index you provided is out of range :-(");
+                } else {
+                    Task task = tasks.get(index);
+                    task.markAsUndone();
+                    sendMessage(" Nice! I've marked this task as undone:\n" + "   " + task.toString());
+                }
+            }
+        } catch (DukeException e) {
+            sendMessage(e.getMessage());
         }
     }
 
-    public static void todoMessage(String userAction) {
-        Task newTodo = new Todo(userAction);
-        tasks.add(newTodo);
-        sendMessage(" Got it. I've added this task:\n" + "   " + newTodo.toString()
-                + "\n Now you have " + tasks.size() + " tasks in the list.");
+    public static void todoMessage(String userAction) throws DukeException {
+        try {
+            Task newTodo = new Todo(userAction);
+            if (newTodo.description.equals("")) {
+                throw new DukeException("The description of a todo cannot be empty.");
+            } else{
+                tasks.add(newTodo);
+                sendMessage(" Got it. I've added this task:\n" + "   " + newTodo.toString()
+                        + "\n Now you have " + tasks.size() + " tasks in the list.");
+            }
+        } catch (DukeException e) {
+            sendMessage(e.getMessage());
+        }
     }
 
-    public static void eventMessage(String userAction) {
-        String[] eventString = userAction.split("/at ");
-        Task newEvent = new Event(eventString[0], eventString[1]);
-        tasks.add(newEvent);
-        sendMessage(" Got it. I've added this task:\n" + "   " + newEvent.toString()
-                + "\n Now you have " + tasks.size() + " tasks in the list.");
+    public static void eventMessage(String userAction) throws DukeException {
+        try {
+            String[] eventString = userAction.split("/at ");
+            if (eventString[0].equals("")) {
+                throw new DukeException("The description of an event cannot be empty.");
+            } else if (eventString[1].equals("")) {
+                throw new DukeException("The date/time of an event cannot be empty.");
+            } else {
+                Task newEvent = new Event(eventString[0], eventString[1]);
+                tasks.add(newEvent);
+                sendMessage(" Got it. I've added this task:\n" + "   " + newEvent.toString()
+                        + "\n Now you have " + tasks.size() + " tasks in the list.");
+            }
+        } catch (DukeException e) {
+            sendMessage(e.getMessage());
+        }
     }
 
-    public static void deadlineMessage(String userAction) {
-        String[] deadlineString = userAction.split("/by ");
-        Task newDeadline = new Deadline(deadlineString[0], deadlineString[1]);
-        tasks.add(newDeadline);
-        sendMessage(" Got it. I've added this task:\n" + "   " + newDeadline.toString()
-                + "\n Now you have " + tasks.size() + " tasks in the list.");
+    public static void deadlineMessage(String userAction) throws DukeException {
+        try {
+            String[] deadlineString = userAction.split("/by ");
+            if (deadlineString[0].equals("")) {
+                throw new DukeException("The description of a deadline cannot be empty.");
+            } else if (deadlineString[1].equals("")) {
+                throw new DukeException("The date/time of a deadline cannot be empty.");
+            } else {
+                Task newDeadline = new Deadline(deadlineString[0], deadlineString[1]);
+                tasks.add(newDeadline);
+                sendMessage(" Got it. I've added this task:\n" + "   " + newDeadline.toString()
+                        + "\n Now you have " + tasks.size() + " tasks in the list.");
+            }
+        } catch (DukeException e) {
+            sendMessage(e.getMessage());
+        }
     }
 
     public static void endMessage() {
@@ -77,7 +126,7 @@ public class Duke {
         return " Here are the tasks in your list:\n" + list;
     }
 
-    public static boolean isNumeric(String str) {
+    public static boolean isNumeric(String str) throws DukeException {
         try {
             Integer.parseInt(str);
             return true;
@@ -86,25 +135,31 @@ public class Duke {
         }
     }
 
-    public static void handleInput(String userCommand, String userAction) {
-        if (userCommand.equals("bye")) {
-            return;
-        } else if (userCommand.equals("list")) {
-            listMessage();
-        } else if (userCommand.equals("mark") && isNumeric(userAction)) {
-            markMessage(userAction);
-        } else if (userCommand.equals("unmark") && isNumeric(userAction)) {
-            unmarkMessage(userAction);
-        } else if (userCommand.equals("todo")) {
-            todoMessage(userAction);
-        } else if (userCommand.equals("event")) {
-            eventMessage(userAction);
-        } else if (userCommand.equals("deadline")) {
-            deadlineMessage(userAction);
+    public static void handleInput(String userCommand, String userAction) throws DukeException {
+        try {
+            if (userCommand.equals("bye")) {
+                return;
+            } else if (userCommand.equals("list")) {
+                listMessage();
+            } else if (userCommand.equals("mark")) {
+                markMessage(userAction);
+            } else if (userCommand.equals("unmark")) {
+                unmarkMessage(userAction);
+            } else if (userCommand.equals("todo")) {
+                todoMessage(userAction);
+            } else if (userCommand.equals("event")) {
+                eventMessage(userAction);
+            } else if (userCommand.equals("deadline")) {
+                deadlineMessage(userAction);
+            } else {
+                throw new DukeException("I'm sorry, but I don't know what that means :-(");
+            }
+        } catch (DukeException e) {
+            sendMessage(e.getMessage());
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DukeException {
         Scanner scanner = new Scanner(System.in);
         startMessage();
         while (scanner.hasNextLine()) {
