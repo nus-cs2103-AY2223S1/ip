@@ -2,7 +2,20 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
+    private static class DukeException extends Exception {
+        private final String message;
+        public DukeException(String message) {
+            this.message = message;
+        }
+
+        @Override
+        public String toString() {
+            return this.message;
+        }
+    }
+
     // For adding some colour
+    public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_RESET = "\u001B[0m";
 
@@ -16,6 +29,9 @@ public class Duke {
         printWithIndent("____________________________________________________________");
     }
 
+    public static void printError(String error) {
+        printWithIndent(ANSI_RED + "☹ Oh no! " + error + ANSI_RESET);
+    }
     public static void greet() {
         printLine();
         String logo = " ____        _        \n"
@@ -40,25 +56,41 @@ public class Duke {
         printLine();
     }
 
-    public static Todo parseTodo(String description) {
+    public static Todo parseTodo(String description) throws DukeException {
+        if (description.length() == 0) {
+            throw new DukeException("The description of a todo cannot be empty.");
+        }
         return new Todo(description);
     }
 
-    public static Deadline parseDeadline(String argsString) {
+    public static Deadline parseDeadline(String argsString) throws DukeException {
         String[] args = argsString.split(" */by *");
+        if (args.length != 2) {
+            throw new DukeException("Wrong usage of deadline.\nUsage: deadline some description /by some date");
+        }
         String description = args[0];
         String by = args[1];
+        if (description.length() == 0) {
+            throw new DukeException("Description should not be empty.");
+        }
+
         return new Deadline(description, by);
     }
 
-    public static Event parseEvent(String argsString) {
+    public static Event parseEvent(String argsString) throws DukeException {
         String[] args = argsString.split(" */at *");
+        if (args.length != 2) {
+            throw new DukeException("Wrong usage of event.\nUsage: event some description /at some date");
+        }
         String description = args[0];
+        if (description.length() == 0) {
+            throw new DukeException("Description should not be empty.");
+        }
         String at = args[1];
         return new Event(description, at);
 
     }
-    public static void addTask(String argsString, int type) {
+    public static void addTask(String argsString, int type) throws DukeException {
         Task task;
         switch (type) {
             // Todo
@@ -121,41 +153,47 @@ public class Duke {
         Scanner scanner = new Scanner(System.in);
         boolean stillRunning = true;
         while (stillRunning) {
-            // Partially Parse Input
-            String input = scanner.nextLine().strip();
-            String[] inputArray = input.split(" +", 2);
-            String firstWord = inputArray[0];
-            String argsString = "";
-            if (inputArray.length == 2) {
-                argsString = inputArray[1];
-            }
+            try {
+                // Partially Parse Input
+                String input = scanner.nextLine().strip();
+                String[] inputArray = input.split(" +", 2);
+                String firstWord = inputArray[0];
+                String argsString = "";
+                if (inputArray.length == 2) {
+                    argsString = inputArray[1];
+                }
 
-            // commands
-            switch (firstWord) {
-                case "bye":
-                    exit();
-                    stillRunning = false;
-                    break;
-                case "list":
-                    listTasks();
-                    break;
-                case "mark":
-                    markTask(Integer.parseInt(argsString));
-                    break;
-                case "unmark":
-                    unmarkTask(Integer.parseInt(argsString));
-                    break;
-                case "todo":
-                    addTask(argsString, 0);
-                    break;
-                case "deadline":
-                    addTask(argsString, 1);
-                    break;
-                case "event":
-                    addTask(argsString, 2);
-                    break;
-                default:
-                    break;
+                // commands
+                switch (firstWord) {
+                    case "bye":
+                        exit();
+                        stillRunning = false;
+                        break;
+                    case "list":
+                        listTasks();
+                        break;
+                    case "mark":
+                        markTask(Integer.parseInt(argsString));
+                        break;
+                    case "unmark":
+                        unmarkTask(Integer.parseInt(argsString));
+                        break;
+                    case "todo":
+                        addTask(argsString, 0);
+                        break;
+                    case "deadline":
+                        addTask(argsString, 1);
+                        break;
+                    case "event":
+                        addTask(argsString, 2);
+                        break;
+                    default:
+                        throw new DukeException("I don't know this command!");
+                }
+            } catch (DukeException exception) {
+                printLine();
+                printError(exception.toString());
+                printLine();
             }
         }
     }
