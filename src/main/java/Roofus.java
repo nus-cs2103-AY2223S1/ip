@@ -60,6 +60,11 @@ public class Roofus {
         System.out.println(LINESEP);
     }
 
+    enum Command {
+        BYE, LIST, TODO, EVENT, DEADLINE,
+        MARK, UNMARK, DELETE
+    }
+
     public static void main(String[] args) {
         Roofus roofus = new Roofus();
         roofus.greet();
@@ -68,16 +73,16 @@ public class Roofus {
         while (sc.hasNextLine()) {
             String input = sc.nextLine();
             Scanner sc2 = new Scanner(input);
-            String command = sc2.next().toUpperCase();
+            Command command = Command.valueOf(sc2.next().toUpperCase());
             switch (command) {
-                case "BYE":
+                case BYE:
                     roofus.signOff();
                     isRunning = false;
                     break;
-                case "LIST":
+                case LIST:
                     roofus.list();
                     break;
-                case "DELETE":
+                case DELETE:
                     try {
                         int index = Integer.parseInt(sc2.next());
                         roofus.delete(index);
@@ -85,7 +90,7 @@ public class Roofus {
                         errMessage("Hey! It's not even in this list!");
                     }
                     break;
-                case "MARK":
+                case MARK:
                     try {
                         int index1 = Integer.parseInt(sc2.next());
                         roofus.mark(index1);
@@ -93,7 +98,7 @@ public class Roofus {
                         errMessage("Hey! It's not even in this list!");
                     }
                     break;
-                case "UNMARK":
+                case UNMARK:
                     try {
                         int index2 = Integer.parseInt(sc2.next());
                         roofus.unMark(index2);
@@ -101,14 +106,14 @@ public class Roofus {
                         errMessage("Hey! It's not even in this list!");
                     }
                     break;
-                case "TODO":
+                case TODO:
                     try {
                         roofus.addTask(new ToDo(sc2.nextLine()));
                     } catch (NoSuchElementException err) {
                         errMessage("Huh?! To do what?");
                     }
                     break;
-                case "DEADLINE":
+                case DEADLINE:
                     try {
                         String details = sc2.nextLine();
                         String[] separate = details.split("/by", 2);
@@ -119,7 +124,7 @@ public class Roofus {
                         errMessage("Huh?! What deadline?");
                     }
                     break;
-                case "EVENT":
+                case EVENT:
                     try {
                         String details2 = sc2.nextLine();
                         String[] separate = details2.split("/at", 2);
