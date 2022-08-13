@@ -80,43 +80,81 @@ public class Duke {
     }
 
     private static void processInput(String input) {
-        if (input.equals("bye")) {
-            exit();
-            return;
-        } else if (input.equals("list")) {
-            listTasks();
-            return;
-        }
+        try {
+            input = input.trim();
+            if (input.equals("bye")) {
+                exit();
+                return;
+            } else if (input.equals("list")) {
+                listTasks();
+                return;
+            }
 
-        // May throw exception if input digit is greater than length of tasks. Should fix later.
-        String[] str = input.split(" ", 2);
-        String cmd = str[0];
-        if (cmd.equals("mark")) {
-            int taskIndex = Integer.parseInt(str[1]) - 1;
-            markTask(taskIndex);
-        } else if (cmd.equals("unmark")) {
-            int taskIndex = Integer.parseInt(str[1]) - 1;
-            unmarkTask(taskIndex);
-        } else if (cmd.equals("todo")) {
-            addTodo(str[1]);
-            // Stuff below this line will throw an error if there's no spacing. Should fix later.
-        } else if (cmd.equals("deadline")) {
-            String[] str2 = str[1].split(" /by ");
-            String description = str2[0];
-            String date = str2[1];
-            addDeadline(description, date);
-        } else if (cmd.equals("event")) {
-            String[] str2 = str[1].split(" /at ");
-            String description = str2[0];
-            String date = str2[1];
-            addEvent(description, date);
-        } else {
-            // print error
-            System.out.println("Invalid input");
+            String[] str = input.split(" ", 2);
+            String cmd = str[0];
+            if (str.length == 1 &&
+                    (cmd.equals("mark")
+                            || cmd.equals("unmark")
+                            || cmd.equals("todo")
+                            || cmd.equals("deadline")
+                            || cmd.equals("event"))) {
+                throw new MissingDukeInputException(cmd);
+            }
+
+            switch (cmd) {
+                case "mark": {
+                    int taskIndex = Integer.parseInt(str[1]) - 1;
+                    if (taskIndex < 0 || taskIndex >= tasks.size()) {
+                        throw new InputIndexOutOfBoundsException("tried to mark task " + str[1]);
+                    }
+                    markTask(taskIndex);
+                    break;
+                }
+                case "unmark": {
+                    int taskIndex = Integer.parseInt(str[1]) - 1;
+                    if (taskIndex < 0 || taskIndex >= tasks.size()) {
+                        throw new InputIndexOutOfBoundsException("tried to unmark task " + str[1]);
+                    }
+                    unmarkTask(taskIndex);
+                    break;
+                }
+                case "todo":
+                    addTodo(str[1]);
+                    break;
+                case "deadline": {
+                    String[] str2 = str[1].split(" /by ");
+                    if (str2.length == 1) {
+                        throw new MissingDukeInputException(cmd);
+                    }
+                    String description = str2[0];
+                    String date = str2[1];
+                    addDeadline(description, date);
+                    break;
+                }
+                case "event": {
+                    String[] str2 = str[1].split(" /at ");
+                    if (str2.length == 1) {
+                        throw new MissingDukeInputException(cmd);
+                    }
+                    String description = str2[0];
+                    String date = str2[1];
+                    addEvent(description, date);
+                    break;
+                }
+                default:
+                    throw new InvalidDukeInputException();
+            }
+        } catch (InvalidDukeInputException e) {
+            printMessage("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+        } catch (MissingDukeInputException e) {
+            printMessage("☹ OOPS!!! The description after a \"" + e.getMessage() + "\" is missing or incomplete!!");
+        } catch (InputIndexOutOfBoundsException e) {
+            printMessage("☹ OOPS!!! You " + e.getMessage()
+                    + " but it doesn't exist in the list!");
         }
     }
 
-    private static void startDuke() {
+    private static void runDuke() {
         startUp();
 
         Scanner sc = new Scanner(System.in);
@@ -127,6 +165,6 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        startDuke();
+        runDuke();
     }
 }

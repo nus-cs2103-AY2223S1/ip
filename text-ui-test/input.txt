@@ -1,4 +1,6 @@
 list
+mark 1
+unmark 1
 todo finish this ip
 deadline finish ip /by the deadline
 event go to school /at 5am
@@ -9,5 +11,20 @@ mark 3
 list
 unmark 1
 unmark 2
+mark -1
+unmark -1
+list
+todo a b c d e f g 123141534! /by /at test
+deadline missingBy
+event missingAt
+deadline nothingAfter /by
+event nothingAfter /at
+deadline wrongTag /at
+event wrongTag /by
+deadline /by1234
+event /by1234
+deadline a b c d /by e f g h
+event 1 2 3 4 /at 5 6 7 8
+mark
 list
 bye
