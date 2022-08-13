@@ -76,10 +76,12 @@ public class Duke {
 
         // Initialise variables
         Scanner sc = new Scanner(System.in);
-        ArrayList<String> tasks = new ArrayList<>();
+        ArrayList<Task> tasks = new ArrayList<>();
         String reply = getReply(sc);
 
+
         while (!reply.toLowerCase().equals("bye")) {
+            String[] words = reply.split(" ");
             if (reply.toLowerCase().equals("list")) {
                 // Print List
                 System.out.println("\n-----------------------------------------");
@@ -87,10 +89,32 @@ public class Duke {
                     System.out.println(i + 1 + ". " + tasks.get(i));
                 }
                 System.out.println("-----------------------------------------\n");
+            } else if (words[0].toLowerCase().equals("mark")) {
+                int index = Integer.parseInt(words[1]) - 1;
+                if (0 <= index && index < tasks.size()) {
+                    Task task = tasks.get(index);
+                    task.markAsDone();
+
+                    System.out.println("Nice! I've marked this task as done:");
+                    System.out.println("    " + task);
+                } else {
+                    System.out.println("Boo... Task don't exist :(");
+                }
+            } else if (words[0].toLowerCase().equals("unmark")) {
+                int index = Integer.parseInt(words[1]) - 1;
+                if (0 <= index && index < tasks.size()) {
+                    Task task = tasks.get(index);
+                    task.markAsUndone();
+
+                    System.out.println("Ok! I've marked this task as not done yet:");
+                    System.out.println("    " + task);
+                } else {
+                    System.out.println("Boo... Task don't exist :(");
+                }
             } else {
                 // Add Reply to List
                 getResult("added: " + reply);
-                tasks.add(reply);
+                tasks.add(new Task(reply));
             }
 
             reply = getReply(sc);
