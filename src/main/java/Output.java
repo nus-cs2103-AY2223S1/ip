@@ -9,7 +9,9 @@ public enum Output{
           + "|____/ \\__,_|_|\\_\\___|\n\n\t "
           + "Hello! I'm Duke\n\t "
           + "What can I do for you?\n"),
-  GOODBYE ("Bye. Hope to see you again soon!\n");
+  GOODBYE ("Bye. Hope to see you again soon!\n"),
+  MARK("Nice! I've marked this task as done:\n"),
+  UNMARK("OK, I've marked this task as not done yet:\n");
 
   private String output = "";
 
@@ -28,6 +30,13 @@ public enum Output{
     echo(this.output);
   }
 
+  /**
+   * Prints the format when a change of status has occurred
+   * @param task The task where the change of status occurred
+   */
+  void changeStatus(Task task) {
+    echo(this.output + "\t  [" + task.getStatusIcon() + "] " + task + "\n");
+  }
   /**
    * Specifies the output format
    * @param s String to be printed out
