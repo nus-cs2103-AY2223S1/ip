@@ -1,7 +1,7 @@
 /**
  * Task is a representation of a task in Duke.
  */
-public class Task {
+public abstract class Task {
     /** Description of the task. */
     private final String description;
     /** Whether the task is done. */

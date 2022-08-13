@@ -51,9 +51,11 @@ public class Duke {
                 task.markAsUndone();
                 System.out.printf(indentation + "Marked task %d as not done!\n", i);
                 System.out.println(indentation + minorIndentation + task);
-            } else {
-                tasks[index++] = new Task(input);
-                System.out.println(indentation + "added: " + input);
+            } else if (input.startsWith("todo")) {
+                Task task = Todo.create(input);
+                tasks[index++] = task;
+                System.out.println(indentation + "Added this todo!");
+                System.out.println(indentation + minorIndentation + task);
             }
 
             System.out.println(horizontalLine);
