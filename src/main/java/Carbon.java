@@ -1,8 +1,29 @@
+import java.util.Random;
+import java.util.Scanner;
+
 public class Carbon {
-    private static void startup() {
+    private static Scanner sc = new Scanner(System.in);
+
+    private Random rand = new Random();
+
+    private static void printOut(String text) {
+        String divider = "\n···---······---······---······---······---······---······---···\n";
+        System.out.println(divider);
+        System.out.println("==> " + text);
+    }
+
+    private static String printIn() {
+        String receiver = "\n··-··--···--\n";
+        System.out.println(receiver);
+        System.out.print("<-- ");
+        String input = sc.next();
+        return input;
+    }
+
+    private Carbon() {
         // ascii art generated from patorjk.com
 
-        String intro = "                 _ _ _ ____ _    ____ ____ _  _ ____ \n" + 
+        String preface = "                 _ _ _ ____ _    ____ ____ _  _ ____ \n" + 
             "                 | | | |___ |    |    |  | |\\/| |___ \n" + 
             "                 |_|_| |___ |___ |___ |__| |  | |___ \n";
 
@@ -16,22 +37,43 @@ public class Carbon {
             " ████████▀    ███    █▀    ███    ███ ▄█████████▀   ▀██████▀   ▀█   █▀  \n" + 
             "                           ███    ███                                   \n";
 
-        System.out.println(intro);
+        // actual introduction
+        String intro = "Hey, Carbon here. ";
+        String[] initPrompts = {
+            "What's up?",
+            "How's things going?",
+            "Nice weather today, huh?",
+            "How can I help you?",
+            "Please don't talk to me.",
+            "To get an A+ for CS2103T, you have t---[REDACTED]"
+        };
+        String randomPrompt = initPrompts[this.rand.nextInt(initPrompts.length)];
+
+        System.out.println(preface);
         System.out.println(logo);
 
         // extra space
-        System.out.println("\n\n\n");
+        System.out.println("\n\n");
+        Carbon.printOut(intro + randomPrompt);
     }
 
-    private static void display(String text) {
-        String divider = "···---······---······---······---······---···\n";
-        String receiver = "\n··-··--···--\n";
-        System.out.println(divider);
-        System.out.println("    " + text);
-        System.out.println(receiver);
+    private void runShell() {
+        boolean isRunning = true;
+        while (isRunning) {
+            String input = Carbon.printIn();
+            this.process(input);
+            if (!isRunning) {
+                this.exit();
+            }
+        }
     }
+
+    private void exit() {}
     
+    private void process(String input) {}
+
     public static void main(String[] args) {
-        Carbon.startup();
+        Carbon shell = new Carbon();
+        shell.runShell();
     }
 }
