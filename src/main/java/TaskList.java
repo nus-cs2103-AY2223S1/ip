@@ -63,7 +63,7 @@ public class TaskList {
         int size = taskList.size();
         System.out.println("Got it. I've added this task:");
         System.out.println("   " + newTask);
-        System.out.printf("Now you have %d task%s in the list.%n",
+        System.out.printf("Now you have %d task%s in the list.%n%n",
                 size, size == 1 ? "" : "s");
     }
 
@@ -85,7 +85,7 @@ public class TaskList {
      */
     public void markDone(int index) {
         this.taskList.get(index - 1).markDone();
-        System.out.printf("Nice! I've marked this task as done:%n   %s%n",
+        System.out.printf("Nice! I've marked this task as done:%n   %s%n%n",
                 taskList.get(index - 1));
     }
 
@@ -95,7 +95,8 @@ public class TaskList {
      */
     public void markUnDone(int index) {
         this.taskList.get(index - 1).markUnDone();
-        System.out.printf("OK, I've marked this task as not done yet:%n   %s%n",
+        System.out.printf(
+                "OK, I've marked this task as not done yet:%n   %s%n%n",
                 taskList.get(index - 1));
     }
 }
