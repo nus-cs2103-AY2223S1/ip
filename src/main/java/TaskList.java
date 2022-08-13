@@ -18,6 +18,15 @@ public class TaskList {
     }
 
     /**
+     * Deletes the task at the given index from the list.
+     * 
+     * @param index the index of the task to delete
+     */
+    public void deleteTask(int index) {
+        list.remove(index);
+    }
+
+    /**
      * Returns the task at the given index.
      *
      * @param index the index of the task to return

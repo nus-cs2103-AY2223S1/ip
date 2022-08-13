@@ -92,6 +92,18 @@ public class Duke {
                 System.out.println(task);
                 break;
             }
+            case "delete": {
+                if (arguments.length < 2) {
+                    throw new DukeException("Missing task index");
+                }
+                int index = Integer.parseInt(arguments[1]) - 1; // task indexing is 1-indexed
+                Task task = taskList.getTask(index);
+                taskList.deleteTask(index);
+                System.out.println("I've deleted this task.");
+                System.out.println(task);
+                printTaskListSize();
+                break;
+            }
             case "list": {
                 System.out.println("Here are your tasks:");
                 System.out.println(this.taskList);
