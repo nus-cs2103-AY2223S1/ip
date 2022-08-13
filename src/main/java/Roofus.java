@@ -1,3 +1,4 @@
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
@@ -44,6 +45,12 @@ public class Roofus {
         tasks.get(index-1).unmark();
     }
 
+    static void errMessage(String message) {
+        System.out.println(LINESEP);
+        System.out.println(message);
+        System.out.println(LINESEP);
+    }
+
     public static void main(String[] args) {
         Roofus roofus = new Roofus();
         roofus.greet();
@@ -62,26 +69,53 @@ public class Roofus {
                     roofus.list();
                     break;
                 case "MARK":
-                    int index = Integer.parseInt(sc2.next());
-                    roofus.mark(index);
+                    try {
+                        int index = Integer.parseInt(sc2.next());
+                        roofus.mark(index);
+                    } catch (NoSuchElementException | IndexOutOfBoundsException err) {
+                        errMessage("Hey! It's not even in this list!");
+                    }
                     break;
                 case "UNMARK":
-                    int index2 = Integer.parseInt(sc2.next());
-                    roofus.unMark(index2);
+                    try {
+                        int index2 = Integer.parseInt(sc2.next());
+                        roofus.unMark(index2);
+                    } catch (NoSuchElementException | IndexOutOfBoundsException err) {
+                        errMessage("Hey! It's not even in this list!");
+                    }
                     break;
                 case "TODO":
-                    roofus.addTask(new ToDo(sc2.nextLine()));
+                    try {
+                        roofus.addTask(new ToDo(sc2.nextLine()));
+                    } catch (NoSuchElementException err) {
+                        errMessage("Huh?! To do what?");
+                    }
                     break;
                 case "DEADLINE":
-                    String details = sc2.nextLine();
-                    String[] separate = details.split("/by", 2);
-                    roofus.addTask(new Deadline(separate[0], separate[1]));
+                    try {
+                        String details = sc2.nextLine();
+                        String[] separate = details.split("/by", 2);
+                        roofus.addTask(new Deadline(separate[0], separate[1]));
+                    } catch (ArrayIndexOutOfBoundsException err) {
+                        errMessage("Oops! Your deadline task isn't clear.");
+                    } catch (NoSuchElementException err) {
+                        errMessage("Huh?! What deadline?");
+                    }
                     break;
                 case "EVENT":
-                    String details2 = sc2.nextLine();
-                    String[] separate2 = details2.split("/at", 2);
-                    roofus.addTask(new Event(separate2[0], separate2[1]));
+                    try {
+                        String details2 = sc2.nextLine();
+                        String[] separate = details2.split("/at", 2);
+                        roofus.addTask(new Event(separate[0], separate[1]));
+                    } catch (ArrayIndexOutOfBoundsException err) {
+                        errMessage("Oops! Your event task isn't clear.");
+                    } catch (NoSuchElementException err) {
+                        errMessage("Huh?! What event?");
+                    }
                     break;
+                default:
+                    System.out.println(String.format("%s\nPlease key in valid commands only\n%s",
+                            LINESEP, LINESEP));
             }
             if (!isRunning) {
                 break;
