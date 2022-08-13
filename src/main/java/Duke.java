@@ -10,6 +10,12 @@ public class Duke {
     private static final String GREET_MESSAGE = "Hello! I am Duke. How can I help you?";
     private static final String BYE_MESSAGE = "Bye. Hope to see you soon!";
 
+    private final ArrayList<String> tasks;
+
+    public Duke() {
+        tasks = new ArrayList<>();
+    }
+
     private void printResponse(String response) {
         System.out.println(">> " + response);
     }
@@ -24,32 +30,42 @@ public class Duke {
         printResponse(GREET_MESSAGE);
     }
 
+    private void endInteraction() {
+        printResponse(BYE_MESSAGE);
+    }
+
+    private void addTask(String task) {
+        tasks.add(task);
+        printResponse("Added task: " + task);
+    }
+
+    private void listTasks() {
+        StringBuilder response = new StringBuilder();
+        response.append("List of tasks:\n");
+        for (int i = 0; i < tasks.size(); ++i) {
+            response.append(String.format("\t %d. %s", i + 1, tasks.get(i)));
+            if (i + 1 < tasks.size()) {
+                response.append("\n");
+            }
+        }
+        printResponse(response.toString());
+    }
+
     private void startInteraction() {
         Scanner sc = new Scanner(System.in);
-        ArrayList<String> tasks = new ArrayList<>();
-
         boolean hasEnded = false;
         while (!hasEnded) {
             String command = getUserCommand(sc);
             switch (command.toLowerCase()) {
             case "list":
-                StringBuilder response = new StringBuilder();
-                response.append("List of tasks:\n");
-                for (int i = 0; i < tasks.size(); ++i) {
-                    response.append(String.format("\t %d. %s", i + 1, tasks.get(i)));
-                    if (i + 1 < tasks.size()) {
-                        response.append("\n");
-                    }
-                }
-                printResponse(response.toString());
+                listTasks();
                 break;
             case "bye":
-                printResponse(BYE_MESSAGE);
+                endInteraction();
                 hasEnded = true;
                 break;
             default:
-                tasks.add(command);
-                printResponse("Added task: " + command);
+                addTask(command);
             }
         }
     }
