@@ -7,11 +7,9 @@ import java.util.Scanner;
 
 public class Duke {
 
-    private static Utilities util;
-    private final List<String> tasks;
+    private final List<Task> tasks;
 
     Duke() {
-        util = new Utilities();
         tasks = new ArrayList<>();
     }
 
@@ -26,40 +24,63 @@ public class Duke {
 
         boolean isDone = false;
         while (!isDone) {
-            String input = sc.nextLine();
-            switch (input.toUpperCase()) {
-                case "BYE":
-                    sendExit();
-                    isDone = true;
-                    break;
-                case "LIST":
-                    printTasks();
-                    break;
-                default:
-                    tasks.add(input);
-                    util.printMsg("added: " + input);
-                    break;
+            String userInput = sc.nextLine();
+            String[] userInputArray = userInput.split(" ", 2);
+            String userCommand = userInputArray[0];
+
+            switch (userCommand.toUpperCase()) {
+            case "BYE":
+                sendExit();
+                isDone = true;
+                break;
+            case "LIST":
+                printTasks();
+                break;
+            case "MARK": {
+                Task task = tasks.get(Integer.parseInt(userInputArray[1]) - 1);
+                markTask(task);
+                break;
+            }
+            case "UNMARK": {
+                Task task = tasks.get(Integer.parseInt(userInputArray[1]) - 1);
+                unmarkTask(task);
+                break;
+            }
+            default:
+                tasks.add(new Task(tasks.size() + 1, userInput));
+                Utilities.printMessage("added: " + userInput);
+                break;
             }
         }
+
         sc.close();
     }
 
     public void printTasks() {
-        util.printStraightLine();
-        int counter = 1;
-        for (String s : tasks) {
-            System.out.println("\t" + counter + ". " + s);
-            counter++;
+        Utilities.printLine();
+        Utilities.printWithIndent("Here are the tasks in your list:");
+        for (Task t : tasks) {
+            Utilities.printWithIndent(t.toStringWithId());
         }
-        util.printStraightLine();
+        Utilities.printLine();
     }
 
-    public void sendGreetings() {
-        util.printMsg(Constants.MSG_GREETINGS);
+    private void markTask(Task task) {
+        task.setDone(true);
+        Utilities.printMessages("Nice! I've marked this task as done:", "  " + task);
     }
 
-    public void sendExit() {
-        util.printMsg(Constants.MSG_EXIT);
+    private void unmarkTask(Task task) {
+        task.setDone(false);
+        Utilities.printMessages("OK, I've marked this task as not done yet:", "  " + task);
+    }
+
+    private void sendGreetings() {
+        Utilities.printMessage(Constants.MSG_GREETINGS);
+    }
+
+    private void sendExit() {
+        Utilities.printMessage(Constants.MSG_EXIT);
     }
 
 }
