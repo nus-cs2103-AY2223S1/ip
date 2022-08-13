@@ -1,0 +1,10 @@
+todo go to park to run
+deadline cs2100 quiz /by tues
+event psychiatric test /at IMH 3pm
+list
+mark 3
+mark 1
+list
+unmark 3
+list
+bye
