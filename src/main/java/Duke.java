@@ -119,6 +119,17 @@ public class Duke {
                 System.out.println("Now you have " + tasks.size() + " tasks in the list.");
                 System.out.println("-----------------------------------------\n");
             }
+            else if (command.toLowerCase().equals("event")) {
+                String[] details = description.split(" /at ");
+                Event event = new Event(details[0], details[1]);
+                tasks.add(event);
+
+                System.out.println("\n-----------------------------------------");
+                System.out.println("Got it. I've added this task:");
+                System.out.println(event);
+                System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+                System.out.println("-----------------------------------------\n");
+            }
             else {
                 System.out.println("\n-----------------------------------------");
                 System.out.println("Sorry! I'm incapable :( Please add more functionalities to me");
