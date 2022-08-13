@@ -69,6 +69,8 @@ public class Duke {
                     System.out.println(indentation + "Added this event!");
                     System.out.println(indentation + minorIndentation + task);
                     System.out.printf(indentation + "Now you have %d tasks.\n", index);
+                } else {
+                    throw new DukeException("Unknown command!");
                 }
 
                 System.out.println(horizontalLine);
