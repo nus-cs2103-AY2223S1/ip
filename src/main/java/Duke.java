@@ -81,140 +81,126 @@ public class Duke {
     private void run() {
         LinkedList<Task> list = new LinkedList<>();
         int size = 0;
-        boolean bye = false;
+        boolean isTerminated = false;
 
         Scanner sc = new Scanner(System.in);
         System.out.printf("%s%n%s%n%s%n%s%n", LINE, "Hello! I'm Cortana", "What can I do for you?", LINE);
 
-        while (!bye) {
+        while (!isTerminated) {
             try {
-                String[] input = sc.nextLine().trim().split(" ", 2);
+                String[] inputs = sc.nextLine().trim().split(" ", 2);
                 System.out.println(LINE);
 
-                Command c = Command.valueOf(input[0].toUpperCase());
+                Command c = Command.valueOf(inputs[0].toUpperCase());
 
-                if (input.length == 1) {
+                if (inputs.length == 1) {
                     switch (c) {
-                        case BYE:
-                            System.out.println("Bye. Hope to see you again soon!");
-                            bye = true;
+                    case BYE:
+                        System.out.println("Bye. Hope to see you again soon!");
+                        isTerminated = true;
+                        break;
+                    case LIST:
+                        if (size == 0) {
+                            System.out.println("There are no tasks in your list.");
                             break;
-
-                        case LIST:
-                            if (size == 0) {
-                                System.out.println("There are no tasks in your list.");
-                                break;
-                            }
-                            System.out.printf("Here %s the task%s in your list:%n",
-                                    size > 1 ? "are" : "is", size > 1 ? "s" : "");
-                            for (int i = 1; i <= size; i++) {
-                                System.out.printf("%d.%s%n", i, list.get(i - 1));
-                            }
-                            break;
-
-                        case MARK:
-                            throw new DukeException("The index to mark cannot be empty.");
-
-                        case UNMARK:
-                            throw new DukeException("The index to unmark cannot be empty.");
-
-                        case TODO:
-                            throw new DukeException("The description of a todo cannot be empty.");
-
-                        case DEADLINE:
-                            throw new DukeException("The description of a deadline cannot be empty.");
-
-                        case EVENT:
-                            throw new DukeException("The description of an event cannot be empty.");
-
-                        case DELETE:
-                            throw new DukeException("The index to delete cannot be empty.");
-
-                        default:
-                            break;
+                        }
+                        System.out.printf("Here %s the task%s in your list:%n",
+                                size > 1 ? "are" : "is", size > 1 ? "s" : "");
+                        for (int i = 1; i <= size; i++) {
+                            System.out.printf("%d.%s%n", i, list.get(i - 1));
+                        }
+                        break;
+                    case MARK:
+                        throw new DukeException("The index to mark cannot be empty.");
+                    case UNMARK:
+                        throw new DukeException("The index to unmark cannot be empty.");
+                    case TODO:
+                        throw new DukeException("The description of a todo cannot be empty.");
+                    case DEADLINE:
+                        throw new DukeException("The description of a deadline cannot be empty.");
+                    case EVENT:
+                        throw new DukeException("The description of an event cannot be empty.");
+                    case DELETE:
+                        throw new DukeException("The index to delete cannot be empty.");
+                    default:
+                        break;
                     }
                 } else {
                     switch (c) {
-                        case MARK:
-                            if (!input[1].matches("[0-9]+")) {
-                                throw new DukeException("The index provided is not a positive integer.");
-                            }
+                    case MARK:
+                        if (!inputs[1].matches("[0-9]+")) {
+                            throw new DukeException("The index provided is not a positive integer.");
+                        }
 
-                            int markIdx = Integer.parseInt(input[1]);
-                            if (markIdx == 0 || markIdx > size) {
-                                throw new DukeException("The index provided is not within the list.");
-                            }
+                        int markIdx = Integer.parseInt(inputs[1]);
+                        if (markIdx == 0 || markIdx > size) {
+                            throw new DukeException("The index provided is not within the list.");
+                        }
 
-                            System.out.printf("Nice! I've marked this task as done:%n%s%n",
-                                    list.get(markIdx - 1).mark());
-                            break;
+                        System.out.printf("Nice! I've marked this task as done:%n%s%n",
+                                list.get(markIdx - 1).mark());
+                        break;
+                    case UNMARK:
+                        if (!inputs[1].matches("[0-9]+")) {
+                            throw new DukeException("The index provided is not a positive integer.");
+                        }
 
-                        case UNMARK:
-                            if (!input[1].matches("[0-9]+")) {
-                                throw new DukeException("The index provided is not a positive integer.");
-                            }
+                        int unmarkIdx = Integer.parseInt(inputs[1]);
+                        if (unmarkIdx == 0 || unmarkIdx > size) {
+                            throw new DukeException("The index provided is not within the list.");
+                        }
 
-                            int unmarkIdx = Integer.parseInt(input[1]);
-                            if (unmarkIdx == 0 || unmarkIdx > size) {
-                                throw new DukeException("The index provided is not within the list.");
-                            }
+                        System.out.printf("OK, I've marked this task as not done yet:%n%s%n",
+                                list.get(unmarkIdx - 1).unmark());
+                        break;
+                    case TODO:
+                        Todo todoTemp = new Todo(inputs[1]);
+                        list.add(todoTemp);
+                        size++;
+                        System.out.printf("Got it. I've added this task:%n%s%nNow you have %d task%s in the list.%n",
+                                todoTemp, size, size > 1 ? "s" : "");
+                        break;
+                    case DEADLINE:
+                        String[] deadlineSplit = inputs[1].split(" /by ");
+                        if (deadlineSplit.length == 1) {
+                            throw new DukeException("The time of a deadline cannot be empty.");
+                        }
 
-                            System.out.printf("OK, I've marked this task as not done yet:%n%s%n",
-                                    list.get(unmarkIdx - 1).unmark());
-                            break;
+                        Deadline deadlineTemp = new Deadline(deadlineSplit[0], deadlineSplit[1]);
+                        list.add(deadlineTemp);
+                        size++;
+                        System.out.printf("Got it. I've added this task:%n%s%nNow you have %d task%s in the list.%n",
+                                deadlineTemp, size, size > 1 ? "s" : "");
+                        break;
+                    case EVENT:
+                        String[] eventSplit = inputs[1].split(" /at ");
+                        if (eventSplit.length == 1) {
+                            throw new DukeException("The time of an event cannot be empty.");
+                        }
 
-                        case TODO:
-                            Todo todoTemp = new Todo(input[1]);
-                            list.add(todoTemp);
-                            size++;
-                            System.out.printf("Got it. I've added this task:%n%s%nNow you have %d task%s in the list.%n",
-                                    todoTemp, size, size > 1 ? "s" : "");
-                            break;
+                        Event eventTemp = new Event(eventSplit[0], eventSplit[1]);
+                        list.add(eventTemp);
+                        size++;
+                        System.out.printf("Got it. I've added this task:%n%s%nNow you have %d task%s in the list.%n",
+                                eventTemp, size, size > 1 ? "s" : "");
+                        break;
+                    case DELETE:
+                        if (!inputs[1].matches("[0-9]+")) {
+                            throw new DukeException("The index provided is not a positive integer.");
+                        }
 
-                        case DEADLINE:
-                            String[] deadlineSplit = input[1].split(" /by ");
-                            if (deadlineSplit.length == 1) {
-                                throw new DukeException("The time of a deadline cannot be empty.");
-                            }
+                        int deleteIdx = Integer.parseInt(inputs[1]);
+                        if (deleteIdx == 0 || deleteIdx > size) {
+                            throw new DukeException("The index provided is not within the list.");
+                        }
 
-                            Deadline deadlineTemp = new Deadline(deadlineSplit[0], deadlineSplit[1]);
-                            list.add(deadlineTemp);
-                            size++;
-                            System.out.printf("Got it. I've added this task:%n%s%nNow you have %d task%s in the list.%n",
-                                    deadlineTemp, size, size > 1 ? "s" : "");
-                            break;
-
-                        case EVENT:
-                            String[] eventSplit = input[1].split(" /at ");
-                            if (eventSplit.length == 1) {
-                                throw new DukeException("The time of an event cannot be empty.");
-                            }
-
-                            Event eventTemp = new Event(eventSplit[0], eventSplit[1]);
-                            list.add(eventTemp);
-                            size++;
-                            System.out.printf("Got it. I've added this task:%n%s%nNow you have %d task%s in the list.%n",
-                                    eventTemp, size, size > 1 ? "s" : "");
-                            break;
-
-                        case DELETE:
-                            if (!input[1].matches("[0-9]+")) {
-                                throw new DukeException("The index provided is not a positive integer.");
-                            }
-
-                            int deleteIdx = Integer.parseInt(input[1]);
-                            if (deleteIdx == 0 || deleteIdx > size) {
-                                throw new DukeException("The index provided is not within the list.");
-                            }
-
-                            Task deleteTemp = list.remove(Integer.parseInt(input[1]) - 1);
-                            size--;
-                            System.out.printf("Noted. I've removed this task:%n%s%nNow you have %d task%s in the list.%n",
-                                    deleteTemp, size, size != 1 ? "s" : "");
-                            break;
-
-                        default:
-                            throw new DukeException("Please re-enter the command only.");
+                        Task deleteTemp = list.remove(Integer.parseInt(inputs[1]) - 1);
+                        size--;
+                        System.out.printf("Noted. I've removed this task:%n%s%nNow you have %d task%s in the list.%n",
+                                deleteTemp, size, size != 1 ? "s" : "");
+                        break;
+                    default:
+                        throw new DukeException("Please re-enter the command only.");
                     }
                 }
             } catch (IllegalArgumentException e) {
