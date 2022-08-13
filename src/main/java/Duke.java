@@ -28,9 +28,24 @@ public class Duke {
         System.out.println(str);
         System.out.println("===========================================\n");
     }
-    private static void dukeStoreTask(String str) {
-        dukeTasks.add(new Task(str));
-        dukePrint(String.format("added: %s\n",str));
+    private static void dukeStoreTask(String str, char type, String dateTime) {
+        Task newTask;
+        switch (type) {
+            case 'T': {
+                newTask = new Todo(str);
+                break;
+            } case 'E': {
+                newTask = new Event(str,dateTime);
+                break;
+            } case 'D': {
+                newTask = new Deadline(str, dateTime);
+                break;
+            } default: {
+                newTask = new Todo(str);
+            }
+        }
+        dukeTasks.add(newTask);
+        dukePrint(String.format("Got it. I've added this task: \n %s\n Now you have %d tasks in the list",newTask.toString(), dukeTasks.size()));
     }
 
     private static void dukeShowList() {
@@ -61,10 +76,12 @@ public class Duke {
         }
     }
 
+    //TODO: Remove duplicated code
     private static void getUserInput() {
         Scanner sc = new Scanner(System.in);
         String str = sc.nextLine();
-        switch (str){
+        String command = str.split(" ")[0];
+        switch (command){
             case "bye": {
                 endService();
                 break;
@@ -72,16 +89,39 @@ public class Duke {
                 dukeShowList();
                 getUserInput();
                 break;
-            } default : {
-                if (str.matches(MARK_DONE_REGEX)){
-                    int index = Integer.parseInt(str.split(" ")[1]);
-                    dukeMarkTask(index - 1);
-                } else if (str.matches(MARK_UNDONE_REGEX)) {
-                    int index = Integer.parseInt(str.split(" ")[1]);
-                    dukeUnmarkTask(index - 1);
-                } else {
-                    dukeStoreTask(str);
-                }
+            } case "mark": {
+                int index = Integer.parseInt(str.split(" ")[1]);
+                dukeMarkTask(index - 1);
+                getUserInput();
+                break;
+            } case "unmark": {
+                int index = Integer.parseInt(str.split(" ")[1]);
+                dukeUnmarkTask(index - 1);
+                getUserInput();
+                break;
+            } case "todo": {
+                Pattern p = Pattern.compile( "todo(.*)" );
+                Matcher m =  p.matcher(str);
+                m.find();
+                dukeStoreTask(m.group(1),'T',null);
+                getUserInput();
+                break;
+            } case "deadline": {
+                Pattern p = Pattern.compile( "deadline(.*)/by (.*)" );
+                Matcher m =  p.matcher(str);
+                m.find();
+                dukeStoreTask(m.group(1),'D',m.group(2));
+                getUserInput();
+                break;
+            } case "event": {
+                Pattern p = Pattern.compile( "event(.*)/at (.*)" );
+                Matcher m =  p.matcher(str);
+                m.find();
+                dukeStoreTask(m.group(1),'E',m.group(2));
+                getUserInput();
+                break;
+            } default: {
+                dukePrint("Invalid Command. Please try again");
                 getUserInput();
             }
         }
