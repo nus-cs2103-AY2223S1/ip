@@ -6,6 +6,7 @@ todo join sports club
 mark 4
 todo borrow book
 list
+delete 3
 deadline return book /by Sunday
 event project meeting /at Mon 2-4pm
 bye

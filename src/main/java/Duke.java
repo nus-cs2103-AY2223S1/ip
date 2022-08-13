@@ -20,10 +20,10 @@ public class Duke {
                 } else if (input.equals("list")) {
                     printList();
                 } else if (input.startsWith("mark")) {
-                    int taskNum = Integer.parseInt(input.replace("mark ", "").trim());
+                    int taskNum = Integer.parseInt(input.replace("mark", "").trim());
                     markTaskAsDone(taskNum);
                 } else if (input.startsWith("unmark")) {
-                    int taskNum = Integer.parseInt(input.replace("unmark ", "").trim());
+                    int taskNum = Integer.parseInt(input.replace("unmark", "").trim());
                     markTaskAsNotDone(taskNum);
                 } else if (input.startsWith("todo")) {
                     String t = input.replace("todo", "").trim();
@@ -37,6 +37,9 @@ public class Duke {
                 } else if (input.startsWith("event")) {
                     String[] eventInfo = input.replace("event ", "").split(" /at ");
                     addEvent(eventInfo[0], eventInfo[1]);
+                } else if (input.startsWith("delete")) {
+                    int deleteIdx = Integer.parseInt(input.replace("delete", "").trim());
+                    deleteTask(deleteIdx);
                 } else {
                     throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
@@ -69,11 +72,6 @@ public class Duke {
         generateLine();
     }
 
-    public void addToList(String input) {
-        Task t = new Task(input);
-        this.taskList.add(t);
-    }
-
     public void addTodo(String input) {
         Todo todo = new Todo(input);
         this.taskList.add(todo);
@@ -95,7 +93,17 @@ public class Duke {
     public void printAddTask(Task task) {
         generateLine();
         printFormatted("Got it. I've added this task:");
-        printFormatted("   " + task);
+        printFormatted("  " + task);
+        printFormatted("Now you have " + taskList.size() + " tasks in the list.");
+        generateLine();
+    }
+
+    public void deleteTask(int deleteIdx) {
+        Task taskToDelete = taskList.get(deleteIdx - 1);
+        taskList.remove(deleteIdx - 1);
+        generateLine();
+        printFormatted("Noted. I've removed this task:");
+        printFormatted("  " + taskToDelete);
         printFormatted("Now you have " + taskList.size() + " tasks in the list.");
         generateLine();
     }
