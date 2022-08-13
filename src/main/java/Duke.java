@@ -61,6 +61,11 @@ public class Duke {
                 tasks[index++] = task;
                 System.out.println(indentation + "Added this deadline!");
                 System.out.println(indentation + minorIndentation + task);
+            } else if (input.startsWith("event")) {
+                Task task = Event.create(input);
+                tasks[index++] = task;
+                System.out.println(indentation + "Added this event!");
+                System.out.println(indentation + minorIndentation + task);
             }
 
             System.out.println(horizontalLine);
