@@ -5,23 +5,30 @@ import java.util.ArrayList;
  *
  * @author: Jonas Png
  */
-public class ToDoList {
+public class TaskList {
 
-    private ArrayList<ListItem> list;
+    protected ArrayList<Task> list;
+
+    protected int length;
 
     /**
      * Class constructor for ToDoList
      */
-    public ToDoList() {
+    public TaskList() {
         this.list = new ArrayList<>();
+        this.length = 0;
     }
 
     /**
      * Adds new item to list
      * @param item new list item to be added
      */
-    public void add(ListItem item) {
+    public void add(Task item) {
         list.add(item);
+        this.length += 1;
+        System.out.println("Got it. I've added this task:");
+        System.out.println(item);
+        System.out.println("Now you have " + this.length + " tasks in the list");
     }
 
     /**
@@ -55,8 +62,8 @@ public class ToDoList {
     public String toString() {
         int counter = 1;
         StringBuilder s = new StringBuilder();
-        for (ListItem item : list) {
-            s.append(counter + ". " + item.toString() + "\n");
+        for (Task task : list) {
+            s.append(counter + ". " + task.toString() + "\n");
             counter += 1;
         }
         return s.toString();

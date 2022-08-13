@@ -1,9 +1,9 @@
 /**
- * Encapsulate the item that user adds to the list
+ * Encapsulate a Task that user adds to the list
  *
  * @author: Jonas Png
  */
-public class ListItem {
+public abstract class Task {
 
     private  String description;
 
@@ -14,7 +14,7 @@ public class ListItem {
      *
      * @param Description name of item
      */
-    public ListItem(String Description) {
+    public Task(String Description) {
         this.description = Description;
         this.isDone = false;
     }

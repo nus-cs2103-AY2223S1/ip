@@ -11,13 +11,13 @@ public class Response {
             + "|____/ \\__,_|_|\\_\\___|\n";
     private final String line = "_______________________________";
 
-    private ToDoList userList;
+    private TaskList userList;
 
     /**
      * Class constructor for Response
      */
     public Response() {
-        this.userList = new ToDoList();
+        this.userList = new TaskList();
     }
 
     /**
@@ -39,10 +39,22 @@ public class Response {
         } else if (input.startsWith("mark")) {
             int itemNumber = Integer.parseInt(input.split(" ", 2)[1]);
             userList.unmark(itemNumber);
-        } else {
-            ListItem newListItem = new ListItem(input);
+        } else if (input.startsWith("todo")){
+            String description = input.split(" ", 2)[1];
+            Task newListItem = new ToDo(description);
             userList.add(newListItem);
-            System.out.println("added: " + input);
+        } else if (input.startsWith("deadline")){
+            String[] descriptionWithBy = input.split(" ", 2);
+            String description = descriptionWithBy[1].split(" /by ", 2)[0];
+            String by = descriptionWithBy[1].split(" /by ", 2)[1];
+            Task newListItem = new Deadline(description, by);
+            userList.add(newListItem);
+        } else if (input.startsWith("event")){
+            String[] descriptionWithAt = input.split(" ", 2);
+            String description = descriptionWithAt[1].split(" /at ", 2)[0];
+            String at = descriptionWithAt[1].split(" /at ", 2)[1];
+            Task newListItem = new Event(description, at);
+            userList.add(newListItem);
         }
         System.out.println(line);
     }
