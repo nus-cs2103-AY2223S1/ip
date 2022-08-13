@@ -1,14 +1,16 @@
 /**
- * Encapsulate Todo which is-a Task
+ * Encapsulate Todo which is-a Task.
  *
  * @author: Jonas Png
  */
 public class ToDo extends Task{
 
     /**
-     * Class constructor for Todo
+     * Class constructor for Todo.
+     *
+     * @param description Todo's description.
      */
-    public ToDo(String description) {
+    public ToDo(String description) throws DukeException {
         super(description);
     }
 

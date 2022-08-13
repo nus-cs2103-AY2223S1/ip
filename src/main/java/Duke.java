@@ -1,7 +1,7 @@
 import java.util.Scanner;
 public class Duke {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DukeException {
         Response dukeResponse = new Response();
         dukeResponse.startUp();
         Scanner scanner = new Scanner(System.in);
