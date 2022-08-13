@@ -1,0 +1,19 @@
+todo feed cat
+deadline buy cat food /by tomorrow
+event submit ModReg appeals /at Sunday
+todo feed neighbour's cat
+list
+mark 1
+list
+unmark 1
+list
+mark 3
+mark 4
+list
+event go to pet fair /at 1st Nov
+mark 5
+unmark 3
+unmark 2
+unmark 2
+unmark 1
+list
