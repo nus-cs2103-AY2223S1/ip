@@ -14,9 +14,10 @@ abstract class Task {
         if (returnedArray[0].equals(prefix)) {
             start = 1;
         }
-        for (int i = start; i < returnedArray.length; i++) {
+        for (int i = start; i < returnedArray.length - 1; i++) {
             removedPrefix += returnedArray[i] + " ";
         }
+        removedPrefix += returnedArray[returnedArray.length - 1];
 
         this.task = removedPrefix;
         this.isDone = false;
