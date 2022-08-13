@@ -1,6 +1,9 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Duke {
+
+    private static ArrayList<String> storage = new ArrayList<String>();
 
     public static void reply() {
         Scanner echo = new Scanner(System.in);
@@ -9,10 +12,19 @@ public class Duke {
             System.out.println("-----------------------------------------------");
             System.out.println("Bye. Hope to see you again soon!");
             System.out.println("-----------------------------------------------");
+            storage.clear();
             return;
-        } else {
+        } else if (response.equals("list")) {
             System.out.println("-----------------------------------------------");
-            System.out.println(response);
+            for (int i = 0; i < storage.size(); i++) {
+               System.out.println((i + 1) + ". " + storage.get(i));
+            }
+            System.out.println("-----------------------------------------------");
+            reply();
+        } else {
+            storage.add(response);
+            System.out.println("-----------------------------------------------");
+            System.out.println("added: " + response);
             System.out.println("-----------------------------------------------");
             reply();
         }
