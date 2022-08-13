@@ -34,31 +34,34 @@ public class Duke {
      */
     private boolean callback(String command, String input) {
         input = input.strip();
-        switch (command) {
-            case "bye":
-                goodbye();
-                return false;
-            case "list":
-                listHistory();
-                break;
-            case "todo":
-                addTodo(input);
-                break;
-            case "event":
-                addEvent(input);
-                break;
-            case "deadline":
-                addDeadline(input);
-                break;
-            case "mark":
-                setTaskCompletionStatus(input, true);
-                break;
-            case "unmark":
-                setTaskCompletionStatus(input, false);
-                break;
-            default:
-                speak("I don't understand that command");
-                break;
+        try {
+            switch (command) {
+                case "bye":
+                    goodbye();
+                    return false;
+                case "list":
+                    listHistory();
+                    break;
+                case "todo":
+                    addTodo(input);
+                    break;
+                case "event":
+                    addEvent(input);
+                    break;
+                case "deadline":
+                    addDeadline(input);
+                    break;
+                case "mark":
+                    setTaskCompletionStatus(input, true);
+                    break;
+                case "unmark":
+                    setTaskCompletionStatus(input, false);
+                    break;
+                default:
+                    throw new DukeException("I'm sorry, but I don't know what that means :-(");
+            }
+        } catch (DukeException e) {
+            speak(e.getMessage());
         }
         return true;
     }
@@ -67,8 +70,9 @@ public class Duke {
      * Handle the {@literal todo} command
      *
      * @param input the input to be handled
+     * @throws DukeException if the input is invalid
      */
-    private void addTodo(String input) {
+    private void addTodo(String input) throws DukeException {
         tasks[id++] = new ToDo(input);
         speak("Got it. I've added this task:\n%s\nNow you have %d tasks in your list", tasks[id - 1], id);
     }
@@ -77,14 +81,15 @@ public class Duke {
      * Handle the event command
      *
      * @param input the input to be handled
+     * @throws DukeException if the input is invalid
      */
-    private void addEvent(String input) {
+    private void addEvent(String input) throws DukeException {
         if (input.matches("^.* /at .*$")) {
             String[] parts = input.split(" /at ");
             tasks[id++] = new Event(parts[0].strip(), parts[1].strip());
             speak("Got it. I've added this task:\n%s\nNow you have %d tasks in your list", tasks[id - 1], id);
         } else {
-            speak("Invalid event format");
+            throw new DukeException("Invalid event format");
         }
     }
 
@@ -92,14 +97,15 @@ public class Duke {
      * Handle the deadline command
      *
      * @param input the input to be handled
+     * @throws DukeException if the input is invalid
      */
-    private void addDeadline(String input) {
+    private void addDeadline(String input) throws DukeException {
         if (input.matches("^.* /by .*$")) {
             String[] parts = input.split(" /by ");
             tasks[id++] = new Deadline(parts[0].strip(), parts[1].strip());
             speak("Got it. I've added this task:\n%s\nNow you have %d tasks in your list", tasks[id - 1], id);
         } else {
-            speak("Invalid event format");
+            throw new DukeException("Invalid event format");
         }
     }
 
@@ -108,33 +114,25 @@ public class Duke {
      *
      * @param input     the input to be handled
      * @param completed the status to be set
+     * @throws DukeException if the input is invalid
      */
-    private void setTaskCompletionStatus(String input, boolean completed) {
+    private void setTaskCompletionStatus(String input, boolean completed) throws DukeException {
         boolean isValid = false;
+        int task = 0;
         if (input.matches("^[0-9]+$")) {
-            int task = parseInt(input) - 1;
+            task = parseInt(input) - 1;
             if (task < id && task >= 0) {
                 isValid = true;
             }
         }
         if (!isValid) {
-            speak("Invalid task number");
-            return;
+            throw new DukeException("Task %s doesn't exist", input);
         }
-        if (input.matches("^[0-9]+$")) {
-            int task = parseInt(input) - 1;
-            if (task < id && task >= 0) {
-                tasks[task].setDone(completed);
-                if (completed) {
-                    speak("Nice! I've marked this task as done:\n%s", tasks[task]);
-                } else {
-                    speak("Ok, I've marked this task as not done yet:\n%s", tasks[task]);
-                }
-            } else {
-                speak("Invalid task number. You only have %d tasks.", id);
-            }
+        tasks[task].setDone(completed);
+        if (completed) {
+            speak("Nice! I've marked this task as done:\n%s", tasks[task]);
         } else {
-            speak("Invalid task number: %s", input);
+            speak("Ok, I've marked this task as not done yet:\n%s", tasks[task]);
         }
     }
 
