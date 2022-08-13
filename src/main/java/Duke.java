@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Duke {
     private static boolean isAcceptingInput;
-    private static ArrayList<String> tasks;
+    private static ArrayList<Task> tasks;
 
     private static void startUp() {
         isAcceptingInput = true;
@@ -35,33 +35,52 @@ public class Duke {
     }
 
     private static void addTask(String input) {
-        tasks.add(input);
+        tasks.add(new Task(input));
         printMessage("added: " + input);
     }
 
     private static void listTasks() {
         int pointer = 1;
-        String reply = "";
-        for (String task : tasks) {
-            if (pointer != 1) {
-                reply += "\n";
-            }
-            reply += pointer + ". " + task;
+        String reply = "Here are the tasks in your list:";
+        for (Task task : tasks) {
+            reply += "\n" + pointer + "." + task;
             pointer++;
         }
         printMessage(reply);
     }
 
+    private static void markTask(int index) {
+        Task task = tasks.get(index);
+        task.markAsDone();
+        printMessage("Nice! I've marked this task as done:\n" + task);
+    }
+
+    private static void unmarkTask(int index) {
+        Task task = tasks.get(index);
+        task.markAsUndone();
+        printMessage("OK, I've marked this task as not done yet:\n" + task);
+    }
+
     private static void processInput(String input) {
-        switch (input) {
-            case "bye":
-                exit();
-                break;
-            case "list":
-                listTasks();
-                break;
-            default:
-                addTask(input);
+        if (input.equals("bye")) {
+            exit();
+            return;
+        } else if (input.equals("list")) {
+            listTasks();
+            return;
+        }
+
+        // May throw exception if input digit is greater than length of tasks. Should fix later.
+        String[] str = input.split(" ");
+        String cmd = str[0];
+        if (cmd.equals("mark")) {
+            int taskIndex = Integer.parseInt(str[1]) - 1;
+            markTask(taskIndex);
+        } else if (cmd.equals("unmark")) {
+            int taskIndex = Integer.parseInt(str[1]) - 1;
+            unmarkTask(taskIndex);
+        } else {
+            addTask(input);
         }
     }
 
