@@ -1,7 +1,20 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+Hey, I am Maria. I can manage your tasks for you
+Type 'todo' to create a todo.
+Type 'deadline' to create a task with deadline.
+Type 'event' to create an event with a start and end time.
+Type 'list' to list out all your tasks.
+Type 'mark' to complete a task.
+Type 'unmark' to un-complete a task.
+Type 'bye' to finish the conversation.
+Type your instructions to Maria: What is the name of your todo: Maria says: I created a Todo [T][ ] Eat dinner for you.
+Type your instructions to Maria: What is the name of your event: What is the start time of your event: What is the end time of your event: Maria says: I created a Event [E][ ] Eat breakfast (from 7am to 8am) for you.
+Type your instructions to Maria: Maria says: Here are the list of tasks you have:
+1. [T][ ] Eat dinner
+2. [E][ ] Eat breakfast (from 7am to 8am)
 
+Type your instructions to Maria: What is the index of the task: Maria says: Your task [E][X] Eat breakfast (from 7am to 8am) has been completed.
+Type your instructions to Maria: Maria says: Here are the list of tasks you have:
+1. [T][ ] Eat dinner
+2. [E][X] Eat breakfast (from 7am to 8am)
+
+Type your instructions to Maria: Maria says: Goodbye, see you soon!
