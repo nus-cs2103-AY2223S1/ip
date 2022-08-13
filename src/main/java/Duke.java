@@ -48,7 +48,9 @@ public class Duke {
                     System.out.println(LINE
                             + "\n\t"
                             + "Nice! I've marked this task as done:\n\t  "
-                            + t);
+                            + t
+                            + "\n"
+                            + LINE);
                     break;
                 case "unmark":
                     taskNumber = sc.nextInt();
@@ -57,7 +59,9 @@ public class Duke {
                     System.out.println(LINE
                             + "\n\t"
                             + "OK, I've marked this task as not done yet:\n\t  "
-                            + t);
+                            + t
+                            + "\n"
+                            + LINE);
                     break;
                 case "todo":
                     command = sc.nextLine();
