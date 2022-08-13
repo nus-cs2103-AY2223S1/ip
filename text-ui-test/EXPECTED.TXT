@@ -6,80 +6,110 @@ Hello from
 |____/ \__,_|_|\_\___|
 
 Got it. I've added this task:
-   [T][ ] feed cat
+   [T][ ] borrow book
 Now you have 1 task in the list.
 
+Here are the tasks in your list:
+1. [T][ ] borrow book
+
 Got it. I've added this task:
-   [D][ ] buy cat food (by: tomorrow)
+   [D][ ] return book (by: Sunday)
 Now you have 2 tasks in the list.
 
 Got it. I've added this task:
-   [E][ ] submit ModReg appeals (at: Sunday)
+   [E][ ] project meeting (at: Mon 2-4pm)
 Now you have 3 tasks in the list.
 
 Got it. I've added this task:
-   [T][ ] feed neighbour's cat
+   [T][ ] feed cat
 Now you have 4 tasks in the list.
 
+Got it. I've added this task:
+   [D][ ] buy cat food (by: tomorrow)
+Now you have 5 tasks in the list.
+
+Got it. I've added this task:
+   [E][ ] submit ModReg appeals (at: Sunday)
+Now you have 6 tasks in the list.
+
+Got it. I've added this task:
+   [T][ ] feed neighbour's cat
+Now you have 7 tasks in the list.
+
 Here are the tasks in your list:
-1. [T][ ] feed cat
-2. [D][ ] buy cat food (by: tomorrow)
-3. [E][ ] submit ModReg appeals (at: Sunday)
-4. [T][ ] feed neighbour's cat
+1. [T][ ] borrow book
+2. [D][ ] return book (by: Sunday)
+3. [E][ ] project meeting (at: Mon 2-4pm)
+4. [T][ ] feed cat
+5. [D][ ] buy cat food (by: tomorrow)
+6. [E][ ] submit ModReg appeals (at: Sunday)
+7. [T][ ] feed neighbour's cat
+
+Nice! I've marked this task as done:
+   [T][X] borrow book
+
+Here are the tasks in your list:
+1. [T][X] borrow book
+2. [D][ ] return book (by: Sunday)
+3. [E][ ] project meeting (at: Mon 2-4pm)
+4. [T][ ] feed cat
+5. [D][ ] buy cat food (by: tomorrow)
+6. [E][ ] submit ModReg appeals (at: Sunday)
+7. [T][ ] feed neighbour's cat
+
+OK, I've marked this task as not done yet:
+   [T][ ] borrow book
+
+Here are the tasks in your list:
+1. [T][ ] borrow book
+2. [D][ ] return book (by: Sunday)
+3. [E][ ] project meeting (at: Mon 2-4pm)
+4. [T][ ] feed cat
+5. [D][ ] buy cat food (by: tomorrow)
+6. [E][ ] submit ModReg appeals (at: Sunday)
+7. [T][ ] feed neighbour's cat
+
+Nice! I've marked this task as done:
+   [E][X] project meeting (at: Mon 2-4pm)
 
 Nice! I've marked this task as done:
    [T][X] feed cat
 
 Here are the tasks in your list:
-1. [T][X] feed cat
-2. [D][ ] buy cat food (by: tomorrow)
-3. [E][ ] submit ModReg appeals (at: Sunday)
-4. [T][ ] feed neighbour's cat
-
-OK, I've marked this task as not done yet:
-   [T][ ] feed cat
-
-Here are the tasks in your list:
-1. [T][ ] feed cat
-2. [D][ ] buy cat food (by: tomorrow)
-3. [E][ ] submit ModReg appeals (at: Sunday)
-4. [T][ ] feed neighbour's cat
-
-Nice! I've marked this task as done:
-   [E][X] submit ModReg appeals (at: Sunday)
-
-Nice! I've marked this task as done:
-   [T][X] feed neighbour's cat
-
-Here are the tasks in your list:
-1. [T][ ] feed cat
-2. [D][ ] buy cat food (by: tomorrow)
-3. [E][X] submit ModReg appeals (at: Sunday)
-4. [T][X] feed neighbour's cat
+1. [T][ ] borrow book
+2. [D][ ] return book (by: Sunday)
+3. [E][X] project meeting (at: Mon 2-4pm)
+4. [T][X] feed cat
+5. [D][ ] buy cat food (by: tomorrow)
+6. [E][ ] submit ModReg appeals (at: Sunday)
+7. [T][ ] feed neighbour's cat
 
 Got it. I've added this task:
    [E][ ] go to pet fair (at: 1st Nov)
-Now you have 5 tasks in the list.
+Now you have 8 tasks in the list.
 
 Nice! I've marked this task as done:
-   [E][X] go to pet fair (at: 1st Nov)
+   [D][X] buy cat food (by: tomorrow)
 
 OK, I've marked this task as not done yet:
-   [E][ ] submit ModReg appeals (at: Sunday)
+   [E][ ] project meeting (at: Mon 2-4pm)
 
 OK, I've marked this task as not done yet:
-   [D][ ] buy cat food (by: tomorrow)
+   [D][ ] return book (by: Sunday)
 
 OK, I've marked this task as not done yet:
-   [D][ ] buy cat food (by: tomorrow)
+   [D][ ] return book (by: Sunday)
 
 OK, I've marked this task as not done yet:
-   [T][ ] feed cat
+   [T][ ] borrow book
 
 Here are the tasks in your list:
-1. [T][ ] feed cat
-2. [D][ ] buy cat food (by: tomorrow)
-3. [E][ ] submit ModReg appeals (at: Sunday)
-4. [T][X] feed neighbour's cat
-5. [E][X] go to pet fair (at: 1st Nov)
+1. [T][ ] borrow book
+2. [D][ ] return book (by: Sunday)
+3. [E][ ] project meeting (at: Mon 2-4pm)
+4. [T][X] feed cat
+5. [D][X] buy cat food (by: tomorrow)
+6. [E][ ] submit ModReg appeals (at: Sunday)
+7. [T][ ] feed neighbour's cat
+8. [E][ ] go to pet fair (at: 1st Nov)
 

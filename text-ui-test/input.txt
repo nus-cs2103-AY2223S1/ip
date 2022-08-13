@@ -1,3 +1,7 @@
+todo borrow book
+list
+deadline return book /by Sunday
+event project meeting /at Mon 2-4pm
 todo feed cat
 deadline buy cat food /by tomorrow
 event submit ModReg appeals /at Sunday
