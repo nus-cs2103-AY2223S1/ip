@@ -1,15 +1,9 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 public class Duke {
-    private final static String INTRODUCTION_MSG = "Hello I'm Duke\nWhat can I do for you?";
-    private final static String MARK_TASK_DONE_MSG = "Nice! I've marked this task as done:";
-    private final static String MARK_TASK_UNDONE_MSG = "OK, I've marked this task as not done yet:";
-    private final static String ADDED_TASK_MSG = "Got it. I've added this task:";
-    private final static String DISPLAY_LIST_MSG = "Here are the tasks in your list:";
-    private final static String CLOSING_MSG = "Bye. Hope to see you again soon!";
     private static ArrayList<Task> listOfTasks = new ArrayList<>();
     private static void startIntro() {
-        System.out.println(INTRODUCTION_MSG);
+        System.out.println("Hello I'm Duke\n" + "What can I do for you?");
         startChat();
     }
 
@@ -32,6 +26,8 @@ public class Duke {
                 addNewDeadline(input);
             } else if (input.startsWith("event")) {
                 addNewEvent(input);
+            } else {
+                System.out.println("Invalid input");
             }
         }
         endChat();
@@ -39,11 +35,11 @@ public class Duke {
     }
 
     private static void endChat() {
-        System.out.println(CLOSING_MSG);
+        System.out.println("Bye. Hope to see you again soon!");
     }
 
     private static void displayList() {
-        System.out.println(DISPLAY_LIST_MSG);
+        System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < listOfTasks.size(); i++) {
             System.out.println((i + 1) + "." + listOfTasks.get(i));
         }
@@ -68,7 +64,7 @@ public class Duke {
 
     private static void addToList(Task task) {
         listOfTasks.add(task);
-        System.out.println(ADDED_TASK_MSG + "\n  " + task + "\n"
+        System.out.println("Got it. I've added this task:" + "\n  " + task + "\n"
                 + "Now you have " + listOfTasks.size() + " tasks in the list.");
     }
 
@@ -80,12 +76,12 @@ public class Duke {
                 String[] indexString = str.split("mark ", 2);
                 int index = Integer.parseInt(indexString[1]) - 1;
                 Task selectedTask = listOfTasks.get(index);
-                if (selectedTask != null) {
-                    selectedTask.markAsDone();
-                    System.out.println(MARK_TASK_DONE_MSG+ "\n  " + selectedTask);
-                }
+                selectedTask.markAsDone();
+                System.out.println("Nice! I've marked this task as done:" + "\n  " + selectedTask);
             } catch (NumberFormatException nfe) {
                 System.out.println("Error: Valid Integer required");
+            } catch (IndexOutOfBoundsException er) {
+                System.out.println("Task does not exist at this index");
             }
         }
     }
@@ -98,12 +94,12 @@ public class Duke {
                 String[] indexString = str.split("unmark ", 2);
                 int index = Integer.parseInt(indexString[1]) - 1;
                 Task selectedTask = listOfTasks.get(index);
-                if (selectedTask != null) {
-                    selectedTask.markUndone();
-                    System.out.println(MARK_TASK_UNDONE_MSG + "\n  " + selectedTask);
-                }
+                selectedTask.markUndone();
+                System.out.println("OK, I've marked this task as not done yet:" + "\n  " + selectedTask);
             } catch (NumberFormatException nfe) {
                 System.out.println("Error: Valid Integer required");
+            } catch (IndexOutOfBoundsException er) {
+                System.out.println("Task does not exist at this index");
             }
         }
     }

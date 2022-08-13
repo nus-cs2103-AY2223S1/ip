@@ -1,0 +1,12 @@
+todo read book
+deadline lab /by June 9th
+event project meeting /at Mon 2-4pm
+mark 1
+unmark 4
+list
+unmark 1
+mark 2
+list
+mark
+bat
+bye
