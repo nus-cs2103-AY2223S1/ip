@@ -21,6 +21,7 @@ public class Duke {
      */
     private static void addToHistory(String s) {
         userInputHistory.add(s);
+        //echo request
         System.out.printf("Noted down: %s\n", s);
     }
 
@@ -29,7 +30,7 @@ public class Duke {
      */
     private static void showHistory() {
         userInputHistory.forEach(input -> {
-            System.out.printf("• %s", input);
+            System.out.printf("• %s\n", input);
         });
     }
 
@@ -38,9 +39,10 @@ public class Duke {
             //exit
             System.out.println("Thank you for swinging by :)");
             System.exit(0);
+        } else if (userInput.equals("list")) {
+            showHistory();
         } else {
-            //echo request
-            System.out.println(userInput);
+            addToHistory(userInput);
         }
     }
 
