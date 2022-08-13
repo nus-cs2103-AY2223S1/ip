@@ -12,7 +12,7 @@ public class Jude {
             System.out.println();
             System.out.print("> ");
             String str = sc.nextLine();
-            if (str.equals("exit")) {
+            if (str.equals("bye")) {
                 System.out.println("Goodbye! Have a nice day!");
                 break;
             }
