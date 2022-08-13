@@ -12,28 +12,28 @@ ____________________
 
 ____________________
 
-Got it. I've added this task:
+Got it. I've added this todo:
 [T][ ] borrow book
 Now you have 1 tasks in your list
 ____________________
 
 ____________________
 
-Got it. I've added this task:
+Got it. I've added this deadline:
 [D][ ] return book (by: Sunday)
 Now you have 2 tasks in your list
 ____________________
 
 ____________________
 
-Got it. I've added this task:
+Got it. I've added this event:
 [E][ ] project meeting (at: Mon 2-4pm)
 Now you have 3 tasks in your list
 ____________________
 
 ____________________
 
-Got it. I've added this task:
+Got it. I've added this deadline:
 [D][ ] do homework (by: no idea :-p)
 Now you have 4 tasks in your list
 ____________________

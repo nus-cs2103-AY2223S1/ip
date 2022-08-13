@@ -1,14 +1,14 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 
 import static java.lang.Integer.parseInt;
 
 public class Duke {
-    private final Task[] tasks;
-    private int id = 0;
+    private final ArrayList<Task> tasks;
 
     public Duke(String name) {
-        this.tasks = new Task[100];
+        this.tasks = new ArrayList<>(100);
         speak("Hello! I'm %s\nWhat do you need to do?", name);
     }
 
@@ -73,8 +73,9 @@ public class Duke {
      * @throws DukeException if the input is invalid
      */
     private void addTodo(String input) throws DukeException {
-        tasks[id++] = new ToDo(input);
-        speak("Got it. I've added this task:\n%s\nNow you have %d tasks in your list", tasks[id - 1], id);
+        ToDo todo = new ToDo(input);
+        this.tasks.add(todo);
+        speak("Got it. I've added this todo:\n%s\nNow you have %d tasks in your list", todo, tasks.size());
     }
 
     /**
@@ -86,8 +87,9 @@ public class Duke {
     private void addEvent(String input) throws DukeException {
         if (input.matches("^.* /at .*$")) {
             String[] parts = input.split(" /at ");
-            tasks[id++] = new Event(parts[0].strip(), parts[1].strip());
-            speak("Got it. I've added this task:\n%s\nNow you have %d tasks in your list", tasks[id - 1], id);
+            Event event = new Event(parts[0].strip(), parts[1].strip());
+            this.tasks.add(event);
+            speak("Got it. I've added this event:\n%s\nNow you have %d tasks in your list", event, tasks.size());
         } else {
             throw new DukeException("Invalid event format");
         }
@@ -102,8 +104,9 @@ public class Duke {
     private void addDeadline(String input) throws DukeException {
         if (input.matches("^.* /by .*$")) {
             String[] parts = input.split(" /by ");
-            tasks[id++] = new Deadline(parts[0].strip(), parts[1].strip());
-            speak("Got it. I've added this task:\n%s\nNow you have %d tasks in your list", tasks[id - 1], id);
+            Deadline deadline = new Deadline(parts[0].strip(), parts[1].strip());
+            tasks.add(deadline);
+            speak("Got it. I've added this deadline:\n%s\nNow you have %d tasks in your list", deadline, tasks.size());
         } else {
             throw new DukeException("Invalid event format");
         }
@@ -118,21 +121,22 @@ public class Duke {
      */
     private void setTaskCompletionStatus(String input, boolean completed) throws DukeException {
         boolean isValid = false;
-        int task = 0;
+        int task_id = 0;
         if (input.matches("^[0-9]+$")) {
-            task = parseInt(input) - 1;
-            if (task < id && task >= 0) {
+            task_id = parseInt(input) - 1;
+            if (task_id < tasks.size() && task_id >= 0) {
                 isValid = true;
             }
         }
         if (!isValid) {
             throw new DukeException("Task %s doesn't exist", input);
         }
-        tasks[task].setDone(completed);
+        Task task = tasks.get(task_id);
+        task.setDone(completed);
         if (completed) {
-            speak("Nice! I've marked this task as done:\n%s", tasks[task]);
+            speak("Nice! I've marked this task as done:\n%s", task);
         } else {
-            speak("Ok, I've marked this task as not done yet:\n%s", tasks[task]);
+            speak("Ok, I've marked this task as not done yet:\n%s", task);
         }
     }
 
@@ -164,7 +168,7 @@ public class Duke {
     public void listHistory() {
         StringBuilder output = new StringBuilder();
         output.append("Here are the tasks in your list:\n");
-        IntStream.range(0, this.id).forEach(i -> output.append(String.format("%d. %s%n", i + 1, tasks[i])));
+        IntStream.range(0, tasks.size()).forEach(i -> output.append(String.format("%d. %s%n", i + 1, tasks.get(i))));
         speak(output.toString());
     }
 
