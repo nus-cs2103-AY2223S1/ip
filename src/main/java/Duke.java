@@ -95,10 +95,12 @@ public class Duke {
                     Task task = tasks.get(index);
                     task.markAsDone();
 
+                    System.out.println("\n-----------------------------------------");
                     System.out.println("Nice! I've marked this task as done:");
                     System.out.println("    " + task);
+                    System.out.println("-----------------------------------------\n");
                 } else {
-                    System.out.println("Boo... Task don't exist :(");
+                    getResult("Boo... Task don't exist :(");
                 }
             } else if (words[0].toLowerCase().equals("unmark")) {
                 int index = Integer.parseInt(words[1]) - 1;
@@ -106,10 +108,12 @@ public class Duke {
                     Task task = tasks.get(index);
                     task.markAsUndone();
 
+                    System.out.println("\n-----------------------------------------");
                     System.out.println("Ok! I've marked this task as not done yet:");
                     System.out.println("    " + task);
+                    System.out.println("-----------------------------------------\n");
                 } else {
-                    System.out.println("Boo... Task don't exist :(");
+                    getResult("Boo... Task don't exist :(");
                 }
             } else {
                 // Add Reply to List
