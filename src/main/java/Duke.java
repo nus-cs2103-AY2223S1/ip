@@ -28,9 +28,31 @@ public class Duke {
      * @param tasks The task-list.
      * @param numTasks The number of tasks currently.
      */
-    public static void addTask(String input, String[] tasks, int numTasks) {
-        tasks[numTasks] = input;
+    public static void addTask(String input, Task[] tasks, int numTasks) {
+        tasks[numTasks] = new Task(input);
         say("added: " + input);
+    }
+
+    /**
+     * Mark a task as done
+     * @param index The index of the task.
+     * @param tasks The task-list.
+     */
+    public static void markTask(String index, Task[] tasks) {
+        Task task = tasks[Integer.valueOf(index) - 1];
+        task.mark();
+        say("Nice! I've marked this task as done:\n  [X] " + task);
+    }
+
+    /**
+     * Mark a task as not done
+     * @param index The index of the task.
+     * @param tasks The task-list.
+     */
+    public static void unmarkTask(String index, Task[] tasks) {
+        Task task = tasks[Integer.valueOf(index) - 1];
+        task.unmark();
+        say("OK, I've marked this task as not done yet:\n  [ ] " + task);
     }
 
     /**
@@ -38,10 +60,10 @@ public class Duke {
      * @param tasks The task-list.
      * @param numTasks The number of tasks currently.
      */
-    public static void listTasks(String[] tasks, int numTasks) {
-        String list = "";
+    public static void listTasks(Task[] tasks, int numTasks) {
+        String list = "Here are the tasks in your list:\n";
         for(int i = 0; i < numTasks; i++) {
-            list +=  (i+1) + ". " + tasks[i] + "\n";
+            list +=  (i+1) + "." + "[" + (tasks[i].isDone()?"X":" ") + "] " + tasks[i] + "\n";
         }
         say(list);
     }
@@ -49,7 +71,7 @@ public class Duke {
 
     public static void main(String[] args) {
         Scanner scn = new Scanner(System.in);
-        String[] tasks = new String[100];
+        Task[] tasks = new Task[100];
         int numTasks = 0;
 
         say("Hello! I'm Pawl\nWhat can I do for you?");
@@ -57,12 +79,23 @@ public class Duke {
         String input = scn.nextLine();
         while (!input.equals("bye")) {
 
-            //Handle listing of tasks
-            if(input.equals("list")) {
+            String[] split = input.split(" ");
+
+            if(split[0].equals("list")) {
+                //Handle listing of tasks
                 listTasks(tasks, numTasks);
 
-            //Else, add task to list
+            }else if(split[0].equals("mark")) {
+                //Mark a task as done
+                markTask(split[1], tasks);
+
+
+            }else if(split[0].equals("unmark")) {
+                //Mark a task as not done
+                unmarkTask(split[1], tasks);
+
             } else {
+                //Else, add task to list
                 addTask(input, tasks, numTasks);
                 numTasks++;
             }
