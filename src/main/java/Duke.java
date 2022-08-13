@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Duke {
@@ -24,13 +26,28 @@ public class Duke {
 
     /**
      * This method adds a task to the given task-list.
-     * @param input The task to be added.
+     * @param noType The input String with type removed.
+     * @param type The type of the task
      * @param tasks The task-list.
      * @param numTasks The number of tasks currently.
      */
-    public static void addTask(String input, Task[] tasks, int numTasks) {
-        tasks[numTasks] = new Task(input);
-        say("added: " + input);
+    public static void addTask(String noType, String type, Task[] tasks, int numTasks) {
+        String confirmation = "Got it. I've added this task:\n  ";
+        String number = "\nNow you have " + (numTasks + 1) + " tasks in the list.";
+
+        if(type.equals("deadline")) {
+            String[] split = noType.split(" /by ");
+            tasks[numTasks] = new Deadline(split[0], split[1]);
+            say(confirmation + tasks[numTasks] + number);
+        } else if(type.equals("event")){
+            String[] split = noType.split(" /at ");
+            tasks[numTasks] = new Event(split[0], split[1]);
+            say(confirmation  + tasks[numTasks] + number);
+        } else {
+            tasks[numTasks] = new ToDo(noType);
+            say(confirmation + tasks[numTasks] + number);
+        }
+
     }
 
     /**
@@ -39,6 +56,7 @@ public class Duke {
      * @param tasks The task-list.
      */
     public static void markTask(String index, Task[] tasks) {
+        //Note potential exception: Task index exceeded
         Task task = tasks[Integer.valueOf(index) - 1];
         task.mark();
         say("Nice! I've marked this task as done:\n  [X] " + task);
@@ -50,6 +68,7 @@ public class Duke {
      * @param tasks The task-list.
      */
     public static void unmarkTask(String index, Task[] tasks) {
+        //Note potential exception: Task index exceeded
         Task task = tasks[Integer.valueOf(index) - 1];
         task.unmark();
         say("OK, I've marked this task as not done yet:\n  [ ] " + task);
@@ -63,7 +82,14 @@ public class Duke {
     public static void listTasks(Task[] tasks, int numTasks) {
         String list = "Here are the tasks in your list:\n";
         for(int i = 0; i < numTasks; i++) {
-            list +=  (i+1) + "." + "[" + (tasks[i].isDone()?"X":" ") + "] " + tasks[i] + "\n";
+            //Add index
+            list +=  (i+1) + ".";
+            //Add task
+            list += tasks[i];
+            //Add nextline
+            if(i!=numTasks -1) {
+                list += "\n";
+            }
         }
         say(list);
     }
@@ -77,26 +103,29 @@ public class Duke {
         say("Hello! I'm Pawl\nWhat can I do for you?");
 
         String input = scn.nextLine();
+        //Potential exception: No input
         while (!input.equals("bye")) {
 
-            String[] split = input.split(" ");
+            ArrayList<String> split = new ArrayList<String>(Arrays.asList(input.split(" ")));
+            String first = split.remove(0);
+            String rest = String.join(" ", split);
 
-            if(split[0].equals("list")) {
+
+            if(first.equals("list")) {
                 //Handle listing of tasks
                 listTasks(tasks, numTasks);
 
-            }else if(split[0].equals("mark")) {
+            }else if(first.equals("mark")) {
                 //Mark a task as done
-                markTask(split[1], tasks);
+                markTask(rest, tasks);
 
-
-            }else if(split[0].equals("unmark")) {
+            }else if(first.equals("unmark")) {
                 //Mark a task as not done
-                unmarkTask(split[1], tasks);
+                unmarkTask(rest, tasks);
 
-            } else {
+            } else if(first.equals("todo") || first.equals("deadline") || first.equals("event")){
                 //Else, add task to list
-                addTask(input, tasks, numTasks);
+                addTask(rest, first, tasks, numTasks);
                 numTasks++;
             }
             input = scn.nextLine();
