@@ -56,16 +56,19 @@ public class Duke {
                 tasks[index++] = task;
                 System.out.println(indentation + "Added this todo!");
                 System.out.println(indentation + minorIndentation + task);
+                System.out.printf(indentation + "Now you have %d tasks.\n", index);
             } else if (input.startsWith("deadline")) {
                 Task task = Deadline.create(input);
                 tasks[index++] = task;
                 System.out.println(indentation + "Added this deadline!");
                 System.out.println(indentation + minorIndentation + task);
+                System.out.printf(indentation + "Now you have %d tasks.\n", index);
             } else if (input.startsWith("event")) {
                 Task task = Event.create(input);
                 tasks[index++] = task;
                 System.out.println(indentation + "Added this event!");
                 System.out.println(indentation + minorIndentation + task);
+                System.out.printf(indentation + "Now you have %d tasks.\n", index);
             }
 
             System.out.println(horizontalLine);
