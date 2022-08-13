@@ -29,7 +29,7 @@ public class ToDoList {
         int counter = 1;
         StringBuilder s = new StringBuilder();
         for (ListItem item : list) {
-            s.append(counter + ": " + item.getName() + "\n");
+            s.append(counter + ". " + item.getName() + "\n");
             counter += 1;
         }
         return s.toString();
