@@ -70,6 +70,26 @@ public class Duke {
         }
     }
 
+    private void delete(String command) {
+        if (this.storage.size() == 0) {
+            System.out.println("No tasks to delete");
+        }
+        Character item = command.charAt(0);
+        if (Character.isDigit(item)) {
+            int idx = item - '0';
+            if (idx > this.storage.size() + 1 || idx < 1) {
+                System.out.println("Invalid selection");
+            } else {
+                Task t = this.storage.get(idx - 1);
+                this.storage.remove(idx - 1);
+                System.out.println("Removed the following task:\n" +
+                        t);
+            }
+        } else {
+            System.out.println("Invalid selection");
+        }
+    }
+
     private void addTask(String[] command) {
         if (command[0].equals("todo")) {
             if (command.length <= 1) {
@@ -136,6 +156,8 @@ public class Duke {
                 unmark(next[1]);
             } else if (next[0].equals("mark")){
                 mark(next[1]);
+            } else if (next[0].equals("delete")) {
+                delete(next[1]);
             } else {
                 addTask(next);
             }

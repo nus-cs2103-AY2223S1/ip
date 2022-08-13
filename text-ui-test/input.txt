@@ -9,3 +9,5 @@ mark 1
 unmark 1
 unmark 2
 list
+delete 1
+delete 0
