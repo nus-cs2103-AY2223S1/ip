@@ -101,7 +101,11 @@ public class Duke {
                 return true;
             }
             case "todo": {
-                Task task = new Todo(command);
+                if (arguments.length < 2) {
+                    throw new DukeException("Missing todo description");
+                }
+                String description = concatenateArguments(arguments, 1);
+                Task task = new Todo(description);
                 taskList.addTask(task);
                 System.out.println("I've added this task.");
                 System.out.println(task);
