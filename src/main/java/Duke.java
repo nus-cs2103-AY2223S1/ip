@@ -10,7 +10,7 @@ public class Duke {
     private static final String LINE = "\t____________________________________________________________";
 
     private static void run() {
-        ArrayList<String> storage = new ArrayList<>();
+        ArrayList<Task> tasks = new ArrayList<>();
         boolean isExited = false;
         String command = "";
         Scanner sc = new Scanner(System.in);
@@ -23,7 +23,9 @@ public class Duke {
                 + LINE);
 
         while (!isExited) {
-            command = sc.nextLine();
+            command = sc.next();
+            int taskNumber;
+            Task t;
             switch (command) {
                 case "bye":
                     isExited = true;
@@ -33,13 +35,31 @@ public class Duke {
                     break;
                 case "list":
                     System.out.println(LINE);
-                    for (int i = 0; i < storage.size(); i++) {
-                        System.out.printf("\t%d%s\n", i + 1, ". " + storage.get(i));
+                    for (int i = 0; i < tasks.size(); i++) {
+                        System.out.printf("\t%d.%s\n", i + 1, tasks.get(i));
                     }
                     System.out.println(LINE);
                     break;
+                case "mark":
+                    taskNumber = sc.nextInt();
+                    t = tasks.get(taskNumber - 1);
+                    t.markAsDone();
+                    System.out.println(LINE
+                            + "\n\t"
+                            + "Nice! I've marked this task as done:\n\t  "
+                            + t);
+                    break;
+                case "unmark":
+                    taskNumber = sc.nextInt();
+                    t = tasks.get(taskNumber - 1);
+                    t.markAsUndone();
+                    System.out.println(LINE
+                            + "\n\t"
+                            + "OK, I've marked this task as not done yet:\n\t  "
+                            + t);
+                    break;
                 default:
-                    storage.add(command);
+                    tasks.add(new Task(command));
                     System.out.println(LINE
                             + "\n\t"
                             + "added: "
