@@ -21,6 +21,14 @@ public class Duke {
             }
             return status;
         }
+
+        public void markAsDone() {
+            
+        }
+
+        public void markAsNotDone() {
+
+        }
     }
 
     private static ArrayList<String> userInputHistory = new ArrayList();
