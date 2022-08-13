@@ -1,7 +1,8 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Duke {
-
+    private static ArrayList<String> userInputHistory = new ArrayList();
     private static void greetUser() {
         String logo = "_______     _\n" +
                 "|  ___|    | |\n" +
@@ -23,6 +24,9 @@ public class Duke {
             //echo request
             System.out.println(userInput);
         }
+    }
+
+    private static void storeInput(String s) {
     }
 
     public static void main(String[] args) {
