@@ -6,7 +6,7 @@ public class Duke {
     /**
      * 'List' attribute to store inputs.
      */
-    private static DukeList dukeList = new DukeList();
+    private static TaskList taskList = new TaskList();
 
     /**
      * Function to echo an input string onto stdout.
@@ -41,7 +41,7 @@ public class Duke {
                     return;
                 case "list":
                     // List inputs in 'userInput' list.
-                    dukeList.print();
+                    taskList.print();
                     break;
                 case "":
                     // Do nothing if no input is given before newline.
@@ -49,7 +49,7 @@ public class Duke {
                 default:
                     // Echo and add to 'userInput' list.
                     echo("Added: " + userInput);
-                    dukeList.add(userInput);
+                    taskList.add(userInput);
             }
         }
     }
