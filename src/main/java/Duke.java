@@ -13,13 +13,13 @@ public class Duke {
                 "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println(logo);
         System.out.println("Hello! I'm Duke!");
-        System.out.println("What can I do for you?\n");
+        System.out.println("What can I do for you?");
 
         Scanner scanner = new Scanner(System.in);
         Duke duke = new Duke();
 
-        while (true) {
-            System.out.print("> ");
+        System.out.print("\n> ");
+        while (scanner.hasNextLine()) {
             String input = scanner.nextLine();
             try {
                 boolean isTerminal = duke.executeCommand(input);
@@ -27,8 +27,9 @@ public class Duke {
                     return;
                 }
             } catch (DukeException e) {
-                System.out.printf("%s.\n\n", e.getMessage());
+                System.out.printf("%s.\n", e.getMessage());
             }
+            System.out.print("\n> ");
         }
     }
 
