@@ -57,6 +57,9 @@ public class Duke {
                 case "unmark":
                     setTaskCompletionStatus(input, false);
                     break;
+                case "delete":
+                    delete(input);
+                    break;
                 default:
                     throw new DukeException("I'm sorry, but I don't know what that means :-(");
             }
@@ -75,7 +78,7 @@ public class Duke {
     private void addTodo(String input) throws DukeException {
         ToDo todo = new ToDo(input);
         this.tasks.add(todo);
-        speak("Got it. I've added this todo:\n%s\nNow you have %d tasks in your list", todo, tasks.size());
+        speak("Got it. I've added this todo:\n  %s\nNow you have %d tasks in your list", todo, tasks.size());
     }
 
     /**
@@ -89,7 +92,7 @@ public class Duke {
             String[] parts = input.split(" /at ");
             Event event = new Event(parts[0].strip(), parts[1].strip());
             this.tasks.add(event);
-            speak("Got it. I've added this event:\n%s\nNow you have %d tasks in your list", event, tasks.size());
+            speak("Got it. I've added this event:\n  %s\nNow you have %d tasks in your list", event, tasks.size());
         } else {
             throw new DukeException("Invalid event format");
         }
@@ -106,7 +109,7 @@ public class Duke {
             String[] parts = input.split(" /by ");
             Deadline deadline = new Deadline(parts[0].strip(), parts[1].strip());
             tasks.add(deadline);
-            speak("Got it. I've added this deadline:\n%s\nNow you have %d tasks in your list", deadline, tasks.size());
+            speak("Got it. I've added this deadline:\n  %s\nNow you have %d tasks in your list", deadline, tasks.size());
         } else {
             throw new DukeException("Invalid event format");
         }
@@ -137,6 +140,25 @@ public class Duke {
             speak("Nice! I've marked this task as done:\n%s", task);
         } else {
             speak("Ok, I've marked this task as not done yet:\n%s", task);
+        }
+    }
+
+    /**
+     * Handle the input for the delete command.
+     *
+     * @param input     the input to be handled
+     * @throws DukeException if the input is invalid
+     */
+    private void delete(String input) throws DukeException {
+        try {
+            if (input.matches("^[0-9]+$")) {
+                Task task = tasks.remove(parseInt(input.strip()) - 1);
+                speak("Noted. I've removed this task:\n  %s\nNow you have %d tasks in your list", task, tasks.size());
+            } else {
+                throw new DukeException("Failed to delete task %s", input);
+            }
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException("Failed to delete task %s", input);
         }
     }
 
