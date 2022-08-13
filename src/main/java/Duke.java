@@ -33,6 +33,8 @@ public class Duke {
             } catch(ArrayIndexOutOfBoundsException e) {
                 System.out.println("Please specify task to be marked " +
                         "done!");
+            } catch(NumberFormatException e) {
+                System.out.println("Task index must be a number!");
             }
         } else if (userInput.startsWith("unmark")) {
             try {
@@ -41,6 +43,8 @@ public class Duke {
             } catch (ArrayIndexOutOfBoundsException e) {
                 System.out.println("Please specify task to be marked " +
                         "undone!");
+            } catch(NumberFormatException e) {
+                System.out.println("Task index must be a number!");
             }
         } else {
             // Add to 'userInput' list.

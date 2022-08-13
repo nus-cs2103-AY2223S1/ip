@@ -10,14 +10,61 @@ public class TaskList {
     private static List<Task> taskList = new ArrayList<>();
 
     /**
+     * Get description as String from input.
+     * @param input String of words given by user as input
+     * @return      Return description of input task.
+     */
+    private String getDescription(String input) {
+        if (input.startsWith("deadline")) {
+            return input.substring(9, input.indexOf("/by ") - 1);
+        } else if (input.startsWith("event")) {
+            return input.substring(6, input.indexOf("/at ") - 1);
+        } else if (input.startsWith("todo")){
+            return input.substring(5);
+        } else {
+            return input;
+        }
+    }
+
+    /**
+     * Get date as String from input.
+     * @param input String of words given by user as input
+     * @return      Return date of input task.
+     */
+    private String getDate(String input) {
+        if (input.startsWith("deadline")) {
+            return input.substring(input.indexOf("/by ") + 4);
+        } else if (input.startsWith("event")) {
+            return input.substring(input.indexOf("/at ") + 4);
+        } else {
+            return null;
+        }
+    }
+
+    /**
      * Method to add String input to 'inputList'.
      * @param input String object to be added to 'inputList'.
      */
     public void add(String input) {
-        Task newTask = new Task(input);
+        String[] inputArr = input.split(" ");
+
+        Task newTask;
+        if (inputArr[0].equals("deadline")){
+            newTask = new Deadline(getDescription(input), getDate(input));
+        } else if (inputArr[0].equals("event")){
+            newTask = new Event(getDescription(input), getDate(input));
+        } else if (inputArr[0].equals("todo")){
+            newTask = new ToDo(getDescription(input));
+        } else {
+            newTask = new Task(input);
+        }
+
         taskList.add(newTask);
+        int size = taskList.size();
         System.out.println("Got it. I've added this task:");
-        System.out.println(newTask.toString());
+        System.out.println("   " + newTask);
+        System.out.printf("Now you have %d task%s in the list.%n",
+                size, size == 1 ? "" : "s");
     }
 
     /**
@@ -25,7 +72,7 @@ public class TaskList {
      */
     @Override
     public String toString() {
-        String res = "";
+        String res = String.format("Here are the tasks in your list: %n");
         for (int i = 0; i < taskList.toArray().length; i++) {
             res += String.format("%d. %s%n", i + 1, taskList.get(i));
         }
