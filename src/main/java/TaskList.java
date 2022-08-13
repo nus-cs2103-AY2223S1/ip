@@ -19,12 +19,15 @@ public class TaskList {
     }
 
     /**
-     * Method to print inputs stored in 'inputList'.
+     * Override 'toString' method of 'TaskList' object.
      */
-    public void print() {
+    @Override
+    public String toString() {
+        String res = "";
         for (int i = 0; i < taskList.toArray().length; i++) {
-            System.out.printf("%d. %s%n", i + 1, taskList.get(i));
+            res += String.format("%d. %s%n", i + 1, taskList.get(i));
         }
+        return res;
     }
 
     /**
@@ -33,7 +36,7 @@ public class TaskList {
      */
     public void markDone(int index) {
         this.taskList.get(index - 1).markDone();
-        System.out.printf("Nice! I've marked this task as done:%n  %s%n",
+        System.out.printf("Nice! I've marked this task as done:%n   %s%n",
                 taskList.get(index - 1));
     }
 
@@ -43,7 +46,7 @@ public class TaskList {
      */
     public void markUnDone(int index) {
         this.taskList.get(index - 1).markUnDone();
-        System.out.printf("OK, I've marked this task as not done yet:%n  %s%n",
+        System.out.printf("OK, I've marked this task as not done yet:%n   %s%n",
                 taskList.get(index - 1));
     }
 }

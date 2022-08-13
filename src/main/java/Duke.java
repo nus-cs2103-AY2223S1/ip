@@ -41,7 +41,7 @@ public class Duke {
                 return;
             } else if (userInput.equals("list")) {
                 // List inputs in 'userInput' list.
-                taskList.print();
+                System.out.println(taskList);
             } else if (userInput.equals("")) {
                 // Do nothing if no input is given before newline.
                 continue;
