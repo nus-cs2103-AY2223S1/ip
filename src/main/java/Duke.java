@@ -172,6 +172,16 @@ public class Duke {
         printLine();
     }
 
+    public static void deleteTask(int index) throws DukeException {
+        Task task = getTask(index);
+        taskList.remove(index - 1);
+        printLine();
+        printWithIndent("Noted. I've removed this task:");
+        printWithIndent("  " + task);
+        printTaskCount();
+        printLine();
+    }
+
     public static void main(String[] args) {
         greet();
         Scanner scanner = new Scanner(System.in);
@@ -210,6 +220,9 @@ public class Duke {
                         break;
                     case "event":
                         addTask(argsString, 2);
+                        break;
+                    case "delete":
+                        deleteTask(parseInt(argsString));
                         break;
                     default:
                         throw new DukeException("I don't know this command!");
