@@ -16,14 +16,15 @@ public class Duke {
             System.out.print("> ");
             String input = scanner.nextLine();
             String[] arguments = getArguments(input);
+            System.out.println();
 
             if (arguments.length == 0) {
                 System.out.println("Please enter a command.");
                 continue;
             }
-            System.out.println();
             boolean isTerminal = duke.executeCommand(arguments);
             System.out.println();
+
             if (isTerminal) {
                 return;
             }
@@ -31,6 +32,9 @@ public class Duke {
     }
 
     private static String[] getArguments(String command) {
+        if (command.isBlank()) {
+            return new String[0];
+        }
         return command.split(" ");
     }
 
