@@ -25,6 +25,7 @@ public class Duke {
         while (!isExited) {
             command = sc.next();
             int taskNumber;
+            String[] splitStringArray;
             Task t;
             switch (command) {
                 case "bye":
@@ -58,14 +59,47 @@ public class Duke {
                             + "OK, I've marked this task as not done yet:\n\t  "
                             + t);
                     break;
-                default:
-                    tasks.add(new Task(command));
+                case "todo":
+                    command = sc.nextLine();
+                    ToDo td = new ToDo(command);
+                    tasks.add(td);
                     System.out.println(LINE
                             + "\n\t"
-                            + "added: "
-                            + command
-                            + "\n"
+                            + "Got it. I've added this task:\n\t  "
+                            + td
+                            + "\n\tNow you have "
+                            + tasks.size()
+                            + " tasks in the list.\n"
                             + LINE);
+                    break;
+                case "deadline":
+                    command = sc.nextLine();
+                    splitStringArray = command.split(" /by ");
+                    Deadline dl = new Deadline(splitStringArray[0], splitStringArray[1]);
+                    tasks.add(dl);
+                    System.out.println(LINE
+                            + "\n\t"
+                            + "Got it. I've added this task:\n\t  "
+                            + dl
+                            + "\n\tNow you have "
+                            + tasks.size()
+                            + " tasks in the list.\n"
+                            + LINE);
+                    break;
+                case "event":
+                    command = sc.nextLine();
+                    splitStringArray = command.split(" /at ");
+                    Event e = new Event(splitStringArray[0], splitStringArray[1]);
+                    tasks.add(e);
+                    System.out.println(LINE
+                            + "\n\t"
+                            + "Got it. I've added this task:\n\t  "
+                            + e
+                            + "\n\tNow you have "
+                            + tasks.size()
+                            + " tasks in the list.\n"
+                            + LINE);
+                    break;
             }
         }
     }
