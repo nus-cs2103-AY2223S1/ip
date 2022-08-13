@@ -10,8 +10,12 @@ src/main/resources/docs/
 
 # MacOS custom attributes files created by Finder
 .DS_Store
-*.iml
-bin/
+ *.iml
+ bin/
 
-/text-ui-test/ACTUAL.txt
-text-ui-test/EXPECTED-UNIX.TXT
+ /text-ui-test/ACTUAL.txt
+ text-ui-test/EXPECTED-UNIX.TXT
+
+# Java stuff
+*.class
+.java-version
