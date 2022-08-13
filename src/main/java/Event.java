@@ -1,4 +1,4 @@
-public class Event extends Todo {
+public class Event extends Task {
     private String at;
 
     public Event(String description, String at) {
@@ -8,6 +8,6 @@ public class Event extends Todo {
 
     @Override
     public String toString() {
-        return String.format("[E] %s (at: %s)", this.description, this.at);
+        return String.format("[E] %s (at: %s)", super.toString(), this.at);
     }
 }
