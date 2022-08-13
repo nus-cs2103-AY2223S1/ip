@@ -125,7 +125,7 @@ public class Duke {
         } else {
                 addToHistory(userInput);
             }
-
+        System.out.print(">> ");
     }
 
     public static void main(String[] args) {
