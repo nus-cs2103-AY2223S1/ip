@@ -16,6 +16,8 @@ public class TaskList {
     public void add(String input) {
         Task newTask = new Task(input);
         taskList.add(newTask);
+        System.out.println("Got it. I've added this task:");
+        System.out.println(newTask.toString());
     }
 
     /**
