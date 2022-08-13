@@ -42,8 +42,8 @@ public class Duke {
 
     public static void unmarkMessage(String userAction) throws DukeException {
         try {
-            if (isNumeric(userAction)) {
-                throw new DukeException("I'm sorry, but the index you provided is out of range :-(");
+            if (!isNumeric(userAction)) {
+                throw new DukeException("I'm sorry, the input you provided is not a number!");
             } else {
                 int index = Integer.parseInt(userAction) - 1;
                 if (index >= tasks.size() || index < 0) {
@@ -126,7 +126,7 @@ public class Duke {
         return " Here are the tasks in your list:\n" + list;
     }
 
-    public static boolean isNumeric(String str) throws DukeException {
+    public static boolean isNumeric(String str) {
         try {
             Integer.parseInt(str);
             return true;
