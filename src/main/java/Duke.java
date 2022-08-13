@@ -28,6 +28,10 @@ public class Duke {
         printMessage(startupMsg);
     }
 
+    private static String getCurrentListStatus() {
+        return "Now you have " + tasks.size() + " task(s) in the list.";
+    }
+
     private static void exit() {
         isAcceptingInput = false;
         String exitMsg = "Bye. Hope to see you again soon!";
@@ -46,9 +50,17 @@ public class Duke {
 
     private static void addTask(Task task) {
         tasks.add(task);
-        String msg = "Got it. I've added this task: + \n"
+        String msg = "Got it. I've added this task:\n"
                 + task + "\n"
-                + "Now you have " + tasks.size() + " task(s) in the list.";
+                + getCurrentListStatus();
+        printMessage(msg);
+    }
+
+    private static void removeTask(int index) {
+        Task removedTask = tasks.remove(index);
+        String msg = "Noted. I've removed this task:\n"
+                + removedTask + "\n"
+                + getCurrentListStatus();
         printMessage(msg);
     }
 
@@ -95,6 +107,7 @@ public class Duke {
             if (str.length == 1 &&
                     (cmd.equals("mark")
                             || cmd.equals("unmark")
+                            || cmd.equals("delete")
                             || cmd.equals("todo")
                             || cmd.equals("deadline")
                             || cmd.equals("event"))) {
@@ -116,6 +129,14 @@ public class Duke {
                         throw new InputIndexOutOfBoundsException("tried to unmark task " + str[1]);
                     }
                     unmarkTask(taskIndex);
+                    break;
+                }
+                case "delete": {
+                    int taskIndex = Integer.parseInt(str[1]) - 1;
+                    if (taskIndex < 0 || taskIndex >= tasks.size()) {
+                        throw new InputIndexOutOfBoundsException("tried to delete task " + str[1]);
+                    }
+                    removeTask(taskIndex);
                     break;
                 }
                 case "todo":
