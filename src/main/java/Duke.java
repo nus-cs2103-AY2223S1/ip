@@ -3,6 +3,9 @@ import java.util.ArrayList;
 
 public class Duke {
 
+    /**
+     * Class to encapsulate Task object
+     */
     public class Task {
         protected String description;
         protected boolean isDone;
@@ -12,6 +15,10 @@ public class Duke {
             this.isDone = false;
         }
 
+        /**
+         * Return task description as per task status
+         * @return string describing the contents of task object
+         */
         public String getStatus() {
             String status;
             if(this.isDone) {
@@ -61,7 +68,7 @@ public class Duke {
     private void showHistory() {
         System.out.print("______\n");
         userInputHistory.forEach(input -> {
-            System.out.printf("• %s\n", input);
+            System.out.printf("• %s\n", input.getStatus());
         });
         System.out.print("______\n");
     }
