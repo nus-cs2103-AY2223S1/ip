@@ -12,18 +12,31 @@ public class Duke {
         printMessage(initMsg);
         while (true) {
             String input = scan.nextLine();
-            if (input.equals("bye")) {
+            String[] parse = input.split(" ", 2);
+            if (parse[0].equals("bye")) {
                 break;
-            } else if (input.equals("list")) {
-                lst.printList();
-            } else if (input.split(" ")[0].equals("mark") || input.split(" ")[0].equals("unmark")) {
-                if (input.split(" ")[0].equals("mark")) {
-                    lst.markTask(parseInt(input.split(" ")[1]));
-                } else {
-                    lst.unmarkTask(parseInt(input.split(" ")[1]));
-                }
-            } else {
-                lst.addTask(new Task(input));
+            }
+            switch (parse[0]) {
+                case "list":
+                    lst.printList();
+                    break;
+                case "mark":
+                    lst.markTask(parseInt(parse[1]));
+                    break;
+                case "unmark":
+                    lst.unmarkTask(parseInt(parse[1]));
+                    break;
+                case "todo":
+                    lst.addTask(new Task(parse[1], Task.taskType.T));
+                    break;
+                case "deadline":
+                    String[] parse2 = parse[1].split("/by");
+                    lst.addTask(new Task(parse2[0], Task.taskType.D, parse2[1]));
+                    break;
+                case "event":
+                    String[] parse3 = parse[1].split("/at");
+                    lst.addTask(new Task(parse3[0], Task.taskType.E, parse3[1]));
+                    break;
             }
         }
         scan.close();

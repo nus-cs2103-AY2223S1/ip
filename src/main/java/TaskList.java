@@ -10,7 +10,8 @@ public class TaskList {
         lst[idx] = t;
         idx++;
         System.out.println("-------------------------");
-        System.out.println("added:" + t.toString());
+        System.out.println("Got it. I've added this task: \n" + t.toString());
+        System.out.println("Now you have " + idx + " tasks in the list.");
         System.out.println("-------------------------");
     }
 
