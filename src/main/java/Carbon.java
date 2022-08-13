@@ -4,7 +4,8 @@ import java.util.Scanner;
 public class Carbon {
     private static Scanner sc = new Scanner(System.in);
 
-    private Random rand = new Random();
+    private Random rand;
+    private boolean isRunning;
 
     private static void printOut(String text) {
         String divider = "\n···---······---······---······---······---······---······---···\n";
@@ -21,6 +22,9 @@ public class Carbon {
     }
 
     private Carbon() {
+        // init fields
+        this.rand = new Random();
+
         // ascii art generated from patorjk.com
 
         String preface = "                 _ _ _ ____ _    ____ ____ _  _ ____ \n" + 
@@ -58,19 +62,39 @@ public class Carbon {
     }
 
     private void runShell() {
-        boolean isRunning = true;
-        while (isRunning) {
+        this.isRunning = true;
+        while (this.isRunning) {
             String input = Carbon.printIn();
             this.process(input);
-            if (!isRunning) {
+            if (!this.isRunning) {
                 this.exit();
             }
         }
     }
 
-    private void exit() {}
+    private void exit() {
+        String[] goodbyes = {
+            "Bye-bye, see you again soon!",
+            "Farewell. Stay safe.",
+            "Nice meeting you. Let's catch up again sometime.",
+            "Bye. Good riddance.",
+            "...zzzzzz...",
+            "What? Yeah, sorry I gotta run now."
+        };
+        String randomGoodbye = goodbyes[this.rand.nextInt(goodbyes.length)];
+        Carbon.printOut(randomGoodbye);
+    }
     
-    private void process(String input) {}
+    private void process(String input) {
+        String lowerCaseInput = input.toLowerCase();
+        switch (lowerCaseInput) {
+            case "bye":
+                this.isRunning = false;
+                break;
+            default:
+                Carbon.printOut(input);
+        }
+    }
 
     public static void main(String[] args) {
         Carbon shell = new Carbon();
