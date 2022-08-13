@@ -22,6 +22,41 @@ public class Duke {
 
         while (!Objects.equals(command, "bye")) {
 
+            if (command.contains("deadline")) {
+                String description = command.substring(9, command.indexOf('/') - 1);
+                String by = command.substring(command.indexOf('/') + 4);
+                Task t = new Deadline(description, by);
+                tasks.add(t);
+                String size = Integer.toString(tasks.size());
+                System.out.println("Got it. I've added this task:\n" + "  " + t);
+                System.out.println("Now you have " + size + " tasks in the list.");
+                command = sc.nextLine();
+                continue;
+            }
+
+            if (command.contains("todo")) {
+                String description = command.substring(5);
+                Task t = new Todo(description);
+                tasks.add(t);
+                String size = Integer.toString(tasks.size());
+                System.out.println("Got it. I've added this task:\n" + "  " + t);
+                System.out.println("Now you have " + size + " tasks in the list.");
+                command = sc.nextLine();
+                continue;
+            }
+
+            if (command.contains("event")) {
+                String description = command.substring(6, command.indexOf('/') - 1);
+                String at = command.substring(command.indexOf('/') + 4);
+                Task t = new Event(description, at);
+                tasks.add(t);
+                String size = Integer.toString(tasks.size());
+                System.out.println("Got it. I've added this task:\n" + "  " + t);
+                System.out.println("Now you have " + size + " tasks in the list.");
+                command = sc.nextLine();
+                continue;
+            }
+
             if (command.contains("mark")) {
                 // Isolate int from string input
                 String numString = command.replace("mark", "")
@@ -40,12 +75,8 @@ public class Duke {
                     count++;
                 }
                 command = sc.nextLine();
-                continue;
             }
 
-            tasks.add(new Task(command));
-            System.out.println("added: " + command);
-            command = sc.nextLine();
         }
         System.out.println("Bye. Hope to see you again soon!");
     }
