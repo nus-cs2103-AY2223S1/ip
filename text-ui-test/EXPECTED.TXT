@@ -113,3 +113,4 @@ Here are the tasks in your list:
 7. [T][ ] feed neighbour's cat
 8. [E][ ] go to pet fair (at: 1st Nov)
 
+Bye. Hope to see you again soon!
