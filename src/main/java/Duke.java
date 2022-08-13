@@ -10,19 +10,13 @@ import java.util.ArrayList;
 public class Duke {
     // Name of Bot
     private static final String BOT_NAME = "Duke";
-    // Bot Name Logo
-    private static final String BOT_LOGO = " ____        _        \n"
-                                        + "|  _ \\ _   _| | _ \n"
-                                        + "| | | | | | | |/ / _ \\\n"
-                                        + "| |_| | |_| |   <  __/\n"
-                                        + "|____/ \\__,_|_|\\_\\___|\n";
+
     /**
      * Greeting Method for ChatBot.
      *
      * Prints Greetings Message.
      */
     private static void greetings() {
-        System.out.println(BOT_LOGO);
         System.out.printf("Hello! I'm the Magical ChatBot, %s!%n", BOT_NAME);
         System.out.println("What can I help you with today?\n");
     }
@@ -35,7 +29,6 @@ public class Duke {
     private static void farewell() {
         System.out.println("\n-----------------------------------------");
         System.out.println("Bye Bye! Hope to see you again soon!");
-        System.out.println(BOT_LOGO);
         System.out.println("-----------------------------------------\n");
     }
 
@@ -50,7 +43,6 @@ public class Duke {
         // Initialise variables
         Scanner sc = new Scanner(System.in);
         ArrayList<Task> tasks = new ArrayList<>();
-        System.out.print("Enter Your Command: ");
         String command = sc.next();
         String description = sc.nextLine();
 
@@ -135,8 +127,6 @@ public class Duke {
                 System.out.println("Sorry! I'm incapable :( Please add more functionalities to me");
                 System.out.println("-----------------------------------------\n");
             }
-
-            System.out.print("Enter Your Command: ");
             command = sc.next();
             description = sc.nextLine();
         }
