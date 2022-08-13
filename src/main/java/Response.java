@@ -1,3 +1,5 @@
+import java.util.Locale;
+
 /**
  * Encapsulate the Response function of the chatbot.
  *
@@ -20,6 +22,10 @@ public class Response {
         this.userList = new TaskList();
     }
 
+    public enum Command {
+        BYE, LIST, UNMARK, MARK, TODO, DEADLINE, EVENT, DELETE
+    }
+
     /**
      * Handles user's input into chatbot.
      * @param input User input into chatbot.
@@ -28,35 +34,40 @@ public class Response {
         String[] inputList = input.split(" ");
         try {
             System.out.println(line);
-            if (inputList[0].equals("bye")) {
-                System.out.println("Bye. Hope to see you again soon!");
-                System.out.println(line);
-                System.exit(0);
-            } else if (inputList[0].equals("list")) {
-                System.out.println("Here are the tasks in your list:");
-                System.out.println(userList);
-            } else if (inputList[0].equals("unmark")) {
-                userList.unmark(getIntegerInUserInput(inputList));
-            } else if (inputList[0].equals("mark")) {
-                userList.mark(getIntegerInUserInput(inputList));
-            } else if (inputList[0].equals("todo")){
-                Task newListItem = new ToDo(getToDoDescription(inputList, input));
-                userList.add(newListItem);
-            } else if (inputList[0].equals("deadline")){
-                Task newListItem = new Deadline(getDeadlineDescription(inputList, input),
-                        getDeadlineBy(inputList, input));
-                userList.add(newListItem);
-            } else if (inputList[0].equals("event")){
-                Task newListItem = new Event(getEventDescription(inputList, input),
-                        getEventAt(inputList, input));
-                userList.add(newListItem);
-            } else if (inputList[0].equals("delete")) {
-                userList.delete(getIntegerInUserInput(inputList));
+            Task newListItem;
+            switch (userInputToCommand(inputList[0])) {
+                case BYE:
+                    System.out.println("Bye. Hope to see you again soon!");
+                    System.out.println(line);
+                    System.exit(0);
+                    break;
+                case LIST:
+                    System.out.println("Here are the tasks in your list:");
+                    System.out.println(userList);
+                    break;
+                case UNMARK:
+                    userList.unmark(getIntegerInUserInput(inputList));
+                    break;
+                case MARK:
+                    userList.mark(getIntegerInUserInput(inputList));
+                    break;
+                case TODO:
+                    newListItem = new ToDo(getToDoDescription(inputList, input));
+                    userList.add(newListItem);
+                    break;
+                case DEADLINE:
+                    newListItem = new Deadline(getDeadlineDescription(inputList, input),
+                            getDeadlineBy(inputList, input));
+                    userList.add(newListItem);
+                    break;
+                case EVENT:
+                    newListItem = new Event(getEventDescription(inputList, input),
+                            getEventAt(inputList, input));
+                    userList.add(newListItem);
+                    break;
+                case DELETE:
+                    userList.delete(getIntegerInUserInput(inputList));
             }
-            else {
-                throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
-            }
-
         } catch (DukeException e) {
             System.out.println(e.getMessage());
         }
@@ -99,10 +110,10 @@ public class Response {
     }
 
     /**
-     * gets the Deadline's by from user input
+     * gets the Deadline's by from user input.
      *
-     * @param inputList user input after spliting by " "
-     * @param input user input
+     * @param inputList user input after spliting by " ".
+     * @param input user input.
      */
     public String getDeadlineBy(String[] inputList, String input) {
         if (inputList.length > 2) {
@@ -113,10 +124,10 @@ public class Response {
     }
 
     /**
-     * gets the Event's description from user input
+     * gets the Event's description from user input.
      *
-     * @param inputList user input after spliting by " "
-     * @param input user input
+     * @param inputList user input after spliting by " ".
+     * @param input user input.
      */
     public String getEventDescription(String[] inputList, String input) {
         if (inputList.length >= 2) {
@@ -128,10 +139,10 @@ public class Response {
     }
 
     /**
-     * gets the Event's at from user input
+     * gets the Event's at from user input.
      *
-     * @param inputList user input after spliting by " "
-     * @param input user input
+     * @param inputList user input after spliting by " ".
+     * @param input user input.
      */
     public String getEventAt(String[] inputList, String input) {
         if (inputList.length > 2) {
@@ -141,6 +152,12 @@ public class Response {
         return " ";
     }
 
+    /**
+     * gets the user integer input from user string input.
+     *
+     * @param inputList user input after spliting by " ".
+     * @throws DukeException if input list length > 2 or input list length < 2.
+     */
     public int getIntegerInUserInput(String[] inputList) throws DukeException{
         if (inputList.length > 2) {
             throw new DukeException("Please provide only 1 task number!");
@@ -151,6 +168,20 @@ public class Response {
             return Integer.parseInt(inputList[1]);
         } catch (NumberFormatException e) {
             throw new DukeException("Please provide an actual number!");
+        }
+    }
+
+    /**
+     * Converts string user input command into enum command to be used in switch.
+     *
+     * @param userCommand string user input command.
+     * @throws DukeException if user input command is not any valid command.
+     */
+    public Command userInputToCommand(String userCommand) throws DukeException {
+        try {
+            return Command.valueOf(userCommand.toUpperCase(Locale.ROOT));
+        } catch (IllegalArgumentException e) {
+            throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
     }
 
