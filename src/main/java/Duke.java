@@ -40,33 +40,6 @@ public class Duke {
     }
 
     /**
-     * Method to get Reply from user
-     *
-     * @param sc Scanner to scan for input.
-     *
-     * @return A string containing user's reply
-     */
-    private static String getReply(Scanner sc) {
-        System.out.print("Please enter your command: ");
-        String reply = sc.nextLine();
-
-        return reply;
-    }
-
-    /**
-     * Method to generate result given user's reply
-     *
-     * Prints the result.
-     *
-     * @param reply The user's reply.
-     */
-    private static void getResult(String reply) {
-        System.out.println("\n-----------------------------------------");
-        System.out.println(reply);
-        System.out.println("-----------------------------------------\n");
-    }
-
-    /**
      * The main Method that runs the Duke programme
      *
      * @param args arguments (if any).
@@ -77,20 +50,23 @@ public class Duke {
         // Initialise variables
         Scanner sc = new Scanner(System.in);
         ArrayList<Task> tasks = new ArrayList<>();
-        String reply = getReply(sc);
+        String command = sc.next();
+        String description = sc.nextLine();
 
 
-        while (!reply.toLowerCase().equals("bye")) {
-            String[] words = reply.split(" ");
-            if (reply.toLowerCase().equals("list")) {
+        while (!command.toLowerCase().equals("bye")) {
+            if (command.toLowerCase().equals("list")) {
                 // Print List
                 System.out.println("\n-----------------------------------------");
+                System.out.println("Here are the tasks in your list");
                 for(int i = 0; i < tasks.size(); i++) {
                     System.out.println(i + 1 + ". " + tasks.get(i));
                 }
                 System.out.println("-----------------------------------------\n");
-            } else if (words[0].toLowerCase().equals("mark")) {
-                int index = Integer.parseInt(words[1]) - 1;
+            }
+            else if (command.toLowerCase().equals("mark")) {
+                int index = Integer.parseInt(description.substring(1)) - 1;
+
                 if (0 <= index && index < tasks.size()) {
                     Task task = tasks.get(index);
                     task.markAsDone();
@@ -100,10 +76,13 @@ public class Duke {
                     System.out.println("    " + task);
                     System.out.println("-----------------------------------------\n");
                 } else {
-                    getResult("Boo... Task don't exist :(");
+                    System.out.println("\n-----------------------------------------");
+                    System.out.println("Boo... Task don't exist :(");
+                    System.out.println("-----------------------------------------\n");
                 }
-            } else if (words[0].toLowerCase().equals("unmark")) {
-                int index = Integer.parseInt(words[1]) - 1;
+            }
+            else if (command.toLowerCase().equals("unmark")) {
+                int index = Integer.parseInt(description.substring(1)) - 1;
                 if (0 <= index && index < tasks.size()) {
                     Task task = tasks.get(index);
                     task.markAsUndone();
@@ -113,15 +92,29 @@ public class Duke {
                     System.out.println("    " + task);
                     System.out.println("-----------------------------------------\n");
                 } else {
-                    getResult("Boo... Task don't exist :(");
+                    System.out.println("\n-----------------------------------------");
+                    System.out.println("Boo... Task don't exist :(");
+                    System.out.println("-----------------------------------------\n");
                 }
-            } else {
-                // Add Reply to List
-                getResult("added: " + reply);
-                tasks.add(new Task(reply));
+            }
+            else if (command.toLowerCase().equals("todo")) {
+                ToDo todo = new ToDo(description.substring(1));
+                tasks.add(todo);
+
+                System.out.println("\n-----------------------------------------");
+                System.out.println("Got it. I've added this task:");
+                System.out.println(todo);
+                System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+                System.out.println("-----------------------------------------\n");
+            }
+            else {
+                System.out.println("\n-----------------------------------------");
+                System.out.println("Sorry! I'm incapable :( Please add more functionalities to me");
+                System.out.println("-----------------------------------------\n");
             }
 
-            reply = getReply(sc);
+            command = sc.next();
+            description = sc.nextLine();
         }
 
         farewell();
