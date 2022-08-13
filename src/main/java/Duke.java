@@ -6,7 +6,7 @@ public class Duke {
     /**
      * Class to encapsulate Task object
      */
-    public class Task {
+    public static class Task {
         protected String description;
         protected boolean isDone;
 
