@@ -102,19 +102,19 @@ public class Duke {
         return new Event(description, at);
 
     }
-    public static void addTask(String argsString, int type) throws DukeException {
+    public static void addTask(String argsString, TaskType type) throws DukeException {
         Task task;
         switch (type) {
             // Todo
-            case 0:
+            case Todo:
                 task = parseTodo(argsString);
                 break;
             // Deadline
-            case 1:
+            case Deadline:
                 task = parseDeadline(argsString);
                 break;
             // Event
-            case 2:
+            case Event:
                 task = parseEvent(argsString);
                 break;
             default:
@@ -214,13 +214,13 @@ public class Duke {
                         unmarkTask(parseInt(argsString));
                         break;
                     case "todo":
-                        addTask(argsString, 0);
+                        addTask(argsString, TaskType.Todo);
                         break;
                     case "deadline":
-                        addTask(argsString, 1);
+                        addTask(argsString, TaskType.Deadline);
                         break;
                     case "event":
-                        addTask(argsString, 2);
+                        addTask(argsString, TaskType.Event);
                         break;
                     case "delete":
                         deleteTask(parseInt(argsString));
