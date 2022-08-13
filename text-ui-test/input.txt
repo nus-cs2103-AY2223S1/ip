@@ -1,0 +1,11 @@
+todo eat
+event sleep /at 12am
+deadline wake /by 7am
+mark 1
+mark 2
+list
+unmark 2
+list
+mark 5
+sewy
+bye
