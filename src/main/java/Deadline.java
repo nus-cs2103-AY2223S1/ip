@@ -25,11 +25,18 @@ public class Deadline extends Task {
      *
      * @return Deadline object with the given user input.
      */
-    public static Deadline create(String input) {
+    public static Deadline create(String input) throws DukeException {
+        if (input.length() < 10) {
+            // If user typed "deadline" or "deadline " or any other input less than 10 characters, the description will be empty.
+            throw new DukeException("Description of Deadline cannot be empty!");
+        }
         // Obtain the description and date from the user input.
         String descAndDate = input.substring(9);
-        // Split the input into description and date with the separator of "\by".
+        // Split the input into description and date with the separator of "/by".
         String[] split = descAndDate.split(" /by ");
+        if (split.length != 2) {
+            throw new DukeException("Wrong format for Deadline!\n    Should be 'deadline <description> /by <deadline>'.");
+        }
         String description = split[0];
         String deadline = split[1];
         return new Deadline(description, deadline);
