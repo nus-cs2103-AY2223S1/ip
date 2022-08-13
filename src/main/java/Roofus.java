@@ -48,34 +48,44 @@ public class Roofus {
         Roofus roofus = new Roofus();
         roofus.greet();
         Scanner sc = new Scanner(System.in);
+        boolean isRunning = true;
         while (sc.hasNextLine()) {
-            String command = sc.nextLine();
-            Scanner sc2 = new Scanner(command);
-            String firstWord = sc2.next();
-            if (command.equalsIgnoreCase("bye")) {
+            String input = sc.nextLine();
+            Scanner sc2 = new Scanner(input);
+            String command = sc2.next().toUpperCase();
+            switch (command) {
+                case "BYE":
+                    roofus.signOff();
+                    isRunning = false;
+                    break;
+                case "LIST":
+                    roofus.list();
+                    break;
+                case "MARK":
+                    int index = Integer.parseInt(sc2.next());
+                    roofus.mark(index);
+                    break;
+                case "UNMARK":
+                    int index2 = Integer.parseInt(sc2.next());
+                    roofus.unMark(index2);
+                    break;
+                case "TODO":
+                    roofus.addTask(new ToDo(sc2.nextLine()));
+                    break;
+                case "DEADLINE":
+                    String details = sc2.nextLine();
+                    String[] separate = details.split("/by", 2);
+                    roofus.addTask(new Deadline(separate[0], separate[1]));
+                    break;
+                case "EVENT":
+                    String details2 = sc2.nextLine();
+                    String[] separate2 = details2.split("/at", 2);
+                    roofus.addTask(new Event(separate2[0], separate2[1]));
+                    break;
+            }
+            if (!isRunning) {
                 break;
-            } else if (command.equalsIgnoreCase("list")) {
-                roofus.list();
-            } else if (firstWord.equalsIgnoreCase("mark")) {
-                int index = Integer.parseInt(sc2.next());
-                roofus.mark(index);
-            } else if (firstWord.equalsIgnoreCase("unmark")) {
-                int index = Integer.parseInt(sc2.next());
-                roofus.unMark(index);
-            } else if (firstWord.equalsIgnoreCase("todo")) {
-                roofus.addTask(new ToDo(sc2.nextLine()));
-            } else if (firstWord.equalsIgnoreCase("deadline")) {
-                String details = sc2.nextLine();
-                String[] separate = details.split("/by", 2);
-                roofus.addTask(new Deadline(separate[0], separate[1]));
-            } else if (firstWord.equalsIgnoreCase("event")) {
-                String details = sc2.nextLine();
-                String[] separate = details.split("/at", 2);
-                roofus.addTask(new Event(separate[0], separate[1]));
-            } else {
-                roofus.addTask(new Task(command));
             }
         }
-        roofus.signOff();
     }
 }
