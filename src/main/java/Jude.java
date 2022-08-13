@@ -1,6 +1,15 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Jude {
+    private static List<String> taskList = new ArrayList<>();
+
+    /**
+     * Runs the chatbot.
+     *
+     * @param args not used for now
+     */
     public static void main(String[] args) {
         System.out.println("Hello! I'm Jude.");
         System.out.println("What can I do for you?");
@@ -12,11 +21,18 @@ public class Jude {
             System.out.println();
             System.out.print("> ");
             String str = sc.nextLine();
-            if (str.equals("bye")) {
+            if (str.equals("list")) {
+                for (int i = 0; i < taskList.size(); i++) {
+                    String task = taskList.get(i);
+                    System.out.printf("%d. %s\n", i, task);
+                }
+            } else if (str.equals("bye")) {
                 System.out.println("Goodbye! Have a nice day!");
                 break;
+            } else {
+                System.out.println("added: " + str);
+                taskList.add(str);
             }
-            System.out.println(str);
         }
     }
 }
