@@ -21,9 +21,13 @@ public class Duke {
         while (true) {
             System.out.print("> ");
             String input = scanner.nextLine();
-            boolean isTerminal = duke.executeCommand(input);
-            if (isTerminal) {
-                return;
+            try {
+                boolean isTerminal = duke.executeCommand(input);
+                if (isTerminal) {
+                    return;
+                }
+            } catch (DukeException e) {
+                System.out.printf("%s.\n\n", e.getMessage());
             }
         }
     }
@@ -39,7 +43,7 @@ public class Duke {
         return IntStream.range(0, arguments.length)
                 .filter(i -> arguments[i].equals(query))
                 .findFirst()
-                .orElseThrow();
+                .orElseThrow(() -> new DukeException(String.format("Missing argument `%s`", query)));
     }
 
     private static String concatenateArguments(String[] arguments, int start, int end) {
@@ -105,6 +109,9 @@ public class Duke {
                 break;
             }
             case "deadline": {
+                if (arguments.length < 2) {
+                    throw new DukeException("Missing deadline description");
+                }
                 // Find the "/by" delimiter to get the two arguments.
                 int delimiter = findArgumentIndex(arguments, "/by");
                 String description = concatenateArguments(arguments, 1, delimiter);
@@ -118,6 +125,9 @@ public class Duke {
                 break;
             }
             case "event": {
+                if (arguments.length < 2) {
+                    throw new DukeException("Missing event description");
+                }
                 // Find the "/at" delimiter to get the two arguments.
                 int delimiter = findArgumentIndex(arguments, "/at");
                 String description = concatenateArguments(arguments, 1, delimiter);
@@ -131,7 +141,7 @@ public class Duke {
                 break;
             }
             default: {
-                System.out.println("Unknown command.");
+                throw new DukeException("Unknown command");
             }
         }
         System.out.println();
