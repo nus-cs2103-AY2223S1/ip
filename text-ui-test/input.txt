@@ -1,0 +1,13 @@
+list
+todo finish this ip
+deadline finish ip /by the deadline
+event go to school /at 5am
+event some event /at 5-6pm
+list
+mark 1
+mark 3
+list
+unmark 1
+unmark 2
+list
+bye

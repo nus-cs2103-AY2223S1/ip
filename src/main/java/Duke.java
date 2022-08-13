@@ -48,7 +48,7 @@ public class Duke {
         tasks.add(task);
         String msg = "Got it. I've added this task: + \n"
                 + task + "\n"
-                + "Now you have " + tasks.size() + " tasks in the list.";
+                + "Now you have " + tasks.size() + " task(s) in the list.";
         printMessage(msg);
     }
 
@@ -112,7 +112,7 @@ public class Duke {
             addEvent(description, date);
         } else {
             // print error
-            System.out.println("whoops");
+            System.out.println("Invalid input");
         }
     }
 
