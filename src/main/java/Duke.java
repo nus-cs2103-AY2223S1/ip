@@ -34,7 +34,7 @@ public class Duke {
                 case "list":
                     System.out.println(LINE);
                     for (int i = 0; i < storage.size(); i++) {
-                        System.out.printf("\t%d%s\n", i, ". " + storage.get(i));
+                        System.out.printf("\t%d%s\n", i + 1, ". " + storage.get(i));
                     }
                     System.out.println(LINE);
                     break;
