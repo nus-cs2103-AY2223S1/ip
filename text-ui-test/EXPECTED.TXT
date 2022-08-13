@@ -13,6 +13,9 @@ Got it. I've added this task:
 Now you have 2 tasks in the list.
 ****************************************
 ****************************************
+Oops! Your deadline task isn't clear.
+****************************************
+****************************************
 Got it. I've added this task:
 [E][ ] project meeting (at: Aug 6th 2-4pm)
 Now you have 3 tasks in the list.
@@ -32,20 +35,30 @@ Nice! I've marked this task as done:
 [T][X] read book
 ****************************************
 ****************************************
+Hey! It's not even in this list!
+****************************************
+****************************************
+Noted. I've removed this task:
+[E][ ] project meeting (at: Aug 6th 2-4pm)
+Now you have 4 tasks in the list.
+****************************************
+****************************************
 OK, I've marked this task as not done yet:
 [T][ ] read book
 ****************************************
 ****************************************
+Hey! It's not even in this list!
+****************************************
+****************************************
 Nice! I've marked this task as done:
-[T][X] join sports club
+[T][X] borrow book
 ****************************************
 ****************************************
 Here are the tasks in your list:
 1.[T][ ] read book
 2.[D][ ] return book (by: June 6th)
-3.[E][ ] project meeting (at: Aug 6th 2-4pm)
-4.[T][X] join sports club
-5.[T][ ] borrow book
+3.[T][ ] join sports club
+4.[T][X] borrow book
 ****************************************
 ****************************************
 Bye. Hope to see you again soon!

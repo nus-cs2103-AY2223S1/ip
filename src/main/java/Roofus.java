@@ -38,11 +38,20 @@ public class Roofus {
     }
 
     void mark(int index) {
-        tasks.get(index-1).mark();
+        tasks.get(index - 1).mark();
     }
 
     void unMark(int index) {
-        tasks.get(index-1).unmark();
+        tasks.get(index - 1).unmark();
+    }
+
+    void delete(int index) {
+        Task task = tasks.get(index - 1);
+        tasks.remove(index - 1);
+        System.out.println(LINESEP);
+        System.out.println(String.format("Noted. I've removed this task:\n%s\nNow you have %d tasks in the list.",
+                task.toString(), tasks.size()));
+        System.out.println(LINESEP);
     }
 
     static void errMessage(String message) {
@@ -68,10 +77,18 @@ public class Roofus {
                 case "LIST":
                     roofus.list();
                     break;
-                case "MARK":
+                case "DELETE":
                     try {
                         int index = Integer.parseInt(sc2.next());
-                        roofus.mark(index);
+                        roofus.delete(index);
+                    } catch (NoSuchElementException | IndexOutOfBoundsException err) {
+                        errMessage("Hey! It's not even in this list!");
+                    }
+                    break;
+                case "MARK":
+                    try {
+                        int index1 = Integer.parseInt(sc2.next());
+                        roofus.mark(index1);
                     } catch (NoSuchElementException | IndexOutOfBoundsException err) {
                         errMessage("Hey! It's not even in this list!");
                     }
