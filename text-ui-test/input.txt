@@ -1,0 +1,12 @@
+todo wash clothes
+list
+deadline cs1101s mission grading /by Tuesday
+list
+event cs2101 tutorial /at Mon 4-6pm
+list
+mark 3
+list
+unmark 3
+mark 2
+list
+bye

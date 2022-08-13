@@ -1,3 +1,4 @@
+----------------------------------------
 Hello from
  ____        _        
 |  _ \ _   _| | _____ 
@@ -5,3 +6,69 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
+Wait, I'm not Duke
+I'm Yem, your personal assistant
+What can I do for you master?
+----------------------------------------
+----------------------------------------
+This task is successfully added:
+ [T][ ] wash clothes
+Now you have 1 task(s) in the list
+----------------------------------------
+----------------------------------------
+Here are the tasks in your list
+1. [T][ ] wash clothes
+
+----------------------------------------
+----------------------------------------
+This task is successfully added:
+ [D][ ] cs1101s mission grading  (by: Tuesday)
+Now you have 2 task(s) in the list
+----------------------------------------
+----------------------------------------
+Here are the tasks in your list
+1. [T][ ] wash clothes
+2. [D][ ] cs1101s mission grading  (by: Tuesday)
+
+----------------------------------------
+----------------------------------------
+This task is successfully added:
+ [E][ ] cs2101 tutorial  (at: Mon 4-6pm)
+Now you have 3 task(s) in the list
+----------------------------------------
+----------------------------------------
+Here are the tasks in your list
+1. [T][ ] wash clothes
+2. [D][ ] cs1101s mission grading  (by: Tuesday)
+3. [E][ ] cs2101 tutorial  (at: Mon 4-6pm)
+
+----------------------------------------
+----------------------------------------
+This task has been marked as done:
+ [E][X] cs2101 tutorial  (at: Mon 4-6pm)
+----------------------------------------
+----------------------------------------
+Here are the tasks in your list
+1. [T][ ] wash clothes
+2. [D][ ] cs1101s mission grading  (by: Tuesday)
+3. [E][X] cs2101 tutorial  (at: Mon 4-6pm)
+
+----------------------------------------
+----------------------------------------
+This task has been marked as not done yet:
+ [E][ ] cs2101 tutorial  (at: Mon 4-6pm)
+----------------------------------------
+----------------------------------------
+This task has been marked as done:
+ [D][X] cs1101s mission grading  (by: Tuesday)
+----------------------------------------
+----------------------------------------
+Here are the tasks in your list
+1. [T][ ] wash clothes
+2. [D][X] cs1101s mission grading  (by: Tuesday)
+3. [E][ ] cs2101 tutorial  (at: Mon 4-6pm)
+
+----------------------------------------
+----------------------------------------
+Bye. See you later master!
+----------------------------------------
