@@ -11,13 +11,13 @@ public class Response {
             + "|____/ \\__,_|_|\\_\\___|\n";
     private final String line = "_______________________________";
 
-    private ToDoList allUserInputs;
+    private ToDoList userList;
 
     /**
      * Class constructor for Response
      */
     public Response() {
-        this.allUserInputs = new ToDoList();
+        this.userList = new ToDoList();
     }
 
     /**
@@ -31,11 +31,18 @@ public class Response {
             System.out.println(line);
             System.exit(0);
         } else if (input.equals("list")) {
-            System.out.println(allUserInputs);
+            System.out.println("Here are the tasks in your list:");
+            System.out.println(userList);
+        } else if (input.startsWith("unmark")) {
+            int itemNumber = Integer.parseInt(input.split(" ", 2)[1]);
+            userList.mark(itemNumber);
+        } else if (input.startsWith("mark")) {
+            int itemNumber = Integer.parseInt(input.split(" ", 2)[1]);
+            userList.unmark(itemNumber);
         } else {
             ListItem newListItem = new ListItem(input);
-            allUserInputs.add(newListItem);
-            System.out.println(newListItem);
+            userList.add(newListItem);
+            System.out.println("added: " + input);
         }
         System.out.println(line);
     }

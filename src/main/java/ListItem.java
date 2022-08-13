@@ -5,27 +5,55 @@
  */
 public class ListItem {
 
-    private  String name;
+    private  String description;
+
+    private boolean isDone;
 
     /**
      * Class constructor for ListItem
-     * @param name name of item
+     *
+     * @param Description name of item
      */
-    public ListItem(String name) {
-        this.name = name;
+    public ListItem(String Description) {
+        this.description = Description;
+        this.isDone = false;
     }
 
     /**
      * Method to get the name of the item
+     *
      * @return  name of item
      */
-    public String getName() {
-        return this.name;
+    public String getDescription() {
+        return this.description;
+    }
+
+    /**
+     * Mark item as Done
+     *
+     */
+    public void markAsDone() {
+        this.isDone = true;
+        System.out.println("Nice! I've marked this task as done:");
+        System.out.println(this);
+    }
+
+    /**
+     * Mark item as not Done
+     *
+     */
+    public void markAsNotDone() {
+        this.isDone = false;
+        System.out.println("OK, I've marked this task as not done yet:");
+        System.out.println(this);
     }
 
     @Override
     public String toString() {
-        return "added: " + name;
+        if (isDone) {
+            return "[X] " + this.description;
+        }
+        return "[ ] " + this.description;
     }
 
 }
