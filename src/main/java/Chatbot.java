@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -67,9 +68,13 @@ public class Chatbot {
         System.out.print("What is the name of your todo: ");
         String name = this.scanner.nextLine();
 
-        Task task = new Todo(name, false);
-        this.taskList.add(task);
-        return "I created a Todo " + task + " for you.";
+        try {
+            Task task = new Todo(name, false);
+            this.taskList.add(task);
+            return "I created a Todo " + task + " for you.";
+        } catch (TaskNoNameException e) {
+            return e.getMessage();
+        }
 
     }
 
@@ -81,9 +86,13 @@ public class Chatbot {
         System.out.print("What is the deadline of your task: ");
         String deadline = this.scanner.nextLine();
 
-        Task task = new Deadline(name, false, deadline);
-        this.taskList.add(task);
-        return "I created a Deadline " + task + " for you.";
+        try {
+            Task task = new Deadline(name, false, deadline);
+            this.taskList.add(task);
+            return "I created a Deadline " + task + " for you.";
+        } catch (TaskNoNameException e) {
+            return e.getMessage();
+        }
 
     }
 
@@ -98,9 +107,13 @@ public class Chatbot {
         System.out.print("What is the end time of your event: ");
         String end = this.scanner.nextLine();
 
-        Task task = new Event(name, false, start, end);
-        this.taskList.add(task);
-        return "I created a Event " + task + " for you.";
+        try {
+            Task task = new Event(name, false, start, end);
+            this.taskList.add(task);
+            return "I created a Event " + task + " for you.";
+        } catch (TaskNoNameException e) {
+            return e.getMessage();
+        }
 
     }
 

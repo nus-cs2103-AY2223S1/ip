@@ -3,7 +3,12 @@ public class Task {
     private final String name;
     private boolean done;
 
-    public Task(String name, boolean done) {
+    public Task(String name, boolean done) throws TaskNoNameException {
+
+        if (name.isEmpty()) {
+            throw new TaskNoNameException("The name for a task cannot be empty.");
+        }
+
         this.name = name;
         this.done = done;
     }
