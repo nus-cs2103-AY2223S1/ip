@@ -35,11 +35,11 @@ public class TaskList {
     /**
      * Marks item in list.
      *
-     * @param listNumber item with the number user want to mark as done.
+     * @param itemNumber item with the number user want to mark as done.
      */
-    public void mark(int listNumber) {
+    public void mark(int itemNumber) {
         try {
-            list.get(listNumber - 1).markAsDone();
+            list.get(itemNumber - 1).markAsDone();
         } catch (IndexOutOfBoundsException e) {
             System.out.println("You do not have that item number!");
         }
@@ -48,11 +48,29 @@ public class TaskList {
     /**
      * Marks item as not done in list.
      *
-     * @param listNumber item with the number user want to mark as not done.
+     * @param itemNumber item with the number user want to mark as not done.
      */
-    public void unmark(int listNumber) {
+    public void unmark(int itemNumber) throws DukeException{
         try {
-            list.get(listNumber - 1).markAsNotDone();
+            list.get(itemNumber - 1).markAsNotDone();
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException("You do not have that item number!");
+        }
+    }
+
+    /**
+     * Delete item for list
+     *
+     * @param itemNumber item with the number user want to delete.
+     */
+    public void delete(int itemNumber) {
+        try {
+            Task itemToRemove = list.get(itemNumber - 1);
+            list.remove(itemNumber - 1);
+            this.length -= 1;
+            System.out.println("Noted. I've removed this task:");
+            System.out.println(itemToRemove);
+            System.out.println("Now you have " + this.length + " tasks in the list");
         } catch (IndexOutOfBoundsException e) {
             System.out.println("You do not have that item number!");
         }

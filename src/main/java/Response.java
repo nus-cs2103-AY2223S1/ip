@@ -24,7 +24,7 @@ public class Response {
      * Handles user's input into chatbot.
      * @param input User input into chatbot.
      */
-    public void handleUserInput(String input) throws DukeException {
+    public void handleUserInput(String input) {
         String[] inputList = input.split(" ");
         try {
             System.out.println(line);
@@ -36,9 +36,9 @@ public class Response {
                 System.out.println("Here are the tasks in your list:");
                 System.out.println(userList);
             } else if (inputList[0].equals("unmark")) {
-                userList.unmark(Integer.parseInt(inputList[1]));
+                userList.unmark(getIntegerInUserInput(inputList));
             } else if (inputList[0].equals("mark")) {
-                userList.mark(Integer.parseInt(inputList[1]));
+                userList.mark(getIntegerInUserInput(inputList));
             } else if (inputList[0].equals("todo")){
                 Task newListItem = new ToDo(getToDoDescription(inputList, input));
                 userList.add(newListItem);
@@ -50,7 +50,10 @@ public class Response {
                 Task newListItem = new Event(getEventDescription(inputList, input),
                         getEventAt(inputList, input));
                 userList.add(newListItem);
-            } else {
+            } else if (inputList[0].equals("delete")) {
+                userList.delete(getIntegerInUserInput(inputList));
+            }
+            else {
                 throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
 
@@ -136,6 +139,19 @@ public class Response {
             return descriptionWithAt[1].split(" /at ", 2)[1];
         }
         return " ";
+    }
+
+    public int getIntegerInUserInput(String[] inputList) throws DukeException{
+        if (inputList.length > 2) {
+            throw new DukeException("Please provide only 1 task number!");
+        } else if (inputList.length < 2) {
+            throw new DukeException("Please provide a task number!");
+        }
+        try {
+            return Integer.parseInt(inputList[1]);
+        } catch (NumberFormatException e) {
+            throw new DukeException("Please provide an actual number!");
+        }
     }
 
 }
