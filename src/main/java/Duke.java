@@ -21,7 +21,9 @@ public class Duke {
                 System.out.println("Please enter a command.");
                 continue;
             }
+            System.out.println();
             boolean isTerminal = duke.executeCommand(arguments);
+            System.out.println();
             if (isTerminal) {
                 return;
             }
@@ -43,15 +45,22 @@ public class Duke {
         switch (command) {
             case "mark": {
                 int index = Integer.parseInt(arguments[1]) - 1; // task indexing is 1-indexed
-                taskList.getTask(index).markAsDone();
+                Task task = taskList.getTask(index);
+                task.markAsDone();
+                System.out.println("I've marked this task as done.");
+                System.out.println(task);
                 break;
             }
             case "unmark": {
                 int index = Integer.parseInt(arguments[1]) - 1; // task indexing is 1-indexed
-                taskList.getTask(index).markAsUndone();
+                Task task = taskList.getTask(index);
+                task.markAsUndone();
+                System.out.println("I've unmarked this task as done.");
+                System.out.println(task);
                 break;
             }
             case "list": {
+                System.out.println("Here are your tasks:");
                 System.out.println(this.taskList);
                 break;
             }
@@ -60,8 +69,10 @@ public class Duke {
                 return true;
             }
             default: {
-                taskList.addTask(new Task(command));
-                System.out.println("added: " + command);
+                Task task = new Task(command);
+                taskList.addTask(task);
+                System.out.println("I've added this task.");
+                System.out.println(task);
                 break;
             }
         }
