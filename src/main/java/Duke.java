@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
@@ -10,6 +12,8 @@ public class Duke {
     private static final String GREETING = "Hello! I'm Duke\n"
             + "What can I do for you?\n";
 
+    private static final List<String> INPUT_HISTORY = new ArrayList<>();
+
     public static void main(String[] args) {
         System.out.println(LOGO);
         System.out.println(GREETING);
@@ -21,8 +25,22 @@ public class Duke {
                 System.out.println("Bye. Hope to see you again soon!");
                 scanner.close();
                 break;
+            } else if (userInput.equals("list")) {
+                printInputHistory();
+            } else {
+                addToInputHistory(userInput);
             }
-            System.out.println(userInput);
+        }
+    }
+
+    private static void addToInputHistory(String input) {
+        INPUT_HISTORY.add(input);
+        System.out.println(String.format("added: %s", input));
+    }
+
+    private static void printInputHistory() {
+        for (int i = 0; i < INPUT_HISTORY.size(); i++) {
+            System.out.println(String.format("%d. %s", 1 + i, INPUT_HISTORY.get(i)));
         }
     }
 }
