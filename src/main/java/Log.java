@@ -29,12 +29,14 @@ public class Log {
         return logs.get(index);
     }
 
-    void markTask(int index) {
+    Task markTask(int index) {
         getTask(index).mark();
+        return getTask(index);
     }
 
-    void unmarkTask(int index) {
+    Task unmarkTask(int index) {
         getTask(index).unmark();
+        return getTask(index);
     }
 
     List<String> getLogs() {

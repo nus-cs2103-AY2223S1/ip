@@ -1,6 +1,10 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * Simple CLI chatbot that reacts on user input.
@@ -21,12 +25,16 @@ public class Duke {
      * @param args System arguments. Not used for this program.
      */
     public static void main(String[] args) {
-        System.out.println("Hello from\n" + LOGO);
-        greetingMessage();
+        displayLogo();
+        displayGreetingMessage();
         listenForInputs();
     }
 
-    private static void greetingMessage() {
+    private static void displayLogo() {
+        System.out.println("Hello from\n" + LOGO);
+    }
+
+    private static void displayGreetingMessage() {
         String[] messages = { "Hello! I'm Duke.", "What can I do for you?" };
         formatAndPrint(List.<String>of(messages));
     }
@@ -39,60 +47,101 @@ public class Duke {
         System.out.println(divider);
     }
 
-    private static void addToLogAndPrint(String text) {
-        log.add(text);
+    private static void formatAndPrint(String text) {
         formatAndPrint(List.of(text));
     }
 
+    private static void addToLogAndPrint(String text) {
+        log.add(text);
+        formatAndPrint(text);
+    }
+
     private static void listenForInputs() {
-        String input = scanner.nextLine();
-        if (input.equals("bye")) {
-            formatAndPrint(List.<String>of("Bye bye"));
-            return;
-        } else if (input.equals("list")) {
-            formatAndPrint(log.getLogs());
-        } else if (input.startsWith("mark") || input.startsWith("unmark")) {
-            handleMarkUnmark(input);
-        } else {
-            addToLogAndPrint(input);
+        String input = scanner.next();
+        switch (input) {
+            case "bye":
+                displayExitMessage();
+                return;
+            case "list":
+                listTasks();
+                break;
+            case "mark":
+                markTask();
+                break;
+            case "unmark":
+                unmarkTask();
+                break;
+            default:
+                displayUnknownCommandMessage(input);
         }
         listenForInputs();
     }
 
-    private static void handleMarkUnmark(String input) {
-        int displayIndex = getMarkIndex(input);
-        int taskIndex = displayIndex - 1;
-        List<String> toPrint = new ArrayList<>();
-        if (taskIndex <= INVALID_INDEX || taskIndex >= log.size()) {
-            toPrint.add("Invalid index for marking/unmarking!");
-        } else if (input.startsWith("mark")) {
-            log.markTask(taskIndex);
+    private static void displayExitMessage() {
+        formatAndPrint("Bye bye");
+    }
+
+    private static void displayUnknownCommandMessage(String input) {
+        formatAndPrint("Unknown command: " + input);
+    };
+
+    private static void listTasks() {
+        formatAndPrint(log.getLogs());
+    }
+
+    private static void markTask() {
+        markUnmarkWrapper((taskIndex) -> {
+            List<String> toPrint = new ArrayList<>();
             toPrint.add("I have marked this task as done: ");
-            toPrint.add(log.getTask(taskIndex).toString());
-        } else {
-            log.unmarkTask(taskIndex);
-            toPrint.add("I have unmarked this task: ");
-            toPrint.add(log.getTask(taskIndex).toString());
+            toPrint.add(log.markTask(taskIndex).toString());
+            return toPrint;
+        });
+    }
+
+    private static void unmarkTask() {
+        markUnmarkWrapper((taskIndex) -> {
+            List<String> toPrint = new ArrayList<>();
+            toPrint.add("I have unmarked the completion of this task: ");
+            toPrint.add(log.unmarkTask(taskIndex).toString());
+            return toPrint;
+        });
+    }
+
+    private static void markUnmarkWrapper(Function<Integer, List<String>> markingFunction) {
+        int taskIndex = parseIndex();
+        if (taskIndex == INVALID_INDEX) {
+            return;
         }
+        List<String> toPrint = markingFunction.apply(taskIndex);
         formatAndPrint(toPrint);
     }
 
     /**
      * 
-     * @param input Input line by user.
-     * @return Integer value of second word in line. -1 if not an integer.
+     * @return Parse index given by user in 0-index notation. -1 if index not in
+     *         range, not an integer or not found.
      */
-    private static int getMarkIndex(String input) {
-        String[] splitted = input.split(" ");
-        int validArgumentCount = 2;
-        if (splitted.length != validArgumentCount) {
-            return INVALID_INDEX;
-        }
-        String secondWord = splitted[1];
+    private static int parseIndex() {
+        int inputIndex;
         try {
-            return Integer.parseInt(secondWord);
-        } catch (NumberFormatException e) {
+            inputIndex = scanner.nextInt();
+        } catch (InputMismatchException e) {
+            formatAndPrint("The index must be an Integer!");
+            return INVALID_INDEX;
+
+        } catch (NoSuchElementException e) {
+            formatAndPrint("No index detected!");
             return INVALID_INDEX;
         }
+        int actualIndex = inputIndex - 1;
+        if (!isIndexInRange(actualIndex)) {
+            formatAndPrint("Index out of range!");
+            return INVALID_INDEX;
+        }
+        return actualIndex;
+    }
+
+    private static boolean isIndexInRange(int index) {
+        return index >= 0 && index < log.size();
     }
 }
