@@ -2,6 +2,10 @@
  * Event is a Task that starts at a specific time and ends at a specific time.
  */
 public class Event extends Task {
+    public final static DukeException emptyDescription = new DukeException("Description of Event cannot be empty!");
+    public final static DukeException wrongFormat =
+            new DukeException("Wrong format for Event!\n    Should be 'event <description> /at <date>'.");
+
     /** Date of the event. */
     private final String date;
 
@@ -21,21 +25,18 @@ public class Event extends Task {
      * Factory Method for an Event, with a user input.
      * Event is set as "not done" when created.
      *
-     * @param input User input that starts with "event".
+     * @param input User input.
      *
      * @return Event object with the given user input.
      */
     public static Event create(String input) throws DukeException {
-        if (input.length() < 7) {
-            // If user typed "event" or "event " or any other input less than 7 characters, the description will be empty.
-            throw new DukeException("Description of Event cannot be empty!");
+        if (input.length() < 1) {
+            throw Event.emptyDescription;
         }
-        // Obtain the description and date from the user input.
-        String descAndDate = input.substring(6);
         // Split the input into description and date with the separator of "/at".
-        String[] split = descAndDate.split(" /at ");
+        String[] split = input.split(" /at ");
         if (split.length != 2) {
-            throw new DukeException("Wrong format for Event!\n    Should be 'event <description> /at <date>'.");
+            throw Event.wrongFormat;
         }
         String description = split[0];
         String date = split[1];

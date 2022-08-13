@@ -43,12 +43,12 @@ public class Duke {
                         break;
                     case "mark": {
                         if (split.length != 2) {
-                            throw new DukeException("Please provide an index!");
+                            throw DukeException.noIndex;
                         }
                         String indexInput = split[1];
                         int i = Integer.parseInt(indexInput);
                         if (i <= 0 || i > tasks.size()) {
-                            throw new DukeException("Invalid index!");
+                            throw DukeException.invalidIndex;
                         }
                         // Subtract 1 to account for 0-index data structure.
                         Task task = tasks.get(i - 1);
@@ -60,12 +60,12 @@ public class Duke {
                     }
                     case "unmark": {
                         if (split.length != 2) {
-                            throw new DukeException("Please provide an index!");
+                            throw DukeException.noIndex;
                         }
                         String indexInput = split[1];
                         int i = Integer.parseInt(indexInput);
                         if (i <= 0 || i > tasks.size()) {
-                            throw new DukeException("Invalid index!");
+                            throw DukeException.invalidIndex;
                         }
                         // Subtract 1 to account for 0-index data structure.
                         Task task = tasks.get(i - 1);
@@ -77,12 +77,12 @@ public class Duke {
                     }
                     case "delete": {
                         if (split.length != 2) {
-                            throw new DukeException("Please provide an index!");
+                            throw DukeException.noIndex;
                         }
                         String indexInput = split[1];
                         int i = Integer.parseInt(indexInput);
                         if (i <= 0 || i > tasks.size()) {
-                            throw new DukeException("Invalid index!");
+                            throw DukeException.invalidIndex;
                         }
                         // Subtract 1 to account for 0-index data structure.
                         Task task = tasks.get(i - 1);
@@ -95,7 +95,11 @@ public class Duke {
                         break;
                     }
                     case "todo": {
-                        Task task = Todo.create(input);
+                        if (split.length != 2) {
+                            throw Todo.emptyDescription;
+                        }
+                        String description = split[1];
+                        Task task = Todo.create(description);
                         tasks.add(task);
                         int numberOfTasks = tasks.size();
 
@@ -105,7 +109,11 @@ public class Duke {
                         break;
                     }
                     case "deadline": {
-                        Task task = Deadline.create(input);
+                        if (split.length != 2) {
+                            throw Deadline.emptyDescription;
+                        }
+                        String descAndDate = split[1];
+                        Task task = Deadline.create(descAndDate);
                         tasks.add(task);
                         int numberOfTasks = tasks.size();
 
@@ -115,7 +123,11 @@ public class Duke {
                         break;
                     }
                     case "event": {
-                        Task task = Event.create(input);
+                        if (split.length != 2) {
+                            throw Event.emptyDescription;
+                        }
+                        String descAndDate = split[1];
+                        Task task = Event.create(descAndDate);
                         tasks.add(task);
                         int numberOfTasks = tasks.size();
 
@@ -125,7 +137,7 @@ public class Duke {
                         break;
                     }
                     default:
-                        throw new DukeException("Unknown command!");
+                        throw DukeException.unknownCommand;
                 }
 
                 System.out.println(horizontalLine);

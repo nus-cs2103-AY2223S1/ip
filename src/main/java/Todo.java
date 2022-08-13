@@ -2,6 +2,8 @@
  * Todo is a Task without any date/time attached to it.
  */
 public class Todo extends Task {
+    public final static DukeException emptyDescription = new DukeException("Description of Todo cannot be empty!");
+
     /**
      * Private constructor for a Todo, with a description.
      * Todo is set as "not done" when created.
@@ -16,17 +18,14 @@ public class Todo extends Task {
      * Factory Method for a Todo, with a user input.
      * Todo is set as "not done" when created.
      *
-     * @param input User input that starts with "todo".
+     * @param description Description of Todo.
      *
      * @return Todo object with the given user input.
      */
-    public static Todo create(String input) throws DukeException {
-        if (input.length() < 6) {
-            // If user typed "todo" or "todo " or any other input less than 6 characters, the description will be empty.
-            throw new DukeException("Description of Todo cannot be empty!");
+    public static Todo create(String description) throws DukeException {
+        if (description.length() < 1) {
+            throw Todo.emptyDescription;
         }
-        // Obtain the description from the user input.
-        String description = input.substring(5);
         return new Todo(description);
     }
 
