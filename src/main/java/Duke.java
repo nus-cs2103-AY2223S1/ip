@@ -83,6 +83,18 @@ public class Duke {
                     System.out.println("-----------------------------------------\n");
                 } else throw new DukeOutOfBoundException();
             }
+            else if (command.toLowerCase().equals("delete")) {
+                int index = Integer.parseInt(description.substring(1)) - 1;
+                if (0 <= index && index < tasks.size()) {
+                    Task task = tasks.get(index);
+
+                    System.out.println("\n-----------------------------------------");
+                    System.out.println("Noted. I've removed this task:");
+                    System.out.println("    " + task);
+                    tasks.remove(index);
+                    System.out.println("-----------------------------------------\n");
+                } else throw new DukeOutOfBoundException();
+            }
             else if (command.toLowerCase().equals("todo")) {
                 if (description.isEmpty() || description.substring(1).isEmpty()) throw new DukeEmptyToDoException();
                 ToDo todo = new ToDo(description.substring(1));
