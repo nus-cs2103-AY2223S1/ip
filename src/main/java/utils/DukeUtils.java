@@ -1,6 +1,10 @@
 package utils;
 
-public class Utilities {
+public class DukeUtils {
+
+    public static void print(String message) {
+        System.out.println(message);
+    }
 
     public static void printWithIndent(String message) {
         System.out.println("\t" + message);
@@ -21,6 +25,6 @@ public class Utilities {
     }
 
     public static void printLine() {
-        System.out.println("\t____________________________________________________________");
+        System.out.println("\t────────────────────────────────────────────────────────────");
     }
 }

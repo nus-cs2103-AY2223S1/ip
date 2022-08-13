@@ -1,5 +1,5 @@
 import utils.Constants;
-import utils.Utilities;
+import utils.DukeUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,13 +26,22 @@ public class Duke {
         while (!isDone) {
             String userInput = sc.nextLine();
             String[] userInputArray = userInput.split(" ", 2);
-            String userCommand = userInputArray[0];
+            String userCommand = userInputArray[0].trim();
 
             switch (userCommand.toUpperCase()) {
-            case "BYE":
-                sendExit();
-                isDone = true;
+            case "TODO":
+                addTask(new ToDo(userInputArray[1].trim()));
                 break;
+            case "DEADLINE": {
+                String[] userDescArray = userInputArray[1].split("/by");
+                addTask(new Deadline(userDescArray[0].trim(), userDescArray[1].trim()));
+                break;
+            }
+            case "EVENT": {
+                String[] userDescArray = userInputArray[1].split("/at");
+                addTask(new Event(userDescArray[0].trim(), userDescArray[1].trim()));
+                break;
+            }
             case "LIST":
                 printTasks();
                 break;
@@ -46,9 +55,11 @@ public class Duke {
                 unmarkTask(task);
                 break;
             }
+            case "BYE":
+                sendExit();
+                isDone = true;
+                break;
             default:
-                tasks.add(new Task(tasks.size() + 1, userInput));
-                Utilities.printMessage("added: " + userInput);
                 break;
             }
         }
@@ -56,31 +67,42 @@ public class Duke {
         sc.close();
     }
 
+
+
     public void printTasks() {
-        Utilities.printLine();
-        Utilities.printWithIndent("Here are the tasks in your list:");
-        for (Task t : tasks) {
-            Utilities.printWithIndent(t.toStringWithId());
+        DukeUtils.printLine();
+        DukeUtils.printWithIndent("Here are the tasks in your list:");
+        for (int i = 0; i < tasks.size(); i++) {
+            DukeUtils.printWithIndent(String.format("%d.%s", i + 1, tasks.get(i)));
         }
-        Utilities.printLine();
+        DukeUtils.printLine();
+    }
+
+    public void addTask(Task task) {
+        tasks.add(task);
+        DukeUtils.printLine();
+        DukeUtils.printWithIndent(Constants.MSG_TASK_ADDED);
+        DukeUtils.print("\t  " + task);
+        DukeUtils.printWithIndent("Now you have " + tasks.size() + " tasks in the list.");
+        DukeUtils.printLine();
     }
 
     private void markTask(Task task) {
         task.setDone(true);
-        Utilities.printMessages("Nice! I've marked this task as done:", "  " + task);
+        DukeUtils.printMessages(Constants.MSG_TASK_MARK, "  " + task);
     }
 
     private void unmarkTask(Task task) {
         task.setDone(false);
-        Utilities.printMessages("OK, I've marked this task as not done yet:", "  " + task);
+        DukeUtils.printMessages(Constants.MSG_TASK_UNMARK, "  " + task);
     }
 
     private void sendGreetings() {
-        Utilities.printMessage(Constants.MSG_GREETINGS);
+        DukeUtils.printMessage(Constants.MSG_GREETINGS);
     }
 
     private void sendExit() {
-        Utilities.printMessage(Constants.MSG_EXIT);
+        DukeUtils.printMessage(Constants.MSG_EXIT);
     }
 
 }
