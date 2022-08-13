@@ -24,6 +24,15 @@ public class Duke {
             } else if (input.startsWith("unmark ")) {
                 int taskNum = Integer.parseInt(input.replace("unmark ", ""));
                 markTaskAsNotDone(taskNum);
+            } else if (input.startsWith("todo ")) {
+                String t = input.replace("todo ", "");
+                addTodo(t);
+            } else if (input.startsWith("deadline ")) {
+                String[] deadlineInfo = input.replace("deadline ", "").split(" /by ");
+                addDeadline(deadlineInfo[0], deadlineInfo[1]);
+            } else if (input.startsWith("event ")) {
+                String[] eventInfo = input.replace("event ", "").split(" /at ");
+                addEvent(eventInfo[0], eventInfo[1]);
             } else {
                 echo(input);
                 addToList(input);
@@ -55,6 +64,32 @@ public class Duke {
     public void addToList(String input) {
         Task t = new Task(input);
         this.taskList.add(t);
+    }
+
+    public void addTodo(String input) {
+        Todo todo = new Todo(input);
+        this.taskList.add(todo);
+        printAddTask(todo);
+    }
+
+    public void addDeadline(String input, String by) {
+        Deadline d = new Deadline(input, by);
+        this.taskList.add(d);
+        printAddTask(d);
+    }
+
+    public void addEvent(String input, String datetime) {
+        Event event = new Event(input, datetime);
+        this.taskList.add(event);
+        printAddTask(event);
+    }
+
+    public void printAddTask(Task task) {
+        generateLine();
+        printFormatted("Got it. I've added this task:");
+        printFormatted("   " + task);
+        printFormatted("Now you have " + taskList.size() + " tasks in the list.");
+        generateLine();
     }
 
     public void printList() {
