@@ -9,4 +9,14 @@ list
 deadline return book 2 /by Sunday
 event project meeting /at Mon 2-4pm
 list
+todo
+todo
+deadline
+deadline
+deadline x
+event
+event
+event x
+blah
+?
 bye
