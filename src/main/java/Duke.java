@@ -60,7 +60,7 @@ public class Duke {
     }
 
     private void printTaskListSize() {
-        System.out.printf("You now have %d %s.\n", taskList.size(), taskList.size() == 1 ? "task" : "tasks");
+        System.out.printf("You now have %d %s.", taskList.size(), taskList.size() == 1 ? "task" : "tasks");
     }
 
     /**
