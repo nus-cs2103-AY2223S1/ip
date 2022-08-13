@@ -18,7 +18,7 @@ public class TaskList {
     private static final String ADD_HEADER = "Got it. I've added this task:";
     private List<Task> taskList;
 
-    TaskList(List<Task> taskList) {
+    public TaskList(List<Task> taskList) {
         this.taskList = taskList;
     }
 

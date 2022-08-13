@@ -72,7 +72,8 @@ public class Parser {
     }
 
 
-    private static Task GenerateTask (String input) {
+    //changed to public for testing, TODO: change private after validation
+    public static Task GenerateTask (String input) {
         String tempArr[] = input.split(" ", 2);
         if (input.startsWith("todo")) {
             return new Todo(tempArr[1]);
