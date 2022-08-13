@@ -34,7 +34,7 @@ public class Duke {
         printMessage(exitMsg);
     }
 
-    private static void storeTask(String input) {
+    private static void addTask(String input) {
         tasks.add(input);
         printMessage("added: " + input);
     }
@@ -61,7 +61,7 @@ public class Duke {
                 listTasks();
                 break;
             default:
-                storeTask(input);
+                addTask(input);
         }
     }
 
