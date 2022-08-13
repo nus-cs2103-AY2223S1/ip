@@ -1,7 +1,8 @@
 /**
- * A Task has a description and a status tracking whether it is done or not.
+ * A task has a description and a status tracking whether it is done or not.
+ * Tasks cannot be instantiated directly - they should be inherited by a subclass.
  */
-public class Task {
+public abstract class Task {
     private final String description;
     private boolean isDone;
 
