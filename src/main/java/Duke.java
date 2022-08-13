@@ -80,7 +80,7 @@ public class Duke {
             if (eventString[0].equals("")) {
                 throw new DukeException("The description of an event cannot be empty.");
             } else if (eventString.length == 1) {
-                throw new DukeException("The date/time of an event cannot be empty.");
+                throw new DukeException("The description or date/time of an event cannot be empty.");
             } else {
                 Task newEvent = new Event(eventString[0], eventString[1]);
                 tasks.add(newEvent);
@@ -98,12 +98,32 @@ public class Duke {
             if (deadlineString[0].equals("")) {
                 throw new DukeException("The description and date/time of a deadline cannot be empty.");
             } else if (deadlineString.length == 1) {
-                throw new DukeException("The date/time of a deadline cannot be empty.");
+                throw new DukeException("The description or date/time of a deadline cannot be empty.");
             } else {
                 Task newDeadline = new Deadline(deadlineString[0], deadlineString[1]);
                 tasks.add(newDeadline);
                 sendMessage(" Got it. I've added this task:\n" + "   " + newDeadline.toString()
                         + "\n Now you have " + tasks.size() + " tasks in the list.");
+            }
+        } catch (DukeException e) {
+            sendMessage(e.getMessage());
+        }
+    }
+
+    public static void deleteMessage(String userAction) throws DukeException {
+        try {
+            if (!isNumeric(userAction)) {
+                throw new DukeException("I'm sorry, the input you provided is not a number!");
+            } else {
+                int index = Integer.parseInt(userAction) - 1;
+                if (index >= tasks.size() || index < 0) {
+                    throw new DukeException("I'm sorry, but the index you provided is out of range :-(");
+                } else {
+                    Task task = tasks.get(index);
+                    tasks.remove(index);
+                    sendMessage(" Noted. I've removed this task:\n" + "   " + task.toString()
+                            + "\n Now you have " + tasks.size() + " tasks in the list.");
+                }
             }
         } catch (DukeException e) {
             sendMessage(e.getMessage());
@@ -151,6 +171,8 @@ public class Duke {
                 eventMessage(userAction);
             } else if (userCommand.equals("deadline")) {
                 deadlineMessage(userAction);
+            } else if (userCommand.equals("delete")) {
+                deleteMessage(userAction);
             } else {
                 throw new DukeException("I'm sorry, but I don't know what that means :-(");
             }
