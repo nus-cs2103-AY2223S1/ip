@@ -130,6 +130,7 @@ public class Duke {
 
     public static void listTasks() {
         printLine();
+        printWithIndent("Here are the tasks in your list:");
         for (int i = 0; i < taskList.size(); i++) {
             Task task =  taskList.get(i);
             printWithIndent(i + 1 + ". " + task);
