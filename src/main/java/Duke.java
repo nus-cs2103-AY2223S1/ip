@@ -3,8 +3,8 @@ public class Duke {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        Task[] taskArr = new Task[100];
-        int taskCounter = 0;
+        List<Task> taskArr = new ArrayList<>();
+        //int taskCounter = 0;
         String input = "";
         System.out.print("Hi I'm catBot!\nHow can I help you nya?\n");
 
@@ -25,8 +25,8 @@ public class Duke {
                         Task task = new ToDo(des);
 
                         System.out.println("Roger nya! Added this task:\n  " + task.toString());
-                        taskArr[taskCounter++] = task;
-                        System.out.println("Now you have " + taskCounter + " task(s) in the list nya.");
+                        taskArr.add(task);
+                        System.out.println("Now you have " + taskArr.size() + " task(s) in the list nya.");
                         break;
                     } catch (ArrayIndexOutOfBoundsException e) {
                         System.out.println("Sorry nya, the description of a todo cannot be empty :3");
@@ -43,8 +43,8 @@ public class Duke {
                         Task task = new Deadline(des, when);
 
                         System.out.println("Roger nya! Added this task:\n  " + task.toString());
-                        taskArr[taskCounter++] = task;
-                        System.out.println("Now you have " + taskCounter + " task(s) in the list nya.");
+                        taskArr.add(task);
+                        System.out.println("Now you have " + taskArr.size() + " task(s) in the list nya.");
                         break;
                     } catch (ArrayIndexOutOfBoundsException e) {
                         System.out.println("Sorry nya, the description of a deadline cannot be empty :3");
@@ -62,8 +62,8 @@ public class Duke {
                         Task task = new Event(des, when);
 
                         System.out.println("Roger nya! Added this task:\n  " + task.toString());
-                        taskArr[taskCounter++] = task;
-                        System.out.println("Now you have " + taskCounter + " task(s) in the list nya.");
+                        taskArr.add(task);
+                        System.out.println("Now you have " + taskArr.size() + " task(s) in the list nya.");
                         break;
                     } catch (ArrayIndexOutOfBoundsException e) {
                         System.out.println("Sorry nya, the description of an event cannot be empty :3");
@@ -77,7 +77,7 @@ public class Duke {
                     String task = splitTask[0];
 
                     int index = Integer.parseInt(task);
-                    taskArr[index - 1].markAsDone();
+                    taskArr.get(index - 1).markAsDone();
                     System.out.println("I've marked this task as done. Great job nya!");
                     break;
                 }
@@ -86,20 +86,30 @@ public class Duke {
                     String[] splitTask = splitInput[1].split("/", 2);
                     String task = splitTask[0];
                     int index = Integer.parseInt(task);
-                    taskArr[index - 1].markAsNotDone();
+                    taskArr.get(index - 1).markAsNotDone();
                     System.out.println("Roger nya! I've marked this task as not done.");
+                    break;
+                }
+
+                case "delete": {
+                    String[] splitTask = splitInput[1].split("/", 2);
+                    String task = splitTask[0];
+                    int index = Integer.parseInt(task);
+                    Task target = taskArr.get(index -1);
+                    System.out.println("Roger nya! I've removed this task:\n  " + target.toString());
+                    taskArr.remove(index - 1);
+                    System.out.println("Now you have " + taskArr.size() + " task(s) left in the list.");
+
+
                     break;
                 }
 
                 case "list":
                     System.out.println("Here are the tasks in your list nya:");
-                    for (int i = 0; i < taskArr.length; i++) {
-                        Task t = taskArr[i];
-                        if (taskArr[i] != null) {
-                            System.out.println((i + 1) + "." + t.toString());
-                        } else {
-                            break;
-                        }
+                    int index = 1;
+                    for (Task t : taskArr) {
+                        System.out.println(index + "." + t.toString());
+                        index++;
                     }
                     break;
 

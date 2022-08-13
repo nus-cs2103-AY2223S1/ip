@@ -26,4 +26,7 @@ Here are the tasks in your list nya:
 3.[E][X] project meeting  (at: Mon 2-4pm)
 Sorry nya, the description of a todo cannot be empty :3
 Sorry nya, I don't understand what that means :3
+Roger nya! I've removed this task:
+  [T][ ] borrow book
+Now you have 2 task(s) left in the list.
 Bye nya! Hope to see you again nya.
