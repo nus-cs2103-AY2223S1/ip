@@ -20,7 +20,11 @@ public class Todo extends Task {
      *
      * @return Todo object with the given user input.
      */
-    public static Todo create(String input) {
+    public static Todo create(String input) throws DukeException {
+        if (input.length() < 6) {
+            // If user typed "todo" or "todo " or any other input less than 6 characters, the description will be empty.
+            throw new DukeException("Description of Todo cannot be empty!");
+        }
         // Obtain the description from the user input.
         String description = input.substring(5);
         return new Todo(description);
