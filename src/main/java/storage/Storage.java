@@ -1,16 +1,21 @@
 package storage;
 import java.util.ArrayList;
 import java.util.List;
+import task.Task;
 
 public class Storage {
-    private List<String> tasks;
+    private List<Task> tasks;
 
     public Storage() {
         this.tasks = new ArrayList<>();
     }
 
-    public void addTask(String task) {
-        this.tasks.add(task);
+    public void addTask(Task newTask) {
+        this.tasks.add(newTask);
+    }
+
+    public Task getTaskWithIndex(int index) {
+        return this.tasks.get(index);
     }
 
     @Override
@@ -21,7 +26,7 @@ public class Storage {
 
         String tasksString = "";
         for (int i = 0; i < tasks.size(); i++) {
-            tasksString += String.format("%d. %s\n", i + 1, tasks.get(i));
+            tasksString += String.format("%d. %s\n", i + 1, this.tasks.get(i).toString());
         }
         return tasksString;
     }

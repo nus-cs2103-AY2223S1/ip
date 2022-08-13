@@ -1,6 +1,7 @@
 package parser;
 import printer.Printer;
 import storage.Storage;
+import task.Task;
 
 
 public class Parser {
@@ -17,9 +18,23 @@ public class Parser {
             this.isListening = false;
         } else if (text.equals("list")){
             Printer.print(this.storage.toString());
+        } else if (text.startsWith("mark")) {
+            int markedIndex = Integer.parseInt(text.substring(text.length() - 1)) - 1;
+            Task currentTask = this.storage.getTaskWithIndex(markedIndex);
+            currentTask.markAsFinished();
+            Printer.print(String.format("This task has been marked as done:\n %s",
+                    currentTask.toString()));
+        } else if (text.startsWith("unmark")) {
+            int unMarkedIndex = Integer.parseInt(text.substring(text.length() - 1)) - 1;
+            Task currentTask = this.storage.getTaskWithIndex(unMarkedIndex);
+            currentTask.markAsNotFinished();
+            Printer.print(String.format("This task has been marked as not done yet:\n %s",
+                    currentTask.toString()));
         } else {
-            this.storage.addTask(text);
-            Printer.print(String.format("New task, %s, is successfully added", text));
+            Task newTask = new Task(text);
+            this.storage.addTask(newTask);
+            Printer.print(String.format("This task is successfully added:\n %s",
+                    newTask.toString()));
         }
     }
 
