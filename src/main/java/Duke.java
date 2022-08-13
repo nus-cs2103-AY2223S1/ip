@@ -32,6 +32,18 @@ public class Duke {
     public static void printError(String error) {
         printWithIndent(ANSI_RED + "☹ Oh no! " + error + ANSI_RESET);
     }
+
+    public static void printTaskCount() {
+        printWithIndent(String.format("Now you have %d tasks in the list.", taskList.size()));
+    }
+
+    public static int parseInt(String number) throws DukeException {
+        try {
+            return Integer.parseInt(number);
+        } catch (java.lang.NumberFormatException e) {
+            throw new DukeException(String.format("%s is not a number. e.g 5 is a number, five is a string.", number));
+        }
+    }
     public static void greet() {
         printLine();
         String logo = " ____        _        \n"
@@ -112,7 +124,7 @@ public class Duke {
         printLine();
         printWithIndent("Got it. I've added this task:");
         printWithIndent(" " + task);
-        printWithIndent(String.format("Now you have %d tasks in the list.", taskList.size()));
+        printTaskCount();
         printLine();
     }
 
@@ -125,12 +137,24 @@ public class Duke {
         printLine();
     }
 
-    public static Task getTask(int index) {
+    public static Task getTask(int index) throws DukeException {
+        int numTasks = taskList.size();
+
+        if (numTasks == 0) {
+            throw new DukeException("You don't have tasks.");
+        }
+        if (index < 1) {
+            throw new DukeException("Task number should be at least 1.");
+        }
+        if (index > numTasks) {
+            throw new DukeException(String.format("You only have %d tasks.", numTasks));
+        }
+
         // The user gives 1-indexed numbers.
         return taskList.get(index - 1);
     }
 
-    public static void markTask(int index) {
+    public static void markTask(int index) throws DukeException {
         Task task = getTask(index);
         task.markDone();
         printLine();
@@ -139,7 +163,7 @@ public class Duke {
         printLine();
     }
 
-    public static void unmarkTask(int index) {
+    public static void unmarkTask(int index) throws DukeException {
         Task task = getTask(index);
         task.unmarkDone();
         printLine();
@@ -173,10 +197,10 @@ public class Duke {
                         listTasks();
                         break;
                     case "mark":
-                        markTask(Integer.parseInt(argsString));
+                        markTask(parseInt(argsString));
                         break;
                     case "unmark":
-                        unmarkTask(Integer.parseInt(argsString));
+                        unmarkTask(parseInt(argsString));
                         break;
                     case "todo":
                         addTask(argsString, 0);
