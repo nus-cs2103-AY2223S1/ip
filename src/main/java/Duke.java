@@ -79,7 +79,7 @@ public class Duke {
             String[] eventString = userAction.split("/at ");
             if (eventString[0].equals("")) {
                 throw new DukeException("The description of an event cannot be empty.");
-            } else if (eventString[1].equals("")) {
+            } else if (eventString.length == 1) {
                 throw new DukeException("The date/time of an event cannot be empty.");
             } else {
                 Task newEvent = new Event(eventString[0], eventString[1]);
@@ -96,7 +96,7 @@ public class Duke {
         try {
             String[] deadlineString = userAction.split("/by ");
             if (deadlineString[0].equals("")) {
-                throw new DukeException("The description of a deadline cannot be empty.");
+                throw new DukeException("The description and date/time of a deadline cannot be empty.");
             } else if (deadlineString.length == 1) {
                 throw new DukeException("The date/time of a deadline cannot be empty.");
             } else {
