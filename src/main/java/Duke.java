@@ -97,7 +97,7 @@ public class Duke {
             String[] deadlineString = userAction.split("/by ");
             if (deadlineString[0].equals("")) {
                 throw new DukeException("The description of a deadline cannot be empty.");
-            } else if (deadlineString[1].equals("")) {
+            } else if (deadlineString.length == 1) {
                 throw new DukeException("The date/time of a deadline cannot be empty.");
             } else {
                 Task newDeadline = new Deadline(deadlineString[0], deadlineString[1]);
