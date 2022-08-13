@@ -29,9 +29,11 @@ public class Duke {
      * Method to show history
      */
     private static void showHistory() {
+        System.out.print("______\n");
         userInputHistory.forEach(input -> {
             System.out.printf("• %s\n", input);
         });
+        System.out.print("______\n");
     }
 
     private static void handleInput(String userInput) {
