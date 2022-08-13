@@ -76,7 +76,7 @@ public class Duke {
                     for (int i = 0; i < taskArr.length; i++) {
                         Task t = taskArr[i];
                         if (taskArr[i] != null) {
-                            System.out.println((i + 1) + t.toString());
+                            System.out.println((i + 1) + "." + t.toString());
                         } else {
                             break;
                         }

@@ -1,7 +1,27 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
+Hi I'm catBot!
+How can I help you nya?
+Roger nya! Added this task:
+  [T][ ] borrow book
+Now you have 1 task(s) in the list nya.
+Roger nya! Added this task:
+  [D][ ] return book  (by: Sunday)
+Now you have 2 task(s) in the list nya.
+Roger nya! Added this task:
+  [E][ ] project meeting  (at: Mon 2-4pm)
+Now you have 3 task(s) in the list nya.
+Here are the tasks in your list nya:
+1.[T][ ] borrow book
+2.[D][ ] return book  (by: Sunday)
+3.[E][ ] project meeting  (at: Mon 2-4pm)
+I've marked this task as done. Great job nya!
+I've marked this task as done. Great job nya!
+Here are the tasks in your list nya:
+1.[T][ ] borrow book
+2.[D][X] return book  (by: Sunday)
+3.[E][X] project meeting  (at: Mon 2-4pm)
+Roger nya! I've marked this task as not done.
+Here are the tasks in your list nya:
+1.[T][ ] borrow book
+2.[D][ ] return book  (by: Sunday)
+3.[E][X] project meeting  (at: Mon 2-4pm)
+Bye nya! Hope to see you again nya.
