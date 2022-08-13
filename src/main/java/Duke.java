@@ -1,15 +1,21 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
+/**
+ * Chatbot class that helps a person to keep track of various things.
+ */
 public class Duke {
     private boolean hasExited = false;
     private ArrayList<Task> taskList;
 
+    /**
+     * Contructor of chatbot class.
+     */
     public Duke() {
         this.taskList = new ArrayList<>();
     }
 
-    public void chat() {
+    private void chat() {
         greetUser();
         Scanner sc = new Scanner(System.in);
         while(!hasExited) {
@@ -52,7 +58,7 @@ public class Duke {
         exitMessage();
     }
 
-    public void markTaskAsDone(int index) {
+    private void markTaskAsDone(int index) {
         Task currTask = this.taskList.get(index - 1);
         currTask.markAsDone();
 
@@ -62,7 +68,7 @@ public class Duke {
         generateLine();
     }
 
-    public void markTaskAsNotDone(int index) {
+    private void markTaskAsNotDone(int index) {
         Task currTask = this.taskList.get(index - 1);
         currTask.markAsNotDone();
 
@@ -72,25 +78,25 @@ public class Duke {
         generateLine();
     }
 
-    public void addTodo(String input) {
+    private void addTodo(String input) {
         Todo todo = new Todo(input);
         this.taskList.add(todo);
         printAddTask(todo);
     }
 
-    public void addDeadline(String input, String by) {
+    private void addDeadline(String input, String by) {
         Deadline d = new Deadline(input, by);
         this.taskList.add(d);
         printAddTask(d);
     }
 
-    public void addEvent(String input, String datetime) {
+    private void addEvent(String input, String datetime) {
         Event event = new Event(input, datetime);
         this.taskList.add(event);
         printAddTask(event);
     }
 
-    public void printAddTask(Task task) {
+    private void printAddTask(Task task) {
         generateLine();
         printFormatted("Got it. I've added this task:");
         printFormatted("  " + task);
@@ -98,7 +104,7 @@ public class Duke {
         generateLine();
     }
 
-    public void deleteTask(int deleteIdx) {
+    private void deleteTask(int deleteIdx) {
         Task taskToDelete = taskList.get(deleteIdx - 1);
         taskList.remove(deleteIdx - 1);
         generateLine();
@@ -108,7 +114,7 @@ public class Duke {
         generateLine();
     }
 
-    public void printList() {
+    private void printList() {
         generateLine();
         printFormatted("Here are the tasks in your list:");
         for (int i = 0; i < this.taskList.size(); i++) {
@@ -119,34 +125,32 @@ public class Duke {
         generateLine();
     }
 
-    public void greetUser() {
+    private void greetUser() {
         generateLine();
         printFormatted("Hello! I'm Zeus");
         printFormatted("What can I do for you?");
         generateLine();
     }
 
-    public void exitMessage() {
+    private void exitMessage() {
         generateLine();
         printFormatted("Bye. Hope to see you again soon!");
         generateLine();
     }
 
-    public void echo(String input) {
-        generateLine();
-        System.out.println("\t added: " + input);
-        generateLine();
-
-    }
-
-    public void generateLine() {
+    private void generateLine() {
         System.out.println("\t____________________________________________________________");
     }
 
-    public void printFormatted(String message) {
+    private void printFormatted(String message) {
         System.out.println("\t " + message);
     }
 
+    /**
+     * Main method that initialises chatbot and starts the chat.
+     *
+     * @param args a String array of input arguments
+     */
     public static void main(String[] args) {
         Duke zeus = new Duke();
         zeus.chat();
