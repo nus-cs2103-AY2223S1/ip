@@ -21,7 +21,7 @@ public class Task {
 
     public void markAsNotDone() {
         if (!this.isDone) {
-            System.out.println("Task already marked as done\n" + this);
+            System.out.println("Task already marked as not done\n" + this);
         } else {
             this.isDone = false;
             System.out.println("Ok! I've unmarked this task\n" + this);

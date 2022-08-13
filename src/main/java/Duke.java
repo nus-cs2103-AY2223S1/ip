@@ -29,7 +29,9 @@ public class Duke {
             } else if (next.equals("list")) {
                 if (this.storage.size() == 0) {
                     System.out.println("List is currently empty");
+                    continue;
                 }
+                System.out.println("Here are your tasks:");
                 for (int i = 0; i < this.storage.size(); i++) {
                     System.out.printf("%d.%s\n", i+1, storage.get(i).toString());
                 }
@@ -81,6 +83,7 @@ public class Duke {
                     System.out.printf("added %s\n", event);
                 } else {
                     System.out.println("Invalid action");
+                    continue;
                 }
                 System.out.printf("Now you have %d tasks in the list\n",
                         this.storage.size());
