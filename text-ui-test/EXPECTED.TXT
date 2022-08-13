@@ -24,4 +24,6 @@ Here are the tasks in your list nya:
 1.[T][ ] borrow book
 2.[D][ ] return book  (by: Sunday)
 3.[E][X] project meeting  (at: Mon 2-4pm)
+Sorry nya, the description of a todo cannot be empty :3
+Sorry nya, I don't understand what that means :3
 Bye nya! Hope to see you again nya.

@@ -15,41 +15,61 @@ public class Duke {
             String command = splitInput[0];
 
             switch(command) {
-                case "todo": {
-                    String[] splitDes = splitInput[1].split("/", 2);
-                    String des = splitDes[0];
-                    Task task = new ToDo(des);
-
-                    System.out.println("Roger nya! Added this task:\n  " + task.toString());
-                    taskArr[taskCounter++] = task;
-                    System.out.println("Now you have " + taskCounter + " task(s) in the list nya.");
+                case "bye":
                     break;
+
+                case "todo": {
+                    try {
+                        String[] splitDes = splitInput[1].split("/", 2);
+                        String des = splitDes[0];
+                        Task task = new ToDo(des);
+
+                        System.out.println("Roger nya! Added this task:\n  " + task.toString());
+                        taskArr[taskCounter++] = task;
+                        System.out.println("Now you have " + taskCounter + " task(s) in the list nya.");
+                        break;
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        System.out.println("Sorry nya, the description of a todo cannot be empty :3");
+                        break;
+                    }
                 }
 
                 case "deadline": {
-                    String[] splitDes = splitInput[1].split("/", 2);
-                    String[] splitWhen = splitDes[1].split(" ", 2);
-                    String des = splitDes[0];
-                    String when = splitWhen[1];
-                    Task task = new Deadline(des, when);
+                    try {
+                        String[] splitDes = splitInput[1].split("/", 2);
+                        String[] splitWhen = splitDes[1].split(" ", 2);
+                        String des = splitDes[0];
+                        String when = splitWhen[1];
+                        Task task = new Deadline(des, when);
 
-                    System.out.println("Roger nya! Added this task:\n  " + task.toString());
-                    taskArr[taskCounter++] = task;
-                    System.out.println("Now you have " + taskCounter + " task(s) in the list nya.");
-                    break;
+                        System.out.println("Roger nya! Added this task:\n  " + task.toString());
+                        taskArr[taskCounter++] = task;
+                        System.out.println("Now you have " + taskCounter + " task(s) in the list nya.");
+                        break;
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        System.out.println("Sorry nya, the description of a deadline cannot be empty :3");
+                        break;
+                    }
+
                 }
 
                 case "event": {
-                    String[] splitDes = splitInput[1].split("/", 2);
-                    String[] splitWhen = splitDes[1].split(" ", 2);
-                    String des = splitDes[0];
-                    String when = splitWhen[1];
-                    Task task = new Event(des, when);
+                    try {
+                        String[] splitDes = splitInput[1].split("/", 2);
+                        String[] splitWhen = splitDes[1].split(" ", 2);
+                        String des = splitDes[0];
+                        String when = splitWhen[1];
+                        Task task = new Event(des, when);
 
-                    System.out.println("Roger nya! Added this task:\n  " + task.toString());
-                    taskArr[taskCounter++] = task;
-                    System.out.println("Now you have " + taskCounter + " task(s) in the list nya.");
-                    break;
+                        System.out.println("Roger nya! Added this task:\n  " + task.toString());
+                        taskArr[taskCounter++] = task;
+                        System.out.println("Now you have " + taskCounter + " task(s) in the list nya.");
+                        break;
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        System.out.println("Sorry nya, the description of an event cannot be empty :3");
+                        break;
+                    }
+
                 }
 
                 case "mark": {
@@ -84,6 +104,7 @@ public class Duke {
                     break;
 
                 default:
+                    System.out.println("Sorry nya, I don't understand what that means :3");
                     break;
             }
         }
