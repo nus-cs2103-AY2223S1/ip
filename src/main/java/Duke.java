@@ -15,6 +15,21 @@ public class Duke {
         System.out.println("Where would you like to go next?");
     }
 
+    /**
+     * Method to add user input to history
+     * @param s
+     */
+    private static void addToHistory(String s) {
+
+    }
+
+    /**
+     * Method to show history
+     */
+    private static void showHistory() {
+        
+    }
+
     private static void handleInput(String userInput) {
         if (userInput.equals("bye")) {
             //exit
