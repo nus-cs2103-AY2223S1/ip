@@ -46,7 +46,8 @@ public class Duke {
                 "|   _|/ _  \\ | ___|/  _ \\| |/  \\\n"+
                 "|  | | |_| | | |___| |_| |  / \\ |\n" +
                 "|__|  \\__|_|_|____|\\____/|_|  |_|\n";
-        System.out.println("Hello from" + logo);
+        System.out.println("Hello from" );
+        System.out.println(logo);
         // prompt user
         System.out.println("Where would you like to go next?");
         System.out.print(">> ");
