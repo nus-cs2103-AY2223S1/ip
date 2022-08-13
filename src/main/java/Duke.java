@@ -69,7 +69,7 @@ public class Duke {
         Scanner myScanner = new Scanner(System.in);
         String userInput = "";
 
-        while (runDuke) {
+        while (runDuke && myScanner.hasNextLine()) {
             userInput = myScanner.nextLine();
             handleUserInputs(userInput);
         }
