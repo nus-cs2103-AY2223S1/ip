@@ -22,7 +22,7 @@ public class Duke {
                 } else {
                     System.out.println("Here are the tasks in your list:\n");
                     for (int i = 0; i < tasks.size(); i++) {
-                        System.out.println(i + 1 + "." + tasks.get(i).toString());
+                        System.out.println(i + 1 + ". " + tasks.get(i).toString());
                     }
                 }
                 // checks if it starts with mark, has a space after mark, and are all numbers after the space
@@ -51,9 +51,25 @@ public class Duke {
                 }
                 //int number = Character.getNumericValue(echo.charAt(5));
             } else {
-                System.out.println("_________________________________________________\nadded: " + echo + "\n" +
-                        "_________________________________________________\n");
-                tasks.add(new Task(echo));
+                System.out.println("Got it. I've added this task:");
+                //System.out.println("_________________________________________________\nadded: " + echo + "\n" +
+                //        "_________________________________________________\n");
+                if (echo.startsWith("todo") && Character.isWhitespace(echo.charAt(4))) {
+                    tasks.add(new ToDo(echo));
+                    System.out.println(tasks.get(tasks.size() - 1));
+                }
+
+                if (echo.startsWith("deadline") && Character.isWhitespace(echo.charAt(8))) {
+                    tasks.add(new Deadline(echo));
+                    System.out.println(tasks.get(tasks.size() - 1));
+                }
+
+                if (echo.startsWith("event") && Character.isWhitespace(echo.charAt(5))) {
+                    tasks.add(new Event(echo));
+                    System.out.println(tasks.get(tasks.size() - 1));
+                }
+
+                System.out.println("Now you have " + tasks.size() + " tasks in the list.");
                 //count++;
             }
             echo = sc.nextLine();
