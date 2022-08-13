@@ -3,35 +3,37 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Roofus {
+    static String LINESEP = "****************************************";
+
     private List<Task> tasks = new ArrayList<>();
-    static String lineSep = "****************************************";
 
     void greet() {
-        System.out.println(lineSep);
+        System.out.println(LINESEP);
         System.out.println("Hello I'm Roofus\n" + "What can I do for you?");
-        System.out.println(lineSep);
+        System.out.println(LINESEP);
     }
 
     void addTask(Task task) {
         tasks.add(task);
         String reply = String.format("%s\nGot it. I've added this task:\n%s\n" +
-                "Now you have %d tasks in the list.\n%s", lineSep, task.toString(), tasks.size(),
-                lineSep);
+                "Now you have %d tasks in the list.\n%s", LINESEP, task.toString(),
+                tasks.size(), LINESEP);
         System.out.println(reply);
     }
 
     void signOff() {
-        System.out.println(String.format("%s\nBye. Hope to see you again soon!\n%s", lineSep, lineSep));
+        System.out.println(String.format("%s\nBye. Hope to see you again soon!\n%s",
+                LINESEP, LINESEP));
     }
 
     void list() {
-        System.out.println(lineSep);
+        System.out.println(LINESEP);
         System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < tasks.size(); i++) {
             int index = i + 1;
             System.out.println(index + "." + tasks.get(i).toString());
         }
-        System.out.println(lineSep);
+        System.out.println(LINESEP);
     }
 
     void mark(int index) {

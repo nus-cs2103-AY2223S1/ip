@@ -1,34 +1,35 @@
 public class Task {
     protected String description;
-    protected boolean done;
+    protected boolean isDone;
 
     public Task(String description) {
         this.description = description;
-        this.done = false;
+        this.isDone = false;
     }
 
     void mark() {
-        done = true;
-        System.out.println(Roofus.lineSep);
+        isDone = true;
+        System.out.println(Roofus.LINESEP);
         System.out.println("Nice! I've marked this task as done:\n" +
                 this.toString());
-        System.out.println(Roofus.lineSep);
+        System.out.println(Roofus.LINESEP);
     }
 
     void unmark() {
-        done = false;
-        System.out.println(Roofus.lineSep);
+        isDone = false;
+        System.out.println(Roofus.LINESEP);
         System.out.println("OK, I've marked this task as not done yet:\n" +
                 this.toString());
-        System.out.println(Roofus.lineSep);
+        System.out.println(Roofus.LINESEP);
     }
 
     String getDescription() {
         return this.description;
     }
 
+    @Override
     public String toString() {
-        if (done) {
+        if (isDone) {
             return "[X]"  + description;
         } else {
             return "[ ]" + description;
