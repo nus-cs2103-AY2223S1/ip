@@ -2,8 +2,47 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Carbon {
+    // chat-bot specific displays
+    // ascii art generated from patorjk.com
+    // logo for Carbon
+    private static String logo = "                 _ _ _ ____ _    ____ ____ _  _ ____ \n" + 
+            "                 | | | |___ |    |    |  | |\\/| |___ \n" + 
+            "                 |_|_| |___ |___ |___ |__| |  | |___ \n" + 
+            "  ▄████████    ▄████████    ▄████████ ▀█████████▄   ▄██████▄  ███▄▄▄▄   \n" + 
+            " ███    ███   ███    ███   ███    ███   ███    ███ ███    ███ ███▀▀▀██▄ \n" + 
+            " ███    █▀    ███    ███   ███    ███   ███    ███ ███    ███ ███   ███ \n" + 
+            " ███          ███    ███  ▄███▄▄▄▄██▀  ▄███▄▄▄██▀  ███    ███ ███   ███ \n" + 
+            " ███        ▀███████████ ▀▀███▀▀▀▀▀   ▀▀███▀▀▀██▄  ███    ███ ███   ███ \n" +
+            " ███    █▄    ███    ███ ▀███████████   ███    ██▄ ███    ███ ███   ███ \n" + 
+            " ███    ███   ███    ███   ███    ███   ███    ███ ███    ███ ███   ███ \n" + 
+            " ████████▀    ███    █▀    ███    ███ ▄█████████▀   ▀██████▀   ▀█   █▀  \n" + 
+            "                           ███    ███                                   \n";
+
+    // actual introduction
+    private static String intro = "Hey, Carbon here. ";
+    private static String[] initPrompts = {
+            "What's up?",
+            "How's things going?",
+            "Nice weather today, huh?",
+            "How can I help you?",
+            "Please don't talk to me.",
+            "To get an A+ for CS2103T, you have t---[REDACTED]"
+        };
+
+    // text for exits
+    private static String[] goodbyes = {
+            "Bye-bye, see you again soon!",
+            "Farewell. Stay safe.",
+            "Nice meeting you. Let's catch up again sometime.",
+            "Bye. Good riddance.",
+            "...zzzzzz...",
+            "What? Yeah, sorry I gotta run now."
+        };
+
+    // scanner for inputs
     private static Scanner sc = new Scanner(System.in);
 
+    // own fields
     private Random rand;
     private boolean isRunning;
 
@@ -17,7 +56,7 @@ public class Carbon {
         String receiver = "\n··-··--···--\n";
         System.out.println(receiver);
         System.out.print("<-- ");
-        String input = sc.next();
+        String input = Carbon.sc.next();
         return input;
     }
 
@@ -25,40 +64,15 @@ public class Carbon {
         // init fields
         this.rand = new Random();
 
-        // ascii art generated from patorjk.com
+        String randomPrompt = Carbon.initPrompts[
+            this.rand.nextInt(Carbon.initPrompts.length)
+        ];
 
-        String preface = "                 _ _ _ ____ _    ____ ____ _  _ ____ \n" + 
-            "                 | | | |___ |    |    |  | |\\/| |___ \n" + 
-            "                 |_|_| |___ |___ |___ |__| |  | |___ \n";
-
-        String logo = "  ▄████████    ▄████████    ▄████████ ▀█████████▄   ▄██████▄  ███▄▄▄▄   \n" + 
-            " ███    ███   ███    ███   ███    ███   ███    ███ ███    ███ ███▀▀▀██▄ \n" + 
-            " ███    █▀    ███    ███   ███    ███   ███    ███ ███    ███ ███   ███ \n" + 
-            " ███          ███    ███  ▄███▄▄▄▄██▀  ▄███▄▄▄██▀  ███    ███ ███   ███ \n" + 
-            " ███        ▀███████████ ▀▀███▀▀▀▀▀   ▀▀███▀▀▀██▄  ███    ███ ███   ███ \n" +
-            " ███    █▄    ███    ███ ▀███████████   ███    ██▄ ███    ███ ███   ███ \n" + 
-            " ███    ███   ███    ███   ███    ███   ███    ███ ███    ███ ███   ███ \n" + 
-            " ████████▀    ███    █▀    ███    ███ ▄█████████▀   ▀██████▀   ▀█   █▀  \n" + 
-            "                           ███    ███                                   \n";
-
-        // actual introduction
-        String intro = "Hey, Carbon here. ";
-        String[] initPrompts = {
-            "What's up?",
-            "How's things going?",
-            "Nice weather today, huh?",
-            "How can I help you?",
-            "Please don't talk to me.",
-            "To get an A+ for CS2103T, you have t---[REDACTED]"
-        };
-        String randomPrompt = initPrompts[this.rand.nextInt(initPrompts.length)];
-
-        System.out.println(preface);
-        System.out.println(logo);
+        System.out.println(Carbon.logo);
 
         // extra space
         System.out.println("\n\n");
-        Carbon.printOut(intro + randomPrompt);
+        Carbon.printOut(Carbon.intro + randomPrompt);
     }
 
     private void runShell() {
@@ -73,15 +87,9 @@ public class Carbon {
     }
 
     private void exit() {
-        String[] goodbyes = {
-            "Bye-bye, see you again soon!",
-            "Farewell. Stay safe.",
-            "Nice meeting you. Let's catch up again sometime.",
-            "Bye. Good riddance.",
-            "...zzzzzz...",
-            "What? Yeah, sorry I gotta run now."
-        };
-        String randomGoodbye = goodbyes[this.rand.nextInt(goodbyes.length)];
+        String randomGoodbye = Carbon.goodbyes[
+            this.rand.nextInt(Carbon.goodbyes.length)
+        ];
         Carbon.printOut(randomGoodbye);
     }
     
