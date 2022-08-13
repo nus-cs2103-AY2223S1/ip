@@ -23,6 +23,7 @@ public class Task {
         return this.description;
     }
 
+    @Override
     public String toString() {
         if (done) {
             return "[X] "  + description;
