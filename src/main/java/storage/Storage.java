@@ -2,6 +2,7 @@ package storage;
 import java.util.ArrayList;
 import java.util.List;
 import task.Task;
+import printer.Printer;
 
 public class Storage {
     private List<Task> tasks;
@@ -12,6 +13,9 @@ public class Storage {
 
     public void addTask(Task newTask) {
         this.tasks.add(newTask);
+        Printer.print(String.format("This task is successfully added:\n %s\n"
+                + "Now you have %d task(s) in the list",
+                newTask.toString(), this.tasks.size()));
     }
 
     public Task getTaskWithIndex(int index) {
@@ -28,7 +32,7 @@ public class Storage {
         for (int i = 0; i < tasks.size(); i++) {
             tasksString += String.format("%d. %s\n", i + 1, this.tasks.get(i).toString());
         }
-        return tasksString;
+        return "Here are the tasks in your list\n" + tasksString;
     }
 
 }

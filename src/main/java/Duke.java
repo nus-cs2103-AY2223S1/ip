@@ -1,7 +1,6 @@
 import java.util.Scanner;
 import parser.Parser;
 import printer.Printer;
-import storage.Storage;
 
 public class Duke {
     public static void main(String[] args) {
@@ -16,7 +15,7 @@ public class Duke {
     }
 
     private static void listenCommand() {
-        Parser parser = new Parser(new Storage());
+        Parser parser = new Parser();
         String currentText;
         Scanner sc = new Scanner(System.in);
 
