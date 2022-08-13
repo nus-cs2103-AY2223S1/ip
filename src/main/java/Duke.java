@@ -1,11 +1,18 @@
+import utils.Constants;
+import utils.Utilities;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
 
     private static Utilities util;
+    private final List<String> tasks;
 
     Duke() {
         util = new Utilities();
+        tasks = new ArrayList<>();
     }
 
     public static void main(String[] args) {
@@ -14,26 +21,45 @@ public class Duke {
     }
 
     public void startDuke() {
-        sendMessageIntro();
+        sendGreetings();
         Scanner sc = new Scanner(System.in);
 
-        while (true) {
+        boolean isDone = false;
+        while (!isDone) {
             String input = sc.nextLine();
-            if (input.equalsIgnoreCase("bye")) {
-                sendMessageExit();
-                break;
+            switch (input.toUpperCase()) {
+                case "BYE":
+                    sendExit();
+                    isDone = true;
+                    break;
+                case "LIST":
+                    printTasks();
+                    break;
+                default:
+                    tasks.add(input);
+                    util.printMsg("added: " + input);
+                    break;
             }
-            util.printMsg(input);
         }
         sc.close();
     }
 
-    public void sendMessageIntro() {
-        util.printMsg("Hello! I'm Duke. \n\tWhat can I do for you?");
+    public void printTasks() {
+        util.printStraightLine();
+        int counter = 1;
+        for (String s : tasks) {
+            System.out.println("\t" + counter + ". " + s);
+            counter++;
+        }
+        util.printStraightLine();
     }
 
-    public void sendMessageExit() {
-        util.printMsg("Bye. Hope to see you again soon!");
+    public void sendGreetings() {
+        util.printMsg(Constants.MSG_GREETINGS);
+    }
+
+    public void sendExit() {
+        util.printMsg(Constants.MSG_EXIT);
     }
 
 }

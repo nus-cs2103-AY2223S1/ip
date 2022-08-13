@@ -1,3 +1,5 @@
+package utils;
+
 public class Utilities {
 
     public void printMsg(String message) {
