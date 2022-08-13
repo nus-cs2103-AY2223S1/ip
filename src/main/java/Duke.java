@@ -50,6 +50,7 @@ public class Duke {
         // Initialise variables
         Scanner sc = new Scanner(System.in);
         ArrayList<Task> tasks = new ArrayList<>();
+        System.out.print("Enter Your Command: ");
         String command = sc.next();
         String description = sc.nextLine();
 
@@ -107,12 +108,24 @@ public class Duke {
                 System.out.println("Now you have " + tasks.size() + " tasks in the list.");
                 System.out.println("-----------------------------------------\n");
             }
+            else if (command.toLowerCase().equals("deadline")) {
+                String[] details = description.split(" /by ");
+                Deadline deadline = new Deadline(details[0], details[1]);
+                tasks.add(deadline);
+
+                System.out.println("\n-----------------------------------------");
+                System.out.println("Got it. I've added this task:");
+                System.out.println(deadline);
+                System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+                System.out.println("-----------------------------------------\n");
+            }
             else {
                 System.out.println("\n-----------------------------------------");
                 System.out.println("Sorry! I'm incapable :( Please add more functionalities to me");
                 System.out.println("-----------------------------------------\n");
             }
 
+            System.out.print("Enter Your Command: ");
             command = sc.next();
             description = sc.nextLine();
         }
