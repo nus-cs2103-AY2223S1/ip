@@ -24,7 +24,7 @@ public class Duke {
             if(this.isDone) {
                 status = String.format("[√] %s", this.description);
             } else {
-                status = String.format("[X] %s", this.description);
+                status = String.format("[ ] %s", this.description);
             }
             return status;
         }
@@ -67,10 +67,31 @@ public class Duke {
      */
     private static void showHistory() {
         System.out.print("______\n");
+        System.out.println("Tasks in your list are: \n");
         userInputHistory.forEach(input -> {
             System.out.printf("• %s\n", input.getStatus());
         });
         System.out.print("______\n");
+    }
+
+    /**
+     * Mark task at index n in list
+     * @param n
+     */
+    public static void markTask(int n){
+        Task taskToModify = userInputHistory.get(n - 1);
+        taskToModify.markAsDone();
+        System.out.printf("Marked task %d \n (%s)", n - 1, taskToModify.getStatus());
+    }
+
+    /**
+     * Unmark task at indexn in list
+     * @param n
+     */
+    public static void unmarkTask(int n) {
+        Task taskToModify = userInputHistory.get(n - 1);
+        taskToModify.markAsNotDone();
+        System.out.printf("Unmarked task %d \n (%s)", n - 1, taskToModify.getStatus());
     }
 
     private static void handleInput(String userInput) {
