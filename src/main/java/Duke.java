@@ -20,14 +20,17 @@ public class Duke {
      * @param s
      */
     private static void addToHistory(String s) {
-
+        userInputHistory.add(s);
+        System.out.printf("Noted down: %s\n", s);
     }
 
     /**
      * Method to show history
      */
     private static void showHistory() {
-        
+        userInputHistory.forEach(input -> {
+            System.out.printf("• %s", input);
+        });
     }
 
     private static void handleInput(String userInput) {
@@ -39,9 +42,6 @@ public class Duke {
             //echo request
             System.out.println(userInput);
         }
-    }
-
-    private static void storeInput(String s) {
     }
 
     public static void main(String[] args) {
