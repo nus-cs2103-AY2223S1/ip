@@ -15,6 +15,18 @@ public class TaskList {
         System.out.println("-------------------------");
     }
 
+    public void deleteTask(int i) {
+        Task removed = lst[i - 1];
+        for (int j = i - 1; j < idx; j++) {
+            lst[j] = lst[j + 1];
+        }
+        idx--;
+        System.out.println("-------------------------");
+        System.out.println("Noted. I've removed this task: \n" + removed.toString());
+        System.out.println("Now you have " + idx + " tasks in the list.");
+        System.out.println("-------------------------");
+    }
+
     public void markTask(int i) {
         lst[i - 1].setMarked();
         printMessage(true, i);

@@ -26,6 +26,9 @@ public class Duke {
                 case "unmark":
                     lst.unmarkTask(parseInt(parse[1]));
                     break;
+                case "delete":
+                    lst.deleteTask(parseInt(parse[1]));
+                    break;
                 case "todo":
                     if (parse.length == 1) {
                         printMessage("OOPS!!! The description of a todo cannot be empty.");
