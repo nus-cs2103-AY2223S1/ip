@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Duke {
-    private ArrayList<Task> history = new ArrayList<Task>();
+    private ArrayList<Task> history = new ArrayList<>();
     private Scanner commandInput;
     private boolean isClosed = false;
 
@@ -23,51 +23,79 @@ public class Duke {
             = "Hello! I'm Duke\n"
             + "What can I do for you?";
 
-    private class Task {
-        private String task;
-        private boolean isDone;
-
-        private Task(String task) {
-            this.task = task;
-            this.isDone = false;
-        }
-
-        private void markDone() {
-            isDone = true;
-            System.out.println(this);
-        }
-
-        private void markUndone() {
-            isDone = false;
-            System.out.println(this);
-        }
-
-        public String toString() {
-            String box = isDone ?  "[X] " : "[ ] ";
-            return box + task;
-        }
-    }
-
     private void goodbye() {
         System.out.println(this.lineBreak2);
         System.out.println("Goodbye! See you next time!\n" + this.lineBreak1);
         this.isClosed = true;
     }
-
-    private void addToHistory(String task) {
+/*
+    private void addTaskToHistory(String task) {
         System.out.println(this.lineBreak2);
-        System.out.println("Adding to Tasks: " + task);
+        System.out.println("Adding to Tasks: " + task + "\n"
+                + "You have " + history.size() + " tasks in the list");
         history.add(new Task(task));
+        System.out.println(lineBreak1);
+    }
+*/
+    private void addToDoToHistory(String task) {
+        System.out.println(this.lineBreak2);
+        ToDo toDo = new ToDo(task);
+        history.add(toDo);
+        System.out.println("Adding to Tasks: " + "\n"
+                + toDo
+                + "\nYou have " + history.size() + " tasks in the list");
+        System.out.println(lineBreak1);
+    }
+
+    private void addDeadlineToHistory(String task) {
+        System.out.println(this.lineBreak2);
+        String[] returnedArray = task.split(" /by ");
+        if (returnedArray.length <= 0) {
+            System.out.println("Error to be handled properly in level 5."
+                    + "Error: Invalid command");
+        } else if (returnedArray.length > 2) {
+            String secondHalf = "";
+            for (int i = 1; i < returnedArray.length; i++) {
+                secondHalf += returnedArray[i] + " ";
+            }
+            returnedArray[1] = secondHalf;
+        }
+        Deadline deadline = new Deadline(returnedArray[0], returnedArray[1]);
+        history.add(deadline);
+        System.out.println("Adding to Tasks: " + "\n"
+                + deadline
+                + "\nYou have " + history.size() + " tasks in the list");
+        System.out.println(lineBreak1);
+    }
+
+    private void addEventToHistory(String task) {
+        System.out.println(this.lineBreak2);
+        String[] returnedArray = task.split(" /at ");
+        if (returnedArray.length <= 0) {
+            System.out.println("Error to be handled properly in level 5."
+                    + "Error: Invalid command");
+        } else if (returnedArray.length > 2) {
+            String secondHalf = "";
+            for (int i = 1; i < returnedArray.length; i++) {
+                secondHalf += returnedArray[i] + " ";
+            }
+            returnedArray[1] = secondHalf;
+        }
+        Event event = new Event(returnedArray[0], returnedArray[1]);
+        history.add(event);
+        System.out.println("Adding to Tasks: " + "\n"
+                + event
+                + "\nYou have " + history.size() + " tasks in the list");
         System.out.println(lineBreak1);
     }
 
     private String taskItem(int i) {
         int taskNum = i + 1;
-        return String.valueOf(taskNum) + ". " + history.get(i);
+        return taskNum + ". " + history.get(i);
     }
 
     private void listOut() {
-        System.out.println(lineBreak2);
+        System.out.println(lineBreak2 + "\nHere are the current tasks in your list:");
         if (history.size() <= 0) {
             System.out.println("No tasks assigned yet.");
         } else {
@@ -134,18 +162,31 @@ public class Duke {
         }
     }
 
+    private void nullCommand() {
+        System.out.println(lineBreak2);
+        System.out.println("Sorry, I don't understand your command. " +
+                "Could you try again?");
+        System.out.println(lineBreak1);
+    }
+
     private void parseCommand(String command) {
         String [] returnedArray = command.split(" ");
         if (returnedArray.length == 0 || returnedArray[0] == null
-                || returnedArray[0] == "") {
+                || returnedArray[0].equals("")) {
             System.out.println("Error to be handled properly in level 5. " +
                     "Error: No command");
         } else if (returnedArray[0].equals("mark")) {
             markDone(returnedArray);
         } else if (returnedArray[0].equals("unmark")) {
             markUndone(returnedArray);
+        } else if (returnedArray[0].equals("todo")) {
+            this.addToDoToHistory(command);
+        } else if (returnedArray[0].equals("deadline")) {
+            this.addDeadlineToHistory(command);
+        } else if (returnedArray[0].equals("event")) {
+            this.addEventToHistory(command);
         } else {
-            this.addToHistory(command);
+            this.nullCommand();
         }
     }
 
