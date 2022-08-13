@@ -66,10 +66,15 @@ public class Duke {
      * Method to show history
      */
     private static void showHistory() {
+        int count = 1;
         System.out.print("______\n");
         System.out.println("Tasks in your list are: \n");
+        for (Task t: userInputHistory) {
+            System.out.printf("%d. %s\n",count, t.getStatus());
+            count ++;
+        }
         userInputHistory.forEach(input -> {
-            System.out.printf("• %s\n", input.getStatus());
+
         });
         System.out.print("______\n");
     }
@@ -101,7 +106,7 @@ public class Duke {
             System.exit(0);
         } else if (userInput.equals("list")) {
             showHistory();
-        } else {
+        } {
             addToHistory(userInput);
         }
     }
