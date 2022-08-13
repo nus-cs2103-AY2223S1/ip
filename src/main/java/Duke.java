@@ -31,7 +31,7 @@ public class Duke {
         }
     }
 
-    private static ArrayList<String> userInputHistory = new ArrayList();
+    private static ArrayList<Task> userInputHistory = new ArrayList();
     private static void greetUser() {
         String logo = "_______     _\n" +
                 "|  ___|    | |\n" +
