@@ -99,6 +99,18 @@ public class Duke {
         System.out.printf("Unmarked task %d \n (%s)", n - 1, taskToModify.getStatus());
     }
 
+    /**
+     * Extract task number from string input
+     * @param s
+     * @return
+     */
+    private static int getTaskNumber(String s) {
+        // credit: https://stackoverflow.com/questions/14974033/extract-digits-from-string-stringutils-java
+        String numberOnly= s.replaceAll("[^0-9]", "");
+        int num = Integer.parseInt(numberOnly);
+        return num;
+    }
+
     private static void handleInput(String userInput) {
         if (userInput.equals("bye")) {
             //exit
