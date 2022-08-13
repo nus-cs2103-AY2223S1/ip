@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 /**
  * The Duke class that instantiates instances of duke
@@ -15,7 +16,6 @@ public class Duke {
                                         + "| | | | | | | |/ / _ \\\n"
                                         + "| |_| | |_| |   <  __/\n"
                                         + "|____/ \\__,_|_|\\_\\___|\n";
-
     /**
      * Greeting Method for ChatBot.
      *
@@ -74,11 +74,25 @@ public class Duke {
     public static void main(String[] args) {
         greetings();
 
+        // Initialise variables
         Scanner sc = new Scanner(System.in);
+        ArrayList<String> tasks = new ArrayList<>();
         String reply = getReply(sc);
 
         while (!reply.toLowerCase().equals("bye")) {
-            getResult(reply);
+            if (reply.toLowerCase().equals("list")) {
+                // Print List
+                System.out.println("\n-----------------------------------------");
+                for(int i = 0; i < tasks.size(); i++) {
+                    System.out.println(i + 1 + ". " + tasks.get(i));
+                }
+                System.out.println("-----------------------------------------\n");
+            } else {
+                // Add Reply to List
+                getResult("added: " + reply);
+                tasks.add(reply);
+            }
+
             reply = getReply(sc);
         }
 
