@@ -1,9 +1,28 @@
 hello
+todo
 todo borrow book
 list
+deadline
+deadline return book /by
 deadline return book /by Sunday
+event
+event project meeting /at
 event project meeting /at Mon 2-4pm
 list
 deadline die /by 1st April 2100
 event hang out w/ friends /at Sat/Sun
 list
+mark
+mark 2 3
+mark 23
+mark 2
+mark 3
+mark 4
+list
+unmark
+unmark 2 3
+unmark 23
+unmark 3
+unmark 2
+list
+bye

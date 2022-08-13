@@ -37,8 +37,13 @@ public class Duke {
         System.out.println(lineBreak1);
     }
 */
-    private void addToDoToHistory(String task) {
+    private void addToDoToHistory(String task) throws DukeException {
         System.out.println(this.lineBreak2);
+        String[] returnedArray = task.split(" ");
+        if (returnedArray.length == 1) {
+            throw new DukeException("your [todo] command is empty" +
+                    "\nPlease use the [help] command to check the proper usage of [todo]");
+        }
         ToDo toDo = new ToDo(task);
         history.add(toDo);
         System.out.println("Adding to Tasks: " + "\n"
@@ -47,12 +52,15 @@ public class Duke {
         System.out.println(lineBreak1);
     }
 
-    private void addDeadlineToHistory(String task) {
+    private void addDeadlineToHistory(String task) throws DukeException {
         System.out.println(this.lineBreak2);
         String[] returnedArray = task.split(" /by ");
         if (returnedArray.length <= 0) {
-            System.out.println("Error to be handled properly in level 5."
-                    + "Error: Invalid command");
+            throw new DukeException("your command is incomplete" +
+                    "\nPlease use the [help] command to check the proper usage of [deadline]");
+        } else if (returnedArray.length == 1) {
+            throw new DukeException("your command is missing the [/by] component, or the second half of the command." +
+                    "\nPlease use the [help] command to check the proper usage of [deadline]");
         } else if (returnedArray.length > 2) {
             String secondHalf = "";
             for (int i = 1; i < returnedArray.length; i++) {
@@ -68,12 +76,15 @@ public class Duke {
         System.out.println(lineBreak1);
     }
 
-    private void addEventToHistory(String task) {
+    private void addEventToHistory(String task) throws DukeException {
         System.out.println(this.lineBreak2);
         String[] returnedArray = task.split(" /at ");
         if (returnedArray.length <= 0) {
-            System.out.println("Error to be handled properly in level 5."
-                    + "Error: Invalid command");
+            throw new DukeException("your command is incomplete" +
+                    "\nPlease use the [help] command to check the proper usage of [event]");
+        } else if (returnedArray.length == 1) {
+            throw new DukeException("your command is missing the [/at] component, or the second half ot the command." +
+                    "\nPlease use the [help] command to check the proper usage of [event]");
         } else if (returnedArray.length > 2) {
             String secondHalf = "";
             for (int i = 1; i < returnedArray.length; i++) {
@@ -106,10 +117,10 @@ public class Duke {
         System.out.println(lineBreak1);
     }
 
-    private void markDone(String[] returnedArray) {
+    private void markDone(String[] returnedArray) throws DukeException {
         if (returnedArray.length == 1) {
-            System.out.println("Error to be handled properly in level 5."
-                    + "Error: Nothing to mark");
+            throw new DukeException("your command is incomplete" +
+                    "\nPlease use the [help] command to check the proper usage of [mark]");
         } else if (returnedArray.length == 2){
             try {
                 int taskId = Integer.parseInt(returnedArray[1]) - 1;
@@ -125,26 +136,26 @@ public class Duke {
                     System.out.println(lineBreak1);
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Error to be handled properly in level 5. " +
-                        "Error: Incorrect command");
+                throw new DukeException("your command is incorrect" +
+                        "\nPlease use the [help] command to check the proper usage of [mark]");
             }
         } else {
-            System.out.println("Error to be handled properly in level 5. Error: " +
-                    "Too many arguments for mark command");
+            throw new DukeException("your command has too many arguments" +
+                    "\nPlease use the [help] command to check the proper usage of [mark]");
         }
     }
 
-    private void markUndone(String[] returnedArray) {
+    private void markUndone(String[] returnedArray) throws DukeException {
         if (returnedArray.length == 1) {
-            System.out.println("Error to be handled properly in level 5. " +
-                    "Error: Nothing to mark");
+            throw new DukeException("your command is incomplete" +
+                    "\nPlease use the [help] command to check the proper usage of [unmark]");
         } else if (returnedArray.length == 2){
             try {
                 int taskId = Integer.parseInt(returnedArray[1]) - 1;
                 if (history.size() <= taskId || taskId < 1) {
                     System.out.println(lineBreak2);
-                    System.out.println("Hmm... That task you want to unmark does not exist. "
-                            + "Use the [list] command to check what tasks are available");
+                    System.out.println("Hmm... That task you want to unmark does not exist."
+                            + "\nUse the [list] command to check what tasks are available");
                     System.out.println(lineBreak1);
                 } else {
                     System.out.println(lineBreak2);
@@ -153,28 +164,24 @@ public class Duke {
                     System.out.println(lineBreak1);
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Error to be handled properly in level 5. " +
-                        "Error: Incorrect command");
+                throw new DukeException("your command is incorrect" +
+                        "\nPlease use the [help] command to check the proper usage of [unmark]");
             }
         } else {
-            System.out.println("Error to be handled properly in level 5. " +
-                    "Error: Too many arguments for unmark command");
+            throw new DukeException("your command has too many arguments." +
+                    "\nPlease use the [help] command to check the proper usage of [unmark]");
         }
     }
 
-    private void nullCommand() {
-        System.out.println(lineBreak2);
-        System.out.println("Sorry, I don't understand your command. " +
-                "Could you try again?");
-        System.out.println(lineBreak1);
-    }
-
-    private void parseCommand(String command) {
+    //For multi-word commands with 1 header word
+    private void parseCommand(String command) throws DukeException {
         String [] returnedArray = command.split(" ");
         if (returnedArray.length == 0 || returnedArray[0] == null
                 || returnedArray[0].equals("")) {
-            System.out.println("Error to be handled properly in level 5. " +
-                    "Error: No command");
+            throw new DukeException("Sorry, I am a bit hard of hearing." +
+                    "\nCan you please repeat yourself for my sake?" +
+                    "\nIf unsure, please use command [help] for " +
+                    "the list of commands that I understand.");
         } else if (returnedArray[0].equals("mark")) {
             markDone(returnedArray);
         } else if (returnedArray[0].equals("unmark")) {
@@ -186,17 +193,31 @@ public class Duke {
         } else if (returnedArray[0].equals("event")) {
             this.addEventToHistory(command);
         } else {
-            this.nullCommand();
+            throw new DukeException("I don't understand your command." +
+                    "\nCan you please repeat yourself for my sake?" +
+                    "\nIf unsure, please use command [help] for " +
+                        "the list of commands that I understand.");
         }
     }
 
+    //For single-word commands
     private void inputCommand(String command) {
         if (command.equals("bye")) {
             this.goodbye();
         } else if (command.equals("list")) {
             this.listOut();
+        } else if (command.equals("help")) {
+            //TODO: help command
         } else {
-            this.parseCommand(command);
+            {
+                try {
+                    this.parseCommand(command);
+                } catch (DukeException e) {
+                    System.out.println(lineBreak2 + "\n" +
+                            e.getMessage() + "\n" +
+                            lineBreak1);
+                }
+            }
         }
     }
 
