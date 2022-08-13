@@ -1,5 +1,8 @@
 package main.java;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Scanner;
 import java.lang.ArrayIndexOutOfBoundsException;
 
@@ -14,19 +17,20 @@ public class Duke {
      */
     private static Boolean runDuke = false;
 
-    private static void handleUserInputs(String userInput){
-        if (userInput.equals("bye")) {
+    private static void handleUserInputs(String userInput) throws DukeException {
+        String command = userInput.split(" ")[0];
+        if (command.equals("bye")) {
             // Exit
             System.out.println("Bye. Hope to see you again soon!");
             runDuke = false;
             return;
-        } else if (userInput.equals("list")) {
+        } else if (command.equals("list")) {
             // List inputs in 'userInput' list.
             System.out.println(taskList);
-        } else if (userInput.equals("")) {
+        } else if (command.equals("")) {
             // Do nothing if no input is given before newline.
             return;
-        } else if (userInput.startsWith("mark")) {
+        } else if (command.equals("mark")) {
             try {
                 int i = Integer.valueOf(userInput.split(" ")[1]);
                 taskList.markDone(i);
@@ -36,7 +40,7 @@ public class Duke {
             } catch(NumberFormatException e) {
                 System.out.println("Task index must be a number!");
             }
-        } else if (userInput.startsWith("unmark")) {
+        } else if (command.equals("unmark")) {
             try {
                 int i = Integer.valueOf(userInput.split(" ")[1]);
                 taskList.markUnDone(i);
@@ -46,8 +50,7 @@ public class Duke {
             } catch(NumberFormatException e) {
                 System.out.println("Task index must be a number!");
             }
-        } else {
-            // Add to 'userInput' list.
+        } else if (Arrays.asList("deadline", "event", "todo").contains(command)){
             taskList.add(userInput);
         }
     }
@@ -71,7 +74,11 @@ public class Duke {
 
         while (runDuke && myScanner.hasNextLine()) {
             userInput = myScanner.nextLine();
-            handleUserInputs(userInput);
+            try {
+                handleUserInputs(userInput);
+            } catch (DukeException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 }
