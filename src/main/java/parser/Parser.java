@@ -92,6 +92,16 @@ public class Parser {
                 currentTask.markAsNotFinished();
                 break;
 
+            case "delete":
+                try {
+                    int selectedIndex = Integer.parseInt(secondaryCommand) - 1;
+                    this.storage.removeTaskWithIndex(selectedIndex);
+                } catch (Exception e) {
+                    throw new CommandException();
+                }
+
+                break;
+
             case "todo":
                 currentTask = new ToDo(secondaryCommand);
                 this.storage.addTask(currentTask);

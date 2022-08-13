@@ -18,6 +18,14 @@ public class Storage {
                 newTask.toString(), this.tasks.size()));
     }
 
+    public void removeTaskWithIndex(int index) {
+        Task selectedTask = this.tasks.get(index);
+        this.tasks.remove(index);
+        Printer.print(String.format("Noted. I've removed this task:\n %s\n"
+                + "Now you have %d task(s) in the list",
+                selectedTask.toString(), this.tasks.size()));
+    }
+
     public Task getTaskWithIndex(int index) {
         return this.tasks.get(index);
     }
