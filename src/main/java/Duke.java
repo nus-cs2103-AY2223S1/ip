@@ -1,7 +1,15 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
     private static boolean isAcceptingInput;
+    private static ArrayList<String> tasks;
+
+    private static void startUp() {
+        isAcceptingInput = true;
+        tasks = new ArrayList<>();
+        printStartupMessage();
+    }
 
     private static void printMessage(String msg) {
         String border = "____________________________________________________________\n";
@@ -26,8 +34,22 @@ public class Duke {
         printMessage(exitMsg);
     }
 
-    private static void echo(String input) {
-        printMessage(input);
+    private static void storeTask(String input) {
+        tasks.add(input);
+        printMessage("added: " + input);
+    }
+
+    private static void listTasks() {
+        int pointer = 1;
+        String reply = "";
+        for (String task : tasks) {
+            if (pointer != 1) {
+                reply += "\n";
+            }
+            reply += pointer + ". " + task;
+            pointer++;
+        }
+        printMessage(reply);
     }
 
     private static void processInput(String input) {
@@ -35,16 +57,18 @@ public class Duke {
             case "bye":
                 exit();
                 break;
+            case "list":
+                listTasks();
+                break;
             default:
-                echo(input);
+                storeTask(input);
         }
     }
 
     private static void startDuke() {
-        isAcceptingInput = true;
-        printStartupMessage();
-        Scanner sc = new Scanner(System.in);
+        startUp();
 
+        Scanner sc = new Scanner(System.in);
         while (isAcceptingInput) {
             String input = sc.nextLine();
             processInput(input);
