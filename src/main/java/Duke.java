@@ -49,7 +49,8 @@ public class Duke {
      * @param s
      */
     private static void addToHistory(String s) {
-        userInputHistory.add(s);
+        Task newTask = new Task(s);
+        userInputHistory.add(newTask);
         //echo request
         System.out.printf("Noted down: %s\n", s);
     }
