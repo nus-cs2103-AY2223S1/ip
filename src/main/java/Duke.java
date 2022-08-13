@@ -12,6 +12,7 @@ public class Duke {
      */
     public static void main(String[] args) {
         boolean endLoop = false;
+        StorageList storageList = new StorageList();
 
         Output.GREETINGS.print();
         while (!endLoop) {
@@ -21,8 +22,13 @@ public class Duke {
                     Output.GOODBYE.print();
                     endLoop = true;
                     break;
+                case "list":
+                    Output.echo(storageList.toString());
+                    break;
                 default:
-                    Output.echo(command);
+                    // add to list
+                    storageList.add(command);
+                    Output.echo("added: " + command + "\n");
             }
         }
     }

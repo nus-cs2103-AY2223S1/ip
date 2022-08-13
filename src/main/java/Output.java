@@ -8,8 +8,8 @@ public enum Output{
           + "| |_| | |_| |   <  __/\n\t "
           + "|____/ \\__,_|_|\\_\\___|\n\n\t "
           + "Hello! I'm Duke\n\t "
-          + "What can I do for you?"),
-  GOODBYE ("Bye. Hope to see you again soon!");
+          + "What can I do for you?\n"),
+  GOODBYE ("Bye. Hope to see you again soon!\n");
 
   private String output = "";
 
