@@ -40,11 +40,47 @@ public class Duke {
         printLine();
     }
 
-    public static void addTask(String item) {
-        Task task = new Task(item);
+    public static Todo parseTodo(String description) {
+        return new Todo(description);
+    }
+
+    public static Deadline parseDeadline(String argsString) {
+        String[] args = argsString.split(" */by *");
+        String description = args[0];
+        String by = args[1];
+        return new Deadline(description, by);
+    }
+
+    public static Event parseEvent(String argsString) {
+        String[] args = argsString.split(" */at *");
+        String description = args[0];
+        String at = args[1];
+        return new Event(description, at);
+
+    }
+    public static void addTask(String argsString, int type) {
+        Task task;
+        switch (type) {
+            // Todo
+            case 0:
+                task = parseTodo(argsString);
+                break;
+            // Deadline
+            case 1:
+                task = parseDeadline(argsString);
+                break;
+            // Event
+            case 2:
+                task = parseEvent(argsString);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid Task Type");
+        }
         taskList.add(task);
         printLine();
-        printWithIndent("added: " + item);
+        printWithIndent("Got it. I've added this task:");
+        printWithIndent(" " + task);
+        printWithIndent(String.format("Now you have %d tasks in the list.", taskList.size()));
         printLine();
     }
 
@@ -52,7 +88,7 @@ public class Duke {
         printLine();
         for (int i = 0; i < taskList.size(); i++) {
             Task task =  taskList.get(i);
-            printWithIndent(String.valueOf(i + 1) + ". " + task);
+            printWithIndent(i + 1 + ". " + task);
         }
         printLine();
     }
@@ -85,9 +121,16 @@ public class Duke {
         Scanner scanner = new Scanner(System.in);
         boolean stillRunning = true;
         while (stillRunning) {
+            // Partially Parse Input
             String input = scanner.nextLine().strip();
-            String[] inputArray = input.split(" +");
+            String[] inputArray = input.split(" +", 2);
             String firstWord = inputArray[0];
+            String argsString = "";
+            if (inputArray.length == 2) {
+                argsString = inputArray[1];
+            }
+
+            // commands
             switch (firstWord) {
                 case "bye":
                     exit();
@@ -97,13 +140,21 @@ public class Duke {
                     listTasks();
                     break;
                 case "mark":
-                    markTask(Integer.parseInt(inputArray[1]));
+                    markTask(Integer.parseInt(argsString));
                     break;
                 case "unmark":
-                    unmarkTask(Integer.parseInt(inputArray[1]));
+                    unmarkTask(Integer.parseInt(argsString));
+                    break;
+                case "todo":
+                    addTask(argsString, 0);
+                    break;
+                case "deadline":
+                    addTask(argsString, 1);
+                    break;
+                case "event":
+                    addTask(argsString, 2);
                     break;
                 default:
-                    addTask(input);
                     break;
             }
         }
