@@ -6,7 +6,7 @@ import java.util.stream.IntStream;
  * A TaskList stores a list of tasks.
  */
 public class TaskList {
-    private static final List<String> list = new ArrayList<>();
+    private final List<String> list = new ArrayList<>();
 
     /**
      * Adds a task to the list.
