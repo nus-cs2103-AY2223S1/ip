@@ -10,27 +10,27 @@ public class Duke {
     private static final String GREET_MESSAGE = "Hello! I am Duke. How can I help you?";
     private static final String BYE_MESSAGE = "Bye. Hope to see you soon!";
 
-    private static void printResponse(String response) {
+    private void printResponse(String response) {
         System.out.println(">> " + response);
     }
 
-    private static String getUserCommand(Scanner sc) {
+    private String getUserCommand(Scanner sc) {
         System.out.print("<< ");
         return sc.nextLine();
     }
 
-    private static void greet() {
+    private void greet() {
         System.out.println(LOGO);
-        Duke.printResponse(GREET_MESSAGE);
+        printResponse(GREET_MESSAGE);
     }
 
-    private static void startInteraction() {
+    private void startInteraction() {
         Scanner sc = new Scanner(System.in);
         ArrayList<String> tasks = new ArrayList<>();
 
         boolean hasEnded = false;
         while (!hasEnded) {
-            String command = Duke.getUserCommand(sc);
+            String command = getUserCommand(sc);
             switch (command.toLowerCase()) {
             case "list":
                 StringBuilder response = new StringBuilder();
@@ -41,21 +41,21 @@ public class Duke {
                         response.append("\n");
                     }
                 }
-                Duke.printResponse(response.toString());
+                printResponse(response.toString());
                 break;
             case "bye":
-                Duke.printResponse(BYE_MESSAGE);
+                printResponse(BYE_MESSAGE);
                 hasEnded = true;
                 break;
             default:
                 tasks.add(command);
-                Duke.printResponse("Added task: " + command);
+                printResponse("Added task: " + command);
             }
         }
     }
 
-    public static void main(String[] args) {
-        Duke.greet();
-        Duke.startInteraction();
+    public void run() {
+        greet();
+        startInteraction();
     }
 }
