@@ -2,6 +2,27 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Duke {
+
+    public class Task {
+        protected String description;
+        protected boolean isDone;
+
+        public Task(String description) {
+            this.description = description;
+            this.isDone = false;
+        }
+
+        public String getStatus() {
+            String status;
+            if(this.isDone) {
+                status = String.format("[√] %s", this.description);
+            } else {
+                status = String.format("[X] %s", this.description);
+            }
+            return status;
+        }
+    }
+
     private static ArrayList<String> userInputHistory = new ArrayList();
     private static void greetUser() {
         String logo = "_______     _\n" +
