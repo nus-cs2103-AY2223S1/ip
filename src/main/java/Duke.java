@@ -4,8 +4,8 @@ import java.util.regex.Pattern;
 
 public class Duke {
     private static List<Task> dukeTasks;
-    private static String MARK_DONE_REGEX = "\\bmark \\b[0-9]+";
-    private static String MARK_UNDONE_REGEX = "\\bunmark \\b[0-9]+";
+    private static Scanner sc;
+
 
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -20,6 +20,7 @@ public class Duke {
     }
     private static void startService() {
         dukePrint("Hello! I'm Duke\nWhat can I do for you?\n");
+        sc = new Scanner(System.in);
         getUserInput();
     }
 
@@ -78,7 +79,16 @@ public class Duke {
 
     //TODO: Remove duplicated code
     private static void getUserInput() {
-        Scanner sc = new Scanner(System.in);
+        /*
+        String str;
+        try {
+            str = sc.nextLine();
+        } catch (NoSuchElementException exception) {
+            System.out.println("No more commands found...ending now");
+            endService();
+            return;
+        }*/
+
         String str = sc.nextLine();
         String command = str.split(" ")[0];
         switch (command){
@@ -125,10 +135,12 @@ public class Duke {
                 getUserInput();
             }
         }
+
     }
 
     private static void endService() {
         dukePrint("Bye. Hope to see you again!");
+        sc.close();
         return;
     }
 }
