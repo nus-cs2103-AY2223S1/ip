@@ -22,7 +22,7 @@ public class Duke {
         public String getStatus() {
             String status;
             if(this.isDone) {
-                status = String.format("[√] %s\n", this.description);
+                status = String.format("[✓] %s\n", this.description);
             } else {
                 status = String.format("[ ] %s\n", this.description);
             }
@@ -49,6 +49,7 @@ public class Duke {
         System.out.println("Hello from" + logo);
         // prompt user
         System.out.println("Where would you like to go next?");
+        System.out.print(">> ");
     }
 
     /**
@@ -114,7 +115,7 @@ public class Duke {
     private static void handleInput(String userInput) {
         if (userInput.equals("bye")) {
             //exit
-            System.out.println("Thank you for swinging by :)\n");
+            System.out.println("Thank you for swinging by :)");
             System.exit(0);
         } else if (userInput.equals("list")) {
             showHistory();
