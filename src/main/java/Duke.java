@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
@@ -18,8 +19,7 @@ public class Duke {
 
         Scanner scanner = new Scanner(System.in);
 
-        Task[] tasks = new Task[100];
-        int index = 0;
+        ArrayList<Task> tasks = new ArrayList<>();
 
         while (scanner.hasNext()) {
             try {
@@ -30,15 +30,15 @@ public class Duke {
                 if (input.equals("bye")) {
                     break;
                 } else if (input.equals("list")) {
-                    for (int i = 0; i < index; i++) {
-                        System.out.printf(indentation + "%d: %s\n", i + 1, tasks[i]);
+                    for (int i = 0; i < tasks.size(); i++) {
+                        System.out.printf(indentation + "%d: %s\n", i + 1, tasks.get(i));
                     }
                 } else if (input.startsWith("mark")) {
                     String indexInput = input.substring(5);
                     int i = Integer.parseInt(indexInput);
 
                     // subtract 1 to account for 0-index data structure
-                    Task task = tasks[i - 1];
+                    Task task = tasks.get(i - 1);
                     task.markAsDone();
                     System.out.printf(indentation + "Marked task %d as done!\n", i);
                     System.out.println(indentation + minorIndentation + task);
@@ -47,28 +47,34 @@ public class Duke {
                     int i = Integer.parseInt(indexInput);
 
                     // subtract 1 to account for 0-index data structure
-                    Task task = tasks[i - 1];
+                    Task task = tasks.get(i - 1);
                     task.markAsUndone();
                     System.out.printf(indentation + "Marked task %d as not done!\n", i);
                     System.out.println(indentation + minorIndentation + task);
                 } else if (input.startsWith("todo")) {
                     Task task = Todo.create(input);
-                    tasks[index++] = task;
+                    tasks.add(task);
+                    int numberOfTasks = tasks.size();
+
                     System.out.println(indentation + "Added this todo!");
                     System.out.println(indentation + minorIndentation + task);
-                    System.out.printf(indentation + "Now you have %d tasks.\n", index);
+                    System.out.printf(indentation + "Now you have %d tasks.\n", numberOfTasks);
                 } else if (input.startsWith("deadline")) {
                     Task task = Deadline.create(input);
-                    tasks[index++] = task;
+                    tasks.add(task);
+                    int numberOfTasks = tasks.size();
+
                     System.out.println(indentation + "Added this deadline!");
                     System.out.println(indentation + minorIndentation + task);
-                    System.out.printf(indentation + "Now you have %d tasks.\n", index);
+                    System.out.printf(indentation + "Now you have %d tasks.\n", numberOfTasks);
                 } else if (input.startsWith("event")) {
                     Task task = Event.create(input);
-                    tasks[index++] = task;
+                    tasks.add(task);
+                    int numberOfTasks = tasks.size();
+
                     System.out.println(indentation + "Added this event!");
                     System.out.println(indentation + minorIndentation + task);
-                    System.out.printf(indentation + "Now you have %d tasks.\n", index);
+                    System.out.printf(indentation + "Now you have %d tasks.\n", numberOfTasks);
                 } else {
                     throw new DukeException("Unknown command!");
                 }
