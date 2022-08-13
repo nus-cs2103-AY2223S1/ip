@@ -72,7 +72,7 @@ public class TaskList {
      */
     @Override
     public String toString() {
-        String res = String.format("Here are the tasks in your list: %n");
+        String res = String.format("Here are the tasks in your list:%n");
         for (int i = 0; i < taskList.toArray().length; i++) {
             res += String.format("%d. %s%n", i + 1, taskList.get(i));
         }
