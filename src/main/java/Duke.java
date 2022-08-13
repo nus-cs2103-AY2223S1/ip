@@ -14,18 +14,10 @@ public class Duke {
      */
     private static Boolean runDuke = false;
 
-    /**
-     * Function to echo an input string onto stdout.
-     * @param input Input to be printed on stdout.
-     */
-    private static void echo(String input) {
-        System.out.println(input);
-    }
-
     private static void handleUserInputs(String userInput){
         if (userInput.equals("bye")) {
             // Exit
-            echo("Bye. Hope to see you again soon!");
+            System.out.println("Bye. Hope to see you again soon!");
             runDuke = false;
             return;
         } else if (userInput.equals("list")) {
@@ -46,13 +38,12 @@ public class Duke {
             try {
                 int i = Integer.valueOf(userInput.split(" ")[1]);
                 taskList.markUnDone(i);
-            } catch(ArrayIndexOutOfBoundsException e) {
+            } catch (ArrayIndexOutOfBoundsException e) {
                 System.out.println("Please specify task to be marked " +
                         "undone!");
             }
         } else {
-            // Echo and add to 'userInput' list.
-            echo("Added: " + userInput);
+            // Add to 'userInput' list.
             taskList.add(userInput);
         }
     }
