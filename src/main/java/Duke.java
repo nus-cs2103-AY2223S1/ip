@@ -27,11 +27,13 @@ public class Duke {
 
     /**
      * Callback for all commands.
+     *
      * @param command First word of user input
-     * @param input Remaining words of user input
+     * @param input   Remaining words of user input
      * @return Whether the program should continue running.
      */
     private boolean callback(String command, String input) {
+        input = input.strip();
         switch (command) {
             case "bye":
                 goodbye();
@@ -79,7 +81,7 @@ public class Duke {
     private void addEvent(String input) {
         if (input.matches("^.* /at .*$")) {
             String[] parts = input.split(" /at ");
-            tasks[id++] = new Event(parts[0], parts[1]);
+            tasks[id++] = new Event(parts[0].strip(), parts[1].strip());
             speak("Got it. I've added this task:\n%s\nNow you have %d tasks in your list", tasks[id - 1], id);
         } else {
             speak("Invalid event format");
@@ -94,7 +96,7 @@ public class Duke {
     private void addDeadline(String input) {
         if (input.matches("^.* /by .*$")) {
             String[] parts = input.split(" /by ");
-            tasks[id++] = new Deadline(parts[0], parts[1]);
+            tasks[id++] = new Deadline(parts[0].strip(), parts[1].strip());
             speak("Got it. I've added this task:\n%s\nNow you have %d tasks in your list", tasks[id - 1], id);
         } else {
             speak("Invalid event format");
@@ -108,7 +110,6 @@ public class Duke {
      * @param completed the status to be set
      */
     private void setTaskCompletionStatus(String input, boolean completed) {
-        input = input.strip();
         boolean isValid = false;
         if (input.matches("^[0-9]+$")) {
             int task = parseInt(input) - 1;
