@@ -27,16 +27,30 @@ public class Duke {
                     lst.unmarkTask(parseInt(parse[1]));
                     break;
                 case "todo":
-                    lst.addTask(new Task(parse[1], Task.taskType.T));
+                    if (parse.length == 1) {
+                        printMessage("OOPS!!! The description of a todo cannot be empty.");
+                    } else {
+                        lst.addTask(new Task(parse[1], Task.taskType.T));
+                    }
                     break;
                 case "deadline":
-                    String[] parse2 = parse[1].split("/by");
-                    lst.addTask(new Task(parse2[0], Task.taskType.D, parse2[1]));
+                    if (parse.length == 1) {
+                        printMessage("OOPS!!! The description of a deadline cannot be empty.");
+                    } else {
+                        String[] parse2 = parse[1].split("/by");
+                        lst.addTask(new Task(parse2[0], Task.taskType.D, parse2[1]));
+                    }
                     break;
                 case "event":
-                    String[] parse3 = parse[1].split("/at");
-                    lst.addTask(new Task(parse3[0], Task.taskType.E, parse3[1]));
+                    if (parse.length == 1) {
+                        printMessage("OOPS!!! The description of a deadline cannot be empty.");
+                    } else {
+                        String[] parse3 = parse[1].split("/at");
+                        lst.addTask(new Task(parse3[0], Task.taskType.E, parse3[1]));
+                    }
                     break;
+                default:
+                    printMessage("OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
         }
         scan.close();
