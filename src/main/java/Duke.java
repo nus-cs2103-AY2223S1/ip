@@ -23,11 +23,11 @@ public class Duke {
         }
 
         public void markAsDone() {
-            
+            this.isDone = true;
         }
 
         public void markAsNotDone() {
-
+            this.isDone = false;
         }
     }
 
