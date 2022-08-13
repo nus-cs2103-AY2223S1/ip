@@ -48,7 +48,7 @@ public class Duke {
      * Method to add user input to history
      * @param s
      */
-    private static void addToHistory(String s) {
+    private void addToHistory(String s) {
         Task newTask = new Task(s);
         userInputHistory.add(newTask);
         //echo request
@@ -58,7 +58,7 @@ public class Duke {
     /**
      * Method to show history
      */
-    private static void showHistory() {
+    private void showHistory() {
         System.out.print("______\n");
         userInputHistory.forEach(input -> {
             System.out.printf("• %s\n", input);
@@ -66,7 +66,7 @@ public class Duke {
         System.out.print("______\n");
     }
 
-    private static void handleInput(String userInput) {
+    private  void handleInput(String userInput) {
         if (userInput.equals("bye")) {
             //exit
             System.out.println("Thank you for swinging by :)");
@@ -78,7 +78,7 @@ public class Duke {
         }
     }
 
-    public static void main(String[] args) {
+    public void main(String[] args) {
         greetUser();
         Scanner in = new Scanner(System.in);
         String s;
