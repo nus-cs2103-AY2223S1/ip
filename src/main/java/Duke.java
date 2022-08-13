@@ -1,3 +1,7 @@
+import java.util.Scanner;
+import parser.Parser;
+import printer.Printer;
+
 public class Duke {
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -5,6 +9,22 @@ public class Duke {
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+        Printer.print(String.format("Hello from\n%s\n Wait, I'm not Duke\n" +
+                "I'm Yem, your personal assistant\n What can I do for you master?", logo));
+        listenCommand();
     }
+
+    private static void listenCommand() {
+        Parser parser = new Parser();
+        String currentText;
+        Scanner sc = new Scanner(System.in);
+
+        while(parser.getIsListening()) {
+            currentText = sc.next();
+            parser.parseText(currentText);
+        }
+
+        sc.close();
+    }
+
 }
