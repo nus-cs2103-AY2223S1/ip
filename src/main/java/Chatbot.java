@@ -19,8 +19,9 @@ public class Chatbot {
         this.taskList = new ArrayList<>();
     }
 
-    public void start() {
+    private void printInstructions() {
 
+        System.out.println("==========================");
         System.out.println("Hey, I am " + this.name + ". I can manage your tasks for you"); // Welcome text
         System.out.println("Type 'todo' to create a todo.");
         System.out.println("Type 'deadline' to create a task with deadline.");
@@ -28,7 +29,15 @@ public class Chatbot {
         System.out.println("Type 'list' to list out all your tasks.");
         System.out.println("Type 'mark' to complete a task.");
         System.out.println("Type 'unmark' to un-complete a task.");
+        System.out.println("Type 'delete' to remove a task.");
         System.out.println("Type 'bye' to finish the conversation.");
+        System.out.println("==========================");
+
+    }
+
+    public void start() {
+
+        printInstructions();
 
         while (this.isActive) {
 
@@ -57,8 +66,11 @@ public class Chatbot {
             return markTask();
         } else if (msg.equals("unmark")) {
             return unmarkTask();
+        } else if (msg.equals("delete")) {
+            return removeTask();
         } else {
-            return "I don't know what you want me to do :(";
+            printInstructions();
+            return "I don't know what you want me to do :( Please type exactly as per the instructions above.";
         }
 
     }
@@ -71,7 +83,7 @@ public class Chatbot {
         try {
             Task task = new Todo(name, false);
             this.taskList.add(task);
-            return "I created a Todo " + task + " for you.";
+            return "I created a Todo " + task + " for you. You have " + this.taskList.size() + " tasks now.";
         } catch (TaskNoNameException e) {
             return e.getMessage();
         }
@@ -89,7 +101,7 @@ public class Chatbot {
         try {
             Task task = new Deadline(name, false, deadline);
             this.taskList.add(task);
-            return "I created a Deadline " + task + " for you.";
+            return "I created a Deadline " + task + " for you. You have " + this.taskList.size() + " tasks now.";
         } catch (TaskNoNameException e) {
             return e.getMessage();
         }
@@ -110,7 +122,7 @@ public class Chatbot {
         try {
             Task task = new Event(name, false, start, end);
             this.taskList.add(task);
-            return "I created a Event " + task + " for you.";
+            return "I created a Event " + task + " for you. You have " + this.taskList.size() + " tasks now.";
         } catch (TaskNoNameException e) {
             return e.getMessage();
         }
@@ -134,6 +146,17 @@ public class Chatbot {
         this.scanner.nextLine();
         this.taskList.get(i).setDone(false);
         return "Your task " + this.taskList.get(i) + " has been un-completed.";
+
+    }
+
+    private String removeTask() {
+
+        System.out.print("What is the index of the task: ");
+        int i = this.scanner.nextInt() - 1;
+        this.scanner.nextLine();
+        String taskStr = this.taskList.get(i).toString();
+        this.taskList.remove(i);
+        return "Your task " + taskStr + " has been deleted.";
 
     }
 
