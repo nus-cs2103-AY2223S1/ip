@@ -22,9 +22,9 @@ public class Duke {
         public String getStatus() {
             String status;
             if(this.isDone) {
-                status = String.format("[√] %s", this.description);
+                status = String.format("[√] %s\n", this.description);
             } else {
-                status = String.format("[ ] %s", this.description);
+                status = String.format("[ ] %s\n", this.description);
             }
             return status;
         }
@@ -46,7 +46,7 @@ public class Duke {
                 "|   _|/ _  \\ | ___|/  _ \\| |/  \\\n"+
                 "|  | | |_| | | |___| |_| |  / \\ |\n" +
                 "|__|  \\__|_|_|____|\\____/|_|  |_|\n";
-        System.out.println("Hello from\n" + logo);
+        System.out.println("Hello from" + logo);
         // prompt user
         System.out.println("Where would you like to go next?");
     }
@@ -68,9 +68,9 @@ public class Duke {
     private static void showHistory() {
         int count = 1;
         System.out.print("______\n");
-        System.out.println("Tasks in your list are: \n");
+        System.out.println("Tasks in your list are: ");
         for (Task t: userInputHistory) {
-            System.out.printf("%d. %s\n",count, t.getStatus());
+            System.out.printf("%d. %s",count, t.getStatus());
             count ++;
         }
         userInputHistory.forEach(input -> {
@@ -86,17 +86,17 @@ public class Duke {
     public static void markTask(int n){
         Task taskToModify = userInputHistory.get(n - 1);
         taskToModify.markAsDone();
-        System.out.printf("Marked task %d \n (%s)", n - 1, taskToModify.getStatus());
+        System.out.printf("Marked task %d \n%s", n, taskToModify.getStatus());
     }
 
     /**
-     * Unmark task at indexn in list
+     * Unmark task at index n in list
      * @param n
      */
     public static void unmarkTask(int n) {
         Task taskToModify = userInputHistory.get(n - 1);
         taskToModify.markAsNotDone();
-        System.out.printf("Unmarked task %d \n (%s)", n - 1, taskToModify.getStatus());
+        System.out.printf("Unmarked task %d \n%s", n, taskToModify.getStatus());
     }
 
     /**
@@ -114,13 +114,18 @@ public class Duke {
     private static void handleInput(String userInput) {
         if (userInput.equals("bye")) {
             //exit
-            System.out.println("Thank you for swinging by :)");
+            System.out.println("Thank you for swinging by :)\n");
             System.exit(0);
         } else if (userInput.equals("list")) {
             showHistory();
-        } {
-            addToHistory(userInput);
-        }
+        } else if (userInput.startsWith("mark")) {
+            markTask(getTaskNumber(userInput));
+        } else if (userInput.startsWith("unmark")) {
+            unmarkTask(getTaskNumber(userInput));
+        } else {
+                addToHistory(userInput);
+            }
+
     }
 
     public static void main(String[] args) {
