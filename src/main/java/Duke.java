@@ -48,6 +48,7 @@ public class Duke {
 
 
         while (!command.toLowerCase().equals("bye")) {
+            try {
             if (command.toLowerCase().equals("list")) {
                 // Print List
                 System.out.println("\n-----------------------------------------");
@@ -68,11 +69,7 @@ public class Duke {
                     System.out.println("Nice! I've marked this task as done:");
                     System.out.println("    " + task);
                     System.out.println("-----------------------------------------\n");
-                } else {
-                    System.out.println("\n-----------------------------------------");
-                    System.out.println("Boo... Task don't exist :(");
-                    System.out.println("-----------------------------------------\n");
-                }
+                } else throw new DukeOutOfBoundException();
             }
             else if (command.toLowerCase().equals("unmark")) {
                 int index = Integer.parseInt(description.substring(1)) - 1;
@@ -84,13 +81,10 @@ public class Duke {
                     System.out.println("Ok! I've marked this task as not done yet:");
                     System.out.println("    " + task);
                     System.out.println("-----------------------------------------\n");
-                } else {
-                    System.out.println("\n-----------------------------------------");
-                    System.out.println("Boo... Task don't exist :(");
-                    System.out.println("-----------------------------------------\n");
-                }
+                } else throw new DukeOutOfBoundException();
             }
             else if (command.toLowerCase().equals("todo")) {
+                if (description.isEmpty() || description.substring(1).isEmpty()) throw new DukeEmptyToDoException();
                 ToDo todo = new ToDo(description.substring(1));
                 tasks.add(todo);
 
@@ -122,11 +116,14 @@ public class Duke {
                 System.out.println("Now you have " + tasks.size() + " tasks in the list.");
                 System.out.println("-----------------------------------------\n");
             }
-            else {
+            else throw new DukeInvalidCommandException();
+            }
+            catch (DukeOutOfBoundException | DukeEmptyToDoException | DukeInvalidCommandException e) {
                 System.out.println("\n-----------------------------------------");
-                System.out.println("Sorry! I'm incapable :( Please add more functionalities to me");
+                System.out.println(e.getMessage());
                 System.out.println("-----------------------------------------\n");
             }
+
             command = sc.next();
             description = sc.nextLine();
         }
