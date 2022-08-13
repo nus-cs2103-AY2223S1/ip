@@ -14,10 +14,10 @@ public class Duke {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
-
         dukeTasks = new ArrayList<Task>();
         startService();
     }
+    
     private static void startService() {
         dukePrint("Hello! I'm Duke\nWhat can I do for you?\n");
         sc = new Scanner(System.in);
@@ -29,7 +29,16 @@ public class Duke {
         System.out.println(str);
         System.out.println("===========================================\n");
     }
+
     private static void dukeStoreTask(String str, char type, String dateTime) {
+        if (str.isEmpty()) {
+            dukePrint("Description cannot be empty");
+            return;
+        }
+        if (dateTime != null && dateTime.isEmpty()) {
+            dukePrint("Date/Time cannot be empty");
+            return;
+        }
         Task newTask;
         switch (type) {
             case 'T': {
@@ -89,52 +98,63 @@ public class Duke {
             return;
         }*/
 
-        String str = sc.nextLine();
+        String str = sc.nextLine().replaceAll("( )+", " ");
+        System.out.println(String.format("The command is: %s",str));
         String command = str.split(" ")[0];
         switch (command){
+            case "exit":
+            case "quit":
+            //Fallthrough
             case "bye": {
                 endService();
-                break;
+                return;
             } case "list": {
                 dukeShowList();
-                getUserInput();
                 break;
             } case "mark": {
                 int index = Integer.parseInt(str.split(" ")[1]);
                 dukeMarkTask(index - 1);
-                getUserInput();
                 break;
             } case "unmark": {
                 int index = Integer.parseInt(str.split(" ")[1]);
                 dukeUnmarkTask(index - 1);
-                getUserInput();
                 break;
             } case "todo": {
-                Pattern p = Pattern.compile( "todo(.*)" );
-                Matcher m =  p.matcher(str);
-                m.find();
-                dukeStoreTask(m.group(1),'T',null);
-                getUserInput();
+                try {
+                    Pattern p = Pattern.compile("todo (.*)");
+                    Matcher m = p.matcher(str);
+                    m.find();
+                    dukeStoreTask(m.group(1).trim(), 'T', null);
+                } catch (IllegalStateException e) {
+                    dukePrint("Are you missing a description?");
+                }
                 break;
             } case "deadline": {
-                Pattern p = Pattern.compile( "deadline(.*)/by (.*)" );
-                Matcher m =  p.matcher(str);
-                m.find();
-                dukeStoreTask(m.group(1),'D',m.group(2));
-                getUserInput();
+                try {
+                    Pattern p = Pattern.compile("deadline(.*)/by(.*)");
+                    Matcher m = p.matcher(str);
+                    m.find();
+                    dukeStoreTask(m.group(1).trim(), 'D', m.group(2).trim());
+
+                } catch (IllegalStateException e) {
+                    dukePrint("Are you missing a /by ?");
+                }
                 break;
             } case "event": {
-                Pattern p = Pattern.compile( "event(.*)/at (.*)" );
-                Matcher m =  p.matcher(str);
-                m.find();
-                dukeStoreTask(m.group(1),'E',m.group(2));
-                getUserInput();
+                try {
+                    Pattern p = Pattern.compile("event(.*)/at(.*)");
+                    Matcher m = p.matcher(str);
+                    m.find();
+                    dukeStoreTask(m.group(1).trim(), 'E', m.group(2));
+                } catch (IllegalStateException e) {
+                    dukePrint("Are you missing a /by ?");
+                }
                 break;
             } default: {
                 dukePrint("Invalid Command. Please try again");
-                getUserInput();
             }
         }
+        getUserInput();
 
     }
 
