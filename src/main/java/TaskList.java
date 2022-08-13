@@ -28,6 +28,15 @@ public class TaskList {
     }
 
     /**
+     * Returns the number of tasks in the list.
+     *
+     * @return the number of tasks in the list
+     */
+    public int size() {
+        return list.size();
+    }
+
+    /**
      * Enumerates the tasks stored in this TaskList.
      *
      * @return the enumerated list of tasks
