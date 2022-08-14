@@ -6,6 +6,7 @@ public class Duke {
 
     // lists all the tasks
     public static String listData() {
+        if (data.size() == 0) return "Nothing here...";
         StringBuilder output = new StringBuilder();
         for (int i = 0; i < data.size(); i++) {
             Task task = data.get(i);
@@ -15,8 +16,11 @@ public class Duke {
     }
 
     // marks task as complete or not complete
-    public static String markTask(String input, boolean isComplete) {
-        int target_index = Integer.parseInt(input.substring(isComplete? 4 : 6).trim()) - 1;
+    public static String markTask(String input, boolean isComplete) throws DukeException{
+        String res = input.substring(isComplete ? 4 : 6).trim();
+        if (!res.matches("/d")) throw new DukeException("Please input a valid number");
+        int target_index = Integer.parseInt(res) - 1;
+        if (target_index < 0 || target_index >= data.size()) throw new DukeException("Please input a correct number");
         Task task = data.get(target_index);
         if (isComplete) task.markDone();
         else task.markNotDone();
@@ -24,7 +28,7 @@ public class Duke {
                 + task;
     }
 
-    public static String reply(String input) {
+    public static String reply(String input) throws DukeException{
         // shows user list of all saved tasks
         if (input.equals("list")) return listData();
         // mark task as complete
@@ -33,27 +37,39 @@ public class Duke {
         if (input.startsWith("unmark")) return markTask(input, false);
         // add todo
         if (input.startsWith("todo")) {
-            ToDo task = new ToDo(input.substring(4).trim());
+            String description = input.substring(4).trim();
+            if (description.length() == 0) throw new DukeException("The description of a todo cannot be empty.");
+            ToDo task = new ToDo(description);
             data.add(task);
             return "Got it. I've added this task:\n" + task + "\nNow you have " + data.size() + " tasks.";
         }
         // add event
         if (input.startsWith("event")) {
             String[] info = input.substring(5).split("/at");
-            Event task = new Event(info[0].strip(), info[1].strip());
+            if (info.length != 2) throw new DukeException("There must be at least and at most only one '/at'");
+            String description = info[0].strip();
+            String at = info[1].strip();
+            if (description.length() == 0 || at.length() == 0)
+                throw new DukeException("The description or time of event cannot be empty.");
+            Event task = new Event(description, at);
             data.add(task);
             return "Got it. I've added this task:\n" + task + "\nNow you have " + data.size() + " tasks.";
         }
         // add deadline
         if (input.startsWith("deadline")) {
             String[] info = input.substring(8).split("/by");
-            Deadline task = new Deadline(info[0].strip(), info[1].strip());
+            if (info.length != 2) throw new DukeException("There must be at least and at most only one '/by'");
+            String description = info[0].strip();
+            String by = info[1].strip();
+            if (description.length() == 0 || by.length() == 0)
+                throw new DukeException("The description or time of deadline cannot be empty.");
+            Deadline task = new Deadline(description, by);
             data.add(task);
             return "Got it. I've added this task:\n" + task + "\nNow you have " + data.size() + " tasks.";
         }
-        // adding task to data
-        data.add(new Task(input));
-        return "added: " + input;
+        else {
+            throw new DukeException("I'm sorry, but I don't know what that means :-(");
+        }
     }
 
     public static void main(String[] args) {
@@ -67,7 +83,14 @@ public class Duke {
                 System.out.println("Quack! Hope to see you again soon!");
                 System.out.println("____________________________________________________________");
                 return;
-            } else System.out.println(reply(input));
+            } else {
+                try {
+                    String reply = reply(input);
+                    System.out.println(reply);
+                } catch (DukeException e) {
+                    System.out.println(e);
+                }
+            }
             System.out.println("____________________________________________________________");
         }
     }
