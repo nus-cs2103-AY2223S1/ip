@@ -8,7 +8,7 @@ public class Duke {
         System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?\n");
 
-        Duke.history.add(new Task("dummy task"));
+        Duke.history.add(new Todo("dummy task"));
         Scanner myScanner = new Scanner(System.in);
         String command = myScanner.nextLine();
         while (!command.equals("bye")) {
@@ -27,9 +27,30 @@ public class Duke {
                 Duke.history.get(taskIndex).markAsNotDone();
                 System.out.println("OK, I've marked this task as not done yet:");
                 System.out.println("  " + Duke.history.get(taskIndex));
+            } else if (command.startsWith("todo")) {
+                Task newTask = new Todo(command.substring(5));
+                Duke.history.add(newTask);
+                System.out.println("Got it. I've added this task:");
+                System.out.println("  " + newTask);
+                System.out.println("Now you have " + (Duke.history.size() - 1) + " tasks in the list.");
+            } else if (command.startsWith("deadline")) {
+                command = command.substring(9);
+                String[] partsOfString = command.split(" /by ", 2);
+                Task newTask = new Deadline(partsOfString[0], partsOfString[1]);
+                Duke.history.add(newTask);
+                System.out.println("Got it. I've added this task:");
+                System.out.println("  " + newTask);
+                System.out.println("Now you have " + (Duke.history.size() - 1) + " tasks in the list.");
+            } else if (command.startsWith("event")) {
+                command = command.substring(6);
+                String[] partsOfString = command.split(" /at ", 2);
+                Task newTask = new Event(partsOfString[0], partsOfString[1]);
+                Duke.history.add(newTask);
+                System.out.println("Got it. I've added this task:");
+                System.out.println("  " + newTask);
+                System.out.println("Now you have " + (Duke.history.size() - 1) + " tasks in the list.");
             } else {
-                Duke.history.add(new Task(command));
-                System.out.println("added: " + command);
+                System.out.println("Unknown command");
             }
             System.out.println();
             command = myScanner.nextLine();
