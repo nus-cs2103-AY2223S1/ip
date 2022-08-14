@@ -11,7 +11,7 @@ public class Event extends Task {
         return "[E]" + super.toString().substring(0, 4) + getSubstring() +  "(at:" + at + ")";
     }
 
-    public String getSubstring() {
+    private String getSubstring() {
         int index = description.indexOf("/");
         if (index != - 1) {
             return description.substring(6, index);

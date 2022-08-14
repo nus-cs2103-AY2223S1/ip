@@ -1,4 +1,3 @@
-list
 todo Cry over homework
 event meet friends /at Sunday, 12pm
 event Go to school /at Monday, 8am

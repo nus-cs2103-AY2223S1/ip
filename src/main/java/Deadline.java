@@ -17,7 +17,7 @@ public class Deadline extends Task {
     // To return substring before "/"
     // Adapted from
     // https://stackoverflow.com/questions/7683448/in-java-how-to-get-substring-from-a-string-till-a-character-c
-    public String getSubstring() {
+    private String getSubstring() {
         int index = description.indexOf("/");
         if (index != - 1) {
             return description.substring(9, index);

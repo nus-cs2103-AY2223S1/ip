@@ -2,7 +2,6 @@ _________________________________________________
 Hello! I'm Duke
 What can I do for you?
 _________________________________________________
-No tasks available!
 Got it. I've added this task:
 [T][ ] Cry over homework
 Now you have 1 tasks in the list.
