@@ -1,4 +1,5 @@
 package duke;
+
 import java.util.List;
 public class Ui {
 
@@ -15,26 +16,26 @@ public class Ui {
         System.out.println("Hello! I'm Duke \n"
                 + "What can I do for you?");
     }
-    public static void DisplayMessage(String message) {
+    public static void displayMessage(String message) {
         System.out.println(message);
     }
 
-    public static void IndentTaskDisplay(Task t) {
+    public static void indentTaskDisplay(Task t) {
         System.out.println("  " + t);
     }
 
-    public static void DisplayOrderedList(List<Task> taskList) {
+    public static void displayOrderedList(List<Task> taskList) {
         for (int i = 0; i < taskList.size(); i++) {
             Task currentTask = taskList.get(i);
             System.out.println(i + 1 + ". " + currentTask);
         }
     }
 
-    public static void DisplayTasksLeft(int tasksLeft) {
+    public static void displayTasksLeft(int tasksLeft) {
         System.out.println("Now you have " + tasksLeft + " tasks in the list");
     }
 
-    public static void DisplayException(Exception e) {
+    public static void displayException(Exception e) {
         System.out.println(e);
     }
 

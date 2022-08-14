@@ -37,27 +37,27 @@ public class Parser {
         else {
 
             try {
-                ValidateTask(input);
+                validateTask(input);
             } catch (InvalidCommandException ICE) {
-                Ui.DisplayException(ICE);
-                Ui.DisplayMessage("This was your invalid command: " + input);
+                Ui.displayException(ICE);
+                Ui.displayMessage("This was your invalid command: " + input);
             } catch (EmptyTaskException ETE) {
-                Ui.DisplayException(ETE);
+                Ui.displayException(ETE);
                 String tempArr[] = input.split(" ", 0);
                 if (tempArr[0] == "todo") {
-                    Ui.DisplayMessage("todo requires at least a task description");
+                    Ui.displayMessage("todo requires at least a task description");
                 } else {
-                    Ui.DisplayMessage("Event/Deadline requires both a task description and a date");
+                    Ui.displayMessage("Event/Deadline requires both a task description and a date");
                 }
             }
 
-            Task newTask = GenerateTask(input);
+            Task newTask = generateTask(input);
             taskList.AddTask(newTask);
         }
     }
 
-    private static void ValidateTask(String input) throws InvalidCommandException, EmptyTaskException {
-        String tempArr[] = input.split(" ", 0); //splits into words
+    private static void validateTask(String input) throws InvalidCommandException, EmptyTaskException {
+        String[] tempArr = input.split(" ", 0); //splits into words
 
         //first word is invalid
         if (! PERMISSIBLE_TASKS.contains(tempArr[0])) {
@@ -73,8 +73,8 @@ public class Parser {
 
 
     //changed to public for testing, TODO: change private after validation
-    public static Task GenerateTask (String input) {
-        String tempArr[] = input.split(" ", 2);
+    public static Task generateTask(String input) {
+        String[] tempArr = input.split(" ", 2);
         if (input.startsWith("todo")) {
             return new Todo(tempArr[1]);
         } else if (input.startsWith("deadline")) {

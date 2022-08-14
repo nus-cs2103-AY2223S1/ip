@@ -1,4 +1,5 @@
 package duke;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -14,13 +15,13 @@ public class Event extends Task {
     }
 
 
-    public String CustomFormatter(LocalDate ld) {
+    public String customFormatter(LocalDate ld) {
         return ld.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
     }
 
     @Override
     public String toString() {
 
-        return TYPE + super.toString() + "(at: " + CustomFormatter(by) + ")";
+        return TYPE + super.toString() + "(at: " + customFormatter(by) + ")";
     }
 }

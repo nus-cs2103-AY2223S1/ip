@@ -25,39 +25,39 @@ public class TaskList {
     public void MarkTask(int taskIndex) {
         Task currentTask = taskList.get(taskIndex);
         currentTask.setDone();
-        Ui.DisplayMessage(DONE_MESSAGE);
-        Ui.IndentTaskDisplay(currentTask);
+        Ui.displayMessage(DONE_MESSAGE);
+        Ui.indentTaskDisplay(currentTask);
         Storage.Save(taskList);
     }
 
     public void UnmarkTask(int taskIndex) {
         Task currentTask = taskList.get(taskIndex);
         currentTask.removeDone();
-        Ui.DisplayMessage(UNDONE_MESSAGE);
-        Ui.IndentTaskDisplay(currentTask);
+        Ui.displayMessage(UNDONE_MESSAGE);
+        Ui.indentTaskDisplay(currentTask);
         Storage.Save(taskList);
     }
 
     public void List() {
-        Ui.DisplayMessage(LIST_HEADER);
-        Ui.DisplayOrderedList(taskList);
+        Ui.displayMessage(LIST_HEADER);
+        Ui.displayOrderedList(taskList);
     }
 
     public void DeleteTask(int taskIndex) {
         Task deletedTask = taskList.get(taskIndex);
         taskList.remove(taskIndex);
-        Ui.DisplayMessage(DELETE_HEADER);
-        Ui.IndentTaskDisplay(deletedTask);
-        Ui.DisplayTasksLeft(taskList.size());
+        Ui.displayMessage(DELETE_HEADER);
+        Ui.indentTaskDisplay(deletedTask);
+        Ui.displayTasksLeft(taskList.size());
         Storage.Save(taskList);
     }
 
     public void AddTask(Task t) {
         taskList.add(t);
         Storage.Save(taskList);
-        Ui.DisplayMessage(ADD_HEADER);
-        Ui.IndentTaskDisplay(t);
-        Ui.DisplayTasksLeft(taskList.size());
+        Ui.displayMessage(ADD_HEADER);
+        Ui.indentTaskDisplay(t);
+        Ui.displayTasksLeft(taskList.size());
     }
 
 
