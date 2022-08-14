@@ -28,9 +28,7 @@ public class Tako {
                     StringBuilder sb = new StringBuilder();
                     Task task = tasks[i];
                     sb.append(i + 1);
-                    sb.append(".[");
-                    sb.append(task.getStatusIcon());
-                    sb.append("] ");
+                    sb.append(".");
                     sb.append(task);
                     System.out.println(sb);
                 }
@@ -38,13 +36,7 @@ public class Tako {
                  int taskNumber = Integer.parseInt(splitInput[1]) - 1;
                  Task task = tasks[taskNumber];
                  task.markAsDone();
-
-                 StringBuilder sb = new StringBuilder("marked: ");
-                 sb.append("[");
-                 sb.append(task.getStatusIcon());
-                 sb.append("] ");
-                 sb.append(task);
-                 System.out.println(sb);
+                 System.out.println("marked: " + task);
             } else {
                 tasks[tasksCount] = new Task(input);
                 tasksCount++;
