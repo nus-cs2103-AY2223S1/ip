@@ -1,5 +1,11 @@
 import java.util.Scanner;
 
+/**
+ * Class for the Poolsheen CLI program.
+ * @author Ong Wee, Marcus (Tut Grp 03)
+ * @version CS2103 AY22/23 Sem 1
+ */
+
 public class Poolsheen {
     private static final String logo = "\n" +
             "██████╗░░█████╗░░█████╗░██╗░░░░░░██████╗██╗░░██╗███████╗███████╗███╗░░██╗\n" +
@@ -18,13 +24,17 @@ public class Poolsheen {
 
     private static final String startReply = "      ";
 
+    private static final String exitMessage = "MeoAww... See you next time :(";
+
+    private static final String endMessage = "THE POOLSHEEN PROGRAM HAS STOPPED RUNNING";
+
     private static final String exitCommand = "bye";
 
     private static final String listCommand = "list";
 
-    private static final String exitMessage = "MeoAww... See you next time :(";
+    private static final String markCommand = "mark ";
 
-    private static final String endMessage = "THE POOLSHEEN PROGRAM HAS STOPPED RUNNING";
+    private static final String unmarkCommand = "unmark ";
 
     /** Whether if this poolsheen object has stopped running */
     private boolean hasExited;
@@ -36,7 +46,7 @@ public class Poolsheen {
     private Scanner scanner;
 
     /** The list of tasks that the poolsheen object has */
-    private String[] listOfTasks;
+    private Task[] listOfTasks;
 
     /** The index position to place the next task into the list */
     private int nextEmptyIndex;
@@ -45,7 +55,7 @@ public class Poolsheen {
      * A private constructor to initialise the Poolsheen object.
      */
     private Poolsheen() {
-        this.listOfTasks = new String[100];
+        this.listOfTasks = new Task[100];
         this.nextEmptyIndex = 0;
         this.hasExited = false;
         this.userInput = "";
@@ -58,12 +68,24 @@ public class Poolsheen {
     private void run() {
         while (!this.hasExited) {
             this.userInput = this.scanner.nextLine();
-            if (this.userInput.equals(this.exitCommand)) {
+            if (this.userInput.equals(Poolsheen.exitCommand)) {
                 this.exit();
-            } else if (this.userInput.equals(this.listCommand)) {
+            } else if (this.userInput.equals(Poolsheen.listCommand)) {
                 this.displayList();
+            } else if (this.userInput.length() >= 5 &&
+                    this.userInput.substring(0, 5).
+                            equals(Poolsheen.markCommand)) {
+                int pos = java.lang.Integer.parseInt(
+                        this.userInput.substring(5));
+                this.mark(pos);
+            } else if (this.userInput.length() >= 7 &&
+                this.userInput.substring(0, 7).
+                        equals(Poolsheen.unmarkCommand)) {
+                int pos = java.lang.Integer.parseInt(
+                        this.userInput.substring(7));
+                this.unmark(pos);
             } else {
-                this.addTask(this.userInput);
+                this.addTask(new Task(this.userInput));
                 this.say("Poolsheen now remembers: " + this.userInput);
             }
         }
@@ -81,7 +103,7 @@ public class Poolsheen {
      * Stores a task into the list of task.
      * @param task The task to be added.
      */
-    private void addTask(String task) {
+    private void addTask(Task task) {
         this.listOfTasks[this.nextEmptyIndex] = task;
         this.nextEmptyIndex += 1;
     }
@@ -97,9 +119,9 @@ public class Poolsheen {
             String displayStr = "Poolsheen thinks back... " +
                     "and remembers you said:";
             int currPos = 1;
-            for (String task : this.listOfTasks) {
+            for (Task task : this.listOfTasks) {
                 if (task != null) {
-                    String line = currPos + "." + " " + task;
+                    String line = currPos + "." + " [" + task.getStatusIcon() + "] " + task.description;
                     displayStr += "\n" + Poolsheen.startReply + line;
                     currPos += 1;
                 }
@@ -118,6 +140,28 @@ public class Poolsheen {
                 Poolsheen.startReply +
                 Poolsheen.lastReply +
                 "\n" + Poolsheen.horizontalLine);
+    }
+
+    /**
+     * Marks a task as done assuming the user input is correct.
+     * @param pos The index position of the task in the list.
+     */
+    private void mark(int pos) {
+         Task selectedTask = this.listOfTasks[pos-1];
+         selectedTask.markAsDone();
+         this.say("Poolsheen thinks you are done with "
+                 + selectedTask.description);
+    }
+
+    /**
+     * Marks a task as not done assuming the user input is correct.
+     * @param pos The index position of the task in the list.
+     */
+    private void unmark(int pos) {
+        Task selectedTask = this.listOfTasks[pos-1];
+        selectedTask.markAsNotDone();
+        this.say("Poolsheen thinks you are not done with "
+                + selectedTask.description);
     }
 
     public static void main(String[] args) {
