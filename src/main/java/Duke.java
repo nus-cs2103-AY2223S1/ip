@@ -11,7 +11,7 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         String straightLine = "  ----------------------------------";
         Scanner sc = new Scanner(System.in);
-        ArrayList<String> listOfThings = new ArrayList<>(100);
+        ArrayList<Task> listOfThings = new ArrayList<>(100);
 
         System.out.println("Hello from\n" + logo);
 
@@ -27,23 +27,58 @@ public class Duke {
                     input = sc.nextLine();
                     continue;
                 }
-                // print out in order placed
-                int index = 1;
 
                 System.out.println(straightLine);
 
-                for (String task : listOfThings) {
-                    System.out.println("  " + index + ". " + task);
-                    index++;
+                for (Task task : listOfThings) {
+                    if (task.isDone) {
+                        System.out.println("  " + task.index + ".[X] " + task.taskDescription);
+                    } else {
+                        System.out.println("  " + task.index + ".[ ] " + task.taskDescription);
+                    }
+
                 }
 
-                System.out.println(straightLine);
+                System.out.println(straightLine + "\n");
 
                 input = sc.nextLine();
                 continue;
             }
 
-            listOfThings.add(input);
+            if (input.startsWith("mark")) {
+
+                char i = input.charAt(5);
+                int index = Character.getNumericValue(i);
+                Task t = listOfThings.get(index - 1);
+
+                t.markDone();
+
+                System.out.println(straightLine + "\n  Good Job! You're Killing It!\n  [X] " + t.taskDescription
+                                   + "\n" + straightLine + "\n");
+
+                input = sc.nextLine();
+                continue;
+
+            }
+
+            if (input.startsWith("unmark")) {
+
+                char i = input.charAt(7);
+                int index = Character.getNumericValue(i);
+                Task t = listOfThings.get(index - 1);
+
+                t.markUndone();
+
+                System.out.println(straightLine + "\n  AAaaa please get it done soon...\n  [ ] " + t.taskDescription
+                                   + "\n" + straightLine + "\n");
+
+                input = sc.nextLine();
+                continue;
+            }
+
+
+            Task newTask = new Task(false, input, listOfThings.size() + 1);
+            listOfThings.add(newTask);
 
             System.out.print(straightLine + "\n  added: " + input + "\n" + straightLine + "\n\n");
 
