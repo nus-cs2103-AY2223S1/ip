@@ -1,14 +1,17 @@
-import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class Blink {
 
     private static final String SPACING = "---------------------------";
-    private String[] store = new String[100];
+    private Task[] store = new Task[100];
     private int count = 0;
+    private boolean endSession = false;
 
     public void welcome() {
-        System.out.println("Hello! Blink here\n" + "What can I do for you today?");
+        System.out.println(Blink.SPACING + "\n" +
+                "Hello! Blink here\n" +
+                "What can I do for you today?\n" +
+                Blink.SPACING);
     }
 
     public void goodbye() {
@@ -16,29 +19,55 @@ public class Blink {
     }
 
     public void start(Scanner sc) {
-        System.out.println(Blink.SPACING);
         this.welcome();
-        System.out.println(Blink.SPACING);
 
         while(sc.hasNext()) {
-            String input = sc.nextLine();
-            if (input.isBlank()) {
-                continue;
+            String[] input = sc.nextLine().strip().split(" ");
+            switch (input[0]) {
+                case "bye":
+                    this.goodbye();
+                    this.endSession = true;
+                    break;
+                case "list":
+                    System.out.println("Here are the tasks in your list:");
+                    for(int x = 0; x < this.count; x++) {
+                        System.out.println(x+1 + ". " + this.store[x].toString());
+                    }
+                    break;
+                case "unmark":
+                    if (input.length == 2) {
+                        int pos = Integer.parseInt(input[1]);
+                        if (pos < 1 || pos > count) {
+                            System.out.println("Number input into command not accepted.");
+                            break;
+                        }
+                        this.store[pos - 1].unMark();
+                    } else {
+                        System.out.println("Incorrect command. Missing task number.");
+                    }
+                    break;
+                case "mark":
+                    if (input.length == 2) {
+                        int pos = Integer.parseInt(input[1]);
+                        if (pos < 1 || pos > count) {
+                            System.out.println("Number input into command not accepted.");
+                            break;
+                        }
+                        this.store[pos - 1].mark();
+                    } else {
+                        System.out.println("Incorrect command. Missing task number.");
+                    }
+                    break;
+                default:
+                    String attach = String.join(" ",input);
+                    System.out.println(attach);
+                    this.store[count] = new Task(attach);
+                    this.count++;
+                    System.out.println("added task: " + attach);
             }
-            if (input.equals("bye")) {
-                this.goodbye();
-                System.out.println(Blink.SPACING);
+            System.out.println(Blink.SPACING);
+            if (this.endSession) {
                 break;
-            } else if (input.equals("list")) {
-                for(int x = 0; x < this.count; x++) {
-                    System.out.println(x+1 + ". " + this.store[x]);
-                }
-                System.out.println(Blink.SPACING);
-            } else {
-                this.store[count] = input;
-                this.count++;
-                System.out.println("added: " + input);
-                System.out.println(Blink.SPACING);
             }
         }
     }
