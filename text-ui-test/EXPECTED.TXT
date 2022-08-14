@@ -1,7 +1,26 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
+Hello! I'm Pip :)
+What can I do for you?
+Task added:
+[ ] read book
+Task marked as done:
+[X] read book
+Task list:
+1.[X] read book
+You have 1 task in the list.
+Task marked as not done:
+[ ] read book
+Task added:
+[T][ ] borrow book
+Task marked as done:
+[T][X] borrow book
+Task added:
+[D][ ] return book (by: wed)
+Task added:
+[E][ ] meeting (at: mon 5pm)
+Task list:
+1.[ ] read book
+2.[T][X] borrow book
+3.[D][ ] return book (by: wed)
+4.[E][ ] meeting (at: mon 5pm)
+You have 4 tasks in the list.
+Goodbye and see you again soon!
