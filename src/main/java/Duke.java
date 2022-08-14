@@ -16,15 +16,15 @@ public class Duke {
                            "\tAu revoir! À tout à l'heure!");
     }
 
-    private static void add(String input, ArrayList<String> userInputs) {
-        userInputs.add(input);
-        System.out.println("\tadded: " + input + "\n" +
-                           "\tajouté: " + input + "\n");
+    private static void add(Task newTask, ArrayList<Task> userInputs) {
+        userInputs.add(newTask);
+        System.out.println("\tadded: " + newTask.description + "\n" +
+                           "\tajouté: " + newTask.description + "\n");
     }
 
-    private static void list(ArrayList<String> userInputs) {
+    private static void list(ArrayList<Task> userInputs) {
         for (int i = 0; i < userInputs.size(); i++) {
-            System.out.println(i + ".\t" + userInputs.get(i));
+            System.out.println((i+1) + ".\t " + userInputs.get(i).toString());
         }
     }
 
@@ -34,7 +34,7 @@ public class Duke {
                            "Bonjour! Je m'appelle Jean\n" +
                            "Vous désirez?\n");
 
-        ArrayList<String> userInputs = new ArrayList<>();
+        ArrayList<Task> userInputs = new ArrayList<>();
 
         while(true) {
             String input = receiveCommand();
@@ -44,12 +44,8 @@ public class Duke {
             } else if (input.equals("list")) {
                 list(userInputs);
             } else {
-                add(input, userInputs);
+                add(new Task(input), userInputs);
             }
         }
-
-
-
-
     }
 }
