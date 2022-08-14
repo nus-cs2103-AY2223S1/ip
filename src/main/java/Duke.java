@@ -30,6 +30,7 @@ public class Duke {
                             case "unmark":
                             case "todo":
                             case "event":
+                            case "delete":
                                 throw new MissingDescriptionException(firstWord);
                             default:
                                 throw new InvalidInputException();
@@ -54,6 +55,9 @@ public class Duke {
                             case "event":
                                 addNewEvent(str[1]);
                                 break;
+                            case "delete":
+                                deleteTask(str[1]);
+                                break;
                             default:
                                 throw new InvalidInputException();
                         }
@@ -77,6 +81,10 @@ public class Duke {
         for (int i = 0; i < listOfTasks.size(); i++) {
             System.out.println((i + 1) + "." + listOfTasks.get(i));
         }
+    }
+
+    private static String displayListSize() {
+        return "\nNow you have " + listOfTasks.size() + " tasks in the list.";
     }
 
     private static void addNewToDo(String input) {
@@ -108,7 +116,7 @@ public class Duke {
     private static void addToList(Task task) {
         listOfTasks.add(task);
         System.out.println("Got it. I've added this task:\n  " + task
-                + "\nNow you have " + listOfTasks.size() + " tasks in the list.");
+                + displayListSize());
     }
 
     private static void markTaskDone(String str) {
@@ -132,6 +140,21 @@ public class Duke {
             Task selectedTask = listOfTasks.get(index);
             selectedTask.markUndone();
             System.out.println("OK, I've marked this task as not done yet:" + "\n  " + selectedTask);
+        } catch (NumberFormatException nfe) {
+            throw new InvalidIndexException("please input a valid integer");
+        } catch (IndexOutOfBoundsException er) {
+            throw new InvalidIndexException("no tasks exist at this index");
+        } catch (DukeException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void deleteTask(String str) {
+        try {
+            int index = Integer.parseInt(str) - 1;
+            Task selectedTask = listOfTasks.remove(index);
+            System.out.println("Noted. I've removed this task:" + "\n  " + selectedTask
+                    + displayListSize());
         } catch (NumberFormatException nfe) {
             throw new InvalidIndexException("please input a valid integer");
         } catch (IndexOutOfBoundsException er) {

@@ -13,5 +13,7 @@ list
 unmark 1
 mark 2
 mark
+delete s
+delete 1
 list
 bye

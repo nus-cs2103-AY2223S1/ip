@@ -27,8 +27,11 @@ OK, I've marked this task as not done yet:
 Nice! I've marked this task as done:
   [D][X] lab (by: June 9th)
 OOPS!!! The description of a mark cannot be empty
+☹ OOPS!!! I'm sorry, please input a valid integer :-(
+Noted. I've removed this task:
+  [T][ ] read book
+Now you have 2 tasks in the list.
 Here are the tasks in your list:
-1.[T][ ] read book
-2.[D][X] lab (by: June 9th)
-3.[E][ ] project meeting  (at: Mon 2-4pm)
+1.[D][X] lab (by: June 9th)
+2.[E][ ] project meeting  (at: Mon 2-4pm)
 Bye. Hope to see you again soon!
