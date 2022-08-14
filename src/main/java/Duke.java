@@ -20,7 +20,8 @@ public class Duke {
         Task task = data.get(target_index);
         if (isComplete) task.markDone();
         else task.markNotDone();
-        return "Nice! I've marked this task as done:\n" + task;
+        return (isComplete ? "Nice! I've marked this task as done:\n" : "OK, I've marked this task as not done yet:\n")
+                + task;
     }
 
     public static String reply(String input) {
