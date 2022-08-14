@@ -1,17 +1,23 @@
 Hello I'm Duke
 What can I do for you?
+OOPS!!! The description of a todo cannot be empty
 Got it. I've added this task:
   [T][ ] read book
 Now you have 1 tasks in the list.
+☹ OOPS!!! I'm sorry, but I don't know what that means :-(
 Got it. I've added this task:
   [D][ ] lab (by: June 9th)
 Now you have 2 tasks in the list.
+OOPS!!! The description of a event cannot be empty
 Got it. I've added this task:
   [E][ ] project meeting  (at: Mon 2-4pm)
 Now you have 3 tasks in the list.
+☹ OOPS!!! I'm sorry, but I don't know what that means :-(
+☹ OOPS!!! I'm sorry, but I don't know what that means :-(
 Nice! I've marked this task as done:
   [T][X] read book
-Task does not exist at this index
+☹ OOPS!!! I'm sorry, no tasks exist at this index :-(
+☹ OOPS!!! I'm sorry, please input a valid integer :-(
 Here are the tasks in your list:
 1.[T][X] read book
 2.[D][ ] lab (by: June 9th)
@@ -20,10 +26,9 @@ OK, I've marked this task as not done yet:
   [T][ ] read book
 Nice! I've marked this task as done:
   [D][X] lab (by: June 9th)
+OOPS!!! The description of a mark cannot be empty
 Here are the tasks in your list:
 1.[T][ ] read book
 2.[D][X] lab (by: June 9th)
 3.[E][ ] project meeting  (at: Mon 2-4pm)
-Error: Incomplete command
-Invalid input
 Bye. Hope to see you again soon!
