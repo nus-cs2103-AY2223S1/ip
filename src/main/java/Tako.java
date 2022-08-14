@@ -41,9 +41,13 @@ public class Tako {
 
                 switch (command) {
                 case BYE:
-                    System.out.println("Bye, until next time...");
-                    sc.close();
-                    return;
+                    if (splitInput.length == 1) {
+                        System.out.println("Bye, until next time...");
+                        sc.close();
+                        return;
+                    } else {
+                        throw new InvalidInputException();
+                    }
                 case LIST:
                     if (splitInput.length == 1) {
                         for (int i = 0; i < tasks.size(); i++) {
