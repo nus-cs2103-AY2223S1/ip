@@ -17,6 +17,9 @@ public class Duke {
         // Create arraylist to store given tasks
         ArrayList<Task> tasks = new ArrayList<Task>();
 
+        // Prompt user input
+        System.out.println("Enter command:");
+
         // Read string input from user
         String command = sc.nextLine();
 
@@ -30,6 +33,7 @@ public class Duke {
                 String size = Integer.toString(tasks.size());
                 System.out.println("Got it. I've added this task:\n" + "  " + t);
                 System.out.println("Now you have " + size + " tasks in the list.");
+                System.out.println("Enter command:");
                 command = sc.nextLine();
                 continue;
             }
@@ -41,6 +45,7 @@ public class Duke {
                 String size = Integer.toString(tasks.size());
                 System.out.println("Got it. I've added this task:\n" + "  " + t);
                 System.out.println("Now you have " + size + " tasks in the list.");
+                System.out.println("Enter command:");
                 command = sc.nextLine();
                 continue;
             }
@@ -53,6 +58,7 @@ public class Duke {
                 String size = Integer.toString(tasks.size());
                 System.out.println("Got it. I've added this task:\n" + "  " + t);
                 System.out.println("Now you have " + size + " tasks in the list.");
+                System.out.println("Enter command:");
                 command = sc.nextLine();
                 continue;
             }
@@ -63,6 +69,7 @@ public class Duke {
                         .replace(" ", "");
                 int num = Integer.parseInt(numString);
                 tasks.get(num - 1).markAsDone();
+                System.out.println("Enter command:");
                 command = sc.nextLine();
                 continue;
             }
@@ -74,6 +81,7 @@ public class Duke {
                     System.out.println(s + ". " + t);
                     count++;
                 }
+                System.out.println("Enter command:");
                 command = sc.nextLine();
             }
 
