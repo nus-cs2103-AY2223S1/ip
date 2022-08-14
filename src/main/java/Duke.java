@@ -25,33 +25,38 @@ public class Duke {
         while(scanner.hasNext()){
             String userInput = scanner.nextLine();
             String[] split = userInput.split(" ");
-            if (userInput.equals("bye")){
-                System.out.println("Bye. Hope to see you again soon!");
-                scanner.close();
-                break;
-            } else if( userInput.equals("list")){
-                printList();
-                continue;
-            } else if(split.length == 2 && split[0].equals("mark") && isNumeric(split[1])) {
-                markDone(Integer. parseInt(split[1]));
-                continue;
-            } else if(split.length == 2 && split[0].equals("unmark") && isNumeric(split[1])) {
-                markNotDone(Integer. parseInt(split[1]));
-                continue;
-            } else if (split[0].equals("todo")){
-                addTodo(split);
-                continue;
-            } else if (split[0].equals("deadline")){
-                addDeadline(split);
-                continue;
-            } else if (split[0].equals("event")){
-                addEvent(split);
-                continue;
+            try {
+                if (userInput.equals("bye")) {
+                    System.out.println("Bye. Hope to see you again soon!");
+                    scanner.close();
+                    break;
+                } else if (userInput.equals("list")) {
+                    printList();
+                } else if (split.length == 2 && split[0].equals("mark") && isNumeric(split[1])) {
+                    markDone(Integer.parseInt(split[1]));
+                } else if (split.length == 2 && split[0].equals("unmark") && isNumeric(split[1])) {
+                    markNotDone(Integer.parseInt(split[1]));
+                } else if (split.length == 2 && split[0].equals("delete") && isNumeric(split[1])) {
+                    delete(Integer.parseInt(split[1]));
+                } else if (split[0].equals("todo")) {
+                    addTodo(split);
+                } else if (split[0].equals("deadline")) {
+                    addDeadline(split);
+                } else if (split[0].equals("event")) {
+                    addEvent(split);
+                } else {
+                    throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                }
+            } catch (DukeException error) {
+                System.out.println(error.getMessage());
             }
         }
     }
-    public static void addTodo(String[] input){
+    public static void addTodo(String[] input) throws DukeException {
         String taskName = String.join(" ", Arrays.copyOfRange(input, 1, input.length));
+        if(taskName.equals("")){
+            throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+        }
         addTask(new Todo(taskName));
     }
 
@@ -89,6 +94,12 @@ public class Duke {
 
         System.out.println("OK, I've marked this task as not done yet:");
         System.out.println(" " + task.toString());
+    }
+
+    private static void delete(Integer index){
+        System.out.println(" Noted. I've removed this task:");
+        System.out.println(" " + INPUT_LIST.get(index-1).toString() +"\nNow you have " + (INPUT_LIST.size() - 1) +" tasks in the list.");
+        INPUT_LIST.remove(index-1);
     }
 
     public static void printList(){
