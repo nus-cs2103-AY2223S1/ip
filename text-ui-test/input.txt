@@ -40,6 +40,11 @@ mark 13
 list
 list list
 list 1
+delete 1
+delete 2
+list
+delete delete
+delete 1 2
 bye 1
 bye bye
 bye list

@@ -5,12 +5,13 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 Available commands:
-   list
    deadline [TASK DESCRIPTION] /by [DUE DATE]
    event    [TASK DESCRIPTION] /at [VENUE]
    todo     [TASK DESCRIPTION]
+   delete   [TASK NUMBER]
    mark     [TASK NUMBER]
    unmark   [TASK NUMBER]
+   list
    bye
 
 Got it. I've added this task:
@@ -113,32 +114,35 @@ OK, I've marked this task as not done yet:
 
 Sorry, I did not quite get that! (blah)
 Available commands:
-   list
    deadline [TASK DESCRIPTION] /by [DUE DATE]
    event    [TASK DESCRIPTION] /at [VENUE]
    todo     [TASK DESCRIPTION]
+   delete   [TASK NUMBER]
    mark     [TASK NUMBER]
    unmark   [TASK NUMBER]
+   list
    bye
 
 Sorry, I did not quite get that! (blah /by)
 Available commands:
-   list
    deadline [TASK DESCRIPTION] /by [DUE DATE]
    event    [TASK DESCRIPTION] /at [VENUE]
    todo     [TASK DESCRIPTION]
+   delete   [TASK NUMBER]
    mark     [TASK NUMBER]
    unmark   [TASK NUMBER]
+   list
    bye
 
 Sorry, I did not quite get that! (blah blah /by)
 Available commands:
-   list
    deadline [TASK DESCRIPTION] /by [DUE DATE]
    event    [TASK DESCRIPTION] /at [VENUE]
    todo     [TASK DESCRIPTION]
+   delete   [TASK NUMBER]
    mark     [TASK NUMBER]
    unmark   [TASK NUMBER]
+   list
    bye
 
 Wrong format! To add a new deadline, please enter the following:
@@ -200,6 +204,29 @@ Wrong format! To list tasks, type:
 
 Wrong format! To list tasks, type:
    list
+
+Got it. I've removed this task:
+   [D][ ] return book (by: Sunday)
+Now you have 8 tasks in the list.
+
+Got it. I've removed this task:
+   [T][X] feed cat
+Now you have 7 tasks in the list.
+
+Here are the tasks in your list:
+1. [T][ ] borrow book
+2. [E][ ] project meeting (at: Mon 2-4pm)
+3. [D][X] buy cat food (by: tomorrow)
+4. [E][ ] submit ModReg appeals (at: Sunday)
+5. [T][ ] feed neighbour's cat
+6. [E][ ] go to pet fair (at: 1st Nov)
+7. [T][ ] todo /by /at
+
+Task number must be an integer!
+   delete [TASK NUMBER]
+
+Wrong format! To delete a task, type:
+   delete [TASK NUMBER]
 
 Wrong format! To exit, type:
    bye
