@@ -18,7 +18,7 @@ public class Duke {
     // marks task as complete or not complete
     public static String markTask(String input, boolean isComplete) throws DukeException{
         String res = input.substring(isComplete ? 4 : 6).trim();
-        if (!res.matches("/d")) throw new DukeException("Please input a valid number");
+        if (!res.matches("[0-9]+")) throw new DukeException("Input is not a number");
         int target_index = Integer.parseInt(res) - 1;
         if (target_index < 0 || target_index >= data.size()) throw new DukeException("Please input a correct number");
         Task task = data.get(target_index);
@@ -46,11 +46,11 @@ public class Duke {
         // add event
         if (input.startsWith("event")) {
             String[] info = input.substring(5).split("/at");
-            if (info.length != 2) throw new DukeException("There must be at least and at most only one '/at'");
+            if (info.length != 2) throw new DukeException("Invalid Input!");
             String description = info[0].strip();
             String at = info[1].strip();
             if (description.length() == 0 || at.length() == 0)
-                throw new DukeException("The description or time of event cannot be empty.");
+                throw new DukeException("The description of event cannot be empty.");
             Event task = new Event(description, at);
             data.add(task);
             return "Got it. I've added this task:\n" + task + "\nNow you have " + data.size() + " tasks.";
@@ -58,11 +58,11 @@ public class Duke {
         // add deadline
         if (input.startsWith("deadline")) {
             String[] info = input.substring(8).split("/by");
-            if (info.length != 2) throw new DukeException("There must be at least and at most only one '/by'");
+            if (info.length != 2) throw new DukeException("Invalid Input!");
             String description = info[0].strip();
             String by = info[1].strip();
             if (description.length() == 0 || by.length() == 0)
-                throw new DukeException("The description or time of deadline cannot be empty.");
+                throw new DukeException("The description of deadline cannot be empty.");
             Deadline task = new Deadline(description, by);
             data.add(task);
             return "Got it. I've added this task:\n" + task + "\nNow you have " + data.size() + " tasks.";
