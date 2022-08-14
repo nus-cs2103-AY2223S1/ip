@@ -7,9 +7,9 @@ public class TaskList {
         this.numTasks = 0;
     }
 
-    public void addTask(String input) {
-        tasks[numTasks++] = new Task(input);
-        System.out.println("Task added: " + input);
+    public void addTask(Task task) {
+        tasks[numTasks++] = task;
+        System.out.println("Task added:\n" + task);
     }
 
     public void displayTasks() {
@@ -20,8 +20,9 @@ public class TaskList {
             for (int i = 0; i < numTasks; i++) {
                 int taskNum = i + 1;
                 Task task = tasks[i];
-                System.out.println(taskNum + "." + task.getStatusIcon() + task.description);
+                System.out.println(taskNum + "." + task);
             }
+            System.out.println("You have " + numTasks + " task" + (numTasks != 1 ? "s" : "") + " in the list.");
         }
     }
 
