@@ -5,6 +5,15 @@ public class Skylark {
 
     private static final String line = "________________________________________________";
 
+    private static final String byeCommand = "bye";
+    private static final String listCommand = "list";
+    private static final String doneCommand = "mark";
+    private static final String undoneCommand = "unmark";
+
+    private static final String deadlineCommand = "deadline";
+    private static final String toDoCommand = "todo";
+    private static final String eventCommand = "event";
+
     private static void printText(String text) {
         System.out.println(Skylark.line);
         System.out.println(text);
@@ -44,50 +53,41 @@ public class Skylark {
     }
 
     private static boolean response(Scanner scan, ArrayList<Task> taskList) throws SkylarkException {
-        String byeCommand = "bye";
-        String listCommand = "list";
-        String doneCommand = "mark";
-        String undoneCommand = "unmark";
-
-        String deadlineCommand = "deadline";
-        String toDoCommand = "todo";
-        String eventCommand = "event";
-
         String command = scan.nextLine();
         if (command.length() > 0) {
-            if (command.equals(byeCommand)) {
+            if (command.equals(Skylark.byeCommand)) {
                 Skylark.printText("Bye. Hope to see you again soon!");
                 return true;
-            } else if (command.equals(listCommand)) {
+            } else if (command.equals(Skylark.listCommand)) {
                 Skylark.printText(taskList);
-            } else if (command.length() >= 4 && command.substring(0, 4).equals(doneCommand)) {
+            } else if (command.length() >= 4 && command.substring(0, 4).equals(Skylark.doneCommand)) {
                 int index = Integer.parseInt(command.substring(5)) - 1;
                 if (Skylark.doesIndexExist(taskList, index)) {
                     Task currentTask = taskList.get(index);
                     currentTask.markAsDone();
                     Skylark.printText(currentTask, true);
                 }
-            } else if (command.length() >= 6 && command.substring(0, 6).equals(undoneCommand)) {
+            } else if (command.length() >= 6 && command.substring(0, 6).equals(Skylark.undoneCommand)) {
                 int index = Integer.parseInt(command.substring(7)) - 1;
                 if (Skylark.doesIndexExist(taskList, index)) {
                     Task currentTask = taskList.get(index);
                     currentTask.markAsUndone();
                     Skylark.printText(currentTask, false);
                 }
-            } else if (command.length() >= 4 && command.substring(0, 4).equals(toDoCommand)) {
-                if (command.equals(toDoCommand)) {
+            } else if (command.length() >= 4 && command.substring(0, 4).equals(Skylark.toDoCommand)) {
+                if (command.equals(Skylark.toDoCommand)) {
                     throw new ToDoException("☹ OOPS!!! The description of a todo cannot be empty.");
                 }
                 ToDo toDoTask = new ToDo(command.substring(5));
                 taskList.add(toDoTask);
                 Skylark.printText(taskList, toDoTask);
-            } else if (command.length() >= 8 && command.substring(0, 8).equals(deadlineCommand)) {
+            } else if (command.length() >= 8 && command.substring(0, 8).equals(Skylark.deadlineCommand)) {
                 int slashIndex = command.lastIndexOf("/");
                 Deadline deadlineTask = new Deadline(command.substring(9, slashIndex - 1),
                         command.substring(slashIndex + 4));
                 taskList.add(deadlineTask);
                 Skylark.printText(taskList, deadlineTask);
-            } else if (command.length() >= 5 && command.substring(0, 5).equals(eventCommand)) {
+            } else if (command.length() >= 5 && command.substring(0, 5).equals(Skylark.eventCommand)) {
                 int slashIndex = command.lastIndexOf("/");
                 Event eventTask = new Event(command.substring(6, slashIndex - 1),
                         command.substring(slashIndex + 4));
