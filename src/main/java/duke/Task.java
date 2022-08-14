@@ -1,3 +1,5 @@
+package duke;
+
 public abstract class Task {
 
     protected String description;
@@ -14,9 +16,5 @@ public abstract class Task {
 
     protected void setDone(boolean isDone) {
         this.isDone = isDone;
-    }
-
-    public static void setDone(Task task, boolean isDone) {
-        task.setDone(isDone);
     }
 }

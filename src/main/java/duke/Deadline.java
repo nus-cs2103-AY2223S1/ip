@@ -1,10 +1,12 @@
+package duke;
+
 public class Deadline extends ToDo {
 
     private final String by;
 
-    public Deadline(String description, String by) {
-        super(description);
-        this.by = by;
+    public Deadline(String description) {
+        super(description.split("/by")[0]);
+        this.by = description.split("/by")[1];
     }
 
     @Override
