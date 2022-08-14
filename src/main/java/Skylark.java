@@ -50,28 +50,30 @@ public class Skylark {
 
         while (true) {
             command = scan.nextLine();
-            if (command.equals(byeCommand)) {
-                Skylark.printText("Bye. Hope to see you again soon!");
-                break;
-            } else if (command.equals(listCommand)) {
-                Skylark.printText(taskList);
-            } else if (command.substring(0, 4).equals(doneCommand)) {
-                int index = Integer.parseInt(command.substring(5)) - 1;
-                if (Skylark.doesIndexExist(taskList, index)) {
-                    Task currentTask = taskList.get(index);
-                    currentTask.markAsDone();
-                    Skylark.printText(currentTask, true);
+            if (command.length() > 0) {
+                if (command.equals(byeCommand)) {
+                    Skylark.printText("Bye. Hope to see you again soon!");
+                    break;
+                } else if (command.equals(listCommand)) {
+                    Skylark.printText(taskList);
+                } else if (command.length() > 4 && command.substring(0, 4).equals(doneCommand)) {
+                    int index = Integer.parseInt(command.substring(5)) - 1;
+                    if (Skylark.doesIndexExist(taskList, index)) {
+                        Task currentTask = taskList.get(index);
+                        currentTask.markAsDone();
+                        Skylark.printText(currentTask, true);
+                    }
+                } else if (command.length() > 6 && command.substring(0, 6).equals(undoneCommand)) {
+                    int index = Integer.parseInt(command.substring(7)) - 1;
+                    if (Skylark.doesIndexExist(taskList, index)) {
+                        Task currentTask = taskList.get(index);
+                        currentTask.markAsUndone();
+                        Skylark.printText(currentTask, false);
+                    }
+                } else {
+                    taskList.add(new Task(command));
+                    Skylark.printText("added: " + command);
                 }
-            } else if (command.substring(0, 6).equals(undoneCommand)) {
-                int index = Integer.parseInt(command.substring(7)) - 1;
-                if (Skylark.doesIndexExist(taskList, index)) {
-                    Task currentTask = taskList.get(index);
-                    currentTask.markAsUndone();
-                    Skylark.printText(currentTask, false);
-                }
-            } else {
-                taskList.add(new Task(command));
-                Skylark.printText("added: " + command);
             }
         }
     }
