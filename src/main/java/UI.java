@@ -1,57 +1,58 @@
 import java.util.Scanner;
+
 /**
- * User interface of Thomas
+ * The user interface of Thomas.
  */
 public class UI {
-    Scanner sc;
-    private static int lineLength = 40;
-    private static int indentLength = 2;
+    public static final int lineLength = 60;
+    private Scanner sc;
 
     UI() {
         this.sc = new Scanner(System.in);
     }
 
     /**
-     * Returns the command entered by the user
-     * @return A String representing the user command
+     * Returns the input entered by the user.
+     *
+     * @return A String representing the user input.
      */
-    public String getUserCommand() {
+    public String getUserInput() {
         return sc.nextLine();
     }
 
     /**
-     * Prints the command for the user
-     * @param command The user command
+     * Prints the text for the user.
+     *
+     * @param text The text to print.
      */
-    public void echo(String command) {
-        int length = Math.max(command.length(), lineLength);
-        String line = "-".repeat(length);
-        String indent = " ".repeat(indentLength);
-        System.out.println(line + "\n" + indent + command + "\n" + line);
+    public void echo(String text) {
+        String line = "-".repeat(lineLength);
+        String indentedText = text.replaceAll("(?m)^", "\t");
+        System.out.println(line + "\n" + indentedText + "\n" + line);
     }
 
     /**
-     * Prints a welcome message for the user
+     * Prints a welcome message for the user.
      */
     public void showWelcomeMessage() {
         String line = "-".repeat(lineLength);
-        String indent = " ".repeat(indentLength);
-        String welcome = "Choo choo! I'm Thomas\n" + indent + "What can I choo for you?";
-        System.out.println(line + "\n" + indent + welcome + "\n" + line);
+        String welcomeText = "Choo choo! I'm Thomas\nWhat can I choo for you?";
+        String indentedText = welcomeText.replaceAll("(?m)^", "\t");
+        System.out.println(line + "\n" + indentedText + "\n" + line);
     }
 
     /**
-     * Prints a goodbye message for the user
+     * Prints a goodbye message for the user.
      */
     public void showGoodbyeMessage() {
         String line = "-".repeat(lineLength);
-        String indent = " ".repeat(indentLength);
-        String goodbye = "Goodbye!";
-        System.out.println(line + "\n" + indent + goodbye + "\n" + line);
+        String goodbyeText = "Goodbye!";
+        String indentedText = goodbyeText.replaceAll("(?m)^", "\t");
+        System.out.println(line + "\n" + indentedText + "\n" + line);
     }
 
     /**
-     * Prints the Duke logo
+     * Prints the Duke logo.
      */
     public void showLogo() {
         String logo = " ____        _        \n"
