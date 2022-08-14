@@ -20,7 +20,7 @@ public class UI {
     }
 
     /**
-     * Echoes back the command for the user
+     * Prints the command for the user
      * @param command The user command
      */
     public void echo(String command) {
@@ -46,7 +46,7 @@ public class UI {
     public void showGoodbyeMessage() {
         String line = "-".repeat(lineLength);
         String indent = " ".repeat(indentLength);
-        String goodbye = "Bye now!";
+        String goodbye = "Goodbye!";
         System.out.println(line + "\n" + indent + goodbye + "\n" + line);
     }
 

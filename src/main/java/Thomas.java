@@ -3,12 +3,14 @@
  */
 public class Thomas {
     UI ui;
+    CommandList commandList;
 
     /**
      * Constructor for Thomas
      */
     public Thomas() {
         this.ui = new UI();
+        this.commandList = new CommandList();
     }
 
     /**
@@ -16,17 +18,22 @@ public class Thomas {
      */
     public void run() {
         this.start();
-        this.runProcess();
-        this.exit();
+        this.runEngine();
+        this.stop();
     }
 
     /**
      * Reads the user command and executes it, until the user issues the exit command
      */
-    public void runProcess() {
+    public void runEngine() {
         String command = ui.getUserCommand();
         while (!isExitCommand(command)) {
-            ui.echo(command);
+            if (!isListCommand(command)) {
+                commandList.add(command);
+                ui.echo("added: " + command);
+            } else {
+                ui.echo(commandList.getAllCommands());
+            }
             command = ui.getUserCommand();
         }
     }
@@ -39,9 +46,9 @@ public class Thomas {
     }
 
     /**
-     * Exits Thomas after displaying a goodbye message
+     * Stops Thomas after displaying a goodbye message
      */
-    public void exit() {
+    public void stop() {
         ui.showGoodbyeMessage();
         System.exit(0);
     }
@@ -53,6 +60,15 @@ public class Thomas {
      */
     public boolean isExitCommand(String command) {
         return command.equals("bye");
+    }
+
+    /**
+     * Checks if the input command is the list command
+     * @param command The input command
+     * @return True if the input command is the list command, false otherwise
+     */
+    public boolean isListCommand(String command) {
+        return command.equals("list");
     }
 
     public static void main(String[] args) {
