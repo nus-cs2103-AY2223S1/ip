@@ -53,37 +53,48 @@ public class Duke {
         formatAndPrint(List.of(text));
     }
 
+    private static Command inputToCommand(String input) {
+        Command command;
+        try {
+            command = Command.valueOf(input.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            command = Command.UNKNOWN;
+        }
+        return command;
+    }
+
     private static void listenForInputs() {
         if (!scanner.hasNext()) {
             return;
         }
         String input = scanner.next();
-        switch (input) {
-            case "bye":
+        Command command = inputToCommand(input);
+        switch (command) {
+            case BYE:
                 displayExitMessage();
                 return;
-            case "list":
+            case LIST:
                 listTasks();
                 break;
-            case "todo":
+            case TODO:
                 addTodo();
                 break;
-            case "deadline":
+            case DEADLINE:
                 addDeadline();
                 break;
-            case "event":
+            case EVENT:
                 addEvent();
                 break;
-            case "mark":
+            case MARK:
                 markTask();
                 break;
-            case "unmark":
+            case UNMARK:
                 unmarkTask();
                 break;
-            case "delete":
+            case DELETE:
                 deleteTask();
                 break;
-            default:
+            case UNKNOWN:
                 displayUnknownCommandMessage(input);
         }
         listenForInputs();
