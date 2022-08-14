@@ -10,3 +10,6 @@ mark 2
 unmark 2
 mark 1
 list
+mark 10
+delete 3
+list
