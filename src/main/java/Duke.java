@@ -70,6 +70,7 @@ public class Duke {
         userInputHistory.forEach(input -> {
 
         });
+        System.out.printf("Total: %d\n", userInputHistory.size());
         System.out.print("______\n");
         System.out.print(">>");
     }
@@ -94,7 +95,7 @@ public class Duke {
     public static void unmarkTask(int n) {
         Task taskToModify = userInputHistory.get(n - 1);
         taskToModify.markAsNotDone();
-        System.out.printf("Unmarked task %d \n%s", n, taskToModify);
+        System.out.printf("Unmarked task %d \n%s\n", n, taskToModify);
         System.out.print(">>");
     }
 
