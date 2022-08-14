@@ -21,50 +21,69 @@ public class Duke {
     public void startDuke() {
         sendGreetings();
         Scanner sc = new Scanner(System.in);
+        boolean isRunning = true;
 
-        boolean isDone = false;
-        while (!isDone) {
-            String[] userInputs = sc.nextLine().split(" ", 2);
-            String userCommand = userInputs[0].trim();
+        while (isRunning) {
+            try {
+                String[] inputs = sc.nextLine().trim().split(" ", 2);
+                if (inputs.length == 1) {
+                    switch (inputs[0].toUpperCase()) {
+                    // Fallthrough in this switch case are intentional
+                    case "TODO":
+                    case "DEADLINE":
+                    case "EVENT":
+                        throw new DukeException(String.format(Constants.ERROR_EMPTY_DESCRIPTION, inputs[0]));
+                    case "MARK":
+                    case "UNMARK":
+                        throw new DukeException((Constants.ERROR_TASK_NOT_SPECIFIED));
+                    case "LIST":
+                        printTasks();
+                        break;
+                    case "BYE":
+                        sendExit();
+                        sc.close();
+                        isRunning = false;
+                        break;
+                    default:
+                        throw new DukeException(Constants.ERROR_UNKNOWN_COMMAND);
+                    }
+                    continue;
+                }
 
-            switch (userCommand.toUpperCase()) {
-            case "TODO":
-                addTask(new ToDo(userInputs[1].trim()));
-                break;
-            case "DEADLINE": {
-                String[] userDescArray = userInputs[1].split("/by");
-                addTask(new Deadline(userDescArray[0].trim(), userDescArray[1].trim()));
-                break;
-            }
-            case "EVENT": {
-                String[] userDescArray = userInputs[1].split("/at");
-                addTask(new Event(userDescArray[0].trim(), userDescArray[1].trim()));
-                break;
-            }
-            case "LIST":
-                printTasks();
-                break;
-            case "MARK": {
-                Task task = tasks.get(Integer.parseInt(userInputs[1]) - 1);
-                markTask(task);
-                break;
-            }
-            case "UNMARK": {
-                Task task = tasks.get(Integer.parseInt(userInputs[1]) - 1);
-                unmarkTask(task);
-                break;
-            }
-            case "BYE":
-                sendExit();
-                isDone = true;
-                break;
-            default:
-                System.out.println("No implementation yet!");
-                break;
+                String userCommand = inputs[0].trim();
+
+                switch (userCommand.toUpperCase()) {
+                case "TODO":
+                    addTask(new ToDo(inputs[1].trim()));
+                    break;
+                case "DEADLINE": {
+                    String[] userDescArray = inputs[1].split("/by");
+                    addTask(new Deadline(userDescArray[0].trim(), userDescArray[1].trim()));
+                    break;
+                }
+                case "EVENT": {
+                    String[] userDescArray = inputs[1].split("/at");
+                    addTask(new Event(userDescArray[0].trim(), userDescArray[1].trim()));
+                    break;
+                }
+                case "MARK": {
+                    Task task = tasks.get(Integer.parseInt(inputs[1]) - 1);
+                    markTask(task);
+                    break;
+                }
+                case "UNMARK": {
+                    Task task = tasks.get(Integer.parseInt(inputs[1]) - 1);
+                    unmarkTask(task);
+                    break;
+                }
+                default:
+                    throw new DukeException(Constants.ERROR_UNKNOWN_COMMAND);
+                }
+
+            } catch (DukeException e) {
+                DukeUtils.printMessage(e.getMessage());
             }
         }
-
-        sc.close();
     }
     
     public void printTasks() {
