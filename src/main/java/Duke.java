@@ -156,7 +156,7 @@ public class Duke {
         }
         else {
             System.out.println("Enter a command (todo, event, deadline, list, mark, unmark, bye)");
-            System.out.print(">>");
+            System.out.print(">>\n");
         }
     }
 
