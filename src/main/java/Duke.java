@@ -4,6 +4,8 @@ import java.util.Scanner;
 public class Duke {
     public static void main(String[] args) {
         System.out.println("Hello! I'm Duke What can I do for you?");
+        String[] array = new String[100];
+        int counter = 0;
         boolean flag = false;
         Scanner in = new Scanner(System.in);
         while (!flag) {
@@ -15,9 +17,21 @@ public class Duke {
                 flag = true;
 
             }
-            else {
+            else if(output.equals("list")) {
                 System.out.println("_________________________________________________________________________");
-                System.out.println("       Da myth: " + output);
+                for (int i = 0; i < 100; i++) {
+                    if (array[i] != null) {
+                        int j = i + 1;
+                        System.out.println(j + ". " + array[i]);
+                    }
+                }
+                System.out.println("_________________________________________________________________________");
+            }
+            else {
+                array[counter] = output;
+                counter++;
+                System.out.println("_________________________________________________________________________");
+                System.out.println("       added: " + output);
                 System.out.println("_________________________________________________________________________");
             }
         }
