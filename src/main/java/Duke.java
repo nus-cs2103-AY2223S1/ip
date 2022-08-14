@@ -12,7 +12,7 @@ public class Duke {
     private static final String GREETING = "Hello! I'm Duke\n"
             + "What can I do for you?\n";
 
-    private static final List<Task> INPUT_HISTORY = new ArrayList<>();
+    private static final List<Task> TASKS = new ArrayList<>();
 
     public static void main(String[] args) {
         System.out.println(LOGO);
@@ -28,24 +28,39 @@ public class Duke {
             }
 
             if (userInput.equals("list")) {
-                printInputHistory();
+                printTasks();
                 continue;
             }
 
             String[] split = userInput.split(" ");
             if (split.length == 2 && isNumeric(split[1]) && split[0].equals("mark")) {
-                Task task = INPUT_HISTORY.get(Integer.parseInt(split[1]) - 1);
+                Task task = TASKS.get(Integer.parseInt(split[1]) - 1);
                 markTaskAsDone(task);
                 continue;
             }
 
             if (split.length == 2 && isNumeric(split[1]) && split[0].equals("unmark")) {
-                Task task = INPUT_HISTORY.get(Integer.parseInt(split[1]) - 1);
+                Task task = TASKS.get(Integer.parseInt(split[1]) - 1);
                 markTaskAsUndone(task);
                 continue;
             }
 
-            addToInputHistory(userInput);
+            if (split[0].equals("todo")) {
+                addToTasks(new ToDo(userInput.substring(5)));
+                continue;
+            }
+
+            if (split[0].equals("deadline")) {
+                int index = userInput.indexOf("/by");
+                addToTasks(new Deadline(userInput.substring(9, index), userInput.substring(index + 4)));
+                continue;
+            }
+
+            if (split[0].equals("event")) {
+                int index = userInput.indexOf("/at");
+                addToTasks(new Event(userInput.substring(6, index), userInput.substring(index + 4)));
+                continue;
+            }
         }
     }
 
@@ -70,14 +85,16 @@ public class Duke {
         System.out.println(task.toString());
     }
 
-    private static void addToInputHistory(String input) {
-        INPUT_HISTORY.add(new Task(input));
-        System.out.println(String.format("added: %s", input));
+    private static void addToTasks(Task task) {
+        TASKS.add(task);
+        System.out.println("Got it. I've added this task:");
+        System.out.println(String.format("%s", task.toString()));
+        System.out.println(String.format("Now you have %d tasks in the list.", TASKS.size()));
     }
 
-    private static void printInputHistory() {
-        for (int i = 0; i < INPUT_HISTORY.size(); i++) {
-            System.out.println(String.format("%d. %s", 1 + i, INPUT_HISTORY.get(i).toString()));
+    private static void printTasks() {
+        for (int i = 0; i < TASKS.size(); i++) {
+            System.out.println(String.format("%d. %s", 1 + i, TASKS.get(i).toString()));
         }
     }
 }
