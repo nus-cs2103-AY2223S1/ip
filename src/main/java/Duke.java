@@ -136,7 +136,13 @@ public class Duke {
                     Event event = new Event(description, at);
                     System.out.println(duke.add(event));
                 } else if (message.startsWith("delete")) {
+                    if (message.trim().equals("delete")) {
+                        throw new DukeException("I don't know which task to delete :(, please specify a task number!");
+                    }
                     int taskNumber = Integer.parseInt(message.substring(7));
+                    if (taskNumber > duke.tasks.size()) {
+                        throw new DukeException(String.format("The task number exceeds the number of tasks in the list!"));
+                    }
                     System.out.println(duke.delete(taskNumber));
                 } else {
                     throw new DukeException("I'm sorry >< I don't know what this means :(");
