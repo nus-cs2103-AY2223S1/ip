@@ -1,4 +1,7 @@
+import task.Deadline;
+import task.Event;
 import task.Task;
+import task.ToDo;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -34,16 +37,47 @@ public class Blob {
         for (int i = 0; i < taskList.size(); i++) {
             tasksStringBuilder.append(String.format("\t\t%d. %s \n", i + 1, taskList.get(i).toString()));
         }
-        speak("Blob remember tasks...", tasksStringBuilder.toString());
+        speak(String.format("Blob remembers %d task(s)...", taskList.size()), tasksStringBuilder.toString());
     }
 
     /**
-     * Adds a task to the list of tasks.
+     * Adds a ToDo task to the list of tasks.
      */
-    private void addTask(String description) {
-        Task task = new Task(description);
+    private void addTodo(String description) {
+        ToDo task = new ToDo(description);
         taskList.add(task);
-        speak("Blob will remember task...", String.format("\n\t\t%s \n", task));
+        speak("Blob will remember task...", String.format("\n\t\t%s \n", task),
+                String.format("Blob now remembers %d task(s)...", taskList.size()));
+    }
+
+    /**
+     * Adds a Deadline task to the list of tasks
+     */
+    private void addDeadline(String details) {
+        String[] deconstructedDetails = details.split(" /by ", 2);
+        if (deconstructedDetails.length < 2) {
+            speak("Blob needs to know your deadline...");
+            return;
+        }
+        Deadline task = new Deadline(deconstructedDetails[0], deconstructedDetails[1]);
+        taskList.add(task);
+        speak("Blob will remember task...", String.format("\n\t\t%s \n", task),
+                String.format("Blob now remembers %d task(s)...", taskList.size()));
+    }
+
+    /**
+     * Adds an Event task to the list of tasks
+     */
+    private void addEvent(String details) {
+        String[] deconstructedDetails = details.split(" /at ", 2);
+        if (deconstructedDetails.length < 2) {
+            speak("Blob needs to know your event timing...");
+            return;
+        }
+        Event task = new Event(deconstructedDetails[0], deconstructedDetails[1]);
+        taskList.add(task);
+        speak("Blob will remember task...", String.format("\n\t\t%s \n", task),
+                String.format("Blob now remembers %d task(s)...", taskList.size()));
     }
 
     /**
@@ -56,7 +90,7 @@ public class Blob {
             Task task = taskList.get(index - 1);
             task.markAsDone();
             speak("Blob congratulates on task well done...", String.format("\n\t\t%s \n", task));
-        } catch (IndexOutOfBoundsException ioobe) {
+        } catch (IndexOutOfBoundsException exception) {
             speak("Blob cannot find task...", "Maybe task don't exist...?");
         }
     }
@@ -71,7 +105,7 @@ public class Blob {
             Task task = taskList.get(index - 1);
             task.markAsUndone();
             speak("Blob will mark as undone...", String.format("\n\t\t%s \n", task));
-        } catch (IndexOutOfBoundsException ioobe) {
+        } catch (IndexOutOfBoundsException exception) {
             speak("Blob cannot find task...", "Maybe task don't exist...?");
         }
     }
@@ -126,8 +160,29 @@ public class Blob {
                     speak("Blob cannot find task...", "Maybe task don't exist...?");
                 }
                 break;
+            case "todo":
+                if (deconstructedInput.length < 2) {
+                    speak("Blob needs to know your task details...");
+                    continue;
+                }
+                addTodo(deconstructedInput[1]);
+                break;
+            case "deadline":
+                if (deconstructedInput.length < 2) {
+                    speak("Blob needs to know your task details...");
+                    continue;
+                }
+                addDeadline(deconstructedInput[1]);
+                break;
+            case "event":
+                if (deconstructedInput.length < 2) {
+                    speak("Blob needs to know your task details...");
+                    continue;
+                }
+                addEvent(deconstructedInput[1]);
+                break;
             default:
-                addTask(input);
+                speak("Sorry... Blob no understand your command...");
             }
         }
     }

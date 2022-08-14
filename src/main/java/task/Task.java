@@ -5,7 +5,7 @@ package task;
  * A task has a string description describing the task to be done, and a boolean indicator to represent
  * the status of completion of the task.
  */
-public class Task {
+public abstract class Task {
     protected String description;
     protected boolean isDone;
 
