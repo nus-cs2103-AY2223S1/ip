@@ -30,6 +30,26 @@ public class Duke {
         if (input.startsWith("mark")) return markTask(input, true);
         // mark task as not done
         if (input.startsWith("unmark")) return markTask(input, false);
+        // add todo
+        if (input.startsWith("todo")) {
+            ToDo task = new ToDo(input.substring(4).trim());
+            data.add(task);
+            return "Got it. I've added this task:\n" + task + "\nNow you have " + data.size() + " tasks.";
+        }
+        // add event
+        if (input.startsWith("event")) {
+            String[] info = input.substring(5).split("/at");
+            Event task = new Event(info[0].strip(), info[1].strip());
+            data.add(task);
+            return "Got it. I've added this task:\n" + task + "\nNow you have " + data.size() + " tasks.";
+        }
+        // add deadline
+        if (input.startsWith("deadline")) {
+            String[] info = input.substring(8).split("/by");
+            Deadline task = new Deadline(info[0].strip(), info[1].strip());
+            data.add(task);
+            return "Got it. I've added this task:\n" + task + "\nNow you have " + data.size() + " tasks.";
+        }
         // adding task to data
         data.add(new Task(input));
         return "added: " + input;
