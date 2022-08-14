@@ -38,11 +38,15 @@ public class Poolsheen {
     /** The list of tasks that the poolsheen object has */
     private String[] listOfTasks;
 
+    /** The index position to place the next task into the list */
+    private int nextEmptyIndex;
+
     /**
      * A private constructor to initialise the Poolsheen object.
      */
     private Poolsheen() {
         this.listOfTasks = new String[100];
+        this.nextEmptyIndex = 0;
         this.hasExited = false;
         this.userInput = "";
         this.scanner = new Scanner(System.in);
@@ -56,9 +60,11 @@ public class Poolsheen {
             this.userInput = this.scanner.nextLine();
             if (this.userInput.equals(this.exitCommand)) {
                 this.exit();
+            } else if (this.userInput.equals(this.listCommand)) {
+                this.displayList();
             } else {
-                System.out.println(this.horizontalLine + "\n" + this.poolshenStartReply + this.userInput + " " +
-                        this.poolsheenLastReply + "\n" + this.horizontalLine);
+                this.addTask(this.userInput);
+                this.say("Poolsheen now remembers: " + this.userInput);
             }
         }
     }
@@ -68,8 +74,49 @@ public class Poolsheen {
      */
     private void exit() {
         this.hasExited = true;
-        System.out.println(this.horizontalLine + "\n" + this.poolshenStartReply
-                + this.exitMessage + "\n" + this.horizontalLine);
+        this.say(Poolsheen.exitMessage);
+    }
+
+    /**
+     * Stores a task into the list of task.
+     * @param task The task to be added.
+     */
+    private void addTask(String task) {
+        this.listOfTasks[this.nextEmptyIndex] = task;
+        this.nextEmptyIndex += 1;
+    }
+
+    /**
+     * Prints the list of tasks this Poolsheen remembers.
+     */
+    private void displayList() {
+        if (this.nextEmptyIndex == 0) {
+            this.say("Poolsheen thinks back... " +
+                    "and remembers you said nothing :(");
+        } else {
+            String displayStr = "Poolsheen thinks back... " +
+                    "and remembers you said: "
+                    + "\n" + Poolsheen.poolshenStartReply;
+            int currPos = 1;
+            for (String task : this.listOfTasks) {
+                if (task != null) {
+                    String line = currPos + "." + " " + task;
+                    displayStr += line + "\n" + Poolsheen.poolshenStartReply;
+                    currPos += 1;
+                }
+            }
+            this.say(displayStr);
+        }
+    }
+
+    /**
+     * A method to format and print a message by Poolsheen.
+     * @param message The message to be printed.
+     */
+    private void say(String message) {
+        System.out.println(Poolsheen.horizontalLine + "\n" +
+                Poolsheen.poolshenStartReply + message +
+                "\n" + Poolsheen.horizontalLine);
     }
 
     public static void main(String[] args) {
