@@ -72,8 +72,7 @@ public class Duke {
     public static void addTask (Task task){
         Integer index = INPUT_LIST.size();
         INPUT_LIST.add(task);
-        System.out.println("Got it. I've added this task: \n " + task.toString()
-        + "\nNow you have " + INPUT_LIST.size() +" tasks in the list.");
+        System.out.println("Got it. I've added this task:\n " + task.toString() + "\nNow you have " + INPUT_LIST.size() +" tasks in the list.");
     }
 
     private static void markDone(Integer index){
