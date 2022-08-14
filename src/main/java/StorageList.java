@@ -41,15 +41,23 @@ public class StorageList {
   }
 
   /**
+   * Returns the size of the list
+   * @return Size of the list
+   */
+  public int getSize() {
+    return list.size();
+  }
+
+  /**
    * Returns the list of strings
    * @return String representation of the list of strings
    */
   @Override
   public String toString() {
-    String ans = "";
+    String ans = "\t ";
     for (int i = 0; i < list.size(); i++) {
       Task t = list.get(i);
-      ans += (i+1) + ".[" + t.getStatusIcon() + "] " + t.toString() + "\n\t ";
+      ans += (i+1) + "." + t + "\n\t ";
     }
     return ans;
   }

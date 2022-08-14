@@ -32,7 +32,7 @@ public class Duke {
                     endLoop = true;
                     break;
                 case "list":
-                    Output.echo(storageList.toString());
+                    Output.LIST.list(storageList);
                     break;
                 case "mark":
                     //TODO: handle when index is out of range
@@ -46,11 +46,57 @@ public class Duke {
                     storageList.unmark(index);
                     Output.UNMARK.changeStatus(storageList.get(index));
                     break;
+                case "deadline":
+                    String by = findSecondCommand(input, "/by");
+                    addTask(new Deadline(findFirstCommand(input, command), by), storageList);
+                    break;
+                case "event":
+                    String at = findSecondCommand(input, "/at");
+                    addTask(new Event(findFirstCommand(input, command), at), storageList);
+                    break;
+                case "todo":
+                    addTask(new Todo(findFirstCommand(input, command)), storageList);
+                    break;
                 default:
-                    // add to list
-                    storageList.add(new Task(input));
-                    Output.echo("added: " + input + "\n");
+                    // add as to-do
+                    addTask(new Todo(input), storageList);
             }
         }
+    }
+
+    /**
+     * Finds the String between first command and second command (if exist)
+     * @param input User input
+     * @param command First command
+     * @return String between first command and second command (if exist)
+     */
+    private static String findFirstCommand(String input, String command) {
+        int endOfCommand = input.indexOf("/");
+        int beginIndex = input.indexOf(command) + command.length() + 1;
+        return endOfCommand == -1
+                ? input.substring(beginIndex)
+                : input.substring(beginIndex, endOfCommand);
+    }
+
+    /**
+     * Finds the String between second command (if exist) and end
+     * @param input User input
+     * @param command Second command
+     * @return String between second command (if exist) and end
+     */
+    private static String findSecondCommand(String input, String command) {
+        return input.contains(command)
+                ? input.substring(input.indexOf(command) + command.length() + 1)
+                : "";
+    }
+
+    /**
+     * Adds a Task to the StorageList, print out the appropriate String
+     * @param task Task to be added to the StorageList
+     * @param storageList StorageList to be added to
+     */
+    private static void addTask(Task task, StorageList storageList) {
+        storageList.add(task);
+        Output.ADD.addTask(task, storageList);
     }
 }
