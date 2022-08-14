@@ -50,13 +50,24 @@ public class Duke {
                             tasks.get(number - 1).toString());
                 }
                 //int number = Character.getNumericValue(echo.charAt(5));
+            } else if (echo.length() >= 7 && (echo.startsWith("delete") &&
+                    (Character.isWhitespace(echo.charAt(6))) &&
+                    echo.substring(7).chars().allMatch(Character::isDigit))) {
+                int number = parseInt(echo.substring(7));
+                if (number > tasks.size() || number <= 0) {
+                    throw new DukeException("☹ OOPS!!! Task number does not exist.");
+                } else {
+                    System.out.println("Noted. I've removed this task:\n" + tasks.get(number - 1).toString());
+                    tasks.remove(number - 1);
+                    System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+                }
             } else if (echo.equals("todo") || (echo.startsWith("todo") && echo.substring(5).isBlank())) {
                     throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
             } else if (echo.startsWith("todo") && Character.isWhitespace(echo.charAt(4))) {
                     System.out.println("Got it. I've added this task:");
                     tasks.add(new ToDo(echo));
-                    System.out.println(tasks.get(tasks.size() - 1));
-                    System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+                    System.out.println(tasks.get(tasks.size() - 1) + "\nNow you have " + tasks.size() +
+                            " tasks in the list.");
                 //System.out.println("_________________________________________________\nadded: " + echo + "\n" +
                 //        "_________________________________________________\n");
             } else if (echo.equals("deadline") || (echo.startsWith("deadline") && echo.substring(9).isBlank())) {
@@ -67,8 +78,8 @@ public class Duke {
                 } else {
                     System.out.println("Got it. I've added this task:");
                     tasks.add(new Deadline(echo));
-                    System.out.println(tasks.get(tasks.size() - 1));
-                    System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+                    System.out.println(tasks.get(tasks.size() - 1) + "\nNow you have " + tasks.size() +
+                            " tasks in the list.");
                 }
             } else if (echo.equals("event") || (echo.startsWith("event") && echo.substring(6).isBlank())) {
                 throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.");
@@ -78,8 +89,8 @@ public class Duke {
                 } else {
                     System.out.println("Got it. I've added this task:");
                     tasks.add(new Event(echo));
-                    System.out.println(tasks.get(tasks.size() - 1));
-                    System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+                    System.out.println(tasks.get(tasks.size() - 1) + "\nNow you have " + tasks.size() +
+                            " tasks in the list.");
                 }
             } else {
                 throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
