@@ -117,4 +117,54 @@ The task list now contains 5 task(s).
 4.[D][ ] task4 (by: Monday)
 5.[E][ ] task5 (at: Monday 4pm-5pm)
 
+> Invalid index
+
+> Invalid index
+
+> Invalid index
+
+> Invalid index
+
+> Invalid index
+
+> Invalid index
+
+> Description of todo cannot be empty.
+
+> Description of deadline cannot be empty.
+
+> Description of event cannot be empty.
+
+> A deadline task must have a deadline.
+
+> An event task must have a time at which the event takes place.
+
+> A deadline task must have a deadline.
+
+> An event task must have a time at which the event takes place.
+
+> Description of deadline task cannot be empty.
+
+> Description of event task cannot be empty.
+
+> Description of deadline task cannot be empty.
+
+> Description of event task cannot be empty.
+
+> The following deadline task has been added:
+  [D][ ] Task 6 (by: Tuesday)
+The task list now contains 6 task(s).
+
+> The following event task has been added:
+  [E][ ] Task 7 (at: Tuesday 1am-2am)
+The task list now contains 7 task(s).
+
+> 1.[T][ ] task1
+2.[T][ ] task2
+3.[T][ ] task3
+4.[D][ ] task4 (by: Monday)
+5.[E][ ] task5 (at: Monday 4pm-5pm)
+6.[D][ ] Task 6 (by: Tuesday)
+7.[E][ ] Task 7 (at: Tuesday 1am-2am)
+
 > Goodbye! Have a nice day!

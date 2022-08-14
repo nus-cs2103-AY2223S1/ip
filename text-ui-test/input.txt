@@ -26,4 +26,24 @@ unmark 4
 list
 unmark 2
 list
+unmark 6
+unmark 0
+unmark -1
+mark 6
+mark 0
+mark -1
+todo
+deadline
+event
+deadline  /by
+event  /at
+deadline t /by
+event t /at
+deadline /by t
+event /at t
+deadline   /by t
+event   /at t
+deadline   Task 6 /by  Tuesday
+event   Task 7 /at  Tuesday 1am-2am
+list
 bye
