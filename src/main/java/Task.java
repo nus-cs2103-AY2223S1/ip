@@ -1,3 +1,7 @@
+/**
+ * The Task class models a task. A task has a description and an indicator depicting whether it has
+ * been done.
+ */
 public class Task {
     private String description;
     private boolean isDone;

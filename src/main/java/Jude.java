@@ -2,6 +2,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Jude is a task tracker which appears like a command line interface.
+ * When > shows up, you can type a command.
+ *
+ * Here are the list of commands:
+ * list - lists all tasks
+ * mark - mark the task with a specified index (from list command) as done
+ *   e.g. mark 2 marks second task as done
+ * unmark - mark the task with a specified index (from list command) as undone,
+ *   e.g. unmark 2 marks second task as undone
+ * bye - exits the program
+ *
+ * If the command does not have these prefixes, a new task with a description corresponding to the
+ * name of the command is added.
+ */
 public class Jude {
     private static List<Task> tasks = new ArrayList<>();
 
