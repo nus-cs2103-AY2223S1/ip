@@ -6,6 +6,9 @@ public class Blob {
     // Header to signify start of a message by the chat-bot
     private static final String MESSAGE_HEADER = "\u001B[33m" + "Blob says: " + "\u001B[0m";
 
+    private String[] taskList = new String[100];
+    private int taskIndex = 0;
+
     /**
      * Prints a greeting message.
      */
@@ -18,6 +21,21 @@ public class Blob {
      */
     private void sayGoodbye() {
         this.speak("Thanks for talking to Blob...", "Blob see you soon...");
+    }
+
+    private void listTasks() {
+        StringBuilder tasksStringBuilder = new StringBuilder();
+        tasksStringBuilder.append("\n");
+        for (int i = 0; i < taskIndex; i++) {
+            tasksStringBuilder.append(String.format("\t\t%d. %s \n", i + 1, taskList[i]));
+        }
+        speak("Blob remember tasks...", tasksStringBuilder.toString());
+    }
+
+    private void addTask(String task) {
+        taskList[taskIndex] = task;
+        taskIndex++;
+        speak("Blob will remember task...", String.format("\n\t\t%s \n", task));
     }
 
     /**
@@ -39,14 +57,20 @@ public class Blob {
     public void start() {
         this.greet();
         Scanner sc = new Scanner(System.in);
-        while (true) {
+        boolean isRunning = true;
+        while (isRunning) {
             System.out.print(">> ");
             String input = sc.nextLine();
-            if (input.equals("bye")) {
-                this.sayGoodbye();
+            switch (input) {
+            case "bye":
+                sayGoodbye();
+                isRunning = false;
                 break;
-            } else {
-                this.speak(input);
+            case "list":
+                listTasks();
+                break;
+            default:
+                addTask(input);
             }
         }
     }
