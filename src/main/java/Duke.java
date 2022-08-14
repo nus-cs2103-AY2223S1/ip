@@ -1,3 +1,4 @@
+import java.sql.SQLSyntaxErrorException;
 import java.util.Scanner;
 
 public class Duke {
@@ -49,9 +50,12 @@ public class Duke {
     }
 
     private static void store(String s) {
-        all[count] = new Task(s);
-        System.out.printf("added: %s\n", s);
+        all[count] = Task.of(s);
+        System.out.println("Got it. I've added this task:");
+        System.out.printf("  added: %s\n", all[count].toString());
         count += 1;
+        System.out.printf("Now you have %s tasks in the list.\n", count);
+
     }
 
     private static boolean startWith(String s, String target) {
@@ -74,10 +78,31 @@ public class Duke {
     }
 
     public static class Task {
+        private static String todo = "todo";
+        private static String ddl = "deadline";
+        private static String event = "event";
         protected String description;
         protected boolean isDone;
 
-        public Task(String description) {
+        public static Task of(String s) {
+            int i = s.indexOf(" ");
+            String identifier = s.substring(0, i);
+//            System.out.printf("%s\n", identifier);
+//            System.out.printf("%s\n", s.substring(i + 1));
+            if (identifier.equals(todo)) {
+                return new Todo(s.substring(i + 1));
+            } else if (identifier.equals(ddl)) {
+                int j = s.indexOf("/by");
+                return new Deadline(s.substring(ddl.length() + 1, j - 1), s.substring(j + 4));
+            } else if (identifier.equals(event)) {
+                int j = s.indexOf("/at");
+                return new Event(s.substring(event.length() + 1, j - 1), s.substring(j + 4));
+            } else {
+                return null;
+            }
+        }
+
+        private Task(String description) {
             this.description = description;
             this.isDone = false;
         }
@@ -86,6 +111,7 @@ public class Duke {
             return (isDone ? "X" : " "); // mark done task with X
         }
 
+        @Override
         public String toString() {
             return String.format("[%s] %s", getStatusIcon(), description);
         }
@@ -100,6 +126,46 @@ public class Duke {
             isDone = false;
             System.out.println("OK, I've marked this task as not done yet:");
             System.out.println(this.toString());
+        }
+    }
+
+    private static class Deadline extends Task {
+
+        protected String by;
+
+        public Deadline(String description, String by) {
+            super(description);
+            this.by = by;
+        }
+
+        @Override
+        public String toString() {
+            return "[D]" + super.toString() + " (by: " + by + ")";
+        }
+    }
+
+    private static class Todo extends Task {
+        public Todo(String description) {
+            super(description);
+        }
+
+        @Override
+        public String toString() {
+            return "[T]" + super.toString();
+        }
+    }
+
+    private static class Event extends Task {
+        private String at;
+
+        public Event(String description, String at) {
+            super(description);
+            this.at = at;
+        }
+
+        @Override
+        public String toString() {
+            return "[E]" + super.toString() + " (at: " + at + ")";
         }
     }
 }
