@@ -98,23 +98,21 @@ public class Duke {
         if (returnedArray.length == 1) {
             throw new DukeException("your command is incomplete." +
                     "\nPlease use the [help] command to check the proper usage of [delete].");
-        } else if (returnedArray.length == 2){
-            try {
-                int taskId = Integer.parseInt(returnedArray[1]) - 1;
-                if (history.size() <= taskId || taskId < 1) {
-                    throw new DukeException("that task you want to delete does not exist."
-                            + "\nUse the [list] command to check what tasks are available.");
-                } else {
-                    System.out.println("Understood. I will purge this task from your list:\n" + history.get(taskId) +
-                            "\nCurrently, you have " + (history.size() - 1) + " tasks in your list.");
-                    history.remove(taskId);
-                }
-            } catch (NumberFormatException e) {
-                throw new DukeException("your command is incorrect." +
-                        "\nPlease use the [help] command to check the proper usage of [delete].");
+        } else if (returnedArray.length > 2) {
+            throw new DukeException("your command has too many arguments." +
+                    "\nPlease use the [help] command to check the proper usage of [delete].");
+        } else if (isNumber(returnedArray[1])) {
+            int taskId = Integer.parseInt(returnedArray[1]) - 1;
+            if (history.size() <= taskId || taskId < 0) {
+                throw new DukeException("that task you want to delete does not exist."
+                        + "\nUse the [list] command to check what tasks are available.");
+            } else {
+                System.out.println("Understood. I will purge this task from your list:\n" + history.get(taskId) +
+                        "\nCurrently, you have " + (history.size() - 1) + " tasks in your list.");
+                history.remove(taskId);
             }
         } else {
-            throw new DukeException("your command has too many arguments." +
+            throw new DukeException("your command is incorrect." +
                     "\nPlease use the [help] command to check the proper usage of [delete].");
         }
     }
@@ -130,27 +128,34 @@ public class Duke {
         }
     }
 
+    private boolean isNumber(String string) {
+        char[] numberArray = string.toCharArray();
+        for (char c : numberArray) {
+            if (c < 48 || c > 57)
+                return false;
+        }
+        return true;
+    }
+
     private void markDone(String[] returnedArray) throws DukeException {
-        if (returnedArray.length == 1) {
+        if (returnedArray.length <= 1) {
             throw new DukeException("your command is incomplete." +
                     "\nPlease use the [help] command to check the proper usage of [mark].");
-        } else if (returnedArray.length == 2){
-            try {
-                int taskId = Integer.parseInt(returnedArray[1]) - 1;
-                if (history.size() <= taskId || taskId < 1) {
-                    throw new DukeException("that task you want to mark does not exist. "
-                            + "Use the [list] command to check what tasks are available.");
-                } else {
-                    System.out.println("Good Job! I will mark this task as done:");
-                    history.get(taskId).markDone();
-                }
-            } catch (NumberFormatException e) {
-                throw new DukeException("your command is incorrect." +
-                        "\nPlease use the [help] command to check the proper usage of [mark].");
-            }
-        } else {
+        } else if (returnedArray.length > 2) {
             throw new DukeException("your command has too many arguments." +
                     "\nPlease use the [help] command to check the proper usage of [mark].");
+        } else if (isNumber(returnedArray[1])) {
+            int taskId = Integer.parseInt(returnedArray[1]) - 1;
+            if (history.size() <= taskId || taskId < 0) {
+                throw new DukeException("that task you want to mark does not exist. "
+                        + "Use the [list] command to check what tasks are available.");
+            } else {
+                System.out.println("Good Job! I will mark this task as done:");
+                history.get(taskId).markDone();
+            }
+        } else {
+            throw new DukeException("your command is incorrect." +
+                "\nPlease use the [help] command to check the proper usage of [mark].");
         }
     }
 
@@ -158,22 +163,20 @@ public class Duke {
         if (returnedArray.length == 1) {
             throw new DukeException("your command is incomplete." +
                     "\nPlease use the [help] command to check the proper usage of [unmark].");
-        } else if (returnedArray.length == 2){
-            try {
-                int taskId = Integer.parseInt(returnedArray[1]) - 1;
-                if (history.size() <= taskId || taskId < 1) {
-                    throw new DukeException("that task you want to unmark does not exist."
-                            + "\nUse the [list] command to check what tasks are available.");
-                } else {
-                    System.out.println("Alright, I will mark this task as undone:");
-                    history.get(taskId).markUndone();
-                }
-            } catch (NumberFormatException e) {
-                throw new DukeException("your command is incorrect." +
-                        "\nPlease use the [help] command to check the proper usage of [unmark].");
+        } else if (returnedArray.length > 2) {
+            throw new DukeException("your command has too many arguments." +
+                    "\nPlease use the [help] command to check the proper usage of [unmark].");
+        } else if (isNumber(returnedArray[1])) {
+            int taskId = Integer.parseInt(returnedArray[1]) - 1;
+            if (history.size() <= taskId || taskId < 0) {
+                throw new DukeException("that task you want to unmark does not exist."
+                        + "\nUse the [list] command to check what tasks are available.");
+            } else {
+                System.out.println("Alright, I will mark this task as undone:");
+                history.get(taskId).markUndone();
             }
         } else {
-            throw new DukeException("your command has too many arguments." +
+            throw new DukeException("your command is incorrect." +
                     "\nPlease use the [help] command to check the proper usage of [unmark].");
         }
     }
@@ -232,23 +235,20 @@ public class Duke {
     //For single-word commands
     private void inputCommand(String command) throws DukeException {
         String[] returnedArray = command.split(" ");
-        if (returnedArray.length == 0 || returnedArray[0] == null
-                || returnedArray[0].equals("")) {
-            throw new DukeException("Sorry, I am a bit hard of hearing." +
-                    "\nCan you please repeat yourself for my sake?" +
-                    "\nIf unsure, please use command [help] for " +
-                    "the list of commands that I understand.");
+        if (returnedArray.length == 0 || returnedArray[0] == null || returnedArray[0].equals("")) {
+            throw new DukeException("Sorry, I am a bit hard of hearing.\nCould you please repeat yourself?" +
+                    "\nIf unsure, please use command [help] for the list of commands that I understand.");
         } else {
             Commands word = checkEnums(returnedArray[0]);
             switch (word) {
                 case bye:
-                    this.goodbye();
+                    goodbye();
                     break;
                 case list:
-                    this.listOut();
+                    listOut();
                     break;
                 case help:
-                    this.listCommands();
+                    listCommands();
                     break;
                 case mark:
                     markDone(returnedArray);
@@ -269,10 +269,8 @@ public class Duke {
                     addEventToHistory(command);
                     break;
                 case invalid: //Notice the control flow still reaches here even if [invalid] is input
-                    throw new DukeException("I don't understand your command." +
-                            "\nCan you please repeat yourself for my sake?" +
-                            "\nIf unsure, please use command [help] for " +
-                            "the list of commands that I understand.");
+                    throw new DukeException("I don't understand your command.\nCould you please repeat yourself?" +
+                            "\nIf unsure, please use command [help] for the list of commands that I understand.");
             }
         }
     }
