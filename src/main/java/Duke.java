@@ -3,57 +3,6 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Duke {
-
-    /**
-     * Class to encapsulate Task object
-     */
-    public static class Task {
-        protected String description;
-        protected boolean isDone;
-
-        public Task(String description) {
-            this.description = description;
-            this.isDone = false;
-        }
-
-        /**
-         * String encapsulates Task description and isDone status.
-         * @return String representing Task object
-         */
-        @Override
-        public String toString() {
-            String status;
-            if(this.isDone) {
-                status = String.format("[✓] %s\n", this.description);
-            } else {
-                status = String.format("[ ] %s\n", this.description);
-            }
-            return status;
-        }
-
-        public void markAsDone() {
-            this.isDone = true;
-        }
-
-        public void markAsNotDone() {
-            this.isDone = false;
-        }
-    }
-
-    public class Deadline extends Task {
-        protected String by;
-
-        public Deadline(String description, String by) {
-            super(description);
-            this.by = by;
-        }
-
-        @Override
-        public String toString() {
-            return "[D]" + super.toString() + " (by: " + by + ")";
-        }
-    }
-
     private static ArrayList<Task> userInputHistory = new ArrayList<>();
     private static void greetUser() {
         String logo = "_______     _\n" +
