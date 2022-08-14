@@ -64,8 +64,9 @@ public class Jude {
                 System.out.println("Goodbye! Have a nice day!");
                 break;
             } else {
-                System.out.println("added: " + str);
-                tasks.add(new Task(str, false));
+                System.out.println("Invalid command");
+                //System.out.println("added: " + str);
+                //tasks.add(new Task(str, false));
             }
         }
     }
