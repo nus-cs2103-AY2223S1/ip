@@ -1,23 +1,34 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
-    public static String printOut(String str) {
+    public static void printOut(String str) {
         String line = "____________________________________________________________\n";
-        return line + str + "\n" + line;
+        System.out.println(line + str + "\n" + line);
     }
 
     public static void main(String[] args) {
+        ArrayList<String> tasks = new ArrayList<>();
         Scanner input = new Scanner(System.in);
 
-        System.out.println(printOut("Hello! I'm Duke.\n" +
-                "What can I do for you?"));
+        printOut("Hello! I'm Duke.\n" +
+                "What can I do for you?");
         String next = input.nextLine();
 
         while (!next.equals("bye")) {
-            System.out.println(printOut(next));
+            if (next.equals("list")) {
+                System.out.println("____________________________________________________________");
+                for (int i = 0; i < tasks.size(); i++) {
+                    System.out.println((i + 1) + ". " + tasks.get(i));
+                }
+                System.out.println("____________________________________________________________\n");
+            } else {
+                tasks.add(next);
+                printOut("added: " + next);
+            }
             next = input.nextLine();
         }
 
-        System.out.println(printOut("See you later. Bye!"));
+        printOut("See you later. Bye!");
     }
 }
