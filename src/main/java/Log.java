@@ -21,12 +21,19 @@ public class Log {
         return this.logs.size();
     }
 
-    void add(String message) {
-        logs.add(new Task(message));
+    Task add(String message) {
+        Task task = new Task(message);
+        logs.add(task);
+        return task;
     }
 
-    void add(Task task) {
+    Task add(Task task) {
         logs.add(task);
+        return task;
+    }
+
+    Task delete(int index) {
+        return logs.remove(index);
     }
 
     Task getTask(int index) {

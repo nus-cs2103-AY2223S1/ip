@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 /**
  * Simple CLI chatbot that reacts on user input.
@@ -81,6 +80,9 @@ public class Duke {
             case "unmark":
                 unmarkTask();
                 break;
+            case "delete":
+                deleteTask();
+                break;
             default:
                 displayUnknownCommandMessage(input);
         }
@@ -114,18 +116,33 @@ public class Duke {
     private static void addTask(TaskParser taskParser) {
         try {
             Task task = taskParser.get();
-            displayTaskAddMessage(task);
+            updateLog((log) -> log.add(task),
+                    "Task added: ");
         } catch (DukeException e) {
             formatAndPrint(e.getMessage());
         }
     }
 
-    private static void displayTaskAddMessage(Task task) {
-        log.add(task);
+    private static void deleteTask() {
+        try {
+            int taskIndex = parseIndex();
+            updateLog(log -> log.delete(taskIndex),
+                    "Task deleted: ");
+        } catch (DukeException e) {
+            formatAndPrint(e.getMessage());
+        }
+    }
+
+    private static void updateLog(Function<Log, Task> logUpdater, String updateMessage) {
+        Task task = logUpdater.apply(log);
+        displayUpdateMessage(task, updateMessage, log.size());
+    }
+
+    private static void displayUpdateMessage(Task task, String updateMessage, int taskListSize) {
         List<String> toPrint = new ArrayList<>();
-        toPrint.add("Task added: ");
+        toPrint.add(updateMessage);
         toPrint.add(PADDING + task.toString());
-        toPrint.add("There are now " + log.size() + " tasks in the list.");
+        toPrint.add("There are now " + taskListSize + " tasks in the list.");
         formatAndPrint(toPrint);
     }
 
@@ -180,7 +197,7 @@ public class Duke {
         }
         int actualIndex = inputIndex - 1;
         if (!isIndexInRange(actualIndex)) {
-            throw new DukeException("Index out of range");
+            throw new DukeException("Index out of range!");
         }
         return actualIndex;
     }
