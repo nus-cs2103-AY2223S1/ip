@@ -24,21 +24,20 @@ public class Duke {
 
         boolean isDone = false;
         while (!isDone) {
-            String userInput = sc.nextLine();
-            String[] userInputArray = userInput.split(" ", 2);
-            String userCommand = userInputArray[0].trim();
+            String[] userInputs = sc.nextLine().split(" ", 2);
+            String userCommand = userInputs[0].trim();
 
             switch (userCommand.toUpperCase()) {
             case "TODO":
-                addTask(new ToDo(userInputArray[1].trim()));
+                addTask(new ToDo(userInputs[1].trim()));
                 break;
             case "DEADLINE": {
-                String[] userDescArray = userInputArray[1].split("/by");
+                String[] userDescArray = userInputs[1].split("/by");
                 addTask(new Deadline(userDescArray[0].trim(), userDescArray[1].trim()));
                 break;
             }
             case "EVENT": {
-                String[] userDescArray = userInputArray[1].split("/at");
+                String[] userDescArray = userInputs[1].split("/at");
                 addTask(new Event(userDescArray[0].trim(), userDescArray[1].trim()));
                 break;
             }
@@ -46,12 +45,12 @@ public class Duke {
                 printTasks();
                 break;
             case "MARK": {
-                Task task = tasks.get(Integer.parseInt(userInputArray[1]) - 1);
+                Task task = tasks.get(Integer.parseInt(userInputs[1]) - 1);
                 markTask(task);
                 break;
             }
             case "UNMARK": {
-                Task task = tasks.get(Integer.parseInt(userInputArray[1]) - 1);
+                Task task = tasks.get(Integer.parseInt(userInputs[1]) - 1);
                 unmarkTask(task);
                 break;
             }
@@ -60,15 +59,14 @@ public class Duke {
                 isDone = true;
                 break;
             default:
+                System.out.println("No implementation yet!");
                 break;
             }
         }
 
         sc.close();
     }
-
-
-
+    
     public void printTasks() {
         DukeUtils.printLine();
         DukeUtils.printWithIndent("Here are the tasks in your list:");
