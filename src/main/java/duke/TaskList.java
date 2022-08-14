@@ -15,6 +15,8 @@ public class TaskList {
 
     private static final String UNDONE_MESSAGE = "OK, I've marked this task as not done yet:";
 
+    private static final String FIND_HEADER = "Here are the matching tasks in your list:";
+
     private static final String ADD_HEADER = "Got it. I've added this task:";
     private List<Task> taskList;
 
@@ -24,7 +26,7 @@ public class TaskList {
 
     public void MarkTask(int taskIndex) {
         Task currentTask = taskList.get(taskIndex);
-        currentTask.setDone();
+        currentTask.SetDone();
         Ui.DisplayMessage(DONE_MESSAGE);
         Ui.IndentTaskDisplay(currentTask);
         Storage.Save(taskList);
@@ -32,7 +34,7 @@ public class TaskList {
 
     public void UnmarkTask(int taskIndex) {
         Task currentTask = taskList.get(taskIndex);
-        currentTask.removeDone();
+        currentTask.RemoveDone();
         Ui.DisplayMessage(UNDONE_MESSAGE);
         Ui.IndentTaskDisplay(currentTask);
         Storage.Save(taskList);
@@ -58,6 +60,18 @@ public class TaskList {
         Ui.DisplayMessage(ADD_HEADER);
         Ui.IndentTaskDisplay(t);
         Ui.DisplayTasksLeft(taskList.size());
+    }
+
+    public void FindTask(String keyword) {
+        List<Task> tasksContainingKeyword = new ArrayList<>();
+        for (int i = 0; i < taskList.size(); i++) {
+            Task t = taskList.get(i);
+            if (t.GetDescription().contains(keyword)) {
+                tasksContainingKeyword.add(t);
+            }
+        }
+        Ui.DisplayMessage(FIND_HEADER);
+        Ui.DisplayOrderedList(tasksContainingKeyword);
     }
 
 

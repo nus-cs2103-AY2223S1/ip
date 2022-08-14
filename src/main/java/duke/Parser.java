@@ -8,6 +8,8 @@ import java.util.List;
 public class Parser {
 
     private static final List<String> PERMISSIBLE_TASKS = new ArrayList<>(Arrays.asList("todo", "event", "deadline"));
+
+    //TODO: Update with a switch statement for parsing data
     public static void ParseData(String input, TaskList taskList) {
 
         //Case 1: Mark
@@ -31,6 +33,12 @@ public class Parser {
 
             taskList.DeleteTask(taskIndex);
 
+        //Case 5: Find
+
+        } else if (input.startsWith("find")) {
+            String[] tempArr = input.split(" ", 2); //split into 2
+            String keyword = tempArr[1]; //the remainder of the input minus whitespace
+            taskList.FindTask(keyword);
         }
 
         //Case 5: Add a valid task
