@@ -1,0 +1,10 @@
+list
+todo Cry over homework
+event meet friends /at Sunday, 12pm
+event Go to school /at Monday, 8am
+deadline Finish CS2103 iP Week 2 /by next Friday
+mark 3
+mark 4
+unmark 3
+list
+bye
