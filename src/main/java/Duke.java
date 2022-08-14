@@ -1,3 +1,4 @@
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Duke {
@@ -19,12 +20,22 @@ public class Duke {
     }
 
     public static void echo() {
+        LinkedList<String> storedList = new LinkedList<>();
         Scanner scanner = new Scanner(System.in);
-        String userCommand = scanner.next();
+        String userCommand = scanner.nextLine();
 
         while (!"bye".equals(userCommand)) {
-            System.out.println(userCommand + "\n");
-            userCommand = scanner.next();
+            if ("list".equals(userCommand)) {
+                for (int i = 0; i < storedList.size(); i++) {
+                    int index = i + 1;
+                    System.out.println(index + ". " + storedList.get(i));
+                }
+                System.out.println("\n");
+            } else {
+                storedList.add(userCommand);
+                System.out.println("added: " + userCommand + "\n");
+            }
+            userCommand = scanner.nextLine();
         }
         dukeExit();
     }
