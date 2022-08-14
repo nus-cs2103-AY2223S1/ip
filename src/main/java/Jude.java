@@ -21,7 +21,7 @@ public class Jude {
     private static List<Task> tasks = new ArrayList<>();
 
     /**
-     * Runs the chatbot.
+     * Runs the task tracker.
      *
      * @param args not used for now
      */
@@ -64,9 +64,7 @@ public class Jude {
                 System.out.println("Goodbye! Have a nice day!");
                 break;
             } else {
-                System.out.println("Invalid command");
-                //System.out.println("added: " + str);
-                //tasks.add(new Task(str, false));
+                System.out.println("Sorry, I don't understand what this means!");
             }
         }
     }

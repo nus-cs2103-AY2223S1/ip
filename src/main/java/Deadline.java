@@ -20,6 +20,15 @@ public class Deadline extends Task {
     }
 
     /**
+     * Returns the deadline of the task the Deadline object is associated with
+     *
+     * @return the deadline of the task the Deadline object is associated with
+     */
+    public String getDeadline() {
+        return this.deadline;
+    }
+
+    /**
      * The task type code for a Deadline object is "D". Hence, this method returns "D".
      *
      * @return "D"
