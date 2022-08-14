@@ -3,34 +3,30 @@ import java.util.Scanner;
 
 public class Duke {
     public static void main(String[] args) {
-        System.out.println("-------------------------------------------");
-        System.out.println("Hello from Phil");
-        System.out.println("How may I assist you on this fine day?");
-        System.out.println("-------------------------------------------");
+        Messages.welcome();
 
         String in = "";
-        ArrayList<String> list = new ArrayList<>();
-
+        TaskList list = new TaskList();
         Scanner sc = new Scanner(System.in);
+
         while (true) {
             in = sc.nextLine();
             if (in.equals("bye")) {
                 break;
             } else if (in.equals("list")) {
-                int index = 0;
-                String item;
-                while (index < list.size()) {
-                    item = list.get(index);
-                    System.out.println((index + 1) + ". " + item);
-                    index++;
-                }
+                list.printTasks();
+            } else if (in.startsWith("mark")) {
+                int index = Integer.valueOf(in.split(" ")[1]) - 1;
+                list.mark(index);
+            } else if (in.startsWith("unmark")) {
+                int index = Integer.valueOf(in.split(" ")[1]) - 1;
+                list.unmark(index);
             } else {
-                list.add(in);
+                list.add(new Task(in));
                 System.out.println("added: " + in);
             }
             System.out.println("-------------------------------------------");
         }
-        System.out.println("See you later alligator!");
-        System.out.println("-------------------------------------------");
+        Messages.bye();
     }
 }
