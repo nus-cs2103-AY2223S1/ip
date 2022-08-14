@@ -97,6 +97,12 @@ public class Duke {
                 String description = message.substring(5);
                 ToDo todo = new ToDo(description);
                 System.out.println(duke.add((todo)));
+            } else if (message.startsWith("deadline")) {
+                int index = message.indexOf("/by ");
+                String description = message.substring(9, index - 1);
+                String by = message.substring(index + 4);
+                Deadline deadline = new Deadline(description, by);
+                System.out.println(duke.add(deadline));
             }
         }
     }
