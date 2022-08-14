@@ -8,7 +8,7 @@ import java.util.Scanner;
  */
 public class Tako {
     public static void main(String[] args) {
-        System.out.println("Hello! I'm Tako\nWhat do you want?");
+        System.out.println("Hello! I'm Tako.\nWhat do you want?");
         final String COMMAND_BYE = "bye";
         final String COMMAND_LIST = "list";
         final String COMMAND_MARK = "mark";
@@ -29,53 +29,85 @@ public class Tako {
                 break;
             }
 
-            switch (command) {
-            case COMMAND_LIST:
-                for (int i = 0; i < tasksCount; i++) {
-                    StringBuilder sb = new StringBuilder();
-                    Task task = tasks[i];
-                    sb.append(i + 1);
-                    sb.append(".");
-                    sb.append(task);
-                    System.out.println(sb);
+            try {
+                switch (command) {
+                case COMMAND_LIST:
+                    if (input.trim().equals(COMMAND_LIST)) {
+                        for (int i = 0; i < tasksCount; i++) {
+                            Task task = tasks[i];
+                            System.out.printf("%d.%s\n", i + 1, task);
+                        }
+                    } else {
+                        throw new InvalidInputException();
+                    }
+                    break;
+                case COMMAND_MARK:
+                    try {
+                        if (input.trim().equals(COMMAND_MARK)) {
+                            throw new EmptyDescriptionException(COMMAND_MARK);
+                        }
+                        if (splitInput.length == 2) {
+                            int taskNumber = Integer.parseInt(splitInput[1]) - 1;
+                            if (taskNumber < 0 || taskNumber > tasksCount - 1) {
+                                throw new InvalidRangeException();
+                            }
+                            Task task = tasks[taskNumber];
+                            task.markAsDone();
+                            System.out.println("marked: " + task);
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("The task number to mark is invalid.");
+                    } catch (InvalidRangeException e) {
+                        System.out.println("The task number to mark does not exist.");
+                    } catch (EmptyDescriptionException e) {
+                        System.out.println("The task number to mark cannot be empty.");
+                    }
+                    break;
+                case COMMAND_TODO:
+                    if (input.trim().equals(COMMAND_TODO)) {
+                        throw new EmptyDescriptionException(COMMAND_TODO);
+                    }
+                    Todo todo = new Todo(splitInput[1]);
+                    tasks[tasksCount] = todo;
+                    tasksCount++;
+                    System.out.println("added: " + todo);
+                    System.out.println("Total tasks: " + tasksCount);
+                    break;
+                case COMMAND_DEADLINE:
+                    if (input.trim().equals(COMMAND_DEADLINE)) {
+                        throw new EmptyDescriptionException(COMMAND_DEADLINE);
+                    }
+                    String[] splitDeadline = splitInput[1].trim().split(" /by ", 2);
+                    if (splitDeadline.length == 2) {
+                        Deadline deadline = new Deadline(splitDeadline[0], splitDeadline[1]);
+                        tasks[tasksCount] = deadline;
+                        tasksCount++;
+                        System.out.println("added: " + deadline);
+                        System.out.println("Total tasks: " + tasksCount);
+                    } else {
+                        throw new EmptyDescriptionException("deadline's date/time");
+                    }
+                    break;
+                case COMMAND_EVENT:
+                    if (input.trim().equals(COMMAND_EVENT)) {
+                        throw new EmptyDescriptionException(COMMAND_EVENT);
+                    }
+                    String[] splitEvent = splitInput[1].trim().split(" /at ", 2);
+                    if (splitEvent.length == 2) {
+                        Event event = new Event(splitEvent[0], splitEvent[1]);
+                        tasks[tasksCount] = event;
+                        tasksCount++;
+                        System.out.println("added: " + event);
+                        System.out.println("Total tasks: " + tasksCount);
+                    } else {
+                        throw new EmptyDescriptionException("event's date/time");
+                    }
+                    break;
+                default:
+                    throw new InvalidInputException();
                 }
-                break;
-            case COMMAND_MARK:
-                if (splitInput.length == 2) {
-                    int taskNumber = Integer.parseInt(splitInput[1]) - 1;
-                    Task task = tasks[taskNumber];
-                    task.markAsDone();
-                    System.out.println("marked: " + task);
-                }
-                break;
-            case COMMAND_TODO:
-                Todo todo = new Todo(splitInput[1]);
-                tasks[tasksCount] = todo;
-                tasksCount++;
-                System.out.println("added: " + todo);
-                System.out.println("Total tasks: " + tasksCount);
-                break;
-            case COMMAND_DEADLINE:
-                String[] splitDeadline = splitInput[1].split(" /by ", 2);
-                Deadline deadline = new Deadline(splitDeadline[0], splitDeadline[1]);
-                tasks[tasksCount] = deadline;
-                tasksCount++;
-                System.out.println("added: " + deadline);
-                System.out.println("Total tasks: " + tasksCount);
-                break;
-            case COMMAND_EVENT:
-                String[] splitEvent = splitInput[1].split(" /at ", 2);
-                Event event = new Event(splitEvent[0], splitEvent[1]);
-                tasks[tasksCount] = event;
-                tasksCount++;
-                System.out.println("added: " + event);
-                System.out.println("Total tasks: " + tasksCount);
-                break;
-            default:
-                tasks[tasksCount] = new Task(input);
-                tasksCount++;
-                System.out.println("added: " + input);
-                System.out.println("Total tasks: " + tasksCount);
+            } catch (EmptyDescriptionException | InvalidInputException e) {
+                System.out.println(e.getMessage());
             }
         }
         sc.close();
