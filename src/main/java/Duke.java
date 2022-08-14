@@ -39,13 +39,15 @@ public class Duke {
 
     /**
      *
-     * @param description The task that should be added to the list.
+     * @param task The task that should be added to the list.
      * @return A string that tells the user if the tasks has been added.
      */
-    public String add(String description) {
-        Task task = new Task(description);
+    public String add(Task task) {
         tasks.add(task);
-        return "\t> added: " + task;
+        String message = "\t> Got it! I have added this task: \n\t\t" + task;
+        String numOfTasks = String.format("\n\t  Now you have %d %s in the list!", tasks.size(),
+                tasks.size() < 2 ? "task" : "tasks");
+        return message + numOfTasks;
     }
 
     /**
@@ -91,8 +93,10 @@ public class Duke {
                 Pattern pattern = Pattern.compile("[^0-9]");
                 int taskNumber = Integer.parseInt(pattern.matcher(message).replaceAll(""));
                 System.out.println(duke.tasks.get(taskNumber - 1).markAsNotDone());
-            } else {
-                System.out.println(duke.add(message));
+            } else if (message.startsWith("todo")) {
+                String description = message.substring(5);
+                ToDo todo = new ToDo(description);
+                System.out.println(duke.add((todo)));
             }
         }
     }

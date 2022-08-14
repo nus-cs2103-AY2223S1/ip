@@ -25,8 +25,8 @@ public class Task {
      */
     public String markAsDone() {
         this.isDone = true;
-        return String.format("\t> Nice! I have marked this task as done:\n\t \t[%s] %s",
-                this.getStatusIcon(), this.description);
+        return String.format("\t> Nice! I have marked this task as done:\n\t \t %s",
+                this);
     }
 
     /**
@@ -35,13 +35,14 @@ public class Task {
      */
     public String markAsNotDone() {
         this.isDone = false;
-        return String.format("\t> Okay! I have marked this task as not done:\n\t \t[%s] %s",
-                this.getStatusIcon(), this.description);
+        return String.format("\t> Okay! I have marked this task as not done:\n\t \t %s",
+                this);
     }
 
     @Override
     /**
-     * @return Returns a string representation of the task object.
+     * Returns a string representation of the task object.
+     * @return A string representation of the task object.
      */
     public String toString() {
         return String.format("[%s] %s", this.getStatusIcon(), this.description);
