@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
@@ -10,6 +11,7 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         String straightLine = "  ----------------------------------";
         Scanner sc = new Scanner(System.in);
+        ArrayList<String> listOfThings = new ArrayList<>(100);
 
         System.out.println("Hello from\n" + logo);
 
@@ -18,7 +20,32 @@ public class Duke {
         String input = sc.nextLine();
 
         while (!input.equalsIgnoreCase("Bye")) {
-            System.out.print(straightLine + "\n  " + input + "\n" + straightLine + "\n\n");
+
+            if (input.equalsIgnoreCase("list")) {
+                if (listOfThings.isEmpty()) {
+                    System.out.println(straightLine + "\n" + "  Nothing to do currently ehe\n" + straightLine);
+                    input = sc.nextLine();
+                    continue;
+                }
+                // print out in order placed
+                int index = 1;
+
+                System.out.println(straightLine);
+
+                for (String task : listOfThings) {
+                    System.out.println("  " + index + ". " + task);
+                    index++;
+                }
+
+                System.out.println(straightLine);
+
+                input = sc.nextLine();
+                continue;
+            }
+
+            listOfThings.add(input);
+
+            System.out.print(straightLine + "\n  added: " + input + "\n" + straightLine + "\n\n");
 
             input = sc.nextLine();
         }
