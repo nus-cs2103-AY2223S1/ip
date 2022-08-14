@@ -4,6 +4,14 @@ Hello from
 | | | | | | | |/ / _ \
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
+Available commands:
+   list
+   deadline [TASK DESCRIPTION] /by [DUE DATE]
+   event    [TASK DESCRIPTION] /at [VENUE]
+   todo     [TASK DESCRIPTION]
+   mark     [TASK NUMBER]
+   unmark   [TASK NUMBER]
+   bye
 
 Got it. I've added this task:
    [T][ ] borrow book
@@ -103,6 +111,79 @@ OK, I've marked this task as not done yet:
 OK, I've marked this task as not done yet:
    [T][ ] borrow book
 
+Sorry, I did not quite get that! (blah)
+Available commands:
+   list
+   deadline [TASK DESCRIPTION] /by [DUE DATE]
+   event    [TASK DESCRIPTION] /at [VENUE]
+   todo     [TASK DESCRIPTION]
+   mark     [TASK NUMBER]
+   unmark   [TASK NUMBER]
+   bye
+
+Sorry, I did not quite get that! (blah /by)
+Available commands:
+   list
+   deadline [TASK DESCRIPTION] /by [DUE DATE]
+   event    [TASK DESCRIPTION] /at [VENUE]
+   todo     [TASK DESCRIPTION]
+   mark     [TASK NUMBER]
+   unmark   [TASK NUMBER]
+   bye
+
+Sorry, I did not quite get that! (blah blah /by)
+Available commands:
+   list
+   deadline [TASK DESCRIPTION] /by [DUE DATE]
+   event    [TASK DESCRIPTION] /at [VENUE]
+   todo     [TASK DESCRIPTION]
+   mark     [TASK NUMBER]
+   unmark   [TASK NUMBER]
+   bye
+
+Wrong format! To add a new deadline, please enter the following:
+   deadline [TASK DESCRIPTION] /by [DUE DATE]
+
+Wrong format! To add a new deadline, please enter the following:
+   deadline [TASK DESCRIPTION] /by [DUE DATE]
+
+Wrong format! To add a new deadline, please enter the following:
+   deadline [TASK DESCRIPTION] /by [DUE DATE]
+
+Wrong format! To add a new deadline, please enter the following:
+   deadline [TASK DESCRIPTION] /by [DUE DATE]
+
+Wrong format! To add a new event, please enter the following:
+   event [TASK DESCRIPTION] /at [VENUE]
+
+Wrong format! To add a new event, please enter the following:
+   event [TASK DESCRIPTION] /at [VENUE]
+
+Wrong format! To add a new event, please enter the following:
+   event [TASK DESCRIPTION] /at [VENUE]
+
+Wrong format! To add a new event, please enter the following:
+   event [TASK DESCRIPTION] /at [VENUE]
+
+Wrong format! To create a 'todo' task, type:
+   todo [DESCRIPTION]
+
+Got it. I've added this task:
+   [T][ ] todo /by /at
+Now you have 9 tasks in the list.
+
+Wrong format! To mark a task as done, type:
+   mark [TASK NUMBER]
+
+Task number must be an integer!
+   mark [TASK NUMBER]
+
+Task number is invalid.You have 9 tasks!
+   mark [TASK NUMBER]
+
+Task number is invalid.You have 9 tasks!
+   mark [TASK NUMBER]
+
 Here are the tasks in your list:
 1. [T][ ] borrow book
 2. [D][ ] return book (by: Sunday)
@@ -112,5 +193,21 @@ Here are the tasks in your list:
 6. [E][ ] submit ModReg appeals (at: Sunday)
 7. [T][ ] feed neighbour's cat
 8. [E][ ] go to pet fair (at: 1st Nov)
+9. [T][ ] todo /by /at
+
+Wrong format! To list tasks, type:
+   list
+
+Wrong format! To list tasks, type:
+   list
+
+Wrong format! To exit, type:
+   bye
+
+Wrong format! To exit, type:
+   bye
+
+Wrong format! To exit, type:
+   bye
 
 Bye. Hope to see you again soon!

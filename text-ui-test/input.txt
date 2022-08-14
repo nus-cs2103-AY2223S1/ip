@@ -20,5 +20,27 @@ unmark 3
 unmark 2
 unmark 2
 unmark 1
+blah
+blah /by
+blah blah /by
+deadline
+deadline deadline
+deadline deadline /at friday
+deadline deadline / friday
+event
+event event
+event event event /by NUS
+event event event / NUS
+todo
+todo todo /by /at
+mark
+mark mark
+mark 12
+mark 13
 list
+list list
+list 1
+bye 1
+bye bye
+bye list
 bye
