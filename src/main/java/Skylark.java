@@ -71,7 +71,7 @@ public class Skylark {
 
     private static boolean response(Scanner scan, ArrayList<Task> taskList) throws SkylarkException {
         String command = scan.nextLine();
-        if (command.length() > 0) {
+        if (!command.isEmpty()) {
             if (command.equals(CommandList.BYE_COMMAND.toString())) {
                 Skylark.printText("Bye. Hope to see you again soon!");
                 return true;
@@ -83,6 +83,8 @@ public class Skylark {
                     Task currentTask = taskList.get(index);
                     currentTask.markAsDone();
                     Skylark.printText(currentTask, true);
+                } else {
+                    throw new SkylarkException("Sorry, index does not exist!");
                 }
             } else if (command.length() >= 6 && command.startsWith(CommandList.UNDONE_COMMAND.toString())) {
                 int index = Integer.parseInt(command.substring(7)) - 1;
@@ -90,6 +92,8 @@ public class Skylark {
                     Task currentTask = taskList.get(index);
                     currentTask.markAsUndone();
                     Skylark.printText(currentTask, false);
+                } else {
+                    throw new SkylarkException("Sorry, index does not exist!");
                 }
             } else if (command.length() >= 4 && command.startsWith(CommandList.TODO_COMMAND.toString())) {
                 if (command.equals(CommandList.TODO_COMMAND.toString())) {
@@ -100,14 +104,24 @@ public class Skylark {
                 Skylark.printText(taskList, toDoTask, false);
             } else if (command.length() >= 8 && command.startsWith(CommandList.DEADLINE_COMMAND.toString())) {
                 int slashIndex = command.lastIndexOf("/");
-                Deadline deadlineTask = new Deadline(command.substring(9, slashIndex - 1),
-                        command.substring(slashIndex + 4));
+                String desc = command.substring(9, slashIndex - 1);
+                String endDate = command.substring(slashIndex + 4);
+                if (desc.isEmpty() || endDate.isEmpty()) {
+                    throw new DeadlineException("☹ OOPS!!! " +
+                            "The description or end date of a deadline cannot be empty.");
+                }
+                Deadline deadlineTask = new Deadline(desc, endDate);
                 taskList.add(deadlineTask);
                 Skylark.printText(taskList, deadlineTask, false);
             } else if (command.length() >= 5 && command.startsWith(CommandList.EVENT_COMMAND.toString())) {
                 int slashIndex = command.lastIndexOf("/");
-                Event eventTask = new Event(command.substring(6, slashIndex - 1),
-                        command.substring(slashIndex + 4));
+                String desc = command.substring(6, slashIndex - 1);
+                String timing = command.substring(slashIndex + 4);
+                if (desc.isEmpty() || timing.isEmpty()) {
+                    throw new EventException("☹ OOPS!!! " +
+                            "The description or timing of an event cannot be empty.");
+                }
+                Event eventTask = new Event(desc, timing);
                 taskList.add(eventTask);
                 Skylark.printText(taskList, eventTask, false);
             } else if (command.length() >= 6 && command.startsWith(CommandList.DELETE_COMMAND.toString())) {
@@ -116,6 +130,8 @@ public class Skylark {
                     Task currentTask = taskList.get(index);
                     taskList.remove(index);
                     Skylark.printText(taskList, currentTask, true);
+                } else {
+                    throw new SkylarkException("Sorry, index does not exist!");
                 }
             } else {
                 throw new SkylarkException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
