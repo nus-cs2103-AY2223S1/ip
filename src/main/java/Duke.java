@@ -63,6 +63,14 @@ public class Duke {
                     } catch (IndexOutOfBoundsException e) {
                         throw new MissingInfoException(false);
                     }
+                } else if (input.startsWith("delete ")) { // delete a task
+                    try {
+                        String taskNumAsString = input.substring(7);
+                        int taskNum = Integer.parseInt(taskNumAsString);
+                        taskList.deleteTask(taskNum);
+                    } catch (IndexOutOfBoundsException | NumberFormatException e) {
+                        throw new InvalidTaskException();
+                    }
                 } else { // invalid input
                     throw new InvalidInputException();
                 }

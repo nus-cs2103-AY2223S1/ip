@@ -1,34 +1,47 @@
+import java.util.ArrayList;
+
 public class TaskList {
-    protected Task[] tasks;
-    protected int numTasks;
+    protected ArrayList<Task> tasks;
 
     public TaskList() {
-        this.tasks = new Task[100];
-        this.numTasks = 0;
+        this.tasks = new ArrayList<>();
+    }
+
+    private void printNumTasks() {
+        System.out.println("You have " + tasks.size() + " task" + (tasks.size() != 1 ? "s" : "") + " in the list.");
     }
 
     public void addTask(Task task) {
-        tasks[numTasks++] = task;
-        System.out.println("Task added:\n" + task);
+        tasks.add(task);
+        System.out.println("Task added:\n\t" + task);
+        printNumTasks();
+    }
+
+    public void deleteTask(int taskNum) {
+        Task task = getTask(taskNum);
+        if (task != null) {
+            tasks.remove(taskNum - 1);
+            System.out.println("Task removed:\n\t" + task);
+            printNumTasks();
+        }
     }
 
     public void displayTasks() {
-        if (numTasks == 0) {
+        if (tasks.isEmpty()) {
             System.out.println("Your task list is empty!");
         } else {
             System.out.println("Task list:");
-            for (int i = 0; i < numTasks; i++) {
+            for (int i = 0; i < tasks.size(); i++) {
                 int taskNum = i + 1;
-                Task task = tasks[i];
+                Task task = tasks.get(i);
                 System.out.println(taskNum + "." + task);
             }
-            System.out.println("You have " + numTasks + " task" + (numTasks != 1 ? "s" : "") + " in the list.");
         }
     }
 
     public Task getTask(int taskNum) {
-        if (taskNum <= numTasks) {
-            return tasks[taskNum - 1];
+        if (taskNum <= tasks.size()) {
+            return tasks.get(taskNum - 1);
         } else {
             System.out.println("No such task!");
             return null;
