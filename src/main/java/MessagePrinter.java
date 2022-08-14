@@ -2,20 +2,35 @@ import java.util.Arrays;
 import java.util.stream.Stream;
 
 public class MessagePrinter {
-    private int indentationLevel = 3;
+    private int indentationLevel;
+    private int horizontalLineLength;
+    private char horizontalLineSymbol;
 
     public void setIndentationLevel(int indentationLevel) {
         this.indentationLevel = indentationLevel;
     }
 
-    public MessagePrinter() {
-//        do nothing
-        int defaultIndentationLevel = 3;
-        setIndentationLevel(defaultIndentationLevel);
+    public void setHorizontalLineLength(int horizontalLineLength) {
+        this.horizontalLineLength = horizontalLineLength;
     }
 
-    public MessagePrinter(int indentationLevel) {
+    public void setHorizontalLineSymbol(char horizontalLineSymbol) {
+        this.horizontalLineSymbol = horizontalLineSymbol;
+    }
+
+    public MessagePrinter() {
+        int defaultIndentationLevel = 3;
+        int defaultHorizontalLineLength = 50;
+        char defaultHorizontalLineSymbol = '-';
+        setIndentationLevel(defaultIndentationLevel);
+        setHorizontalLineLength(defaultHorizontalLineLength);
+        setHorizontalLineSymbol(defaultHorizontalLineSymbol);
+    }
+
+    public MessagePrinter(int indentationLevel, int horizontalLineLength, char horizontalLineSymbol) {
         setIndentationLevel(indentationLevel);
+        setHorizontalLineLength(horizontalLineLength);
+        setHorizontalLineSymbol(horizontalLineSymbol);
     }
 
     private String getIndentation() {
@@ -23,7 +38,9 @@ public class MessagePrinter {
     }
 
     private void printLine() {
-        String line = "____________________________________________________________";
+        String line = Stream.generate(() -> Character.toString(this.horizontalLineSymbol))
+                .limit(this.horizontalLineLength)
+                .reduce("", (x, y) -> x + y);
         print(line);
     }
 
