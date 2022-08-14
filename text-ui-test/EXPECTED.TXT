@@ -25,3 +25,56 @@ Tasks in your list are:
 Total: 1
 ______
 >>Thank you for swinging by :)
+Hello from
+_______     _
+|  ___|    | |
+|  |_  ____| |_____ ____  _  __
+|   _|/ _  \ | ___|/  _ \| |/  \
+|  | | |_| | | |___| |_| |  / \ |
+|__|  \__|_|_|____|\____/|_|  |_|
+
+Where would you like to go next?
+>> Noted down: Welcome Tea 
+ There are 1 items on your list now. 
+>>______
+Tasks in your list are: 
+1. [E][ ] Welcome Tea  (at:  2oclock)
+Total: 1
+______
+>>Thank you for swinging by :)
+Hello from
+_______     _
+|  ___|    | |
+|  |_  ____| |_____ ____  _  __
+|   _|/ _  \ | ___|/  _ \| |/  \
+|  | | |_| | | |___| |_| |  / \ |
+|__|  \__|_|_|____|\____/|_|  |_|
+
+Where would you like to go next?
+>> Noted down: CS2103T Week 2 iP 
+ There are 1 items on your list now. 
+>>______
+Tasks in your list are: 
+1. [D][ ] CS2103T Week 2 iP  (by:  next tutorial)
+Total: 1
+______
+>>Thank you for swinging by :)
+Hello from
+_______     _
+|  ___|    | |
+|  |_  ____| |_____ ____  _  __
+|   _|/ _  \ | ___|/  _ \| |/  \
+|  | | |_| | | |___| |_| |  / \ |
+|__|  \__|_|_|____|\____/|_|  |_|
+
+Where would you like to go next?
+>> Noted down: todo buy milk
+ There are 1 items on your list now. 
+>>Marked task 1 
+[T][?] todo buy milk
+>>______
+Tasks in your list are: 
+1. [T][?] todo buy milk
+Total: 1
+______
+>>Thank you for swinging by :)

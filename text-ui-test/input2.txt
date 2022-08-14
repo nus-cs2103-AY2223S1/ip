@@ -1,0 +1,3 @@
+event Welcome Tea /at 2oclock
+list
+bye

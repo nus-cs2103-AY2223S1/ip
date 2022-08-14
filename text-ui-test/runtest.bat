@@ -13,9 +13,12 @@
          exit /b 1
          )
 REM no error here, errorLevel == 0
-REM run the program, feed command from input.txt file and redirect the output to the ACTUAL.txt
+REM run the program, feed command from inputn.txt file and redirect the output to the ACTUAL.txt
          java -classpath ..\bin Duke < input.txt > ACTUAL.TXT
          java -classpath ..\bin Duke < input1.txt >> ACTUAL.TXT
-
+         java -classpath ..\bin Duke < input2.txt >> ACTUAL.TXT
+         java -classpath ..\bin Duke < input3.txt >> ACTUAL.TXT
+         java -classpath ..\bin Duke < input4.txt >> ACTUAL.TXT
+         
 	 REM compare the output to the expected output
          FC ACTUAL.TXT EXPECTED.TXT
