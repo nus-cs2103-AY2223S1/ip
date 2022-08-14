@@ -65,6 +65,7 @@ public class Duke {
             String input = sc.nextLine();
             if (input.equals("bye")) {
                 System.out.println("Quack! Hope to see you again soon!");
+                System.out.println("____________________________________________________________");
                 return;
             } else System.out.println(reply(input));
             System.out.println("____________________________________________________________");
