@@ -24,25 +24,30 @@ public class Duke {
         tasks[currentTaskCount++] = input;
     }
 
-    public static void main(String[] args) {
+    private void startChatBot() {
         Scanner sc = new Scanner(System.in);
-        Duke uncleCheong = new Duke();
         System.out.printf("%sEh hello, my name is Uncle Cheong. \n" +
-                "What you want?\n%s\n", uncleCheong.horizontalLine, uncleCheong.horizontalLine);
+                "What you want?\n%s\n", this.horizontalLine, this.horizontalLine);
+        this.getInputs(sc);
+        System.out.printf("%sEh you leaving me so soon?\n%s", this.horizontalLine, this.horizontalLine);
+    }
+
+    private void getInputs(Scanner sc) {
         String input = "";
-        while (!input.equals("bye")) {
+        boolean terminated = false;
+        while (!terminated) {
             input = sc.nextLine();
             if (input.equals("bye")) {
                 break;
             } else if (input.equals("list")) {
-                uncleCheong.printStoredInputs();
+                this.printStoredInputs();
             } else if (input.length() >= 6 && input.substring(0, 4).equals("mark")) {
                 String taskIndexString = input.substring(4).trim();
                 String messageToPrint = "";
                 try {
                     int taskIndex = Integer.parseInt(taskIndexString);
-                    uncleCheong.tasks[taskIndex - 1].changeIsDone(true);
-                    messageToPrint = "Swee lah! Your task done liao: \n" + uncleCheong.tasks[taskIndex - 1];
+                    this.tasks[taskIndex - 1].changeIsDone(true);
+                    messageToPrint = "Swee lah! Your task done liao: \n" + this.tasks[taskIndex - 1];
                 } catch (IllegalStateException e) {
                     messageToPrint = "Eh, you done that task alr lah";
                 } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
@@ -57,8 +62,8 @@ public class Duke {
                 String messageToPrint = "";
                 try {
                     int taskIndex = Integer.parseInt(taskIndexString);
-                    uncleCheong.tasks[taskIndex - 1].changeIsDone(false);
-                    messageToPrint = "Eh? Not done yet? Okay I change liao: \n" + uncleCheong.tasks[taskIndex - 1];
+                    this.tasks[taskIndex - 1].changeIsDone(false);
+                    messageToPrint = "Eh? Not done yet? Okay I change liao: \n" + this.tasks[taskIndex - 1];
                 } catch (IllegalStateException e) {
                     messageToPrint = "Eh, your task alr not done lah";
                 } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
@@ -69,11 +74,14 @@ public class Duke {
                     System.out.println(messageToPrint);
                 }
             } else {
-                System.out.printf("%sadded: %s\n%s", uncleCheong.horizontalLine, input, uncleCheong.horizontalLine);
+                System.out.printf("%sadded: %s\n%s", this.horizontalLine, input, this.horizontalLine);
                 Task newTask = new Task(input);
-                uncleCheong.addTask(newTask);
+                this.addTask(newTask);
             }
         }
-        System.out.printf("%sEh you leaving me so soon?\n%s", uncleCheong.horizontalLine, uncleCheong.horizontalLine);
+    }
+    public static void main(String[] args) {
+        Duke uncleCheong = new Duke();
+        uncleCheong.startChatBot();
     }
 }
