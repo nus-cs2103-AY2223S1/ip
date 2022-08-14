@@ -47,12 +47,16 @@ public class TaskList {
         String[] inputArr = input.split(" ");
 
         Task newTask = null;
-        if (inputArr[0].equals("deadline")){
-            newTask = new Deadline(getDescription(input), getDate(input));
-        } else if (inputArr[0].equals("event")){
-            newTask = new Event(getDescription(input), getDate(input));
-        } else if (inputArr[0].equals("todo")){
-            newTask = new ToDo(getDescription(input));
+        switch (inputArr[0]) {
+            case "deadline":
+                newTask = new Deadline(getDescription(input), getDate(input));
+                break;
+            case "event":
+                newTask = new Event(getDescription(input), getDate(input));
+                break;
+            case "todo":
+                newTask = new ToDo(getDescription(input));
+                break;
         }
 
         taskList.add(newTask);
