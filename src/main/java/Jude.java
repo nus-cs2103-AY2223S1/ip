@@ -22,6 +22,8 @@ import java.util.Scanner;
  *   e.g. mark 2 marks second task as done
  * unmark - mark the task with a specified index (from list command) as undone,
  *   e.g. unmark 2 marks second task as undone
+ * delete - delete the task corresponding to a specified index (from list command)
+ *   e.g. delete 2 deletes second task
  * bye - exits the program
  *
  * If the command does not have these prefixes, an error will be thrown saying that the bot does
@@ -126,6 +128,14 @@ public class Jude {
                     task.markAsUndone();
                     System.out.println("The following task has been marked as undone");
                     System.out.println(task);
+                } else if (tokens[0].equals("delete")) {
+                    int index = Integer.parseInt(tokens[1]) - 1;
+                    checkIndex(index);
+                    Task task = tasks.get(index);
+                    tasks.remove(index);
+                    System.out.println("The following task has been removed:");
+                    System.out.println(task);
+                    System.out.printf("The task list now contains %d task(s).\n", tasks.size());
                 } else if (str.equals("list")) {
                     for (int i = 0; i < tasks.size(); i++) {
                         Task task = tasks.get(i);

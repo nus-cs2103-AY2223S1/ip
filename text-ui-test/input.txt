@@ -46,4 +46,11 @@ event   /at t
 deadline   Task 6 /by  Tuesday
 event   Task 7 /at  Tuesday 1am-2am
 list
+mark 2
+delete 2
+list
+delete 7
+delete 0
+delete -1
+list
 bye

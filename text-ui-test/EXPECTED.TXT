@@ -167,4 +167,31 @@ The task list now contains 7 task(s).
 6.[D][ ] Task 6 (by: Tuesday)
 7.[E][ ] Task 7 (at: Tuesday 1am-2am)
 
+> The following task has been marked as done
+[T][X] task2
+
+> The following task has been removed:
+[T][X] task2
+The task list now contains 6 task(s).
+
+> 1.[T][ ] task1
+2.[T][ ] task3
+3.[D][ ] task4 (by: Monday)
+4.[E][ ] task5 (at: Monday 4pm-5pm)
+5.[D][ ] Task 6 (by: Tuesday)
+6.[E][ ] Task 7 (at: Tuesday 1am-2am)
+
+> Invalid index
+
+> Invalid index
+
+> Invalid index
+
+> 1.[T][ ] task1
+2.[T][ ] task3
+3.[D][ ] task4 (by: Monday)
+4.[E][ ] task5 (at: Monday 4pm-5pm)
+5.[D][ ] Task 6 (by: Tuesday)
+6.[E][ ] Task 7 (at: Tuesday 1am-2am)
+
 > Goodbye! Have a nice day!
