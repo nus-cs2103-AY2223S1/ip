@@ -27,6 +27,10 @@ public class Task {
         return (this.isDone ? "[X] " : "[ ] ");
     }
 
+    public String getTaskIcon() {
+        return "No Task Icon";
+    }
+
     public void markAsDone() {
         this.isDone = true;
     }
