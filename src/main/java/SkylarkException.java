@@ -1,10 +1,14 @@
 public class SkylarkException extends Exception{
+
+    private String description;
+
     public SkylarkException(String description) {
         super(description);
+        this.description = description;
     }
 
     @Override
     public String toString() {
-        return "☹ OOPS!!! I'm sorry, but Skylark don't know what that means :-(";
+        return this.description;
     }
 }
