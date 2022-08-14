@@ -2,7 +2,7 @@
  * The Task class models a task. A task has a description and an indicator depicting whether it has
  * been done.
  */
-public class Task {
+public abstract class Task {
     private String description;
     private boolean isDone;
 
@@ -69,4 +69,12 @@ public class Task {
     public void markAsUndone() {
         this.setIsDone(false);
     }
+
+    /**
+     * Returns the task type code of the Task object. The task type code will be displayed on the
+     * command line interface.
+     *
+     * @return the task type code of the Task object
+     */
+    public abstract String getTaskTypeCode();
 }
