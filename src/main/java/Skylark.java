@@ -32,6 +32,13 @@ public class Skylark {
         System.out.println(Skylark.line);
     }
 
+    private static void printText(ArrayList<Task> list, Task currentTask) {
+        System.out.println(Skylark.line);
+        System.out.println("Got it. I've added this task:");
+        System.out.println(currentTask.toString());
+        System.out.println("Now you have " + list.size() + " tasks in the list.");
+        System.out.println(Skylark.line);
+    }
     private static boolean doesIndexExist(ArrayList<Task> list, int index) {
         return index >= 0 && index < list.size();
     }
@@ -44,6 +51,11 @@ public class Skylark {
         String listCommand = "list";
         String doneCommand = "mark";
         String undoneCommand = "unmark";
+
+        String deadlineCommand = "deadline";
+        String toDoCommand = "todo";
+        String eventCommand = "event";
+
         String command;
 
         Skylark.printText("Hello, I am Skylark, how can I help you today?");
@@ -70,6 +82,22 @@ public class Skylark {
                         currentTask.markAsUndone();
                         Skylark.printText(currentTask, false);
                     }
+                } else if (command.length() > 4 && command.substring(0, 4).equals(toDoCommand)) {
+                    ToDo toDoTask = new ToDo(command.substring(5));
+                    taskList.add(toDoTask);
+                    Skylark.printText(taskList, toDoTask);
+                } else if (command.length() > 8 && command.substring(0, 8).equals(deadlineCommand)) {
+                    int slashIndex = command.lastIndexOf("/");
+                    Deadline deadlineTask = new Deadline(command.substring(9, slashIndex - 1),
+                            command.substring(slashIndex + 4));
+                    taskList.add(deadlineTask);
+                    Skylark.printText(taskList, deadlineTask);
+                } else if (command.length() > 5 && command.substring(0, 5).equals(eventCommand)) {
+                    int slashIndex = command.lastIndexOf("/");
+                    Event eventTask = new Event(command.substring(6, slashIndex - 1),
+                            command.substring(slashIndex + 4));
+                    taskList.add(eventTask);
+                    Skylark.printText(taskList, eventTask);
                 } else {
                     taskList.add(new Task(command));
                     Skylark.printText("added: " + command);
