@@ -60,7 +60,7 @@ public class TaskList {
         }
 
         taskList.add(newTask);
-        int size = taskList.size();
+        int size = this.getSize();
         System.out.println("Got it. I've added this task:");
         System.out.println("   " + newTask);
         System.out.printf("Now you have %d task%s in the list.%n%n",
@@ -76,7 +76,7 @@ public class TaskList {
         String taskToDelete = taskList.get(index).toString();
 
         taskList.remove(index);
-        int size = taskList.size();
+        int size = this.getSize();
 
         System.out.println("Got it. I've removed this task:");
         System.out.println("   " + taskToDelete);
