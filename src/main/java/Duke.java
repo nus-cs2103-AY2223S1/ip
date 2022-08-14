@@ -25,8 +25,17 @@ public class Duke {
             } else if (line.startsWith("unmark")) {
                 int i = Integer.parseInt(line.replace("unmark ", ""));
                 unmark(i);
+            } else if (line.startsWith("todo")) {
+                String s = line.replace("todo ", "");
+                addList(new Todo(s));
+            } else if (line.startsWith("deadline")) {
+                String[] s = line.replace("event ", "").split(" /by ");
+                addList(new Deadline(s[0], s[1]));
+            } else if (line.startsWith("event")) {
+                String[] s = line.replace("event ", "").split(" /at ");
+                addList(new Event(s[0], s[1]));
             } else {
-                addList(line);
+                addList(new Task(line));
             }
         }
         this.sc.close();
@@ -69,10 +78,12 @@ public class Duke {
         printLine();
     }
 
-    private void addList(String message) {
-        this.l.add(new Task(message));
+    private void addList(Task t) {
+        this.l.add(t);
         printLine();
-        print("added: " + message);
+        print("Got it. I've added this task:");
+        print("  " + t.toString());
+        print("Now you have " + l.size() + " tasks in the list.");
         printLine();
     }
 
