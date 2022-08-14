@@ -25,6 +25,10 @@ public class Log {
         logs.add(new Task(message));
     }
 
+    void add(Task task) {
+        logs.add(task);
+    }
+
     Task getTask(int index) {
         return logs.get(index);
     }

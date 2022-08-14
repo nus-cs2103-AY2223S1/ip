@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 /**
  * Simple CLI chatbot that reacts on user input.
@@ -15,9 +14,12 @@ public class Duke {
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
+    private static final String PADDING = "  ";
     private static final Scanner scanner = new Scanner(System.in);
     private static final Log log = new Log();
     private static final int INVALID_INDEX = -1;
+    private static final String DEADLINE_INDICATOR_PATTERN = "\\s*/by\\s*";
+    private static final String EVENT_INDICATOR_PATTERN = "\\s*/at\\s*";
 
     /**
      * Main function for the chatbot.
@@ -51,11 +53,6 @@ public class Duke {
         formatAndPrint(List.of(text));
     }
 
-    private static void addToLogAndPrint(String text) {
-        log.add(text);
-        formatAndPrint(text);
-    }
-
     private static void listenForInputs() {
         String input = scanner.next();
         switch (input) {
@@ -64,6 +61,15 @@ public class Duke {
                 return;
             case "list":
                 listTasks();
+                break;
+            case "todo":
+                addTodo();
+                break;
+            case "deadline":
+                addDeadline();
+                break;
+            case "event":
+                addEvent();
                 break;
             case "mark":
                 markTask();
@@ -89,11 +95,58 @@ public class Duke {
         formatAndPrint(log.getLogs());
     }
 
+    private static void addTodo() {
+        Task newTodo;
+        try {
+            newTodo = parseTodo();
+        } catch (NoSuchElementException e) {
+            formatAndPrint("The description cannot be empty!");
+            return;
+        }
+        addTaskToLog(newTodo);
+    }
+
+    private static void addDeadline() {
+        Task newDeadline;
+        try {
+            newDeadline = parseDeadline();
+        } catch (NoSuchElementException e) {
+            formatAndPrint("Invalid format for adding deadline!");
+            return;
+        }
+        addTaskToLog(newDeadline);
+    }
+
+    private static void addEvent() {
+        Task newEvent;
+        try {
+            newEvent = parseEvent();
+        } catch (NoSuchElementException e) {
+            formatAndPrint("Invalid format for adding event!");
+            return;
+        }
+        addTaskToLog(newEvent);
+    }
+
+    private static void addTaskToLog(Task task) {
+        log.add(task);
+        displayTaskAddMessage(task, log.size());
+    }
+
+    private static void displayTaskAddMessage(Task task, Integer taskListSize) {
+        List<String> toPrint = new ArrayList<>();
+        toPrint.add("Task added: ");
+        toPrint.add(PADDING + task.toString());
+        toPrint.add("There are now " + taskListSize + " tasks in the list.");
+        formatAndPrint(toPrint);
+    }
+
     private static void markTask() {
         markUnmarkWrapper((taskIndex) -> {
             List<String> toPrint = new ArrayList<>();
+            log.markTask(taskIndex);
             toPrint.add("I have marked this task as done: ");
-            toPrint.add(log.markTask(taskIndex).toString());
+            toPrint.add(PADDING + log.markTask(taskIndex).toString());
             return toPrint;
         });
     }
@@ -102,7 +155,7 @@ public class Duke {
         markUnmarkWrapper((taskIndex) -> {
             List<String> toPrint = new ArrayList<>();
             toPrint.add("I have unmarked the completion of this task: ");
-            toPrint.add(log.unmarkTask(taskIndex).toString());
+            toPrint.add(PADDING + log.unmarkTask(taskIndex).toString());
             return toPrint;
         });
     }
@@ -139,6 +192,31 @@ public class Duke {
             return INVALID_INDEX;
         }
         return actualIndex;
+    }
+
+    private static Todo parseTodo() throws NoSuchElementException {
+        String input = scanner.nextLine();
+        return new Todo(input);
+    }
+
+    private static Deadline parseDeadline() throws NoSuchElementException {
+        String input = scanner.nextLine();
+        try (Scanner lineScanner = new Scanner(input)
+                .useDelimiter(DEADLINE_INDICATOR_PATTERN)) {
+            String description = lineScanner.next();
+            String by = lineScanner.next();
+            return new Deadline(description, by);
+        }
+    }
+
+    private static Event parseEvent() throws NoSuchElementException {
+        String input = scanner.nextLine();
+        try (Scanner lineScanner = new Scanner(input)
+                .useDelimiter(EVENT_INDICATOR_PATTERN)) {
+            String description = lineScanner.next();
+            String at = lineScanner.next();
+            return new Event(description, at);
+        }
     }
 
     private static boolean isIndexInRange(int index) {
