@@ -1,8 +1,8 @@
+import java.util.Scanner;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Scanner;
 import java.util.function.Function;
 
 /**
@@ -54,6 +54,9 @@ public class Duke {
     }
 
     private static void listenForInputs() {
+        if (!scanner.hasNext()) {
+            return;
+        }
         String input = scanner.next();
         switch (input) {
             case "bye":
