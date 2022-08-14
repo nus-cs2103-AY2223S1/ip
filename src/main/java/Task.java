@@ -8,11 +8,11 @@ public class Task {
     }
 
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     public String getStatusIcon() {
-        return (isDone ? "X" : " ");
+        return (this.isDone ? "X" : " ");
     }
 
     public void markAsDone() {
@@ -25,6 +25,6 @@ public class Task {
 
     @Override
     public String toString() {
-        return "[" + getStatusIcon() + "] " + getDescription();
+        return "[" + this.getStatusIcon() + "] " + this.getDescription();
     }
 }
