@@ -17,6 +17,7 @@ public class AddCommand extends Command {
     @Override
     public String execute(TaskList taskList) {
         taskList.add(this.task);
-        return "Added task: " + this.task.getContent();
+        return "Got it. I've added this task:\n  " + this.task
+                + "\nNow you have " + taskList.size() + " task in the list.";
     }
 }

@@ -28,7 +28,7 @@ public class Thomas {
     public void runEngine() {
         String userInput = ui.getUserInput();
         while (true) {
-            Command command = (new Parser()).parseInput(userInput);
+            Command command = Parser.parseInput(userInput);
 
             if (command instanceof ExitCommand) return;
 

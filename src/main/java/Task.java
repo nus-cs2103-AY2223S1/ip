@@ -25,15 +25,6 @@ public class Task {
     }
 
     /**
-     * Returns the content of this task.
-     *
-     * @return The content of this task.
-     */
-    public String getContent() {
-        return this.content;
-    }
-
-    /**
      * Returns a String representation of this task.
      *
      * @return A String representing this task.

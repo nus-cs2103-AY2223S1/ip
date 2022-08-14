@@ -1,5 +1,5 @@
 /**
- * This class encapsulates the user's task.
+ * This class encapsulates a to-do set by the user.
  */
 public class Todo extends Task {
     Todo(String content) {
@@ -7,9 +7,9 @@ public class Todo extends Task {
     }
 
     /**
-     * Returns the String representation of this todo.
+     * Returns the String representation of this to-do.
      *
-     * @return A String representing this todo.
+     * @return A String representing this to-do.
      */
     @Override
     public String toString() {
