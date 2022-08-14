@@ -1,16 +1,20 @@
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Duke {
-    private static final String LOGO = "\t ____        _        \n"
+    protected static final String LOGO = "\t ____        _        \n"
             + "\t|  _ \\ _   _| | _____ \n"
             + "\t| | | | | | | |/ / _ \\\n"
             + "\t| |_| | |_| |   <  __/\n"
             + "\t|____/ \\__,_|_|\\_\\___|\n";
-    private static final String LINE = "\t____________________________________________________________";
+    protected static final String LINE = "\t____________________________________________________________";
+    protected enum Command {
+        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE
+    }
 
-    private static void run() {
+    protected static void run() {
         ArrayList<Task> tasks = new ArrayList<>();
         boolean isExited = false;
         String command = "";
@@ -26,17 +30,18 @@ public class Duke {
         while (!isExited) {
             try {
                 command = sc.next();
+                Command c = Command.valueOf(command.toUpperCase());
                 String taskNumber;
                 String[] splitStringArray;
                 Task t;
-                switch (command) {
-                    case "bye":
+                switch (c) {
+                    case BYE:
                         isExited = true;
                         System.out.println(LINE
                                 + "\n\tBye. Hope to see you again soon!\n"
                                 + LINE);
                         break;
-                    case "list":
+                    case LIST:
                         if (tasks.isEmpty()) {
                             throw new DukeException("You currently have no tasks in your list.");
                         } else {
@@ -47,7 +52,7 @@ public class Duke {
                             System.out.println(LINE);
                         }
                         break;
-                    case "mark":
+                    case MARK:
                         taskNumber = sc.nextLine();
                         if (taskNumber.isEmpty()) {
                             throw new DukeException("Please enter the task number to mark!");
@@ -62,7 +67,7 @@ public class Duke {
                                     + LINE);
                         }
                         break;
-                    case "unmark":
+                    case UNMARK:
                         taskNumber = sc.nextLine();
                         if (taskNumber.isEmpty()) {
                             throw new DukeException("Please enter the task number to unmark!");
@@ -77,7 +82,7 @@ public class Duke {
                                     + LINE);
                         }
                         break;
-                    case "todo":
+                    case TODO:
                         command = sc.nextLine();
                         if (command.isEmpty()) {
                             throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
@@ -94,7 +99,7 @@ public class Duke {
                                     + LINE);
                         }
                         break;
-                    case "deadline":
+                    case DEADLINE:
                         command = sc.nextLine();
                         if (command.isEmpty()) {
                             throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
@@ -115,7 +120,7 @@ public class Duke {
                                     + LINE);
                         }
                         break;
-                    case "event":
+                    case EVENT:
                         command = sc.nextLine();
                         if (command.isEmpty()) {
                             throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.");
@@ -136,7 +141,7 @@ public class Duke {
                                     + LINE);
                         }
                         break;
-                    case "delete":
+                    case DELETE:
                         taskNumber = sc.nextLine();
                         if (tasks.isEmpty()) {
                             throw new DukeException("You currently have no tasks in your list to delete.");
@@ -157,10 +162,15 @@ public class Duke {
                         }
                         break;
                     default:
-                        throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                        break;
                 }
             } catch (NumberFormatException e) {
                 System.out.printf("%s\n\t%s\n%s\n", LINE, "Please enter a valid task number!", LINE);
+            } catch (IllegalArgumentException e) {
+                System.out.printf("%s\n\t%s\n%s\n", LINE
+                        , "☹ OOPS!!! I'm sorry, but I don't know what that means :-(", LINE);
+                sc.nextLine();
+                continue;
             } catch (IndexOutOfBoundsException e) {
                 System.out.printf("%s\n\t%s\n%s\n", LINE, "Task number does not exist!", LINE);
             } catch (DukeException e) {
