@@ -9,32 +9,43 @@ import java.util.Scanner;
  * @author Alvin Tan Fu Long
  */
 public class Tako {
+    private enum Command {
+        BYE, LIST, MARK, TODO, DEADLINE, EVENT, DELETE;
+
+        public static boolean contains(String s) {
+            for (Command c : Command.values()) {
+                if (c.name().equals(s)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
     public static void main(String[] args) {
         System.out.println("Hello! I'm Tako.\nWhat do you want?");
-        final String COMMAND_BYE = "bye";
-        final String COMMAND_LIST = "list";
-        final String COMMAND_MARK = "mark";
-        final String COMMAND_TODO = "todo";
-        final String COMMAND_DEADLINE = "deadline";
-        final String COMMAND_EVENT = "event";
-        final String COMMAND_DELETE = "delete";
         List<Task> tasks = new ArrayList<>();
 
         Scanner sc = new Scanner(System.in);
         while (sc.hasNext()) {
-            String input = sc.nextLine();
+            String input = sc.nextLine().trim();
             String[] splitInput = input.split(" ", 2);
-            String command = splitInput[0];
-
-            if (command.equals(COMMAND_BYE)) {
-                System.out.println("Bye, until next time...");
-                break;
-            }
-
+            String stringCommand = splitInput[0].toUpperCase();
+            Command command;
             try {
+                if (Command.contains(stringCommand)) {
+                    command = Command.valueOf(stringCommand);
+                } else {
+                    throw new InvalidInputException();
+                }
+
                 switch (command) {
-                case COMMAND_LIST:
-                    if (input.trim().equals(COMMAND_LIST)) {
+                case BYE:
+                    System.out.println("Bye, until next time...");
+                    sc.close();
+                    return;
+                case LIST:
+                    if (splitInput.length == 1) {
                         for (int i = 0; i < tasks.size(); i++) {
                             Task task = tasks.get(i);
                             System.out.printf("%d.%s\n", i + 1, task);
@@ -43,12 +54,11 @@ public class Tako {
                         throw new InvalidInputException();
                     }
                     break;
-                case COMMAND_MARK:
+                case MARK:
                     try {
-                        if (input.trim().equals(COMMAND_MARK)) {
+                        if (splitInput.length == 1) {
                             throw new EmptyDescriptionException();
-                        }
-                        if (splitInput.length == 2) {
+                        } else if (splitInput.length == 2) {
                             int taskNumber = Integer.parseInt(splitInput[1]) - 1;
                             if (taskNumber < 0 || taskNumber > tasks.size() - 1) {
                                 throw new InvalidRangeException();
@@ -65,20 +75,20 @@ public class Tako {
                         System.out.println("The task number to mark cannot be empty.");
                     }
                     break;
-                case COMMAND_TODO:
-                    if (input.trim().equals(COMMAND_TODO)) {
-                        throw new EmptyDescriptionException(COMMAND_TODO);
+                case TODO:
+                    if (splitInput.length == 1) {
+                        throw new EmptyDescriptionException("todo");
                     }
                     Todo todo = new Todo(splitInput[1]);
                     tasks.add(todo);
                     System.out.println("added: " + todo);
                     System.out.println("Total tasks: " + tasks.size());
                     break;
-                case COMMAND_DEADLINE:
-                    if (input.trim().equals(COMMAND_DEADLINE)) {
-                        throw new EmptyDescriptionException(COMMAND_DEADLINE);
+                case DEADLINE:
+                    if (splitInput.length == 1) {
+                        throw new EmptyDescriptionException("deadline");
                     }
-                    String[] splitDeadline = splitInput[1].trim().split(" /by ", 2);
+                    String[] splitDeadline = splitInput[1].split(" /by ", 2);
                     if (splitDeadline.length == 2) {
                         Deadline deadline = new Deadline(splitDeadline[0], splitDeadline[1]);
                         tasks.add(deadline);
@@ -88,11 +98,11 @@ public class Tako {
                         throw new EmptyDescriptionException("deadline's date/time");
                     }
                     break;
-                case COMMAND_EVENT:
-                    if (input.trim().equals(COMMAND_EVENT)) {
-                        throw new EmptyDescriptionException(COMMAND_EVENT);
+                case EVENT:
+                    if (splitInput.length == 1) {
+                        throw new EmptyDescriptionException("event");
                     }
-                    String[] splitEvent = splitInput[1].trim().split(" /at ", 2);
+                    String[] splitEvent = splitInput[1].split(" /at ", 2);
                     if (splitEvent.length == 2) {
                         Event event = new Event(splitEvent[0], splitEvent[1]);
                         tasks.add(event);
@@ -102,12 +112,11 @@ public class Tako {
                         throw new EmptyDescriptionException("event's date/time");
                     }
                     break;
-                case COMMAND_DELETE:
+                case DELETE:
                     try {
-                        if (input.trim().equals(COMMAND_DELETE)) {
+                        if (splitInput.length == 1) {
                             throw new EmptyDescriptionException();
-                        }
-                        if (splitInput.length == 2) {
+                        } else if (splitInput.length == 2) {
                             int taskNumber = Integer.parseInt(splitInput[1]) - 1;
                             if (taskNumber < 0 || taskNumber > tasks.size() - 1) {
                                 throw new InvalidRangeException();
@@ -131,6 +140,5 @@ public class Tako {
                 System.out.println(e.getMessage());
             }
         }
-        sc.close();
     }
 }
