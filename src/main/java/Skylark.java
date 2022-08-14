@@ -43,13 +43,18 @@ public class Skylark {
         System.out.println(Skylark.line);
     }
 
-    private static void printText(ArrayList<Task> list, Task currentTask) {
+    private static void printText(ArrayList<Task> list, Task currentTask, boolean isDelete) {
         System.out.println(Skylark.line);
-        System.out.println("Got it. I've added this task:");
+        if (isDelete) {
+            System.out.println("Noted. I've removed this task:");
+        } else {
+            System.out.println("Got it. I've added this task:");
+        }
         System.out.println(currentTask.toString());
         System.out.println("Now you have " + list.size() + " tasks in the list.");
         System.out.println(Skylark.line);
     }
+
     private static boolean doesIndexExist(ArrayList<Task> list, int index) {
         return index >= 0 && index < list.size();
     }
@@ -82,19 +87,26 @@ public class Skylark {
                 }
                 ToDo toDoTask = new ToDo(command.substring(5));
                 taskList.add(toDoTask);
-                Skylark.printText(taskList, toDoTask);
+                Skylark.printText(taskList, toDoTask, false);
             } else if (command.length() >= 8 && command.startsWith(Skylark.deadlineCommand)) {
                 int slashIndex = command.lastIndexOf("/");
                 Deadline deadlineTask = new Deadline(command.substring(9, slashIndex - 1),
                         command.substring(slashIndex + 4));
                 taskList.add(deadlineTask);
-                Skylark.printText(taskList, deadlineTask);
+                Skylark.printText(taskList, deadlineTask, false);
             } else if (command.length() >= 5 && command.startsWith(Skylark.eventCommand)) {
                 int slashIndex = command.lastIndexOf("/");
                 Event eventTask = new Event(command.substring(6, slashIndex - 1),
                         command.substring(slashIndex + 4));
                 taskList.add(eventTask);
-                Skylark.printText(taskList, eventTask);
+                Skylark.printText(taskList, eventTask, false);
+            } else if (command.length() >= 6 && command.startsWith(Skylark.deleteCommand)) {
+                int index = Integer.parseInt(command.substring(7)) - 1;
+                if (Skylark.doesIndexExist(taskList, index)) {
+                    Task currentTask = taskList.get(index);
+                    taskList.remove(index);
+                    Skylark.printText(taskList, currentTask, true);
+                }
             } else {
                 throw new SkylarkException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
