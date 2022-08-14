@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * Simple CLI chatbot that reacts on user input.
@@ -99,48 +100,32 @@ public class Duke {
     }
 
     private static void addTodo() {
-        Task newTodo;
-        try {
-            newTodo = parseTodo();
-        } catch (NoSuchElementException e) {
-            formatAndPrint("The description cannot be empty!");
-            return;
-        }
-        addTaskToLog(newTodo);
+        addTask(() -> parseTodo());
     }
 
     private static void addDeadline() {
-        Task newDeadline;
-        try {
-            newDeadline = parseDeadline();
-        } catch (NoSuchElementException e) {
-            formatAndPrint("Invalid format for adding deadline!");
-            return;
-        }
-        addTaskToLog(newDeadline);
+        addTask(() -> parseDeadline());
     }
 
     private static void addEvent() {
-        Task newEvent;
+        addTask(() -> parseEvent());
+    }
+
+    private static void addTask(TaskParser taskParser) {
         try {
-            newEvent = parseEvent();
-        } catch (NoSuchElementException e) {
-            formatAndPrint("Invalid format for adding event!");
-            return;
+            Task task = taskParser.get();
+            displayTaskAddMessage(task);
+        } catch (DukeException e) {
+            formatAndPrint(e.getMessage());
         }
-        addTaskToLog(newEvent);
     }
 
-    private static void addTaskToLog(Task task) {
+    private static void displayTaskAddMessage(Task task) {
         log.add(task);
-        displayTaskAddMessage(task, log.size());
-    }
-
-    private static void displayTaskAddMessage(Task task, Integer taskListSize) {
         List<String> toPrint = new ArrayList<>();
         toPrint.add("Task added: ");
         toPrint.add(PADDING + task.toString());
-        toPrint.add("There are now " + taskListSize + " tasks in the list.");
+        toPrint.add("There are now " + log.size() + " tasks in the list.");
         formatAndPrint(toPrint);
     }
 
@@ -164,7 +149,13 @@ public class Duke {
     }
 
     private static void markUnmarkWrapper(Function<Integer, List<String>> markingFunction) {
-        int taskIndex = parseIndex();
+        int taskIndex;
+        try {
+            taskIndex = parseIndex();
+        } catch (DukeException e) {
+            formatAndPrint(e.getMessage());
+            return;
+        }
         if (taskIndex == INVALID_INDEX) {
             return;
         }
@@ -176,49 +167,63 @@ public class Duke {
      * 
      * @return Parse index given by user in 0-index notation. -1 if index not in
      *         range, not an integer or not found.
+     * @throws DukeException Exceptions from the user inputs to Duke.
      */
-    private static int parseIndex() {
+    private static int parseIndex() throws DukeException {
         int inputIndex;
         try {
             inputIndex = scanner.nextInt();
         } catch (InputMismatchException e) {
-            formatAndPrint("The index must be an Integer!");
-            return INVALID_INDEX;
-
+            throw new DukeException("The index must be an Integer!", e);
         } catch (NoSuchElementException e) {
-            formatAndPrint("No index detected!");
-            return INVALID_INDEX;
+            throw new DukeException("No index detected!", e);
         }
         int actualIndex = inputIndex - 1;
         if (!isIndexInRange(actualIndex)) {
-            formatAndPrint("Index out of range!");
-            return INVALID_INDEX;
+            throw new DukeException("Index out of range");
         }
         return actualIndex;
     }
 
-    private static Todo parseTodo() throws NoSuchElementException {
-        String input = scanner.nextLine();
+    private static String parseLine(Scanner sc) throws DukeException {
+        String input;
+        try {
+            input = sc.nextLine();
+        } catch (NoSuchElementException e) {
+            throw new DukeException("The description cannot be empty!", e);
+        }
+        if (input.trim().length() == 0) {
+            throw new DukeException("The description cannot be empty!");
+        }
+        return input;
+    }
+
+    private static Todo parseTodo() throws DukeException {
+        String input = parseLine(scanner);
         return new Todo(input);
     }
 
-    private static Deadline parseDeadline() throws NoSuchElementException {
-        String input = scanner.nextLine();
+    private static Deadline parseDeadline() throws DukeException {
+        String input = parseLine(scanner);
         try (Scanner lineScanner = new Scanner(input)
                 .useDelimiter(DEADLINE_INDICATOR_PATTERN)) {
             String description = lineScanner.next();
             String by = lineScanner.next();
             return new Deadline(description, by);
+        } catch (NoSuchElementException e) {
+            throw new DukeException("Invalid format for adding deadline!", e);
         }
     }
 
-    private static Event parseEvent() throws NoSuchElementException {
-        String input = scanner.nextLine();
+    private static Event parseEvent() throws DukeException {
+        String input = parseLine(scanner);
         try (Scanner lineScanner = new Scanner(input)
                 .useDelimiter(EVENT_INDICATOR_PATTERN)) {
             String description = lineScanner.next();
             String at = lineScanner.next();
             return new Event(description, at);
+        } catch (NoSuchElementException e) {
+            throw new DukeException("Invalid format for adding event!", e);
         }
     }
 
