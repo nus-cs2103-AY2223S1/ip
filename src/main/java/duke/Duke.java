@@ -23,7 +23,7 @@ public class Duke {
     }
 
     public static void run() {
-        Ui.WelcomeMessage();
+        Ui.welcomeMessage();
         Scanner sc = new Scanner(System.in);
         String input;
         while (true) {
@@ -33,7 +33,7 @@ public class Duke {
                 break;
             }
             //if not, parser can parse data
-            Parser.ParseData(input, tasks);
+            Parser.parseData(input, tasks);
         }
     }
 

@@ -29,7 +29,7 @@ public class TaskList {
         currentTask.setDone();
         Ui.displayMessage(DONE_MESSAGE);
         Ui.indentTaskDisplay(currentTask);
-        Storage.Save(taskList);
+        Storage.save(taskList);
     }
 
     public void unmarkTask(int taskIndex) {
@@ -37,7 +37,7 @@ public class TaskList {
         currentTask.removeDone();
         Ui.displayMessage(UNDONE_MESSAGE);
         Ui.indentTaskDisplay(currentTask);
-        Storage.Save(taskList);
+        Storage.save(taskList);
     }
 
     public void list() {
@@ -51,12 +51,12 @@ public class TaskList {
         Ui.displayMessage(DELETE_HEADER);
         Ui.indentTaskDisplay(deletedTask);
         Ui.displayTasksLeft(taskList.size());
-        Storage.Save(taskList);
+        Storage.save(taskList);
     }
 
     public void addTask(Task t) {
         taskList.add(t);
-        Storage.Save(taskList);
+        Storage.save(taskList);
         Ui.displayMessage(ADD_HEADER);
         Ui.indentTaskDisplay(t);
         Ui.displayTasksLeft(taskList.size());

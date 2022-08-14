@@ -1,4 +1,5 @@
 package duke;
+
 import java.io.*;
 import java.util.List;
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ public class Storage {
     private static final String DIRECTORY_NAME = "SavedData";
     private static final String FILE_NAME = "SavedData/SaveData.txt";
 
-    public static void Save(List<Task> saveItems) {
+    public static void save(List<Task> saveItems) {
         try {
             FileOutputStream fos = new FileOutputStream(FILE_NAME);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -26,7 +27,7 @@ public class Storage {
 
     }
 
-    public static List<Task> ReadItems() {
+    public static List<Task> readItems() {
         //1) Create file
         try {
             File directory = new File(DIRECTORY_NAME);
@@ -63,7 +64,7 @@ public class Storage {
     }
 
     public static TaskList load() {
-        List<Task> currItems = ReadItems();
+        List<Task> currItems = readItems();
         return new TaskList(currItems);
 
     }

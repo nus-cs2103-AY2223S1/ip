@@ -10,7 +10,7 @@ public class Ui {
             + "|____/ \\__,_|_|\\_\\___|\n";
 
 
-    public static void WelcomeMessage() {
+    public static void welcomeMessage() {
         System.out.println("Hello from\n" + logo);
 
         System.out.println("Hello! I'm Duke \n"

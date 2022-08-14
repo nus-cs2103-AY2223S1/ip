@@ -7,8 +7,9 @@ import java.util.List;
  */
 public class Parser {
 
-    private static final List<String> PERMISSIBLE_TASKS = new ArrayList<>(Arrays.asList("todo", "event", "deadline"));
-    public static void ParseData(String input, TaskList taskList) {
+    private static final List<String> PERMISSIBLE_TASKS = new ArrayList<>(
+            Arrays.asList("todo", "event", "deadline"));
+    public static void parseData(String input, TaskList taskList) {
 
         //TODO: Update with a switch statement for parsing data
         //Case 1: Mark
@@ -41,13 +42,13 @@ public class Parser {
 
             try {
                 validateTask(input);
-            } catch (InvalidCommandException ICE) {
-                Ui.displayException(ICE);
+            } catch (InvalidCommandException ice) {
+                Ui.displayException(ice);
                 Ui.displayMessage("This was your invalid command: " + input);
-            } catch (EmptyTaskException ETE) {
-                Ui.displayException(ETE);
-                String tempArr[] = input.split(" ", 0);
-                if (tempArr[0] == "todo") {
+            } catch (EmptyTaskException ete) {
+                Ui.displayException(ete);
+                String[] tempArr = input.split(" ", 0);
+                if (tempArr[0].equals("todo")) {
                     Ui.displayMessage("todo requires at least a task description");
                 } else {
                     Ui.displayMessage("Event/Deadline requires both a task description and a date");

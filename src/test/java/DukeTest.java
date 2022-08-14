@@ -31,7 +31,7 @@ public class DukeTest {
         Task todoTest = Parser.generateTask("todo borrow book");
         List<Task> emptyTaskList = new ArrayList<Task>();
         TaskList tl = new TaskList(emptyTaskList);
-        tl.AddTask(todoTest);
+        tl.addTask(todoTest);
         tl.markTask(0);
         assertEquals(todoTest.toString(), "[T][X] borrow book");
         tl.unmarkTask(0);
