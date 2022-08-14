@@ -15,8 +15,6 @@ public class TaskList {
 
     private static final String UNDONE_MESSAGE = "OK, I've marked this task as not done yet:";
 
-    private static final String FIND_HEADER = "Here are the matching tasks in your list:";
-
     private static final String ADD_HEADER = "Got it. I've added this task:";
     private List<Task> taskList;
 
@@ -26,52 +24,40 @@ public class TaskList {
 
     public void MarkTask(int taskIndex) {
         Task currentTask = taskList.get(taskIndex);
-        currentTask.SetDone();
-        Ui.DisplayMessage(DONE_MESSAGE);
-        Ui.IndentTaskDisplay(currentTask);
+        currentTask.setDone();
+        Ui.displayMessage(DONE_MESSAGE);
+        Ui.indentTaskDisplay(currentTask);
         Storage.Save(taskList);
     }
 
     public void UnmarkTask(int taskIndex) {
         Task currentTask = taskList.get(taskIndex);
-        currentTask.RemoveDone();
-        Ui.DisplayMessage(UNDONE_MESSAGE);
-        Ui.IndentTaskDisplay(currentTask);
+        currentTask.removeDone();
+        Ui.displayMessage(UNDONE_MESSAGE);
+        Ui.indentTaskDisplay(currentTask);
         Storage.Save(taskList);
     }
 
     public void List() {
-        Ui.DisplayMessage(LIST_HEADER);
-        Ui.DisplayOrderedList(taskList);
+        Ui.displayMessage(LIST_HEADER);
+        Ui.displayOrderedList(taskList);
     }
 
     public void DeleteTask(int taskIndex) {
         Task deletedTask = taskList.get(taskIndex);
         taskList.remove(taskIndex);
-        Ui.DisplayMessage(DELETE_HEADER);
-        Ui.IndentTaskDisplay(deletedTask);
-        Ui.DisplayTasksLeft(taskList.size());
+        Ui.displayMessage(DELETE_HEADER);
+        Ui.indentTaskDisplay(deletedTask);
+        Ui.displayTasksLeft(taskList.size());
         Storage.Save(taskList);
     }
 
     public void AddTask(Task t) {
         taskList.add(t);
         Storage.Save(taskList);
-        Ui.DisplayMessage(ADD_HEADER);
-        Ui.IndentTaskDisplay(t);
-        Ui.DisplayTasksLeft(taskList.size());
-    }
-
-    public void FindTask(String keyword) {
-        List<Task> tasksContainingKeyword = new ArrayList<>();
-        for (int i = 0; i < taskList.size(); i++) {
-            Task t = taskList.get(i);
-            if (t.GetDescription().contains(keyword)) {
-                tasksContainingKeyword.add(t);
-            }
-        }
-        Ui.DisplayMessage(FIND_HEADER);
-        Ui.DisplayOrderedList(tasksContainingKeyword);
+        Ui.displayMessage(ADD_HEADER);
+        Ui.indentTaskDisplay(t);
+        Ui.displayTasksLeft(taskList.size());
     }
 
 

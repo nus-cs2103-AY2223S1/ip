@@ -1,4 +1,5 @@
 package duke;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -13,13 +14,13 @@ public class Deadline extends Task {
     }
 
     //Abstract out formatter to another function
-    public String CustomFormatter(LocalDate ld) {
+    public String customFormatter(LocalDate ld) {
         return ld.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
     }
 
     @Override
     public String toString() {
 
-        return TYPE + super.toString() + "(by: " + CustomFormatter(by) + ")";
+        return TYPE + super.toString() + "(by: " + customFormatter(by) + ")";
     }
 }

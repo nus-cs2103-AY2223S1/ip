@@ -1,4 +1,5 @@
 package duke;
+
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class Duke {
         while (true) {
             input = sc.nextLine();
             if (input.equals("bye")) {
-                Ui.DisplayMessage(ENDING_MESSAGE);
+                Ui.displayMessage(ENDING_MESSAGE);
                 break;
             }
             //if not, parser can parse data
