@@ -1,4 +1,5 @@
 import java.sql.SQLSyntaxErrorException;
+import java.util.ListIterator;
 import java.util.Scanner;
 
 public class Duke {
@@ -50,11 +51,16 @@ public class Duke {
     }
 
     private static void store(String s) {
-        all[count] = Task.of(s);
-        System.out.println("Got it. I've added this task:");
-        System.out.printf("  added: %s\n", all[count].toString());
-        count += 1;
-        System.out.printf("Now you have %s tasks in the list.\n", count);
+        try {
+            all[count] = Task.of(s);
+            System.out.println("Got it. I've added this task:");
+            System.out.printf("  added: %s\n", all[count].toString());
+            count += 1;
+            System.out.printf("Now you have %s tasks in the list.\n", count);
+        } catch (DukeException e) {
+            System.out.println(e.toString());
+        }
+
 
     }
 
@@ -84,13 +90,21 @@ public class Duke {
         protected String description;
         protected boolean isDone;
 
-        public static Task of(String s) {
+        public static Task of(String s) throws DukeException {
             int i = s.indexOf(" ");
-            String identifier = s.substring(0, i);
+            String identifier;
+            String description;
+            if (i == -1) {
+                throw !isIdentifierValid(s) ? new DukeException("I'm sorry, but I don't know what that means :-(")
+                                           : new DukeException("The description of a " + s + " cannot be empty.");
+            } else {
+                identifier = s.substring(0, i);
+                description = s.substring(i + 1);
+            }
 //            System.out.printf("%s\n", identifier);
 //            System.out.printf("%s\n", s.substring(i + 1));
             if (identifier.equals(todo)) {
-                return new Todo(s.substring(i + 1));
+                return new Todo(description);
             } else if (identifier.equals(ddl)) {
                 int j = s.indexOf("/by");
                 return new Deadline(s.substring(ddl.length() + 1, j - 1), s.substring(j + 4));
@@ -98,13 +112,17 @@ public class Duke {
                 int j = s.indexOf("/at");
                 return new Event(s.substring(event.length() + 1, j - 1), s.substring(j + 4));
             } else {
-                return null;
+                throw new DukeException("I'm sorry, but I don't know what that means :-(");
             }
         }
 
         private Task(String description) {
             this.description = description;
             this.isDone = false;
+        }
+
+        private static boolean isIdentifierValid(String s) {
+            return s.equals(todo) || s.equals(event) || s.equals(ddl);
         }
 
         public String getStatusIcon() {
@@ -168,4 +186,11 @@ public class Duke {
             return "[E]" + super.toString() + " (at: " + at + ")";
         }
     }
+
+    private static class DukeException extends Exception {
+        public DukeException(String message) {
+            super("OOPS!!" + message);
+        }
+    }
+
 }
