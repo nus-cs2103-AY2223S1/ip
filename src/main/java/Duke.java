@@ -15,9 +15,9 @@ public class Duke {
     }
 
     /* ------------------------HELPER FUNCTIONS------------------------ */
-    public static void processUserRequest() throws Exception {
+    private static void processUserRequest() throws Exception {
 
-        String[] toDoList = new String[100];
+        Task[] toDoList = new Task[100];
 
         System.out.println(Constants.GREETING);
         Scanner reader = new Scanner(System.in);
@@ -29,40 +29,64 @@ public class Duke {
                 end = true;
                 System.out.println(Constants.END_PROGRAM);
             } else if (userRequest.equals(Constants.LIST)) {
-                printItemsInList(toDoList);
-                System.out.print("Missing something?\n");
+                printTasksInList(toDoList);
+                System.out.print("If you would like to mark a task as complete, type 'mark'.\n" +
+                        "Please type here: ");
+            } else if (userRequest.equals(UserOperation.MARK.getOperation())) {
+                markTask(toDoList);
             } else {
-                toDoList = putItemInList(toDoList, userRequest);
-
-                System.out.println("Added: " + userRequest);
-                System.out.print("What else would you like in the list?\n");
+                Task task = new Task(userRequest);
+                putTaskInList(toDoList, task);
             }
         }
         reader.close();
     }
 
-    public static void printItemsInList(String[] list) {
+    private static void printTasksInList(Task[] list) {
+        System.out.print("Here are the tasks in your list:\n");
         for (int i = 0; i < list.length; i++) {
             if (list[i] == null) {
                 break;
             }
-            System.out.println(i + ": " + list[i]);
+            System.out.println(i + 1 + ": " + list[i]);
         }
     }
 
-    public static String[] putItemInList(String[] list, String item) throws Exception {
+    private static Task[] putTaskInList(Task[] list, Task task) throws Exception {
         for (int i = 0; i < list.length; i++) {
-            if (item.equals("")) {
+            if (task.description.equals("")) {
                 throw new InterruptedException("Nothing is not allowed!");
             } else if (list[i] != null) {
                 continue;
-            } else if (list[i] == null && i != 0 && list[i - 1].equals(item)) {
+            } else if (list[i] == null && i != 0 && list[i - 1].equals(task)) {
                 break;
             } else {
-                list[i] = item;
+                list[i] = task;
             }
         }
+
+        System.out.println("Added: " + task.description);
+        System.out.print("What else would you like to do?\n" +
+                "Please type here: ");
         return list;
+    }
+
+    private static void markTask(Task[] list) {
+        System.out.print("Which task would you like to mark as complete?\n");
+        Scanner intReader = new Scanner(System.in);
+        printTasksInList(list);
+        System.out.print("Task number: ");
+        int chosenTask = intReader.nextInt();
+        markDone(list[chosenTask - 1]);
+        printTasksInList(list);
+        System.out.print("You have marked task " + chosenTask + " as complete! Congrats!\n" +
+                "If you want to mark another task as complete, please type 'mark' again.\n" +
+                "Else, you can input a new task!\n" +
+                "Please type here: ");
+    }
+
+    private static void markDone(Task task) {
+        task.isDone = true;
     }
 
 }
