@@ -10,7 +10,7 @@ public class Gibson {
         "| | |_ | | | |  _ < \\___ \\| |  | | . ` |\n" +
         "| |__| |_| |_| |_) |____) | |__| | |\\  |\n" +
         "\\______|_____|____/|_____/ \\____/|_| \\_|\n";
-        ArrayList<String> list = new ArrayList<String>();
+        ArrayList<Task> list = new ArrayList<Task>();
 
         // Prints introduction
         System.out.println(line);
@@ -30,13 +30,13 @@ public class Gibson {
             } else if (input.equals("list")) {
                 int count = 1;
                 System.out.println(line);
-                for (String s : list) {
-                    System.out.println(count + ". " + s);
+                for (Task t : list) {
+                    System.out.println(count + "." + t.toString());
                     count++;
                 }
                 System.out.println(line);
             } else {
-                list.add(input);
+                list.add(new Task(input));
                 System.out.println(line);
                 System.out.println("added: " + input);
                 System.out.println(line);
