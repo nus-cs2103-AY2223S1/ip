@@ -1,6 +1,7 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 public class Duke {
     private static ArrayList<Task> userInputHistory = new ArrayList<>();
@@ -137,7 +138,7 @@ public class Duke {
      * @param userInput
      */
     private static void handleInput(String userInput) {
-        if (userInput.equals("bye")) {
+        if (userInput.equals("bye") || userInput.equals("exit") || userInput.equals("quit")) {
             //exit
             System.out.println("Thank you for swinging by :)");
             System.exit(0);
