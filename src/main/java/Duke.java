@@ -98,11 +98,17 @@ public class Duke {
                 ToDo todo = new ToDo(description);
                 System.out.println(duke.add((todo)));
             } else if (message.startsWith("deadline")) {
-                int index = message.indexOf("/by ");
-                String description = message.substring(9, index - 1);
-                String by = message.substring(index + 4);
+                int index = message.indexOf(" /by ");
+                String description = message.substring(9, index);
+                String by = message.substring(index + 5);
                 Deadline deadline = new Deadline(description, by);
                 System.out.println(duke.add(deadline));
+            } else if (message.startsWith("event")) {
+                int index = message.indexOf(" /at ");
+                String description = message.substring(6, index);
+                String at = message.substring(index + 5);
+                Event event = new Event(description, at);
+                System.out.println(duke.add(event));
             }
         }
     }
