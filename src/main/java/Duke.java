@@ -22,7 +22,7 @@ public class Duke {
     /**
      * 'List' attribute to store inputs.
      */
-    private static TaskList taskList = new TaskList();
+    private static final TaskList taskList = new TaskList();
 
     /**
      * Boolean attribute to know if Duke is running.
@@ -33,8 +33,7 @@ public class Duke {
      * 'java.util.function' to add task to 'taskList'.
      * input: Full String input from user.
      */
-    private static final Consumer<String> addTask = (input)
-            -> taskList.add(input);
+    private static final Consumer<String> addTask = taskList::add;
 
     /**
      * 'java.util.function' to mark task as done.
