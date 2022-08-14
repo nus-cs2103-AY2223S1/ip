@@ -18,23 +18,45 @@ public class Duke {
 
     public static void runDuke() {
         Scanner scanner = new Scanner(System.in);
-        while (scanner.hasNext()) {
+        while (scanner.hasNextLine()) {
             String input = scanner.nextLine().toLowerCase();
-            String inputLowerCase = input.toLowerCase();
-            switch (inputLowerCase) {
+            String inputCommand = input.indexOf(" ") == -1 ?
+                    input.toLowerCase() : input.toLowerCase().substring(0, input.indexOf(" "));
+            switch (inputCommand) {
                 case "bye":
                     exitDuke();
                     return;
                 case "list":
-                    printMessages(taskList.getAllTasks().toArray(new String[0]));
+                    listTasks();
+                    break;
+                case "mark":
+                    markTask(Integer.parseInt(input.split(" ")[1]) - 1);
+                    break;
+                case "unmark":
+                    unmarkTask(Integer.parseInt(input.split(" ")[1]) - 1);
                     break;
                 default:
-                    taskList.addTask(input);
-                    printMessages(new String[]{"added: " + input});
+                    addTask(input);
+                    break;
             }
         }
     }
 
+    public static void addTask(String task) {
+        taskList.addTask(task);
+        printMessages(new String[]{"added: " + task});
+    }
+    public static void markTask(int taskIndex) {
+        Task markedTask = taskList.markTask(taskIndex);
+        printMessages(new String[]{"Nice! I've marked this task as done:", markedTask.toString()});
+    }
+    public static void unmarkTask(int taskIndex) {
+        Task unmarkedTask = taskList.unmarkTask(taskIndex);
+        printMessages(new String[]{"Ok, I've marked this task as not done yet:", unmarkedTask.toString()});
+    }
+    public static void listTasks() {
+        printMessages(taskList.getAllTasks().toArray(new String[0]));
+    }
     public static void printMessages(String[] messages) {
         System.out.println(LINE_DIVIDER);
         for (String message : messages) {
