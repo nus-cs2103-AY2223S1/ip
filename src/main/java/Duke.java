@@ -19,7 +19,7 @@ public class Duke {
     }
 
     /**
-     * Method to add user input to history
+     * Method to add Task to history
      * @param s String description to add to userInputHistory
      */
     private static void addTaskToHistory(String s) {
@@ -27,6 +27,19 @@ public class Duke {
         userInputHistory.add(newTask);
         //echo request
         System.out.printf("Noted down: %s\n There are %d items on your list now. \n", s, userInputHistory.size());
+        System.out.print(">>");
+    }
+
+    /**
+     * Method to add Event to userInputHistory
+     * @param description
+     * @param date
+     */
+    private static void addEventToHistory(String description, String date) {
+        Event newEvent = new Event(description, date);
+        userInputHistory.add(newEvent);
+        //echo request
+        System.out.printf("Noted down: %s\n There are %d items on your list now. \n", description, userInputHistory.size());
         System.out.print(">>");
     }
 
@@ -83,6 +96,10 @@ public class Duke {
         return Integer.parseInt(numberOnly);
     }
 
+    private static void handleEvent(String event) {
+
+    }
+
     private static void handleInput(String userInput) {
         if (userInput.equals("bye")) {
             //exit
@@ -96,7 +113,9 @@ public class Duke {
             unmarkTask(getTaskNumber(userInput));
         } else if(userInput.startsWith("todo")) {
                 addTaskToHistory(userInput);
-            }
+            } else if (userInput.startsWith("event")) {
+            handleEvent(userInput);
+        }
         else {
             System.out.println("Enter a command (mark, unmark, list, todo)");
             System.out.print(">>");
