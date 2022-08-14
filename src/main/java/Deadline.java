@@ -1,3 +1,6 @@
+/**
+ * Deadline class has a by field
+ */
 public class Deadline extends Task {
     protected String by;
 
@@ -8,6 +11,12 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by + ")";
+        String status;
+        if (this.isDone) {
+            status = String.format("[D][✓] %s", this.description);
+        } else {
+            status = String.format("[D][ ] %s (by: %d)", this.description, by);
+        }
+        return status;
     }
 }

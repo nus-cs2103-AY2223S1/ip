@@ -19,9 +19,9 @@ public class Task {
     public String toString() {
         String status;
         if (this.isDone) {
-            status = String.format("[✓] %s\n", this.description);
+            status = String.format("[T][✓] %s", this.description);
         } else {
-            status = String.format("[ ] %s\n", this.description);
+            status = String.format("[T][ ] %s", this.description);
         }
         return status;
     }
