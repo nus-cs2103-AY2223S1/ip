@@ -7,7 +7,7 @@ public class TaskList {
     /**
      * 'List' object attribute to store String inputs given.
      */
-    private static List<Task> taskList = new ArrayList<>();
+    private static final List<Task> taskList = new ArrayList<>();
 
     /**
      * Get description as String from input.
@@ -21,9 +21,8 @@ public class TaskList {
             return input.substring(6, input.indexOf("/at ") - 1);
         } else if (input.startsWith("todo")){
             return input.substring(5);
-        } else {
-            return input;
         }
+        return null;
     }
 
     /**
@@ -36,9 +35,8 @@ public class TaskList {
             return input.substring(input.indexOf("/by ") + 4);
         } else if (input.startsWith("event")) {
             return input.substring(input.indexOf("/at ") + 4);
-        } else {
-            return null;
         }
+        return null;
     }
 
     /**
@@ -70,11 +68,12 @@ public class TaskList {
      */
     @Override
     public String toString() {
-        String res = String.format("Here are the tasks in your list:%n");
+        StringBuilder res = new StringBuilder(
+                String.format("Here are the tasks in your list:%n"));
         for (int i = 0; i < taskList.toArray().length; i++) {
-            res += String.format("%d. %s%n", i + 1, taskList.get(i));
+            res.append(String.format("%d. %s%n", i + 1, taskList.get(i)));
         }
-        return res;
+        return res.toString();
     }
 
     /**
@@ -82,7 +81,7 @@ public class TaskList {
      * @param index Index of task to be done. 1 based indexing.
      */
     public void markDone(int index) {
-        this.taskList.get(index - 1).markDone();
+        taskList.get(index - 1).markDone();
         System.out.printf("Nice! I've marked this task as done:%n   %s%n%n",
                 taskList.get(index - 1));
     }
@@ -92,9 +91,17 @@ public class TaskList {
      * @param index Index of task to be undone. 1 based indexing.
      */
     public void markUnDone(int index) {
-        this.taskList.get(index - 1).markUnDone();
+        taskList.get(index - 1).markUnDone();
         System.out.printf(
                 "OK, I've marked this task as not done yet:%n   %s%n%n",
                 taskList.get(index - 1));
+    }
+
+    /**
+     * Method to get number of tasks in 'taskList'.
+     * @return Number of tasks in 'taskList'.
+     */
+    public int getSize() {
+        return taskList.size();
     }
 }
