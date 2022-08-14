@@ -27,8 +27,7 @@ public class Duke {
                 for (int i = 0; i < Task.totalTasks; i++) {
                     int itemIndex = i + 1;
 
-                    string.append(itemIndex).append(".").append(Duke.tasks[i].getStatusIcon())
-                            .append(Duke.tasks[i]).append("\n");
+                    string.append(itemIndex).append(".").append(Duke.tasks[i]).append("\n");
                 }
 
                 System.out.println(Duke.formatText(string.toString()));
@@ -41,16 +40,15 @@ public class Duke {
                 int index = Integer.parseInt(userInput.split(" ")[1]);
 
                 if (action.equals("mark")) {
-                    System.out.println(Duke.formatText("Nice! I've marked this task as done:\n" + "[X] " +
-                            Duke.tasks[index - 1]));
                     Duke.tasks[index - 1].markAsDone();
+                    System.out.println(Duke.formatText("Nice! I've marked this task as done:\n" + Duke.tasks[index - 1]));
                     continue;
                 }
 
                 if (action.equals("unmark")) {
-                    System.out.println(Duke.formatText("OK, I've marked this task as not done yet:\n" + "[ ] " +
-                            Duke.tasks[index - 1]));
                     Duke.tasks[index - 1].unmark();
+                    System.out.println(Duke.formatText("OK, I've marked this task as not done yet:\n" + Duke.tasks[index - 1]));
+
                     continue;
                 }
             }
