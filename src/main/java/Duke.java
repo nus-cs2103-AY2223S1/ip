@@ -2,9 +2,10 @@ import java.util.Scanner;
 
 public class Duke {
 
-    public static final String GREETING_MESSAGE = "Hello! I'm TedBot ヾ(≧▽≦*)o\n"
+    private static final String GREETING_MESSAGE = "Hello! I'm TedBot ヾ(≧▽≦*)o\n"
                                     + "What do you want to do today?";
-    public static final String GOODBYE_MESSAGE = "Bye! Hope to see you soon ༼- つ ◕_◕ ༽つ";
+    private static final String GOODBYE_MESSAGE = "Bye! Hope to see you soon ༼- つ ◕_◕ ༽つ";
+
     public static void main(String[] args) {
 
         Scanner sysIn = new Scanner(System.in);
