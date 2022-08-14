@@ -16,7 +16,7 @@ public class Skylark {
         System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < text.size(); i++) {
             Task currentTask = text.get(i);
-            System.out.println((i + 1) + ". [" + currentTask.getStatusIcon() + "] " + currentTask.getDescription());
+            System.out.println((i + 1) + ". " + currentTask.toString());
         }
         System.out.println(Skylark.line);
     }
@@ -28,7 +28,7 @@ public class Skylark {
         } else {
             System.out.println("OK, I've marked this task as not done yet:");
         }
-        System.out.println("[" + currentTask.getStatusIcon() + "] " + currentTask.getDescription());
+        System.out.println(currentTask.toString());
         System.out.println(Skylark.line);
     }
 
