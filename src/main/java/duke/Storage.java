@@ -4,15 +4,19 @@ import java.io.*;
 import java.util.List;
 import java.util.ArrayList;
 
-/*
-   Deals with Saving/Loading data
-   Methods are mostly static
+/**
+ * deals with loading tasks from the file and saving tasks in the file
  */
 public class Storage {
 
     private static final String DIRECTORY_NAME = "SavedData";
     private static final String FILE_NAME = "SavedData/SaveData.txt";
 
+    /**
+     * Takes in a list of items
+     * and saves it to a binary file
+     * @param saveItems
+     */
     public static void save(List<Task> saveItems) {
         try {
             FileOutputStream fos = new FileOutputStream(FILE_NAME);
@@ -26,7 +30,13 @@ public class Storage {
         }
 
     }
-
+    /**
+     * Takes in a list of items
+     * and saves it to a binary file
+     * @return List<Task> saveItems
+     * @throws FileNotFoundException if the file/path has not been created or initalized
+     * @throws IOException if the file is unable to read for any other reason
+     */
     public static List<Task> readItems() {
         //1) Create file
         try {

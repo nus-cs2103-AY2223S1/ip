@@ -1,14 +1,23 @@
 package duke;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/*Handles the main logic of parsing raw input
+/**
+ * Handles the main logic of parsing raw input
  */
 public class Parser {
 
     private static final List<String> PERMISSIBLE_TASKS = new ArrayList<>(
             Arrays.asList("todo", "event", "deadline"));
+
+    /**
+     * parseData takes in a user's command as a string
+     * and makes sense of the command by calling TaskList's appropriate functionality
+     * @param input
+     * @param taskList
+     */
     public static void parseData(String input, TaskList taskList) {
 
         //TODO: Update with a switch statement for parsing data
@@ -59,7 +68,14 @@ public class Parser {
             taskList.addTask(newTask);
         }
     }
-
+    /**
+     * helper method for input validation whenever an add task command is given
+     * @param String input
+     * @throws InvalidCommandException if the command is not
+     * in our list of permissible tasks
+     * @throws EmptyTaskException if the correct command is given
+     * but not enough information is provided
+     */
     private static void validateTask(String input) throws InvalidCommandException, EmptyTaskException {
         String[] tempArr = input.split(" ", 0); //splits into words
 

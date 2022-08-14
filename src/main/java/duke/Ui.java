@@ -1,6 +1,10 @@
 package duke;
 
 import java.util.List;
+
+/**
+ * Class that deals with interactions with the user
+ */
 public class Ui {
 
     private static String logo = " ____        _        \n"
@@ -16,6 +20,11 @@ public class Ui {
         System.out.println("Hello! I'm Duke \n"
                 + "What can I do for you?");
     }
+
+    /**
+     * Helper method that prints out a message fed into the UI
+     * @param message
+     */
     public static void displayMessage(String message) {
         System.out.println(message);
     }
@@ -23,6 +32,12 @@ public class Ui {
     public static void indentTaskDisplay(Task t) {
         System.out.println("  " + t);
     }
+
+    /**
+     * Given a lists of tasks.
+     * Prints it out nicely with the appropriate numbering & indentation
+     * @param taskList
+     */
 
     public static void displayOrderedList(List<Task> taskList) {
         for (int i = 0; i < taskList.size(); i++) {

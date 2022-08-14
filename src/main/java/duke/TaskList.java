@@ -3,6 +3,13 @@ package duke;
 import java.util.List;
 import java.util.ArrayList;
 
+/**
+ * Encapsulation of Array
+ * Has the functionality of add/delete
+ * mark/unmark
+ * list/finding tasks
+ */
+
 
 
 public class TaskList {
@@ -24,6 +31,11 @@ public class TaskList {
         this.taskList = taskList;
     }
 
+    /**
+     * searches the taskList based on taskIndex
+     * and marks it as done
+     * @param taskIndex
+     */
     public void markTask(int taskIndex) {
         Task currentTask = taskList.get(taskIndex);
         currentTask.setDone();
@@ -31,6 +43,12 @@ public class TaskList {
         Ui.indentTaskDisplay(currentTask);
         Storage.save(taskList);
     }
+
+    /**
+     * searches the taskList based on taskIndex
+     * and marks it as undone
+     * @param taskIndex
+     */
 
     public void unmarkTask(int taskIndex) {
         Task currentTask = taskList.get(taskIndex);
@@ -40,10 +58,20 @@ public class TaskList {
         Storage.save(taskList);
     }
 
+    /**
+     * Loops through the taskList
+     * And signifies to the UI to display it nicely
+     */
     public void list() {
         Ui.displayMessage(LIST_HEADER);
         Ui.displayOrderedList(taskList);
     }
+
+    /**
+     * searches the taskList based on taskIndex
+     * and deletes it
+     * @param int taskIndex
+     */
 
     public void deleteTask(int taskIndex) {
         Task deletedTask = taskList.get(taskIndex);
@@ -54,6 +82,11 @@ public class TaskList {
         Storage.save(taskList);
     }
 
+    /**
+     * Adds a new task to the taskList
+     * @param Task t
+     */
+
     public void addTask(Task t) {
         taskList.add(t);
         Storage.save(taskList);
@@ -61,6 +94,12 @@ public class TaskList {
         Ui.indentTaskDisplay(t);
         Ui.displayTasksLeft(taskList.size());
     }
+
+    /**
+     * Populates a list of tasks that contain the keyword in it's description
+     * And signposts the UI to display it nicely
+     * @param String keyword
+     */
     public void findTask(String keyword) {
         List<Task> tasksContainingKeyword = new ArrayList<>();
         for (int i = 0; i < taskList.size(); i++) {

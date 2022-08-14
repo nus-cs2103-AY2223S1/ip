@@ -5,6 +5,11 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.io.*;
+
+/**
+ * Main class of the program
+ * Stores a taskList of tasks
+ */
 public class Duke {
 
     private static TaskList tasks;
@@ -22,6 +27,12 @@ public class Duke {
         new Duke().run();
     }
 
+    /**
+     * Displays the welcome message.
+     * Initializes the scanner to scan for inputs
+     * Lets the parser parse the correct input
+     * Terminate the program if the user requests for it
+     */
     public static void run() {
         Ui.welcomeMessage();
         Scanner sc = new Scanner(System.in);
