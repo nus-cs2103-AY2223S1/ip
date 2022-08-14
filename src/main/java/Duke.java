@@ -61,6 +61,17 @@ public class Duke {
         reply(t);
     }
 
+    public static void isDelete(String input) {
+        String numString = input.replace("delete", "")
+                .replace(" ", "");
+        int num = Integer.parseInt(numString);
+        System.out.println("Noted. I've removed this task:\n" + "  " + tasks.get(num - 1));
+        tasks.remove(num - 1);
+        String size = Integer.toString(tasks.size());
+        System.out.println("Now you have " + size + " tasks in the list.");
+        System.out.println("Enter command:");
+    }
+
     public static void reply(Task t) {
         String size = Integer.toString(tasks.size());
         System.out.println("Got it. I've added this task:\n" + "  " + t);
@@ -114,6 +125,12 @@ public class Duke {
                 } catch (DukeException e) {
                     System.out.println(e);
                 }
+                command = sc.nextLine();
+                continue;
+            }
+
+            if (command.contains("delete")) {
+                isDelete(command);
                 command = sc.nextLine();
                 continue;
             }
