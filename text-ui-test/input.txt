@@ -1,0 +1,10 @@
+todo first task
+list
+deadline second task /by date 123-456
+event third task /at 456-123 date
+list
+mark 1
+list
+unmark 1
+list
+bye
