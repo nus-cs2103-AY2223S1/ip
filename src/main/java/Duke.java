@@ -30,6 +30,36 @@ public class Duke {
                 }
                 System.out.println("_________________________________________________________________________");
             }
+            else if(firstword.equals("todo")) {
+                System.out.println("_________________________________________________________________________");
+                array[counter] = new Task(arr[1],"T","");
+                System.out.println("Got it. I've added this task:");
+                System.out.println(array[counter].getName());
+                counter++;
+                System.out.println("Now you have " + counter + " tasks in the list.");
+                System.out.println("_________________________________________________________________________");
+            }
+
+            else if(firstword.equals("deadline")) {
+                System.out.println("_________________________________________________________________________");
+                String arr2[] = arr[1].split("/by",2);
+                array[counter] = new Task(arr2[0],"D", arr2[1]);
+                System.out.println("Got it. I've added this task:");
+                System.out.println(array[counter].getName());
+                counter ++;
+                System.out.println("Now you have " + counter + " tasks in the list.");
+                System.out.println("_________________________________________________________________________");
+            }
+            else if(firstword.equals("event")) {
+                System.out.println("_________________________________________________________________________");
+                String arr2[] = arr[1].split("/at",2);
+                array[counter] = new Task(arr2[0],"E", arr2[1]);
+                System.out.println("Got it. I've added this task:");
+                System.out.println(array[counter].getName());
+                counter ++;
+                System.out.println("Now you have " + counter + " tasks in the list.");
+                System.out.println("_________________________________________________________________________");
+            }
 
             else if(firstword.equals("mark")) {
                 int num = Integer.parseInt(arr[1]);
@@ -48,7 +78,7 @@ public class Duke {
                 System.out.println("_________________________________________________________________________");
             }
             else {
-                array[counter] = new Task(output);
+                array[counter] = new Task(output,"", "");
                 counter++;
                 System.out.println("_________________________________________________________________________");
                 System.out.println("       added: " + output);
