@@ -17,13 +17,11 @@ public class TaskList {
         printNumTasks();
     }
 
-    public void deleteTask(int taskNum) {
+    public void deleteTask(int taskNum) throws InvalidTaskNumberException {
         Task task = getTask(taskNum);
-        if (task != null) {
-            tasks.remove(taskNum - 1);
-            System.out.println("Task removed:\n\t" + task);
-            printNumTasks();
-        }
+        tasks.remove(taskNum - 1);
+        System.out.println("Task removed:\n\t" + task);
+        printNumTasks();
     }
 
     public void displayTasks() {
@@ -39,12 +37,11 @@ public class TaskList {
         }
     }
 
-    public Task getTask(int taskNum) {
-        if (taskNum <= tasks.size()) {
+    public Task getTask(int taskNum) throws InvalidTaskNumberException {
+        if (taskNum > 0 && taskNum <= tasks.size()) {
             return tasks.get(taskNum - 1);
         } else {
-            System.out.println("No such task!");
-            return null;
+            throw new InvalidTaskNumberException();
         }
     }
 }

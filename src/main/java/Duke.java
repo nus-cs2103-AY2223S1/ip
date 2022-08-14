@@ -21,22 +21,22 @@ public class Duke {
                         String taskNumAsString = input.substring(5);
                         int taskNum = Integer.parseInt(taskNumAsString);
                         Task task = taskList.getTask(taskNum);
-                        if (task != null) {
-                            task.markAsDone();
-                        }
+                        task.markAsDone();
                     } catch (IndexOutOfBoundsException | NumberFormatException e) {
                         throw new InvalidTaskException();
+                    } catch (InvalidTaskNumberException e) {
+                        System.out.println(e.getMessage());
                     }
                 } else if (input.startsWith("unmark ")) { // mark task as not done
                     try {
                         String taskNumAsString = input.substring(7);
                         int taskNum = Integer.parseInt(taskNumAsString);
                         Task task = taskList.getTask(taskNum);
-                        if (task != null) {
-                            task.markAsNotDone();
-                        }
+                        task.markAsNotDone();
                     } catch (IndexOutOfBoundsException | NumberFormatException e) {
                         throw new InvalidTaskException();
+                    } catch (InvalidTaskNumberException e) {
+                        System.out.println(e.getMessage());
                     }
                 } else if (input.startsWith("todo ")) { // store a todo task
                     try {
@@ -54,7 +54,7 @@ public class Duke {
                     } catch (IndexOutOfBoundsException e) {
                         throw new MissingInfoException(false);
                     }
-                } else if (input.startsWith("event ")) { // store an event task
+                } else if (input.startsWith("event  ")) { // store an event task
                     try {
                         int pos = input.indexOf(" /at ");
                         String description = input.substring(6, pos).trim();
@@ -70,6 +70,8 @@ public class Duke {
                         taskList.deleteTask(taskNum);
                     } catch (IndexOutOfBoundsException | NumberFormatException e) {
                         throw new InvalidTaskException();
+                    } catch (InvalidTaskNumberException e) {
+                        System.out.println(e.getMessage());
                     }
                 } else { // invalid input
                     throw new InvalidInputException();
