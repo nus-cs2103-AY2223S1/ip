@@ -9,4 +9,4 @@ event badminton game /at Mon 1-6pm
 todo bake a cake
 mark 6
 list
-
+bye

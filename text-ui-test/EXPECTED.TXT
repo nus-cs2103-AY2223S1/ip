@@ -52,3 +52,4 @@ Enter command:
 5. [E][ ] badminton game (at: Mon 1-6pm)
 6. [T][X] bake a cake
 Enter command:
+Bye. Hope to see you again soon!
