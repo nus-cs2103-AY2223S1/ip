@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
 class IOHelper {
-
     public static void printWithoutPrompt(String message) {
         System.out.println(message);
     }
