@@ -22,4 +22,8 @@ list
 event /at
 event here /at
 event /at now
+delete 4
+list
+delete hello
+delete 4
 bye
