@@ -64,6 +64,23 @@ public class TaskList {
     }
 
     /**
+     * Method to delete a task.
+     * @param input String user input command to delete a task.
+     */
+    public void delete(String input) {
+        int index = Integer.parseInt(input.split(" ")[1]);
+        String taskToDelete = taskList.get(index).toString();
+
+        taskList.remove(index);
+        int size = taskList.size();
+
+        System.out.println("Got it. I've removed this task:");
+        System.out.println("   " + taskToDelete);
+        System.out.printf("Now you have %d task%s in the list.%n%n",
+                size, size == 1 ? "" : "s");
+    }
+
+    /**
      * Override 'toString' method of 'TaskList' object.
      */
     @Override

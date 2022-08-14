@@ -11,12 +11,13 @@ public class Duke {
      */
     private static final String AVAILABLE_COMMANDS =
             "Available commands:\n" +
-            "   list\n" +
             "   deadline [TASK DESCRIPTION] /by [DUE DATE]\n" +
             "   event    [TASK DESCRIPTION] /at [VENUE]\n" +
             "   todo     [TASK DESCRIPTION]\n" +
+            "   delete   [TASK NUMBER]\n" +
             "   mark     [TASK NUMBER]\n" +
             "   unmark   [TASK NUMBER]\n" +
+            "   list\n" +
             "   bye\n";
 
     /**
@@ -31,9 +32,13 @@ public class Duke {
 
     /**
      * 'java.util.function' to add task to 'taskList'.
-     * input: Full String input from user.
      */
     private static final Consumer<String> addTask = taskList::add;
+
+    /**
+     * 'java.util.function' to delete task from 'taskList'.
+     */
+    private static final Consumer<String> deleteTask = taskList::delete;
 
     /**
      * 'java.util.function' to mark task as done.
@@ -80,6 +85,7 @@ public class Duke {
         commands.put("deadline", addTask);
         commands.put("event", addTask);
         commands.put("todo", addTask);
+        commands.put("delete", deleteTask);
         commands.put("mark", mark);
         commands.put("unmark", unmark);
         commands.put("list", list);
@@ -123,6 +129,27 @@ public class Duke {
                 if ((args.length < 2)) {
                     throw new DukeException("Wrong format! To create a " +
                             "'todo' task, type:\n   todo [DESCRIPTION]\n");
+                }
+                break;
+            }
+
+            case "delete": {
+                int index;
+                int size = taskList.getSize();
+                if ((args.length != 2)) {
+                    throw new DukeException("Wrong format! To delete a task, " +
+                            "type:\n   delete [TASK NUMBER]\n");
+                }
+                try {
+                    index = Integer.parseInt(args[1]);
+                } catch (NumberFormatException e) {
+                    throw new DukeException("Task number must be an integer!" +
+                            "\n   delete [TASK NUMBER]\n");
+                }
+                if (index < 0 || index >= size) {
+                    throw new DukeException("Task number is invalid." +
+                            String.format("You have %d tasks!", size) +
+                            "\n   delete [TASK NUMBER]\n");
                 }
                 break;
             }
