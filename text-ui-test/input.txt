@@ -7,4 +7,11 @@ mark 1
 list
 unmark 1
 list
+blah
+mark 66
+unmark 99
+todo
+deadline fourth task /by
+event /at date
+list
 bye
