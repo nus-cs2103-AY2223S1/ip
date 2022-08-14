@@ -3,18 +3,19 @@
  */
 public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
+    private TaskList taskList;
 
-    ListCommand() {
+    ListCommand(TaskList taskList) {
+        this.taskList = taskList;
     }
 
     /**
      * Returns a String containing the given task list.
      *
-     * @param taskList The task list to return.
      * @return A String containing the task list.
      */
     @Override
-    public String execute(TaskList taskList) {
-        return "Choo choo! Here are the tasks in your list:\n" + taskList;
+    public String execute() {
+        return "hewe awe da tasks in youw wist:\n" + this.taskList;
     }
 }

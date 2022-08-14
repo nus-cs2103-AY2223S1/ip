@@ -32,8 +32,8 @@ public class TaskList {
     /**
      * Marks the task at the specific position as done.
      *
-     * @param pos The position of the task in the task list.
-     * @return The task at the specified position.
+     * @param pos The position of the task in the list.
+     * @return The marked task.
      */
     public Task mark(int pos) {
         Task task = this.tasks.get(pos);
@@ -44,12 +44,23 @@ public class TaskList {
     /**
      * Marks the task at the specific position as not done.
      *
-     * @param pos The position of the task in the task list.
-     * @return The task at the specified position.
+     * @param pos The position of the task in the list.
+     * @return The marked task.
      */
     public Task unmark(int pos) {
         Task task = this.tasks.get(pos);
         task.markUndone();
+        return task;
+    }
+
+    /**
+     * Removes the task at the specific position in the list.
+     *
+     * @param pos The position of the task in the list.
+     * @return The removed task.
+     */
+    public Task remove(int pos) {
+        Task task = this.tasks.remove(pos);
         return task;
     }
 

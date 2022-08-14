@@ -4,9 +4,32 @@
 public class Deadline extends Task {
     private String date;
 
-    Deadline(String content, String date) {
-        super(content);
-        this.date = date;
+    Deadline(String str) throws DwukeException {
+        super(str);
+        String[] arguments = getArguments(str);
+        this.changeDescription(arguments[0]);
+        this.date = arguments[1];
+    }
+
+    /**
+     * Splits the given String into description and date.
+     *
+     * @param str The String to split.
+     * @return An array containing the description and date.
+     * @throws DwukeException If '/by' is not found, or if the date is empty.
+     */
+    public static String[] getArguments(String str) throws DwukeException {
+        int index = str.indexOf("/by");
+
+        if (index == -1) throw new DwukeException("oops!!! '/by' not fwound");
+
+        try {
+            String description = str.substring(0, index - 1);
+            String date = str.substring(index + 4);
+            return new String[]{description, date};
+        } catch (StringIndexOutOfBoundsException e) {
+            throw new DwukeException("oops!!! da descwiption and date cannot be empty");
+        }
     }
 
     /**

@@ -1,50 +1,79 @@
 ------------------------------------------------------------
-	Choo choo! I'm Thomas
-	What can I choo for you?
+	hewwo UwU! am dwuke
+	wat can me do fow u?
 ------------------------------------------------------------
 ------------------------------------------------------------
-	Got it. I've added this task:
+	me've added dis task:
 	  [T][ ] read CS2103T textbook
-	Now you have 1 task in the list.
+	now you have 1 tasks in da wist uWu
 ------------------------------------------------------------
 ------------------------------------------------------------
-	Got it. I've added this task:
+	me've added dis task:
 	  [T][ ] read CS2100 textbook
-	Now you have 2 task in the list.
+	now you have 2 tasks in da wist uWu
 ------------------------------------------------------------
 ------------------------------------------------------------
-	Got it. I've added this task:
+	me've added dis task:
 	  [D][ ] finish math assignment (by: Wednesday)
-	Now you have 3 task in the list.
+	now you have 3 tasks in da wist uWu
 ------------------------------------------------------------
 ------------------------------------------------------------
-	Well done! I've marked this task as done:
+	nwice! me've mawked dis task as done:
 	[T][X] read CS2103T textbook
 ------------------------------------------------------------
 ------------------------------------------------------------
-	Got it. I've added this task:
+	me've added dis task:
 	  [E][ ] career talk (at: Friday 4 - 5pm)
-	Now you have 4 task in the list.
+	now you have 4 tasks in da wist uWu
 ------------------------------------------------------------
 ------------------------------------------------------------
-	Well done! I've marked this task as done:
+	oops!!! da wist doesn't have a task with da number :3
+------------------------------------------------------------
+------------------------------------------------------------
+	nwice! me've mawked dis task as done:
 	[D][X] finish math assignment (by: Wednesday)
 ------------------------------------------------------------
 ------------------------------------------------------------
-	OK, I've marked this task as not done:
+	okies, me've mawked dis task as not done yet:
 	[T][ ] read CS2103T textbook
 ------------------------------------------------------------
 ------------------------------------------------------------
-	Well done! I've marked this task as done:
+	oops!!! da descwiption of a twask cannot be empty.
+------------------------------------------------------------
+------------------------------------------------------------
+	nwice! me've mawked dis task as done:
 	[E][X] career talk (at: Friday 4 - 5pm)
 ------------------------------------------------------------
 ------------------------------------------------------------
-	Choo choo! Here are the tasks in your list:
+	oops!!! da wist doesn't have a task with da number :3
+------------------------------------------------------------
+------------------------------------------------------------
+	oops!!! da descwiption and date cannot be empty
+------------------------------------------------------------
+------------------------------------------------------------
+	hewe awe da tasks in youw wist:
 	1.[T][ ] read CS2103T textbook
 	2.[T][ ] read CS2100 textbook
 	3.[D][X] finish math assignment (by: Wednesday)
 	4.[E][X] career talk (at: Friday 4 - 5pm)
 ------------------------------------------------------------
 ------------------------------------------------------------
-	Goodbye!
+	me've wemoved dis task:
+	[T][ ] read CS2100 textbook
+	now you have 3 tasks in da wist uWu
+------------------------------------------------------------
+------------------------------------------------------------
+	oops!!! '/at' not fwound
+------------------------------------------------------------
+------------------------------------------------------------
+	oops!!! da wist doesn't have a task with da number :3
+------------------------------------------------------------
+------------------------------------------------------------
+	hewe awe da tasks in youw wist:
+	1.[T][ ] read CS2103T textbook
+	2.[D][X] finish math assignment (by: Wednesday)
+	3.[E][X] career talk (at: Friday 4 - 5pm)
+------------------------------------------------------------
+------------------------------------------------------------
+	Bwye. am hope to UwU u soon
 ------------------------------------------------------------

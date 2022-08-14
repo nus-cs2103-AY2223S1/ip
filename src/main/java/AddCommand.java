@@ -2,22 +2,23 @@
  * This class encapsulates an add command from the user.
  */
 public class AddCommand extends Command {
+    private TaskList taskList;
     private Task task;
 
-    AddCommand(Task task) {
+    AddCommand(TaskList taskList, Task task) {
+        this.taskList = taskList;
         this.task = task;
     }
 
     /**
-     * Adds the task into the given task list.
+     * Adds the task into the task list.
      *
-     * @param taskList The task list to add the task into.
      * @return A String signalling that the task has been added.
      */
     @Override
-    public String execute(TaskList taskList) {
-        taskList.add(this.task);
-        return "Got it. I've added this task:\n  " + this.task
-                + "\nNow you have " + taskList.size() + " task in the list.";
+    public String execute() {
+        this.taskList.add(this.task);
+        return "me've added dis task:\n  " + this.task
+                + "\nnow you have " + this.taskList.size() + " tasks in da wist uWu";
     }
 }

@@ -3,10 +3,9 @@
  */
 public abstract class Command {
     /**
-     * Executes the command and returns the result.
+     * Executes the command and returns the String result.
      *
-     * @param taskList The task list for the command to execute in.
      * @return A String signalling that the command has been executed successfully.
      */
-    public abstract String execute(TaskList taskList);
+    public abstract String execute();
 }

@@ -3,21 +3,26 @@
  */
 public class MarkCommand extends Command {
     public static final String COMMAND_WORD = "mark";
+    private TaskList taskList;
     private int pos;
 
-    MarkCommand(int pos) {
+    MarkCommand(TaskList taskList, int pos) throws DwukeException {
+        if (pos < 0 || pos > taskList.size() - 1) {
+            throw new DwukeException("oops!!! da wist doesn't have a task with da number :3");
+        }
+        this.taskList = taskList;
         this.pos = pos;
+
     }
 
     /**
      * Marks the task at the position of the given task list as done.
      *
-     * @param taskList The task list to mark.
      * @return A String signalling that the task has been marked as done.
      */
     @Override
-    public String execute(TaskList taskList) {
-        Task task = taskList.mark(this.pos);
-        return "Well done! I've marked this task as done:\n" + task;
+    public String execute() {
+        Task task = this.taskList.mark(this.pos);
+        return "nwice! me've mawked dis task as done:\n" + task;
     }
 }

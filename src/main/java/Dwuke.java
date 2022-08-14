@@ -1,51 +1,51 @@
 /**
- * Driver class of Thomas.
+ * Driver class of Dwuke.
  */
-public class Thomas {
+public class Dwuke {
     private UI ui;
     private TaskList taskList;
 
     /**
-     * Constructor for Thomas.
+     * Constructor for Dwuke.
      */
-    public Thomas() {
+    public Dwuke() {
         this.ui = new UI();
         this.taskList = new TaskList();
     }
 
     /**
-     * Runs Thomas until it is stopped.
+     * Runs Dwuke until it is stopped.
      */
     public void run() {
         this.start();
-        this.runEngine();
+        this.wun();
         this.stop();
     }
 
     /**
      * Reads the user input and executes it, until the user issues the exit command.
      */
-    public void runEngine() {
+    public void wun() {
         String userInput = ui.getUserInput();
         while (true) {
-            Command command = Parser.parseInput(userInput);
+            Command command = Parser.parseInput(userInput, this.taskList);
 
             if (command instanceof ExitCommand) return;
 
-            ui.echo(command.execute(this.taskList));
+            ui.echo(command.execute());
             userInput = ui.getUserInput();
         }
     }
 
     /**
-     * Starts Thomas by displaying a welcome message.
+     * Starts Dwuke by displaying a welcome message.
      */
     public void start() {
         ui.showWelcomeMessage();
     }
 
     /**
-     * Stops Thomas after displaying a goodbye message.
+     * Stops Dwuke after displaying a goodbye message.
      */
     public void stop() {
         ui.showGoodbyeMessage();
@@ -53,7 +53,7 @@ public class Thomas {
     }
 
     public static void main(String[] args) {
-        Thomas thomas = new Thomas();
-        thomas.run();
+        Dwuke dwuke = new Dwuke();
+        dwuke.run();
     }
 }

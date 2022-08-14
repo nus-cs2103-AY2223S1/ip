@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 /**
- * The user interface of Thomas.
+ * The user interface of Dwuke.
  */
 public class UI {
     public static final int lineLength = 60;
@@ -36,7 +36,7 @@ public class UI {
      */
     public void showWelcomeMessage() {
         String line = "-".repeat(lineLength);
-        String welcomeText = "Choo choo! I'm Thomas\nWhat can I choo for you?";
+        String welcomeText = "hewwo UwU! am dwuke\nwat can me do fow u?";
         String indentedText = welcomeText.replaceAll("(?m)^", "\t");
         System.out.println(line + "\n" + indentedText + "\n" + line);
     }
@@ -46,7 +46,7 @@ public class UI {
      */
     public void showGoodbyeMessage() {
         String line = "-".repeat(lineLength);
-        String goodbyeText = "Goodbye!";
+        String goodbyeText = "Bwye. am hope to UwU u soon";
         String indentedText = goodbyeText.replaceAll("(?m)^", "\t");
         System.out.println(line + "\n" + indentedText + "\n" + line);
     }

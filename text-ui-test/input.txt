@@ -3,8 +3,16 @@ todo read CS2100 textbook
 deadline finish math assignment /by Wednesday
 mark 1
 event career talk /at Friday 4 - 5pm
+unmark 0
 mark 3
 unmark 1
+todo
 mark 4
+mark 5
+deadline /by 5pm
+list
+delete 2
+event lecture /by 6pm
+delete 5
 list
 bye

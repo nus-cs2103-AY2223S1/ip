@@ -2,8 +2,8 @@
  * This class encapsulates a to-do set by the user.
  */
 public class Todo extends Task {
-    Todo(String content) {
-        super(content);
+    Todo(String description) throws DwukeException {
+        super(description);
     }
 
     /**

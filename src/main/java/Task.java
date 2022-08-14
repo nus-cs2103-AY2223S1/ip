@@ -1,12 +1,15 @@
 /**
  * This class encapsulates a task set by the user.
  */
-public class Task {
-    private String content;
+public abstract class Task {
+    private String description;
     private boolean isDone;
 
-    Task(String content) {
-        this.content = content;
+    Task(String description) throws DwukeException {
+        if (description.equals("")) {
+            throw new DwukeException("oops!!! da descwiption of a twask cannot be empty.");
+        }
+        this.description = description;
         this.isDone = false;
     }
 
@@ -25,6 +28,18 @@ public class Task {
     }
 
     /**
+     * Changes the description of this task to the new description.
+     *
+     * @throws DwukeException If the new description is empty.
+     */
+    public void changeDescription(String newDescription) throws DwukeException {
+        if (newDescription.equals("")) {
+            throw new DwukeException("oops!!! da descwiption of a twask cannot be empty.");
+        }
+        this.description = newDescription;
+    }
+
+    /**
      * Returns a String representation of this task.
      *
      * @return A String representing this task.
@@ -32,6 +47,6 @@ public class Task {
     @Override
     public String toString() {
         String status = this.isDone ? "X" : " ";
-        return "[" + status + "] " + this.content;
+        return "[" + status + "] " + this.description;
     }
 }

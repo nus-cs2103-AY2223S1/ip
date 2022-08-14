@@ -4,7 +4,7 @@
 public class EventCommand extends AddCommand {
     public static final String COMMAND_WORD = "event";
 
-    EventCommand(Event event) {
-        super(event);
+    EventCommand(TaskList taskList, Event event) {
+        super(taskList, event);
     }
 }
