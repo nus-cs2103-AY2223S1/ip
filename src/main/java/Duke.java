@@ -30,7 +30,7 @@ public class Duke {
                     string.append(itemIndex).append(".").append(Duke.tasks[i]).append("\n");
                 }
 
-                System.out.println(Duke.formatText(string.toString()));
+                System.out.println(Duke.formatText("Here are the tasks in your list\n" + string.toString()));
                 continue;
             }
 
@@ -54,8 +54,23 @@ public class Duke {
             }
 
             // Add item to list.
-            Duke.tasks[Task.totalTasks++] = new Task(userInput);
-            System.out.println(Duke.formatText("added: " + userInput));
+            if (userInput.contains("todo")) {
+                Duke.tasks[Task.totalTasks++] = new ToDo(userInput.substring(5));
+            } else if (userInput.contains("deadline")) {
+                String details = userInput.substring(9);
+                String taskName = details.split(" /by")[0];
+                String date = details.split(" /by")[1];
+                Duke.tasks[Task.totalTasks++] = new Deadline(taskName, date);
+            } else if (userInput.contains("event")) {
+                String details = userInput.substring(6);
+                String taskName = details.split(" /at")[0];
+                String date = details.split(" /at")[1];
+                Duke.tasks[Task.totalTasks++] = new Event(taskName, date);
+            }
+
+            System.out.println(Duke.formatText("Got it. I've added this task:\n" + "  " +
+                    Duke.tasks[Task.totalTasks - 1] + "\n" +
+                    "Now you have " + Task.totalTasks + " tasks in the list."));
         }
     }
 
