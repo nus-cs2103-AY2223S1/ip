@@ -19,7 +19,7 @@ public class Deadline extends Task {
     }
 
     @Override
-    public String getTaskIcon() {
-        return "[D]";
+    public String toString() {
+        return "[D]" + super.toString() + "(by: " + date + ")";
     }
 }
