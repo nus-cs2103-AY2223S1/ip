@@ -28,16 +28,24 @@ public class StorageList {
    * Marks the Task at the specified index as completed
    * @param i Index of the Task to be marked as completed
    */
-  public void mark(int i) {
-    list.get(i).mark();
+  public void mark(int i) throws DukeException{
+    try {
+      list.get(i).mark();
+    } catch (IndexOutOfBoundsException e) {
+      throw new DukeException("Invalid index.");
+    }
   }
 
   /**
    * Unmarks the Task at the specified index as completed
    * @param i Index of the Task to be unmarked as completed
    */
-  public void unmark(int i) {
-    list.get(i).unmark();
+  public void unmark(int i) throws DukeException{
+    try {
+      list.get(i).unmark();
+    } catch (IndexOutOfBoundsException e) {
+      throw new DukeException("Invalid index.");
+    }
   }
 
   /**

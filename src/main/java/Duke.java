@@ -18,7 +18,7 @@ public class Duke {
     /**
      * Parses the user input and calls the appropriate method
      */
-    private static void commandParser(){
+    private static void commandParser() {
         boolean endLoop = false;
         StorageList storageList = new StorageList();
 
@@ -35,31 +35,35 @@ public class Duke {
                     Output.LIST.list(storageList);
                     break;
                 case "mark":
-                    //TODO: handle when index is out of range
-                    int index = Integer.parseInt(input.split(" ")[1]) - 1;
-                    storageList.mark(index);
-                    Output.MARK.changeStatus(storageList.get(index));
+                    int index = getIndex(input);
+                    try {
+                        storageList.mark(index);
+                        Output.MARK.changeStatus(storageList.get(index));
+                    } catch (DukeException e) {
+                        System.out.println(e.getMessage());
+                    }
+                    
                     break;
                 case "unmark":
-                    //TODO: handle when index is out of range
-                    index = Integer.parseInt(input.split(" ")[1]) - 1;
-                    storageList.unmark(index);
-                    Output.UNMARK.changeStatus(storageList.get(index));
+                    index = getIndex(input);
+                    try {
+                        storageList.unmark(index);
+                        Output.UNMARK.changeStatus(storageList.get(index));
+                    } catch (DukeException e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case "deadline":
-                    String by = findSecondCommand(input, "/by");
-                    addTask(new Deadline(findFirstCommand(input, command), by), storageList);
+                    parseTask(input, command, storageList, "/by");
                     break;
                 case "event":
-                    String at = findSecondCommand(input, "/at");
-                    addTask(new Event(findFirstCommand(input, command), at), storageList);
+                    parseTask(input, command, storageList, "/at");
                     break;
                 case "todo":
-                    addTask(new Todo(findFirstCommand(input, command)), storageList);
+                    parseTask(input, command, storageList, "");
                     break;
                 default:
-                    // add as to-do
-                    addTask(new Todo(input), storageList);
+                    System.out.println(new DukeException("I'm sorry, but I don't know what that means :-(").getMessage());
             }
         }
     }
@@ -70,9 +74,12 @@ public class Duke {
      * @param command First command
      * @return String between first command and second command (if exist)
      */
-    private static String findFirstCommand(String input, String command) {
+    private static String findFirstCommand(String input, String command) throws DukeException {
         int endOfCommand = input.indexOf("/");
         int beginIndex = input.indexOf(command) + command.length() + 1;
+        if (beginIndex > input.length()) {
+            throw new DukeException("The description of a " + command + " cannot be empty.");
+        }
         return endOfCommand == -1
                 ? input.substring(beginIndex)
                 : input.substring(beginIndex, endOfCommand);
@@ -85,11 +92,31 @@ public class Duke {
      * @return String between second command (if exist) and end
      */
     private static String findSecondCommand(String input, String command) {
-        return input.contains(command)
+        return input.contains(command) && !command.equals("")
                 ? input.substring(input.indexOf(command) + command.length() + 1)
                 : "";
     }
-
+    
+    private static void parseTask(String input, String command, StorageList storageList, String secCommand) {
+        try {
+            String desc = findFirstCommand(input, command);
+            String secondCommand = findSecondCommand(input, secCommand);
+            switch (command) {
+                case "deadline":
+                    addTask(new Deadline(desc, secondCommand), storageList);
+                    break;
+                case "event":
+                    addTask(new Event(desc, secondCommand), storageList);
+                    break;
+                case "todo":
+                    addTask(new Todo(desc), storageList);
+                    break;
+            }
+        } catch (DukeException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
     /**
      * Adds a Task to the StorageList, print out the appropriate String
      * @param task Task to be added to the StorageList
@@ -98,5 +125,9 @@ public class Duke {
     private static void addTask(Task task, StorageList storageList) {
         storageList.add(task);
         Output.ADD.addTask(task, storageList);
+    }
+    
+    private static int getIndex(String input) {
+        return Integer.parseInt(input.split(" ")[1]) - 1;
     }
 }

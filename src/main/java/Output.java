@@ -67,12 +67,21 @@ public enum Output{
   }
 
   /**
-   * Specifies the output format
+   * Prints the specified output format
    * @param s String to be printed out
    */
   static void echo(String s) {
-    System.out.println("\t--------------------------------------------------------");
-    System.out.println("\t " + s);
-    System.out.println("\t--------------------------------------------------------");
+    System.out.println(wrapper(s));
+  }
+
+  /**
+   * Wraps the String with the specified format
+   * @param s String to be wrapped
+   * @return Wrapped String
+   */
+  public static String wrapper(String s) {
+    return "\t--------------------------------------------------------\n" 
+            + "\t " + s + "\n"
+            + "\t--------------------------------------------------------";
   }
 }

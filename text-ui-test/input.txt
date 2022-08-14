@@ -5,4 +5,10 @@ mark 1
 mark 2
 unmark 2
 list
+todo
+deadline
+event
+blah
+mark 100
+unmark 100
 bye
