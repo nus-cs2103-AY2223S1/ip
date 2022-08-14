@@ -37,8 +37,33 @@ public class Duke {
                 } catch (NumberFormatException e) {
                     System.out.println("Please specify a task number!");
                 }
+            } else if (input.startsWith("todo")) {
+                try {
+                    String description = input.substring(5);
+                    taskList.addTask(new ToDo(description));
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("Please specify a task!");
+                }
+            } else if (input.startsWith("deadline")) {
+                try {
+                    int pos = input.indexOf(" /by ");
+                    String description = input.substring(9, pos).trim();
+                    String by = input.substring(pos + 5);
+                    taskList.addTask(new Deadline(description, by));
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("Please specify a task and a date / time!");
+                }
+            } else if (input.startsWith("event")) {
+                try {
+                    int pos = input.indexOf(" /at ");
+                    String description = input.substring(6, pos).trim();
+                    String at = input.substring(pos + 5);
+                    taskList.addTask(new Event(description, at));
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("Please specify a task and a date / time!");
+                }
             } else { // store tasks entered by the user
-                taskList.addTask(input);
+                taskList.addTask(new Task(input));
             }
         }
     }
