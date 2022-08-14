@@ -4,6 +4,9 @@ public class Duke {
     /** List of items stored by Duke. */
     private static final String[] list = new String[100];
 
+    /** List that keeps track of whether item is marked as done. */
+    private static final boolean[] isDoneList = new boolean[100];
+
     /** Total number of items in list. */
     private static int itemsCount = 0;
 
@@ -17,24 +20,52 @@ public class Duke {
 
         while (true) {
             String userInput = sc.nextLine();
+
+            // End service.
             if (userInput.equals("bye")) {
                 System.out.println(Duke.formatText("Bye. Hope to see you again soon!"));
                 break;
             }
 
+            // List items in list.
             if (userInput.equals("list")) {
                 StringBuilder string = new StringBuilder("");
                 for (int i = 0; i < Duke.itemsCount; i++) {
                     int itemIndex = i + 1;
-                    string.append(itemIndex).append(". ").append(Duke.list[i]).append("\n");
+
+                    if (Duke.isDoneList[i]) {
+                        string.append(itemIndex).append(".").append("[X] ").append(Duke.list[i]).append("\n");
+                    } else {
+                        string.append(itemIndex).append(".").append("[ ] ").append(Duke.list[i]).append("\n");
+                    }
                 }
 
                 System.out.println(Duke.formatText(string.toString()));
                 continue;
             }
 
-            Duke.list[Duke.itemsCount++] = userInput;
+            // Mark item as done.
+            if (userInput.contains("mark")) {
+                String action = userInput.split(" ")[0];
+                int index = Integer.parseInt(userInput.split(" ")[1]);
 
+                if (action.equals("mark")) {
+                    System.out.println(Duke.formatText("Nice! I've marked this task as done:\n" + "[X] " +
+                            Duke.list[index - 1]));
+                    Duke.isDoneList[index - 1] = true;
+                    continue;
+                }
+
+                if (action.equals("unmark")) {
+                    System.out.println(Duke.formatText("OK, I've marked this task as not done yet:\n" + "[ ] " +
+                            Duke.list[index - 1]));
+                    Duke.isDoneList[index - 1] = false;
+                    continue;
+                }
+            }
+
+            // Add item to list.
+            Duke.list[Duke.itemsCount++] = userInput;
             System.out.println(Duke.formatText("added: " + userInput));
         }
     }
