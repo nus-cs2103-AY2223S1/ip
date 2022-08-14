@@ -21,13 +21,8 @@ public class Duke {
         scanner = new Scanner(System.in);
     }
 
-    private void printResponse(String response) {
-        System.out.println(">> " + response);
-    }
-
     private String[] getUserCommands() {
-        System.out.print("<< ");
-        String[] args = scanner.nextLine().split(" ");
+        String[] args = IOHelper.read(scanner).strip().split(" ");
         StringJoiner description = new StringJoiner(" ");
         StringJoiner remaining = new StringJoiner(" ");
         boolean hasFoundCut = false;
@@ -51,47 +46,48 @@ public class Duke {
 
     private void greet() {
         System.out.println(LOGO);
-        printResponse(GREET_MESSAGE);
+        IOHelper.print(GREET_MESSAGE);
     }
 
     private void endInteraction() {
-        printResponse(BYE_MESSAGE);
+        IOHelper.print(BYE_MESSAGE);
     }
 
     private void addTask(String[] commands) {
         if (commands.length != 2) {
-            printResponse(WRONG_COMMAND);
+            IOHelper.print(WRONG_COMMAND);
             return;
         }
         Task task = new Task(commands[1]);
         tasks.add(task);
-        printResponse("Added task:\n\t" + task);
+        IOHelper.print("Added task:\n\t" + task);
     }
 
     private void setTaskState(String[] commands, boolean isDone) {
         if (commands.length != 2) {
-            printResponse(WRONG_COMMAND);
+            IOHelper.print(WRONG_COMMAND);
             return;
         }
         int index;
         try {
+
             index = Integer.parseInt(commands[1]) - 1;
         } catch (NumberFormatException e) {
-            printResponse(WRONG_COMMAND);
+            IOHelper.print(WRONG_COMMAND);
             return;
         }
         if (index < 0 || index >= tasks.size()) {
-            printResponse(INDEX_OUT_OF_BOUND);
+            IOHelper.print(INDEX_OUT_OF_BOUND);
             return;
         }
         tasks.get(index).setDone(isDone);
-        printResponse(String.format("I have %s this task:\n\t%s",
+        IOHelper.print(String.format("I have %s this task:\n\t%s",
                 isDone ? "checked" : "unchecked", tasks.get(index)));
     }
 
     private void listTasks(String[] commands) {
         if (commands.length != 1) {
-            printResponse(WRONG_COMMAND);
+            IOHelper.print(WRONG_COMMAND);
             return;
         }
         StringBuilder response = new StringBuilder();
@@ -102,10 +98,11 @@ public class Duke {
                 response.append("\n");
             }
         }
-        printResponse(response.toString());
+        IOHelper.print(response.toString());
     }
 
     private void startInteraction() {
+        IOHelper.printWithoutPrompt(LOGO);
         while (true) {
             String[] commands = getUserCommands();
             boolean hasEnded = false;
@@ -130,7 +127,7 @@ public class Duke {
             case "":
                 break;
             default:
-                printResponse(WRONG_COMMAND);
+                IOHelper.print(WRONG_COMMAND);
             }
             if (hasEnded) {
                 break;
