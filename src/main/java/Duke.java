@@ -29,7 +29,7 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        System.out.println("Hello! I' Jean\n" +
+        System.out.println("Hello! I'm Jean\n" +
                            "How can I help you?\n" +
                            "Bonjour! Je m'appelle Jean\n" +
                            "Vous désirez?\n");
