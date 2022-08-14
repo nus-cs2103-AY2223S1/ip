@@ -93,6 +93,7 @@ public class Duke {
     }
 
     private static void printTasks() {
+        System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < TASKS.size(); i++) {
             System.out.println(String.format("%d. %s", 1 + i, TASKS.get(i).toString()));
         }
