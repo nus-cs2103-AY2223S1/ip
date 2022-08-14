@@ -1,7 +1,6 @@
 import java.util.Scanner;
 public class Duke {
-    private static String[] list = new String[100];
-    private static boolean[] isComplete = new boolean[100];
+    private static Task[] tasks = new Task[100];
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         System.out.println("Hello! I'm Duke.\nWhat can I do for you?");
@@ -14,35 +13,30 @@ public class Duke {
                 break;
             } else if (command.equals("list")) {
                 for (int pos = 0; pos < 100; pos++) {
-                    if (list[pos] == null) break;
+                    if (tasks[pos] == null) break;
                     System.out.println(
-                            pos + 1 + ". " + (isComplete[pos] ? "[X] " : "[ ] ") + list[pos]
+                            pos + 1 + ". [" + tasks[pos].getStatus() + "] " + tasks[pos].getDescription()
                     );
                 }
                 System.out.print(">> ");
                 command = input.nextLine();
-            } else if (command.startsWith("mark")) {
-                int pos = Integer.parseInt(command.split(" ")[1]);
-                if (list[pos - 1] == null) {
+            } else if (command.startsWith("mark") || command.startsWith("unmark")) {
+                int pos = Integer.parseInt(command.split(" ")[1]) - 1;
+                if (tasks[pos] == null) {
                     System.out.println("No such task.");
                 } else {
-                    isComplete[pos - 1] = true;
+                    if (command.startsWith("mark")) {
+                        tasks[pos].markAsDone();
+                    } else {
+                        tasks[pos].markAsUndone();
+                    }
                     System.out.println(
-                            "Nice! I've marked this task as done:\n" +
-                                    "[X] " + list[pos - 1]
-                    );
-                }
-                System.out.print(">> ");
-                command = input.nextLine();
-            } else if (command.startsWith("unmark")) {
-                int pos = Integer.parseInt(command.split(" ")[1]);
-                if (list[pos - 1] == null) {
-                    System.out.println("No such task.");
-                } else {
-                    isComplete[pos - 1] = false;
-                    System.out.println(
-                            "Alright! I've marked this task as not done:\n" +
-                                    "[ ] " + list[pos - 1]
+                            "Nice! I've marked this task as " +
+                                    (command.startsWith("mark") ? "done" : "undone") +
+                                    "\n [" +
+                                    tasks[pos].getStatus() +
+                                    "] " +
+                                    tasks[pos].getDescription()
                     );
                 }
                 System.out.print(">> ");
@@ -50,8 +44,8 @@ public class Duke {
             } else {
                 System.out.println("Added: " + command);
                 for (int pos = 0; pos < 100; pos++) {
-                    if (list[pos] == null) {
-                        list[pos] = command;
+                    if (tasks[pos] == null) {
+                        tasks[pos] = new Task(command);
                         break;
                     }
                 }
