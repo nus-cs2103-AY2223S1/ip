@@ -96,10 +96,21 @@ public class Duke {
         return Integer.parseInt(numberOnly);
     }
 
+    /**
+     * Filter userInput and call addEventToHistory
+     * @param event
+     */
     private static void handleEvent(String event) {
-
+        String description, date;
+        description = event.substring(event.indexOf("event ") + 6, event.indexOf(" /at"));
+        date = event.substring(event.indexOf(" /at") + 5);
+        addEventToHistory(description, date);
     }
 
+    /**
+     * Menu handler
+     * @param userInput
+     */
     private static void handleInput(String userInput) {
         if (userInput.equals("bye")) {
             //exit
