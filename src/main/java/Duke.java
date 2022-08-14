@@ -38,6 +38,20 @@ public class Duke {
         return "\t> added: " + task;
     }
 
+    public String list() {
+        int len = tasks.size();
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < len; i++) {
+            int index = i + 1;
+            if (index == 1) {
+                stringBuilder.append("\t> " + index + ". " + tasks.get(i));
+            } else {
+                stringBuilder.append("\n\t  " + index + ". " + tasks.get(i));
+            }
+        }
+        return stringBuilder.toString();
+    }
+
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -56,6 +70,8 @@ public class Duke {
                 System.out.println(duke.exit());
                 scanner.close();
                 run = false;
+            } else if (message.equalsIgnoreCase("list")) {
+                System.out.println(duke.list());
             } else {
                 System.out.println(duke.add(message));
             }
