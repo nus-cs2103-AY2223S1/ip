@@ -12,11 +12,11 @@ public class Poolsheen {
     private static final String welcomeMessage = "Hello from" + logo + "\n" +
             "Type something in for Poolsheen to respond to you:";
 
-    private static final String poolsheenLastReply = "meow *_*";
+    private static final String lastReply = "meow *_*";
 
     private static final String horizontalLine = "---------------";
 
-    private static final String poolshenStartReply = "      ";
+    private static final String startReply = "      ";
 
     private static final String exitCommand = "bye";
 
@@ -95,13 +95,12 @@ public class Poolsheen {
                     "and remembers you said nothing :(");
         } else {
             String displayStr = "Poolsheen thinks back... " +
-                    "and remembers you said: "
-                    + "\n" + Poolsheen.poolshenStartReply;
+                    "and remembers you said:";
             int currPos = 1;
             for (String task : this.listOfTasks) {
                 if (task != null) {
                     String line = currPos + "." + " " + task;
-                    displayStr += line + "\n" + Poolsheen.poolshenStartReply;
+                    displayStr += "\n" + Poolsheen.startReply + line;
                     currPos += 1;
                 }
             }
@@ -115,7 +114,9 @@ public class Poolsheen {
      */
     private void say(String message) {
         System.out.println(Poolsheen.horizontalLine + "\n" +
-                Poolsheen.poolshenStartReply + message +
+                Poolsheen.startReply + message + "\n" +
+                Poolsheen.startReply +
+                Poolsheen.lastReply +
                 "\n" + Poolsheen.horizontalLine);
     }
 
