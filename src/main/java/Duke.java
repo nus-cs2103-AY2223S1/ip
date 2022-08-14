@@ -21,8 +21,7 @@ public class Duke {
     /*
      * Take in user input. As long as input is not bye, calls the function
      * to act on the input. If input is bye, then calls the goodbye function.
-     * Accepts only Strings.
-     * TODO: What if someone passes in a non-string?
+     * All inputs are considered as Strings.
      */
     Scanner sc = new Scanner(System.in);
 
