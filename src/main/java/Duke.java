@@ -1,10 +1,24 @@
+import java.util.Scanner;
+
 public class Duke {
+
+    public static final String GREETING_MESSAGE = "Hello! I'm TedBot ヾ(≧▽≦*)o\n"
+                                    + "What do you want to do today?";
+    public static final String GOODBYE_MESSAGE = "Bye! Hope to see you soon ༼- つ ◕_◕ ༽つ";
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+
+        Scanner sysIn = new Scanner(System.in);
+        boolean exitCalled = false;
+
+        System.out.println(GREETING_MESSAGE);
+        while (!exitCalled) {
+            String userQuery = sysIn.nextLine();
+            if (userQuery.equals("bye")) {
+                System.out.println(GOODBYE_MESSAGE);
+                exitCalled = true;
+            } else {
+                System.out.println(userQuery);
+            }
+        }
     }
 }
