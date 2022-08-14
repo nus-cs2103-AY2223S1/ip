@@ -16,10 +16,11 @@ public class Duke {
         }
 
         /**
-         * Return task description as per task status
-         * @return string describing the contents of task object
+         * String encapsulates Task description and isDone status.
+         * @return String representing Task object
          */
-        public String getStatus() {
+        @Override
+        public String toString() {
             String status;
             if(this.isDone) {
                 status = String.format("[✓] %s\n", this.description);
@@ -38,7 +39,7 @@ public class Duke {
         }
     }
 
-    private static ArrayList<Task> userInputHistory = new ArrayList();
+    private static ArrayList<Task> userInputHistory = new ArrayList<>();
     private static void greetUser() {
         String logo = "_______     _\n" +
                 "|  ___|    | |\n" +
@@ -55,7 +56,7 @@ public class Duke {
 
     /**
      * Method to add user input to history
-     * @param s
+     * @param s String description to add to userInputHistory
      */
     private static void addToHistory(String s) {
         Task newTask = new Task(s);
@@ -72,7 +73,7 @@ public class Duke {
         System.out.print("______\n");
         System.out.println("Tasks in your list are: ");
         for (Task t: userInputHistory) {
-            System.out.printf("%d. %s",count, t.getStatus());
+            System.out.printf("%d. %s",count, t);
             count ++;
         }
         userInputHistory.forEach(input -> {
@@ -82,35 +83,36 @@ public class Duke {
     }
 
     /**
-     * Mark task at index n in list
-     * @param n
+     * Mark task at index n in list.
+     * No checks performed to check if task is already marked.
+     * @param n task to mark as done (n - 1) index in actual list
      */
     public static void markTask(int n){
         Task taskToModify = userInputHistory.get(n - 1);
         taskToModify.markAsDone();
-        System.out.printf("Marked task %d \n%s", n, taskToModify.getStatus());
+        System.out.printf("Marked task %d \n%s", n, taskToModify);
     }
 
     /**
-     * Unmark task at index n in list
-     * @param n
+     * Unmark task at index n in list.
+     * No checks performed to check if task is already unmarked.
+     * @param n task to mark as not done (n - 1) index in actual list
      */
     public static void unmarkTask(int n) {
         Task taskToModify = userInputHistory.get(n - 1);
         taskToModify.markAsNotDone();
-        System.out.printf("Unmarked task %d \n%s", n, taskToModify.getStatus());
+        System.out.printf("Unmarked task %d \n%s", n, taskToModify);
     }
 
     /**
      * Extract task number from string input
-     * @param s
-     * @return
+     * @param s extracts task number from user input
+     * @return index of the task in the list plus one
      */
     private static int getTaskNumber(String s) {
         // credit: https://stackoverflow.com/questions/14974033/extract-digits-from-string-stringutils-java
         String numberOnly= s.replaceAll("[^0-9]", "");
-        int num = Integer.parseInt(numberOnly);
-        return num;
+        return Integer.parseInt(numberOnly);
     }
 
     private static void handleInput(String userInput) {
