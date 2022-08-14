@@ -35,6 +35,9 @@ public class Duke {
                 } else if (line.startsWith("event")) {
                     String[] s = line.replace("event", "").split(" /at ");
                     addList(new Event(s[0], s[1]));
+                } else if (line.startsWith("delete")) {
+                    int i = Integer.parseInt(line.replace("delete ", ""));
+                    delete(i);
                 } else {
                     addList(new Task(null));
                 }
@@ -112,6 +115,16 @@ public class Duke {
     private void printException(DukeException d) {
         printLine();
         print(d.getMessage());
+        printLine();
+    }
+
+    private void delete(int i) {
+        Task t = this.l.get(i - 1);
+        this.l.remove(i - 1);
+        printLine();
+        print("Noted. I've removed this task:");
+        print("  " + t.toString());
+        print("Now you have " + l.size() + " tasks in the list.");
         printLine();
     }
 
