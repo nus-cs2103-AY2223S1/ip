@@ -1,6 +1,12 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
+    ArrayList<String> tasks;
+
+    public Duke() {
+        this.tasks = new ArrayList<>();
+    }
 
     /**
      * To greet the user
@@ -27,6 +33,11 @@ public class Duke {
         return "\t> Bye. Hope to see you again soon :D";
     }
 
+    public String add(String task) {
+        tasks.add(task);
+        return "\t> added: " + task;
+    }
+
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -46,7 +57,7 @@ public class Duke {
                 scanner.close();
                 run = false;
             } else {
-                System.out.println(duke.echo(message));
+                System.out.println(duke.add(message));
             }
         }
     }
