@@ -1,7 +1,120 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+Hello! I'm Jude.
+What can I do for you?
 
+> Sorry, I don't understand what this means!
+
+> 
+> The following todo task has been added:
+  [T][ ] task1
+The task list now contains 1 task(s).
+
+> The following todo task has been added:
+  [T][ ] task2
+The task list now contains 2 task(s).
+
+> 1.[T][ ] task1
+2.[T][ ] task2
+
+> The following todo task has been added:
+  [T][ ] task3
+The task list now contains 3 task(s).
+
+> The following deadline task has been added:
+  [D][ ] task4 (by: Monday)
+The task list now contains 4 task(s).
+
+> The following event task has been added:
+  [E][ ] task5 (at: Monday 4pm-5pm)
+The task list now contains 5 task(s).
+
+> The following task has been marked as done
+[T][X] task1
+
+> 1.[T][X] task1
+2.[T][ ] task2
+3.[T][ ] task3
+4.[D][ ] task4 (by: Monday)
+5.[E][ ] task5 (at: Monday 4pm-5pm)
+
+> The following task has been marked as done
+[T][X] task2
+
+> 1.[T][X] task1
+2.[T][X] task2
+3.[T][ ] task3
+4.[D][ ] task4 (by: Monday)
+5.[E][ ] task5 (at: Monday 4pm-5pm)
+
+> The following task has been marked as done
+[E][X] task5 (at: Monday 4pm-5pm)
+
+> 1.[T][X] task1
+2.[T][X] task2
+3.[T][ ] task3
+4.[D][ ] task4 (by: Monday)
+5.[E][X] task5 (at: Monday 4pm-5pm)
+
+> The following task has been marked as done
+[D][X] task4 (by: Monday)
+
+> 1.[T][X] task1
+2.[T][X] task2
+3.[T][ ] task3
+4.[D][X] task4 (by: Monday)
+5.[E][X] task5 (at: Monday 4pm-5pm)
+
+> The following task has been marked as done
+[T][X] task2
+
+> 1.[T][X] task1
+2.[T][X] task2
+3.[T][ ] task3
+4.[D][X] task4 (by: Monday)
+5.[E][X] task5 (at: Monday 4pm-5pm)
+
+> The following task has been marked as undone
+[T][ ] task1
+
+> 1.[T][ ] task1
+2.[T][X] task2
+3.[T][ ] task3
+4.[D][X] task4 (by: Monday)
+5.[E][X] task5 (at: Monday 4pm-5pm)
+
+> The following task has been marked as undone
+[T][ ] task2
+
+> 1.[T][ ] task1
+2.[T][ ] task2
+3.[T][ ] task3
+4.[D][X] task4 (by: Monday)
+5.[E][X] task5 (at: Monday 4pm-5pm)
+
+> The following task has been marked as undone
+[E][ ] task5 (at: Monday 4pm-5pm)
+
+> 1.[T][ ] task1
+2.[T][ ] task2
+3.[T][ ] task3
+4.[D][X] task4 (by: Monday)
+5.[E][ ] task5 (at: Monday 4pm-5pm)
+
+> The following task has been marked as undone
+[D][ ] task4 (by: Monday)
+
+> 1.[T][ ] task1
+2.[T][ ] task2
+3.[T][ ] task3
+4.[D][ ] task4 (by: Monday)
+5.[E][ ] task5 (at: Monday 4pm-5pm)
+
+> The following task has been marked as undone
+[T][ ] task2
+
+> 1.[T][ ] task1
+2.[T][ ] task2
+3.[T][ ] task3
+4.[D][ ] task4 (by: Monday)
+5.[E][ ] task5 (at: Monday 4pm-5pm)
+
+> Goodbye! Have a nice day!

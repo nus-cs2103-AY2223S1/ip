@@ -1,0 +1,29 @@
+jude
+list
+todo task1
+todo task2
+list
+todo task3
+deadline task4 /by Monday
+event task5 /at Monday 4pm-5pm
+mark 1
+list
+mark 2
+list
+mark 5
+list
+mark 4
+list
+mark 2
+list
+unmark 1
+list
+unmark 2
+list
+unmark 5
+list
+unmark 4
+list
+unmark 2
+list
+bye
