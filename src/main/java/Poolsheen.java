@@ -1,47 +1,81 @@
 import java.util.Scanner;
 
 public class Poolsheen {
-    public static void main(String[] args) {
+    private static final String logo = "\n" +
+            "██████╗░░█████╗░░█████╗░██╗░░░░░░██████╗██╗░░██╗███████╗███████╗███╗░░██╗\n" +
+            "██╔══██╗██╔══██╗██╔══██╗██║░░░░░██╔════╝██║░░██║██╔════╝██╔════╝████╗░██║\n" +
+            "██████╔╝██║░░██║██║░░██║██║░░░░░╚█████╗░███████║█████╗░░█████╗░░██╔██╗██║\n" +
+            "██╔═══╝░██║░░██║██║░░██║██║░░░░░░╚═══██╗██╔══██║██╔══╝░░██╔══╝░░██║╚████║\n" +
+            "██║░░░░░╚█████╔╝╚█████╔╝███████╗██████╔╝██║░░██║███████╗███████╗██║░╚███║\n" +
+            "╚═╝░░░░░░╚════╝░░╚════╝░╚══════╝╚═════╝░╚═╝░░╚═╝╚══════╝╚══════╝╚═╝░░╚══╝";
 
-        String logo = "\n" +
-                "██████╗░░█████╗░░█████╗░██╗░░░░░░██████╗██╗░░██╗███████╗███████╗███╗░░██╗\n" +
-                "██╔══██╗██╔══██╗██╔══██╗██║░░░░░██╔════╝██║░░██║██╔════╝██╔════╝████╗░██║\n" +
-                "██████╔╝██║░░██║██║░░██║██║░░░░░╚█████╗░███████║█████╗░░█████╗░░██╔██╗██║\n" +
-                "██╔═══╝░██║░░██║██║░░██║██║░░░░░░╚═══██╗██╔══██║██╔══╝░░██╔══╝░░██║╚████║\n" +
-                "██║░░░░░╚█████╔╝╚█████╔╝███████╗██████╔╝██║░░██║███████╗███████╗██║░╚███║\n" +
-                "╚═╝░░░░░░╚════╝░░╚════╝░╚══════╝╚═════╝░╚═╝░░╚═╝╚══════╝╚══════╝╚═╝░░╚══╝";
+    private static final String welcomeMessage = "Hello from" + logo + "\n" +
+            "Type something in for Poolsheen to respond to you:";
 
-        String welcomeMessage = "Hello from" + logo + "\n" +
-                "Type something in for Poolsheen to respond to you:";
+    private static final String poolsheenLastReply = "meow *_*";
 
-        System.out.println(welcomeMessage);
+    private static final String horizontalLine = "---------------";
 
-        String poolsheenLastReply = "meow *_*";
+    private static final String poolshenStartReply = "      ";
 
-        String horizontalLine = "---------------";
+    private static final String exitCommand = "bye";
 
-        String poolshenStartReply = "      ";
+    private static final String listCommand = "list";
 
-        String exitCommand = "bye";
+    private static final String exitMessage = "MeoAww... See you next time :(";
 
-        String exitMessage = "MeoAww... See you next time :(";
+    private static final String endMessage = "THE POOLSHEEN PROGRAM HAS STOPPED RUNNING";
 
-        boolean hasExited = false;
+    /** Whether if this poolsheen object has stopped running */
+    private boolean hasExited;
 
-        String userInput = "";
-        Scanner myScanner = new Scanner(System.in);
+    /** The current input that the poolsheen object has received */
+    private String userInput;
 
-        while (!hasExited) {
-            userInput = myScanner.nextLine();
-            if (userInput.equals(exitCommand)) {
-                hasExited = true;
+    /** The scanner object which this poolsheen uses */
+    private Scanner scanner;
+
+    /** The list of tasks that the poolsheen object has */
+    private String[] listOfTasks;
+
+    /**
+     * A private constructor to initialise the Poolsheen object.
+     */
+    private Poolsheen() {
+        this.listOfTasks = new String[100];
+        this.hasExited = false;
+        this.userInput = "";
+        this.scanner = new Scanner(System.in);
+    }
+
+    /**
+     * The first method to be run for Poolsheen to listen to our user.
+     */
+    private void run() {
+        while (!this.hasExited) {
+            this.userInput = this.scanner.nextLine();
+            if (this.userInput.equals(this.exitCommand)) {
+                this.exit();
             } else {
-                System.out.println(horizontalLine + "\n" + poolshenStartReply + userInput + " " +
-                        poolsheenLastReply + "\n" + horizontalLine);
+                System.out.println(this.horizontalLine + "\n" + this.poolshenStartReply + this.userInput + " " +
+                        this.poolsheenLastReply + "\n" + this.horizontalLine);
             }
         }
+    }
 
-        System.out.println(horizontalLine + "\n" + poolshenStartReply + exitMessage + "\n" + horizontalLine);
+    /**
+     * The last method to be run for Poolsheen to stop listening to our user.
+     */
+    private void exit() {
+        this.hasExited = true;
+        System.out.println(this.horizontalLine + "\n" + this.poolshenStartReply
+                + this.exitMessage + "\n" + this.horizontalLine);
+    }
 
+    public static void main(String[] args) {
+        Poolsheen ps = new Poolsheen();
+        System.out.println(ps.welcomeMessage);
+        ps.run();
+        System.out.println(ps.endMessage);
     }
 }
