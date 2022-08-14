@@ -65,6 +65,16 @@ public class Duke {
         return stringBuilder.toString();
     }
 
+    /**
+     * To delete the task specified.
+     * @return A string that notifies users that the task has been deleted.
+     */
+    public String delete(int taskNumber) {
+        String message = String.format("\tNoted, I have removed this task: \n\t\t%s", tasks.get(taskNumber - 1));
+        tasks.remove(taskNumber - 1);
+        return message;
+    }
+
     public static void main(String[] args) throws DukeException {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -125,6 +135,9 @@ public class Duke {
                     String at = message.substring(index + 5);
                     Event event = new Event(description, at);
                     System.out.println(duke.add(event));
+                } else if (message.startsWith("delete")) {
+                    int taskNumber = Integer.parseInt(message.substring(7));
+                    System.out.println(duke.delete(taskNumber));
                 } else {
                     throw new DukeException("I'm sorry >< I don't know what this means :(");
                 }
