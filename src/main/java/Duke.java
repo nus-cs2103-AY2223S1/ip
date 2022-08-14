@@ -4,49 +4,75 @@ import java.util.Scanner;
 public class Duke {
     private Scanner sc;
     private ArrayList<Task> l;
+    private boolean end;
+    private enum Inputs {
+        BYE,
+        LIST,
+        MARK,
+        UNMARK,
+        TODO,
+        DEADLINE,
+        EVENT,
+        DELETE,
+        ELSE
+    }
 
     public Duke() {
+        this.sc = new Scanner(System.in);
         this.l = new ArrayList<>();
+        this.end = false;
     }
 
     private void run() {
         intro();
-        this.sc = new Scanner(System.in);
-        boolean end = false;
         while (!end) {
             try {
                 String line = this.sc.nextLine();
-                if (line.equals("bye")) {
-                    end = true;
-                } else if (line.equals("list")) {
-                    printList();
-                } else if (line.startsWith("mark")) {
-                    int i = Integer.parseInt(line.replace("mark ", ""));
-                    mark(i);
-                } else if (line.startsWith("unmark")) {
-                    int i = Integer.parseInt(line.replace("unmark ", ""));
-                    unmark(i);
-                } else if (line.startsWith("todo")) {
-                    String s = line.replace("todo", "");
-                    addList(new Todo(s));
-                } else if (line.startsWith("deadline")) {
-                    String[] s = line.replace("deadline", "").split(" /by ");
-                    addList(new Deadline(s[0], s[1]));
-                } else if (line.startsWith("event")) {
-                    String[] s = line.replace("event", "").split(" /at ");
-                    addList(new Event(s[0], s[1]));
-                } else if (line.startsWith("delete")) {
-                    int i = Integer.parseInt(line.replace("delete ", ""));
-                    delete(i);
-                } else {
-                    addList(new Task(null));
-                }
+                output(line);
             } catch (DukeException d) {
                 printException(d);
             }
         }
         this.sc.close();
         exit();
+    }
+
+    private void output(String s) throws DukeException {
+        switch (getInput(s)) {
+            case BYE:
+                this.end = true;
+                break;
+            case LIST:
+                printList();
+                break;
+            case MARK:
+                int markNum = Integer.parseInt(s.replace("mark ", ""));
+                mark(markNum);
+                break;
+            case UNMARK:
+                int unmarkNum = Integer.parseInt(s.replace("unmark ", ""));
+                unmark(unmarkNum);
+                break;
+            case TODO:
+                String tDes = s.replace("todo", "");
+                addList(new Todo(tDes));
+                break;
+            case EVENT:
+                String[] eDes = s.replace("event", "").split(" /at ");
+                addList(new Event(eDes[0], eDes[1]));
+                break;
+            case DEADLINE:
+                String[] dDes = s.replace("deadline", "").split(" /by ");
+                addList(new Deadline(dDes[0], dDes[1]));
+                break;
+            case DELETE:
+                int delNum = Integer.parseInt(s.replace("delete ", ""));
+                delete(delNum);
+                break;
+            default:
+                addList(new Task(null));
+                break;
+        }
     }
 
     private void printLine() {
@@ -126,6 +152,28 @@ public class Duke {
         print("  " + t.toString());
         print("Now you have " + l.size() + " tasks in the list.");
         printLine();
+    }
+
+    private Inputs getInput(String s) {
+        if (s.equals("bye")) {
+            return Inputs.BYE;
+        } else if (s.equals("list")) {
+            return Inputs.LIST;
+        } else if (s.startsWith("mark")) {
+            return Inputs.MARK;
+        } else if (s.startsWith("unmark")) {
+            return Inputs.UNMARK;
+        } else if (s.startsWith("todo")) {
+            return Inputs.TODO;
+        } else if (s.startsWith("deadline")) {
+            return Inputs.DEADLINE;
+        } else if (s.startsWith("event")) {
+            return Inputs.EVENT;
+        } else if (s.startsWith("delete")) {
+            return Inputs.DELETE;
+        } else {
+            return Inputs.ELSE;
+        }
     }
 
     public static void main(String[] args) {
