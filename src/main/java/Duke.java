@@ -44,6 +44,11 @@ public class Duke {
                     continue;
                 }
 
+                if (split.length == 2 && isNumeric(split[1]) && split[0].equals("delete")) {
+                    deleteTask(getTask(Integer.parseInt(split[1]) - 1));
+                    continue;
+                }
+
                 if (split[0].equals("todo")) {
                     addToDo(userInput.substring(4).trim());
                     continue;
@@ -82,6 +87,13 @@ public class Duke {
             throw new DukeException("OOPS!!! The task number is out of bounds.");
         }
         return TASKS.get(index);
+    }
+
+    private static void deleteTask(Task task) {
+        TASKS.remove(task);
+        System.out.println("Noted. I've removed this task:");
+        System.out.println(task.toString());
+        System.out.println(String.format("Now you have %d tasks in the list.", TASKS.size()));
     }
 
     private static void markTaskAsDone(Task task) {
