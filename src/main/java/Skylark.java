@@ -14,6 +14,8 @@ public class Skylark {
     private static final String toDoCommand = "todo";
     private static final String eventCommand = "event";
 
+    private static final String deleteCommand = "delete";
+
     private static void printText(String text) {
         System.out.println(Skylark.line);
         System.out.println(text);
@@ -60,34 +62,34 @@ public class Skylark {
                 return true;
             } else if (command.equals(Skylark.listCommand)) {
                 Skylark.printText(taskList);
-            } else if (command.length() >= 4 && command.substring(0, 4).equals(Skylark.doneCommand)) {
+            } else if (command.length() >= 4 && command.startsWith(Skylark.doneCommand)) {
                 int index = Integer.parseInt(command.substring(5)) - 1;
                 if (Skylark.doesIndexExist(taskList, index)) {
                     Task currentTask = taskList.get(index);
                     currentTask.markAsDone();
                     Skylark.printText(currentTask, true);
                 }
-            } else if (command.length() >= 6 && command.substring(0, 6).equals(Skylark.undoneCommand)) {
+            } else if (command.length() >= 6 && command.startsWith(Skylark.undoneCommand)) {
                 int index = Integer.parseInt(command.substring(7)) - 1;
                 if (Skylark.doesIndexExist(taskList, index)) {
                     Task currentTask = taskList.get(index);
                     currentTask.markAsUndone();
                     Skylark.printText(currentTask, false);
                 }
-            } else if (command.length() >= 4 && command.substring(0, 4).equals(Skylark.toDoCommand)) {
+            } else if (command.length() >= 4 && command.startsWith(Skylark.toDoCommand)) {
                 if (command.equals(Skylark.toDoCommand)) {
                     throw new ToDoException("☹ OOPS!!! The description of a todo cannot be empty.");
                 }
                 ToDo toDoTask = new ToDo(command.substring(5));
                 taskList.add(toDoTask);
                 Skylark.printText(taskList, toDoTask);
-            } else if (command.length() >= 8 && command.substring(0, 8).equals(Skylark.deadlineCommand)) {
+            } else if (command.length() >= 8 && command.startsWith(Skylark.deadlineCommand)) {
                 int slashIndex = command.lastIndexOf("/");
                 Deadline deadlineTask = new Deadline(command.substring(9, slashIndex - 1),
                         command.substring(slashIndex + 4));
                 taskList.add(deadlineTask);
                 Skylark.printText(taskList, deadlineTask);
-            } else if (command.length() >= 5 && command.substring(0, 5).equals(Skylark.eventCommand)) {
+            } else if (command.length() >= 5 && command.startsWith(Skylark.eventCommand)) {
                 int slashIndex = command.lastIndexOf("/");
                 Event eventTask = new Event(command.substring(6, slashIndex - 1),
                         command.substring(slashIndex + 4));
