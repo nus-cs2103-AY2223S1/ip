@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -63,6 +64,7 @@ public class Duke {
         userInputHistory.add(newTask);
         //echo request
         System.out.printf("Noted down: %s\n", s);
+        System.out.print(">>");
     }
 
     /**
@@ -80,10 +82,11 @@ public class Duke {
 
         });
         System.out.print("______\n");
+        System.out.print(">>");
     }
 
     /**
-     * Mark task at index n in list.
+     * Mark Task at index n in list.
      * No checks performed to check if task is already marked.
      * @param n task to mark as done (n - 1) index in actual list
      */
@@ -91,10 +94,11 @@ public class Duke {
         Task taskToModify = userInputHistory.get(n - 1);
         taskToModify.markAsDone();
         System.out.printf("Marked task %d \n%s", n, taskToModify);
+        System.out.print(">>");
     }
 
     /**
-     * Unmark task at index n in list.
+     * Un-mark task at index n in list.
      * No checks performed to check if task is already unmarked.
      * @param n task to mark as not done (n - 1) index in actual list
      */
@@ -102,6 +106,7 @@ public class Duke {
         Task taskToModify = userInputHistory.get(n - 1);
         taskToModify.markAsNotDone();
         System.out.printf("Unmarked task %d \n%s", n, taskToModify);
+        System.out.print(">>");
     }
 
     /**
@@ -129,7 +134,6 @@ public class Duke {
         } else {
                 addToHistory(userInput);
             }
-        System.out.print(">> ");
     }
 
     public static void main(String[] args) {
@@ -137,8 +141,13 @@ public class Duke {
         Scanner in = new Scanner(System.in);
         String s;
         while(true) {
-            s = in.nextLine();
-            handleInput(s);
+            try {
+                s = in.nextLine();
+                handleInput(s);
+            } catch (InputMismatchException ime) {
+                System.out.println("error occurred");
+                System.exit(0);
+            }
         }
     }
 }
