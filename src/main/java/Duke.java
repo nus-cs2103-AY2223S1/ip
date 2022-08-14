@@ -15,13 +15,18 @@ public class Duke {
         return output.substring(0, output.length()-1);
     }
 
-    // marks task as complete or not complete
-    public static String markTask(String input, boolean isComplete) throws DukeException{
-        String res = input.substring(isComplete ? 4 : 6).trim();
+    // checks if number input is valid and returns the index of the task
+    public static int getIndex(String res) throws DukeException{
         if (!res.matches("[0-9]+")) throw new DukeException("Input is not a number");
         int target_index = Integer.parseInt(res) - 1;
         if (target_index < 0 || target_index >= data.size()) throw new DukeException("Please input a correct number");
-        Task task = data.get(target_index);
+        return target_index;
+    }
+
+    // marks task as complete or not complete
+    public static String markTask(String input, boolean isComplete) throws DukeException{
+        String res = input.substring(isComplete ? 4 : 6).trim();
+        Task task = data.get(getIndex(res));
         if (isComplete) task.markDone();
         else task.markNotDone();
         return (isComplete ? "Nice! I've marked this task as done:\n" : "OK, I've marked this task as not done yet:\n")
@@ -67,6 +72,15 @@ public class Duke {
             data.add(task);
             return "Got it. I've added this task:\n" + task + "\nNow you have " + data.size() + " tasks.";
         }
+        // delete a task
+        if (input.startsWith("delete")) {
+            String res = input.substring(6).trim();
+            int target_index = getIndex(res);
+            Task task = data.get(target_index);
+            data.remove(target_index);
+            return "Noted. I've removed this task:\n" + task + "\nNow you have " + data.size() + " tasks.";
+        }
+        // else unknown command throw an error
         else {
             throw new DukeException("I'm sorry, but I don't know what that means :-(");
         }
