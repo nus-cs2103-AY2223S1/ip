@@ -21,7 +21,17 @@ public class Duke {
        System.out.println("Bye. Hope to see you again soon!");
     }
 
+    public static void printList(LinkedList storedList) {
+        for (int i = 0; i < storedList.size(); i++) {
+            int index = i + 1;
+            System.out.println(index + ". " + storedList.get(i).toString());
+        }
+        System.out.println("\n");
+    }
 
+    public static void taskTracker(String userCommand, LinkedList<? extends Task> storedList) {
+
+    }
 
     public static void echo() {
         LinkedList<Task> storedList = new LinkedList<>();
@@ -30,17 +40,26 @@ public class Duke {
 
         while (!"bye".equals(userCommand)) {
             if ("list".equals(userCommand)) {
-                for (int i = 0; i < storedList.size(); i++) {
-                    int index = i + 1;
-                    System.out.println(index + ". " + storedList.get(i).toString());
-                }
-                System.out.println("\n");
-            } else if (userCommand.indexOf("mark") == 0) {
+                printList(storedList);
+            } else if (userCommand.startsWith("mark ")) {
                 int indexNo = parseInt(userCommand.substring(5)) - 1;
                 System.out.println(storedList.get(indexNo).markAsDone() + "\n");
-            } else if (userCommand.indexOf("unmark") == 0) {
+            } else if (userCommand.startsWith("unmark ")) {
                 int indexNo = parseInt(userCommand.substring(7)) - 1;
                 System.out.println(storedList.get(indexNo).markAsNotDone() + "\n");
+            } else if (userCommand.startsWith("todo ")) {
+                storedList.add(new Todo(userCommand.substring(5)));
+                System.out.println(storedList.getLast().addedString() + "\n");
+            } else if (userCommand.startsWith("deadline ")) {
+                int index = userCommand.indexOf("/by ");
+                Integer by = index + 4;
+                storedList.add(new Deadline(userCommand.substring(9, index-1), userCommand.substring(by)));
+                System.out.println(storedList.getLast().addedString() + "\n");
+            } else if (userCommand.startsWith("event ")) {
+                int index = userCommand.indexOf("/at ");
+                Integer at = index + 4;
+                storedList.add(new Event(userCommand.substring(6,  index-1), userCommand.substring(at)));
+                System.out.println(storedList.getLast().addedString() + "\n");
             } else {
                 storedList.add(new Task(userCommand));
                 System.out.println(storedList.getLast().addedString() + "\n");
