@@ -9,10 +9,6 @@ public class TaskList extends ArrayList<Task> {
         return null;
     }
 
-    public void add(String task) {
-        this.add(new Task(task));
-    }
-
     public boolean inRange(int entry) {
         return entry > 0 && entry <= this.size();
     }

@@ -26,9 +26,10 @@ public class ChatBot {
         this.displayMessage(message);
     }
 
-    private void handleAdd(String description) {
-        this.taskList.add(description);
-        this.displayMessage("\t" + "added: " + description + "\n");
+    private void handleAddTask(Task task) {
+        this.taskList.add(task);
+        this.displayMessage("\t" + "Got it. I've added this task:" + "\n\t\t" + task + "\n"
+                        + "\t" + "Now you have " + this.taskList.size() + " tasks in the list." + "\n");
     }
 
     private void handleList() {
@@ -63,12 +64,12 @@ public class ChatBot {
                 continue;
             }
 
-            Scanner lineCheck = new Scanner(line);
-            String check = lineCheck.next();
+            Scanner parser = new Scanner(line);
+            String check = parser.next();
 
-            if ((check.equals("mark") || check.equals("unmark")) && lineCheck.hasNextInt()) {
-                int entry = lineCheck.nextInt();
-                if (!lineCheck.hasNext() && this.taskList.inRange(entry)) {
+            if ((check.equals("mark") || check.equals("unmark")) && parser.hasNextInt()) {
+                int entry = parser.nextInt();
+                if (!parser.hasNext() && this.taskList.inRange(entry)) {
                     if (check.equals("mark")) {
                         this.handleMark(entry);
                     } else {
@@ -76,8 +77,28 @@ public class ChatBot {
                     }
                     continue;
                 }
+            } else if (check.equals("todo") && parser.hasNext()) {
+                Task task = new ToDo(parser.nextLine());
+                this.handleAddTask(task);
+            } else if (check.equals("deadline") && parser.hasNext()) {
+                parser.useDelimiter("/by");
+                if (parser.hasNext()) {
+                    String description = parser.next();
+                    if (parser.hasNext()) {
+                        Task task = new Deadline(description, parser.next());
+                        this.handleAddTask(task);
+                    }
+                }
+            } else if (check.equals("event") && parser.hasNext()) {
+                parser.useDelimiter("/at");
+                if (parser.hasNext()) {
+                    String description = parser.next();
+                    if (parser.hasNext()) {
+                        Task task = new Event(description, parser.next());
+                        this.handleAddTask(task);
+                    }
+                }
             }
-            this.handleAdd(line);
         }
         input.close();
     }
