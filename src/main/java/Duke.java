@@ -2,29 +2,47 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Duke {
-    private static ArrayList<String> list = new ArrayList<>();
+    private static ArrayList<Task> TaskList = new ArrayList<>();
+
+    public static void mark(int number) {
+        Task task =  TaskList.get(number - 1);
+        task.setCompleted();
+        String taskCompletion = "____________________________________________________________\n" +
+                "Nice! I've marked this task as done: \n" + "  " + task.toString() + "\n" +
+                "____________________________________________________________\n";
+        System.out.println(taskCompletion);
+    }
+
+    public static void unmark(int number) {
+        Task task =  TaskList.get(number - 1);
+        task.setUncompleted();
+        String taskUnCompletion = "____________________________________________________________\n" +
+                "Ok, I've marked this task as not done yet: \n" + "  " + task.toString() + "\n" +
+                "____________________________________________________________\n";
+        System.out.println(taskUnCompletion);
+    }
     public static void echo(String command) {
         if (command.toUpperCase().equals("BYE")) {
             String bye = "____________________________________________________________\n" +
-                         "Bye. Hope to see you again soon!\n" +
+                    "Bye. Hope to see you again soon!\n" +
                     "____________________________________________________________\n";
             System.out.println(bye);
         } else if (command.toUpperCase().equals("LIST")) {
-            String newList = "";
+            String newList = "Here are the tasks in your list: \n";
             int count = 1;
-            for (String item: list) {
-                newList += (count + ". " + item + "\n");
+            for (Task item: TaskList) {
+                newList += (count + "." + item.toString() + "\n");
                 count++;
             }
             String updatedList = "____________________________________________________________\n" + newList +
-                    "____________________________________" +
-                    "________________________\n";
+                    "____________________________________________________________\n";
             System.out.println(updatedList);
 
         } else {
-            list.add(command);
+            Task newTask = new Task(command);
+            TaskList.add(newTask);
             String echo = "____________________________________________________________\n" +
-                           "added: " + command + "\n" + "____________________________________________________________\n";
+                    "added: " + command + "\n" + "____________________________________________________________\n";
             System.out.println(echo);
         }
     }
@@ -44,9 +62,20 @@ public class Duke {
         while (true) {
             System.out.println("Please enter your command: ");
             String command = myScanner.nextLine();
-            echo(command);
-            if (command.toUpperCase().equals("BYE")) {
-                break;
+            String [] commandArr = command.split(" ");
+            if (commandArr[0].equals("mark")) {
+                int number = Integer.parseInt(commandArr[1]);
+                mark(number);
+
+            } else if (commandArr[0].equals("unmark")) {
+                int number = Integer.parseInt(commandArr[1]);
+                unmark(number);
+            } else {
+                echo(command);
+                if (command.toUpperCase().equals("BYE")) {
+                    break;
+                }
+
             }
 
         }
