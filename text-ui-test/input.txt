@@ -9,4 +9,6 @@ blah
 mark 999
 mark a
 deadline sleep
+delete 2
+list
 bye

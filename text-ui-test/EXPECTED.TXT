@@ -18,4 +18,8 @@ The input is invalid.
 The task number to mark does not exist.
 The task number to mark is invalid.
 The description of this deadline's date/time cannot be empty.
+deleted: [D][ ] return book (by: Sunday)
+Total tasks: 2
+1.[T][X] borrow book
+2.[E][ ] project meeting (at: Mon 2-4pm)
 Bye, until next time...

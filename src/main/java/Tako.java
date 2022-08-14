@@ -17,6 +17,7 @@ public class Tako {
         final String COMMAND_TODO = "todo";
         final String COMMAND_DEADLINE = "deadline";
         final String COMMAND_EVENT = "event";
+        final String COMMAND_DELETE = "delete";
         List<Task> tasks = new ArrayList<>();
 
         Scanner sc = new Scanner(System.in);
@@ -45,7 +46,7 @@ public class Tako {
                 case COMMAND_MARK:
                     try {
                         if (input.trim().equals(COMMAND_MARK)) {
-                            throw new EmptyDescriptionException(COMMAND_MARK);
+                            throw new EmptyDescriptionException();
                         }
                         if (splitInput.length == 2) {
                             int taskNumber = Integer.parseInt(splitInput[1]) - 1;
@@ -99,6 +100,28 @@ public class Tako {
                         System.out.println("Total tasks: " + tasks.size());
                     } else {
                         throw new EmptyDescriptionException("event's date/time");
+                    }
+                    break;
+                case COMMAND_DELETE:
+                    try {
+                        if (input.trim().equals(COMMAND_DELETE)) {
+                            throw new EmptyDescriptionException();
+                        }
+                        if (splitInput.length == 2) {
+                            int taskNumber = Integer.parseInt(splitInput[1]) - 1;
+                            if (taskNumber < 0 || taskNumber > tasks.size() - 1) {
+                                throw new InvalidRangeException();
+                            }
+                            Task task = tasks.remove(taskNumber);
+                            System.out.println("deleted: " + task);
+                            System.out.println("Total tasks: " + tasks.size());
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("The task number to delete is invalid.");
+                    } catch (InvalidRangeException e) {
+                        System.out.println("The task number to delete does not exist.");
+                    } catch (EmptyDescriptionException e) {
+                        System.out.println("The task number to delete cannot be empty.");
                     }
                     break;
                 default:
