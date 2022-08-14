@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -15,8 +17,7 @@ public class Tako {
         final String COMMAND_TODO = "todo";
         final String COMMAND_DEADLINE = "deadline";
         final String COMMAND_EVENT = "event";
-        Task[] tasks = new Task[100];
-        int tasksCount = 0;
+        List<Task> tasks = new ArrayList<>();
 
         Scanner sc = new Scanner(System.in);
         while (sc.hasNext()) {
@@ -33,8 +34,8 @@ public class Tako {
                 switch (command) {
                 case COMMAND_LIST:
                     if (input.trim().equals(COMMAND_LIST)) {
-                        for (int i = 0; i < tasksCount; i++) {
-                            Task task = tasks[i];
+                        for (int i = 0; i < tasks.size(); i++) {
+                            Task task = tasks.get(i);
                             System.out.printf("%d.%s\n", i + 1, task);
                         }
                     } else {
@@ -48,10 +49,10 @@ public class Tako {
                         }
                         if (splitInput.length == 2) {
                             int taskNumber = Integer.parseInt(splitInput[1]) - 1;
-                            if (taskNumber < 0 || taskNumber > tasksCount - 1) {
+                            if (taskNumber < 0 || taskNumber > tasks.size() - 1) {
                                 throw new InvalidRangeException();
                             }
-                            Task task = tasks[taskNumber];
+                            Task task = tasks.get(taskNumber);
                             task.markAsDone();
                             System.out.println("marked: " + task);
                         }
@@ -68,10 +69,9 @@ public class Tako {
                         throw new EmptyDescriptionException(COMMAND_TODO);
                     }
                     Todo todo = new Todo(splitInput[1]);
-                    tasks[tasksCount] = todo;
-                    tasksCount++;
+                    tasks.add(todo);
                     System.out.println("added: " + todo);
-                    System.out.println("Total tasks: " + tasksCount);
+                    System.out.println("Total tasks: " + tasks.size());
                     break;
                 case COMMAND_DEADLINE:
                     if (input.trim().equals(COMMAND_DEADLINE)) {
@@ -80,10 +80,9 @@ public class Tako {
                     String[] splitDeadline = splitInput[1].trim().split(" /by ", 2);
                     if (splitDeadline.length == 2) {
                         Deadline deadline = new Deadline(splitDeadline[0], splitDeadline[1]);
-                        tasks[tasksCount] = deadline;
-                        tasksCount++;
+                        tasks.add(deadline);
                         System.out.println("added: " + deadline);
-                        System.out.println("Total tasks: " + tasksCount);
+                        System.out.println("Total tasks: " + tasks.size());
                     } else {
                         throw new EmptyDescriptionException("deadline's date/time");
                     }
@@ -95,10 +94,9 @@ public class Tako {
                     String[] splitEvent = splitInput[1].trim().split(" /at ", 2);
                     if (splitEvent.length == 2) {
                         Event event = new Event(splitEvent[0], splitEvent[1]);
-                        tasks[tasksCount] = event;
-                        tasksCount++;
+                        tasks.add(event);
                         System.out.println("added: " + event);
-                        System.out.println("Total tasks: " + tasksCount);
+                        System.out.println("Total tasks: " + tasks.size());
                     } else {
                         throw new EmptyDescriptionException("event's date/time");
                     }
