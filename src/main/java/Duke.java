@@ -1,7 +1,23 @@
+import java.util.Scanner;
+
 public class Duke {
     private static void greetUser() {
-        String message = formatText("Hello! I'm Duke\n" + "What can I do for you?");
+        String message = Duke.formatText("Hello! I'm Duke\n" + "What can I do for you?");
         System.out.println(message);
+    }
+
+    private static void startEchoing() {
+        Scanner sc = new Scanner(System.in);
+
+        while (true) {
+            String userInput = sc.nextLine();
+            if (userInput.equals("bye")) {
+                System.out.println(Duke.formatText("Bye. Hope to see you again soon!\n"));
+                break;
+            }
+
+            System.out.println(Duke.formatText(userInput));
+        }
     }
 
     /**
@@ -24,6 +40,6 @@ public class Duke {
 
     public static void main(String[] args) {
         Duke.greetUser();
-
+        Duke.startEchoing();
     }
 }
