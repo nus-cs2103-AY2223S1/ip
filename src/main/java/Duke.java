@@ -26,7 +26,7 @@ public class Duke {
      * @return The message user's provided.
      */
     public String echo(String message) {
-        return "\t> " + message;
+        return "\t " + message;
     }
 
     /**
@@ -34,7 +34,7 @@ public class Duke {
      * @return A goodbye message.
      */
     public String exit() {
-        return "\t> Bye. Hope to see you again soon :D";
+        return "\t Bye. Hope to see you again soon :D";
     }
 
     /**
@@ -44,8 +44,8 @@ public class Duke {
      */
     public String add(Task task) {
         tasks.add(task);
-        String message = "\t> Got it! I have added this task: \n\t\t" + task;
-        String numOfTasks = String.format("\n\t  Now you have %d %s in the list!", tasks.size(),
+        String message = "\t Got it! I have added this task: \n\t\t" + task;
+        String numOfTasks = String.format("\n\t Now you have %d %s in the list!", tasks.size(),
                 tasks.size() < 2 ? "task" : "tasks");
         return message + numOfTasks;
     }
@@ -56,16 +56,16 @@ public class Duke {
      */
     public String list() {
         int len = tasks.size();
-        StringBuilder stringBuilder = new StringBuilder("\t> Here are the tasks in your list :D");
+        StringBuilder stringBuilder = new StringBuilder("\t Here are the tasks in your list :D");
         for (int i = 0; i < len; i++) {
             int index = i + 1;
-            String task = "\n\t  " + index + ". " + tasks.get(i);
+            String task = "\n\t " + index + ". " + tasks.get(i);
             stringBuilder.append(task);
         }
         return stringBuilder.toString();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DukeException {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -79,36 +79,57 @@ public class Duke {
         boolean run = true;
         while (run) {
             String message = scanner.nextLine();
-            if (message.equalsIgnoreCase("bye")) {
-                System.out.println(duke.exit());
-                scanner.close();
-                run = false;
-            } else if (message.equalsIgnoreCase("list")) {
-                System.out.println(duke.list());
-            } else if (message.startsWith("mark")) {
-                Pattern pattern = Pattern.compile("[^0-9]");
-                int taskNumber = Integer.parseInt(pattern.matcher(message).replaceAll(""));
-                System.out.println(duke.tasks.get(taskNumber - 1).markAsDone());
-            } else if (message.startsWith("unmark")) {
-                Pattern pattern = Pattern.compile("[^0-9]");
-                int taskNumber = Integer.parseInt(pattern.matcher(message).replaceAll(""));
-                System.out.println(duke.tasks.get(taskNumber - 1).markAsNotDone());
-            } else if (message.startsWith("todo")) {
-                String description = message.substring(5);
-                ToDo todo = new ToDo(description);
-                System.out.println(duke.add((todo)));
-            } else if (message.startsWith("deadline")) {
-                int index = message.indexOf(" /by ");
-                String description = message.substring(9, index);
-                String by = message.substring(index + 5);
-                Deadline deadline = new Deadline(description, by);
-                System.out.println(duke.add(deadline));
-            } else if (message.startsWith("event")) {
-                int index = message.indexOf(" /at ");
-                String description = message.substring(6, index);
-                String at = message.substring(index + 5);
-                Event event = new Event(description, at);
-                System.out.println(duke.add(event));
+            try {
+                if (message.equals("bye")) {
+                    System.out.println(duke.exit());
+                    run = false;
+                    scanner.close();
+                } else if (message.equals("list")) {
+                    System.out.println(duke.list());
+                } else if (message.startsWith("mark")) {
+                    Pattern pattern = Pattern.compile("[^0-9]");
+                    int taskNumber = Integer.parseInt(pattern.matcher(message).replaceAll(""));
+                    System.out.println(duke.tasks.get(taskNumber - 1).markAsDone());
+                } else if (message.startsWith("unmark")) {
+                    Pattern pattern = Pattern.compile("[^0-9]");
+                    int taskNumber = Integer.parseInt(pattern.matcher(message).replaceAll(""));
+                    System.out.println(duke.tasks.get(taskNumber - 1).markAsNotDone());
+                } else if (message.startsWith("todo")) {
+                    if (message.trim().equals("todo")) {
+                        throw new DukeException("Todo description cannot be empty!");
+                    }
+                    String description = message.substring(5);
+                    ToDo todo = new ToDo(description);
+                    System.out.println(duke.add((todo)));
+                } else if (message.startsWith("deadline")) {
+                    int index = message.indexOf(" /by ");
+                    if (index == 8 || (index == -1 && message.trim().equals("deadline"))) {
+                        throw new DukeException("Deadline description cannot be empty!");
+                    } else if (index == -1) {
+                        throw new DukeException("I don't know when is the deadline :(, " +
+                                "please specify the task in this format: deadline <description> /by <due date>");
+                    }
+                    String description = message.substring(9, index);
+                    String by = message.substring(index + 5);
+                    Deadline deadline = new Deadline(description, by);
+                    System.out.println(duke.add(deadline));
+                } else if (message.startsWith("event")) {
+                    int index = message.indexOf(" /at ");
+                    if (index == 5 || (index == -1 && message.trim().equals("event"))) {
+                        throw new DukeException("Event description cannot be empty!");
+                    } else if (index == -1) {
+                        throw new DukeException("I don't know when is the event taking place :(, " +
+                                "please specify the task in this format: event <description> /at <date>");
+                    }
+                    String description = message.substring(6, index);
+                    String at = message.substring(index + 5);
+                    Event event = new Event(description, at);
+                    System.out.println(duke.add(event));
+                } else {
+                    throw new DukeException("I'm sorry >< I don't know what this means :(");
+                }
+            } catch (DukeException e) {
+                System.out.println("\t> " + e.getMessage());
             }
         }
     }
