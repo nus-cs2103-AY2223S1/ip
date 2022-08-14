@@ -15,6 +15,8 @@ public class TaskList {
 
     private static final String UNDONE_MESSAGE = "OK, I've marked this task as not done yet:";
 
+    public static final String FIND_HEADER = "Here are the matching tasks in your list:";
+
     private static final String ADD_HEADER = "Got it. I've added this task:";
     private List<Task> taskList;
 
@@ -22,7 +24,7 @@ public class TaskList {
         this.taskList = taskList;
     }
 
-    public void MarkTask(int taskIndex) {
+    public void markTask(int taskIndex) {
         Task currentTask = taskList.get(taskIndex);
         currentTask.setDone();
         Ui.displayMessage(DONE_MESSAGE);
@@ -30,7 +32,7 @@ public class TaskList {
         Storage.Save(taskList);
     }
 
-    public void UnmarkTask(int taskIndex) {
+    public void unmarkTask(int taskIndex) {
         Task currentTask = taskList.get(taskIndex);
         currentTask.removeDone();
         Ui.displayMessage(UNDONE_MESSAGE);
@@ -38,12 +40,12 @@ public class TaskList {
         Storage.Save(taskList);
     }
 
-    public void List() {
+    public void list() {
         Ui.displayMessage(LIST_HEADER);
         Ui.displayOrderedList(taskList);
     }
 
-    public void DeleteTask(int taskIndex) {
+    public void deleteTask(int taskIndex) {
         Task deletedTask = taskList.get(taskIndex);
         taskList.remove(taskIndex);
         Ui.displayMessage(DELETE_HEADER);
@@ -52,15 +54,24 @@ public class TaskList {
         Storage.Save(taskList);
     }
 
-    public void AddTask(Task t) {
+    public void addTask(Task t) {
         taskList.add(t);
         Storage.Save(taskList);
         Ui.displayMessage(ADD_HEADER);
         Ui.indentTaskDisplay(t);
         Ui.displayTasksLeft(taskList.size());
     }
-
-
+    public void findTask(String keyword) {
+        List<Task> tasksContainingKeyword = new ArrayList<>();
+        for (int i = 0; i < taskList.size(); i++) {
+            Task t = taskList.get(i);
+            if (t.getDescription().contains(keyword)) {
+                tasksContainingKeyword.add(t);
+            }
+        }
+        Ui.displayMessage(FIND_HEADER);
+        Ui.displayOrderedList(tasksContainingKeyword);
+    }
 
 
 }

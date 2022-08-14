@@ -10,31 +10,34 @@ public class Parser {
     private static final List<String> PERMISSIBLE_TASKS = new ArrayList<>(Arrays.asList("todo", "event", "deadline"));
     public static void ParseData(String input, TaskList taskList) {
 
+        //TODO: Update with a switch statement for parsing data
         //Case 1: Mark
         if (input.startsWith("mark")) {
             //split by space, then the second value
             int taskIndex = Integer.valueOf(input.split(" ", 0)[1]) - 1;
-            taskList.MarkTask(taskIndex);
+            taskList.markTask(taskIndex);
 
         //Case 2: Unmark
         } else if (input.startsWith("unmark")) {
             int taskIndex = Integer.valueOf(input.split(" ", 0)[1]) - 1;
-            taskList.UnmarkTask(taskIndex);
+            taskList.unmarkTask(taskIndex);
 
         //Case 3: List
         } else if (input.equals("list")) {
-            taskList.List();
+            taskList.list();
 
         //Case 4: Delete
         } else if (input.startsWith("delete")) {
             int taskIndex = Integer.valueOf(input.split(" ", 0)[1]) - 1;
 
-            taskList.DeleteTask(taskIndex);
+            taskList.deleteTask(taskIndex);
 
-        }
-
+        } else if (input.startsWith("find")) {
+            String[] tempArr = input.split(" ", 2); //split into 2
+            String keyword = tempArr[1]; //the remainder of the input minus whitespace
+            taskList.findTask(keyword);
         //Case 5: Add a valid task
-        else {
+        } else {
 
             try {
                 validateTask(input);
@@ -52,7 +55,7 @@ public class Parser {
             }
 
             Task newTask = generateTask(input);
-            taskList.AddTask(newTask);
+            taskList.addTask(newTask);
         }
     }
 

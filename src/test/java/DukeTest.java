@@ -32,9 +32,9 @@ public class DukeTest {
         List<Task> emptyTaskList = new ArrayList<Task>();
         TaskList tl = new TaskList(emptyTaskList);
         tl.AddTask(todoTest);
-        tl.MarkTask(0);
+        tl.markTask(0);
         assertEquals(todoTest.toString(), "[T][X] borrow book");
-        tl.UnmarkTask(0);
+        tl.unmarkTask(0);
         assertEquals(todoTest.toString(), "[T][ ] borrow book");
     }
 }

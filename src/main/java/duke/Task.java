@@ -25,6 +25,9 @@ public class Task implements Serializable {
         return "[" + getStatusIcon() + "]";
     }
 
+    public String getDescription() {
+        return description;
+    }
     @Override
     public String toString() {
         return fullStatusIcon() + " " + description;
