@@ -35,6 +35,7 @@ public class Duke {
                         throw new DukeException(String.format(Constants.ERROR_EMPTY_DESCRIPTION, inputs[0]));
                     case "MARK":
                     case "UNMARK":
+                    case "DELETE":
                         throw new DukeException((Constants.ERROR_TASK_NOT_SPECIFIED));
                     case "LIST":
                         printTasks();
@@ -76,6 +77,11 @@ public class Duke {
                     unmarkTask(task);
                     break;
                 }
+                case "DELETE": {
+                    Task task = tasks.get(Integer.parseInt(inputs[1]) - 1);
+                    deleteTask(task);
+                    break;
+                }
                 default:
                     throw new DukeException(Constants.ERROR_UNKNOWN_COMMAND);
                 }
@@ -112,6 +118,14 @@ public class Duke {
     private void unmarkTask(Task task) {
         task.setDone(false);
         DukeUtils.printMessages(Constants.MSG_TASK_UNMARK, "  " + task);
+    }
+
+    private void deleteTask(Task task) {
+        tasks.remove(task);
+        DukeUtils.printMessages(
+                Constants.MSG_TASK_DELETED,
+                "  " + task,
+                "Now you have " + tasks.size() + " tasks in the list");
     }
 
     private void sendGreetings() {
