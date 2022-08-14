@@ -77,4 +77,16 @@ public abstract class Task {
      * @return the task type code of the Task object
      */
     public abstract String getTaskTypeCode();
+
+    /**
+     * Returns the String representation of the Task object, i.e.
+     *   a string in the format "[task type code][get status icon] description".
+     *
+     * @return String representation of the Task object
+     */
+    @Override
+    public String toString() {
+        return String.format("[%s][%s] %s", this.getTaskTypeCode(), this.getStatusIcon(),
+                this.description);
+    }
 }

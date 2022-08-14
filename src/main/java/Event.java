@@ -2,8 +2,7 @@
  * An Event object is a Task which has a start time and an end time.
  */
 public class Event extends Task {
-    private final String startTime;
-    private final String endTime;
+    private final String when;
 
     /**
      * Creates a new Event object with a given description, whether it has been done, the start
@@ -11,32 +10,22 @@ public class Event extends Task {
      *
      * @param description the description of the event
      * @param isDone      whether the event is marked as done
-     * @param startTime   the start time of the event
-     * @prarm endTime     the end time of the event
+     * @param when   the time of the event
      */
-    public Event(String description, boolean isDone, String startTime, String endTime) {
+    public Event(String description, boolean isDone, String when) {
         super(description, isDone);
-        this.startTime = startTime;
-        this.endTime = endTime;
+        this.when = when;
     }
 
     /**
-     * Returns start time of the Event.
+     * Returns when the Event is scheduled to take place.
      *
-     * @return the start time of the Event
+     * @return the time range which the Event is scheduled to take table.
      */
     public String getStartTime() {
-        return this.startTime;
+        return this.when;
     }
 
-    /**
-     * Returns end time of the Event
-     *
-     * @return end time of the Event
-     */
-    public String getEndTime() {
-        return this.endTime;
-    }
 
     /**
      * The task type code for an Event object is "E". Hence, this method returns "E".
@@ -46,5 +35,16 @@ public class Event extends Task {
     @Override
     public String getTaskTypeCode() {
         return "E";
+    }
+
+    /**
+     * Returns the String representation of the Event object, i.e.
+     *   a string in the format "[task type code][get status icon] description (at: time of event)".
+     *
+     * @return String representation of the Event object
+     */
+    @Override
+    public String toString() {
+        return String.format("%s (at: %s)", super.toString(), this.when);
     }
 }

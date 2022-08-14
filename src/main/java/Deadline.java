@@ -37,4 +37,15 @@ public class Deadline extends Task {
     public String getTaskTypeCode() {
         return "D";
     }
+
+    /**
+     * Returns the String representation of the Deadline object, i.e.
+     *   a string in the format "[task type code][get status icon] description (by: deadline)".
+     *
+     * @return String representation of the Deadline object
+     */
+    @Override
+    public String toString() {
+        return String.format("%s (by: %s)", super.toString(), this.deadline);
+    }
 }
