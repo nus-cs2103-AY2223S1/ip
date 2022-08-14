@@ -22,11 +22,11 @@ public class Duke {
      * Method to add user input to history
      * @param s String description to add to userInputHistory
      */
-    private static void addToHistory(String s) {
+    private static void addTaskToHistory(String s) {
         Task newTask = new Task(s);
         userInputHistory.add(newTask);
         //echo request
-        System.out.printf("Noted down: %s\n", s);
+        System.out.printf("Noted down: %s\n There are %d items on your list now. \n", s, userInputHistory.size());
         System.out.print(">>");
     }
 
@@ -38,7 +38,7 @@ public class Duke {
         System.out.print("______\n");
         System.out.println("Tasks in your list are: ");
         for (Task t: userInputHistory) {
-            System.out.printf("%d. %s",count, t);
+            System.out.printf("%d. %s\n",count, t);
             count ++;
         }
         userInputHistory.forEach(input -> {
@@ -94,9 +94,13 @@ public class Duke {
             markTask(getTaskNumber(userInput));
         } else if (userInput.startsWith("unmark")) {
             unmarkTask(getTaskNumber(userInput));
-        } else {
-                addToHistory(userInput);
+        } else if(userInput.startsWith("todo")) {
+                addTaskToHistory(userInput);
             }
+        else {
+            System.out.println("Enter a command (mark, unmark, list, todo)");
+            System.out.print(">>");
+        }
     }
 
     public static void main(String[] args) {
