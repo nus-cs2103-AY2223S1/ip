@@ -9,24 +9,28 @@ public class Task implements Serializable {
         this.isDone = false;
     }
 
-    public String getStatusIcon() {
+    public String GetStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
-    public void setDone() {
+    public void SetDone() {
         isDone = true;
     }
 
-    public void removeDone() {
+    public String GetDescription() {
+        return this.description;
+    }
+
+    public void RemoveDone() {
         isDone = false;
     }
 
-    public String fullStatusIcon() {
-        return "[" + getStatusIcon() + "]";
+    public String FullStatusIcon() {
+        return "[" + GetStatusIcon() + "]";
     }
 
     @Override
     public String toString() {
-        return fullStatusIcon() + " " + description;
+        return FullStatusIcon() + " " + description;
     }
 }
