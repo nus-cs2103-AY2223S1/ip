@@ -1,0 +1,10 @@
+todo read CS2103T textbook
+todo read CS2100 textbook
+deadline finish math assignment /by Wednesday
+mark 1
+event career talk /at Friday 4 - 5pm
+mark 3
+unmark 1
+mark 4
+list
+bye
