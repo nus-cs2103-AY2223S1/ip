@@ -19,6 +19,7 @@ REM run the program, feed command from inputn.txt file and redirect the output t
          java -classpath ..\bin Duke < input2.txt >> ACTUAL.TXT
          java -classpath ..\bin Duke < input3.txt >> ACTUAL.TXT
          java -classpath ..\bin Duke < input4.txt >> ACTUAL.TXT
-         
+         java -classpath ..\bin Duke < input5.txt >> ACTUAL.TXT
+
 	 REM compare the output to the expected output
          FC ACTUAL.TXT EXPECTED.TXT

@@ -78,3 +78,33 @@ Tasks in your list are:
 Total: 1
 ______
 >>Thank you for swinging by :)
+Hello from
+_______     _
+|  ___|    | |
+|  |_  ____| |_____ ____  _  __
+|   _|/ _  \ | ___|/  _ \| |/  \
+|  | | |_| | | |___| |_| |  / \ |
+|__|  \__|_|_|____|\____/|_|  |_|
+
+Where would you like to go next?
+>> Noted down: send email 
+ There are 1 items on your list now. 
+>>Noted down: todo have lunch
+ There are 2 items on your list now. 
+>>Marked task 1 
+[D][?] send email 
+>>______
+Tasks in your list are: 
+1. [D][?] send email 
+2. [T][ ] todo have lunch
+Total: 2
+______
+>>Unmarked task 1 
+[D][ ] send email  (by:  afternoon)
+>>______
+Tasks in your list are: 
+1. [D][ ] send email  (by:  afternoon)
+2. [T][ ] todo have lunch
+Total: 2
+______
+>>Thank you for swinging by :)
