@@ -15,7 +15,7 @@ public class Deadline extends Task {
         if (this.isDone) {
             status = String.format("[D][✓] %s", this.description);
         } else {
-            status = String.format("[D][ ] %s (by: %d)", this.description, by);
+            status = String.format("[D][ ] %s (by: %s)", this.description, by);
         }
         return status;
     }

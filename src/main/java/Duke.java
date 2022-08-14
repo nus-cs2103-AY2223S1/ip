@@ -33,11 +33,24 @@ public class Duke {
     /**
      * Method to add Event to userInputHistory
      * @param description
-     * @param date
+     * @param at
      */
-    private static void addEventToHistory(String description, String date) {
-        Event newEvent = new Event(description, date);
+    private static void addEventToHistory(String description, String at) {
+        Event newEvent = new Event(description, at);
         userInputHistory.add(newEvent);
+        //echo request
+        System.out.printf("Noted down: %s\n There are %d items on your list now. \n", description, userInputHistory.size());
+        System.out.print(">>");
+    }
+
+    /**
+     * Method to add Event to userInputHistory
+     * @param description
+     * @param by
+     */
+    private static void addDeadlineToHistory(String description, String by) {
+        Deadline newDeadline = new Deadline(description, by);
+        userInputHistory.add(newDeadline);
         //echo request
         System.out.printf("Noted down: %s\n There are %d items on your list now. \n", description, userInputHistory.size());
         System.out.print(">>");
@@ -69,7 +82,7 @@ public class Duke {
     public static void markTask(int n){
         Task taskToModify = userInputHistory.get(n - 1);
         taskToModify.markAsDone();
-        System.out.printf("Marked task %d \n%s", n, taskToModify);
+        System.out.printf("Marked task %d \n%s\n", n, taskToModify);
         System.out.print(">>");
     }
 
@@ -101,10 +114,21 @@ public class Duke {
      * @param event
      */
     private static void handleEvent(String event) {
-        String description, date;
-        description = event.substring(event.indexOf("event ") + 6, event.indexOf(" /at"));
-        date = event.substring(event.indexOf(" /at") + 5);
-        addEventToHistory(description, date);
+        String description, at;
+        description = event.substring(event.indexOf("event ") + 6, event.indexOf("/at"));
+        at = event.substring(event.indexOf("/at") + 3);
+        addEventToHistory(description, at);
+    }
+
+    /**
+     * Filter userInput and call addDeadlineToHistory
+     * @param deadline
+     */
+    private static void handleDeadline(String deadline) {
+        String description, by;
+        description = deadline.substring(deadline.indexOf("deadline ") + 9, deadline.indexOf("/by"));
+        by = deadline.substring(deadline.indexOf("/by") + 3);
+        addDeadlineToHistory(description, by);
     }
 
     /**
@@ -124,11 +148,13 @@ public class Duke {
             unmarkTask(getTaskNumber(userInput));
         } else if(userInput.startsWith("todo")) {
                 addTaskToHistory(userInput);
-            } else if (userInput.startsWith("event")) {
+        } else if (userInput.startsWith("event")) {
             handleEvent(userInput);
+        } else if (userInput.startsWith("deadline")) {
+            handleDeadline(userInput);
         }
         else {
-            System.out.println("Enter a command (mark, unmark, list, todo)");
+            System.out.println("Enter a command (todo, event, deadline, list, mark, unmark, bye)");
             System.out.print(">>");
         }
     }

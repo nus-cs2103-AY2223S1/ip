@@ -15,7 +15,7 @@ public class Event extends Task{
         if (this.isDone) {
             status = String.format("[E][✓] %s", this.description);
         } else {
-            status = String.format("[E][ ] %s (at: %d)", this.description, date);
+            status = String.format("[E][ ] %s (at: %s)", this.description, date);
         }
         return status;
     }
