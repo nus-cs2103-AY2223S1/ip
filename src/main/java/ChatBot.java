@@ -9,34 +9,45 @@ public class ChatBot {
 
     private void echo(String message) {
         System.out.println("\t____________________________________________________________");
-        System.out.println("\t" + message);
+        System.out.print(message);
         System.out.println("\t____________________________________________________________");
     }
 
-    private String getGreetMessage() {
-        String logo = " ,-----.,--.               ,--.    ,--.                  \n\t"
-                + "'  .--./|  ,---.  ,--,--.,-'  '-.,-'  '-.,--.,--. ,---.  \n\t"
-                + "|  |    |  .-.  |' ,-.  |'-.  .-''-.  .-'|  ||  |(  .-'  \n\t"
-                + "'  '--'\\|  | |  |\\ '-'  |  |  |    |  |  '  ''  '.-'  `) \n\t"
-                + " `-----'`--' `--' `--`--'  `--'    `--'   `----' `----'  \n\t";
-        String message = "Hello! My name is " + this.name + ".\n\t" + "What can I do for you? :)";
-        return logo + message;
+    private void greet() {
+        String logo = "\t" + " ,-----.,--.               ,--.    ,--.                  " + "\n"
+                + "\t" + "'  .--./|  ,---.  ,--,--.,-'  '-.,-'  '-.,--.,--. ,---.  " + "\n"
+                + "\t" + "|  |    |  .-.  |' ,-.  |'-.  .-''-.  .-'|  ||  |(  .-'  " + "\n"
+                + "\t" + "'  '--'\\|  | |  |\\ '-'  |  |  |    |  |  '  ''  '.-'  `) " + "\n"
+                + "\t" + " `-----'`--' `--' `--`--'  `--'    `--'   `----' `----'  " + "\n";
+        String message = "\n\t" + "Hello! My name is " + this.name
+                    + "." + "\n\t" + "What can I do for you? :)" + "\n";
+        this.echo(logo + message);
     }
 
     private void exit() {
-        String message = "Bye! Till we next meet!";
+        String message = "\t" + "Bye! Till we next meet!" + "\n";
         this.echo(message);
     }
 
     public void start() {
+        this.greet();
+
+        String currentMessage;
         Scanner input = new Scanner(System.in);
-        String currentMessage = this.getGreetMessage();
+        ChatList list = new ChatList();
 
-        while(!currentMessage.equals("bye")) {
-            this.echo(currentMessage);
+        while(true) {
             currentMessage = input.nextLine();
-        }
 
-        exit();
+            if (currentMessage.equals("bye")) {
+                this.exit();
+                break;
+            } else if (currentMessage.equals("list")) {
+                this.echo(list.toString());
+            } else {
+                list.add(currentMessage);
+                this.echo("\t" + "added: " + currentMessage + "\n");
+            }
+        }
     }
 }
