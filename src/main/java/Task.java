@@ -2,7 +2,10 @@ public class Task {
     protected String description;
     protected boolean isDone;
 
-    public Task(String description) {
+    public Task(String description) throws DukeException {
+        if (description == null) {
+            throw new DukeException("I'm sorry, but I don't know what that means :-(");
+        }
         this.description = description;
         this.isDone = false;
     }
@@ -21,6 +24,6 @@ public class Task {
 
     @Override
     public String toString() {
-        return String.format("[%s] %s", this.getStatusIcon(), this.description);
+        return String.format("[%s]%s", this.getStatusIcon(), this.description);
     }
 }

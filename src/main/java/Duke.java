@@ -14,28 +14,32 @@ public class Duke {
         this.sc = new Scanner(System.in);
         boolean end = false;
         while (!end) {
-            String line = this.sc.nextLine();
-            if (line.equals("bye")) {
-                end = true;
-            } else if (line.equals("list")) {
-                printList();
-            } else if (line.startsWith("mark")) {
-                int i = Integer.parseInt(line.replace("mark ", ""));
-                mark(i);
-            } else if (line.startsWith("unmark")) {
-                int i = Integer.parseInt(line.replace("unmark ", ""));
-                unmark(i);
-            } else if (line.startsWith("todo")) {
-                String s = line.replace("todo ", "");
-                addList(new Todo(s));
-            } else if (line.startsWith("deadline")) {
-                String[] s = line.replace("event ", "").split(" /by ");
-                addList(new Deadline(s[0], s[1]));
-            } else if (line.startsWith("event")) {
-                String[] s = line.replace("event ", "").split(" /at ");
-                addList(new Event(s[0], s[1]));
-            } else {
-                addList(new Task(line));
+            try {
+                String line = this.sc.nextLine();
+                if (line.equals("bye")) {
+                    end = true;
+                } else if (line.equals("list")) {
+                    printList();
+                } else if (line.startsWith("mark")) {
+                    int i = Integer.parseInt(line.replace("mark ", ""));
+                    mark(i);
+                } else if (line.startsWith("unmark")) {
+                    int i = Integer.parseInt(line.replace("unmark ", ""));
+                    unmark(i);
+                } else if (line.startsWith("todo")) {
+                    String s = line.replace("todo", "");
+                    addList(new Todo(s));
+                } else if (line.startsWith("deadline")) {
+                    String[] s = line.replace("deadline", "").split(" /by ");
+                    addList(new Deadline(s[0], s[1]));
+                } else if (line.startsWith("event")) {
+                    String[] s = line.replace("event", "").split(" /at ");
+                    addList(new Event(s[0], s[1]));
+                } else {
+                    addList(new Task(null));
+                }
+            } catch (DukeException d) {
+                printException(d);
             }
         }
         this.sc.close();
@@ -102,6 +106,12 @@ public class Duke {
         printLine();
         print("OK, I've marked this task as not done yet:");
         print("  " + t.toString());
+        printLine();
+    }
+
+    private void printException(DukeException d) {
+        printLine();
+        print(d.getMessage());
         printLine();
     }
 
