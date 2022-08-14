@@ -1,6 +1,7 @@
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -37,17 +38,42 @@ public class Duke {
             } else if(split.length == 2 && split[0].equals("unmark") && isNumeric(split[1])) {
                 markNotDone(Integer. parseInt(split[1]));
                 continue;
-            } else {
-                addWord(userInput);
+            } else if (split[0].equals("todo")){
+                addTodo(split);
+                continue;
+            } else if (split[0].equals("deadline")){
+                addDeadline(split);
+                continue;
+            } else if (split[0].equals("event")){
+                addEvent(split);
                 continue;
             }
         }
     }
+    public static void addTodo(String[] input){
+        String taskName = String.join(" ", Arrays.copyOfRange(input, 1, input.length));
+        addTask(new Todo(taskName));
+    }
 
-    public static void addWord (String word){
+    public static void addDeadline(String[] input) {
+        int indexOfDate = findDate(input);
+        String taskName = String.join(" ", Arrays.copyOfRange(input, 1, indexOfDate));
+        String date = String.join(" ", Arrays.copyOfRange(input, indexOfDate +1 , input.length));
+        addTask(new Deadline(taskName,date));
+    }
+
+    public static void addEvent(String[] input){
+        int indexOfDate = findDate(input);
+        String taskName = String.join(" ", Arrays.copyOfRange(input, 1, indexOfDate));
+        String date = String.join(" ", Arrays.copyOfRange(input, indexOfDate +1 , input.length));
+        addTask(new Event(taskName,date));
+    }
+
+    public static void addTask (Task task){
         Integer index = INPUT_LIST.size();
-        INPUT_LIST.add(new Task(word));
-        System.out.println("added: " + word);
+        INPUT_LIST.add(task);
+        System.out.println("Got it. I've added this task: \n " + task.toString()
+        + "\nNow you have " + INPUT_LIST.size() +" tasks in the list.");
     }
 
     private static void markDone(Integer index){
@@ -55,7 +81,7 @@ public class Duke {
         task.setDone();
 
         System.out.println("Nice! I've marked this task as done:");
-        System.out.println(task.toString());
+        System.out.println(" " + task.toString());
     }
 
     private static void markNotDone(Integer index){
@@ -63,7 +89,7 @@ public class Duke {
         task.setNotDone();
 
         System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println(task.toString());
+        System.out.println(" " + task.toString());
     }
 
     public static void printList(){
@@ -71,5 +97,14 @@ public class Duke {
             Integer index = i+1;
             System.out.println(index + ". " + INPUT_LIST.get(i));
         }
+    }
+
+    public static int findDate(String[] split){
+        for(int i = 0; i<split.length; i++){
+            if(split[i].equals("/by") || split[i].equals("/at")){
+                return i;
+            }
+        }
+        return -1;
     }
 }
