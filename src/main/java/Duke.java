@@ -37,7 +37,7 @@ public class Duke {
                                 + LINE);
                         break;
                     case "list":
-                        if (tasks.size() == 0) {
+                        if (tasks.isEmpty()) {
                             throw new DukeException("You currently have no tasks in your list.");
                         } else {
                             System.out.println(LINE);
@@ -90,7 +90,7 @@ public class Duke {
                                     + td
                                     + "\n\tNow you have "
                                     + tasks.size()
-                                    + " tasks in the list.\n"
+                                    + " task(s) in the list.\n"
                                     + LINE);
                         }
                         break;
@@ -111,7 +111,7 @@ public class Duke {
                                     + dl
                                     + "\n\tNow you have "
                                     + tasks.size()
-                                    + " tasks in the list.\n"
+                                    + " task(s) in the list.\n"
                                     + LINE);
                         }
                         break;
@@ -132,8 +132,28 @@ public class Duke {
                                     + e
                                     + "\n\tNow you have "
                                     + tasks.size()
-                                    + " tasks in the list.\n"
+                                    + " task(s) in the list.\n"
                                     + LINE);
+                        }
+                        break;
+                    case "delete":
+                        taskNumber = sc.nextLine();
+                        if (tasks.isEmpty()) {
+                            throw new DukeException("You currently have no tasks in your list to delete.");
+                        } else {
+                            if (taskNumber.isEmpty()) {
+                                throw new DukeException("Please enter the task number to delete!");
+                            } else {
+                                t = tasks.remove(Integer.parseInt(taskNumber.trim()) - 1);
+                                System.out.println(LINE
+                                        + "\n\t"
+                                        + "Noted. I've removed this task:\n\t  "
+                                        + t
+                                        + "\n\tNow you have "
+                                        + tasks.size()
+                                        + " task(s) in the list.\n"
+                                        + LINE);
+                            }
                         }
                         break;
                     default:
