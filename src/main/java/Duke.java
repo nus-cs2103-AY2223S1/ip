@@ -62,6 +62,16 @@ public class Duke {
                 case "todo":
                     parseTask(input, command, storageList, "");
                     break;
+                case "delete":
+                    index = getIndex(input);
+                    try {
+                        Task task = storageList.get(index);
+                        storageList.delete(index);
+                        Output.DELETE.modifyTask(task, storageList);
+                    } catch (DukeException e) {
+                        System.out.println(e.getMessage());
+                    }
+                    break;
                 default:
                     System.out.println(new DukeException("I'm sorry, but I don't know what that means :-(").getMessage());
             }
@@ -96,7 +106,14 @@ public class Duke {
                 ? input.substring(input.indexOf(command) + command.length() + 1)
                 : "";
     }
-    
+
+    /**
+     * Parses the user input and creates a Task object
+     * @param input User input
+     * @param command Command that the user inputs
+     * @param storageList StorageList object
+     * @param secCommand Second command that the user inputs
+     */
     private static void parseTask(String input, String command, StorageList storageList, String secCommand) {
         try {
             String desc = findFirstCommand(input, command);
@@ -124,9 +141,14 @@ public class Duke {
      */
     private static void addTask(Task task, StorageList storageList) {
         storageList.add(task);
-        Output.ADD.addTask(task, storageList);
+        Output.ADD.modifyTask(task, storageList);
     }
-    
+
+    /**
+     * Finds the index of the Task that the user wants to mark/unmark/delete
+     * @param input User input
+     * @return Index of the Task
+     */
     private static int getIndex(String input) {
         return Integer.parseInt(input.split(" ")[1]) - 1;
     }

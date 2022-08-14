@@ -19,16 +19,22 @@ public class StorageList {
    * Returns the Task at the specified index
    * @param index Index of the Task to be returned
    * @return Task at the specified index
+   * @throws DukeException Thrown when the index is out of bounds
    */
-  public Task get(int index) {
-    return list.get(index);
+  public Task get(int index) throws DukeException {
+    try {
+      return list.get(index);
+    } catch (IndexOutOfBoundsException e) {
+      throw new DukeException("Invalid index.");
+    }
   }
 
   /**
    * Marks the Task at the specified index as completed
    * @param i Index of the Task to be marked as completed
+   * @throws DukeException Thrown when the index is out of bounds
    */
-  public void mark(int i) throws DukeException{
+  public void mark(int i) throws DukeException {
     try {
       list.get(i).mark();
     } catch (IndexOutOfBoundsException e) {
@@ -39,8 +45,9 @@ public class StorageList {
   /**
    * Unmarks the Task at the specified index as completed
    * @param i Index of the Task to be unmarked as completed
+   * @throws DukeException Thrown when the index is out of bounds
    */
-  public void unmark(int i) throws DukeException{
+  public void unmark(int i) throws DukeException {
     try {
       list.get(i).unmark();
     } catch (IndexOutOfBoundsException e) {
@@ -55,17 +62,30 @@ public class StorageList {
   public int getSize() {
     return list.size();
   }
-
+  
+  /**
+   * Deletes the Task at the specified index
+   * @param i Index of the Task to be deleted
+   * @throws DukeException Thrown when the index is out of bounds
+   */
+  public void delete(int i) throws DukeException{
+    try {
+      list.remove(i);
+    } catch (IndexOutOfBoundsException e) {
+      throw new DukeException("Invalid index.");
+    }
+  }
+  
   /**
    * Returns the list of strings
    * @return String representation of the list of strings
    */
   @Override
   public String toString() {
-    String ans = "\t ";
+    String ans = "";
     for (int i = 0; i < list.size(); i++) {
       Task t = list.get(i);
-      ans += (i+1) + "." + t + "\n\t ";
+      ans += "\t " + (i+1) + "." + t + "\n";
     }
     return ans;
   }

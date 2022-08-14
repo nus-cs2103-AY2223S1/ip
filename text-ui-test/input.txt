@@ -11,4 +11,7 @@ event
 blah
 mark 100
 unmark 100
+delete 3
+list
+delete 3
 bye

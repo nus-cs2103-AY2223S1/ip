@@ -13,7 +13,8 @@ public enum Output{
   LIST("Here are the task(s) in your list:\n"),
   MARK("Nice! I've marked this task as done:\n"),
   UNMARK("OK, I've marked this task as not done yet:\n"),
-  ADD("Got it. I've added this task:\n");
+  ADD("Got it. I've added this task:\n"),
+  DELETE("Noted. I've removed this task:\n");
 
   private String output = "";
 
@@ -41,11 +42,11 @@ public enum Output{
   }
 
   /**
-   * Prints the format when a new Task is added
-   * @param task Task to be added
-   * @param list List where the task is added
+   * Prints the format when a new Task is modified
+   * @param task Task to be modified
+   * @param list List where the task is modified
    */
-  void addTask(Task task, StorageList list) {
+  void modifyTask(Task task, StorageList list) {
     echo(this.output + "\t  " + task + "\n" + getNumTask(list));
   }
 
@@ -80,8 +81,8 @@ public enum Output{
    * @return Wrapped String
    */
   public static String wrapper(String s) {
-    return "\t--------------------------------------------------------\n" 
-            + "\t " + s + "\n"
-            + "\t--------------------------------------------------------";
+    return "\t____________________________________________________________\n" 
+            + "\t " + s
+            + "\t____________________________________________________________";
   }
 }
