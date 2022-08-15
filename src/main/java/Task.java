@@ -16,7 +16,7 @@ public class Task {
         return (this.isDone ? "☒" : "☐");
     }
 
-    public void setCompletion(boolean isDone) {
+    public void setDone(boolean isDone) {
         this.isDone = isDone;
     }
 
