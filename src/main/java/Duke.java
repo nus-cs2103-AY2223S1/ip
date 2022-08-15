@@ -18,12 +18,7 @@ public class Duke {
         String message = "Bye! Hope to see you soon!";
         System.out.println(message);
     }
-
-    public void pushTask(Task task) {
-        this.taskArr.add(task);
-        System.out.println("Added task: " + task.getDescription());
-    }
-
+ 
     public void listTasks() {
         System.out.println("Here are your tasks: ");
         int len = this.taskArr.size();
@@ -46,29 +41,32 @@ public class Duke {
         System.out.println("Sure! I've marked this task as not yet done: ");
         System.out.println("   " + task);
     }
-
-
-    public void addTask(String type, String details) {
+    
+    public void addTask(String type, String details) throws DukeException {
         Task task;
-        if (type.equals("todo")) {
-            task = new Todo(details);
-        } else if (type.equals("deadline")) {
-            String[] strArr = details.split(" /by ");
-            String description = strArr[0].strip();
-            String by = strArr[1].strip();
-            task = new Deadline(description, by);
+        if (type.equals("todo") || type.equals("deadline") || type.equals("event")) {
+            if (type.equals("todo")) {
+                task = new Todo(details);
+            } else if (type.equals("deadline")) {
+                String[] strArr = details.split(" /by ");
+                String description = strArr[0].strip();
+                String by = strArr[1].strip();
+                task = new Deadline(description, by);
+            } else {
+                String[] strArr = details.split(" /at ");
+                String description = strArr[0].strip();
+                String at = strArr[1].strip();
+                task = new Event(description, at);
+            }
+            this.taskArr.add(task);
+            System.out.println("Got it. I've added this task:");
+            System.out.println("   " + task);
+            System.out.println("Now, you have " + this.taskArr.size() + " tasks in the list");
         } else {
-            String[] strArr = details.split(" /at ");
-            String description = strArr[0].strip();
-            String at = strArr[1].strip();
-            task = new Event(description, at);
+            throw new UnknownCommandException();
         }
-        this.taskArr.add(task);
-        System.out.println("Got it. I've added this task:");
-        System.out.println("   " + task);
-        System.out.println("Now, you have " + this.taskArr.size() + " tasks in the list");
     }
-
+    
     public void start() {
         Scanner scanner = new Scanner(System.in);
         this.greetUser();
@@ -91,12 +89,14 @@ public class Duke {
                     } else {
                         this.unmarkTaskAsDone(taskIndex);
                     }
-                    
                 }
-                scanner.nextLine();
             } else {
                 String taskDetails = scanner.nextLine().strip();
-                this.addTask(command, taskDetails);
+                try {
+                    this.addTask(command, taskDetails);
+                } catch (DukeException de) {
+                    System.out.println(de.getMessage());
+                }  
             }
             System.out.print(">>> ");
         }
