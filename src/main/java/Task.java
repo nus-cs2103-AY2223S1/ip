@@ -17,6 +17,6 @@ class Task {
 
     @Override
     public String toString() {
-        return String.format("[ ] %s", (completed) ? "X" : " ", description);
+        return String.format("[%s] %s", (completed) ? "X" : " ", description);
     }
 }
