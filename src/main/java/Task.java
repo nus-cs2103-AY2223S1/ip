@@ -13,10 +13,14 @@ public class Task {
 
     public void mark() {
         isDone = true;
+        System.out.println("Helped you to mark already! Happy?\n"
+                + this.toString());
     }
 
     public void unmark() {
         isDone = false;
+        System.out.println("Troublesome... Unmarked for you already.\n"
+                + this.toString());
     }
 
     @Override

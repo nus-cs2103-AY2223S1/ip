@@ -10,14 +10,11 @@ public class Duke {
             if (userInput.startsWith("mark ")) {
                 int intCollect = Integer.parseInt(userInput.substring(5));
                 storage[intCollect - 1].mark();
-                System.out.println("Helped you to mark already! Happy?\n"
-                        + storage[intCollect - 1].toString());
             } else if (userInput.startsWith("unmark ")) {
                 int intCollect = Integer.parseInt(userInput.substring(7));
                 storage[intCollect - 1].unmark();
-                System.out.println("Troublesome... Unmarked for you already.\n"
-                        + storage[intCollect - 1].toString());
-            } else if (userInput.equals("list")) {
+            }
+            else if (userInput.equals("list")) {
                 int j = 0;
                 while (storage[j] != null) {
                     System.out.println((j + 1) + ". " + storage[j].toString());
