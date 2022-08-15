@@ -48,6 +48,10 @@ public class Duke {
                         int unmarkindex = Integer.parseInt(inputText.substring(firstSpaceIdx + 1));
                         Duke.unmark(unmarkindex);
                         break;
+                    case "delete":
+                        int deleteindex = Integer.parseInt(inputText.substring(firstSpaceIdx + 1));
+                        Duke.delete(deleteindex);
+                        break;
                     case "deadline":
                         String deadlineInfo = inputText.substring(firstSpaceIdx + 1);
                         Duke.addDeadline(deadlineInfo);
@@ -202,5 +206,16 @@ public class Duke {
         // Print message
         System.out.println("OK, I've marked this task as not done yet:\n"+
                            selectedTask);
+    }
+
+    public static void delete(int index) {
+        // Remove task from list and get removed task
+        Task removedTask = Duke.inputs.remove(index - 1);
+
+        // Print message
+        System.out.println("Noted. I've removed this task:");
+        System.out.println(removedTask);
+        System.out.println(String.format("Now you have %d tasks in the list.",
+                                         inputs.size()));
     }
 }
