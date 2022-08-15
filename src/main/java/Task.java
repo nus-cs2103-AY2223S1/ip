@@ -10,9 +10,6 @@ public class Task {
     /** Whether the task has been completed. */
     protected boolean isDone;
 
-    /** The total number of Task instances. */
-    protected static int totalTasks = 0;
-
     /**
      * Constructor for a Task, initializes task name
      *
