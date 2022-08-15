@@ -25,7 +25,7 @@ public class Duke {
             Command command = Command.of(IOHelper.read(scanner));
             command.execute(tasks);
 
-            if (command.type == CommandType.BYE) {
+            if (command.command == CommandType.BYE) {
                 break;
             }
         }
