@@ -91,6 +91,14 @@ public class Roger {
         System.out.println(task);
     }
 
+    private void deleteTask(int taskNum) {
+        Task task = this.tasks.remove(taskNum - 1);
+
+        System.out.println("Haiya so lazy. Deleted this task:");
+        System.out.println(task);
+        System.out.println("Nephew now have " + Integer.toString(this.tasks.size()) + " tasks in the list.");
+    }
+
     private void handleAddToDo(String input) throws RogerInvalidInputException {
         String taskName;
 
@@ -181,6 +189,24 @@ public class Roger {
         this.unmarkAsDone(idx);
     }
 
+    private void handleDelete(String input) throws RogerInvalidInputException {
+        int idx;
+
+        try {
+            idx = Integer.parseInt(input.substring(7));
+        } catch (StringIndexOutOfBoundsException e) {
+            throw new RogerInvalidInputException("Nephew must tell me which task to delete!");
+        } catch (NumberFormatException e) {
+            throw new RogerInvalidInputException("Nephew must give me the task number!");
+        }
+
+        if (idx < 1 || this.tasks.size() < idx) {
+            throw new RogerInvalidInputException("Task " + String.valueOf(idx) + " doesn't exist, just like my love for Aunty Helen.");
+        }
+
+        this.deleteTask(idx);
+    }
+
     private void handleUnknownInput() {
         System.out.println("Uncle really don't understand.");
     }
@@ -215,6 +241,8 @@ public class Roger {
                     roger.handleAddDeadline(input);
                 } else if (input.startsWith("event")) {
                     roger.handleAddEvent(input);
+                } else if (input.startsWith("delete")) {
+                    roger.handleDelete(input);
                 } else {
                     roger.handleUnknownInput();
                 }
