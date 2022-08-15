@@ -7,12 +7,12 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
         String userInput = sc.nextLine();
         while (!userInput.equals("bye")) {
-            if (userInput.length() > 5 && userInput.substring(0, 5).equals("mark ")) {
+            if (userInput.startsWith("mark ")) {
                 int intCollect = Integer.parseInt(userInput.substring(5));
                 storage[intCollect - 1].mark();
                 System.out.println("Helped you to mark already! Happy?\n"
                         + storage[intCollect - 1].toString());
-            } else if (userInput.length() > 7 && userInput.substring(0, 7).equals("unmark ")) {
+            } else if (userInput.startsWith("unmark ")) {
                 int intCollect = Integer.parseInt(userInput.substring(7));
                 storage[intCollect - 1].unmark();
                 System.out.println("Troublesome... Unmarked for you already.\n"
