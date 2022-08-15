@@ -1,7 +1,18 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+Hello! Anya is happy to meet you.
+How can Anya help?
+---------------------------------------------------------------------
+Anya added: [T][ ] borrow book
+Anya sees that you have 1 task(s) in your list.
+---------------------------------------------------------------------
+Anya is getting you your list...
+1. [T][ ] borrow book
 
+---------------------------------------------------------------------
+Anya added: [D][ ] return book (by: Sunday)
+Anya sees that you have 2 task(s) in your list.
+---------------------------------------------------------------------
+Anya added: [E][ ] project meeting (at: Mon 2-4pm)
+Anya sees that you have 3 task(s) in your list.
+---------------------------------------------------------------------
+Anya is sad to see you leave. Please be back soon.
+---------------------------------------------------------------------
