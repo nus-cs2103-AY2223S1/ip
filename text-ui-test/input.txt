@@ -7,4 +7,6 @@ todo
 deadline
 event
 blah
+delete 1
+list
 bye
