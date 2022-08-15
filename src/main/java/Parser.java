@@ -6,6 +6,7 @@ public class Parser {
      * Parses the user input, and returns the appropriate command.
      *
      * @param userInput The user input.
+     * @param taskList The task list to run the command in.
      * @return The command corresponding to the input.
      */
     public static Command parseInput(String userInput, TaskList taskList) {
@@ -32,10 +33,12 @@ public class Parser {
                 case DeleteCommand.COMMAND_WORD:
                     return new DeleteCommand(taskList, Integer.parseInt(argument) - 1);
                 default:
-                    throw new DwukeException("oops!!! am sowwy, but me dun know wat that means :-(");
+                    throw new DwukeException("am sowwy, but me dun know wat that means :-(");
             }
         } catch (DwukeException e) {
             return new InvalidCommand(e.getMessage());
+        } catch (NumberFormatException e) {
+            return new InvalidCommand("oops!!! dats not a pwopew numbew");
         }
     }
 }

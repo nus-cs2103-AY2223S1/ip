@@ -8,7 +8,7 @@ public class DeleteCommand extends Command {
 
     DeleteCommand(TaskList taskList, int pos) throws DwukeException {
         if (pos < 0 || pos > taskList.size() - 1) {
-            throw new DwukeException("oops!!! da wist doesn't have a task with da number :3");
+            throw new DwukeException("da wist doesn't have a task with da number :3");
         }
         this.taskList = taskList;
         this.pos = pos;

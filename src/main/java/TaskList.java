@@ -75,6 +75,7 @@ public class TaskList {
             Task task = this.tasks.get(i);
             int taskNum = i + 1;
             result += taskNum + "." + task;
+
             if (i != this.tasks.size() - 1) {
                 result += "\n";
             }

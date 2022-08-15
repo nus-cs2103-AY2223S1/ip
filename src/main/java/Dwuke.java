@@ -26,14 +26,14 @@ public class Dwuke {
      * Reads the user input and executes it, until the user issues the exit command.
      */
     public void runLoop() {
-        String userInput = ui.getUserInput();
+        String userInput = this.ui.getUserInput();
         while (true) {
             Command command = Parser.parseInput(userInput, this.taskList);
 
             if (command instanceof ExitCommand) return;
 
-            ui.echo(command.execute());
-            userInput = ui.getUserInput();
+            this.ui.echo(command.execute());
+            userInput = this.ui.getUserInput();
         }
     }
 
@@ -41,14 +41,14 @@ public class Dwuke {
      * Starts Dwuke by displaying a welcome message.
      */
     public void start() {
-        ui.showWelcomeMessage();
+        this.ui.showWelcomeMessage();
     }
 
     /**
      * Stops Dwuke after displaying a goodbye message.
      */
     public void stop() {
-        ui.showGoodbyeMessage();
+        this.ui.showGoodbyeMessage();
         System.exit(0);
     }
 

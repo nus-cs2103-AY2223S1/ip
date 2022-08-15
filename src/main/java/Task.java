@@ -7,7 +7,7 @@ public abstract class Task {
 
     Task(String description) throws DwukeException {
         if (description.equals("")) {
-            throw new DwukeException("oops!!! da descwiption of a twask cannot be empty.");
+            throw new DwukeException("da descwiption of a twask cannot be empty.");
         }
         this.description = description;
         this.isDone = false;
@@ -34,7 +34,7 @@ public abstract class Task {
      */
     public void changeDescription(String newDescription) throws DwukeException {
         if (newDescription.equals("")) {
-            throw new DwukeException("oops!!! da descwiption of a twask cannot be empty.");
+            throw new DwukeException("da descwiption of a twask cannot be empty.");
         }
         this.description = newDescription;
     }

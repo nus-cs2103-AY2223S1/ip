@@ -3,6 +3,6 @@
  */
 public class DwukeException extends Exception {
     DwukeException(String message) {
-        super(message);
+        super("oops!!! " + message);
     }
 }

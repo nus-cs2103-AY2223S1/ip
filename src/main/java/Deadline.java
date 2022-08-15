@@ -14,14 +14,14 @@ public class Deadline extends Task {
     private static String[] getArguments(String str) throws DwukeException {
         int index = str.indexOf("/by");
 
-        if (index == -1) throw new DwukeException("oops!!! '/by' not fwound");
+        if (index == -1) throw new DwukeException("'/by' not fwound");
 
         try {
             String description = str.substring(0, index - 1);
             String date = str.substring(index + 4);
             return new String[]{description, date};
         } catch (StringIndexOutOfBoundsException e) {
-            throw new DwukeException("oops!!! da descwiption and date cannot be empty");
+            throw new DwukeException("da descwiption and date cannot be empty");
         }
     }
 

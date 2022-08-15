@@ -20,7 +20,7 @@ public class UI {
     }
 
     /**
-     * Prints the text for the user.
+     * Prints the given text for the user.
      *
      * @param text The text to print.
      */
