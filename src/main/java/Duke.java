@@ -18,29 +18,28 @@ public class Duke {
 
     private static void add(Task newTask, ArrayList<Task> taskList) {
         taskList.add(newTask);
-        System.out.println("\tadded: " + newTask.description + "\n" +
-                           "\tajouté: " + newTask.description + "\n");
+        System.out.println("\tadded / ajouté: " + newTask.description + "\n");
     }
 
     private static void list(ArrayList<Task> taskList) {
         for (int i = 0; i < taskList.size(); i++) {
-            System.out.println((i+1) + ".\t " + taskList.get(i).toString());
+            System.out.println("\t" + (i+1) + ".\t " + taskList.get(i).toString());
         }
     }
 
     private static void mark(ArrayList<Task> taskList, String taskIndex) {
         Task curr = taskList.get(Integer.parseInt(taskIndex) - 1);
         curr.setIsDone(true);
-        System.out.println("I have marked it as done:\n" +
-                           "Je l'ai marqué comme fait:\n" +
+        System.out.println("\tI have marked it as done:\n" +
+                           "\tJe l'ai marqué comme fait:\n\t" +
                            curr.toString());
     }
 
     private static void unmark(ArrayList<Task> taskList, String taskIndex) {
         Task curr = taskList.get(Integer.parseInt(taskIndex) - 1);
         curr.setIsDone(false);
-        System.out.println("I have marked it as undone:\n" +
-                           "Je l'ai marqué comme défait:\n" +
+        System.out.println("\tI have marked it as undone:\n" +
+                           "\tJe l'ai marqué comme défait:\n\t" +
                            curr.toString());
     }
 
