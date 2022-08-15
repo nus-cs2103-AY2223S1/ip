@@ -2,13 +2,13 @@ class ParsedData {
     final String raw;
     final String command;
     final String description;
-    final String date;
+    final String additionalInfo;
 
     ParsedData(String raw, String command, String description, String date) {
         this.raw = raw;
         this.command = command;
         this.description = description;
-        this.date = date;
+        this.additionalInfo = date;
     }
 
     ParsedData(String raw) {
