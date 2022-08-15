@@ -42,6 +42,14 @@ public class Duke {
         System.out.println("   " + task);
     }
 
+    public void deleteTask(int taskIndex) {
+        Task task = this.taskArr.get(taskIndex);
+        this.taskArr.remove(taskIndex);
+        System.out.println("Swee! I've removed this task: ");
+        System.out.println("   " + task);
+        System.out.println("Now, you have " + this.taskArr.size() + " tasks in the list");
+    }
+    
     public void addTask(String type, String details) throws DukeException {
         Task task;
         // Dateless task
@@ -88,7 +96,7 @@ public class Duke {
 
             if (command.equals("list")) {
                 this.listTasks();
-            } else if (command.equals("mark") || command.equals("unmark")) {
+            } else if (command.equals("mark") || command.equals("unmark") || command.equals("delete")) {
                 if (scanner.hasNextInt()) {
                     int taskIndex = scanner.nextInt() - 1;
                     if (taskIndex < 0 || taskIndex >= this.taskArr.size() ) {
@@ -96,8 +104,10 @@ public class Duke {
                     } else {
                         if (command.equals("mark")) {
                             this.markTaskAsDone(taskIndex);
-                        } else {
+                        } else if (command.equals("unmark")) {
                             this.unmarkTaskAsDone(taskIndex);
+                        } else {
+                            this.deleteTask(taskIndex);
                         }
                     }
                 }
