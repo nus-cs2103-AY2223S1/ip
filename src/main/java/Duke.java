@@ -110,10 +110,10 @@ public class Duke {
         String numberOnly= s.replaceAll("[^0-9]", "");
         int n;
         if (numberOnly.length() <= 0) {
-            throw new DukeException("no date given\n>>");
+            throw new DukeException("no number given\n>>");
         } else {
             n = Integer.parseInt(numberOnly);
-            if (n >= userInputHistory.size()) {
+            if (n > userInputHistory.size()) {
                 throw new DukeException("task does not exist is list\n>>");
             } else {
                 return n;
@@ -187,25 +187,30 @@ public class Duke {
         } else {
             switch (command) {
                 case BYE:
-                    //exit
                     System.out.println("Thank you for swinging by :)");
                     System.exit(0);
                     break;
+                case LIST:
+                    showHistory();
+                    break;
+                case MARK:
+                    markTask(getTaskNumber(userInput));
+                    break;
+                    case UNMARK:
+                        unmarkTask(getTaskNumber(userInput));
+                        break;
+                case TODO:
+                    handleTask(userInput);
+                    break;
+                case EVENT:
+                    handleEvent(userInput);
+                    break;
+                case DEADLINE:
+                    handleDeadline(userInput);
+                    break;
                 default:
+                    handleDeadline(userInput);
                     throw new DukeException("Enter a valid command (todo, event, deadline, list, mark, unmark, bye)\n>>");
-            }
-            if (userInput.equals("list")) {
-                showHistory();
-            } else if (userInput.startsWith("mark")) {
-                markTask(getTaskNumber(userInput));
-            } else if (userInput.startsWith("unmark")) {
-                unmarkTask(getTaskNumber(userInput));
-            } else if (userInput.startsWith("todo")) {
-                handleTask(userInput);
-            } else if (userInput.startsWith("event")) {
-                handleEvent(userInput);
-            } else if (userInput.startsWith("deadline")) {
-                handleDeadline(userInput);
             }
         }
     }
