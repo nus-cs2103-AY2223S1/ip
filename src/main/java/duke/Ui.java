@@ -28,21 +28,21 @@ public class Ui {
     }
 
     public void showMark(String task) {
-        System.out.println(String.format("Nice! I've marked this task as done:%n%s", task));
+        System.out.printf("Nice! I've marked this task as done:%n%s%n", task);
     }
 
     public void showUnmark(String task) {
-        System.out.println(String.format("OK, I've marked this task as not done yet:%n%s", task));
+        System.out.printf("OK, I've marked this task as not done yet:%n%s%n", task);
     }
 
     public void showAdd(String task, int size) {
-        System.out.println(String.format("Got it. I've added this task:%n%s%nNow you have %d task%s in the list.",
-                task, size, size > 1 ? "s" : ""));
+        System.out.printf("Got it. I've added this task:%n%s%nNow you have %d task%s in the list.%n",
+                task, size, size > 1 ? "s" : "");
     }
 
     public void showDelete(String task, int size) {
-        System.out.println(String.format("Noted. I've removed this task:%n%s%nNow you have %d task%s in the list.",
-                task, size, size != 1 ? "s" : ""));
+        System.out.printf("Noted. I've removed this task:%n%s%nNow you have %d task%s in the list.%n",
+                task, size, size != 1 ? "s" : "");
     }
 
     public void showLoadingError() {
