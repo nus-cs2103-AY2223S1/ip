@@ -6,10 +6,12 @@ list
 deadline
 deadline test2
 deadline test2 /by 2
+deadline test2 /by 2022-10-20
 list
 event
 event test3
 event test3 /at 3
+event test3 /at 2022-11-22
 list
 mark
 mark x

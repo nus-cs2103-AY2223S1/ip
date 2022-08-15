@@ -53,6 +53,9 @@ public class Ui {
         System.out.println("I'm sorry, but I don't know what that means.");
     }
 
+    public void showInvalidDateError() {
+        System.out.println("Please provide a date in the format yyyy-mm-dd.");
+    }
     public void showOutOfBoundsError() {
         System.out.println("The index provided is not within the list.");
     }

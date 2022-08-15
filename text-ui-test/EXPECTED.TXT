@@ -28,14 +28,17 @@ The description of a deadline cannot be empty.
 Please provide both a description and a time.
 --------------------------------------------------
 --------------------------------------------------
+Please provide a date in the format yyyy-mm-dd.
+--------------------------------------------------
+--------------------------------------------------
 Got it. I've added this task:
-[D][ ] test2 (by: 2)
+[D][ ] test2 (by: Oct 20 2022)
 Now you have 2 tasks in the list.
 --------------------------------------------------
 --------------------------------------------------
 Here are the tasks in your list:
 1.[T][ ] test1
-2.[D][ ] test2 (by: 2)
+2.[D][ ] test2 (by: Oct 20 2022)
 --------------------------------------------------
 --------------------------------------------------
 The description of an event cannot be empty.
@@ -44,15 +47,18 @@ The description of an event cannot be empty.
 Please provide both a description and a time.
 --------------------------------------------------
 --------------------------------------------------
+Please provide a date in the format yyyy-mm-dd.
+--------------------------------------------------
+--------------------------------------------------
 Got it. I've added this task:
-[E][ ] test3 (at: 3)
+[E][ ] test3 (at: Nov 22 2022)
 Now you have 3 tasks in the list.
 --------------------------------------------------
 --------------------------------------------------
 Here are the tasks in your list:
 1.[T][ ] test1
-2.[D][ ] test2 (by: 2)
-3.[E][ ] test3 (at: 3)
+2.[D][ ] test2 (by: Oct 20 2022)
+3.[E][ ] test3 (at: Nov 22 2022)
 --------------------------------------------------
 --------------------------------------------------
 The index to mark cannot be empty.
@@ -73,8 +79,8 @@ Nice! I've marked this task as done:
 --------------------------------------------------
 Here are the tasks in your list:
 1.[T][X] test1
-2.[D][ ] test2 (by: 2)
-3.[E][ ] test3 (at: 3)
+2.[D][ ] test2 (by: Oct 20 2022)
+3.[E][ ] test3 (at: Nov 22 2022)
 --------------------------------------------------
 --------------------------------------------------
 The index to unmark cannot be empty.
@@ -95,8 +101,8 @@ OK, I've marked this task as not done yet:
 --------------------------------------------------
 Here are the tasks in your list:
 1.[T][ ] test1
-2.[D][ ] test2 (by: 2)
-3.[E][ ] test3 (at: 3)
+2.[D][ ] test2 (by: Oct 20 2022)
+3.[E][ ] test3 (at: Nov 22 2022)
 --------------------------------------------------
 --------------------------------------------------
 The index to delete cannot be empty.
@@ -117,8 +123,8 @@ Now you have 2 tasks in the list.
 --------------------------------------------------
 --------------------------------------------------
 Here are the tasks in your list:
-1.[D][ ] test2 (by: 2)
-2.[E][ ] test3 (at: 3)
+1.[D][ ] test2 (by: Oct 20 2022)
+2.[E][ ] test3 (at: Nov 22 2022)
 --------------------------------------------------
 --------------------------------------------------
 Bye. Hope to see you again soon!

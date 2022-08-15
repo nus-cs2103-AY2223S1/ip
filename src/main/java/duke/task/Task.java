@@ -1,5 +1,7 @@
 package duke.task;
 
+import java.time.LocalDate;
+
 public abstract class Task {
     protected String description;
     protected boolean isDone;
@@ -29,7 +31,7 @@ public abstract class Task {
         char c = dataSplit[0].charAt(0);
         boolean isDone = dataSplit[1].equals("1");
         String description = dataSplit[2];
-        String time = dataSplit.length == 4 ? dataSplit[3] : "";
+        LocalDate time = dataSplit.length == 4 ? LocalDate.parse(dataSplit[3]) : null;
 
         switch (c) {
         case 'D':

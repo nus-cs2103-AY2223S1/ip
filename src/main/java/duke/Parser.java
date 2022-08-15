@@ -2,6 +2,8 @@ package duke;
 
 import duke.command.*;
 
+import java.time.LocalDate;
+
 public class Parser {
     private enum CommandType {
         BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE
@@ -50,13 +52,13 @@ public class Parser {
                 if (deadlineSplit.length == 1) {
                     throw new DukeException("Please provide both a description and a time.");
                 }
-                return new DeadlineCommand(deadlineSplit[0], deadlineSplit[1]);
+                return new DeadlineCommand(deadlineSplit[0], LocalDate.parse(deadlineSplit[1]));
             case EVENT:
                 String[] eventSplit = info.split(" /at ");
                 if (eventSplit.length == 1) {
                     throw new DukeException("Please provide both a description and a time.");
                 }
-                return new EventCommand(eventSplit[0], eventSplit[1]);
+                return new EventCommand(eventSplit[0], LocalDate.parse(eventSplit[1]));
             case DELETE:
                 if (!info.matches("[0-9]+")) {
                     throw new DukeException("The index provided is not a positive integer.");

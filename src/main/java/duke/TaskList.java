@@ -2,6 +2,7 @@ package duke;
 
 import duke.task.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class TaskList {
@@ -48,14 +49,14 @@ public class TaskList {
         return todo.toString();
     }
 
-    public String addDeadline(String description, String by) {
+    public String addDeadline(String description, LocalDate by) {
         Deadline deadline = new Deadline(description, by);
         tasks.add(deadline);
         size++;
         return deadline.toString();
     }
 
-    public String addEvent(String description, String at) {
+    public String addEvent(String description, LocalDate at) {
         Event event = new Event(description, at);
         tasks.add(event);
         size++;

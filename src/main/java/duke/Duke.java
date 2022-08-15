@@ -3,6 +3,7 @@ package duke;
 import duke.command.Command;
 
 import java.io.FileNotFoundException;
+import java.time.format.DateTimeParseException;
 
 public class Duke {
     private Storage storage;
@@ -33,6 +34,8 @@ public class Duke {
                 isExit = c.isExit();
             } catch (IllegalArgumentException e) {
                 ui.showInvalidCommandError();
+            } catch (DateTimeParseException e) {
+                ui.showInvalidDateError();
             } catch (IndexOutOfBoundsException e) {
                 ui.showOutOfBoundsError();
             } catch (DukeException e) {

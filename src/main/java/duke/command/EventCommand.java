@@ -4,11 +4,13 @@ import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 
+import java.time.LocalDate;
+
 public class EventCommand extends Command {
     String description;
-    String at;
+    LocalDate at;
 
-    public EventCommand(String description, String at) {
+    public EventCommand(String description, LocalDate at) {
         super();
         this.description = description;
         this.at = at;

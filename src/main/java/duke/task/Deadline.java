@@ -6,14 +6,14 @@ import java.time.format.DateTimeFormatter;
 public class Deadline extends Task {
     protected LocalDate by;
 
-    public Deadline(String description, String by) {
+    public Deadline(String description, LocalDate by) {
         super(description);
-        this.by = LocalDate.parse(by);
+        this.by = by;
     }
 
-    public Deadline(String description, boolean isDone, String by) {
+    public Deadline(String description, boolean isDone, LocalDate by) {
         super(description);
-        this.by = LocalDate.parse(by);
+        this.by = by;
         this.isDone = isDone;
     }
 
