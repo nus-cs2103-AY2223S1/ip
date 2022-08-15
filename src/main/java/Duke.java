@@ -36,6 +36,10 @@ public class Duke {
                     int taskIdToUnmark = Integer.parseInt(splitString[1]);
                     changeTaskStatus(taskIdToUnmark, false);
                     break;
+                case "delete":
+                    int taskIdToDelete = Integer.parseInt(splitString[1]);
+                    deleteTask(taskIdToDelete);
+                    break;
                 case "todo":
                     String[] descTodo = Arrays.copyOfRange(splitString, 1, splitString.length);
                     current = String.join(" ", descTodo);
@@ -86,6 +90,16 @@ public class Duke {
         System.out.println("Got it. I've added this task:");
         System.out.println("  " + task.toString());
         tasks.add(task);
+        System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+        System.out.println(line);
+    }
+
+    public static void deleteTask(int index) {
+        Task task = tasks.get(index - 1);
+        System.out.println(line);
+        System.out.println("Noted. I've removed this task:");
+        System.out.println("  " + task.toString());
+        tasks.remove(index - 1);
         System.out.println("Now you have " + tasks.size() + " tasks in the list.");
         System.out.println(line);
     }
