@@ -9,6 +9,46 @@ public class Duke {
                 "] " +
                 tasks[pos].getDescription();
     }
+    public static void addTask(String details, String type) {
+        switch (type) {
+            case "todo":
+                for (int pos = 0; pos < 100; pos++) {
+                    if (tasks[pos] == null) {
+                        tasks[pos] = new ToDo(details);
+                        System.out.println(
+                                "Got it. I've added this task:\n" +
+                                        getTaskDetails(pos) +
+                                        "\nNow you have " +
+                                        (pos + 1) +
+                                        " tasks in the list."
+                                );
+                        break;
+                    }
+                }
+                break;
+            case "deadline":
+            case "event":
+                String description = details.split("/")[0];
+                String timing = details.split("/")[1].split(" ", 2)[1];
+                for (int pos = 0; pos < 100; pos++) {
+                    if (tasks[pos] == null) {
+                        if (type.equals("deadline")) {
+                            tasks[pos] = new Deadline(description, timing);
+                        } else {
+                            tasks[pos] = new Event(description, timing);
+                        }
+                        System.out.println(
+                                "Got it. I've added this task:\n" +
+                                        getTaskDetails(pos) +
+                                        "\nNow you have " +
+                                        (pos + 1) +
+                                        " tasks in the list."
+                        );
+                        break;
+                    }
+                }
+        }
+    }
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         System.out.println("Hello! I'm Duke.\nWhat can I do for you?");
@@ -16,7 +56,6 @@ public class Duke {
         String command = input.nextLine();
         while (!command.equals("bye")) {
             String cmdMain = command.split(" ", 2)[0];
-//            String cmdParams = command.split(" ", 2)[1];
             switch (cmdMain) {
                 case "list":
                     for (int pos = 0; pos < 100; pos++) {
@@ -40,14 +79,12 @@ public class Duke {
                         );
                     }
                     break;
-                default:
-                    System.out.println("Added: " + command);
-                    for (int pos = 0; pos < 100; pos++) {
-                        if (tasks[pos] == null) {
-                            tasks[pos] = new ToDo(command);
-                            break;
-                        }
-                    }
+                case "todo":
+                case "deadline":
+                case "event":
+                    String cmdDetails = command.split(" ", 2)[1];
+                    addTask(cmdDetails, cmdMain);
+                    break;
                 }
             System.out.print(">> ");
             command = input.nextLine();
