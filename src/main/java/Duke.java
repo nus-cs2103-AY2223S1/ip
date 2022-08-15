@@ -54,10 +54,13 @@ public class Duke {
 
         final String exitCommand = "bye";
         final String displayListCommand = "list";
+        final String toDoCommand = "todo";
+        final String deadlineCommand = "deadline";
+        final String eventCommand = "event";
         final String markCommand = "mark";
         final String unmarkCommand = "unmark";
 
-        String[] command = input.split(" ");
+        String[] command = input.split(" ", 2);
 
         switch (command[0]) {
 
@@ -69,16 +72,27 @@ public class Duke {
                 displayList(list);
                 break;
 
+            case toDoCommand:
+                parseToDoCommand(command[1]);
+                break;
+
+            case deadlineCommand:
+                parseDeadlineCommand(command[1]);
+                break;
+
+            case eventCommand:
+                parseEventCommand(command[1]);
+                break;
+
             case markCommand:
-                markItem(command[1]);
+                parseMarkCommand(command[1]);
                 break;
 
             case unmarkCommand:
-                unmarkItem(command[1]);
+                parseUnmarkCommand(command[1]);
                 break;
 
             default:
-                addToList(input);
                 break;
 
         }
@@ -90,77 +104,106 @@ public class Duke {
      * Adds an item to the static list.
      * @param item Item to add to the list.
      */
-    private static void addToList(String item) {
-        list.add(new Task(item));
-        sendMessage("added: " + item);
+    private static void addToList(Task item) {
+        list.add(item);
+        sendMessage("Got it. I've added this task:\n  "
+                + item + "\nNow you have " + list.size() + " tasks in the list.");
+    }
+
+    /**
+     * Parses the user's input for a todo command.
+     * @param input User input after the todo command.
+     */
+    private static void parseToDoCommand(String input) {
+        addToList(new ToDo(input));
+    }
+
+    /**
+     * Parses the user's input for a deadline command.
+     * @param input User input after the deadline command.
+     */
+    private static void parseDeadlineCommand(String input) {
+        String[] command = input.split(" /by ", 2);
+
+        if (command.length < 2) {
+            sendMessage("No deadline given!");
+            return;
+        }
+
+        addToList(new Deadline(command[0], command[1]));
+    }
+
+    /**
+     * Parses the user's input for an event command.
+     * @param input User input after the event command.
+     */
+    private static void parseEventCommand(String input) {
+        String[] command = input.split(" /at ", 2);
+
+        if (command.length < 2) {
+            sendMessage("No time given!");
+            return;
+        }
+
+        addToList(new Event(command[0], command[1]));
     }
 
     /**
      * Attempt to mark an item as complete in the list, given a string index.
      * @param input String index. Will be parsed into int.
      */
-    private static void markItem(String input) {
-        int index = -1;
+    private static void parseMarkCommand(String input) {
+
+        int index;
         try {
             index = parseInt(input);
         } catch (NumberFormatException e) {
             sendMessage(invalidIndexMessage);
             return;
         }
-        markItem(index);
+
+        if (index < 1 || index > list.size() + 1) {
+            sendMessage(invalidIndexMessage);
+            return;
+        }
+        list.get(index - 1).setComplete(true);
+        sendMessage("Nice! I've marked this task as done:\n" + list.get(index - 1));
+
     }
 
     /**
      * Attempt to unmark an item as complete in the list, given a string index.
      * @param input String index. Will be parsed into int.
      */
-    private static void unmarkItem(String input) {
-        int index = -1;
+    private static void parseUnmarkCommand(String input) {
+        int index;
         try {
             index = parseInt(input);
         } catch (NumberFormatException e) {
             sendMessage(invalidIndexMessage);
             return;
         }
-        unmarkItem(index);
-    }
 
-    /**
-     * Marks an item as complete in the list.
-     * @param index Index to mark as complete, starting from 1.
-     */
-    private static void markItem(int index) {
         if (index < 1 || index > list.size() + 1) {
             sendMessage(invalidIndexMessage);
             return;
         }
-        list.get(index - 1).complete = true;
-        sendMessage("Nice! I've marked this task as done:\n" + list.get(index - 1));
-    }
-
-    /**
-     * Marks an item as incomplete in the list.
-     * @param index Index to mark as incomplete, starting from 1.
-     */
-    private static void unmarkItem(int index) {
-        if (index < 1 || index > list.size() + 1) {
-            sendMessage(invalidIndexMessage);
-            return;
-        }
-        list.get(index - 1).complete = false;
+        list.get(index - 1).setComplete(false);
         sendMessage("OK, I've marked this task as not done yet:\n" + list.get(index - 1));
+
     }
+
 
     /**
      * Displays the items in a string list, enumerated from 1.
      * @param list The list of strings to display.
      */
     private static void displayList(ArrayList<Task> list) {
-        String output = "Here are the tasks in your list:";
+        StringBuilder output = new StringBuilder("Here are the tasks in your list:");
         for (int i = 0; i < list.size(); i++) {
-            output += "\n" + (i + 1) + ". " + list.get(i);
+            output.append("\n").append(i + 1).append(". ").append(list.get(i));
         }
-        sendMessage(output);
+        sendMessage(output.toString());
     }
 
     /**
@@ -176,22 +219,5 @@ public class Duke {
         System.out.println(indentation + line);
         messageLines.forEach(x -> System.out.println(indentation + x));
         System.out.println(indentation + line);
-    }
-
-    /**
-     * A class that represents a task in the task list.
-     */
-    private static class Task {
-        public String text = "";
-        public boolean complete = false;
-
-        public Task(String text) {
-            this.text = text;
-        }
-
-        @Override
-        public String toString() {
-            return "[" + (complete ? "X" : " ") + "] " + text;
-        }
     }
 }
