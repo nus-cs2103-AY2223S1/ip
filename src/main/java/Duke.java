@@ -23,16 +23,16 @@ public class Duke {
         }
     }
 
-    private static void mark(Task[] taskList, String taskIndex) {
-        Task curr = taskList[(Integer.parseInt(taskIndex) - 1)];
+    private static void mark(Task[] taskList, int taskIndex) {
+        Task curr = taskList[taskIndex - 1];
         curr.setIsDone(true);
         System.out.println("\tI have marked it as done:\n" +
                            "\tJe l'ai marqué comme fait:\n\t" +
                            curr.toString());
     }
 
-    private static void unmark(Task[] taskList, String taskIndex) {
-        Task curr = taskList[(Integer.parseInt(taskIndex) - 1)];
+    private static void unmark(Task[] taskList, int taskIndex) {
+        Task curr = taskList[taskIndex - 1];
         curr.setIsDone(false);
         System.out.println("\tI have marked it as undone:\n" +
                            "\tJe l'ai marqué comme défait:\n\t" +
@@ -56,9 +56,9 @@ public class Duke {
             } else if (input.equals("list")) {
                 list(taskList);
             } else if (input.startsWith("mark")) {
-                mark(taskList, input.substring(5));
+                mark(taskList, Integer.parseInt(input.substring(5)));
             } else if (input.startsWith("unmark")) {
-                unmark(taskList, input.substring(7));
+                unmark(taskList, Integer.parseInt(input.substring(7)));
             } else if (input.startsWith("todo")) {
                 add(new Todo(input.substring(5)), taskList);
             } else if (input.startsWith("deadline")) {
