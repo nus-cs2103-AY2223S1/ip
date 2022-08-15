@@ -17,6 +17,9 @@ public class Duke {
         String LIST = "list";
         String MARK = "mark";
         String UNMARK = "unmark";
+        String TODO = "todo";
+        String DEADLINE = "deadline";
+        String EVENT = "event";
 
         Scanner sc = new Scanner(System.in);
 
@@ -24,29 +27,45 @@ public class Duke {
 
         while(true) {
             String userInput = sc.nextLine();
-            if (userInput.equals(BYE)) {
+            String[] userInputSpilt = userInput.split(" ", 2);
+            if (userInputSpilt[0].equals(BYE)) {
                 break;
-            } else if (userInput.equals(LIST)) {
+            } else if (userInputSpilt[0].equals(LIST)) {
                 ListOut();
-            } else if (userInput.substring(0, 4).equals(MARK)) {
-                int taskNum = Integer.valueOf(userInput.substring(5, 6)) - 1;
+            } else if (userInputSpilt[0].equals(MARK)) {
+                int taskNum = Integer.valueOf(userInputSpilt[1]) - 1;
                 MarkTask(taskNum);
-            } else if (userInput.substring(0, 6).equals(UNMARK)) {
-                int taskNum = Integer.valueOf(userInput.substring(7, 8)) - 1;
+            } else if (userInputSpilt[0].equals(UNMARK)) {
+                int taskNum = Integer.valueOf(userInputSpilt[1]) - 1;
                 UnmarkTask(taskNum);
+            } else if (userInputSpilt[0].equals(TODO)) {
+                ToDo currToDo = new ToDo(userInputSpilt[1]);
+                AddToList(currToDo);
+            } else if (userInputSpilt[0].equals(DEADLINE)) {
+                String[] deadlineSpilt = userInputSpilt[1].split("/by", 2);
+                Deadline currDeadline =  new Deadline(deadlineSpilt[0], deadlineSpilt[1]);
+                AddToList(currDeadline);
+            } else if (userInputSpilt[0].equals(EVENT)) {
+                String[] eventSpilt = userInputSpilt[1].split("/at", 2);
+                Event currEvent =  new Event(eventSpilt[0], eventSpilt[1]);
+                AddToList(currEvent);
             } else {
-                AddToList(userInput);
+                System.out.println("Invalid Commands");
             }
         }
 
         Bye();
     }
 
-    public static void AddToList(String str) {
-        Task tempTask  = new Task(str);
-        listOfThings.add(tempTask);
+    public static void AddToList(Task task) {
+        listOfThings.add(task);
         System.out.println("--------------------------------");
-        System.out.println("added: " + str);
+        System.out.println("Got it. I've added this task:\n " + task.TaskInfo());
+        if (listOfThings.size() == 1) {
+            System.out.println("Now you have " + listOfThings.size() + " task in the list.");
+        } else {
+            System.out.println("Now you have " + listOfThings.size() + " tasks in the list.");
+        }
         System.out.println("--------------------------------");
     }
 
@@ -54,8 +73,7 @@ public class Duke {
         int size = listOfThings.size();
         System.out.println("--------------------------------");
         for (int i = 0; i < size; i++) {
-            System.out.println((i + 1) + ". [" +  listOfThings.get(i).getStatusIcon() + "] " +
-                    listOfThings.get(i).getDescription());
+            System.out.println((i + 1) + ". " + listOfThings.get(i).TaskInfo());
         }
         System.out.println("--------------------------------");
     }
@@ -64,8 +82,7 @@ public class Duke {
         Task currentTask = listOfThings.get(taskNum);
         currentTask.markAsDone();
         System.out.println("--------------------------------");
-        System.out.println("Nice! I've marked this task as done:\n " + " [" + currentTask.getStatusIcon() + "] "
-                + currentTask.getDescription());
+        System.out.println("Nice! I've marked this task as done:\n " + currentTask.TaskInfo());
         System.out.println("--------------------------------");
 
     }
@@ -74,8 +91,7 @@ public class Duke {
         Task currentTask = listOfThings.get(taskNum);
         currentTask.markAsNotDone();
         System.out.println("--------------------------------");
-        System.out.println("Ok, I've marked this task as not done yet:\n " + " [" + currentTask.getStatusIcon() + "] "
-                + currentTask.getDescription());
+        System.out.println("Ok, I've marked this task as not done yet:\n " + currentTask.TaskInfo());
         System.out.println("--------------------------------");
     }
 

@@ -22,4 +22,10 @@ public class Task {
     public void markAsNotDone() {
         isDone = false;
     }
+
+    public String TaskInfo() {
+        return "[] [" + getStatusIcon() + "] " + description;
+    }
+
+
 }
