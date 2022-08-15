@@ -14,18 +14,12 @@ public class Duke {
         System.out.println("Hello! I'm Duke.\nWhat can I do for you?");
         System.out.print(">> ");
         String command = input.nextLine();
-        while (true) {
-            if (command.equals("bye")) {
-                System.out.println("Bye. Hope to see you again soon!");
-                input.close();
-                break;
-            } else if (command.equals("list")) {
+        while (!command.equals("bye")) {
+            if (command.equals("list")) {
                 for (int pos = 0; pos < 100; pos++) {
                     if (tasks[pos] == null) break;
                     System.out.println(pos + 1 + ". " + getTaskDetails(pos));
                 }
-                System.out.print(">> ");
-                command = input.nextLine();
             } else if (command.startsWith("mark") || command.startsWith("unmark")) {
                 int pos = Integer.parseInt(command.split(" ")[1]) - 1;
                 if (tasks[pos] == null) {
@@ -43,8 +37,6 @@ public class Duke {
                                     getTaskDetails(pos)
                     );
                 }
-                System.out.print(">> ");
-                command = input.nextLine();
             } else {
                 System.out.println("Added: " + command);
                 for (int pos = 0; pos < 100; pos++) {
@@ -53,9 +45,11 @@ public class Duke {
                         break;
                     }
                 }
-                System.out.print(">> ");
-                command = input.nextLine();
             }
+            System.out.print(">> ");
+            command = input.nextLine();
         }
+        System.out.println("Bye. Hope to see you again soon!");
+        input.close();
     }
 }
