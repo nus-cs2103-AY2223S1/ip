@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Duke {
+public class Jean {
 
     private static void bye() {
         System.out.println("\tGoodbye! See you soon!\n" +
