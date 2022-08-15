@@ -9,7 +9,7 @@ public class Duke {
         //Scanner object to take in input from user
         Scanner input = new Scanner(System.in);
         //Welcome message
-        System.out.println("Hello! I'm Duke\nWhat can I do for you?");
+        System.out.println("Hello! I'm Donovan\nWhat can I do for you?");
         String text = input.next();
         while (!text.equals("bye")) {
             switch (text) {
