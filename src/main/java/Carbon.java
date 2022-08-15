@@ -113,11 +113,9 @@ public class Carbon {
     private void processAdvanced(String input) {
         String lowerCaseInput = input.toLowerCase();
         if (lowerCaseInput.startsWith("mark")) {
-            int taskNumber = Integer.valueOf(input.substring("mark ".length()));
-            this.setTaskDoneness(taskNumber, true);
+            this.validateAndMark(input, true);
         } else if (lowerCaseInput.startsWith("unmark")) {
-            int taskNumber = Integer.valueOf(input.substring("unmark ".length()));
-            this.setTaskDoneness(taskNumber, false);
+            this.validateAndMark(input, false);
         } else if (lowerCaseInput.startsWith("todo")) {
             this.addTask(input, "todo"); // TODO: change to using enums
         } else if (lowerCaseInput.startsWith("deadline")) {
@@ -126,8 +124,24 @@ public class Carbon {
             this.addTask(input, "event"); // TODO: change to using enums
         } else {
             // not a command, return invalid input
-            String log = String.format("'%s'? I have no idea what you're saying.", input);
-            Carbon.printOut(log);
+            CarbonException invalidInput = new InvalidInputException(input);
+            Carbon.printOut(invalidInput.toString());
+        }
+    }
+
+    private void validateAndMark(String input, boolean doneness) {
+        // add missing param exception
+        int taskNumber;
+        if (doneness) {
+            taskNumber = Integer.valueOf(input.substring("mark ".length()));
+        } else {
+            taskNumber = Integer.valueOf(input.substring("unmark ".length()));
+        }
+        if (taskNumber < 1 || taskNumber > this.tasks.size()) {
+            CarbonException outOfBounds = new OutOfBoundsException(taskNumber, this.tasks.size());
+            Carbon.printOut(outOfBounds.toString());
+        } else {
+            this.setTaskDoneness(taskNumber, doneness);
         }
     }
 
@@ -188,7 +202,7 @@ public class Carbon {
         //     this.rand.nextInt(Carbon.goodbyes.length)
         // ];
         
-        String randomGoodbye = Carbon.goodbyes[0];
+        String randomGoodbye = Carbon.goodbyes[0] + "\n";
         Carbon.printOut(randomGoodbye);
     }
 
