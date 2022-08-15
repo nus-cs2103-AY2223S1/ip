@@ -2,6 +2,7 @@ import java.util.Scanner;
 public class Duke {
 
     String input;
+    Storage storage = new Storage();
     Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -25,8 +26,10 @@ public class Duke {
             if (input.equals("bye")) {
                 System.out.println("Please don't leave me >_<\nSee you soon");
                 break;
+            } else if (input.equals("list")) {
+                storage.iterate();
             } else {
-                System.out.println(input);
+                storage.add(input);
             }
 
         }
