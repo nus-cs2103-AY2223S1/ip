@@ -1,10 +1,23 @@
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Duke {
     private static final String HORIZONTAL_LINE = "    ____________________________________________________________\n";
     private final Scanner sc;
     private TaskList taskList;
+    private enum Commands {
+        TODO, DEADLINE, EVENT, LIST, BYE, MARK, UNMARK
+    }
+    private HashMap<String, Commands> commandMap = new HashMap<>(Map.of(
+            "todo", Commands.TODO,
+            "deadline", Commands.DEADLINE,
+            "event", Commands.EVENT,
+            "list", Commands.LIST,
+            "bye", Commands.BYE,
+            "mark", Commands.MARK,
+            "unmark", Commands.UNMARK
+    ));
 
     public Duke() {
         this.sc = new Scanner(System.in);
@@ -25,26 +38,55 @@ public class Duke {
         System.out.println(response);
     }
 
-    public void add(String description) {
-        this.taskList.addTask(new Task(description));
-        reply("     added: " + description);
+    public void add(Commands type) {
+        String regex;
+        String[] arguments;
+        Task newTask = new Task("");
+        int number = 0;
+        switch (type) {
+            case TODO:
+                newTask = new ToDo(sc.nextLine());
+                number = this.taskList.addTask(newTask);
+                break;
+            case DEADLINE:
+                arguments = sc.nextLine().split("/by");
+                newTask = new Deadline(arguments[0], arguments[1]);
+                number = this.taskList.addTask(newTask);
+                break;
+            case EVENT:
+                arguments = sc.nextLine().split("/at");
+                newTask = new Event(arguments[0], arguments[1]);
+                number = this.taskList.addTask(newTask);
+                break;
+        }
+        reply("     Got it. I've added this task:\n     " + newTask + String.format("\n     Now you have %d tasks in the list.", number));
     }
 
     public void commandHandler() {
         while (sc.hasNext()) {
-            String command = sc.next();
-            if (command.compareTo("bye") == 0) {
-                reply("     Bye. Hope to see you again soon!");
-                sc.close();
+            Commands type = commandMap.get(sc.next());
+            switch (type) {
+                case TODO:
+                case DEADLINE:
+                case EVENT:
+                    add(type);
+                    break;
+                case LIST:
+                    reply(this.taskList.toString());
+                    break;
+                case MARK:
+                    reply("     Nice! I've marked this task as done:\n     " + this.taskList.markDone(sc.nextInt() - 1));
+                    break;
+                case UNMARK:
+                    reply("     OK, I've marked this task as not done yet:\n     " + this.taskList.unmarkDone(sc.nextInt() - 1));
+                    break;
+                case BYE:
+                    reply("     Bye. Hope to see you again soon!");
+                    sc.close();
+                    break;
+            }
+            if (type == Commands.BYE) {
                 break;
-            } else if (command.compareTo("list") == 0) {
-                reply(this.taskList.toString());
-            } else if (command.compareTo("mark") == 0) {
-                reply("     Nice! I've marked this task as done:\n     " + this.taskList.markDone(sc.nextInt() - 1));
-            } else if (command.compareTo("unmark") == 0) {
-                reply("     OK, I've marked this task as not done yet:\n     " + this.taskList.unmarkDone(sc.nextInt() - 1));
-            } else {
-                add(sc.nextLine());
             }
         }
     }

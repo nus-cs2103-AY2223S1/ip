@@ -7,8 +7,9 @@ public class TaskList {
         this.list = new ArrayList<>();
     }
 
-    public boolean addTask(Task task){
-        return this.list.add(task);
+    public int addTask(Task task){
+        this.list.add(task);
+        return this.list.size();
     }
 
     public String markDone(int index) {
@@ -17,7 +18,7 @@ public class TaskList {
     }
 
     public String unmarkDone(int index) {
-        this.list.get(index).unmarkDone();
+        this.list.get(index).markNotDone();
         return this.list.get(index).toString();
     }
 
