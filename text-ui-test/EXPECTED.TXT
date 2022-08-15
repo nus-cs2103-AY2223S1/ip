@@ -36,4 +36,12 @@ Nephew got a lot of things to do:
 1. [T][ ] borrow book
 2. [D][ ] return book (by: Sunday)
 3. [E][ ] project meeting (at: Mon 2-4pm)
+Task 0 doesn't exist, just like my love for Aunty Helen.
+Haiya so lazy. Deleted this task:
+[D][ ] return book (by: Sunday)
+Nephew now have 2 tasks in the list.
+Task 3 doesn't exist, just like my love for Aunty Helen.
+Nephew got a lot of things to do:
+1. [T][ ] borrow book
+2. [E][ ] project meeting (at: Mon 2-4pm)
 Bye bye niece and nephew.
