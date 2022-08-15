@@ -56,19 +56,63 @@ public class Jean {
             } else if (input.equals("list")) {
                 list(taskList);
             } else if (input.startsWith("mark")) {
-                mark(taskList, Integer.parseInt(input.substring(5)));
+                try {
+                    if (input.length() == 4) {
+                        throw new JeanException("You must name a task to mark!");
+                    } else {
+                        mark(taskList, Integer.parseInt(input.substring(5)));
+                    }
+                } catch (JeanException e) {
+                    System.out.println(e);
+                }
             } else if (input.startsWith("unmark")) {
-                unmark(taskList, Integer.parseInt(input.substring(7)));
+                try {
+                    if (input.length() == 6) {
+                        throw new JeanException("You must name a task to unmark!");
+                    } else {
+                        unmark(taskList, Integer.parseInt(input.substring(7)));
+                    }
+                } catch (JeanException e) {
+                    System.out.println(e);
+                }
             } else if (input.startsWith("todo")) {
-                add(new Todo(input.substring(5)), taskList);
+                try {
+                    if (input.length() == 4) {
+                        throw new JeanException("The description must not be empty!");
+                    } else {
+                        add(new Todo(input.substring(5)), taskList);
+                    }
+                } catch (JeanException e) {
+                    System.out.println(e);
+                }
             } else if (input.startsWith("deadline")) {
                 int sep = input.indexOf("/by");
-                add(new Deadline(input.substring(9, sep), input.substring(sep + 4)),
-                        taskList);
+                try {
+                    if (sep == 9 || input.length() == 8) {
+                        throw new JeanException("The description must not be empty!");
+                    } else if (sep == -1){
+                        throw new JeanException("You must give a deadline!");
+                    } else {
+                        add(new Deadline(input.substring(9, sep), input.substring(sep + 4)),
+                                taskList);
+                    }
+                } catch (JeanException e) {
+                    System.out.println(e);
+                }
             } else if (input.startsWith("event")) {
                 int sep = input.indexOf("/at");
-                add(new Event(input.substring(6, sep), input.substring(sep + 4)),
-                        taskList);
+                try {
+                    if (sep == 6 || input.length() == 5) {
+                        throw new JeanException("The description must not be empty!");
+                    } else if (sep == -1){
+                        throw new JeanException("You must give a time!");
+                    } else {
+                        add(new Event(input.substring(6, sep), input.substring(sep + 4)),
+                                taskList);
+                    }
+                } catch (JeanException e) {
+                    System.out.println(e);
+                }
             }
         }
     }
