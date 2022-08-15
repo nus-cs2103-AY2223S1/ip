@@ -1,7 +1,6 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.regex.Pattern;
 
 public class Duke {
     private static ArrayList<Task> userInputHistory = new ArrayList<>();
@@ -126,18 +125,52 @@ public class Duke {
      * Filter userInput and call addDeadlineToHistory
      * @param deadline
      */
-    private static void handleDeadline(String deadline) {
-        String description, by;
-        description = deadline.substring(deadline.indexOf("deadline ") + 9, deadline.indexOf("/by"));
-        by = deadline.substring(deadline.indexOf("/by") + 3);
-        addDeadlineToHistory(description, by);
+    private static void handleDeadline(String deadline) throws DukeException{
+        String description, by, removeDeadline;
+        int byLine;
+        removeDeadline = deadline.substring(deadline.indexOf("deadline") + 8).trim();
+        if (removeDeadline.equals("")) {
+            throw new DukeException("deadline", "Blank fields not allowed");
+        } else {
+             byLine = removeDeadline.indexOf("/by");
+            if (byLine < 0) {
+                throw new DukeException("deadline", "Missing by line");
+            } else {
+                description = removeDeadline.substring(0, byLine + 3).trim();
+                if (description.equals("")) {
+                    throw new DukeException("deadline", "Blank description not allowed");
+                } else {
+                    by = removeDeadline.substring(byLine + 3).trim();
+                    if (by.equals("")) {
+                        throw new DukeException("deadline", "Blank /by date not allowed");
+                    } else {
+                        addDeadlineToHistory(description, by);
+                    }
+                }
+            }
+        }
+
+    }
+
+    /**
+     * Filter userInput and call addDeadlineToHistory
+     * @param task
+     */
+    private static void handleTask(String task) throws DukeException{
+        String description;
+        description = task.substring(task.indexOf("todo") + 4).trim();
+        if (description.equals("")) {
+            throw new DukeException("todo", "Blank note not allowed");
+        } else {
+            addTaskToHistory(description);
+        }
     }
 
     /**
      * Menu handler
      * @param userInput
      */
-    private static void handleInput(String userInput) {
+    private static void handleInput(String userInput) throws DukeException{
         if (userInput.equals("bye") || userInput.equals("exit") || userInput.equals("quit")) {
             //exit
             System.out.println("Thank you for swinging by :)");
@@ -149,7 +182,7 @@ public class Duke {
         } else if (userInput.startsWith("unmark")) {
             unmarkTask(getTaskNumber(userInput));
         } else if(userInput.startsWith("todo")) {
-                addTaskToHistory(userInput);
+            handleTask(userInput);
         } else if (userInput.startsWith("event")) {
             handleEvent(userInput);
         } else if (userInput.startsWith("deadline")) {
@@ -170,8 +203,10 @@ public class Duke {
                 s = in.nextLine();
                 handleInput(s);
             } catch (InputMismatchException ime) {
-                System.out.println("error occurred");
+                System.out.printf("ERROR: %s", ime);
                 System.exit(0);
+            } catch (DukeException de) {
+                System.out.printf("ERROR: %s\n>>", de);
             }
         }
     }
