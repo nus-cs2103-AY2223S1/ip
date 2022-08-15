@@ -17,8 +17,9 @@ public class Duke {
         System.out.println(initialMessage);
         Scanner scanner = new Scanner(System.in);
         // the user has to at least input bye to exit
-        String userInput = scanner.nextLine();
-        while (true) {
+        String userInput;
+        while (scanner.hasNextLine()) {
+            userInput = scanner.nextLine();
             if (userInput.equals("bye")) {
                 System.out.println(byeMessage);
                 break;
@@ -52,6 +53,7 @@ public class Duke {
                     case "deadline":
                         StringBuilder deadlineDescription = new StringBuilder();
                         int i = 1;
+                        // can refactor this for deadline and event
                         while (!commands[i].matches("^/by")) {
                             deadlineDescription.append(commands[i]).append(" ");
                             i++;
@@ -78,7 +80,6 @@ public class Duke {
                 }
                 System.out.println(messageWithIndentedLines("\n     Got it. I've added this task:\n       " + userTasks.get(userTasks.size() - 1) + "\n     Now you have " + userTasks.size() + " task" + (userTasks.size() == 1 ? "" : "s") + " in the list.\n"));
             }
-            userInput = scanner.nextLine();
         }
     }
 }

@@ -45,5 +45,5 @@ out/
 hs_err_pid*
 replay_pid*
 
-/text-ui-test/ACTUAL.txt
+text-ui-test/ACTUAL.TXT
 text-ui-test/EXPECTED-UNIX.TXT
