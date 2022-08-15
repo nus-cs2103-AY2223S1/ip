@@ -26,6 +26,7 @@ java -classpath ../bin Duke < input.txt > ACTUAL.TXT
 cp EXPECTED.TXT EXPECTED-UNIX.TXT
 dos2unix ACTUAL.TXT EXPECTED-UNIX.TXT
 
+
 # compare the output to the expected output
 diff ACTUAL.TXT EXPECTED-UNIX.TXT
 if [ $? -eq 0 ]
