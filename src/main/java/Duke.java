@@ -19,6 +19,8 @@ public class Duke {
     }
 
     private static void repeat() {
+        String[] list = new String[100];
+        int i = 0;
         String input = "";
         Scanner in = new Scanner(System.in);
         while(true) {
@@ -26,8 +28,22 @@ public class Duke {
             if (input.equals("bye")) {
                 wrapPrint("     Bye. Hope to see you again soon!");
                 break;
+            } else if (input.equals("list")) {
+                StringBuilder listString = new StringBuilder();
+                for (int j = 0; j < i; j ++) {
+                    listString.append(leftPad(String.format("%d. ", j + 1)));
+                    listString.append(list[j]);
+                    listString.append("\n");
+                }
+                if (listString.length() > 0) {
+                    listString.setLength(listString.length() - 1);
+                }
+                wrapPrint(listString.toString());
+            } else {
+                list[i] = input;
+                i++;
+                wrapPrint(leftPad("added: " + input));
             }
-            wrapPrint(leftPad(input));
         }
     }
 }
