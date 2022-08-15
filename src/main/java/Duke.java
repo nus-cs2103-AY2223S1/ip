@@ -16,27 +16,29 @@ public class Duke {
                            "\tAu revoir! À tout à l'heure!");
     }
 
-    private static void add(Task newTask, ArrayList<Task> taskList) {
-        taskList.add(newTask);
-        System.out.println("\tadded / ajouté: " + newTask.description + "\n");
+    private static void add(Task newTask, Task[] taskList) {
+        taskList[newTask.numberOfTasks - 1] = newTask;
+        System.out.println("\tadded / ajouté:\n\t " + newTask.toString());
+        System.out.println("\tYou now have " + newTask.numberOfTasks + " task(s)!\n" +
+                           "\tVous avez " + newTask.numberOfTasks + " tâche(s)!");
     }
 
-    private static void list(ArrayList<Task> taskList) {
-        for (int i = 0; i < taskList.size(); i++) {
-            System.out.println("\t" + (i+1) + ".\t " + taskList.get(i).toString());
+    private static void list(Task[] taskList) {
+        for (int i = 0; i < Task.numberOfTasks; i++) {
+            System.out.println("\t" + (i+1) + ".\t " + taskList[i].toString());
         }
     }
 
-    private static void mark(ArrayList<Task> taskList, String taskIndex) {
-        Task curr = taskList.get(Integer.parseInt(taskIndex) - 1);
+    private static void mark(Task[] taskList, String taskIndex) {
+        Task curr = taskList[(Integer.parseInt(taskIndex) - 1)];
         curr.setIsDone(true);
         System.out.println("\tI have marked it as done:\n" +
                            "\tJe l'ai marqué comme fait:\n\t" +
                            curr.toString());
     }
 
-    private static void unmark(ArrayList<Task> taskList, String taskIndex) {
-        Task curr = taskList.get(Integer.parseInt(taskIndex) - 1);
+    private static void unmark(Task[] taskList, String taskIndex) {
+        Task curr = taskList[(Integer.parseInt(taskIndex) - 1)];
         curr.setIsDone(false);
         System.out.println("\tI have marked it as undone:\n" +
                            "\tJe l'ai marqué comme défait:\n\t" +
@@ -49,7 +51,7 @@ public class Duke {
                            "Bonjour! Je m'appelle Jean\n" +
                            "Vous désirez?\n");
 
-        ArrayList<Task> taskList = new ArrayList<>();
+        Task[] taskList = new Task[100];
 
         while(true) {
             String input = receiveCommand();
@@ -58,12 +60,20 @@ public class Duke {
                 break;
             } else if (input.equals("list")) {
                 list(taskList);
-            } else if (input.length() > 4 && input.substring(0, 4).equals("mark")){
+            } else if (input.startsWith("mark ")) {
                 mark(taskList, input.substring(5));
-            } else if (input.length() > 6 && input.substring(0, 6).equals("unmark")){
+            } else if (input.startsWith("unmark ")) {
                 unmark(taskList, input.substring(7));
-            } else {
-                add(new Task(input), taskList);
+            } else if (input.startsWith("todo ")) {
+                add(new Todo(input.substring(5)), taskList);
+            } else if (input.startsWith("deadline ")) {
+                int sep = input.indexOf("/by");
+                add(new Deadline(input.substring(9, sep), input.substring(sep + 4)),
+                        taskList);
+            } else if (input.startsWith("event ")) {
+                int sep = input.indexOf("/at");
+                add(new Event(input.substring(6, sep), input.substring(sep + 4)),
+                        taskList);
             }
         }
     }
