@@ -16,12 +16,17 @@ public class DukeOperations {
         System.out.println("_________________________________________________________________________");
     }
 
-    public void todo(Task[] array, String item, int counter) {
-        array[counter] = new Todo(item);
-        System.out.println("Got it. I've added this task:");
-        System.out.println(array[counter].toString());
-        counter++;
-        System.out.println("Now you have " + counter + " tasks in the list.");
+    public void todo(Task[] array, String[] arr, int counter) throws DukeException{
+        if (arr.length <= 1) {
+            throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+        }
+        else {
+            array[counter] = new Todo(arr[1]);
+            System.out.println("Got it. I've added this task:");
+            System.out.println(array[counter].toString());
+            counter++;
+            System.out.println("Now you have " + counter + " tasks in the list.");
+        }
     }
 
     public void deadline(Task[] array,String item, String deadline, int counter){
@@ -58,7 +63,8 @@ public class DukeOperations {
         System.out.println("_________________________________________________________________________");
     }
 
-    public void randomword(String word) {
+    public void randomword(String word) throws DukeException{
+        throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
 
     }
 

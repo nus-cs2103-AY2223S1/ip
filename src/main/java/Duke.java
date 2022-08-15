@@ -26,10 +26,15 @@ public class Duke {
 
             }
             else if(firstword.equals("todo")) {
-                System.out.println("_________________________________________________________________________");
-                ops.todo(array,arr[1],counter);
-                System.out.println("_________________________________________________________________________");
-                counter++;
+                try {
+                    System.out.println("_________________________________________________________________________");
+                    ops.todo(array, arr, counter);
+                    System.out.println("_________________________________________________________________________");
+                    counter++;
+                }
+                catch (DukeException e1) {
+                    System.out.println(e1.toString());
+                }
 
             }
 
@@ -57,11 +62,14 @@ public class Duke {
                 ops.mark(array,num);
             }
             else {
-                array[counter] = new Task(output);
-                counter++;
-                System.out.println("_________________________________________________________________________");
-                System.out.println("       added: " + output);
-                System.out.println("_________________________________________________________________________");
+                try {
+                    ops.randomword(output);
+                }
+                catch(DukeException e2) {
+                    System.out.println("_________________________________________________________________________");
+                    System.out.println(e2.toString());
+                    System.out.println("_________________________________________________________________________");
+                }
             }
         }
     }
