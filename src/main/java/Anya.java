@@ -7,29 +7,46 @@ public class Anya {
     public static void main(String[] args) {
         // Initialising variables
         Scanner sc = new Scanner(System.in);
+        String userInput;
         String command;
         ArrayList<Task> tasks = new ArrayList<>();
 
         // Greet
         System.out.println("Hello! Anya is happy to meet you.\nHow can Anya help?" + breakLine);
 
-        // Get command
-        command = sc.nextLine();
+        // Get user input
+        userInput = sc.nextLine();
 
-        while (!command.equals("bye")) {
+        while (!userInput.equals("bye")) {
+            command = userInput.split(" ")[0];
             if (command.equals("list")) {
                 list(tasks);
-            } else if (command.split(" ")[0].equals("mark")) {
-                int index = Integer.parseInt(command.split(" ")[1]) - 1;
+            } else if (command.equals("mark")) {
+                int index = Integer.parseInt(userInput.split(" ")[1]) - 1;
                 mark(tasks, index);
-            } else if (command.split(" ")[0].equals("unmark")) {
-                int index = Integer.parseInt(command.split(" ")[1]) - 1;
+            } else if (command.equals("unmark")) {
+                int index = Integer.parseInt(userInput.split(" ")[1]) - 1;
                 unmark(tasks, index);
-            } else {
-                add(tasks, command);
+            } else if (command.equals("todo")) {
+                String inputTask = userInput.split(" ", 2)[1];
+                Task task = new Todo(inputTask);
+                addTask(tasks, task);
+
+            } else if (command.equals("deadline")) {
+                String inputTask = userInput.split(" ", 2)[1];
+                String[] details = inputTask.split(" /by ");
+                Task task = new Deadline(details[0], details[1]);
+                addTask(tasks, task);
+
+            } else if (command.equals("event")) {
+                String inputTask = userInput.split(" ", 2)[1];
+                String[] details = inputTask.split(" /at ");
+                Task task = new Event(details[0], details[1]);
+                addTask(tasks, task);
+
             }
 
-            command = sc.nextLine();
+            userInput = sc.nextLine();
         }
 
         // Exit
@@ -37,12 +54,14 @@ public class Anya {
     }
 
     // Commands
-    public static void add(ArrayList<Task> tasks, String task) {
-        tasks.add(new Task(task));
-        System.out.println("Anya added: " + task + breakLine);
+    public static void addTask(ArrayList<Task> tasks, Task task) {
+        tasks.add(task);
+        System.out.println("Anya added: " + task);
+        System.out.println("Anya sees that you have " + tasks.size() + " task(s) in your list." + breakLine);
     }
 
     public static void list(ArrayList<Task> tasks) {
+        System.out.println("Anya is getting you your list...");
         for (int i = 0; i < tasks.size(); i++) {
             int num = i + 1;
             System.out.println(num + ". " + tasks.get(i).toString());
