@@ -18,7 +18,7 @@ public class Duke {
 
     private static void add(Task newTask, Task[] taskList) {
         taskList[newTask.numberOfTasks - 1] = newTask;
-        System.out.println("\tadded / ajouté:\n\t " + newTask.toString());
+        System.out.println("\tadded / ajouté:\n\t\t" + newTask.toString());
         System.out.println("\tYou now have " + newTask.numberOfTasks + " task(s)!\n" +
                            "\tVous avez " + newTask.numberOfTasks + " tâche(s)!");
     }
@@ -60,17 +60,17 @@ public class Duke {
                 break;
             } else if (input.equals("list")) {
                 list(taskList);
-            } else if (input.startsWith("mark ")) {
+            } else if (input.startsWith("mark")) {
                 mark(taskList, input.substring(5));
-            } else if (input.startsWith("unmark ")) {
+            } else if (input.startsWith("unmark")) {
                 unmark(taskList, input.substring(7));
             } else if (input.startsWith("todo ")) {
                 add(new Todo(input.substring(5)), taskList);
-            } else if (input.startsWith("deadline ")) {
+            } else if (input.startsWith("deadline")) {
                 int sep = input.indexOf("/by");
                 add(new Deadline(input.substring(9, sep), input.substring(sep + 4)),
                         taskList);
-            } else if (input.startsWith("event ")) {
+            } else if (input.startsWith("event")) {
                 int sep = input.indexOf("/at");
                 add(new Event(input.substring(6, sep), input.substring(sep + 4)),
                         taskList);

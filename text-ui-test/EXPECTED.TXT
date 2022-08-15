@@ -4,15 +4,15 @@ Bonjour! Je m'appelle Jean
 Vous désirez?
 
 	added / ajouté:
-	 [T][ ]borrow book
+		[T][ ]borrow book
 	You now have 1 task(s)!
 	Vous avez 1 tâche(s)!
 	added / ajouté:
-	 [D][ ]return book (by: Sunday)
+		[D][ ]return book (by: Sunday)
 	You now have 2 task(s)!
 	Vous avez 2 tâche(s)!
 	added / ajouté:
-	 [E][ ]project meeting (at: Mon 2-4pm)
+		[E][ ]project meeting (at: Mon 2-4pm)
 	You now have 3 task(s)!
 	Vous avez 3 tâche(s)!
 	1.	 [T][ ]borrow book
