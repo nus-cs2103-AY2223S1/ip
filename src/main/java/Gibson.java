@@ -34,7 +34,7 @@ public class Gibson {
             } else if (input.equals("list")) {
                 int count = 1;
                 System.out.println(line);
-                System.out.println("Here are the tasks in your list: ");
+                System.out.println("Here are the task(s) in your list: ");
                 for (Task t : list) {
                     System.out.println(count + "." + t.toString());
                     count++;
@@ -102,6 +102,20 @@ public class Gibson {
                     System.out.println(e.getMessage());
                     System.out.println(line);
                 }
+            } else if (Pattern.matches("delete [0-9]+", input)) {
+                int number = getTrailingInt(input) - 1;
+                try {
+                    Task t = list.get(number);
+                    list.remove(number);
+                    System.out.println(line);
+                    System.out.println("Noted. I've removed this task:");
+                    System.out.println(t.toString());
+                    System.out.println("Now you have " + list.size() + " task(s) in the list.");
+                    System.out.println(line);
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.println("There is not task numbered as " + number + ".");
+                }
+
             // NOT RECOGNIZED
             } else {
                 System.out.println(line);
