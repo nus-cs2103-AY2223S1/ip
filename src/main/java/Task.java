@@ -1,4 +1,3 @@
-
 public class Task {
     private String description;
     private boolean isDone;
@@ -11,7 +10,7 @@ public class Task {
     public String getDoneStatus() {
         return (this.isDone ? "X" : " ");
     }
-    
+
     public void setDoneStatus(boolean isDone) {
         this.isDone = isDone;
     }
