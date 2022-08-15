@@ -1,7 +1,28 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
+Hello its 
+  ____                                
+ |  _ \    ___     __ _    ___   _ __ 
+ | |_) |  / _ \   / _` |  / _ \ | '__|
+ |  _ <  | (_) | | (_| | |  __/ | |   
+ |_| \_\  \___/   \__, |  \___| |_|   
+                  |___/               
+What you wan? What you wan?
+Nephew got new to-do:
+  [T][ ] borrow book
+Nephew now have 1 tasks in the list.
+Nephew got new deadline, hurry up before I beat you:
+  [D][ ] return book (by: Sunday)
+Nephew now have 2 tasks in the list.
+Nephew so busy, got new event:
+  [E][ ] project meeting (at: Mon 2-4pm)
+Nephew now have 3 tasks in the list.
+Nephew got a lot of things to do:
+1. [T][ ] borrow book
+2. [D][ ] return book (by: Sunday)
+3. [E][ ] project meeting (at: Mon 2-4pm)
+Fuiyoh, nephew so efficient! Finished this task:
+[D][X] return book (by: Sunday)
+Nephew got a lot of things to do:
+1. [T][ ] borrow book
+2. [D][X] return book (by: Sunday)
+3. [E][ ] project meeting (at: Mon 2-4pm)
+Bye bye niece and nephew.
