@@ -46,12 +46,36 @@ public class Roger {
         this.tasks.add(task);
         System.out.println("Nephew got new task to do:");
         System.out.println(task);
+        System.out.println("Nephew now have " + Integer.toString(this.tasks.size()) + " tasks in the list.");
+    }
+
+    private void addToDo(String taskName) {
+        ToDo toDo = new ToDo(taskName);
+        this.tasks.add(toDo);
+        System.out.println("Nephew got new to-do:");
+        System.out.println("  " + toDo.toString());
+        System.out.println("Nephew now have " + Integer.toString(this.tasks.size()) + " tasks in the list.");
+    }
+
+    private void addDeadline(String taskName, String date) {
+        Deadline deadline = new Deadline(taskName, date);
+        this.tasks.add(deadline);
+        System.out.println("Nephew got new deadline, hurry up before I beat you:");
+        System.out.println("  " + deadline);
+        System.out.println("Nephew now have " + Integer.toString(this.tasks.size()) + " tasks in the list.");
+    }
+
+    private void addEvent(String taskName, String period) {
+        Event event = new Event(taskName, period);
+        this.tasks.add(event);
+        System.out.println("Nephew so busy, got new event:");
+        System.out.println("  " + event);
+        System.out.println("Nephew now have " + Integer.toString(this.tasks.size()) + " tasks in the list.");
     }
 
     private void markAsDone(int taskNum) {
         Task task = tasks.get(taskNum - 1);
         task.markAsDone();
-
         System.out.println("Fuiyoh, nephew so efficient! Finished this task:");
         System.out.println(task);
     }
@@ -79,7 +103,6 @@ public class Roger {
                 roger.list();
             } else if (input.startsWith("mark")) {
                 int idx;
-
                 try {
                     idx = Integer.parseInt(input.substring(5));
                 } catch (StringIndexOutOfBoundsException e) {
@@ -93,7 +116,6 @@ public class Roger {
                 roger.markAsDone(idx);
             } else if (input.startsWith("unmark")) {
                 int idx;
-
                 try {
                     idx = Integer.parseInt(input.substring(7));
                 } catch (StringIndexOutOfBoundsException e) {
@@ -105,7 +127,31 @@ public class Roger {
                 }
 
                 roger.unmarkAsDone(idx);
+            } else if (input.startsWith("todo")) {
+                String taskName = input.substring(5);
+                roger.addToDo(taskName);
+            } else if (input.startsWith("deadline")) {
+                int dateIdx = input.indexOf("/by");
+                if (dateIdx == -1) {
+                    System.out.println("Nephew must tell me when is the deadline, with /by");
+                    continue;
+                }
+
+                String taskName = input.substring(9, dateIdx - 1);
+                String date = input.substring(dateIdx + 4);
+                roger.addDeadline(taskName, date);
+            } else if (input.startsWith("event")) {
+                int periodIdx = input.indexOf("/at");
+                if (periodIdx == -1) {
+                    System.out.println("Nephew must tell me when is the deadline, with /by");
+                    continue;
+                }
+
+                String taskName = input.substring(6, periodIdx - 1);
+                String period = input.substring(periodIdx + 4);
+                roger.addEvent(taskName, period);
             } else {
+                // Legacy Task type
                 roger.add(input);
             }
 
