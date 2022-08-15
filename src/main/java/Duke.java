@@ -11,8 +11,7 @@ public class Duke {
 
     }
     public void start() {
-        scan.Greet();
-        scan.readInput();
+        scan.run();
     }
 
 

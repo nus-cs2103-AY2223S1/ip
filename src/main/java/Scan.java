@@ -1,3 +1,6 @@
+import exceptions.EmptyNameException;
+import exceptions.UnknownCommandException;
+
 import java.util.Scanner;
 
 public class Scan {
@@ -19,29 +22,44 @@ public class Scan {
     }
 
     public  void readInput() {
-        String nextCommand = sc.nextLine();
-        while(!nextCommand.equals("bye")){
-            if(nextCommand.equals("list")){
-                taskList.displayAllTask();
-            } else if(nextCommand.startsWith("mark")){
-                char index = nextCommand.charAt(nextCommand.length() - 1);
-                taskList.setTaskAsDone(Character.getNumericValue(index));
-            } else if(nextCommand.startsWith("unmark")){
-                char index = nextCommand.charAt(nextCommand.length() - 1);
-                taskList.setTaskAsUndone(Character.getNumericValue(index));
-            }
-            else {
-                this.taskList.addTask(nextCommand);
-            }
+        try {
+            String nextCommand = sc.nextLine();
+            while(!nextCommand.equals("bye")){
+                if(nextCommand.equals("list")){
+                    taskList.displayAllTask();
+                } else if(nextCommand.startsWith("mark")){
+                    char index = nextCommand.charAt(nextCommand.length() - 1);
+                    taskList.setTaskAsDone(Character.getNumericValue(index));
+                } else if(nextCommand.startsWith("unmark")){
+                    char index = nextCommand.charAt(nextCommand.length() - 1);
+                    taskList.setTaskAsUndone(Character.getNumericValue(index));
+                }
+                else if(nextCommand.contains("todo") ||
+                        nextCommand.contains("deadline") ||
+                        nextCommand.contains("event")){
+                    this.taskList.addTask(nextCommand);
+                } else {
+                    throw new UnknownCommandException();
+                }
 
-            nextCommand = sc.nextLine();
-        }
+                nextCommand = sc.nextLine();
+            }
             dukePrintLn(BYE);
+        } catch (UnknownCommandException e){
+            System.out.println(e.getMessage());
+            readInput();
+        }
+
     }
 
     public static void dukePrintLn(String str){
         System.out.println("-----");
         System.out.println(str);
         System.out.println("-----");
+    }
+
+    public void run() {
+        Greet();
+        readInput();
     }
 }

@@ -1,3 +1,5 @@
+import exceptions.EmptyNameException;
+
 import java.util.ArrayList;
 
 public class TaskList {
@@ -8,29 +10,38 @@ public class TaskList {
     }
 
     public void addTask(String command) {
-        Task task = null;
-        String[] split = command.split(" ", 2);
-        String type = split[0];
-        if(type.equals("todo")){
-            String name = split[1];
-            task = new Todo(name);
-        } else {
-            String[] split1 = split[1].split("/");
-            String name = split1[0];
-            String info = split1[1];
-            if(type.equals("deadline")){
-                task = new Deadline(name, info);
-            } else {
-                task = new Event(name, info);
+        try {
+
+            Task task = null;
+            String[] split = command.split(" ", 2);
+            if(split.length < 2) {
+                throw new EmptyNameException();
             }
-        }
+            String type = split[0];
+            if(type.equals("todo")){
+                String name = split[1];
+                task = new Todo(name);
+                System.out.println(name);
 
+            } else {
+                String[] split1 = split[1].split("/");
+                String name = split1[0];
+                String info = split1[1];
+                if(type.equals("deadline")){
+                    task = new Deadline(name, info);
+                } else {
+                    task = new Event(name, info);
+                }
+            }
 
-        if(task != null){
-            this.taskList.add(task);
-            System.out.println("Got it. I've added this task:");
-            System.out.println(task);
-            System.out.println("Now you have " + taskList.size() +  " tasks in the list.");
+            if(task != null){
+                this.taskList.add(task);
+                System.out.println("Got it. I've added this task:");
+                System.out.println(task);
+                System.out.println("Now you have " + taskList.size() +  " tasks in the list.");
+            }
+        } catch (EmptyNameException e) {
+            System.out.println(e.getMessage());
         }
 
 
