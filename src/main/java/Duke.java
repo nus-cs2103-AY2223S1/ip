@@ -56,10 +56,11 @@ public class Duke {
     }
 
     public void list() {
-        mp.printMessage(Stream.iterate(0, x -> x + 1)
-                        .limit(tasks.size())
-                        .map(x -> String.valueOf(x + 1) + ". " + tasks.get(x).toString())
-                        .reduce("", (x, y) -> x + y + "\n" ));
+        String startMsg = "Here are the tasks in your list:\n";
+        mp.printMessage(startMsg + Stream.iterate(0, x -> x + 1)
+                .limit(tasks.size())
+                .map(x -> String.valueOf(x + 1) + ". " + tasks.get(x).toString())
+                .reduce("", (x, y) -> x + y + "\n" ));
     }
 
     public void mark(int idTask) {
@@ -76,12 +77,42 @@ public class Duke {
         mp.printMessage(successMsg + "\n" + task.toString());
     }
 
+    public void todo(String msg) {
+        String successMsg = "Got it. I've added this task:";
+        Task todo = Task.todo(msg);
+        tasks.add(todo);
+        successMsg = successMsg + "\n" + todo.toString() + "\n" +
+                "Now you have " + String.valueOf(tasks.size()) + " tasks in the list.";
+        mp.printMessage(successMsg);
+    }
+
+    public void event(String msg, String time) {
+        String successMsg = "Got it. I've added this task:";
+        Task event = Task.event(msg, time);
+        tasks.add(event);
+        successMsg = successMsg + "\n" + event.toString() + "\n" +
+                "Now you have " + String.valueOf(tasks.size()) + " tasks in the list.";
+        mp.printMessage(successMsg);
+    }
+
+    public void deadline(String msg, String time) {
+        String successMsg = "Got it. I've added this task:";
+        Task deadline = Task.deadline(msg, time);
+        tasks.add(deadline);
+        successMsg = successMsg + "\n" + deadline.toString() + "\n" +
+                "Now you have " + String.valueOf(tasks.size()) + " tasks in the list.";
+        mp.printMessage(successMsg);
+    }
+
     public void exit() {
         this.isTerminated = true;
         mp.printMessage(FAREWELL_MESSAGE);
     }
 
     public void execute(Command command) {
+        if (command == null) {
+            return;
+        }
         switch (command.getAction()) {
             case GREET:
                 greet();
@@ -103,6 +134,15 @@ public class Duke {
                 break;
             case UNMARK:
                 unmark(Integer.parseInt(command.getParameters().get(0)));
+                break;
+            case TODO:
+                todo(command.getParameters().get(0));
+                break;
+            case EVENT:
+                event(command.getParameters().get(0), command.getParameters().get(1));
+                break;
+            case DEADLINE:
+                deadline(command.getParameters().get(0), command.getParameters().get(1));
                 break;
         }
     }

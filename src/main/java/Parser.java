@@ -19,9 +19,15 @@ public class Parser {
     }
 
     public static Command parseCommand(String s) {
+        int indexOfName;
+        int indexOfTime;
+
         s = s.trim();
         String[] words = s.split(" ");
         Action action = Action.getAction(words[0]);
+        if (action == null) {
+            return null;
+        }
         switch (action) {
             case GREET:
                 return new Command(Action.GREET);
@@ -37,6 +43,20 @@ public class Parser {
                 return new Command(Action.LIST);
             case ADD:
                 return new Command(Action.ADD, s);
+            case TODO:
+                return new Command(Action.TODO, s.substring(Action.TODO.toString().length()).trim());
+            case EVENT:
+                String START_OF_EVENT_TIME_SYMBOL = "/at";
+                indexOfName = Action.EVENT.toString().length();
+                indexOfTime = getFirstIndexOfStr1InStr2(START_OF_EVENT_TIME_SYMBOL, s);
+                return new Command(Action.EVENT, s.substring(indexOfName, indexOfTime - 1).trim()
+                        , s.substring(indexOfTime + 3).trim());
+            case DEADLINE:
+                String START_OF_DEADLINE_TIME_SYMBOL = "/by";
+                indexOfName = Action.DEADLINE.toString().length();
+                indexOfTime = getFirstIndexOfStr1InStr2(START_OF_DEADLINE_TIME_SYMBOL, s);
+                return new Command(Action.DEADLINE, s.substring(indexOfName, indexOfTime - 1).trim(),
+                        s.substring(indexOfTime + 3).trim());
             default:
                 return null;
         }

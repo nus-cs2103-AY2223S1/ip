@@ -4,7 +4,9 @@ public enum Action {
 //    Level_2
     ADD, LIST,
 //    Level_3
-    MARK, UNMARK;
+    MARK, UNMARK,
+//    Level_4
+    TODO, EVENT, DEADLINE;
 
     @Override
     public String toString() {
@@ -23,6 +25,12 @@ public enum Action {
                 return "mark";
             case UNMARK:
                 return "unmark";
+            case TODO:
+                return "todo";
+            case EVENT:
+                return "event";
+            case DEADLINE:
+                return "deadline";
         }
         return null;
     }
@@ -30,6 +38,8 @@ public enum Action {
     public static Action getAction(String action) {
         action = action.trim().toLowerCase();
         switch (action) {
+            case "":
+                return null;
             case "greet":
                 return Action.GREET;
             case "echo":
@@ -42,6 +52,12 @@ public enum Action {
                 return Action.MARK;
             case "unmark":
                 return Action.UNMARK;
+            case "todo":
+                return Action.TODO;
+            case "event":
+                return Action.EVENT;
+            case "deadline":
+                return Action.DEADLINE;
         }
         return Action.ADD;
     }
