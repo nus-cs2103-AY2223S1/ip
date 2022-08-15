@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -45,7 +47,9 @@ public class Carbon {
     // own fields
     private Random rand;
     private boolean isRunning;
+    private List<String> items;
 
+    // io display standardisation methods
     private static void printOut(String text) {
         String divider = "\n···---······---······---······---······---······---······---···\n";
         System.out.println(divider);
@@ -60,9 +64,11 @@ public class Carbon {
         return input;
     }
 
+    // actual constructor and init method
     private Carbon() {
         // init fields
         this.rand = new Random();
+        this.items = new ArrayList<String>();
 
         String randomPrompt = Carbon.initPrompts[
             this.rand.nextInt(Carbon.initPrompts.length)
@@ -75,6 +81,7 @@ public class Carbon {
         Carbon.printOut(Carbon.intro + randomPrompt);
     }
 
+    // main shell method
     private void runShell() {
         this.isRunning = true;
         while (this.isRunning) {
@@ -86,6 +93,36 @@ public class Carbon {
         }
     }
 
+    private void process(String input) {
+        String lowerCaseInput = input.toLowerCase();
+        switch (lowerCaseInput) {
+            case "list":
+                this.listItems();
+                break;
+            case "bye":
+                this.isRunning = false;
+                break;
+            default:
+                this.addItem(input);
+        }
+    }
+
+    private void addItem(String input) {
+        this.items.add(input);
+        String log = String.format("I have added: %s", input);
+        Carbon.printOut(log);
+    }
+
+    private void listItems() {
+        String log = "Here are the items so far. \n";
+        int size = this.items.size();
+        for (int i = 0; i < size; i++) {
+            String itemLog = String.format("\n    %d: %s", i + 1, this.items.get(i));
+            log += itemLog;
+        }
+        Carbon.printOut(log);
+    }
+
     private void exit() {
         String randomGoodbye = Carbon.goodbyes[
             this.rand.nextInt(Carbon.goodbyes.length)
@@ -93,17 +130,6 @@ public class Carbon {
         Carbon.printOut(randomGoodbye);
     }
     
-    private void process(String input) {
-        String lowerCaseInput = input.toLowerCase();
-        switch (lowerCaseInput) {
-            case "bye":
-                this.isRunning = false;
-                break;
-            default:
-                Carbon.printOut(input);
-        }
-    }
-
     public static void main(String[] args) {
         Carbon shell = new Carbon();
         shell.runShell();
