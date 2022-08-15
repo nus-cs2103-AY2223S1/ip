@@ -11,7 +11,7 @@ public class TaskList {
         Task item;
         while (index < taskList.size()) {
             item = taskList.get(index);
-            System.out.println((index + 1) + "." + item.getStatusIcon() + " " + item.getDescription());
+            System.out.println((index + 1) + "." + item.toString());
             index++;
         }
     }

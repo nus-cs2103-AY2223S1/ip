@@ -22,8 +22,13 @@ public class Duke {
                 int index = Integer.valueOf(in.split(" ")[1]) - 1;
                 list.unmark(index);
             } else {
-                list.add(new Task(in));
-                System.out.println("added: " + in);
+                Task task = TaskCreator.CreateTask(in);
+                if (task == null) {
+                    System.out.println("Invalid command. Please try again.");
+                } else {
+                    list.add(task);
+                    System.out.println("added: " + task.toString());
+                }
             }
             System.out.println("-------------------------------------------");
         }
