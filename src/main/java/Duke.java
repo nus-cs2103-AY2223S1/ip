@@ -80,7 +80,7 @@ public class Duke {
      * No checks performed to check if task is already marked.
      * @param n task to mark as done (n - 1) index in actual list
      */
-    public static void markTask(int n){
+    public static void markTask(int n) {
         Task taskToModify = userInputHistory.get(n - 1);
         taskToModify.markAsDone();
         System.out.printf("Marked task %d \n%s\n", n, taskToModify);
@@ -92,7 +92,7 @@ public class Duke {
      * No checks performed to check if task is already unmarked.
      * @param n task to mark as not done (n - 1) index in actual list
      */
-    public static void unmarkTask(int n) {
+    public static void unmarkTask(int n)  {
         Task taskToModify = userInputHistory.get(n - 1);
         taskToModify.markAsNotDone();
         System.out.printf("Unmarked task %d \n%s\n", n, taskToModify);
@@ -104,10 +104,20 @@ public class Duke {
      * @param s extracts task number from user input
      * @return index of the task in the list plus one
      */
-    private static int getTaskNumber(String s) {
+    private static int getTaskNumber(String s) throws DukeException{
         // credit: https://stackoverflow.com/questions/14974033/extract-digits-from-string-stringutils-java
         String numberOnly= s.replaceAll("[^0-9]", "");
-        return Integer.parseInt(numberOnly);
+        int n;
+        if (numberOnly.length() <= 0) {
+            throw new DukeException("no date given\n>>");
+        } else {
+            n = Integer.parseInt(numberOnly);
+            if (n >= userInputHistory.size()) {
+                throw new DukeException("task does not exist is list\n>>");
+            } else {
+                return n;
+            }
+        }
     }
 
     /**
@@ -165,8 +175,7 @@ public class Duke {
             handleDeadline(userInput);
         }
         else {
-            System.out.println("Enter a command (todo, event, deadline, list, mark, unmark, bye)");
-            System.out.print(">>");
+            throw new DukeException( "Enter a valid command (todo, event, deadline, list, mark, unmark, bye)\n>>");
         }
     }
 
@@ -182,17 +191,20 @@ public class Duke {
         int startDescriptionIndex = command.indexOf(commandUsed) + commandUsed.length();
         int endDescriptionIndex = command.indexOf("/");
         if (startDescriptionIndex < 0) {
-            throw new DukeException("Command does not follow pattern <command> <description>...");
+            throw new DukeException("Command does not follow pattern <command> <description>...\n>>");
         } else {
             if (commandUsed == "event" || commandUsed == "deadline") {
                 if (endDescriptionIndex < 0) {
-                    throw new DukeException("Command does not follow pattern  ... /<at/by> <date in HH:MM DD:MM:YYYY>");
+                    throw new DukeException("Command does not follow pattern  ... /<at/by> <date in HH:MM DD:MM:YYYY>\n>>");
                 } else {
                     description = command.substring(startDescriptionIndex, endDescriptionIndex).trim();
                 }
             } else {
                 description = command.substring(startDescriptionIndex).trim();
             }
+        }
+        if (description.equals("")) {
+            throw new DukeException("Empty description field\n>>");
         }
         return description;
     }
@@ -208,9 +220,12 @@ public class Duke {
         String date = "";
         int startDateIndex = command.indexOf("/") + 2;
         if (startDateIndex < 0) {
-            throw new DukeException("Command does not follow pattern ... /<at/by> <date in HH:MM DD:MM:YYYY>");
+            throw new DukeException("Command does not follow pattern ... /<at/by> <date in HH:MM DD:MM:YYYY>\n>>");
         } else {
             date = command.substring(startDateIndex).trim();
+        }
+        if (date.equals("")) {
+            throw new DukeException("Empty date field\n>>");
         }
         return date;
     }
@@ -224,10 +239,10 @@ public class Duke {
                 s = in.nextLine();
                 handleInput(s);
             } catch (InputMismatchException ime) {
-                System.out.println(ime);
+                System.out.print(ime);
                 System.exit(0);
             } catch (DukeException de) {
-                System.out.println(de);
+                System.out.print(de);
             }
         }
     }
