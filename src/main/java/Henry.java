@@ -1,4 +1,9 @@
+import exceptions.ImproperCommandSyntaxException;
+import exceptions.NoDescriptionException;
+import exceptions.NoSuchCommandException;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -24,43 +29,66 @@ public class Henry {
         tasks = new ArrayList<>();
         sc = new Scanner(System.in);
         activated = true;
-        System.out.println(
-            formatResponse("HELLO. I AM HENRY. HOW MAY I ASSIST YOU TODAY?"));
+        output("HELLO. I AM HENRY. HOW MAY I ASSIST YOU TODAY?");
     }
 
     // Command handling
     public void parseCommand(String command) {
-        if (command.equalsIgnoreCase("list")) {
-            getList();
-        } else if (command.equalsIgnoreCase("bye")) {
-            close();
-        } else if (command.matches("mark\\s\\d")) {
-            int taskMarked = Integer.parseInt(command.split(" ")[1]);
-            markTask(taskMarked);
-        } else if (command.matches("unmark\\s\\d")) {
-            int taskUnmarked = Integer.parseInt(command.split(" ")[1]);
-            unmarkTask(taskUnmarked);
-        } else if (command.startsWith("todo")) {
-            String taskDescription = command.split("todo")[1];
-            addToList(new TodoTask(taskDescription));
-        } else if (command.startsWith("deadline")) {
-            int indexSlash = command.indexOf('/');
-            String taskDescription =
-                command.substring(0, indexSlash).split("deadline ")[1];
-            String taskDeadline =
-                command.substring(indexSlash + 1).split("by")[1].trim();
-            addToList(new DeadlineTask(taskDescription, taskDeadline));
-        } else if (command.startsWith("event")) {
-            int indexSlash = command.indexOf('/');
-            String taskDescription =
-                command.substring(0, indexSlash).split("event ")[1];
-            String taskTime =
-                command.substring(indexSlash + 1).split("at")[1].trim();
-            addToList(new EventTask(taskDescription, taskTime));
-        } else {
-            System.out.println(
-                formatResponse("I DID NOT UNDERSTAND THAT COMMAND"));
+        try {
+            if (command.equalsIgnoreCase("list")) {
+                getList();
+            } else if (command.equalsIgnoreCase("bye")) {
+                close();
+            } else if (command.matches("mark\\s\\d")) {
+                int taskMarked = Integer.parseInt(command.split(" ")[1]);
+                markTask(taskMarked);
+            } else if (command.matches("unmark\\s\\d")) {
+                int taskUnmarked = Integer.parseInt(command.split(" ")[1]);
+                unmarkTask(taskUnmarked);
+            } else if (command.startsWith("todo")) {
+                System.out.println(Arrays.toString(command.split("todo")));
+                if (command.split("todo").length <= 1) {
+                    throw new NoDescriptionException();
+                } else {
+                    String taskDescription = command.split("todo")[1];
+                    addToList(new TodoTask(taskDescription));
+                }
+            } else if (command.startsWith("deadline")) {
+                int indexSlash = command.indexOf('/');
+                if (indexSlash == -1) {
+                    throw new ImproperCommandSyntaxException();
+                } else {
+                    String taskDescription =
+                        command.substring(0, indexSlash).split("deadline ")[1];
+                    String taskDeadline =
+                        command.substring(indexSlash + 1).split("by")[1].trim();
+                    addToList(new DeadlineTask(taskDescription, taskDeadline));
+                }
+            } else if (command.startsWith("event")) {
+                int indexSlash = command.indexOf('/');
+                if (indexSlash == -1) {
+                    throw new ImproperCommandSyntaxException();
+                } else {
+                    String taskDescription =
+                        command.substring(0, indexSlash).split("event ")[1];
+                    String taskTime =
+                        command.substring(indexSlash + 1).split("at")[1].trim();
+                    addToList(new EventTask(taskDescription, taskTime));
+                }
+            } else {
+                throw new NoSuchCommandException();
+            }
+        } catch (NoSuchCommandException e1) {
+            System.out.println(NoSuchCommandException.ERROR_MESSAGE);
+        } catch (NoDescriptionException e2) {
+            System.out.println(NoDescriptionException.ERROR_MESSAGE);
+        } catch (ImproperCommandSyntaxException e3) {
+            System.out.println(ImproperCommandSyntaxException.ERROR_MESSAGE);
         }
+    }
+
+    public void output(String message) {
+        System.out.println(formatResponse(message));
     }
 
     public boolean isActivated() {
