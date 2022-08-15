@@ -1,19 +1,39 @@
-todo borrow book
-deadline return book /by Sunday
+todo todo this
+todo 
+list
+deadline 
+deadline task with deadline
+deadline task with deadline /by 
+deadline task with deadline /by Monday
+list
+event
+event some event
+event some event /at
+event some event /at Sunday
 list
 mark 1
-event project meeting /at Mon 2-4pm
-mark 2
 list
-unmark 2
+mark
+mark 0
+mark foo
+mark 999
+unmark 1
 list
-deadline do homework /by no idea :-p
-todo lepak
+unmark
+unmark 0
+mark foo
+unmark 999
+delete 0
+delete 999
+delete
+delete 1
 list
 delete 1
-delete 999
 list
-oi
-mark 0
-todo
+delete 1
+list
+delete 1
+foo
+bar
+      
 bye
