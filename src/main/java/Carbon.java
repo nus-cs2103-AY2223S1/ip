@@ -60,7 +60,7 @@ public class Carbon {
         String receiver = "\n··-··--···--\n";
         System.out.println(receiver);
         System.out.print("<-- ");
-        String input = Carbon.sc.next();
+        String input = Carbon.sc.nextLine();
         return input;
     }
 
@@ -103,14 +103,36 @@ public class Carbon {
                 this.isRunning = false;
                 break;
             default:
-                this.addTask(input);
+                // unable to process as a simple command, pass to next handler
+                this.processAdvanced(input);
         }
+    }
+
+    private void processAdvanced(String input) {
+        String lowerCaseInput = input.toLowerCase();
+        if (lowerCaseInput.startsWith("mark")) {
+            int taskNumber = Integer.valueOf(input.substring(5));
+            this.setTaskDoneness(taskNumber, true);
+        } else if (lowerCaseInput.startsWith("unmark")) {
+            int taskNumber = Integer.valueOf(input.substring(7));
+            this.setTaskDoneness(taskNumber, false);
+        } else {
+            // not a command, add as task
+            this.addTask(input);
+        }
+    }
+
+    private void setTaskDoneness(int taskNumber, boolean doneness) {
+        Task task = this.tasks.get(taskNumber - 1);
+        task.changeDoneness(doneness);
+        String log = String.format("Got it! \n\n    %s", task);
+        Carbon.printOut(log);
     }
 
     private void addTask(String input) {
         Task newTask = new Task(input);
         this.tasks.add(newTask);
-        String log = String.format("I have added: \n    %s", newTask);
+        String log = String.format("I have added: \n\n    %s", newTask);
         Carbon.printOut(log);
     }
 
@@ -122,7 +144,7 @@ public class Carbon {
             return;
         }
 
-        String log = "Here are the items so far. \n";
+        String log = "Here are the tasks so far. \n";
         for (int i = 0; i < size; i++) {
             String taskLog = String.format("\n    %d: %s", i + 1, this.tasks.get(i));
             log += taskLog;
