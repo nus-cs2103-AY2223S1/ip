@@ -25,34 +25,35 @@ public class Blink {
         }
     }
 
-    public void unMark(String[] input) {
+    public void unMark(String[] input) throws BlinkException {
         if (input.length == 2) {
             int pos = Integer.parseInt(input[1]);
             if (pos < 1 || pos > count) {
-                System.out.println("Number input into command not accepted.");
-                return;
+                throw new BlinkException("Number input does not exist");
             }
             this.store[pos - 1].unMark();
         } else {
-            System.out.println("Incorrect command. Missing task number.");
+            throw new BlinkException("There is an error in command inputted");
         }
     }
 
-    public void mark(String[] input) {
+    public void mark(String[] input) throws BlinkException {
         if (input.length == 2) {
             int pos = Integer.parseInt(input[1]);
             if (pos < 1 || pos > count) {
-                System.out.println("Number input into command not accepted.");
-                return;
+                throw new BlinkException("Number input does not exist");
             }
             this.store[pos - 1].mark();
         } else {
-            System.out.println("Incorrect command. Missing task number.");
+            throw new BlinkException("There is an error in command inputted");
         }
     }
 
-    public void toDos(String input) {
-        ToDos temp = new ToDos(input.strip());
+    public void toDos(String[] input) throws BlinkException {
+        if (input.length != 2) {
+            throw new BlinkException("☹ OOPS!!! Missing description of todo.");
+        }
+        ToDos temp = new ToDos(input[1].strip());
         this.store[count] = temp;
         this.count++;
         System.out.println("Alright, this task has been successfully added!\n" +
@@ -60,8 +61,11 @@ public class Blink {
                 "Total of " + this.count + " tasks now");
     }
 
-    public void deadlines(String input) {
-        String[] sep = input.split("/by");
+    public void deadlines(String[] input) throws BlinkException {
+        if (input.length != 2) {
+            throw new BlinkException("☹ OOPS!!! Missing description of deadline.");
+        }
+        String[] sep = input[1].split("/by");
         Deadlines temp = new Deadlines(sep[0].strip(), sep[1].strip());
         this.store[count] = temp;
         this.count++;
@@ -70,8 +74,11 @@ public class Blink {
                 "Total of " + this.count + " tasks now");
     }
 
-    public void events(String input) {
-        String[] sep = input.split("/at");
+    public void events(String[] input) throws BlinkException {
+        if (input.length != 2) {
+            throw new BlinkException("☹ OOPS!!! Missing description of event.");
+        }
+        String[] sep = input[1].split("/at");
         Events temp = new Events(sep[0].strip(), sep[1].strip());
         this.store[count] = temp;
         this.count++;
@@ -84,35 +91,41 @@ public class Blink {
         this.welcome();
 
         while(sc.hasNext()) {
-            String[] input = sc.nextLine().strip().split(" ",2);
-            if (input[0].isEmpty()) {
-                continue;
-            }
-            switch (input[0]) {
-                case "bye":
-                    this.goodbye();
-                    this.endSession = true;
-                    break;
-                case "list":
-                    this.list();
-                    break;
-                case "unmark":
-                    this.unMark(input);
-                    break;
-                case "mark":
-                    this.mark(input);
-                    break;
-                case "event":
-                    this.events(input[1]);
-                    break;
-                case "deadline":
-                    this.deadlines(input[1]);
-                    break;
-                case "todo":
-                    this.toDos(input[1]);
-                    break;
-                default:
-                    System.out.println("Unknown command inputted");
+            try {
+                String[] input = sc.nextLine().strip().split(" ", 2);
+                if (input[0].isEmpty()) {
+                    continue;
+                }
+                switch (input[0]) {
+                    case "bye":
+                        this.goodbye();
+                        this.endSession = true;
+                        break;
+                    case "list":
+                        this.list();
+                        break;
+                    case "unmark":
+                        this.unMark(input);
+                        break;
+                    case "mark":
+                        this.mark(input);
+                        break;
+                    case "event":
+                        this.events(input);
+                        break;
+                    case "deadline":
+                        this.deadlines(input);
+                        break;
+                    case "todo":
+                        this.toDos(input);
+                        break;
+                    default:
+                        throw new BlinkException("Unknown command input");
+                }
+            } catch (BlinkException e) {
+                System.out.println(e.getMessage());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Number is expected");
             }
             System.out.println(Blink.SPACING);
             if (this.endSession) {
