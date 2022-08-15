@@ -96,5 +96,34 @@ Now you have 5 tasks in the list.
 ☹ OOPS!!! I'm sorry, but I don't know what that means :(
 ☹ OOPS!!! I'm sorry, but I don't know what that means :(
 ☹ OOPS!!! I'm sorry, but I don't know what that means :(
+Here are the tasks in your list:
+1. [T][X] Add To Do
+2. [E][X] Add Event (at: Event Time)
+3. [D][ ] Add Deadline (by: Deadline Time)
+4. [D][ ] Is Deadline 3 (by: Unknown)
+5. [E][ ] Is Event 1 (at: Unknown)
+Noted. I've removed this task:
+  [T][X] Add To Do
+Here are the tasks in your list:
+1. [E][X] Add Event (at: Event Time)
+2. [D][ ] Add Deadline (by: Deadline Time)
+3. [D][ ] Is Deadline 3 (by: Unknown)
+4. [E][ ] Is Event 1 (at: Unknown)
+☹ OOPS!!! No such task exists :(
+☹ OOPS!!! No such task exists :(
+☹ OOPS!!! You didn't give a valid index :(
+☹ OOPS!!! You didn't give a valid index :(
+☹ OOPS!!! You didn't give a valid index :(
+Noted. I've removed this task:
+  [D][ ] Is Deadline 3 (by: Unknown)
+Here are the tasks in your list:
+1. [E][X] Add Event (at: Event Time)
+2. [D][ ] Add Deadline (by: Deadline Time)
+3. [E][ ] Is Event 1 (at: Unknown)
+☹ OOPS!!! No task index is specified :(
+Here are the tasks in your list:
+1. [E][X] Add Event (at: Event Time)
+2. [D][ ] Add Deadline (by: Deadline Time)
+3. [E][ ] Is Event 1 (at: Unknown)
 Bye. Hope to see you again soon!
 

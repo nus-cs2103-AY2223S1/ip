@@ -65,4 +65,18 @@ e v e n t
 d e a d line
 dead line
 
+list
+delete 1
+list
+
+delete -1
+delete 0
+delete 10000000000
+delete a
+delete a b c
+delete 3 a
+list
+delete
+list
+
 bye

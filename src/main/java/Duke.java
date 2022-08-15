@@ -50,7 +50,8 @@ public class Duke {
             ADD_DEADLINE,
             PRINT_LIST,
             MARK_ITEM,
-            UNMARK_ITEM
+            UNMARK_ITEM,
+            DELETE_ITEM
         }
 
         private InstructionType instructionType;
@@ -90,6 +91,10 @@ public class Duke {
 
                 case "deadline":
                     instructionType = InstructionType.ADD_DEADLINE;
+                    break;
+
+                case "delete":
+                    instructionType = InstructionType.DELETE_ITEM;
                     break;
 
                 default:
@@ -140,6 +145,16 @@ public class Duke {
                 case UNMARK_ITEM:
                     try {
                         taskList.unmarkItem(Integer.parseInt(instructionArgs[1]) - 1);
+                    } catch (IndexOutOfBoundsException exception) {
+                        throw new DukeException("☹ OOPS!!! No task index is specified :(");
+                    } catch (NumberFormatException exception) {
+                        throw new DukeException("☹ OOPS!!! You didn't give a valid index :(");
+                    }
+                    break;
+
+                case DELETE_ITEM:
+                    try {
+                        taskList.deleteItem(Integer.parseInt(instructionArgs[1]) - 1);
                     } catch (IndexOutOfBoundsException exception) {
                         throw new DukeException("☹ OOPS!!! No task index is specified :(");
                     } catch (NumberFormatException exception) {
@@ -259,6 +274,15 @@ public class Duke {
             try {
                 taskList.get(index).setDone(false);
                 System.out.println("OK, I've marked this task as not done yet:\n  " + taskList.get(index));
+            } catch (IndexOutOfBoundsException exception) {
+                throw new DukeException("☹ OOPS!!! No such task exists :(");
+            }
+        }
+
+        public void deleteItem(int index) throws DukeException {
+            try {
+                System.out.println("Noted. I've removed this task:\n  " + taskList.get(index));
+                taskList.remove(index);
             } catch (IndexOutOfBoundsException exception) {
                 throw new DukeException("☹ OOPS!!! No such task exists :(");
             }
