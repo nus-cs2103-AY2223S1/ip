@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Duke {
     public void greetUser() {
         String logo = " ____        _        \n"
@@ -16,6 +18,17 @@ public class Duke {
 
     public static void main(String[] args) {
         Duke duke = new Duke();
+        Scanner scanner = new Scanner(System.in);
         duke.greetUser();
+
+        while (true) {
+            System.out.print(">>> ");
+            String input = scanner.nextLine();
+            if (input.equals("bye")) {
+                duke.sayBye();
+                break;
+            }
+            System.out.println(input);
+        }
     }
 }
