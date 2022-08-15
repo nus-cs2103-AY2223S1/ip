@@ -35,14 +35,32 @@ public class Duke {
         }
     }
 
+    public void markTaskAsDone(int taskIndex) {
+        Task task = this.taskArr.get(taskIndex);
+        task.markAsDone();
+        System.out.println("Nice! I've marked this task as done: ");
+        String description = task.getDescription();
+        String statusIcon = task.getStatusIcon();
+        System.out.printf("[%s] %s%n", statusIcon, description);
+    }
+
+    public void unmarkTaskAsDone(int taskIndex) {
+        Task task = this.taskArr.get(taskIndex);
+        task.unmarkAsDone();
+        System.out.println("Sure! I've marked this task as not yet done: ");
+        String description = task.getDescription();
+        String statusIcon = task.getStatusIcon();
+        System.out.printf("[%s] %s%n", statusIcon, description);
+    }
+
     public static void main(String[] args) {
         Duke duke = new Duke();
         Scanner scanner = new Scanner(System.in);
         duke.greetUser();
 
-        while (true) {
-            System.out.print(">>> ");
-            String input = scanner.nextLine();
+        System.out.print(">>> ");
+        while (scanner.hasNext()) {
+            String input = scanner.next();
             if (input.equals("bye")) {
                 duke.sayBye();
                 break;
@@ -50,11 +68,22 @@ public class Duke {
 
             if (input.equals("list")) {
                 duke.listTasks();
+            } else if (input.equals("mark") || input.equals("unmark")) {
+                if (scanner.hasNextInt()) {
+                    int taskIndex = scanner.nextInt() - 1;
+                    if (input.equals("mark")) {
+                        duke.markTaskAsDone(taskIndex);
+                    } else {
+                        duke.unmarkTaskAsDone(taskIndex);
+                    }
+                }
+                scanner.nextLine();
             } else {
+                input += scanner.nextLine();
                 Task task = new Task(input);
                 duke.pushTask(task);
             }
-
+            System.out.print(">>> ");
         }
     }
 }
