@@ -1,4 +1,7 @@
 public class Messages {
+    /**
+     * Child containing default messages
+     */
     public static void welcome() {
         System.out.println("-------------------------------------------");
         System.out.println("Hello from Phil");

@@ -1,4 +1,7 @@
 public class TaskCreator {
+    /**
+     * Main class to create new Task
+     */
     private static int SIZEOFPREPOSITION = 4;
 
     public static Task CreateTask(String in) {

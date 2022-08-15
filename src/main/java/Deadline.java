@@ -1,4 +1,7 @@
 public class Deadline extends Task {
+    /**
+     * Child class of Task with a deadline
+     */
     private static final String SYMBOL = "[D]";
     protected String date;
     public Deadline(String description, String date) {

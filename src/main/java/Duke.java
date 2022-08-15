@@ -2,6 +2,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
+    /**
+     * Main class used to handle inputs
+     */
     public static void main(String[] args) {
         Messages.welcome();
 

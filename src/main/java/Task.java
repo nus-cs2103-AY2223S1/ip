@@ -1,4 +1,7 @@
 public class Task {
+    /**
+     * Parent class to manage all the Task
+     */
     protected String description;
     protected boolean isDone;
 
