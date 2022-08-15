@@ -38,13 +38,20 @@ public class TaskList {
                 this.taskList.add(task);
                 System.out.println("Got it. I've added this task:");
                 System.out.println(task);
-                System.out.println("Now you have " + taskList.size() +  " tasks in the list.");
+                displayNumberOfItemsInList();
             }
         } catch (EmptyNameException e) {
             System.out.println(e.getMessage());
         }
 
 
+    }
+
+    public void deleteTask(int index) {
+        Task task = taskList.get(index);
+        System.out.println("Noted. I've removed this task: \n" + task);
+        taskList.remove(index);
+        displayNumberOfItemsInList();
     }
 
 
@@ -71,6 +78,10 @@ public class TaskList {
             System.out.println(i + ". " + task);
         }
         System.out.println("-----");
+    }
+
+    public void displayNumberOfItemsInList() {
+        System.out.println("Now you have " + taskList.size() +  " tasks in the list.");
     }
 
 }

@@ -4,8 +4,8 @@ import exceptions.UnknownCommandException;
 import java.util.Scanner;
 
 public class Scan {
-    private Scanner sc;
-    private TaskList taskList;
+    private final Scanner sc;
+    private final TaskList taskList;
 
     private static final String GREETING = "Hello! I'm Duke. What can I do for you?";
     private static final String BYE = "Thank you for using the bot. Have a nice day!";
@@ -38,7 +38,11 @@ public class Scan {
                         nextCommand.contains("deadline") ||
                         nextCommand.contains("event")){
                     this.taskList.addTask(nextCommand);
-                } else {
+                } else if(nextCommand.startsWith("delete")){
+                    char index = nextCommand.charAt(nextCommand.length() - 1);
+                    this.taskList.deleteTask(Character.getNumericValue(index));
+                }
+                else {
                     throw new UnknownCommandException();
                 }
 
