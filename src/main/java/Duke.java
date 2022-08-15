@@ -1,6 +1,14 @@
 import java.util.Scanner;
 public class Duke {
     private static Task[] tasks = new Task[100];
+    public static String getTaskDetails(int pos) {
+        return "[" +
+                tasks[pos].getType() +
+                "][" +
+                tasks[pos].getStatus() +
+                "] " +
+                tasks[pos].getDescription();
+    }
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         System.out.println("Hello! I'm Duke.\nWhat can I do for you?");
@@ -14,9 +22,7 @@ public class Duke {
             } else if (command.equals("list")) {
                 for (int pos = 0; pos < 100; pos++) {
                     if (tasks[pos] == null) break;
-                    System.out.println(
-                            pos + 1 + ". [" + tasks[pos].getStatus() + "] " + tasks[pos].getDescription()
-                    );
+                    System.out.println(pos + 1 + ". " + getTaskDetails(pos));
                 }
                 System.out.print(">> ");
                 command = input.nextLine();
@@ -33,10 +39,8 @@ public class Duke {
                     System.out.println(
                             "Nice! I've marked this task as " +
                                     (command.startsWith("mark") ? "done" : "undone") +
-                                    "\n [" +
-                                    tasks[pos].getStatus() +
-                                    "] " +
-                                    tasks[pos].getDescription()
+                                    "\n" +
+                                    getTaskDetails(pos)
                     );
                 }
                 System.out.print(">> ");
@@ -45,7 +49,7 @@ public class Duke {
                 System.out.println("Added: " + command);
                 for (int pos = 0; pos < 100; pos++) {
                     if (tasks[pos] == null) {
-                        tasks[pos] = new Task(command);
+                        tasks[pos] = new ToDo(command);
                         break;
                     }
                 }
