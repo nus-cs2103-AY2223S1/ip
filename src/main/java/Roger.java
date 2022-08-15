@@ -27,6 +27,11 @@ public class Roger {
     }
 
     private void list() {
+        if (this.tasks.isEmpty()) {
+            System.out.println("No tasks. Nephew must be a failure.");
+            return;
+        }
+
         System.out.println("Nephew got a lot of things to do:");
 
         int i = 1;
