@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Tumu {
     private static List<String> userText = new ArrayList<>();
+    private static final String horizontalLines = "\t" + "_".repeat(40);
 
     public static void main(String[] args) {
         greeting();
@@ -22,6 +23,7 @@ public class Tumu {
 
         do {
             userInput = sc.next().toLowerCase();
+            printHorizontalLines();
             switch (userInput) {
                 case endChatBotCMD:
                     goodbye();
@@ -30,9 +32,10 @@ public class Tumu {
                     listText();
                     break;
                 default:
-                    System.out.println("Added: " + userInput);
+                    System.out.println("\tAdded: " + userInput);
                     userText.add(userInput);
             }
+            printHorizontalLines();
 
         } while (!userInput.equalsIgnoreCase(endChatBotCMD));
     }
@@ -43,15 +46,15 @@ public class Tumu {
          */
 
         String logo = "" +
-                " ▄▄▄▄▄▄▄ ▄▄   ▄▄ ▄▄   ▄▄ ▄▄   ▄▄ \n" +
-                "█       █  █ █  █  █▄█  █  █ █  █\n" +
-                "█▄     ▄█  █ █  █       █  █ █  █\n" +
-                "  █   █ █  █▄█  █       █  █▄█  █\n" +
-                "  █   █ █       █       █       █\n" +
-                "  █   █ █       █ ██▄██ █       █\n" +
-                "  █▄▄▄█ █▄▄▄▄▄▄▄█▄█   █▄█▄▄▄▄▄▄▄█\n\n";
-        String greetingMessage = "Hi! I am Tumu. Nice to meet you!\n" +
-                "What is on your mind today?\n";
+                "\t ▄▄▄▄▄▄▄ ▄▄   ▄▄ ▄▄   ▄▄ ▄▄   ▄▄ \n" +
+                "\t█       █  █ █  █  █▄█  █  █ █  █\n" +
+                "\t█▄     ▄█  █ █  █       █  █ █  █\n" +
+                "\t  █   █ █  █▄█  █       █  █▄█  █\n" +
+                "\t  █   █ █       █       █       █\n" +
+                "\t  █   █ █       █ ██▄██ █       █\n" +
+                "\t  █▄▄▄█ █▄▄▄▄▄▄▄█▄█   █▄█▄▄▄▄▄▄▄█\n\n";
+        String greetingMessage = "\tHi! I am Tumu. Nice to meet you!\n" +
+                "\tWhat is on your mind today?\n";
 
         System.out.println(logo + greetingMessage);
     }
@@ -62,8 +65,8 @@ public class Tumu {
          * User exits the chat-bot.
          */
 
-        String goodbyeMessage = "Goodbye, and have a nice day ahead!\n";
-        String smileyFace = "٩(ˊᗜˋ )و\n";
+        String goodbyeMessage = "\tGoodbye, and have a nice day ahead!\n";
+        String smileyFace = "\t٩(ˊᗜˋ )و";
         System.out.println(goodbyeMessage + smileyFace);
     }
 
@@ -73,7 +76,15 @@ public class Tumu {
          */
 
         for (int i = 1; i <= userText.size(); i++) {
-            System.out.println(i + ". " + userText.get(i - 1));
+            System.out.println("\t" + i + ". " + userText.get(i - 1));
         }
+    }
+
+    private static void printHorizontalLines() {
+        /**
+         * Prints the horizontal lines for chat-bot formatting.
+         */
+
+        System.out.println(horizontalLines);
     }
 }
