@@ -19,8 +19,18 @@ public class TaskList {
         String str = "";
         for (Task k : memo) {
             count ++;
-            str += count + ". " + k.getTask() + "\n    ";
+            str += count + ". " + k.getTaskList() + "\n    ";
         }
         return str;
+    }
+
+    public String updateMark(int k) {
+        this.memo.get(k - 1).mark();
+        return "Nice! I've marked this task as done :)";
+    }
+
+    public String updateUnmark(int k) {
+        this.memo.get(k - 1).unmark();
+        return "okay I mark this task as not done yet...";
     }
 }
