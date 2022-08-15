@@ -1,9 +1,9 @@
-class Task {
-    protected String content;
+abstract class Task {
+    protected String name;
     protected boolean isDone;
 
-    public Task(String content) {
-        this.content = content;
+    public Task(String name) {
+        this.name = name;
         this.isDone = false;
     }
 
@@ -14,6 +14,6 @@ class Task {
     @Override
     public String toString() {
         String doneness = this.isDone? "X" : " ";
-        return String.format("[%s] %s", doneness, this.content);
+        return String.format("[%s] %s", doneness, this.name);
     }
 }

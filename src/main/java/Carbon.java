@@ -111,10 +111,10 @@ public class Carbon {
     private void processAdvanced(String input) {
         String lowerCaseInput = input.toLowerCase();
         if (lowerCaseInput.startsWith("mark")) {
-            int taskNumber = Integer.valueOf(input.substring(5));
+            int taskNumber = Integer.valueOf(input.substring("mark ".length()));
             this.setTaskDoneness(taskNumber, true);
         } else if (lowerCaseInput.startsWith("unmark")) {
-            int taskNumber = Integer.valueOf(input.substring(7));
+            int taskNumber = Integer.valueOf(input.substring("unmark ".length()));
             this.setTaskDoneness(taskNumber, false);
         } else {
             // not a command, add as task
