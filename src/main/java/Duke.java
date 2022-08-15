@@ -10,7 +10,7 @@ public class Duke {
         System.out.println("Hello from\n" + logo);
 
         System.out.println("What can I do for you?");
-        String[] storage = new String[100];
+        Task[] storage = new Task[100];
         Scanner scanner = new Scanner(System.in);
         String text = scanner.next();
         int count = 0;
@@ -28,15 +28,27 @@ public class Duke {
                         System.out.print(". " + storage[i] + "\n");
                     }
                 }
+            } else if (text.equals("mark")) {
+                int index = scanner.nextInt();
+                Task task = storage[index - 1];
+                task.setDone(true);
+                System.out.println("\tNice! I've marked this task as done:");
+                System.out.println("\t\t" + task);
+            } else if (text.equals("unmark")) {
+                int index = scanner.nextInt();
+                Task task = storage[index - 1];
+                task.setDone(false);
+                System.out.println("\tOK, I've marked this task as not done yet:");
+                System.out.println("\t\t" + task);
             } else {
                 System.out.println("\tadded: " + text);
-                storage[count] = text;
+                storage[count] = new Task(text);
                 count++;
             }
             scanner = new Scanner(System.in);
             text = scanner.next();
         }
-
+        
         System.out.println("Bye. Hope to see you again soon!");
     }
 }
