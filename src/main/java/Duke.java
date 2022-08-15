@@ -61,6 +61,9 @@ public class Duke {
         final String unmarkCommand = "unmark";
 
         String[] command = input.split(" ", 2);
+        if (command.length == 1) {
+            command = new String[]{command[0], ""};
+        }
 
         switch (command[0]) {
 
@@ -93,6 +96,7 @@ public class Duke {
                 break;
 
             default:
+                sendMessage("Invalid command!");
                 break;
 
         }
@@ -115,6 +119,12 @@ public class Duke {
      * @param input User input after the todo command.
      */
     private static void parseToDoCommand(String input) {
+
+        if (input == "") {
+            sendMessage("Description of todo cannot be empty!");
+            return;
+        }
+
         addToList(new ToDo(input));
     }
 
@@ -125,7 +135,11 @@ public class Duke {
     private static void parseDeadlineCommand(String input) {
         String[] command = input.split(" /by ", 2);
 
-        if (command.length < 2) {
+        if (command[0] == "") {
+            sendMessage("Description of deadline cannot be empty!");
+            return;
+        }
+        else if (command.length < 2) {
             sendMessage("No deadline given!");
             return;
         }
@@ -140,7 +154,11 @@ public class Duke {
     private static void parseEventCommand(String input) {
         String[] command = input.split(" /at ", 2);
 
-        if (command.length < 2) {
+        if (command[0] == "") {
+            sendMessage("Description of event cannot be empty!");
+            return;
+        }
+        else if (command.length < 2) {
             sendMessage("No time given!");
             return;
         }

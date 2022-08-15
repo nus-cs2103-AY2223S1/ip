@@ -10,4 +10,7 @@ event Dinner with myself
 event Dinner with myself /at 6pm
 mark 2
 list
+todo
+deadline
+event
 bye
