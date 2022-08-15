@@ -1,6 +1,6 @@
 public class Task {
-    String name;
-    boolean isDone;
+    private String name;
+    private boolean isDone;
 
     public Task(String name) {
         setName(name);

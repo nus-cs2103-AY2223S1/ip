@@ -1,27 +1,14 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Optional;
 import java.util.Scanner;
+import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 public class Duke {
-    private boolean isTerminated = false;
-    private MessagePrinter mp = new MessagePrinter();
-    private String HELLO_MESSAGE = "Hello! I'm Duke \n"
-            + "What can I do for you?";
-    private String FAREWELL_MESSAGE = "Bye. Hope to see you again soon!";
-    private ArrayList<Task> tasks = new ArrayList<>();
-
-    private static HashMap<String, Integer> commandList = new HashMap<>();
-    static {
-        HashMap<String, Integer> map = commandList;
-        map.put("exit", 0);
-        map.put("add", 1);
-        map.put("greet", 0);
-        map.put("echo", 1);
-        map.put("list", 0);
-        map.put("mark", 1);
-        map.put("unmark", 1);
-    }
+    private boolean isTerminated;
+    private MessagePrinter mp;
+    private ArrayList<Task> tasks;
 
     private String logo = " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
@@ -29,19 +16,43 @@ public class Duke {
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
 
-//    public static boolean isValidCommand(Command command) {
-//        String action = command.getAction();
-//        return commandList.containsKey(action) && commandList.get(action) == command.getParameters().size();
-//    }
+    private HashMap<Action, Consumer<Command>> actionConsumerMap = new HashMap<>();
+
+    private void initializeActionConsumerMap() {
+        HashMap<Action, Consumer<Command>> map = this.actionConsumerMap;
+//        Level_1
+        map.put(Action.GREET, command -> greet());
+        map.put(Action.ECHO, command -> echo(command.getParameters().get(0)));
+        map.put(Action.EXIT, command -> exit());
+//        Level_2
+        map.put(Action.ADD, command -> add(command.getParameters().get(0)));
+        map.put(Action.LIST, command -> list());
+//        Level_3
+        map.put(Action.MARK, command -> mark(Integer.parseInt(command.getParameters().get(0))));
+        map.put(Action.UNMARK, command -> unmark(Integer.parseInt(command.getParameters().get(0))));
+        map.put(Action.TODO, command -> todo(command.getParameters().get(0)));
+//        Level_4
+        map.put(Action.EVENT, command -> event(command.getParameters().get(0), command.getParameters().get(1)));
+        map.put(Action.DEADLINE, command -> deadline(command.getParameters().get(0), command.getParameters().get(1)));
+    }
+
+    private void initialize() {
+        this.tasks = new ArrayList<>();
+        initializeActionConsumerMap();
+        this.mp = new MessagePrinter();
+    }
+
     public boolean getIsTerminated() {
         return this.isTerminated;
     }
 
     public Duke() {
+        initialize();
         greet();
     }
 
     public void greet() {
+        String HELLO_MESSAGE = "Hello! I'm Duke \n" + "What can I do for you?";
         mp.printMessage("Hello from\n" + this.logo + "\n" + HELLO_MESSAGE);
     }
 
@@ -105,46 +116,13 @@ public class Duke {
     }
 
     public void exit() {
+        String FAREWELL_MESSAGE = "Bye. Hope to see you again soon!";
         this.isTerminated = true;
         mp.printMessage(FAREWELL_MESSAGE);
     }
 
     public void execute(Command command) {
-        if (command == null) {
-            return;
-        }
-        switch (command.getAction()) {
-            case GREET:
-                greet();
-                break;
-            case ECHO:
-                echo(command.getParameters().get(0));
-                break;
-            case EXIT:
-                exit();
-                break;
-            case ADD:
-                add(command.getParameters().get(0));
-                break;
-            case LIST:
-                list();
-                break;
-            case MARK:
-                mark(Integer.parseInt(command.getParameters().get(0)));
-                break;
-            case UNMARK:
-                unmark(Integer.parseInt(command.getParameters().get(0)));
-                break;
-            case TODO:
-                todo(command.getParameters().get(0));
-                break;
-            case EVENT:
-                event(command.getParameters().get(0), command.getParameters().get(1));
-                break;
-            case DEADLINE:
-                deadline(command.getParameters().get(0), command.getParameters().get(1));
-                break;
-        }
+        Optional.ofNullable(command).ifPresent(x -> this.actionConsumerMap.get(x.getAction()).accept(x));
     }
 
     public static void main(String[] args) {

@@ -50,13 +50,13 @@ public class Parser {
                 indexOfName = Action.EVENT.toString().length();
                 indexOfTime = getFirstIndexOfStr1InStr2(START_OF_EVENT_TIME_SYMBOL, s);
                 return new Command(Action.EVENT, s.substring(indexOfName, indexOfTime - 1).trim()
-                        , s.substring(indexOfTime + 3).trim());
+                        , s.substring(indexOfTime + START_OF_EVENT_TIME_SYMBOL.length()).trim());
             case DEADLINE:
                 String START_OF_DEADLINE_TIME_SYMBOL = "/by";
                 indexOfName = Action.DEADLINE.toString().length();
                 indexOfTime = getFirstIndexOfStr1InStr2(START_OF_DEADLINE_TIME_SYMBOL, s);
                 return new Command(Action.DEADLINE, s.substring(indexOfName, indexOfTime - 1).trim(),
-                        s.substring(indexOfTime + 3).trim());
+                        s.substring(indexOfTime + START_OF_DEADLINE_TIME_SYMBOL.length()).trim());
             default:
                 return null;
         }

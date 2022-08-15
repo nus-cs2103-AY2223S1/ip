@@ -1,3 +1,6 @@
+import java.util.HashMap;
+import java.util.Optional;
+
 public enum Action {
 //    Level_1
     GREET, ECHO, EXIT,
@@ -8,57 +11,45 @@ public enum Action {
 //    Level_4
     TODO, EVENT, DEADLINE;
 
-    @Override
-    public String toString() {
-        switch (this) {
-            case GREET:
-                return "greet";
-            case ECHO:
-                return "echo";
-            case EXIT:
-                return "bye";
-            case ADD:
-                return "add";
-            case LIST:
-                return "list";
-            case MARK:
-                return "mark";
-            case UNMARK:
-                return "unmark";
-            case TODO:
-                return "todo";
-            case EVENT:
-                return "event";
-            case DEADLINE:
-                return "deadline";
-        }
-        return null;
+    private static HashMap<Action, Integer> actionParamMap = new HashMap<>();
+    static {
+        HashMap<Action, Integer> map = actionParamMap;
+//        Level_1
+        map.put(Action.GREET, 0);
+        map.put(Action.EXIT, 0);
+        map.put(Action.ECHO, 1);
+//        Level_2
+        map.put(Action.ADD, 1);
+        map.put(Action.LIST, 0);
+//        Level_3
+        map.put(Action.MARK, 1);
+        map.put(Action.UNMARK, 1);
+//        Level_4
+        map.put(Action.TODO, 1);
+        map.put(Action.EVENT, 2);
+        map.put(Action.DEADLINE, 2);
+    }
+
+    private static HashMap<String, Action> stringActionMap = new HashMap<>();
+    static {
+        HashMap<String, Action> map = stringActionMap;
+//        Level_1
+        map.put("greet", Action.GREET);
+        map.put("bye", Action.EXIT);
+        map.put("echo", Action.ECHO);
+//        Level_2
+        map.put("add", Action.ADD);
+        map.put("list", Action.LIST);
+//        Level_3
+        map.put("mark", Action.MARK);
+        map.put("unmark", Action.UNMARK);
+//        Level_4
+        map.put("todo", Action.TODO);
+        map.put("event", Action.EVENT);
+        map.put("deadline", Action.DEADLINE);
     }
 
     public static Action getAction(String action) {
-        action = action.trim().toLowerCase();
-        switch (action) {
-            case "":
-                return null;
-            case "greet":
-                return Action.GREET;
-            case "echo":
-                return Action.ECHO;
-            case "bye":
-                return Action.EXIT;
-            case "list":
-                return Action.LIST;
-            case "mark":
-                return Action.MARK;
-            case "unmark":
-                return Action.UNMARK;
-            case "todo":
-                return Action.TODO;
-            case "event":
-                return Action.EVENT;
-            case "deadline":
-                return Action.DEADLINE;
-        }
-        return Action.ADD;
+        return Optional.ofNullable(action).map(x -> Action.stringActionMap.get(x.trim())).orElse(null);
     }
 }
