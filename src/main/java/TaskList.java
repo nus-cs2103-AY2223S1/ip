@@ -1,6 +1,9 @@
 import java.util.List;
 import java.util.ArrayList;
 
+/**
+ * List data structure to track all tasks.
+ */
 public class TaskList {
     private final List<Task> tasks;
 
@@ -8,8 +11,17 @@ public class TaskList {
         this.tasks = new ArrayList<>();
     }
 
+    int size() {
+        return tasks.size();
+    }
+
     void addTask(String taskDescription) {
         tasks.add(new Task(taskDescription));
+    }
+
+    Task addTask(Task task) {
+        tasks.add(task);
+        return task;
     }
 
     Task markTask(int index) {
