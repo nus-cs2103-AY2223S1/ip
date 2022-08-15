@@ -1,6 +1,7 @@
 import exceptions.EmptyNameException;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class TaskList {
     private ArrayList<Task> taskList;
@@ -18,7 +19,7 @@ public class TaskList {
                 throw new EmptyNameException();
             }
             String type = split[0];
-            if(type.equals("todo")){
+            if(type.equals(TaskTypeEnum.todo.toString())){
                 String name = split[1];
                 task = new Todo(name);
                 System.out.println(name);
@@ -27,7 +28,7 @@ public class TaskList {
                 String[] split1 = split[1].split("/");
                 String name = split1[0];
                 String info = split1[1];
-                if(type.equals("deadline")){
+                if(type.equals(TaskTypeEnum.deadline.toString())){
                     task = new Deadline(name, info);
                 } else {
                     task = new Event(name, info);

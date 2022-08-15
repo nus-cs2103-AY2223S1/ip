@@ -24,13 +24,13 @@ public class Scan {
     public  void readInput() {
         try {
             String nextCommand = sc.nextLine();
-            while(!nextCommand.equals("bye")){
-                if(nextCommand.equals("list")){
+            while(!nextCommand.equals(CommandsEnum.bye.toString())){
+                if(nextCommand.equals(CommandsEnum.list.toString())){
                     taskList.displayAllTask();
-                } else if(nextCommand.startsWith("mark")){
+                } else if(nextCommand.startsWith(CommandsEnum.mark.toString())){
                     char index = nextCommand.charAt(nextCommand.length() - 1);
                     taskList.setTaskAsDone(Character.getNumericValue(index));
-                } else if(nextCommand.startsWith("unmark")){
+                } else if(nextCommand.startsWith(CommandsEnum.unmark.toString())){
                     char index = nextCommand.charAt(nextCommand.length() - 1);
                     taskList.setTaskAsUndone(Character.getNumericValue(index));
                 }
@@ -38,7 +38,7 @@ public class Scan {
                         nextCommand.contains("deadline") ||
                         nextCommand.contains("event")){
                     this.taskList.addTask(nextCommand);
-                } else if(nextCommand.startsWith("delete")){
+                } else if(nextCommand.startsWith(CommandsEnum.delete.toString())){
                     char index = nextCommand.charAt(nextCommand.length() - 1);
                     this.taskList.deleteTask(Character.getNumericValue(index));
                 }
