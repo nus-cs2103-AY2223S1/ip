@@ -5,3 +5,14 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
+Oi, What u want?
+Added Task
+[T][ ] borrow book
+Now you have 1 tasks in the list
+1. [T][ ] borrow book
+Added Task
+[D][ ] deadline (by:  Sunday)
+Now you have 2 tasks in the list
+Added Task
+[E][ ] event (at:  Mon 2-4pm)
+Now you have 3 tasks in the list
