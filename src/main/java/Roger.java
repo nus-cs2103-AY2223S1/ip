@@ -1,6 +1,8 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
+import java.lang.NumberFormatException;
+import java.lang.StringIndexOutOfBoundsException;
 
 public class Roger {
     private List<Task> tasks = new ArrayList<>();
@@ -71,12 +73,32 @@ public class Roger {
             } else if (input.equals("list")) {
                 roger.list();
             } else if (input.startsWith("mark")) {
-                // Handle invalid input
-                int idx = Integer.parseInt(input.substring(5));
+                int idx;
+
+                try {
+                    idx = Integer.parseInt(input.substring(5));
+                } catch (StringIndexOutOfBoundsException e) {
+                    System.out.println("Nephew must tell me which task to mark!");
+                    continue;
+                } catch (NumberFormatException e) {
+                    System.out.println("Nephew must give me the task number!");
+                    continue;
+                }
+
                 roger.markAsDone(idx);
             } else if (input.startsWith("unmark")) {
-                // Handle invalid input
-                int idx = Integer.parseInt(input.substring(7));
+                int idx;
+
+                try {
+                    idx = Integer.parseInt(input.substring(7));
+                } catch (StringIndexOutOfBoundsException e) {
+                    System.out.println("Nephew must tell me which task to unmark!");
+                    continue;
+                } catch (NumberFormatException e) {
+                    System.out.println("Nephew must give me the task number!");
+                    continue;
+                }
+
                 roger.unmarkAsDone(idx);
             } else {
                 roger.add(input);
