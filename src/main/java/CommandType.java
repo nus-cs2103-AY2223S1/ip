@@ -5,6 +5,7 @@ enum CommandType {
     DEADLINE(2),
     EVENT(2),
     BYE(0),
+    EMPTY(0),
     BAD(0);
 
     private final int argsCount;

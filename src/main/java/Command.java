@@ -17,7 +17,10 @@ abstract class Command {
         String[] args;
 
         if (splits.length > 1) {
-            args = splits[1].split("/");
+            args = splits[1].split(" / ");
+            for (int i = 0; i < args.length; ++i) {
+                args[i] = args[i].strip();
+            }
         } else {
             args = new String[0];
         }
@@ -37,6 +40,8 @@ abstract class Command {
             return new AddTaskCommand(CommandType.EVENT, args);
         case "bye":
             return new ByeCommand(args);
+        case "":
+            return new EmptyCommand(args);
         default:
             return new BadCommand(args);
         }
@@ -143,6 +148,17 @@ abstract class Command {
         @Override
         public void runSpecialTask(ArrayList<Task> tasks) {
             IOHelper.print(BAD_COMMAND);
+        }
+    }
+
+    private static class EmptyCommand extends Command {
+        public EmptyCommand(String[] args) {
+            super(CommandType.EMPTY, args);
+        }
+
+        @Override
+        public void runSpecialTask(ArrayList<Task> tasks) {
+            // does nothing
         }
     }
 }
