@@ -1,0 +1,12 @@
+todo eat burritos
+deadline finish duke /by 18 Aug
+event CS2103T lecture /at 19 Aug
+mark 1
+mark 2
+unmark 2
+deadline invalid input
+deadline
+event invalid input
+event
+list
+bye
