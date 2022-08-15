@@ -49,8 +49,12 @@ public class Duke {
                     int unmarkindex = Integer.parseInt(inputText.substring(firstSpaceIdx + 1));
                     Duke.unmark(unmarkindex);
                     break;
+                case "deadline":
+                    String desc = inputText.substring(firstSpaceIdx + 1);
+                    Duke.addDeadline(desc);
+                    break;
                 default:
-                    Duke.addItem(inputText);
+                    Duke.addTask(inputText);
             }
         }
     }
@@ -60,7 +64,7 @@ public class Duke {
      *
      * @param input A String to be added to the list.
      */
-    public static void addItem(String input) {
+    public static void addTask(String input) {
         // Instantiate task object
         Task newTask = new Task(input);
 
@@ -71,6 +75,38 @@ public class Duke {
         System.out.println("Added: " + input);
     }
 
+    /**
+     * Add an Deadline to the items list.
+     *
+     * @param input A String to be added to the list.
+     */
+    public static void addDeadline(String input) {
+        // Get description and date of deadline
+        int slashIdx = input.indexOf("/by");
+        String desc = input.substring(0, slashIdx);
+        String by = input.substring((slashIdx + 4));
+
+        // Instantiate task object
+        Task newDeadline = new Deadline(desc, by);
+
+        // Add to list
+        Duke.inputs.add(newDeadline);
+
+        // Print message
+        printAddedTask(newDeadline);
+    }
+
+    /**
+     * Prints the feedback when a new task has been added.
+     *
+     * @param newTask The recently added task
+     */
+    public static void printAddedTask(Task newTask) {
+        System.out.println("Got it. I've added this task:");
+        System.out.println("  " + newTask);
+        System.out.println(String.format("Now you have %d tasks in the list.",
+                                         inputs.size()));
+    }
 
     /**
      * Prints all items in the items list.
