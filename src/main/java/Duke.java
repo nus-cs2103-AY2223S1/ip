@@ -29,9 +29,7 @@ public class Duke {
         int len = this.taskArr.size();
         for (int i = 0; i < len; i++) {
             Task task = this.taskArr.get(i);
-            String statusIcon = task.getStatusIcon();
-            String description = task.getDescription();
-            System.out.printf("%d.[%s] %s%n", i + 1, statusIcon, description);
+            System.out.printf("%d. %s%n", i + 1, task);
         }
     }
 
@@ -39,48 +37,66 @@ public class Duke {
         Task task = this.taskArr.get(taskIndex);
         task.markAsDone();
         System.out.println("Nice! I've marked this task as done: ");
-        String description = task.getDescription();
-        String statusIcon = task.getStatusIcon();
-        System.out.printf("[%s] %s%n", statusIcon, description);
+        System.out.println("   " + task);
     }
 
     public void unmarkTaskAsDone(int taskIndex) {
         Task task = this.taskArr.get(taskIndex);
         task.unmarkAsDone();
         System.out.println("Sure! I've marked this task as not yet done: ");
-        String description = task.getDescription();
-        String statusIcon = task.getStatusIcon();
-        System.out.printf("[%s] %s%n", statusIcon, description);
+        System.out.println("   " + task);
     }
-    
+
+
+    public void addTask(String type, String details) {
+        Task task;
+        if (type.equals("todo")) {
+            task = new Todo(details);
+        } else if (type.equals("deadline")) {
+            String[] strArr = details.split(" /by ");
+            String description = strArr[0].strip();
+            String by = strArr[1].strip();
+            task = new Deadline(description, by);
+        } else {
+            String[] strArr = details.split(" /at ");
+            String description = strArr[0].strip();
+            String at = strArr[1].strip();
+            task = new Event(description, at);
+        }
+        this.taskArr.add(task);
+        System.out.println("Got it. I've added this task:");
+        System.out.println("   " + task);
+        System.out.println("Now, you have " + this.taskArr.size() + " tasks in the list");
+    }
+
     public void start() {
         Scanner scanner = new Scanner(System.in);
         this.greetUser();
 
         System.out.print(">>> ");
         while (scanner.hasNext()) {
-            String input = scanner.next();
-            if (input.equals("bye")) {
+            String command = scanner.next();
+            if (command.equals("bye")) {
                 this.sayBye();
                 break;
             }
 
-            if (input.equals("list")) {
+            if (command.equals("list")) {
                 this.listTasks();
-            } else if (input.equals("mark") || input.equals("unmark")) {
+            } else if (command.equals("mark") || command.equals("unmark")) {
                 if (scanner.hasNextInt()) {
                     int taskIndex = scanner.nextInt() - 1;
-                    if (input.equals("mark")) {
+                    if (command.equals("mark")) {
                         this.markTaskAsDone(taskIndex);
                     } else {
                         this.unmarkTaskAsDone(taskIndex);
                     }
+                    
                 }
                 scanner.nextLine();
             } else {
-                input += scanner.nextLine();
-                Task task = new Task(input);
-                this.pushTask(task);
+                String taskDetails = scanner.nextLine().strip();
+                this.addTask(command, taskDetails);
             }
             System.out.print(">>> ");
         }
