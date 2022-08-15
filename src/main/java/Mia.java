@@ -7,17 +7,19 @@ public class Mia {
                             "┃ You are talking to MIA... ┃\n" +
                             "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n";
         System.out.println(logo);
-        printResponse("Hello there!");
+
+        final int windowWidth = 50;
+        printResponse("Hello there!", windowWidth);
         final Scanner sc = new Scanner(System.in);
 
         System.out.print("Enter a command: ");
         while (sc.hasNextLine()) {
             final String line = sc.nextLine().strip();
             if (line.equals("bye")) {
-                printResponse("See you!");
+                printResponse("See you!", windowWidth);
                 break;
             }
-            printResponse(line);
+            printResponse(line, windowWidth);
             System.out.print("Enter a command: ");
         }
         sc.close();
@@ -39,14 +41,18 @@ public class Mia {
                 maxLength = lines[i].length();
             }
         }
-        StringBuilder sb = new StringBuilder("╭").append("─".repeat(maxLength + 2)).append("╮\n");
+        final int paddingLength = windowWidth - maxLength - 4;
+        StringBuilder sb = new StringBuilder(" ".repeat(paddingLength))
+                .append("╭").append("─".repeat(maxLength + 2)).append("╮\n");
         // Pad lines right
         final String formatString = "%-" + maxLength + "s";
         for (int i = 0; i < lines.length; i++) {
-            sb.append("│ ").append(String.format(formatString, lines[i])).append(" │\n");
+            sb.append(" ".repeat(paddingLength))
+                    .append("│ ").append(String.format(formatString, lines[i])).append(" │\n");
         }
-        sb.append("╰").append("─".repeat(maxLength)).append("╮┬╯\n")
-                .append(" ".repeat(maxLength-3)).append("MIA ╰╯ \n");
+        sb.append(" ".repeat(paddingLength))
+                .append("╰").append("─".repeat(maxLength)).append("╮┬╯\n")
+                .append(" ".repeat(windowWidth-7)).append("MIA ╰╯ \n");
         System.out.printf(sb.toString());
     }
 }
