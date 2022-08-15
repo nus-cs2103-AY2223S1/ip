@@ -1,0 +1,9 @@
+list
+todo task1
+deadline task2 /by Mon
+event task3 /at Sun
+list
+mark 1
+mark 2
+unmark 1
+list
