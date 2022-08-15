@@ -114,10 +114,10 @@ public class Duke {
      * Filter userInput and call addEventToHistory
      * @param event
      */
-    private static void handleEvent(String event) {
+    private static void handleEvent(String event) throws DukeException{
         String description, at;
-        description = event.substring(event.indexOf("event ") + 6, event.indexOf("/at"));
-        at = event.substring(event.indexOf("/at") + 3);
+        description = getDescription(event, "event");
+        at = getDate(event);
         addEventToHistory(description, at);
     }
 
@@ -126,43 +126,20 @@ public class Duke {
      * @param deadline
      */
     private static void handleDeadline(String deadline) throws DukeException{
-        String description, by, removeDeadline;
-        int byLine;
-        removeDeadline = deadline.substring(deadline.indexOf("deadline") + 8).trim();
-        if (removeDeadline.equals("")) {
-            throw new DukeException("deadline", "Blank fields not allowed");
-        } else {
-             byLine = removeDeadline.indexOf("/by");
-            if (byLine < 0) {
-                throw new DukeException("deadline", "Missing by line");
-            } else {
-                description = removeDeadline.substring(0, byLine + 3).trim();
-                if (description.equals("")) {
-                    throw new DukeException("deadline", "Blank description not allowed");
-                } else {
-                    by = removeDeadline.substring(byLine + 3).trim();
-                    if (by.equals("")) {
-                        throw new DukeException("deadline", "Blank /by date not allowed");
-                    } else {
-                        addDeadlineToHistory(description, by);
-                    }
-                    }
-                }
-            }
+        String description, by;
+        description = getDescription(deadline, "deadline");
+        by = getDate(description);
+        addDeadlineToHistory(description, by);
         }
 
     /**
      * Filter userInput and call addDeadlineToHistory
      * @param task
      */
-    private static void handleTask(String task) throws DukeException{
+    private static void handleTask(String task) throws DukeException {
         String description;
-        description = task.substring(task.indexOf("todo") + 4).trim();
-        if (description.equals("")) {
-            throw new DukeException("todo", "Blank note not allowed");
-        } else {
-            addTaskToHistory(description);
-        }
+        description = getDescription(task, "todo");
+        addTaskToHistory(description);
     }
 
     /**
@@ -189,7 +166,7 @@ public class Duke {
         }
         else {
             System.out.println("Enter a command (todo, event, deadline, list, mark, unmark, bye)");
-            System.out.print(">>\n");
+            System.out.print(">>");
         }
     }
 
@@ -200,7 +177,7 @@ public class Duke {
      * @param commandUsed
      * @return
      */
-    private String getDescription(String command, String commandUsed) throws DukeException{
+    private static String getDescription(String command, String commandUsed) throws DukeException{
         String description;
         int startDescriptionIndex = command.indexOf(commandUsed);
         int endDescriptionIndex = command.indexOf("/");
@@ -219,7 +196,7 @@ public class Duke {
      * @return <date> component of command
      * @throws DukeException
      */
-    private String getDate(String command) throws DukeException{
+    private static String getDate(String command) throws DukeException{
         String date = "";
         int startDateIndex = command.indexOf("/") + 2;
         if (startDateIndex < 0) {
