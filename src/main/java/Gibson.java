@@ -43,35 +43,65 @@ public class Gibson {
             // MARK
             } else if (Pattern.matches("mark [0-9]+", input)) {
                 int number = getTrailingInt(input) - 1;
+                try {
                 list.get(number).mark();
                 System.out.println(line);
                 System.out.println("Nice! I've marked this task as done:");
                 System.out.println(list.get(number).toString());
                 System.out.println(line);
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.println("There is not task numbered as " + number + ".");
+                }
             }
             // UNMARK
             else if (Pattern.matches("unmark [0-9]+", input)) {
                 int number = getTrailingInt(input) - 1;
-                list.get(number).unmark();
-                System.out.println(line);
-                System.out.println("OK, I've marked this task as not done yet:");
-                System.out.println(list.get(number).toString());
-                System.out.println(line);
+                try {
+                    list.get(number).unmark();
+                    System.out.println(line);
+                    System.out.println("OK, I've marked this task as not done yet:");
+                    System.out.println(list.get(number).toString());
+                    System.out.println(line);
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.println(line);
+                    System.out.println("There is not task numbered as " + number + ".");
+                    System.out.println(line);
+                }
             // TODOS
-            } else if (Pattern.matches("todo .+", input)) {
-                String taskString = input.substring(5);
-                Task task = new Task(taskString);
-                addTask(task);
+            } else if (Pattern.matches("(todo .+)|(todo( )?)", input)) {
+                String taskString = substringAfterToken(input, "todo");
+                try {
+                    Task task = new Task(taskString);
+                    addTask(task);
+                } catch (IllegalArgumentException e) {
+                    System.out.println(line);
+                    System.out.println(e.getMessage());
+                    System.out.println(line);
+                }
             // DEADLINES
-            } else if (Pattern.matches("deadline .+ /by .+", input)) {
-                String[] stringArray = substringAfterToken(input.substring(9), "/by");
-                Deadline deadline = new Deadline(stringArray[0], stringArray[1]);
-                addTask(deadline);
+            } else if (Pattern.matches("(deadline .+ /by .+)|(deadline .+ /by( )?)", input)) {
+                String taskString = substringAfterToken(input, "deadline");
+                String[] stringArray = substringBeforeAfterToken(taskString, "/by");
+                try {
+                    Deadline deadline = new Deadline(stringArray[0], stringArray[1]);
+                    addTask(deadline);
+                } catch (IllegalArgumentException e) {
+                    System.out.println(line);
+                    System.out.println(e.getMessage());
+                    System.out.println(line);
+                }
             // EVENTS
-            } else if (Pattern.matches("event .+ /at .+", input)) {
-                String[] stringArray = substringAfterToken(input.substring(6), "/at");
-                Event event = new Event(stringArray[0], stringArray[1]);
-                addTask(event);
+            } else if (Pattern.matches("(event .+ /at .+)|(event .+ /at( )?)", input)) {
+                String taskString = substringAfterToken(input, "event");
+                String[] stringArray = substringBeforeAfterToken(taskString, "/at");
+                try {
+                    Event event = new Event(stringArray[0], stringArray[1]);
+                    addTask(event);
+                } catch (IllegalArgumentException e) {
+                    System.out.println(line);
+                    System.out.println(e.getMessage());
+                    System.out.println(line);
+                }
             // NOT RECOGNIZED
             } else {
                 System.out.println(line);
@@ -102,16 +132,40 @@ public class Gibson {
         }
     }
 
+    // Returns substring after first instance of token string
+    // Throws error if token is not found in String
+    private static String substringAfterToken(String string, String token) {
+        Pattern pattern = Pattern.compile(token);
+        Matcher matcher = pattern.matcher(string);
+        if (matcher.find()) {
+            try {
+                return string.substring(matcher.end() + 1);
+            } catch (StringIndexOutOfBoundsException e) {
+                return "";
+            }
+        } else {
+            throw new IllegalArgumentException("Unable to find token in string");
+        }
+    }
+
     // Returns substring before and after first instance of token string
     // Before stored in [0]. After stored in [1].
     // Throws error if token is not found in String
-    private static String[] substringAfterToken(String string, String token) {
+    private static String[] substringBeforeAfterToken(String string, String token) {
         String[] stringArray = new String[2];
         Pattern pattern = Pattern.compile(token);
         Matcher matcher = pattern.matcher(string);
         if (matcher.find()) {
-            stringArray[0] = string.substring(0, matcher.start() - 1);
-            stringArray[1] = string.substring(matcher.end() + 1);
+            try {
+                stringArray[0] = string.substring(0, matcher.start() - 1);
+            } catch (StringIndexOutOfBoundsException e) {
+                stringArray[0] = "";
+            }
+            try {
+                stringArray[1] = string.substring(0, matcher.start() - 1);
+            } catch (StringIndexOutOfBoundsException e) {
+                stringArray[1] = "";
+            }
             return stringArray;
         } else {
             throw new IllegalArgumentException("Unable to find token in string");

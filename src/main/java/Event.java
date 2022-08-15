@@ -3,6 +3,9 @@ public class Event extends Task {
 
     public Event(String taskString, String startEnd) {
         super(taskString);
+        if (startEnd.isBlank()) {
+            throw new IllegalArgumentException("Time of event cannot be blank.");
+        }
         this.startEnd = startEnd;
     }
 

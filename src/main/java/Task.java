@@ -3,6 +3,9 @@ public class Task {
     private boolean done;
 
     public Task(String taskString) {
+        if (taskString.isBlank()) {
+            throw new IllegalArgumentException("Task description cannot be blank.");
+        }
         this.taskString = taskString;
         this.done = false;
     }

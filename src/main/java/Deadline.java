@@ -3,6 +3,9 @@ public class Deadline extends Task {
 
     public Deadline(String taskString, String dateTime) {
         super(taskString);
+        if (dateTime.isBlank()) {
+            throw new IllegalArgumentException("Time of deadline cannot be empty.");
+        }
         this.dateTime = dateTime;
     }
 
