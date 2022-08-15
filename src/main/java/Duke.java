@@ -19,38 +19,62 @@ public class Duke {
             System.out.println(i + "." + list.get(i-1));
           }
         } else {
-          if (canMarkTask(str, list.size())) {
-            markTask(str,list);
+          String[] splitStr = str.split(" ");
+          Task taskToMark = getTaskToMark(splitStr,list);
+          Task taskToAdd = getTaskToAdd(str);
+
+          if (taskToMark != null) {
+            String action = splitStr[0];
+            if (action.equals("mark")){
+              taskToMark.mark();
+              System.out.println("Nice! I've marked this task as done:\n  " + taskToMark);
+            } else {
+              taskToMark.unmark();
+              System.out.println("OK, I've marked this task as not done yet:\n  " + taskToMark);
+            }
+          } else if (taskToAdd != null){
+            list.add(taskToAdd);
+            System.out.println("Got it. I've added this task:\n  " + taskToAdd + "\nNow you have "
+                               + list.size() + " tasks in the list.");
           } else {
-            list.add(new Task(str));
-            System.out.println("added: " + str);
+            System.out.println("idk");
           }
         }
       }
     }
 
-    public static boolean canMarkTask(String str, int numOfTasks) {
+    public static Task getTaskToMark (String[] splitStr, List<Task> list) {
       try {
-        String[] markTask = str.split(" ");
-        if(markTask.length != 2) return false;
-        int num = Integer.parseInt(markTask[1]);
-        String action = markTask[0];
-        return num > 0
-               && num <= numOfTasks
-               && (action.equals("mark") || action.equals("unmark"));
+        if(splitStr.length != 2) return null;
+        int index = Integer.parseInt(splitStr[1]);
+        String action = splitStr[0];
+        if (index > 0
+            && index <= list.size()
+            && (action.equals("mark") || action.equals("unmark"))){
+          return list.get(index-1);
+        }
+        return null;
       } catch (NumberFormatException e){
-        return false;
-      }
-    }
-    public static void markTask(String str,List<Task> list) {
-      String[] markTask = str.split(" ");
-      int index = Integer.parseInt(markTask[1]);
-      String action = markTask[0];
-      if (action.equals("mark")) {
-        list.get(index - 1).mark();
-      } else {
-        list.get(index - 1).unmark();
+        return null;
       }
     }
 
+    public static Task getTaskToAdd(String str) {
+      String[] splitStr = str.split(" ");
+      String type = splitStr[0];
+      if (type.equals("todo")) {
+        String description = str.substring(type.length() + 1);
+        return new ToDo(description);
+      } else if (type.equals("deadline")) {
+        String description = str.substring(type.length() + 1,str.indexOf("/by") - 1);
+        String date = str.substring(str.lastIndexOf("/by") + 4);
+        return new Deadline(description,date);
+      } else if (type.equals("event")) {
+        String description = str.substring(type.length() + 1,str.indexOf("/at") - 1);
+        String date = str.substring(str.lastIndexOf("/at") + 4);
+        return new Event(description,date);
+      } else {
+        return null;
+      }
+    }
 }
