@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Duke {
     public static String line = "----------------------------------------";
@@ -21,8 +22,8 @@ public class Duke {
         String current = sc.nextLine();
         while (!current.equals("bye")) {
             String[] splitString = current.split(" ");
-            current = splitString[0];
-            switch (current) {
+            String command = splitString[0];
+            switch (command) {
             case "list":
                 printTasks();
                 break;
@@ -34,11 +35,34 @@ public class Duke {
                 int taskIdToUnmark = Integer.parseInt(splitString[1]);
                 changeTaskStatus(taskIdToUnmark, false);
                 break;
+            case "todo":
+                String[] descTodo = Arrays.copyOfRange(splitString, 1, splitString.length);
+                current = String.join(" ", descTodo);
+                Task todoTask = new Todo(current);
+                addTask(todoTask);
+                break;
+            case "deadline":
+                String[] descDeadline = Arrays.copyOfRange(splitString, 1, splitString.length);
+                current = String.join(" ", descDeadline);
+
+                String descD = current.split("/")[0].trim();
+                String[] byDArray = current.split("/")[1].split(" ");
+                String byD = String.join(" ", Arrays.copyOfRange(byDArray, 1, byDArray.length));
+                Task deadlineTask = new Deadline(descD, byD);
+                addTask(deadlineTask);
+                break;
+            case "event":
+                String[] descEvent = Arrays.copyOfRange(splitString, 1, splitString.length);
+                current = String.join(" ", descEvent);
+                String descE = current.split("/")[0].trim();
+                String[] atEArray = current.split("/")[1].split(" ");
+                String atE = String.join(" ", Arrays.copyOfRange(atEArray, 1, atEArray.length));
+                Task eventTask = new Event(descE, atE);
+                addTask(eventTask);
+                break;
             default:
-                current = String.join(" ", splitString);
                 System.out.println(line);
-                System.out.println("added: " + current);
-                addTask(current);
+                System.out.println("OOPS!!! I'm sorry, but I don't know what that means :<");
                 System.out.println(line);
                 break;
             }
@@ -51,9 +75,13 @@ public class Duke {
         System.out.println(line);
     }
 
-    public static void addTask(String task) {
-        Task t = new Task(task);
-        tasks.add(t);
+    public static void addTask(Task task) {
+        System.out.println(line);
+        System.out.println("Got it. I've added this task:");
+        System.out.println("  " + task.toString());
+        tasks.add(task);
+        System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+        System.out.println(line);
     }
     public static void printTasks() {
         System.out.println(line);
