@@ -23,12 +23,16 @@ public class Mia {
         sc.close();
     }
 
-    private static void printResponse(String response) {
+    private static String[] breakLines(String data) {
         // Break strings at the next word after line length hits 30 characters
-        final String[] lines = response.lines()
+        return data.lines()
                 .flatMap((s) -> Arrays.stream(s.split("(?<=\\G\\b?.{30,}\\s)")))
                 .map(String::strip)
                 .toArray(String[]::new);
+    }
+
+    private static void printResponse(String response, int windowWidth) {
+        final String[] lines = breakLines(response);
         int maxLength = 3; // prevents negative count
         for (int i = 0; i < lines.length; i++) {
             if (maxLength < lines[i].length()) {
