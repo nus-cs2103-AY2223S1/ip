@@ -9,6 +9,7 @@ public class DeadlineTask extends Task {
 
     @Override
     public String toString() {
-        return "[D]" + getStatusIcon() + description + "(by: " + deadline + ")";
+        return "[D]" + getStatusIcon() + " " + description + " (by: " +
+               deadline + ")";
     }
 }

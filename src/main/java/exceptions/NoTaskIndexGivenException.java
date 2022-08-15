@@ -1,17 +1,17 @@
 package exceptions;
 
-public class NoDescriptionException extends HenryException {
+public class NoTaskIndexGivenException extends HenryException {
 
     public static String ERROR_MESSAGE =
         "____________________________________________________________" +
-        "\n ☹ ERROR! THE DESCRIPTION OF A TASK CANNOT BE EMPTY!\n" +
+        "\n ☹ ERROR! THE INDEX OF A TASK MUST BE GIVEN.\n" +
         "____________________________________________________________";
 
-    public NoDescriptionException() {
+    public NoTaskIndexGivenException() {
         super(ERROR_MESSAGE);
     }
 
-    public NoDescriptionException(String message) {
+    public NoTaskIndexGivenException(String message) {
         super(message);
     }
 }

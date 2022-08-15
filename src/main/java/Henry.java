@@ -1,9 +1,9 @@
 import exceptions.ImproperCommandSyntaxException;
 import exceptions.NoDescriptionException;
 import exceptions.NoSuchCommandException;
+import exceptions.NoTaskIndexGivenException;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -40,41 +40,15 @@ public class Henry {
             } else if (command.equalsIgnoreCase("bye")) {
                 close();
             } else if (command.matches("mark\\s\\d")) {
-                int taskMarked = Integer.parseInt(command.split(" ")[1]);
-                markTask(taskMarked);
+                markTask(command);
             } else if (command.matches("unmark\\s\\d")) {
-                int taskUnmarked = Integer.parseInt(command.split(" ")[1]);
-                unmarkTask(taskUnmarked);
-            } else if (command.startsWith("todo")) {
-                System.out.println(Arrays.toString(command.split("todo")));
-                if (command.split("todo").length <= 1) {
-                    throw new NoDescriptionException();
-                } else {
-                    String taskDescription = command.split("todo")[1];
-                    addToList(new TodoTask(taskDescription));
-                }
-            } else if (command.startsWith("deadline")) {
-                int indexSlash = command.indexOf('/');
-                if (indexSlash == -1) {
-                    throw new ImproperCommandSyntaxException();
-                } else {
-                    String taskDescription =
-                        command.substring(0, indexSlash).split("deadline ")[1];
-                    String taskDeadline =
-                        command.substring(indexSlash + 1).split("by")[1].trim();
-                    addToList(new DeadlineTask(taskDescription, taskDeadline));
-                }
-            } else if (command.startsWith("event")) {
-                int indexSlash = command.indexOf('/');
-                if (indexSlash == -1) {
-                    throw new ImproperCommandSyntaxException();
-                } else {
-                    String taskDescription =
-                        command.substring(0, indexSlash).split("event ")[1];
-                    String taskTime =
-                        command.substring(indexSlash + 1).split("at")[1].trim();
-                    addToList(new EventTask(taskDescription, taskTime));
-                }
+                unmarkTask(command);
+            } else if (command.startsWith("todo") ||
+                       command.startsWith("deadline") ||
+                       command.startsWith("event")) {
+                handleAddTask(command);
+            } else if (command.startsWith("delete")) {
+                deleteTask(command);
             } else {
                 throw new NoSuchCommandException();
             }
@@ -83,7 +57,24 @@ public class Henry {
         } catch (NoDescriptionException e2) {
             System.out.println(NoDescriptionException.ERROR_MESSAGE);
         } catch (ImproperCommandSyntaxException e3) {
-            System.out.println(ImproperCommandSyntaxException.ERROR_MESSAGE);
+            switch (e3.getErrorType()) {
+                case 0:
+                    System.out.println(
+                        ImproperCommandSyntaxException.ERROR_MESSAGE);
+                    break;
+                case 1:
+                    System.out.println(
+                        ImproperCommandSyntaxException.ERROR_MESSAGE_NO_BY);
+                    break;
+                default:
+                    System.out.println(
+                        ImproperCommandSyntaxException.ERROR_MESSAGE_NO_AT);
+                    break;
+            }
+        } catch (NoTaskIndexGivenException e4) {
+            System.out.println(NoTaskIndexGivenException.ERROR_MESSAGE);
+        } catch (IndexOutOfBoundsException e5) {
+            output("NO SUCH TASK");
         }
     }
 
@@ -96,7 +87,7 @@ public class Henry {
     }
 
     public void close() {
-        System.out.println(formatResponse("GOODBYE!"));
+        output("GOODBYE!");
         activated = false;
     }
 
@@ -104,34 +95,103 @@ public class Henry {
         System.out.println(formatResponse(input));
     }
 
-    // Use try-catch to avoid out of bounds exception
-    public void markTask(int index) {
-        try {
-            tasks.get(index).setComplete(true);
-            System.out.println(formatResponse(
-                "I'VE MARKED THIS TASK AS DONE:\n\t\t\t" + tasks.get(index)));
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println(formatResponse("TASK NOT FOUND"));
+    public void deleteTask(String command) throws NoTaskIndexGivenException,
+                                                  IndexOutOfBoundsException {
+        int index;
+        if (command.split(" ").length <= 1) {
+            throw new NoTaskIndexGivenException();
+        } else {
+            index = Integer.parseInt(command.split(" ")[1]);
         }
+        String removed = tasks.remove(index).toString();
+        output("NOTED. I REMOVED THIS TASK:\n\t\t\t" + removed +
+               "\n\t    NOW YOU HAVE " + tasks.size() + " TASK" +
+               (tasks.size() == 1 ? "" : "S") + " IN YOUR LIST.");
     }
 
-    // Use try-catch to avoid out of bounds exception
-    public void unmarkTask(int index) {
-        try {
-            tasks.get(index).setComplete(false);
-            System.out.println(formatResponse(
-                "I'VE MARKED THIS TASK AS NOT DONE: \n" + tasks.get(index)));
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println(formatResponse("TASK NOT FOUND"));
+    public void markTask(String command) throws NoTaskIndexGivenException,
+                                                IndexOutOfBoundsException {
+        int index;
+        if (command.split(" ").length <= 1) {
+            throw new NoTaskIndexGivenException();
+        } else {
+            index = Integer.parseInt(command.split(" ")[1]);
         }
+        tasks.get(index).setComplete(true);
+        output("I'VE MARKED THIS TASK AS DONE:\n\t\t\t" + tasks.get(index));
+    }
+
+    public void unmarkTask(String command) throws NoTaskIndexGivenException,
+                                                  IndexOutOfBoundsException {
+        int index;
+        if (command.split(" ").length <= 1) {
+            throw new NoTaskIndexGivenException();
+        } else {
+            index = Integer.parseInt(command.split(" ")[1]);
+        }
+        tasks.get(index).setComplete(false);
+        output("I'VE MARKED THIS TASK AS NOT DONE: \n" + tasks.get(index));
+    }
+
+    public void handleAddTask(String command) {
+        Task task;
+        if (command.startsWith("deadline") || command.startsWith("event")) {
+            int indexSlash = command.indexOf('/');
+            if (indexSlash == -1 ||
+                (!command.startsWith("at", indexSlash + 1) &&
+                 !command.startsWith("by", indexSlash + 1))) {
+                throw new ImproperCommandSyntaxException();
+            } else {
+                String taskDescription;
+                if (command.substring(0, indexSlash).split("deadline ").length <
+                    1 ||
+                    command.substring(0, indexSlash).replace("deadline", "")
+                           .isBlank()) {
+                    throw new NoDescriptionException();
+                } else {
+                    taskDescription = command.substring(0, indexSlash);
+                }
+                if (command.startsWith("deadline")) {
+                    if (!command.contains("by")) {
+                        throw new ImproperCommandSyntaxException(1);
+                    } else {
+                        String taskDeadline =
+                            command.substring(indexSlash + 1).replace("by", "")
+                                   .trim();
+                        task = new DeadlineTask(
+                            taskDescription.replace("deadline", "").trim(),
+                            taskDeadline);
+                    }
+                } else {
+                    if (!command.contains("at")) {
+                        throw new ImproperCommandSyntaxException(2);
+                    } else {
+                        String taskTime =
+                            command.substring(indexSlash + 1).replace("at", "")
+                                   .trim();
+                        task = new EventTask(
+                            taskDescription.replace("event", "").trim(),
+                            taskTime);
+                    }
+                }
+            }
+        } else {
+            if (command.split("todo").length < 1 ||
+                command.replace("todo", "").isBlank()) {
+                throw new NoDescriptionException();
+            } else {
+                String taskDescription = command.split("todo")[1];
+                task = new TodoTask(taskDescription);
+            }
+        }
+        addToList(task);
     }
 
     public void addToList(Task task) {
         tasks.add(task);
-        System.out.println(formatResponse(
-            "OK. I ADDED THIS TASK TO MY LIST:\n\t\t\t" + task.toString() +
-            "\n\t    NOW YOU HAVE " + tasks.size() + " TASK" +
-            (tasks.size() > 1 ? "S" : "") + " IN YOUR LIST."));
+        output("OK. I ADDED THIS TASK TO MY LIST:\n\t\t\t" + task.toString() +
+               "\n\t    NOW YOU HAVE " + tasks.size() + " TASK" +
+               (tasks.size() == 1 ? "" : "S") + " IN YOUR LIST.");
     }
 
     public void getList() {
