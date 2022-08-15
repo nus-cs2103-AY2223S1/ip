@@ -8,15 +8,40 @@ public class Duke {
 
         // Receive Input
         Scanner sc = new Scanner(System.in);
-        String str = "";
+        String input = "";
+        Task[] taskList = new Task[100];
+        int pointer = 0;
         while (true) {
-            str = sc.next();
-            if (str.equals("bye")) {
+            input = sc.nextLine();
+
+            // Exits Loop
+            if (input.equals("bye")) {
                 break;
             }
 
+            // Outputs Task List
+            if (input.equals("list")) {
+                int i = 1;
+                for (Task t : taskList) {
+                    // Reach end of list
+                    if (t == null) {
+                        break;
+                    }
+
+                    String taskListString = String.format("\t%d. %s", i, t.toString());
+                    System.out.println(taskListString);
+                    i++;
+                }
+                continue;
+            }
+
             // Echo
-            System.out.println("\t" + str);
+            String output = String.format("\tYou have added \"%s\" into your task list!", input);
+            System.out.println(output);
+
+            // Add into task list
+            taskList[pointer] = new Task(input);
+            pointer++;
         }
 
         // Exits Program
