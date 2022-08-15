@@ -61,6 +61,10 @@ public class Duke {
                     printMsg(ls.addTask(new Task(com[1], "[E]")));
                     break;
 
+                case "delete":
+                    printMsg(ls.deleteTask(Integer.parseInt(com[1])));
+                    break;
+
                 default:
                     printMsg("Invalid command...I can't understand :( Try again.");
             }
