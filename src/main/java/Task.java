@@ -16,6 +16,6 @@ public class Task {
     }
 
     public String toString() {
-        return String.format("[%s] %s", this.done ? 'x' : ' ', this.description);
+        return String.format("[T][%s] %s", this.done ? 'X' : ' ', this.description);
     }
 }
