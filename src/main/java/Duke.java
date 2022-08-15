@@ -3,12 +3,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
-
-    /*
-    Level 2. Add, List
-    Add the ability to store whatever text entered by the user and display them back to the user when requested.
-     */
-    static List<String> list = new ArrayList<>();
+    //Initialise a list variable to track the list of tasks
+    static List<Task> list = new ArrayList<>();
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -17,11 +13,7 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
 
-        /*
-        Level 1: Level 1. Greet, Echo, Exit
-        Implement a skeletal version of Duke that starts by greeting the user,
-        simply echos commands entered by the user, and exits when the user types bye.
-         */
+        //Print the starting statement
         System.out.println(dialog("Hello! I'm Duke" + "\n" + "   What can I do for you?"));
 
         //Initialise the scanner used.
@@ -31,28 +23,50 @@ public class Duke {
         while(true) {
             //Update the message variable
             message = sc.nextLine();
-            /*
-            Check if exit command is being entered
-            If true, print the exit statement and exit the loop, else repeat the statement entered.
-             */
-            if (message.equals("bye")) {
-                System.out.println(dialog("Bye. Hope to see you again soon!"));
-                sc.close();
-                break;
-            } else if (message.equals("list")){
-                StringBuilder sb = new StringBuilder();
-                for (int i = 0; i < list.size(); i++) {
-                    if (i == list.size() - 1) {
-                        sb.append(i + 1 + ". " + list.get(i));
-                    } else {
-                        sb.append(i + 1 + ". " + list.get(i) + "\n" + "   ");
+
+            switch (message) {
+                case "bye":
+                    System.out.println(dialog("Bye. Hope to see you again soon!"));
+                    sc.close();
+                    break;
+
+                case "list":
+                    StringBuilder sb = new StringBuilder();
+                    for (int i = 0; i < list.size(); i++) {
+                        if (i == list.size() - 1) {
+                            sb.append(i + 1 + ". " + String.format("[%s] ", list.get(i).getStatusIcon()) + list.get(i).description);
+                        } else {
+                            sb.append(i + 1 + ". " + String.format("[%s] ", list.get(i).getStatusIcon()) + list.get(i).description + "\n" + "   ");
+                        }
                     }
-                }
-                System.out.println(dialog(sb.toString()));
-            } else {
-                list.add(message);
-                System.out.println(dialog("added: " + message));
+                    System.out.println(dialog(sb.toString()));
+                    break;
+
+                default:
+                    if (message.startsWith("mark")) {
+                        Integer index = Integer.valueOf(message.substring(5)) - 1;
+                        Task curr = list.get(index);
+                        curr.markAsDone();
+                        System.out.println(dialog(
+                                "Nice! I've marked this task as done:\n" +
+                                "   " + String.format("[%s] %s", curr.getStatusIcon(), curr.description)
+                        ));
+                    } else if (message.startsWith("unmark")) {
+                        Integer index = Integer.valueOf(message.substring(7)) - 1;
+                        Task curr = list.get(index);
+                        curr.unMark();
+                        System.out.println(dialog(
+                                "OK, I've marked this task as not done yet:\n" +
+                                        "   " + String.format("[%s] %s", curr.getStatusIcon(), curr.description)
+                        ));
+                    } else {
+                        Task task = new Task(message);
+                        list.add(task);
+                        System.out.println(dialog("added: " + message));
+                    }
+
             }
+
         }
     }
 
