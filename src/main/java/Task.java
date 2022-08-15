@@ -1,21 +1,21 @@
 public class Task {
-    protected String taskDescription;
-    protected boolean isDone;
-    protected static int numberOfTasks = 0;
+    private String taskDescription;
+    private boolean isDone;
+    private static int numberOfTasks = 0;
 
     public Task(String taskDescription) {
         this.taskDescription = taskDescription;
         this.isDone = false;
     }
 
-    public String markAsDone() {
+    public void markAsDone() {
         this.isDone = true;
-        return "Nice! I've marked this task as done:\n [X] " + this.taskDescription;
+        System.out.println("Nice! I've marked this task as done:\n [X] " + this.taskDescription + "\n");
     }
 
-    public String markAsNotDone() {
+    public void markAsNotDone() {
         this.isDone = false;
-        return "OK, I've marked this task as not done yet:\n [ ] " + this.taskDescription;
+        System.out.println("OK, I've marked this task as not done yet:\n [ ] " + this.taskDescription + "\n");
     }
 
     public String addedString() {
@@ -26,8 +26,12 @@ public class Task {
         return (isDone ? "X" : " ");
     }
 
-    public int getNumberOfTasks() {
-        return this.numberOfTasks;
+    public static void taskIncrementer() {
+        numberOfTasks++;
+    }
+
+    public static int getNumberOfTasks() {
+        return numberOfTasks;
     }
 
     @Override

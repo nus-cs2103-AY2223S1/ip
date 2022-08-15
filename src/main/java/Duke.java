@@ -1,37 +1,106 @@
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Scanner;
+import java.util.concurrent.DelayQueue;
 
 import static java.lang.Integer.parseInt;
 
 public class Duke {
 
-    public static void dukeGreet() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+    //Duke Start
+    protected static final String LOGO = " ____        _        \n"
+                                       + "|  _ \\ _   _| | _____ \n"
+                                       + "| | | | | | | |/ / _ \\\n"
+                                       + "| |_| | |_| |   <  __/\n"
+                                       + "|____/ \\__,_|_|\\_\\___|\n";
+    protected static final String WELCOME_GREET = "Hello from\n" + LOGO
+                + "\nI am you personal task tracking assistant!\nWhat can I do for you today?\n";
+    protected static final LinkedList<Task> TASK_LIST = new LinkedList<>();
 
-        System.out.println("Hello there! I'm Duke and I am you personal task tracking assistant!\nWhat can I do for you today?\n");
-
+    public static void welcomeGreet() {
+        System.out.println(WELCOME_GREET);
     }
-
     public static void dukeExit() {
        System.out.println("Bye. Hope to see you again soon!");
     }
 
-    public static void printList(LinkedList storedList) {
-        for (int i = 0; i < storedList.size(); i++) {
+    //General Helpers
+    public static boolean isNumeric(String str) {
+        return str.chars().allMatch(Character::isDigit);
+    }
+    public static int timeFinder(String[] splitInput) {
+        for (int j = 0; j < splitInput.length; j++) {
+            if (splitInput[j].equals("/by") || splitInput[j].equals("/at")) {
+                return j;
+            }
+        }
+        return -1;
+    }
+
+    // List Helpers
+    public static void printList() {
+        for (int i = 0; i < TASK_LIST.size(); i++) {
             int index = i + 1;
-            System.out.println(index + ". " + storedList.get(i).toString());
+            System.out.println(index + ". " + TASK_LIST.get(i).toString());
         }
         System.out.println("\n");
     }
-
-    public static void taskTracker(String userCommand, LinkedList<? extends Task> storedList) {
-
+    public static void markAsDone(int index) {
+        Task task = TASK_LIST.get(index-1);
+        task.markAsDone();
     }
+    public static void markAsNotDone(int index) {
+        Task task = TASK_LIST.get(index-1);
+        task.markAsNotDone();
+    }
+
+    // Task Helpers
+    public static void addTask(Task task) {
+        TASK_LIST.add(task);
+        System.out.println("Got it. I've added this task:\n "
+                + task.toString()
+                + "\nNow you have " + Task.getNumberOfTasks() + " tasks in the list.\n");
+    }
+    public static void addTodo(String[] userInput) {
+        int len = userInput.length;
+        String todoName = String.join(" ", Arrays.copyOfRange(userInput, 1, len));
+        if (todoName.equals("")) {
+            throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+        }
+        addTask(new Todo(todoName));
+    }
+    public static void addDeadline(String[] userInput) {
+        int byIndex = timeFinder(userInput);
+        if (byIndex == -1) {
+            throw new DukeException("☹ OOPS!!! The task needs a by date/time. Use the /by command after the name of the task to set its deadline");
+        }
+        String deadlineName = String.join(" ", Arrays.copyOfRange(userInput, 1, byIndex));
+        if (deadlineName.equals("")) {
+            throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
+        }
+        String by = String.join(" ", Arrays.copyOfRange(userInput, byIndex + 1, userInput.length));
+        if (by.equals("")) {
+            throw new DukeException("☹ OOPS!!! The deadline if the task cannot be empty.");
+        }
+        addTask(new Deadline(deadlineName, by));
+    }
+    public static void addEvent(String[] userInput) {
+        int atIndex = timeFinder(userInput);
+        if (atIndex == -1) {
+            throw new DukeException("☹ OOPS!!! The task needs a at date/time. Use the /at command after the name of the task to set its date/time");
+        }
+        String eventName = String.join(" ", Arrays.copyOfRange(userInput, 1, atIndex));
+        if (eventName.equals("")) {
+            throw new DukeException("☹ OOPS!!! The description of a event cannot be empty.");
+        }
+        String at = String.join(" ", Arrays.copyOfRange(userInput, atIndex + 1, userInput.length));
+        if (at.equals("")) {
+            throw new DukeException("☹ OOPS!!! The date/time of the event cannot be empty.");
+        }
+        addTask(new Event(eventName, at));
+    }
+
+    /*
 
     public static void echo() {
         LinkedList<Task> storedList = new LinkedList<>();
@@ -61,16 +130,46 @@ public class Duke {
                 storedList.add(new Event(userCommand.substring(6,  index-1), userCommand.substring(at)));
                 System.out.println(storedList.getLast().addedString() + "\n");
             } else {
-                storedList.add(new Task(userCommand));
-                System.out.println(storedList.getLast().addedString() + "\n");
+                throw new DukeException(userCommand);
+                //storedList.add(new Task(userCommand));
+                //System.out.println(storedList.getLast().addedString() + "\n");
             }
             userCommand = scanner.nextLine();
         }
         dukeExit();
     }
+     */
 
     public static void main(String[] args) {
-        dukeGreet();
-        echo();
+        Scanner scanner = new Scanner(System.in);
+        welcomeGreet();
+
+        while (scanner.hasNext()) {
+            String userInput = scanner.nextLine();
+            String[] splitInput = userInput.split(" ");
+            try {
+                if (userInput.equals("bye")) {
+                    dukeExit();
+                    scanner.close();
+                    break;
+                } else if (userInput.equals("list")) {
+                    printList();
+                } else if (splitInput.length == 2 && splitInput[0].equals("mark") && isNumeric(splitInput[1])) {
+                    markAsDone(parseInt(splitInput[1]));
+                } else if (splitInput.length == 2 && splitInput[0].equals("unmark") && isNumeric(splitInput[1])) {
+                    markAsNotDone(parseInt(splitInput[1]));
+                } else if (splitInput[0].equals("todo")) {
+                    addTodo(splitInput);
+                } else if (splitInput[0].equals("deadline")) {
+                    addDeadline(splitInput);
+                } else if (splitInput[0].equals("event")) {
+                    addEvent(splitInput);
+                } else {
+                    throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(\n");
+                }
+            } catch (DukeException error) {
+                System.out.println(error.getMessage());
+            }
+        }
     }
 }
