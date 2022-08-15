@@ -1,6 +1,10 @@
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.List;
 
 public class Tumu {
+    private static List<String> userText = new ArrayList<>();
+
     public static void main(String[] args) {
         greeting();
         response();
@@ -12,19 +16,25 @@ public class Tumu {
          */
 
         Scanner sc = new Scanner(System.in);
-        final String endChatBotMessage = "bye";
+        final String endChatBotCMD = "bye";
+        final String listUserTextCMD = "list";
         String userInput;
+
         do {
             userInput = sc.next().toLowerCase();
             switch (userInput) {
-                case endChatBotMessage:
+                case endChatBotCMD:
                     goodbye();
                     break;
+                case listUserTextCMD:
+                    listText();
+                    break;
                 default:
-                    System.out.println(userInput);
+                    System.out.println("Added: " + userInput);
+                    userText.add(userInput);
             }
 
-        } while (!userInput.equalsIgnoreCase(endChatBotMessage));
+        } while (!userInput.equalsIgnoreCase(endChatBotCMD));
     }
 
     private static void greeting() {
@@ -55,5 +65,15 @@ public class Tumu {
         String goodbyeMessage = "Goodbye, and have a nice day ahead!\n";
         String smileyFace = "٩(ˊᗜˋ )و\n";
         System.out.println(goodbyeMessage + smileyFace);
+    }
+
+    private static void listText() {
+        /**
+         * Lists previous user texts in succession.
+         */
+
+        for (int i = 1; i <= userText.size(); i++) {
+            System.out.println(i + ". " + userText.get(i - 1));
+        }
     }
 }
