@@ -7,7 +7,7 @@ public class Duke {
     private static final String GOODBYE_MESSAGE = "Bye! Hope to see you soon ༼- つ ◕_◕ ༽つ";
     private static final int TASKLIST_MAX_SIZE = 100;
 
-    private static String[] taskList = new String[TASKLIST_MAX_SIZE];
+    private static Task[] taskList = new Task[TASKLIST_MAX_SIZE];
     private static int taskCount = 0;
 
     public static void main(String[] args) {
@@ -31,7 +31,7 @@ public class Duke {
                     break;
                 default:
                     assert taskCount < TASKLIST_MAX_SIZE;
-                    taskList[taskCount++] = userQuery;
+                    taskList[taskCount++] = new Task(userQuery, true);
                     System.out.printf("Successfully added \"%s\" to your task list!\n", userQuery);
             }
         }
