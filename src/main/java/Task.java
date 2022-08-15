@@ -13,7 +13,7 @@ public class Task {
     }
 
     public String getStatusIcon() {
-        return (this.isDone ? "☒" : "☐");
+        return (this.isDone ? "[✔]" : "[ ]");
     }
 
     public void setDone(boolean isDone) {
