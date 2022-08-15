@@ -47,7 +47,7 @@ public class Carbon {
     // own fields
     private Random rand;
     private boolean isRunning;
-    private List<String> items;
+    private List<Task> tasks;
 
     // io display standardisation methods
     private static void printOut(String text) {
@@ -68,7 +68,7 @@ public class Carbon {
     private Carbon() {
         // init fields
         this.rand = new Random();
-        this.items = new ArrayList<String>();
+        this.tasks = new ArrayList<Task>();
 
         String randomPrompt = Carbon.initPrompts[
             this.rand.nextInt(Carbon.initPrompts.length)
@@ -103,22 +103,29 @@ public class Carbon {
                 this.isRunning = false;
                 break;
             default:
-                this.addItem(input);
+                this.addTask(input);
         }
     }
 
-    private void addItem(String input) {
-        this.items.add(input);
-        String log = String.format("I have added: %s", input);
+    private void addTask(String input) {
+        Task newTask = new Task(input);
+        this.tasks.add(newTask);
+        String log = String.format("I have added: \n    %s", newTask);
         Carbon.printOut(log);
     }
 
     private void listItems() {
+        int size = this.tasks.size();
+        if (size == 0) {
+            String log = "There are no tasks so far.";
+            Carbon.printOut(log);
+            return;
+        }
+
         String log = "Here are the items so far. \n";
-        int size = this.items.size();
         for (int i = 0; i < size; i++) {
-            String itemLog = String.format("\n    %d: %s", i + 1, this.items.get(i));
-            log += itemLog;
+            String taskLog = String.format("\n    %d: %s", i + 1, this.tasks.get(i));
+            log += taskLog;
         }
         Carbon.printOut(log);
     }
