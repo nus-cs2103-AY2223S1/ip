@@ -1,0 +1,10 @@
+todo Borrow book
+deadline Return book /by Sunday
+event Book reading club /at Monday 2-4PM
+list
+mark 2
+list
+unmark 2
+list
+nonsense
+bye
