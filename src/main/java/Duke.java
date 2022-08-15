@@ -1,19 +1,26 @@
 import java.util.Scanner;
 
 public class Duke {
+    private static final String HORIZONTAL_LINE = "    ____________________________________________________________\n";
     public Duke() {
-        String msg = "Hello! I'm Duke\nWhat can I do for you?";
-        System.out.println(msg);
+        reply("     Hello! I'm Duke\n     What can I do for you?");
+    }
+
+    public void reply(String msg) {
+        String response = HORIZONTAL_LINE
+                + msg + "\n"
+                + HORIZONTAL_LINE;
+        System.out.println(response);
     }
     public void echo() {
         Scanner sc = new Scanner(System.in);
         while (sc.hasNextLine()) {
             String msg = sc.nextLine();
             if (msg.compareTo("bye") == 0) {
-                System.out.println("Bye. Hope to see you again soon!");
+                reply("     Bye. Hope to see you again soon!");
                 break;
             } else {
-                System.out.println(msg);
+                reply("     " + msg);
             }
         }
     }
