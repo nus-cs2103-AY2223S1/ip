@@ -11,10 +11,10 @@ public class Jean {
     }
 
     private static void add(Task newTask, Task[] taskList) {
-        taskList[newTask.numberOfTasks - 1] = newTask;
+        taskList[Task.numberOfTasks - 1] = newTask;
         System.out.println("\tadded / ajouté:\n\t\t" + newTask.toString());
-        System.out.println("\tYou now have " + newTask.numberOfTasks + " task(s)!\n" +
-                           "\tVous avez " + newTask.numberOfTasks + " tâche(s)!");
+        System.out.println("\tYou now have " + Task.numberOfTasks + " task(s)!\n" +
+                           "\tVous avez " + Task.numberOfTasks + " tâche(s)!");
     }
 
     private static void list(Task[] taskList) {
