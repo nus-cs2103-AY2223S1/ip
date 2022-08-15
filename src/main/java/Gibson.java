@@ -75,7 +75,7 @@ public class Gibson {
             // NOT RECOGNIZED
             } else {
                 System.out.println(line);
-                System.out.println("Command not recognized.");
+                System.out.println("I'm sorry. I do not know what that means.");
                 System.out.println(line);
             }
         }
