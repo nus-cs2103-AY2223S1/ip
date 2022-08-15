@@ -73,6 +73,8 @@ public class Duke {
         System.out.println(line);
         System.out.println("Bye. Hope to see you again soon!");
         System.out.println(line);
+        sc.close();
+        System.exit(0);
     }
 
     public static void addTask(Task task) {
