@@ -15,6 +15,11 @@ public class Mia {
         System.out.print("Enter a command: ");
         while (sc.hasNextLine()) {
             final String line = sc.nextLine().strip();
+
+            // Replaces the entered command (previous line) with a bubble
+            System.out.print("\u001B[1A\u001B[K");
+            printCommand(line);
+
             if (line.equals("bye")) {
                 printResponse("See you!", windowWidth);
                 break;
@@ -53,6 +58,25 @@ public class Mia {
         sb.append(" ".repeat(paddingLength))
                 .append("╰").append("─".repeat(maxLength)).append("╮┬╯\n")
                 .append(" ".repeat(windowWidth-7)).append("MIA ╰╯ \n");
+        System.out.printf(sb.toString());
+    }
+
+    private static void printCommand(String command) {
+        final String[] lines = breakLines(command);
+        int maxLength = 3; // prevents negative count
+        for (int i = 0; i < lines.length; i++) {
+            if (maxLength < lines[i].length()) {
+                maxLength = lines[i].length();
+            }
+        }
+        StringBuilder sb = new StringBuilder("╭").append("─".repeat(maxLength + 2)).append("╮\n");
+        // Pad lines right
+        final String formatString = "%-" + maxLength + "s";
+        for (int i = 0; i < lines.length; i++) {
+            sb.append("│ ").append(String.format(formatString, lines[i])).append(" │\n");
+        }
+        sb.append("╰┬╭").append("─".repeat(maxLength)).append("╯\n")
+                .append(" ╰╯ You").append(" ".repeat(maxLength-3)).append("\n");
         System.out.printf(sb.toString());
     }
 }
