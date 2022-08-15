@@ -1,9 +1,11 @@
 /**
  * Project done by Hong Jin
- * Student ID: A0239059W
  */
 import java.util.*;
 
+/**
+ * Main class that runs chat bot Duke.
+ */
 public class Duke {
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -18,15 +20,25 @@ public class Duke {
 
         Scanner scan = new Scanner(System.in);
         printMsg(initText);
+        TaskList ls = new TaskList();
 
         while (true) {
             System.out.println("Say something: ");
             String input = scan.nextLine();
+
             if (input.equals("bye")) {
                 break;
             }
-            printMsg(input);
+
+            if (input.equals("list")) {
+                printMsg(ls.enumerate());
+                continue;
+            }
+
+            Task in = new Task(input);
+            printMsg(ls.addTask(in));
         }
+
         printMsg(endText);
     }
 
