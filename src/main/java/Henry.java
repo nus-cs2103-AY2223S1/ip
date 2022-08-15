@@ -10,7 +10,7 @@ public class Henry {
 
     public Henry() {
         System.out.println(
-            " .----------------.  .----------------.  .-----------------. .----------------.  .----------------. \n" +
+            " .----------------.  .----------------.  .-----------------. .----------------.  .----------------.\n" +
             "| .--------------. || .--------------. || .--------------. || .--------------. || .--------------. |\n" +
             "| |  ____  ____  | || |  _________   | || | ____  _____  | || |  _______     | || |  ____  ____  | |\n" +
             "| | |_   ||   _| | || | |_   ___  |  | || ||_   \\|_   _| | || | |_   __ \\    | || | |_  _||_  _| | |\n" +
@@ -20,7 +20,7 @@ public class Henry {
             "| | |____||____| | || | |_________|  | || ||_____|\\____| | || | |____| |___| | || |   |______|   | |\n" +
             "| |              | || |              | || |              | || |              | || |              | |\n" +
             "| '--------------' || '--------------' || '--------------' || '--------------' || '--------------' |\n" +
-            " '----------------'  '----------------'  '----------------'  '----------------'  '----------------' ");
+            " '----------------'  '----------------'  '----------------'  '----------------'  '----------------'");
         tasks = new ArrayList<>();
         sc = new Scanner(System.in);
         activated = true;
@@ -40,8 +40,26 @@ public class Henry {
         } else if (command.matches("unmark\\s\\d")) {
             int taskUnmarked = Integer.parseInt(command.split(" ")[1]);
             unmarkTask(taskUnmarked);
+        } else if (command.startsWith("todo")) {
+            String taskDescription = command.split("todo")[1];
+            addToList(new TodoTask(taskDescription));
+        } else if (command.startsWith("deadline")) {
+            int indexSlash = command.indexOf('/');
+            String taskDescription =
+                command.substring(0, indexSlash).split("deadline ")[1];
+            String taskDeadline =
+                command.substring(indexSlash + 1).split("by")[1].trim();
+            addToList(new DeadlineTask(taskDescription, taskDeadline));
+        } else if (command.startsWith("event")) {
+            int indexSlash = command.indexOf('/');
+            String taskDescription =
+                command.substring(0, indexSlash).split("event ")[1];
+            String taskTime =
+                command.substring(indexSlash + 1).split("at")[1].trim();
+            addToList(new EventTask(taskDescription, taskTime));
         } else {
-            addToList(command);
+            System.out.println(
+                formatResponse("I DID NOT UNDERSTAND THAT COMMAND"));
         }
     }
 
@@ -63,7 +81,7 @@ public class Henry {
         try {
             tasks.get(index).setComplete(true);
             System.out.println(formatResponse(
-                "I'VE MARKED THIS TASK AS DONE: \n" + tasks.get(index)));
+                "I'VE MARKED THIS TASK AS DONE:\n\t\t\t" + tasks.get(index)));
         } catch (IndexOutOfBoundsException e) {
             System.out.println(formatResponse("TASK NOT FOUND"));
         }
@@ -80,10 +98,12 @@ public class Henry {
         }
     }
 
-    public void addToList(String input) {
-        tasks.add(new Task(input));
-        System.out.println(
-            formatResponse("OK. I ADDED \"" + input + "\" TO MY LIST."));
+    public void addToList(Task task) {
+        tasks.add(task);
+        System.out.println(formatResponse(
+            "OK. I ADDED THIS TASK TO MY LIST:\n\t\t\t" + task.toString() +
+            "\n\t    NOW YOU HAVE " + tasks.size() + " TASK" +
+            (tasks.size() > 1 ? "S" : "") + " IN YOUR LIST."));
     }
 
     public void getList() {
@@ -98,7 +118,7 @@ public class Henry {
         StringBuilder sb = new StringBuilder();
         sb.append(
             "____________________________________________________________");
-        sb.append("\n \uD83E\uDD16: \n");
+        sb.append("\n HENRY:\n");
         for (int i = 1; i <= tasks.size(); i++) {
             sb.append(" ").append(i).append(". ").append(tasks.get(i - 1))
               .append("\n");
@@ -110,7 +130,7 @@ public class Henry {
 
     private String formatResponse(String input) {
         return "____________________________________________________________" +
-               "\n \uD83E\uDD16: " + input + "\n" +
+               "\n HENRY: " + input + "\n" +
                "____________________________________________________________";
     }
 }
