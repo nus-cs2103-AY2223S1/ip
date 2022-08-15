@@ -1,9 +1,11 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Duke {
 
     public static void main(String[] args) {
         boolean bye = false;
+        ArrayList<String> toDoList = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -18,8 +20,15 @@ public class Duke {
             if (input.equals("bye")) {
                 bye = true;
                 System.out.println("Bye Bye!");
-            } else {
-                System.out.println(input);
+            } else if (input.equals("list")) {
+                for (int i = 1; i <= toDoList.size(); i++) {
+                    System.out.println(i +  ". " +toDoList.get(i-1));
+                }
+            }
+
+            else {
+                toDoList.add(input);
+                System.out.println("added: " + input);
             }
         }
 
