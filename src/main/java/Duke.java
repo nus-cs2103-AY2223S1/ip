@@ -35,6 +35,16 @@ public class Duke {
                 continue;
             }
 
+            if (input.split(" ", 2)[0].equals("mark") || input.split(" ", 2)[0].equals("unmark")) {
+                int index = Integer.parseInt(input.split(" ")[1]);
+                if (input.split(" ", 2)[0].equals("mark")) {
+                    printMsg(ls.updateMark(index));
+                } else {
+                    printMsg(ls.updateUnmark(index));
+                }
+                continue;
+            }
+
             Task in = new Task(input);
             printMsg(ls.addTask(in));
         }
