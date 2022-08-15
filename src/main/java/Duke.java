@@ -41,30 +41,37 @@ public class Duke {
         System.out.println("Sure! I've marked this task as not yet done: ");
         System.out.println("   " + task);
     }
-    
+
     public void addTask(String type, String details) throws DukeException {
         Task task;
-        if (type.equals("todo") || type.equals("deadline") || type.equals("event")) {
-            if (type.equals("todo")) {
-                task = new Todo(details);
-            } else if (type.equals("deadline")) {
-                String[] strArr = details.split(" /by ");
-                String description = strArr[0].strip();
-                String by = strArr[1].strip();
-                task = new Deadline(description, by);
-            } else {
-                String[] strArr = details.split(" /at ");
-                String description = strArr[0].strip();
-                String at = strArr[1].strip();
-                task = new Event(description, at);
+        // Dateless task
+        if (type.equals("todo")) {
+            if (details.length() == 0) {
+                throw new MissingDescriptionException("todo");
             }
-            this.taskArr.add(task);
-            System.out.println("Got it. I've added this task:");
-            System.out.println("   " + task);
-            System.out.println("Now, you have " + this.taskArr.size() + " tasks in the list");
-        } else {
+            task = new Todo(details);
+        } else if (type.equals("deadline") || type.equals("event")) { // dated tasks
+            String[] strArr = type.equals("deadline") ? details.split(" /by ") : details.split(" /at ");
+            String description = strArr[0].strip();
+
+            // Description is missing
+            if (description.length() == 0) {
+                throw new MissingDescriptionException(type);
+            }
+
+            if (strArr.length > 1) {
+                String date = strArr[1].strip();
+                task = type.equals("deadline") ? new Deadline(description, date) : new Event(description, date);
+            } else { // Description is present, but date is missing
+                throw new MissingDateException(type);
+            }
+        } else { // Unknown task
             throw new UnknownCommandException();
         }
+        this.taskArr.add(task);
+        System.out.println("Got it. I've added this task:");
+        System.out.println("   " + task);
+        System.out.println("Now, you have " + this.taskArr.size() + " tasks in the list");
     }
     
     public void start() {
