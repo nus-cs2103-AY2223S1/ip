@@ -22,7 +22,7 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
 
         boolean flag = true; // flag indicating if the loop should continue
-        while (flag) {
+        while (flag && sc.hasNextLine()) {
             // Read input from console
             String inputText = sc.nextLine();
 
