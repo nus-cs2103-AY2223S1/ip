@@ -143,7 +143,7 @@ public class Roger {
             } else if (input.startsWith("event")) {
                 int periodIdx = input.indexOf("/at");
                 if (periodIdx == -1) {
-                    System.out.println("Nephew must tell me when is the deadline, with /by");
+                    System.out.println("Nephew must tell me when is the event, with /at");
                     continue;
                 }
 
