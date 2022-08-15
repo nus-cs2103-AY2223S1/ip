@@ -1,18 +1,68 @@
 list
+
 todo Add To Do
+list
+
 event Add Event /at Event Time
 list
+
 deadline Add Deadline /by Deadline Time
 list
+
 mark 1
 list
+
 mark 3
 list
+
 unmark 1
 list
+
 mark 2
 list
+
 unmark 3
 list
-   list
+
+mark 10000000000000000
+mark -1
+mark a b c
+mark 1 a b
+
+unmark -100
+unmark 998244353
+unmark a b c
+unmark 3 x y
+
+event
+event /by
+event /at
+event
+
+deadline
+deadline /at
+deadline /by
+deadline /at Unknown
+deadline /by Unknown
+deadline Is Deadline 0 /at
+deadline Is Deadline 1 /at Unknown
+deadline Is Deadline 2 /by
+deadline Is Deadline 3 /by Unknown
+
+event
+event /at
+event /by
+event /at Unknown
+event /by Unknown
+event Is Event 0 /at
+event Is Event 1 /at Unknown
+event Is Event 2 /by
+event Is Event 3 /by Unknown
+
+
+random
+e v e n t
+d e a d line
+dead line
+
 bye

@@ -11,6 +11,8 @@ Here are the tasks in your list:
 OK, I've added the following task:
   [T][ ] Add To Do
 Now you have 1 tasks in the list.
+Here are the tasks in your list:
+1. [T][ ] Add To Do
 OK, I've added the following task:
   [E][ ] Add Event (at: Event Time)
 Now you have 2 tasks in the list.
@@ -54,9 +56,45 @@ Here are the tasks in your list:
 1. [T][ ] Add To Do
 2. [E][X] Add Event (at: Event Time)
 3. [D][ ] Add Deadline (by: Deadline Time)
-Here are the tasks in your list:
-1. [T][ ] Add To Do
-2. [E][X] Add Event (at: Event Time)
-3. [D][ ] Add Deadline (by: Deadline Time)
+☹ OOPS!!! You didn't give a valid index :(
+☹ OOPS!!! No such task exists :(
+☹ OOPS!!! You didn't give a valid index :(
+Nice! I've marked this task as done:
+  [T][X] Add To Do
+☹ OOPS!!! No such task exists :(
+☹ OOPS!!! No such task exists :(
+☹ OOPS!!! You didn't give a valid index :(
+OK, I've marked this task as not done yet:
+  [D][ ] Add Deadline (by: Deadline Time)
+☹ OOPS!!! The description of a event cannot be empty.
+☹ OOPS!!! The description of a event cannot be empty.
+☹ OOPS!!! The description of a event cannot be empty.
+☹ OOPS!!! The description of a event cannot be empty.
+☹ OOPS!!! The description of a deadline cannot be empty.
+☹ OOPS!!! The description of a deadline cannot be empty.
+☹ OOPS!!! The description of a deadline cannot be empty.
+☹ OOPS!!! The description of a deadline cannot be empty.
+☹ OOPS!!! The description of a deadline cannot be empty.
+☹ OOPS!!! There is no /by argument for deadline :(
+☹ OOPS!!! There is no /by argument for deadline :(
+☹ OOPS!!! No time is specified for the deadline :(
+OK, I've added the following task:
+  [D][ ] Is Deadline 3 (by: Unknown)
+Now you have 4 tasks in the list.
+☹ OOPS!!! The description of a event cannot be empty.
+☹ OOPS!!! The description of a event cannot be empty.
+☹ OOPS!!! The description of a event cannot be empty.
+☹ OOPS!!! The description of a event cannot be empty.
+☹ OOPS!!! The description of a event cannot be empty.
+☹ OOPS!!! No time is specified for the event :(
+OK, I've added the following task:
+  [E][ ] Is Event 1 (at: Unknown)
+Now you have 5 tasks in the list.
+☹ OOPS!!! There is no /at argument for deadline :(
+☹ OOPS!!! There is no /at argument for deadline :(
+☹ OOPS!!! I'm sorry, but I don't know what that means :(
+☹ OOPS!!! I'm sorry, but I don't know what that means :(
+☹ OOPS!!! I'm sorry, but I don't know what that means :(
+☹ OOPS!!! I'm sorry, but I don't know what that means :(
 Bye. Hope to see you again soon!
 

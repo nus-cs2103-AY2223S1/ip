@@ -15,15 +15,30 @@ public class Duke {
         taskList = new TaskList();
         while (scanner.hasNextLine()) {
             String userInput = scanner.nextLine();
-            Instruction instruction = new Instruction(userInput);
-            instruction.run();
-            if (instruction.instructionType == Instruction.InstructionType.EXIT) {
-                break;
+            try {
+                Instruction instruction = new Instruction(userInput);
+                instruction.run();
+                if (instruction.instructionType == Instruction.InstructionType.EXIT) {
+                    break;
+                }
+            } catch (DukeException exception) {
+                System.out.println(exception);
             }
         }
     }
 
     private static TaskList taskList;
+
+    private static class DukeException extends Exception {
+        public DukeException(String message) {
+            super(message);
+        }
+
+        @Override
+        public String toString() {
+            return super.getMessage();
+        }
+    }
 
     private static class Instruction {
         private enum InstructionType {
@@ -43,8 +58,7 @@ public class Duke {
 
         public Instruction(String instruction) {
             instructionArgs = instruction.trim().split("\\s+");
-
-            if (instructionArgs.length == 0) {
+            if (instructionArgs.length == 0 || instructionArgs[0].isBlank()) {
                 instructionType = InstructionType.NONE;
                 return;
             }
@@ -84,15 +98,14 @@ public class Duke {
             }
         }
 
-        public void run() {
+        public void run() throws DukeException {
             switch (instructionType) {
                 case NONE:
                     // do nothing
                     break;
 
                 case UNKNOWN:
-                    // do nothing
-                    break;
+                    throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :(");
 
                 case EXIT:
                     System.out.println("Bye. Hope to see you again soon!\n");
@@ -115,11 +128,23 @@ public class Duke {
                     break;
 
                 case MARK_ITEM:
-                    taskList.markItem(Integer.parseInt(instructionArgs[1]) - 1);
+                    try {
+                        taskList.markItem(Integer.parseInt(instructionArgs[1]) - 1);
+                    } catch (IndexOutOfBoundsException exception) {
+                        throw new DukeException("☹ OOPS!!! No task index is specified :(");
+                    } catch (NumberFormatException exception) {
+                        throw new DukeException("☹ OOPS!!! You didn't give a valid index :(");
+                    }
                     break;
 
                 case UNMARK_ITEM:
-                    taskList.unmarkItem(Integer.parseInt(instructionArgs[1]) - 1);
+                    try {
+                        taskList.unmarkItem(Integer.parseInt(instructionArgs[1]) - 1);
+                    } catch (IndexOutOfBoundsException exception) {
+                        throw new DukeException("☹ OOPS!!! No task index is specified :(");
+                    } catch (NumberFormatException exception) {
+                        throw new DukeException("☹ OOPS!!! You didn't give a valid index :(");
+                    }
                     break;
 
                 default:
@@ -128,17 +153,26 @@ public class Duke {
         }
     }
 
-    private static class Task {
+    private static abstract class Task {
+        private String taskType;
         protected String description;
         protected boolean isDone;
 
-        public Task(String[] args) {
+        public Task(String taskType, String[] args) throws DukeException {
+            this.taskType = taskType;
             this.description = Arrays.stream(args).skip(1).reduce("", (x, y) -> x + " " + y);
             this.isDone = false;
+            if (this.description.isEmpty()) {
+                throw new DukeException("☹ OOPS!!! The description of a " + this.taskType + " cannot be empty.");
+            }
         }
 
-        private String getStatusIcon() {
-            return (isDone ? "X" : " "); // mark done task with X
+        private char getStatusIcon() {
+            return (isDone ? 'X' : ' '); // mark done task with X
+        }
+
+        private char getTaskTypeIcon() {
+            return taskType.toUpperCase().charAt(0);
         }
 
         public void setDone(boolean isDone) {
@@ -147,54 +181,55 @@ public class Duke {
 
         @Override
         public String toString() {
-            return "[" + this.getStatusIcon() + "]" + this.description;
+            return "[" + this.getTaskTypeIcon() + "][" + this.getStatusIcon() + "]" + this.description;
         }
     }
 
     private static class ToDo extends Task {
-        public ToDo(String[] args) {
-            super(args);
-        }
-
-        @Override
-        public String toString() {
-            return "[T]" + super.toString();
+        public ToDo(String[] args) throws DukeException {
+            super("todo", args);
         }
     }
 
     private static class Deadline extends Task {
         private String by;
 
-        public Deadline(String[] args) {
-            super(Arrays.stream(args).takeWhile(x -> !x.contains("/")).toArray(String[]::new));
+        public Deadline(String[] args) throws DukeException {
+            super("deadline", Arrays.stream(args).takeWhile(x -> !x.contains("/")).toArray(String[]::new));
             String[] curArgs = Arrays.stream(args).dropWhile(x -> !x.contains("/")).toArray(String[]::new);
             if (curArgs.length == 0 || !curArgs[0].equals("/by")) {
-                // Invalid instruction
+                throw new DukeException("☹ OOPS!!! There is no /by argument for deadline :(");
             }
             this.by = Arrays.stream(curArgs).skip(1).reduce("", (x, y) -> x + " " + y);
+            if (this.by.isEmpty()) {
+                throw new DukeException("☹ OOPS!!! No time is specified for the deadline :(");
+            }
         }
 
         @Override
         public String toString() {
-            return "[D]" + super.toString() + " (by:" + this.by + ")";
+            return super.toString() + " (by:" + this.by + ")";
         }
     }
 
     private static class Event extends Task {
         private String at;
 
-        public Event(String[] args) {
-            super(Arrays.stream(args).takeWhile(x -> !x.contains("/")).toArray(String[]::new));
+        public Event(String[] args) throws DukeException {
+            super("event", Arrays.stream(args).takeWhile(x -> !x.contains("/")).toArray(String[]::new));
             String[] curArgs = Arrays.stream(args).dropWhile(x -> !x.contains("/")).toArray(String[]::new);
             if (curArgs.length == 0 || !curArgs[0].equals("/at")) {
-                // Invalid instruction
+                throw new DukeException("☹ OOPS!!! There is no /at argument for deadline :(");
             }
             this.at = Arrays.stream(curArgs).skip(1).reduce("", (x, y) -> x + " " + y);
+            if (this.at.isEmpty()) {
+                throw new DukeException("☹ OOPS!!! No time is specified for the event :(");
+            }
         }
 
         @Override
         public String toString() {
-            return "[E]" + super.toString() + " (at:" + this.at + ")";
+            return super.toString() + " (at:" + this.at + ")";
         }
     }
 
@@ -211,16 +246,24 @@ public class Duke {
             System.out.println("Now you have " + taskList.size() + " tasks in the list.");
         }
 
-        public void markItem(int index) {
-            taskList.get(index).setDone(true);
-            System.out.println("Nice! I've marked this task as done:\n  " + taskList.get(index));
+        public void markItem(int index) throws DukeException {
+            try {
+                taskList.get(index).setDone(true);
+                System.out.println("Nice! I've marked this task as done:\n  " + taskList.get(index));
+            } catch (IndexOutOfBoundsException exception) {
+                throw new DukeException("☹ OOPS!!! No such task exists :(");
+            }
         }
 
-        public void unmarkItem(int index) {
-            taskList.get(index).setDone(false);
-            System.out.println("OK, I've marked this task as not done yet:\n  " + taskList.get(index));
+        public void unmarkItem(int index) throws DukeException {
+            try {
+                taskList.get(index).setDone(false);
+                System.out.println("OK, I've marked this task as not done yet:\n  " + taskList.get(index));
+            } catch (IndexOutOfBoundsException exception) {
+                throw new DukeException("☹ OOPS!!! No such task exists :(");
+            }
         }
-        
+
         public void printList() {
             System.out.println("Here are the tasks in your list:");
             for (int i = 0; i < taskList.size(); i += 1) {
