@@ -91,10 +91,14 @@ public class Duke {
             } else if (command.equals("mark") || command.equals("unmark")) {
                 if (scanner.hasNextInt()) {
                     int taskIndex = scanner.nextInt() - 1;
-                    if (command.equals("mark")) {
-                        this.markTaskAsDone(taskIndex);
+                    if (taskIndex < 0 || taskIndex >= this.taskArr.size() ) {
+                        System.out.println("Invalid task index.");
                     } else {
-                        this.unmarkTaskAsDone(taskIndex);
+                        if (command.equals("mark")) {
+                            this.markTaskAsDone(taskIndex);
+                        } else {
+                            this.unmarkTaskAsDone(taskIndex);
+                        }
                     }
                 }
             } else {
