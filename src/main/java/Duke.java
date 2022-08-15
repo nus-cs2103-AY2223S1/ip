@@ -39,6 +39,7 @@ public class Duke {
 
     // List Helpers
     public static void printList() {
+        System.out.println("My List Of Tasks :D");
         for (int i = 0; i < TASK_LIST.size(); i++) {
             int index = i + 1;
             System.out.println(index + ". " + TASK_LIST.get(i).toString());
@@ -46,10 +47,16 @@ public class Duke {
         System.out.println("\n");
     }
     public static void markAsDone(int index) {
+        if (index > TASK_LIST.size()) {
+            throw new DukeException("Your task list currently does not have a task at this index.\n");
+        }
         Task task = TASK_LIST.get(index-1);
         task.markAsDone();
     }
     public static void markAsNotDone(int index) {
+        if (index > TASK_LIST.size()) {
+            throw new DukeException("Your task list currently does not have a task at this index.\n");
+        }
         Task task = TASK_LIST.get(index-1);
         task.markAsNotDone();
     }
@@ -65,37 +72,37 @@ public class Duke {
         int len = userInput.length;
         String todoName = String.join(" ", Arrays.copyOfRange(userInput, 1, len));
         if (todoName.equals("")) {
-            throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+            throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.\n");
         }
         addTask(new Todo(todoName));
     }
     public static void addDeadline(String[] userInput) {
         int byIndex = timeFinder(userInput);
         if (byIndex == -1) {
-            throw new DukeException("☹ OOPS!!! The task needs a by date/time. Use the /by command after the name of the task to set its deadline");
+            throw new DukeException("☹ OOPS!!! A deadline task needs a deadline date/time. Use the /by command after the name of the task to set its deadline\n");
         }
         String deadlineName = String.join(" ", Arrays.copyOfRange(userInput, 1, byIndex));
         if (deadlineName.equals("")) {
-            throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
+            throw new DukeException("☹ OOPS!!! The description of a deadline task cannot be empty.\n");
         }
         String by = String.join(" ", Arrays.copyOfRange(userInput, byIndex + 1, userInput.length));
         if (by.equals("")) {
-            throw new DukeException("☹ OOPS!!! The deadline if the task cannot be empty.");
+            throw new DukeException("☹ OOPS!!! The deadline of the task cannot be empty.\n");
         }
         addTask(new Deadline(deadlineName, by));
     }
     public static void addEvent(String[] userInput) {
         int atIndex = timeFinder(userInput);
         if (atIndex == -1) {
-            throw new DukeException("☹ OOPS!!! The task needs a at date/time. Use the /at command after the name of the task to set its date/time");
+            throw new DukeException("☹ OOPS!!! An event task needs a at date/time. Use the /at command after the name of the task to set its date/time.\n");
         }
         String eventName = String.join(" ", Arrays.copyOfRange(userInput, 1, atIndex));
         if (eventName.equals("")) {
-            throw new DukeException("☹ OOPS!!! The description of a event cannot be empty.");
+            throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.\n");
         }
         String at = String.join(" ", Arrays.copyOfRange(userInput, atIndex + 1, userInput.length));
         if (at.equals("")) {
-            throw new DukeException("☹ OOPS!!! The date/time of the event cannot be empty.");
+            throw new DukeException("☹ OOPS!!! The date/time of the event cannot be empty.\n");
         }
         addTask(new Event(eventName, at));
     }
@@ -158,6 +165,8 @@ public class Duke {
                     markAsDone(parseInt(splitInput[1]));
                 } else if (splitInput.length == 2 && splitInput[0].equals("unmark") && isNumeric(splitInput[1])) {
                     markAsNotDone(parseInt(splitInput[1]));
+                } else if (splitInput[0].equals("mark") || splitInput[0].equals("unmark") && splitInput.length == 1) {
+                    throw new DukeException("To check off tasks, indicate the index of task correctly using an integer!\n");
                 } else if (splitInput[0].equals("todo")) {
                     addTodo(splitInput);
                 } else if (splitInput[0].equals("deadline")) {
