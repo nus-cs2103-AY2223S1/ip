@@ -146,11 +146,10 @@ public class Duke {
                     } else {
                         addDeadlineToHistory(description, by);
                     }
+                    }
                 }
             }
         }
-
-    }
 
     /**
      * Filter userInput and call addDeadlineToHistory
@@ -194,6 +193,43 @@ public class Duke {
         }
     }
 
+    /**
+     * Grabs description from string which is expected to have format:
+     * <command> <description>...
+     * @param command
+     * @param commandUsed
+     * @return
+     */
+    private String getDescription(String command, String commandUsed) throws DukeException{
+        String description;
+        int startDescriptionIndex = command.indexOf(commandUsed);
+        int endDescriptionIndex = command.indexOf("/");
+        if (startDescriptionIndex < 0 || endDescriptionIndex < 0) {
+            throw new DukeException("Command does not follow pattern <command> <description>...");
+        } else {
+            description = command.substring(startDescriptionIndex, endDescriptionIndex).trim();
+        }
+        return description;
+    }
+
+    /**
+     * Grabs date from string which is expected to have format:
+     * ... /<at/by> <date in HH:MM DD:MM:YYYY>
+     * @param command - string to extract date from
+     * @return <date> component of command
+     * @throws DukeException
+     */
+    private String getDate(String command) throws DukeException{
+        String date = "";
+        int startDateIndex = command.indexOf("/") + 2;
+        if (startDateIndex < 0) {
+            throw new DukeException("Command does not follow pattern ... /<at/by> <date in HH:MM DD:MM:YYYY>");
+        } else {
+            date = command.substring(startDateIndex).trim();
+        }
+        return date;
+    }
+
     public static void main(String[] args) {
         greetUser();
         Scanner in = new Scanner(System.in);
@@ -203,10 +239,10 @@ public class Duke {
                 s = in.nextLine();
                 handleInput(s);
             } catch (InputMismatchException ime) {
-                System.out.printf("ERROR: %s", ime);
+                System.out.println(ime);
                 System.exit(0);
             } catch (DukeException de) {
-                System.out.printf("ERROR: %s\n>>", de);
+                System.out.println(de);
             }
         }
     }

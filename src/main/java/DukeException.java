@@ -1,13 +1,11 @@
 public class DukeException extends Exception{
-    String command = "";
 
      DukeException(String errorMessage) {
-        super(errorMessage);
+        super("DUKEERROR: " + errorMessage);
     }
 
     DukeException(String command, String errorMessage) {
-         super(command + " : " + errorMessage);
-         this.command = command;
+         super("DUKEERROR: " + command + " : " + errorMessage);
     }
 
     @Override
@@ -16,3 +14,4 @@ public class DukeException extends Exception{
     }
 
 }
+
