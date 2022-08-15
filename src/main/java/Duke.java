@@ -42,7 +42,7 @@ public class Duke {
     }
 
     /**
-     * Prints a exit message to the console.
+     * Prints an exit message to the console.
      */
     private void exit() {
         Helpers.print_line();
