@@ -22,7 +22,6 @@ public class Duke {
                 System.out.println("Bye. Hope to see you again soon!");
                 break;
             } else if (input.equalsIgnoreCase("list")){
-                System.out.println(horizontalLn);
                 System.out.println("Here are the tasks in your list");
                 for (int i = 0; i < toDoListCount; i ++) {
                     System.out.println(i+1 + "." + toDoList.get(i).toString());
@@ -34,7 +33,6 @@ public class Duke {
                 // -1 to string as the ArrayList is zero indexed
                 int itemNumber = Integer.parseInt(splitInput[1]) - 1;
                 toDoList.get(itemNumber).markDone();
-                System.out.println(horizontalLn);
                 System.out.println("Nice! I've marked this task as done: ");
                 System.out.println(toDoList.get(itemNumber).toString());
                 System.out.println(horizontalLn);
@@ -44,7 +42,6 @@ public class Duke {
                 // -1 to string as the ArrayList is zero indexed
                 int itemNumber = Integer.parseInt(splitInput[1]) - 1;
                 toDoList.get(itemNumber).markUndone();
-                System.out.println(horizontalLn);
                 System.out.println("OK, I've marked this task as not done yet");
                 System.out.println("[" + toDoList.get(itemNumber).getStatusIcon() + "] "
                         + toDoList.get(itemNumber).description);
@@ -71,7 +68,7 @@ public class Duke {
                     System.out.println(horizontalLn);
                     continue;
                 }
-                
+
                 toDoListCount++;
                 System.out.println("Now you have " + toDoListCount + " tasks in the list.");
                 System.out.println(horizontalLn);
