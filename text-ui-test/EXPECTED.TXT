@@ -17,7 +17,7 @@
 
 	--------------------------------------------------
 	Got it. I've added this task:
-	  [E][ ] project meeting(at: Aug 6th 2-4pm)
+	  [E][ ] project meeting (at: Aug 6th 2-4pm)
 	Now you have 3 tasks in the list.
 	--------------------------------------------------
 
@@ -25,7 +25,7 @@
 	Here are the tasks in your list
 	1.[T][ ] borrow book
 	2.[D][ ] return book (by: June 6th)
-	3.[E][ ] project meeting(at: Aug 6th 2-4pm)
+	3.[E][ ] project meeting (at: Aug 6th 2-4pm)
 	--------------------------------------------------
 
     --------------------------------------------------
@@ -37,7 +37,7 @@
    	Here are the tasks in your list
    	1.[T][ ] borrow book
    	2.[D][X] return book (by: June 6th)
-   	3.[E][ ] project meeting(at: Aug 6th 2-4pm)
+   	3.[E][ ] project meeting (at: Aug 6th 2-4pm)
    	--------------------------------------------------
 
 	--------------------------------------------------
@@ -49,7 +49,7 @@
 	Here are the tasks in your list
 	1.[T][ ] borrow book
 	2.[D][ ] return book (by: June 6th)
-	3.[E][ ] project meeting(at: Aug 6th 2-4pm)
+	3.[E][ ] project meeting (at: Aug 6th 2-4pm)
 	--------------------------------------------------
 
 	--------------------------------------------------
