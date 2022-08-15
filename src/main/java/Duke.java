@@ -60,7 +60,7 @@ public class Duke {
         System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < tasks.size(); i++) {
             Task current = tasks.get(i);
-            System.out.println((i + 1) + ".[" + current.getDoneStatus() + "] " + current.toString());
+            System.out.println((i + 1) + "." + current.toString());
         }
         System.out.println(line);
     }
@@ -70,10 +70,10 @@ public class Duke {
         task.setDoneStatus(isDone);
         if (isDone) {
             System.out.println(("Nice! I've marked this task as done:"));
-            System.out.println("  [" + task.getDoneStatus() + "] " + task.toString());
+            System.out.println("  " + task.toString());
         } else {
             System.out.println(("OK, I've marked this task as not done yet:"));
-            System.out.println("  [" + task.getDoneStatus() + "] " + task.toString());
+            System.out.println("  " + task.toString());
         }
         System.out.println(line);
     }
