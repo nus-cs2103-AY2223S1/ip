@@ -23,6 +23,10 @@ public class Duke {
         return "\n      ☹ OOPS!!! The description of a " + taskType + " cannot be empty.\n";
     }
 
+    private static String generateTasksNumberMessage() {
+        return "Now you have " + userTasks.size() + " task" + (userTasks.size() == 1 ? "" : "s") + " in the list.\n";
+    }
+
     public static void main(String[] args) {
         System.out.println(initialMessage);
         Scanner scanner = new Scanner(System.in);
@@ -40,18 +44,25 @@ public class Duke {
                             .collect(HashMap::new, (hashMap, streamElement) -> hashMap.put(hashMap.size() + 1, streamElement), HashMap::putAll);
                     StringBuilder listOfUserText = mappedIndexToUserText.entrySet().stream()
                             .reduce(new StringBuilder(), (stringToBuild, currentEntry) -> stringToBuild.append("\n      ").append(currentEntry.getKey()).append(".").append(currentEntry.getValue().toString()), StringBuilder::append);
-                    System.out.println(messageWithIndentedLines(listOfUserText.toString() + "\n"));
+                    System.out.println(messageWithIndentedLines("\n     Here are the tasks in your list:" + listOfUserText.toString() + "\n"));
                 } else if (userInput.startsWith("mark")) {
                     int index = Character.getNumericValue(userInput.charAt(5)) - 1;
                     Task taskToMarkDone = userTasks.get(index);
                     taskToMarkDone.setTaskAsDone();
                     String toPrint = "\n     Nice! I've marked this task as done:\n       " + taskToMarkDone + "\n";
-                    System.out.println(messageWithIndentedLines("     Here are the tasks in your list:\n" + toPrint));
+                    System.out.println(messageWithIndentedLines(toPrint));
                 } else if (userInput.startsWith("unmark")) {
+                    //this only gets single-digit chars, so if tasks > 10, you're gone
                     int index = Character.getNumericValue(userInput.charAt(7)) - 1;
                     Task taskToMarkDone = userTasks.get(index);
                     taskToMarkDone.setTaskAsNotDone();
                     String toPrint = "\n     OK, I've marked this task as not done yet:\n       "  + taskToMarkDone + "\n";
+                    System.out.println(messageWithIndentedLines(toPrint));
+                } else if (userInput.startsWith("delete")) {
+                    int index = Character.getNumericValue(userInput.charAt(7)) - 1;
+                    String deletedTaskDescrption = userTasks.get(index).toString();
+                    userTasks.remove(index);
+                    String toPrint = "\n     Noted. I've removed this task:\n       "  + deletedTaskDescrption + "\n     " + generateTasksNumberMessage();
                     System.out.println(messageWithIndentedLines(toPrint));
                 } else { // it must be a task
                     String[] commands = userInput.split("\\s+");
@@ -109,7 +120,7 @@ public class Duke {
                         default:
                             throw new EmptyDescriptionException(messageWithIndentedLines("\n      ☹ OOPS!!! I'm sorry, but I don't know what that means :-(\n"));
                     }
-                    System.out.println(messageWithIndentedLines("\n     Got it. I've added this task:\n       " + userTasks.get(userTasks.size() - 1) + "\n     Now you have " + userTasks.size() + " task" + (userTasks.size() == 1 ? "" : "s") + " in the list.\n"));
+                    System.out.println(messageWithIndentedLines("\n     Got it. I've added this task:\n       " + userTasks.get(userTasks.size() - 1) + "\n     " + generateTasksNumberMessage()));
                 }
             } catch (EmptyDescriptionException e) {
                 System.out.println(e.getMessage());
