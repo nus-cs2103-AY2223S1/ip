@@ -9,15 +9,24 @@ public class Duke {
         System.out.println("What can I do for you?\n");
 
         java.util.Scanner scanner = new java.util.Scanner(System.in);
+        ItemList itemList = new ItemList();
         while (scanner.hasNextLine()) {
             String userInput = scanner.nextLine();
             switch (parseInput(userInput)) {
-                case BYE:
+                case EXIT:
                     System.out.println("Bye. Hope to see you again soon!\n");
                     return;
 
-                case ECHO:
-                    System.out.println(userInput);
+                case ADD_TO_LIST:
+                    itemList.addItem(userInput);
+                    break;
+
+                case PRINT_LIST:
+                    itemList.printList();
+                    break;
+
+                case NONE:
+                    // do nothing
                     break;
 
                 default:
@@ -27,17 +36,44 @@ public class Duke {
     }
 
     private enum InstructionType {
-        BYE,
-        ECHO
+        NONE,
+        EXIT,
+        ADD_TO_LIST,
+        PRINT_LIST,
     }
 
     private static InstructionType parseInput(String input) {
         switch (input.trim()) {
+            case "":
+                return InstructionType.NONE;
+
             case "bye":
-                return InstructionType.BYE;
+                return InstructionType.EXIT;
+
+            case "list":
+                return InstructionType.PRINT_LIST;
 
             default:
-                return InstructionType.ECHO;
+                return InstructionType.ADD_TO_LIST;
+        }
+    }
+
+    private static class ItemList {
+        private java.util.ArrayList<String> itemList;
+
+        public ItemList() {
+            this.itemList = new java.util.ArrayList<String>();
+        }
+
+        public void addItem(String item) {
+            itemList.add(item);
+            System.out.println("added: " + item);
+        }
+
+        public void printList() {
+            for (int i = 0; i < itemList.size(); i += 1) {
+                System.out.println((i + 1) + ". " + itemList.get(i));
+            }
         }
     }
 }
