@@ -25,16 +25,16 @@ public class Duke {
                 for (int i = 0; i < 100; i++) {
                     if (array[i] != null) {
                         int j = i + 1;
-                        System.out.println(j + ". " + array[i].getName());
+                        System.out.println(j + ". " + array[i].toString());
                     }
                 }
                 System.out.println("_________________________________________________________________________");
             }
             else if(firstword.equals("todo")) {
                 System.out.println("_________________________________________________________________________");
-                array[counter] = new Task(arr[1],"T","");
+                array[counter] = new Todo(arr[1]);
                 System.out.println("Got it. I've added this task:");
-                System.out.println(array[counter].getName());
+                System.out.println(array[counter].toString());
                 counter++;
                 System.out.println("Now you have " + counter + " tasks in the list.");
                 System.out.println("_________________________________________________________________________");
@@ -43,9 +43,9 @@ public class Duke {
             else if(firstword.equals("deadline")) {
                 System.out.println("_________________________________________________________________________");
                 String arr2[] = arr[1].split("/by",2);
-                array[counter] = new Task(arr2[0],"D", arr2[1]);
+                array[counter] = new Deadline(arr2[0], arr2[1]);
                 System.out.println("Got it. I've added this task:");
-                System.out.println(array[counter].getName());
+                System.out.println(array[counter].toString());
                 counter ++;
                 System.out.println("Now you have " + counter + " tasks in the list.");
                 System.out.println("_________________________________________________________________________");
@@ -53,9 +53,9 @@ public class Duke {
             else if(firstword.equals("event")) {
                 System.out.println("_________________________________________________________________________");
                 String arr2[] = arr[1].split("/at",2);
-                array[counter] = new Task(arr2[0],"E", arr2[1]);
+                array[counter] = new Event(arr2[0],arr2[1]);
                 System.out.println("Got it. I've added this task:");
-                System.out.println(array[counter].getName());
+                System.out.println(array[counter].toString());
                 counter ++;
                 System.out.println("Now you have " + counter + " tasks in the list.");
                 System.out.println("_________________________________________________________________________");
@@ -66,7 +66,7 @@ public class Duke {
                 array[num - 1].markAsDone();
                 System.out.println("_________________________________________________________________________");
                 System.out.println("Nice! I've marked this task as done:");
-                System.out.println(array[num-1].getName());
+                System.out.println(array[num-1].toString());
                 System.out.println("_________________________________________________________________________");
             }
             else if(firstword.equals("unmark")) {
@@ -74,11 +74,11 @@ public class Duke {
                 array[num - 1].markAsNotDone();
                 System.out.println("_________________________________________________________________________");
                 System.out.println("OK, I've marked this task as not done yet:");
-                System.out.println(array[num-1].getName());
+                System.out.println(array[num-1].toString());
                 System.out.println("_________________________________________________________________________");
             }
             else {
-                array[counter] = new Task(output,"", "");
+                array[counter] = new Task(output);
                 counter++;
                 System.out.println("_________________________________________________________________________");
                 System.out.println("       added: " + output);
