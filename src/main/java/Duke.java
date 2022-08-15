@@ -9,7 +9,7 @@ public class Duke {
         prettyPrint("Hello! I'm Duke\nWhat can I do for you?");
         while (in.hasNextLine()) {
             String input = in.nextLine();
-            String[] command = input.split(" ");
+            String[] command = input.split(" ", 2);
             if (command[0].equalsIgnoreCase("bye")) {
                 prettyPrint("Bye. Hope to see you again soon!");
                 break;
@@ -30,6 +30,23 @@ public class Duke {
                 Task task = tasks.get(Integer.parseInt(command[1]) - 1);
                 task.unmark();
                 prettyPrint("OK, I've marked this task as not done yet:\n  " + task);
+            } else if (command[0].equalsIgnoreCase("todo")) {
+                Task newTask = new Todo(command[1]);
+                tasks.add(newTask);
+                prettyPrint("Got it. I've added this task:\n  " + newTask +
+                        "\nNow you have " + tasks.size() + " tasks in the list.");
+            } else if (command[0].equalsIgnoreCase("deadline")) {
+                String[] arguments = command[1].split(" /by ", 2);
+                Task newTask = new Deadline(arguments[0], arguments[1]);
+                tasks.add(newTask);
+                prettyPrint("Got it. I've added this task:\n  " + newTask +
+                        "\nNow you have " + tasks.size() + " tasks in the list.");
+            } else if (command[0].equalsIgnoreCase("event")) {
+                String[] arguments = command[1].split(" /at ", 2);
+                Task newTask = new Event(arguments[0], arguments[1]);
+                tasks.add(newTask);
+                prettyPrint("Got it. I've added this task:\n  " + newTask +
+                        "\nNow you have " + tasks.size() + " tasks in the list.");
             } else {
                 tasks.add(new Task(input));
                 prettyPrint("added: " + input);
