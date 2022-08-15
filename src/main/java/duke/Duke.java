@@ -16,4 +16,6 @@ public class Duke {
         scan.Greet();
         scan.readInput();
     }
+
+
 }
