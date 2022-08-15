@@ -16,25 +16,23 @@ public class Duke {
                 case "list" :
                     for (int i = 0; i < lst.size(); i++) {
                         Task task = lst.get(i);
-                        System.out.printf("\t%d.[%s] %s\n", i+1, task.getStatusIcon(),task.description);
+                        System.out.printf("\t%d. %s\n", i+1, task.toString());
                     }
                     break;
                 case "mark":
                     int index = input.nextInt();
                     Task taskToBeMarked = lst.get(index-1);
                     taskToBeMarked.markAsDone();
-                    System.out.printf("\tNice! I've marked this task as done:\n\t[%s] %s\n",
-                            taskToBeMarked.getStatusIcon(),
-                            taskToBeMarked.description);
+                    System.out.printf("\tNice! I've marked this task as done:\n\t%s\n",
+                            taskToBeMarked.toString());
                     break;
 
                 case "unmark":
                     int index2 = input.nextInt();
                     Task taskToBeUnmarked = lst.get(index2-1);
                     taskToBeUnmarked.markAsUndone();
-                    System.out.printf("\tOkay, I've marked this task as not done yet:\n\t[%s] %s\n",
-                            taskToBeUnmarked.getStatusIcon(),
-                            taskToBeUnmarked.description);
+                    System.out.printf("\tOkay, I've marked this task as not done yet:\n\t%s\n",
+                            taskToBeUnmarked.toString());
                     break;
 
                 default:
@@ -45,32 +43,6 @@ public class Duke {
                     break;
             }
             text = input.next();
-//            if (text.equals("list")) {
-//                for (int i = 0; i < lst.size(); i++) {
-//                    Task task = lst.get(i);
-//                    System.out.printf("\t%d.[%s] %s\n", i+1, task.getStatusIcon(),task.description);
-//                }
-//            } else if (text.equals("mark")) {
-//                int index = input.nextInt();
-//                Task taskToBeMarked = lst.get(index-1);
-//                taskToBeMarked.markAsDone();
-//                System.out.printf("\tNice! I've marked this task as done:\n\t[%s] %s\n",
-//                        taskToBeMarked.getStatusIcon(),
-//                        taskToBeMarked.description);
-//            } else if (text.equals("unmark")) {
-//                int index = input.nextInt();
-//                Task taskToBeUnmarked = lst.get(index-1);
-//                taskToBeUnmarked.markAsUndone();
-//                System.out.printf("\tOkay, I've marked this task as not done yet:\n\t[%s] %s\n",
-//                        taskToBeUnmarked.getStatusIcon(),
-//                        taskToBeUnmarked.description);
-//            } else {
-//                text += input.nextLine();
-//                System.out.printf("\tAdded: %s\n", text);
-//                Task newTask = new Task(text);
-//                lst.add(newTask);
-//            }
-//            text = input.next();
         }
         //Goodbye message
         System.out.println("\tBye! Hope to see you again soon!");
@@ -98,4 +70,50 @@ class Task {
         this.isDone = false; // mark task as undone
     }
 
+    @Override
+    public String toString() {
+        return "[" + getStatusIcon() + "] " + description;
+    }
+}
+
+class Todo extends Task {
+
+    public Todo(String description) {
+        super(description);
+    }
+
+    @Override
+    public String toString() {
+        return "[T]" + super.toString();
+    }
+}
+
+class Deadline extends Task {
+
+    protected String by;
+
+    public Deadline(String description, String by) {
+        super(description);
+        this.by = by;
+    }
+
+    @Override
+    public String toString() {
+        return "[D]" + super.toString() + " (by: " + by + ")";
+    }
+}
+
+class Event extends Task {
+
+    protected String at;
+
+    public Event(String description, String at) {
+        super(description);
+        this.at = at;
+    }
+
+    @Override
+    public String toString() {
+        return "[E]" + super.toString() + " (at: " + at + ")";
+    }
 }
