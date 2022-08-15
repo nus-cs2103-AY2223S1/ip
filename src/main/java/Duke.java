@@ -179,12 +179,20 @@ public class Duke {
      */
     private static String getDescription(String command, String commandUsed) throws DukeException{
         String description;
-        int startDescriptionIndex = command.indexOf(commandUsed);
+        int startDescriptionIndex = command.indexOf(commandUsed) + commandUsed.length();
         int endDescriptionIndex = command.indexOf("/");
-        if (startDescriptionIndex < 0 || endDescriptionIndex < 0) {
+        if (startDescriptionIndex < 0) {
             throw new DukeException("Command does not follow pattern <command> <description>...");
         } else {
-            description = command.substring(startDescriptionIndex, endDescriptionIndex).trim();
+            if (commandUsed == "event" || commandUsed == "deadline") {
+                if (endDescriptionIndex < 0) {
+                    throw new DukeException("Command does not follow pattern  ... /<at/by> <date in HH:MM DD:MM:YYYY>");
+                } else {
+                    description = command.substring(startDescriptionIndex, endDescriptionIndex).trim();
+                }
+            } else {
+                description = command.substring(startDescriptionIndex).trim();
+            }
         }
         return description;
     }
