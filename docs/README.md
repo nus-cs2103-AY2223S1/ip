@@ -2,28 +2,25 @@
 
 ## Features 
 
-### Feature-ABC
+### Feature- Add Tasks
 
-Description of the feature.
+Able to add tasks to the todo list.
 
-### Feature-XYZ
+### Feature- View all Tasks
 
-Description of the feature.
+Able to view all the tasks added to the todo list
 
 ## Usage
 
-### `Keyword` - Describe action
+### `list` - View all Tasks
 
-Describe the action and its outcome.
+By using the command "list", the bot will output all tasks added to the list.
 
-Example of usage: 
-
-`keyword (optional arguments)`
+Example of usage:
+`list`
 
 Expected outcome:
-
-Description of the outcome.
-
+A list of previously added tasks
 ```
 expected output
 ```

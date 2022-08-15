@@ -20,6 +20,14 @@ public class BotList {
         return "Added: " + element.toString();
     }
 
+    void mark(int taskIndex) {
+        this.internalArray[taskIndex - 1].setCompletionStatus(true);
+    }
+
+    void unmark(int taskIndex) {
+        this.internalArray[taskIndex - 1].setCompletionStatus(false);
+    }
+
     @Override
     public String toString() {
         StringBuilder output = new StringBuilder();
