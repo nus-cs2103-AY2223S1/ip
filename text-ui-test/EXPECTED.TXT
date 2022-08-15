@@ -5,3 +5,58 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
+What can I do for you?
+
+Here are the tasks in your list:
+OK, I've added the following task:
+  [T][ ] Add To Do
+Now you have 1 tasks in the list.
+OK, I've added the following task:
+  [E][ ] Add Event (at: Event Time)
+Now you have 2 tasks in the list.
+Here are the tasks in your list:
+1. [T][ ] Add To Do
+2. [E][ ] Add Event (at: Event Time)
+OK, I've added the following task:
+  [D][ ] Add Deadline (by: Deadline Time)
+Now you have 3 tasks in the list.
+Here are the tasks in your list:
+1. [T][ ] Add To Do
+2. [E][ ] Add Event (at: Event Time)
+3. [D][ ] Add Deadline (by: Deadline Time)
+Nice! I've marked this task as done:
+  [T][X] Add To Do
+Here are the tasks in your list:
+1. [T][X] Add To Do
+2. [E][ ] Add Event (at: Event Time)
+3. [D][ ] Add Deadline (by: Deadline Time)
+Nice! I've marked this task as done:
+  [D][X] Add Deadline (by: Deadline Time)
+Here are the tasks in your list:
+1. [T][X] Add To Do
+2. [E][ ] Add Event (at: Event Time)
+3. [D][X] Add Deadline (by: Deadline Time)
+OK, I've marked this task as not done yet:
+  [T][ ] Add To Do
+Here are the tasks in your list:
+1. [T][ ] Add To Do
+2. [E][ ] Add Event (at: Event Time)
+3. [D][X] Add Deadline (by: Deadline Time)
+Nice! I've marked this task as done:
+  [E][X] Add Event (at: Event Time)
+Here are the tasks in your list:
+1. [T][ ] Add To Do
+2. [E][X] Add Event (at: Event Time)
+3. [D][X] Add Deadline (by: Deadline Time)
+OK, I've marked this task as not done yet:
+  [D][ ] Add Deadline (by: Deadline Time)
+Here are the tasks in your list:
+1. [T][ ] Add To Do
+2. [E][X] Add Event (at: Event Time)
+3. [D][ ] Add Deadline (by: Deadline Time)
+Here are the tasks in your list:
+1. [T][ ] Add To Do
+2. [E][X] Add Event (at: Event Time)
+3. [D][ ] Add Deadline (by: Deadline Time)
+Bye. Hope to see you again soon!
+

@@ -1,0 +1,18 @@
+list
+todo Add To Do
+event Add Event /at Event Time
+list
+deadline Add Deadline /by Deadline Time
+list
+mark 1
+list
+mark 3
+list
+unmark 1
+list
+mark 2
+list
+unmark 3
+list
+   list
+bye
