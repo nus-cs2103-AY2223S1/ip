@@ -1,23 +1,24 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 public class Duke {
-    private Task[] tasks;
-    private int currentTaskCount = 0;
+    private ArrayList<Task> tasks;
 
     private final String horizontalLine = "------------------------------------------------------\n";
     Duke() {
-        tasks = new Task[100];
+        tasks = new ArrayList<Task>();
     }
 
     private void printStoredInputs() {
-        if (currentTaskCount > 0) {
+        int numberOfTasks = this.tasks.size();
+        if (numberOfTasks > 0) {
             System.out.print(horizontalLine);
             System.out.println("Boss ah, this one your tasks:");
-            for (int i = 0; i < currentTaskCount; i++) {
-                System.out.println(i + 1 + ". " + tasks[i]);
+            for (int i = 0; i < numberOfTasks; i++) {
+                System.out.println(i + 1 + ". " + tasks.get(i));
             }
             this.printTaskCountMessage();
             System.out.print(horizontalLine);
-        } else if (currentTaskCount == 0) {
+        } else if (numberOfTasks == 0) {
             System.out.print(horizontalLine);
             System.out.println("Boss, you got no task yet ah");
             System.out.print(horizontalLine);
@@ -25,7 +26,7 @@ public class Duke {
     }
 
     private void addTask(Task input) {
-        tasks[currentTaskCount++] = input;
+        tasks.add(input);
     }
 
     private void startChatBot() {
@@ -37,7 +38,7 @@ public class Duke {
     }
 
     private void printTaskCountMessage() {
-        System.out.printf("Boss, you got %s tasks now\n", this.currentTaskCount);
+        System.out.printf("Boss, you got %s tasks now\n", this.tasks.size());
     }
 
     private void getInputs(Scanner sc) {
@@ -69,7 +70,7 @@ public class Duke {
                     this.addTask(deadline);
                     System.out.printf("%sSwee lah! I added this task liao: \n%s\n%s", this.horizontalLine, deadline, this.horizontalLine);
                     this.printTaskCountMessage();
-                } catch(ArrayIndexOutOfBoundsException | NullPointerException e) {
+                } catch(IndexOutOfBoundsException | NullPointerException e) {
                     messageToPrint = "Eh you never added a deadline";
                 } finally {
                     System.out.println(messageToPrint);
@@ -82,7 +83,7 @@ public class Duke {
                     this.addTask(event);
                     System.out.printf("%sSwee lah! I added this task liao: \n%s\n%s", this.horizontalLine, event, this.horizontalLine);
                     this.printTaskCountMessage();
-                } catch(ArrayIndexOutOfBoundsException | NullPointerException e) {
+                } catch(IndexOutOfBoundsException | NullPointerException e) {
                     messageToPrint = "Eh you never added the event range";
                 } finally {
                     System.out.println(messageToPrint);
@@ -92,11 +93,11 @@ public class Duke {
                 String messageToPrint = "";
                 try {
                     int taskIndex = Integer.parseInt(taskIndexString);
-                    this.tasks[taskIndex - 1].changeIsDone(true);
-                    messageToPrint = "Swee lah! Your task done liao: \n" + this.tasks[taskIndex - 1];
+                    this.tasks.get(taskIndex - 1).changeIsDone(true);
+                    messageToPrint = "Swee lah! Your task done liao: \n" + this.tasks.get(taskIndex - 1);
                 } catch (IllegalStateException e) {
                     messageToPrint = "Eh, you done that task alr lah";
-                } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
+                } catch (IndexOutOfBoundsException | NullPointerException e) {
                     messageToPrint = "Eh, you got that task number meh?";
                 } catch (NumberFormatException e) {
                     messageToPrint = "Eh, you enter your task number correctly anot?";
@@ -108,11 +109,11 @@ public class Duke {
                 String messageToPrint = "";
                 try {
                     int taskIndex = Integer.parseInt(taskIndexString);
-                    this.tasks[taskIndex - 1].changeIsDone(false);
-                    messageToPrint = "Eh? Not done yet? Okay I change liao: \n" + this.tasks[taskIndex - 1];
+                    this.tasks.get(taskIndex - 1).changeIsDone(false);
+                    messageToPrint = "Eh? Not done yet? Okay I change liao: \n" + this.tasks.get(taskIndex - 1);
                 } catch (IllegalStateException e) {
                     messageToPrint = "Eh, your task alr not done lah";
-                } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
+                } catch (IndexOutOfBoundsException | NullPointerException e) {
                     messageToPrint = "Eh, you got that task number meh?";
                 } catch (NumberFormatException e) {
                     messageToPrint = "Eh, you enter your task number correctly anot?";
