@@ -1,0 +1,10 @@
+todo test task 1
+mark 1
+list
+deadline test deadline 1 /by 6 Jun 6pm
+event test event 1 /on 9 Jun 9pm
+list
+unmark 1
+mark 3
+list
+bye
