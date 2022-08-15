@@ -9,49 +9,72 @@ public class TasksList {
     }
 
     /**
-     * Add To-do task to the list of tasks
+     * Add To-do task to the list of tasks.
      *
-     * @param description The task to be added to the list
+     * @param command The command represented by an array of Strings.
      */
-    public void addTodo(String description) {
-        System.out.println("Got it! Duke has added this task:");
+    public void addTodo(String[] command) throws DukeException {
+        if (command.length == 1) {
+            throw new DukeException("Duke: Please specify what task you wish to do:\n" +
+                    "todo <task>");
+        }
+        String description = command[1];
+        System.out.println("Duke: Got it! Duke has added this task:");
         Task newTask = new ToDo(description);
         System.out.println(newTask);
         this.tasksList.add(newTask);
         int len = this.tasksList.size();
-        String line = String.format("Now you have %d task%s in the list.",
+        String line = String.format("Duke: Now you have %d task%s in the list.",
                 len, len > 1 ? "s" : "");
         System.out.println(line);
     }
 
     /**
-     * Add Deadline task to the list of tasks
+     * Add Deadline task to the list of tasks.
      *
-     * @param description The task to be added to the list
+     * @param command The command represented by an array of Strings.
      */
-    public void addDeadline(String description, String date) {
-        System.out.println("Got it! Duke has added this task:");
-        Task newTask = new Deadline(description, date);
+    public void addDeadline(String[] command) throws DukeException {
+        if (command.length == 1) {
+            throw new DukeException("Duke: Please specify what task you wish to do:\n" +
+                    "deadline <task> /by <date/time>");
+        }
+        String[] deadline = command[1].split(" /by ", 2);
+        if (deadline.length == 1) {
+            throw new DukeException("Duke: Please specify the date/time of this deadline:\n" +
+                    "deadline <task> /by <date/time>");
+        }
+        System.out.println("Duke: Got it! Duke has added this task:");
+        Task newTask = new Deadline(deadline[0], deadline[1]);
         System.out.println(newTask);
         this.tasksList.add(newTask);
         int len = this.tasksList.size();
-        String line = String.format("Now you have %d task%s in the list.",
+        String line = String.format("Duke: Now you have %d task%s in the list.",
                 len, len > 1 ? "s" : "");
         System.out.println(line);
     }
 
     /**
-     * Add Event task to the list of tasks
+     * Add Event task to the list of tasks.
      *
-     * @param description The task to be added to the list
+     * @param command The command represented by an array of Strings.
      */
-    public void addEvent(String description, String date) {
-        System.out.println("Got it! Duke has added this task:");
-        Task newTask = new Event(description, date);
+    public void addEvent(String[] command) throws DukeException {
+        if (command.length == 1) {
+            throw new DukeException("Duke: Please specify what task you wish to do:\n" +
+                    "event <task> /at <date/time>");
+        }
+        String[] event = command[1].split(" /at ", 2);
+        if (event.length == 1) {
+            throw new DukeException("Duke: Please specify the date/time of this event:\n" +
+                    "event <task> /at <date/time>");
+        }
+        System.out.println("Duke: Got it! Duke has added this task:");
+        Task newTask = new Event(event[0], event[1]);
         System.out.println(newTask);
         this.tasksList.add(newTask);
         int len = this.tasksList.size();
-        String line = String.format("Now you have %d task%s in the list.",
+        String line = String.format("Duke: Now you have %d task%s in the list.",
                 len, len > 1 ? "s" : "");
         System.out.println(line);
     }
@@ -60,7 +83,7 @@ public class TasksList {
      * Prints out the list of the history of tasks
      */
     public void listTasks() {
-        System.out.println("Here are the tasks in your list:");
+        System.out.println("Duke: Here are the tasks in your list:");
         if (tasksList.size() == 0) {
             System.out.println("*No tasks! ^_^*");
             return;
@@ -74,28 +97,36 @@ public class TasksList {
     /**
      * Mark the task of the given id as done.
      *
-     * @param id The id of the task to be marked done.
+     * @param command The command represented by an array of Strings.
      */
-    public void markTask(int id) {
+    public void markTask(String[] command) throws DukeException {
+        if (command.length == 1) {
+            throw new DukeException("Duke: Please specify the task to mark by its id:\n" +
+                    "mark <id>");
+        }
+        int id = Integer.parseInt(command[1]);
         int len = this.tasksList.size();
         if (id <= 0 || id > len) {
-            System.out.println("Invalid task id!");
-        } else {
-            this.tasksList.get(id - 1).mark();
+            throw new DukeException("Duke: Invalid task id!");
         }
+        this.tasksList.get(id - 1).mark();
     }
 
     /**
      * Mark the task of the given id as not done.
      *
-     * @param id The id of the task to be marked as not done.
+     * @param command The command represented by an array of Strings.
      */
-    public void unmarkTask(int id) {
+    public void unmarkTask(String[] command) throws DukeException {
+        if (command.length == 1) {
+            throw new DukeException("Duke: Please specify the task to unmark by its id:\n" +
+                    "unmark <id>");
+        }
+        int id = Integer.parseInt(command[1]);
         int len = this.tasksList.size();
         if (id <= 0 || id > len) {
-            System.out.println("Invalid task id!");
-        } else {
-            this.tasksList.get(id - 1).unmark();
+            throw new DukeException("Duke: Invalid task id!");
         }
+        this.tasksList.get(id - 1).unmark();
     }
 }
