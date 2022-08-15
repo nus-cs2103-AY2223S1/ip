@@ -1,11 +1,11 @@
-package duke;
+package duke.tasks;
 
 public abstract class Task {
 
     protected String description;
     protected boolean isDone;
 
-    public Task(String description) {
+    protected Task(String description) {
         this.description = description;
         isDone = false;
     }
