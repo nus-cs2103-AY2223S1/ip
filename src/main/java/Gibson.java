@@ -43,26 +43,28 @@ public class Gibson {
             // MARK
             } else if (Pattern.matches("mark [0-9]+", input)) {
                 int number = getTrailingInt(input) - 1;
+                int index = number - 1;
                 try {
-                list.get(number).mark();
+                list.get(index).mark();
                 System.out.println(line);
                 System.out.println("Nice! I've marked this task as done:");
-                System.out.println(list.get(number).toString());
+                System.out.println(list.get(index).toString());
                 System.out.println(line);
-                } catch (ArrayIndexOutOfBoundsException e) {
+                } catch (IndexOutOfBoundsException e) {
                     System.out.println("There is not task numbered as " + number + ".");
                 }
             }
             // UNMARK
             else if (Pattern.matches("unmark [0-9]+", input)) {
-                int number = getTrailingInt(input) - 1;
+                int number = getTrailingInt(input);
+                int index = number - 1;
                 try {
-                    list.get(number).unmark();
+                    list.get(index).unmark();
                     System.out.println(line);
                     System.out.println("OK, I've marked this task as not done yet:");
-                    System.out.println(list.get(number).toString());
+                    System.out.println(list.get(index).toString());
                     System.out.println(line);
-                } catch (ArrayIndexOutOfBoundsException e) {
+                } catch (IndexOutOfBoundsException e) {
                     System.out.println(line);
                     System.out.println("There is not task numbered as " + number + ".");
                     System.out.println(line);
@@ -103,16 +105,17 @@ public class Gibson {
                     System.out.println(line);
                 }
             } else if (Pattern.matches("delete [0-9]+", input)) {
-                int number = getTrailingInt(input) - 1;
+                int number = getTrailingInt(input);
+                int index = number - 1;
                 try {
-                    Task t = list.get(number);
-                    list.remove(number);
+                    Task t = list.get(index);
+                    list.remove(index);
                     System.out.println(line);
                     System.out.println("Noted. I've removed this task:");
                     System.out.println(t.toString());
                     System.out.println("Now you have " + list.size() + " task(s) in the list.");
                     System.out.println(line);
-                } catch (ArrayIndexOutOfBoundsException e) {
+                } catch (IndexOutOfBoundsException e) {
                     System.out.println("There is not task numbered as " + number + ".");
                 }
 
