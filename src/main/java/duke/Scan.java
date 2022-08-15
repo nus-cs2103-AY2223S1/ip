@@ -25,13 +25,20 @@ public class Scan {
         while(!nextCommand.equals("bye")){
             if(nextCommand.equals("list")){
                 taskList.displayAllTask();
-            } else {
-                this.taskList.addTask(new Task(nextCommand));
+            } else if(nextCommand.startsWith("mark")){
+                char index = nextCommand.charAt(nextCommand.length() - 1);
+                taskList.setTaskAsDone(Character.getNumericValue(index));
+            } else if(nextCommand.startsWith("unmark")){
+                char index = nextCommand.charAt(nextCommand.length() - 1);
+                taskList.setTaskAsUndone(Character.getNumericValue(index));
+            }
+            else {
+                this.taskList.addTask(nextCommand);
             }
 
             nextCommand = sc.nextLine();
         }
-        dukePrintLn(BYE);
+            dukePrintLn(BYE);
     }
 
     public static void dukePrintLn(String str){
