@@ -10,4 +10,10 @@ list
 deadline do homework /by no idea :-p
 todo lepak
 list
+delete 1
+delete 999
+list
+oi
+mark 0
+todo
 bye
