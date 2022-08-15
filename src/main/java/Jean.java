@@ -113,6 +113,8 @@ public class Jean {
                 } catch (JeanException e) {
                     System.out.println(e);
                 }
+            } else {
+                System.out.println("No such command!");
             }
         }
     }
