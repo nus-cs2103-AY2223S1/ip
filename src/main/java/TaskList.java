@@ -13,15 +13,17 @@ public class TaskList {
 
     public String addTask(Task t) {
         memo.add(t);
-        return "added: " + t.getTask();
+        String note = "Now you have " + memo.size() + " tasks in the list.";
+        return "Got it, I've added this task:\n      " + t.getTask()
+                + "\n    " + note;
     }
 
     public String enumerate() {
         int count = 0;
-        String str = "";
+        String str = "Here are the tasks in your list:";
         for (Task k : memo) {
             count ++;
-            str += count + ". " + k.getTaskList() + "\n    ";
+            str += "\n    " + count + ". " + k.getTask();
         }
         return str;
     }
