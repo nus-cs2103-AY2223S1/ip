@@ -1,8 +1,5 @@
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
-import java.util.function.Function;
 
 public class CmdHandler {
     ArrayList<Task> tasks = new ArrayList<>();
@@ -20,7 +17,7 @@ public class CmdHandler {
 
     private void handleBye() {
         System.out.println("Bye");
-        done = false;
+        done = true;
     }
 
     private void addTask(String desc) throws DukeException {
@@ -67,6 +64,8 @@ public class CmdHandler {
                     handleUnMark(Integer.parseInt(inputArr[inputArr.length - 1]) - 1);
                 } else if (inputArr[0].equals("mark")) {
                     handleMark(Integer.parseInt(inputArr[inputArr.length - 1]) - 1);
+                } else if (inputStr.startsWith("delete")) {
+                    handleDelete(Integer.parseInt(inputArr[1]) - 1);
                 } else {
                     addTask(inputStr);
                 }
@@ -74,8 +73,11 @@ public class CmdHandler {
 
             } catch (DukeException de) {
                 System.out.println(de.getMessage());
-
             }
         }
+    }
+
+    private void handleDelete(int i) {
+        System.out.println("task deleted: " + tasks.remove(i));
     }
 }
