@@ -4,6 +4,15 @@ import java.util.ArrayList;
 public class Duke {
     private static ArrayList<Task> TaskList = new ArrayList<>();
 
+    public static void addTask(Task task) {
+        TaskList.add(task);
+        int total = TaskList.size();
+        String printLine = "____________________________________________________________\n" +
+                "Got it. I've added this task:\n" + "  " + task.toString() + "\n" + "Now you have " + total
+                + " tasks in the list. \n" + "____________________________________________________________\n";
+        System.out.println(printLine);
+    }
+
     public static void mark(int number) {
         Task task =  TaskList.get(number - 1);
         task.setCompleted();
@@ -39,11 +48,26 @@ public class Duke {
             System.out.println(updatedList);
 
         } else {
-            Task newTask = new Task(command);
-            TaskList.add(newTask);
-            String echo = "____________________________________________________________\n" +
-                    "added: " + command + "\n" + "____________________________________________________________\n";
-            System.out.println(echo);
+            String [] commandArr = command.split(" ");
+
+            if (commandArr[0].equals("todo")) {
+                ToDo toDo = new ToDo(command.substring(5));
+                addTask(toDo);
+            } else if (commandArr[0].equals("deadline")) {
+                int end = command.indexOf('/');
+                String name = command.substring(9, end );
+                String date = command.substring(end + 4);
+                Deadline deadline = new Deadline(name,date);
+                addTask(deadline);
+            } else if (commandArr[0].equals("event")) {
+                int end = command.indexOf('/');
+                String name = command.substring(6, end );
+                String time = command.substring(end + 4);
+                Event event = new Event(name,time);
+                addTask(event);
+            } else {
+                System.out.println("Command not recognised!");
+            }
         }
     }
     public static void main(String[] args) {

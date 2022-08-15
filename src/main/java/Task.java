@@ -1,4 +1,4 @@
-public class Task {
+ class Task {
     private boolean completed = false;
     private String name;
 
@@ -8,6 +8,10 @@ public class Task {
 
     public void setCompleted() {
         this.completed = true;
+    }
+
+    public boolean getCompleted() {
+        return this.completed;
     }
 
     public void setUncompleted() {
