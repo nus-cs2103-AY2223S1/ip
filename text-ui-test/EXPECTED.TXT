@@ -17,11 +17,11 @@ _______     _
 |__|  \__|_|_|____|\____/|_|  |_|
 
 Where would you like to go next?
->> Noted down: todo home
+>> Noted down: home
  There are 1 items on your list now. 
 >>______
 Tasks in your list are: 
-1. [T][ ] todo home
+1. [T][ ] home
 Total: 1
 ______
 >>Thank you for swinging by :)
@@ -34,11 +34,11 @@ _______     _
 |__|  \__|_|_|____|\____/|_|  |_|
 
 Where would you like to go next?
->> Noted down: Welcome Tea 
+>> Noted down: Welcome Tea
  There are 1 items on your list now. 
 >>______
 Tasks in your list are: 
-1. [E][ ] Welcome Tea  (at:  2oclock)
+1. [E][ ] Welcome Tea (at: t 2oclock)
 Total: 1
 ______
 >>Thank you for swinging by :)
@@ -51,11 +51,11 @@ _______     _
 |__|  \__|_|_|____|\____/|_|  |_|
 
 Where would you like to go next?
->> Noted down: CS2103T Week 2 iP 
+>> Noted down: CS2103T Week 2 iP
  There are 1 items on your list now. 
 >>______
 Tasks in your list are: 
-1. [D][ ] CS2103T Week 2 iP  (by:  next tutorial)
+1. [D][ ] CS2103T Week 2 iP (by: S2103T Week 2 iP)
 Total: 1
 ______
 >>Thank you for swinging by :)
@@ -68,13 +68,13 @@ _______     _
 |__|  \__|_|_|____|\____/|_|  |_|
 
 Where would you like to go next?
->> Noted down: todo buy milk
+>> Noted down: buy milk
  There are 1 items on your list now. 
 >>Marked task 1 
-[T][?] todo buy milk
+[T][?] buy milk
 >>______
 Tasks in your list are: 
-1. [T][?] todo buy milk
+1. [T][?] buy milk
 Total: 1
 ______
 >>Thank you for swinging by :)
@@ -87,24 +87,24 @@ _______     _
 |__|  \__|_|_|____|\____/|_|  |_|
 
 Where would you like to go next?
->> Noted down: send email 
+>> Noted down: send email
  There are 1 items on your list now. 
->>Noted down: todo have lunch
+>>Noted down: have lunch
  There are 2 items on your list now. 
 >>Marked task 1 
-[D][?] send email 
+[D][?] send email
 >>______
 Tasks in your list are: 
-1. [D][?] send email 
-2. [T][ ] todo have lunch
+1. [D][?] send email
+2. [T][ ] have lunch
 Total: 2
 ______
 >>Unmarked task 1 
-[D][ ] send email  (by:  afternoon)
+[D][ ] send email (by: end email)
 >>______
 Tasks in your list are: 
-1. [D][ ] send email  (by:  afternoon)
-2. [T][ ] todo have lunch
+1. [D][ ] send email (by: end email)
+2. [T][ ] have lunch
 Total: 2
 ______
 >>Thank you for swinging by :)
