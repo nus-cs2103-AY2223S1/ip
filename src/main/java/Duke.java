@@ -4,7 +4,7 @@ public class Duke {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        String greet = "Hello! I'm Duke\n"
+        String greet = "Hello! I'm Lan\n"
                 + "What can I do for you?";
 
         String logo = " ____        _        \n"
@@ -17,12 +17,10 @@ public class Duke {
         while (true) {
             String s = sc.nextLine();
             if (s.equals("bye")) {
-                System.out.println("Bye. Hope to see you again soon!");
+                System.out.println("Bye! Hope to see you again soon!");
                 break;
             }
-            System.out.println(s);
-            sc = new Scanner(System.in);
+            // reserve for tomorrow's work
         }
-        sc.close();
     }
 }
