@@ -57,6 +57,10 @@ public class Duke {
                     String todoInfo = inputText.substring(firstSpaceIdx + 1);
                     Duke.addTodo(todoInfo);
                     break;
+                case "event":
+                    String eventInfo = inputText.substring(firstSpaceIdx + 1);
+                    Duke.addEvent(eventInfo);
+                    break;
                 default:
                     Duke.addTask(inputText);
             }
@@ -108,6 +112,27 @@ public class Duke {
     public static void addTodo(String input) {
         // Instantiate task object
         Task newDeadline = new Todo(input);
+
+        // Add to list
+        Duke.inputs.add(newDeadline);
+
+        // Print message
+        printAddedTask(newDeadline);
+    }
+
+    /**
+     * Add a Deadline to the items list.
+     *
+     * @param input A String to be added to the list.
+     */
+    public static void addEvent(String input) {
+        // Get description and date of event
+        int slashIdx = input.indexOf("/at");
+        String desc = input.substring(0, slashIdx);
+        String at = input.substring((slashIdx + 4));
+
+        // Instantiate task object
+        Task newDeadline = new Event(desc, at);
 
         // Add to list
         Duke.inputs.add(newDeadline);
