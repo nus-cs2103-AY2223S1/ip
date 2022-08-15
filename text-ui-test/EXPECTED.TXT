@@ -11,15 +11,29 @@ Duke: Here are the tasks in your list:
 
 Duke: Got it! Duke has added this task:
 [T][ ] uninstall League of Legends
-Duke: Now you have 1 task in the list.
+Duke: Now you have 1 tasks in the list.
 
 Duke: Got it! Duke has added this task:
 [D][ ] MA1521 HW 1 (by: 31 April)
-Duke: Now you have 2 tasks in the list.
+Duke: Now you have 2 task in the list.
 
 Duke: Got it! Duke has added this task:
 [E][ ] birthday (at: 8 August 00:00)
-Duke: Now you have 3 tasks in the list.
+Duke: Now you have 3 task in the list.
+
+Duke: Got it! Duke has added this task:
+[T][ ] delete this task
+Duke: Now you have 4 task in the list.
+
+☹ OOPS!!! Duke got an error!
+Duke: Please specify the task to be deleted by its id:
+delete <id>
+
+☹ OOPS!!! Duke got an error!
+Duke: Please specify the task to delete by its integer id:
+mark <id>
+
+Duke: Now you have 3 task in the list.
 
 Duke: Here are the tasks in your list:
 1. [T][ ] uninstall League of Legends
@@ -38,7 +52,15 @@ unmark <id>
 Duke: Invalid task id!
 
 ☹ OOPS!!! Duke got an error!
+Duke: Please specify the task to mark by its integer id:
+mark <id>
+
+☹ OOPS!!! Duke got an error!
 Duke: Invalid task id!
+
+☹ OOPS!!! Duke got an error!
+Duke: Please specify the task to unmark by its integer id:
+mark <id>
 
 Duke: Nice! I've marked this task as done:
 [T][X] uninstall League of Legends

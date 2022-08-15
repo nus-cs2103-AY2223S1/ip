@@ -12,6 +12,7 @@ public class TasksList {
      * Add To-do task to the list of tasks.
      *
      * @param command The command represented by an array of Strings.
+     * @throws DukeException
      */
     public void addTodo(String[] command) throws DukeException {
         if (command.length == 1) {
@@ -25,7 +26,7 @@ public class TasksList {
         this.tasksList.add(newTask);
         int len = this.tasksList.size();
         String line = String.format("Duke: Now you have %d task%s in the list.",
-                len, len > 1 ? "s" : "");
+                len, len != 1 ? "s" : "");
         System.out.println(line);
     }
 
@@ -33,6 +34,7 @@ public class TasksList {
      * Add Deadline task to the list of tasks.
      *
      * @param command The command represented by an array of Strings.
+     * @throws DukeException
      */
     public void addDeadline(String[] command) throws DukeException {
         if (command.length == 1) {
@@ -50,7 +52,7 @@ public class TasksList {
         this.tasksList.add(newTask);
         int len = this.tasksList.size();
         String line = String.format("Duke: Now you have %d task%s in the list.",
-                len, len > 1 ? "s" : "");
+                len, len != 1 ? "s" : "");
         System.out.println(line);
     }
 
@@ -58,6 +60,7 @@ public class TasksList {
      * Add Event task to the list of tasks.
      *
      * @param command The command represented by an array of Strings.
+     * @throws DukeException
      */
     public void addEvent(String[] command) throws DukeException {
         if (command.length == 1) {
@@ -75,7 +78,7 @@ public class TasksList {
         this.tasksList.add(newTask);
         int len = this.tasksList.size();
         String line = String.format("Duke: Now you have %d task%s in the list.",
-                len, len > 1 ? "s" : "");
+                len, len != 1 ? "s" : "");
         System.out.println(line);
     }
 
@@ -98,35 +101,78 @@ public class TasksList {
      * Mark the task of the given id as done.
      *
      * @param command The command represented by an array of Strings.
+     * @throws DukeException
      */
     public void markTask(String[] command) throws DukeException {
         if (command.length == 1) {
             throw new DukeException("Duke: Please specify the task to mark by its id:\n" +
                     "mark <id>");
         }
-        int id = Integer.parseInt(command[1]);
-        int len = this.tasksList.size();
-        if (id <= 0 || id > len) {
-            throw new DukeException("Duke: Invalid task id!");
+        try {
+            int id = Integer.parseInt(command[1]);
+            int len = this.tasksList.size();
+            if (id <= 0 || id > len) {
+                throw new DukeException("Duke: Invalid task id!");
+            }
+            this.tasksList.get(id - 1).mark();
+        } catch (NumberFormatException e) {
+            throw new DukeException("Duke: Please specify the task to mark by its integer id:\n" +
+                    "mark <id>");
         }
-        this.tasksList.get(id - 1).mark();
     }
 
     /**
      * Mark the task of the given id as not done.
      *
      * @param command The command represented by an array of Strings.
+     * @throws DukeException
      */
     public void unmarkTask(String[] command) throws DukeException {
         if (command.length == 1) {
             throw new DukeException("Duke: Please specify the task to unmark by its id:\n" +
                     "unmark <id>");
         }
-        int id = Integer.parseInt(command[1]);
-        int len = this.tasksList.size();
-        if (id <= 0 || id > len) {
-            throw new DukeException("Duke: Invalid task id!");
+        try {
+            int id = Integer.parseInt(command[1]);
+            int len = this.tasksList.size();
+            if (id <= 0 || id > len) {
+                throw new DukeException("Duke: Invalid task id!");
+            }
+            this.tasksList.get(id - 1).unmark();
+        } catch (NumberFormatException e) {
+            throw new DukeException("Duke: Please specify the task to unmark by its integer id:\n" +
+                    "mark <id>");
         }
-        this.tasksList.get(id - 1).unmark();
+
+    }
+
+    /**
+     * Delete the task of the given id from the list.
+     *
+     * @param command The command represented by an array of Strings.
+     * @throws DukeException
+     */
+    public void deleteTask(String[] command) throws DukeException {
+        if (command.length == 1) {
+            throw new DukeException("Duke: Please specify the task to be deleted by its id:\n" +
+                    "delete <id>");
+        }
+        try {
+            int id = Integer.parseInt(command[1]);
+            int len = this.tasksList.size();
+            if (id <= 0 || id > len) {
+                throw new DukeException("Duke: Invalid task id!");
+            }
+            System.out.println("Duke: Noted. I've removed this task:");
+            System.out.println(this.tasksList.get(id - 1));
+            this.tasksList.remove(id - 1);
+            String line = String.format("Duke: Now you have %d task%s in the list.",
+                    len - 1, len - 1 != 1 ? "s" : "");
+            System.out.println(line);
+
+        } catch (NumberFormatException e) {
+            throw new DukeException("Duke: Please specify the task to delete by its integer id:\n" +
+                    "mark <id>");
+        }
     }
 }

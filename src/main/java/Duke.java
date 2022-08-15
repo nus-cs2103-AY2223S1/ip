@@ -45,6 +45,10 @@ public class Duke {
                     tasksList.addEvent(words);
                     continue;
                 }
+                if (words[0].equals("delete")) {
+                    tasksList.deleteTask(words);
+                    continue;
+                }
                 throw new DukeException("Unknown command. Please try again.");
             } catch (DukeException e) {
                 System.out.println(e);
