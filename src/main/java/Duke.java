@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Duke {
     private static ArrayList<Task> userInputHistory = new ArrayList<>();
-    enum ValidCommands {TODO, MARK, UNMARK, DEADLINE, EVENT, BYE, LIST};
-    enum ValidExitCommand {QUIT, EXIT, BYE};
+    enum CommandType {TODO, MARK, UNMARK, DEADLINE, EVENT, BYE, LIST};
+    enum ExitCommandType {QUIT, EXIT, BYE};
     private static void greetUser() {
         String logo = "_______     _\n" +
                 "|  ___|    | |\n" +
@@ -154,11 +154,23 @@ public class Duke {
         addTaskToHistory(description);
     }
 
+    private static String getCommand(String userInput) throws DukeException{
+        int firstWhiteSpace = userInput.indexOf(" ");
+        String command = userInput.substring(0, firstWhiteSpace);
+        if (command.equals("")) {
+            throw new DukeException("no valid command given");
+        } else {
+            return command;
+        }
+    }
+
     /**
      * Menu handler
      * @param userInput
      */
     private static void handleInput(String userInput) throws DukeException{
+        String command = getCommand(userInput);
+
         if (userInput.equals("bye") || userInput.equals("exit") || userInput.equals("quit")) {
             //exit
             System.out.println("Thank you for swinging by :)");
