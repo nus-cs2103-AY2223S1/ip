@@ -5,6 +5,8 @@ import java.util.*;
 
 /**
  * TaskList class to store the list of Tasks.
+ *
+ * Also allows user to mark and unmark the task in list.
  */
 public class TaskList {
     List<Task> memo = new ArrayList<>();
