@@ -31,7 +31,7 @@ public class Duke {
                     break;
                 default:
                     assert taskCount < TASKLIST_MAX_SIZE;
-                    taskList[taskCount++] = new Task(userQuery, true);
+                    taskList[taskCount++] = new Task(userQuery);
                     System.out.printf("Successfully added \"%s\" to your task list!\n", userQuery);
             }
         }
