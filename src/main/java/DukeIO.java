@@ -36,5 +36,4 @@ class DukeIO {
     static String addWrapper(String txt) {
         return String.format("%s%n%s%n%s", LINE, txt, LINE);
     }
-
 }
