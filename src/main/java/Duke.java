@@ -120,7 +120,7 @@ public class Duke {
                     System.out.println(messageToPrint);
                 }
             } else {
-                System.out.printf("%sadded: %s\n%s", this.horizontalLine, input, this.horizontalLine);
+                System.out.printf("%sEh? Idk what talking you? \n%s", this.horizontalLine, this.horizontalLine);
                 Task newTask = new Task(input);
                 this.addTask(newTask);
             }
