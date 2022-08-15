@@ -52,38 +52,42 @@ public class Duke {
         String statusIcon = task.getStatusIcon();
         System.out.printf("[%s] %s%n", statusIcon, description);
     }
-
-    public static void main(String[] args) {
-        Duke duke = new Duke();
+    
+    public void start() {
         Scanner scanner = new Scanner(System.in);
-        duke.greetUser();
+        this.greetUser();
 
         System.out.print(">>> ");
         while (scanner.hasNext()) {
             String input = scanner.next();
             if (input.equals("bye")) {
-                duke.sayBye();
+                this.sayBye();
                 break;
             }
 
             if (input.equals("list")) {
-                duke.listTasks();
+                this.listTasks();
             } else if (input.equals("mark") || input.equals("unmark")) {
                 if (scanner.hasNextInt()) {
                     int taskIndex = scanner.nextInt() - 1;
                     if (input.equals("mark")) {
-                        duke.markTaskAsDone(taskIndex);
+                        this.markTaskAsDone(taskIndex);
                     } else {
-                        duke.unmarkTaskAsDone(taskIndex);
+                        this.unmarkTaskAsDone(taskIndex);
                     }
                 }
                 scanner.nextLine();
             } else {
                 input += scanner.nextLine();
                 Task task = new Task(input);
-                duke.pushTask(task);
+                this.pushTask(task);
             }
             System.out.print(">>> ");
         }
+    }
+
+    public static void main(String[] args) {
+        Duke duke = new Duke();
+        duke.start();
     }
 }
