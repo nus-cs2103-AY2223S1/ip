@@ -1,7 +1,13 @@
 import java.util.Scanner;
 
 public class Deku {
-    private final String SEPARATOR = "____________________";
+    private BotList botList;
+
+    Deku() {
+        this.botList = new BotList();
+    }
+
+    private final String SEPARATOR = "__________________________________";
     private void introduction() {
         String logo ="    ____  ________ ____  __\n" +
                 "   / __ \\/ ____/ //_/ / / /\n" +
@@ -23,18 +29,31 @@ public class Deku {
             String userInput = scanner.nextLine();
             if (userInput.equals("bye")) {
                 active = false;
-                System.out.println(this.end());
-                continue;
             }
-            System.out.println(this.parseReply(userInput));
+            System.out.println(
+                    this.parseReply(userInput)
+            );
         }
     }
-    private String end() {
-        return this.parseReply("Bye! Until next time!");
-    }
+
     private String parseReply(String input) {
-        return SEPARATOR + "\n" + input + "\n" + SEPARATOR;
+        String reply = input;
+        switch (input) {
+            case ("bye"):
+                reply = "Bye! Until next time!";
+                break;
+            case ("list"):
+                reply =  this.botList.toString();
+                break;
+            default:
+                reply = this.botList.add(input);
+        }
+        return SEPARATOR + "\n" + reply + "\n" + SEPARATOR;
     }
+
+    /*
+    * Default main method
+    */
     public static void main(String[] args) {
         Deku dekuBot = new Deku();
         dekuBot.start();
