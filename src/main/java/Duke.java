@@ -8,6 +8,7 @@ public class Duke {
         int counter = 0;
         boolean flag = false;
         Scanner in = new Scanner(System.in);
+        DukeOperations ops = new DukeOperations();
         while (!flag) {
             String output = in.nextLine();
             String arr[] = output.split(" ",2);
@@ -21,61 +22,39 @@ public class Duke {
 
             }
             else if(output.equals("list")) {
-                System.out.println("_________________________________________________________________________");
-                for (int i = 0; i < 100; i++) {
-                    if (array[i] != null) {
-                        int j = i + 1;
-                        System.out.println(j + ". " + array[i].toString());
-                    }
-                }
-                System.out.println("_________________________________________________________________________");
+                ops.displayList(array);
+
             }
             else if(firstword.equals("todo")) {
                 System.out.println("_________________________________________________________________________");
-                array[counter] = new Todo(arr[1]);
-                System.out.println("Got it. I've added this task:");
-                System.out.println(array[counter].toString());
-                counter++;
-                System.out.println("Now you have " + counter + " tasks in the list.");
+                ops.todo(array,arr[1],counter);
                 System.out.println("_________________________________________________________________________");
+                counter++;
+
             }
 
             else if(firstword.equals("deadline")) {
                 System.out.println("_________________________________________________________________________");
                 String arr2[] = arr[1].split("/by",2);
-                array[counter] = new Deadline(arr2[0], arr2[1]);
-                System.out.println("Got it. I've added this task:");
-                System.out.println(array[counter].toString());
-                counter ++;
-                System.out.println("Now you have " + counter + " tasks in the list.");
+                ops.deadline(array,arr2[0],arr2[1],counter);
                 System.out.println("_________________________________________________________________________");
+                counter++;
             }
             else if(firstword.equals("event")) {
                 System.out.println("_________________________________________________________________________");
                 String arr2[] = arr[1].split("/at",2);
-                array[counter] = new Event(arr2[0],arr2[1]);
-                System.out.println("Got it. I've added this task:");
-                System.out.println(array[counter].toString());
-                counter ++;
-                System.out.println("Now you have " + counter + " tasks in the list.");
+                ops.event(array,arr2[0],arr2[1],counter);
                 System.out.println("_________________________________________________________________________");
+                counter++;
             }
 
             else if(firstword.equals("mark")) {
                 int num = Integer.parseInt(arr[1]);
-                array[num - 1].markAsDone();
-                System.out.println("_________________________________________________________________________");
-                System.out.println("Nice! I've marked this task as done:");
-                System.out.println(array[num-1].toString());
-                System.out.println("_________________________________________________________________________");
+                ops.mark(array,num);
             }
             else if(firstword.equals("unmark")) {
                 int num = Integer.parseInt(arr[1]);
-                array[num - 1].markAsNotDone();
-                System.out.println("_________________________________________________________________________");
-                System.out.println("OK, I've marked this task as not done yet:");
-                System.out.println(array[num-1].toString());
-                System.out.println("_________________________________________________________________________");
+                ops.mark(array,num);
             }
             else {
                 array[counter] = new Task(output);
