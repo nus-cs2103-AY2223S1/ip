@@ -7,6 +7,13 @@ todo
 deadline
 event
 blah
+delete
+mark
+unmark
 delete 1
+list
+mark 1
+list
+unmark 1
 list
 bye

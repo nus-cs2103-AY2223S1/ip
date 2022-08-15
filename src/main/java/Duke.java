@@ -29,15 +29,21 @@ public class Duke {
                     printTasks();
                     break;
                 case "mark":
-                    int taskIdToMark = Integer.parseInt(splitString[1]);
+                    int taskIdToMark = splitString.length == 2
+                            ? Integer.parseInt(splitString[1])
+                            : -1;
                     changeTaskStatus(taskIdToMark, true);
                     break;
                 case "unmark":
-                    int taskIdToUnmark = Integer.parseInt(splitString[1]);
+                    int taskIdToUnmark = splitString.length == 2
+                            ? Integer.parseInt(splitString[1])
+                            : -1;
                     changeTaskStatus(taskIdToUnmark, false);
                     break;
                 case "delete":
-                    int taskIdToDelete = Integer.parseInt(splitString[1]);
+                    int taskIdToDelete = splitString.length == 2
+                            ? Integer.parseInt(splitString[1])
+                            : -1;
                     deleteTask(taskIdToDelete);
                     break;
                 case "todo":
@@ -94,7 +100,11 @@ public class Duke {
         System.out.println(line);
     }
 
-    public static void deleteTask(int index) {
+    public static void deleteTask(int index) throws DukeException {
+        if (index == -1) {
+            throw new DukeException("You must specify which task to delete!");
+        }
+
         Task task = tasks.get(index - 1);
         System.out.println(line);
         System.out.println("Noted. I've removed this task:");
@@ -113,9 +123,14 @@ public class Duke {
         System.out.println(line);
     }
 
-    public static void changeTaskStatus(int taskId, boolean isDone) {
+    public static void changeTaskStatus(int taskId, boolean isDone) throws DukeException {
+        if (taskId == -1) {
+            throw new DukeException("You must specify which task to mark or unmark!");
+        }
+
         Task task = tasks.get(taskId - 1);
         task.setDoneStatus(isDone);
+        System.out.println(line);
         if (isDone) {
             System.out.println(("Nice! I've marked this task as done:"));
             System.out.println("  " + task.toString());

@@ -46,9 +46,36 @@ OOPS!!! The description of event task is missing information!
 OOPS!!! I'm sorry, but I don't know what that means!
 ----------------------------------------
 ----------------------------------------
+OOPS!!! You must specify which task to delete!
+----------------------------------------
+----------------------------------------
+OOPS!!! You must specify which task to mark or unmark!
+----------------------------------------
+----------------------------------------
+OOPS!!! You must specify which task to mark or unmark!
+----------------------------------------
+----------------------------------------
 Noted. I've removed this task:
   [T][ ] borrow book
 Now you have 2 tasks in the list.
+----------------------------------------
+----------------------------------------
+Here are the tasks in your list:
+1.[D][ ] return book (by: Sunday)
+2.[E][ ] project meeting (at: Mon 2-4pm)
+----------------------------------------
+----------------------------------------
+Nice! I've marked this task as done:
+  [D][X] return book (by: Sunday)
+----------------------------------------
+----------------------------------------
+Here are the tasks in your list:
+1.[D][X] return book (by: Sunday)
+2.[E][ ] project meeting (at: Mon 2-4pm)
+----------------------------------------
+----------------------------------------
+OK, I've marked this task as not done yet:
+  [D][ ] return book (by: Sunday)
 ----------------------------------------
 ----------------------------------------
 Here are the tasks in your list:
