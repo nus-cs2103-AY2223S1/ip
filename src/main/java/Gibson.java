@@ -162,7 +162,7 @@ public class Gibson {
                 stringArray[0] = "";
             }
             try {
-                stringArray[1] = string.substring(0, matcher.start() - 1);
+                stringArray[1] = string.substring(matcher.end() + 1);
             } catch (StringIndexOutOfBoundsException e) {
                 stringArray[1] = "";
             }
