@@ -96,7 +96,7 @@ abstract class Command {
                 IOHelper.print(WRONG_ARGUMENT);
                 return;
             }
-            if (index < 0 || index > tasks.size()) {
+            if (index < 0 || index >= tasks.size()) {
                 IOHelper.print(INDEX_OUT_OF_BOUND);
                 return;
             }
