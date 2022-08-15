@@ -59,6 +59,7 @@ public class Duke {
         final String eventCommand = "event";
         final String markCommand = "mark";
         final String unmarkCommand = "unmark";
+        final String deleteCommand = "delete";
 
         String[] command = input.split(" ", 2);
         if (command.length == 1) {
@@ -95,6 +96,10 @@ public class Duke {
                 parseUnmarkCommand(command[1]);
                 break;
 
+            case deleteCommand:
+                parseDeleteCommand(command[1]);
+                break;
+
             default:
                 sendMessage("Invalid command!");
                 break;
@@ -111,7 +116,12 @@ public class Duke {
     private static void addToList(Task item) {
         list.add(item);
         sendMessage("Got it. I've added this task:\n  "
-                + item + "\nNow you have " + list.size() + " tasks in the list.");
+                + item + "\n" + taskCountDisplay());
+    }
+
+    private static String taskCountDisplay()
+    {
+        return "Now you have " + list.size() + " tasks in the list.";
     }
 
     /**
@@ -180,7 +190,7 @@ public class Duke {
             return;
         }
 
-        if (index < 1 || index > list.size() + 1) {
+        if (index < 1 || index > list.size()) {
             sendMessage(invalidIndexMessage);
             return;
         }
@@ -202,7 +212,7 @@ public class Duke {
             return;
         }
 
-        if (index < 1 || index > list.size() + 1) {
+        if (index < 1 || index > list.size()) {
             sendMessage(invalidIndexMessage);
             return;
         }
@@ -211,15 +221,43 @@ public class Duke {
 
     }
 
+    /**
+     * Attempt to delete an item in the list, given a string index.
+     * @param input String index. Will be parsed into int.
+     */
+    private static void parseDeleteCommand(String input) {
+        int index;
+        try {
+            index = parseInt(input);
+        } catch (NumberFormatException e) {
+            sendMessage(invalidIndexMessage);
+            return;
+        }
+
+        if (index < 1 || index > list.size()) {
+            sendMessage(invalidIndexMessage);
+            return;
+        }
+        Task removedTask = list.remove(index - 1);
+        sendMessage("Noted. I've removed this task:\n" + removedTask + "\n" + taskCountDisplay());
+    }
 
     /**
      * Displays the items in a string list, enumerated from 1.
      * @param list The list of strings to display.
      */
     private static void displayList(ArrayList<Task> list) {
-        StringBuilder output = new StringBuilder("Here are the tasks in your list:");
-        for (int i = 0; i < list.size(); i++) {
-            output.append("\n").append(i + 1).append(". ").append(list.get(i));
+
+        StringBuilder output = new StringBuilder();
+
+        if (list.size() == 0) {
+            output.append("Good job! You have no outstanding tasks.");
+        }
+        else {
+            output.append("Here are the tasks in your list:");
+            for (int i = 0; i < list.size(); i++) {
+                output.append("\n").append(i + 1).append(". ").append(list.get(i));
+            }
         }
         sendMessage(output.toString());
     }

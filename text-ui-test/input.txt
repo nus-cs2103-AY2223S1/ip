@@ -1,4 +1,8 @@
+list
 todo Drink coffee
+list
+delete 1
+list
 todo Drink tea
 deadline Eat chocolate
 deadline Eat chocolate /by 2pm
@@ -13,4 +17,14 @@ list
 todo
 deadline
 event
+delete 3
+list
+delete 3
+list
+delete 3
+list
+delete 2
+list
+delete 0
+list
 bye
