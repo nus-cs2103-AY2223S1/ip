@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class Duke {
     private static ArrayList<Task> userInputHistory = new ArrayList<>();
+    enum ValidCommands {TODO, MARK, UNMARK, DEADLINE, EVENT, BYE, LIST};
+    enum ValidExitCommand {QUIT, EXIT, BYE};
     private static void greetUser() {
         String logo = "_______     _\n" +
                 "|  ___|    | |\n" +
