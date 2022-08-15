@@ -1,6 +1,14 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
+
+    private List<String> listOfItems;
+
+    public Duke() {
+        this.listOfItems = new ArrayList<>();
+    }
 
     private static final String ROW_INDENT = "    ";
     private static final String WORD_INDENT = " ";
@@ -27,11 +35,33 @@ public class Duke {
                     goodBye();
                     hasEnded = true;
                     break;
+                case "LIST":
+                    displayList();
+                    break;
                 default:
-                    printMessage(userInput);
+                    addToList(userInput);
             }
         }
     }
+
+    public void addToList(String userInput) {
+        this.listOfItems.add(userInput);
+        printMessage("added: " + userInput);
+    }
+
+    public void displayList() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < this.listOfItems.size(); i++) {
+            sb.append(Integer.toString(i + 1));
+            sb.append(". " + this.listOfItems.get(i));
+            if (i < this.listOfItems.size() - 1) {
+                sb.append("\n" + ROW_INDENT + WORD_INDENT);
+            }
+        }
+        printMessage(sb.toString());
+    }
+
+
 
     public String getInput(Scanner sc) {
         System.out.println();
@@ -51,4 +81,8 @@ public class Duke {
         System.out.println(Duke.ROW_INDENT + Duke.WORD_INDENT + message);
         System.out.println(Duke.ROW_INDENT + Duke.HORIZONTAL_LINE);
     }
+
+
+
+
 }
