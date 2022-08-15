@@ -1,3 +1,4 @@
+No saved data found.
 --------------------------------------------------
 Hello! I'm Cortana
 What can I do for you?
@@ -24,7 +25,7 @@ Here is the task in your list:
 The description of a deadline cannot be empty.
 --------------------------------------------------
 --------------------------------------------------
-The time of a deadline cannot be empty.
+Please provide both a description and a time.
 --------------------------------------------------
 --------------------------------------------------
 Got it. I've added this task:
@@ -40,7 +41,7 @@ Here are the tasks in your list:
 The description of an event cannot be empty.
 --------------------------------------------------
 --------------------------------------------------
-The time of an event cannot be empty.
+Please provide both a description and a time.
 --------------------------------------------------
 --------------------------------------------------
 Got it. I've added this task:
