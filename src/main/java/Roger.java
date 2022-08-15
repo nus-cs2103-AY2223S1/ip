@@ -145,7 +145,6 @@ public class Roger {
         this.addEvent(taskName, period);
     }
 
-
     private void handleMark(String input) throws RogerInvalidInputException {
         int idx;
 
@@ -163,7 +162,6 @@ public class Roger {
 
         this.markAsDone(idx);
     }
-
 
     private void handleUnmark(String input) throws RogerInvalidInputException {
         int idx;
@@ -183,11 +181,9 @@ public class Roger {
         this.unmarkAsDone(idx);
     }
 
-
     private void handleUnknownInput() {
         System.out.println("Uncle really don't understand.");
     }
-
 
     public static void main(String[] args) {
         /**
