@@ -5,7 +5,7 @@ public class Deadline extends Task {
     public Deadline(String description, String by) {
         super(description);
         this.by = by;
-        System.out.println("hahahaha adding your DEADline >:) \n" + this.toString() );
+        System.out.println("hahahaha adding your DEADline >:) \n\t" + this.toString() );
     }
 
     @Override
