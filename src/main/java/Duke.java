@@ -57,6 +57,13 @@ public class Duke {
 
     }
 
+    private static void deleteItem(String[] inputs) {
+        int index = Integer.parseInt(inputs[1]);
+        Task taskRemoved = data.remove(index - 1);
+        System.out.printf("Noted. I've removed this task:\n%s\nNow you have %d tasks in the list\n",
+                taskRemoved, data.size());
+    }
+
     private static <T> int findElem(T[] arr, T elem) {
         for (int i = 0; i < arr.length; i++) {
             if (arr[i].equals(elem)) {
@@ -89,6 +96,8 @@ public class Duke {
                         markItem(inputs);
                     } else if (inputs[0].equals("unmark")) {
                         unMarkItem(inputs);
+                    } else if (inputs[0].equals("delete")) {
+                        deleteItem(inputs);
                     }
                 } else {
                     switch (inputs[0]) {
