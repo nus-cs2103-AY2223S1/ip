@@ -2,21 +2,32 @@ import java.util.Scanner;
 
 public class Duke {
     public static void main(String[] args) {
-        String logo = " ____        _        \n" + "|  _ \\ _   _| | _____ \n" +
-                      "| | | | | | | |/ / _ \\\n" + "| |_| | |_| |   <  __/\n" +
-                      "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+        String logo =
+            " .----------------.  .----------------.  .-----------------. .----------------.  .----------------. \n" +
+            "| .--------------. || .--------------. || .--------------. || .--------------. || .--------------. |\n" +
+            "| |  ____  ____  | || |  _________   | || | ____  _____  | || |  _______     | || |  ____  ____  | |\n" +
+            "| | |_   ||   _| | || | |_   ___  |  | || ||_   \\|_   _| | || | |_   __ \\    | || | |_  _||_  _| | |\n" +
+            "| |   | |__| |   | || |   | |_  \\_|  | || |  |   \\ | |   | || |   | |__) |   | || |   \\ \\  / /   | |\n" +
+            "| |   |  __  |   | || |   |  _|  _   | || |  | |\\ \\| |   | || |   |  __ /    | || |    \\ \\/ /    | |\n" +
+            "| |  _| |  | |_  | || |  _| |___/ |  | || | _| |_\\   |_  | || |  _| |  \\ \\_  | || |    _|  |_    | |\n" +
+            "| | |____||____| | || | |_________|  | || ||_____|\\____| | || | |____| |___| | || |   |______|   | |\n" +
+            "| |              | || |              | || |              | || |              | || |              | |\n" +
+            "| '--------------' || '--------------' || '--------------' || '--------------' || '--------------' |\n" +
+            " '----------------'  '----------------'  '----------------'  '----------------'  '----------------' ";
+        System.out.println(logo);
 
         Scanner sc = new Scanner(System.in);
         Responder responder = new Responder();
         while (true) {
             System.out.print("\n> ");
             String input = sc.nextLine();
-            if (input.equalsIgnoreCase("bye")) {
-                System.out.println(responder.respond(input));
+            if (input.equalsIgnoreCase("list")) {
+                responder.getList();
+            } else if (input.equalsIgnoreCase("bye")) {
+                responder.close();
                 break;
             } else {
-                System.out.println(responder.respond(input));
+                responder.addToList(input);
             }
         }
     }
