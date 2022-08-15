@@ -4,11 +4,11 @@ import java.util.Scanner;
 public class Duke {
     private static final String HORIZONTAL_LINE = "    ____________________________________________________________\n";
     private final Scanner sc;
-    private ArrayList<String> list;
+    private TaskList taskList;
 
     public Duke() {
         this.sc = new Scanner(System.in);
-        this.list = new ArrayList<>();
+        this.taskList = new TaskList();
         String logo = "      ____        _        \n"
                 + "     |  _ \\ _   _| | _____ \n"
                 + "     | | | | | | | |/ / _ \\\n"
@@ -26,26 +26,25 @@ public class Duke {
     }
 
     public void add(String description) {
-        this.list.add(description);
+        this.taskList.addTask(new Task(description));
         reply("     added: " + description);
     }
 
     public void commandHandler() {
-        while (sc.hasNextLine()) {
-            String input = sc.nextLine();
-            String[] args = input.split(" ");
-            if (args[0].compareTo("bye") == 0) {
+        while (sc.hasNext()) {
+            String command = sc.next();
+            if (command.compareTo("bye") == 0) {
                 reply("     Bye. Hope to see you again soon!");
                 sc.close();
                 break;
-            } else if (args[0].compareTo("list") == 0) {
-                String msg = "";
-                for (int i = 0; i < this.list.size(); i++) {
-                    msg += String.format("     %d. %s\n", i, this.list.get(i));
-                }
-                reply(msg);
+            } else if (command.compareTo("list") == 0) {
+                reply(this.taskList.toString());
+            } else if (command.compareTo("mark") == 0) {
+                reply("     Nice! I've marked this task as done:\n     " + this.taskList.markDone(sc.nextInt() - 1));
+            } else if (command.compareTo("unmark") == 0) {
+                reply("     OK, I've marked this task as not done yet:\n     " + this.taskList.unmarkDone(sc.nextInt() - 1));
             } else {
-                add(input);
+                add(sc.nextLine());
             }
         }
     }
