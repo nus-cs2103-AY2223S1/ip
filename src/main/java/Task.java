@@ -1,7 +1,6 @@
 public class Task {
     private String taskDescription;
     private boolean isDone;
-    private static int numberOfTasks = 0;
 
     public Task(String taskDescription) {
         this.taskDescription = taskDescription;
@@ -24,14 +23,6 @@ public class Task {
 
     public String getStatusIcon() {
         return (isDone ? "X" : " ");
-    }
-
-    public static void taskIncrementer() {
-        numberOfTasks++;
-    }
-
-    public static int getNumberOfTasks() {
-        return numberOfTasks;
     }
 
     @Override

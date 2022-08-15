@@ -47,14 +47,14 @@ public class Duke {
         System.out.println("\n");
     }
     public static void markAsDone(int index) {
-        if (index > TASK_LIST.size()) {
+        if (index > TASK_LIST.size() || index < 1) {
             throw new DukeException("Your task list currently does not have a task at this index.\n");
         }
         Task task = TASK_LIST.get(index-1);
         task.markAsDone();
     }
     public static void markAsNotDone(int index) {
-        if (index > TASK_LIST.size()) {
+        if (index > TASK_LIST.size() || index < 1) {
             throw new DukeException("Your task list currently does not have a task at this index.\n");
         }
         Task task = TASK_LIST.get(index-1);
@@ -66,8 +66,19 @@ public class Duke {
         TASK_LIST.add(task);
         System.out.println("Got it. I've added this task:\n "
                 + task.toString()
-                + "\nNow you have " + Task.getNumberOfTasks() + " tasks in the list.\n");
+                + "\nNow you have " + TASK_LIST.size() + " tasks in the list.\n");
     }
+
+    public static void deleteTask(int index) {
+        if (index > TASK_LIST.size() || index < 1) {
+            throw new DukeException("Your task list currently does not have a task at this index.\n");
+        }
+        Task task = TASK_LIST.remove(index-1);
+        System.out.println("Noted. I've removed this task:\n "
+                + task.toString()
+                + "\nNow you have " + TASK_LIST.size() + " tasks in the list.\n");
+    }
+
     public static void addTodo(String[] userInput) {
         int len = userInput.length;
         String todoName = String.join(" ", Arrays.copyOfRange(userInput, 1, len));
@@ -107,46 +118,6 @@ public class Duke {
         addTask(new Event(eventName, at));
     }
 
-    /*
-
-    public static void echo() {
-        LinkedList<Task> storedList = new LinkedList<>();
-        Scanner scanner = new Scanner(System.in);
-        String userCommand = scanner.nextLine();
-
-        while (!"bye".equals(userCommand)) {
-            if ("list".equals(userCommand)) {
-                printList(storedList);
-            } else if (userCommand.startsWith("mark ")) {
-                int indexNo = parseInt(userCommand.substring(5)) - 1;
-                System.out.println(storedList.get(indexNo).markAsDone() + "\n");
-            } else if (userCommand.startsWith("unmark ")) {
-                int indexNo = parseInt(userCommand.substring(7)) - 1;
-                System.out.println(storedList.get(indexNo).markAsNotDone() + "\n");
-            } else if (userCommand.startsWith("todo ")) {
-                storedList.add(new Todo(userCommand.substring(5)));
-                System.out.println(storedList.getLast().addedString() + "\n");
-            } else if (userCommand.startsWith("deadline ")) {
-                int index = userCommand.indexOf("/by ");
-                Integer by = index + 4;
-                storedList.add(new Deadline(userCommand.substring(9, index-1), userCommand.substring(by)));
-                System.out.println(storedList.getLast().addedString() + "\n");
-            } else if (userCommand.startsWith("event ")) {
-                int index = userCommand.indexOf("/at ");
-                Integer at = index + 4;
-                storedList.add(new Event(userCommand.substring(6,  index-1), userCommand.substring(at)));
-                System.out.println(storedList.getLast().addedString() + "\n");
-            } else {
-                throw new DukeException(userCommand);
-                //storedList.add(new Task(userCommand));
-                //System.out.println(storedList.getLast().addedString() + "\n");
-            }
-            userCommand = scanner.nextLine();
-        }
-        dukeExit();
-    }
-     */
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         welcomeGreet();
@@ -167,6 +138,8 @@ public class Duke {
                     markAsNotDone(parseInt(splitInput[1]));
                 } else if (splitInput[0].equals("mark") || splitInput[0].equals("unmark") && splitInput.length == 1) {
                     throw new DukeException("To check off tasks, indicate the index of task correctly using an integer!\n");
+                } else if (splitInput.length == 2 && splitInput[0].equals("delete") && isNumeric(splitInput[1])) {
+                    deleteTask(parseInt(splitInput[1]));
                 } else if (splitInput[0].equals("todo")) {
                     addTodo(splitInput);
                 } else if (splitInput[0].equals("deadline")) {
