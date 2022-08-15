@@ -23,48 +23,48 @@ public class Duke {
         while (!current.equals("bye")) {
             String[] splitString = current.split(" ");
             String command = splitString[0];
-            switch (command) {
-            case "list":
-                printTasks();
-                break;
-            case "mark":
-                int taskIdToMark = Integer.parseInt(splitString[1]);
-                changeTaskStatus(taskIdToMark, true);
-                break;
-            case "unmark":
-                int taskIdToUnmark = Integer.parseInt(splitString[1]);
-                changeTaskStatus(taskIdToUnmark, false);
-                break;
-            case "todo":
-                String[] descTodo = Arrays.copyOfRange(splitString, 1, splitString.length);
-                current = String.join(" ", descTodo);
-                Task todoTask = new Todo(current);
-                addTask(todoTask);
-                break;
-            case "deadline":
-                String[] descDeadline = Arrays.copyOfRange(splitString, 1, splitString.length);
-                current = String.join(" ", descDeadline);
-
-                String descD = current.split("/")[0].trim();
-                String[] byDArray = current.split("/")[1].split(" ");
-                String byD = String.join(" ", Arrays.copyOfRange(byDArray, 1, byDArray.length));
-                Task deadlineTask = new Deadline(descD, byD);
-                addTask(deadlineTask);
-                break;
-            case "event":
-                String[] descEvent = Arrays.copyOfRange(splitString, 1, splitString.length);
-                current = String.join(" ", descEvent);
-                String descE = current.split("/")[0].trim();
-                String[] atEArray = current.split("/")[1].split(" ");
-                String atE = String.join(" ", Arrays.copyOfRange(atEArray, 1, atEArray.length));
-                Task eventTask = new Event(descE, atE);
-                addTask(eventTask);
-                break;
-            default:
+            try {
+                switch (command) {
+                case "list":
+                    printTasks();
+                    break;
+                case "mark":
+                    int taskIdToMark = Integer.parseInt(splitString[1]);
+                    changeTaskStatus(taskIdToMark, true);
+                    break;
+                case "unmark":
+                    int taskIdToUnmark = Integer.parseInt(splitString[1]);
+                    changeTaskStatus(taskIdToUnmark, false);
+                    break;
+                case "todo":
+                    String[] descTodo = Arrays.copyOfRange(splitString, 1, splitString.length);
+                    current = String.join(" ", descTodo);
+                    Task todoTask = new Todo(current);
+                    addTask(todoTask);
+                    break;
+                case "deadline":
+                    String[] descDeadline = Arrays.copyOfRange(splitString, 1, splitString.length);
+                    current = String.join(" ", descDeadline);
+                    String descD = current.split("/by")[0].trim();
+                    String byD = current.split("/by")[1].trim();
+                    Task deadlineTask = new Deadline(descD, byD);
+                    addTask(deadlineTask);
+                    break;
+                case "event":
+                    String[] descEvent = Arrays.copyOfRange(splitString, 1, splitString.length);
+                    current = String.join(" ", descEvent);
+                    String descE = current.split("/at")[0].trim();
+                    String atE = current.split("/at")[1].trim();
+                    Task eventTask = new Event(descE, atE);
+                    addTask(eventTask);
+                    break;
+                default:
+                    throw new DukeException("I'm sorry, but I don't know what that means!");
+                }
+            } catch (Exception e) {
                 System.out.println(line);
-                System.out.println("OOPS!!! I'm sorry, but I don't know what that means :<");
+                System.out.println("OOPS!!! " + e.getMessage());
                 System.out.println(line);
-                break;
             }
 
             current = sc.nextLine();
