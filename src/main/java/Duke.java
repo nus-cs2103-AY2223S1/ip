@@ -16,24 +16,38 @@ public class Duke {
             if (input.equals("list")) {
                 System.out.println("Here are the tasks in your list:");
                 for (int i = 0; i < list.size(); i++) {
-                    System.out.printf("%d.[%s] %s\n", i + 1, list.get(i).getStatusIcon(),
-                            list.get(i).description);
+                    System.out.printf("%d.%s\n", i + 1, list.get(i));
                 }
             } else if (input.matches("^mark \\d+$")) {
                 Task item = list.get(Integer.parseInt(input.substring(5)) - 1);
                 item.markDone();
                 System.out.println("Nice! I've marked this task as done:");
-                System.out.printf("  [%s] %s\n", item.getStatusIcon(), item.description);
+                System.out.println("  " + item);
             } else if (input.matches("^unmark \\d+$")) {
                 Task item = list.get(Integer.parseInt(input.substring(7)) - 1);
                 item.markNotDone();
                 System.out.println("OK, I've marked this task as not done yet:");
-                System.out.printf("  [%s] %s\n", item.getStatusIcon(), item.description);
+                System.out.println("  " + item);
             } else if (input.equals("bye")) {
                 break;
             } else {
-                list.add(new Task(input));
-                System.out.println("added: " + input);
+                Task task;
+                if (input.startsWith("todo")) {
+                    task = new Todo(input.substring(5));
+                } else if (input.startsWith("deadline")) {
+                    String[] split = input.substring(9).split(" /by ");
+                    task = new Deadline(split[0], split[1]);
+                } else if (input.startsWith("event")) {
+                    String[] split = input.substring(6).split(" /at ");
+                    task = new Event(split[0], split[1]);
+                } else {
+                    task = new Task(input);
+                }
+
+                list.add(task);
+                System.out.println("Got it. I've added this task:");
+                System.out.println("  " + task);
+                System.out.println("Now you have " + list.size() + " tasks in the list.");
             }
         }
 
