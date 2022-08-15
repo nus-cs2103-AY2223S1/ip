@@ -7,21 +7,23 @@ import static java.lang.Integer.parseInt;
 
 public class Duke {
 
-    //Duke Start
-    protected static final String LOGO = " ____        _        \n"
+    public enum Command {BYE, LIST, MARK, UNMARK, TODO, EVENT, DEADLINE, DELETE}
+
+    private static final String LOGO = " ____        _        \n"
                                        + "|  _ \\ _   _| | _____ \n"
                                        + "| | | | | | | |/ / _ \\\n"
                                        + "| |_| | |_| |   <  __/\n"
                                        + "|____/ \\__,_|_|\\_\\___|\n";
-    protected static final String WELCOME_GREET = "Hello from\n" + LOGO
-                + "\nI am you personal task tracking assistant!\nWhat can I do for you today?\n";
-    protected static final LinkedList<Task> TASK_LIST = new LinkedList<>();
+    private static final String WELCOME_GREET = "Hello there! I am\n" + LOGO
+                + "\nyour personal task tracking assistant!\nWhat can I do for you today?\n";
+    private static final String EXIT_GREET = "Bye. Hope to see you again soon!";
+    private static final LinkedList<Task> TASK_LIST = new LinkedList<>();
 
-    public static void welcomeGreet() {
+    private static void welcomeGreet() {
         System.out.println(WELCOME_GREET);
     }
-    public static void dukeExit() {
-       System.out.println("Bye. Hope to see you again soon!");
+    public static void exitGreet() {
+       System.out.println(EXIT_GREET);
     }
 
     //General Helpers
@@ -36,6 +38,7 @@ public class Duke {
         }
         return -1;
     }
+    //
 
     // List Helpers
     public static void printList() {
@@ -46,77 +49,74 @@ public class Duke {
         }
         System.out.println("\n");
     }
-    public static void markAsDone(int index) {
-        if (index > TASK_LIST.size() || index < 1) {
+    public static void taskTracker(int index, Command cmd) {
+        if (index >= TASK_LIST.size() || index < 0) {
             throw new DukeException("Your task list currently does not have a task at this index.\n");
         }
-        Task task = TASK_LIST.get(index-1);
-        task.markAsDone();
-    }
-    public static void markAsNotDone(int index) {
-        if (index > TASK_LIST.size() || index < 1) {
-            throw new DukeException("Your task list currently does not have a task at this index.\n");
+        Task task = TASK_LIST.get(index);
+        switch (cmd) {
+            case MARK:
+                task.done();
+                break;
+            case UNMARK:
+                task.notDone();
+                break;
+            case DELETE:
+                TASK_LIST.remove(index);
+                System.out.println("Noted. I've removed this task:\n "
+                                    + task.toString()
+                                    + "\nNow you have " + TASK_LIST.size() + " tasks in the list.\n");
         }
-        Task task = TASK_LIST.get(index-1);
-        task.markAsNotDone();
     }
+    public static void taskAdder(String[] userInput, Command taskType) {
+        int len = userInput.length;
+        Task task = null;
 
-    // Task Helpers
-    public static void addTask(Task task) {
+        switch (taskType) {
+            case TODO:
+                String todoName = String.join(" ", Arrays.copyOfRange(userInput, 1, len));
+                if (todoName.equals("")) {
+                    throw new DukeException("OOPS!!! The description of a todo cannot be empty.\n");
+                }
+                task = new Todo(todoName);
+                break;
+            case DEADLINE:
+                int byIndex = timeFinder(userInput);
+                if (byIndex == -1) {
+                    throw new DukeException("OOPS!!! A deadline task needs a deadline date/time. Use the /by command after the name of the task to set its deadline\n");
+                }
+                String deadlineName = String.join(" ", Arrays.copyOfRange(userInput, 1, byIndex));
+                if (deadlineName.equals("")) {
+                    throw new DukeException("OOPS!!! The description of a deadline task cannot be empty.\n");
+                }
+                String by = String.join(" ", Arrays.copyOfRange(userInput, byIndex + 1, len));
+                if (by.equals("")) {
+                    throw new DukeException("OOPS!!! The deadline of the task cannot be empty.\n");
+                }
+                task = new Deadline(deadlineName, by);
+                break;
+            case EVENT:
+                int atIndex = timeFinder(userInput);
+                if (atIndex == -1) {
+                    throw new DukeException("OOPS!!! An event task needs a at date/time. Use the /at command after the name of the task to set its date/time.\n");
+                }
+                String eventName = String.join(" ", Arrays.copyOfRange(userInput, 1, atIndex));
+                if (eventName.equals("")) {
+                    throw new DukeException("OOPS!!! The description of an event cannot be empty.\n");
+                }
+                String at = String.join(" ", Arrays.copyOfRange(userInput, atIndex + 1, len));
+                if (at.equals("")) {
+                    throw new DukeException("OOPS!!! The date/time of the event cannot be empty.\n");
+                }
+                task = new Event(eventName, at);
+                break;
+        }
         TASK_LIST.add(task);
         System.out.println("Got it. I've added this task:\n "
                 + task.toString()
                 + "\nNow you have " + TASK_LIST.size() + " tasks in the list.\n");
     }
-
-    public static void deleteTask(int index) {
-        if (index > TASK_LIST.size() || index < 1) {
-            throw new DukeException("Your task list currently does not have a task at this index.\n");
-        }
-        Task task = TASK_LIST.remove(index-1);
-        System.out.println("Noted. I've removed this task:\n "
-                + task.toString()
-                + "\nNow you have " + TASK_LIST.size() + " tasks in the list.\n");
-    }
-
-    public static void addTodo(String[] userInput) {
-        int len = userInput.length;
-        String todoName = String.join(" ", Arrays.copyOfRange(userInput, 1, len));
-        if (todoName.equals("")) {
-            throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.\n");
-        }
-        addTask(new Todo(todoName));
-    }
-    public static void addDeadline(String[] userInput) {
-        int byIndex = timeFinder(userInput);
-        if (byIndex == -1) {
-            throw new DukeException("☹ OOPS!!! A deadline task needs a deadline date/time. Use the /by command after the name of the task to set its deadline\n");
-        }
-        String deadlineName = String.join(" ", Arrays.copyOfRange(userInput, 1, byIndex));
-        if (deadlineName.equals("")) {
-            throw new DukeException("☹ OOPS!!! The description of a deadline task cannot be empty.\n");
-        }
-        String by = String.join(" ", Arrays.copyOfRange(userInput, byIndex + 1, userInput.length));
-        if (by.equals("")) {
-            throw new DukeException("☹ OOPS!!! The deadline of the task cannot be empty.\n");
-        }
-        addTask(new Deadline(deadlineName, by));
-    }
-    public static void addEvent(String[] userInput) {
-        int atIndex = timeFinder(userInput);
-        if (atIndex == -1) {
-            throw new DukeException("☹ OOPS!!! An event task needs a at date/time. Use the /at command after the name of the task to set its date/time.\n");
-        }
-        String eventName = String.join(" ", Arrays.copyOfRange(userInput, 1, atIndex));
-        if (eventName.equals("")) {
-            throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.\n");
-        }
-        String at = String.join(" ", Arrays.copyOfRange(userInput, atIndex + 1, userInput.length));
-        if (at.equals("")) {
-            throw new DukeException("☹ OOPS!!! The date/time of the event cannot be empty.\n");
-        }
-        addTask(new Event(eventName, at));
-    }
+    //
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -125,29 +125,33 @@ public class Duke {
         while (scanner.hasNext()) {
             String userInput = scanner.nextLine();
             String[] splitInput = userInput.split(" ");
+            int len = splitInput.length;
+
             try {
                 if (userInput.equals("bye")) {
-                    dukeExit();
+                    exitGreet();
                     scanner.close();
                     break;
                 } else if (userInput.equals("list")) {
                     printList();
-                } else if (splitInput.length == 2 && splitInput[0].equals("mark") && isNumeric(splitInput[1])) {
-                    markAsDone(parseInt(splitInput[1]));
-                } else if (splitInput.length == 2 && splitInput[0].equals("unmark") && isNumeric(splitInput[1])) {
-                    markAsNotDone(parseInt(splitInput[1]));
-                } else if (splitInput[0].equals("mark") || splitInput[0].equals("unmark") && splitInput.length == 1) {
-                    throw new DukeException("To check off tasks, indicate the index of task correctly using an integer!\n");
-                } else if (splitInput.length == 2 && splitInput[0].equals("delete") && isNumeric(splitInput[1])) {
-                    deleteTask(parseInt(splitInput[1]));
+                } else if (len == 2 && splitInput[0].equals("mark") && isNumeric(splitInput[1])) {
+                    taskTracker(parseInt(splitInput[1]) - 1, Command.MARK);
+                } else if (len == 2 && splitInput[0].equals("unmark") && isNumeric(splitInput[1])) {
+                    taskTracker(parseInt(splitInput[1]) - 1, Command.UNMARK);
+                } else if (splitInput[0].equals("mark") || splitInput[0].equals("unmark") && len == 1) {
+                    throw new DukeException("To check off tasks, indicate the index of the task correctly using an integer!\n");
+                } else if (len == 2 && splitInput[0].equals("delete") && isNumeric(splitInput[1])) {
+                    taskTracker(parseInt(splitInput[1]) - 1, Command.DELETE);
+                } else if (splitInput[0].equals("delete") && splitInput.length == 1) {
+                    throw new DukeException("To delete tasks, indicate the index of the task correctly using an integer!\n");
                 } else if (splitInput[0].equals("todo")) {
-                    addTodo(splitInput);
+                    taskAdder(splitInput, Command.TODO);
                 } else if (splitInput[0].equals("deadline")) {
-                    addDeadline(splitInput);
+                    taskAdder(splitInput, Command.DEADLINE);
                 } else if (splitInput[0].equals("event")) {
-                    addEvent(splitInput);
+                    taskAdder(splitInput, Command.EVENT);
                 } else {
-                    throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(\n");
+                    throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(\n");
                 }
             } catch (DukeException error) {
                 System.out.println(error.getMessage());

@@ -1,11 +1,11 @@
-Hello from
+Hello there! I am
  ____        _
 |  _ \ _   _| | _____
 | | | | | | | |/ / _ \
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
-I am you personal task tracking assistant!
+your personal task tracking assistant!
 What can I do for you today?
 
 Got it. I've added this task:
@@ -26,13 +26,13 @@ My List Of Tasks :D
 3. [T][ ] plan for next semester
 
 
-☹ OOPS!!! I'm sorry, but I don't know what that means :-(
+OOPS!!! I'm sorry, but I don't know what that means :-(
 
-☹ OOPS!!! The description of a todo cannot be empty.
+OOPS!!! The description of a todo cannot be empty.
 
-☹ OOPS!!! An event task needs a at date/time. Use the /at command after the name of the task to set its date/time.
+OOPS!!! An event task needs a at date/time. Use the /at command after the name of the task to set its date/time.
 
-☹ OOPS!!! The description of a deadline task cannot be empty.
+OOPS!!! The description of a deadline task cannot be empty.
 
 Got it. I've added this task:
  [D][ ] sign up for art workshop (by: Friday 5pm)
@@ -51,17 +51,17 @@ My List Of Tasks :D
 
 
 Nice! I've marked this task as done:
- [X] plan for next semester
+ [T][X] plan for next semester
 
 Your task list currently does not have a task at this index.
 
 Nice! I've marked this task as done:
- [X] sign up for art workshop
+ [D][X] sign up for art workshop (by: Friday 5pm)
 
 Nice! I've marked this task as done:
- [X] coding project homework
+ [D][X] coding project homework (by: 16 Aug)
 
-To check off tasks, indicate the index of task correctly using an integer!
+To check off tasks, indicate the index of the task correctly using an integer!
 
 My List Of Tasks :D
 1. [E][ ] project meeting (at: Aug 15th 3-4pm)
@@ -72,7 +72,7 @@ My List Of Tasks :D
 
 
 OK, I've marked this task as not done yet:
- [ ] plan for next semester
+ [T][ ] plan for next semester
 
 My List Of Tasks :D
 1. [E][ ] project meeting (at: Aug 15th 3-4pm)
@@ -81,5 +81,18 @@ My List Of Tasks :D
 4. [D][X] sign up for art workshop (by: Friday 5pm)
 5. [T][ ] compile notes
 
+
+Noted. I've removed this task:
+ [T][ ] plan for next semester
+Now you have 4 tasks in the list.
+
+My List Of Tasks :D
+1. [E][ ] project meeting (at: Aug 15th 3-4pm)
+2. [D][X] coding project homework (by: 16 Aug)
+3. [D][X] sign up for art workshop (by: Friday 5pm)
+4. [T][ ] compile notes
+
+
+To delete tasks, indicate the index of the task correctly using an integer!
 
 Bye. Hope to see you again soon!

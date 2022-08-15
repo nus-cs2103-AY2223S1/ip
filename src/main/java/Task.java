@@ -1,4 +1,4 @@
-public class Task {
+abstract class Task {
     private String taskDescription;
     private boolean isDone;
 
@@ -9,17 +9,14 @@ public class Task {
 
     public void markAsDone() {
         this.isDone = true;
-        System.out.println("Nice! I've marked this task as done:\n [X] " + this.taskDescription + "\n");
     }
 
     public void markAsNotDone() {
         this.isDone = false;
-        System.out.println("OK, I've marked this task as not done yet:\n [ ] " + this.taskDescription + "\n");
     }
 
-    public String addedString() {
-        return "added: " + this.taskDescription;
-    }
+    abstract void done();
+    abstract void notDone();
 
     public String getStatusIcon() {
         return (isDone ? "X" : " ");
