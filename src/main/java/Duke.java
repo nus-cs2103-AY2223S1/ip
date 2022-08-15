@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Duke {
     private static ArrayList<Task> userInputHistory = new ArrayList<>();
     enum CommandType {TODO, MARK, UNMARK, DEADLINE, EVENT, BYE, LIST};
-    enum ExitCommandType {QUIT, EXIT, BYE};
     private static void greetUser() {
         String logo = "_______     _\n" +
                 "|  ___|    | |\n" +
@@ -154,14 +153,27 @@ public class Duke {
         addTaskToHistory(description);
     }
 
-    private static String getCommand(String userInput) throws DukeException{
-        int firstWhiteSpace = userInput.indexOf(" ");
-        String command = userInput.substring(0, firstWhiteSpace);
+    /**
+     * Return enum command type used
+     * @param userInput
+     * @return
+     * @throws DukeException
+     */
+    private static CommandType getCommand(String userInput) throws DukeException{
+        int firstWhiteSpace = userInput.trim().indexOf(" ");
+        String command;
+        CommandType commandGiven;
+        command = firstWhiteSpace < 0 ? userInput: userInput.trim().substring(0, firstWhiteSpace);
         if (command.equals("")) {
-            throw new DukeException("no valid command given");
+            throw new DukeException("no command given\n>>");
         } else {
-            return command;
+            for (CommandType c : CommandType.values()) {
+                if(c.name().equalsIgnoreCase(command)) {
+                    return c;
+                }
+            }
         }
+        return null;
     }
 
     /**
@@ -169,27 +181,32 @@ public class Duke {
      * @param userInput
      */
     private static void handleInput(String userInput) throws DukeException{
-        String command = getCommand(userInput);
-
-        if (userInput.equals("bye") || userInput.equals("exit") || userInput.equals("quit")) {
-            //exit
-            System.out.println("Thank you for swinging by :)");
-            System.exit(0);
-        } else if (userInput.equals("list")) {
-            showHistory();
-        } else if (userInput.startsWith("mark")) {
-            markTask(getTaskNumber(userInput));
-        } else if (userInput.startsWith("unmark")) {
-            unmarkTask(getTaskNumber(userInput));
-        } else if(userInput.startsWith("todo")) {
-            handleTask(userInput);
-        } else if (userInput.startsWith("event")) {
-            handleEvent(userInput);
-        } else if (userInput.startsWith("deadline")) {
-            handleDeadline(userInput);
-        }
-        else {
+        CommandType command = getCommand(userInput);
+        if (command == null) {
             throw new DukeException( "Enter a valid command (todo, event, deadline, list, mark, unmark, bye)\n>>");
+        } else {
+            switch (command) {
+                case BYE:
+                    //exit
+                    System.out.println("Thank you for swinging by :)");
+                    System.exit(0);
+                    break;
+                default:
+                    throw new DukeException("Enter a valid command (todo, event, deadline, list, mark, unmark, bye)\n>>");
+            }
+            if (userInput.equals("list")) {
+                showHistory();
+            } else if (userInput.startsWith("mark")) {
+                markTask(getTaskNumber(userInput));
+            } else if (userInput.startsWith("unmark")) {
+                unmarkTask(getTaskNumber(userInput));
+            } else if (userInput.startsWith("todo")) {
+                handleTask(userInput);
+            } else if (userInput.startsWith("event")) {
+                handleEvent(userInput);
+            } else if (userInput.startsWith("deadline")) {
+                handleDeadline(userInput);
+            }
         }
     }
 
