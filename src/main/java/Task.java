@@ -15,12 +15,16 @@ public class Task {
         this.done = false;
     }
 
+    public char getChar() {
+        return 'T';
+    }
+
     @Override
     public String toString() {
         if (done) {
-            return "[X] " + this.taskString;
+            return "[" + this.getChar() + "][X] " + this.taskString;
         } else {
-            return "[ ] " + this.taskString;
+            return "[" + this.getChar() + "][ ] " + this.taskString;
         }
     }
 }
