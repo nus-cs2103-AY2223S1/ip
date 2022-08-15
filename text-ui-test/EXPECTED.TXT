@@ -1,3 +1,25 @@
 Hello! I'm Duke
 What can I do for you?
 
+task added[T][ ]  borrow book
+
+task added[D][ ]  return book  (by:  Sunday)
+
+task added[E][ ]  project meeting  (at:  Mon 2-4pm)
+
+1.[T][ ]  borrow book
+2.[D][ ]  return book  (by:  Sunday)
+3.[E][ ]  project meeting  (at:  Mon 2-4pm)
+
+marked as done: [T][X]  borrow book
+
+1.[T][X]  borrow book
+2.[D][ ]  return book  (by:  Sunday)
+3.[E][ ]  project meeting  (at:  Mon 2-4pm)
+
+marked as undone: [T][ ]  borrow book
+
+1.[T][ ]  borrow book
+2.[D][ ]  return book  (by:  Sunday)
+3.[E][ ]  project meeting  (at:  Mon 2-4pm)
+
