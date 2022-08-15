@@ -3,7 +3,7 @@ public class Duke {
     private Task[] tasks;
     private int currentTaskCount = 0;
 
-    private final String horizontalLine = "------------------------------------------------------------\n";
+    private final String horizontalLine = "------------------------------------------------------\n";
     Duke() {
         tasks = new Task[100];
     }
@@ -120,7 +120,7 @@ public class Duke {
                     System.out.println(messageToPrint);
                 }
             } else {
-                System.out.printf("%sEh? Idk what talking you? \n%s", this.horizontalLine, this.horizontalLine);
+                System.out.printf("%sWhat talking you? \n%s", this.horizontalLine, this.horizontalLine);
                 Task newTask = new Task(input);
                 this.addTask(newTask);
             }

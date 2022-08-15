@@ -1,7 +1,38 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+------------------------------------------------------
+Eh hello, my name is Uncle Cheong.
+What you want?
+------------------------------------------------------
 
+------------------------------------------------------
+Swee lah! I added this task liao:
+[E][ ]  exam  (at:  noon)
+------------------------------------------------------
+Boss, you got 1 tasks now
+
+------------------------------------------------------
+Swee lah! I added this task liao:
+[D][ ]  shower  (by:  5pm)
+------------------------------------------------------
+Boss, you got 2 tasks now
+
+------------------------------------------------------
+Boss ah, this one your tasks:
+1. [E][ ]  exam  (at:  noon)
+2. [D][ ]  shower  (by:  5pm)
+Boss, you got 2 tasks now
+------------------------------------------------------
+Swee lah! Your task done liao:
+[E][X]  exam  (at:  noon)
+------------------------------------------------------
+Boss ah, this one your tasks:
+1. [E][X]  exam  (at:  noon)
+2. [D][ ]  shower  (by:  5pm)
+Boss, you got 2 tasks now
+------------------------------------------------------
+Swee lah! Your task done liao:
+[D][X]  shower  (by:  5pm)
+Eh? Not done yet? Okay I change liao:
+[E][ ]  exam  (at:  noon)
+------------------------------------------------------
+Eh you leaving me so soon?
+------------------------------------------------------
