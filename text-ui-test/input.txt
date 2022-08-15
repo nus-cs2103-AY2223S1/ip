@@ -3,4 +3,10 @@ do 2
 list
 do 3
 list
+mark 2
+mark 1
+unmark 2
+mark 1
+unmark 3
+list
 bye
