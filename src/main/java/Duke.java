@@ -4,12 +4,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
-    private static String receiveCommand() {
-        Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
-
-        return input;
-    }
 
     private static void bye() {
         System.out.println("\tGoodbye! See you soon!\n" +
@@ -53,8 +47,9 @@ public class Duke {
 
         Task[] taskList = new Task[100];
 
+        Scanner scanner = new Scanner(System.in);
         while(true) {
-            String input = receiveCommand();
+            String input = scanner.nextLine();
             if (input.equals("bye")) {
                 bye();
                 break;
@@ -64,7 +59,7 @@ public class Duke {
                 mark(taskList, input.substring(5));
             } else if (input.startsWith("unmark")) {
                 unmark(taskList, input.substring(7));
-            } else if (input.startsWith("todo ")) {
+            } else if (input.startsWith("todo")) {
                 add(new Todo(input.substring(5)), taskList);
             } else if (input.startsWith("deadline")) {
                 int sep = input.indexOf("/by");
