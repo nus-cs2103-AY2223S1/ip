@@ -107,7 +107,7 @@ public class Duke {
                 System.out.println("-----------------------------------------\n");
             }
             else if (command.toLowerCase().equals("deadline")) {
-                String[] details = description.split(" /by ");
+                String[] details = description.substring(1).split(" /by ");
                 Deadline deadline = new Deadline(details[0], details[1]);
                 tasks.add(deadline);
 
@@ -118,7 +118,7 @@ public class Duke {
                 System.out.println("-----------------------------------------\n");
             }
             else if (command.toLowerCase().equals("event")) {
-                String[] details = description.split(" /at ");
+                String[] details = description.substring(1).split(" /at ");
                 Event event = new Event(details[0], details[1]);
                 tasks.add(event);
 
