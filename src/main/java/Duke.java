@@ -1,6 +1,8 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 public class Duke {
     private static String DIVIDER = "-------------------------------------\n";
+    private static ArrayList<String> tasks = new ArrayList<String>();
 
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -24,18 +26,30 @@ public class Duke {
     // handler method handles user input and outputs accordingly
     private static void handler() {
         String command;
-        String message;
+        String text;
         Scanner sc = new Scanner(System.in);
-        command = sc.nextLine();
+        command = sc.next();
 
         switch(command) {
             case "bye":
-                message = "Bye. Hope to see you again soon!\n";
-                System.out.println(DIVIDER + message + DIVIDER);
+                System.out.println(DIVIDER + "Bye. Hope to see you again soon!\n" + DIVIDER);
+                break;
+            case "list":
+                if (tasks.isEmpty()) {
+                    System.out.println(DIVIDER + "List is empty\n" + DIVIDER);
+                } else {
+                    System.out.print(DIVIDER);
+                    for (int i = 0; i < tasks.size(); i++) {
+                        System.out.println((i+1) + ". " + tasks.get(i));
+                    }
+                    System.out.println(DIVIDER);
+                }
+                handler();
                 break;
             default:
-                message = command + "\n";
-                System.out.println(DIVIDER + message + DIVIDER);
+                text = command;
+                tasks.add(text);
+                System.out.println(DIVIDER + "added: " + text + "\n" + DIVIDER);
                 handler();
         }
     }
