@@ -28,6 +28,11 @@ public class Duke {
                 item.markNotDone();
                 System.out.println("OK, I've marked this task as not done yet:");
                 System.out.println("  " + item);
+            } else if (input.matches("^delete \\d+$")) {
+                Task item = list.remove(Integer.parseInt(input.substring(7)) - 1);
+                System.out.println("Noted. I've removed this task: ");
+                System.out.println("  " + item);
+                System.out.println("Now you have " + list.size() + " tasks in the list.");
             } else if (input.equals("bye")) {
                 break;
             } else {
@@ -43,8 +48,7 @@ public class Duke {
                             throw new DukeException(
                                     "The description of a deadline cannot be empty.");
                         } else if (!input.contains("/by")) {
-                            throw new DukeException(
-                                    "A deadline must contain a /by");
+                            throw new DukeException("A deadline must contain a /by");
                         }
                         String[] split = input.substring(9).split(" /by ");
                         task = new Deadline(split[0], split[1]);
@@ -52,8 +56,7 @@ public class Duke {
                         if (input.length() < 7) {
                             throw new DukeException("The description of an event cannot be empty.");
                         } else if (!input.contains("/at")) {
-                            throw new DukeException(
-                                    "An event must contain an /at");
+                            throw new DukeException("An event must contain an /at");
                         }
                         String[] split = input.substring(6).split(" /at ");
                         task = new Event(split[0], split[1]);
