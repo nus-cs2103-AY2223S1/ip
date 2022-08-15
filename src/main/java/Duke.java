@@ -1,10 +1,11 @@
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
 public class Duke {
     public static void main(String[] args) {
         System.out.println("Hello! I'm Duke What can I do for you?");
-        Task[] array = new Task[100];
+        ArrayList<Task> array = new ArrayList<>();
         int counter = 0;
         boolean flag = false;
         Scanner in = new Scanner(System.in);

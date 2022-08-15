@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class DukeOperations {
     public void exit() {
         System.out.println("_________________________________________________________________________");
@@ -5,18 +7,18 @@ public class DukeOperations {
         System.out.println("_________________________________________________________________________");
     }
 
-    public void displayList(Task[] array) {
+    public void displayList(ArrayList<Task> array) {
         System.out.println("_________________________________________________________________________");
         for (int i = 0; i < 100; i++) {
-            if (array[i] != null) {
+            if (array.get(i) != null) {
                 int j = i + 1;
-                System.out.println(j + ". " + array[i].toString());
+                System.out.println(j + ". " + array.get(i).toString());
             }
         }
         System.out.println("_________________________________________________________________________");
     }
 
-    public void todo(Task[] array, String[] arr, int counter) throws DukeException{
+    public void todo(ArrayList<Task> array, String[] arr, int counter) throws DukeException{
         if (arr.length <= 1) {
             throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
         }
