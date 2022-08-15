@@ -1,11 +1,15 @@
-do 1
-do 2
 list
-do 3
+todo todo1
+deadline deadline1 /by Mon
+list
+event event1 /at Tues
+todo todo2
 list
 mark 2
 mark 1
+list
 unmark 2
+list
 mark 1
 unmark 3
 list

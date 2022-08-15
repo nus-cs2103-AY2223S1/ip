@@ -10,7 +10,7 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println(logo);
         System.out.println("Hello! I'm Duke");
-        System.out.println("What can I do for you?");
+        System.out.println("What can I do for you?\n");
 
         Scanner sc = new Scanner(System.in);
         ArrayList<Task> arrayList = new ArrayList<>();
@@ -29,7 +29,7 @@ public class Duke {
                     System.out.println("Bye. Hope to see you again soon!");
                     break loop;
                 case "list":
-                    String message = "";
+                    String message = "Here are the tasks in your list:\n";
                     int length = arrayList.size();
                     for(int i = 0; i < length; i++) {
                         message += String.format("%d. " + arrayList.get(i).toString() + "\n", i + 1);
@@ -56,10 +56,35 @@ public class Duke {
                         System.out.println("OK, I've marked this task as not done yet:\n" + unMarkTask.toString() + "\n");
                     }
                     break;
+                case "todo":
+                    Todo todo = new Todo(detail);
+                    arrayList.add(todo);
+                    String todoMessage = "added: " + todo.toString() + "\n";
+                    todoMessage += String.format("Now, you have %d task(s) in the list.", arrayList.size());
+                    System.out.println(todoMessage + "\n");
+                    break;
+                case "deadline":
+                    String[] splitDetailDeadline = detail.split(" /by ", 2);
+                    String deadlineAction = splitDetailDeadline[0];
+                    String deadlineTime = splitDetailDeadline[1];
+                    Deadline deadline = new Deadline(deadlineAction, deadlineTime);
+                    arrayList.add(deadline);
+                    String deadlineMessage = "added: " + deadline.toString() + "\n";
+                    deadlineMessage += String.format("Now, you have %d task(s) in the list.", arrayList.size());
+                    System.out.println(deadlineMessage + "\n");
+                    break;
+                case "event":
+                    String[] splitDetailEvent = detail.split(" /at ", 2);
+                    String eventAction = splitDetailEvent[0];
+                    String eventTime = splitDetailEvent[1];
+                    Event event = new Event(eventAction, eventTime);
+                    arrayList.add(event);
+                    String eventMessage = "added: " + event.toString() + "\n";
+                    eventMessage += String.format("Now, you have %d task(s) in the list.", arrayList.size());
+                    System.out.println(eventMessage + "\n");
+                    break;
                 default:
-                    Task task = new Task(input);
-                    arrayList.add(task);
-                    System.out.println("added: " + task.toString() + "\n");
+                    System.out.println("Invalid input");
             }
         }
         sc.close();
