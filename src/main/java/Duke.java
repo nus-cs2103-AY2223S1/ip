@@ -33,6 +33,10 @@ public class Duke {
 
             switch (userQuery[0]) {
                 case "list":
+                    System.out.println("Here are your tasks that I have recorded:");
+                    if (taskCount == 0) {
+                        System.out.println("Congratulations, you don't need to do anything right now!");
+                    }
                     for (int i = 0; i < taskCount; i++) {
                         System.out.printf("%02d. %s\n", i + 1, taskList[i]);
                     }
@@ -45,6 +49,28 @@ public class Duke {
                     assert taskCount < TASKLIST_MAX_SIZE;
                     taskList[taskCount++] = new Task(userQuery[1]);
                     System.out.printf("Successfully added \"%s\" to your task list!\n", userQuery[1]);
+                    break;
+                case "mark":
+                    // TODO: Check for non-integer inputs.
+                    int markIndex = Integer.parseInt(userQuery[1]) - 1;
+                    if (markIndex >= taskCount || markIndex < 0) {
+                        System.out.println("I do not have a task with that number in my list.");
+                    } else {
+                        // TODO: What happens when the task is already marked?
+                        taskList[markIndex].setDone(true);
+                        System.out.printf("Noice! I've marked this task as done:\n  %s\n", taskList[markIndex]);
+                    }
+                    break;
+                case "unmark":
+                    // TODO: Check for non-integer inputs.
+                    int unmarkIndex = Integer.parseInt(userQuery[1]) - 1;
+                    if (unmarkIndex >= taskCount ||unmarkIndex < 0) {
+                        System.out.println("I do not have a task with that number in my list.");
+                    } else {
+                        // TODO: What happens when the task is not yet marked?
+                        taskList[unmarkIndex].setDone(false);
+                        System.out.printf("Alright, I've marked this task as not done:\n  %s\n", taskList[unmarkIndex]);
+                    }
                     break;
                 default:
                     System.out.println(UNKNOWN_COMMAND_MESSAGE);
