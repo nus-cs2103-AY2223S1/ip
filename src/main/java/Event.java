@@ -8,7 +8,8 @@ public class Event extends Task {
     public String getType() {
         return "E";
     }
-    public String getTiming() {
-        return this.timing;
+    @Override
+    public String getDescription() {
+        return super.getDescription() + "(at: " + this.timing + ")";
     }
 }

@@ -15,37 +15,40 @@ public class Duke {
         System.out.print(">> ");
         String command = input.nextLine();
         while (!command.equals("bye")) {
-            if (command.equals("list")) {
-                for (int pos = 0; pos < 100; pos++) {
-                    if (tasks[pos] == null) break;
-                    System.out.println(pos + 1 + ". " + getTaskDetails(pos));
-                }
-            } else if (command.startsWith("mark") || command.startsWith("unmark")) {
-                int pos = Integer.parseInt(command.split(" ")[1]) - 1;
-                if (tasks[pos] == null) {
-                    System.out.println("No such task.");
-                } else {
-                    if (command.startsWith("mark")) {
-                        tasks[pos].markAsDone();
-                    } else {
-                        tasks[pos].markAsUndone();
+            String cmdMain = command.split(" ", 2)[0];
+//            String cmdParams = command.split(" ", 2)[1];
+            switch (cmdMain) {
+                case "list":
+                    for (int pos = 0; pos < 100; pos++) {
+                        if (tasks[pos] == null) break;
+                        System.out.println(pos + 1 + ". " + getTaskDetails(pos));
                     }
-                    System.out.println(
-                            "Nice! I've marked this task as " +
-                                    (command.startsWith("mark") ? "done" : "undone") +
-                                    "\n" +
-                                    getTaskDetails(pos)
-                    );
-                }
-            } else {
-                System.out.println("Added: " + command);
-                for (int pos = 0; pos < 100; pos++) {
-                    if (tasks[pos] == null) {
-                        tasks[pos] = new ToDo(command);
-                        break;
+                    break;
+                case "mark":
+                case "unmark": {
+                        int pos = Integer.parseInt(command.split(" ", 2)[1]) - 1;
+                        if (cmdMain.equals("mark")) {
+                            tasks[pos].markAsDone();
+                        } else {
+                            tasks[pos].markAsUndone();
+                        }
+                        System.out.println(
+                                "Nice! I've marked this task as " +
+                                        (cmdMain.equals("mark") ? "done" : "undone") +
+                                        "\n" +
+                                        getTaskDetails(pos)
+                        );
+                    }
+                    break;
+                default:
+                    System.out.println("Added: " + command);
+                    for (int pos = 0; pos < 100; pos++) {
+                        if (tasks[pos] == null) {
+                            tasks[pos] = new ToDo(command);
+                            break;
+                        }
                     }
                 }
-            }
             System.out.print(">> ");
             command = input.nextLine();
         }
