@@ -9,36 +9,33 @@ import java.util.*;
  */
 public class Task {
     private String task;
-    private boolean done;
+    private String done;
     private String taskType;
 
     public Task(String task, String taskType) {
         this.task = task;
-        this.done = false;
+        this.done = "[ ]";
         this.taskType = taskType;
     }
 
     public String getTask() {
-        return this.task;
-    }
-
-    public String getTaskType() {
-        return this.taskType;
-    }
-
-    public String getTaskList() {
-        if (!this.done) {
-            return "[" + this.taskType + "]" + "[ ] " + this.task;
+        String header = this.taskType + this.done + " ";
+        if (taskType == "[T]") {
+            return header + this.task;
+        } else if (taskType == "[D]") {
+            String[] str = task.split("/by", 2);
+            return header + str[0] + "(by:" + str[1] + ")";
         } else {
-            return "[" + this.taskType + "]" +"[X] " + this.task;
+            String[] str = task.split("/at", 2);
+            return header + str[0] + "(at:" + str[1] + ")";
         }
     }
 
     public void mark() {
-        this.done = true;
+        this.done = "[ ]";
     }
 
     public void unmark() {
-        this.done = false;
+        this.done = "[X]";
     }
 }
