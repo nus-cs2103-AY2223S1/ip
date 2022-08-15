@@ -70,7 +70,7 @@ public class TaskList {
     /**
      * searches the taskList based on taskIndex
      * and deletes it
-     * @param int taskIndex
+     * @param taskIndex
      */
 
     public void deleteTask(int taskIndex) {
@@ -84,7 +84,7 @@ public class TaskList {
 
     /**
      * Adds a new task to the taskList
-     * @param Task t
+     * @param t of type Task
      */
 
     public void addTask(Task t) {
@@ -98,7 +98,7 @@ public class TaskList {
     /**
      * Populates a list of tasks that contain the keyword in it's description
      * And signposts the UI to display it nicely
-     * @param String keyword
+     * @param keyword
      */
     public void findTask(String keyword) {
         List<Task> tasksContainingKeyword = new ArrayList<>();
