@@ -51,6 +51,12 @@ public class Duke {
                     tasks.add(newTask);
                     prettyPrint("Got it. I've added this task:\n  " + newTask +
                             "\nNow you have " + tasks.size() + " tasks in the list.");
+                } else if (command[0].equalsIgnoreCase("delete")) {
+                    int index = Integer.parseInt(command[1]) - 1;
+                    Task task = tasks.get(index);
+                    tasks.remove(index);
+                    prettyPrint("Noted. I've removed this task:\n  " + task +
+                            "\nNow you have " + tasks.size() + " tasks in the list.");
                 } else {
                     throw new DukeException("I'm sorry, but I don't know what that means :-(");
                 }
