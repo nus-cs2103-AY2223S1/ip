@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Duke {
 
-    static ArrayList<String> listOfThings = new ArrayList<String>();
+    static ArrayList<Task> listOfThings = new ArrayList<Task>();
 
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -15,6 +15,8 @@ public class Duke {
         // Special Commands
         String BYE = "bye";
         String LIST = "list";
+        String MARK = "mark";
+        String UNMARK = "unmark";
 
         Scanner sc = new Scanner(System.in);
 
@@ -26,6 +28,12 @@ public class Duke {
                 break;
             } else if (userInput.equals(LIST)) {
                 ListOut();
+            } else if (userInput.substring(0, 4).equals(MARK)) {
+                int taskNum = Integer.valueOf(userInput.substring(5, 6)) - 1;
+                MarkTask(taskNum);
+            } else if (userInput.substring(0, 6).equals(UNMARK)) {
+                int taskNum = Integer.valueOf(userInput.substring(7, 8)) - 1;
+                UnmarkTask(taskNum);
             } else {
                 AddToList(userInput);
             }
@@ -35,7 +43,8 @@ public class Duke {
     }
 
     public static void AddToList(String str) {
-        listOfThings.add(str);
+        Task tempTask  = new Task(str);
+        listOfThings.add(tempTask);
         System.out.println("--------------------------------");
         System.out.println("added: " + str);
         System.out.println("--------------------------------");
@@ -45,8 +54,28 @@ public class Duke {
         int size = listOfThings.size();
         System.out.println("--------------------------------");
         for (int i = 0; i < size; i++) {
-            System.out.println((i + 1) + ". " + listOfThings.get(i));
+            System.out.println((i + 1) + ". [" +  listOfThings.get(i).getStatusIcon() + "] " +
+                    listOfThings.get(i).getDescription());
         }
+        System.out.println("--------------------------------");
+    }
+
+    public static void MarkTask(int taskNum) {
+        Task currentTask = listOfThings.get(taskNum);
+        currentTask.markAsDone();
+        System.out.println("--------------------------------");
+        System.out.println("Nice! I've marked this task as done:\n " + " [" + currentTask.getStatusIcon() + "] "
+                + currentTask.getDescription());
+        System.out.println("--------------------------------");
+
+    }
+
+    public static void UnmarkTask(int taskNum) {
+        Task currentTask = listOfThings.get(taskNum);
+        currentTask.markAsNotDone();
+        System.out.println("--------------------------------");
+        System.out.println("Ok, I've marked this task as not done yet:\n " + " [" + currentTask.getStatusIcon() + "] "
+                + currentTask.getDescription());
         System.out.println("--------------------------------");
     }
 
