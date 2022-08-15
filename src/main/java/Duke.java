@@ -49,15 +49,15 @@ public class Duke {
                     break;
 
                 case "todo":
-                    printMsg(ls.addTask(new Task(com[1], "T")));
+                    printMsg(ls.addTask(new Task(com[1], "[T]")));
                     break;
 
                 case "deadline":
-                    printMsg(ls.addTask(new Task(com[1], "D")));
+                    printMsg(ls.addTask(new Task(com[1], "[D]")));
                     break;
 
                 case "event":
-                    printMsg(ls.addTask(new Task(com[1], "E")));
+                    printMsg(ls.addTask(new Task(com[1], "[E]")));
                     break;
 
                 default:
