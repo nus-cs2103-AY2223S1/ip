@@ -40,7 +40,7 @@ public class Tumu {
                 "  █   █ █       █       █       █\n" +
                 "  █   █ █       █ ██▄██ █       █\n" +
                 "  █▄▄▄█ █▄▄▄▄▄▄▄█▄█   █▄█▄▄▄▄▄▄▄█\n\n";
-        String greetingMessage = "Hi! I am Tumu. Nice to meat you.\n" +
+        String greetingMessage = "Hi! I am Tumu. Nice to meet you!\n" +
                 "What is on your mind today?\n";
 
         System.out.println(logo + greetingMessage);
