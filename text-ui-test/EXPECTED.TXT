@@ -7,92 +7,87 @@ Hello there! I am
 
 your personal task tracking assistant!
 What can I do for you today?
-
+```````````````````````````````````````````````````````````````````
 Got it. I've added this task:
  [E][ ] project meeting (at: Aug 15th 3-4pm)
 Now you have 1 tasks in the list.
-
+```````````````````````````````````````````````````````````````````
 Got it. I've added this task:
  [D][ ] coding project homework (by: 16 Aug)
 Now you have 2 tasks in the list.
-
+```````````````````````````````````````````````````````````````````
 Got it. I've added this task:
  [T][ ] plan for next semester
 Now you have 3 tasks in the list.
-
+```````````````````````````````````````````````````````````````````
 My List Of Tasks :D
 1. [E][ ] project meeting (at: Aug 15th 3-4pm)
 2. [D][ ] coding project homework (by: 16 Aug)
 3. [T][ ] plan for next semester
-
-
-OOPS!!! I'm sorry, but I don't know what that means :-(
-
-OOPS!!! The description of a todo cannot be empty.
-
-OOPS!!! An event task needs a at date/time. Use the /at command after the name of the task to set its date/time.
-
-OOPS!!! The description of a deadline task cannot be empty.
-
+```````````````````````````````````````````````````````````````````
+Duke: OH NO!!! I'm sorry, but I don't know what that means :-(
+```````````````````````````````````````````````````````````````````
+Duke: OOPS!!! The description of a todo cannot be empty.todo
+```````````````````````````````````````````````````````````````````
+Duke: OOPS!!! An event task needs a at date/time. Use the /at command after the name of the task to set its date/time.
+```````````````````````````````````````````````````````````````````
+Duke: OOPS!!! The description of a deadline task cannot be empty.
+```````````````````````````````````````````````````````````````````
 Got it. I've added this task:
  [D][ ] sign up for art workshop (by: Friday 5pm)
 Now you have 4 tasks in the list.
-
+```````````````````````````````````````````````````````````````````
 Got it. I've added this task:
  [T][ ] compile notes
 Now you have 5 tasks in the list.
-
+```````````````````````````````````````````````````````````````````
 My List Of Tasks :D
 1. [E][ ] project meeting (at: Aug 15th 3-4pm)
 2. [D][ ] coding project homework (by: 16 Aug)
 3. [T][ ] plan for next semester
 4. [D][ ] sign up for art workshop (by: Friday 5pm)
 5. [T][ ] compile notes
-
-
+```````````````````````````````````````````````````````````````````
 Nice! I've marked this task as done:
  [T][X] plan for next semester
-
-Your task list currently does not have a task at this index.
-
+```````````````````````````````````````````````````````````````````
+Duke: Looks like your task list currently does not have a task at this index.
+```````````````````````````````````````````````````````````````````
 Nice! I've marked this task as done:
  [D][X] sign up for art workshop (by: Friday 5pm)
-
+```````````````````````````````````````````````````````````````````
 Nice! I've marked this task as done:
  [D][X] coding project homework (by: 16 Aug)
-
-To check off tasks, indicate the index of the task correctly using an integer!
-
+```````````````````````````````````````````````````````````````````
+Duke: To check off tasks, indicate the index of the task correctly using an integer!
+```````````````````````````````````````````````````````````````````
 My List Of Tasks :D
 1. [E][ ] project meeting (at: Aug 15th 3-4pm)
 2. [D][X] coding project homework (by: 16 Aug)
 3. [T][X] plan for next semester
 4. [D][X] sign up for art workshop (by: Friday 5pm)
 5. [T][ ] compile notes
-
-
+```````````````````````````````````````````````````````````````````
 OK, I've marked this task as not done yet:
  [T][ ] plan for next semester
-
+```````````````````````````````````````````````````````````````````
 My List Of Tasks :D
 1. [E][ ] project meeting (at: Aug 15th 3-4pm)
 2. [D][X] coding project homework (by: 16 Aug)
 3. [T][ ] plan for next semester
 4. [D][X] sign up for art workshop (by: Friday 5pm)
 5. [T][ ] compile notes
-
-
+```````````````````````````````````````````````````````````````````
 Noted. I've removed this task:
  [T][ ] plan for next semester
-Now you have 4 tasks in the list.
-
+Now you have 4 tasks in the list.to
+```````````````````````````````````````````````````````````````````
 My List Of Tasks :D
 1. [E][ ] project meeting (at: Aug 15th 3-4pm)
 2. [D][X] coding project homework (by: 16 Aug)
 3. [D][X] sign up for art workshop (by: Friday 5pm)
 4. [T][ ] compile notes
-
-
-To delete tasks, indicate the index of the task correctly using an integer!
-
+```````````````````````````````````````````````````````````````````
+Duke: To delete tasks, indicate the index of the task correctly using an integer!
+```````````````````````````````````````````````````````````````````
 Bye. Hope to see you again soon!
