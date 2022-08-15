@@ -10,12 +10,18 @@ public class Duke {
         ls.add(msg);
         System.out.println(modified);
     }
+    private static void display(ArrayList<String> ls) {
+        for (int i = 1; i <= ls.size(); i++) {
+            System.out.println(i + ". " + ls.get(i - 1));
+        }
+    }
     public static void main(String[] args) {
         System.out.println(line);
         System.out.println(greetings);
         System.out.println(line);
         Scanner sc = new Scanner(System.in);
         String exit_command = "bye";
+        String list_command = "list";
         boolean flag = true;
         while (flag) {
             String response = sc.nextLine();
@@ -23,7 +29,9 @@ public class Duke {
             if (response.toLowerCase().equals(exit_command)) {
                 flag = false;
                 System.out.println(exit_message);
-            } else {
+            } else if (response.toLowerCase().equals(list_command)) {
+                display(ls);
+            }else {
                 addToList(response);
             }
             System.out.println(line);
