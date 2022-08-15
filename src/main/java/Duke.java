@@ -32,22 +32,42 @@ public class Duke {
                 break;
             } else {
                 Task task;
-                if (input.startsWith("todo")) {
-                    task = new Todo(input.substring(5));
-                } else if (input.startsWith("deadline")) {
-                    String[] split = input.substring(9).split(" /by ");
-                    task = new Deadline(split[0], split[1]);
-                } else if (input.startsWith("event")) {
-                    String[] split = input.substring(6).split(" /at ");
-                    task = new Event(split[0], split[1]);
-                } else {
-                    task = new Task(input);
+                try {
+                    if (input.startsWith("todo")) {
+                        if (input.length() < 6) {
+                            throw new DukeException("The description of a todo cannot be empty.");
+                        }
+                        task = new Todo(input.substring(5));
+                    } else if (input.startsWith("deadline")) {
+                        if (input.length() < 10) {
+                            throw new DukeException(
+                                    "The description of a deadline cannot be empty.");
+                        } else if (!input.contains("/by")) {
+                            throw new DukeException(
+                                    "A deadline must contain a /by");
+                        }
+                        String[] split = input.substring(9).split(" /by ");
+                        task = new Deadline(split[0], split[1]);
+                    } else if (input.startsWith("event")) {
+                        if (input.length() < 7) {
+                            throw new DukeException("The description of an event cannot be empty.");
+                        } else if (!input.contains("/at")) {
+                            throw new DukeException(
+                                    "An event must contain an /at");
+                        }
+                        String[] split = input.substring(6).split(" /at ");
+                        task = new Event(split[0], split[1]);
+                    } else {
+                        throw new DukeException("I'm sorry, but I don't know what that means :-(");
+                    }
+                    list.add(task);
+                    System.out.println("Got it. I've added this task:");
+                    System.out.println("  " + task);
+                    System.out.println("Now you have " + list.size() + " tasks in the list.");
+                } catch (DukeException err) {
+                    System.out.println(err);
                 }
 
-                list.add(task);
-                System.out.println("Got it. I've added this task:");
-                System.out.println("  " + task);
-                System.out.println("Now you have " + list.size() + " tasks in the list.");
             }
         }
 
