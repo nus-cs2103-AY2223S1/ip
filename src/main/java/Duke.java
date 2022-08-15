@@ -7,7 +7,7 @@ public class Duke {
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello! I'm\n" + logo + "What can I do for you?\n");
+        System.out.println("Hello! I'm\n" + logo + "What can I do for you?");
 
         Scanner sc = new Scanner(System.in);
         DukeControl dc = new DukeControl();
