@@ -1,10 +1,10 @@
 public abstract class Task {
     private String description;
-    private boolean completed;
+    private boolean isDone;
 
     public Task(String description) {
         this.description = description;
-        this.completed = false;
+        this.isDone = false;
     }
 
     /**
@@ -14,10 +14,7 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        String status = " ";
-        if (this.completed) {
-            status = "X";
-        }
+        String status = isDone ? "X" : " ";
         String line = String.format("[%s] %s", status, description);
         return line;
     }
@@ -27,11 +24,11 @@ public abstract class Task {
      * If the task was already marked as completed, tell the user.
      */
     public void mark() {
-        if (this.completed) {
+        if (this.isDone) {
             System.out.println("Duke: This task has already been marked as done.");
             return;
         }
-        this.completed = true;
+        this.isDone = true;
         System.out.println("Duke: Nice! I've marked this task as done:");
         System.out.println(this);
     }
@@ -41,11 +38,11 @@ public abstract class Task {
      * If the task was already marked as completed, tell the user.
      */
     public void unmark() {
-        if (!this.completed) {
+        if (!this.isDone) {
             System.out.println("Duke: This task has already been marked as not done.");
             return;
         }
-        this.completed = false;
+        this.isDone = false;
         System.out.println("Duke: OK, I've marked this task as not done yet:");
         System.out.println(this);
     }
