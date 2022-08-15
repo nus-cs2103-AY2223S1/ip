@@ -1,6 +1,4 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Jean {
@@ -12,7 +10,7 @@ public class Jean {
 
     private static void checkTodo(String input, ArrayList<Task> taskList) {
         try {
-            if (input.length() == 4) {
+            if (input.trim().length() == 4) {
                 throw new JeanException("The description must not be empty!" +
                                         "\nVous devez donner une description!");
             } else {
@@ -26,7 +24,7 @@ public class Jean {
     private static void checkDeadline(String input, ArrayList<Task> taskList) {
         int sep = input.indexOf("/by");
         try {
-            if (sep == 9 || input.length() == 8) {
+            if (sep == 9 || input.trim().length() == 8) {
                 throw new JeanException("The description must not be empty!" +
                                         "\nVous devez donner une description!");
             } else if (sep == -1) {
@@ -44,7 +42,7 @@ public class Jean {
     private static void checkEvent(String input, ArrayList<Task> taskList) {
         int sep = input.indexOf("/at");
         try {
-            if (sep == 6 || input.length() == 5) {
+            if (sep == 6 || input.trim().length() == 5) {
                 throw new JeanException("The description must not be empty!" +
                                         "\nVous devez donner une description!");
             } else if (sep == -1) {
@@ -75,9 +73,12 @@ public class Jean {
 
     private static void checkMark(String input, ArrayList<Task> taskList) {
         try {
-            if (input.length() == 4) {
+            if (input.trim().length() == 4) {
                 throw new JeanException("You must name a task to mark!" +
                                         "\nNom d'un tâche à marqué comme fait!");
+            } else if (taskList.get(Integer.parseInt(input.substring(5)) - 1).isDone){
+                throw new JeanException("It is already marked!" +
+                                        "\nC'est déjaà fini!");
             } else {
                 mark(taskList, Integer.parseInt(input.substring(5)));
             }
@@ -96,9 +97,12 @@ public class Jean {
 
     private static void checkUnmark(String input, ArrayList<Task> taskList) {
         try {
-            if (input.length() == 6) {
+            if (input.trim().length() == 6) {
                 throw new JeanException("You must name a task to unmark!" +
                                         "\nNom d'une tâche à marqué comme défait!");
+            } else if (!taskList.get(Integer.parseInt(input.substring(7)) - 1).isDone){
+                throw new JeanException("It is not marked!" +
+                                        "\nCe n'est pas encore fini!");
             } else {
                 unmark(taskList, Integer.parseInt(input.substring(7)));
             }
@@ -117,14 +121,17 @@ public class Jean {
 
     private static void checkDelete(String input, ArrayList<Task> taskList) {
         try {
-            if (input.length() == 6) {
+            if (input.trim().length() == 6) {
                 throw new JeanException("You must name a task to delete!" +
                                         "\nNom d'une tâche à supprimer!");
+            } else if (Integer.parseInt(input.substring(7)) < 0 || Integer.parseInt(input.substring(7)) > Task.numberOfTasks) {
+                throw new JeanException("It is not possible!" +
+                                        "\nC'est impossible!");
             } else {
-                delete(taskList, Integer.parseInt(input.substring(7)));
+                delete(taskList, Integer.parseInt(input.substring(7)) - 1);
             }
         } catch (JeanException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
     }
 
