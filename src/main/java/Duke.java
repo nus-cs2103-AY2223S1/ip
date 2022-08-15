@@ -1,6 +1,9 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 public class Duke {
     public static void main(String[] args) {
+
+        ArrayList<String> mylist = new ArrayList<>();
 
         boolean bye = false;
 
@@ -13,8 +16,14 @@ public class Duke {
             if (input.equals("bye")) {
                 bye = true;
                 System.out.println("bai bai");
-            } else {
-                System.out.println(input);
+            } else if (input.equals("list")) {
+                for (int i = 0; i < mylist.size(); i++) {
+                    System.out.println(i + 1 + ": " + mylist.get(i));
+                }
+            }
+            else {
+                mylist.add(input);
+                System.out.println("added :" + input);
             }
         }
     }
