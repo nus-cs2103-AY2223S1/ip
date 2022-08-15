@@ -2,10 +2,19 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * The Main driver class of the Duke Application.
+ */
 public class Duke {
+    /** Line used for formatting. */
     public static String line = "----------------------------------------";
+    /** Use an ArrayList Collection for handling the tasks. */
     public static ArrayList<Task> tasks = new ArrayList<>();
 
+    /**
+     * The main method that is the entry to the Duke Application.
+     * @param args Command line arguments that we can pass to the main function.
+     */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -91,6 +100,10 @@ public class Duke {
         System.exit(0);
     }
 
+    /**
+     * Function to add a task to our Task collection.
+     * @param task The task that we would like to add to our tasks Collection.
+     */
     public static void addTask(Task task) {
         System.out.println(line);
         System.out.println("Got it. I've added this task:");
@@ -100,6 +113,11 @@ public class Duke {
         System.out.println(line);
     }
 
+    /**
+     * Function to delete a task from our Task collection.
+     * @param index The index of the task that we would like to remove from collection.
+     * @throws DukeException For Duke project related exceptions.
+     */
     public static void deleteTask(int index) throws DukeException {
         if (index == -1) {
             throw new DukeException("You must specify which task to delete!");
@@ -113,6 +131,10 @@ public class Duke {
         System.out.println("Now you have " + tasks.size() + " tasks in the list.");
         System.out.println(line);
     }
+
+    /**
+     * Function to print the tasks in our Task collection with nice formatting.
+     */
     public static void printTasks() {
         System.out.println(line);
         System.out.println("Here are the tasks in your list:");
@@ -123,6 +145,14 @@ public class Duke {
         System.out.println(line);
     }
 
+    /**
+     * Function to change the status of a task and to mark it as done or not done,
+     * used for marking a task as done or not done.
+     * @param taskId The id of the task that we want to mark or unmark.
+     * @param isDone The new status of the task. We will update the task to have
+     *               its isDone field to be the value here.
+     * @throws DukeException For Duke related exceptions.
+     */
     public static void changeTaskStatus(int taskId, boolean isDone) throws DukeException {
         if (taskId == -1) {
             throw new DukeException("You must specify which task to mark or unmark!");
