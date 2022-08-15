@@ -28,59 +28,62 @@ public class Duke {
 
             // Get first word
             int firstSpaceIdx = inputText.indexOf(" ");
-            String command = firstSpaceIdx == -1
-                             ? inputText
-                             : inputText.substring(0, firstSpaceIdx);
+            String command = Duke.getCommand(inputText, firstSpaceIdx);
 
             // Determine the action to perform based on the first, "command" word
-            switch (command) {
-                case "bye":
-                    System.out.println("Bye. Hope to see you again soon!");
-                    flag = false;
-                    break;
-                case "list":
-                    Duke.printItems();
-                    break;
-                case "mark":
-                    int markindex = Integer.parseInt(inputText.substring(firstSpaceIdx + 1));
-                    Duke.mark(markindex);
-                    break;
-                case "unmark":
-                    int unmarkindex = Integer.parseInt(inputText.substring(firstSpaceIdx + 1));
-                    Duke.unmark(unmarkindex);
-                    break;
-                case "deadline":
-                    String deadlineInfo = inputText.substring(firstSpaceIdx + 1);
-                    Duke.addDeadline(deadlineInfo);
-                    break;
-                case "todo":
-                    String todoInfo = inputText.substring(firstSpaceIdx + 1);
-                    Duke.addTodo(todoInfo);
-                    break;
-                case "event":
-                    String eventInfo = inputText.substring(firstSpaceIdx + 1);
-                    Duke.addEvent(eventInfo);
-                    break;
-                default:
-                    Duke.addTask(inputText);
+            try {
+                switch (command) {
+                    case "bye":
+                        System.out.println("Bye. Hope to see you again soon!");
+                        flag = false;
+                        break;
+                    case "list":
+                        Duke.printItems();
+                        break;
+                    case "mark":
+                        int markindex = Integer.parseInt(inputText.substring(firstSpaceIdx + 1));
+                        Duke.mark(markindex);
+                        break;
+                    case "unmark":
+                        int unmarkindex = Integer.parseInt(inputText.substring(firstSpaceIdx + 1));
+                        Duke.unmark(unmarkindex);
+                        break;
+                    case "deadline":
+                        String deadlineInfo = inputText.substring(firstSpaceIdx + 1);
+                        Duke.addDeadline(deadlineInfo);
+                        break;
+                    case "todo":
+                        if (firstSpaceIdx == -1) {
+                            throw new DukeException("The description of a todo cannot be empty.");
+                        }
+                        String todoInfo = inputText.substring(firstSpaceIdx + 1);
+                        Duke.addTodo(todoInfo);
+                        break;
+                    case "event":
+                        String eventInfo = inputText.substring(firstSpaceIdx + 1);
+                        Duke.addEvent(eventInfo);
+                        break;
+                    default:
+                        throw new DukeException("I'm sorry, but I don't know what that means :-(");
+                }
+            } catch (DukeException exception) {
+                System.out.println(exception);
             }
         }
     }
 
     /**
-     * Add an item to the items list, then prints it out.
+     * Gets the command word from the given input line.
      *
-     * @param input A String to be added to the list.
+     * @param inputText the user's input in the console
+     * @param firstSpaceIdx the index of the space following the command word
+     *
+     * @return String representing the current command
      */
-    public static void addTask(String input) {
-        // Instantiate task object
-        Task newTask = new Task(input);
-
-        // Add to list
-        Duke.inputs.add(newTask);
-
-        // Print message
-        System.out.println("Added: " + input);
+    public static String getCommand(String inputText, int firstSpaceIdx) {
+        return firstSpaceIdx == -1
+                ? inputText
+                : inputText.substring(0, firstSpaceIdx);
     }
 
     /**
