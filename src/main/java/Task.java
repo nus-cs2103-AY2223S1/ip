@@ -18,10 +18,17 @@ public class Task {
     }
 
     /**
-     * Toggles the isDone flag on or off.
+     * Toggles the isDone flag on.
      */
-    public void toggleDone() {
-        this.isDone = !this.isDone;
+    public void mark() {
+        this.isDone = true;
+    }
+
+    /**
+     * Toggles the isDone flag off.
+     */
+    public void unmark() {
+        this.isDone = false;
     }
 
     /**
