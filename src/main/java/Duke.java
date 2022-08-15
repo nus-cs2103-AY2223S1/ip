@@ -18,14 +18,54 @@ public class Duke {
         String message = "Bye! Hope to see you soon!";
         System.out.println(message);
     }
- 
+
     public void listTasks() {
         System.out.println("Here are your tasks: ");
+        System.out.println("===============================");
         int len = this.taskArr.size();
-        for (int i = 0; i < len; i++) {
-            Task task = this.taskArr.get(i);
-            System.out.printf("%d. %s%n", i + 1, task);
+        if (len == 0) {
+            System.out.println("       YOU HAVE NO TASKS");
+        } else {
+            for (int i = 0; i < len; i++) {
+                Task task = this.taskArr.get(i);
+                System.out.printf("   %d.%s%n", i + 1, task);
+            }
         }
+        System.out.println("===============================");
+    }
+
+    public void addTask(Command command, String details) throws DukeException {
+        if (details.length() == 0) {
+            throw new MissingArgumentException(command);
+        }
+        Task task;
+        switch (command) {
+            case TODO:
+                task = new Todo(details);
+                this.taskArr.add(task);
+                break;
+            case DEADLINE:
+                String[] detailsArr = details.split( " /by ", 2);
+                if (detailsArr.length < 2) { // Missing date
+                    throw new MissingArgumentException(command);
+                }
+                task = new Deadline(detailsArr[0], detailsArr[1]);
+                this.taskArr.add(task);
+                break;
+            default: // EVENT
+                detailsArr = details.split( " /at ", 2);
+                if (detailsArr.length < 2) { // Missing date
+                    throw new MissingArgumentException(command);
+                }
+                task = new Event(detailsArr[0], detailsArr[1]);
+                this.taskArr.add(task);
+                break;
+        }
+
+
+        System.out.println("Got it. I've added this task:");
+        System.out.println("   " + task);
+        System.out.println("Now, you have " + this.taskArr.size() + " tasks in the list");
     }
 
     public void markTaskAsDone(int taskIndex) {
@@ -41,7 +81,7 @@ public class Duke {
         System.out.println("Sure! I've marked this task as not yet done: ");
         System.out.println("   " + task);
     }
-
+    
     public void deleteTask(int taskIndex) {
         Task task = this.taskArr.get(taskIndex);
         this.taskArr.remove(taskIndex);
@@ -49,77 +89,87 @@ public class Duke {
         System.out.println("   " + task);
         System.out.println("Now, you have " + this.taskArr.size() + " tasks in the list");
     }
-    
-    public void addTask(String type, String details) throws DukeException {
-        Task task;
-        // Dateless task
-        if (type.equals("todo")) {
-            if (details.length() == 0) {
-                throw new MissingDescriptionException("todo");
-            }
-            task = new Todo(details);
-        } else if (type.equals("deadline") || type.equals("event")) { // dated tasks
-            String[] strArr = type.equals("deadline") ? details.split(" /by ") : details.split(" /at ");
-            String description = strArr[0].strip();
 
-            // Description is missing
-            if (description.length() == 0) {
-                throw new MissingDescriptionException(type);
-            }
-
-            if (strArr.length > 1) {
-                String date = strArr[1].strip();
-                task = type.equals("deadline") ? new Deadline(description, date) : new Event(description, date);
-            } else { // Description is present, but date is missing
-                throw new MissingDateException(type);
-            }
-        } else { // Unknown task
-            throw new UnknownCommandException();
+    public void editTask(Command command, String details) throws DukeException {
+        // missing task index
+        if (details.length() == 0) {
+            throw new MissingArgumentException(command);
         }
-        this.taskArr.add(task);
-        System.out.println("Got it. I've added this task:");
-        System.out.println("   " + task);
-        System.out.println("Now, you have " + this.taskArr.size() + " tasks in the list");
+        try {
+            int taskIndex = Integer.parseInt(details) - 1;
+
+            // integer out of bounds
+            if (taskIndex < 0 || taskIndex >= this.taskArr.size()) {
+                throw new TaskIndexOutOfBoundsException(taskIndex + 1, this.taskArr.size());
+            }
+            switch (command) {
+                case MARK:
+                    this.markTaskAsDone(taskIndex);
+                    break;
+                case UNMARK:
+                    this.unmarkTaskAsDone(taskIndex);
+                    break;
+                case DELETE:
+                    this.deleteTask(taskIndex);
+                    break;
+            }
+        } catch (NumberFormatException nfe) { // did not provide integer type as argument
+            throw new InvalidArgumentException(command, details);
+        }
     }
-    
+
+    public boolean readInput(String inputString) throws DukeException {
+        String[] inputStringArr = inputString.split(" ", 2);
+        String commandString = inputStringArr[0].strip();
+        String detailsString = inputStringArr.length > 1 ? inputStringArr[1].strip() : "";
+
+        // command (input) is all whitespace
+        if (commandString.length() == 0) {
+            return false;
+        }
+        
+        // invalid command
+        if (!Command.isValidCommand(commandString)) {
+            throw new UnknownCommandException(commandString);
+        }
+
+        // valid commands
+        Command command = Command.valueOf(commandString.toUpperCase());
+        switch (command) {
+            case BYE:
+                this.sayBye();
+                return true;
+            case LIST:
+                this.listTasks();
+                break;
+            case MARK:
+            case UNMARK:    
+            case DELETE:
+                this.editTask(command, detailsString);
+                break;
+            case TODO:
+            case EVENT:
+            case DEADLINE:
+                this.addTask(command, detailsString);
+                break;
+        }
+        return false;
+    }
+
     public void start() {
         Scanner scanner = new Scanner(System.in);
         this.greetUser();
 
-        System.out.print(">>> ");
-        while (scanner.hasNext()) {
-            String command = scanner.next();
-            if (command.equals("bye")) {
-                this.sayBye();
-                break;
-            }
+        boolean end = false;
 
-            if (command.equals("list")) {
-                this.listTasks();
-            } else if (command.equals("mark") || command.equals("unmark") || command.equals("delete")) {
-                if (scanner.hasNextInt()) {
-                    int taskIndex = scanner.nextInt() - 1;
-                    if (taskIndex < 0 || taskIndex >= this.taskArr.size() ) {
-                        System.out.println("Invalid task index.");
-                    } else {
-                        if (command.equals("mark")) {
-                            this.markTaskAsDone(taskIndex);
-                        } else if (command.equals("unmark")) {
-                            this.unmarkTaskAsDone(taskIndex);
-                        } else {
-                            this.deleteTask(taskIndex);
-                        }
-                    }
-                }
-            } else {
-                String taskDetails = scanner.nextLine().strip();
-                try {
-                    this.addTask(command, taskDetails);
-                } catch (DukeException de) {
-                    System.out.println(de.getMessage());
-                }  
+        while (!end) {
+            System.out.print("\n>>> ");
+            String inputString = scanner.nextLine().strip();
+            try {
+                end = readInput(inputString);
+            } catch (DukeException de) {
+                System.out.println(de.getMessage());
             }
-            System.out.print(">>> ");
         }
     }
 

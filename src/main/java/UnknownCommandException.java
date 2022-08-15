@@ -1,5 +1,5 @@
 public class UnknownCommandException extends DukeException {
-    public UnknownCommandException() {
-        super("What talking you? Idk what command this is");
+    public UnknownCommandException(String invalidCommand) {
+        super(invalidCommand + " is not a valid command!");
     }
 }
