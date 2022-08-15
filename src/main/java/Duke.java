@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 /**
- * Starting point of Duke app.
+ * Starting point of Jenny chatbot.
  * CS2103 Week 2
  * AY21/22 Semester 1
  *
@@ -10,51 +10,43 @@ import java.util.Scanner;
 
 public class Duke {
     public static void main(String[] args) {
-        print_line();
-        print("Hello! I'm Duke");
-        print("What can I do for you?");
-        print_line();
-        echo();
-        exit();
+        Duke jenny = new Duke();
+        Scanner sc = new Scanner(System.in);
+        jenny.greet();
+        jenny.echo(sc);
+        jenny.exit();
     }
 
     /**
-     * Prints a horizontal line to the console.
+     * Prints a greeting to the console.
      */
-    private static void print_line() {
-        System.out.print("\t____________________________________________________________\n");
+    public void greet() {
+        Helpers.print_line();
+        Helpers.print("Hello! I'm Jenny");
+        Helpers.print("What can I do for you?");
+        Helpers.print_line();
     }
 
     /**
-     * Prints a String to the console.
-     * @param printable String to be printed.
+     * Continuously echos input to the console,
+     * until a terminating keyword is input.
      */
-    private static void print(String printable) {
-        System.out.print("\t" + printable + "\n");
-    }
-
-    /**
-     * Echos user input to the console.
-     * Loops until the keyword is detected.
-     */
-    private static void echo() {
-        Scanner scanner = new Scanner(System.in);
-        String arg = scanner.next();
-        while(!arg.equals("bye")) {
-            print_line();
-            print(arg);
-            print_line();
-            arg = scanner.next();
+    private void echo(Scanner sc) {
+        String text = sc.next();
+        while(!text.equals("bye")) {
+            Helpers.print_line();
+            Helpers.print(text);
+            Helpers.print_line();
+            text = sc.next();
         }
-        scanner.close();
     }
 
     /**
-     * Prints the exit message to the console.
+     * Prints a exit message to the console.
      */
-    private static void exit() {
-        print_line();
-        print("Bye. Hope to see you again soon!");
-        print_line();
+    private void exit() {
+        Helpers.print_line();
+        Helpers.print("Bye. Hope to see you again soon!");
+        Helpers.print_line();
     }
 }
