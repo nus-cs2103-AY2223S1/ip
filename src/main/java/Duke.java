@@ -7,6 +7,10 @@ import java.util.*;
  * Main class that runs chat bot Duke.
  */
 public class Duke {
+
+    public static final String initText = "Hello! I'm Duke\n    What can I do for you?";
+    public static final String endText = "Bye bye! Hope to see you again soon!";
+
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -15,9 +19,6 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
 
-        String initText = "Hello! I'm Duke\n    What can I do for you?";
-        String endText = "Bye bye! Hope to see you again soon!";
-
         Scanner scan = new Scanner(System.in);
         printMsg(initText);
         TaskList ls = new TaskList();
@@ -25,38 +26,50 @@ public class Duke {
         while (true) {
             System.out.println("Say something: ");
             String input = scan.nextLine();
+            String[] com = input.split(" ", 2);
 
-            if (input.equals("bye")) {
+            //command to terminate Duke.
+            if (input.equals("bye") || com[0] == "bye") {
+                printMsg(endText);
                 break;
             }
 
-            if (input.equals("list")) {
-                printMsg(ls.enumerate());
-                continue;
-            }
+            //if else ladder.
+            switch (com[0]) {
+                case "list":
+                    printMsg(ls.enumerate());
+                    break;
 
-            if (input.split(" ", 2)[0].equals("mark") || input.split(" ", 2)[0].equals("unmark")) {
-                int index = Integer.parseInt(input.split(" ")[1]);
-                if (input.split(" ", 2)[0].equals("mark")) {
-                    printMsg(ls.updateMark(index));
-                } else {
-                    printMsg(ls.updateUnmark(index));
-                }
-                continue;
-            }
+                case "mark":
+                    printMsg(ls.updateMark(Integer.parseInt(com[1])));
+                    break;
 
-            Task in = new Task(input);
-            printMsg(ls.addTask(in));
+                case "unmark":
+                    printMsg(ls.updateUnmark(Integer.parseInt(com[1])));
+                    break;
+
+                case "todo":
+                    printMsg(ls.addTask(new Task(com[1], "T")));
+                    break;
+
+                case "deadline":
+                    printMsg(ls.addTask(new Task(com[1], "D")));
+                    break;
+
+                case "event":
+                    printMsg(ls.addTask(new Task(com[1], "E")));
+                    break;
+
+                default:
+                    printMsg("Invalid command,,,I can't understand :( Try again.");
+            }
         }
-
-        printMsg(endText);
     }
-
     /**
      * Class method to print message with horizontal line.
      * @param str
      */
-    public static void printMsg(String str) {
+    public static void printMsg (String str){
         System.out.println("  ____________________________________________________________");
         System.out.println("    " + str);
         System.out.println("  ____________________________________________________________");
