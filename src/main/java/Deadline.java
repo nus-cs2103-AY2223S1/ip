@@ -1,12 +1,12 @@
 public class Deadline extends  Task{
-  private String date;
+  protected String by;
 
   public Deadline(String description,String date) {
     super(description);
-    this.date = date;
+    this.by = date;
   }
 
   public String toString() {
-    return "[D][" + this.getStatusIcon() + "] " + this.description + " (by: " + date + ")";
+    return "[D][" + this.getStatusIcon() + "] " + this.description + " (by: " + by + ")";
   }
 }
