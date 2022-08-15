@@ -1,0 +1,12 @@
+todo cry
+list
+deadline CS2103T Week 2 /by Aug 18
+todo cry harder
+event end of sem /at NEVER
+list
+mark 2
+list
+mark 1
+unmark 2
+list
+bye
