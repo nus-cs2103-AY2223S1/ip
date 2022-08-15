@@ -24,18 +24,18 @@ public class Duke {
     private static void welcomeGreet() {
         System.out.println(WELCOME_GREET + LINE);
     }
-    public static void exitGreet() {
+    private static void exitGreet() {
        System.out.println(EXIT_GREET);
     }
-    public static void printLine() {
+    private static void printLine() {
         System.out.println(LINE);
     }
 
     //General Helpers
-    public static boolean isNumeric(String str) {
+    private static boolean isNumeric(String str) {
         return str.chars().allMatch(Character::isDigit);
     }
-    public static int timeFinder(String[] splitInput) {
+    private static int timeFinder(String[] splitInput) {
         for (int j = 0; j < splitInput.length; j++) {
             if (splitInput[j].equals("/by") || splitInput[j].equals("/at")) {
                 return j;
@@ -46,7 +46,7 @@ public class Duke {
     //
 
     // List Helpers
-    public static void printList() {
+    private static void printList() {
         System.out.println("My List Of Tasks :D");
         for (int i = 0; i < TASK_LIST.size(); i++) {
             int index = i + 1;
@@ -54,7 +54,7 @@ public class Duke {
         }
         printLine();
     }
-    public static void taskTracker(int index, Command cmd) {
+    private static void taskTracker(int index, Command cmd) {
         if (index >= TASK_LIST.size() || index < 0) {
             throw new DukeException("Duke: Looks like your task list currently does not have a task at this index.");
         }
@@ -74,7 +74,7 @@ public class Duke {
         }
         printLine();
     }
-    public static void taskAdder(String[] userInput, Command taskType) {
+    private static void taskAdder(String[] userInput, Command taskType) {
         int len = userInput.length;
         Task task = null;
 
