@@ -1,8 +1,4 @@
-package duke;
-
 import java.util.ArrayList;
-
-import static duke.Scan.dukePrintLn;
 
 public class TaskList {
     private ArrayList<Task> taskList;

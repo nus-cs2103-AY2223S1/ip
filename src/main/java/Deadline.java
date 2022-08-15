@@ -1,5 +1,3 @@
-package duke;
-
 public class Deadline extends Task{
     private final String tag = "[D]";
     private final String deadline;

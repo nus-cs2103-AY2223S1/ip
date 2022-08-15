@@ -1,5 +1,3 @@
-package duke;
-
 public class Event extends Task{
     private final String tag = "[E]";
     private final String event;

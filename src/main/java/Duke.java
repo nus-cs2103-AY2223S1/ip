@@ -1,5 +1,3 @@
-package duke;
-
 public class Duke {
     private Scan scan;
 
