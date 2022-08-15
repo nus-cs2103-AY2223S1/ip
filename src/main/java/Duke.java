@@ -17,8 +17,18 @@ public class Duke {
             if (response.equals("list")) {
                 toDoList.print();
             } else {
-                Task t = new Task(response);
-                toDoList.addTask(t);
+                String[] arr = response.split(" ");
+                if (arr[0].equals("mark")) {
+                    Integer index = Integer.valueOf(arr[1]);
+                    //should handle non-int
+                    toDoList.mark(index);
+                } else if (arr[0].equals("unmark")) {
+                    Integer index = Integer.valueOf(arr[1]);
+                    toDoList.unMark(index);
+                } else {
+                    Task t = new Task(response);
+                    toDoList.addTask(t);
+                }
             }
             response = sc.nextLine();
         }

@@ -13,9 +13,21 @@ public class ToDoList {
     }
 
     public void print() {
+        System.out.println("These are the tasks in your list:");
         for (int i = 0; i < list.size(); i++) {
             System.out.format("%d. %s\n", i + 1, list.get(i).toString());
         }
     }
 
+    public void mark(int i) {
+        Task t = list.get(i - 1);
+        t.markDone();
+        System.out.println("Nice! I've marked this task as done:\n" + t);
+    }
+
+    public void unMark(int i) {
+        Task t = list.get(i - 1);
+        t.markUndone();
+        System.out.println("OK, I've marked this task as not done yet:\n" + t);
+    }
 }
