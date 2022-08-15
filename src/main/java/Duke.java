@@ -13,10 +13,39 @@ public class Duke {
         int pointer = 0;
         while (true) {
             input = sc.nextLine();
+            String[] inputTokens = input.split(" ");
 
             // Exits Loop
             if (input.equals("bye")) {
                 break;
+            }
+
+            // Handles marking tasks as done or not done
+            if (inputTokens[0].equals("mark") || inputTokens[0].equals("unmark")) {
+                int index;
+                try {
+                    index = Integer.parseInt(inputTokens[1]);
+                    Task task = taskList[index - 1];
+
+                    // Mark as done or not done
+                    if (inputTokens[0].equals("mark")) {
+                        task.markAsDone();
+                        String taskListString = String.format("\tGood Job! The following task " +
+                                "has been marked as done:\n\t[%s] %s", task.getStatusIcon(), task.toString());
+                        System.out.println(taskListString);
+                    } else {
+                        task.markAsNotdone();
+                        String taskListString = String.format("\tOkay! The following task " +
+                                "has been marked as not done:\n\t[%s] %s", task.getStatusIcon(), task.toString());
+                        System.out.println(taskListString);
+                    }
+                }
+                catch (NumberFormatException | ArrayIndexOutOfBoundsException | NullPointerException e) {
+                    System.out.println("\tSorry, that Task Number doesn't look right...");
+                }
+                finally {
+                    continue;
+                }
             }
 
             // Outputs Task List
@@ -28,11 +57,15 @@ public class Duke {
                         break;
                     }
 
-                    String taskListString = String.format("\t%d. %s", i, t.toString());
+                    String taskListString = String.format("\t%d. [%s] %s", i, t.getStatusIcon(), t.toString());
                     System.out.println(taskListString);
                     i++;
                 }
                 continue;
+            }
+
+            if (input.contains("mark")) {
+
             }
 
             // Echo
@@ -48,3 +81,5 @@ public class Duke {
         System.out.println("\tGoodbye!");
     }
 }
+
+
