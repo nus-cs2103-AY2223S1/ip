@@ -11,7 +11,7 @@ abstract class Command {
         this.args = args;
     }
 
-    public static Command of(String input) {
+    public static Command of(String input) throws DukeException {
         String[] splits = input.strip().split(" ", 2);
         String command = splits[0].toLowerCase();
         String[] args;
@@ -47,15 +47,14 @@ abstract class Command {
         }
     }
 
-    public void execute(ArrayList<Task> tasks) {
+    public void execute(ArrayList<Task> tasks) throws DukeException {
         if (!this.command.isCompatible(args)) {
-            IOHelper.print(WRONG_ARGS_COUNT);
-            return;
+            throw new DukeException(WRONG_ARGS_COUNT);
         }
         this.runSpecialTask(tasks);
     }
 
-    public abstract void runSpecialTask(ArrayList<Task> tasks);
+    public abstract void runSpecialTask(ArrayList<Task> tasks) throws DukeException;
 
     private static class ListCommand extends Command {
         public ListCommand(String[] args) {
@@ -88,17 +87,15 @@ abstract class Command {
         }
 
         @Override
-        public void runSpecialTask(ArrayList<Task> tasks) {
+        public void runSpecialTask(ArrayList<Task> tasks) throws DukeException {
             int index;
             try {
                 index = Integer.parseInt(args[0]) - 1;
             } catch (NumberFormatException e) {
-                IOHelper.print(WRONG_ARGUMENT);
-                return;
+                throw new DukeException(WRONG_ARGUMENT);
             }
             if (index < 0 || index >= tasks.size()) {
-                IOHelper.print(INDEX_OUT_OF_BOUND);
-                return;
+                throw new DukeException(INDEX_OUT_OF_BOUND);
             }
             Task task = tasks.get(index);
             task.isDone = this.isDone;
@@ -140,14 +137,14 @@ abstract class Command {
         }
 
         @Override
-        public void execute(ArrayList<Task> tasks) {
+        public void execute(ArrayList<Task> tasks) throws DukeException {
             // bypass compatibility check
             this.runSpecialTask(tasks);
         }
 
         @Override
-        public void runSpecialTask(ArrayList<Task> tasks) {
-            IOHelper.print(BAD_COMMAND);
+        public void runSpecialTask(ArrayList<Task> tasks) throws DukeException {
+            throw new DukeException(BAD_COMMAND);
         }
     }
 

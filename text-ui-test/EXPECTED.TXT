@@ -1,5 +1,5 @@
- ____        _        
-|  _ \ _   _| | _____ 
+ ____        _
+|  _ \ _   _| | _____
 | | | | | | | |/ / _ \
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
@@ -7,46 +7,46 @@
 >> Hello! I am Duke. How can I help you?
 << >> I've added the following task:
 	[T][ ] A
-<< >> Wrong number of arguments provided!
-<< >> Wrong number of arguments provided!
-<< << >> Wrong number of arguments provided!
+<< >> DukeException: Wrong number of arguments provided!
+<< >> DukeException: Wrong number of arguments provided!
+<< << >> DukeException: Wrong number of arguments provided!
 << >> I've added the following task:
 	[D][ ] A (by: B)
-<< >> Wrong number of arguments provided!
-<< << >> Wrong number of arguments provided!
+<< >> DukeException: Wrong number of arguments provided!
+<< << >> DukeException: Wrong number of arguments provided!
 << >> I've added the following task:
 	[E][ ] A (at: B)
-<< >> Wrong number of arguments provided!
+<< >> DukeException: Wrong number of arguments provided!
 << << >> List of tasks:
 	1. [T][ ] A
 	2. [D][ ] A (by: B)
 	3. [E][ ] A (at: B)
-<< >> Wrong number of arguments provided!
-<< >> Wrong number of arguments provided!
-<< >> This command expects a number argument!
+<< >> DukeException: Wrong number of arguments provided!
+<< >> DukeException: Wrong number of arguments provided!
+<< >> DukeException: This command expects a number argument!
 << >> I've checked this task
 	[T][✔] A
-<< >> Wrong number of arguments provided!
+<< >> DukeException: Wrong number of arguments provided!
 << >> List of tasks:
 	1. [T][✔] A
 	2. [D][ ] A (by: B)
 	3. [E][ ] A (at: B)
-<< >> Wrong number of arguments provided!
+<< >> DukeException: Wrong number of arguments provided!
 << >> I've checked this task
 	[D][✔] A (by: B)
 << >> List of tasks:
 	1. [T][✔] A
 	2. [D][✔] A (by: B)
 	3. [E][ ] A (at: B)
-<< >> Wrong number of arguments provided!
+<< >> DukeException: Wrong number of arguments provided!
 << >> I've unchecked this task
 	[T][ ] A
-<< >> This command expects a number argument!
-<< >> Wrong number of arguments provided!
-<< >> This command expects an index between 1 and number of tasks.
+<< >> DukeException: This command expects a number argument!
+<< >> DukeException: Wrong number of arguments provided!
+<< >> DukeException: This command expects an index between 1 and number of tasks.
 << >> List of tasks:
 	1. [T][ ] A
 	2. [D][✔] A (by: B)
 	3. [E][ ] A (at: B)
-<< >> The command was not understood.
+<< >> DukeException: The command was not understood.
 << << >> Bye! Hope to see you soon!

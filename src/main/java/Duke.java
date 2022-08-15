@@ -2,8 +2,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
-    private static final String LOGO = " ____        _        \n"
-            + "|  _ \\ _   _| | _____ \n"
+    private static final String LOGO = " ____        _\n"
+            + "|  _ \\ _   _| | _____\n"
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
@@ -22,11 +22,15 @@ public class Duke {
         IOHelper.print(GREET_MESSAGE);
 
         while (true) {
-            Command command = Command.of(IOHelper.read(scanner));
-            command.execute(tasks);
+            try {
+                Command command = Command.of(IOHelper.read(scanner));
+                command.execute(tasks);
 
-            if (command.command == CommandType.BYE) {
-                break;
+                if (command.command == CommandType.BYE) {
+                    break;
+                }
+            } catch (DukeException e) {
+                IOHelper.print(e.toString());
             }
         }
     }
