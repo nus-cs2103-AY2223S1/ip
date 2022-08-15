@@ -1,5 +1,3 @@
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -41,32 +39,30 @@ public class Duke {
     }
 
     public class Deadline extends Task {
-        protected LocalDate by;
+        protected String by;
 
         public Deadline(String description, String by) {
             super(description);
-            this.by = LocalDate.parse(by);
+            this.by = by;
         }
 
         @Override
         public String toString() {
-            return String.format("[D]%s (by: %s)",
-                    super.toString(), this.by.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
+            return String.format("[D]%s (by: %s)", super.toString(), this.by);
         }
     }
 
     public class Event extends Task {
-        protected LocalDate at;
+        protected String at;
 
         public Event(String description, String at) {
             super(description);
-            this.at = LocalDate.parse(at);
+            this.at = at;
         }
 
         @Override
         public String toString() {
-            return String.format("[E]%s (at: %s)",
-                    super.toString(), this.at.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
+            return String.format("[E]%s (at: %s)", super.toString(), this.at);
         }
     }
 
