@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Duke {
     public static void main(String[] args) {
         System.out.println("Hello! I'm Duke What can I do for you?");
-        ArrayList<Task> array = new ArrayList<>();
+        ArrayList<Task> array = new ArrayList<>(100);
         int counter = 0;
         boolean flag = false;
         Scanner in = new Scanner(System.in);
@@ -23,7 +23,7 @@ public class Duke {
 
             }
             else if(output.equals("list")) {
-                ops.displayList(array);
+                ops.displayList(array,counter);
 
             }
             else if(firstword.equals("todo")) {
@@ -61,6 +61,13 @@ public class Duke {
             else if(firstword.equals("unmark")) {
                 int num = Integer.parseInt(arr[1]);
                 ops.mark(array,num);
+            }
+            else if(firstword.equals("delete")) {
+                System.out.println("_________________________________________________________________________");
+                int num = Integer.parseInt(arr[1]);
+                ops.delete(array,num,counter);
+                counter--;
+                System.out.println("_________________________________________________________________________");
             }
             else {
                 try {

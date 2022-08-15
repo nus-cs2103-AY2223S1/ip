@@ -7,9 +7,9 @@ public class DukeOperations {
         System.out.println("_________________________________________________________________________");
     }
 
-    public void displayList(ArrayList<Task> array) {
+    public void displayList(ArrayList<Task> array,int counter) {
         System.out.println("_________________________________________________________________________");
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < counter; i++) {
             if (array.get(i) != null) {
                 int j = i + 1;
                 System.out.println(j + ". " + array.get(i).toString());
@@ -23,50 +23,61 @@ public class DukeOperations {
             throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
         }
         else {
-            array[counter] = new Todo(arr[1]);
+            array.add(counter, new Todo(arr[1]));
             System.out.println("Got it. I've added this task:");
-            System.out.println(array[counter].toString());
+            System.out.println(array.get(counter).toString());
             counter++;
             System.out.println("Now you have " + counter + " tasks in the list.");
         }
     }
 
-    public void deadline(Task[] array,String item, String deadline, int counter){
+    public void deadline(ArrayList<Task> array,String item, String deadline, int counter){
 
-        array[counter] = new Deadline(item, deadline);
+        array.add(counter,new Deadline(item, deadline));
         System.out.println("Got it. I've added this task:");
-        System.out.println(array[counter].toString());
+        System.out.println(array.get(counter).toString());
         counter ++;
         System.out.println("Now you have " + counter + " tasks in the list.");
     }
 
-    public void event(Task[] array,String item, String deadline, int counter) {
-        array[counter] = new Event(item,deadline);
+    public void event(ArrayList<Task> array,String item, String deadline, int counter) {
+        array.add(counter,new Event(item,deadline));
         System.out.println("Got it. I've added this task:");
-        System.out.println(array[counter].toString());
+        System.out.println(array.get(counter).toString());
         counter ++;
         System.out.println("Now you have " + counter + " tasks in the list.");
 
     }
 
-    public void mark(Task[] array, int number) {
-        array[number - 1].markAsDone();
+    public void mark(ArrayList<Task> array, int number) {
+        array.get(number-1).markAsDone();
         System.out.println("_________________________________________________________________________");
         System.out.println("Nice! I've marked this task as done:");
-        System.out.println(array[number-1].toString());
+        System.out.println(array.get(number-1).toString());
         System.out.println("_________________________________________________________________________");
     }
 
-    public void unmark(Task[] array, int number) {
-        array[number - 1].markAsNotDone();
+    public void unmark(ArrayList<Task>array, int number) {
+        array.get(number-1).markAsNotDone();
         System.out.println("_________________________________________________________________________");
         System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println(array[number-1].toString());
+        System.out.println(array.get(number-1).toString());
         System.out.println("_________________________________________________________________________");
     }
 
     public void randomword(String word) throws DukeException{
         throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+
+    }
+
+    public void delete(ArrayList<Task> array, int number,int counter) {
+
+        System.out.println("Noted. I've removed this task:");
+        System.out.println(array.get(number-1).toString());
+        int num = counter - 1;
+        System.out.println("Now you have " + num + " tasks in the list");
+        array.remove(number - 1);
+
 
     }
 
