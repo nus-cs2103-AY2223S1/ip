@@ -1,0 +1,31 @@
+todo A
+todo A / B
+todo A / B / C
+
+deadline A
+deadline A / B
+deadline A / B / C
+
+event A
+event A / B
+event A / B / C
+
+list
+list /
+check
+check XYZ
+check 1
+check 1 / A
+list
+list / A
+check 2
+list
+uncheck
+uncheck 1
+uncheck XYZ
+uncheck 2 / A
+uncheck 100
+list
+badcommand hello / hello
+
+bye
