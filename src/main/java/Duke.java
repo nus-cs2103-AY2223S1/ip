@@ -28,8 +28,11 @@ public class Duke {
     private static class Instruction {
         private enum InstructionType {
             NONE,
+            UNKNOWN,
             EXIT,
-            ADD_TO_LIST,
+            ADD_TODO,
+            ADD_EVENT,
+            ADD_DEADLINE,
             PRINT_LIST,
             MARK_ITEM,
             UNMARK_ITEM
@@ -63,8 +66,20 @@ public class Duke {
                     instructionType = InstructionType.UNMARK_ITEM;
                     break;
 
+                case "todo":
+                    instructionType = InstructionType.ADD_TODO;
+                    break;
+
+                case "event":
+                    instructionType = InstructionType.ADD_EVENT;
+                    break;
+
+                case "deadline":
+                    instructionType = InstructionType.ADD_DEADLINE;
+                    break;
+
                 default:
-                    instructionType = InstructionType.ADD_TO_LIST;
+                    instructionType = InstructionType.UNKNOWN;
                     break;
             }
         }
@@ -75,12 +90,24 @@ public class Duke {
                     // do nothing
                     break;
 
+                case UNKNOWN:
+                    // do nothing
+                    break;
+
                 case EXIT:
                     System.out.println("Bye. Hope to see you again soon!\n");
-                    return;
+                    break;
 
-                case ADD_TO_LIST:
-                    taskList.addItem(new Task(this.instructionArgs));
+                case ADD_TODO:
+                    taskList.addItem(new ToDo(instructionArgs));
+                    break;
+
+                case ADD_DEADLINE:
+                    taskList.addItem(new Deadline(instructionArgs));
+                    break;
+
+                case ADD_EVENT:
+                    taskList.addItem(new Event(instructionArgs));
                     break;
 
                 case PRINT_LIST:
@@ -97,7 +124,6 @@ public class Duke {
 
                 default:
                     // do nothing
-
             }
         }
     }
@@ -106,8 +132,8 @@ public class Duke {
         protected String description;
         protected boolean isDone;
 
-        public Task(String[] description) {
-            this.description = Arrays.stream(description).reduce("", (x, y) -> x + " " + y);
+        public Task(String[] args) {
+            this.description = Arrays.stream(args).skip(1).reduce("", (x, y) -> x + " " + y);
             this.isDone = false;
         }
 
@@ -121,7 +147,54 @@ public class Duke {
 
         @Override
         public String toString() {
-            return "[" + this.getStatusIcon() + "]" + " " + description;
+            return "[" + this.getStatusIcon() + "]" + this.description;
+        }
+    }
+
+    private static class ToDo extends Task {
+        public ToDo(String[] args) {
+            super(args);
+        }
+
+        @Override
+        public String toString() {
+            return "[T]" + super.toString();
+        }
+    }
+
+    private static class Deadline extends Task {
+        private String by;
+
+        public Deadline(String[] args) {
+            super(Arrays.stream(args).takeWhile(x -> !x.contains("/")).toArray(String[]::new));
+            String[] curArgs = Arrays.stream(args).dropWhile(x -> !x.contains("/")).toArray(String[]::new);
+            if (curArgs.length == 0 || !curArgs[0].equals("/by")) {
+                // Invalid instruction
+            }
+            this.by = Arrays.stream(curArgs).skip(1).reduce("", (x, y) -> x + " " + y);
+        }
+
+        @Override
+        public String toString() {
+            return "[D]" + super.toString() + " (by:" + this.by + ")";
+        }
+    }
+
+    private static class Event extends Task {
+        private String at;
+
+        public Event(String[] args) {
+            super(Arrays.stream(args).takeWhile(x -> !x.contains("/")).toArray(String[]::new));
+            String[] curArgs = Arrays.stream(args).dropWhile(x -> !x.contains("/")).toArray(String[]::new);
+            if (curArgs.length == 0 || !curArgs[0].equals("/at")) {
+                // Invalid instruction
+            }
+            this.at = Arrays.stream(curArgs).skip(1).reduce("", (x, y) -> x + " " + y);
+        }
+
+        @Override
+        public String toString() {
+            return "[E]" + super.toString() + " (at:" + this.at + ")";
         }
     }
 
@@ -135,6 +208,7 @@ public class Duke {
         public void addItem(Task item) {
             taskList.add(item);
             System.out.println("OK, I've added the following task:\n  " + item);
+            System.out.println("Now you have " + taskList.size() + " tasks in the list.");
         }
 
         public void markItem(int index) {
