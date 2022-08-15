@@ -1,5 +1,6 @@
 class Deadline extends Task {
     public static String FLAG = " /by ";
+    private String time;
 
     public static String extractName(String input) {
         int flagIndex = input.indexOf(Deadline.FLAG);
@@ -14,12 +15,13 @@ class Deadline extends Task {
     }
 
     public Deadline(String input) {
-        super(input);
+        super(Deadline.extractName(input));
+        this.time = Deadline.extractTime(input);
     }
 
     @Override
     public String toString() {
         String type = "\u001B[32m(DEAD)\u001B[0m";
-        return String.format("%s %s", type, super.toString());
+        return String.format("%s %s < %s", type, super.toString(), this.time);
     }
 }

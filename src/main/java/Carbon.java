@@ -116,9 +116,16 @@ public class Carbon {
         } else if (lowerCaseInput.startsWith("unmark")) {
             int taskNumber = Integer.valueOf(input.substring("unmark ".length()));
             this.setTaskDoneness(taskNumber, false);
+        } else if (lowerCaseInput.startsWith("todo")) {
+            this.addTask(input, "todo"); // TODO: change to using enums
+        } else if (lowerCaseInput.startsWith("deadline")) {
+            this.addTask(input, "deadline"); // TODO: change to using enums
+        } else if (lowerCaseInput.startsWith("event")) {
+            this.addTask(input, "event"); // TODO: change to using enums
         } else {
-            // not a command, add as task
-            this.addTask(input);
+            // not a command, return invalid input
+            String log = String.format("'%s'? I have no idea what you're saying.", input);
+            Carbon.printOut(log);
         }
     }
 
@@ -129,10 +136,28 @@ public class Carbon {
         Carbon.printOut(log);
     }
 
-    private void addTask(String input) {
-        Task newTask = new Task(input);
+    private void addTask(String input, String type) {
+        Task newTask;
+        switch (type) {
+            case "todo":
+                newTask = new Todo(input);
+                break;
+            case "deadline":
+                newTask = new Deadline(input);
+                break;
+            case "event":
+                newTask = new Event(input);
+                break;
+            default:
+                // should never reach here
+                newTask = null;
+        }
         this.tasks.add(newTask);
-        String log = String.format("I have added: \n\n    %s", newTask);
+        String log = String.format(
+                "I have added: \n    %s\n\n    We've got %s so far.", 
+                newTask, 
+                this.countTasks()
+                );
         Carbon.printOut(log);
     }
 
@@ -146,7 +171,11 @@ public class Carbon {
 
         String log = "Here are the tasks so far. \n";
         for (int i = 0; i < size; i++) {
-            String taskLog = String.format("\n    %d: %s", i + 1, this.tasks.get(i));
+            String taskLog = String.format(
+                    "\n    %d: %s", 
+                    i + 1, 
+                    this.tasks.get(i)
+                    );
             log += taskLog;
         }
         Carbon.printOut(log);
@@ -157,6 +186,15 @@ public class Carbon {
             this.rand.nextInt(Carbon.goodbyes.length)
         ];
         Carbon.printOut(randomGoodbye);
+    }
+
+    private String countTasks() {
+        int count = this.tasks.size();
+        if (count == 1) {
+            return String.format("%d task", count);
+        } else {
+            return String.format("%d tasks", count);
+        }
     }
     
     public static void main(String[] args) {

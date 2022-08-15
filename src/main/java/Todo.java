@@ -11,6 +11,6 @@ class Todo extends Task {
     @Override
     public String toString() {
         String type = "\u001B[35m(TODO)\u001B[0m";
-        return String.format("%s %s", type, super.toString());
+        return String.format("%s %s !", type, super.toString());
     }
 }
