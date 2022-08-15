@@ -1,28 +1,37 @@
 import java.util.Scanner;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Duke {
     private static ArrayList<Task> data = new ArrayList<Task>();
+    private static List<String> UNKNOWN_COMMANDS = Arrays.asList("todo", "deadline", "event");
 
     private static void addItem(String item) {
         System.out.println("added: " + item);
         data.add(new Task(item));
     }
 
-    private static void addTodo(String item) {
-        data.add(new Todo(item));
+    private static void addTodo(String[] inputs) {
+        String task = String.join(" ", Arrays.copyOfRange(inputs, 1, inputs.length));
+        data.add(new Todo(task));
         System.out.printf("Got it. I've added this task:\n%s\nNow you have %d tasks in the list\n",
                 data.get(data.size() - 1), data.size());
     }
-    private static void addDeadLine(String item, String by) {
-        data.add(new Deadline(item, by));
+    private static void addDeadLine(String[] inputs) {
+        int limit = findElem(inputs, "/by");
+        String task = String.join(" ", Arrays.copyOfRange(inputs, 1, limit));
+        String by = String.join(" ", Arrays.copyOfRange(inputs, limit + 1, inputs.length));
+        data.add(new Deadline(task, by));
         System.out.printf("Got it. I've added this task:\n%s\nNow you have %d tasks in the list\n",
                 data.get(data.size() - 1), data.size());
     }
 
-    private static void addEvent(String item, String at) {
-        data.add(new Event(item, at));
+    private static void addEvent(String[] inputs) {
+        int limit = findElem(inputs, "/at");
+        String task = String.join(" ", Arrays.copyOfRange(inputs, 1, limit));
+        String at = String.join(" ", Arrays.copyOfRange(inputs, limit + 1, inputs.length));
+        data.add(new Event(task, at));
         System.out.printf("Got it. I've added this task:\n%s\nNow you have %d tasks in the list\n",
                 data.get(data.size() - 1), data.size());
     }
@@ -35,12 +44,14 @@ public class Duke {
         }
     }
 
-    private static void markItem(int index) {
+    private static void markItem(String[] inputs) {
+        int index = Integer.parseInt(inputs[1]);
         data.get(index - 1).markAsDone();
         System.out.println("Nice! I've marked this task as done:\n" + data.get(index - 1));
     }
 
-    private static void unMarkItem(int index) {
+    private static void unMarkItem(String[] inputs) {
+        int index = Integer.parseInt(inputs[1]);
         data.get(index - 1).markAsNotDone();
         System.out.println("OK, I've marked this task as not done yet:\n" + data.get(index - 1));
 
@@ -59,38 +70,44 @@ public class Duke {
         System.out.println("Hello! I'm Duke\nWhat can I do for you?");
         Scanner sc = new Scanner(System.in);
         while (true) {
-            String command = sc.nextLine();
-            String[] inputs = command.split(" ");
-            if (inputs.length == 1) {
-                if (command.equals("bye")) {
-                    System.out.println("Bye. Hope to see you again soon!");
-                    break;
-                } else if (command.equals("list")) {
-                    listItems();
+            try {
+                String command = sc.nextLine();
+                String[] inputs = command.split(" ");
+                if (inputs.length == 1) {
+                    if (command.equals("bye")) {
+                        System.out.println("Bye. Hope to see you again soon!");
+                        break;
+                    } else if (command.equals("list")) {
+                        listItems();
+                    } else if (UNKNOWN_COMMANDS.contains(command)) {
+                        throw new DukeException("☹ OOPS!!! The description of a " + command + " cannot be empty.");
+                    } else {
+                        throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                    }
+                } else if (inputs.length == 2) {
+                    if (inputs[0].equals("mark")) {
+                        markItem(inputs);
+                    } else if (inputs[0].equals("unmark")) {
+                        unMarkItem(inputs);
+                    }
+                } else {
+                    switch (inputs[0]) {
+                        case "todo": {
+                            addTodo(inputs);
+                            break;
+                        }
+                        case "deadline": {
+                            addDeadLine(inputs);
+                            break;
+                        }
+                        case "event": {
+                            addEvent(inputs);
+                            break;
+                        }
+                    }
                 }
-            } else if (inputs.length == 2){
-                if (inputs[0].equals("mark")) {
-                    int index = Integer.parseInt(inputs[1]);
-                    markItem(index);
-                } else if (inputs[0].equals("unmark")) {
-                    int index = Integer.parseInt(inputs[1]);
-                    unMarkItem(index);
-                }
-            } else {
-                if (inputs[0].equals("todo")) {
-                    String task = String.join(" ", Arrays.copyOfRange(inputs, 1, inputs.length));
-                    addTodo(task);
-                } else if (inputs[0].equals("deadline")) {
-                    int limit = findElem(inputs, "/by");
-                    String task = String.join(" ", Arrays.copyOfRange(inputs, 1, limit));
-                    String by = String.join(" ", Arrays.copyOfRange(inputs, limit + 1, inputs.length));
-                    addDeadLine(task, by);
-                } else if (inputs[0].equals("event")) {
-                    int limit = findElem(inputs, "/at");
-                    String task = String.join(" ", Arrays.copyOfRange(inputs, 1, limit));
-                    String at = String.join(" ", Arrays.copyOfRange(inputs, limit + 1, inputs.length));
-                    addEvent(task, at);
-                }
+            } catch (DukeException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
