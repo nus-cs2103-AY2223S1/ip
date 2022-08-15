@@ -52,7 +52,7 @@ public class Duke {
             }
         }
     }
-    public static void addTodo(String[] input) throws DukeException {
+    private static void addTodo(String[] input) throws DukeException {
         String taskName = String.join(" ", Arrays.copyOfRange(input, 1, input.length));
         if(taskName.equals("")){
             throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
@@ -60,56 +60,84 @@ public class Duke {
         addTask(new Todo(taskName));
     }
 
-    public static void addDeadline(String[] input) {
+    private static void addDeadline(String[] input) throws DukeException{
         int indexOfDate = findDate(input);
-        String taskName = String.join(" ", Arrays.copyOfRange(input, 1, indexOfDate));
-        String date = String.join(" ", Arrays.copyOfRange(input, indexOfDate +1 , input.length));
-        addTask(new Deadline(taskName,date));
+        if( indexOfDate == -1){
+            throw new DukeException("☹ OOPS!!! Please add a date for your deadline with /by.");
+        } else {
+            String taskName = String.join(" ", Arrays.copyOfRange(input, 1, indexOfDate));
+            String date = String.join(" ", Arrays.copyOfRange(input, indexOfDate +1 , input.length));
+            if( taskName.equals("")){
+                throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
+            }
+            if( date.equals("")){
+                throw new DukeException("☹ OOPS!!! The date of a deadline cannot be empty.");
+            }
+            addTask(new Deadline(taskName,date));
+        }
     }
 
-    public static void addEvent(String[] input){
+    private static void addEvent(String[] input) throws DukeException{
         int indexOfDate = findDate(input);
-        String taskName = String.join(" ", Arrays.copyOfRange(input, 1, indexOfDate));
-        String date = String.join(" ", Arrays.copyOfRange(input, indexOfDate +1 , input.length));
-        addTask(new Event(taskName,date));
+        if( indexOfDate == -1){
+            throw new DukeException("☹ OOPS!!! Please add a date for your event with /at.");
+        } else {
+            String taskName = String.join(" ", Arrays.copyOfRange(input, 1, indexOfDate));
+            String date = String.join(" ", Arrays.copyOfRange(input, indexOfDate +1 , input.length));
+            if( taskName.equals("")){
+                throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.");
+            }
+            if( date.equals("")){
+                throw new DukeException("☹ OOPS!!! The date of an event cannot be empty.");
+            }
+            addTask(new Event(taskName,date));
+        }
     }
 
-    public static void addTask (Task task){
+    private static void addTask (Task task){
         Integer index = INPUT_LIST.size();
         INPUT_LIST.add(task);
         System.out.println("Got it. I've added this task:\n " + task.toString() + "\nNow you have " + INPUT_LIST.size() +" tasks in the list.");
     }
 
-    private static void markDone(Integer index){
-        Task task = INPUT_LIST.get(index-1);
+    private static Task getTask(Integer index) throws DukeException{
+        if(index < 1 || index > INPUT_LIST.size()){
+            throw new DukeException("☹ OOPS!!! That index is out of bounds.");
+        }
+        return INPUT_LIST.get(index-1);
+    }
+    
+    private static void markDone(Integer index) throws DukeException{
+        Task task = getTask(index);
         task.setDone();
 
         System.out.println("Nice! I've marked this task as done:");
         System.out.println(" " + task.toString());
     }
 
-    private static void markNotDone(Integer index){
-        Task task = INPUT_LIST.get(index-1);
+    private static void markNotDone(Integer index) throws DukeException{
+        Task task = getTask(index);
         task.setNotDone();
 
         System.out.println("OK, I've marked this task as not done yet:");
         System.out.println(" " + task.toString());
     }
 
-    private static void delete(Integer index){
+    private static void delete(Integer index) throws DukeException{
+        Task task = getTask(index);
         System.out.println(" Noted. I've removed this task:");
         System.out.println(" " + INPUT_LIST.get(index-1).toString() +"\nNow you have " + (INPUT_LIST.size() - 1) +" tasks in the list.");
-        INPUT_LIST.remove(index-1);
+        INPUT_LIST.remove(task);
     }
 
-    public static void printList(){
+    private static void printList(){
         for(int i = 0; i<INPUT_LIST.size(); i++){
             Integer index = i+1;
             System.out.println(index + ". " + INPUT_LIST.get(i));
         }
     }
 
-    public static int findDate(String[] split){
+    private static int findDate(String[] split) {
         for(int i = 0; i<split.length; i++){
             if(split[i].equals("/by") || split[i].equals("/at")){
                 return i;
