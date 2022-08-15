@@ -4,16 +4,16 @@ import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
 public class Gibson {
-    public static void main(String[] args) {
-        final String line = "____________________________________________________________";
-        final String logo = " _____ ______ ____   _____  ____  _   _\n" +
-        "/ _____|_   _|  _ \\ / ____|/ __ \\| \\ | |\n" +
-        "| |  __  | | | |_) | (___ | |  | |  \\| |\n" +
-        "| | |_ | | | |  _ < \\___ \\| |  | | . ` |\n" +
-        "| |__| |_| |_| |_) |____) | |__| | |\\  |\n" +
-        "\\______|_____|____/|_____/ \\____/|_| \\_|\n";
-        ArrayList<Task> list = new ArrayList<Task>();
+    private static ArrayList<Task> list = new ArrayList<Task>();
+    private static final String line = "____________________________________________________________";
+    private static final String logo = " _____ ______ ____   _____  ____  _   _\n" +
+            "/ _____|_   _|  _ \\ / ____|/ __ \\| \\ | |\n" +
+            "| |  __  | | | |_) | (___ | |  | |  \\| |\n" +
+            "| | |_ | | | |  _ < \\___ \\| |  | | . ` |\n" +
+            "| |__| |_| |_| |_) |____) | |__| | |\\  |\n" +
+            "\\______|_____|____/|_____/ \\____/|_| \\_|\n";
 
+    public static void main(String[] args) {
         // Prints introduction
         System.out.println(line);
         System.out.println(logo);
@@ -58,14 +58,14 @@ public class Gibson {
                 System.out.println(list.get(number).toString());
                 System.out.println(line);
             // TODOS
-            } else if (Pattern.matches("todo .+", input)){
+            } else if (Pattern.matches("todo .+", input)) {
                 String taskString = input.substring(5);
                 Task task = new Task(taskString);
-                list.add(task);
-                System.out.println(line);
-                System.out.println("Got it. I've added this task:\n" + task);
-                System.out.println("Now you have " + list.size() + " task(s) in the list.");
-                System.out.println(line);
+                addTask(task);
+            } else if (Pattern.matches("deadline .+ /by .+", input)) {
+                String[] stringArray = substringAfterToken(input.substring(9), "/by");
+                Deadline deadline = new Deadline(stringArray[0], stringArray[1]);
+                addTask(deadline);
             // NOT RECOGNIZED
             } else {
                 System.out.println(line);
@@ -75,15 +75,40 @@ public class Gibson {
         }
     }
 
-    // Gets trailing integers from a String
+    // Add task to list and print an acknowledgement
+    private static void addTask(Task task) {
+        list.add(task);
+        System.out.println(line);
+        System.out.println("Got it. I've added this task:\n" + task);
+        System.out.println("Now you have " + list.size() + " task(s) in the list.");
+        System.out.println(line);
+    }
+
+    // Returns trailing integers from a String
     // Throws error if no trailing integers
-    private static int getTrailingInt(String s) {
+    private static int getTrailingInt(String string) {
         Pattern pattern = Pattern.compile("[^0-9]+([0-9]+)$");
-        Matcher matcher = pattern.matcher(s);
+        Matcher matcher = pattern.matcher(string);
         if (matcher.find()) {
             return Integer.parseInt(matcher.group(1));
         } else {
             throw new IllegalArgumentException("String is invalid");
+        }
+    }
+
+    // Returns substring before and after first instance of token string
+    // Before stored in [0]. After stored in [1].
+    // Throws error if token is not found in String
+    private static String[] substringAfterToken(String string, String token) {
+        String[] stringArray = new String[2];
+        Pattern pattern = Pattern.compile(token);
+        Matcher matcher = pattern.matcher(string);
+        if (matcher.find()) {
+            stringArray[0] = string.substring(0, matcher.start() - 1);
+            stringArray[1] = string.substring(matcher.end() + 1);
+            return stringArray;
+        } else {
+            throw new IllegalArgumentException("Unable to find token in string");
         }
     }
 }
