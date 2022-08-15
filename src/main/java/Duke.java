@@ -3,7 +3,7 @@ public class Duke {
     private static Task[] storage = new Task[100];
     private static int i = 0;
     public static void main(String[] args) {
-        System.out.println("Hey AhBeng here. What you want?");
+        System.out.println("Hey Dude here. What you want?");
         Scanner sc = new Scanner(System.in);
         String userInput = sc.nextLine();
         while (!userInput.equals("bye")) {
