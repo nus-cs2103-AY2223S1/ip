@@ -9,6 +9,6 @@ public class Deadline extends Task{
 
     @Override
     public String TaskInfo() {
-        return "[D] [" + getStatusIcon() + "] " + description + " (by: " + deadline +")";
+        return "[D] [" + getStatusIcon() + "] " + description + "(by:" + deadline +")";
     }
 }
