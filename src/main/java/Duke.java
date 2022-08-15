@@ -7,6 +7,10 @@ public class Duke {
     private int messageState = 0;
 
     public enum TaskStatus {MARK, UNMARK}
+    public enum TaskType {TODO, DEADLINE, EVENT}
+
+    private static String DEADLINE_TAG = " /by ";
+    private static String EVENT_TAG = " /at ";
 
     private void outputMessage(String message) {
         String[] messageLines = message.split("\n");
@@ -27,16 +31,22 @@ public class Duke {
                 this.outputMessage(Messages.AFTER_LIST[this.messageState]);
                 break;
             case "mark":
-                this.handleTask(command, TaskStatus.MARK);
+                this.handleTaskStatus(command, TaskStatus.MARK);
                 break;
             case "unmark":
-                this.handleTask(command, TaskStatus.UNMARK);
+                this.handleTaskStatus(command, TaskStatus.UNMARK);
+                break;
+            case "todo":
+                this.handleTaskType(command, TaskType.TODO);
+                break;
+            case "deadline":
+                this.handleTaskType(command, TaskType.DEADLINE);
+                break;
+            case "event":
+                this.handleTaskType(command, TaskType.EVENT);
                 break;
             default:
-                this.outputMessage(Messages.ADD_LIST[this.messageState][0]
-                        + message
-                        + Messages.ADD_LIST[this.messageState][0]);
-                this.taskList.add(new Task(message));
+                this.outputMessage(Messages.INVALID_COMMAND[this.messageState]);
         }
         return true;
     }
@@ -53,9 +63,16 @@ public class Duke {
         }
     }
 
-    private boolean checkCommand(String[] command) {
-        if (command.length < 2) {
+    private boolean checkCommandArgs(String[] command, int length) {
+        if (command.length < length) {
             this.outputMessage(Messages.WRONG_COMMAND_FORMAT[this.messageState]);
+            return false;
+        }
+        return true;
+    }
+
+    private boolean checkCommandInt(String[] command) {
+        if (!checkCommandArgs(command, 2)) {
             return false;
         }
         try {
@@ -71,8 +88,20 @@ public class Duke {
         return true;
     }
 
-    private boolean handleTask(String[] command, TaskStatus status) {
-        if (!checkCommand(command)) {
+    private String[] splitTag(String message, String tag) {
+        return message.split(tag, 2);
+    }
+
+    private boolean checkCommandTag(String[] command, String tag) {
+        if (!checkCommandArgs(command, 2)) {
+            return false;
+        }
+        String[] args = splitTag(command[1], tag);
+        return checkCommandArgs(args, 2);
+    }
+
+    private boolean handleTaskStatus(String[] command, TaskStatus status) {
+        if (!checkCommandInt(command)) {
             return false;
         }
         String message;
@@ -91,6 +120,35 @@ public class Duke {
         if (!change) {
             this.outputMessage(message2);
         }
+        return true;
+    }
+
+    private boolean handleTaskType(String[] command, TaskType type) {
+        Task task;
+        if (type == TaskType.TODO) {
+            if (!checkCommandArgs(command, 2)) {
+                return false;
+            }
+            task = new ToDo(command[1]);
+        } else if (type == TaskType.DEADLINE) {
+            if (!checkCommandTag(command, DEADLINE_TAG)) {
+                return false;
+            } else {
+                String[] args = splitTag(command[1], DEADLINE_TAG);
+                task = new Deadline(args[0], args[1]);
+            }
+        } else {
+            if (!checkCommandTag(command, EVENT_TAG)) {
+                return false;
+            } else {
+                String[] args = splitTag(command[1], EVENT_TAG);
+                task = new Event(args[0], args[1]);
+            }
+        }
+        this.taskList.add(task);
+        this.outputMessage(Messages.ADD_LIST[this.messageState]);
+        this.outputMessage(task.toString());
+        this.outputMessage(Messages.getListSizeMsg(taskList.size(), messageState));
         return true;
     }
 
