@@ -15,6 +15,13 @@ public class Event extends Task {
     }
 
 
+    /**
+     * Formats the data nicely using the LocalData library
+     * And an appropriately formatted string
+     * @param ld
+     * @return Event
+     */
+
     public String customFormatter(LocalDate ld) {
         return ld.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
     }
