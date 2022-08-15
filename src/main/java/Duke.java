@@ -28,7 +28,40 @@ public class Duke {
             return String.format(s, getStatusIcon(), description);
         }
     }
-
+    public static class Todo extends Task {
+        public Todo(String description) {
+            super(description);
+        }
+        @Override
+        public String toString() {
+            String s = super.toString();
+            return "[T]" + s;
+        }
+    }
+    public static class Deadline extends Task {
+        protected String time;
+        public Deadline(String description, String time) {
+            super(description);
+            this.time = time;
+        }
+        @Override
+        public String toString() {
+            String s = super.toString();
+            return "[D]" + s + " (by: " + time +")";
+        }
+    }
+    public static class Event extends Task {
+        protected String time;
+        public Event(String description, String time) {
+            super(description);
+            this.time = time;
+        }
+        @Override
+        public String toString() {
+            String s = super.toString();
+            return "[E]" + s + " (at: " + time +")";
+        }
+    }
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -59,13 +92,34 @@ public class Duke {
                 list.get(index).unmark();
                 System.out.println("I have marked this task as not done:");
                 System.out.println(list.get(index));
+            } else if (command[0].equals("todo")) {
+                list.add(new Todo(command[1]));
+                int count = list.size();
+                System.out.println("Added Task");
+                System.out.println(list.get(count - 1));
+                System.out.println("Now you have " + count + " tasks in the list");
+            } else if (command[0].equals("deadline")) {
+                String[] desc = command[1].split("/by", 2);
+                list.add(new Deadline(command[0], desc[1]));
+                int count = list.size();
+                System.out.println("Added Task");
+                System.out.println(list.get(count - 1));
+                System.out.println("Now you have " + count + " tasks in the list");
+            } else if (command[0].equals("event")) {
+                String[] desc = command[1].split("/at", 2);
+                list.add(new Event(command[0], desc[1]));
+                int count = list.size();
+                System.out.println("Added Task");
+                System.out.println(list.get(count - 1));
+                System.out.println("Now you have " + count + " tasks in the list");
             }
             else {
                 System.out.println("added: " + next);
-                list.add(next);
+                list.add(new Task(next));
             }
         }
 
 
     }
 }
+
