@@ -13,7 +13,7 @@ public class Duke {
     private final Scanner sc;
     private TaskList taskList;
     private enum Commands {
-        TODO, DEADLINE, EVENT, LIST, BYE, MARK, UNMARK
+        TODO, DEADLINE, EVENT, LIST, BYE, MARK, UNMARK, DELETE
     }
     private HashMap<String, Commands> commandMap = new HashMap<>(Map.of(
             "todo", Commands.TODO,
@@ -22,7 +22,8 @@ public class Duke {
             "list", Commands.LIST,
             "bye", Commands.BYE,
             "mark", Commands.MARK,
-            "unmark", Commands.UNMARK
+            "unmark", Commands.UNMARK,
+            "delete", Commands.DELETE
     ));
 
     public Duke() {
@@ -38,10 +39,9 @@ public class Duke {
         System.out.println(response);
     }
 
-    public String add(Commands type, StringBuilder stringBuilder) {
+    public String add(Commands type) {
         String[] arguments;
-        Task newTask = new Task("");
-        int number = 0;
+        String msg = "";
         try {
             switch (type) {
                 case TODO:
@@ -49,30 +49,24 @@ public class Duke {
                     if (input.length() < 1) {
                         throw new DukeException("Something went wrong! Could not read TODO.");
                     }
-                    newTask = new ToDo(input);
-                    number = this.taskList.addTask(newTask);
+                    msg = this.taskList.addTask(new ToDo(input));
                     break;
                 case DEADLINE:
                     arguments = sc.nextLine().split("/by");
                     if (arguments.length < 2) {
                         throw new DukeException("     Something went wrong! Could not read DEADLINE.");
                     }
-                    newTask = new Deadline(arguments[0], arguments[1]);
-                    number = this.taskList.addTask(newTask);
+                    msg = this.taskList.addTask(new Deadline(arguments[0], arguments[1]));
                     break;
                 case EVENT:
                     arguments = sc.nextLine().split("/at");
                     if (arguments.length < 2) {
                         throw new DukeException("     Something went wrong! Could not read EVENT.");
                     }
-                    newTask = new Event(arguments[0], arguments[1]);
-                    number = this.taskList.addTask(newTask);
+                    msg = this.taskList.addTask(new Event(arguments[0], arguments[1]));
                     break;
             }
-            stringBuilder.append("     Got it. I've added this task:\n     --> ");
-            stringBuilder.append(newTask);
-            stringBuilder.append(String.format("\n     Now you have %d tasks in the list.", number));
-            return stringBuilder.toString();
+            return msg;
         } catch (DukeException e) {
             return e.getMessage();
         }
@@ -84,6 +78,7 @@ public class Duke {
             try {
                 String input = sc.next();
                 if (!commandMap.containsKey(input)) {
+                    sc.nextLine(); // Move scanner to next line
                     throw new DukeException("     I'm sorry, but I don't understand that.");
                 }
                 Commands type = commandMap.get(input);
@@ -91,7 +86,7 @@ public class Duke {
                     case TODO:
                     case DEADLINE:
                     case EVENT:
-                        reply(add(type, stringBuilder));
+                        reply(add(type));
                         break;
                     case LIST:
                         reply(this.taskList.toString());
@@ -105,6 +100,9 @@ public class Duke {
                         stringBuilder.append("     OK, I've marked this task as not done yet:\n     ");
                         stringBuilder.append(this.taskList.unmarkDone(sc.nextInt() - 1));
                         reply(stringBuilder.toString());
+                        break;
+                    case DELETE:
+                        reply(this.taskList.removeTask(sc.nextInt() - 1));
                         break;
                     case BYE:
                         reply("     Bye. Hope to see you again soon!");

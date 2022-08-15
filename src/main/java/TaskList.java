@@ -7,9 +7,20 @@ public class TaskList {
         this.list = new ArrayList<>();
     }
 
-    public int addTask(Task task){
+    public String addTask(Task task) {
         this.list.add(task);
-        return this.list.size();
+        StringBuilder stringBuilder = new StringBuilder("     Got it. I've added this task:\n        ");
+        stringBuilder.append(task);
+        stringBuilder.append(String.format("\n     Now you have %d tasks in the list.", this.list.size()));
+        return stringBuilder.toString();
+    }
+
+    public String removeTask(int index) {
+        Task task = this.list.remove(index);
+        StringBuilder stringBuilder = new StringBuilder("     Noted. I've removed this task:\n        ");
+        stringBuilder.append(task);
+        stringBuilder.append(String.format("\n     Now you have %d tasks in the list.", this.list.size()));
+        return stringBuilder.toString();
     }
 
     public String markDone(int index) {
