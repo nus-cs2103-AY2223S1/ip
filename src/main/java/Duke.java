@@ -34,16 +34,49 @@ public class Duke {
                 Task taskToMarkDone = userTasks.get(index);
                 taskToMarkDone.setTaskAsDone();
                 String toPrint = "\n     Nice! I've marked this task as done:\n       " + taskToMarkDone + "\n";
-                System.out.println(messageWithIndentedLines(toPrint));
+                System.out.println(messageWithIndentedLines("     Here are the tasks in your list:\n" + toPrint));
             } else if (userInput.startsWith("unmark")) {
                 int index = Character.getNumericValue(userInput.charAt(7)) - 1;
                 Task taskToMarkDone = userTasks.get(index);
                 taskToMarkDone.setTaskAsNotDone();
                 String toPrint = "\n     OK, I've marked this task as not done yet:\n       "  + taskToMarkDone + "\n";
                 System.out.println(messageWithIndentedLines(toPrint));
-            } else {
-                System.out.println(messageWithIndentedLines("\n      added: " + userInput + "\n"));
-                userTasks.add(new Task(userInput));
+            } else { // it must be a task
+                String[] commands = userInput.split("\\s+");
+                String taskType = commands[0];
+                commands[0] = "";
+                switch (taskType) {
+                    case "todo":
+                        userTasks.add(new ToDo(String.join(" ", commands)));
+                        break;
+                    case "deadline":
+                        StringBuilder deadlineDescription = new StringBuilder();
+                        int i = 1;
+                        while (!commands[i].matches("^/by")) {
+                            deadlineDescription.append(commands[i]).append(" ");
+                            i++;
+                        }
+                        StringBuilder deadlineBy = new StringBuilder();
+                        for (int k = i + 1; k < commands.length; k++) {
+                            deadlineBy.append(commands[k]).append(" ");
+                        }
+                        userTasks.add(new Deadline(deadlineDescription.toString().strip(), deadlineBy.toString().strip()));
+                        break;
+                    case "event":
+                        StringBuilder eventDescription = new StringBuilder();
+                        int j = 1;
+                        while (!commands[j].matches("^/at")) {
+                            eventDescription.append(commands[j]).append(" ");
+                            j++;
+                        }
+                        StringBuilder eventAt = new StringBuilder();
+                        for (int k = j + 1; k < commands.length; k++) {
+                            eventAt.append(commands[k]).append(" ");
+                        }
+                        userTasks.add(new Event(eventDescription.toString().strip(), eventAt.toString().strip()));
+                        break;
+                }
+                System.out.println(messageWithIndentedLines("\n     Got it. I've added this task:\n       " + userTasks.get(userTasks.size() - 1) + "\n     Now you have " + userTasks.size() + " task" + (userTasks.size() == 1 ? "" : "s") + " in the list.\n"));
             }
             userInput = scanner.nextLine();
         }

@@ -1,4 +1,4 @@
-public class Task {
+public abstract class Task {
     // original access modifier was protected
     private final String description;
     private boolean isDone;
