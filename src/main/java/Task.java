@@ -4,21 +4,15 @@
  * @version CS2103 AY22/23 Sem 1
  */
 
-public class Task {
+public abstract class Task {
     /** The details of the task */
     protected String description;
 
     /** If the task is finished */
     protected boolean isDone;
 
-    /**
-     * A public constructor to initialise an un-done task.
-     * @param description The details of the task.
-     */
-    public Task(String description) {
-        this.description = description;
-        this.isDone = false;
-    }
+    /** The time for the task */
+    protected String time;
 
     /**
      * Returns the status of the task.
@@ -40,5 +34,15 @@ public class Task {
      */
     public void markAsNotDone() {
         this.isDone = false;
+    }
+
+    protected Task(String description) {
+        this.description = description;
+        this.isDone = false;
+    }
+
+    @Override
+    public String toString() {
+        return "[" + this.getStatusIcon() + "] " + this.description;
     }
 }

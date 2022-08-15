@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -28,14 +29,6 @@ public class Poolsheen {
 
     private static final String endMessage = "THE POOLSHEEN PROGRAM HAS STOPPED RUNNING";
 
-    private static final String exitCommand = "bye";
-
-    private static final String listCommand = "list";
-
-    private static final String markCommand = "mark ";
-
-    private static final String unmarkCommand = "unmark ";
-
     /** Whether if this poolsheen object has stopped running */
     private boolean hasExited;
 
@@ -46,17 +39,13 @@ public class Poolsheen {
     private Scanner scanner;
 
     /** The list of tasks that the poolsheen object has */
-    private Task[] listOfTasks;
-
-    /** The index position to place the next task into the list */
-    private int nextEmptyIndex;
+    private ArrayList<Task> listOfTasks;
 
     /**
      * A private constructor to initialise the Poolsheen object.
      */
     private Poolsheen() {
-        this.listOfTasks = new Task[100];
-        this.nextEmptyIndex = 0;
+        this.listOfTasks = new ArrayList<>(100);
         this.hasExited = false;
         this.userInput = "";
         this.scanner = new Scanner(System.in);
@@ -68,25 +57,51 @@ public class Poolsheen {
     private void run() {
         while (!this.hasExited) {
             this.userInput = this.scanner.nextLine();
-            if (this.userInput.equals(Poolsheen.exitCommand)) {
-                this.exit();
-            } else if (this.userInput.equals(Poolsheen.listCommand)) {
-                this.displayList();
-            } else if (this.userInput.length() >= 5 &&
-                    this.userInput.substring(0, 5).
-                            equals(Poolsheen.markCommand)) {
-                int pos = java.lang.Integer.parseInt(
-                        this.userInput.substring(5));
-                this.mark(pos);
-            } else if (this.userInput.length() >= 7 &&
-                this.userInput.substring(0, 7).
-                        equals(Poolsheen.unmarkCommand)) {
-                int pos = java.lang.Integer.parseInt(
-                        this.userInput.substring(7));
-                this.unmark(pos);
-            } else {
-                this.addTask(new Task(this.userInput));
-                this.say("Poolsheen now remembers: " + this.userInput);
+            //parse a string
+            String[] arr = this.userInput.split(" ");
+            //to convert primitive string array to arraylist<string>
+            ArrayList<String> arl = new ArrayList<>();
+            for (String s : arr) {
+                arl.add(s);
+            }
+            String command = arl.get(0);
+            arl.remove(0);
+
+            switch (command) {
+                case "bye":
+                    this.exit();
+                    break;
+                case "list":
+                    this.displayList();
+                    break;
+                case "mark":
+                    this.mark(java.lang.Integer.parseInt(arl.get(0)));
+                    break;
+                case "unmark":
+                    this.unmark(java.lang.Integer.parseInt(arl.get(0)));
+                    break;
+                case "todo":
+                    String descTD = String.join(" ", arl);
+                    ToDo t = new ToDo(descTD);
+                    this.listOfTasks.add(t);
+                    this.say("Poolsheen now remembers: " + descTD);
+                    break;
+                case "deadline":
+                    String descD = String.join(" ", arl.subList(0, arl.indexOf("/by")));
+                    String timeD = String.join(" ", arl.subList(arl.indexOf("/by") + 1, arl.size()));
+                    Deadline d = new Deadline(descD, timeD);
+                    this.listOfTasks.add(d);
+                    this.say("Poolsheen now remembers: " + descD);
+                    break;
+                case "event":
+                    String descE = String.join(" ", arl.subList(0, arl.indexOf("/at")));
+                    String timeE = String.join(" ", arl.subList(arl.indexOf("/at") + 1, arl.size()));
+                    Event e = new Event(descE, timeE);
+                    this.listOfTasks.add(e);
+                    this.say("Poolsheen now remembers: " + descE);
+                    break;
+                default:
+                    this.say("Type in a valid command");
             }
         }
     }
@@ -100,19 +115,10 @@ public class Poolsheen {
     }
 
     /**
-     * Stores a task into the list of task.
-     * @param task The task to be added.
-     */
-    private void addTask(Task task) {
-        this.listOfTasks[this.nextEmptyIndex] = task;
-        this.nextEmptyIndex += 1;
-    }
-
-    /**
      * Prints the list of tasks this Poolsheen remembers.
      */
     private void displayList() {
-        if (this.nextEmptyIndex == 0) {
+        if (this.listOfTasks.isEmpty()) {
             this.say("Poolsheen thinks back... " +
                     "and remembers you said nothing :(");
         } else {
@@ -121,7 +127,7 @@ public class Poolsheen {
             int currPos = 1;
             for (Task task : this.listOfTasks) {
                 if (task != null) {
-                    String line = currPos + "." + " [" + task.getStatusIcon() + "] " + task.description;
+                    String line = currPos + ". " + task.toString();
                     displayStr += "\n" + Poolsheen.startReply + line;
                     currPos += 1;
                 }
@@ -147,7 +153,7 @@ public class Poolsheen {
      * @param pos The index position of the task in the list.
      */
     private void mark(int pos) {
-         Task selectedTask = this.listOfTasks[pos-1];
+         Task selectedTask = this.listOfTasks.get(pos-1);
          selectedTask.markAsDone();
          this.say("Poolsheen thinks you are done with "
                  + selectedTask.description);
@@ -158,7 +164,7 @@ public class Poolsheen {
      * @param pos The index position of the task in the list.
      */
     private void unmark(int pos) {
-        Task selectedTask = this.listOfTasks[pos-1];
+        Task selectedTask = this.listOfTasks.get(pos-1);
         selectedTask.markAsNotDone();
         this.say("Poolsheen thinks you are not done with "
                 + selectedTask.description);
