@@ -9,6 +9,11 @@ public class Duke {
         System.out.println("Hello! I'm Duke. How may I assist you?");
     }
 
+    public void sayBye() {
+        String message = "Bye! Hope to see you soon!";
+        System.out.println(message);
+    }
+
     public static void main(String[] args) {
         Duke duke = new Duke();
         duke.greetUser();
