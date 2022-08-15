@@ -1,10 +1,13 @@
-read book
+todo read book
 mark 1
 list
 unmark 1
-todo borrow book
-mark 2
 deadline return book /by wed
 event meeting /at mon 5pm
+list
+todo
+deadline return book
+blah
+delete 2
 list
 bye
