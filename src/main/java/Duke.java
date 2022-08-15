@@ -64,10 +64,6 @@ public class Duke {
                 continue;
             }
 
-            if (input.contains("mark")) {
-
-            }
-
             // Echo
             String output = String.format("\tYou have added \"%s\" into your task list!", input);
             System.out.println(output);
