@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Mia {
     public static void main(String[] args) {
@@ -6,6 +7,20 @@ public class Mia {
                       "┃ You are talking to MIA... ┃\n" +
                       "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━┛";
         System.out.println(logo);
+        printResponse("Hello there!");
+        final Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter a command: ");
+        while (sc.hasNextLine()) {
+            final String line = sc.nextLine().strip();
+            if (line.equals("bye")) {
+                printResponse("See you!");
+                break;
+            }
+            printResponse(line);
+            System.out.print("Enter a command: ");
+        }
+        sc.close();
     }
 
     private static void printResponse(String response) {
