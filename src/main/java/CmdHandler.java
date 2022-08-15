@@ -1,9 +1,13 @@
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.function.Function;
 
 public class CmdHandler {
     ArrayList<Task> tasks = new ArrayList<>();
     boolean done = false;
+
 
     private void handleList() {
         String out = "";
@@ -19,17 +23,24 @@ public class CmdHandler {
         done = false;
     }
 
-    private void addTask(String desc) {
-        if (desc.substring(0, 8).equals("deadline")) {
+    private void addTask(String desc) throws DukeException {
+        if (desc.startsWith("deadline")) {
             String[] parsed = desc.substring(8).split("/by");
             tasks.add(new Deadline(parsed[0], parsed[1]));
-        } else if (desc.substring(0, 5).equals("event")) {
+            System.out.println("task added" + tasks.get(tasks.size() - 1));
+        } else if (desc.startsWith("event")) {
             String[] parsed = desc.substring(5).split("/at");
             tasks.add(new Event(parsed[0], parsed[1]));
-        } else if (desc.substring(0, 4).equals("todo"))  {
+            System.out.println("task added" + tasks.get(tasks.size() - 1));
+        } else if (desc.startsWith("todo")) {
+            if (desc.substring(4).length() == 0) {
+                throw new DukeException("The description of a todo cannot be empty.");
+            }
             tasks.add(new Todo(desc.substring(4)));
+            System.out.println("task added" + tasks.get(tasks.size() - 1));
+        } else {
+            throw new DukeException("No such command");
         }
-        System.out.println("task added" + tasks.get(tasks.size() - 1));
     }
 
     private void handleMark(int i) {
@@ -45,20 +56,26 @@ public class CmdHandler {
     void handle() {
         Scanner sc = new Scanner(System.in);
         while (!done) {
-            String inputStr = sc.nextLine();
-            String[] inputArr = inputStr.split(" ");
-            if (inputArr[0].equals("list")) {
-                handleList();
-            } else if (inputArr[0].equals("bye")) {
-                handleBye();
-            } else if (inputArr[0].equals("unmark")) {
-                handleUnMark(Integer.parseInt(inputArr[inputArr.length - 1]) - 1);
-            } else if (inputArr[0].equals("mark")) {
-                handleMark(Integer.parseInt(inputArr[inputArr.length - 1]) - 1);
-            } else {
-                addTask(inputStr);
+            try {
+                String inputStr = sc.nextLine();
+                String[] inputArr = inputStr.split(" ");
+                if (inputArr[0].equals("list")) {
+                    handleList();
+                } else if (inputArr[0].equals("bye")) {
+                    handleBye();
+                } else if (inputArr[0].equals("unmark")) {
+                    handleUnMark(Integer.parseInt(inputArr[inputArr.length - 1]) - 1);
+                } else if (inputArr[0].equals("mark")) {
+                    handleMark(Integer.parseInt(inputArr[inputArr.length - 1]) - 1);
+                } else {
+                    addTask(inputStr);
+                }
+                System.out.println();
+
+            } catch (DukeException de) {
+                System.out.println(de.getMessage());
+
             }
-            System.out.println();
         }
     }
 }
