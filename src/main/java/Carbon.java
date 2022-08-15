@@ -9,7 +9,7 @@ public class Carbon {
     // logo for Carbon
     private static String logo = "                 _ _ _ ____ _    ____ ____ _  _ ____ \n" + 
             "                 | | | |___ |    |    |  | |\\/| |___ \n" + 
-            "                 |_|_| |___ |___ |___ |__| |  | |___ \n" + 
+            "                 |_|_| |___ |___ |___ |__| |  | |___ \n\n" + 
             "  ▄████████    ▄████████    ▄████████ ▀█████████▄   ▄██████▄  ███▄▄▄▄   \n" + 
             " ███    ███   ███    ███   ███    ███   ███    ███ ███    ███ ███▀▀▀██▄ \n" + 
             " ███    █▀    ███    ███   ███    ███   ███    ███ ███    ███ ███   ███ \n" + 
@@ -70,9 +70,11 @@ public class Carbon {
         this.rand = new Random();
         this.tasks = new ArrayList<Task>();
 
-        String randomPrompt = Carbon.initPrompts[
-            this.rand.nextInt(Carbon.initPrompts.length)
-        ];
+        // String randomPrompt = Carbon.initPrompts[
+        //     this.rand.nextInt(Carbon.initPrompts.length)
+        // ];
+
+        String randomPrompt = Carbon.initPrompts[0];
 
         System.out.println(Carbon.logo);
 
@@ -182,9 +184,11 @@ public class Carbon {
     }
 
     private void exit() {
-        String randomGoodbye = Carbon.goodbyes[
-            this.rand.nextInt(Carbon.goodbyes.length)
-        ];
+        // String randomGoodbye = Carbon.goodbyes[
+        //     this.rand.nextInt(Carbon.goodbyes.length)
+        // ];
+        
+        String randomGoodbye = Carbon.goodbyes[0];
         Carbon.printOut(randomGoodbye);
     }
 

@@ -1,0 +1,12 @@
+list
+TODO Get a CS Degree
+DeadLine Individual Project /by 18 Aug
+eVEnT Career Fair /at Wednesday 2pm
+Mark 2
+mark 1
+list
+todo Eat dinner
+unmark 1
+mark 4
+list
+bye
