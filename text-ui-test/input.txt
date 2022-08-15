@@ -1,0 +1,13 @@
+todo Drink coffee
+todo Drink tea
+deadline Eat chocolate
+deadline Eat chocolate /by 2pm
+mark 1
+unmark 1
+unmark -1
+unmark asdf
+event Dinner with myself
+event Dinner with myself /at 6pm
+mark 2
+list
+bye
