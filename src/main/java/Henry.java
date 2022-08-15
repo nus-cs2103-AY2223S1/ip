@@ -158,9 +158,9 @@ public class Henry {
                         String taskDeadline =
                             command.substring(indexSlash + 1).replace("by", "")
                                    .trim();
-                        task = new DeadlineTask(
+                        task = new Task(
                             taskDescription.replace("deadline", "").trim(),
-                            taskDeadline);
+                            taskDeadline, TaskTypes.DEADLINE);
                     }
                 } else {
                     if (!command.contains("at")) {
@@ -169,9 +169,9 @@ public class Henry {
                         String taskTime =
                             command.substring(indexSlash + 1).replace("at", "")
                                    .trim();
-                        task = new EventTask(
+                        task = new Task(
                             taskDescription.replace("event", "").trim(),
-                            taskTime);
+                            taskTime, TaskTypes.EVENT);
                     }
                 }
             }
@@ -181,7 +181,7 @@ public class Henry {
                 throw new NoDescriptionException();
             } else {
                 String taskDescription = command.split("todo")[1];
-                task = new TodoTask(taskDescription);
+                task = new Task(taskDescription, "", TaskTypes.TODO);
             }
         }
         addToList(task);

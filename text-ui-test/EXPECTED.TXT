@@ -21,13 +21,13 @@ ____________________________________________________________
 
 > ____________________________________________________________
  HENRY: OK. I ADDED THIS TASK TO MY LIST:
-			[D][ ]return book (by: June 6th)
+			[D][ ] return book (by: June 6th)
 	    NOW YOU HAVE 2 TASKS IN YOUR LIST.
 ____________________________________________________________
 
 > ____________________________________________________________
  HENRY: OK. I ADDED THIS TASK TO MY LIST:
-			[E][ ]project meeting (at: Aug 6th 2-4pm)
+			[E][ ] project meeting (at: Aug 6th 2-4pm)
 	    NOW YOU HAVE 3 TASKS IN YOUR LIST.
 ____________________________________________________________
 
@@ -39,8 +39,8 @@ ____________________________________________________________
 > ____________________________________________________________
  HENRY:
  1. [T][X] read book
- 2. [D][ ]return book (by: June 6th)
- 3. [E][ ]project meeting (at: Aug 6th 2-4pm)
+ 2. [D][ ] return book (by: June 6th)
+ 3. [E][ ] project meeting (at: Aug 6th 2-4pm)
 ____________________________________________________________
 
 > ____________________________________________________________
