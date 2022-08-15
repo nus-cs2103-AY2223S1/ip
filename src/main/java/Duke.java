@@ -46,7 +46,9 @@ public class Duke {
                     String[] descDeadline = Arrays.copyOfRange(splitString, 1, splitString.length);
                     current = String.join(" ", descDeadline);
                     String descD = current.split("/by")[0].trim();
-                    String byD = current.split("/by")[1].trim();
+                    String byD = current.split("/by").length == 2
+                            ? current.split("/by")[1].trim()
+                            : "";
                     Task deadlineTask = new Deadline(descD, byD);
                     addTask(deadlineTask);
                     break;
@@ -54,7 +56,9 @@ public class Duke {
                     String[] descEvent = Arrays.copyOfRange(splitString, 1, splitString.length);
                     current = String.join(" ", descEvent);
                     String descE = current.split("/at")[0].trim();
-                    String atE = current.split("/at")[1].trim();
+                    String atE = current.split("/at").length == 2
+                            ? current.split("/at")[1].trim()
+                            : "";
                     Task eventTask = new Event(descE, atE);
                     addTask(eventTask);
                     break;
