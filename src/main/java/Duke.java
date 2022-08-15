@@ -10,14 +10,29 @@ public class Duke {
         System.out.println("Hello from\n" + logo);
 
         System.out.println("What can I do for you?");
+        String[] storage = new String[100];
         Scanner scanner = new Scanner(System.in);
         String text = scanner.next();
+        int count = 0;
 
         while (true) {
             if (text.equals("bye")) {
                 break;
+            } else if (text.equals("list")) {
+                if (count == 0) {
+                    System.out.println("List is empty!");
+                } else {
+                    for (int i = 0; i < count; i++) {
+                        System.out.print("\t");
+                        System.out.print(i + 1);
+                        System.out.print(". " + storage[i] + "\n");
+                    }
+                }
+            } else {
+                System.out.println("\tadded: " + text);
+                storage[count] = text;
+                count++;
             }
-            System.out.println("\t" + text);
             scanner = new Scanner(System.in);
             text = scanner.next();
         }
