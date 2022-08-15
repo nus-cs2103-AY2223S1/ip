@@ -1,0 +1,23 @@
+todo read book
+deadline submit project /by 18 august
+event project meeting /at 20 september
+todo sweep the floor
+list
+mark 3
+mark 1
+list
+unmark 1
+blah
+play
+todo
+event
+deadline
+mark
+unmark
+deadline /by 5 july
+delete 10
+delete 1
+list
+deadline return john's book
+event cooking class
+bye
