@@ -72,11 +72,13 @@ public class Duke {
           return new ToDo(description);
         } else if (type.equals("deadline")) {
           if (splitStr.length < 2)throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.\n");
+          if (str.indexOf("/by") - 1 < 0) throw new DukeException("☹ OOPS!!! Please set date of deadline with /by.\n");
           String description = str.substring(type.length() + 1,str.indexOf("/by") - 1);
           String date = str.substring(str.lastIndexOf("/by") + 4);
           return new Deadline(description,date);
         } else if (type.equals("event")) {
           if (splitStr.length < 2)throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.\n");
+          if (str.indexOf("/at") - 1 < 0) throw new DukeException("☹ OOPS!!! Please set date of event with /at.\n");
           String description = str.substring(type.length() + 1,str.indexOf("/at") - 1);
           String date = str.substring(str.lastIndexOf("/at") + 4);
           return new Event(description,date);
