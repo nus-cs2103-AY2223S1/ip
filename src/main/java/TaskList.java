@@ -28,13 +28,16 @@ public class TaskList {
         return str;
     }
 
-    public String updateMark(int k) {
-        this.memo.get(k - 1).mark();
+    public String updateMark(int index) {
+        if (index > memo.size()) return "You don't have so many tasks phew...";
+        this.memo.get(index - 1).mark();
         return "Nice! I've marked this task as done :)";
     }
 
-    public String updateUnmark(int k) {
-        this.memo.get(k - 1).unmark();
+    public String updateUnmark(int index) {
+        if (index > memo.size()) return "You don't have so many tasks phew...";
+        this.memo.get(index - 1).unmark();
         return "okay I mark this task as not done yet...";
     }
+
 }

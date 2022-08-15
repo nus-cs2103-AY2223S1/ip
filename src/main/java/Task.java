@@ -24,9 +24,11 @@ public class Task {
             return header + this.task;
         } else if (taskType == "[D]") {
             String[] str = task.split("/by", 2);
+            //if (str.length < 2) return "The description of deadline cannot be non-existent :( Try again.";
             return header + str[0] + "(by:" + str[1] + ")";
         } else {
             String[] str = task.split("/at", 2);
+            //if (str.length < 2) return "Event time cannot be left empty :( Try again.";
             return header + str[0] + "(at:" + str[1] + ")";
         }
     }

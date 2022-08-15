@@ -31,6 +31,7 @@ public class Duke {
             //command to terminate Duke.
             if (input.equals("bye") || com[0] == "bye") {
                 printMsg(endText);
+                scan.close();
                 break;
             }
 
@@ -61,7 +62,7 @@ public class Duke {
                     break;
 
                 default:
-                    printMsg("Invalid command,,,I can't understand :( Try again.");
+                    printMsg("Invalid command...I can't understand :( Try again.");
             }
         }
     }
