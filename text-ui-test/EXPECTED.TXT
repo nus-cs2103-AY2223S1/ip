@@ -6,6 +6,12 @@
 
 Hello! I'm Duke
 What can I do for you?
-hi
-ok
+added: do 1
+added: do 2
+1. do 1
+2. do 2
+added: do 3
+1. do 1
+2. do 2
+3. do 3
 Bye. Hope to see you again soon!

@@ -1,4 +1,6 @@
-hi
-ok
+do 1
+do 2
+list
+do 3
+list
 bye
-hi
