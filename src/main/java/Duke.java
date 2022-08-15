@@ -16,11 +16,15 @@ public class Duke {
     private static final String OUTRO = "Bye. Hope to see you again soon!";
     private static final String MARKED = "Nice! I've marked this task as done:%n  %s";
     private static final String UNMARKED = "OK, I've marked this task as not done yet:%n  %s";
+    private static final String ADD_TASK = "Got it. I've added this task:%n"
+            + "  %s%n"
+            + "Now you have %d tasks in the list.";
 
     private DukeIO userIO;
     private Parser parser;
 
     private List<Task> tasks;
+    private int taskCompleted;
 
     Duke() {
         userIO = new DukeIO();
@@ -28,12 +32,13 @@ public class Duke {
         parser = new Parser();
         userIO.printTask(LOGO, 2);
         userIO.printTask(INTRO, 3);
+        taskCompleted = 0;
     }
 
     boolean handleInput() {
         String txt = userIO.readLine();
         ParsedData data = parser.parse(txt);
-        int index;
+        Task task;
         switch (data.command) {
             case "bye":
                 userIO.printTask(OUTRO, 3);
@@ -44,20 +49,45 @@ public class Duke {
                 return true;
 
             case "mark":
-                index = Integer.parseInt(data.description) - 1;
-                tasks.get(index).mark();
-                userIO.printTask(String.format(MARKED, tasks.get(index)));
+                task = tasks.get(Integer.parseInt(data.description) - 1);
+                if (!task.isCompleted())
+                    taskCompleted++;
+
+                task.mark();
+                userIO.printTask(String.format(MARKED, task));
                 return true;
 
             case "unmark":
-                index = Integer.parseInt(data.description) - 1;
-                tasks.get(index).unmark();
-                userIO.printTask(String.format(UNMARKED, tasks.get(index)));
+                task = tasks.get(Integer.parseInt(data.description) - 1);
+                if (task.isCompleted())
+                    taskCompleted--;
+
+                task.unmark();
+                userIO.printTask(String.format(UNMARKED, task));
                 return true;
+
+            case "todo":
+                task = Todo.createTodo(data);
+                tasks.add(task);
+                userIO.printTask(String.format(ADD_TASK, task, tasks.size()));
+                return true;
+
+            case "deadline":
+                task = Deadline.createDeadline(data);
+                tasks.add(task);
+                userIO.printTask(String.format(ADD_TASK, task, tasks.size()));
+                return true;
+
+            case "event":
+                task = Event.createEvent(data);
+                tasks.add(task);
+                userIO.printTask(String.format(ADD_TASK, task, tasks.size()));
+                return true;
+
             default:
-                tasks.add(new Task(data.raw));
-                userIO.printTask(String.format("added: %s", data.raw));
+                userIO.printTask("ERROR");
                 return true;
+
         }
     }
 
