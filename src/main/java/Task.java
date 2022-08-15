@@ -8,11 +8,15 @@ class Task {
     }
 
     void mark() {
-        this.completed = true;
+        completed = true;
     }
 
     void unmark() {
-        this.completed = false;
+        completed = false;
+    }
+
+    boolean isCompleted() {
+        return completed;
     }
 
     @Override
