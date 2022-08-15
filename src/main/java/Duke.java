@@ -17,7 +17,7 @@ public class Duke {
     private static final String LINE = "```````````````````````````````````````````````````````````````````";
     private static final String WELCOME_GREET = "Hello there! I am\n" + LOGO
                 + "\nyour personal task tracking assistant!\nWhat can I do for you today?\n";
-    private static final String EXIT_GREET = "Bye. Hope to see you again soon!";
+    private static final String EXIT_GREET = "Bye. Hope to see you again soon!\n";
     private static final LinkedList<Task> TASK_LIST = new LinkedList<>();
 
     //Duke Formatting
@@ -25,7 +25,7 @@ public class Duke {
         System.out.println(WELCOME_GREET + LINE);
     }
     private static void exitGreet() {
-       System.out.println(EXIT_GREET);
+       System.out.println(EXIT_GREET + LINE);
     }
     private static void printLine() {
         System.out.println(LINE);
