@@ -15,14 +15,25 @@ Nephew now have 2 tasks in the list.
 Nephew so busy, got new event:
   [E][ ] project meeting (at: Mon 2-4pm)
 Nephew now have 3 tasks in the list.
+Uncle really don't understand.
 Nephew got a lot of things to do:
 1. [T][ ] borrow book
 2. [D][ ] return book (by: Sunday)
 3. [E][ ] project meeting (at: Mon 2-4pm)
+Task 0 doesn't exist, just like my love for Aunty Helen.
 Fuiyoh, nephew so efficient! Finished this task:
 [D][X] return book (by: Sunday)
+Task 4 doesn't exist, just like my love for Aunty Helen.
 Nephew got a lot of things to do:
 1. [T][ ] borrow book
 2. [D][X] return book (by: Sunday)
+3. [E][ ] project meeting (at: Mon 2-4pm)
+Task 0 doesn't exist, just like my love for Aunty Helen.
+Haven't done yet, mark what mark? Unmarked this task:
+[D][ ] return book (by: Sunday)
+Task 4 doesn't exist, just like my love for Aunty Helen.
+Nephew got a lot of things to do:
+1. [T][ ] borrow book
+2. [D][ ] return book (by: Sunday)
 3. [E][ ] project meeting (at: Mon 2-4pm)
 Bye bye niece and nephew.
