@@ -1,6 +1,5 @@
 import java.util.List;
 import java.util.ArrayList;
-
 /**
  * Stores a list of tasks entered by the user.
  */

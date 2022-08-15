@@ -3,7 +3,7 @@
  */
 public abstract class Command {
     /**
-     * Executes the command and returns the String result.
+     * Executes the command and returns the result.
      *
      * @return A String signalling that the command has been executed successfully.
      */

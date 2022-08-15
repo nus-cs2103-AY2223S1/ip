@@ -18,14 +18,14 @@ public class Dwuke {
      */
     public void run() {
         this.start();
-        this.wun();
+        this.runLoop();
         this.stop();
     }
 
     /**
      * Reads the user input and executes it, until the user issues the exit command.
      */
-    public void wun() {
+    public void runLoop() {
         String userInput = ui.getUserInput();
         while (true) {
             Command command = Parser.parseInput(userInput, this.taskList);

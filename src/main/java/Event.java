@@ -11,14 +11,7 @@ public class Event extends Task {
         this.date = arguments[1];
     }
 
-    /**
-     * Splits the given String into description and date.
-     *
-     * @param str The String to split.
-     * @return An array containing the description and date.
-     * @throws DwukeException If '/at' is not found, or if the description or date is empty.
-     */
-    public static String[] getArguments(String str) throws DwukeException {
+    private static String[] getArguments(String str) throws DwukeException {
         int index = str.indexOf("/at");
 
         if (index == -1) throw new DwukeException("oops!!! '/at' not fwound");

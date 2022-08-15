@@ -1,5 +1,4 @@
 import java.util.Scanner;
-
 /**
  * The user interface of Dwuke.
  */
