@@ -1,9 +1,10 @@
 import java.sql.SQLSyntaxErrorException;
+import java.util.ArrayList;
 import java.util.ListIterator;
 import java.util.Scanner;
 
 public class Duke {
-    private static Task[] all = new Task[100];
+    private static ArrayList<Task> all = new ArrayList<>();
     private static int count = 0;
 
     public static void main(String[] args) {
@@ -28,11 +29,14 @@ public class Duke {
             } else if (startWith(s, "mark")) {
                 int index = Integer.parseInt(extractIndex(s, "mark"));
                 //System.out.println(index);
-                all[index - 1].markAsDone();
+                all.get(index - 1).markAsDone();
             } else if (startWith(s, "unmark")) {
                 int index = Integer.parseInt(extractIndex(s, "unmark"));
                 //System.out.println(index);
-                all[index - 1].markAsUndone();
+                all.get(index - 1).markAsUndone();
+            } else if (startWith(s, "delete")) {
+                int index = Integer.parseInt(extractIndex(s, "delete"));
+                deleteRecord(index);
             } else {
                 store(s);
             }
@@ -46,15 +50,23 @@ public class Duke {
     private static  void displayList() {
         System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < count; i++) {
-            System.out.printf("%s. %s\n", i + 1, all[i].toString());
+            System.out.printf("%s. %s\n", i + 1, all.get(i).toString());
         }
+    }
+
+    private static void deleteRecord(int index) {
+        System.out.println("Noted. I've removed this task:");
+        System.out.println(all.get(index - 1).toString());
+        count -= 1;
+        System.out.printf("Now you have %s tasks in the list.\n", count);
+        all.remove(index - 1);
     }
 
     private static void store(String s) {
         try {
-            all[count] = Task.of(s);
+            all.add(Task.of(s));
             System.out.println("Got it. I've added this task:");
-            System.out.printf("  added: %s\n", all[count].toString());
+            System.out.printf("  added: %s\n", all.get(count).toString());
             count += 1;
             System.out.printf("Now you have %s tasks in the list.\n", count);
         } catch (DukeException e) {
