@@ -13,12 +13,12 @@ public class Task {
 
     public void markAsDone() {
         isDone = true;
-        System.out.println("Task marked as done:\n" + this);
+        System.out.println("Task marked as done:\n\t" + this);
     }
 
     public void markAsNotDone() {
         isDone = false;
-        System.out.println("Task marked as not done:\n" + this);
+        System.out.println("Task marked as not done:\n\t" + this);
     }
 
     @Override
