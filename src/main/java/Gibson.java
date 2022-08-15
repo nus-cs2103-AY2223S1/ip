@@ -62,10 +62,16 @@ public class Gibson {
                 String taskString = input.substring(5);
                 Task task = new Task(taskString);
                 addTask(task);
+            // DEADLINES
             } else if (Pattern.matches("deadline .+ /by .+", input)) {
                 String[] stringArray = substringAfterToken(input.substring(9), "/by");
                 Deadline deadline = new Deadline(stringArray[0], stringArray[1]);
                 addTask(deadline);
+            // EVENTS
+            } else if (Pattern.matches("event .+ /at .+", input)) {
+                String[] stringArray = substringAfterToken(input.substring(6), "/at");
+                Event event = new Event(stringArray[0], stringArray[1]);
+                addTask(event);
             // NOT RECOGNIZED
             } else {
                 System.out.println(line);
