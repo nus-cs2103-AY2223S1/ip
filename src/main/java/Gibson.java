@@ -34,6 +34,7 @@ public class Gibson {
             } else if (input.equals("list")) {
                 int count = 1;
                 System.out.println(line);
+                System.out.println("Here are the tasks in your list: ");
                 for (Task t : list) {
                     System.out.println(count + "." + t.toString());
                     count++;
@@ -56,11 +57,19 @@ public class Gibson {
                 System.out.println("OK, I've marked this task as not done yet:");
                 System.out.println(list.get(number).toString());
                 System.out.println(line);
-            // NEW TASK
-            } else {
-                list.add(new Task(input));
+            // TODOS
+            } else if (Pattern.matches("todo .+", input)){
+                String taskString = input.substring(5);
+                Task task = new Task(taskString);
+                list.add(task);
                 System.out.println(line);
-                System.out.println("added: " + input);
+                System.out.println("Got it. I've added this task:\n" + task);
+                System.out.println("Now you have " + list.size() + " task(s) in the list.");
+                System.out.println(line);
+            // NOT RECOGNIZED
+            } else {
+                System.out.println(line);
+                System.out.println("Command not recognized.");
                 System.out.println(line);
             }
         }
