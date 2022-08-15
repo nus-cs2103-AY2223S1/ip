@@ -34,10 +34,10 @@ public class Task {
     }
 
     public void mark() {
-        this.done = "[ ]";
+        this.done = "[X]";
     }
 
     public void unmark() {
-        this.done = "[X]";
+        this.done = "[ ]";
     }
 }
