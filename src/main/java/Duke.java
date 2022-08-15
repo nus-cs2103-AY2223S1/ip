@@ -12,32 +12,65 @@ public class Duke {
         System.out.println("Hello! I'm Duke\nWhat can I do for you?");
         String text = input.next();
         while (!text.equals("bye")) {
-            if (text.equals("list")) {
-                for (int i = 0; i < lst.size(); i++) {
-                    Task task = lst.get(i);
-                    System.out.printf("\t%d.[%s] %s\n", i+1, task.getStatusIcon(),task.description);
-                }
-            } else if (text.equals("mark")) {
-                int index = input.nextInt();
-                Task taskToBeMarked = lst.get(index-1);
-                taskToBeMarked.markAsDone();
-                System.out.printf("\tNice! I've marked this task as done:\n\t[%s] %s\n",
-                        taskToBeMarked.getStatusIcon(),
-                        taskToBeMarked.description);
-            } else if (text.equals("unmark")) {
-                int index = input.nextInt();
-                Task taskToBeUnmarked = lst.get(index-1);
-                taskToBeUnmarked.markAsUndone();
-                System.out.printf("\tOkay, I've marked this task as not done yet:\n\t[%s] %s\n",
-                        taskToBeUnmarked.getStatusIcon(),
-                        taskToBeUnmarked.description);
-            } else {
-                text += input.nextLine();
-                System.out.printf("\tAdded: %s\n", text);
-                Task newTask = new Task(text);
-                lst.add(newTask);
+            switch (text) {
+                case "list" :
+                    for (int i = 0; i < lst.size(); i++) {
+                        Task task = lst.get(i);
+                        System.out.printf("\t%d.[%s] %s\n", i+1, task.getStatusIcon(),task.description);
+                    }
+                    break;
+                case "mark":
+                    int index = input.nextInt();
+                    Task taskToBeMarked = lst.get(index-1);
+                    taskToBeMarked.markAsDone();
+                    System.out.printf("\tNice! I've marked this task as done:\n\t[%s] %s\n",
+                            taskToBeMarked.getStatusIcon(),
+                            taskToBeMarked.description);
+                    break;
+
+                case "unmark":
+                    int index2 = input.nextInt();
+                    Task taskToBeUnmarked = lst.get(index2-1);
+                    taskToBeUnmarked.markAsUndone();
+                    System.out.printf("\tOkay, I've marked this task as not done yet:\n\t[%s] %s\n",
+                            taskToBeUnmarked.getStatusIcon(),
+                            taskToBeUnmarked.description);
+                    break;
+
+                default:
+                    text += input.nextLine();
+                    System.out.printf("\tAdded: %s\n", text);
+                    Task newTask = new Task(text);
+                    lst.add(newTask);
+                    break;
             }
             text = input.next();
+//            if (text.equals("list")) {
+//                for (int i = 0; i < lst.size(); i++) {
+//                    Task task = lst.get(i);
+//                    System.out.printf("\t%d.[%s] %s\n", i+1, task.getStatusIcon(),task.description);
+//                }
+//            } else if (text.equals("mark")) {
+//                int index = input.nextInt();
+//                Task taskToBeMarked = lst.get(index-1);
+//                taskToBeMarked.markAsDone();
+//                System.out.printf("\tNice! I've marked this task as done:\n\t[%s] %s\n",
+//                        taskToBeMarked.getStatusIcon(),
+//                        taskToBeMarked.description);
+//            } else if (text.equals("unmark")) {
+//                int index = input.nextInt();
+//                Task taskToBeUnmarked = lst.get(index-1);
+//                taskToBeUnmarked.markAsUndone();
+//                System.out.printf("\tOkay, I've marked this task as not done yet:\n\t[%s] %s\n",
+//                        taskToBeUnmarked.getStatusIcon(),
+//                        taskToBeUnmarked.description);
+//            } else {
+//                text += input.nextLine();
+//                System.out.printf("\tAdded: %s\n", text);
+//                Task newTask = new Task(text);
+//                lst.add(newTask);
+//            }
+//            text = input.next();
         }
         //Goodbye message
         System.out.println("\tBye! Hope to see you again soon!");
