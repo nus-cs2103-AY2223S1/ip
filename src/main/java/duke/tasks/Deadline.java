@@ -1,6 +1,6 @@
 package duke.tasks;
 
-public class Deadline extends ToDo {
+public class Deadline extends Task {
 
     private final String by;
 

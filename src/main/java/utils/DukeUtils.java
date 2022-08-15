@@ -2,22 +2,16 @@ package utils;
 
 public class DukeUtils {
 
-    public static int wordCount(String input) {
-        return input.trim().split("\\s+").length;
+    public static void sendGreetings() {
+        printMessages(Constants.MSG_GREETINGS);
     }
 
-    public static boolean isNumeric(String input) {
-        return input.chars().allMatch(Character::isDigit);
+    public static void sendExit() {
+        printMessages(Constants.MSG_EXIT);
     }
 
     public static void printWithIndent(String message) {
         System.out.println("\t" + message);
-    }
-
-    public static void printMessage(String message) {
-        printLine();
-        printWithIndent(message);
-        printLine();
     }
 
     public static void printMessages(String... messages) {

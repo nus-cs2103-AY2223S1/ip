@@ -6,7 +6,6 @@ import utils.DukeUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class TaskManager {
 
@@ -16,12 +15,16 @@ public class TaskManager {
         tasks = new ArrayList<>();
     }
 
+    private Task getTask(int index) {
+        return tasks.get(index);
+    }
+
     public void printTasks() {
-        DukeUtils.printLine();
-        DukeUtils.printWithIndent(Constants.MSG_TASK_LIST);
-        IntStream.range(0, tasks.size())
-                .forEach(i ->
-                        DukeUtils.printWithIndent(String.format("%d.%s", i + 1, tasks.get(i))));
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < tasks.size(); i++) {
+            sb.append(String.format("  %d.%s\n\t", i + 1, getTask(i)));
+        }
+        DukeUtils.printMessages(Constants.MSG_TASK_LIST, sb.toString().stripTrailing());
     }
 
     public void addTask(String inputCommand, String inputDesc) {
@@ -33,33 +36,36 @@ public class TaskManager {
                 String.format(Constants.MSG_TASK_NUMBER, tasks.size()));
     }
 
-    public void markTask(String inputDesc) throws DukeException {
-        int index = Integer.parseInt(inputDesc) - 1;
-        tasks.get(index).setDone(true);
-        DukeUtils.printMessages(Constants.MSG_TASK_MARK, "  " + tasks.get(index));
-    }
-
-    public void unmarkTask(String inputDesc) throws DukeException {
-        int index = Integer.parseInt(inputDesc) - 1;
-        if (index > tasks.size() - 1 || index < 0) {
-            throw new DukeException(Constants.ERROR_INVALID_NUMBER);
-        }
-
-        tasks.get(index).setDone(false);
-        DukeUtils.printMessages(Constants.MSG_TASK_UNMARK, "  " + tasks.get(index));
-    }
-
     public void deleteTask(String inputDesc) throws DukeException {
-        int index = Integer.parseInt(inputDesc) - 1;
-        if (index > tasks.size() - 1 || index < 0) {
-            throw new DukeException(Constants.ERROR_INVALID_NUMBER);
-        }
-
+        int index = checkIndex(inputDesc);
         tasks.remove(index);
         DukeUtils.printMessages(
                 Constants.MSG_TASK_DELETED,
                 "  " + tasks.get(index),
                 String.format(Constants.MSG_TASK_NUMBER, tasks.size()));
+    }
+
+    public void markTask(String inputDesc) throws DukeException {
+        updateTaskStatus(inputDesc, true);
+    }
+
+    public void unmarkTask(String inputDesc) throws DukeException {
+        updateTaskStatus(inputDesc, false);
+    }
+
+    private void updateTaskStatus(String inputDesc, boolean isDone) throws DukeException {
+        int index = checkIndex(inputDesc);
+        tasks.get(index).setDone(isDone);
+        DukeUtils.printMessages(Constants.MSG_TASK_UPDATE_STATUS, "  " + getTask(index));
+    }
+
+    private int checkIndex(String inputDesc) throws DukeException {
+        int taskNumber = Integer.parseInt(inputDesc);
+        int actualListIndex = taskNumber - 1;
+        if (actualListIndex >= tasks.size() || actualListIndex < 0) {
+            throw new DukeException(Constants.ERROR_INVALID_NUMBER);
+        }
+        return actualListIndex;
     }
 
 }

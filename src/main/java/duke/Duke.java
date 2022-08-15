@@ -9,63 +9,60 @@ import java.util.Scanner;
 public class Duke {
 
     private final TaskManager tm;
+    private boolean isDukeRunning;
 
     Duke() {
         tm = new TaskManager();
+        isDukeRunning = true;
     }
 
     public void startDuke() {
-        sendGreetings();
-        Scanner sc = new Scanner(System.in);
-        boolean isRunning = true;
+        DukeUtils.sendGreetings();
+        Scanner scanner = new Scanner(System.in);
 
-        while (isRunning) {
-            String[] inputs = sc.nextLine().trim().split(" ", 2);
-            String inputCommand = inputs[0];
-            String inputDesc = (inputs.length == 1) ? "" : inputs[1];
-            Command command = Command.contains(inputCommand);
+        while (isDukeRunning) {
+            processCommand(scanner.nextLine());
+        }
 
-            try {
-                switch (command.isValidInput(inputDesc)) {
-                case LIST:
-                    tm.printTasks();
-                    break;
-                case BYE:
-                    sendExit();
-                    sc.close();
-                    isRunning = false;
-                    break;
-                case TODO:
-                    // Fallthrough
-                case DEADLINE:
-                    // Fallthrough
-                case EVENT:
-                    tm.addTask(inputCommand, inputDesc);
-                    break;
-                case MARK:
-                    tm.markTask(inputDesc);
-                    break;
-                case UNMARK:
-                    tm.unmarkTask(inputDesc);
-                    break;
-                case DELETE:
-                    tm.deleteTask(inputDesc);
-                    break;
-                case INVALID:
-                    throw new DukeException(Constants.ERROR_UNKNOWN_COMMAND);
-                }
-            } catch (DukeException e) {
-                DukeUtils.printMessage(e.getMessage());
+        scanner.close();
+        DukeUtils.sendExit();
+    }
+
+    private void processCommand(String userInput) {
+        String[] inputs = userInput.trim().split(" ", 2);
+        String inputCommand = inputs[0].trim();
+        String inputDesc = (inputs.length == 1) ? "" : inputs[1].trim();
+
+        try {
+            Command command = Command.contains(inputCommand).hasValidInput(inputDesc);
+            switch (command) {
+            case LIST:
+                tm.printTasks();
+                break;
+            case BYE:
+                isDukeRunning = false;
+                break;
+            case TODO:
+                // Fallthrough
+            case DEADLINE:
+                // Fallthrough
+            case EVENT:
+                tm.addTask(inputCommand, inputDesc);
+                break;
+            case MARK:
+                tm.markTask(inputDesc);
+                break;
+            case UNMARK:
+                tm.unmarkTask(inputDesc);
+                break;
+            case DELETE:
+                tm.deleteTask(inputDesc);
+                break;
+            case INVALID:
+                throw new DukeException(Constants.ERROR_UNKNOWN_COMMAND);
             }
+        } catch (DukeException e) {
+            DukeUtils.printMessages(e.getMessage());
         }
     }
-
-    private void sendGreetings() {
-        DukeUtils.printMessage(Constants.MSG_GREETINGS);
-    }
-
-    private void sendExit() {
-        DukeUtils.printMessage(Constants.MSG_EXIT);
-    }
-
 }
