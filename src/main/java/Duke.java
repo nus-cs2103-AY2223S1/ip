@@ -1,10 +1,15 @@
+package main.java;
+import java.util.Scanner;
+
 public class Duke {
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+        System.out.println("Greetings Human! I am BetaGo, your personal robot assistant!\nHow may I assist you today?\n");
+        Scanner sc = new Scanner(System.in);
+        String str= sc.nextLine();
+        while (!str.equalsIgnoreCase("bye")) {
+            System.out.println(str + "\n");
+            str= sc.nextLine();
+        }
+        System.out.println("Bye. Hope to see you again soon!\n");
     }
 }
