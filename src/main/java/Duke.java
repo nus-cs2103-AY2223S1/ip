@@ -1,11 +1,13 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Duke {
     public static void main(String[] args) {
         String greeting = "     Hello! I'm Duke\n" +
                 "     What can I do for you?";
         wrapPrint(greeting);
-        repeat();
+        ArrayList<Task> taskList = new ArrayList<>();
+        repeat(taskList);
     }
 
     private static void wrapPrint(String toPrint) {
@@ -14,14 +16,14 @@ public class Duke {
         System.out.println("    ____________________________________________________________");
     }
 
-    private static void printAddTaskSuccessfully(Task t, int taskListLength) {
+    private static void printAddTaskSuccessfully(ArrayList<Task> taskList) {
         String taskString = "tasks";
-        if (taskListLength == 1) {
+        if (taskList.size() == 1) {
             taskString = "task";
         }
         wrapPrint(leftPad("Got it. I've added this task:\n")
-                + leftPad("  " + t.toString())
-                + leftPad(String.format("\n" + leftPad("Now you have %d %s in the list."), taskListLength, taskString)));
+                + leftPad("  " + taskList.get(taskList.size() - 1).toString())
+                + leftPad(String.format("\n" + leftPad("Now you have %d %s in the list."), taskList.size(), taskString)));
     }
 
     private static String leftPad(String toPrint) {
@@ -32,9 +34,7 @@ public class Duke {
         return str.matches("-?\\d+(\\.\\d+)?");
     }
 
-    private static void repeat() {
-        Task[] taskList = new Task[100];
-        int i = 0;
+    private static void repeat(ArrayList<Task> taskList) {
         String input = "";
         Scanner in = new Scanner(System.in);
         while(true) {
@@ -46,9 +46,9 @@ public class Duke {
                     return;
                 case "list":
                     StringBuilder listString = new StringBuilder(leftPad("Here are the tasks in your list:\n"));
-                    for (int j = 0; j < i; j++) {
-                        listString.append(leftPad(String.format("%d.", j + 1)));
-                        listString.append(taskList[j].toString());
+                    for (int i = 0; i < taskList.size(); i++) {
+                        listString.append(leftPad(String.format("%d.", i + 1)));
+                        listString.append(taskList.get(i).toString());
                         listString.append("\n");
                     }
                     if (listString.length() > 0) {
@@ -59,33 +59,30 @@ public class Duke {
                 case "mark":
                     if (inputSplit.length < 2 || !isNumeric(inputSplit[1])) return;
                     int index = Integer.parseInt(inputSplit[1]) - 1;
-                    taskList[index].markDone();
+                    taskList.get(index).markDone();
                     wrapPrint(leftPad("Nice! I've marked this task as done:\n  ")
-                            + leftPad(taskList[index].toString()));
+                            + leftPad(taskList.get(index).toString()));
                     break;
                 case "unmark":
                     if (inputSplit.length < 2 || !isNumeric(inputSplit[1])) return;
                     index = Integer.parseInt(inputSplit[1]) - 1;
-                    taskList[index].unmarkDone();
+                    taskList.get(index).unmarkDone();
                     wrapPrint(leftPad("OK, I've marked this task as not done yet:\n  ")
-                            + leftPad(taskList[index].toString()));
+                            + leftPad(taskList.get(index).toString()));
                     break;
                 case "todo":
-                    taskList[i] = new Task(inputSplit[1]);
-                    i++;
-                    printAddTaskSuccessfully(taskList[i - 1], i);
+                    taskList.add(new Task(inputSplit[1]));
+                    printAddTaskSuccessfully(taskList);
                     break;
                 case "deadline":
                     String time = input.split("/")[1];
-                    taskList[i] = new Deadline(inputSplit[1].split(" /")[0], time);
-                    i++;
-                    printAddTaskSuccessfully(taskList[i - 1], i);
+                    taskList.add(new Deadline(inputSplit[1].split(" /")[0], time));
+                    printAddTaskSuccessfully(taskList);
                     break;
                 case "event":
                     time = input.split("/")[1];
-                    taskList[i] = new Event(inputSplit[1].split(" /")[0], time);
-                    i++;
-                    printAddTaskSuccessfully(taskList[i - 1], i);
+                    taskList.add(new Event(inputSplit[1].split(" /")[0], time));
+                    printAddTaskSuccessfully(taskList);
                     break;
             }
         }
