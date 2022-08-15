@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Duke {
-    private ArrayList<String> stringArr = new ArrayList<>();
+    private ArrayList<Task> taskArr = new ArrayList<>();
 
     public void greetUser() {
         String logo = " ____        _        \n"
@@ -19,14 +19,19 @@ public class Duke {
         System.out.println(message);
     }
 
-    public void pushString(String str) {
-        this.stringArr.add(str);
+    public void pushTask(Task task) {
+        this.taskArr.add(task);
+        System.out.println("Added task: " + task.getDescription());
     }
 
-    public void listStringArr() {
-        int len = this.stringArr.size();
+    public void listTasks() {
+        System.out.println("Here are your tasks: ");
+        int len = this.taskArr.size();
         for (int i = 0; i < len; i++) {
-            System.out.printf("%d. %s%n", i + 1, this.stringArr.get(i));
+            Task task = this.taskArr.get(i);
+            String statusIcon = task.getStatusIcon();
+            String description = task.getDescription();
+            System.out.printf("%d.[%s] %s%n", i + 1, statusIcon, description);
         }
     }
 
@@ -44,11 +49,12 @@ public class Duke {
             }
 
             if (input.equals("list")) {
-                duke.listStringArr();
+                duke.listTasks();
             } else {
-                System.out.println("added: " + input);
-                duke.pushString(input);
+                Task task = new Task(input);
+                duke.pushTask(task);
             }
+
         }
     }
 }
