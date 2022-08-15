@@ -1,7 +1,41 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
+Hello, I'm Duke!
+ ____        _
+|  _ \ _   _| | _____
 | | | | | | | |/ / _ \
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
+What can I do for you?
+Here are the tasks in your list:
+*No tasks! ^_^*
+Got it! Duke has added this task:
+[T][ ] taxes
+Now you have 1 task in the list.
+Got it! Duke has added this task:
+[T][ ] uninstall League of Legends
+Now you have 2 tasks in the list.
+Got it! Duke has added this task:
+[D][ ] MA1521 HW 1 (by: 31 April)
+Now you have 3 tasks in the list.
+Got it! Duke has added this task:
+[E][ ] birthday (at: 8 August 00:00)
+Now you have 4 tasks in the list.
+Nice! I've marked this task as done:
+[T][X] uninstall League of Legends
+Nice! I've marked this task as done:
+[E][X] birthday (at: 8 August 00:00)
+Here are the tasks in your list:
+1. [T][ ] taxes
+2. [T][X] uninstall League of Legends
+3. [D][ ] MA1521 HW 1 (by: 31 April)
+4. [E][X] birthday (at: 8 August 00:00)
+Nice! I've marked this task as done:
+[T][X] taxes
+Here are the tasks in your list:
+1. [T][X] taxes
+2. [T][X] uninstall League of Legends
+3. [D][ ] MA1521 HW 1 (by: 31 April)
+4. [E][X] birthday (at: 8 August 00:00)
+OK, I've marked this task as not done yet:
+[T][ ] taxes
+Duke: Bye! Hope to see you again soon!

@@ -1,0 +1,12 @@
+list
+todo taxes
+todo uninstall League of Legends
+deadline MA1521 HW 1 /by 31 April
+event birthday /at 8 August 00:00
+mark 2
+mark 4
+list
+mark 1
+list
+unmark 1
+bye
