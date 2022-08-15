@@ -4,6 +4,7 @@ enum CommandType {
     TODO(1),
     DEADLINE(2),
     EVENT(2),
+    DELETE(1),
     BYE(0),
     EMPTY(0),
     BAD(0);

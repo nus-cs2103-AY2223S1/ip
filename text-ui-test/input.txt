@@ -27,5 +27,14 @@ uncheck 2 / A
 uncheck 100
 list
 badcommand hello / hello
+todo A
+todo B
+delete 1
+delete 1
+delete 100
+delete 1 / A
+delete 1 / A / B
+delete XYZ
+list
 
 bye

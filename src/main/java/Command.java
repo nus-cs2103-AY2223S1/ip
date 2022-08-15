@@ -38,6 +38,8 @@ abstract class Command {
             return new AddTaskCommand(CommandType.DEADLINE, args);
         case "event":
             return new AddTaskCommand(CommandType.EVENT, args);
+        case "delete":
+            return new DeleteTaskCommand(args);
         case "bye":
             return new ByeCommand(args);
         case "":
@@ -74,6 +76,7 @@ abstract class Command {
             IOHelper.print(response.toString());
         }
     }
+
 
     private static class UpdateStatusCommand extends Command {
         private final String WRONG_ARGUMENT = "This command expects a number argument!";
@@ -113,6 +116,32 @@ abstract class Command {
             Task task = Task.of(this.command, this.args);
             tasks.add(task);
             IOHelper.print("I've added the following task:\n\t" + task);
+        }
+    }
+
+    // TODO: Merge this with UpdateStatusCommand to form CommandWithIndex
+    private static class DeleteTaskCommand extends Command {
+        private final String WRONG_ARGUMENT = "This command expects a number argument!";
+        private final String INDEX_OUT_OF_BOUND = "This command expects an index between 1 and number of tasks.";
+
+        public DeleteTaskCommand(String[] args) {
+            super(CommandType.DELETE, args);
+        }
+
+        @Override
+        public void runSpecialTask(ArrayList<Task> tasks) throws DukeException {
+            int index;
+            try {
+                index = Integer.parseInt(args[0]) - 1;
+            } catch (NumberFormatException e) {
+                throw new DukeException(WRONG_ARGUMENT);
+            }
+            if (index < 0 || index >= tasks.size()) {
+                throw new DukeException(INDEX_OUT_OF_BOUND);
+            }
+            Task task = tasks.get(index);
+            tasks.remove(index);
+            IOHelper.print("I've removed this task\n\t" + task);
         }
     }
 

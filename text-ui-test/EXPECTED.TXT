@@ -49,4 +49,20 @@
 	2. [D][✔] A (by: B)
 	3. [E][ ] A (at: B)
 << >> DukeException: The command was not understood.
+<< >> I've added the following task:
+	[T][ ] A
+<< >> I've added the following task:
+	[T][ ] B
+<< >> I've removed this task
+	[T][ ] A
+<< >> I've removed this task
+	[D][✔] A (by: B)
+<< >> DukeException: This command expects an index between 1 and number of tasks.
+<< >> DukeException: Wrong number of arguments provided!
+<< >> DukeException: Wrong number of arguments provided!
+<< >> DukeException: This command expects a number argument!
+<< >> List of tasks:
+	1. [E][ ] A (at: B)
+	2. [T][ ] A
+	3. [T][ ] B
 << << >> Bye! Hope to see you soon!
