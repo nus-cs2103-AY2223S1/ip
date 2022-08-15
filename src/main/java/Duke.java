@@ -19,20 +19,47 @@ public class Duke {
                 for (int i = 0; i < tasks.size(); i++) {
                     System.out.println(i + 1 + ". " + tasks.get(i));
                 }
-            } else if (input.contains("mark")) {
-                String[] strings = input.split(" ");
-                int num = Integer.parseInt(strings[1]);
-                String txt = strings[0];
-                if(txt.equals("mark")) {
-                    tasks.get(num - 1).setDone(true);
-                    System.out.println("Nice! I've marked this task as done:\n" + tasks.get(num - 1));
-                } else {
-                    tasks.get(num - 1).setDone(false);
-                    System.out.println("Ok, I've marked this task as not done yet:\n" + tasks.get(num - 1));
+            } else {
+                String[] strings = input.split(" ", 2);
+                switch (strings[0]) {
+                    case "mark":
+                        int num = Integer.parseInt(strings[1]);
+                        tasks.get(num - 1).setDone(true);
+                        System.out.println("Nice! I've marked this task as done:\n" + tasks.get(num - 1));
+                        break;
+
+                    case "unmark":
+                        num = Integer.parseInt(strings[1]);
+                        tasks.get(num - 1).setDone(false);
+                        System.out.println("Ok, I've marked this task as not done yet:\n" + tasks.get(num - 1));
+                        break;
+
+                    case "deadline":
+                        String[] split = strings[1].split("/");
+                        Task task = new Deadline(split[0], split[1]);
+                        tasks.add(task);
+                        System.out.println("Got it. I've added this task:\n" + task);
+                        System.out.println("Now you have " + tasks.size() + " tasks in the list");
+                        break;
+
+                    case "todo":
+                        task = new ToDo(strings[1]);
+                        tasks.add(task);
+                        System.out.println("Got it. I've added this task:\n" + task);
+                        System.out.println("Now you have " + tasks.size() + " tasks in the list");
+                        break;
+
+                    case "event":
+                        split = strings[1].split("/");
+                        task = new Event(split[0], split[1]);
+                        tasks.add(task);
+                        System.out.println("Got it. I've added this task:\n" + task);
+                        System.out.println("Now you have " + tasks.size() + " tasks in the list");
+                        break;
+
+                    default:
+                        break;
                 }
-            }  else {
-                tasks.add(new Task(input));
-                System.out.println("added: " + input);
             }
         }
     }
