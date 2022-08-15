@@ -19,16 +19,23 @@ public class Duke {
                 "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠙⠛⠛⠛⠛⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀";
         String lineBreak = "°.✩┈┈∘*┈\uD83C\uDF19┈*∘┈┈✩.°";
         System.out.println(logo + "\n" + "Hello I am LUNA!\n" + "How can I be of help?\n" + lineBreak);
+
         ArrayList<String> arrayList =  new ArrayList<>(100);
+
+
+
         Scanner sc = new Scanner(System.in);
 
         while(true) {
             String input = sc.nextLine();
+
             String farewell = lineBreak + "\n" + "゜✧*̣̩☽⋆゜LUNA bids farewell ゜✧*̣̩☽⋆゜\n\n May the Moon\uD83C\uDF19 shine bright and illuminate your night.";
+
 
             if (input.equalsIgnoreCase("bye")) {
                 System.out.println(farewell);
                 break;
+
             } else if (input.equalsIgnoreCase("list")) {
                 int counter = 1;
                 System.out.println(lineBreak);
