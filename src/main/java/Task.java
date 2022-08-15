@@ -1,12 +1,13 @@
 public class Task {
     private final String task_description;
-    private boolean done = false;
+    private boolean done;
     private static final String done_msg = "Nice! I've marked this task as done:";
     private static final String undone_msg = "OK, I've marked this task as not done yet:";
     private static final String already = "This task is already marked as ";
 
     Task(String task_description) {
         this.task_description = task_description;
+        this.done = false;
     }
 
     public void doing() {
@@ -27,6 +28,10 @@ public class Task {
             System.out.println(already + "not done");
         }
         System.out.println(this);
+    }
+
+    public String description() {
+        return this.task_description;
     }
 
     @Override
