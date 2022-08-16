@@ -36,6 +36,7 @@ public class Duke {
     /** Lists out information on all tasks stored */
     private static void listTasks() {
         System.out.println("____________________________________________________________");
+        System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < tasks.size(); ++i) {
             System.out.println((i+1) + ". " + tasks.get(i));
         }
