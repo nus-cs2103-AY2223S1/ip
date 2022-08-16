@@ -23,6 +23,17 @@ public class Duke {
         }
     }
 
+    public static void deleteTask(ArrayList<Task> items, int index) throws DukeException {
+        if (index < 0 || index > items.size() - 1) {
+            throw new OutOfRangeException();
+        } else {
+            System.out.println("Noted. I've removed this task:");
+            System.out.println(items.get(index).toString());
+            items.remove(index);
+            System.out.printf("Now you have %d tasks in the list.\n", items.size());
+        }
+    }
+
     public static void addToDo(ArrayList<Task> items, String command) throws DukeException {
         if (command.substring(4).trim().isEmpty()) {
             throw new EmptyCommandException("todo");
@@ -84,6 +95,12 @@ public class Duke {
                     }
                     int index = Integer.parseInt(command.split(" ")[1]) - 1;
                     markDone(items, index);
+                } else if (command.split(" ")[0].toLowerCase().equals("delete")) {
+                    if (command.split(" ").length == 1) {
+                        throw new NoIndexException();
+                    }
+                    int index = Integer.parseInt(command.split(" ")[1]) - 1;
+                    deleteTask(items, index);
                 } else {
                     String taskType = command.split(" ")[0].toLowerCase();
                     if (taskType.equals("deadline")) {
