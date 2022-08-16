@@ -11,12 +11,15 @@ public class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
-    public void changeIsDone(boolean newIsDone) throws IllegalStateException{
+    public boolean canChangeIsDone(boolean newIsDone) {
         if (this.isDone == newIsDone) {
-            throw new IllegalStateException();
+            return false;
         } else {
-            this.isDone = newIsDone;
+            return true;
         }
+    }
+    public void changeIsDone(boolean newIsDone){
+        this.isDone = newIsDone;
     }
 
     @Override
