@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
@@ -14,6 +13,7 @@ public class Duke {
 
         while (true) {
             in = sc.nextLine();
+
             if (in.equals("bye")) {
                 break;
             } else if (in.equals("list")) {
@@ -25,12 +25,30 @@ public class Duke {
                 int index = Integer.valueOf(in.split(" ")[1]) - 1;
                 list.unmark(index);
             } else {
-                Task task = TaskCreator.CreateTask(in);
-                if (task == null) {
-                    System.out.println("Invalid command. Please try again.");
-                } else {
-                    list.add(task);
-                    System.out.println("added: " + task.toString());
+                try {
+                    Task task = TaskCreator.CreateTask(in);
+                    if (task == null) {
+                        throw new InvalidCommandException();
+                    } else if (task.getClass() == ErrorTask.class) {
+                        throw new InvalidDateException();
+                    } else if (task.description.length() < 1) {
+                        throw new NoDescriptionException();
+                    } else {
+                        list.add(task);
+                        System.out.println("added: " + task.toString());
+                    }
+                }
+
+                catch (InvalidCommandException e) {
+                    System.out.println(e.toString());
+                }
+
+                catch (InvalidDateException e) {
+                    System.out.println(e.toString());
+                }
+
+                catch (NoDescriptionException e){
+                    System.out.println(e.toString());
                 }
             }
             System.out.println("-------------------------------------------");
