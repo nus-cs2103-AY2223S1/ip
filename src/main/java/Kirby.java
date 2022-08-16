@@ -66,13 +66,10 @@ public class Kirby {
     }
 
     public static void main(String[] args) {
-
         ArrayList<Task> Tasks = new ArrayList<>();
-        System.out.println("Hai I'm Kirby (੭｡╹▿╹｡)੭ your friendly chat assistant!! \n" +
-                "What amazing plans do you have today?");
-
-        while (true){
-            Scanner scanner = new Scanner(System.in);
+        System.out.println("Hai I'm Kirby (੭｡╹▿╹｡)੭ your friendly chat assistant!! \n" + "What amazing plans do you have today?");
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNextLine() && true){
             String inputString = scanner.nextLine();
 
             // bye
@@ -97,21 +94,18 @@ public class Kirby {
             }
 
             // add task
-            else {
-                // todo
-                if (inputString.split(" ")[0].equals("todo")) {
+            else if (inputString.split(" ")[0].equals("todo")) {
                     Todo(inputString, Tasks);
-                }
+            }
 
-                // deadline
-                if (inputString.split(" ")[0].equals("deadline")) {
-                    Deadline(inputString, Tasks);
-                }
+            // deadline
+            else if (inputString.split(" ")[0].equals("deadline")) {
+                Deadline(inputString, Tasks);
+            }
 
-                // event
-                if (inputString.split(" ")[0].equals("event")) {
-                    Event(inputString, Tasks);
-                }
+            // event
+            else if (inputString.split(" ")[0].equals("event")) {
+                Event(inputString, Tasks);
             }
         }
     }

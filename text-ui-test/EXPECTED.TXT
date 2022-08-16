@@ -1,9 +1,23 @@
 Hai I'm Kirby (੭｡╹▿╹｡)੭ your friendly chat assistant!! 
 What amazing plans do you have today?
---------------------------------------
-Added into your bag of fabulous tasks: [T] [ ] sleep
+Added into your bag of fabulous tasks: [T] [ ] math task
 Now you have 1 task in the bag!
---------------------------------------
 Here is your bag of fabulous tasks: 
-1: [T] [ ] sleep
---------------------------------------
+1: [T] [ ] math task
+Added into your bag of fabulous tasks: [E] [ ] attend briefing (at: Tuesday, 2pm)
+Now you have 2 tasks in the bag!
+Awesome :D I've marked [T] [X] math task completed!
+Added into your bag of fabulous tasks: [D] [ ] cs2103t assignment (by: today )
+Now you have 3 tasks in the bag!
+Added into your bag of fabulous tasks: [T] [ ] pay school fees
+Now you have 4 tasks in the bag!
+Okay, I've marked [T] [ ] math task pending!
+Awesome :D I've marked [E] [X] attend briefing (at: Tuesday, 2pm) completed!
+Added into your bag of fabulous tasks: [E] [ ] attend examination (at: today :o)
+Now you have 5 tasks in the bag!
+Here is your bag of fabulous tasks: 
+1: [T] [ ] math task
+2: [E] [X] attend briefing (at: Tuesday, 2pm)
+3: [D] [ ] cs2103t assignment (by: today )
+4: [T] [ ] pay school fees
+5: [E] [ ] attend examination (at: today :o)
