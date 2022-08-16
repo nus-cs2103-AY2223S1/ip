@@ -44,6 +44,11 @@ public class Duke {
                     Task curr = list.get(Integer.parseInt(segments[1]) - 1);
                     curr.markAsDone();
                     printMessage("Yay! You've completed a task!\n" + curr + "\n");
+                } else if (input.startsWith("delete")){
+                    Task curr = list.get(Integer.parseInt(segments[1]) - 1);
+                    list.remove(Integer.parseInt(segments[1]) - 1);
+                    printMessage("Noted. I've removed this task:\n" +curr + "\nNow you have " + list.size() + " tasks in the list\n");
+
                 } else if (input.startsWith("todo")){
                     String description = input.substring(5, input.length());
                     Todo todo = new Todo(description);
@@ -68,8 +73,8 @@ public class Duke {
 
     static void validate (String input) throws DukeException {
         String[] segments = input.split(" ");
-        String[] tasks = {"todo", "deadline", "event", "mark", "unmark"};
-        String[] commands = {"todo", "deadline", "event", "list", "bye", "mark", "unmark"};
+        String[] tasks = {"todo", "deadline", "event", "mark", "unmark", "delete"};
+        String[] commands = {"todo", "deadline", "event", "list", "bye", "mark", "unmark", "delete"};
         if(!Arrays.asList(commands).contains(segments[0])) {
             throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(\n");
         } else if(Arrays.asList(tasks).contains(segments[0])){
