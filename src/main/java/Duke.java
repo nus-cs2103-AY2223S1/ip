@@ -1,8 +1,19 @@
+import java.util.Scanner;
+
 public class Duke {
 	public static void main(String[] args) {
 		String greetingMsg = "Hello! I'm Duke \nWhat can I do for you?";
-		prettyPrint(greetingMsg);
 		String goodByeMsg = "Bye. Hope to see you again soon!";
+		Scanner sc = new Scanner(System.in);
+		prettyPrint(greetingMsg);
+		while (true) {
+			String usrCommand = sc.nextLine();
+			if (usrCommand.equals("bye")) {
+				break;
+			}
+			prettyPrint(usrCommand);
+		}
+		sc.close();
 		prettyPrint(goodByeMsg);
 	}
 
