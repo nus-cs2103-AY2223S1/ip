@@ -1,10 +1,6 @@
 public class Task {
-    private String name;
+    private String name = null;
     private boolean done = false;
-
-    public Task(String name) {
-        this.name = name;
-    }
 
     public void markAsDone() {
         this.done = true;
@@ -12,6 +8,10 @@ public class Task {
 
     public void markAsUndone() {
         this.done = false;
+    }
+
+    public void addName(String name) throws DukeException {
+        this.name = name;
     }
 
     public String getStatus() {

@@ -18,19 +18,23 @@ public class Duke {
         while (true) {
             Task newTask = null;
             String userText = userInput.nextLine();
+            boolean understood = false;
             if (userText.equals("bye")) {
                 System.out.println(reply("Bye. Hope to see you again soon!"));
                 break;
             } else if (userText.equals("list")) {
                 System.out.println(reply(getList(list)));
+                understood = true;
             } else if (userText.length() >= 4 ) {
                 String commandWord = userText.substring(0,4);
                 if (commandWord.equals("mark")) {
                     Task selectedTask = list.get(Integer.valueOf(userText.substring(5)) - 1);
                     selectedTask.markAsDone();
                     System.out.println(reply("Nice! I've marked this task as done:\n" + selectedTask.getStatus()));
+                    understood = true;
                 } else if (commandWord.equals("todo")) {
-                    newTask = new ToDo(userText);
+                    newTask = new ToDo();
+                    understood = true;
                 }
 
                 if (userText.length() >= 6 && userText.substring(0, 6).equals("unmark")) {
@@ -38,24 +42,35 @@ public class Duke {
                     Task selectedTask = list.get(Integer.valueOf(userText.substring(7)) - 1);
                     selectedTask.markAsUndone();
                     System.out.println(reply("OK, I've marked this task as not done yet:\n" + selectedTask.getStatus()));
+                    understood = true;
                 }
 
                 if (userText.length() >= 8 && userText.substring(0, 8).equals("deadline")) {
-                    newTask = new DeadLine(userText);
+                    newTask = new DeadLine();
+                    understood = true;
                 }
 
                 if (userText.length() >= 5 && userText.substring(0, 5).equals("event")) {
-                    newTask = new Event(userText);
+                    newTask = new Event();
+                    understood = true;
                 }
-
 
 
             }
 
+            if (understood == false) {
+                System.out.println(reply("☹ OOPS!!! I'm sorry, but I don't know what that means :-("));
+            }
+
             if (newTask != null) {
-                list.add(newTask);
-                System.out.println(reply("Got it. I've added this task:\n" + newTask.getStatus() +
+                try {
+                    newTask.addName(userText);
+                    list.add(newTask);
+                    System.out.println(reply("Got it. I've added this task:\n" + newTask.getStatus() +
                         String.format("\nNow you have %d tasks in the list.", list.size())));
+                } catch (Exception e) {
+                    System.out.println(reply(e.getMessage()));
+                }
             }
         }
     }

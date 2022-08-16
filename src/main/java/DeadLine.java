@@ -1,9 +1,20 @@
 public class DeadLine extends Task {
-    String byWhen;
+    String byWhen = null;
 
-    public DeadLine(String userInput) {
-        super(userInput.substring(9, userInput.indexOf("/by")));
-        byWhen = userInput.substring(userInput.indexOf("/by") + 4);
+    public DeadLine() {
+        super();
+    }
+
+    public void addName(String userInput) throws DukeException {
+        if (userInput.length() <= 9) {
+            throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
+        }
+        int index = userInput.indexOf("/by") - 1;
+        if (index <= 8) {
+            throw new DukeException("☹ OOPS!!! Please indicate when the deadline is due with '/by'.");
+        }
+        super.addName(userInput.substring(9, index));
+        this.byWhen = userInput.substring(index + 5);
     }
 
     @Override
