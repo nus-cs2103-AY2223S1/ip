@@ -47,9 +47,9 @@ public class DukePrinter {
      * Prints add message.
      * @param s string representation of TaskItem.
      */
-    public static void add(String s) {
+    public static void echo(String s) {
         print_line();
-        print("added: " + s);
+        print(s);
         print_line();
     }
 
@@ -71,7 +71,7 @@ public class DukePrinter {
         print_line();
         int i = 1;
         for (TaskItem taskItem : taskItems) {
-            print(i++ + ".[" + taskItem.icon() + "] " + taskItem);
+            print(i++ + "." + taskItem.toString());
         }
         print_line();
     }
@@ -117,6 +117,14 @@ public class DukePrinter {
     public static void unmarkError(String s) {
         print_line();
         print("Error unmarking " + s);
+        print_line();
+    }
+
+    public static void add(String s, int i) {
+        print_line();
+        print("Got it. I've added this task:");
+        print("  " + s);
+        print("Now you have " + i + " tasks in the list.");
         print_line();
     }
 }

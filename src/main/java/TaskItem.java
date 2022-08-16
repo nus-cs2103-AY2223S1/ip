@@ -6,8 +6,8 @@
  * @author Deon
  */
 public class TaskItem {
-    protected String description;
-    protected boolean isDone;
+    private final String description;
+    private boolean isDone;
 
     /**
      * Constructor for TaskItem.
@@ -40,6 +40,6 @@ public class TaskItem {
      */
     @Override
     public String toString() {
-        return this.description;
+        return "[" + icon() + "]" + this.description;
     }
 }

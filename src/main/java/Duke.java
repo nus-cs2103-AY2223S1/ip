@@ -19,9 +19,10 @@ public class Duke {
 
     /**
      * Continuously polls for valid commands,
-     * adds invalid commands as tasks.
+     * echos invalid commands.
      */
     private static void poll() {
+        TaskItem task;
         Scanner sc = new Scanner(System.in);
         String cmd = sc.next();
         while(!cmd.equals("bye")) {
@@ -32,7 +33,7 @@ public class Duke {
                 case "mark":
                     cmd = sc.next();
                     try {
-                        TaskItem task = taskItems.get(Integer.parseInt(cmd) - 1);
+                        task = taskItems.get(Integer.parseInt(cmd) - 1);
                         task.isDone(true);
                         DukePrinter.mark(task.icon(), task.toString());
                     } catch (NumberFormatException | IndexOutOfBoundsException e) {
@@ -42,21 +43,48 @@ public class Duke {
                 case "unmark":
                     cmd = sc.next();
                     try {
-                        TaskItem task = taskItems.get(Integer.parseInt(cmd) - 1);
+                        task = taskItems.get(Integer.parseInt(cmd) - 1);
                         task.isDone(false);
                         DukePrinter.unmark(task.icon(), task.toString());
                     } catch (NumberFormatException | IndexOutOfBoundsException e) {
                         DukePrinter.unmarkError(cmd);
                     }
                     break;
-                default:
-                    cmd = cmd + sc.nextLine();
+                case "todo":
+                    cmd = sc.nextLine();
                     try {
-                        taskItems.add(new TaskItem(cmd));
-                        DukePrinter.add(cmd);
+                        task = new TodoTask(cmd);
+                        taskItems.add(task);
+                        DukePrinter.add(task.toString(), taskItems.size());
                     } catch (IndexOutOfBoundsException e) {
                         DukePrinter.addError(cmd);
                     }
+                    break;
+                case "deadline":
+                    cmd = sc.nextLine();
+                    String[] deadlineTask = cmd.split("/by");
+                    try {
+                        task = new DeadlineTask(deadlineTask[0], deadlineTask[1]);
+                        taskItems.add(task);
+                        DukePrinter.add(task.toString(), taskItems.size());
+                    } catch (IndexOutOfBoundsException e) {
+                        DukePrinter.addError(cmd);
+                    }
+                    break;
+                case "event":
+                    cmd = sc.nextLine();
+                    String[] eventTask = cmd.split("/at");
+                    try {
+                        task = new EventTask(eventTask[0], eventTask[1]);
+                        taskItems.add(task);
+                        DukePrinter.add(task.toString(), taskItems.size());
+                    } catch (IndexOutOfBoundsException e) {
+                        DukePrinter.addError(cmd);
+                    }
+                    break;
+                default:
+                    cmd = cmd + sc.nextLine();
+                    DukePrinter.echo(cmd);
             }
             cmd = sc.next();
         }
