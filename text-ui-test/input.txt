@@ -1,0 +1,11 @@
+todo eat
+todo cs2103 ip
+list
+mark 1
+deadline cs2100 /by Friday
+deadline es2660 /by 20th Aug 2022 11.59pm
+mark 2
+event meeting NUSSU /at tomorrow
+event welcome tea NUS Jazz Band /at Thursday 6pm
+list
+bye
