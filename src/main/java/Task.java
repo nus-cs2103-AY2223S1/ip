@@ -7,10 +7,16 @@ public class Task {
         this.isComplete = false;
     }
 
+    /**
+     * Sets the task to be complete.
+     */
     public void setComplete() {
         this.isComplete = true;
     }
 
+    /**
+     * Sets the task to be incomplete.
+     */
     public void setIncomplete() {
         this.isComplete = false;
     }

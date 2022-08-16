@@ -11,9 +11,10 @@ public class TaskController {
     }
 
     /**
-     * @param idx
-     * @return
-     * @throws TaskNotFoundException
+     * Marks a task from the list of tasks given it's index.
+     * 
+     * @param idx Index of Task in List
+     * @throws TaskNotFoundException Thrown if task is not found
      */
     public void markTask(int idx) throws TaskNotFoundException {
         try {
@@ -28,9 +29,10 @@ public class TaskController {
     }
 
     /**
-     * @param idx
-     * @return
-     * @throws TaskNotFoundException
+     * Unmarks a task from the list of tasks given it's index.
+     * 
+     * @param idx Index of Task in List
+     * @throws TaskNotFoundException Thrown if task is not found
      */
     public void unmarkTask(int idx) throws TaskNotFoundException {
         try {
@@ -45,7 +47,9 @@ public class TaskController {
     }
 
     /**
-     * @param newTask
+     * Adds a new task to the list of tasks.
+     * 
+     * @param newTask Task to be added
      */
     public void addTask(Task newTask) {
         tasks.add(newTask);
@@ -57,9 +61,10 @@ public class TaskController {
     }
 
     /**
-     * @param idx
-     * @return
-     * @throws TaskNotFoundException
+     * Deletes a task from the list of tasks given it's index.
+     * 
+     * @param idx Index of Task in List
+     * @throws TaskNotFoundException Thrown if task is not found
      */
     public void deleteTask(int idx) throws TaskNotFoundException {
         try {
@@ -76,7 +81,7 @@ public class TaskController {
     }
 
     /**
-     * 
+     * List all tasks in the list of tasks.
      */
     public void listTasks() {
         System.out.println("\n___________________________ \n");

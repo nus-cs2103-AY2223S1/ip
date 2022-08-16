@@ -23,7 +23,7 @@ public class Duke {
     /**
      * Returns a boolean corresponding to whether the given string is numeric.
      *
-     * @param strNum
+     * @param strNum String to be tested
      * @return boolean representing whether the string is numeric
      */
     static private boolean isNumeric(String strNum) {
