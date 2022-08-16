@@ -22,6 +22,10 @@ public class Duke {
         public void setIsDone(Boolean done) {
             this.isDone = done;
         }
+
+        public boolean getIsDone() {
+            return this.isDone;
+        }
     }
 
     public static ArrayList<Task> storage = new ArrayList<Task>();
@@ -51,12 +55,28 @@ public class Duke {
         } else if (text.equalsIgnoreCase("bye")) {
             System.out.println("Bye. Hope to see you again soon!\n");
         } else if (text.startsWith("mark")) {
-            storage.get(text.charAt(5) - 49).setIsDone(true);
-            System.out.println("Nice! I've marked this task as done \n" + "[" + storage.get(text.charAt(5) - 49).getStatusIcon() + "] " + storage.get(text.charAt(5) - 49).description);
+            if (Integer.parseInt(text.replace("mark ", "")) - 1 < storage.size() && Integer.parseInt(text.replace("mark ", "")) > 0) {
+                if (!storage.get(Integer.parseInt(text.replace("mark ", "")) - 1).getIsDone()) {
+                    storage.get(Integer.parseInt(text.replace("mark ", "")) - 1).setIsDone(true);
+                    System.out.println("Nice! I've marked this task as done \n" + "[" + storage.get(Integer.parseInt(text.replace("mark ", "")) - 1).getStatusIcon() + "] " + storage.get(Integer.parseInt(text.replace("mark ", "")) - 1).description);
+                } else {
+                    System.out.println("This task is already marked done");
+                }
+            } else {
+                System.out.println("Such an item does not exist");
+            }
             list();
         } else if (text.startsWith("unmark")) {
-            storage.get(text.charAt(7) - 49).setIsDone(false);
-            System.out.println("Ok, I've marked this task as not done yet \n" + "[" + storage.get(text.charAt(7) - 49).getStatusIcon() + "] " + storage.get(text.charAt(7) - 49).description);
+            if (Integer.parseInt(text.replace("unmark ", "")) - 1 < storage.size() && Integer.parseInt(text.replace("unmark ", "")) > 0) {
+                if (storage.get(Integer.parseInt(text.replace("unmark ", "")) - 1).getIsDone()) {
+                    storage.get(Integer.parseInt(text.replace("unmark ", "")) - 1).setIsDone(false);
+                    System.out.println("Ok, I've marked this task as not done yet \n" + "[" + storage.get(Integer.parseInt(text.replace("unmark ", "")) - 1).getStatusIcon() + "] " + storage.get(Integer.parseInt(text.replace("unmark ", "")) - 1).description);
+                } else {
+                    System.out.println("This task has already been marked not done");
+                }
+            } else {
+                System.out.println("Such an item does not exist");
+            }
             list();
         } else {
             System.out.println("Added:" + text);
