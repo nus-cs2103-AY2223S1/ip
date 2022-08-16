@@ -31,19 +31,53 @@ public class Duke {
                 this.outputMessage(Messages.AFTER_LIST[this.messageState]);
                 break;
             case "mark":
-                this.handleTaskStatus(command, TaskStatus.MARK);
+                try {
+                    this.handleTaskStatus(command, TaskStatus.MARK);
+                } catch (InvalidIndexException e) {
+                    this.outputMessage(Messages.INVALID_INDEX[messageState]);
+                } catch (MissingDescriptionException e) {
+                    this.outputMessage(Messages.WRONG_COMMAND_FORMAT[messageState]);
+                } catch (NumberFormatException e) {
+                    this.outputMessage(Messages.NOT_A_NUMBER[messageState]);
+                }
                 break;
             case "unmark":
-                this.handleTaskStatus(command, TaskStatus.UNMARK);
+                try {
+                    this.handleTaskStatus(command, TaskStatus.UNMARK);
+                } catch (InvalidIndexException e) {
+                    this.outputMessage(Messages.INVALID_INDEX[messageState]);
+                } catch (MissingDescriptionException e) {
+                    this.outputMessage(Messages.WRONG_COMMAND_FORMAT[messageState]);
+                } catch (NumberFormatException e) {
+                    this.outputMessage(Messages.NOT_A_NUMBER[messageState]);
+                }
                 break;
             case "todo":
-                this.handleTaskType(command, TaskType.TODO);
+                try {
+                    this.handleTaskType(command, TaskType.TODO);
+                } catch (MissingDescriptionException e) {
+                    this.outputMessage(Messages.WRONG_COMMAND_FORMAT[messageState]);
+                } catch (MissingArgumentException e) {
+                    e.printStackTrace();
+                }
                 break;
             case "deadline":
-                this.handleTaskType(command, TaskType.DEADLINE);
+                try {
+                    this.handleTaskType(command, TaskType.DEADLINE);
+                } catch (MissingDescriptionException e) {
+                    this.outputMessage(Messages.WRONG_COMMAND_FORMAT[messageState]);
+                } catch (MissingArgumentException e) {
+                    this.outputMessage(Messages.MISSING_TIME[messageState]);
+                }
                 break;
             case "event":
-                this.handleTaskType(command, TaskType.EVENT);
+                try {
+                    this.handleTaskType(command, TaskType.EVENT);
+                } catch (MissingDescriptionException e) {
+                    this.outputMessage(Messages.WRONG_COMMAND_FORMAT[messageState]);
+                } catch (MissingArgumentException e) {
+                    this.outputMessage(Messages.MISSING_TIME[messageState]);
+                }
                 break;
             default:
                 this.outputMessage(Messages.INVALID_COMMAND[this.messageState]);
@@ -63,47 +97,36 @@ public class Duke {
         }
     }
 
-    private boolean checkCommandArgs(String[] command, int length) {
+    private void checkCommandArgs(String[] command, int length) throws MissingDescriptionException{
         if (command.length < length) {
-            this.outputMessage(Messages.WRONG_COMMAND_FORMAT[this.messageState]);
-            return false;
+            throw new MissingDescriptionException("Missing Arguments");
         }
-        return true;
     }
 
-    private boolean checkCommandInt(String[] command) {
-        if (!checkCommandArgs(command, 2)) {
-            return false;
+    private void checkCommandInt(String[] command) throws NumberFormatException, InvalidIndexException, MissingDescriptionException {
+        checkCommandArgs(command, 2);
+        int index = Integer.parseInt(command[1]);
+        if (index > taskList.size() || index < 1) {
+            throw new InvalidIndexException("Index out of bounds.");
         }
-        try {
-            int index = Integer.parseInt(command[1]);
-            if (index > taskList.size() || index < 1) {
-                this.outputMessage(Messages.INVALID_INDEX[this.messageState]);
-                return false;
-            }
-        } catch (NumberFormatException e) {
-            this.outputMessage(Messages.NOT_A_NUMBER[this.messageState]);
-            return false;
-        }
-        return true;
     }
 
     private String[] splitTag(String message, String tag) {
         return message.split(tag, 2);
     }
 
-    private boolean checkCommandTag(String[] command, String tag) {
-        if (!checkCommandArgs(command, 2)) {
-            return false;
-        }
+    private void checkCommandTag(String[] command, String tag) throws MissingArgumentException, MissingDescriptionException {
+        checkCommandArgs(command, 2);
         String[] args = splitTag(command[1], tag);
-        return checkCommandArgs(args, 2);
+        try {
+            checkCommandArgs(args, 2);
+        } catch (MissingDescriptionException e) {
+            throw new MissingArgumentException("Missing " + tag);
+        }
     }
 
-    private boolean handleTaskStatus(String[] command, TaskStatus status) {
-        if (!checkCommandInt(command)) {
-            return false;
-        }
+    private void handleTaskStatus(String[] command, TaskStatus status) throws InvalidIndexException, MissingDescriptionException {
+        checkCommandInt(command);
         String message;
         String message2;
         if (status == TaskStatus.MARK) {
@@ -120,36 +143,26 @@ public class Duke {
         if (!change) {
             this.outputMessage(message2);
         }
-        return true;
     }
 
-    private boolean handleTaskType(String[] command, TaskType type) {
+    private void handleTaskType(String[] command, TaskType type) throws MissingDescriptionException, MissingArgumentException {
         Task task;
         if (type == TaskType.TODO) {
-            if (!checkCommandArgs(command, 2)) {
-                return false;
-            }
+            checkCommandArgs(command, 2);
             task = new ToDo(command[1]);
         } else if (type == TaskType.DEADLINE) {
-            if (!checkCommandTag(command, DEADLINE_TAG)) {
-                return false;
-            } else {
-                String[] args = splitTag(command[1], DEADLINE_TAG);
-                task = new Deadline(args[0], args[1]);
-            }
+            checkCommandTag(command, DEADLINE_TAG);
+            String[] args = splitTag(command[1], DEADLINE_TAG);
+            task = new Deadline(args[0], args[1]);
         } else {
-            if (!checkCommandTag(command, EVENT_TAG)) {
-                return false;
-            } else {
-                String[] args = splitTag(command[1], EVENT_TAG);
-                task = new Event(args[0], args[1]);
-            }
+            checkCommandTag(command, EVENT_TAG);
+            String[] args = splitTag(command[1], EVENT_TAG);
+            task = new Event(args[0], args[1]);
         }
         this.taskList.add(task);
         this.outputMessage(Messages.ADD_LIST[this.messageState]);
         this.outputMessage(task.toString());
         this.outputMessage(Messages.getListSizeMsg(taskList.size(), messageState));
-        return true;
     }
 
     public static void main(String[] args) {

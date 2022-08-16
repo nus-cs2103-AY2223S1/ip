@@ -12,6 +12,7 @@ public class Messages {
     public static String[] PREV_UNDONE = {"By the way, I think this task was already not done previously."};
 
     public static String[] WRONG_COMMAND_FORMAT = {"Umm... I think you made a mistake in your command."};
+    public static String[] MISSING_TIME = {"I think you need a time for this"};
     public static String[] INVALID_INDEX = {"Umm... I think this task number does not exist"};
     public static String[] NOT_A_NUMBER = {"I don't think that's a number..."};
 
