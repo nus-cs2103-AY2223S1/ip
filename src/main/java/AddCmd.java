@@ -3,15 +3,35 @@ public class AddCmd extends Command {
     public AddCmd (String name){
         super(name);
     }
+    private static int cnt = 0;
 
     @Override
     public void execute(String name, Task[] tasks) {
-        for (int i = 0; i < tasks.length; i++) {
-            if (tasks[i] == null) {
-                tasks[i] = new Task(name);
-                break;
-            }
+        Task newT;
+        String str;
+        String[] splitS;
+        if (name.startsWith("todo")) {
+            str = name.substring("todo".length() + 1);
+            newT = new Todo(str);
+        } else if (name.startsWith("deadline")) {
+            str = name.substring("deadline".length() + 1);
+            splitS = str.split("/by", 2);
+            newT = new Deadline(splitS[0], splitS[1]);
+        } else if (name.startsWith("event")) {
+            str = name.substring("event".length() + 1);
+            splitS = str.split("/at", 2);
+            newT = new Event(splitS[0], splitS[1]);
+        } else {
+            newT = new Task(name);
         }
-        System.out.println("added: " + getCmd());
+
+        tasks[cnt] = newT;
+        cnt ++;
+
+        String out = "Got it. I've added this task: \n  " +
+                newT.toString() + "\nNow you have "
+                + cnt + " tasks in the list.";
+
+        System.out.println(out);
     }
 }

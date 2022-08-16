@@ -4,6 +4,7 @@ public class Echo {
 
     public Echo() {}
 
+    private static int cnt = 0;
     private static Scanner sc = new Scanner(System.in);
 
     public static void echo (Task[] tasks) {
@@ -26,6 +27,7 @@ public class Echo {
             cmd = new UnmarkCmd(str, num - 1);
             cmd.execute(str, tasks);
         } else {
+            cnt ++;
             cmd = new AddCmd(str);
             cmd.execute(str, tasks);
         }
