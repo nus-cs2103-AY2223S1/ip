@@ -88,36 +88,42 @@ public class Duke {
       String[] usrInputTokens = usrInput.split(" ", 2);
       String usrCommand = usrInputTokens[0];
 
-      if (usrInput.equals("bye")) {
+      if (usrCommand.equals("bye")) {
         break;
-      } else if (usrInput.equals("list")) {
-        dk.viewAllTask();
-      } else if (usrCommand.equals("mark")) {
-        int index = Integer.parseInt(usrInputTokens[1], 10) - 1;
-        dk.markTask(index);
-      } else if (usrCommand.equals("unmark")) {
-        int index = Integer.parseInt(usrInputTokens[1], 10) - 1;
-        dk.unmarkTask(index);
-      } else if (usrCommand.equals("todo")) {
-        String title = usrInputTokens[1].trim();
-        Todo newTodo = new Todo(title, false);
-        dk.addTask(newTodo);
-      } else if (usrCommand.equals("deadline")) {
-        String[] deadlineTokens = usrInputTokens[1].split("/by");
-        String title = deadlineTokens[0].trim();
-        String by = deadlineTokens[1].trim();
-        Deadline newDeadline = new Deadline(title, false, by);
-        dk.addTask(newDeadline);
-      } else if (usrCommand.equals("event")) {
-        String[] eventTokens = usrInputTokens[1].split("/at");
-        String title = eventTokens[0].trim();
-        String at = eventTokens[1].trim();
-        Event newEvent = new Event(title, false, at);
-        dk.addTask(newEvent);
-      } else {
-        String title = usrInput.trim();
-        Todo newTodo = new Todo(title, false);
-        dk.addTask(newTodo);
+      }
+      switch (usrCommand) {
+        case "list":
+          dk.viewAllTask();
+          break;
+        case "mark":
+          int markIndex = Integer.parseInt(usrInputTokens[1], 10) - 1;
+          dk.markTask(markIndex);
+          break;
+        case "unmark":
+          int unmarkIndex = Integer.parseInt(usrInputTokens[1], 10) - 1;
+          dk.unmarkTask(unmarkIndex);
+          break;
+        case "todo":
+          String todoTitle = usrInputTokens[1].trim();
+          Todo newTodo = new Todo(todoTitle, false);
+          dk.addTask(newTodo);
+          break;
+        case "deadline":
+          String[] deadlineTokens = usrInputTokens[1].split("/by");
+          String deadlineTitle = deadlineTokens[0].trim();
+          String by = deadlineTokens[1].trim();
+          Deadline newDeadline = new Deadline(deadlineTitle, false, by);
+          dk.addTask(newDeadline);
+          break;
+        case "event":
+          String[] eventTokens = usrInputTokens[1].split("/at");
+          String eventTitle = eventTokens[0].trim();
+          String at = eventTokens[1].trim();
+          Event newEvent = new Event(eventTitle, false, at);
+          dk.addTask(newEvent);
+          break;
+        default:
+          prettyPrint("Sorry, I don't understand.");
       }
     }
     sc.close();
