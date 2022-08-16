@@ -1,99 +1,96 @@
----------------------------
+--------------------------------------
 Hello! Blink here
 What can I do for you today?
----------------------------
+--------------------------------------
 Alright, this task has been successfully added!
 [T][ ] 2103T iP project
 Total of 1 tasks now
----------------------------
+--------------------------------------
 Alright, this task has been successfully added!
 [D][ ] 2103 iP project (by: Thursday)
 Total of 2 tasks now
----------------------------
+--------------------------------------
 Alright, this task has been successfully added!
 [E][ ] dota TI finals (at: 29-30 Oct)
 Total of 3 tasks now
----------------------------
+--------------------------------------
 Here are the tasks in your list:
 1. [T][ ] 2103T iP project
 2. [D][ ] 2103 iP project (by: Thursday)
 3. [E][ ] dota TI finals (at: 29-30 Oct)
----------------------------
+--------------------------------------
 Alright, this task has been successfully added!
-[E][ ] study (at: Monday-Friday)
+[D][ ] study (by: forever)
 Total of 4 tasks now
----------------------------
+--------------------------------------
 Alright, this task has been successfully added!
 [E][ ] Eat (at: sometime when i wan 2 ;3)
 Total of 5 tasks now
----------------------------
-Here are the tasks in your list:
-1. [T][ ] 2103T iP project
-2. [D][ ] 2103 iP project (by: Thursday)
-3. [E][ ] dota TI finals (at: 29-30 Oct)
-4. [E][ ] study (at: Monday-Friday)
-5. [E][ ] Eat (at: sometime when i wan 2 ;3)
----------------------------
+--------------------------------------
 Mission complete! Nice ah
 [E][X] Eat (at: sometime when i wan 2 ;3)
----------------------------
+--------------------------------------
 Mission complete! Nice ah
 [D][X] 2103 iP project (by: Thursday)
----------------------------
+--------------------------------------
 Here are the tasks in your list:
 1. [T][ ] 2103T iP project
 2. [D][X] 2103 iP project (by: Thursday)
 3. [E][ ] dota TI finals (at: 29-30 Oct)
-4. [E][ ] study (at: Monday-Friday)
+4. [D][ ] study (by: forever)
 5. [E][X] Eat (at: sometime when i wan 2 ;3)
----------------------------
+--------------------------------------
 Looks like there is more work to do
 [D][ ] 2103 iP project (by: Thursday)
----------------------------
+--------------------------------------
 Here are the tasks in your list:
 1. [T][ ] 2103T iP project
 2. [D][ ] 2103 iP project (by: Thursday)
 3. [E][ ] dota TI finals (at: 29-30 Oct)
-4. [E][ ] study (at: Monday-Friday)
+4. [D][ ] study (by: forever)
 5. [E][X] Eat (at: sometime when i wan 2 ;3)
----------------------------
-Mission complete! Nice ah
-[E][X] dota TI finals (at: 29-30 Oct)
----------------------------
-Mission complete! Nice ah
-[E][X] study (at: Monday-Friday)
----------------------------
-Looks like there is more work to do
-[E][ ] Eat (at: sometime when i wan 2 ;3)
----------------------------
+--------------------------------------
+This task has already been done :|
+--------------------------------------
+An unfinished task cannot be unmark...
+--------------------------------------
 Here are the tasks in your list:
 1. [T][ ] 2103T iP project
 2. [D][ ] 2103 iP project (by: Thursday)
-3. [E][X] dota TI finals (at: 29-30 Oct)
-4. [E][X] study (at: Monday-Friday)
-5. [E][ ] Eat (at: sometime when i wan 2 ;3)
----------------------------
-Alright, this task has been successfully added!
-[E][ ] Play games (at: home)
-Total of 6 tasks now
----------------------------
-Alright, this task has been successfully added!
-[T][ ] sleep
-Total of 7 tasks now
----------------------------
-Alright, this task has been successfully added!
-[D][ ] f4cts of the day (by: now)
-Total of 8 tasks now
----------------------------
+3. [E][ ] dota TI finals (at: 29-30 Oct)
+4. [D][ ] study (by: forever)
+5. [E][X] Eat (at: sometime when i wan 2 ;3)
+--------------------------------------
+Task have been removed successfully
+[E][ ] dota TI finals (at: 29-30 Oct)
+Now you have 4 task remaining
+--------------------------------------
+Task have been removed successfully
+[E][X] Eat (at: sometime when i wan 2 ;3)
+Now you have 3 task remaining
+--------------------------------------
 Here are the tasks in your list:
 1. [T][ ] 2103T iP project
 2. [D][ ] 2103 iP project (by: Thursday)
-3. [E][X] dota TI finals (at: 29-30 Oct)
-4. [E][X] study (at: Monday-Friday)
-5. [E][ ] Eat (at: sometime when i wan 2 ;3)
-6. [E][ ] Play games (at: home)
-7. [T][ ] sleep
-8. [D][ ] f4cts of the day (by: now)
----------------------------
+3. [D][ ] study (by: forever)
+--------------------------------------
+Error in command for event
+--------------------------------------
+☹ OOPS!!! Missing description of todo.
+--------------------------------------
+Error in command for deadline
+--------------------------------------
+There is an error in command inputted
+--------------------------------------
+There is an error in command inputted
+--------------------------------------
+There is an error in command inputted
+--------------------------------------
+Unknown command input
+--------------------------------------
+Unknown command input
+--------------------------------------
+Unknown command input
+--------------------------------------
 Bye bye~ Glad to be of service :D
----------------------------
+--------------------------------------
