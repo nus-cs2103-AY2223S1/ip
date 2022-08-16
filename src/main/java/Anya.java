@@ -18,32 +18,48 @@ public class Anya {
         userInput = sc.nextLine();
 
         while (!userInput.equals("bye")) {
-            command = userInput.split(" ")[0];
-            if (command.equals("list")) {
-                list(tasks);
-            } else if (command.equals("mark")) {
-                int index = Integer.parseInt(userInput.split(" ")[1]) - 1;
-                mark(tasks, index);
-            } else if (command.equals("unmark")) {
-                int index = Integer.parseInt(userInput.split(" ")[1]) - 1;
-                unmark(tasks, index);
-            } else if (command.equals("todo")) {
-                String inputTask = userInput.split(" ", 2)[1];
-                Task task = new Todo(inputTask);
-                addTask(tasks, task);
+            try {
+                command = userInput.split(" ")[0];
+                if (command.equals("list")) {
+                    list(tasks);
+                } else if (command.equals("mark")) {
+                    int index = Integer.parseInt(userInput.split(" ")[1]) - 1;
+                    mark(tasks, index);
+                } else if (command.equals("unmark")) {
+                    int index = Integer.parseInt(userInput.split(" ")[1]) - 1;
+                    unmark(tasks, index);
+                } else if (command.equals("todo")) {
+                    try {
+                    String inputTask = userInput.split(" ", 2)[1];
+                    Task task = new Todo(inputTask);
+                    addTask(tasks, task);
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        throw new AnyaException("The description of a todo cannot be empty.");
+                    }
+                } else if (command.equals("deadline")) {
+                    try {
+                        String inputTask = userInput.split(" ", 2)[1];
+                        String[] details = inputTask.split(" /by ");
+                        Task task = new Deadline(details[0], details[1]);
+                        addTask(tasks, task);
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        throw new AnyaException("The description/cut-off time of a deadline cannot be empty.");
+                    }
+                } else if (command.equals("event")) {
+                    try {
+                        String inputTask = userInput.split(" ", 2)[1];
+                        String[] details = inputTask.split(" /at ");
+                        Task task = new Event(details[0], details[1]);
+                        addTask(tasks, task);
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        throw new AnyaException("The description/time of an event cannot be empty.");
+                    }
+                } else {
+                    throw new AnyaException("Anya doesn't understand this command.");
+                }
 
-            } else if (command.equals("deadline")) {
-                String inputTask = userInput.split(" ", 2)[1];
-                String[] details = inputTask.split(" /by ");
-                Task task = new Deadline(details[0], details[1]);
-                addTask(tasks, task);
-
-            } else if (command.equals("event")) {
-                String inputTask = userInput.split(" ", 2)[1];
-                String[] details = inputTask.split(" /at ");
-                Task task = new Event(details[0], details[1]);
-                addTask(tasks, task);
-
+            } catch (AnyaException e) {
+                System.out.println(e.getMessage() + breakLine);
             }
 
             userInput = sc.nextLine();
