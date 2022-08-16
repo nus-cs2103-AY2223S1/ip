@@ -14,42 +14,55 @@ public class Duke {
         ArrayList<Task> myList = new ArrayList<Task>();
 
         loop: while (true) {
-            Scanner myObj = new Scanner(System.in);
-            String userInput = myObj.nextLine();
+            Scanner scn = new Scanner(System.in);
+            String userInput = scn.nextLine();
             int itemNumber = 0;
             switch(userInput.split(" ")[0]) {
                 case "bye":
-                    myPrinter("Bye. Hope to see you again soon!");
+                    System.out.println("Bye. Hope to see you again soon!");
                     break loop;
                 case "list":
-                    String toPrint = "";
+                    System.out.println("Here are the tasks in your list: ");
                     for(int i = 0; i<myList.size(); i++) {
-                        toPrint += (i+1) + ".["
-                                + myList.get(i).getStatusIcon() + "] "
-                                + myList.get(i).getDescription() + "\n";
+                        System.out.println(myList.get(i));
                     }
-                    myPrinter(toPrint.substring(0, toPrint.length()-1));
                     break;
                 case "mark":
                     itemNumber = Integer.parseInt(userInput.split(" ")[1]) - 1;
                     myList.get(itemNumber).markAsDone();
                     System.out.println("Nice! I've marked this task as done:");
-                    System.out.println("["
-                            + myList.get(itemNumber).getStatusIcon() + "] "
-                            + myList.get(itemNumber).getDescription());
+                    printItem(itemNumber, myList);
                     break;
                 case "unmark":
                     itemNumber = Integer.parseInt(userInput.split(" ")[1]) - 1;
                     myList.get(itemNumber).markAsUndone();
                     System.out.println("OK, I've marked this task as not done yet:");
-                    System.out.println("["
-                            + myList.get(itemNumber).getStatusIcon() + "] "
-                            + myList.get(itemNumber).getDescription());
+                    printItem(itemNumber, myList);
+                    break;
+                case "todo":
+                    System.out.println("Got it. I've added this task:");
+                    Todo myTodo = new Todo(userInput.substring(5));
+                    myList.add(myTodo);
+                    System.out.println(myTodo);
+                    System.out.println("Now you have " + myList.size() + " in the list.");
+                    break;
+                case "deadline":
+                    System.out.println("Got it. I've added this task:");
+                    Deadline myDeadline = new Deadline(userInput.substring(9).split("/by")[0], userInput.split("/by")[1]);
+                    myList.add(myDeadline);
+                    System.out.println(myDeadline);
+                    System.out.println("Now you have " + myList.size() + " in the list.");
+                    break;
+                case "event":
+                    System.out.println("Got it. I've added this task:");
+                    Event myEvent = new Event(userInput.substring(6).split("/at")[0], userInput.split("/at")[1]);
+                    myList.add(myEvent);
+                    System.out.println(myEvent);
+                    System.out.println("Now you have " + myList.size() + " in the list.");
                     break;
                 default:
-                    Task myTask = new Task(userInput);
-                    myList.add(myTask);
-                    myPrinter("added: " + userInput);
+                    myList.add(new Task(userInput));
+                    System.out.println("added: " + userInput);
             }
         }
     }
@@ -57,6 +70,14 @@ public class Duke {
     private static void myPrinter(String myString) {
         System.out.println("____________________________________________________________");
         System.out.println(myString);
+        System.out.println("____________________________________________________________");
+    }
+
+    private static void printItem(int itemNumber, ArrayList<Task> myList) {
+        System.out.println("____________________________________________________________");
+        System.out.println("["
+                + myList.get(itemNumber).getStatusIcon() + "] "
+                + myList.get(itemNumber).getDescription());
         System.out.println("____________________________________________________________");
     }
 }
