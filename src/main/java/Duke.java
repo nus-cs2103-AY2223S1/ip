@@ -31,9 +31,39 @@ public class Duke {
                 markTask(action);
             } else if (action.length() >= 6 && Objects.equals(action.substring(0, 6), "unmark")) {
                 unMarkTask(action);
+            } else if (action.length() >= 6 && Objects.equals(action.substring(0, 6), "delete")) {
+                deleteTask(action);
             } else {
                 addToList(action);
             }
+        }
+    }
+
+    /**
+     * Deletes specified task
+     * @param action takes in action from input
+     */
+    public static void deleteTask(String action) {
+        try {
+            String i = action.substring(6).replaceAll(" ", "");
+            int index = Integer.parseInt(i) - 1;
+
+            if (index >= idx) {
+                throw new DukeException("☹ OOPS!!! Error: No Such Task");
+            }
+            String removedTask = list[index].toString();
+            for (int j = index; j < idx; j++) {
+                list[j] = list[j + 1];
+            }
+            idx--;
+            System.out.println("Noted. I've removed this task:");
+            System.out.println(removedTask);
+            System.out.println("Now you have " + idx + " tasks in the list.");
+            System.out.println("--------------------------");
+        }
+        catch (Exception e) {
+            System.out.println("☹ OOPS!!! Error: No Such Task");
+            System.out.println("--------------------------");
         }
     }
 
@@ -75,7 +105,7 @@ public class Duke {
      * prints out the list of tasks added
      * @param idx takes in index
      */
-    private static void getList(int idx) {
+    public static void getList(int idx) {
         System.out.println("Here are the tasks in your list");
         for (int i = 0; i < idx; i++) {
             System.out.println((i + 1) + ". " + list[i]);
@@ -88,19 +118,19 @@ public class Duke {
      * @param action action of task
      * @param mark status if mark or unmark
      */
-    private static void editTask(String action, boolean mark) {
+    public static void editTask(String action, boolean mark) {
         try {
             String i = mark ? action.substring(4): action.substring(6);
             i = i.replaceAll(" ", "");
-            int idx = Integer.parseInt(i) - 1;
+            int index = Integer.parseInt(i) - 1;
             if (mark) {
-                list[idx].markDone();
+                list[index].markDone();
             } else {
-                list[idx].markUnDone();
+                list[index].markUnDone();
             }
             String output = mark ? "Nice! I've marked this task as done:" : "OK, I've marked this task as not done yet:";
             System.out.println(output);
-            System.out.println(list[idx].toString());
+            System.out.println(list[index].toString());
             System.out.println("--------------------------");
         }
         catch (Exception e) {
@@ -113,7 +143,7 @@ public class Duke {
      * marks the task to done
      * @param action task action
      */
-    private static void markTask(String action) {
+    public static void markTask(String action) {
         editTask(action, true);
     }
 
@@ -121,7 +151,7 @@ public class Duke {
      * set the task to undone
      * @param action task action
      */
-    private static void unMarkTask(String action) {
+    public static void unMarkTask(String action) {
         editTask(action, false);
     }
 }
