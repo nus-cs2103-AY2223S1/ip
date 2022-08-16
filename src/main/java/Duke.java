@@ -20,6 +20,8 @@ public class Duke {
             + "  %s%n"
             + "Now you have %d tasks in the list.";
 
+    private static final String EMPTY_LIST = "The current list is empty!";
+
     private DukeIO userIO;
     private Parser parser;
 
@@ -35,9 +37,7 @@ public class Duke {
         taskCompleted = 0;
     }
 
-    boolean handleInput() {
-        String txt = userIO.readLine();
-        ParsedData data = parser.parse(txt);
+    boolean executeCommand(ParsedData data) throws DukeException {
         Task task;
         switch (data.command) {
             case "bye":
@@ -49,21 +49,12 @@ public class Duke {
                 return true;
 
             case "mark":
-                task = tasks.get(Integer.parseInt(data.description) - 1);
-                if (!task.isCompleted())
-                    taskCompleted++;
-
-                task.mark();
-                userIO.printTask(String.format(MARKED, task));
+                updateCompletionStatus(data, true);
                 return true;
 
             case "unmark":
-                task = tasks.get(Integer.parseInt(data.description) - 1);
-                if (task.isCompleted())
-                    taskCompleted--;
+                updateCompletionStatus(data, false);
 
-                task.unmark();
-                userIO.printTask(String.format(UNMARKED, task));
                 return true;
 
             case "todo":
@@ -85,13 +76,58 @@ public class Duke {
                 return true;
 
             default:
-                userIO.printTask("ERROR");
-                return true;
-
+                throw new UnknownCommandException();
         }
     }
 
+    void updateCompletionStatus(ParsedData data, boolean mark) throws DukeException {
+        int index;
+        try {
+            index = Integer.parseInt(data.description) - 1;
+        } catch (NumberFormatException e) {
+            throw new InvalidValueException(data.command);
+        }
+
+        if (index >= tasks.size() || index < 0) {
+            throw new OutOfBoundException();
+        }
+
+        Task task = tasks.get(index);
+        if (!mark) {
+            if (task.isCompleted())
+                taskCompleted--;
+
+            task.unmark();
+            userIO.printTask(String.format(UNMARKED, task));
+            return;
+        }
+
+        if (!task.isCompleted())
+            taskCompleted++;
+
+        task.mark();
+        userIO.printTask(String.format(MARKED, task));
+    }
+
+    boolean handleInput() {
+        String txt = userIO.readLine();
+        ParsedData data = parser.parse(txt);
+        boolean continueProgram = false;
+        try {
+            continueProgram |= executeCommand(data);
+        } catch (DukeException e) {
+            continueProgram = true;
+            userIO.printError(e);
+        }
+
+        return continueProgram;
+    }
+
     void listAllTasks() {
+        if (tasks.size() == 0) {
+            userIO.printTask(EMPTY_LIST);
+            return;
+        }
         userIO.printLine();
         for (int i = 0; i < tasks.size(); ++i) {
             userIO.printTask(String.format("%d. %s", i + 1, tasks.get(i)), 2);

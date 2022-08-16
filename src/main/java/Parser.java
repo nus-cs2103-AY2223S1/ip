@@ -3,7 +3,7 @@
  */
 class Parser {
     private static final String SPACE = " +";
-    private static final String SEP = "/";
+    private static final String SEP = " +/";
 
     Parser() {
     }
@@ -19,9 +19,9 @@ class Parser {
         parsedTmp = parsedTmp[1].split(SEP, 2);
 
         if (parsedTmp.length == 1 || parsedTmp[1].equals("")) {
-            return new ParsedData(txt, command, parsedTmp[0].trim());
+            return new ParsedData(txt, command, parsedTmp[0]);
         }
 
-        return new ParsedData(txt, command, parsedTmp[0].trim(), parsedTmp[1].trim());
+        return new ParsedData(txt, command, parsedTmp[0], parsedTmp[1]);
     }
 }

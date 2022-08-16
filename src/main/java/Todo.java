@@ -3,12 +3,14 @@ class Todo extends Task {
         super(description);
     }
 
-    static Todo createTodo(ParsedData data) {
+    static Todo createTodo(ParsedData data) throws EmptyDescriptionException {
         /*
          * TODO
          * Add error checking here
          */
-
+        if (data.description.length() == 0) {
+            throw new EmptyDescriptionException("todo");
+        }
         return new Todo(data.description);
     }
 

@@ -33,6 +33,10 @@ class DukeIO {
         printTask(txt, 3);
     }
 
+    void printError(Exception e) {
+        printTask(String.format("🙄 OOPS!!! %s", e.getMessage()));
+    }
+
     static String addIndent(String txt) {
         return "\t" + txt.replaceAll("\n", "\n\t");
     }
