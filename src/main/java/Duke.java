@@ -2,6 +2,9 @@ import java.util.Scanner;
 
 public class Duke {
 
+    private static String[] strList = new String[100];
+    private static int count = 0;
+
     private static void greet () {
         String str = "Hello! I'm Duke\n" +
                 "What can I do for you?\n";
@@ -15,7 +18,12 @@ public class Duke {
         if (str.equals("bye")) {
             exit();
         } else {
-            System.out.println(str);
+            if (str.equals("list")) {
+                list();
+            } else {
+                store(str);
+            }
+
             echo();
         }
     }
@@ -23,6 +31,18 @@ public class Duke {
     private static void exit() {
         String str = "Bye. Hope to see you again soon!";
         System.out.println(str);
+    }
+
+    private static void store(String str) {
+        strList[count] = str;
+        count += 1;
+        System.out.println("added: " + str);
+    }
+
+    private static void list() {
+        for (int i = 0; i < count; i ++) {
+            System.out.println(i + 1 + ". " + strList[i]);
+        }
     }
 
     public static void main(String[] args) {
