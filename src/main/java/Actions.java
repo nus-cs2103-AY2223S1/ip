@@ -17,6 +17,7 @@ public class Actions {
         acceptedKeywords.add("deadline");
         acceptedKeywords.add("event");
         acceptedKeywords.add("todo");
+        acceptedKeywords.add("delete");
         String[] parts = input.split(" ", 2);
         String keyword = parts[0];
         if (input.equals("bye") || input.equals("list")) return;
@@ -85,6 +86,12 @@ public class Actions {
                     todoTask.addTaskMessage();
                     taskNumberMessage(ls);
                     break;
+                case "delete":
+                    Task toBeDeleted = ls.get(Integer.parseInt(parts[1]) - 1);
+                    System.out.println("Alrighty, this task's gone: ");
+                    System.out.println(toBeDeleted);
+                    ls.remove(toBeDeleted);
+                    break;
                 default:
                     Task curr = new Task(input);
                     ls.add(curr);
@@ -93,7 +100,7 @@ public class Actions {
         } catch (EmptyDescriptionException e) {
                 System.out.println("Description cannot be empty, try again!");
                 continue;
-            } catch (InvalidCommandException | ArrayIndexOutOfBoundsException e) {
+            } catch (InvalidCommandException | IndexOutOfBoundsException e) {
                 System.out.println("Invalid input, try again!");
                 continue;
             }
