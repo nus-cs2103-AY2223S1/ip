@@ -9,16 +9,12 @@ public class Duke {
         String input = sc.nextLine();
         while (!input.equals("bye")) {
             if (input.equals("list")) {
-                Tasks.printTaskList();
-                input = sc.nextLine();
-                continue;
+                Task.printTaskList();
             }
             if (input.startsWith("mark")) {
                 try{
                     int number = Integer.parseInt(input.substring(5));
-                    Tasks.mark(number);
-                    input = sc.nextLine();
-                    continue;
+                    Task.mark(number);
                 } catch (NumberFormatException e) {
                     //Continue
                 }
@@ -26,15 +22,23 @@ public class Duke {
             if (input.startsWith("unmark")) {
                 try{
                     int number = Integer.parseInt(input.substring(7));
-                    Tasks.unMark(number);
-                    input = sc.nextLine();
-                    continue;
+                    Task.unMark(number);
                 } catch (NumberFormatException e) {
                     //Continue
                 }
             }
-            Tasks.taskList.add(new Tasks(input));
-            System.out.println("added: " + input);
+            if (input.startsWith("todo")) {
+                Task.addTask(new ToDo(input.substring(5)));
+            }
+            if (input.startsWith("deadline")) {
+                int end = input.indexOf("/by ");
+                Task.addTask(new Deadline(input.substring(9, end), input.substring(end + 4)));
+            }
+            if (input.startsWith("event")) {
+                int end = input.indexOf("/at");
+                Task.addTask(new Event(input.substring(6, end), input.substring(end + 4)));
+            }
+            System.out.println("ok next");
             input = sc.nextLine();
         }
 
