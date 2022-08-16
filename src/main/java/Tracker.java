@@ -47,6 +47,27 @@ public class Tracker {
         deadline.add();
     }
 
+    public void remove(String[] command) throws DukeException {
+        if (command.length > 2) {
+            throw new InvalidInputException(
+                    String.join(" " , Arrays.copyOfRange(command, 1 , command.length)), command[0]);
+        } else if (command.length != 2) {
+            throw new MissingInputException("index", command[0]);
+        } else {
+            try {
+                Integer index = Integer.parseInt(command[1]);
+                Task task = list.get(index-1);
+                System.out.println("Ok, I have removed this task:");
+                System.out.println(task);
+                list.remove(index-1);
+                System.out.println("You now have " + list.size() + " tasks left in the list");
+
+            } catch (NumberFormatException e){
+                throw new InvalidInputException(command[1], command[0]);
+            }
+        }
+    }
+
     public void addTodo(String[] arr) throws DukeException {
         if (arr.length == 1) {
             throw new MissingInputException("description", arr[0]);
@@ -100,6 +121,9 @@ public class Tracker {
                                 break;
                             case "event":
                                 addEvent(command);
+                                break;
+                            case "delete":
+                                remove(command);
                                 break;
                             default:
                                 throw new UnknownCommand();
