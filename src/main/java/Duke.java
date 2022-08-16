@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Duke {
-    ArrayList<String> list;
+    ArrayList<Task> list;
     private void line() {
         System.out.println("________________________________________");
     }
@@ -20,17 +20,38 @@ public class Duke {
     }
 
     private void store(String input) {
-        list.add(input);
+        Task t = new Task(input);
+        list.add(t);
         line();
-        System.out.println("added: " + input);
+        System.out.println("added: " + t);
         line();
     }
 
     private void enumerateArrayList(){
         line();
+        System.out.println("Here are the tasks in your list: ");
         for (int i = 0; i < list.size(); i++) {
-            System.out.println(i+1 + ". " + list.get(i));
+            Task t = list.get(i);
+            System.out.println(i+1 + "." + t);
         }
+        line();
+    }
+
+    private void markDone(int index) {
+        Task t = this.list.get(index);
+        t.markDone();
+        line();
+        System.out.println("Nice! I've marked this task as done: ");
+        System.out.println(t);
+        line();
+    }
+
+    private void markUndone(int index) {
+        Task t = this.list.get(index);
+        t.markUndone();
+        line();
+        System.out.println("OK, I've marked this task as not done yet: ");
+        System.out.println(t);
         line();
     }
 
@@ -53,7 +74,13 @@ public class Duke {
         while (!isDone) {
             Scanner scanner = new Scanner(System.in); // creating scanner for user input
             String input = scanner.nextLine();
-            switch (input) {
+            String[] strArray = input.split(" ");
+            String first = strArray[0];
+            String num = "";
+            if (strArray.length == 2) {
+                num = strArray[1];
+            }
+            switch (first) {
                 case ("bye"): {
                     duke.exit();
                     isDone = true;
@@ -61,6 +88,14 @@ public class Duke {
                 }
                 case("list"): {
                     duke.enumerateArrayList();
+                    break;
+                }
+                case("mark"): {
+                    duke.markDone(Integer.parseInt(num) - 1);
+                    break;
+                }
+                case("unmark"): {
+                    duke.markUndone(Integer.parseInt(num) - 1);
                     break;
                 }
                 default: {
