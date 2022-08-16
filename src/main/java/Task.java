@@ -20,6 +20,11 @@ public class Task {
         this.isDone = false;
     }
 
+    /**
+     * Overrides the String implementation of Task
+     *
+     * @return A string that shows the completion status of task
+     */
     @Override
     public String toString() {
         return "[" + this.getStatusIcon() + "] " + this.description;
