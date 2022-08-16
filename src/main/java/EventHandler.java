@@ -42,4 +42,9 @@ public class EventHandler {
         list.get(taskIndex).markAsUndone();
         UserInterface.unmarkTaskMessage(list, taskIndex);
     }
+
+    public static <T extends Task> void deleteTask(int taskIndex, ArrayList<T> list) {
+        UserInterface.taskDeletedMessage(list, taskIndex);
+        list.remove(taskIndex);
+    }
 }

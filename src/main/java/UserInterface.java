@@ -30,12 +30,17 @@ public class UserInterface {
         System.out.println("Ok, i've unmarked this task");
         System.out.println(list.get(taskIndex).toString());
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    }
 
+    public static void taskDeletedMessage(ArrayList<? extends Task> list, int taskIndex) {
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("Got it, i've deleted this task");
+        System.out.println(list.get(taskIndex).toString());
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
 
     static void sayBye() {
         System.out.println("bai bai");
     }
-
 
 }

@@ -23,6 +23,9 @@ public class Duke {
             } else if (input.startsWith("unmark")) {
                 int taskIndex = Integer.parseInt(input.substring(7)) - 1;
                 EventHandler.unmarkTask(taskIndex, myList);
+            } else if (input.startsWith("delete")) {
+                int taskIndex = Integer.parseInt(input.substring(7)) - 1;
+                EventHandler.deleteTask(taskIndex, myList);
             } else if (input.startsWith("todo")) {
                 if (input.length() > 4) {
                     EventHandler.addTodo(input, myList);
@@ -46,7 +49,7 @@ public class Duke {
                 }
             } else {
                 System.out.println("I'm sorry, but I don't know what that means.");
-                throw new DukeException("Unknown command");
+                throw new DukeException("Unknown input received");
             }
 
         }
