@@ -18,9 +18,9 @@ public class Duke {
             String command = splitted[0];
             switch (command) {
                 case "bye":
-                    System.out.println(TextFormatter.formatParagraph(
-                            TextFormatter.formatLine("Bye. Hope to see you again soon!")
-                    ));
+                    System.out.println(
+                            TextFormatter.formatLinesIntoParagraph("Bye. Hope to see you again soon!")
+                    );
                     terminate = true;
                     sc.close();
                     break;
@@ -33,26 +33,24 @@ public class Duke {
                     int index = Integer.parseInt(splitted[1]);
                     String markedItem = "  " + dukelist.markItem(index);
                     String markedText = "Nice! I've marked this task as done:";
-                    System.out.println(TextFormatter.formatParagraph(
-                            TextFormatter.formatLine(markedText) +
-                            TextFormatter.formatLine(markedItem)
+                    System.out.println(TextFormatter.formatLinesIntoParagraph(
+                            markedText,
+                            markedItem
                     ));
                     break;
                 case "unmark":
                     index = Integer.parseInt(splitted[1]);
                     String unmarkedItem = "  " + dukelist.unmarkItem(index);
                     String unmarkedText = "OK, I've marked this task as not done yet:";
-                    System.out.println(TextFormatter.formatParagraph(
-                            TextFormatter.formatLine(unmarkedText) +
-                            TextFormatter.formatLine(unmarkedItem)
+                    System.out.println(TextFormatter.formatLinesIntoParagraph(
+                            unmarkedText,
+                            unmarkedItem
                     ));
                     break;
                 default:
                     dukelist.add(nextLine);
                     String outputString = "added: " + command;
-                    System.out.println(TextFormatter.formatParagraph(
-                            TextFormatter.formatLine(outputString)
-                    ));
+                    System.out.println(TextFormatter.formatLinesIntoParagraph(outputString));
             }
         }
     }

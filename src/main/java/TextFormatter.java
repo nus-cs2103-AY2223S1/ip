@@ -7,4 +7,13 @@ public class TextFormatter {
         String divider = "\t____________________________________________________________\n";
         return divider + paragraph + divider;
     }
+
+    public static String formatLinesIntoParagraph(String... lines) {
+        String res = "";
+        for (String line : lines) {
+            res += formatLine(line);
+        }
+
+        return formatParagraph(res);
+    }
 }
