@@ -42,9 +42,12 @@ public class UserInterface {
     }
 
     public String printTask(Task task) {
-        return "Added this task:"
-                + "  " + task.description
-                + ", to your list";
+        return "Added this task:\n"
+                + "  " + task.toString()
+                + ", to your list \n"
+                + "Now you have "
+                + TaskList.taskList.size()
+                + " tasks in the list.";
     }
 
 
