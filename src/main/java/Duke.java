@@ -23,9 +23,12 @@ public class Duke {
                 tasks.mark(Integer.parseInt(input.substring(5)), true);
             } else if (input.startsWith("unmark")) {
                 tasks.mark(Integer.parseInt(input.substring(7)), false);
-            } else {
-                tasks.add(input);
-                System.out.println("added: " + input);
+            } else if (input.startsWith("todo")) {
+                tasks.todo(input);
+            } else if (input.startsWith("deadline")) {
+                tasks.deadline(input);
+            } else if (input.startsWith("event")) {
+                tasks.event(input);
             }
         }
     }

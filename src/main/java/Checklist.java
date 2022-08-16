@@ -21,7 +21,20 @@ class Checklist {
         System.out.println(task.toString());
     }
 
-    void add(String task) {
+    void event(String input) {
+        String name = input.substring(input.indexOf(" ") + 1, input.indexOf("/"));
+        String eventDate = input.substring(input.indexOf("/") + 4);
+        taskList.add(new Event(taskList.size() + 1, name, eventDate));
+    }
+
+    void deadline(String input) {
+        String name = input.substring(input.indexOf(" ") + 1, input.indexOf("/"));
+        String deadline = input.substring(input.indexOf("/") + 4);
+        taskList.add(new Deadline(taskList.size() + 1, name, deadline));
+    }
+
+
+    void todo(String task) {
         taskList.add(new Todo(taskList.size() + 1, task));
     }
 
