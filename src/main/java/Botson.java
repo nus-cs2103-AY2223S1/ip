@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class Botson {
     static Task[] list = new Task[100];
+    static int idx = 0;
     public static void main(String[] args) {
         welcome();
     }
@@ -13,7 +14,7 @@ public class Botson {
      **/
     public static void welcome() {
         list = new Task[100];
-        int idx = 0;
+        idx = 0;
         System.out.println("Hello! I'm Botson");
         Scanner input = new Scanner(System.in);
         System.out.println("What can I help you with?");
@@ -26,18 +27,47 @@ public class Botson {
                 break;
             } else if (Objects.equals(action, "list")) {
                 getList(idx);
-                continue;
             } else if (action.length() >= 4 && Objects.equals(action.substring(0, 4), "mark")) {
                 markTask(action);
-                continue;
             } else if (action.length() >= 6 && Objects.equals(action.substring(0, 6), "unmark")) {
                 unMarkTask(action);
-                continue;
+            } else {
+                addToList(action);
             }
-            list[idx] = new Task(action);
-            idx++;
-            System.out.println("Added: " + action);
+        }
+    }
+
+    /**
+     * determines which type of task and input into list accordingly
+     * @param action takes in action from input
+     */
+    public static void addToList(String action) {
+        try {
+            if (action.length() >= 4 && Objects.equals(action.substring(0, 4), "todo")) {
+                list[idx] = new TodoTask(action);
+                idx++;
+            } else if (action.length() >= 5 && Objects.equals(action.substring(0, 5), "event")) {
+                int i = action.indexOf('/');
+                String event = action.substring(i + 3).strip();
+                list[idx] = new EventTask(action.substring(5, i).strip(), event);
+                idx++;
+            } else if (action.length() >= 8 && Objects.equals(action.substring(0, 8), "deadline")) {
+                int i = action.indexOf('/');
+                String by = action.substring(i + 3).strip();
+                list[idx] = new DeadlineTask(action.substring(8, i).strip(), by);
+                idx++;
+            } else {
+                System.out.println("Action not specified properly!");
+                System.out.println("--------------------------");
+                return;
+            }
             System.out.println("--------------------------");
+            System.out.println("I've added to the list: \n" + list[idx-1]);
+            System.out.println("Now you have " + idx + " tasks in the list.");
+            System.out.println("--------------------------");
+        }
+        catch (Exception ignored) {
+
         }
     }
 
@@ -46,12 +76,12 @@ public class Botson {
      * @param idx takes in index
      */
     private static void getList(int idx) {
+        System.out.println("Here are the tasks in your list");
         for (int i = 0; i < idx; i++) {
             System.out.println((i + 1) + ". " + list[i]);
         }
         System.out.println("--------------------------");
     }
-
 
     /**
      * edits the task to check if mark or unmarked
@@ -75,6 +105,7 @@ public class Botson {
         }
         catch (Exception e) {
             System.out.println("Error: No Such Task");
+            System.out.println("--------------------------");
         }
     }
 
