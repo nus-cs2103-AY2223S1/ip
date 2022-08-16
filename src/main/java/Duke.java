@@ -149,7 +149,11 @@ public class Duke {
     }
 
     private void delete(String input) {
-        int indexToDelete = Integer.parseInt(input.split(" ")[1]);
+        int indexToDelete = Integer.parseInt(input.split(" ")[1]) - 1;
+
+        System.out.println("Noted. I've removed this task:");
+        System.out.printf("\t%s\n", this.taskList.get(indexToDelete));
         this.taskList.remove(indexToDelete);
+        System.out.printf("Now you have %d tasks in the list.\n", this.taskList.size());
     }
 }
