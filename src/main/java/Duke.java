@@ -59,7 +59,7 @@ public class Duke {
         //Note potential exception: Task index exceeded
         Task task = tasks[Integer.valueOf(index) - 1];
         task.mark();
-        say("Nice! I've marked this task as done:\n  [X] " + task);
+        say("Nice! I've marked this task as done:\n  " + task);
     }
 
     /**
@@ -71,7 +71,7 @@ public class Duke {
         //Note potential exception: Task index exceeded
         Task task = tasks[Integer.valueOf(index) - 1];
         task.unmark();
-        say("OK, I've marked this task as not done yet:\n  [ ] " + task);
+        say("OK, I've marked this task as not done yet:\n  " + task);
     }
 
     /**

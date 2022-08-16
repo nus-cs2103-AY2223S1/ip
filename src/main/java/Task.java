@@ -43,10 +43,18 @@ public class Task {
         this.done = false;
     }
 
+    /**
+     * This method returns whether the task has been completed.
+     * @return boolean If the task has been completed
+     */
     public boolean isDone() {
         return this.done;
     }
 
+    /**
+     * This method retrieves the type of the task.
+     * @return String Type of the task.
+     */
     public String getType() {
         switch(this.type) {
             case TODO:
