@@ -31,6 +31,8 @@ public class InputParser {
                 command = new Command(CommandType.MARK, tasks, input);
             } else if (input.length() >= 6 && input.substring(0, 6).equals("unmark")) {
                 command = new Command(CommandType.UNMARK, tasks, input);
+            } else if (input.length() >= 6 && input.substring(0, 6).equals("delete")) {
+                command = new Command(CommandType.DELETE, tasks, input);
             } else {
                 command = new Command(CommandType.INVALID, tasks, input);
             }

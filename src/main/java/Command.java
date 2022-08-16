@@ -84,10 +84,8 @@ public class Command {
                 String markIndexString = input.substring(4).trim();
                 try {
                     int taskIndex = Integer.parseInt(markIndexString);
-                    if (taskIndex > this.tasks.size() + 1) {
+                    if (taskIndex - 1 >= this.tasks.size() || taskIndex - 1 < 0) {
                         throw new DukeException("Eh, you got that task number meh?");
-                    }else if (taskIndex < 0) {
-                        throw new DukeException("Eh, what negative task number, have meh?");
                     }
                     if (this.tasks.get(taskIndex - 1).canChangeIsDone(true)) {
                         this.tasks.get(taskIndex - 1).changeIsDone(true);
@@ -104,16 +102,29 @@ public class Command {
                 String unmarkIndexString = input.substring(6).trim();
                 try {
                     int taskIndex = Integer.parseInt(unmarkIndexString);
-                    if (taskIndex > this.tasks.size() + 1) {
+                    if (taskIndex - 1 >= this.tasks.size() || taskIndex - 1 < 0) {
                         throw new DukeException("Eh, you got that task number meh?");
-                    }else if (taskIndex < 0) {
-                        throw new DukeException("Eh, what negative task number, have meh?");
                     }
                     if (this.tasks.get(taskIndex - 1).canChangeIsDone(false)) {
                         this.tasks.get(taskIndex - 1).changeIsDone(false);
                         System.out.println("Eh? Not done yet? Okay I change liao: \n" + this.tasks.get(taskIndex - 1));
                     } else {
                         throw new DukeException("Eh, your task alr not done lah");
+                    }
+                }
+                catch (NumberFormatException e) {
+                    throw new DukeException("Eh, you enter your task number correctly anot?");
+                }
+                break;
+            case DELETE:
+                String taskIndexToDelete = input.substring(6).trim();
+                try {
+                    int taskIndex = Integer.parseInt(taskIndexToDelete);
+                    if (taskIndex - 1 >= this.tasks.size() || taskIndex - 1 < 0) {
+                        throw new DukeException("Eh, you got that task number meh?");
+                    } else {
+                        Task deletedTask = tasks.remove(taskIndex - 1);
+                        System.out.printf("Okay boss, this task I delete le:\n%s\n", deletedTask);
                     }
                 }
                 catch (NumberFormatException e) {

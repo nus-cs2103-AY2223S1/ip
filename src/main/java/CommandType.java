@@ -8,4 +8,5 @@ public enum CommandType {
     INVALID,
     MARK,
     UNMARK,
+    DELETE,
 }
