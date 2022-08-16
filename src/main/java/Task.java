@@ -22,6 +22,6 @@ public class Task {
             ticker = "[X]";
         }
 
-        return ticker + " " + this.taskName;
+        return ticker + this.taskName;
     }
 }
