@@ -12,7 +12,8 @@ public class Command {
         MARK("mark"),
         DEADLINE("deadline"),
         TODO("todo"),
-        EVENT("event");
+        EVENT("event"),
+        DELETE("delete");
 
         private String value;
 
@@ -47,7 +48,7 @@ public class Command {
     public void extractInformation(String str) {
         extractKeyword(str);
         switch (this.instruction) {
-            case MARK: case UNMARK:
+            case MARK: case UNMARK: case DELETE:
                 String s = str.replaceAll("[^0-9]", "");
                 this.extraInformation = s.equals("") ? null : s;
                 break;
@@ -86,6 +87,9 @@ public class Command {
             case EVENT:
                 Task task3 = new Event(this.message, this.extraInformation);
                 this.storage.add(task3);
+                return true;
+            case DELETE:
+                this.storage.delete(this.extraInformation);
                 return true;
             case NONE:
                 throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");

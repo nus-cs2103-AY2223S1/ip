@@ -5,8 +5,7 @@ public class Deadline extends Task {
     public Deadline(String description, String by) throws DukeException {
         super(description);
         if (by == null) {
-            throw new DukeException("☹ OOPS!!! The date of a deadline cannot be empty\n" +
-                    "Please follow the format </by date>");
+            throw new DukeException("☹ OOPS!!! Please follow the format </by date>.");
         }
         this.by = by;
     }
