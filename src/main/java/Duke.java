@@ -10,29 +10,43 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Duke {
+    /* Stores tasks from user */
+    private static TaskList tasks = new TaskList();
+
     /**
-     * Greet function writes a greeting to greet the user
-     * with the Duke logo appearing at the end
+     * General display function to print messages to the console
      * 
-     * @return void
+     * @param command The command that is being exectued
+     * @param message Any additional information that should be printed with the
+     *                command
      */
-    private static void greet() {
-        System.out.println(Messages.LINE_SEPARATION.message);
-        System.out.println(Messages.GREET.message);
-        System.out.println(Messages.LOGO.message);
-        System.out.println(Messages.LINE_SEPARATION.message);
+    private static void display(Commands command, String message) {
+        System.out.println(Messages.LINE_SEPARATION);
+        switch (command) {
+            case EXIT:
+                System.out.println(Messages.EXIT);
+                break;
+            case SHOW_LIST:
+                System.out.println(message);
+                break;
+            case GREET:
+                System.out.println(Messages.GREET);
+                System.out.println(Messages.LOGO);
+                break;
+            case ADD_TASK:
+                System.out.println(message);
+                break;
+        }
+        System.out.println(Messages.LINE_SEPARATION);
     }
 
     /**
-     * The exit function prints the exit message to the
-     * user
+     * Adds task to list
      * 
-     * @return void
+     * @param task Task description in String
      */
-    private static void exit() {
-        System.out.println(Messages.LINE_SEPARATION.message);
-        System.out.println(Messages.EXIT.message);
-        System.out.println(Messages.LINE_SEPARATION.message);
+    private static void addTask(String task) {
+        tasks.addTask(new Task(task));
     }
 
     /**
@@ -51,14 +65,21 @@ public class Duke {
                 new InputStreamReader(System.in));
 
         // Greet the user
-        greet();
+        display(Commands.GREET, "");
         // Continue to read inputs until the exit command is entered
         String input = reader.readLine();
         while (!input.equals(Commands.EXIT.command)) {
-            echo(input);
+            // Show task description in list
+            if (input.equals(Commands.SHOW_LIST.command)) {
+                display(Commands.SHOW_LIST, tasks.toString());
+            } else {
+                addTask(input);
+                display(Commands.ADD_TASK, Messages.ADD_TASK + input);
+
+            }
             input = reader.readLine();
         }
         // Exit the bot
-        exit();
+        display(Commands.EXIT, "");
     }
 }

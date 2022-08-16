@@ -7,7 +7,10 @@ import javax.swing.plaf.basic.BasicComboBoxUI.ComboBoxLayoutManager;
  */
 
 public enum Commands {
-    EXIT("bye");
+    EXIT("bye"),
+    SHOW_LIST("list"),
+    GREET("greet"),
+    ADD_TASK("Add Task");
 
     public String command;
 
