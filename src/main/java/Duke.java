@@ -1,8 +1,9 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+
 public class Duke {
-    private static String DIVIDER = "-------------------------------------\n";
-    private static ArrayList<String> tasks = new ArrayList<String>();
+    private static final String DIVIDER = "-------------------------------------\n";
+    private static ArrayList<Task> TASKS = new ArrayList<Task>();
 
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -26,16 +27,19 @@ public class Duke {
     // handler method handles user input and outputs accordingly
     private static void handler() {
         String command;
-        String text;
         Scanner sc = new Scanner(System.in);
         command = sc.next();
 
         switch(command) {
-            case "bye":
-                exit();
-                break;
             case "list":
                 list();
+                break;
+            case "mark":
+                // breaks if no input is entered after mark
+                listToggle(sc.nextInt());
+                break;
+            case "bye":
+                exit();
                 break;
             default:
                 listAdd(command);
@@ -51,19 +55,30 @@ public class Duke {
     }
 
     private static void list() {
-        if (tasks.isEmpty()) {
+        if (TASKS.isEmpty()) {
             System.out.println(DIVIDER + "List is empty\n" + DIVIDER);
         } else {
             System.out.print(DIVIDER);
-            for (int i = 0; i < tasks.size(); i++) {
-                System.out.println((i+1) + ". " + tasks.get(i));
+            for (int i = 0; i < TASKS.size(); i++) {
+                System.out.println((i+1) + ". " + TASKS.get(i));
             }
             System.out.println(DIVIDER);
         }
     }
 
     private static void listAdd(String item) {
-        tasks.add(item);
+        TASKS.add(new Task(item));
         System.out.println(DIVIDER + "added: " + item + "\n" + DIVIDER);
+    }
+
+    private static void listToggle(int index) {
+        Task currTask = TASKS.get(index-1);
+        if(currTask.completeToggle()) {
+            System.out.println(DIVIDER + "Nice! I've marked this task as done:\n"
+                    + currTask + "\n" + DIVIDER);
+        } else {
+            System.out.println(DIVIDER + "OK, I've marked this task as not done yet:\n"
+                    + currTask + "\n" + DIVIDER);
+        }
     }
 }
