@@ -1,4 +1,4 @@
-public class Task {
+public abstract class Task {
 
     private String item;
     private boolean completed;
@@ -17,10 +17,10 @@ public class Task {
     @Override
     public String toString() {
         if (completed) {
-            return "[ ] " + item;
+            return "[X]" + item;
         }
 
-        return "[X] " + item;
+        return "[ ]" + item;
     }
 
 }

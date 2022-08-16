@@ -34,15 +34,22 @@ public class Duke {
             case "list":
                 list();
                 break;
+            case "todo":
+            case "deadline":
+            case "event":
+                // deadline and event breaks if no input is entered after each command
+                // tod0 creates an empty task if no input after command
+                listAdd(command, sc.nextLine());
+                break;
             case "mark":
-                // breaks if no input is entered after mark
+                // breaks if no input is entered after mark, or input isn't int
                 listToggle(sc.nextInt());
                 break;
             case "bye":
                 exit();
                 break;
             default:
-                listAdd(command);
+                confuse();
         }
 
         if (!command.equals("bye")) { handler(); }
@@ -52,6 +59,10 @@ public class Duke {
     // sub methods associated with handler() for each user input case
     private static void exit() {
         System.out.println(DIVIDER + "Bye. Hope to see you again soon!\n" + DIVIDER);
+    }
+
+    private static void confuse() {
+        System.out.println(DIVIDER + "I'm sorry, I don't understand :(\n" + DIVIDER);
     }
 
     private static void list() {
@@ -66,9 +77,38 @@ public class Duke {
         }
     }
 
-    private static void listAdd(String item) {
-        TASKS.add(new Task(item));
-        System.out.println(DIVIDER + "added: " + item + "\n" + DIVIDER);
+    private static void listAdd(String type, String item) {
+        Task currTask;
+        String[] args;
+        switch(type) {
+            case "todo":
+                currTask = new Todo(item);
+                TASKS.add(currTask);
+                System.out.println(DIVIDER + "OK, I've added this todo:\n"
+                        + "  " + currTask + "\n"
+                        + "Number of tasks in list: " + TASKS.size() + "\n"
+                        + DIVIDER);
+                break;
+            case "deadline":
+                args = item.split("/by");
+                System.out.println(item);
+                currTask = new Deadline(args[0], args[1]);
+                TASKS.add(currTask);
+                System.out.println(DIVIDER + "OK, I've added this deadline:\n"
+                        + "  " + currTask + "\n"
+                        + "Number of tasks in list: " + TASKS.size() + "\n"
+                        + DIVIDER);
+                break;
+            case "event":
+                args = item.split("/at");
+                currTask = new Event(args[0], args[1]);
+                TASKS.add(currTask);
+                System.out.println(DIVIDER + "OK, I've added this event:\n"
+                        + "  " + currTask + "\n"
+                        + "Number of tasks in list: " + TASKS.size() + "\n"
+                        + "\n" + DIVIDER);
+                break;
+        }
     }
 
     private static void listToggle(int index) {
