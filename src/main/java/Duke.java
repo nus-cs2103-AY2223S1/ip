@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
@@ -9,6 +11,7 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
 
+        List<String> tasks = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
         String input = "";
         while (scanner.hasNextLine()) {
@@ -16,8 +19,11 @@ public class Duke {
             if (input.equals("bye")) {
                 System.out.println("Bye. Hope to see you again soon!");
                 break;
+            } else if (input.equals("list")) {
+                tasks.forEach(System.out::println);
             } else {
-                System.out.println(input);
+                tasks.add((tasks.size() + 1) + ". " + input);
+                System.out.println("added: " + input);
             }
         }
     }
