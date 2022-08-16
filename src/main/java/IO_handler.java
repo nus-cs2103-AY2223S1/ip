@@ -30,7 +30,7 @@ public class IO_handler {
     public static String generate_section(String content){
         return "=====================================================\n"+
                 content+
-                "=====================================================\n";
+                "=====================================================\n\n";
     }
 
     public static String get_greeting(){
@@ -55,10 +55,10 @@ public class IO_handler {
     /**
      *
      */
-    public static String[] get_command(){
+    public static String get_command(){
         cout("> ");
         String input=sc.nextLine();
-        return input.split(" ");
+        return input;
     }
 
     public static void print_status_msg(int status_code){
