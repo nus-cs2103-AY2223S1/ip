@@ -17,6 +17,7 @@ public class Task {
 
     @Override
     public String toString() {
+        /** Determines if there is an X icon to show completed */
         String doneIcon = isDone ? "X" : " ";
         return String.format("[%s] %s", doneIcon, description);
     }
