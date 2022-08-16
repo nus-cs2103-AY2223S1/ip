@@ -31,21 +31,19 @@ public class Duke {
         boolean flag = true;
         while (flag) {
             String response = sc.nextLine();
+            String [] words = response.split(" ");
+            String command = words[0];
             System.out.println(line);
-            if (response.toLowerCase().equals(exit_command)) {
+            if (command.toLowerCase().equals(exit_command)) {
                 flag = false;
                 System.out.println(exit_message);
             } else if (response.toLowerCase().equals(list_command)) {
                 display(ls);
-            } else if (response.toLowerCase().equals(mark_command)) {
-                display(ls);
-                System.out.println("Enter the task number you want to mark done: ");
-                String ind = sc.nextLine();
+            } else if (command.toLowerCase().equals(mark_command)) {
+                String ind = words[1];
                 ls.get(valueOf(ind) - 1).doing();
-            } else if (response.toLowerCase().equals(unmark_command)) {
-                display(ls);
-                System.out.println("Enter the task number you want to mark as not done yet: ");
-                String ind = sc.nextLine();
+            } else if (command.toLowerCase().equals(unmark_command)) {
+                String ind = words[1];
                 ls.get(valueOf(ind) - 1).undo();
             } else {
                 addToList(new Task(response));
