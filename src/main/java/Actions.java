@@ -30,7 +30,7 @@ public class Actions {
         }
     }
     public static void toDoList() {
-        ArrayList<Task> ls = new ArrayList();
+        ArrayList<Task> ls = new ArrayList<>();
         String input = "";
         System.out.println("Hello! I'm Duke, what's up today?");
         Scanner sc = new Scanner(System.in);
