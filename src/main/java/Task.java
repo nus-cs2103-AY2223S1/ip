@@ -1,4 +1,4 @@
-public class Task {
+public abstract class Task {
     private final String taskDescription;
     private boolean isDone;
 
@@ -11,8 +11,10 @@ public class Task {
         this.isDone = isDone;
     }
 
+    public abstract String getTypeIcon();
+
     @Override
     public String toString() {
-        return "[" + (isDone ? "X" : " ") + "] " + taskDescription;
+        return getTypeIcon() + "[" + (isDone ? "X" : " ") + "] " + taskDescription;
     }
 }
