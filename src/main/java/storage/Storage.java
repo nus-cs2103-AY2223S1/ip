@@ -5,7 +5,7 @@ import task.Task;
 import printer.Printer;
 
 public class Storage {
-    private List<Task> tasks;
+    private final List<Task> tasks;
 
     public Storage() {
         this.tasks = new ArrayList<>();
@@ -18,16 +18,30 @@ public class Storage {
                 newTask.toString(), this.tasks.size()));
     }
 
+    public void markTaskWithIndex(int index) {
+        Task selectedTask = this.tasks.get(index);
+        selectedTask.markAsFinished();
+        Printer.print(String.format("This task has been marked as done:\n %s",
+                selectedTask));
+    }
+
+    public void unmarkTaskWithIndex(int index) {
+        Task selectedTask = this.tasks.get(index);
+        selectedTask.markAsNotFinished();
+        Printer.print(String.format("This task has been marked as not done yet:\n %s",
+                selectedTask));
+    }
+
     public void removeTaskWithIndex(int index) {
         Task selectedTask = this.tasks.get(index);
         this.tasks.remove(index);
         Printer.print(String.format("Noted. I've removed this task:\n %s\n"
                 + "Now you have %d task(s) in the list",
-                selectedTask.toString(), this.tasks.size()));
+                selectedTask, this.tasks.size()));
     }
 
-    public Task getTaskWithIndex(int index) {
-        return this.tasks.get(index);
+    public boolean checkIndex(int index) {
+        return index >= 0 && index < this.tasks.size();
     }
 
     @Override
@@ -38,7 +52,7 @@ public class Storage {
 
         String tasksString = "";
         for (int i = 0; i < tasks.size(); i++) {
-            tasksString += String.format("%d. %s\n", i + 1, this.tasks.get(i).toString());
+            tasksString += String.format("%d. %s\n", i + 1, this.tasks.get(i));
         }
         return "Here are the tasks in your list\n" + tasksString;
     }
