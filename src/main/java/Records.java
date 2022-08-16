@@ -17,6 +17,17 @@ public class Records {
         return new Records(newList);
     }
 
+    Records set(int idx, Task newTask) {
+        ArrayList<Task> newList = this.records;
+        newList.set(idx, newTask);
+        return new Records(newList);
+    }
+
+    Task get(int idx) {
+        return this.records.get(idx);
+    }
+
+
     @Override
     public String toString() {
         String output = "";
