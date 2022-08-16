@@ -28,13 +28,22 @@ public class Duke {
         printLine();
     }
 
-    public static ToDo addTodo(String input) {
+    public static ToDo addTodo(String input) throws DukeException{
+        if (input.length() == 0) {
+            throw new DukeException("\t ☹ OOPS!!! The description of a todo cannot be empty.");
+        }
         ToDo todo = new ToDo(input);
         return todo;
     }
 
     public static Deadline addDeadline(String input) {
+        if (input.length() == 0) {
+            throw new DukeException("\t ☹ OOPS!!! The description of a deadline cannot be empty.");
+        }
         String[] inputArray = input.split(" /by ", 2);
+        if (inputArray.length == 1) {
+            throw new DukeException("\t ☹ OOPS!!! You need to add a deadline.");
+        }
         String description = inputArray[0];
         String by = inputArray[1];
         Deadline deadline = new Deadline(description, by);
@@ -42,7 +51,13 @@ public class Duke {
     }
 
     public static Event addEvent(String input) {
+        if (input.length() == 0) {
+            throw new DukeException("\t ☹ OOPS!!! The description of a event cannot be empty.");
+        }
         String[] inputArray = input.split(" /at ", 2);
+        if (inputArray.length == 1) {
+            throw new DukeException("\t ☹ OOPS!!! You need to add a duration.");
+        }
         String description = inputArray[0];
         String at = inputArray[1];
         Event event = new Event(description, at);
@@ -79,7 +94,10 @@ public class Duke {
         printLine();
     }
 
-    public static void listTasks() {
+    public static void listTasks() throws DukeException {
+        if (tasks.size() == 0) {
+            throw new DukeException("\t You do not have any tasks.");
+        }
         printLine();
         System.out.println("\t" + " Here are the tasks in your list:");
         for (int i = 0; i < tasks.size(); i++) {
@@ -88,24 +106,24 @@ public class Duke {
         printLine();
     }
 
-    public static Task getTask(int index) throws Exception {
+    public static Task getTask(int index) throws DukeException {
         int numTasks = tasks.size();
         if (numTasks == 0) {
-            throw new Exception("You do not have any tasks.");
+            throw new DukeException("\t You do not have any tasks.");
         } else if (index < 1) {
-            throw new Exception("Task number starts from one.");
+            throw new DukeException("\t Task number starts from one.");
         } else if (index > numTasks){
             if (numTasks == 1) {
-                throw new Exception(String.format("You only have %d task.", numTasks));
+                throw new DukeException(String.format("\t You only have %d task.", numTasks));
             } else {
-                throw new Exception(String.format("You only have %d tasks.", numTasks));
+                throw new DukeException(String.format("\t You only have %d tasks.", numTasks));
             }
         } else {
             return tasks.get(index - 1);
         }
     }
 
-    public static void markAsDone(int taskNumber) throws Exception {
+    public static void markAsDone(int taskNumber) throws DukeException {
         Task task = getTask(taskNumber);
         task.markAsDone();
         printLine();
@@ -114,7 +132,7 @@ public class Duke {
         printLine();
     }
 
-    public static void markAsNotDone(int taskNumber) throws Exception {
+    public static void markAsNotDone(int taskNumber) throws DukeException {
         Task task = getTask(taskNumber);
         task.markAsNotDone();
         printLine();
@@ -123,7 +141,7 @@ public class Duke {
         printLine();
     }
 
-    public static void startDuke() throws Exception {
+    public static void startDuke() throws DukeException {
         Scanner sc = new Scanner(System.in);
         boolean isRunning = true;
         while (isRunning) {
@@ -139,18 +157,36 @@ public class Duke {
                     if (inputArray.length == 1) {
                         exit();
                         isRunning = false;
+                    } else {
+                        throw new DukeException("\t ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                     }
                     break;
                 case "list":
                     if (inputArray.length == 1) {
                         listTasks();
+                    } else {
+                        throw new DukeException("\t ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                     }
                     break;
                 case "mark":
-                    markAsDone(Integer.parseInt(inputArray[1]));
+                    if (secondWord.length() == 0) {
+                        throw new DukeException("\t ☹ OOPS!!! You need to mark a number");
+                    }
+                    try {
+                        markAsDone(Integer.parseInt(inputArray[1]));
+                    } catch (NumberFormatException e) {
+                        throw new DukeException("\t ☹ OOPS!!! You need to mark a number");
+                    }
                     break;
                 case "unmark":
-                    markAsNotDone(Integer.parseInt((inputArray[1])));
+                    if (secondWord.length() == 0) {
+                        throw new DukeException("\t ☹ OOPS!!! You need to unmark a number");
+                    }
+                    try {
+                        markAsNotDone(Integer.parseInt((inputArray[1])));
+                    } catch (NumberFormatException e) {
+                        throw new DukeException("\t ☹ OOPS!!! You need to unmark a number");
+                    }
                     break;
                 case "todo":
                     addTask(secondWord, 0);
@@ -162,7 +198,7 @@ public class Duke {
                     addTask(secondWord, 2);
                     break;
                 default:
-                    break;
+                    throw new DukeException("\t ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
         }
     }
@@ -171,9 +207,9 @@ public class Duke {
         try {
             greet();
             startDuke();
-        } catch (Exception e) {
+        } catch (DukeException e) {
             printLine();
-            System.out.println(e.toString());
+            System.out.println(e);
             printLine();
         }
     }
