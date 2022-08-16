@@ -50,5 +50,8 @@ public class UserInterface {
                 + " tasks in the list.";
     }
 
+    public void printError(String message) {
+        System.out.println(message);
+    }
 
 }
