@@ -1,7 +1,11 @@
 import java.util.*;
 
-public class Actions {
+public class Actions { //actions that Duke does
 
+    /**
+     * A method for Duke to tell the user how many tasks they currently have.
+     * @param ls The current list of tasks the user has.
+     */
     public static void taskNumberMessage(ArrayList<Task> ls) {
          if (ls.size() == 1) {
              System.out.println("Now you have " + ls.size() + " task in the list.");
@@ -11,6 +15,12 @@ public class Actions {
          }
     }
 
+    /**
+     * A method for Duke to process the input given by the user.
+     * @param input The input string picked up by the scanner object.
+     * @throws EmptyDescriptionException If the input is a recognized command but no appropriate description after that.
+     * @throws InvalidCommandException If the input is an unrecognized command.
+     */
     public static void processInput(String input) throws EmptyDescriptionException, InvalidCommandException {
         ArrayList<String> acceptedKeywords = new ArrayList<>();
         acceptedKeywords.add("list");
@@ -29,6 +39,10 @@ public class Actions {
             throw new EmptyDescriptionException();
         }
     }
+
+    /**
+     * The current chat bot functionality which takes in user input and reacts accordingly to the input.
+     */
     public static void toDoList() {
         ArrayList<Task> ls = new ArrayList<>();
         String input = "";
