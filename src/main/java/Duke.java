@@ -27,16 +27,28 @@ public class Duke {
             } else if (s.equals("list")) {
                 displayList();
             } else if (startWith(s, "mark")) {
-                int index = Integer.parseInt(extractIndex(s, "mark"));
+                int index = extractIndex(s, "mark");
                 //System.out.println(index);
-                all.get(index - 1).markAsDone();
+                if (index > count || index < 1) {
+                    System.out.println("index out of range");
+                } else {
+                    all.get(index - 1).markAsDone();
+                }
             } else if (startWith(s, "unmark")) {
-                int index = Integer.parseInt(extractIndex(s, "unmark"));
+                int index = extractIndex(s, "unmark");
                 //System.out.println(index);
-                all.get(index - 1).markAsUndone();
+                if (index > count || index < 1) {
+                    System.out.println("index out of range");
+                } else {
+                    all.get(index - 1).markAsUndone();
+                }
             } else if (startWith(s, "delete")) {
-                int index = Integer.parseInt(extractIndex(s, "delete"));
-                deleteRecord(index);
+                int index =extractIndex(s, "delete");
+                if (index > count || index < 1) {
+                    System.out.println("index out of range");
+                } else {
+                    deleteRecord(index);
+                }
             } else {
                 store(s);
             }
@@ -91,8 +103,14 @@ public class Duke {
 
     }
 
-    private static String extractIndex(String s, String target) {
-        return s.substring(target.length() + 1);
+    private static int extractIndex(String s, String target) {
+//        int i = 0;
+//        try {
+        int i = Integer.parseInt(s.substring(target.length() + 1));
+//        } catch (Exception e) {
+//            System.out.printf("Must be a number following %s\n", target);
+//        }
+        return i;
     }
 
     public static class Task {
