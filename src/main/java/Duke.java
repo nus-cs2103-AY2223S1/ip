@@ -11,7 +11,7 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
         //lvlOne();
-        lvlTwo();
+        toDo();
     }
 
     public static void lvlOne() {
@@ -56,8 +56,12 @@ public class Duke {
         System.out.println("Bye! See you soon!");
     }*/
 
-    public static void lvlTwo() {
+    public static void toDo() {
         String[] tasks = new String[100];
+        String[] check = new String[100];
+        for (int i = 0; i < check.length; i++) {
+            check[i] = " ";
+        }
         int taskNum = 0;
 
         System.out.println("Hello! I'm Duke\n");
@@ -65,12 +69,31 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
         String str2 = sc.nextLine();
 
+        //String check = " ";
+        boolean isDone = false;
+
         while (!str2.equals("bye")) {
             if (str2.equals("list")) {
+                System.out.println("Here are the tasks in your list:");
                 for (int i = 0; i < taskNum; i++) {
                     int num = i + 1;
-                    System.out.println(num + ". " + tasks[i]);
+                    System.out.println(num + ". " + "[" + check[i] + "] " + tasks[i]);
                 }
+                str2 = sc.nextLine();
+                continue;
+            }
+            if ((str2.substring(0, 4)).equals("mark")) {
+                int taskToMark = 0;
+                System.out.println("Nice! I've marked this task as done:\n");
+
+                String strTaskToMark = "";
+                for (int j = 5; j < str2.length(); j++) {
+                    strTaskToMark = strTaskToMark + str2.charAt(j);
+                }
+
+                taskToMark = Integer.parseInt(strTaskToMark);
+                check[taskToMark - 1] = "X";
+                System.out.println("[X] " + tasks[taskToMark - 1]);
                 str2 = sc.nextLine();
                 continue;
             }
