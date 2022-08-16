@@ -14,8 +14,8 @@ public class Duke {
                 + " Hello! I'm Duke\n"
                 + " What can I do for you?\n"
                 + "____________________________________________________________");
-        String strInput = sc.nextLine();
-        while (!strInput.equals("")) {
+        while (sc.hasNextLine()) {
+            String strInput = sc.nextLine();
             if ((strInput.equalsIgnoreCase("list"))) {
                 System.out.println("____________________________________________________________\n"
                         + " Here are the tasks in your list:"
@@ -30,7 +30,6 @@ public class Duke {
                 addToList(new Event(strInput.substring(6, strInput.indexOf("/") - 1),
                         strInput.substring(strInput.indexOf("/at") + 4)));
             }
-            strInput = sc.nextLine();
         }
         sc.close();
     }
