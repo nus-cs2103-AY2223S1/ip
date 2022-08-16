@@ -4,45 +4,61 @@ import java.util.ArrayList;
  * Class to represent the task lists.
  */
 public class TaskList {
-    private ArrayList<String> task;
+    private static ArrayList<Task> task;
 
     /**
      * The constructor for no input
      */
     public TaskList() {
-        this.task = new ArrayList<String>();
+        this.task = new ArrayList<Task>();
     }
 
     /**
-     * The method of add task
+     * Method to add a task.
      * @param t
      */
-    public void add(String t) {
+    public void add(Task t) {
         task.add(t);
     }
 
     /**
-     * The method of size
-     * @return
+     * Method to mark a task as done.
+     * @param i
+     */
+    public void markDone(int i) {
+        task.get(i).markDone();
+    }
+
+    /**
+     * Method to mark a task as undone.
+     * @param i
+     */
+    public void markUndone(int i) {
+        task.get(i).markUndone();
+    }
+
+    /**
+     * Method to return the number of tasks.
+     * @return int
      */
     public int size() {
         return task.size();
     }
 
     /**
-     * The method of get
+     * Method to get a specific task.
      * @param i
      * @return Task object
      */
-    public String get(int i) {
+    public Task get(int i) {
         return task.get(i);
     }
 
     /**
-     * The method of getTask
+     * Method to get the list of tasks.
      * @return Arraylist
      */
-    public ArrayList<String> getTasks() {
+    public ArrayList<Task> getTasks() {
         return this.task;
     }
 }

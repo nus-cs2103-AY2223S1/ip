@@ -30,7 +30,30 @@ public class UI {
      */
     public void showAddOnTask(String task) {
         System.out.println(indentation + underline);
+        System.out.println(indentation + "I've added this task:");
         System.out.println(indentation + task);
+        System.out.println(indentation + underline);
+    }
+
+    /**
+     * The method to show task being done.
+     * @param task
+     */
+    public void showDoneTask(TaskList task, int num) {
+        System.out.println(indentation + underline);
+        System.out.println(indentation + "Nice! I've marked this task as done:");
+        System.out.println(indentation + task.get(num));
+        System.out.println(indentation + underline);
+    }
+
+    /**
+     * The method to show task being undone.
+     * @param task
+     */
+    public void showUndoneTask(TaskList task, int num) {
+        System.out.println(indentation + underline);
+        System.out.println(indentation + "OK, I've marked this task as not done yet:");
+        System.out.println(indentation + task.get(num));
         System.out.println(indentation + underline);
     }
 
@@ -40,6 +63,7 @@ public class UI {
      */
     public void showListDetails(TaskList task) {
         System.out.println(indentation + underline);
+        System.out.println(indentation + "Here are the tasks in your list:");
         for (int i = 0; i < task.size(); i ++) {
             System.out.println(indentation + (i + 1) + "." + indentation + task.get(i));
         }

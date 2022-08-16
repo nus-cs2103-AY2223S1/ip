@@ -31,8 +31,16 @@ public class Duke {
                 break;
             } else if (chat.equals("list")) {
                 Ui.showListDetails(Tasklist);
+            } else if (chat.contains("unmark")) {
+                int num = Integer.parseInt(chat.split(" ")[1]) - 1;
+                Tasklist.markUndone(num);
+                Ui.showUndoneTask(Tasklist, num);
+            } else if (chat.contains("mark")) {
+                int num = Integer.parseInt(chat.split(" ")[1]) - 1;
+                Tasklist.markDone(num);
+                Ui.showDoneTask(Tasklist, num);
             } else {
-                Tasklist.add(chat);
+                Tasklist.add(new Task(chat, false));
                 Ui.showAddOnTask(chat);
             }
         }
