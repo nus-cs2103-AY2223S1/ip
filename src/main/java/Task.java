@@ -17,7 +17,7 @@ public class Task {
         } else {
             System.out.println(already + "done");
         }
-        System.out.println(this);
+        System.out.println(this.toString());
     }
 
     public void undo() {
@@ -27,7 +27,7 @@ public class Task {
         } else {
             System.out.println(already + "not done");
         }
-        System.out.println(this);
+        System.out.println(this.toString());
     }
 
     public String description() {
