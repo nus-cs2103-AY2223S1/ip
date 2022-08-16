@@ -45,6 +45,38 @@ public class Duke {
                 System.out.println(tasks[i]);
                 System.out.println("Now you have " + numOfTasks + " tasks in the list.");
                 i++;
+            } else if (response.equals("event")){
+                int a = 2;
+                StringBuilder task = new StringBuilder(words[1]);
+                while (!words[a].equals("/at")) {
+                    task.append(" ");
+                    task.append(words[a]);
+                    a++;
+                }
+                a++;
+                StringBuilder deadline = new StringBuilder(words[a]);
+                for (int b=a+1; b<words.length; b++) {
+                    deadline.append(" ");
+                    deadline.append(words[b]);
+                }
+                tasks[i] = new Event(task.toString(), deadline.toString());
+                int numOfTasks = i+1;
+                System.out.println("Got it. I've added this task:");
+                System.out.println(tasks[i]);
+                System.out.println("Now you have " + numOfTasks + " tasks in the list.");
+                i++;
+            }  else if (response.equals("todo")){
+                StringBuilder task = new StringBuilder(words[1]);
+                for (int a=2; a<words.length; a++) {
+                    task.append(" ");
+                    task.append(words[a]);
+                }
+                tasks[i] = new Todo(task.toString());
+                int numOfTasks = i+1;
+                System.out.println("Got it. I've added this task:");
+                System.out.println(tasks[i]);
+                System.out.println("Now you have " + numOfTasks + " tasks in the list.");
+                i++;
             }
             input = myObj.nextLine();
             words = input.split(" ");
