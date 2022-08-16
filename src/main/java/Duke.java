@@ -4,7 +4,7 @@ enum CommonPhrase {
     GOODBYE("Goodbye, Hope to see you soon!"),
     BOTDIVIDER("~~~~~-----DUKE-----~~~~~\n"),
     USERDIVIDER("~~~~~-----YOU-----~~~~~~\n");
-    private String text;
+    private final String text;
 
     CommonPhrase(String text) {
         this.text = text;
@@ -25,11 +25,19 @@ public class Duke {
         Duke duke = new Duke();
         System.out.print(duke.botSpeak(CommonPhrase.HELLO.getPhrase()));
         Scanner scn = new Scanner(System.in);
-        Echo echo = new Echo(scn.nextLine());
-        while (!echo.toString().equals("bye")) {
-            System.out.print(duke.botSpeak(echo.toString()));
-            echo = new Echo(scn.nextLine());
+        String input = scn.nextLine();
+        Records list = new Records();
+
+        while (!input.equals("bye")) {
+            if (input.equals("list")) {
+                System.out.print(duke.botSpeak(list.toString()));
+            } else {
+                list = list.add(new Task(input));
+                System.out.print(duke.botSpeak("added: " + input));
+            }
+            input = scn.nextLine();
         }
+
         System.out.print(CommonPhrase.BOTDIVIDER.getPhrase());
         System.out.println(CommonPhrase.GOODBYE.getPhrase());
         System.out.println("----------------------------------------");
