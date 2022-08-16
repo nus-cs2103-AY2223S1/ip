@@ -1,7 +1,6 @@
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Duke {
     // Name of the chatbot
@@ -50,7 +49,7 @@ public class Duke {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        CommandManager commandManager = new CommandManager();
+        TaskManager taskManager = new TaskManager();
 
         // Greet the user
         System.out.println(Duke.outputFormatter(Duke.GREETING_MESSAGE));
@@ -59,15 +58,9 @@ public class Duke {
         String command = scanner.nextLine();
         while (!command.equals(Command.BYE.toString())) {
             if (command.equals(Command.LIST.toString())) {
-                String[] commandList = commandManager.list();
-                // Form the ordered command list here, as the command manager has no knowledge on the output
-                // format of the list of commands
-                String[] orderedCommandList = IntStream.range(0, commandList.length)
-                                .mapToObj(index -> String.format("%d. %s", index + 1, commandList[index]))
-                                .toArray(String[]::new);
-                System.out.println(Duke.outputFormatter(orderedCommandList));
+                System.out.println(Duke.outputFormatter(taskManager.displayAll()));
             } else {
-                commandManager.add(command);
+                taskManager.add(command);
                 System.out.println(Duke.outputFormatter("added: " + command));
             }
 
