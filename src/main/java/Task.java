@@ -11,16 +11,12 @@ public class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
-    public void markAsDone() {
-        isDone = true;
-    }
+    public void markAsDone() { isDone = true; }
 
-    public void markAsUndone() {
-        isDone = false;
-    }
+    public void markAsUndone() { isDone = false; }
 
     public String toString() {
-        return description;
+        return "[" + this.getStatusIcon() + "] " + description;
     }
 
     //...
