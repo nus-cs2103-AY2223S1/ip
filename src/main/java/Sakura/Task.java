@@ -1,4 +1,4 @@
-package Duke;
+package Sakura;
 
 public class Task {
     protected String description;
