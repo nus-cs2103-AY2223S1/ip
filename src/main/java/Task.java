@@ -1,4 +1,4 @@
-public class Task {
+abstract class Task {
     private final String detail;
     private final boolean isDone;
 
@@ -7,16 +7,24 @@ public class Task {
         this.isDone = false;
     }
 
-    private Task(String detail, boolean isDone) {
+    Task(String detail, boolean isDone) {
         this.detail = detail;
         this.isDone = isDone;
     }
-    Task markDone() {
-        return new Task(this.detail, true);
+    abstract Task markDone();
+
+    abstract Task unmarkDone();
+
+    String getDetail() {
+        return this.detail;
     }
 
-    Task unmarkDone() {
-        return new Task(this.detail, false);
+    @Override
+    public boolean equals(Object otherTask) {
+        if (otherTask instanceof Task) {
+            return ((Task) otherTask).detail.equals(this.detail);
+        }
+        return false;
     }
 
     @Override
