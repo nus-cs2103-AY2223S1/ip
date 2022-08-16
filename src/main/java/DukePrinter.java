@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * DukePrinter to print stuff to the console.
  * CS2103 Week 2
@@ -8,17 +10,113 @@
 
 public class DukePrinter {
     /**
-     * Prints a horizontal line to the console.
+     * Prints horizontal line.
      */
-    public static void print_line() {
+    private static void print_line() {
         System.out.print("\t____________________________________________________________\n");
     }
 
     /**
-     * Prints a String to the console.
-     * @param printable String to be printed.
+     * Prints String.
+     * @param printable string.
      */
     public static void print(String printable) {
         System.out.print("\t" + printable + "\n");
+    }
+
+    /**
+     * Prints greeting.
+     */
+    public static void greet() {
+        print_line();
+        print("Hello! I'm Duke");
+        print("What can I do for you?");
+        print_line();
+    }
+
+    /**
+     * Prints exit message.
+     */
+    public static void exit() {
+        print_line();
+        print("Bye. Hope to see you again soon!");
+        print_line();
+    }
+
+    /**
+     * Prints add message.
+     * @param s string representation of TaskItem.
+     */
+    public static void add(String s) {
+        print_line();
+        print("added: " + s);
+        print_line();
+    }
+
+    /**
+     * Prints addError message.
+     * @param s string representation of TaskItem.
+     */
+    public static void addError(String s) {
+        print_line();
+        print("Error adding " + s);
+        print_line();
+    }
+
+    /**
+     * Prints list of TaskItems.
+     * @param taskItems list of TaskItems to be printed.
+     */
+    public static void list(ArrayList<TaskItem> taskItems) {
+        print_line();
+        int i = 1;
+        for (TaskItem taskItem : taskItems) {
+            print(i++ + ".[" + taskItem.icon() + "] " + taskItem);
+        }
+        print_line();
+    }
+
+    /**
+     * Prints mark message.
+     * @param s1 string representation of TaskItem icon.
+     * @param s2 string representation of TaskItem.
+     */
+    public static void mark(String s1, String s2) {
+        print_line();
+        print("Nice! I've marked this taskItem as done:");
+        print("  [" + s1 + "] " + s2);
+        print_line();
+    }
+
+    /**
+     * Prints markError message.
+     * @param s string representation of TaskItem.
+     */
+    public static void markError(String s) {
+        print_line();
+        print("Error marking " + s);
+        print_line();
+    }
+
+    /**
+     * Prints unmark message.
+     * @param s1 string representation of TaskItem icon.
+     * @param s2 string representation of TaskItem.
+     */
+    public static void unmark(String s1, String s2) {
+        print_line();
+        print("OK, I've marked this taskItem as not done yet:");
+        print("  [" + s1 + "] " + s2);
+        print_line();
+    }
+
+    /**
+     * Prints unmarkError message.
+     * @param s string representation of TaskItem.
+     */
+    public static void unmarkError(String s) {
+        print_line();
+        print("Error unmarking " + s);
+        print_line();
     }
 }

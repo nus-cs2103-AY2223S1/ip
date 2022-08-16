@@ -10,75 +10,55 @@ import java.util.Scanner;
  */
 
 public class Duke {
-    private static final ArrayList<String> tasks = new ArrayList<>(100);
+    private static final ArrayList<TaskItem> taskItems = new ArrayList<>(100);
     public static void main(String[] args) {
+        DukePrinter.greet();
+        poll();
+        DukePrinter.exit();
+    }
+
+    /**
+     * Continuously polls for valid commands,
+     * adds invalid commands as tasks.
+     */
+    private static void poll() {
         Scanner sc = new Scanner(System.in);
-        greet();
-        add(sc);
-        exit();
-    }
-
-    /**
-     * Prints a greeting to the console.
-     */
-    private static void greet() {
-        DukePrinter.print_line();
-        DukePrinter.print("Hello! I'm Jenny");
-        DukePrinter.print("What can I do for you?");
-        DukePrinter.print_line();
-    }
-
-//    /**
-//     * Continuously echos input to the console,
-//     * until a terminating keyword is input.
-//     */
-//    private void echo(Scanner sc) {
-//        String text = sc.nextLine();
-//        while(!text.equals("bye")) {
-//            DukePrinter.print_line();
-//            DukePrinter.print(text);
-//            DukePrinter.print_line();
-//            text = sc.nextLine();
-//        }
-//    }
-
-    /**
-     * Continuously echos input to the console,
-     * until a valid command is input,
-     * or a terminating command is input.
-     */
-    private static void add(Scanner sc) {
-        String text = sc.nextLine();
-        while(!text.equals("bye")) {
-            if (text.equals("list")) {
-                DukePrinter.print_line();
-                int i = 1;
-                for (String task : tasks) {
-                    DukePrinter.print(i++ + ". " + task);
-                }
-                DukePrinter.print_line();
-            } else {
-                try {
-                    tasks.add(text);
-                    DukePrinter.print_line();
-                    DukePrinter.print("added: " + text);
-                    DukePrinter.print_line();
-                } catch (IndexOutOfBoundsException e) {
-                    DukePrinter.print_line();
-                    DukePrinter.print("Error adding " + text);
-                    DukePrinter.print_line();
-                }
+        String cmd = sc.next();
+        while(!cmd.equals("bye")) {
+            switch (cmd) {
+                case "list":
+                    DukePrinter.list(new ArrayList<>(taskItems));
+                    break;
+                case "mark":
+                    cmd = sc.next();
+                    try {
+                        TaskItem task = taskItems.get(Integer.parseInt(cmd) - 1);
+                        task.isDone(true);
+                        DukePrinter.mark(task.icon(), task.toString());
+                    } catch (NumberFormatException | IndexOutOfBoundsException e) {
+                        DukePrinter.markError(cmd);
+                    }
+                    break;
+                case "unmark":
+                    cmd = sc.next();
+                    try {
+                        TaskItem task = taskItems.get(Integer.parseInt(cmd) - 1);
+                        task.isDone(false);
+                        DukePrinter.unmark(task.icon(), task.toString());
+                    } catch (NumberFormatException | IndexOutOfBoundsException e) {
+                        DukePrinter.unmarkError(cmd);
+                    }
+                    break;
+                default:
+                    cmd = cmd + sc.nextLine();
+                    try {
+                        taskItems.add(new TaskItem(cmd));
+                        DukePrinter.add(cmd);
+                    } catch (IndexOutOfBoundsException e) {
+                        DukePrinter.addError(cmd);
+                    }
             }
-            text = sc.nextLine();
+            cmd = sc.next();
         }
-    }
-
-    /**
-     * Prints an exit message to the console.
-     */
-    private static void exit() {
-        DukePrinter.print_line();
-        DukePrinter.print("Bye. Hope to see you again soon!");
-        DukePrinter.print_line();
     }
 }
