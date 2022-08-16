@@ -78,13 +78,12 @@ public class DukePrinter {
 
     /**
      * Prints mark message.
-     * @param s1 string representation of TaskItem icon.
-     * @param s2 string representation of TaskItem.
+     * @param s string representation of TaskItem.
      */
-    public static void mark(String s1, String s2) {
+    public static void mark(String s) {
         print_line();
-        print("Nice! I've marked this taskItem as done:");
-        print("  [" + s1 + "] " + s2);
+        print("Nice! I've marked this task as done:");
+        print("  " + s);
         print_line();
     }
 
@@ -100,13 +99,12 @@ public class DukePrinter {
 
     /**
      * Prints unmark message.
-     * @param s1 string representation of TaskItem icon.
-     * @param s2 string representation of TaskItem.
+     * @param s string representation of TaskItem.
      */
-    public static void unmark(String s1, String s2) {
+    public static void unmark(String s) {
         print_line();
-        print("OK, I've marked this taskItem as not done yet:");
-        print("  [" + s1 + "] " + s2);
+        print("OK, I've marked this task as not done yet:");
+        print("  " + s);
         print_line();
     }
 

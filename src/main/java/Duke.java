@@ -35,7 +35,7 @@ public class Duke {
                     try {
                         task = taskItems.get(Integer.parseInt(cmd) - 1);
                         task.isDone(true);
-                        DukePrinter.mark(task.icon(), task.toString());
+                        DukePrinter.mark(task.toString());
                     } catch (NumberFormatException | IndexOutOfBoundsException e) {
                         DukePrinter.markError(cmd);
                     }
@@ -45,7 +45,7 @@ public class Duke {
                     try {
                         task = taskItems.get(Integer.parseInt(cmd) - 1);
                         task.isDone(false);
-                        DukePrinter.unmark(task.icon(), task.toString());
+                        DukePrinter.unmark(task.toString());
                     } catch (NumberFormatException | IndexOutOfBoundsException e) {
                         DukePrinter.unmarkError(cmd);
                     }
