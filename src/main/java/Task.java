@@ -17,14 +17,16 @@ abstract class Task {
         this.done = false;
     }
 
+    int getId() {
+        return id;
+    }
+
+    boolean getStatus() {
+        return done;
+    }
+
     @Override
     public String toString() {
-        String out = id + ".[";
-        if (done)
-            out += "X";
-        else
-            out += " ";
-        out += "] " + name;
-        return out;
+        return name;
     }
 }
