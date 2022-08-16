@@ -9,7 +9,7 @@ public class Duke {
         Scanner scanner = new Scanner(System.in);
         ArrayList<Task> commands = new ArrayList<>();
         while(true) {
-            String command = scanner.next();
+            String command = scanner.nextLine();
             System.out.println("------------------------------");
             switch (command) {
                 case "bye":
