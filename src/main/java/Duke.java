@@ -14,8 +14,12 @@ public class Duke {
         String input = sc.nextLine();
 
         while(!input.equals("bye")) {
-            dc.evaluate(input);
-            System.out.println("\n");
+            try {
+                dc.evaluate(input);
+            } catch (DukeException e) {
+                System.out.println(e);
+            }
+            System.out.print("\n");
             input = sc.nextLine();
         }
 

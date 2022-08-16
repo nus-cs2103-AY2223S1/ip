@@ -8,7 +8,7 @@ public class DukeControl {
         this.arrayList = new ArrayList<>();
     }
 
-    public void evaluate(String input) {
+    public void evaluate(String input) throws DukeException {
         String[] command = input.split(" ");
         String mainCommand = command[0];
         String[] commandArgs = Arrays.copyOfRange(command, 1, command.length);
@@ -26,13 +26,13 @@ public class DukeControl {
         } else if (mainCommand.equals("event")) {
             this.parseEvent(commandArgs);
         } else {
-            System.out.println("Invalid command: " + mainCommand);
+            throw new InvalidCommandException();
         }
     }
 
-    public void parseList(String[] commandArgs) {
+    public void parseList(String[] commandArgs) throws InvalidArgumentException {
         if (commandArgs.length != 0) {
-            System.out.println("command LIST: Did you mean list?");
+            throw new InvalidArgumentException();
         } else {
             System.out.println("Here are the tasks in your list:");
             for (int i = 0; i < arrayList.size(); i++) {
@@ -41,50 +41,69 @@ public class DukeControl {
         }
     }
 
-    public void parseMark(String[] commandArgs) {
+    public void parseMark(String[] commandArgs) throws InvalidArgumentException {
         if (commandArgs.length != 1) {
-            System.out.println("command MARK: Invalid argument number");
+            throw new InvalidArgumentException();
         } else if (Integer.parseInt(commandArgs[0]) <= 0 || Integer.parseInt(commandArgs[0]) > this.arrayList.size()) {
-            System.out.println("command MARK: Invalid task index");
+            throw new InvalidArgumentException();
         } else {
             arrayList.get(Integer.parseInt(commandArgs[0]) - 1).mark();
         }
     }
 
-    public void parseUnmark(String[] commandArgs) {
+    public void parseUnmark(String[] commandArgs) throws InvalidArgumentException {
         if (commandArgs.length != 1) {
-            System.out.println("command UNMARK: Invalid argument number");
+            throw new InvalidArgumentException();
         } else if (Integer.parseInt(commandArgs[0]) <= 0 || Integer.parseInt(commandArgs[0]) > this.arrayList.size()) {
-            System.out.println("command UNMARK: Invalid task index");
+            throw new InvalidArgumentException();
         } else {
             arrayList.get(Integer.parseInt(commandArgs[0]) - 1).unmark();
         }
     }
 
-    public void parseTodo(String[] commandArgs) {
+    public void parseTodo(String[] commandArgs) throws EmptyTitleException {
         String title = String.join(" ", commandArgs);
-        this.addTask(new ToDo(title));
+
+        if (title == "") {
+            throw new EmptyTitleException();
+        } else {
+            this.addTask(new ToDo(title));
+        }
     }
 
-    public void parseDeadline(String[] commandArgs) {
+    public void parseDeadline(String[] commandArgs) throws DukeException {
         if (!Arrays.asList(commandArgs).contains("/by")) {
-            System.out.println("command DEADLINE: Invalid arguments /by not found");
+            throw new InvalidArgumentException();
         } else {
             int indexOfBy = Arrays.asList(commandArgs).indexOf("/by");
             String title = String.join(" ", Arrays.copyOfRange(commandArgs, 0, indexOfBy));
             String deadline = String.join(" ", Arrays.copyOfRange(commandArgs, indexOfBy + 1, commandArgs.length));
-            this.addTask(new Deadline(title, deadline));
+
+            if (title == "") {
+                throw new EmptyTitleException();
+            } else if (deadline == "") {
+                throw new InvalidArgumentException();
+            } else {
+                this.addTask(new Deadline(title, deadline));
+            }
         }
     }
 
-    public void parseEvent(String[] commandArgs) {
+    public void parseEvent(String[] commandArgs) throws DukeException {
         if (!Arrays.asList(commandArgs).contains("/at")) {
-            System.out.println("command EVENT: Invalid arguments /at not found");
+            throw new InvalidArgumentException();
         } else {
             int indexOfBy = Arrays.asList(commandArgs).indexOf("/at");
             String title = String.join(" ", Arrays.copyOfRange(commandArgs, 0, indexOfBy));
             String time = String.join(" ", Arrays.copyOfRange(commandArgs, indexOfBy + 1, commandArgs.length));
-            this.addTask(new Event(title, time));
+
+            if (title == "") {
+                throw new EmptyTitleException();
+            } else if (time == "") {
+                throw new InvalidArgumentException();
+            } else {
+                this.addTask(new Event(title, time));
+            }
         }
     }
 
