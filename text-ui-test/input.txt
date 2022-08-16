@@ -1,0 +1,18 @@
+list
+
+unknown
+add hello world
+todo CS2103T iP Level-4
+deadline CS2105 HW /by Sunday, 21 August 2022
+event NUS SoC Career Fair /at Wednesday, 12-5pm
+list
+mark 1
+mark 1
+unmark 2
+mark 2
+list
+unmark 1
+mark 5
+unmark -1
+list
+bye

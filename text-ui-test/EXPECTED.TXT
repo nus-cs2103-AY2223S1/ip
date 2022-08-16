@@ -1,7 +1,50 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+Hello! I'm TedBot ヾ(≧▽≦*)o
+What do you want to do today?
+Here are your tasks that I have recorded:
+Congratulations, you don't need to do anything right now!
+Sorry, I don't know what that means.
+Did you make a mistake? Please note that commands are case-sensitive.
+Sorry, I don't know what that means.
+Did you make a mistake? Please note that commands are case-sensitive.
+Gotcha! I added the following task to the list:
+  [ ] hello world
+Currently, I have 1 tasks recorded
+Gotcha! I added the following task to the list:
+  [T][ ] CS2103T iP Level-4
+Currently, I have 2 tasks recorded
+Gotcha! I added the following task to the list:
+  [D][ ] CS2105 HW (by: Sunday, 21 August 2022)
+Currently, I have 3 tasks recorded
+Gotcha! I added the following task to the list:
+  [E][ ] NUS SoC Career Fair (at: Wednesday, 12-5pm)
+Currently, I have 4 tasks recorded
+Here are your tasks that I have recorded:
+01. [ ] hello world
+02. [T][ ] CS2103T iP Level-4
+03. [D][ ] CS2105 HW (by: Sunday, 21 August 2022)
+04. [E][ ] NUS SoC Career Fair (at: Wednesday, 12-5pm)
+Noice! I've marked this task as done:
+  [✔] hello world
+Sorry, but it seems you have marked this task as done:
+  [✔] hello world
+Sorry, but it seems you haven't marked this task as done:
+  [T][ ] CS2103T iP Level-4
+Noice! I've marked this task as done:
+  [T][✔] CS2103T iP Level-4
+Here are your tasks that I have recorded:
+01. [✔] hello world
+02. [T][✔] CS2103T iP Level-4
+03. [D][ ] CS2105 HW (by: Sunday, 21 August 2022)
+04. [E][ ] NUS SoC Career Fair (at: Wednesday, 12-5pm)
+Alright, I've marked this task as not done:
+  [ ] hello world
+I do not have a task with that number in my list.
+I do not have a task with that number in my list.
+Here are your tasks that I have recorded:
+01. [ ] hello world
+02. [T][✔] CS2103T iP Level-4
+03. [D][ ] CS2105 HW (by: Sunday, 21 August 2022)
+04. [E][ ] NUS SoC Career Fair (at: Wednesday, 12-5pm)
+Bye! Hope to see you soon ༼- つ ◕_◕ ༽つ
+
 
