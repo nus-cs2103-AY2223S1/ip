@@ -9,8 +9,11 @@ public class CheckBox {
         this.isChecked = isChecked;
     }
 
+    private String getStatusIcon() {
+        return this.isChecked ? "X" : " ";
+    }
+
     public String toString() {
-        String content = this.isChecked ? "X" : " ";
-        return "[" + content +  "]";
+        return "[" + getStatusIcon() +  "]";
     }
 }
