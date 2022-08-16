@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Duke {
     static final String CHATBOX_NAME = "Ado";
     static final String PARTITION = "<><><><><><><><><><><><><><><><>\n";
-    static List<String> list = new ArrayList<>();
+    static List<Task> list = new ArrayList<>();
 
     public static void main(String[] args) {
         String input = "";
@@ -16,26 +16,35 @@ public class Duke {
 
         while (!input.equalsIgnoreCase("bye")) {
             input = sc.nextLine();
-            switch (input) {
-                case "list":
-                    printMessage(listToString());
-                    break;
-                case "bye":
-                    printMessage("Gone so soon? :( Bye\n");
-                    break;
-                default:
-                    list.add(input);
-                    printMessage("added:" + input + "\n");
-                    break;
+            String[] segments = input.split(" ");
+
+            if(input.equals("list")) {
+                printMessage(listToString());
+            }
+            else if (input.equals("bye")) {
+                printMessage("Gone so soon? :( Bye\n");
+            } else if (input.contains("unmark")){
+                Task curr = list.get(Integer. parseInt(segments[1]) - 1);
+                curr.markAsUndone();
+                printMessage("OK, I've marked this task as not done yet:\n" +curr + "\n");
+            } else if (input.contains("mark")){
+                Task curr = list.get(Integer.parseInt(segments[1]) - 1);
+                curr.markAsDone();
+                printMessage("Yay! You've completed a task!\n" + curr + "\n");
+            } else{
+                Task t = new Task(input);
+                list.add(t);
+                printMessage("added:" + input + "\n");
             }
         }
     }
 
     static String listToString() {
-        StringBuilder output = new StringBuilder();
         if (list.size() == 0) {
             return "List is empty!\n";
         }
+        StringBuilder output = new StringBuilder();
+        output.append("Here are the tasks in your list: \n");
         for (int i =0; i < list.size(); i++) {
             output.append(i + 1).append(". ").append(list.get(i)).append("\n");
         }
