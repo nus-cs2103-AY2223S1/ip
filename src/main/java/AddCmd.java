@@ -28,9 +28,13 @@ public class AddCmd extends Command {
         tasks[cnt] = newT;
         cnt ++;
 
-        String out = "Got it. I've added this task: \n  " +
+        String plural = cnt == 1
+                ? "task"
+                : "tasks";
+
+        String out = "Got it. I've added this task:\n  " +
                 newT.toString() + "\nNow you have "
-                + cnt + " tasks in the list.";
+                + cnt + " " + plural + " in the list.";
 
         System.out.println(out);
     }

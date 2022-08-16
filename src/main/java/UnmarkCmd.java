@@ -8,7 +8,7 @@ public class UnmarkCmd extends Command {
     @Override
     public void execute(String str, Task[] tasks) {
         tasks[this.num].unmarkT();
-        String out = "Nice! I've marked this task as done:! \n" +
+        String out = "OK, I've marked this task as not done yet:\n  " +
                 tasks[this.num].toString();
         System.out.println(out);
     }

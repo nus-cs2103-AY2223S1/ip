@@ -26,9 +26,5 @@ public class Task {
 
         return "[ ] " + name;
     }
-
-    public static void main(String[] args) {
-
-    }
 }
 
