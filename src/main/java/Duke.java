@@ -21,27 +21,11 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        String logo = "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⣤⣤⣄⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⣠⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣤⣀⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⢀⣴⣿⡿⠟⠋⠉⠀⠀⠀⠀⠀⠉⠛⠻⣿⣿⣿⣿⣷⣄⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⣰⣿⠟⠉⠀⠀⠀⠀⠀⠀⢀⣠⣴⣶⣿⣿⣿⣿⣿⣿⣿⣿⣷⡄⠀⠀⠀\n" +
-                "⠀⠀⣰⣿⠋⠀⠀⠀⠀⠀⠀⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡄⠀⠀\n" +
-                "⠀⢰⣿⠇⠀⠀⠀⠀⠀⠀⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡀⠀\n" +
-                "⠀⣿⡿⠀⠀⠀⠀⠀⠀⠀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀\n" +
-                "⠀⣿⡇⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀\n" +
-                "⠀⣿⣷⠀⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀\n" +
-                "⠀⢸⣿⡄⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠁⠀\n" +
-                "⠀⠀⢻⣿⡄⠀⠀⠀⠀⠀⠀⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀⠀\n" +
-                "⠀⠀⠀⠹⣿⣦⡀⠀⠀⠀⠀⠀⠀⠈⠛⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠃⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠈⠻⣿⣷⣤⣄⣀⠀⠀⠀⠀⠀⣀⣠⣴⣾⣿⣿⣿⡿⠟⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⠈⠙⠻⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠉⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠙⠛⠛⠛⠛⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀";
-        String lineBreak = "°.✩┈┈∘*┈\uD83C\uDF19┈*∘┈┈✩.°";
-        System.out.println(logo + "\n" + "Hello I am LUNA!\n" + "How can I be of help?\n" + lineBreak);
+
+        String lineBreak = "------------------";
+        System.out.println("\n" + "Hello I am LUNA!\n" + "How can I be of help?\n" + lineBreak);
 
         ArrayList<Task> arrayList =  new ArrayList<>(100);
-
-
 
         Scanner sc = new Scanner(System.in);
 
@@ -53,7 +37,7 @@ public class Duke {
 
 
 
-            String farewell = lineBreak + "\n" + "゜✧*̣̩☽⋆゜LUNA bids farewell ゜✧*̣̩☽⋆゜\n\n May the Moon\uD83C\uDF19 shine bright and illuminate your night.";
+            String farewell = lineBreak + "\n" + "LUNA bids farewell\n\n May the Moon shine bright and illuminate your night.";
 
 
             if (input.equalsIgnoreCase("bye")) {
@@ -79,7 +63,7 @@ public class Duke {
                         ToDos todo = new ToDos(actualTask);
 
                         arrayList.add(todo);
-                        System.out.println(lineBreak + "\n" + "LUNA reminds you to get this done... By the next Full Moon: \n" + todo + "\n" + lineBreak);
+                        System.out.println(lineBreak + "\n" + "LUNA reminds you to get this done... By the next Full Moon:\n" + todo + "\n" + lineBreak);
                     }
 
                     if (type.equals("event")) {
@@ -87,7 +71,7 @@ public class Duke {
                         Events event = new Events(actualTask, splitStr2[1]);
 
                         arrayList.add(event);
-                        System.out.println(lineBreak + "\n" + "What event could possibly be more important than the Moon Festival?: \n" + event + "\n" + lineBreak);
+                        System.out.println(lineBreak + "\n" + "What event could possibly be more important than the Moon Festival?:\n" + event + "\n" + lineBreak);
                     }
 
                     if (type.equals("deadline")) {
@@ -95,7 +79,7 @@ public class Duke {
                         Deadlines deadline = new Deadlines(actualTask, splitStr2[1]);
 
                         arrayList.add(deadline);
-                        System.out.println(lineBreak + "\n" + "The only deadline LUNA has is when the Moon dies!: \n" + deadline + "\n" + lineBreak);
+                        System.out.println(lineBreak + "\n" + "The only deadline LUNA has is when the Moon dies!:\n" + deadline + "\n" + lineBreak);
                     }
 
                     int len = arrayList.size();
@@ -134,7 +118,7 @@ public class Duke {
                     ToDos todo = new ToDos(actualTask);
 
                     arrayList.add(todo);
-                    System.out.println(lineBreak + "\n" + "LUNA reminds you to get this done... By the next Full Moon: \n" + todo + "\n" + lineBreak);
+                    System.out.println(lineBreak + "\n" + "LUNA reminds you to get this done... By the next Full Moon:\n" + todo + "\n" + lineBreak);
                 }
 
                 if (type.equals("event")) {
@@ -142,7 +126,7 @@ public class Duke {
                     Events event = new Events(actualTask, splitStr2[1]);
 
                     arrayList.add(event);
-                    System.out.println(lineBreak + "\n" + "What event could possibly be more important than the Moon Festival?: \n" + event + "\n" + lineBreak);
+                    System.out.println(lineBreak + "\n" + "What event could possibly be more important than the Moon Festival?:\n" + event + "\n" + lineBreak);
                 }
 
                 if (type.equals("deadline")) {
@@ -150,7 +134,7 @@ public class Duke {
                     Deadlines deadline = new Deadlines(actualTask, splitStr2[1]);
 
                     arrayList.add(deadline);
-                    System.out.println(lineBreak + "\n" + "The only deadline LUNA has is when the Moon dies!: \n" + deadline + "\n" + lineBreak);
+                    System.out.println(lineBreak + "\n" + "The only deadline LUNA has is when the Moon dies!:\n" + deadline + "\n" + lineBreak);
                 }
 
                 int len = arrayList.size();
