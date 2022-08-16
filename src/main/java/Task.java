@@ -2,6 +2,10 @@ public class Task {
     protected String description;
     protected boolean isDone;
 
+    public void addTaskMessage(){
+        System.out.println("Gotcha, I've added this task: ");
+        System.out.println(this.toString());
+    }
     public Task(String description) {
         this.description = description;
         this.isDone = false;
@@ -21,6 +25,6 @@ public class Task {
 
     @Override
     public String toString(){
-        return isDone ? "[X] " + this.description : "[ ] " + this.description;
+        return this.isDone ? "[X] " + this.description : "[ ] " + this.description;
     }
 }
