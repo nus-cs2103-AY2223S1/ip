@@ -83,6 +83,18 @@ public class Duke {
                         printOut("This task number is invalid!");
                         break;
                     }
+                case "delete":
+                    try {
+                        int index = Integer.parseInt(nextWords[1]) - 1;
+                        printOut("I'll remove this task:\n" + tasks.get(index).toString() +
+                                "\nYou now have " + (tasks.size() - 1) + " tasks.");
+                        tasks.remove(index);
+                        break;
+                    }
+                    catch(IndexOutOfBoundsException e) {
+                        printOut("This task number is invalid!");
+                        break;
+                    }
                 case "list":
                     System.out.println("____________________________________________________________\n" +
                             "Here are your tasks:");

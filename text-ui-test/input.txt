@@ -1,6 +1,6 @@
-todo
-deadline
-event
-deadline deadline
-event event
+todo todo
+deadline deadline /by tonight
+event event /at 7pm
+delete 2
+list
 bye
