@@ -10,6 +10,7 @@ public class Duke {
         System.out.println("Hello from\n" + logo);
 
         String[] storage = new String[100];
+        String HORIZONTAL_LINE = "----------------------";
         int ticker = 0;
 
         Scanner sc = new Scanner(System.in);
@@ -25,6 +26,7 @@ public class Duke {
                 storage[ticker] = userInput;
                 ticker++;
                 System.out.println("added:" + userInput);
+                System.out.println(HORIZONTAL_LINE);
             }
             userInput = sc.nextLine();
         }
