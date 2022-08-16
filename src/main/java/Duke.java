@@ -5,13 +5,13 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Duke {
-    public static List<String> tasks = new ArrayList<>();
+    public static List<Task> tasks = new ArrayList<>();
 
     public static void main(String[] args) {
         print("Hello! I'm Duke\nWhat can I do for you?");
         Scanner sc = new Scanner(System.in);
-        scanner: while (sc.hasNextLine()) {
-            String input = sc.nextLine();
+        scanner: while (sc.hasNext()) {
+            String input = sc.next();
             switch (input) {
                 case "list":
                     list();
@@ -25,9 +25,17 @@ public class Duke {
                     bye();
                     sc.close();
                     break scanner;
-            
+                
+                case "mark":
+                    mark(sc.nextInt() - 1);
+                    break;
+
+                case "unmark":
+                    unmark(sc.nextInt() - 1);
+                    break;
+
                 default:
-                    add(input);
+                    add(input + sc.nextLine());
                     break;
             }
         }
@@ -39,7 +47,7 @@ public class Duke {
     }
 
     public static void list() {
-        print(IntStream.range(0, tasks.size()).mapToObj(x -> String.format("%d. %s\n", x + 1, tasks.get(x))).reduce("", (x,y) -> x + y));
+        print(IntStream.range(0, tasks.size()).mapToObj(x -> String.format("%d.%s\n", x + 1, tasks.get(x))).reduce("", (x,y) -> x + y));
     }
 
     public static void blah() {
@@ -50,8 +58,18 @@ public class Duke {
         print("Bye. Hope to see you again soon!");
     }
 
-    public static void add(String task) {
-        tasks.add(task);
-        print("added: " + task);
+    public static void add(String taskName) {
+        tasks.add(new Task(taskName));
+        print("added: " + taskName);
+    }
+
+    public static void mark(int index) {
+        tasks.get(index).markAsDone();
+        print("Nice! I've marked this task as done:\n  " + tasks.get(index));
+    }
+
+    public static void unmark(int index) {
+        tasks.get(index).markAsNotDone();
+        print("OK, I've marked this task as not done yet:\n  " + tasks.get(index));
     }
 }
