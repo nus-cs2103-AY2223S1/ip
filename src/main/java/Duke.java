@@ -1,6 +1,8 @@
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Duke {
@@ -34,10 +36,11 @@ public class Duke {
             while (sc.hasNextLine()) {
                 System.out.println(sc.nextLine());
             }
-            System.out.println("Welcome to Aladdin Services");
-        } catch (Exception e) {
-            System.out.println("Welcome to Aladdin Services");
+            sc.close();
+        } catch (FileNotFoundException e) {
         }
+
+        System.out.println("Welcome to Aladdin Services");
 
         Scanner scannerObj = new Scanner(System.in); // Create a Scanner object
         String userInput = "";
