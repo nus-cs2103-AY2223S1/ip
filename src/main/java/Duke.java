@@ -12,6 +12,12 @@ public class Duke {
     private static Task[] taskList = new Task[TASKLIST_MAX_SIZE];
     private static int taskCount = 0;
 
+    private static void addTask(Task task) {
+        assert taskCount < TASKLIST_MAX_SIZE;
+        taskList[taskCount++] = task;
+        System.out.printf("Gotcha! I added the following task to the list:\n  %s\nCurrently, I have %d tasks recorded\n", task, taskCount);
+    }
+
     public static void main(String[] args) {
 
         Scanner sysIn = new Scanner(System.in);
@@ -24,6 +30,7 @@ public class Duke {
                assumed to be seperated by whitespace (can be multiple characters).
              */
             String[] userQuery = sysIn.nextLine().split("\\s+", 2);
+            String[] userParams;
 
             if (userQuery.length == 0) {
                 // TODO: Add Exception when this occurs.
@@ -46,9 +53,22 @@ public class Duke {
                     exitCalled = true;
                     break;
                 case "add":
-                    assert taskCount < TASKLIST_MAX_SIZE;
-                    taskList[taskCount++] = new Task(userQuery[1]);
-                    System.out.printf("Successfully added \"%s\" to your task list!\n", userQuery[1]);
+                    addTask(new Task(userQuery[1]));
+                    break;
+                case "todo":
+                    addTask(new Todo(userQuery[1]));
+                    break;
+                case "deadline":
+                    // Matches the String by the /by keyword and splits it.
+                    userParams = userQuery[1].split("\\s+/by\\s+", 2);
+                    // TODO: Add Exception when a parameter isn't passed
+                    addTask(new Deadline(userParams[0], userParams[1]));
+                    break;
+                case "event":
+                    // Matches the String by the /at keyword and splits it.
+                    userParams = userQuery[1].split("\\s+/at\\s+", 2);
+                    // TODO: Add Exception when a parameter isn't passed
+                    addTask(new Event(userParams[0], userParams[1]));
                     break;
                 case "mark":
                     // TODO: Check for non-integer inputs.
