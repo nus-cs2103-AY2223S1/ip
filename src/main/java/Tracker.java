@@ -25,7 +25,36 @@ public class Tracker {
         task.undo();
     }
 
+    public void addDeadline(String[] arr)  {
+        int i = 1;
+        while (i < arr.length && !arr[i].equals("/by") ) {
+            i++;
+        }
 
+        String description = String.join(" ", Arrays.copyOfRange(arr, 1, i));
+        String dueDate = String.join(" ", Arrays.copyOfRange(arr, i + 1, arr.length));
+        String[] command = {description, dueDate};
+        Deadline deadline = new Deadline(command);
+        deadline.add();
+    }
+
+    public void addTodo(String[] arr) {
+
+        Todo todo = new Todo(String.join(" ", Arrays.copyOfRange(arr, 1, arr.length)));
+        todo.add();
+    }
+
+    public void addEvent(String[] arr) {
+        int i = 1;
+        while (i < arr.length && !arr[i].equals("/at") ) {
+            i++;
+        }
+        String description = String.join(" ", Arrays.copyOfRange(arr, 1, i));
+        String dueDate = String.join(" ", Arrays.copyOfRange(arr, i + 1, arr.length));
+        String[] command = {description, dueDate};
+        Event event = new Event(command);
+        event.add();
+    }
 
     public Tracker() {
     }
@@ -38,7 +67,7 @@ public class Tracker {
                 printList();
             } else {
                 String[] command = input.split(" ");
-                    if (command.length > 1) {
+                    if (command.length >= 1) {
                         switch (command[0]) {
                             case "mark":
                                 markDone(command[1]);
@@ -46,11 +75,18 @@ public class Tracker {
                             case "unmark":
                                 markUndone(command[1]);
                                 break;
+                            case "deadline":
+                                addDeadline(command);
+                                break;
+                            case "todo":
+                                addTodo(command);
+                                break;
+                            case "event":
+                                addEvent(command);
+                                break;
                             default:
                                 break;
                         }
-                    } else {
-                        list.add(new Task(input));
                     }
             }
             input = sc.nextLine();
