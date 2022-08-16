@@ -3,27 +3,28 @@ import java.util.ArrayList;
 public class Duke {
     public static void main(String[] args) {
 
-        ArrayList<String> mylist = new ArrayList<>();
-
+        ArrayList<Task> myList = new ArrayList<>();
         boolean bye = false;
-
+        
         Scanner scanner = new Scanner(System.in);
-//        String input = scanner.nextLine();
-        System.out.println("HELLO");
+        System.out.println("hello this is uncle raymond");
 
         while (!bye) {
             String input = scanner.nextLine();
             if (input.equals("bye")) {
                 bye = true;
-                System.out.println("bai bai");
+                UserInterface.sayBye();
             } else if (input.equals("list")) {
-                for (int i = 0; i < mylist.size(); i++) {
-                    System.out.println(i + 1 + ": " + mylist.get(i));
-                }
+                UserInterface.printList(myList);
+            } else if (input.length() >= 4 && input.substring(0,4).equals("mark")) {
+                int taskIndex = Integer.parseInt(input.substring(5)) - 1;
+                EventHandler.markTask(taskIndex, myList);
+            } else if (input.length() >= 6 && input.substring(0,6).equals("unmark")) {
+                int taskIndex = Integer.parseInt(input.substring(7)) - 1;
+                EventHandler.unmarkTask(taskIndex, myList);
             }
             else {
-                mylist.add(input);
-                System.out.println("added :" + input);
+                EventHandler.addItem(input, myList);
             }
         }
     }
