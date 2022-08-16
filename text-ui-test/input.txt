@@ -1,0 +1,13 @@
+list
+todo Eat Cake
+deadline Finish CS2103 Quiz /by Tuesday
+event Touch the World /at I3 Auditorium 5-6PM
+list
+mark 1
+mark 3
+unmark 2
+list
+unmark 1
+list
+wow
+bye

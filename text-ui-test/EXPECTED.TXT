@@ -1,7 +1,65 @@
 Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
+POOLSHEEN
+Type something in for Poolsheen to respond to you:
+---------------
+      Poolsheen thinks back... and remembers you said nothing :(
+      meow *_*
+---------------
+---------------
+      Poolsheen now remembers: Eat Cake
+      meow *_*
+---------------
+---------------
+      Poolsheen now remembers: Finish CS2103 Quiz
+      meow *_*
+---------------
+---------------
+      Poolsheen now remembers: Touch the World
+      meow *_*
+---------------
+---------------
+      Poolsheen thinks back... and remembers you said:
+      1. [T] [ ] Eat Cake
+      2. [D] [ ] Finish CS2103 Quiz (by: Tuesday)
+      3. [E] [ ] Touch the World (at: I3 Auditorium 5-6PM)
+      meow *_*
+---------------
+---------------
+      Poolsheen thinks you are done with Eat Cake
+      meow *_*
+---------------
+---------------
+      Poolsheen thinks you are done with Touch the World
+      meow *_*
+---------------
+---------------
+      Poolsheen thinks you are not done with Finish CS2103 Quiz
+      meow *_*
+---------------
+---------------
+      Poolsheen thinks back... and remembers you said:
+      1. [T] [X] Eat Cake
+      2. [D] [ ] Finish CS2103 Quiz (by: Tuesday)
+      3. [E] [X] Touch the World (at: I3 Auditorium 5-6PM)
+      meow *_*
+---------------
+---------------
+      Poolsheen thinks you are not done with Eat Cake
+      meow *_*
+---------------
+---------------
+      Poolsheen thinks back... and remembers you said:
+      1. [T] [ ] Eat Cake
+      2. [D] [ ] Finish CS2103 Quiz (by: Tuesday)
+      3. [E] [X] Touch the World (at: I3 Auditorium 5-6PM)
+      meow *_*
+---------------
+---------------
+      Type in a valid command
+      meow *_*
+---------------
+---------------
+      MeoAww... See you next time :(
+      meow *_*
+---------------
+THE POOLSHEEN PROGRAM HAS STOPPED RUNNING
