@@ -38,8 +38,10 @@ public class Duke {
         boolean flag = true;
         while (flag) {
             String response = sc.nextLine();
-            String [] words = response.split(" ");
-            String command = words[0];
+            String [] split_slash = response.split("/");
+            String [] cmd_descp = split_slash[0].split(" ");
+            String task_description = String.join(" ", Arrays.copyOfRange(cmd_descp,1,cmd_descp.length));
+            String command = cmd_descp[0];
             System.out.println(line);
             if (command.toLowerCase().equals(exit_command)) {
                 flag = false;
@@ -47,25 +49,18 @@ public class Duke {
             } else if (response.toLowerCase().equals(list_command)) {
                 display(ls);
             } else if (command.toLowerCase().equals(mark_command)) {
-                String ind = words[1];
+                String ind = cmd_descp[1];
                 ls.get(valueOf(ind) - 1).doing();
             } else if (command.toLowerCase().equals(unmark_command)) {
-                String ind = words[1];
+                String ind = cmd_descp[1];
                 ls.get(valueOf(ind) - 1).undo();
             } else if (command.toLowerCase().equals(todo_command)){
-                String task_description = String.join(" ", Arrays.copyOfRange(words,1,words.length));
                 addToList(new Todo(task_description));
             } else if (command.toLowerCase().equals(deadline_command)){
-                String [] split_slash = response.split("/");
-                String [] cmd_descp = split_slash[0].split(" ");
-                String task_description = String.join(" ", Arrays.copyOfRange(cmd_descp,1,cmd_descp.length));
                 String [] time_part = split_slash[1].split(" ");
                 String time = String.join(" ", Arrays.copyOfRange(time_part,1,time_part.length));
                 addToList(new Deadline(task_description,time));
             } else if (command.toLowerCase().equals(event_command)){
-                String [] split_slash = response.split("/");
-                String [] cmd_descp = split_slash[0].split(" ");
-                String task_description = String.join(" ", Arrays.copyOfRange(cmd_descp,1,cmd_descp.length));
                 String [] time_part = split_slash[1].split(" ");
                 String time = String.join(" ", Arrays.copyOfRange(time_part,1,time_part.length));
                 addToList(new Event(task_description,time));
