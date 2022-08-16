@@ -10,45 +10,38 @@ public class Duke {
         System.out.println("Hello from\n" + logo);
 
         System.out.println("What can I do for you?");
-        Task[] storage = new Task[100];
         Scanner scanner = new Scanner(System.in);
         String text = scanner.next();
-        int count = 0;
 
         while (true) {
             if (text.equals("bye")) {
                 break;
             } else if (text.equals("list")) {
-                if (count == 0) {
-                    System.out.println("List is empty!");
-                } else {
-                    for (int i = 0; i < count; i++) {
-                        System.out.print("\t");
-                        System.out.print(i + 1);
-                        System.out.print(". " + storage[i] + "\n");
-                    }
-                }
+                Task.printList();
             } else if (text.equals("mark")) {
                 int index = scanner.nextInt();
-                Task task = storage[index - 1];
-                task.setDone(true);
-                System.out.println("\tNice! I've marked this task as done:");
-                System.out.println("\t\t" + task);
+                Task.mark(index);
             } else if (text.equals("unmark")) {
                 int index = scanner.nextInt();
-                Task task = storage[index - 1];
-                task.setDone(false);
-                System.out.println("\tOK, I've marked this task as not done yet:");
-                System.out.println("\t\t" + task);
+                Task.unmark(index);
+            } else if (text.equals("todo")) {
+                String description = scanner.nextLine();
+                Todo todo = new Todo(description);
+                todo.add();
+            } else if (text.equals("deadline")) {
+                String[] sections = scanner.nextLine().split("/by");
+                Deadline deadline = new Deadline(sections[0], sections[1]);
+                deadline.add();
+            } else if (text.equals("event")) {
+                String[] sections = scanner.nextLine().split("/at");
+                Event event = new Event(sections[0], sections[1]);
+                event.add();
             } else {
-                System.out.println("\tadded: " + text);
-                storage[count] = new Task(text);
-                count++;
+                System.out.println("\tTask type not indicated.");
             }
             scanner = new Scanner(System.in);
             text = scanner.next();
         }
-        
         System.out.println("Bye. Hope to see you again soon!");
     }
 }
