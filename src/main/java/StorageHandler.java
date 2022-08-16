@@ -8,14 +8,18 @@ public class StorageHandler {
     public static final String DEFAULT_FILE_NAME = "todolist.txt";
     public final Path path;
 
-    StorageHandler() throws InvalidStorageFilePathException {
+    StorageHandler() throws InvalidStorageFilePathException, IOException {
         this(DEFAULT_FILE_NAME);
     }
 
-    StorageHandler(String filePath) throws InvalidStorageFilePathException {
+    StorageHandler(String filePath) throws InvalidStorageFilePathException, IOException {
         this.path = Paths.get(System.getProperty("user.dir"), filePath);
         if (!validPath(filePath)) {
             throw new InvalidStorageFilePathException("Storage file needs to end with .txt, please try again.");
+        }
+        if (!Files.exists(path) || !Files.isRegularFile(path)) {
+            // Create a new file
+            Files.createFile(path);
         }
     }
 
@@ -24,14 +28,12 @@ public class StorageHandler {
     }
 
     public Storage loadSavedData() throws IOException, StorageOperationException {
-        if (!Files.exists(path) || !Files.isRegularFile(path)) {
-            // Create a new file
-            Files.createFile(path);
-            return new Storage();
-        }
+//        if (!Files.exists(path) || !Files.isRegularFile(path)) {
+//            // Create a new file
+//            Files.createFile(path);
+//        }
 
         try {
-            System.out.println("success");
             List<String> fileLines = Files.readAllLines(path);
             return StorageParser.parseFile(fileLines);
         } catch (IOException e) {

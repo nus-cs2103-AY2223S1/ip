@@ -55,6 +55,7 @@ public class Storage {
     void listTasks() {
         if (taskList.isEmpty()) {
             System.out.println("List is empty!");
+            return;
         }
         String toPrint = "";
 
