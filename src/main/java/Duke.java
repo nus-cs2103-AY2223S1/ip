@@ -44,24 +44,51 @@ public class Duke {
                     int index2 = Integer.parseInt(argument) - 1;
                     unmarkTask(storage.get(index2));
                     break;
+                case "todo":
+                    ToDo todo = new ToDo(argument);
+                    addTask(todo);
+                    break;
+                case "deadline":
+                    Deadline deadline = handleDeadline(argument);
+                    addTask(deadline);
+                    break;
+                case "event":
+                    Event event = handleEvent(argument);
+                    addTask(event);
+                    break;
                 default:
                     Task temp = new Task(input);
-                    storage.add(temp);
-                    generateMessage("Added: " + input);
+                    addTask(temp);
                     break;
             }
         }
     }
 
-    public static void printLine() {
-        System.out.println("____________________________________________________________");
+    public static void addTask(Task task) {
+        storage.add(task);
+        String message = "Got it. I've added this task:\n"
+                + "\t" + task
+                + "\nNow you have " + storage.size() + " tasks in the list.";
+        generateMessage(message);
+    }
+
+    public static Deadline handleDeadline(String information) {
+        String[] stringArr = information.split(" /by ",2);
+        Deadline deadline = new Deadline(stringArr[0], stringArr[1]);
+        return deadline;
+    }
+
+    public static Event handleEvent(String information) {
+        String[] stringArr = information.split(" /at ",2);
+        Event event = new Event(stringArr[0], stringArr[1]);
+        return event;
     }
 
     public static void generateMessage(String message) {
-        printLine();
+        System.out.println("____________________________________________________________");
         System.out.println("Duke \uD83D\uDE0E says: ");
         System.out.println(message);
-        printLine();
+        System.out.println("____________________________________________________________");
     }
 
     public static void displayTasks() {
