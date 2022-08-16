@@ -69,7 +69,7 @@ public class Kirby {
         ArrayList<Task> Tasks = new ArrayList<>();
         System.out.println("Hai I'm Kirby (੭｡╹▿╹｡)੭ your friendly chat assistant!! \n" + "What amazing plans do you have today?");
         Scanner scanner = new Scanner(System.in);
-        while (scanner.hasNextLine() && true){
+        while (scanner.hasNextLine()){
             String inputString = scanner.nextLine();
 
             // bye

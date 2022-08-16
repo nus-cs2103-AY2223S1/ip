@@ -8,3 +8,4 @@ unmark 1
 mark 2
 event attend examination /at today :o
 list
+bye
