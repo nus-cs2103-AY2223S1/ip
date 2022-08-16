@@ -7,7 +7,7 @@ public class Echo {
     private static int cnt = 0;
     private static Scanner sc = new Scanner(System.in);
 
-    public static void echo (Task[] tasks) {
+    public static void echo (Task[] tasks) throws DukeException {
         String str = sc.nextLine();
         Command cmd;
         if (str.equals("bye")) {

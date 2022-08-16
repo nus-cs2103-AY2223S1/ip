@@ -5,7 +5,7 @@ public class GreetCmd extends Command {
     }
 
     @Override
-    public void execute(String str, Task[] tasks) {
+    public void execute(String str, Task[] tasks) throws DukeException {
         String out = "Hello! I'm Duke\n" +
                 "What can I do for you?\n";
         System.out.println(out);

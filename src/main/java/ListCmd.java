@@ -5,7 +5,7 @@ public class ListCmd extends Command {
     }
 
     @Override
-    public void execute (String str, Task[] tasks) {
+    public void execute (String str, Task[] tasks) throws DukeException {
         System.out.println("Your List:");
         for (int i = 0; i < tasks.length; i ++) {
             if (tasks[i] == null) {
