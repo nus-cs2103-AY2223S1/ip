@@ -2,21 +2,37 @@ import java.util.*;
 
 public class Duke {
 
-    private static String[] addedText = new String[100];
-    private static int addedTextIndex = 0;
+    private static Task[] addedTask = new Task[100];
+    private static int addedTaskCount = 0;
 
-    private static void addText(String text) {
-        Duke.addedText[Duke.addedTextIndex] = text;
-        Duke.addedTextIndex++;
+    private static void addTask(String task) {
+        Duke.addedTask[Duke.addedTaskCount] = new Task(task);
+        Duke.addedTaskCount++;
     }
 
-    private static void listText() {
-        for (int i = 0; i < Duke.addedText.length; ++i) {
-            if (Duke.addedText[i] == null) {
+    private static void listTask() {
+        for (int i = 0; i < Duke.addedTask.length; ++i) {
+            if (Duke.addedTask[i] == null) {
                 return;
             }
-            System.out.println(String.valueOf(i + 1) + ". " + Duke.addedText[i]);
+            System.out.println((i + 1) + "." + Duke.addedTask[i]);
         }
+    }
+
+    private static void markTask(int index) {
+        if (Duke.addedTask[index - 1] == null) {
+            System.out.println("Task does not exist!");
+            return;
+        }
+        Duke.addedTask[index - 1].mark();
+    }
+
+    private static void unmarkTask(int index) {
+        if (Duke.addedTask[index - 1] == null) {
+            System.out.println("Task does not exist!");
+            return;
+        }
+        Duke.addedTask[index - 1].unmark();
     }
 
     private static void greet() {
@@ -29,13 +45,19 @@ public class Duke {
                 System.out.println("Come again soon!");
                 System.exit(0);
             } else if (command.equals("list")) {
-                Duke.listText();
-                continue;
+                Duke.listTask();
+            } else if (command.startsWith("mark ")) {
+                String[] splitCommand = command.split(" ");
+                Duke.markTask(Integer.parseInt(splitCommand[1]));
+            } else if (command.startsWith("unmark ")) {
+                String[] splitCommand = command.split(" ");
+                Duke.unmarkTask(Integer.parseInt(splitCommand[1]));
             } else if (command.equals("")) {
                 continue;
+            } else {
+                Duke.addTask(command);
+                System.out.println("added: " + command);
             }
-            Duke.addText(command);
-            System.out.println("added: " + command);
         }
     }
 
