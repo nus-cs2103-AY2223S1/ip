@@ -1,0 +1,10 @@
+todo assignment 1
+event lecture 1 /at Monday 1pm-4pm
+list
+deadline homework 1 /by Tuesday
+mark 1
+todo assignment 2
+unmark 1
+mark 3
+list
+bye
