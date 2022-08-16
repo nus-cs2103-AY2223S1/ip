@@ -15,6 +15,7 @@ public class Duke {
 
         while(!input.equals("bye")) {
             dc.evaluate(input);
+            System.out.println("\n");
             input = sc.nextLine();
         }
 

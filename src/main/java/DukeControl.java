@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class DukeControl {
-    ArrayList<Task> arrayList;
+    public ArrayList<Task> arrayList;
 
     public DukeControl() {
         this.arrayList = new ArrayList<>();
@@ -13,43 +13,85 @@ public class DukeControl {
         String mainCommand = command[0];
         String[] commandArgs = Arrays.copyOfRange(command, 1, command.length);
 
-        if (mainCommand.equals("list") && commandArgs.length == 0) {
-            list();
+        if (mainCommand.equals("list")) {
+            this.parseList(commandArgs);
         } else if (mainCommand.equals("mark")) {
-            if (commandArgs.length != 1) {
-                System.out.println("Invalid argument numbers for command MARK");
-            } else if (Integer.parseInt(commandArgs[0]) <= 0 || Integer.parseInt(commandArgs[0]) > this.arrayList.size()) {
-                System.out.println("Invalid task index for command MARK");
-            } else {
-                arrayList.get(Integer.parseInt(commandArgs[0]) - 1).mark();
-            }
+            this.parseMark(commandArgs);
         } else if (mainCommand.equals("unmark")) {
-            if (commandArgs.length != 1) {
-                System.out.println("Invalid argument numbers for command UNMARK");
-            } else if (Integer.parseInt(commandArgs[0]) <= 0 || Integer.parseInt(commandArgs[0]) > this.arrayList.size()) {
-                System.out.println("Invalid task index for command UNMARK");
-            } else {
-                arrayList.get(Integer.parseInt(commandArgs[0]) - 1).unmark();
+            this.parseUnmark(commandArgs);
+        } else if (mainCommand.equals("todo")) {
+            this.parseTodo(commandArgs);
+        } else if (mainCommand.equals("deadline")) {
+            this.parseDeadline(commandArgs);
+        } else if (mainCommand.equals("event")) {
+            this.parseEvent(commandArgs);
+        } else {
+            System.out.println("Invalid command: " + mainCommand);
+        }
+    }
+
+    public void parseList(String[] commandArgs) {
+        if (commandArgs.length != 0) {
+            System.out.println("command LIST: Did you mean list?");
+        } else {
+            System.out.println("Here are the tasks in your list:");
+            for (int i = 0; i < arrayList.size(); i++) {
+                System.out.println(String.format("%d. %s", i + 1, arrayList.get(i).print()));
             }
         }
-        else {
-            add(input);
+    }
+
+    public void parseMark(String[] commandArgs) {
+        if (commandArgs.length != 1) {
+            System.out.println("command MARK: Invalid argument number");
+        } else if (Integer.parseInt(commandArgs[0]) <= 0 || Integer.parseInt(commandArgs[0]) > this.arrayList.size()) {
+            System.out.println("command MARK: Invalid task index");
+        } else {
+            arrayList.get(Integer.parseInt(commandArgs[0]) - 1).mark();
         }
     }
 
-    public void echo(String input) {
-        System.out.println(input);
-    }
-
-    public void list() {
-        for (int i = 0; i < arrayList.size(); i++) {
-            System.out.println(String.format("%d. %s", i + 1, arrayList.get(i).print()));
+    public void parseUnmark(String[] commandArgs) {
+        if (commandArgs.length != 1) {
+            System.out.println("command UNMARK: Invalid argument number");
+        } else if (Integer.parseInt(commandArgs[0]) <= 0 || Integer.parseInt(commandArgs[0]) > this.arrayList.size()) {
+            System.out.println("command UNMARK: Invalid task index");
+        } else {
+            arrayList.get(Integer.parseInt(commandArgs[0]) - 1).unmark();
         }
     }
 
-    public void add(String task) {
-        Task newTask = new Task(task);
+    public void parseTodo(String[] commandArgs) {
+        String title = String.join(" ", commandArgs);
+        this.addTask(new ToDo(title));
+    }
+
+    public void parseDeadline(String[] commandArgs) {
+        if (!Arrays.asList(commandArgs).contains("/by")) {
+            System.out.println("command DEADLINE: Invalid arguments /by not found");
+        } else {
+            int indexOfBy = Arrays.asList(commandArgs).indexOf("/by");
+            String title = String.join(" ", Arrays.copyOfRange(commandArgs, 0, indexOfBy));
+            String deadline = String.join(" ", Arrays.copyOfRange(commandArgs, indexOfBy + 1, commandArgs.length));
+            this.addTask(new Deadline(title, deadline));
+        }
+    }
+
+    public void parseEvent(String[] commandArgs) {
+        if (!Arrays.asList(commandArgs).contains("/at")) {
+            System.out.println("command EVENT: Invalid arguments /at not found");
+        } else {
+            int indexOfBy = Arrays.asList(commandArgs).indexOf("/at");
+            String title = String.join(" ", Arrays.copyOfRange(commandArgs, 0, indexOfBy));
+            String time = String.join(" ", Arrays.copyOfRange(commandArgs, indexOfBy + 1, commandArgs.length));
+            this.addTask(new Event(title, time));
+        }
+    }
+
+    public void addTask(Task newTask) {
         arrayList.add(newTask);
-        System.out.println(String.format("added: %s", newTask.print()));
+        System.out.println(String.format(
+                "Got it. I've added this task:\n\t%s\nNow you have %d tasks in the list.",
+                newTask.print(), this.arrayList.size()));
     }
 }

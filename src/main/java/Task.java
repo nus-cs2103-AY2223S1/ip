@@ -1,6 +1,6 @@
-public class Task {
-    String title;
-    boolean isDone;
+public abstract class Task {
+    public String title;
+    public boolean isDone;
 
     public Task(String title) {
         this.title = title;
