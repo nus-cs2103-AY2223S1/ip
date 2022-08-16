@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class ToDoList {
     private ArrayList<Task> list;
+    private int numOfTasks = 0;
 
     public ToDoList() {
         this.list = new ArrayList<>();
@@ -9,7 +10,13 @@ public class ToDoList {
 
     public void addTask(Task task) {
         this.list.add(task);
+        this.numOfTasks += 1;
         System.out.format("added: %s\n", task.toString());
+        if (this.numOfTasks == 1) {
+            System.out.format("Now you have %d task in the list.\n", this.numOfTasks);
+        } else {
+            System.out.format("Now you have %d tasks in the list.\n", this.numOfTasks);
+        }
     }
 
     public void print() {
