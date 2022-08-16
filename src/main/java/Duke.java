@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Starting point of Jenny chatbot.
+ * Starting point of Duke chatbot.
  * CS2103 Week 2
  * AY21/22 Semester 1
  *
@@ -10,19 +10,18 @@ import java.util.Scanner;
  */
 
 public class Duke {
-    private final ArrayList<String> tasks = new ArrayList<>(100);
+    private static final ArrayList<String> tasks = new ArrayList<>(100);
     public static void main(String[] args) {
-        Duke jenny = new Duke();
         Scanner sc = new Scanner(System.in);
-        jenny.greet();
-        jenny.add(sc);
-        jenny.exit();
+        greet();
+        add(sc);
+        exit();
     }
 
     /**
      * Prints a greeting to the console.
      */
-    private void greet() {
+    private static void greet() {
         DukePrinter.print_line();
         DukePrinter.print("Hello! I'm Jenny");
         DukePrinter.print("What can I do for you?");
@@ -48,7 +47,7 @@ public class Duke {
      * until a valid command is input,
      * or a terminating command is input.
      */
-    private void add(Scanner sc) {
+    private static void add(Scanner sc) {
         String text = sc.nextLine();
         while(!text.equals("bye")) {
             if (text.equals("list")) {
@@ -77,7 +76,7 @@ public class Duke {
     /**
      * Prints an exit message to the console.
      */
-    private void exit() {
+    private static void exit() {
         DukePrinter.print_line();
         DukePrinter.print("Bye. Hope to see you again soon!");
         DukePrinter.print_line();
