@@ -8,47 +8,38 @@ public class Duke {
     // The 'bye' command entered by the user is used to indicate to the program to exit
     private static final String EXIT_COMMAND = "bye";
 
-    /**
-     * Greet the user and introduce itself
-     */
-    private static void greet() {
-        System.out.println(Duke.SEPARATOR);
-        System.out.printf("Hello! I'm %s\nWhat can I do for you?\n", Duke.NAME);
-        System.out.println(Duke.SEPARATOR + "\n");
-    }
+    // The greeting message used by the chatbot when the program starts
+    private static final String GREETING_MESSAGE = String.format("Hello! I'm %s\n\tWhat can I do for you?", Duke.NAME);
+    // The goodbye message used by the chatbot when the program terminates
+    private static final String GOODBYE_MESSAGE = "Bye. Hope to see you again soon!";
 
     /**
-     * Prints the input string that was received using the separator and tab formatter
+     * Returns the formatted input string that was received using the separator and tab formatter
      *
-     * @param command Input string that was received
+     * @param input Input string that was received
+     * @return The formatted output string
      */
-    private static void echo(String command) {
-        System.out.println("\t" + Duke.SEPARATOR);
-        System.out.println("\t" + command);
-        System.out.println("\t" + Duke.SEPARATOR + "\n");
-    }
-
-    /**
-     * Provide a terminating goodbye message to the user
-     */
-    private static void quit() {
-        Duke.echo("Bye. Hope to see you again soon!");
+    private static String outputFormatter(String input) {
+        String lineSeparator = String.format("\t%s\n", Duke.SEPARATOR);
+        return String.format("%s\t%s\n%s", lineSeparator, input, lineSeparator);
     }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         // Greet the user
-        Duke.greet();
+        System.out.println(Duke.outputFormatter(Duke.GREETING_MESSAGE));
 
-        // The command entered by the user
+        // Receive the command entered by the user
         String command = scanner.nextLine();
         while (!command.equals(Duke.EXIT_COMMAND)) {
-            Duke.echo(command);
+            // Echo the command entered by the user
+            System.out.println(Duke.outputFormatter(command));
+            // Continue to retrieve the next command
             command = scanner.nextLine();
         }
 
         // Bid the user goodbye
-        Duke.quit();
+        System.out.println(Duke.outputFormatter(Duke.GOODBYE_MESSAGE));
     }
 }
