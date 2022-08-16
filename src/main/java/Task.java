@@ -13,8 +13,12 @@ public abstract class Task {
 
     public abstract String getTypeIcon();
 
+    public String getStatusIcon() {
+        return "[" + (isDone ? "X" : " ") + "]";
+    }
+
     @Override
     public String toString() {
-        return getTypeIcon() + "[" + (isDone ? "X" : " ") + "] " + taskDescription;
+        return getTypeIcon() + getStatusIcon() + " " + taskDescription;
     }
 }

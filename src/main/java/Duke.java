@@ -37,8 +37,11 @@ public class Duke {
             case "unmark":
                 this.unmarkTask(commandArg);
                 break;
+            case "todo": case "deadline": case "event":
+                this.addTask(commandArg, command);
+                break;
             default:
-                addTask(input);
+                printMessage("Sorry, I don't understand your command :(");
                 break;
         }
     }
@@ -47,9 +50,28 @@ public class Duke {
         this.printMessage(this.taskList.toString());
     }
 
-    private void addTask(String task) {
-        this.taskList.addTask(task);
-        printMessage("added: " + task);
+    private void addTask(String task, String type) {
+        Task newTask = null;
+        switch (type) {
+            case "todo" :
+                newTask = new ToDo(task);
+                break;
+            case "deadline":
+                String[] deadlineDesc = task.split("/by", 2);
+                newTask = new Deadline(deadlineDesc[0], deadlineDesc[1]);
+                break;
+            case "event":
+                String[] eventDesc = task.split("/at", 2);
+                newTask = new Event(eventDesc[0], eventDesc[1]);
+                break;
+        }
+
+        if (newTask != null) {
+            this.taskList.addTask(newTask);
+            printMessage("Got it. I've added this task:\n\t" + newTask
+                    + "\nNow you have " + this.taskList.totalTask() + " tasks in the list.");
+        }
+
     }
 
     private void markTask(String n) {

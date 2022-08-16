@@ -7,8 +7,12 @@ public class TaskList {
         this.taskList = new ArrayList<>();
     }
 
-    public void addTask(String task) {
-        taskList.add(new Task(task));
+    public void addTask(Task task) {
+        taskList.add(task);
+    }
+
+    public int totalTask() {
+        return taskList.size();
     }
 
     public void markTaskN(int n, boolean isDone) {
