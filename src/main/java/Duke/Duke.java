@@ -2,7 +2,6 @@ package Duke;
 
 import java.util.Scanner;
 
-
 public class Duke {
     Scanner sc;
 
@@ -10,6 +9,7 @@ public class Duke {
     public UserInterface userInterface;
 
     public Duke() {
+
         this.userInterface = new UserInterface();
         this.tasklist = new TaskList();
         this.sc = new Scanner(System.in);
@@ -19,9 +19,10 @@ public class Duke {
     public void run() {
         System.out.println(userInterface.greeting());
         boolean isExit = false;
+        Handler handler = new Handler(tasklist, userInterface);
         while (!isExit) {
             String echo = sc.nextLine();
-            Handler handler = new Handler(tasklist, userInterface);
+
             if (echo.equals("bye")) {
                 System.out.println(userInterface.bye());
                 isExit = true;
@@ -41,23 +42,6 @@ public class Duke {
                 System.out.println(handler.addTask(new Task(echo)));
             }
         }
-//        System.out.println("Hello! I'm Duke.Duke \n what can I do for you?");
-//        boolean isExit = false;
-//        while ((!isExit)) {
-//            String echo = sc.nextLine();
-//            if (echo.equals("bye")) {
-//                System.out.println("Bye, see you again!");
-//                isExit = true;
-//            } else if (echo.equals("list")) {
-//                for (int i = 0; i < list.size(); i++) {
-//                    int j = i+1;
-//                    System.out.println(j + ". " + list.get(i));
-//                }
-//            } else {
-//                System.out.println("added: " + echo);
-//                list.add(echo);
-//            }
-//        }
     }
 
     public static void main(String[] args) {
