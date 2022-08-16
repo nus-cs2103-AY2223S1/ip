@@ -13,13 +13,13 @@ public class Task {
 
     public void mark() {
         isDone = true;
-        System.out.println("Helped you to mark already! Happy?\n"
+        System.out.println("Nice! I've marked this task as done:\n"
                 + this.toString());
     }
 
     public void unmark() {
         isDone = false;
-        System.out.println("Troublesome... Unmarked for you already.\n"
+        System.out.println("OK, I've marked this task as not done yet:\n"
                 + this.toString());
     }
 

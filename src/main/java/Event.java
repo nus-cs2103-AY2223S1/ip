@@ -3,7 +3,6 @@ public class Event extends Task{
     public Event(String description, String at) {
         super(description);
         this.at = at;
-        System.out.println("Making you a more EVENTful person!\n" + this.toString());
     }
 
     @Override
