@@ -1,0 +1,10 @@
+todo Read article
+deadline Complete assignment /by friday
+event Attend career fair /at 27-28 Jun
+list
+mark 1
+mark 2
+list
+unmark 2
+list
+bye
