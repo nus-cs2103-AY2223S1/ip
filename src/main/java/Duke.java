@@ -12,15 +12,15 @@ public class Duke {
 
         myPrinter(" Hello! I'm Duke\n What can I do for you?");
         ArrayList<Task> myList = new ArrayList<Task>();
+        Scanner scanner = new Scanner(System.in);
 
-        loop: while (true) {
-            Scanner scn = new Scanner(System.in);
-            String userInput = scn.nextLine();
+        while (scanner.hasNextLine()) {
+            String userInput = scanner.nextLine();
             int itemNumber = 0;
             switch(userInput.split(" ")[0]) {
                 case "bye":
                     System.out.println("Bye. Hope to see you again soon!");
-                    break loop;
+                    break;
                 case "list":
                     System.out.println("Here are the tasks in your list: ");
                     for(int i = 0; i<myList.size(); i++) {
@@ -65,6 +65,7 @@ public class Duke {
                     System.out.println("added: " + userInput);
             }
         }
+        scanner.close();
     }
 
     private static void myPrinter(String myString) {

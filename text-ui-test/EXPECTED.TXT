@@ -5,3 +5,19 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
+____________________________________________________________
+ Hello! I'm Duke
+ What can I do for you?
+____________________________________________________________
+added: read book
+Here are the tasks in your list: 
+[ ] read book
+Got it. I've added this task:
+[T][ ] buy book
+Now you have 2 in the list.
+Got it. I've added this task:
+[D][ ] sell book  (by: Sunday)
+Now you have 3 in the list.
+Got it. I've added this task:
+[E][ ] project meeting  (at: Mon 2-4pm)
+Now you have 4 in the list.
