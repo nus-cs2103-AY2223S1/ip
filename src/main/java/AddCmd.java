@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class AddCmd extends Command {
 
     public AddCmd (String name){
@@ -6,7 +8,7 @@ public class AddCmd extends Command {
     private static int cnt = 0;
 
     @Override
-    public void execute(String name, Task[] tasks) throws DukeException {
+    public void execute(String name, ArrayList<Task> tasks) throws DukeException {
         Task newT;
         String str;
         String[] splitS;
@@ -47,7 +49,7 @@ public class AddCmd extends Command {
             throw new DukeException("I'm sorry, but I don't know what that means :-(");
         }
 
-        tasks[cnt] = newT;
+        tasks.add(newT);
         cnt ++;
 
         String plural = cnt == 1

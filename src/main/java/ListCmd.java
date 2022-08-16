@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class ListCmd extends Command {
 
     public ListCmd (String cmd) {
@@ -5,14 +7,14 @@ public class ListCmd extends Command {
     }
 
     @Override
-    public void execute (String str, Task[] tasks) throws DukeException {
+    public void execute (String str, ArrayList<Task> tasks) throws DukeException {
         System.out.println("Your List:");
-        for (int i = 0; i < tasks.length; i ++) {
-            if (tasks[i] == null) {
+        for (int i = 0; i < tasks.size(); i ++) {
+            if (tasks.get(i) == null) {
                 break;
             }
             int index = i + 1;
-            System.out.println(index + "." + tasks[i].toString());
+            System.out.println(index + "." + tasks.get(i).toString());
         }
     }
 }

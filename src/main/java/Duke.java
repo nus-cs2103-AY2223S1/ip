@@ -1,7 +1,8 @@
+import java.util.ArrayList;
 
 public class Duke {
 
-    private static Task[] tasks = new Task[100];
+    private static ArrayList<Task> tasks = new ArrayList<Task>();
 
     public static void main(String[] args) throws DukeException {
         String logo = " ____        _        \n"

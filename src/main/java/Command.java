@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 abstract class Command {
     private String cmd;
 
@@ -9,5 +11,5 @@ abstract class Command {
         return this.cmd;
     }
 
-    abstract void execute (String str, Task[] tasks) throws DukeException;
+    abstract void execute (String str, ArrayList<Task> tasks) throws DukeException;
 }

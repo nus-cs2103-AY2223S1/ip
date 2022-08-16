@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class MarkCmd extends Command {
 
     private int num;
@@ -7,10 +9,10 @@ public class MarkCmd extends Command {
     }
 
     @Override
-    public void execute(String str, Task[] tasks) throws DukeException {
-        tasks[this.num].markT();
+    public void execute(String str, ArrayList<Task> tasks) throws DukeException {
+        tasks.get(this.num).markT();
         String out = "Nice! I've marked this task as done:\n  " +
-                tasks[this.num].toString();
+                tasks.get(this.num).toString();
         System.out.println(out);
     }
 }

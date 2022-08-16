@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class UnmarkCmd extends Command {
     private int num;
     public UnmarkCmd (String cmd, int num) {
@@ -6,10 +8,10 @@ public class UnmarkCmd extends Command {
     }
 
     @Override
-    public void execute(String str, Task[] tasks) throws DukeException {
-        tasks[this.num].unmarkT();
+    public void execute(String str, ArrayList<Task> tasks) throws DukeException {
+        tasks.get(this.num).unmarkT();
         String out = "OK, I've marked this task as not done yet:\n  " +
-                tasks[this.num].toString();
+                tasks.get(this.num).toString();
         System.out.println(out);
     }
 }
