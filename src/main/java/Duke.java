@@ -28,7 +28,9 @@ public class Duke {
                 tasks[taskID - 1].unmarkAsNotDone();
                 System.out.println(tasks[taskID - 1]);
             } else {
-                String taskName, by, at;
+                String taskName;
+                String by;
+                String at;
                 if (input.startsWith("todo")) {
                     taskName = input.replace("todo", "").strip();
                     tasks[pointer++] = new ToDos(taskName);
