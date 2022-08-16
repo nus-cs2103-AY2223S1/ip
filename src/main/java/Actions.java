@@ -1,6 +1,7 @@
 import java.util.*;
 
 public class Actions {
+
     public static void taskNumberMessage(ArrayList<Task> ls) {
          if (ls.size() == 1) {
              System.out.println("Now you have " + ls.size() + " task in the list.");
@@ -32,19 +33,16 @@ public class Actions {
         ArrayList<Task> ls = new ArrayList();
         String input = "";
         System.out.println("Hello! I'm Duke, what's up today?");
+        Scanner sc = new Scanner(System.in);
+        input = sc.nextLine();
         while (!input.equals("bye")) {
-            Scanner sc = new Scanner(System.in);
-            input = sc.nextLine();
             try {
             String[] parts = input.split(" ", 2);
             String keyword = parts[0];
             processInput(input);
             switch (keyword) {
-                case "bye":
-                    System.out.println("See ya! Come again~");
-                    return;
                 case "list":
-                    System.out.println("Here are your tasks: ");
+                    System.out.println("Here are your tasks:");
                     for (int i = 0; i < ls.size(); i++) {
                         System.out.println(i + 1 + ". " + ls.get(i).toString());
                     }
@@ -97,6 +95,7 @@ public class Actions {
                     ls.add(curr);
                     System.out.println("added: " + input);
             }
+            input = sc.nextLine();
         } catch (EmptyDescriptionException e) {
                 System.out.println("Description cannot be empty, try again!");
                 continue;
@@ -104,7 +103,7 @@ public class Actions {
                 System.out.println("Invalid input, try again!");
                 continue;
             }
-
-        }
+        } //end of while loop, means input is bye
+        System.out.println("See ya! Come again~"); //end of bot
     }
 }

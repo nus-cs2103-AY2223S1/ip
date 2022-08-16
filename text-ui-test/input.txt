@@ -1,1 +1,5 @@
+todo wake up
+deadline sleep /by 9pm
+event do tutorial /at 10am
+list
 bye

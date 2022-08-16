@@ -1,2 +1,15 @@
 Hello! I'm Duke, what's up today?
+Gotcha, I've added this task:
+[T][ ] wake up
+Now you have 1 task in the list.
+Gotcha, I've added this task:
+[D][ ] sleep  (by:  9pm)
+Now you have 2 tasks in the list.
+Gotcha, I've added this task:
+[E][ ] do tutorial  (at: 10am)
+Now you have 3 tasks in the list.
+Here are your tasks:
+1. [T][ ] wake up
+2. [D][ ] sleep  (by:  9pm)
+3. [E][ ] do tutorial  (at: 10am)
 See ya! Come again~

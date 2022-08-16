@@ -6,6 +6,7 @@ public class Task {
         System.out.println("Gotcha, I've added this task:");
         System.out.println(this.toString());
     }
+
     public Task(String description) {
         this.description = description;
         this.isDone = false;
