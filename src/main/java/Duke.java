@@ -2,13 +2,50 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
+    protected static ArrayList<Task> tasks = new ArrayList<>();
+
+    public static void processTask(String input, String type) {
+        String[] arr = input.split(" ", 2);
+        // add exception handling here later
+        String desc = arr[1];
+
+        Task temp = null;
+        if (type.equals("todo")) {
+            temp = new Todo(desc);
+            tasks.add(temp);
+        }
+        if (type.equals("deadline")) {
+            try {
+                String[] details = desc.split(" /by ");
+                temp = new Deadline(details[0], details[1]);
+                tasks.add(temp);
+            }
+            catch(ArrayIndexOutOfBoundsException e) {
+                printOut("Oops! Your deadline should have a due date after /by.");
+            }
+        }
+        if (type.equals("event")) {
+            try {
+                String[] details = desc.split(" /at ");
+                temp = new Event(details[0], details[1]);
+                tasks.add(temp);
+            }
+            catch(ArrayIndexOutOfBoundsException e) {
+                printOut("Oops! Your event should have a date after /at.");
+            }
+        }
+        if (temp != null) {
+            printOut("Okay, I've added this task:\n" + temp.toString() +
+                    "\nYou now have " + tasks.size() + " tasks.");
+        }
+    }
+
     public static void printOut(String str) {
         String line = "____________________________________________________________\n";
         System.out.println(line + str + "\n" + line);
     }
 
     public static void main(String[] args) {
-        ArrayList<Task> tasks = new ArrayList<>();
         Scanner input = new Scanner(System.in);
 
         printOut("Hello! I'm Duke.\n" +
@@ -41,17 +78,20 @@ public class Duke {
                         break;
                     }
                 case "list":
-                    System.out.println("Here are your tasks:\n" +
-                        "____________________________________________________________");
+                    System.out.println("____________________________________________________________\n" +
+                            "Here are your tasks:");
                     for (int i = 0; i < tasks.size(); i++) {
                         System.out.println((i + 1) + ". " + tasks.get(i).toString());
                     }
                     System.out.println("____________________________________________________________\n");
                     break;
+                case "todo":
+                case "deadline":
+                case "event":
+                    processTask(next, nextWords[0]);
+                    break;
                 default:
-                    Task temp = new Task(next);
-                    tasks.add(temp);
-                    printOut("added: " + next);
+                    printOut("I don't know this command. Try another one!");
             }
 
             next = input.nextLine();
