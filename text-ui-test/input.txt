@@ -4,3 +4,10 @@ event project meeting /at Mon 2-4pm
 list
 mark 2
 unmark 2
+help
+mark 10
+unmark 10
+gibberish
+todo
+deadline return book
+event project meeting

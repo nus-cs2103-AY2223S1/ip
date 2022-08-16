@@ -15,24 +15,65 @@
     ____________________________________________________________
     ____________________________________________________________
      Got it. I've added this task:
-     [D][ ] return book (by: sunday)
+     [D][ ] return book (by: Sunday)
      Now you have 2 tasks in the list.
     ____________________________________________________________
     ____________________________________________________________
      Got it. I've added this task:
-     [E][ ] project meeting (at: mon 2-4pm)
+     [E][ ] project meeting (at: Mon 2-4pm)
      Now you have 3 tasks in the list.
     ____________________________________________________________
     ____________________________________________________________
      1.[T][ ] borrow book
-     2.[D][ ] return book (by: sunday)
-     3.[E][ ] project meeting (at: mon 2-4pm)
+     2.[D][ ] return book (by: Sunday)
+     3.[E][ ] project meeting (at: Mon 2-4pm)
     ____________________________________________________________
     ____________________________________________________________
      Nice! I've marked this task as done:
-     [D][X] return book (by: sunday)
+     [D][X] return book (by: Sunday)
     ____________________________________________________________
     ____________________________________________________________
      Ok, I've marked this task as not done yet:
-     [D][ ] return book (by: sunday)
+     [D][ ] return book (by: Sunday)
+    ____________________________________________________________
+    ____________________________________________________________
+     Here are the list of commands:
+     0. help
+     1. bye
+     2. list
+     3. mark <task index>
+     4. unmark <task index>
+     5. todo <task description>
+     6. event <event description> /at <time>
+     7. deadline <task description> /by <time>
+    ____________________________________________________________
+    ____________________________________________________________
+     Task index out of range
+    ____________________________________________________________
+    ____________________________________________________________
+     Task index out of range
+    ____________________________________________________________
+    ____________________________________________________________
+     Unknown command provided!
+     Here are the list of commands:
+     0. help
+     1. bye
+     2. list
+     3. mark <task index>
+     4. unmark <task index>
+     5. todo <task description>
+     6. event <event description> /at <time>
+     7. deadline <task description> /by <time>
+    ____________________________________________________________
+    ____________________________________________________________
+     Wrong number of arguments provided.
+     Usage: todo <task description>
+    ____________________________________________________________
+    ____________________________________________________________
+     Wrong number of arguments provided.
+     Usage: deadline <task description> /by <time>
+    ____________________________________________________________
+    ____________________________________________________________
+     Wrong number of arguments provided.
+     Usage: event <event description> /at <time>
     ____________________________________________________________

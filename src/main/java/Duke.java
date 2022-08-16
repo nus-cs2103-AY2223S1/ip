@@ -23,7 +23,7 @@ public class Duke {
         ui.printMessages(new String[]{"Hello! I'm Duke", "What can I do for you?"});
 
         boolean isExit = false;
-        while (!isExit) {
+        while (!isExit && this.scanner.hasNextLine()) {
             try {
                 String input = this.scanner.nextLine();
                 Command c = Parser.parse(input);
