@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import events.Task;
 import exceptions.TaskNotFoundException;
 
 public class TaskController {

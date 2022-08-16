@@ -1,3 +1,4 @@
+package events;
 public class Deadline extends Task {
     private final String deadline;
 

@@ -1,3 +1,4 @@
+package events;
 public class Event extends Task {
     private final String dateTime;
 

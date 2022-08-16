@@ -7,6 +7,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+import events.Deadline;
+import events.Event;
+import events.Task;
+import events.Todo;
+
 public class Duke {
     static private final String exitCommand = "bye";
     static private final String listCommand = "list";
