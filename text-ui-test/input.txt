@@ -1,16 +1,25 @@
 hello
+todo
 todo cry
 list
 mark 1
 mark a
 delete 0
+deadline CS2103T Week 2 /in Aug 18
+unmark
 deadline CS2103T Week 2 /by Aug 18
+event
+event this
+event this /at
+deadline /by 5
 todo cry harder
 event end of sem /at NEVER
 list
 mark 1 2
 mark 2
 delete 2
+delete 999
+mark -50
 list
 mark 1
 unmark 2

@@ -24,4 +24,9 @@ public abstract class Task {
     }
 
     public abstract String getType();
+
+    @Override
+    public String toString() {
+        return String.format("[%s][%s] %s", this.getType(), this.getStatus(), this.getDescription());
+    }
 }

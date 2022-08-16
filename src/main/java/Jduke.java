@@ -1,208 +1,152 @@
-import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Jduke {
-    public enum TaskType {
-        TODO, DEADLINE, EVENT
+    private static final String GREETING = "|  Welcome to JDuke -- Version 1.0\n" +
+            "|  What can I do for you?";
+    private static final String PROMPT = "jduke> ";
+    private static final String GOODBYE = "|  Goodbye";
+    private static final String TODO_FORMAT = "todo <description>";
+    private static final String EVENT_FORMAT = "event <description> /at <timing>";
+    private static final String DEADLINE_FORMAT = "deadline <description> /by <timing>";
+    private static final String MARK_FORMAT = "mark <integer>";
+    private static final String UNMARK_FORMAT = "unmark <integer>";
+    private static final String DELETE_FORMAT = "delete <integer>";
+    public enum Command {
+        LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE
     }
     private static ArrayList<Task> tasks = new ArrayList<>();
-    public static String getTaskDetails(int pos) {
-        return "[" +
-                tasks.get(pos).getType() +
-                "][" +
-                tasks.get(pos).getStatus() +
-                "] " +
-                tasks.get(pos).getDescription();
+    public static Command handleCommand(String input) throws JdukeException {
+        Command mainCmd;
+        try {
+            mainCmd = Command.valueOf(input.split(" ", 2)[0].toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new JdukeException("cannot understand command");
+        }
+        return mainCmd;
     }
-    public static void addTask(String input) throws JdukeException {
-        String[] inputArr = input.split(" ", 2);
-        TaskType type = TaskType.valueOf(inputArr[0].toUpperCase());
-        if (inputArr.length != 2) {
-            throw new JdukeException(
-                    "|  cannot find description\n" +
-                            "|    task type: " + type
-            );
-        }
-        String details = inputArr[1];
-        switch (type) {
-            case TODO:
-                tasks.add(new ToDo(details));
-                break;
-            case DEADLINE:
-            case EVENT:
-                String[] detailsArr = details.split("/");
-                if (detailsArr.length != 2) {
-                    throw new JdukeException(
-                            "|  cannot find timing\n" +
-                                    "|    task type: " + type +
-                                    "\n|  " + type.toString().toLowerCase() +
-                                    " <description> " +
-                                    (type.equals(TaskType.DEADLINE) ? "/by" : "/at") +
-                                    " <timing>"
-                    );
-                }
-                String description = details.split("/")[0];
-                String timing = details.split("/")[1].split(" ", 2)[1];
-                String preposition = details.split("/")[1].split(" ", 2)[0];
-                if (description.equals("")) {
-                    throw new JdukeException(
-                            "|  cannot find description\n" +
-                                    "|    task type: " + type
-                    );
-                };
-                if (type.equals(TaskType.DEADLINE)) {
-                    if (!preposition.equalsIgnoreCase("by")) {
-                        throw new JdukeException(
-                                "|  invalid preposition:\n" +
-                                        "|    provided: " + preposition +
-                                        "\n|  " + type.toString().toLowerCase() + " <description> /by <timing>"
-                        );
-                    }
-                    tasks.add(new Deadline(description, timing));
-                } else {
-                    if (!preposition.equalsIgnoreCase("at")) {
-                        throw new JdukeException(
-                                "|  invalid preposition:\n" +
-                                        "|    provided: " + preposition +
-                                        "\n|  " + type.toString().toLowerCase() + " <description> /at <timing>"
-                        );
-                    }
-                    tasks.add(new Event(description, timing));
-                }
-                break;
-        }
-        System.out.println(
-                "|  added task:\n" +
-                        "|    " +
-                        getTaskDetails(tasks.size() - 1) +
-                        "\n|  " +
-                        tasks.size() +
-                        (tasks.size() == 1 ? " task" : " tasks") +
-                        " in list"
+    public static void printLastTask() {
+        System.out.printf(
+                "|  added task:%n|    %s%n|  %d%s in list%n",
+                tasks.get(tasks.size() - 1),
+                tasks.size(),
+                (tasks.size() == 1 ? " task" : " tasks")
         );
     }
-    public static void unknownCommand(String input) throws JdukeException {
-        throw new JdukeException(
-                "|  cannot understand command\n" +
-                         "|    command: " + input
-        );
+    public static void addTodo(String input) throws JdukeException {
+        if (!input.toLowerCase().matches("todo [^ ](.*)")) {
+            throw new JdukeException("invalid TODO format", TODO_FORMAT);
+        }
+        tasks.add(new ToDo(input.split(" ", 2)[1]));
+        printLastTask();
+    }
+
+    public static void addDeadline(String input) throws JdukeException {
+        if (!input.toLowerCase().matches("deadline [^ ](.*) /by (.*)")) {
+            throw new JdukeException("invalid DEADLINE format", DEADLINE_FORMAT);
+        }
+        String details = input.split(" ", 2)[1];
+        String[] deadlineParams = details.split(" /by ", 2);
+        tasks.add(new Deadline(deadlineParams[0], deadlineParams[1]));
+        printLastTask();
+    }
+    public static void addEvent(String input) throws JdukeException {
+        if (!input.toLowerCase().matches("event [^ ](.*) /at (.*)")) {
+            throw new JdukeException("invalid EVENT format", EVENT_FORMAT);
+        }
+        String details = input.split(" ", 2)[1];
+        String[] eventParams = details.split(" /at ", 2);
+        tasks.add(new Event(eventParams[0], eventParams[1]));
+        printLastTask();
     }
     public static void listTasks() {
         if (tasks.size() == 0) {
             System.out.println("|  no tasks found");
         }
         for (int pos = 0; pos < tasks.size(); pos++) {
-            System.out.println(pos + 1 + " ==> " + getTaskDetails(pos));
+            System.out.printf("%d ==> %s%n", pos + 1, tasks.get(pos));
         }
     }
     public static int handleTaskPos(String input) throws JdukeException {
         String[] inputArr = input.split(" ");
-        int pos;
-        if (inputArr.length == 1) {
-            throw new JdukeException(
-                    "|  cannot find number\n" +
-                            "|    command: " + input +
-                            "\n|  " + inputArr[0] + " <integer>"
-            );
-        } else if (inputArr.length > 2) {
-            throw new JdukeException(
-                    "|  invalid task number\n" +
-                            "|    provided: " + inputArr[1] +
-                            "\n|  " + inputArr[0] + " <integer>"
-            );
+        if (!input.matches("(.*) ([0-9]+)") || inputArr.length > 2) {
+            switch (inputArr[0].toLowerCase()) {
+                case "mark":
+                    throw new JdukeException("invalid MARK format", MARK_FORMAT);
+                case "unmark":
+                    throw new JdukeException("invalid UNMARK format", UNMARK_FORMAT);
+                case "delete":
+                    throw new JdukeException("invalid DELETE format", DELETE_FORMAT);
+            }
         }
-        try {
-            pos = Integer.parseInt(input.split(" ", 2)[1]) - 1;
-        } catch (NumberFormatException e) {
+        int pos = Integer.parseInt(input.split(" ", 2)[1]) - 1;
+        if (pos < 0 || tasks.size() <= pos) {
             throw new JdukeException(
-                    "|  incompatible number type: integer required\n" +
-                            "|    provided: " + inputArr[1] +
-                            "\n|  " + inputArr[0] + " <integer>"
-            );
-        }
-        if (pos < 0) {
-            throw new JdukeException(
-                    "|  invalid task number: positive integer required\n" +
-                            "|    provided: " + inputArr[1] +
-                            "\n|  " + inputArr[0] + " <integer>"
-            );
-        }
-        if (tasks.size() <= pos) {
-            throw new JdukeException(
-                    "|  missing task\n" +
-                            "|    provided: " + inputArr[1] +
-                            "\n|  " + inputArr[0] + " <integer>"
+                    "invalid task number",
+                    String.format("max index is %d", tasks.size())
             );
         }
         return pos;
     }
+    public static void unmarkTask(String input) throws JdukeException {
+        int pos = handleTaskPos(input);
+        tasks.get(pos).markAsUndone();
+        System.out.printf("|  unmarked task:%n|    %s%n", tasks.get(pos));
+    }
     public static void markTask(String input) throws JdukeException {
         int pos = handleTaskPos(input);
-        String type = input.split(" ")[0];
-        switch (type) {
-            case "mark":
-                tasks.get(pos).markAsDone();
-                break;
-            case "unmark":
-                tasks.get(pos).markAsUndone();
-                break;
-        }
-        System.out.println(
-                "|  " + type + "ed task:\n" +
-                        "|    " +
-                        getTaskDetails(pos)
-        );
+        tasks.get(pos).markAsDone();
+        System.out.printf("|  marked task:%n|    %s%n", tasks.get(pos));
     }
     public static void deleteTask(String input) throws JdukeException {
         int pos = handleTaskPos(input);
-        System.out.println(
-                "|  deleted task:\n" +
-                        "|    " +
-                        getTaskDetails(pos) +
-                        "\n|  " +
-                        (tasks.size() - 1) +
-                        (tasks.size() == 2 ? " task" : " tasks") +
-                        " in list"
-        );
+        System.out.printf(
+                "|  deleted task:%n|    %s%n|  %d%s in list%n",
+                tasks.get(pos),
+                (tasks.size() - 1),
+                (tasks.size() == 2 ? " task" : " tasks")
+                );
         tasks.remove(pos);
     }
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print(
-                "|  Welcome to JDuke -- Version 1.0\n" +
-                    "|  What can I do for you?\n\n" +
-                        "jduke> "
-        );
+        System.out.println(GREETING);
+        System.out.printf("%n%s", PROMPT);
         String input = scanner.nextLine().trim();
         while (!input.equals("bye")) {
-            String mainCmd = input.split(" ", 2)[0].toLowerCase();
             try {
+                Command mainCmd = handleCommand(input);
                 switch (mainCmd) {
-                    case "list":
+                    case LIST:
                         listTasks();
                         break;
-                    case "mark":
-                    case "unmark":
+                    case MARK:
                         markTask(input);
                         break;
-                    case "todo":
-                    case "deadline":
-                    case "event":
-                        addTask(input);
+                    case UNMARK:
+                        unmarkTask(input);
                         break;
-                    case "delete":
+                    case TODO:
+                        addTodo(input);
+                        break;
+                    case DEADLINE:
+                        addDeadline(input);
+                        break;
+                    case EVENT:
+                        addEvent(input);
+                        break;
+                    case DELETE:
                         deleteTask(input);
                         break;
-                    default:
-                        unknownCommand(input);
                 }
             } catch (JdukeException e) {
-                System.out.println("|  Error:\n" + e.getMessage());
+                System.out.printf("|  Error:%n%s%n", e.getMessage());
             } finally {
-                System.out.print("\njduke> ");
+                System.out.printf("%n%s", PROMPT);
                 input = scanner.nextLine().trim();
             }
         }
-        System.out.println("|  Goodbye");
+        System.out.printf("%s%n", GOODBYE);
         scanner.close();
     }
 }

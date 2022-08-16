@@ -11,6 +11,7 @@ public class Deadline extends Task {
 
     @Override
     public String getDescription() {
-        return super.getDescription() + "(by: " + this.due + ")";
+        return super.getDescription() + " (by: " + this.due + ")";
     }
+
 }

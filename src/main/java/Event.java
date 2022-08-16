@@ -10,6 +10,7 @@ public class Event extends Task {
     }
     @Override
     public String getDescription() {
-        return super.getDescription() + "(at: " + this.timing + ")";
+        return super.getDescription() + " (at: " + this.timing + ")";
     }
+
 }

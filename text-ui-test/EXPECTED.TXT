@@ -3,7 +3,10 @@
 
 jduke> |  Error:
 |  cannot understand command
-|    command: hello
+
+jduke> |  Error:
+|  invalid TODO format
+|    todo <description>
 
 jduke> |  added task:
 |    [T][ ] cry
@@ -15,18 +18,40 @@ jduke> |  marked task:
 |    [T][X] cry
 
 jduke> |  Error:
-|  incompatible number type: integer required
-|    provided: a
-|  mark <integer>
+|  invalid MARK format
+|    mark <integer>
 
 jduke> |  Error:
-|  invalid task number: positive integer required
-|    provided: 0
-|  delete <integer>
+|  invalid task number
+|    max index is 1
+
+jduke> |  Error:
+|  invalid DEADLINE format
+|    deadline <description> /by <timing>
+
+jduke> |  Error:
+|  invalid UNMARK format
+|    unmark <integer>
 
 jduke> |  added task:
 |    [D][ ] CS2103T Week 2 (by: Aug 18)
 |  2 tasks in list
+
+jduke> |  Error:
+|  invalid EVENT format
+|    event <description> /at <timing>
+
+jduke> |  Error:
+|  invalid EVENT format
+|    event <description> /at <timing>
+
+jduke> |  Error:
+|  invalid EVENT format
+|    event <description> /at <timing>
+
+jduke> |  Error:
+|  invalid DEADLINE format
+|    deadline <description> /by <timing>
 
 jduke> |  added task:
 |    [T][ ] cry harder
@@ -42,9 +67,8 @@ jduke> 1 ==> [T][X] cry
 4 ==> [E][ ] end of sem (at: NEVER)
 
 jduke> |  Error:
-|  invalid task number
-|    provided: 1
-|  mark <integer>
+|  invalid MARK format
+|    mark <integer>
 
 jduke> |  marked task:
 |    [D][X] CS2103T Week 2 (by: Aug 18)
@@ -52,6 +76,14 @@ jduke> |  marked task:
 jduke> |  deleted task:
 |    [D][X] CS2103T Week 2 (by: Aug 18)
 |  3 tasks in list
+
+jduke> |  Error:
+|  invalid task number
+|    max index is 3
+
+jduke> |  Error:
+|  invalid MARK format
+|    mark <integer>
 
 jduke> 1 ==> [T][X] cry
 2 ==> [T][ ] cry harder
