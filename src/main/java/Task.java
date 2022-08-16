@@ -29,4 +29,9 @@ public class Task {
     public void toggleIsDone(boolean bool) {
         isDone = bool;
     }
+
+    @Override
+    public String toString() {
+        return "[" + this.getStatusIcon() + "] " + this.description;
+    }
 }
