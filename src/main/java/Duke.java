@@ -28,11 +28,54 @@ public class Duke {
         printLine();
     }
 
-    public static void addTask(String t) {
-        Task task = new Task(t);
+    public static ToDo addTodo(String input) {
+        ToDo todo = new ToDo(input);
+        return todo;
+    }
+
+    public static Deadline addDeadline(String input) {
+        String[] inputArray = input.split(" /by ", 2);
+        String description = inputArray[0];
+        String by = inputArray[1];
+        Deadline deadline = new Deadline(description, by);
+        return deadline;
+    }
+
+    public static Event addEvent(String input) {
+        String[] inputArray = input.split(" /at ", 2);
+        String description = inputArray[0];
+        String at = inputArray[1];
+        Event event = new Event(description, at);
+        return event;
+    }
+
+    public static void addTask(String input, int type) {
+        Task task = null;
+        switch (type) {
+            // To-do
+            case 0:
+                task = addTodo(input);
+                break;
+            // Deadline
+            case 1:
+                task = addDeadline(input);
+                break;
+            // Event
+            case 2:
+                task = addEvent(input);
+                break;
+            default:
+                break;
+        }
         tasks.add(task);
         printLine();
-        System.out.println("\t" + " added: " + t);
+        System.out.println("\t" + " Got it. I've added this task:");
+        System.out.println("\t\t" + " " + task);
+        if (tasks.size() == 1) {
+            System.out.println(String.format("\t Now you have %d task in the list.", tasks.size()));
+        } else {
+            System.out.println(String.format("\t Now you have %d tasks in the list.", tasks.size()));
+        }
         printLine();
     }
 
@@ -85,32 +128,40 @@ public class Duke {
         boolean isRunning = true;
         while (isRunning) {
             String input = sc.nextLine();
-            String[] inputArray = input.split(" ");
+            String[] inputArray = input.split(" ", 2);
             String firstWord = inputArray[0];
+            String secondWord = "";
+            if (inputArray.length == 2) {
+                secondWord = inputArray[1];
+            }
             switch (firstWord) {
                 case "bye":
                     if (inputArray.length == 1) {
                         exit();
                         isRunning = false;
-                        break;
-                    } else {
-                        continue;
                     }
+                    break;
                 case "list":
                     if (inputArray.length == 1) {
                         listTasks();
-                        break;
-                    } else {
-                        continue;
                     }
+                    break;
                 case "mark":
                     markAsDone(Integer.parseInt(inputArray[1]));
                     break;
                 case "unmark":
                     markAsNotDone(Integer.parseInt((inputArray[1])));
                     break;
+                case "todo":
+                    addTask(secondWord, 0);
+                    break;
+                case "deadline":
+                    addTask(secondWord, 1);
+                    break;
+                case "event":
+                    addTask(secondWord, 2);
+                    break;
                 default:
-                    addTask(input);
                     break;
             }
         }
