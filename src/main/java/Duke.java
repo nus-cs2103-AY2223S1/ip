@@ -1,15 +1,34 @@
 import java.util.Scanner;
 
 public class Duke {
+    private static String[] tasks = new String[100];
+    private static int numTask = 0;
+    private static Scanner sc = new Scanner((System.in));
     public static void main(String[] args) {
         System.out.println("Hello! I'm Fungusta\n" + "Peter's personal chatbot\n");
-        Scanner sc = new Scanner((System.in));
-        String userInput = sc.next();
+        String userInput = sc.nextLine();
         while (!userInput.equals("bye")) {
-            System.out.println(userInput + "\n");
-            userInput = sc.next();
+            InputReader(userInput);
+            userInput = sc.nextLine();
         }
         System.out.println("Goodbye!");
     }
 
+    public static void InputReader(String userInput) {
+        String output = "";
+        if (userInput.equals("list")) {
+            for(int i = 0; i < numTask; i++) {
+                int num = i + 1;
+                String header = num + ". ";
+                System.out.println(header + tasks[i]);
+                //output = output + num + ". " + tasks[i] + "\n";
+            }
+            System.out.println("");
+        } else {
+            tasks[numTask] = userInput;
+            //output = "added: " + userInput + "\n";
+            numTask++;
+            System.out.println("added: " + userInput + "\n");
+        }
+    }
 }
