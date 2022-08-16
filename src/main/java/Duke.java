@@ -54,13 +54,45 @@ public class Duke {
         printLine(LINE_STR, 1);
     }
 
+    private static void addTaskToList(Task task) {
+        taskList[currTaskListIdx] = task;
+        currTaskListIdx++;
+        respond(Arrays.asList("Got it. I've added this task:", String.format("\t%s", task),
+            String.format("Now you have %d tasks in the list", currTaskListIdx)));
+    }
+
     private static Command parseCommand(String commandToken) {
         try {
             return Command.valueOf(commandToken.toUpperCase());
         } catch (IllegalArgumentException error) {
-            // fall back to `add` command
-            return Command.ADD;
+            return Command.UNKNOWN;
         }
+    }
+
+    private static String gatherStringTokens(List<String> strTokenList, int start, int end) {
+        StringBuilder strBuilder = new StringBuilder();
+        for (int idx = start; idx < end; idx++) {
+            strBuilder.append(strTokenList.get(idx));
+            if (idx < end - 1) {
+                strBuilder.append(' ');
+            }
+        }
+
+        return strBuilder.toString();
+    }
+
+    private static boolean isValidAddTaskCommand(List<String> queryTokens, String dataMarker) {
+        if (dataMarker.equals("")) {
+            // No data marker
+            return queryTokens.size() > 1;
+        }
+        // Validate add task with data marker (deadline, event)
+        // 1. Contains the data marker
+        // 2. There is a data specified after the data marker
+        // 3. Data marker is not right after command as it implies no task description
+        int dataMarkerIdx = queryTokens.indexOf(dataMarker);
+        return queryTokens.size() > 1 && dataMarkerIdx != -1
+            && dataMarkerIdx != queryTokens.size() - 1 && dataMarkerIdx != 1;
     }
 
     private static void handleListCommand() {
@@ -75,17 +107,16 @@ public class Duke {
         respond(responses);
     }
 
-    private static void handleMarkCommand(String[] queryTokens, boolean toMark) {
-        // Validate query tokens
-        boolean validMarkQuery = queryTokens.length == 2;
-        if (!validMarkQuery) {
+    private static void handleMarkCommand(List<String> queryTokens, boolean toMark) {
+        boolean isValidMarkQuery = queryTokens.size() == 2;
+        if (!isValidMarkQuery) {
             respond(String.format(
                 "[ERROR] Invalid number of parameters passed to `mark` command. Expected: 1 Got: %d",
-                queryTokens.length - 1));
+                queryTokens.size() - 1));
             return;
         }
         // Convert mark idx query to int
-        String markIdx = queryTokens[1];
+        String markIdx = queryTokens.get(1);
         try {
             int taskListIdx = Integer.parseInt(markIdx);
             // Validate taskListIdx
@@ -108,6 +139,43 @@ public class Duke {
         }
     }
 
+    private static void handleToDoCommand(List<String> queryTokens) {
+        if (!isValidAddTaskCommand(queryTokens, "")) {
+            respond("The description of a `todo` cannot be empty!");
+            return;
+        }
+        Task todoTask = new TaskTodo(gatherStringTokens(queryTokens, 1, queryTokens.size()));
+        addTaskToList(todoTask);
+    }
+
+    private static void handleDeadlineCommand(List<String> queryTokens) {
+        if (!isValidAddTaskCommand(queryTokens, TaskDeadline.deadlineMarker)) {
+            respond("Invalid `deadline` command!");
+            return;
+        }
+        int deadlineMarkerIdx = queryTokens.indexOf(TaskDeadline.deadlineMarker);
+        String deadlineDesc = gatherStringTokens(queryTokens, 1, deadlineMarkerIdx);
+        String deadline = gatherStringTokens(queryTokens, deadlineMarkerIdx + 1,
+            queryTokens.size());
+
+        Task deadlineTask = new TaskDeadline(deadlineDesc, deadline);
+        addTaskToList(deadlineTask);
+    }
+
+    private static void handleEventCommand(List<String> queryTokens) {
+        if (!isValidAddTaskCommand(queryTokens, TaskEvent.timingMarker)) {
+            respond("Invalid `event` command!");
+            return;
+        }
+        int timingMarkerIdx = queryTokens.indexOf(TaskEvent.timingMarker);
+        String eventDesc = gatherStringTokens(queryTokens, 1, timingMarkerIdx);
+        String timing = gatherStringTokens(queryTokens, timingMarkerIdx + 1,
+            queryTokens.size());
+
+        Task eventTask = new TaskEvent(eventDesc, timing);
+        addTaskToList(eventTask);
+    }
+
     public static void main(String[] args) {
         // Greetings
         respond(Arrays.asList(String.format("Hi I'm %s", NAME), "What can I do for you?"));
@@ -117,9 +185,9 @@ public class Duke {
         Scanner input = new Scanner(System.in);
         while (!terminate && input.hasNextLine()) {
             String query = input.nextLine();
-            String[] queryTokens = query.split(" ");
+            List<String> queryTokens = Arrays.asList(query.split(" "));
 
-            String commandToken = queryTokens[0];
+            String commandToken = queryTokens.get(0);
             Command command = parseCommand(commandToken);
             switch (command) {
                 case BYE:
@@ -136,11 +204,17 @@ public class Duke {
                 case UNMARK:
                     handleMarkCommand(queryTokens, false);
                     break;
-                case ADD:
-                    // add to taskList
-                    taskList[currTaskListIdx] = new Task(query);
-                    currTaskListIdx++;
-                    respond(String.format("added: %s", query));
+                case TODO:
+                    handleToDoCommand(queryTokens);
+                    break;
+                case DEADLINE:
+                    handleDeadlineCommand(queryTokens);
+                    break;
+                case EVENT:
+                    handleEventCommand(queryTokens);
+                    break;
+                case UNKNOWN:
+                    respond("Unknown command");
             }
         }
     }
