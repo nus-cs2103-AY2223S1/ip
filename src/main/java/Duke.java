@@ -8,9 +8,9 @@ public class Duke {
     }
 
     private static void wrapAroundLines(String message) {
-       makeLine();
-       System.out.println(message);
-       makeLine();
+        makeLine();
+        System.out.println(message);
+        makeLine();
     }
 
     private static void echo(String command) {
@@ -35,8 +35,14 @@ public class Duke {
         TaskList taskList = new TaskList();
         while (!command.equals("bye")) {
             String message;
-            if (command.equals("list")) {
+            if (command.startsWith("list")) {
                 message = taskList.toString();
+            } else if (command.startsWith("mark")) {
+                String[] arguments = command.split(" ");
+                message = taskList.markTask(Integer.parseInt(arguments[1]));
+            } else if (command.startsWith("unmark")) {
+                String[] arguments = command.split(" ");
+                message = taskList.unmarkTask(Integer.parseInt(arguments[1]));
             } else {
                 message = taskList.addTask(command);
             }

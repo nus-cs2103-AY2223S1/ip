@@ -8,9 +8,21 @@ public class TaskList {
     }
 
     public String addTask(String taskName) {
-       taskList[this.size] = new Task(taskName);
-       this.size++;
-       return "added: " + taskName;
+        taskList[this.size] = new Task(taskName);
+        this.size++;
+        return "added: " + taskName;
+    }
+
+    public String markTask(int taskNumber) {
+        Task task = taskList[taskNumber - 1];
+        task.mark(true);
+        return "Nice! I've marked this task as done:\n\t" + task;
+    }
+
+    public String unmarkTask(int taskNumber) {
+        Task task = taskList[taskNumber - 1];
+        task.mark(false);
+        return "Ok, I've marked this task as not done yet:\n\t" + task;
     }
 
     public String toString() {
