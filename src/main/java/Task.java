@@ -1,4 +1,4 @@
-public class Task {
+public abstract class Task {
   private String title;
   private boolean done;
 
@@ -21,11 +21,5 @@ public class Task {
 
   public void setNotDone() {
     this.done = false;
-  }
-
-  @Override
-  public String toString() {
-    String checkbox = this.getDone() ? "[X]" : "[ ]";
-    return checkbox + " " + this.title;
   }
 }
