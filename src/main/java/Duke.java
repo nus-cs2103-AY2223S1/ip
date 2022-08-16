@@ -6,16 +6,16 @@ public class Duke {
     private Scanner scanner;
     private List<Task> list;
 
-    private final String logo =     "        / \\     |_   _| | |  / _|                   | |\n"
-                            + "       /   \\      | |   | | | |_   _ __    ___    __| |\n"
-                            + "      / / \\ \\     | |   | | |  _| | '__|  / _ \\  / _` |\n"
-                            + "     / _____ \\   _| |_  | | | |   | |    |  __/ | (_| |\n"
-                            + "    /_/     \\_\\ |_____| |_| |_|   |_|     \\___|  \\__,_|\n";
+    private final String logo =   "        / \\     |_   _| | |  / _|                   | |\n"
+                                + "       /   \\      | |   | | | |_   _ __    ___    __| |\n"
+                                + "      / / \\ \\     | |   | | |  _| | '__|  / _ \\  / _` |\n"
+                                + "     / _____ \\   _| |_  | | | |   | |    |  __/ | (_| |\n"
+                                + "    /_/     \\_\\ |_____| |_| |_|   |_|     \\___|  \\__,_|\n";
 
-    private final String greeting = "____________________________________________________________\n" +
-                              "                      Hello! I am \n" + logo +
-                              "      Your personal assistant. What can I do for you?\n" +
-                              "____________________________________________________________";
+    private final String greeting =   "____________________________________________________________\n" +
+                                      "                      Hello! I am \n" + logo +
+                                      "      Your personal assistant. What can I do for you?\n" +
+                                      "____________________________________________________________";
 
     private final String goodbye = "Bye. Hope to see you again soon!";
 
@@ -100,6 +100,26 @@ public class Duke {
     }
 
     /**
+     * Deletes a task from the list
+     */
+    public void deleteTask(String input) throws DukeException {
+        try {
+            int i = Integer.parseInt(input.split(" ", 2)[0]);
+            Task task = list.get(i);
+            list.remove(i);
+            int numOfTasks = list.size();
+
+            System.out.println("____________________________________________________________\n" +
+                    "Noted. I've removed this task: \n" +
+                    task + "\n" +
+                    "Now you have " + numOfTasks + " tasks in the list. \n" +
+                    "____________________________________________________________\n");
+        }  catch (IndexOutOfBoundsException e) {
+            throw new DukeException("☹ OOPS!!! Please enter a valid index number!");
+        }
+    }
+
+    /**
      * Handles a to do task
      * @param input String input for to do task
      * @throws DukeException Exception if to do task has no description
@@ -164,6 +184,9 @@ public class Duke {
                     break;
                 case ("list"):
                     printList();
+                    break;
+                case ("delete"):
+                    deleteTask(inputArr[1]);
                     break;
                 case ("mark"):
                     // First word is "mark", second word would be an index for task to be marked
