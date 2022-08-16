@@ -6,8 +6,14 @@ public class Duke {
 
     public static void processTask(String input, String type) {
         String[] arr = input.split(" ", 2);
-        // add exception handling here later
-        String desc = arr[1];
+        String desc = "";
+        try {
+            desc = arr[1];
+        }
+        catch(ArrayIndexOutOfBoundsException e) {
+            printOut("Please enter a description for your task!");
+            return;
+        }
 
         Task temp = null;
         if (type.equals("todo")) {
@@ -22,6 +28,7 @@ public class Duke {
             }
             catch(ArrayIndexOutOfBoundsException e) {
                 printOut("Oops! Your deadline should have a due date after /by.");
+                return;
             }
         }
         if (type.equals("event")) {
@@ -32,12 +39,11 @@ public class Duke {
             }
             catch(ArrayIndexOutOfBoundsException e) {
                 printOut("Oops! Your event should have a date after /at.");
+                return;
             }
         }
-        if (temp != null) {
-            printOut("Okay, I've added this task:\n" + temp.toString() +
-                    "\nYou now have " + tasks.size() + " tasks.");
-        }
+        printOut("Okay, I've added this task:\n" + temp.toString() +
+                "\nYou now have " + tasks.size() + " tasks.");
     }
 
     public static void printOut(String str) {

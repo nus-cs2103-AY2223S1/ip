@@ -4,26 +4,23 @@ What can I do for you?
 ____________________________________________________________
 
 ____________________________________________________________
-Okay, I've added this task:
-[T][ ] borrow book
-You now have 1 tasks.
+Please enter a description for your task!
 ____________________________________________________________
 
 ____________________________________________________________
-Here are your tasks:
-1. [T][ ] borrow book
+Please enter a description for your task!
 ____________________________________________________________
 
 ____________________________________________________________
-Okay, I've added this task:
-[D][ ] return book (by: Sunday)
-You now have 2 tasks.
+Please enter a description for your task!
 ____________________________________________________________
 
 ____________________________________________________________
-Okay, I've added this task:
-[E][ ] project meeting (at: Mon 2-4pm)
-You now have 3 tasks.
+Oops! Your deadline should have a due date after /by.
+____________________________________________________________
+
+____________________________________________________________
+Oops! Your event should have a date after /at.
 ____________________________________________________________
 
 ____________________________________________________________
