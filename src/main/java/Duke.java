@@ -23,10 +23,10 @@ public class Duke {
      * Prints a greeting to the console.
      */
     private void greet() {
-        Helpers.print_line();
-        Helpers.print("Hello! I'm Jenny");
-        Helpers.print("What can I do for you?");
-        Helpers.print_line();
+        DukePrinter.print_line();
+        DukePrinter.print("Hello! I'm Jenny");
+        DukePrinter.print("What can I do for you?");
+        DukePrinter.print_line();
     }
 
 //    /**
@@ -36,9 +36,9 @@ public class Duke {
 //    private void echo(Scanner sc) {
 //        String text = sc.nextLine();
 //        while(!text.equals("bye")) {
-//            Helpers.print_line();
-//            Helpers.print(text);
-//            Helpers.print_line();
+//            DukePrinter.print_line();
+//            DukePrinter.print(text);
+//            DukePrinter.print_line();
 //            text = sc.nextLine();
 //        }
 //    }
@@ -52,22 +52,22 @@ public class Duke {
         String text = sc.nextLine();
         while(!text.equals("bye")) {
             if (text.equals("list")) {
-                Helpers.print_line();
+                DukePrinter.print_line();
                 int i = 1;
                 for (String task : tasks) {
-                    Helpers.print(i++ + ". " + task);
+                    DukePrinter.print(i++ + ". " + task);
                 }
-                Helpers.print_line();
+                DukePrinter.print_line();
             } else {
                 try {
                     tasks.add(text);
-                    Helpers.print_line();
-                    Helpers.print("added: " + text);
-                    Helpers.print_line();
+                    DukePrinter.print_line();
+                    DukePrinter.print("added: " + text);
+                    DukePrinter.print_line();
                 } catch (IndexOutOfBoundsException e) {
-                    Helpers.print_line();
-                    Helpers.print("Error adding " + text);
-                    Helpers.print_line();
+                    DukePrinter.print_line();
+                    DukePrinter.print("Error adding " + text);
+                    DukePrinter.print_line();
                 }
             }
             text = sc.nextLine();
@@ -78,8 +78,8 @@ public class Duke {
      * Prints an exit message to the console.
      */
     private void exit() {
-        Helpers.print_line();
-        Helpers.print("Bye. Hope to see you again soon!");
-        Helpers.print_line();
+        DukePrinter.print_line();
+        DukePrinter.print("Bye. Hope to see you again soon!");
+        DukePrinter.print_line();
     }
 }

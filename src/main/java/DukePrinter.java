@@ -1,12 +1,12 @@
 /**
- * Frequently used Utilities of Jenny chatbot.
+ * DukePrinter to print stuff to the console.
  * CS2103 Week 2
  * AY21/22 Semester 1
  *
  * @author Deon
  */
 
-public class Helpers {
+public class DukePrinter {
     /**
      * Prints a horizontal line to the console.
      */
