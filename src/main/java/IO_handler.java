@@ -1,3 +1,5 @@
+import java.io.InputStream;
+import java.io.PrintStream;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -10,7 +12,17 @@ import java.util.Scanner;
  */
 public class IO_handler {
 
-    private static Scanner sc=new Scanner(System.in);
+    private Scanner sc;
+    private PrintStream out;
+
+    public IO_handler(){
+        this.sc=new Scanner(System.in);
+        this.out=System.out;
+    }
+
+    public IO_handler(InputStream stream){
+        this.sc=new Scanner(stream);
+    }
 
     /**
      * Currently this logo is hard-coded, but I'm thinking of reading it from a config file in later versions
@@ -33,7 +45,7 @@ public class IO_handler {
                 "=====================================================\n\n";
     }
 
-    public static String get_greeting(){
+    public String get_greeting(){
         String result=get_logo();
 
         result=result+"Hello, this is Olivia, your personal assistant\n";
@@ -48,24 +60,24 @@ public class IO_handler {
      * function name comes from C++ std::cout
      * @param content the thing to print
      */
-    public static void cout(String content){
-        System.out.print(content);
+    public void cout(String content){
+        this.out.print(content);
     }
 
     /**
      *
      */
-    public static String get_command(){
+    public String get_command(){
         cout("> ");
         String input=sc.nextLine();
         return input;
     }
 
-    public static void print_status_msg(int status_code){
+    public void print_status_msg(int status_code){
         if (status_code==400){
-            cout(generate_section("Sorry, I don't seem to understand you.\n"));
+            cout(generate_section("Sorry, I don't seem to understand you.\nMaybe there is a syntax error or the command is unsupported?\n"));
         }
-        else if (status_code==200){
+        else if (status_code==200 || status_code==208){
             return;
         }
         else if (status_code==501){

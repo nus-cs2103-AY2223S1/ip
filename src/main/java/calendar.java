@@ -12,6 +12,24 @@ public class calendar {
         return 0;
     }
 
+    public calendar_entry get_entry(int index){
+        return cache.get(index-1);
+    }
+
+    public int mark_as_done(int index){
+        if (index>this.cache.size()){
+            return 417;
+        }
+        return this.get_entry(index).mark_as_completed();
+    }
+
+    public int mark_as_undone(int index){
+        if (index>this.cache.size()){
+            return 417;
+        }
+        return this.get_entry(index).mark_as_incomplete();
+    }
+
     @Override
     public String toString(){
         String ans="";
