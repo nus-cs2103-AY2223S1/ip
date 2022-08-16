@@ -15,12 +15,16 @@ public class Duke {
         Scanner scanner = new Scanner(System.in);
         String input = "";
         while (scanner.hasNextLine()) {
-            input = scanner.next();
+            input = scanner.nextLine();
             if (input.equals("bye")) {
                 System.out.println("Bye. Hope to see you again soon!");
                 break;
             } else if (input.equals("list")) {
                 tasks.list();
+            } else if (input.startsWith("mark")) {
+                tasks.mark(Integer.parseInt(input.substring(5)), true);
+            } else if (input.startsWith("unmark")) {
+                tasks.mark(Integer.parseInt(input.substring(7)), false);
             } else {
                 tasks.add(input);
                 System.out.println("added: " + input);
