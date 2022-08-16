@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -5,8 +6,7 @@ public class Duke {
     public static void main(String[] args) {
         String input = "";
         Scanner scan = new Scanner(System.in);
-        Task[] list = new Task[100];
-        int count = 0;
+        ArrayList<Task> list = new ArrayList<>();
         String[] validinputs = {"mark", "unmark", "todo", "deadline", "event"};
 
         System.out.println("Hello! I'm Duke" + "\n" + "What can I do for you?");
@@ -17,50 +17,58 @@ public class Duke {
                 String[] split = input.split(" ", 2);
                 if (input.equals("list")) { // Prints out items in list
                     System.out.println("Here are the tasks in your list:");
-                    for (int i = 0; i < count; i++) {
-                        System.out.println(i+1 + "." + list[i].toString());
+                    for (int i = 0; i < list.size(); i++) {
+                        System.out.println(i+1 + "." + list.get(i).toString());
                     }
                 } else if (!input.equals("bye")) { // Only adds input to list if it is not "bye"
                     if (split.length > 0 && Arrays.asList(validinputs).contains(split[0])) {
-                        if (split[0].equals("mark")) { // Checks for mark
-                            int index = Integer.parseInt(split[1]) - 1;
-                            list[index].markAsDone();
-                            System.out.println("Nice! I've marked this task as done:" + "\n" +
-                                    "\t" + list[index].toString());
-                        } else if (split[0].equals("unmark")) { // Checks for unmark
-                            int index = Integer.parseInt(split[1]) - 1;
-                            list[index].markAsUndone();
-                            System.out.println("Ok, I've marked this task as not done yet:" + "\n" +
-                                    "\t" + list[index].toString());
-                        } else if (split[0].equals("todo")) { // Checks for Todo
-                            if (split.length < 2) {
-                                throw new DukeException("todo");
-                            } else {
-                                list[count] = new Todo(split[1]);
-                                System.out.println("Got it. I've added this task:" + "\n\t" + list[count].toString());
-                                count += 1;
-                                System.out.println("Now you have " + count + " tasks in the list.");
+                        switch (split[0]) {
+                            case "mark": { // Checks for mark
+                                int index = Integer.parseInt(split[1]) - 1;
+                                list.get(index).markAsDone();
+                                System.out.println("Nice! I've marked this task as done:" + "\n" +
+                                        "\t" + list.get(index).toString());
+                                break;
                             }
-                        } else if (split[0].equals("deadline")) { // Checks for Deadline
-                            if (split.length < 2) {
-                                throw new DukeException("deadline");
-                            } else {
-                                String[] temp = split[1].split("/by", 2);
-                                list[count] = new Deadline(temp[0], temp[1]);
-                                System.out.println("Got it. I've added this task:" + "\n\t" + list[count].toString());
-                                count += 1;
-                                System.out.println("Now you have " + count  + " tasks in the list.");
+                            case "unmark": { // Checks for unmark
+                                int index = Integer.parseInt(split[1]) - 1;
+                                list.get(index).markAsUndone();
+                                System.out.println("Ok, I've marked this task as not done yet:" + "\n" +
+                                        "\t" + list.get(index).toString());
+                                break;
                             }
-                        } else if (split[0].equals("event")) { // Checks for Event
-                            if (split.length < 2) {
-                                throw new DukeException("event");
-                            } else {
-                                String[] temp = split[1].split("/at", 2);
-                                list[count] = new Event(temp[0], temp[1]);
-                                System.out.println("Got it. I've added this task:" + "\n\t" + list[count].toString());
-                                count += 1;
-                                System.out.println("Now you have " + count + " tasks in the list.");
-                            }
+                            case "todo":  // Checks for Todo
+                                if (split.length < 2) {
+                                    throw new DukeException("todo");
+                                } else {
+                                    list.add(new Todo(split[1]));
+                                    System.out.println("Got it. I've added this task:" + "\n\t" +
+                                            list.get(list.size() - 1).toString());
+                                    System.out.println("Now you have " + list.size() + " tasks in the list.");
+                                }
+                                break;
+                            case "deadline":  // Checks for Deadline
+                                if (split.length < 2) {
+                                    throw new DukeException("deadline");
+                                } else {
+                                    String[] temp = split[1].split("/by", 2);
+                                    list.add(new Deadline(temp[0], temp[1]));
+                                    System.out.println("Got it. I've added this task:" + "\n\t" +
+                                            list.get(list.size() - 1).toString());
+                                    System.out.println("Now you have " + list.size() + " tasks in the list.");
+                                }
+                                break;
+                            case "event":  // Checks for Event
+                                if (split.length < 2) {
+                                    throw new DukeException("event");
+                                } else {
+                                    String[] temp = split[1].split("/at", 2);
+                                    list.add(new Event(temp[0], temp[1]));
+                                    System.out.println("Got it. I've added this task:" + "\n\t" +
+                                            list.get(list.size() - 1).toString());
+                                    System.out.println("Now you have " + list.size() + " tasks in the list.");
+                                }
+                                break;
                         }
                     }
                     else {
