@@ -20,77 +20,102 @@ public class Duke {
         //System.out.println("Hello from\n" + logo);
 
         System.out.println(greet + "\n" + logo);
-        String str = sc.next();
-        while (!str.equals("bye")) {
-            switch (str) {
-                case "todo":
-                    String content = sc.nextLine();
+        String str = sc.nextLine();
+
+        while (true) {
+            if (str.startsWith("todo")) {
+                try {
+                    String content = str.substring(4).trim();
+                    if (content.equals("")) {
+                        throw new WrongMessageException();
+                    }
                     Task todo = new Todo(content);
                     willDo.add(todo);
                     int size = willDo.size();
                     System.out.println("Got it, I've added it to the task list:\n"
                             + todo.toString() + "\n"
                             + "Now you have " + (size) + " tasks");
-                    break;
+                } catch (WrongMessageException e) {
+                    System.out.println(e.getMessage());
+                }
 
-                case "deadline":
-                    String ddlstr = sc.nextLine();
-                    String ddlinfo = ddlstr.substring(0, ddlstr.indexOf("/") - 1);
-                    String date = ddlstr.substring(ddlstr.indexOf("/") + 4);
+            } else if (str.startsWith("deadline")) {
+                try {
+                    String ddlstr = str.substring(8).trim();
+                    if (ddlstr.equals("")) {
+                        throw new WrongMessageException();
+                    }
+                    String[] temp = ddlstr.split("/by");
+                    String ddlinfo = temp[0];
+                    String date = temp[1];
                     Task deadline = new Deadline(ddlinfo, date);
                     willDo.add(deadline);
                     int nowsize = willDo.size();
                     System.out.println("Got it, I've added it to the task list:\n"
                             + deadline.toString() + "\n"
                             + "Now you have " + (nowsize) + " tasks");
-                    break;
+                } catch (WrongMessageException e) {
+                    System.out.println(e.getMessage());
+                }
 
-                case "event":
-                    String eventstr = sc.nextLine();
-                    String eventinfo = eventstr.substring(0, eventstr.indexOf("/") - 1);
-                    String takeplace = eventstr.substring(eventstr.indexOf("/") + 4);
+            } else if (str.startsWith("event")) {
+                try {
+                    String eventstr = str.substring(5).trim();
+                    if (eventstr.equals("")) {
+                        throw new WrongMessageException();
+                    }
+                    String[] temp = eventstr.split("/at");
+                    String eventinfo = temp[0];
+                    String takeplace = temp[1];
                     Task event = new Event(eventinfo, takeplace);
                     willDo.add(event);
                     int finalsize = willDo.size();
                     System.out.println("Got it, I've added it to the task list:\n"
                             + event.toString() + "\n"
                             + "Now you have " + (finalsize) + " tasks");
-                    break;
+                } catch (WrongMessageException e) {
+                    System.out.println(e.getMessage());
+                }
 
-                case "mark":
-                    int key = sc.nextInt();
-                    Task willMark = willDo.get(key - 1);
-                    willMark.donelah();
-                    System.out.println("Congratulations! you complete this task:\n"
-                                    + willMark.toString());
-                    break;
+            } else if (str.startsWith("mark")) {
+                String[] temp = str.split(" ");
+                int key = Integer.decode(temp[1]);
+                Task willMark = willDo.get(key - 1);
+                willMark.donelah();
+                System.out.println("Congratulations! you complete this task:\n"
+                        + willMark.toString());
 
-                case "unmark":
-                    int key2 = sc.nextInt();
-                    Task willUnmark = willDo.get(key2 - 1);
-                    willUnmark.nodone();
-                    System.out.println("You undone this task:\n"
-                            + willUnmark.toString());
-                    break;
+            } else if (str.startsWith("unmark")) {
+                String[] temp = str.split(" ");
+                int key2 = Integer.decode(temp[1]);
+                Task willUnmark = willDo.get(key2 - 1);
+                willUnmark.nodone();
+                System.out.println("You undone this task:\n"
+                        + willUnmark.toString());
 
-                //When user want to access to task list
-                case "list":
-                    System.out.println("Your list is as following");
-                    for (int i = 0; i < willDo.size(); i++) {
-                        Task temp = willDo.get(i);
-                        System.out.println((i + 1) + "." + temp.toString());
-                    }
-                    break;
-
-                //When user want to add tasks
-                default:
-                    System.out.println("added: " + str);
-                    Task newT = new Task(str);
-                    willDo.add(newT);
-                    break;
+            } else if (str.startsWith("list")) {
+                System.out.println("Your list is as following");
+                for (int i = 0; i < willDo.size(); i++) {
+                    Task temp = willDo.get(i);
+                    System.out.println((i + 1) + "." + temp.toString());
+                }
+            } else if (str.startsWith("bye")) {
+                System.out.println("Bye! Hope to see you again soon!");
+                break;
+            } else if (str.startsWith("delete")) {
+                String[] temp = str.split(" ");
+                int key3 = Integer.decode(temp[1]);
+                System.out.println("ok I will delete the task" + willDo.get(key3 - 1) + "it right now!");
+                willDo.remove(key3 - 1);
+                System.out.println("now you have " + willDo.size() + " tasks in the list");
+            } else {
+                try {
+                    throw new CannotUnderstandException();
+                } catch (CannotUnderstandException e) {
+                    System.out.println(e.getMessage());
+                }
             }
-            str = sc.next(); // for continuing
+            str = sc.nextLine(); // for continuing
         }
-        System.out.println("Bye! Hope to see you again soon!");
     }
 }
