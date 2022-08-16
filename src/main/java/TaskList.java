@@ -8,6 +8,16 @@ public class TaskList {
     }
 
     /**
+     * Returns the Task at the given indx
+     * 
+     * @param indx Specifies the Task to return
+     * @return The task at index
+     */
+    public Task get(int indx) {
+        return tasks.get(indx);
+    }
+
+    /**
      * Adds a task to the task list
      * 
      * @param task Task to be added

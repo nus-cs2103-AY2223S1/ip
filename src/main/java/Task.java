@@ -18,8 +18,13 @@ public class Task {
         isComplete = !isComplete;
     }
 
+    public boolean isDone() {
+        return isComplete;
+    }
+
     @Override
     public String toString() {
-        return description;
+        String marker = isComplete ? "[X] " : "[ ] ";
+        return marker + description;
     }
 }

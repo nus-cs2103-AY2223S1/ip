@@ -3,7 +3,9 @@ public enum Messages {
     GREET("Hi! I am Duke, what can I do for you?"),
     EXIT("Goodbye! Hope to see you soon!"),
     LINE_SEPARATION("-*-*-*-*-*-*-*-*-*-*-*"),
-    ADD_TASK("Added task: ");
+    ADD_TASK("Added task: "),
+    MARK_DONE("Nice! I've marked this task as done:"),
+    MARK_UNDONE(":( Stop Procrastinating! I've marked it as undone.");
 
     public String message;
 

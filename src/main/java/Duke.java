@@ -36,6 +36,13 @@ public class Duke {
             case ADD_TASK:
                 System.out.println(message);
                 break;
+            case MARK_DONE:
+                System.out.println(Messages.MARK_DONE);
+                System.out.println(message);
+                break;
+            case MARK_UNDONE:
+                System.out.println(Messages.MARK_UNDONE);
+                System.out.println(message);
         }
         System.out.println(Messages.LINE_SEPARATION);
     }
@@ -69,14 +76,27 @@ public class Duke {
         // Continue to read inputs until the exit command is entered
         String input = reader.readLine();
         while (!input.equals(Commands.EXIT.command)) {
+            String[] inputs = input.split(" ");
+
             // Show task description in list
             if (input.equals(Commands.SHOW_LIST.command)) {
                 display(Commands.SHOW_LIST, tasks.toString());
+                // Mark task as done
+            } else if (inputs[0].equals(Commands.MARK_DONE.command)) {
+                int indx = inputs[1].charAt(0) - '1';
+                Task current_task = tasks.get(indx);
+                current_task.toggleComplete();
+                // Display the marked message
+                if (current_task.isDone()) {
+                    display(Commands.MARK_DONE, current_task.toString());
+                } else {
+                    display(Commands.MARK_UNDONE, current_task.toString());
+                }
             } else {
                 addTask(input);
                 display(Commands.ADD_TASK, Messages.ADD_TASK + input);
-
             }
+            // Reads next input
             input = reader.readLine();
         }
         // Exit the bot
