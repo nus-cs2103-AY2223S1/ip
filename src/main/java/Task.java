@@ -57,4 +57,13 @@ public class Task {
     public String toString() {
         return this.getStatus()  + this.description;
     }
+
+    /**
+     * Executes input task
+     * @param task
+     * @param ui
+     */
+    public void execute(TaskList task, UI ui) {
+
+    };
 }

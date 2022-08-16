@@ -28,10 +28,11 @@ public class UI {
      * The method to show added task.
      * @param task
      */
-    public void showAddOnTask(String task) {
+    public void showAddOnTask(TaskList task, int numOfTask) {
         System.out.println(indentation + underline);
         System.out.println(indentation + "I've added this task:");
-        System.out.println(indentation + task);
+        System.out.println(indentation + task.get(numOfTask));
+        System.out.println(indentation + "Now you have " + (numOfTask + 1) + " tasks in the list.");
         System.out.println(indentation + underline);
     }
 

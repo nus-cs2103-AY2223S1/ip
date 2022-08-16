@@ -8,40 +8,50 @@ import java.util.Scanner;
  * This is the Main Class that contains the Main method.
  */
 public class Duke {
-    private final UI Ui;
-    private final TaskList Tasklist;
+    private final UI ui;
+    private final TaskList tasklist;
 
     /**
      * Private constructor of Duke.
      */
     private Duke() {
-        Ui = new UI();
-        Tasklist = new TaskList();
+        ui = new UI();
+        tasklist = new TaskList();
     }
 
     public void run() {
-        Ui.printGreetings();
+        ui.printGreetings();
 
         Scanner sc = new Scanner(System.in);
         while (true) {
             String chat = sc.nextLine();
             if (chat.equals("bye")) {
                 sc.close();
-                Ui.exit();
+                ui.exit();
                 break;
             } else if (chat.equals("list")) {
-                Ui.showListDetails(Tasklist);
+                ui.showListDetails(tasklist);
             } else if (chat.contains("unmark")) {
                 int num = Integer.parseInt(chat.split(" ")[1]) - 1;
-                Tasklist.markUndone(num);
-                Ui.showUndoneTask(Tasklist, num);
+                tasklist.markUndone(num);
+                ui.showUndoneTask(tasklist, num);
             } else if (chat.contains("mark")) {
                 int num = Integer.parseInt(chat.split(" ")[1]) - 1;
-                Tasklist.markDone(num);
-                Ui.showDoneTask(Tasklist, num);
+                tasklist.markDone(num);
+                ui.showDoneTask(tasklist, num);
             } else {
-                Tasklist.add(new Task(chat, false));
-                Ui.showAddOnTask(chat);
+                if (chat.contains("todo")) {
+                    Task incomingTask = new Todo(chat.substring(5), false);
+                    incomingTask.execute(tasklist, ui);
+                } else if (chat.contains("deadline")) {
+                    Task incomingTask = new Deadline(chat.substring(9).split(" /by ")[0], false,
+                            chat.substring(9).split(" /by ")[1]);
+                    incomingTask.execute(tasklist, ui);
+                } else if (chat.contains("event")) {
+                    Task incomingTask = new Event(chat.substring(6).split(" /at ")[0], false,
+                            chat.substring(6).split(" /at ")[1]);
+                    incomingTask.execute(tasklist, ui);
+                }
             }
         }
     }
