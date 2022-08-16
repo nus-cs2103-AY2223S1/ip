@@ -26,5 +26,23 @@ Aww okay the task has been unmarked.
 2.[D][ ] return book (by: Sunday)
 3.[E][X] project meeting (at: Mon 2-4pm)
 -------------------------------------------
+Your task has to have description :<
+-------------------------------------------
+Your task has to have description :<
+-------------------------------------------
+Your task has to have description :<
+-------------------------------------------
+Your task has to have description :<
+-------------------------------------------
+Your task has to have description :<
+-------------------------------------------
+Please precede your date/time with a '/by' for a deadline and an '/at' for an event
+-------------------------------------------
+Please precede your date/time with a '/by' for a deadline and an '/at' for an event
+-------------------------------------------
+1.[T][ ] borrow book
+2.[D][ ] return book (by: Sunday)
+3.[E][X] project meeting (at: Mon 2-4pm)
+-------------------------------------------
 See you later alligator!
 -------------------------------------------

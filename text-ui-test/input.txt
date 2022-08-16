@@ -7,4 +7,12 @@ mark 3
 list
 unmark 1
 list
+todo
+deadline
+event
+deadline /by Sunday 5pm
+event /at Sunday 4-6pm
+deadline finish assignment
+event party
+list
 bye
