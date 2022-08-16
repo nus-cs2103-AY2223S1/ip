@@ -1,10 +1,24 @@
+import java.util.Scanner;
+
 public class Duke {
+
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+
+        // Create a scanner that reads user input.
+        Scanner sc = new Scanner(System.in);
+
+        // Greet the user.
+        System.out.println("Duke: Hello! I am Duke.");
+
+        while (true) {
+            String userInput = sc.next();
+
+            if (userInput.equals("bye")) {
+                System.out.println("Duke: Bye!");
+                break;
+            } else {
+                System.out.println("Duke: " + userInput);
+            }
+        }
     }
 }
