@@ -29,7 +29,8 @@ public class Duke {
                                 getTaskDetails(tasks.size() - 1) +
                                 "\nNow you have " +
                                 tasks.size() +
-                                " tasks in the list."
+                                (tasks.size() == 1 ? " task" : " tasks") +
+                                " in the list."
                 );
                 break;
             case "deadline":
@@ -50,7 +51,8 @@ public class Duke {
                                 getTaskDetails(tasks.size() - 1) +
                                 "\nNow you have " +
                                 tasks.size() +
-                                " tasks in the list."
+                                (tasks.size() == 1 ? " task" : " tasks") +
+                                " in the list."
                 );
         }
     }
@@ -69,14 +71,14 @@ public class Duke {
             System.out.println(pos + 1 + ". " + getTaskDetails(pos));
         }
     }
-    public static void markTask(String command) throws DukeException {
+    public static int handleTaskPos(String command) throws DukeException {
         String[] cmdArr = command.split(" ");
+        int pos;
         if (cmdArr.length == 1) {
             throw new DukeException("Provide a task number to mark");
         } else if (cmdArr.length > 2) {
             throw new DukeException("Provide a valid task number!");
         }
-        int pos;
         try {
             pos = Integer.parseInt(command.split(" ", 2)[1]) - 1;
         } catch (NumberFormatException e) {
@@ -88,7 +90,11 @@ public class Duke {
         if (tasks.size() <= pos) {
             throw new DukeException("No such task.");
         }
-        switch (cmdArr[0]) {
+        return pos;
+    }
+    public static void markTask(String command) throws DukeException {
+        int pos = handleTaskPos(command);
+        switch (command.split(" ")[0]) {
             case "mark":
                 tasks.get(pos).markAsDone();
                 System.out.println(
@@ -105,6 +111,18 @@ public class Duke {
                                 getTaskDetails(pos)
                 );
         }
+    }
+    public static void deleteTask(String command) throws DukeException {
+        int pos = handleTaskPos(command);
+        System.out.println(
+                "OK. I've removed this task:\n" +
+                        getTaskDetails(pos) +
+                        "\nNow you have " +
+                        (tasks.size() - 1) +
+                        (tasks.size() == 2 ? " task" : " tasks") +
+                        " in the list."
+        );
+        tasks.remove(pos);
     }
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
@@ -125,6 +143,9 @@ public class Duke {
                     case "deadline":
                     case "event":
                         addTask(command);
+                        break;
+                    case "delete":
+                        deleteTask(command);
                         break;
                     default:
                         unknownCommand(command);

@@ -2,12 +2,14 @@ todo cry
 list
 mark 1
 mark a
+delete 0
 deadline CS2103T Week 2 /by Aug 18
 todo cry harder
 event end of sem /at NEVER
 list
 mark 1 2
 mark 2
+delete 2
 list
 mark 1
 unmark 2
