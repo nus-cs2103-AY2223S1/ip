@@ -18,6 +18,15 @@ public class TaskList {
   }
 
   /**
+   * Delete a task.
+   * 
+   * @param index Index of the task as printed by viewAllTask.
+   */
+  public void deleteTask(int index) {
+    this.tasks.remove(index);
+  }
+
+  /**
    * Return the number of tasks in the task list currently.
    * 
    * @return Number of tasks in the task list.
@@ -29,7 +38,7 @@ public class TaskList {
   /**
    * Returns the task with the input index in its string representation.
    * 
-   * @param index
+   * @param index Index of the task as printed by viewAllTask.
    * @return String representation of the task with the input index.
    */
   public String getTaskToString(int index) {
