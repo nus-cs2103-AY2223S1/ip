@@ -55,8 +55,9 @@ public class Duke {
                     int markIndex = Integer.parseInt(userQuery[1]) - 1;
                     if (markIndex >= taskCount || markIndex < 0) {
                         System.out.println("I do not have a task with that number in my list.");
+                    } else if (taskList[markIndex].getIsDone()) {
+                        System.out.printf("Sorry, but it seems you have marked this task as done:\n  %s\n", taskList[markIndex]);
                     } else {
-                        // TODO: What happens when the task is already marked?
                         taskList[markIndex].setDone(true);
                         System.out.printf("Noice! I've marked this task as done:\n  %s\n", taskList[markIndex]);
                     }
@@ -64,12 +65,13 @@ public class Duke {
                 case "unmark":
                     // TODO: Check for non-integer inputs.
                     int unmarkIndex = Integer.parseInt(userQuery[1]) - 1;
-                    if (unmarkIndex >= taskCount ||unmarkIndex < 0) {
+                    if (unmarkIndex >= taskCount || unmarkIndex < 0) {
                         System.out.println("I do not have a task with that number in my list.");
-                    } else {
-                        // TODO: What happens when the task is not yet marked?
+                    } else if (taskList[unmarkIndex].getIsDone()) {
                         taskList[unmarkIndex].setDone(false);
                         System.out.printf("Alright, I've marked this task as not done:\n  %s\n", taskList[unmarkIndex]);
+                    } else {
+                        System.out.printf("Sorry, but it seems you haven't marked this task as done:\n  %s\n", taskList[unmarkIndex]);
                     }
                     break;
                 default:
