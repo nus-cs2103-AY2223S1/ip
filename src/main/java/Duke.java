@@ -24,7 +24,7 @@ public class Duke {
                 case "list":
                     System.out.println("Here are the tasks in your list: ");
                     for(int i = 0; i<myList.size(); i++) {
-                        System.out.println(myList.get(i));
+                        System.out.println(i+1 + "." + myList.get(i));
                     }
                     break;
                 case "mark":
@@ -40,29 +40,41 @@ public class Duke {
                     printItem(itemNumber, myList);
                     break;
                 case "todo":
-                    System.out.println("Got it. I've added this task:");
-                    Todo myTodo = new Todo(userInput.substring(5));
-                    myList.add(myTodo);
-                    System.out.println(myTodo);
-                    System.out.println("Now you have " + myList.size() + " in the list.");
+                    try {
+                        Todo myTodo = new Todo(userInput.substring(5));
+                        myList.add(myTodo);
+                        System.out.println("Got it. I've added this task:");
+                        System.out.println(myTodo);
+                        System.out.println("Now you have " + myList.size() + " in the list.");
+                    } catch (Exception e) {
+                        System.out.println("☹ OOPS!!! The description of a todo cannot be empty.");
+                    }
                     break;
                 case "deadline":
-                    System.out.println("Got it. I've added this task:");
+                    
                     Deadline myDeadline = new Deadline(userInput.substring(9).split("/by")[0], userInput.split("/by")[1]);
                     myList.add(myDeadline);
+                    System.out.println("Got it. I've added this task:");
                     System.out.println(myDeadline);
                     System.out.println("Now you have " + myList.size() + " in the list.");
                     break;
                 case "event":
-                    System.out.println("Got it. I've added this task:");
                     Event myEvent = new Event(userInput.substring(6).split("/at")[0], userInput.split("/at")[1]);
                     myList.add(myEvent);
+                    System.out.println("Got it. I've added this task:");
                     System.out.println(myEvent);
                     System.out.println("Now you have " + myList.size() + " in the list.");
                     break;
+                case "delete":
+                    int toDeleteIndex = Integer.parseInt(userInput.split(" ")[1]) - 1;
+                    System.out.println("Noted. I've removed this task:");
+                    System.out.println(myList.get(toDeleteIndex));
+                    myList.remove(toDeleteIndex);
+                    System.out.println("Now you have " + myList.size() + " in the list.");
+                    break;
+                    
                 default:
-                    myList.add(new Task(userInput));
-                    System.out.println("added: " + userInput);
+                    System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
         }
         scanner.close();
