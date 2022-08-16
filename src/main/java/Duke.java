@@ -18,19 +18,38 @@ public class Duke {
     public static void main(String[] args) {
         generateMessage(greeting);
         Scanner scanner = new Scanner(System.in);
-        while (true) {
+        boolean active = true;
+        while (active) {
             String input = scanner.nextLine();
-            if (input.equals("bye")) {
-                generateMessage(farewell);
-                break;
-            } else if (input.equals("list")) {
-                generateMessage(displayTasks());
-            } else {
-                Task temp = new Task(input);
-                storage.add(temp);
-                generateMessage("Added: " + input);
+            String[] inputArray = input.split(" ",2);
+            String command = inputArray[0];
+            String argument = "";
+            if (inputArray.length == 2) {
+                argument = inputArray[1];
             }
 
+            switch(command) {
+                case "bye":
+                    generateMessage(farewell);
+                    active = false;
+                    break;
+                case "list":
+                    displayTasks();
+                    break;
+                case "mark":
+                    int index = Integer.parseInt(argument) - 1;
+                    markTask(storage.get(index));
+                    break;
+                case "unmark":
+                    int index2 = Integer.parseInt(argument) - 1;
+                    unmarkTask(storage.get(index2));
+                    break;
+                default:
+                    Task temp = new Task(input);
+                    storage.add(temp);
+                    generateMessage("Added: " + input);
+                    break;
+            }
         }
     }
 
@@ -45,14 +64,23 @@ public class Duke {
         printLine();
     }
 
-    public static String displayTasks() {
+    public static void displayTasks() {
         int i = 1;
-        String display = "";
+        String display = "Here are the tasks in your list: ";
         for (Task task : storage) {
             display += "\n" + i + ". " + task;
             i++;
         }
-        return display;
+        generateMessage(display);
     }
 
+    public static void markTask(Task task) {
+        task.markAsDone();
+        generateMessage("Nice! I've marked this task as done:\n" + task);
+    }
+
+    public static void unmarkTask(Task task) {
+        task.markAsIncomplete();
+        generateMessage("OK, I've marked this task as not done yet:\n" + task);
+    }
 }
