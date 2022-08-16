@@ -36,6 +36,14 @@ public class Duke {
         System.out.println(task.toString());
     }
 
+    static void delete(String s) {
+         int i = Integer.parseInt(s.substring(7,8)) - 1;
+         Task task = listOfTask.remove(i);
+        System.out.println("Noted. I've removed this task:");
+        System.out.println(task.toString());
+        System.out.println("Now you have " + listOfTask.size() + " tasks in the list.");
+    }
+
 
     public static void main(String[] args) {
         System.out.println("Hello I'm Duke\nWhat can I do for you?");
@@ -60,6 +68,8 @@ public class Duke {
             } else if (s.length() > 4 && s.substring(0,4).equals("todo")){
                 Task t = new ToDos(s.substring(5));
                 addList(t);
+            } else if (s.length() > 7 && s.substring(0,6).equals("delete")) {
+                delete(s)   ;
             }
         }
         System.out.println("Bye. Hope to see you again soon!");
