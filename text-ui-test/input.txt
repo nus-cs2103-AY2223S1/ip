@@ -1,0 +1,12 @@
+todo borrow book
+deadline return book /by idk
+event Mary's birthday party /at Sunday 7-9pm
+list
+mark 1
+todo return notebook
+list
+mark 3
+unmark 3
+mark 3
+list
+bye

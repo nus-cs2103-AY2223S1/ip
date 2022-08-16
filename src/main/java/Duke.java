@@ -4,14 +4,17 @@ import java.util.Scanner;
 
 public class Duke {
     static final String CHATBOX_NAME = "Ado";
-    static final String PARTITION = "<><><><><><><><><><><><><><><><>\n";
+    static final String PARTITION = "<><><><><><><><><><><><><><><><><><>\n";
     static List<Task> list = new ArrayList<>();
 
     public static void main(String[] args) {
         String input = "";
         Scanner sc = new Scanner(System.in);
 
-        String startMessage = "Yo! I'm " + CHATBOX_NAME + "!\nWhat can I do for you? :)\n";
+        String cat = "  /\\_/\\\n" +
+                " ( o.o ) < Yo! I'm " + CHATBOX_NAME + "!\n" +
+                "  > ^ <    What can I do for you? :)\n";
+        String startMessage = cat;
         printMessage(startMessage);
 
         while (!input.equalsIgnoreCase("bye")) {
