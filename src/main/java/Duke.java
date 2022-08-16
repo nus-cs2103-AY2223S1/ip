@@ -10,17 +10,27 @@ public class Duke {
 
         String command = sc.nextLine();
 
-        ArrayList<String> items = new ArrayList<>();
+        ArrayList<Task> items = new ArrayList<>();
 
         while (!command.toLowerCase().equals("bye")) {
             if (command.toLowerCase().equals("list")) {
                 for (int i = 0; i < items.size(); i++) {
                     int j = i + 1;
-                    System.out.println(j + ". " + items.get(i));
+                    Task item = items.get(i);
+                    System.out.println(j + ". " + item.toString());
+                }
+            } else if (command.split(" ")[0].toLowerCase().equals("done")) {
+                int index = Integer.parseInt(command.split(" ")[1]) - 1;
+                if (index < 0 || index > items.size() - 1) {
+                    System.out.println("Out of range");
+                } else {
+                    items.get(index).markAsDone();
+                    System.out.println("Nice! I've marked this task as done:");
+                    System.out.println(items.get(index).toString());
                 }
             } else {
                 System.out.println("added: " + command);
-                items.add(command);
+                items.add(new Task(command));
             }
             command = sc.nextLine();
         }
