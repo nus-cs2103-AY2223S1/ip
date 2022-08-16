@@ -15,6 +15,7 @@ public class Duke {
         String TODO = "todo";
         String DEADLINE = "deadline";
         String EVENT = "event";
+        String DELETE = "delete";
 
         Scanner sc = new Scanner(System.in);
 
@@ -29,21 +30,38 @@ public class Duke {
                 } else if (userInputSpilt[0].equals(LIST)) {
                     ListOut();
                 } else if (userInputSpilt[0].equals(MARK)) {
-                    int taskNum = Integer.valueOf(userInputSpilt[1]) - 1;
-                    MarkTask(taskNum);
+                    if (userInputSpilt.length == 1) {
+                        throw new MissingTargetException("mark as done");
+                    } else {
+                        int taskNum = Integer.valueOf(userInputSpilt[1]) - 1;
+                        MarkTask(taskNum);
+                    }
+
                 } else if (userInputSpilt[0].equals(UNMARK)) {
-                    int taskNum = Integer.valueOf(userInputSpilt[1]) - 1;
-                    UnmarkTask(taskNum);
+                    if (userInputSpilt.length == 1) {
+                        throw new MissingTargetException("mark as not done");
+                    } else {
+                        int taskNum = Integer.valueOf(userInputSpilt[1]) - 1;
+                        UnmarkTask(taskNum);
+                    }
+
+                } else if (userInputSpilt[0].equals(DELETE)) {
+                    if (userInputSpilt.length == 1) {
+                        throw new MissingTargetException("delete");
+                    } else {
+                        int taskNum = Integer.valueOf(userInputSpilt[1]) - 1;
+                        DeleteTask(taskNum);
+                    }
                 } else if (userInputSpilt[0].equals(TODO)) {
                     if (userInputSpilt.length == 1) {
-                        throw new MissingDescriptionException("TODO");
+                        throw new MissingDescriptionException("todo");
                     } else {
                         ToDo currToDo = new ToDo(userInputSpilt[1]);
                         AddToList(currToDo);
                     }
                 } else if (userInputSpilt[0].equals(DEADLINE)) {
                     if (userInputSpilt.length == 1) {
-                        throw new MissingDescriptionException("DEADLINE");
+                        throw new MissingDescriptionException("deadline");
                     } else {
                         String[] deadlineSpilt = userInputSpilt[1].split("/by", 2);
                         if (deadlineSpilt.length == 1) {
@@ -56,7 +74,7 @@ public class Duke {
 
                 } else if (userInputSpilt[0].equals(EVENT)) {
                     if (userInputSpilt.length == 1) {
-                        throw new MissingDescriptionException("EVENT");
+                        throw new MissingDescriptionException("event");
                     } else {
                         String[] eventSpilt = userInputSpilt[1].split("/at", 2);
                         if (eventSpilt.length == 1) {
@@ -85,6 +103,10 @@ public class Duke {
             }
 
             catch (MissingEventDescriptionException e) {
+                System.out.println(e.getMessage());
+            }
+
+            catch (MissingTargetException e) {
                 System.out.println(e.getMessage());
             }
 
@@ -141,7 +163,23 @@ public class Duke {
             System.out.println("OOPS!!! The task you are trying to mark as not done does not exist");
         }
 
+    }
 
+    public static void DeleteTask(int taskNum) {
+        try {
+            Task currentTask = listOfThings.remove(taskNum);
+            System.out.println("--------------------------------");
+            System.out.println("Noted. I've removed this task:\n " + currentTask.TaskInfo());
+            if (listOfThings.size() == 1) {
+                System.out.println("Now you have " + listOfThings.size() + " task in the list.");
+            } else {
+                System.out.println("Now you have " + listOfThings.size() + " tasks in the list.");
+            }
+            System.out.println("--------------------------------");
+        }
+        catch (IndexOutOfBoundsException e) {
+            System.out.println("OOPS!!! The task you are trying to delete does not exist");
+        }
     }
 
     public static void Bye() {
