@@ -14,14 +14,25 @@ public class Duke {
             System.out.println("------------------------------");
             switch(commandArr[0]) {
                 case "mark":
-                    int n;
+                    int markI;
                     try {
-                        n = Integer.parseInt(commandArr[1]);
+                        markI = Integer.parseInt(commandArr[1]);
                     } catch (NumberFormatException e) {     // if second word not integer
                         continue;
                     }
-                    if (n >= 1 && n <= commands.size()) {   // ensure i given is within range
-                        commands.get(n - 1).mark();
+                    if (markI >= 1 && markI <= commands.size()) {   // ensure i given is within range
+                        commands.get(markI - 1).mark();
+                        break;
+                    }
+                case "unmark":
+                    int unmarkI;
+                    try {
+                        unmarkI = Integer.parseInt(commandArr[1]);
+                    } catch (NumberFormatException e) {     // if second word not integer
+                        continue;
+                    }
+                    if (unmarkI >= 1 && unmarkI <= commands.size()) {   // ensure i given is within range
+                        commands.get(unmarkI - 1).unmark();
                         break;
                     }
                 default:
