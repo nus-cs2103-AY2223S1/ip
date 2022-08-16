@@ -1,0 +1,27 @@
+blob
+list
+todo
+todo ToDo task1
+event
+event Event task2
+event Event task2 /at Sunday 2pm-10pm
+deadline
+deadline Deadline task3
+deadline Deadline task3.1 /by Tomorrow
+list
+mark 1
+list
+unmark 1
+list
+mark 2
+list
+unmark 2
+list
+mark 3
+list
+unmark 3
+list
+mark 4
+list
+unmark 4
+bye
