@@ -1,4 +1,5 @@
 import commands.List;
+import input.Input;
 
 import java.util.Scanner;
 
@@ -22,8 +23,9 @@ public class Duke {
         while (true) {
             try {
                 System.out.printf(">> ");
-                String input = sc.nextLine();
-                parseInput(input);
+                String input = sc.nextLine().trim();
+
+                Input ir = Input.newInput(input);
 
                 if (input.equals("bye")) {
                     output("Bye. See you again soon!");
@@ -32,8 +34,8 @@ public class Duke {
                     output(input);
                 }
 
-            } catch (InvalidArgumentException err) {
-                output(err.getMessage() + "\n1.some info\n2.some other info");
+            } catch (Exception err) {
+                output(err.getMessage());
             }
         }
 //        String logo = " ____        _        \n"
