@@ -1,12 +1,14 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Scanner;
 
+/**
+ * Personal Assistant that helps you keep track of your tasks
+ */
 public class Duke {
 
     /** The tasks stored */
-    private static final List<String> tasks = new ArrayList<>();
+    private static final List<Task> tasks = new ArrayList<>();
 
     /** Prints Duke's greeting on opening the app */
     private static void introduceSelf() {
@@ -25,11 +27,37 @@ public class Duke {
         System.out.println("____________________________________________________________\n");
     }
 
-    /** Stores the given task and notifies user of outcome */
-    private static void addTask(String input) {
-        tasks.add(input);
+    /** Stores a task based on the given description and notifies user of outcome */
+    private static void addTask(String description) {
+        tasks.add(new Task(description));
         sayLines(new String[] {
-                "added: " + input,
+                "added: " + description,
+        });
+    }
+
+    /** Marks task taskNumber as done and notifies user of outcome */
+    private static void markTaskAsDone(int taskNumber) {
+        //cases to handle:
+        //taskNumber >= tasks.size()
+        //task is alr done
+        Task task = tasks.get(taskNumber - 1);
+        task.markAsDone();
+        sayLines(new String[] {
+                "Nice! I've marked this task as done:",
+                "  " + task
+        });
+    }
+
+    /** Marks task taskNumber as not done and notifies user of outcome */
+    private static void markTaskAsNotDone(int taskNumber) {
+        //cases to handle:
+        //taskNumber >= tasks.size()
+        //task is alr not done
+        Task task = tasks.get(taskNumber - 1);
+        task.markAsNotDone();
+        sayLines(new String[] {
+                "OK, I've marked this task as not done yet:",
+                "  " + task
         });
     }
 
@@ -38,7 +66,7 @@ public class Duke {
         System.out.println("____________________________________________________________");
         System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < tasks.size(); ++i) {
-            System.out.println((i+1) + ". " + tasks.get(i));
+            System.out.println((i+1) + "." + tasks.get(i));
         }
         System.out.println("____________________________________________________________\n");
     }
@@ -55,9 +83,13 @@ public class Duke {
 
         Scanner inputScanner = new Scanner(System.in);
         String userInput = inputScanner.nextLine();
-        while (!Objects.equals(userInput, "bye")) {
-            if (Objects.equals(userInput, "list")) {
+        while (!userInput.equals("bye")) {
+            if (userInput.equals("list")) {
                 listTasks();
+            } else if (userInput.length() >= 6 && userInput.startsWith("mark ")) {
+                markTaskAsDone(Integer.parseInt(userInput.substring(5)));
+            } else if (userInput.length() >= 8 && userInput.startsWith("unmark ")) {
+                markTaskAsNotDone(Integer.parseInt(userInput.substring(7)));
             } else {
                 addTask(userInput);
             }
