@@ -9,6 +9,10 @@ public class Storage {
         this.taskList = new ArrayList<>();
     }
 
+    Storage(List<Task> taskList) {
+        this.taskList = taskList;
+    }
+
     String handleTaskOutput(Task task, int id) {
         return String.format("%d. %s", id, task.toString());
     }
@@ -69,7 +73,7 @@ public class Storage {
                 throw new DukeException(NO_SUCH_INDEX);
             }
             Task targetTask = taskList.get(id-1);
-            targetTask.markAsDone();
+            targetTask.markAsDone(false);
         } catch (Exception e) {
             System.out.println(e);
         }

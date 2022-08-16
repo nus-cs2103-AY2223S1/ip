@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Duke {
@@ -5,9 +6,10 @@ public class Duke {
     private static String EXIT_MSG = "Bye. Hope to see you again soon!";
     private static String NO_TASK_NAME = "No task name defined, please try again";
     private static String NO_INDEX_SPECIFIED = "No index specified, try again";
-    public static void main(String[] args) {
+    public static void main(String[] args) throws StorageHandler.InvalidStorageFilePathException, IOException, StorageHandler.StorageOperationException {
         Scanner scanner = new Scanner(System.in);
-        Storage storage = new Storage();
+        StorageHandler storageHandler = new StorageHandler();
+        Storage storage = storageHandler.loadSavedData();
         System.out.println(GREETING);
 
         while (scanner.hasNext()) {

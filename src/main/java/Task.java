@@ -17,9 +17,9 @@ public class Task {
         return isDone ? MARKED_TXT : UNMARKED_TEXT;
     }
 
-    void markAsDone() {
+    void markAsDone(boolean slient) {
         this.isDone = true;
-        System.out.println(determineTextOutput() + "\n" + this + "\n");
+        if (!slient) System.out.println(determineTextOutput() + "\n" + this + "\n");
     }
 
     void markAsUnDone() {

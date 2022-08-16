@@ -5,6 +5,6 @@ public class DukeException extends Exception {
 
     @Override
     public String toString() {
-        return String.format("%s %s", "☹ OOPS!!!", super.toString());
+        return String.format("%s", super.toString());
     }
 }
