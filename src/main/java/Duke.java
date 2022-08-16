@@ -93,46 +93,66 @@ public class Duke {
             }
 
             else if(line.contains("unmark")) {
-                int num = Integer.parseInt(line.substring(7));
-                ls.get(num-1).setStatus(false);
-                System.out.println("OK, I've marked this task as not done yet:");
-                System.out.println("["+ls.get(num-1).getStatusIcon() +"]" +" " +ls.get(num-1).toString());
+                if (line.equals("unmark")) {
+                    System.out.println("☹ OOPS!!! The description of a unmark cannot be empty.");
+                } else {
+                    int num = Integer.parseInt(line.substring(7));
+                    ls.get(num - 1).setStatus(false);
+                    System.out.println("OK, I've marked this task as not done yet:");
+                    System.out.println("[" + ls.get(num - 1).getStatusIcon() + "]" + " " + ls.get(num - 1).toString());
+                }
             }
 
             else if(line.contains("mark")) {
-                int num = Integer.parseInt(line.substring(5));
-                ls.get(num-1).setStatus(true);
-                System.out.println("Nice! I've marked this task as done:");
-                System.out.println( "["+ls.get(num-1).getStatusIcon() +"]" +" " +ls.get(num-1).toString());
+                if (line.equals("mark")) {
+                    System.out.println("☹ OOPS!!! The description of a mark cannot be empty.");
+                } else {
+                    int num = Integer.parseInt(line.substring(5));
+                    ls.get(num - 1).setStatus(true);
+                    System.out.println("Nice! I've marked this task as done:");
+                    System.out.println("[" + ls.get(num - 1).getStatusIcon() + "]" + " " + ls.get(num - 1).toString());
+                }
             }
 
             else if (line.contains("todo")) {
-                Todo test = new Todo(line.substring(5));
-                ls.add(test);
-                System.out.println("Got it. I've added this task:");
-                System.out.println( "[T][ ]" + " " + line.substring(5));
-                System.out.println("Now you have" + " " + ls.size() + " " +"tasks in the list.");
+                if (line.equals("todo")) {
+                    System.out.println("☹ OOPS!!! The description of a todo cannot be empty.");
+                } else {
+                    Todo test = new Todo(line.substring(5));
+                    ls.add(test);
+                    System.out.println("Got it. I've added this task:");
+                    System.out.println("[T][ ]" + " " + line.substring(5));
+                    System.out.println("Now you have" + " " + ls.size() + " " + "tasks in the list.");
+                }
             }
 
             else if (line.contains("deadline")) {
-                Deadline test = new Deadline(line.substring(9));
-                ls.add(test);
-                System.out.println("Got it. I've added this task:");
-                System.out.println( "[D][ ]" + " " +test.toString());
-                System.out.println("Now you have" + " " + ls.size() + " " +"tasks in the list.");
+                if (line.equals("deadline")) {
+                    System.out.println("☹ OOPS!!! The description of a unmark cannot be empty.");
+                } else {
+                    Deadline test = new Deadline(line.substring(9));
+                    ls.add(test);
+                    System.out.println("Got it. I've added this task:");
+                    System.out.println("[D][ ]" + " " + test.toString());
+                    System.out.println("Now you have" + " " + ls.size() + " " + "tasks in the list.");
+                }
             }
 
             else if (line.contains("event")) {
-                Event test = new Event(line.substring(6));
-                ls.add(test);
-                System.out.println("Got it. I've added this task:");
-                System.out.println( "[E][ ]" + " " + test.toString());
-                System.out.println("Now you have" + " " + ls.size() + " " +"tasks in the list.");
+                if (line.equals("event")) {
+                    System.out.println("☹ OOPS!!! The description of a unmark cannot be empty.");
+
+                } else {
+                    Event test = new Event(line.substring(6));
+                    ls.add(test);
+                    System.out.println("Got it. I've added this task:");
+                    System.out.println("[E][ ]" + " " + test.toString());
+                    System.out.println("Now you have" + " " + ls.size() + " " + "tasks in the list.");
+                }
             }
 
             else {
-                System.out.println("added: " + line);
-                ls.add(new Task(line));
+                System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-()");
             }
 
 
