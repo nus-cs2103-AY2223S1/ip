@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Duke {
-
+    /** Using ArrayList to store Task */
     private static ArrayList<Task> tasks = new ArrayList<>();
 
     public static void printLine() {
