@@ -21,12 +21,10 @@ public class Duke {
                 int num = i + 1;
                 String header = num + ". ";
                 System.out.println(header + tasks[i]);
-                //output = output + num + ". " + tasks[i] + "\n";
             }
             System.out.println("");
         } else {
             tasks[numTask] = userInput;
-            //output = "added: " + userInput + "\n";
             numTask++;
             System.out.println("added: " + userInput + "\n");
         }
