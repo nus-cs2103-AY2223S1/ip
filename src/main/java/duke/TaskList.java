@@ -19,11 +19,11 @@ public class TaskList {
         for (String data : list) {
             tasks.add(Task.loadTask(data));
         }
-        size = tasks.size();
+        this.size = tasks.size();
     }
 
     public int getSize() {
-        return this.size;
+        return size;
     }
 
     public ArrayList<String> saveTasks() {
@@ -35,11 +35,11 @@ public class TaskList {
     }
 
     public String markTask(int idx) {
-        return this.tasks.get(idx).mark();
+        return tasks.get(idx).mark();
     }
 
     public String unmarkTask(int idx) {
-        return this.tasks.get(idx).unmark();
+        return tasks.get(idx).unmark();
     }
 
     public String addTodo(String description) {

@@ -14,7 +14,7 @@ public class TodoCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-        String task = tasks.addTodo(this.description);
+        String task = tasks.addTodo(description);
         ui.showAdd(task, tasks.getSize());
         storage.save(tasks.saveTasks());
     }

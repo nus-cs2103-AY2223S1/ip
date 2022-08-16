@@ -20,11 +20,11 @@ public class Event extends Task {
     @Override
     public String toString() {
         return String.format("[E]%s (at: %s)",
-                super.toString(), this.at.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
+                super.toString(), at.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
     }
 
     @Override
     public String saveTask() {
-        return String.format("E | %s | %s", super.saveTask(), this.at);
+        return String.format("E | %s | %s", super.saveTask(), at);
     }
 }

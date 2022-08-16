@@ -15,10 +15,10 @@ public class UnmarkCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-        if (this.idx < 0 || this.idx >= tasks.getSize()) {
+        if (idx < 0 || idx >= tasks.getSize()) {
             throw new DukeException("The index provided is not within the list.");
         };
-        ui.showUnmark(tasks.unmarkTask(this.idx));
+        ui.showUnmark(tasks.unmarkTask(idx));
         storage.save(tasks.saveTasks());
     }
 }

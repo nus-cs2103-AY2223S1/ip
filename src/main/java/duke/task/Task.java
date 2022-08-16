@@ -12,18 +12,18 @@ public abstract class Task {
     }
 
     public String mark() {
-        this.isDone = true;
-        return this.toString();
+        isDone = true;
+        return toString();
     }
 
     public String unmark() {
-        this.isDone = false;
-        return this.toString();
+        isDone = false;
+        return toString();
     }
 
     @Override
     public String toString() {
-        return String.format("[%s] %s", (this.isDone ? "X" : " "), this.description);
+        return String.format("[%s] %s", (isDone ? "X" : " "), description);
     }
 
     public static Task loadTask(String data) {
@@ -44,6 +44,6 @@ public abstract class Task {
     }
 
     public String saveTask() {
-        return String.format("%d | %s", this.isDone ? 1 : 0, this.description);
+        return String.format("%d | %s", isDone ? 1 : 0, description);
     }
 }

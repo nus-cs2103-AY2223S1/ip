@@ -20,11 +20,11 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         return String.format("[D]%s (by: %s)",
-                super.toString(), this.by.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
+                super.toString(), by.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
     }
 
     @Override
     public String saveTask() {
-        return String.format("D | %s | %s", super.saveTask(), this.by);
+        return String.format("D | %s | %s", super.saveTask(), by);
     }
 }
