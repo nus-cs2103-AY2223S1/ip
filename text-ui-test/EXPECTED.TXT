@@ -21,52 +21,69 @@ Here are the tasks in your list
 
 ----------------------------------------
 ----------------------------------------
+☹ OOPS!!! The description and time limit of deadline cannot be empty
+----------------------------------------
+----------------------------------------
 This task is successfully added:
- [D][ ] cs1101s mission grading  (by: Tuesday)
+ [D][ ] cs1101s mission grading (by: Tuesday)
 Now you have 2 task(s) in the list
 ----------------------------------------
 ----------------------------------------
 Here are the tasks in your list
 1. [T][ ] wash clothes
-2. [D][ ] cs1101s mission grading  (by: Tuesday)
+2. [D][ ] cs1101s mission grading (by: Tuesday)
 
 ----------------------------------------
 ----------------------------------------
+☹ OOPS!!! The description and time of event cannot be empty
+----------------------------------------
+----------------------------------------
 This task is successfully added:
- [E][ ] cs2101 tutorial  (at: Mon 4-6pm)
+ [E][ ] cs2101 tutorial (at: Mon 4-6pm)
 Now you have 3 task(s) in the list
 ----------------------------------------
 ----------------------------------------
 Here are the tasks in your list
 1. [T][ ] wash clothes
-2. [D][ ] cs1101s mission grading  (by: Tuesday)
-3. [E][ ] cs2101 tutorial  (at: Mon 4-6pm)
+2. [D][ ] cs1101s mission grading (by: Tuesday)
+3. [E][ ] cs2101 tutorial (at: Mon 4-6pm)
 
 ----------------------------------------
 ----------------------------------------
 This task has been marked as done:
- [E][X] cs2101 tutorial  (at: Mon 4-6pm)
+ [E][X] cs2101 tutorial (at: Mon 4-6pm)
 ----------------------------------------
 ----------------------------------------
 Here are the tasks in your list
 1. [T][ ] wash clothes
-2. [D][ ] cs1101s mission grading  (by: Tuesday)
-3. [E][X] cs2101 tutorial  (at: Mon 4-6pm)
+2. [D][ ] cs1101s mission grading (by: Tuesday)
+3. [E][X] cs2101 tutorial (at: Mon 4-6pm)
 
 ----------------------------------------
 ----------------------------------------
 This task has been marked as not done yet:
- [E][ ] cs2101 tutorial  (at: Mon 4-6pm)
+ [E][ ] cs2101 tutorial (at: Mon 4-6pm)
 ----------------------------------------
 ----------------------------------------
 This task has been marked as done:
- [D][X] cs1101s mission grading  (by: Tuesday)
+ [D][X] cs1101s mission grading (by: Tuesday)
 ----------------------------------------
 ----------------------------------------
 Here are the tasks in your list
 1. [T][ ] wash clothes
-2. [D][X] cs1101s mission grading  (by: Tuesday)
-3. [E][ ] cs2101 tutorial  (at: Mon 4-6pm)
+2. [D][X] cs1101s mission grading (by: Tuesday)
+3. [E][ ] cs2101 tutorial (at: Mon 4-6pm)
+
+----------------------------------------
+----------------------------------------
+Noted. I've removed this task:
+ [D][X] cs1101s mission grading (by: Tuesday)
+Now you have 2 task(s) in the list
+----------------------------------------
+----------------------------------------
+Here are the tasks in your list
+1. [T][ ] wash clothes
+2. [E][ ] cs2101 tutorial (at: Mon 4-6pm)
 
 ----------------------------------------
 ----------------------------------------
