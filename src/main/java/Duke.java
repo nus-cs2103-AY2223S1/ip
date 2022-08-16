@@ -26,17 +26,21 @@ public class Duke {
                     case "todo":
                     case "deadline":
                     case "event":
-                        add(input, sc.nextLine());
+                        add(input, sc.nextLine().trim());
                         break;
 
                     case "mark":
-                        mark(sc.nextLine());
+                        mark(sc.nextLine().trim());
                         break;
 
                     case "unmark":
-                        unmark(sc.nextLine());
+                        unmark(sc.nextLine().trim());
                         break;
                     
+                    case "delete":
+                        delete(sc.nextLine().trim());
+                        break;
+        
                     case "bye":
                         bye();
                         sc.close();
@@ -59,10 +63,6 @@ public class Duke {
 
     private void list() {
         print(IntStream.range(0, tasks.size()).mapToObj(x -> String.format("%d.%s\n", x + 1, tasks.get(x))).reduce("Here are the tasks in your list:\n", (x,y) -> x + y));
-    }
-
-    private void bye() {
-        print("Bye. Hope to see you again soon!");
     }
 
     private String[] getTaskDetails(String rawDetails, String delimiter) throws DukeException {
@@ -111,5 +111,21 @@ public class Duke {
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException(String.format("\u2639 OOPS!!! Invalid index %s. You only have %d tasks in your list.", input, tasks.size()));
         }
+    }
+
+    private void delete(String input) throws DukeException {
+        try {
+            int index = Integer.parseInt(input);
+            Task removedTask = tasks.remove(index - 1);
+            print(String.format("Noted. I've removed this task:\n  %s\nNow you have %d tasks in the list.", removedTask, tasks.size()));
+        } catch (NumberFormatException e) {
+            throw new DukeException(String.format("\u2639 OOPS!!! Invalid index %s. Index must be an integer and must not be blank.", input));
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(String.format("\u2639 OOPS!!! Invalid index %s. You only have %d tasks in your list.", input, tasks.size()));
+        }
+    }
+
+    private void bye() {
+        print("Bye. Hope to see you again soon!");
     }
 }
