@@ -1,7 +1,111 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
+    __________________________________________________
+    Hello! I'm Duke
+    What can I do for you?
+    __________________________________________________
+    __________________________________________________
+    Got it. I've added this task:
+      [T][ ] borrow book
+    Now you have 1 tasks in the list.
+    __________________________________________________
+    __________________________________________________
+    Got it. I've added this task:
+      [D][ ] return book (by: Sunday)
+    Now you have 2 tasks in the list.
+    __________________________________________________
+    __________________________________________________
+    Got it. I've added this task:
+      [D][ ] return book (by: June 6th)
+    Now you have 3 tasks in the list.
+    __________________________________________________
+    __________________________________________________
+    Got it. I've added this task:
+      [D][ ] return book (by: the time fire nation stops attacking)
+    Now you have 4 tasks in the list.
+    __________________________________________________
+    __________________________________________________
+    Got it. I've added this task:
+      [E][ ] project meeting (at: Mon 2-4pm)
+    Now you have 5 tasks in the list.
+    __________________________________________________
+    __________________________________________________
+    Got it. I've added this task:
+      [T][ ] read book
+    Now you have 6 tasks in the list.
+    __________________________________________________
+    __________________________________________________
+    Nice! I've marked this task as done:
+    [D][X] return book (by: Sunday)
+    __________________________________________________
+    __________________________________________________
+    Here are the tasks in your list:
+    1.[T][ ] borrow book
+    2.[D][X] return book (by: Sunday)
+    3.[D][ ] return book (by: June 6th)
+    4.[D][ ] return book (by: the time fire nation stops attacking)
+    5.[E][ ] project meeting (at: Mon 2-4pm)
+    6.[T][ ] read book
+    __________________________________________________
+    __________________________________________________
+    Nice! I've marked this task as done:
+    [D][X] return book (by: June 6th)
+    __________________________________________________
+    __________________________________________________
+    Here are the tasks in your list:
+    1.[T][ ] borrow book
+    2.[D][X] return book (by: Sunday)
+    3.[D][X] return book (by: June 6th)
+    4.[D][ ] return book (by: the time fire nation stops attacking)
+    5.[E][ ] project meeting (at: Mon 2-4pm)
+    6.[T][ ] read book
+    __________________________________________________
+    __________________________________________________
+    OK, I've marked this task as not done yet:
+    [D][ ] return book (by: the time fire nation stops attacking)
+    __________________________________________________
+    __________________________________________________
+    OK, I've marked this task as not done yet:
+    [T][ ] borrow book
+    __________________________________________________
+    __________________________________________________
+    Here are the tasks in your list:
+    1.[T][ ] borrow book
+    2.[D][X] return book (by: Sunday)
+    3.[D][X] return book (by: June 6th)
+    4.[D][ ] return book (by: the time fire nation stops attacking)
+    5.[E][ ] project meeting (at: Mon 2-4pm)
+    6.[T][ ] read book
+    __________________________________________________
+    __________________________________________________
+    Nice! I've marked this task as done:
+    [T][X] borrow book
+    __________________________________________________
+    __________________________________________________
+    Here are the tasks in your list:
+    1.[T][X] borrow book
+    2.[D][X] return book (by: Sunday)
+    3.[D][X] return book (by: June 6th)
+    4.[D][ ] return book (by: the time fire nation stops attacking)
+    5.[E][ ] project meeting (at: Mon 2-4pm)
+    6.[T][ ] read book
+    __________________________________________________
+    __________________________________________________
+    OK, I've marked this task as not done yet:
+    [T][ ] borrow book
+    __________________________________________________
+    __________________________________________________
+    Got it. I've added this task:
+      [T][ ] finish this project
+    Now you have 7 tasks in the list.
+    __________________________________________________
+    __________________________________________________
+    Here are the tasks in your list:
+    1.[T][ ] borrow book
+    2.[D][X] return book (by: Sunday)
+    3.[D][X] return book (by: June 6th)
+    4.[D][ ] return book (by: the time fire nation stops attacking)
+    5.[E][ ] project meeting (at: Mon 2-4pm)
+    6.[T][ ] read book
+    7.[T][ ] finish this project
+    __________________________________________________
+    __________________________________________________
+    Bye. Hope to see you again soon!

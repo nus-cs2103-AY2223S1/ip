@@ -1,0 +1,19 @@
+todo borrow book
+deadline return book /by Sunday
+deadline return book /by June 6th
+deadline return book /by the time fire nation stops attacking
+event project meeting /at Mon 2-4pm
+todo read book
+mark 2
+list
+mark 3
+list
+unmark 4
+unmark 1
+list
+mark 1
+list
+unmark 1
+todo finish this project
+list
+bye
