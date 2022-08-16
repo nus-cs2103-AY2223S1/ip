@@ -117,6 +117,33 @@ public class Sky {
         }
     }
 
+    public void handleInvalidInput() {
+        try {
+            throw new TextNoMeaningException("  Are you new? Type a command that I actually know");
+        } catch (TextNoMeaningException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void deleteTask(String userInput) {
+        try {
+            String taskNumInString = userInput.substring(7);
+            // Minus one as arrayList is zero-indexed
+            int taskNum = Integer.parseInt(taskNumInString) - 1;
+            Task task = taskList.get(taskNum);
+            taskList.remove(task);
+            System.out.println("  Splendid. I've removed this task: \n" +
+                    "    " + task +
+                    "\n  Now you have " + taskList.size() +
+                    (taskList.size() <= 1 ? " task in the list.": " tasks in the list."));
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("  You have either not entered any number to indicate which task I should delete, \n" +
+                    "  or you entered an invalid task number.");
+        } catch (NumberFormatException e) {
+            System.out.println("  Are you new? Enter a number after typing delete.");
+        }
+    }
+
     public static void main(String[] args) {
         Sky sky = new Sky();
         sky.greetUser();
@@ -140,12 +167,10 @@ public class Sky {
                 sky.addDeadLine(userInput);
             } else if (userInput.startsWith("event")) {
                 sky.addEvent(userInput);
+            } else if (userInput.startsWith("delete")) {
+                sky.deleteTask(userInput);
             } else {
-                try {
-                    throw new TextNoMeaningException("  Are you new? Type a command that I actually know");
-                } catch (TextNoMeaningException e) {
-                    System.out.println(e);
-                }
+                sky.handleInvalidInput();
             }
             System.out.println("  ____________________________________________________________");
         }

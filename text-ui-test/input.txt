@@ -1,12 +1,15 @@
-todo Read Book
-todo Return Book
+todo read book
+deadline return book /by June 6th
 mark 1
-list
-event Eat ice cream /at Monday 2-4pm
-deadline Submit assignment /by Tuesday
-list
+event project meeting /at Aug 6th 2-4pm
 mark 2
+list
+todo join sports club
+todo borrow book
+mark 4
 list
 todo
 blah
+delete 3
+list
 bye

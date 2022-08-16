@@ -4,53 +4,69 @@
   ____________________________________________________________
   ____________________________________________________________
   Got it. I've added this task: 
-    [T][ ] Read Book
+    [T][ ] read book
   Now you have 1 task in the list.
   ____________________________________________________________
   ____________________________________________________________
   Got it. I've added this task: 
-    [T][ ] Return Book
+    [D][ ] return book (by: June 6th)
   Now you have 2 tasks in the list.
   ____________________________________________________________
   ____________________________________________________________
   Wow... who would have thought you had it in you... I've marked this task as done: 
-    [T][X] Read Book
-  ____________________________________________________________
-  ____________________________________________________________
-  1.[T][X] Read Book
-  2.[T][ ] Return Book
+    [T][X] read book
   ____________________________________________________________
   ____________________________________________________________
   Got it. I've added this task: 
-    [E][ ] Eat ice cream (at: Monday 2-4pm)
+    [E][ ] project meeting (at: Aug 6th 2-4pm)
   Now you have 3 tasks in the list.
   ____________________________________________________________
   ____________________________________________________________
+  Wow... who would have thought you had it in you... I've marked this task as done: 
+    [D][X] return book (by: June 6th)
+  ____________________________________________________________
+  ____________________________________________________________
+  1.[T][X] read book
+  2.[D][X] return book (by: June 6th)
+  3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+  ____________________________________________________________
+  ____________________________________________________________
   Got it. I've added this task: 
-    [D][ ] Submit assignment (by: Tuesday)
+    [T][ ] join sports club
   Now you have 4 tasks in the list.
   ____________________________________________________________
   ____________________________________________________________
-  1.[T][X] Read Book
-  2.[T][ ] Return Book
-  3.[E][ ] Eat ice cream (at: Monday 2-4pm)
-  4.[D][ ] Submit assignment (by: Tuesday)
+  Got it. I've added this task: 
+    [T][ ] borrow book
+  Now you have 5 tasks in the list.
   ____________________________________________________________
   ____________________________________________________________
   Wow... who would have thought you had it in you... I've marked this task as done: 
-    [T][X] Return Book
+    [T][X] join sports club
   ____________________________________________________________
   ____________________________________________________________
-  1.[T][X] Read Book
-  2.[T][X] Return Book
-  3.[E][ ] Eat ice cream (at: Monday 2-4pm)
-  4.[D][ ] Submit assignment (by: Tuesday)
+  1.[T][X] read book
+  2.[D][X] return book (by: June 6th)
+  3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+  4.[T][X] join sports club
+  5.[T][ ] borrow book
   ____________________________________________________________
   ____________________________________________________________
   Are you new? Specify a task after typing todo.
   ____________________________________________________________
   ____________________________________________________________
   Are you new? Type a command that I actually know
+  ____________________________________________________________
+  ____________________________________________________________
+  Splendid. I've removed this task: 
+    [E][ ] project meeting (at: Aug 6th 2-4pm)
+  Now you have 4 tasks in the list.
+  ____________________________________________________________
+  ____________________________________________________________
+  1.[T][X] read book
+  2.[D][X] return book (by: June 6th)
+  3.[T][X] join sports club
+  4.[T][ ] borrow book
   ____________________________________________________________
   ____________________________________________________________
   Bye. May all your endeavours fly high!
