@@ -31,7 +31,7 @@ public class Duke {
         }
         taskList.add(task);
         System.out.println("  Seriously? Another one?\n" + "  Give me strength...\n"
-                + "    " + task + "\n" + "  You have " + taskList.size() + "task"
+                + "    " + task + "\n" + "  You have " + taskList.size() + " task"
                 + (taskList.size() > 1 ? "s" : "") + ". Bummer.");
     }
 
@@ -43,7 +43,7 @@ public class Duke {
         try {
             int num = Integer.parseInt(parsedCommand[1]);
             taskList.get(num - 1).setDone(true);
-            System.out.println("  " + taskList.get(num - 1));
+            System.out.println("    " + taskList.get(num - 1));
         } catch (NumberFormatException e) {
             System.out.println("  Do you need me to teach you what a number is?\n"
                     + "  Type \"mark <task number>\" to mark a task as complete.");
@@ -56,12 +56,12 @@ public class Duke {
         try {
             int num = Integer.parseInt(parsedCommand[1]);
             taskList.get(num - 1).setDone(false);
-            System.out.println("  " + taskList.get(num - 1));
+            System.out.println("    " + taskList.get(num - 1));
         } catch (NumberFormatException e) {
-            System.err.println("  Do you need me to teach you what a number is?\n"
+            System.out.println("  Do you need me to teach you what a number is?\n"
                     + "  Type \"unmark <task number>\" to mark a task as incomplete.");
         } catch (IndexOutOfBoundsException e) {
-            System.err.println("  Brilliant. You've asked me to mark an imaginary task as incomplete.");
+            System.out.println("  Brilliant. You've asked me to mark an imaginary task as incomplete.");
         }
     }
 
@@ -92,6 +92,7 @@ public class Duke {
             if (command.compareTo("bye") == 0) { // replace list of keywords with enums later
                 quit();
                 System.out.println(BORDER);
+                sc.close();
                 return;
             } else if (command.compareTo("list") == 0) {
                 list();
@@ -106,7 +107,6 @@ public class Duke {
                 System.out.println("If you want my help, the least you could do is type a command I understand.");
             }
             System.out.println(BORDER);
-
         }
 
     }
