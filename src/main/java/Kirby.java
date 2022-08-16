@@ -11,12 +11,12 @@ public class Kirby {
         }
     }
 
-    public static void Goodbye() {
-        System.out.println("I loved talking to you :> \n" +
+    public static void goodbye() {
+        System.out.println("I loved talking to you ･ω･ \n" +
                 "Hope to see you again!");
     }
 
-    public static void ShowList(ArrayList<Task> Tasks) {
+    public static void showList(ArrayList<Task> Tasks) {
         System.out.println("Here is your bag of fabulous tasks: ");
         for (int i = 0; i < Tasks.size(); i++) {
             Task currTask = Tasks.get(i);
@@ -24,21 +24,21 @@ public class Kirby {
         }
     }
 
-    public static void Mark(String inputString, ArrayList<Task> Tasks) {
+    public static void mark(String inputString, ArrayList<Task> Tasks) {
         int taskIndex = Integer.parseInt(inputString.split(" ")[1]);
         Task currTask = Tasks.get(taskIndex - 1);
         currTask.setCompleted();
         System.out.println("Awesome :D I've marked " + currTask.toString() + " completed!");
     }
 
-    public static void Unmark(String inputString, ArrayList<Task> Tasks) {
+    public static void unmark(String inputString, ArrayList<Task> Tasks) {
         int taskIndex = Integer.parseInt(inputString.split(" ")[1]);
         Task currTask = Tasks.get(taskIndex - 1);
         currTask.setIncomplete();
         System.out.println("Okay, I've marked " + currTask.toString() + " pending!");
     }
 
-    public static void Todo(String inputString, ArrayList<Task> Tasks) {
+    public static void toDo(String inputString, ArrayList<Task> Tasks) {
         // rest of the string
         String taskName = inputString.substring(inputString.indexOf(' ') + 1);
         Todo todo = new Todo(taskName);
@@ -47,7 +47,7 @@ public class Kirby {
         printTaskCount();
     }
 
-    public static void Deadline(String inputString, ArrayList<Task> Tasks) {
+    public static void deadline(String inputString, ArrayList<Task> Tasks) {
         String taskName = inputString.substring(inputString.indexOf("deadline") + 9, inputString.indexOf("/by"));
         String by = inputString.substring(inputString.indexOf("/by") + 4);
         Deadline deadline = new Deadline(taskName, by);
@@ -56,7 +56,7 @@ public class Kirby {
         printTaskCount();
     }
 
-    public static void Event(String inputString, ArrayList<Task> Tasks) {
+    public static void event(String inputString, ArrayList<Task> Tasks) {
         String taskName = inputString.substring(inputString.indexOf("event") + 6, inputString.indexOf("/at"));
         String at = inputString.substring(inputString.indexOf("/at") + 4);
         Event event = new Event(taskName, at);
@@ -74,38 +74,38 @@ public class Kirby {
 
             // bye
             if (inputString.equals("bye")) {
-                Goodbye();
+                goodbye();
                 break;
             }
 
             // list
             else if (inputString.equals("list")) {
-                ShowList(Tasks);
+                showList(Tasks);
             }
 
             //mark
             else if (inputString.split(" ")[0].equals("mark")) {
-                Mark(inputString, Tasks);
+                mark(inputString, Tasks);
             }
 
             // unmark
             else if (inputString.split(" ")[0].equals("unmark")) {
-                Unmark(inputString, Tasks);
+                unmark(inputString, Tasks);
             }
 
             // add task
             else if (inputString.split(" ")[0].equals("todo")) {
-                    Todo(inputString, Tasks);
+                    toDo(inputString, Tasks);
             }
 
             // deadline
             else if (inputString.split(" ")[0].equals("deadline")) {
-                Deadline(inputString, Tasks);
+                deadline(inputString, Tasks);
             }
 
             // event
             else if (inputString.split(" ")[0].equals("event")) {
-                Event(inputString, Tasks);
+                event(inputString, Tasks);
             }
         }
     }
