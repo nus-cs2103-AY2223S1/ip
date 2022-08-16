@@ -11,7 +11,7 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
 
-        List<String> tasks = new ArrayList<>();
+        Checklist tasks = new Checklist();
         Scanner scanner = new Scanner(System.in);
         String input = "";
         while (scanner.hasNextLine()) {
@@ -20,9 +20,9 @@ public class Duke {
                 System.out.println("Bye. Hope to see you again soon!");
                 break;
             } else if (input.equals("list")) {
-                tasks.forEach(System.out::println);
+                tasks.list();
             } else {
-                tasks.add((tasks.size() + 1) + ". " + input);
+                tasks.add(input);
                 System.out.println("added: " + input);
             }
         }
