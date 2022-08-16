@@ -22,6 +22,17 @@ public class TaskManager {
     }
 
     /**
+     * Retrieve the task
+     *
+     * @param taskIndex An index (1-index) corresponding to a particular task
+     * @return Task corresponding to the particular task index
+     */
+    public Task get(int taskIndex) {
+        // FIXME: Error handling if the task index is invalid
+        return this.taskList.get(taskIndex - 1);
+    }
+
+    /**
      * Return the formatted display of tasks
      *
      * @return List of formatted tasks

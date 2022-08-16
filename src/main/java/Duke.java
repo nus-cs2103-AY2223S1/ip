@@ -17,7 +17,11 @@ public class Duke {
         // The 'bye' command is used to indicate to the program to exit
         BYE,
         // The 'list' command is used to indicate to the program to list the inputted commands
-        LIST;
+        LIST,
+        // The 'mark' command is used together with the task index to mark the specified task as done
+        MARK,
+        // The 'unmark' command is used together with the task index to mark the specified task as undone
+        UNMARK;
 
         @Override
         public String toString() {
@@ -59,6 +63,20 @@ public class Duke {
         while (!command.equals(Command.BYE.toString())) {
             if (command.equals(Command.LIST.toString())) {
                 System.out.println(Duke.outputFormatter(taskManager.displayAll()));
+            } else if (command.startsWith(Command.MARK.toString())) {
+                // Retrieve the task index (1-indexed) to mark the task as done
+                // FIXME: Error handling if there is no task index provided or the task index provided is not an integer
+                int taskIndex = Integer.parseInt(command.split(" ")[1]);
+                Task task = taskManager.get(taskIndex);
+                task.markAsDone();
+                System.out.println(Duke.outputFormatter(new String[]{"Nice! I've marked this task as done:", "\t" + task.toString()}));
+            } else if (command.startsWith(Command.UNMARK.toString())) {
+                // Retrieve the task index (1-indexed) to mark the task as undone
+                // FIXME: Error handling if there is no task index provided or the task index provided is not an integer
+                int taskIndex = Integer.parseInt(command.split(" ")[1]);
+                Task task = taskManager.get(taskIndex);
+                task.markAsUndone();
+                System.out.println(Duke.outputFormatter(new String[]{"OK, I've marked this task as not done yet:", "\t" + task.toString()}));
             } else {
                 taskManager.add(command);
                 System.out.println(Duke.outputFormatter("added: " + command));
