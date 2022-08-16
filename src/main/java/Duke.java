@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import exceptions.IncorrectArgumentException;
+import exceptions.MissingArgumentException;
+import exceptions.TaskNotFoundException;
+import exceptions.UnknownCommandException;
+
 public class Duke {
     static private final String exitCommand = "bye";
     static private final String listCommand = "list";
@@ -57,106 +62,115 @@ public class Duke {
                 commandArgsCopy[i - 1] = commandArgs[i];
             }
 
-            switch (commandArgs[0]) {
-                case exitCommand:
-                    flag = false;
-                    break;
+            try {
+                switch (commandArgs[0]) {
+                    case exitCommand:
+                        flag = false;
+                        break;
 
-                case todoCommand:
-                    String todoText = String.join(" ", commandArgsCopy);
+                    case todoCommand:
+                        String todoText = String.join(" ", commandArgsCopy);
 
-                    if(commandArgsCopy.length > 0){
-                        Task newTodo = new Todo(todoText);
-                        tasks.add(newTodo);
-                        System.out.println("\n___________________________ \n");
-                        System.out.println("got it. I've added this task:");
-                        System.out.println(newTodo);
-                        System.out.println("___________________________ \n");
-                    } else {
-                        System.out.println("The description of the todo cannot be empty!");
-                    }
-                    break;
-
-                case deadlineCommand:
-                    String deadlineText = String.join(" ", commandArgsCopy);
-                    if (deadlineText.contains(deadlineSubCommand)) {
-                        String[] deadlineArgs = deadlineText.split(deadlineSubCommand);
-                        String deadlineTitle = deadlineArgs[0];
-                        String deadline = deadlineArgs[1];
-
-                        Task newDeadline = new Deadline(deadlineTitle, deadline);
-                        tasks.add(newDeadline);
-                        System.out.println("\n___________________________ \n");
-                        System.out.println("got it. I've added this task:");
-                        System.out.println(newDeadline);
-                        System.out.println("___________________________ \n");
-                    } else {
-                        System.out.println("Deadlines need a /by command");
-                    }
-                    break;
-
-                case eventCommand:
-                    String eventText = String.join(" ", commandArgsCopy);
-                    if (eventText.contains(eventSubCommand)) {
-                        String[] eventArgs = eventText.split(eventSubCommand);
-                        String eventTitle = eventArgs[0];
-                        String eventDateTime = eventArgs[1];
-
-                        Task newEvent = new Event(eventTitle, eventDateTime);
-                        tasks.add(newEvent);
-                        System.out.println("\n___________________________ \n");
-                        System.out.println("got it. I've added this task:");
-                        System.out.println(newEvent);
-                        System.out.println("___________________________ \n");
-                    } else {
-                        System.out.println("Events need a /at command");
-                    }
-                    break;
-
-                case markCommand:
-                    if (isNumeric(commandArgs[1])) {
-                        int idx = Integer.parseInt(commandArgs[1]);
-                        try {
-                            Task curr = tasks.get(idx - 1);
-                            curr.setComplete();
-                            System.out.println("I've marked this task as done:");
-                            System.out.println(curr);
-                        } catch (IndexOutOfBoundsException e) {
-                            System.out.println("Sorry this task does not exist");
+                        if (commandArgsCopy.length > 0) {
+                            Task newTodo = new Todo(todoText);
+                            tasks.add(newTodo);
+                            System.out.println("\n___________________________ \n");
+                            System.out.println("got it. I've added this task:");
+                            System.out.println(newTodo);
+                            System.out.println("___________________________ \n");
+                        } else {
+                            throw new MissingArgumentException("The description of the todo cannot be empty!");
                         }
-                    } else {
-                        System.out.println("Sorry the second argument is not a number");
-                    }
-                    break;
+                        break;
 
-                case unmarkCommand:
-                    if (isNumeric(commandArgs[1])) {
-                        int idx = Integer.parseInt(commandArgs[1]);
-                        try {
-                            Task curr = tasks.get(idx - 1);
-                            curr.setIncomplete();
-                            System.out.println("I've marked this task as done:");
-                            System.out.println(curr);
-                        } catch (IndexOutOfBoundsException e) {
-                            System.out.println("Sorry this task does not exist");
+                    case deadlineCommand:
+                        String deadlineText = String.join(" ", commandArgsCopy);
+                        if (deadlineText.contains(deadlineSubCommand)) {
+                            String[] deadlineArgs = deadlineText.split(deadlineSubCommand);
+                            String deadlineTitle = deadlineArgs[0];
+                            String deadline = deadlineArgs[1];
+
+                            Task newDeadline = new Deadline(deadlineTitle, deadline);
+                            tasks.add(newDeadline);
+                            System.out.println("\n___________________________ \n");
+                            System.out.println("got it. I've added this task:");
+                            System.out.println(newDeadline);
+                            System.out.println("___________________________ \n");
+                        } else {
+                            throw new MissingArgumentException("Deadlines need a /by command");
                         }
-                    } else {
-                        System.out.println("Sorry the second argument is not a number");
-                    }
-                    break;
+                        break;
 
-                case listCommand:
-                    System.out.println("\n___________________________ \n");
-                    System.out.println("Here are the tasks in your list\n");
-                    for (int idx = 0; idx < tasks.size(); idx++) {
-                        System.out.println(idx + 1 + ": " + tasks.get(idx));
-                    }
-                    System.out.println("\n___________________________ \n");
-                    break;
+                    case eventCommand:
+                        String eventText = String.join(" ", commandArgsCopy);
+                        if (eventText.contains(eventSubCommand)) {
+                            String[] eventArgs = eventText.split(eventSubCommand);
+                            String eventTitle = eventArgs[0];
+                            String eventDateTime = eventArgs[1];
 
-                default:
-                    System.out.println("Sorry I don't understand that command");
-                    break;
+                            Task newEvent = new Event(eventTitle, eventDateTime);
+                            tasks.add(newEvent);
+                            System.out.println("\n___________________________ \n");
+                            System.out.println("got it. I've added this task:");
+                            System.out.println(newEvent);
+                            System.out.println("___________________________ \n");
+                        } else {
+                            throw new MissingArgumentException("Events need a /at command");
+                        }
+                        break;
+
+                    case markCommand:
+                        if (isNumeric(commandArgs[1])) {
+                            int idx = Integer.parseInt(commandArgs[1]);
+                            try {
+                                Task curr = tasks.get(idx - 1);
+                                curr.setComplete();
+                                System.out.println("I've marked this task as done:");
+                                System.out.println(curr);
+                            } catch (IndexOutOfBoundsException e) {
+                                throw new TaskNotFoundException();
+                            }
+                        } else {
+                            throw new IncorrectArgumentException("Sorry the second argument is not a number");
+                        }
+                        break;
+
+                    case unmarkCommand:
+                        if (isNumeric(commandArgs[1])) {
+                            int idx = Integer.parseInt(commandArgs[1]);
+                            try {
+                                Task curr = tasks.get(idx - 1);
+                                curr.setIncomplete();
+                                System.out.println("I've marked this task as done:");
+                                System.out.println(curr);
+                            } catch (IndexOutOfBoundsException e) {
+                                throw new TaskNotFoundException();
+                            }
+                        } else {
+                            throw new IncorrectArgumentException("Sorry the second argument is not a number");
+                        }
+                        break;
+
+                    case listCommand:
+                        System.out.println("\n___________________________ \n");
+                        System.out.println("Here are the tasks in your list\n");
+                        for (int idx = 0; idx < tasks.size(); idx++) {
+                            System.out.println(idx + 1 + ": " + tasks.get(idx));
+                        }
+                        System.out.println("\n___________________________ \n");
+                        break;
+
+                    default:
+                        throw new UnknownCommandException("Sorry I don't understand that command");
+                }
+            } catch (UnknownCommandException e) {
+                System.out.println(e.getMessage());
+            } catch (MissingArgumentException e) {
+                System.out.println(e.getMessage());
+            } catch (TaskNotFoundException e) {
+                System.out.println(e.getMessage());
+            } catch (IncorrectArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
 
