@@ -1,31 +1,36 @@
+import java.util.Locale;
 import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Blink {
 
-    private static final String SPACING = "---------------------------";
+    private static final String SPACING = "--------------------------------------";
     private ArrayList<Task> store = new ArrayList<>();
     private boolean endSession = false;
 
-    public void welcome() {
+    enum Command {
+        BYE, DEADLINE, DELETE, EVENT, LIST, MARK, TODO, UNMARK
+    }
+
+    private void welcome() {
         System.out.println(Blink.SPACING + "\n" +
                 "Hello! Blink here\n" +
                 "What can I do for you today?\n" +
                 Blink.SPACING);
     }
 
-    public void goodbye() {
+    private void goodbye() {
         System.out.println("Bye bye~ Glad to be of service :D");
     }
 
-    public void list() {
+    private void listTask() {
         System.out.println("Here are the tasks in your list:");
         for(int x = 0; x < this.store.size(); x++) {
             System.out.println(x+1 + ". " + this.store.get(x));
         }
     }
 
-    public void unMark(String[] input) throws BlinkException {
+    private void unMarkTask(String[] input) throws BlinkException {
         if (input.length == 2) {
             int pos = Integer.parseInt(input[1]);
             if (pos < 1 || pos > this.store.size()) {
@@ -37,7 +42,7 @@ public class Blink {
         }
     }
 
-    public void mark(String[] input) throws BlinkException {
+    private void markTask(String[] input) throws BlinkException {
         if (input.length == 2) {
             int pos = Integer.parseInt(input[1]);
             if (pos < 1 || pos > this.store.size()) {
@@ -49,7 +54,7 @@ public class Blink {
         }
     }
 
-    public void delete(String[] input) throws BlinkException {
+    private void deleteTask(String[] input) throws BlinkException {
         if (input.length == 2) {
             int pos = Integer.parseInt(input[1]);
             if (pos < 1 || pos > this.store.size()) {
@@ -64,7 +69,7 @@ public class Blink {
         }
     }
 
-    public void toDos(String[] input) throws BlinkException {
+    private void addToDos(String[] input) throws BlinkException {
         if (input.length != 2) {
             throw new BlinkException("☹ OOPS!!! Missing description of todo.");
         }
@@ -75,7 +80,7 @@ public class Blink {
                 "\nTotal of " + this.store.size() + " tasks now");
     }
 
-    public void deadlines(String[] input) throws BlinkException {
+    private void addDeadlines(String[] input) throws BlinkException {
         if (input.length != 2) {
             throw new BlinkException("☹ OOPS!!! Missing description of deadline.");
         }
@@ -90,7 +95,7 @@ public class Blink {
                 "\nTotal of " + this.store.size() + " tasks now");
     }
 
-    public void events(String[] input) throws BlinkException {
+    private void addEvents(String[] input) throws BlinkException {
         if (input.length != 2) {
             throw new BlinkException("☹ OOPS!!! Missing description of event.");
         }
@@ -105,7 +110,7 @@ public class Blink {
                 "\nTotal of " + this.store.size() + " tasks now");
     }
 
-    public void start(Scanner sc) {
+    private void start(Scanner sc) {
         this.welcome();
 
         while(sc.hasNext()) {
@@ -114,39 +119,40 @@ public class Blink {
                 if (input[0].isEmpty()) {
                     continue;
                 }
-                switch (input[0]) {
-                    case "bye":
+                Command command = Command.valueOf(input[0].strip().toUpperCase());
+                switch (command) {
+                    case BYE:
                         this.goodbye();
                         this.endSession = true;
                         break;
-                    case "list":
-                        this.list();
+                    case LIST:
+                        this.listTask();
                         break;
-                    case "unmark":
-                        this.unMark(input);
+                    case UNMARK:
+                        this.unMarkTask(input);
                         break;
-                    case "mark":
-                        this.mark(input);
+                    case MARK:
+                        this.markTask(input);
                         break;
-                    case "event":
-                        this.events(input);
+                    case EVENT:
+                        this.addEvents(input);
                         break;
-                    case "deadline":
-                        this.deadlines(input);
+                    case DEADLINE:
+                        this.addDeadlines(input);
                         break;
-                    case "todo":
-                        this.toDos(input);
+                    case TODO:
+                        this.addToDos(input);
                         break;
-                    case "delete":
-                        this.delete(input);
+                    case DELETE:
+                        this.deleteTask(input);
                         break;
-                    default:
-                        throw new BlinkException("Unknown command input");
                 }
             } catch (BlinkException e) {
                 System.out.println(e.getMessage());
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input. Number is expected");
+            } catch (IllegalArgumentException e) {
+                System.out.println("Unknown command input");
             }
             System.out.println(Blink.SPACING);
             if (this.endSession) {
