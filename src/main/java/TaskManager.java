@@ -32,17 +32,13 @@ public class TaskManager {
         return this.taskList.get(taskIndex - 1);
     }
 
-    /**
-     * Return the formatted display of tasks
-     *
-     * @return List of formatted tasks
-     */
-    public String[] displayAll() {
-        String[] commands = new String[this.taskList.size()];
+    @Override
+    public String toString() {
+        StringBuilder taskManagerDisplay = new StringBuilder();
         for (int i = 0; i < this.taskList.size(); i++) {
             // Implicitly invoke the display of the task defined in the Task class
-            commands[i] = String.format("%d. %s", i + 1, this.taskList.get(i));
+            taskManagerDisplay.append(String.format("%d. %s\n", i + 1, this.taskList.get(i)));
         }
-        return commands;
+        return taskManagerDisplay.toString();
     }
 }
