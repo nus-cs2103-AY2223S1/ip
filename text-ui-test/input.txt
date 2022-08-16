@@ -19,4 +19,12 @@ event test
 event test /by asdf
 event test /at 
 lullll
+list
+delete 1
+list
+delete 10
+delete asdfasf
+delete 2
+delete 1
+list
 bye
