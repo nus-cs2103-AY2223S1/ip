@@ -83,7 +83,7 @@ public class Duke {
                 sb.append(LONG_LINE)
                         .append("     Got it. I've added this task:\n")
                         .append("       ").append(todo).append("\n")
-                        .append("     Now you have ").append(this.taskList.size()).append(" tasks in the list.\n")
+                        .append("     Now you have ").append(this.taskList.size()).append(" task(s) in the list.\n")
                         .append(LONG_LINE);
                 break;
             }
@@ -94,7 +94,7 @@ public class Duke {
                 sb.append(LONG_LINE)
                         .append("     Got it. I've added this task:\n")
                         .append("       ").append(deadline).append("\n")
-                        .append("     Now you have ").append(this.taskList.size()).append(" tasks in the list.\n")
+                        .append("     Now you have ").append(this.taskList.size()).append(" task(s) in the list.\n")
                         .append(LONG_LINE);
                 break;
             }
@@ -105,7 +105,7 @@ public class Duke {
                 sb.append(LONG_LINE)
                         .append("     Got it. I've added this task:\n")
                         .append("       ").append(event).append("\n")
-                        .append("     Now you have ").append(this.taskList.size()).append(" tasks in the list.\n")
+                        .append("     Now you have ").append(this.taskList.size()).append(" task(s) in the list.\n")
                         .append(LONG_LINE);
                 break;
             }
