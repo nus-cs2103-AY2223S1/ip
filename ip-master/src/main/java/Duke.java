@@ -2,32 +2,16 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /*
-Duke IP for CS2103T by Yuvaraj Kumaresan AY2023
+Duke IP for CS2103T by Yuvaraj Kumaresan AY2022/23
  */
 public class Duke {
 
     public static ArrayList<String> storage = new ArrayList<String>();
 
-//    /*
-//    Method echo
-//    Description: Asks for user input using the scanner utility,
-//                 Redisplay input if input is not bye,
-//                 if input is bye exit message is displayed and program exits.
-//     */
-//    public static void echo() {
-//        Scanner input = new Scanner(System.in);
-//        String text = input.nextLine();
-//        if (text.equalsIgnoreCase("bye")) {
-//            System.out.println("Bye. Hope to see you again soon!\n");
-//        } else {
-//            System.out.println(text + "\n");
-//            echo();
-//        }
-//    }
     /*
     Method list
     Description: Asks for user input using the scanner utility,
-                 Add's input to memory if input is not bye,
+                 Adds input to memory if input is not bye or list,
                  if input is bye exit message is displayed and program exits,
                  if input is list program lists out the stored inputs.
      */
@@ -35,8 +19,12 @@ public class Duke {
         Scanner input = new Scanner(System.in);
         String text = input.nextLine();
         if (text.equalsIgnoreCase("list")) {
-            for (int i = 0; i < storage.size(); i++) {
-                System.out.println((i + 1) + ". " + storage.get(i));
+            if (storage.size() == 0) {
+                System.out.println("No items have been added to the list");
+            } else {
+                for (int i = 0; i < storage.size(); i++) {
+                    System.out.println((i + 1) + ". " + storage.get(i));
+                }
             }
             list();
         } else if (text.equalsIgnoreCase("bye")) {
