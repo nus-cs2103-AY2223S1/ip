@@ -12,8 +12,16 @@ public class Duke {
     }
 
     public void run() {
-        System.out.println("Hello I'm Duke\n What can I do for you?");
+        try {
+            userInput();
+        } catch(DukeException dukeEx) {
+            System.out.println(dukeEx.getMessage());
+        }
 
+    }
+
+    public void userInput() throws DukeException{
+        System.out.println("Hello I'm Duke\n What can I do for you?");
 
         while (scanner.hasNextLine()) {
             System.out.println();
@@ -44,10 +52,7 @@ public class Duke {
                     event(ss);
                     break;
                 default:
-//                    Task task = new Task(ss);
-//                    add(task);
-//                    System.out.println("added: " + ss);
-                    System.out.println("     ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                    throw new DukeException("     ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
         }
     }
