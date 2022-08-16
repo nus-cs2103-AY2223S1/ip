@@ -67,7 +67,7 @@ public class Sky {
                     "\n  Now you have " + taskList.size() +
                     (taskList.size() <= 1 ? " task in the list.": " tasks in the list."));
         } catch (IndexOutOfBoundsException e) {
-            System.out.println(" Are you new? Specify a task after typing todo.");
+            System.out.println("  Are you new? Specify a task after typing todo.");
         }
     }
 
@@ -117,12 +117,6 @@ public class Sky {
         }
     }
 
-    public void addTask(String userInput) {
-        Task task = new Task(userInput);
-        taskList.add(task);
-        System.out.println("  added: " + userInput);
-    }
-
     public static void main(String[] args) {
         Sky sky = new Sky();
         sky.greetUser();
@@ -147,7 +141,11 @@ public class Sky {
             } else if (userInput.startsWith("event")) {
                 sky.addEvent(userInput);
             } else {
-                sky.addTask(userInput);
+                try {
+                    throw new TextNoMeaningException("  Are you new? Type a command that I actually know");
+                } catch (TextNoMeaningException e) {
+                    System.out.println(e);
+                }
             }
             System.out.println("  ____________________________________________________________");
         }
