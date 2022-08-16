@@ -15,5 +15,5 @@ public abstract class Command {
         return this.isExit;
     }
 
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage);
+    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws RuntimeException;
 }

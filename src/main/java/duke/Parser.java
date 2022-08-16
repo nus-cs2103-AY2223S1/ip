@@ -3,6 +3,7 @@ package duke;
 import duke.command.*;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 public class Parser {
     private enum CommandType {
@@ -10,63 +11,66 @@ public class Parser {
     }
 
     public static Command parse(String fullCommand) throws DukeException {
-        String[] commandSplit = fullCommand.trim().split(" ", 2);
-        CommandType c = CommandType.valueOf(commandSplit[0].toUpperCase());
+        String[] commandSplit = fullCommand.strip().split(" ", 2);
 
-        if (commandSplit.length == 1) {
-            switch (c) {
-            case LIST:
-                return new ListCommand();
-            case MARK:
-                throw new DukeException("The index to mark cannot be empty.");
-            case UNMARK:
-                throw new DukeException("The index to unmark cannot be empty.");
-            case TODO:
-                throw new DukeException("The description of a todo cannot be empty.");
-            case DEADLINE:
-                throw new DukeException("The description of a deadline cannot be empty.");
-            case EVENT:
-                throw new DukeException("The description of an event cannot be empty.");
-            case DELETE:
-                throw new DukeException("The index to delete cannot be empty.");
-            default:
-                return new ByeCommand();
+        CommandType c;
+        try {
+            c = CommandType.valueOf(commandSplit[0].toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new DukeException("I'm sorry, but I don't know what that means.");
+        }
+
+        try {
+            if (commandSplit.length == 1) {
+                switch (c) {
+                case LIST:
+                    return new ListCommand();
+                case MARK:
+                    throw new EmptyIndexException("mark");
+                case UNMARK:
+                    throw new EmptyIndexException("unmark");
+                case TODO:
+                    throw new EmptyDescriptionException("a todo");
+                case DEADLINE:
+                    throw new EmptyDescriptionException("a deadline");
+                case EVENT:
+                    throw new EmptyDescriptionException("an event");
+                case DELETE:
+                    throw new EmptyIndexException("delete");
+                default:
+                    return new ByeCommand();
+                }
+            } else {
+                String info = commandSplit[1].strip();
+                switch (c) {
+                case MARK:
+                    return new MarkCommand(Integer.parseInt(info) - 1);
+                case UNMARK:
+                    return new UnmarkCommand(Integer.parseInt(info) - 1);
+                case TODO:
+                    return new TodoCommand(info);
+                case DEADLINE:
+                    String[] deadlineSplit = info.split(" /by ");
+                    if (deadlineSplit.length == 1) {
+                        throw new DukeException("Please provide both a description and a time.");
+                    }
+                    return new DeadlineCommand(deadlineSplit[0], LocalDate.parse(deadlineSplit[1]));
+                case EVENT:
+                    String[] eventSplit = info.split(" /at ");
+                    if (eventSplit.length == 1) {
+                        throw new DukeException("Please provide both a description and a time.");
+                    }
+                    return new EventCommand(eventSplit[0], LocalDate.parse(eventSplit[1]));
+                case DELETE:
+                    return new DeleteCommand(Integer.parseInt(info) - 1);
+                default:
+                    throw new DukeException("Please re-enter the command only.");
+                }
             }
-        } else {
-            String info = commandSplit[1];
-            switch (c) {
-            case MARK:
-                if (!info.matches("[0-9]+")) {
-                    throw new DukeException("The index provided is not a positive integer.");
-                }
-                return new MarkCommand(Integer.parseInt(info));
-            case UNMARK:
-                if (!info.matches("[0-9]+")) {
-                    throw new DukeException("The index provided is not a positive integer.");
-                }
-                return new UnmarkCommand(Integer.parseInt(info));
-            case TODO:
-                return new TodoCommand(info);
-            case DEADLINE:
-                String[] deadlineSplit = info.split(" /by ");
-                if (deadlineSplit.length == 1) {
-                    throw new DukeException("Please provide both a description and a time.");
-                }
-                return new DeadlineCommand(deadlineSplit[0], LocalDate.parse(deadlineSplit[1]));
-            case EVENT:
-                String[] eventSplit = info.split(" /at ");
-                if (eventSplit.length == 1) {
-                    throw new DukeException("Please provide both a description and a time.");
-                }
-                return new EventCommand(eventSplit[0], LocalDate.parse(eventSplit[1]));
-            case DELETE:
-                if (!info.matches("[0-9]+")) {
-                    throw new DukeException("The index provided is not a positive integer.");
-                }
-                return new DeleteCommand(Integer.parseInt(info));
-            default:
-                throw new DukeException("Please re-enter the command only.");
-            }
+        } catch (NumberFormatException e) {
+            throw new DukeException("The index provided is not a positive integer.");
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Please provide a date in the format yyyy-mm-dd.");
         }
     }
 }

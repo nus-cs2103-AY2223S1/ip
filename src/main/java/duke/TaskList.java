@@ -35,11 +35,11 @@ public class TaskList {
     }
 
     public String markTask(int idx) {
-        return this.tasks.get(idx - 1).mark();
+        return this.tasks.get(idx).mark();
     }
 
     public String unmarkTask(int idx) {
-        return this.tasks.get(idx - 1).unmark();
+        return this.tasks.get(idx).unmark();
     }
 
     public String addTodo(String description) {
@@ -64,7 +64,7 @@ public class TaskList {
     }
 
     public String deleteTask(int idx) {
-        Task deleted = tasks.remove(idx - 1);
+        Task deleted = tasks.remove(idx);
         size--;
         return deleted.toString();
     }

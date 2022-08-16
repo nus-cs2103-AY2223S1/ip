@@ -29,6 +29,7 @@ public class Storage {
 
     public void save(ArrayList<String> data) {
         try {
+            new File(filePath).getParentFile().mkdirs();
             FileWriter fw = new FileWriter(filePath);
 
             for (String s : data) {
