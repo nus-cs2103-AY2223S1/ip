@@ -2,7 +2,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Duke {
@@ -66,12 +65,16 @@ public class Duke {
                 case todoCommand:
                     String todoText = String.join(" ", commandArgsCopy);
 
-                    Task newTodo = new Todo(todoText);
-                    tasks.add(newTodo);
-                    System.out.println("\n___________________________ \n");
-                    System.out.println("got it. I've added this task:");
-                    System.out.println(newTodo);
-                    System.out.println("___________________________ \n");
+                    if(commandArgsCopy.length > 0){
+                        Task newTodo = new Todo(todoText);
+                        tasks.add(newTodo);
+                        System.out.println("\n___________________________ \n");
+                        System.out.println("got it. I've added this task:");
+                        System.out.println(newTodo);
+                        System.out.println("___________________________ \n");
+                    } else {
+                        System.out.println("The description of the todo cannot be empty!");
+                    }
                     break;
 
                 case deadlineCommand:

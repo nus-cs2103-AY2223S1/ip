@@ -42,6 +42,8 @@ got it. I've added this task:
 ___________________________ 
 
 Enter Command: 
+The description of the todo cannot be empty!
+Enter Command: 
 Sorry I don't understand that command
 Enter Command: 
 Goodbye and have a nice day!
