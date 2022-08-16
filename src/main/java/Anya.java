@@ -28,6 +28,9 @@ public class Anya {
                 } else if (command.equals("unmark")) {
                     int index = Integer.parseInt(userInput.split(" ")[1]) - 1;
                     unmark(tasks, index);
+                } else if (command.equals("delete")) {
+                    int index = Integer.parseInt(userInput.split(" ")[1]) - 1;
+                    delete(tasks, index);
                 } else if (command.equals("todo")) {
                     try {
                     String inputTask = userInput.split(" ", 2)[1];
@@ -88,12 +91,18 @@ public class Anya {
     public static void mark(ArrayList<Task> tasks, int index) {
         Task task = tasks.get(index);
         task.markDone();
-        System.out.println("Anya has marked this task as done: \n  " + task.toString());
+        System.out.println("Anya has marked this task as done: \n  " + task.toString() + breakLine);
     }
 
     public static void unmark(ArrayList<Task> tasks, int index) {
         Task task = tasks.get(index);
         task.markUndone();
-        System.out.println("Anya has marked this task as uncompleted: \n  " + task.toString());
+        System.out.println("Anya has marked this task as uncompleted: \n  " + task.toString() + breakLine);
+    }
+
+    public static void delete(ArrayList<Task> tasks, int index) {
+        Task removedTask = tasks.get(index);
+        tasks.remove(index);
+        System.out.println("Anya has removed this task : \n" + removedTask.toString() + breakLine);
     }
 }

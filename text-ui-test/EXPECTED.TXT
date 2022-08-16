@@ -4,15 +4,37 @@ How can Anya help?
 Anya added: [T][ ] borrow book
 Anya sees that you have 1 task(s) in your list.
 ---------------------------------------------------------------------
-Anya is getting you your list...
-1. [T][ ] borrow book
-
----------------------------------------------------------------------
-Anya added: [D][ ] return book (by: Sunday)
+Anya added: [D][ ] return book (by: June 6th)
 Anya sees that you have 2 task(s) in your list.
 ---------------------------------------------------------------------
-Anya added: [E][ ] project meeting (at: Mon 2-4pm)
+Anya added: [E][ ] project meeting (at: Aug 6th 2-4pm)
 Anya sees that you have 3 task(s) in your list.
+---------------------------------------------------------------------
+Anya has marked this task as done:
+  [T][X] borrow book
+---------------------------------------------------------------------
+Anya has marked this task as done:
+  [D][X] return book (by: June 6th)
+---------------------------------------------------------------------
+Anya added: [T][ ] join sports club
+Anya sees that you have 4 task(s) in your list.
+---------------------------------------------------------------------
+Anya added: [T][ ] borrow book
+Anya sees that you have 5 task(s) in your list.
+---------------------------------------------------------------------
+Anya has marked this task as done:
+  [T][X] join sports club
+---------------------------------------------------------------------
+Anya is getting you your list...
+1. [T][X] borrow book
+2. [D][X] return book (by: June 6th)
+3. [E][ ] project meeting (at: Aug 6th 2-4pm)
+4. [T][X] join sports club
+5. [T][ ] borrow book
+
+---------------------------------------------------------------------
+Anya has removed this task :
+[E][ ] project meeting (at: Aug 6th 2-4pm)
 ---------------------------------------------------------------------
 Anya is sad to see you leave. Please be back soon.
 ---------------------------------------------------------------------
