@@ -2,13 +2,15 @@ import java.util.Scanner;
 
 public class Duke {
 
+
+
     public void run() {
         welcome();
         command();
         bye();
     }
 
-    public static void welcome() {
+    public void welcome() {
         String logo = "      ____        _        \n"
                 + "     |  _ \\ _   _| | _____ \n"
                 + "     | | | | | | | |/ / _ \\\n"
@@ -22,7 +24,7 @@ public class Duke {
         System.out.println();
     }
 
-    public static void command() {
+    public void command() {
         Scanner sc = new Scanner(System.in);
         String cmd = sc.nextLine();
         while (!cmd.equals("bye")) {
@@ -31,14 +33,14 @@ public class Duke {
         }
     }
 
-    public static void echo(String cmd) {
+    public void echo(String cmd) {
         System.out.println("    ____________________________________________________________");
         System.out.println("     " + cmd);
         System.out.println("    ____________________________________________________________");
         System.out.println();
     }
 
-    public static void bye() {
+    public void bye() {
         System.out.println("    ____________________________________________________________");
         System.out.println("     Bye. Hope to see you again soon!" );
         System.out.println("    ____________________________________________________________");
