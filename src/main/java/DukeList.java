@@ -1,19 +1,44 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class DukeList {
-    private final ArrayList<String> listItems = new ArrayList<>();
+    private final List<Task> listItems = new ArrayList<>();
 
     public DukeList() {
 
     }
 
-    public String add(String item) {
+    public String add(Task item) {
         listItems.add(item);
         return "added: " + item;
     }
 
+    public String done(int index) {
+        int listIndex = index - 1;
+        if (listIndex < 0 || listIndex > listItems.size() - 1) {
+            return "Invalid task.";
+        }
+
+        Task t = listItems.get(listIndex);
+        t.markAsDone();
+        return "Nice! I've marked this task as done:\n" + t;
+    }
+
+    public String undone(int index) {
+        int listIndex = index - 1;
+        if (listIndex < 0 || listIndex > listItems.size() - 1) {
+            return "Invalid task.";
+        }
+
+        Task t = listItems.get(listIndex);
+        t.markAsUndone();
+        return "OK, I've marked this task as not done yet:\n" + t;
+    }
+
+    @Override
     public String toString() {
         StringBuilder listItemsStrBuilder = new StringBuilder();
+        listItemsStrBuilder.append("Here are the tasks in your list:\n");
         for (int i = 0; i < listItems.size(); i++) {
             listItemsStrBuilder.append(i + 1).append(". ").append(listItems.get(i));
 
