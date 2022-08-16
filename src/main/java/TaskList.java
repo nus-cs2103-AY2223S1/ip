@@ -18,6 +18,15 @@ public class TaskList {
   }
 
   /**
+   * Return the number of tasks in the task list currently.
+   * 
+   * @return Number of tasks in the task list.
+   */
+  public int size() {
+    return this.tasks.size();
+  }
+
+  /**
    * Returns the task with the input index in its string representation.
    * 
    * @param index
