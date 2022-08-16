@@ -112,6 +112,16 @@ public class Blob {
         }
     }
 
+    private void deleteTaskAtIndex(int index) throws InvalidTaskIndexException {
+        try {
+            Task task = taskList.get(index - 1);
+            taskList.remove(index - 1);
+            speak("Ok... Blob forget task...", String.format("\n\t\t%s \n", task));
+        } catch (IndexOutOfBoundsException exception) {
+            throw new InvalidTaskIndexException();
+        }
+    }
+
     /**
      * Prints a sequence of strings, each in an indented newline encapsulated in a message instance.
      *
@@ -177,6 +187,14 @@ public class Blob {
                         throw new MissingTaskDescriptionException();
                     }
                     addEvent(deconstructedInput[1]);
+                    break;
+                case "delete":
+                    try {
+                        int index = Integer.parseInt(deconstructedInput[1]);
+                        deleteTaskAtIndex(index);
+                    } catch (NumberFormatException exception) {
+                        throw new InvalidTaskIndexException();
+                    }
                     break;
                 default:
                     throw new UnknownCommandException();
