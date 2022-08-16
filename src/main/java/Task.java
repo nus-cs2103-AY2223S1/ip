@@ -1,9 +1,9 @@
 public class Task {
-    private final String name;
+    private final String description;
     private final CheckBox checkBox;
 
     public Task(String name) {
-        this.name = name;
+        this.description = name;
         this.checkBox = new CheckBox(false);
     }
 
@@ -12,6 +12,6 @@ public class Task {
     }
 
     public String toString() {
-        return this.checkBox + " " + this.name;
+        return this.checkBox + " " + this.description;
     }
 }
