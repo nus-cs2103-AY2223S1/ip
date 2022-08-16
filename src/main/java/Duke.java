@@ -8,34 +8,32 @@ import java.util.Scanner;
  * This is the Main Class that contains the Main method.
  */
 public class Duke {
-    private final static String underline = "____________________________________________________________";
-    private final static String indentation = "  ";
+    private final UI Ui;
+    private final TaskList Tasklist;
 
     /**
      * Private constructor of Duke.
      */
     private Duke() {
+        Ui = new UI();
+        Tasklist = new TaskList();
     }
 
     public void run() {
-        System.out.println(indentation + underline);
-        System.out.println(indentation + "Hello! I'm Duke\n" +
-                indentation + "What can I do for you?");
-        System.out.println(indentation + underline);
+        Ui.printGreetings();
 
         Scanner sc = new Scanner(System.in);
         while (true) {
             String chat = sc.nextLine();
             if (chat.equals("bye")) {
                 sc.close();
-                System.out.println(indentation + underline);
-                System.out.println(indentation + "Bye. Hope to see you again soon!");
-                System.out.println(indentation + underline);
+                Ui.exit();
                 break;
+            } else if (chat.equals("list")) {
+                Ui.showListDetails(Tasklist);
             } else {
-                System.out.println(indentation + underline);
-                System.out.println(indentation + chat);
-                System.out.println(indentation + underline);
+                Tasklist.add(chat);
+                Ui.showAddOnTask(chat);
             }
         }
     }
