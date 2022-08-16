@@ -22,7 +22,7 @@ class Checklist {
     }
 
     void add(String task) {
-        taskList.add(new Task(taskList.size() + 1, task));
+        taskList.add(new Todo(taskList.size() + 1, task));
     }
 
 }
