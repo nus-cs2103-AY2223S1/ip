@@ -12,7 +12,7 @@ class Event extends Task {
          * Add error checking here
          */
 
-        return new Event(data.description, data.additionalInfo.substring(2));
+        return new Event(data.description, data.additionalInfo.substring(3));
     }
 
     @Override

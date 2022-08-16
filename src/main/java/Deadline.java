@@ -12,7 +12,7 @@ class Deadline extends Task {
          * Add error checking here
          */
 
-        return new Deadline(data.description, data.additionalInfo.substring(2));
+        return new Deadline(data.description, data.additionalInfo.substring(3));
     }
 
     @Override
