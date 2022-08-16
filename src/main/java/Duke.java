@@ -83,7 +83,7 @@ public class Duke {
                     System.out.println(i+1 + ". " + list.get(i));
                 }
             } else if (command[0].equals("mark")){
-                int index = Integer.parseInt(next.split(" ", 2)[1]) - 1;
+                int index = Integer.parseInt(command[1]) - 1;
                 list.get(index).mark();
                 System.out.println("I have marked this task as done:");
                 System.out.println(list.get(index));
@@ -115,6 +115,16 @@ public class Duke {
                 System.out.println("Added Task");
                 System.out.println(list.get(count - 1));
                 System.out.println("Now you have " + count + " tasks in the list");
+            } else if (command[0].equals("delete")) {
+                if (command.length < 2) {
+                    throw new DukeException("please specify which item to delete");
+                }
+                int index = Integer.parseInt(command[1]) - 1;
+                Task item = list.get(index);
+                list.remove(index);
+                int count = list.size();
+                System.out.println("Noted. I have removed this task: \n" + item);
+                System.out.println("You now have " + count + " tasks left in the list");
             }
             else {
                 throw new DukeException("oops! I do not know what that means!");
