@@ -4,7 +4,7 @@ import java.util.List;
 import exceptions.TaskNotFoundException;
 
 public class TaskController {
-    private List<Task> tasks;
+    private final List<Task> tasks;
 
     public TaskController() {
         this.tasks = new ArrayList<>();

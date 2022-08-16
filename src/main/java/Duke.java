@@ -1,13 +1,11 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
 import exceptions.IncorrectArgumentException;
 import exceptions.MissingArgumentException;
 import exceptions.TaskNotFoundException;
 import exceptions.UnknownCommandException;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class Duke {
     static private final String exitCommand = "bye";
@@ -24,7 +22,7 @@ public class Duke {
 
     /**
      * Returns a boolean corresponding to whether the given string is numeric.
-     * 
+     *
      * @param strNum
      * @return boolean representing whether the string is numeric
      */
@@ -71,10 +69,9 @@ public class Duke {
         Duke.greet();
 
         Scanner scannerObj = new Scanner(System.in); // Create a Scanner object
-        String userInput = "";
+        String userInput;
 
-        List<Task> tasks = new ArrayList<>();
-        Boolean flag = true;
+        boolean flag = true;
 
         while (flag) {
             System.out.println("Enter Command: ");
@@ -82,9 +79,7 @@ public class Duke {
 
             String[] commandArgs = userInput.split(" ");
             String[] commandArgsCopy = new String[commandArgs.length - 1];
-            for (int i = 1; i < commandArgs.length; i++) {
-                commandArgsCopy[i - 1] = commandArgs[i];
-            }
+            System.arraycopy(commandArgs, 1, commandArgsCopy, 0, commandArgs.length - 1);
 
             try {
                 switch (commandArgs[0]) {
@@ -165,13 +160,7 @@ public class Duke {
                     default:
                         throw new UnknownCommandException("Sorry I don't understand that command");
                 }
-            } catch (UnknownCommandException e) {
-                System.out.println(e.getMessage());
-            } catch (MissingArgumentException e) {
-                System.out.println(e.getMessage());
-            } catch (TaskNotFoundException e) {
-                System.out.println(e.getMessage());
-            } catch (IncorrectArgumentException e) {
+            } catch (UnknownCommandException | MissingArgumentException | TaskNotFoundException | IncorrectArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }

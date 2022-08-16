@@ -8,7 +8,7 @@ public enum DukeCommands {
     EVENT("event"),
     DELETE("delete");
 
-    private String text;
+    private final String text;
 
     DukeCommands(String text) {
         this.text = text;

@@ -1,5 +1,5 @@
 public class Event extends Task {
-    private String dateTime;
+    private final String dateTime;
 
     public Event(String text, String dateTime) {
         super(text);
