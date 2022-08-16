@@ -65,6 +65,9 @@ public class Duke {
     }
 
     public static void main(String[] args) {
+        // Set up
+        TaskController taskController = new TaskController();
+
         Duke.greet();
 
         Scanner scannerObj = new Scanner(System.in); // Create a Scanner object
@@ -94,11 +97,7 @@ public class Duke {
 
                         if (commandArgsCopy.length > 0) {
                             Task newTodo = new Todo(todoText);
-                            tasks.add(newTodo);
-                            System.out.println("\n___________________________ \n");
-                            System.out.println("got it. I've added this task:");
-                            System.out.println(newTodo);
-                            System.out.println("___________________________ \n");
+                            taskController.addTask(newTodo);
                         } else {
                             throw new MissingArgumentException("The description of the todo cannot be empty!");
                         }
@@ -112,11 +111,7 @@ public class Duke {
                             String deadline = deadlineArgs[1];
 
                             Task newDeadline = new Deadline(deadlineTitle, deadline);
-                            tasks.add(newDeadline);
-                            System.out.println("\n___________________________ \n");
-                            System.out.println("got it. I've added this task:");
-                            System.out.println(newDeadline);
-                            System.out.println("___________________________ \n");
+                            taskController.addTask(newDeadline);
                         } else {
                             throw new MissingArgumentException("Deadlines need a /by command");
                         }
@@ -130,11 +125,7 @@ public class Duke {
                             String eventDateTime = eventArgs[1];
 
                             Task newEvent = new Event(eventTitle, eventDateTime);
-                            tasks.add(newEvent);
-                            System.out.println("\n___________________________ \n");
-                            System.out.println("got it. I've added this task:");
-                            System.out.println(newEvent);
-                            System.out.println("___________________________ \n");
+                            taskController.addTask(newEvent);
                         } else {
                             throw new MissingArgumentException("Events need a /at command");
                         }
@@ -143,14 +134,7 @@ public class Duke {
                     case markCommand:
                         if (isNumeric(commandArgs[1])) {
                             int idx = Integer.parseInt(commandArgs[1]);
-                            try {
-                                Task curr = tasks.get(idx - 1);
-                                curr.setComplete();
-                                System.out.println("I've marked this task as done:");
-                                System.out.println(curr);
-                            } catch (IndexOutOfBoundsException e) {
-                                throw new TaskNotFoundException();
-                            }
+                            taskController.markTask(idx - 1);
                         } else {
                             throw new IncorrectArgumentException("Sorry the second argument is not a number");
                         }
@@ -159,14 +143,7 @@ public class Duke {
                     case unmarkCommand:
                         if (isNumeric(commandArgs[1])) {
                             int idx = Integer.parseInt(commandArgs[1]);
-                            try {
-                                Task curr = tasks.get(idx - 1);
-                                curr.setIncomplete();
-                                System.out.println("I've marked this task as done:");
-                                System.out.println(curr);
-                            } catch (IndexOutOfBoundsException e) {
-                                throw new TaskNotFoundException();
-                            }
+                            taskController.unmarkTask(idx - 1);
                         } else {
                             throw new IncorrectArgumentException("Sorry the second argument is not a number");
                         }
@@ -175,26 +152,14 @@ public class Duke {
                     case deleteCommand:
                         if (isNumeric(commandArgs[1])) {
                             int idx = Integer.parseInt(commandArgs[1]);
-                            try {
-                                Task curr = tasks.get(idx - 1);
-                                System.out.println("I've removed this task:");
-                                System.out.println(curr);
-                                tasks.remove(curr);
-                            } catch (IndexOutOfBoundsException e) {
-                                throw new TaskNotFoundException();
-                            }
+                            taskController.deleteTask(idx - 1);
                         } else {
                             throw new IncorrectArgumentException("Sorry the second argument is not a number");
                         }
                         break;
 
                     case listCommand:
-                        System.out.println("\n___________________________ \n");
-                        System.out.println("Here are the tasks in your list\n");
-                        for (int idx = 0; idx < tasks.size(); idx++) {
-                            System.out.println(idx + 1 + ": " + tasks.get(idx));
-                        }
-                        System.out.println("\n___________________________ \n");
+                        taskController.listTasks();
                         break;
 
                     default:
