@@ -1,10 +1,9 @@
 public class Task {
-    private boolean isComplete;
+    private boolean isComplete = false; // Initialized to false by default
     private String taskTitle;
 
-    public Task(String taskTitle, boolean isComplete) {
+    public Task(String taskTitle) {
         this.taskTitle = taskTitle;
-        this.isComplete = isComplete;
     }
 
     public String getTaskTitle() {

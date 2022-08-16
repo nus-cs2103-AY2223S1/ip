@@ -36,7 +36,7 @@ public class Duke {
                     System.out.format("OK, I've marked this task as not done yet: %s\n", userData.get(Integer.valueOf(userInputs[1])).toString());
                     break;
                 default:
-                    userData.add(new Task(line, false));
+                    userData.add(new Task(line));
                     System.out.format("added: %s\n", line);
             }
             System.out.println("-----------------------------------");
