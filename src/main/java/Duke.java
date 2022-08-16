@@ -117,6 +117,7 @@ public class Duke {
             switch (command) {
                 case ("bye"):
                     System.out.println(goodbye);
+                    System.exit(0);
                     break;
                 case ("list"):
                     printList();
