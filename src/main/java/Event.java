@@ -10,7 +10,7 @@ class Event extends Task {
 
     static Event createEvent(ParsedData data) throws DukeException {
         if (data.description.length() == 0)
-            throw new EmptyDescriptionError("event");
+            throw new EmptyDescriptionException("event");
 
         if (data.additionalInfo.length() == 0 || !data.additionalInfo.startsWith(PREFIX))
             throw new EmptyTimeException("event", SPLIT);
