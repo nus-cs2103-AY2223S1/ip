@@ -17,15 +17,15 @@ public class Duke {
     }
 
     // checks if number input is valid and returns the index of the task
-    public static int getIndex(String res) throws DukeException{
-        if (!res.matches("[0-9]+")) throw new DukeException("Input is not a number");
+    public static int getIndex(String res) throws InvalidInput {
+        if (!res.matches("[0-9]+")) throw new InvalidInput("Input is not a number");
         int target_index = Integer.parseInt(res) - 1;
-        if (target_index < 0 || target_index >= data.size()) throw new DukeException("Please input a correct number");
+        if (target_index < 0 || target_index >= data.size()) throw new InvalidInput("Please input a correct number");
         return target_index;
     }
 
     // marks task as complete or not complete
-    public static String markTask(String input, boolean isComplete) throws DukeException {
+    public static String setTaskCompletion(String input, boolean isComplete) throws InvalidInput{
         String res = input.substring(isComplete ? 4 : 6).trim();
         Task task = data.get(getIndex(res));
         if (isComplete) task.markDone();
@@ -35,42 +35,42 @@ public class Duke {
     }
 
     // create a todo task
-    public static String createTodo(String input) throws DukeException{
+    public static String createTodo(String input) throws InvalidInput {
         String description = input.substring(4).trim();
-        if (description.length() == 0) throw new DukeException("The description of a todo cannot be empty.");
+        if (description.length() == 0) throw new InvalidInput("The description of a todo cannot be empty.");
         ToDo task = new ToDo(description);
         data.add(task);
         return "Got it. I've added this task:\n" + task + "\nNow you have " + data.size() + " tasks.";
     }
 
     // create event task
-    public static String createEvent(String input) throws DukeException{
+    public static String createEvent(String input) throws InvalidInput{
         String[] info = input.substring(5).split("/at");
-        if (info.length != 2) throw new DukeException("Invalid Input!");
+        if (info.length != 2) throw new InvalidInput("Ensure input format is correct.");
         String description = info[0].strip();
         String at = info[1].strip();
         if (description.length() == 0 || at.length() == 0)
-            throw new DukeException("The description of event cannot be empty.");
+            throw new InvalidInput("The description of event cannot be empty.");
         Event task = new Event(description, at);
         data.add(task);
         return "Got it. I've added this task:\n" + task + "\nNow you have " + data.size() + " tasks.";
     }
 
     // create deadline task
-    public static String createDeadline(String input) throws DukeException {
+    public static String createDeadline(String input) throws InvalidInput {
         String[] info = input.substring(8).split("/by");
-        if (info.length != 2) throw new DukeException("Invalid Input!");
+        if (info.length != 2) throw new InvalidInput("Ensure input format is correct.");
         String description = info[0].strip();
         String by = info[1].strip();
         if (description.length() == 0 || by.length() == 0)
-            throw new DukeException("The description of deadline cannot be empty.");
+            throw new InvalidInput("The description of deadline cannot be empty.");
         Deadline task = new Deadline(description, by);
         data.add(task);
         return "Got it. I've added this task:\n" + task + "\nNow you have " + data.size() + " tasks.";
     }
 
     // delete a specified task
-    public static String deleteTask(String input) throws DukeException {
+    public static String deleteTask(String input) throws InvalidInput {
         String res = input.substring(6).trim();
         int target_index = getIndex(res);
         Task task = data.get(target_index);
@@ -83,15 +83,15 @@ public class Duke {
         try {
             command = Commands.valueOf(input.split(" ")[0]);
         } catch (IllegalArgumentException e) {
-            throw new DukeException("I'm sorry, but I don't know what that means :-(");
+            throw new UnknownCommand();
         }
         switch (command) {
             case list:
                 return listData();
             case mark:
-                return markTask(input, true);
+                return setTaskCompletion(input, true);
             case unmark:
-                return markTask(input, false);
+                return setTaskCompletion(input, false);
             case todo:
                 return createTodo(input);
             case event:
@@ -101,7 +101,7 @@ public class Duke {
             case delete:
                 return deleteTask(input);
             default:
-                throw new DukeException("I'm sorry, but I don't know what that means :-(");
+                throw new UnknownCommand();
         }
     }
 
