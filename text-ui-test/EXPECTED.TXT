@@ -3,7 +3,7 @@ Enter Command:
 
 ___________________________ 
 
-got it. I've added this task:
+Your wish is my command. I've added this task:
 [T][ ] borrow book
 ___________________________ 
 
@@ -21,7 +21,7 @@ Enter Command:
 
 ___________________________ 
 
-got it. I've added this task:
+Your wish is my command. I've added this task:
 [D] [ ] return book (by: Sunday)
 ___________________________ 
 
@@ -29,7 +29,7 @@ Enter Command:
 
 ___________________________ 
 
-got it. I've added this task:
+Your wish is my command. I've added this task:
 [E] [ ] project meeting (at: Mon 2-4pm)
 ___________________________ 
 
@@ -37,7 +37,7 @@ Enter Command:
 
 ___________________________ 
 
-got it. I've added this task:
+Your wish is my command. I've added this task:
 [D] [ ] do homework (by: no idea :-p)
 ___________________________ 
 
@@ -49,7 +49,7 @@ Enter Command:
 
 ___________________________ 
 
-got it. I've added this task:
+Your wish is my command. I've added this task:
 [T][ ] read book
 ___________________________ 
 
@@ -57,7 +57,7 @@ Enter Command:
 
 ___________________________ 
 
-got it. I've added this task:
+Your wish is my command. I've added this task:
 [D] [ ] return book (by: June 6th)
 ___________________________ 
 
@@ -65,7 +65,7 @@ Enter Command:
 
 ___________________________ 
 
-got it. I've added this task:
+Your wish is my command. I've added this task:
 [T][ ] join sports club
 ___________________________ 
 
@@ -89,8 +89,13 @@ Here are the tasks in your list
 ___________________________ 
 
 Enter Command: 
-I've removed this task:
+
+___________________________ 
+
+Your wish is my command. I've deleted this task:
 [E] [ ] project meeting (at: Mon 2-4pm)
+___________________________ 
+
 Enter Command: 
 
 ___________________________ 
