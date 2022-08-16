@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -16,9 +18,10 @@ public class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
-    public void printTask() {
-        System.out.println("added: " + this.description);
-        System.out.println("#########################");
+    public ArrayList<Task> printAndStoreTask(ArrayList<Task> taskList) {
+        return null;
+//        System.out.println("added: " + this.description);
+//        System.out.println("#########################");
     }
 
     public void doTask() {
