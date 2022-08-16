@@ -7,6 +7,18 @@ public class Task {
         this.text = text;
     }
 
+    public void mark() {
+        this.isDone = true;
+        System.out.println("Nice! I've marked this task as done:");
+        System.out.println(this.toString());
+    }
+
+    public void unmark() {
+        this.isDone = false;
+        System.out.println("OK, I've marked this task as not done yet:");
+        System.out.println(this.toString());
+    }
+
     @Override
     public String toString() {
         return String.format("[%c] %s", isDone ? 'X' : ' ', this.text);
