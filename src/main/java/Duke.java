@@ -7,15 +7,12 @@ public class Duke {
 
     // ChatBot constants
     public static final String NAME = "Duke";
-    // ChatBot commands
-    public static final String CMD_TERMINATE = "bye";
-    public static final String CMD_LIST = "list";
     // UI constants
     public static final String INDENT_CHAR = "\t";
     public static final String LINE_STR = "-".repeat(50);
 
-    private static final String[] history = new String[100]; // Max capacity: 100
-    private static int currHistIdx = 0;
+    private static final Task[] taskList = new Task[100]; // Max capacity: 100
+    private static int currTaskListIdx = 0;
 
     /**
      * Utility function to print line to STDOUT
@@ -57,16 +54,58 @@ public class Duke {
         printLine(LINE_STR, 1);
     }
 
+    private static Command parseCommand(String commandToken) {
+        try {
+            return Command.valueOf(commandToken.toUpperCase());
+        } catch (IllegalArgumentException error) {
+            // fall back to `add` command
+            return Command.ADD;
+        }
+    }
+
     private static void handleListCommand() {
-        if (currHistIdx == 0) {
+        if (currTaskListIdx == 0) {
             respond("There are no items in the list!");
             return;
         }
         List<String> responses = new ArrayList<>();
-        for (int idx = 0; idx < currHistIdx; idx++) {
-            responses.add(String.format("%d. %s", idx + 1, history[idx]));
+        for (int idx = 0; idx < currTaskListIdx; idx++) {
+            responses.add(String.format("%d. %s", idx + 1, taskList[idx]));
         }
         respond(responses);
+    }
+
+    private static void handleMarkCommand(String[] queryTokens, boolean toMark) {
+        // Validate query tokens
+        boolean validMarkQuery = queryTokens.length == 2;
+        if (!validMarkQuery) {
+            respond(String.format(
+                "[ERROR] Invalid number of parameters passed to `mark` command. Expected: 1 Got: %d",
+                queryTokens.length - 1));
+            return;
+        }
+        // Convert mark idx query to int
+        String markIdx = queryTokens[1];
+        try {
+            int taskListIdx = Integer.parseInt(markIdx);
+            // Validate taskListIdx
+            if (taskListIdx < 0 || taskListIdx > currTaskListIdx) {
+                respond("[ERROR] Invalid task selected with `mark` command");
+                return;
+            }
+            Task task = taskList[taskListIdx - 1];
+            if (toMark) {
+                task.mark();
+                respond(Arrays.asList("Nice! I've mark this task as done:",
+                    String.format("\t%s", task)));
+            } else {
+                task.unmark();
+                respond(Arrays.asList("OK, I've marked this task as not done yet:",
+                    String.format("\t%s", task)));
+            }
+        } catch (NumberFormatException error) {
+            respond("[ERROR] `mark` command expects a number as parameter!");
+        }
     }
 
     public static void main(String[] args) {
@@ -78,19 +117,29 @@ public class Duke {
         Scanner input = new Scanner(System.in);
         while (!terminate && input.hasNextLine()) {
             String query = input.nextLine();
-            switch (query) {
-                case CMD_TERMINATE:
+            String[] queryTokens = query.split(" ");
+
+            String commandToken = queryTokens[0];
+            Command command = parseCommand(commandToken);
+            switch (command) {
+                case BYE:
                     // terminate
                     terminate = true;
                     respond("Bye. Hope to see you again soon!");
                     break;
-                case CMD_LIST:
+                case LIST:
                     handleListCommand();
                     break;
-                default:
-                    // add to history
-                    history[currHistIdx] = query;
-                    currHistIdx++;
+                case MARK:
+                    handleMarkCommand(queryTokens, true);
+                    break;
+                case UNMARK:
+                    handleMarkCommand(queryTokens, false);
+                    break;
+                case ADD:
+                    // add to taskList
+                    taskList[currTaskListIdx] = new Task(query);
+                    currTaskListIdx++;
                     respond(String.format("added: %s", query));
             }
         }
