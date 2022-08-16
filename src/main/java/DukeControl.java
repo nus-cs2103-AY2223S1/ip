@@ -25,6 +25,8 @@ public class DukeControl {
             this.parseDeadline(commandArgs);
         } else if (mainCommand.equals("event")) {
             this.parseEvent(commandArgs);
+        } else if (mainCommand.equals("delete")) {
+            this.parseDelete(commandArgs);
         } else {
             throw new InvalidCommandException();
         }
@@ -35,8 +37,8 @@ public class DukeControl {
             throw new InvalidArgumentException();
         } else {
             System.out.println("Here are the tasks in your list:");
-            for (int i = 0; i < arrayList.size(); i++) {
-                System.out.println(String.format("%d. %s", i + 1, arrayList.get(i).print()));
+            for (int i = 0; i < this.arrayList.size(); i++) {
+                System.out.println(String.format("%d. %s", i + 1, this.arrayList.get(i).print()));
             }
         }
     }
@@ -47,7 +49,7 @@ public class DukeControl {
         } else if (Integer.parseInt(commandArgs[0]) <= 0 || Integer.parseInt(commandArgs[0]) > this.arrayList.size()) {
             throw new InvalidArgumentException();
         } else {
-            arrayList.get(Integer.parseInt(commandArgs[0]) - 1).mark();
+            this.arrayList.get(Integer.parseInt(commandArgs[0]) - 1).mark();
         }
     }
 
@@ -57,7 +59,7 @@ public class DukeControl {
         } else if (Integer.parseInt(commandArgs[0]) <= 0 || Integer.parseInt(commandArgs[0]) > this.arrayList.size()) {
             throw new InvalidArgumentException();
         } else {
-            arrayList.get(Integer.parseInt(commandArgs[0]) - 1).unmark();
+            this.arrayList.get(Integer.parseInt(commandArgs[0]) - 1).unmark();
         }
     }
 
@@ -107,10 +109,27 @@ public class DukeControl {
         }
     }
 
+    public void parseDelete(String[] commandArgs) throws InvalidArgumentException {
+        if (commandArgs.length != 1) {
+            throw new InvalidArgumentException();
+        } else if (Integer.parseInt(commandArgs[0]) <= 0 || Integer.parseInt(commandArgs[0]) > this.arrayList.size()) {
+            throw new InvalidArgumentException();
+        } else {
+            this.deleteTask(Integer.parseInt(commandArgs[0]) - 1);
+        }
+    }
+
     public void addTask(Task newTask) {
-        arrayList.add(newTask);
+        this.arrayList.add(newTask);
         System.out.println(String.format(
                 "Got it. I've added this task:\n\t%s\nNow you have %d tasks in the list.",
                 newTask.print(), this.arrayList.size()));
+    }
+
+    public void deleteTask(int index) {
+        Task deletedTask = this.arrayList.remove(index);
+        System.out.println(String.format(
+                "Noted. I've removed this task:\n\t%s\nNow you have %d tasks in the list.",
+                deletedTask.print(), this.arrayList.size()));
     }
 }
