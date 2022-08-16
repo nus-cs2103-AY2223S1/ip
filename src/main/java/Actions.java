@@ -1,8 +1,6 @@
 import java.util.*;
 
 public class Actions {
-    static String doneSymbol = "[X]";
-
     public static void taskNumberMessage(ArrayList<Task> ls) {
          if (ls.size() == 1) {
              System.out.println("Now you have " + ls.size() + " task in the list.");
@@ -11,6 +9,24 @@ public class Actions {
              System.out.println("Now you have " + ls.size() + " tasks in the list.");
          }
     }
+
+    public static void processInput(String input) throws EmptyDescriptionException, InvalidCommandException {
+        ArrayList<String> acceptedKeywords = new ArrayList<>();
+        acceptedKeywords.add("list");
+        acceptedKeywords.add("bye");
+        acceptedKeywords.add("deadline");
+        acceptedKeywords.add("event");
+        acceptedKeywords.add("todo");
+        String[] parts = input.split(" ", 2);
+        String keyword = parts[0];
+        if (input.equals("bye") || input.equals("list")) return;
+        if (!acceptedKeywords.contains(keyword)) {
+            throw new InvalidCommandException();
+        }
+        else if (parts.length == 1 || parts[1].equals("")) {
+            throw new EmptyDescriptionException();
+        }
+    }
     public static void toDoList() {
         ArrayList<Task> ls = new ArrayList();
         String input = "";
@@ -18,8 +34,10 @@ public class Actions {
         while (!input.equals("bye")) {
             Scanner sc = new Scanner(System.in);
             input = sc.nextLine();
+            try {
             String[] parts = input.split(" ", 2);
             String keyword = parts[0];
+            processInput(input);
             switch (keyword) {
                 case "bye":
                     System.out.println("See ya! Come again~");
@@ -72,6 +90,14 @@ public class Actions {
                     ls.add(curr);
                     System.out.println("added: " + input);
             }
+        } catch (EmptyDescriptionException e) {
+                System.out.println("Description cannot be empty, try again!");
+                continue;
+            } catch (InvalidCommandException | ArrayIndexOutOfBoundsException e) {
+                System.out.println("Invalid input, try again!");
+                continue;
+            }
+
         }
     }
 }
