@@ -15,10 +15,6 @@ public class TaskList {
         return tasks.size();
     }
 
-    void addTask(String taskDescription) {
-        tasks.add(new Task(taskDescription));
-    }
-
     Task addTask(Task task) {
         tasks.add(task);
         return task;

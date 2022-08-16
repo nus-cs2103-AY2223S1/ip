@@ -4,7 +4,10 @@ public class ui {
 
     public static void showError(Exception e) {
         System.out.println(LINE_DIVIDER);
-        System.out.println(e);
+        String[] lines = e.getMessage().split("\n");
+        for (String line : lines) {
+            System.out.println(INDENTATION + line);
+        }
         System.out.println(LINE_DIVIDER);
     }
 
