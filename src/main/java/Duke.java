@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
@@ -12,6 +13,8 @@ public class Duke {
 
     private static String farewell = "Goodbye! Hope to see you again!";
 
+    private static ArrayList<Task> storage = new ArrayList<>();
+
     public static void main(String[] args) {
         generateMessage(greeting);
         Scanner scanner = new Scanner(System.in);
@@ -20,8 +23,14 @@ public class Duke {
             if (input.equals("bye")) {
                 generateMessage(farewell);
                 break;
+            } else if (input.equals("list")) {
+                generateMessage(displayTasks());
+            } else {
+                Task temp = new Task(input);
+                storage.add(temp);
+                generateMessage("Added: " + input);
             }
-            generateMessage(input);
+
         }
     }
 
@@ -34,6 +43,16 @@ public class Duke {
         System.out.println("Duke \uD83D\uDE0E says: ");
         System.out.println(message);
         printLine();
+    }
+
+    public static String displayTasks() {
+        int i = 1;
+        String display = "";
+        for (Task task : storage) {
+            display += "\n" + i + ". " + task;
+            i++;
+        }
+        return display;
     }
 
 }
