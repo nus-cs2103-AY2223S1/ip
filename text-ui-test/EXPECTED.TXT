@@ -14,7 +14,18 @@ Now you have 2 tasks in the list.
 Got it. I've added this task:
   [E][ ] do tutorial (by: 10am)
 Now you have 3 tasks in the list.
-1. [T][ ] wake up
+Nice! I've marked this task as done:
+  [T][X] wake up
+Nice! I've marked this task as done:
+  [E][X] do tutorial (by: 10am)
+1. [T][X] wake up
 2. [D][ ] sleep (by: 9pm)
-3. [E][ ] do tutorial (by: 10am)
+3. [E][X] do tutorial (by: 10am)
+Noted. I've removed this task:
+  [T][X] wake up
+Now you have 2 tasks in the list.
+OK, I've marked this task as not done yet:
+  [E][ ] do tutorial (by: 10am)
+1. [D][ ] sleep (by: 9pm)
+2. [E][ ] do tutorial (by: 10am)
 Bye. Hope to see you again soon!

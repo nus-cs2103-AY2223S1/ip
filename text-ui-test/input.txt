@@ -1,5 +1,10 @@
 todo wake up
 deadline sleep /by 9pm
 event do tutorial /at 10am
+mark 1
+mark 3
+list
+delete 1
+unmark 2
 list
 bye

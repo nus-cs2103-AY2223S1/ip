@@ -25,6 +25,16 @@ public class Duke {
         System.out.println("  " + taskList.get(i));
     }
 
+    private static void deleteTask(int i) {
+        if (i >= 100) return;
+        if (taskList.get(i) == null) return;
+        Task t = taskList.get(i);
+        System.out.println("Noted. I've removed this task:");
+        System.out.println("  " + t);
+        taskList.remove(i);
+        System.out.println("Now you have " + taskList.size() + " tasks in the list.");
+    }
+
     private static void displayList() {
         for (int i = 0; i < taskList.size(); i++) {
             if (taskList.get(i) == null) break;
@@ -54,6 +64,12 @@ public class Duke {
                     String s = command.substring(5);
                     int i = Integer.parseInt(s);
                     markTask(i - 1);
+                    command = sc.nextLine();
+                    continue;
+                } else if (command.contains("delete")) {
+                    String s = command.substring(7);
+                    int i = Integer.parseInt(s);
+                    deleteTask(i - 1);
                     command = sc.nextLine();
                     continue;
                 } else if (command.contains("deadline")) {
