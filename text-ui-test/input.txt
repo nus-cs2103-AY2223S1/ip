@@ -9,6 +9,9 @@ unmark 2
 list
 unmark 1
 list
+delete 3
+list
+delete 3
 wow
 list 1234
 bye 1234

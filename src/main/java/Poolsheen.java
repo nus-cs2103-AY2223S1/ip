@@ -92,6 +92,13 @@ public class Poolsheen {
                             this.unmark(java.lang.Integer.parseInt(arl.get(0)));
                         }
                         break;
+                    case "DELETE":
+                        if (arl.isEmpty()) {
+                            throw new IncompleteCommandException(this.userInput, "delete", "Please enter 1 appropriate integer");
+                        } else {
+                            this.deleteTask(java.lang.Integer.parseInt(arl.get(0)));
+                        }
+                        break;
                     case "TODO":
                         if (arl.isEmpty()) {
                             throw new IncompleteCommandException(this.userInput, "todo", "The description of a todo cannot be empty");
@@ -144,7 +151,7 @@ public class Poolsheen {
             } catch (IncompleteCommandException e) {
                 this.say(e.toString());
             } catch (IndexOutOfBoundsException e) {
-                this.say("Poolsheen thinks you may not have enough tasks. Please try another number!");
+                this.say("Poolsheen thinks no task has this position. Please try another number!");
             } catch (NumberFormatException e) {
                 this.say("Poolsheen believes this command needs an integer. Please try again!");
             } catch (Exception e) {
@@ -217,6 +224,16 @@ public class Poolsheen {
         selectedTask.markAsNotDone();
         this.say("Poolsheen thinks you are not done with "
                 + selectedTask.description);
+    }
+
+    /**
+     * Removes a task from the list of tasks that Poolsheen remembers.
+     * @param pos The index+1 position of the task that is to be deleted.
+     */
+    private void deleteTask(int pos) {
+        Task t = this.listOfTasks.get(pos - 1);
+        this.listOfTasks.remove(pos-1);
+        this.say("Poolsheen has forgot: " + t.description + " and you now have " + this.listOfTasks.size() + " tasks left");
     }
 
     public static void main(String[] args) {

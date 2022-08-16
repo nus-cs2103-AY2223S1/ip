@@ -55,6 +55,20 @@ Type something in for Poolsheen to respond to you:
       meow *_*
 ---------------
 ---------------
+      Poolsheen has forgot: Touch the World and you now have 2 tasks left
+      meow *_*
+---------------
+---------------
+      Poolsheen thinks back... and remembers you said:
+      1. [T] [ ] Eat Cake
+      2. [D] [ ] Finish CS2103 Quiz (by: Tuesday)
+      meow *_*
+---------------
+---------------
+      Poolsheen thinks no task has this position. Please try another number!
+      meow *_*
+---------------
+---------------
       Poolsheen has never seen this command and is confused :(
       Please try again!
       meow *_*
@@ -70,19 +84,19 @@ Type something in for Poolsheen to respond to you:
       meow *_*
 ---------------
 ---------------
-      Poolsheen thinks you may not have enough tasks. Please try another number!
+      Poolsheen thinks no task has this position. Please try another number!
       meow *_*
 ---------------
 ---------------
-      Poolsheen thinks you may not have enough tasks. Please try another number!
+      Poolsheen thinks no task has this position. Please try another number!
       meow *_*
 ---------------
 ---------------
-      Poolsheen thinks you may not have enough tasks. Please try another number!
+      Poolsheen thinks no task has this position. Please try another number!
       meow *_*
 ---------------
 ---------------
-      Poolsheen thinks you may not have enough tasks. Please try another number!
+      Poolsheen thinks no task has this position. Please try another number!
       meow *_*
 ---------------
 ---------------
