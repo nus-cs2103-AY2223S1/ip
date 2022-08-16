@@ -1,61 +1,55 @@
+import exceptions.*;
 import utils.TaskOperation;
-
-import java.util.Scanner;
-import java.util.logging.Logger;
-
 import static utils.UserOperation.*;
 
-import static java.util.logging.Level.SEVERE;
+import java.util.Scanner;
 
 public class Duke {
 
-    public static String GREETING = "Hello!! I'm Duke, and I can help you " +
+    public static final String GREETING = "Hello!! I'm Duke, and I can help you " +
             "do up a simple to-do list!\nThe following commands are valid:\n" + "--------------\n"
             + "todo (creates a new todo task)\n" +
             "event (creates a new event)\ndeadline (creates a new task with a deadline)\n" +
             "mark (marks the completion of your tasks)\nlist (lists your tasks)\nbye (ends the program)";
-    public static String END_PROGRAM = "Bye. Hope to see you again soon!";
+    public static final String END_PROGRAM = "Bye. Hope to see you again soon!";
 
     public static void main(String[] args) {
-        Logger logger = Logger.getLogger("DukeLogger");
+
+        Scanner reader = new Scanner(System.in);
+
         try {
-            processUserRequest();
-        } catch (Exception e) {
-            logger.log(SEVERE, e.getMessage());
+            Task[] toDoList = new Task[100];
+
+            System.out.println(GREETING);
+
+            boolean end = false;
+            while (!end) {
+                String userRequest = reader.nextLine();
+                if (userRequest.equals(BYE.getOperation())) {
+                    end = true;
+                    System.out.println(END_PROGRAM);
+                } else if (userRequest.equals(LIST.getOperation())) {
+                    printTasksInList(toDoList);
+                    System.out.print("If you would like to mark a task as complete, type 'mark', " +
+                            "otherwise, you can continue using other commands.\n" +
+                            "Please type here: ");
+                } else if (userRequest.equals(MARK.getOperation())) {
+                    markTask(toDoList);
+                } else {
+                    Task newTask = taskBuilder(userRequest);
+                    putTaskInList(toDoList, newTask);
+                }
+            }
+            reader.close();
+        } catch (EmptyBodyException | InvalidInputException e) {
+            System.out.println(e.getMessage());
         }
 
     }
 
     /* ------------------------HELPER FUNCTIONS------------------------ */
-    private static void processUserRequest() {
 
-        Task[] toDoList = new Task[100];
-
-        System.out.println(GREETING);
-        Scanner reader = new Scanner(System.in);
-
-        boolean end = false;
-        while (!end) {
-            String userRequest = reader.nextLine();
-            if (userRequest.equals(BYE.getOperation())) {
-                end = true;
-                System.out.println(END_PROGRAM);
-            } else if (userRequest.equals(LIST.getOperation())) {
-                printTasksInList(toDoList);
-                System.out.print("If you would like to mark a task as complete, type 'mark', " +
-                        "otherwise, you can continue using other commands.\n" +
-                        "Please type here: ");
-            } else if (userRequest.equals(MARK.getOperation())) {
-                markTask(toDoList);
-            } else {
-                Task newTask = taskBuilder(userRequest);
-                putTaskInList(toDoList, newTask);
-            }
-        }
-        reader.close();
-    }
-
-    private static Task taskBuilder(String operation) {
+    private static Task taskBuilder(String operation) throws EmptyBodyException, InvalidInputException {
         if (operation.equals(TaskOperation.TODO.getOperation())) {
             String description = taskDescription();
             return new ToDoTask(description);
@@ -71,8 +65,10 @@ public class Duke {
             Scanner reader = new Scanner(System.in);
             String eventDate = reader.nextLine();
             return new EventTask(description, eventDate);
+        } else if (operation.equals("")) {
+            throw new EmptyBodyException();
         } else {
-            return new Task("");
+            throw new InvalidInputException();
         }
     }
 
@@ -92,12 +88,9 @@ public class Duke {
         }
     }
 
-    private static Task[] putTaskInList(Task[] list, Task task) {
+    private static void putTaskInList(Task[] list, Task task) {
         for (int i = 0; i < list.length; i++) {
-            if (task.description.equals("")) {
-                System.out.println("The description of the task cant be nothing!");
-                break;
-            } else if (list[i] != null) {
+            if (list[i] != null) {
                 // do nothing
             } else {
                 list[i] = task;
@@ -108,7 +101,6 @@ public class Duke {
 
         System.out.print("What else would you like to do?\n" +
                 "Please type here: ");
-        return list;
     }
 
     private static void markTask(Task[] list) {
