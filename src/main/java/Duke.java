@@ -7,7 +7,7 @@ public class Duke {
         String input = "";
         Scanner scan = new Scanner(System.in);
         ArrayList<Task> list = new ArrayList<>();
-        String[] validinputs = {"mark", "unmark", "todo", "deadline", "event"};
+        String[] validinputs = {"delete", "mark", "unmark", "todo", "deadline", "event"};
 
         System.out.println("Hello! I'm Duke" + "\n" + "What can I do for you?");
 
@@ -23,6 +23,14 @@ public class Duke {
                 } else if (!input.equals("bye")) { // Only adds input to list if it is not "bye"
                     if (split.length > 0 && Arrays.asList(validinputs).contains(split[0])) {
                         switch (split[0]) {
+                            case "delete": { // Checks for delete
+                                int index = Integer.parseInt(split[1]) - 1;
+                                System.out.println("Noted. I've removed this task:" + "\n" +
+                                        "\t" + list.get(index).toString());
+                                list.remove(index);
+                                System.out.println("Now you have " + list.size() + " tasks in the list.");
+                                break;
+                            }
                             case "mark": { // Checks for mark
                                 int index = Integer.parseInt(split[1]) - 1;
                                 list.get(index).markAsDone();
