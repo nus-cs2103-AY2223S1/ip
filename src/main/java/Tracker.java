@@ -12,25 +12,34 @@ public class Tracker {
     }
 
 
-    public void markDone(String num){
+    public void markDone(String num) throws DukeException{
         int index = Integer.parseInt(num);
-
+        if (index < 0 || index > list.size()) {
+            throw new InvalidInputException(num, "mark");
+        }
         Task task = list.get(index-1);
         task.complete();
     }
 
-    public void markUndone(String num){
+    public void markUndone(String num) throws DukeException{
         int index = Integer.parseInt(num);
+        if (index < 0 || index > list.size()) {
+            throw new InvalidInputException("unmark", num);
+        }
         Task task = list.get(index-1);
         task.undo();
     }
 
-    public void addDeadline(String[] arr)  {
+    public void addDeadline(String[] arr) throws DukeException {
         int i = 1;
         while (i < arr.length && !arr[i].equals("/by") ) {
             i++;
         }
-
+        if (arr.length == 1 ) {
+            throw new MissingInputException("description", arr[0]);
+        } else if (arr.length - 1 == i) {
+            throw new MissingInputException("date", arr[0]);
+        }
         String description = String.join(" ", Arrays.copyOfRange(arr, 1, i));
         String dueDate = String.join(" ", Arrays.copyOfRange(arr, i + 1, arr.length));
         String[] command = {description, dueDate};
@@ -38,16 +47,23 @@ public class Tracker {
         deadline.add();
     }
 
-    public void addTodo(String[] arr) {
-
+    public void addTodo(String[] arr) throws DukeException {
+        if (arr.length == 1) {
+            throw new MissingInputException("description", arr[0]);
+        }
         Todo todo = new Todo(String.join(" ", Arrays.copyOfRange(arr, 1, arr.length)));
         todo.add();
     }
 
-    public void addEvent(String[] arr) {
+    public void addEvent(String[] arr) throws DukeException {
         int i = 1;
         while (i < arr.length && !arr[i].equals("/at") ) {
             i++;
+        }
+        if (arr.length == 1) {
+            throw new MissingInputException("description", arr[0]);
+        } else if (arr.length - 1 == i) {
+            throw new MissingInputException("date", arr[0]);
         }
         String description = String.join(" ", Arrays.copyOfRange(arr, 1, i));
         String dueDate = String.join(" ", Arrays.copyOfRange(arr, i + 1, arr.length));
@@ -67,6 +83,7 @@ public class Tracker {
                 printList();
             } else {
                 String[] command = input.split(" ");
+                try {
                     if (command.length >= 1) {
                         switch (command[0]) {
                             case "mark":
@@ -85,9 +102,12 @@ public class Tracker {
                                 addEvent(command);
                                 break;
                             default:
-                                break;
+                                throw new UnknownCommand();
                         }
                     }
+                } catch (DukeException e) {
+                    System.out.println(e);
+                }
             }
             input = sc.nextLine();
         }
