@@ -1,10 +1,24 @@
+import java.util.Scanner;
+
 public class Duke {
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+        IO_handler.cout(IO_handler.get_greeting());
+        Scanner sc=new Scanner(System.in);
+        while (true){
+            IO_handler.cout("> ");
+            String command=sc.nextLine();
+            if (command.equals("bye")){
+                IO_handler.print_status_msg(0);
+                break;
+            }
+            IO_handler.cout(IO_handler.generate_section(command+"\n"));
+
+            /*
+            int status=event_dispatcher.dispatch_command(IO_handler.get_command());
+            IO_handler.print_status_msg(status);
+            if (status==0){
+                break;
+            }*/
+        }
     }
 }
