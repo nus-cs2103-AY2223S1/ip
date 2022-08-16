@@ -1,7 +1,7 @@
 import java.util.Objects;
 import java.util.Scanner;
 
-public class Botson {
+public class Duke {
     static Task[] list = new Task[100];
     static int idx = 0;
     public static void main(String[] args) {
