@@ -5,4 +5,11 @@ event project meeting /at Mon 2-4pm
 deadline do homework /by no idea :-p
 todo
 blah
+todo read book
+deadline return book /by June 6th
+todo join sports club
+mark 5
+list
+delete 3
+list
 bye

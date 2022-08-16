@@ -46,4 +46,65 @@ The description of the todo cannot be empty!
 Enter Command: 
 Sorry I don't understand that command
 Enter Command: 
+
+___________________________ 
+
+got it. I've added this task:
+[T][ ] read book
+___________________________ 
+
+Enter Command: 
+
+___________________________ 
+
+got it. I've added this task:
+[D] [ ] return book (by: June 6th)
+___________________________ 
+
+Enter Command: 
+
+___________________________ 
+
+got it. I've added this task:
+[T][ ] join sports club
+___________________________ 
+
+Enter Command: 
+I've marked this task as done:
+[T][X] read book
+Enter Command: 
+
+___________________________ 
+
+Here are the tasks in your list
+
+1: [T][ ] borrow book
+2: [D] [ ] return book (by: Sunday)
+3: [E] [ ] project meeting (at: Mon 2-4pm)
+4: [D] [ ] do homework (by: no idea :-p)
+5: [T][X] read book
+6: [D] [ ] return book (by: June 6th)
+7: [T][ ] join sports club
+
+___________________________ 
+
+Enter Command: 
+I've removed this task:
+[E] [ ] project meeting (at: Mon 2-4pm)
+Enter Command: 
+
+___________________________ 
+
+Here are the tasks in your list
+
+1: [T][ ] borrow book
+2: [D] [ ] return book (by: Sunday)
+3: [D] [ ] do homework (by: no idea :-p)
+4: [T][X] read book
+5: [D] [ ] return book (by: June 6th)
+6: [T][ ] join sports club
+
+___________________________ 
+
+Enter Command: 
 Goodbye and have a nice day!

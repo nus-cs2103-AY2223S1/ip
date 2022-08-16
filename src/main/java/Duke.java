@@ -19,6 +19,7 @@ public class Duke {
     static private final String eventCommand = "event";
     static private final String eventSubCommand = " /at ";
     static private final String unmarkCommand = "unmark";
+    static private final String deleteCommand = "delete";
     static private final String exitMessage = "Goodbye and have a nice day!";
 
     static private boolean isNumeric(String strNum) {
@@ -143,6 +144,22 @@ public class Duke {
                                 curr.setIncomplete();
                                 System.out.println("I've marked this task as done:");
                                 System.out.println(curr);
+                            } catch (IndexOutOfBoundsException e) {
+                                throw new TaskNotFoundException();
+                            }
+                        } else {
+                            throw new IncorrectArgumentException("Sorry the second argument is not a number");
+                        }
+                        break;
+
+                    case deleteCommand:
+                        if (isNumeric(commandArgs[1])) {
+                            int idx = Integer.parseInt(commandArgs[1]);
+                            try {
+                                Task curr = tasks.get(idx - 1);
+                                System.out.println("I've removed this task:");
+                                System.out.println(curr);
+                                tasks.remove(curr);
                             } catch (IndexOutOfBoundsException e) {
                                 throw new TaskNotFoundException();
                             }
