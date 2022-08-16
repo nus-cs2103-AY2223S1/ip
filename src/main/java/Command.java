@@ -5,11 +5,14 @@ import java.util.Optional;
 public class Command {
 
     private enum Instruction {
+        NONE("none"),
         EXIT("bye"),
         LIST("list"),
         UNMARK("unmark"),
         MARK("mark"),
-        ADD("add");
+        DEADLINE("deadline"),
+        TODO("todo"),
+        EVENT("event");
 
         private String value;
 
@@ -26,21 +29,45 @@ public class Command {
     private Instruction instruction;
     private String message;
     private String keyword;
-    private int index;
+    private String extraInformation;
     private Storage storage;
 
     public Command(String str, Storage storage) throws NoSuchElementException, NumberFormatException {
-        this.message = str;
-        this.keyword = str.contains(" ") ? str.split(" ")[0] : str;
-        try {
-            this.instruction = Instruction.get(keyword).get();
-            this.index = Integer.parseInt(str.replaceAll("[^0-9]", "")) - 1;
-        } catch (NoSuchElementException e) {
-            System.out.println("Command not found.");
-        } catch (NumberFormatException e) {
-            this.index = 0;
-        }
+        extractInformation(str);
         this.storage = storage;
+    }
+
+    public void extractKeyword(String str) {
+        String[] arr = str.split(" ", 2);
+        this.keyword = arr[0];
+        this.message = str.contains(" ") ? arr[1] : null;
+        this.instruction = Instruction.get(keyword).orElse(Instruction.NONE);
+    }
+
+    public void extractInformation(String str) {
+        extractKeyword(str);
+        switch (this.instruction) {
+            case MARK: case UNMARK:
+                this.extraInformation = str.replaceAll("[^0-9]", "");
+                break;
+            case EVENT:
+                if (str.contains("/")) {
+                    this.extraInformation = this.message.split(" /at ", 2)[1];
+                    this.message = this.message.split("/")[0];
+                } else {
+                    System.out.println("Wrong input format.");
+                    System.out.println("Please enter /at followed by the date.");
+                }
+                break;
+            case DEADLINE:
+                if (str.contains("/")) {
+                    this.extraInformation = this.message.split(" /by ", 2)[1];
+                    this.message = this.message.split("/")[0];
+                } else {
+                    System.out.println("Wrong input format.");
+                    System.out.println("Please enter /by followed by the date.");
+                }
+        }
     }
 
     public boolean execution() {
@@ -52,15 +79,27 @@ public class Command {
                 this.storage.iterate();
                 return true;
             case MARK:
-                this.storage.mark(this.index);
+                int index = Integer.parseInt(this.extraInformation) - 1;
+                this.storage.mark(index);
                 return true;
             case UNMARK:
-                this.storage.unmark(this.index);
+                int number = Integer.parseInt(this.extraInformation) - 1;
+                this.storage.unmark(number);
                 return true;
-            default:
-                this.storage.add(new Task(this.message));
+            case TODO:
+                Task task1 = new ToDo(this.message);
+                this.storage.add(task1);
+                return true;
+            case DEADLINE:
+                Task task2 = new Deadline(this.message, this.extraInformation);
+                this.storage.add(task2);
+                return true;
+            case EVENT:
+                Task task3 = new Event(this.message, this.extraInformation);
+                this.storage.add(task3);
                 return true;
         }
+        return true;
     }
 
 }

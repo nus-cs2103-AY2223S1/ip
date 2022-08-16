@@ -8,7 +8,8 @@ public class Storage {
     public void add(Task task) {
         taskList.add(task);
         count++;
-        System.out.println("added: " + task.getDescription());
+        System.out.println("Got it. I've added this task:\n " + task.toString());
+        this.getCount();
     }
 
     public void iterate() {
@@ -18,6 +19,10 @@ public class Storage {
             System.out.println(i + "." + task.toString());
             i++;
         }
+    }
+
+    public void getCount() {
+        System.out.println("Now you have " + this.count + " tasks in the list.");
     }
 
     public void mark(int index) {
