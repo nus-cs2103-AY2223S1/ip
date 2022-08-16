@@ -7,4 +7,16 @@ mark 2
 list
 unmark 2
 list
+mark 10
+unmark asdf
+todo
+deadline 
+event 
+deadline test 
+deadline test /at asdf
+deadline test /by  
+event test 
+event test /by asdf
+event test /at 
+lullll
 bye
