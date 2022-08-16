@@ -22,6 +22,12 @@ public class Duke {
     static private final String deleteCommand = "delete";
     static private final String exitMessage = "Goodbye and have a nice day!";
 
+    /**
+     * Returns a boolean corresponding to whether the given string is numeric.
+     * 
+     * @param strNum
+     * @return boolean representing whether the string is numeric
+     */
     static private boolean isNumeric(String strNum) {
         if (strNum == null) {
             return false;
@@ -34,7 +40,10 @@ public class Duke {
         return true;
     }
 
-    public static void main(String[] args) {
+    /**
+     * Outputs the greeting message.
+     */
+    private static void greet() {
         File file = new File("src/main/assets/logo.txt");
         try {
             Scanner sc = new Scanner(file);
@@ -46,6 +55,17 @@ public class Duke {
         }
 
         System.out.println("Welcome to Aladdin Services");
+    }
+
+    /**
+     * Outputs the goodbye message.
+     */
+    private static void goodbye() {
+        System.out.println(exitMessage);
+    }
+
+    public static void main(String[] args) {
+        Duke.greet();
 
         Scanner scannerObj = new Scanner(System.in); // Create a Scanner object
         String userInput = "";
@@ -191,7 +211,8 @@ public class Duke {
             }
         }
 
-        System.out.println(exitMessage);
+        Duke.goodbye();
+
         scannerObj.close();
     }
 }
