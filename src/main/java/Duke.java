@@ -11,7 +11,6 @@ public class Duke {
         System.out.println(horizontalLn);
 
         List<Task> toDoList = new ArrayList<>();
-        int toDoListCount  = 0;
 
         try {
             while (sc.hasNext()) {
@@ -24,7 +23,7 @@ public class Duke {
                     break;
                 } else if (input.equalsIgnoreCase("list")) {
                     System.out.println("Here are the tasks in your list");
-                    for (int i = 0; i < toDoListCount; i++) {
+                    for (int i = 0; i < toDoList.size(); i++) {
                         System.out.println(i + 1 + "." + toDoList.get(i).toString());
                     }
                     System.out.println(horizontalLn);
@@ -60,7 +59,8 @@ public class Duke {
                     } else if (firstCommand.equalsIgnoreCase("deadline")) {
                         String[] furtherSplitInput = splitInput[1].split("/by", 2);
                         if (furtherSplitInput.length <= 1) {
-                            throw new IncompleteInputException("OOPS!! Please state the deadline and use /by in command");
+                            throw new IncompleteInputException("OOPS!! Please state the deadline and use " +
+                                    "/by in command");
                         }
                         Deadline toBeAddedDeadline = new Deadline(furtherSplitInput[0], furtherSplitInput[1]);
                         toDoList.add(toBeAddedDeadline);
@@ -68,17 +68,24 @@ public class Duke {
                     } else if (firstCommand.equalsIgnoreCase("event")) {
                         String[] furtherSplitInput = splitInput[1].split("/at", 2);
                         if (furtherSplitInput.length <= 1) {
-                            throw new IncompleteInputException("OOPS!! Please state the duration and use /at in command");
+                            throw new IncompleteInputException("OOPS!! Please state the duration and use " +
+                                    "/at in command");
                         }
                         Event toBeAddedEvent = new Event(furtherSplitInput[0], furtherSplitInput[1]);
                         toDoList.add(toBeAddedEvent);
                         System.out.println(toBeAddedEvent);
+                    } else if (firstCommand.equalsIgnoreCase("delete")) {
+                        int itemNumber = Integer.parseInt(splitInput[1]) - 1;
+                        System.out.println("Noted. I've removed this task: " +
+                                toDoList.get(itemNumber));
+                        toDoList.remove(itemNumber);
+
+
                     } else {
                         throw new InvalidInputException("OOPS!!! I'm sorry, but I don't know what that means :-(");
                     }
 
-                    toDoListCount++;
-                    System.out.println("Now you have " + toDoListCount + " tasks in the list.");
+                    System.out.println("Now you have " + toDoList.size() + " tasks in the list.");
                     System.out.println(horizontalLn);
                 }
             }
