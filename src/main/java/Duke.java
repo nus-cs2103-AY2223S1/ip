@@ -23,7 +23,10 @@ public class Duke {
         customPrint(LOGO + "Hello! I'm Duke\nWhat can I do for you?");
         Scanner sc = new Scanner(System.in);
         String userInput;
-        while (!(userInput = sc.nextLine()).equals("bye")) {
+        while (sc.hasNextLine()) {
+            if ((userInput = sc.nextLine()).equals("bye")) {
+                break;
+            }
             handleCommand(userInput);
         }
         customPrint("Bye. Hope to see you again soon!");
