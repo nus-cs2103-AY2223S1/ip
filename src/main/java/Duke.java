@@ -12,23 +12,51 @@ public class Duke {
         String greet = "Hello! I'm Lan\n"
                 + "What can I do for you?";
 
-        /*String logo = " ____        _        \n"
+        String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);*/
+        //System.out.println("Hello from\n" + logo);
 
-        System.out.println(greet);
+        System.out.println(greet + "\n" + logo);
         String str = sc.next();
-        while (true) {
-            // terminate point
-            if (str.equals("bye")) {
-                System.out.println("Bye! Hope to see you again soon!");
-                break;
-            }
-            // other cases
+        while (!str.equals("bye")) {
             switch (str) {
+                case "todo":
+                    String content = sc.nextLine();
+                    Task todo = new Todo(content);
+                    willDo.add(todo);
+                    int size = willDo.size();
+                    System.out.println("Got it, I've added it to the task list:\n"
+                            + todo.toString() + "\n"
+                            + "Now you have " + (size) + " tasks");
+                    break;
+
+                case "deadline":
+                    String ddlstr = sc.nextLine();
+                    String ddlinfo = ddlstr.substring(0, ddlstr.indexOf("/") - 1);
+                    String date = ddlstr.substring(ddlstr.indexOf("/") + 4);
+                    Task deadline = new Deadline(ddlinfo, date);
+                    willDo.add(deadline);
+                    int nowsize = willDo.size();
+                    System.out.println("Got it, I've added it to the task list:\n"
+                            + deadline.toString() + "\n"
+                            + "Now you have " + (nowsize) + " tasks");
+                    break;
+
+                case "event":
+                    String eventstr = sc.nextLine();
+                    String eventinfo = eventstr.substring(0, eventstr.indexOf("/") - 1);
+                    String takeplace = eventstr.substring(eventstr.indexOf("/") + 4);
+                    Task event = new Event(eventinfo, takeplace);
+                    willDo.add(event);
+                    int finalsize = willDo.size();
+                    System.out.println("Got it, I've added it to the task list:\n"
+                            + event.toString() + "\n"
+                            + "Now you have " + (finalsize) + " tasks");
+                    break;
+
                 case "mark":
                     int key = sc.nextInt();
                     Task willMark = willDo.get(key - 1);
@@ -56,13 +84,13 @@ public class Duke {
 
                 //When user want to add tasks
                 default:
-                    str += sc.nextLine();
                     System.out.println("added: " + str);
                     Task newT = new Task(str);
                     willDo.add(newT);
                     break;
             }
-            str = sc.next();
+            str = sc.next(); // for continuing
         }
+        System.out.println("Bye! Hope to see you again soon!");
     }
 }
