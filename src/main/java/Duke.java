@@ -1,38 +1,63 @@
-import java.lang.reflect.Array;
 import java.util.Scanner;
 import java.util.ArrayList;
 public class Duke {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         ArrayList<String> list = new ArrayList<>();
+        ArrayList<Boolean> marked = new ArrayList<>();
+
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         String line_divider = "____________________________________________________________";
-        System.out.println("Hello from\n" + logo);
+        System.out.println("Wassup from\n" + logo);
         System.out.println(line_divider);
-        System.out.println("Hello I'm Duke\nWhat can I do for you?\n" + line_divider);
-
+        System.out.println("Wassup la I'm Duke\nWhat you want?\n" + line_divider);
 
         while (true) {
             String curr = sc.nextLine();
-            if (curr.equals("bye")) {
-                System.out.println(line_divider + "\nBye. Hope to see you again soon!\n" + line_divider);
-                break;
-            } else if (curr.equals("list")) {
-                System.out.println(line_divider);
-                for (int i = 0; i < list.size(); i++) {
-                    System.out.println(i + 1 + ". " + list.get(i));
+            String[] msgWords = curr.split("\\b");
+            for (int i = 0; i < msgWords.length; i++) {
+                if (msgWords[i].equalsIgnoreCase("bye")) {
+                    System.out.println(line_divider + "\nBye. Zai Jian!\n" + line_divider);
+                    break;
+                } else if (msgWords[i].equalsIgnoreCase("list")) {
+                    System.out.println(line_divider);
+                    System.out.println("Here are your tasks la:");
+                    for (int j = 0; j < list.size(); j++) {
+                        System.out.println(j + 1 + "." + (marked.get(j) ? "[X] " : "[ ] ") + list.get(j));
+                    }
+                    System.out.println(line_divider);
+                    break;
+                } else if (msgWords[i].equalsIgnoreCase("mark")) {
+                    int index = Integer.parseInt(msgWords[2]) - 1;
+                    marked.remove(index);
+                    marked.add(index, true);
+                    System.out.println(line_divider);
+                    System.out.println("Ok ticked this already");
+                    System.out.println((marked.get(index) ? "[X] " : "[ ] ") + list.get(index));
+                    System.out.println(line_divider);
+                    break;
+                } else if (msgWords[i].equalsIgnoreCase("unmark")) {
+                    int index = Integer.parseInt(msgWords[2]) - 1;
+                    marked.remove(index);
+                    marked.add(index, false);
+                    System.out.println(line_divider);
+                    System.out.println("Ok not done yet ah");
+                    System.out.println((marked.get(index) ? "[X] " : "[ ] ") + list.get(index));
+                    System.out.println(line_divider);
+                    break;
                 }
-                System.out.println(line_divider);
-            } else {
-                list.add(curr);
-                System.out.println(line_divider + "\nadded: " + curr);
-                System.out.println(line_divider);
+                if (i == msgWords.length - 1) {
+                    marked.add(false);
+                    list.add(curr);
+                    System.out.println(line_divider);
+                    System.out.println("added: " + curr);
+                    System.out.println(line_divider);
+                }
             }
         }
-
     }
 }
