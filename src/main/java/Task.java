@@ -22,4 +22,9 @@ public class Task {
         System.out.println("OK, I've marked this task as not done yet:");
         System.out.println("  [ ] " + this.description);
     }
+
+    @Override
+    public String toString() {
+        return "[" + this.getStatusIcon() + "] " + this.description;
+    }
 }

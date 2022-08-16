@@ -14,7 +14,7 @@ public class Duke {
             if (response.equals("list")) {
                 System.out.println("Here are the tasks in your list:");
                 for (int a=1; a<=i; a++) {
-                    String output = a + ".[" + tasks[a-1].getStatusIcon() + "] " + tasks[a-1].description;
+                    String output = a + "." + tasks[a-1].toString();
                     System.out.println(output);
                 }
             } else if (response.equals("mark")) {
@@ -25,9 +25,25 @@ public class Duke {
                 String taskNumber = words[1];
                 int number = Integer.parseInt(taskNumber);
                 tasks[number-1].markNotDone();
-            } else {
-                tasks[i] = new Task(input);
-                System.out.println("added: " + input);
+            } else if (response.equals("deadline")){
+                int a = 2;
+                StringBuilder task = new StringBuilder(words[1]);
+                while (!words[a].equals("/by")) {
+                    task.append(" ");
+                    task.append(words[a]);
+                    a++;
+                }
+                a++;
+                StringBuilder deadline = new StringBuilder(words[a]);
+                for (int b=a+1; b<words.length; b++) {
+                    deadline.append(" ");
+                    deadline.append(words[b]);
+                }
+                tasks[i] = new Deadline(task.toString(), deadline.toString());
+                int numOfTasks = i+1;
+                System.out.println("Got it. I've added this task:");
+                System.out.println(tasks[i]);
+                System.out.println("Now you have " + numOfTasks + " tasks in the list.");
                 i++;
             }
             input = myObj.nextLine();
