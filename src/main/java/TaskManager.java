@@ -6,7 +6,7 @@ import java.util.ArrayList;
  */
 public class TaskManager {
     // The list of tasks
-    private final ArrayList<String> taskList;
+    private final ArrayList<Task> taskList;
 
     public TaskManager() {
         this.taskList = new ArrayList<>();
@@ -15,10 +15,10 @@ public class TaskManager {
     /**
      * Adds the received task into the task list
      *
-     * @param task Task received from the caller
+     * @param taskDescription Task description received from the caller
      */
-    public void add(String task) {
-        this.taskList.add(task);
+    public void add(String taskDescription) {
+        this.taskList.add(new Task(taskDescription));
     }
 
     /**
@@ -29,6 +29,7 @@ public class TaskManager {
     public String[] displayAll() {
         String[] commands = new String[this.taskList.size()];
         for (int i = 0; i < this.taskList.size(); i++) {
+            // Implicitly invoke the display of the task defined in the Task class
             commands[i] = String.format("%d. %s", i + 1, this.taskList.get(i));
         }
         return commands;
