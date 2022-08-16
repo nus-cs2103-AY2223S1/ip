@@ -7,7 +7,11 @@ public class Duke {
         // Create a scanner that reads user input.
         Scanner sc = new Scanner(System.in);
 
-        // Greet the user.s
+        // This is a test comment.
+
+        // This is a second test comment.
+
+        // Greet the user.
         System.out.println("Duke: Hello! I am Duke.");
 
         while (true) {
