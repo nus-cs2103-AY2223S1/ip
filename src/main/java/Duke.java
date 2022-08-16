@@ -7,7 +7,7 @@ public class Duke {
         boolean bye = false;
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("hello this is uncle raymond");
+        System.out.println("Hello my name is uncle raymond");
 
         while (!bye) {
             String input = scanner.nextLine();

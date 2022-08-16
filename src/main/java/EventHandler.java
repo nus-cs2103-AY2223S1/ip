@@ -26,7 +26,7 @@ public class EventHandler {
 
     static void addEvent(String input, ArrayList<? super Task> list) {
         int endAt = input.indexOf("/");
-        String description = input.substring(9, endAt);
+        String description = input.substring(6, endAt);
         String at = input.substring(endAt + 4);
 
         Event tempTask = new Event(description, at);
