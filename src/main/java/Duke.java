@@ -28,8 +28,26 @@ public class Duke {
                 tasks[taskID - 1].unmarkAsNotDone();
                 System.out.println(tasks[taskID - 1]);
             } else {
-                tasks[pointer++] = new Task(input);
-                System.out.println("added: " + input);
+                String taskName, by, at;
+                if (input.startsWith("todo")) {
+                    taskName = input.replace("todo", "").strip();
+                    tasks[pointer++] = new ToDos(taskName);
+                } else if (input.startsWith("deadline")) {
+                    String[] temp = input.replace("deadline", "").strip().split("/by");
+                    taskName = temp[0].strip();
+                    by = temp[1].strip();
+                    tasks[pointer++] = new Deadlines(taskName, by);
+                } else if (input.startsWith("event")) {
+                    String[] temp = input.replace("event", "").strip().split("/at");
+                    taskName = temp[0].strip();
+                    at = temp[1].strip();
+                    tasks[pointer++] = new Events(taskName, at);
+                } else {
+                    tasks[pointer++] = new Task(input);
+                }
+                System.out.println("Got it. I've added this task:\n"
+                    + tasks[pointer - 1] + "\n"
+                    + "Now you have " + pointer + " tasks in the list.");
             }
         }
     }
