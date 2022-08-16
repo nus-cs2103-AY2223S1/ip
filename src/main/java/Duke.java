@@ -6,11 +6,11 @@ public class Duke {
 
     public static void processInputs() {
 
+        Scanner sc = new Scanner(System.in);
+
         while (true) {
 
-            Scanner sc = new Scanner(System.in);
-
-            String input = sc.nextLine();
+            String input = sc.nextLine();            
 
             // Check for exit for command
             if (input.equals(EXIT_COMMAND)) {
