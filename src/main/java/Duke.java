@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.Scanner;
 
 /**
@@ -8,7 +9,7 @@ public class Duke {
     /** List of commands */
     private static ArrayList<CommandMatcher> commands;
     /** List of strings to remember */
-    private static ArrayList<String> list;
+    private static ArrayList<Task> list;
 
     /**
      * Style and print a single line with a border.
@@ -44,21 +45,60 @@ public class Duke {
         Duke.messagePrint("It was nice to have you around, I'm going back to sleep...");
     }
 
+    private static Optional<Task> getTask(String index) {
+        try {
+            int idx = Integer.parseInt(index);
+            Task task = list.get(idx - 1);
+            return Optional.of(task);
+        } catch (NumberFormatException ex) {
+            messagePrint("Sorry, I didn't understand " + index + ", please give me a number.");
+            return Optional.empty();
+        } catch (IndexOutOfBoundsException ex) {
+            messagePrint("Sorry, the number " + index + ", wasn't in the range.");
+            return Optional.empty();
+        }
+    }
+
     private static void initializeCommands() {
         commands = new ArrayList<>();
         list = new ArrayList<>();
 
         commands.add(new CommandMatcher((str) -> str.equals("list"), (str) -> {
-            String[] output = new String[list.size()];
+            String[] output = new String[list.size() + 1];
+            output[0] = "Here, your tasks:";
             for (int i = 0; i < list.size(); i++) {
-                output[i] = (i + 1) + ". " + list.get(i);
+                output[i + 1] = (i + 1) + "." + list.get(i).toString();
             }
             Duke.messagePrint(output);
         }));
 
+        commands.add(new CommandMatcher("mark ", (str) -> {
+            String[] parts = str.split(" ", 2);
+            getTask(parts[1]).ifPresent((task) -> {
+                task.markAsDone();
+                String[] output = {
+                    "Marked your task as done:",
+                    task.toString()
+                };
+                Duke.messagePrint(output);
+            });
+        }));
+
+        commands.add(new CommandMatcher("unmark ", (str) -> {
+            String[] parts = str.split(" ", 2);
+            getTask(parts[1]).ifPresent((task) -> {
+                task.markAsNotDone();
+                String[] output = {
+                    "Aw... it's not done yet:",
+                    task.toString()
+                };
+                Duke.messagePrint(output);
+            });
+        }));
+
         // default command matcher - add to list
         commands.add(new CommandMatcher((str) -> true, (str) -> {
-            list.add(str);
+            list.add(new Task(str));
             Duke.messagePrint("added: " + str);
         }));
     }
