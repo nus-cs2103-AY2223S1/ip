@@ -1,28 +1,25 @@
 import java.util.ArrayList;
 
 public class UserInterface {
-    static ArrayList<Task> toDoList = new ArrayList<>();
+    private static ArrayList<Task> taskList = new ArrayList<>();
 
     static void addToDo(String input) {
-        Task task = new Task(input);
-        toDoList.add(task);
-        System.out.println("added: " + task.description);
+        TaskHandler.add(input, taskList);
     }
 
     static void showList() {
-        for (int i = 1; i <= toDoList.size(); i++) {
-            Task currTask = toDoList.get(i-1);
-            String output = String.format(i +  ".[%s] " + currTask.description, currTask.getStatusIcon());
-            System.out.println(output);
+        for (int i = 1; i <= taskList.size(); i++) {
+            Task currTask = taskList.get(i-1);
+            System.out.println(i + "." + currTask.toString());
         }
     }
 
     static void markChild(int index) {
-        toDoList.get(index).mark();
+        taskList.get(index).mark();
     }
 
     static void unmarkChild(int index) {
-        toDoList.get(index).unmark();
+        taskList.get(index).unmark();
     }
 
     static void Bye() {

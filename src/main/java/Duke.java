@@ -20,12 +20,12 @@ public class Duke {
                 UserInterface.Bye();
             } else if (input.equals("list")) {
                 UserInterface.showList();
-            } else if (input.contains("unmark")) {
-                int index = Integer.parseInt(input.substring(7)) - 1;
-                UserInterface.unmarkChild(index);
-            } else if (input.contains("mark")) {
+            } else if (input.startsWith("mark")) {
                 int index = Integer.parseInt(input.substring(5)) - 1;
                 UserInterface.markChild(index);
+            } else if (input.startsWith("unmark")) {
+                int index = Integer.parseInt(input.substring(7)) - 1;
+                UserInterface.unmarkChild(index);
             } else {
                 UserInterface.addToDo(input);
             }

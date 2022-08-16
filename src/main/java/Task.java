@@ -13,13 +13,17 @@ public class Task {
 
     public void mark() {
         this.isDone = true;
-        String output = String.format("Nice! I've marked this dask as done: \n [%s] %s", this.getStatusIcon(), this.description);
-        System.out.println(output);
+        System.out.println( "Nice! I've marked this task as done: \n" + this.toString());
     }
 
     public void unmark() {
         this.isDone = false;
-        String output = String.format("Nice! I've marked this dask as not done yet: \n [%s] %s", this.getStatusIcon(), this.description);
-        System.out.println(output);
+        System.out.println( "Nice! I've marked this task as not done yet: \n" + this.toString());
+    }
+
+    @Override
+    public String toString() {
+        String output = String.format("[%s] %s", this.getStatusIcon(), this.description);
+        return output;
     }
 }
