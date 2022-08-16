@@ -3,7 +3,7 @@ public class Task {
     protected boolean isDone;
 
     public void addTaskMessage(){
-        System.out.println("Gotcha, I've added this task: ");
+        System.out.println("Gotcha, I've added this task:");
         System.out.println(this.toString());
     }
     public Task(String description) {
