@@ -21,6 +21,6 @@ public class Task {
 
     @Override
     public String toString() {
-        return this.toDoName;
+        return String.format("[%s] %s", this.isComplete ? "X" : " ", this.toDoName);
     }
 }

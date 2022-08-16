@@ -29,11 +29,11 @@ public class Duke {
                     break;
                 case "mark":
                     userData.get(Integer.valueOf(userInputs[1])).setIsComplete(true);
-                    System.out.format("Nice! I've marked this task as done: [X] %s\n", userData.get(Integer.valueOf(userInputs[1])).toString());
+                    System.out.format("Nice! I've marked this task as done: %s\n", userData.get(Integer.valueOf(userInputs[1])).toString());
                     break;
                 case "unmark":
                     userData.get(Integer.valueOf(userInputs[1])).setIsComplete(false);
-                    System.out.format("OK, I've marked this task as not done yet: [ ] %s\n", userData.get(Integer.valueOf(userInputs[1])).toString());
+                    System.out.format("OK, I've marked this task as not done yet: %s\n", userData.get(Integer.valueOf(userInputs[1])).toString());
                     break;
                 default:
                     userData.add(new Task(line, false));
