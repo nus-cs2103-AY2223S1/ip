@@ -1,12 +1,14 @@
 import java.util.Scanner;
 
 public class Duke {
+
+    private static int index = 0;
     public static void main(String[] args) {
         System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?");
         Scanner sc = new Scanner(System.in);
         String[] taskList = new String[100];
-        int index = 0;
+
         while (sc.hasNext()) {
             String output = sc.nextLine();
             // cannot use ==
@@ -24,12 +26,8 @@ public class Duke {
     }
 
     public static void printList(String[] list) {
-        for (int i = 0; i < list.length; i++) {
-            if (list[i] != null) {
-                System.out.println(i + ". " + list[i]);
-            } else {
-                break;
-            }
+        for (int i = 0; i < index; i++) {
+            System.out.println(i + ". " + list[i]);
         }
     }
 }
