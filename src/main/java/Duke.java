@@ -9,13 +9,13 @@ public class Duke {
         for (int i = 0; i < items.size(); i++) {
             int j = i + 1;
             Task item = items.get(i);
-            System.out.println(j + ". " + item.toString());
+            System.out.println(j + "." + item.toString());
         }
     }
 
-    public static void markDone(ArrayList<Task> items, int index) {
+    public static void markDone(ArrayList<Task> items, int index) throws DukeException {
         if (index < 0 || index > items.size() - 1) {
-            System.out.println("Out of range");
+            throw new OutOfRangeException();
         } else {
             items.get(index).markAsDone();
             System.out.println("Nice! I've marked this task as done:");
@@ -23,32 +23,47 @@ public class Duke {
         }
     }
 
-    public static void addToDo(ArrayList<Task> items, String command) {
+    public static void addToDo(ArrayList<Task> items, String command) throws DukeException {
+        if (command.substring(4).trim().isEmpty()) {
+            throw new EmptyCommandException("todo");
+        }
         ToDo newTask = new ToDo(command.substring(5));
         items.add(newTask);
-        System.out.println("Got it. I've added this task: ");
+        System.out.println("Got it. I've added this task:");
         System.out.println(newTask.toString());
         System.out.printf("Now you have %d tasks in the list.\n", items.size());
     }
 
-    public static void addDeadline(ArrayList<Task> items, String command) {
+    public static void addDeadline(ArrayList<Task> items, String command) throws DukeException {
+        if (command.substring(8).trim().isEmpty()) {
+            throw new EmptyCommandException("deadline");
+        }
+        if (!command.substring(9).contains("/by")) {
+            throw new NoTimeException("deadline");
+        }
         String desc = command.substring(9).split("/by")[0];
         String by = command.substring(9).split("/by")[1];
         Deadline newTask = new Deadline(desc, by);
         items.add(newTask);
-        System.out.println("Got it. I've added this task: ");
+        System.out.println("Got it. I've added this task:");
         System.out.println(newTask.toString());
-        System.out.printf("Now you have %d tasks in the list\n", items.size());
+        System.out.printf("Now you have %d tasks in the list.\n", items.size());
     }
 
-    public static void addEvent(ArrayList<Task> items, String command) {
+    public static void addEvent(ArrayList<Task> items, String command) throws DukeException {
+        if (command.substring(5).trim().isEmpty()) {
+            throw new EmptyCommandException("event");
+        }
+        if (!command.substring(6).contains("/at")) {
+            throw new NoTimeException("event");
+        }
         String desc = command.substring(6).split("/at")[0];
         String at = command.substring(6).split("/at")[1];
         Event newTask = new Event(desc, at);
         items.add(newTask);
-        System.out.println("Got it. I've added this task: ");
+        System.out.println("Got it. I've added this task:");
         System.out.println(newTask.toString());
-        System.out.printf("Now you have %d tasks in the list\n", items.size());
+        System.out.printf("Now you have %d tasks in the list.\n", items.size());
     }
 
     public static void main(String[] args) {
@@ -60,26 +75,33 @@ public class Duke {
         ArrayList<Task> items = new ArrayList<>();
 
         while (!command.toLowerCase().equals("bye")) {
-            if (command.toLowerCase().equals("list")) {
-                printList(items);
-            } else if (command.split(" ")[0].toLowerCase().equals("done")) {
-                int index = Integer.parseInt(command.split(" ")[1]) - 1;
-                markDone(items, index);
-            } else {
-              String taskType = command.split(" ")[0].toLowerCase();
-              if (taskType.equals("deadline")) {
-                  addDeadline(items, command);
-              } else if (taskType.equals("event")) {
-                  addEvent(items, command);
-              } else if (taskType.equals("todo")){
-                  addToDo(items, command);
-              } else {
-                  System.out.println("Please enter a task");
-              }
+            try {
+                if (command.toLowerCase().equals("list")) {
+                    printList(items);
+                } else if (command.split(" ")[0].toLowerCase().equals("done")) {
+                    if (command.split(" ").length == 1) {
+                        throw new NoIndexException();
+                    }
+                    int index = Integer.parseInt(command.split(" ")[1]) - 1;
+                    markDone(items, index);
+                } else {
+                    String taskType = command.split(" ")[0].toLowerCase();
+                    if (taskType.equals("deadline")) {
+                        addDeadline(items, command);
+                    } else if (taskType.equals("event")) {
+                        addEvent(items, command);
+                    } else if (taskType.equals("todo")) {
+                        addToDo(items, command);
+                    } else {
+                        throw new InvalidCommandException();
+                    }
+                }
+            } catch (DukeException e) {
+                System.out.println(e.toString());
+            } finally {
+                command = sc.nextLine();
             }
-            command = sc.nextLine();
         }
-
         System.out.println("Bye. Hope to see you again soon!");
     }
 }
