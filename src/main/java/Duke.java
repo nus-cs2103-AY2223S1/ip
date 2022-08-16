@@ -29,7 +29,8 @@ public class Duke {
     public Duke() {
         this.sc = new Scanner(System.in);
         this.taskList = new TaskList();
-        reply(LOGO + "\n     Hello! I'm Duke\n     What can I do for you?");
+        // reply(LOGO + "\n     Hello! I'm Duke\n     What can I do for you?");
+        reply("     Hello! I'm Duke\n     What can I do for you?");
     }
 
     public void reply(String msg) {
