@@ -20,6 +20,10 @@ public class Duke {
             + "  %s%n"
             + "Now you have %d tasks in the list.";
 
+    private static final String DELETE_TASK = "Noted. I've removed this task:%n"
+            + "  %s%n"
+            + "Now you have %d tasks in the list.";
+
     private static final String EMPTY_LIST = "The current list is empty!";
 
     private DukeIO userIO;
@@ -54,7 +58,10 @@ public class Duke {
 
             case "unmark":
                 updateCompletionStatus(data, false);
+                return true;
 
+            case "delete":
+                deleteEntry(data);
                 return true;
 
             case "todo":
@@ -78,6 +85,22 @@ public class Duke {
             default:
                 throw new UnknownCommandException();
         }
+    }
+
+    void deleteEntry(ParsedData data) throws DukeException {
+        int index;
+        try {
+            index = Integer.parseInt(data.description) - 1;
+        } catch (NumberFormatException e) {
+            throw new InvalidValueException(data.command);
+        }
+
+        if (index >= tasks.size() || index < 0) {
+            throw new OutOfBoundException();
+        }
+
+        Task task = tasks.remove(index);
+        userIO.printTask(String.format(DELETE_TASK, task, tasks.size()));
     }
 
     void updateCompletionStatus(ParsedData data, boolean mark) throws DukeException {
