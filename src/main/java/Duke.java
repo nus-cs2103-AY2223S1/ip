@@ -115,6 +115,12 @@ public class Duke {
                 System.out.println(horizontalLine + "Fine, I'll add this task:");
                 System.out.println("\t" + e.toString());
                 System.out.println("Now you have " + list.size() + " tasks in the list... \n" + horizontalLine );
+            } else if (echoText.split(" ")[0].equals("delete")) {
+                int delValue = Integer.parseInt(echoText.split(" ")[1]);
+                Task item = list.get(delValue - 1);
+                System.out.println(horizontalLine + "Ughh I'll remove this task: \n \t" + item.toString());
+                list.remove(delValue - 1);
+                System.out.println("Now you have " + list.size() + " tasks in the list... \n" + horizontalLine );
             } else {
                 System.out.println(horizontalLine + "What are you saying??? Try again" + "\n" + horizontalLine);
             }
