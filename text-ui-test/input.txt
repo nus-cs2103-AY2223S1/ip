@@ -10,4 +10,17 @@ list
 unmark 1
 list
 wow
+list 1234
+bye 1234
+mark 4
+mark -4
+unmark 4
+unmark -4
+mark one
+unmark one
+todo
+deadline
+event
+deadline desc
+event desc
 bye

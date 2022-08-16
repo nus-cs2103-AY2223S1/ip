@@ -55,7 +55,67 @@ Type something in for Poolsheen to respond to you:
       meow *_*
 ---------------
 ---------------
-      Type in a valid command
+      Poolsheen has never seen this command and is confused :(
+      Please try again!
+      meow *_*
+---------------
+---------------
+      Poolsheen thinks you did not fill up the list command properly
+      Were you trying to enter 'list'?
+      meow *_*
+---------------
+---------------
+      Poolsheen thinks you did not fill up the bye command properly
+      Were you trying to enter 'bye'?
+      meow *_*
+---------------
+---------------
+      Poolsheen thinks you may not have enough tasks. Please try another number!
+      meow *_*
+---------------
+---------------
+      Poolsheen thinks you may not have enough tasks. Please try another number!
+      meow *_*
+---------------
+---------------
+      Poolsheen thinks you may not have enough tasks. Please try another number!
+      meow *_*
+---------------
+---------------
+      Poolsheen thinks you may not have enough tasks. Please try another number!
+      meow *_*
+---------------
+---------------
+      Poolsheen believes this command needs an integer. Please try again!
+      meow *_*
+---------------
+---------------
+      Poolsheen believes this command needs an integer. Please try again!
+      meow *_*
+---------------
+---------------
+      Poolsheen thinks you did not fill up the todo command properly
+      The description of a todo cannot be empty
+      meow *_*
+---------------
+---------------
+      Poolsheen thinks you did not fill up the deadline command properly
+      Deadlines need a description and time
+      meow *_*
+---------------
+---------------
+      Poolsheen thinks you did not fill up the event command properly
+      Events need a description and time
+      meow *_*
+---------------
+---------------
+      Poolsheen thinks you did not fill up the deadline command properly
+      deadline commands need a '/by'
+      meow *_*
+---------------
+---------------
+      Poolsheen thinks you did not fill up the event command properly
+      event commands need an '/at'
       meow *_*
 ---------------
 ---------------
