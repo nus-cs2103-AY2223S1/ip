@@ -3,7 +3,7 @@ import java.util.Scanner;
 import java.util.List;
 
 public class Tumu {
-    private static List<String> userText = new ArrayList<>();
+    private static List<Task> userTasks = new ArrayList<>();
     private static final String horizontalLines = "\t" + "_".repeat(40);
 
     public static void main(String[] args) {
@@ -22,20 +22,19 @@ public class Tumu {
         String userInput;
 
         do {
-            userInput = sc.next().toLowerCase();
-            printHorizontalLines();
+            userInput = sc.nextLine().toLowerCase();
+            printHorizontalLine();
             switch (userInput) {
                 case endChatBotCMD:
                     goodbye();
                     break;
                 case listUserTextCMD:
-                    listText();
+                    listTasks();
                     break;
                 default:
-                    System.out.println("\tAdded: " + userInput);
-                    userText.add(userInput);
+                    addTask(userInput);
             }
-            printHorizontalLines();
+            printHorizontalLine();
 
         } while (!userInput.equalsIgnoreCase(endChatBotCMD));
     }
@@ -70,17 +69,30 @@ public class Tumu {
         System.out.println(goodbyeMessage + smileyFace);
     }
 
-    private static void listText() {
+    private static void listTasks() {
         /**
          * Lists previous user texts in succession.
          */
 
-        for (int i = 1; i <= userText.size(); i++) {
-            System.out.println("\t" + i + ". " + userText.get(i - 1));
+        System.out.println("\tHere are your current tasks:");
+        for (int i = 1; i <= userTasks.size(); i++) {
+            Task task = userTasks.get(i - 1);
+            String output = String.format("\t %d. [%s] %s",
+                    i, task.isDone() ? "X" : " ", task.getTaskDescription());
+            System.out.println(output);
         }
     }
 
-    private static void printHorizontalLines() {
+    private static void addTask(String userInput) {
+        /**
+         * Adds userInput as a task.
+         */
+
+        System.out.println("\tI've added a task into your list:\n\t\t" + userInput);
+        userTasks.add(new Task(userInput, false));
+    }
+
+    private static void printHorizontalLine() {
         /**
          * Prints the horizontal lines for chat-bot formatting.
          */
