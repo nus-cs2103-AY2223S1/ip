@@ -1,13 +1,14 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 public class Duke {
-    private static Task[] tasks = new Task[100];
+    private static ArrayList<Task> tasks = new ArrayList<>();
     public static String getTaskDetails(int pos) {
         return "[" +
-                tasks[pos].getType() +
+                tasks.get(pos).getType() +
                 "][" +
-                tasks[pos].getStatus() +
+                tasks.get(pos).getStatus() +
                 "] " +
-                tasks[pos].getDescription();
+                tasks.get(pos).getDescription();
     }
     public static void addTask(String command) throws DukeException {
         String[] cmdArr = command.split(" ", 2);
@@ -22,19 +23,14 @@ public class Duke {
         String details = cmdArr[1];
         switch (type) {
             case "todo":
-                for (int pos = 0; pos < 100; pos++) {
-                    if (tasks[pos] == null) {
-                        tasks[pos] = new ToDo(details);
-                        System.out.println(
-                                "Got it. I've added this task:\n" +
-                                        getTaskDetails(pos) +
-                                        "\nNow you have " +
-                                        (pos + 1) +
-                                        " tasks in the list."
-                                );
-                        break;
-                    }
-                }
+                tasks.add(new ToDo(details));
+                System.out.println(
+                        "Got it. I've added this task:\n" +
+                                getTaskDetails(tasks.size() - 1) +
+                                "\nNow you have " +
+                                tasks.size() +
+                                " tasks in the list."
+                );
                 break;
             case "deadline":
             case "event":
@@ -44,23 +40,18 @@ public class Duke {
                 }
                 String description = details.split("/")[0];
                 String timing = details.split("/")[1].split(" ", 2)[1];
-                for (int pos = 0; pos < 100; pos++) {
-                    if (tasks[pos] == null) {
-                        if (type.equals("deadline")) {
-                            tasks[pos] = new Deadline(description, timing);
-                        } else {
-                            tasks[pos] = new Event(description, timing);
-                        }
-                        System.out.println(
-                                "Got it. I've added this task:\n" +
-                                        getTaskDetails(pos) +
-                                        "\nNow you have " +
-                                        (pos + 1) +
-                                        " tasks in the list."
-                        );
-                        break;
-                    }
+                if (type.equals("deadline")) {
+                    tasks.add(new Deadline(description, timing));
+                } else {
+                    tasks.add(new Event(description, timing));
                 }
+                System.out.println(
+                        "Got it. I've added this task:\n" +
+                                getTaskDetails(tasks.size() - 1) +
+                                "\nNow you have " +
+                                tasks.size() +
+                                " tasks in the list."
+                );
         }
     }
     public static void unknownCommand(String command) throws DukeException {
@@ -71,11 +62,10 @@ public class Duke {
         );
     }
     public static void listTasks() throws DukeException {
-        for (int pos = 0; pos < 100; pos++) {
-            if (tasks[pos] == null) {
-                if (pos == 0) throw new DukeException("No tasks found.");
-                break;
-            }
+        if (tasks.size() == 0) {
+            throw new DukeException("No tasks found.");
+        }
+        for (int pos = 0; pos < tasks.size(); pos++) {
             System.out.println(pos + 1 + ". " + getTaskDetails(pos));
         }
     }
@@ -95,12 +85,12 @@ public class Duke {
         if (pos < 0) {
             throw new DukeException("Provide a valid number!");
         }
-        if (tasks[pos] == null) {
+        if (tasks.size() <= pos) {
             throw new DukeException("No such task.");
         }
         switch (cmdArr[0]) {
             case "mark":
-                tasks[pos].markAsDone();
+                tasks.get(pos).markAsDone();
                 System.out.println(
                         "Nice! I've marked this task as done" +
                                 "\n" +
@@ -108,7 +98,7 @@ public class Duke {
                 );
                 break;
             case "unmark":
-                tasks[pos].markAsUndone();
+                tasks.get(pos).markAsUndone();
                 System.out.println(
                         "Nice! I've marked this task as undone" +
                                 "\n" +
