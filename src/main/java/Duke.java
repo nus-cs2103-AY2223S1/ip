@@ -55,6 +55,13 @@ public class Duke {
                     understood = true;
                 }
 
+                if (userText.length() >= 6 && userText.substring(0, 6).equals("delete")) {
+                    Task selectedTask = list.remove(Integer.valueOf(userText.substring(7)) - 1);
+                    System.out.println(reply("Noted. I've removed this task:\n" + selectedTask.getStatus()
+                            + String.format("\nNow you have %d tasks in the list.", list.size())));
+                    understood = true;
+                }
+
 
             }
 
