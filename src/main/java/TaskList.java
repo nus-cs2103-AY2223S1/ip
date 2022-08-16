@@ -3,20 +3,20 @@ public class TaskList {
     private int size;
 
     public TaskList() {
-        taskList = new String[100];
-        size = 0;
+        this.taskList = new String[100];
+        this.size = 0;
     }
 
     public String addTask(String task) {
-       taskList[size] = task;
-       size++;
+       taskList[this.size] = task;
+       this.size++;
        return "added: " + task;
     }
 
     public String toString() {
         StringBuilder result = new StringBuilder();
-        for (int i = 1; i <= taskList.length; i++) {
-            String task = taskList[i-1];
+        for (int i = 1; i <= this.taskList.length; i++) {
+            String task = this.taskList[i-1];
             if (task == null) {
                 break;
             }

@@ -7,6 +7,12 @@ public class Duke {
         System.out.println();
     }
 
+    private static void wrapAroundLines(String message) {
+       makeLine();
+       System.out.println(message);
+       makeLine();
+    }
+
     private static void echo(String command) {
         System.out.println(command);
     }
@@ -21,22 +27,20 @@ public class Duke {
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        makeLine();
-        System.out.println("Hello from\n" + logo);
-        makeLine();
+
+        wrapAroundLines("Hello from\n" + logo);
 
         Scanner sc = new Scanner(System.in);
         String command = sc.nextLine();
         TaskList taskList = new TaskList();
         while (!command.equals("bye")) {
-            makeLine();
+            String message;
             if (command.equals("list")) {
-               System.out.print(taskList);
+                message = taskList.toString();
             } else {
-                System.out.println(taskList.addTask(command));
+                message = taskList.addTask(command);
             }
-            // echo(command);
-            makeLine();
+            wrapAroundLines(message);
             command = sc.nextLine();
         }
         bye();
