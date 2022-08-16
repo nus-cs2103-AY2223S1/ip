@@ -19,8 +19,7 @@ public class Jduke {
         if (inputArr.length != 2) {
             throw new JdukeException(
                     "|  cannot find description\n" +
-                            "|    task type: " +
-                            type
+                            "|    task type: " + type
             );
         }
         String details = inputArr[1];
@@ -35,16 +34,38 @@ public class Jduke {
                     throw new JdukeException(
                             "|  cannot find timing\n" +
                                     "|    task type: " + type +
-                                    "\n|  " + type +
-                                    (type.equals(TaskType.DEADLINE) ? " /by" : " /at") +
-                                    " <timing> "
+                                    "\n|  " + type.toString().toLowerCase() +
+                                    " <description> " +
+                                    (type.equals(TaskType.DEADLINE) ? "/by" : "/at") +
+                                    " <timing>"
                     );
                 }
                 String description = details.split("/")[0];
                 String timing = details.split("/")[1].split(" ", 2)[1];
+                String preposition = details.split("/")[1].split(" ", 2)[0];
+                if (description.equals("")) {
+                    throw new JdukeException(
+                            "|  cannot find description\n" +
+                                    "|    task type: " + type
+                    );
+                };
                 if (type.equals(TaskType.DEADLINE)) {
+                    if (!preposition.equalsIgnoreCase("by")) {
+                        throw new JdukeException(
+                                "|  invalid preposition:\n" +
+                                        "|    provided: " + preposition +
+                                        "\n|  " + type.toString().toLowerCase() + " <description> /by <timing>"
+                        );
+                    }
                     tasks.add(new Deadline(description, timing));
                 } else {
+                    if (!preposition.equalsIgnoreCase("at")) {
+                        throw new JdukeException(
+                                "|  invalid preposition:\n" +
+                                        "|    provided: " + preposition +
+                                        "\n|  " + type.toString().toLowerCase() + " <description> /at <timing>"
+                        );
+                    }
                     tasks.add(new Event(description, timing));
                 }
                 break;
@@ -151,7 +172,7 @@ public class Jduke {
                     "|  What can I do for you?\n\n" +
                         "jduke> "
         );
-        String input = scanner.nextLine();
+        String input = scanner.nextLine().trim();
         while (!input.equals("bye")) {
             String mainCmd = input.split(" ", 2)[0].toLowerCase();
             try {
@@ -178,7 +199,7 @@ public class Jduke {
                 System.out.println("|  Error:\n" + e.getMessage());
             } finally {
                 System.out.print("\njduke> ");
-                input = scanner.nextLine();
+                input = scanner.nextLine().trim();
             }
         }
         System.out.println("|  Goodbye");
