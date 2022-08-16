@@ -29,39 +29,10 @@ public class Duke {
         System.out.println("Bye! See you soon!");
     }
 
-    /**public static void lvlTwo() {
-        String[] tasks = new String[100];
-        int taskNum = 0;
-
-        System.out.println("Hello! I'm Duke\n");
-        System.out.println("What tasks do you have to do?");
-        Scanner sc = new Scanner(System.in);
-        String str2 = sc.nextLine();
-
-        while (!str2.equals("bye")) {
-            if (str2.equals("list")) {
-                for (int i = 0; i < taskNum; i++) {
-                    int num = i + 1;
-                    System.out.println(num + ". " + tasks[i]);
-                }
-                str2 = sc.nextLine();
-                continue;
-            }
-
-            tasks[taskNum] = str2;
-            taskNum++;
-            System.out.println("added: " + str2);
-            str2 = sc.nextLine();
-        }
-        System.out.println("Bye! See you soon!");
-    }*/
-
     public static void toDo() {
-        String[] tasks = new String[100];
-        String[] check = new String[100];
-        for (int i = 0; i < check.length; i++) {
-            check[i] = " ";
-        }
+        //String[] tasks = new String[100];
+        Task[] tasks = new Task[100];
+
         int taskNum = 0;
 
         System.out.println("Hello! I'm Duke\n");
@@ -69,40 +40,107 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
         String str2 = sc.nextLine();
 
-        //String check = " ";
-        boolean isDone = false;
-
         while (!str2.equals("bye")) {
             if (str2.equals("list")) {
-                System.out.println("Here are the tasks in your list:");
-                for (int i = 0; i < taskNum; i++) {
-                    int num = i + 1;
-                    System.out.println(num + ". " + "[" + check[i] + "] " + tasks[i]);
-                }
+                showList(taskNum, tasks);
                 str2 = sc.nextLine();
                 continue;
             }
-            if ((str2.substring(0, 4)).equals("mark")) {
-                int taskToMark = 0;
-                System.out.println("Nice! I've marked this task as done:\n");
-
-                String strTaskToMark = "";
-                for (int j = 5; j < str2.length(); j++) {
-                    strTaskToMark = strTaskToMark + str2.charAt(j);
-                }
-
-                taskToMark = Integer.parseInt(strTaskToMark);
-                check[taskToMark - 1] = "X";
-                System.out.println("[X] " + tasks[taskToMark - 1]);
+            if (str2.length() > 4 && (str2.substring(0, 4)).equals("mark")) {
+                markDone(str2, tasks);
                 str2 = sc.nextLine();
                 continue;
             }
 
-            tasks[taskNum] = str2;
+            if (str2.length() > 4 && (str2.substring(0, 4)).equals("todo")) {
+                System.out.println("Got it. I've added this task:");
+                ToDos newToDo = new ToDos(str2.substring(5, str2.length()));
+                tasks[taskNum] = newToDo;
+                System.out.println(tasks[taskNum].toString());
+                taskNum++;
+                System.out.println("Now you have " + taskNum + " tasks in the list.");
+                //addToDo(str2, tasks, taskNum);
+                str2 = sc.nextLine();
+                continue;
+            }
+
+            if (str2.length() > 8 && (str2.substring(0, 8)).equals("deadline")) {
+                System.out.println("Got it. I've added this task:");
+                int k = 9;
+                String desc = "";
+                while (str2.charAt(k) != '/') {
+                    desc += str2.charAt(k);
+                    k++;
+                }
+
+                String dl = str2.substring(k + 4, str2.length());
+                Deadlines newDeadline = new Deadlines(desc, dl);
+                tasks[taskNum] = newDeadline;
+                System.out.println(tasks[taskNum].toString());
+                taskNum++;
+                System.out.println("Now you have " + taskNum + " tasks in the list.");
+                str2 = sc.nextLine();
+                continue;
+            }
+
+            if (str2.length() > 5 && (str2.substring(0, 5)).equals("event")) {
+                System.out.println("Got it. I've added this task:");
+                int k = 6;
+                String desc = "";
+                while (str2.charAt(k) != '/') {
+                    desc += str2.charAt(k);
+                    k++;
+                }
+
+                String eventTime = str2.substring(k + 4, str2.length());
+                Events newEvent = new Events(desc, eventTime);
+                tasks[taskNum] = newEvent;
+                System.out.println(tasks[taskNum].toString());
+                taskNum++;
+                System.out.println("Now you have " + taskNum + " tasks in the list.");
+                str2 = sc.nextLine();
+                continue;
+            }
+
+            Task newTask = new Task(str2);
+            tasks[taskNum] = newTask;
             taskNum++;
             System.out.println("added: " + str2);
             str2 = sc.nextLine();
         }
         System.out.println("Bye! See you soon!");
     }
+
+    public static void showList(int taskNo, Task[] arr1){
+        System.out.println("Here are the tasks in your list:");
+        for (int i = 0; i < taskNo; i++) {
+            int num = i + 1;
+            //System.out.println(num + ". " + "[" + arr1[i].getStatusIcon() + "] " + arr1[i].description);
+            System.out.println(num + ". " + arr1[i].toString());
+        }
+    }
+
+    public static void markDone(String task, Task[] arr1) {
+        int taskToMark = 0;
+        System.out.println("Nice! I've marked this task as done:");
+
+        String strTaskToMark = "";
+        for (int j = 5; j < task.length(); j++) {
+            strTaskToMark = strTaskToMark + task.charAt(j);
+        }
+
+        taskToMark = Integer.parseInt(strTaskToMark);
+        arr1[taskToMark - 1].isDone = true;
+        System.out.println("[" + arr1[taskToMark - 1].getStatusIcon() + "] " + arr1[taskToMark - 1].description);
+    }
+
+    public static void addToDo(String todo, Task[] arr, int num) {
+        System.out.println("Got it. I've added this task:");
+        ToDos newToDo = new ToDos(todo.substring(5, todo.length()));
+        arr[num] = newToDo;
+        System.out.println(arr[num].toString());
+        num++;
+        System.out.println("Now you have " + num + " tasks in the list.");
+    }
+
 }
