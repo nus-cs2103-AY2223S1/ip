@@ -15,9 +15,9 @@ public class Duke {
         System.out.println("added: " + str);
     }
 
-    private static void printArrAsNumberedList(ArrayList<String> arr) {
+    private static void printArrAsNumberedList(ArrayList<Task> arr) {
         for (int i = 0; i < arr.size(); i++) {
-            System.out.println(i+1 + ". " + arr.get(i));
+            System.out.println(i+1 + ". " + arr.get(i).toString());
         }
     }
 
@@ -25,15 +25,20 @@ public class Duke {
         System.out.println("Hello from\n" + logo);
         System.out.println(GREETINGS);
 
-        ArrayList<String> strArr = new ArrayList<>();
+        ArrayList<Task> taskArr = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
         String input = sc.nextLine();
 
+
         while (!input.equals("bye")) {
             if (input.equals("list")) {
-                printArrAsNumberedList(strArr);
+                printArrAsNumberedList(taskArr);
+            } else if (input.startsWith("mark")){
+                taskArr.get(Integer.parseInt(input.substring(5))).mark();
+            } else if (input.startsWith("unmark")){
+                taskArr.get(Integer.parseInt(input.substring(7))).unmark();
             } else {
-                strArr.add(input);
+                taskArr.add(new Task(input));
                 echo(input);
             }
             input = sc.nextLine();
