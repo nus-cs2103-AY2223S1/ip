@@ -6,7 +6,7 @@ import duke.TaskList;
 import duke.Ui;
 
 public class MarkCommand extends Command {
-    int idx;
+    private int idx;
 
     public MarkCommand(int idx) {
         super();

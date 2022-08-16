@@ -3,8 +3,9 @@ package duke;
 import java.util.Scanner;
 
 public class Ui {
-    private Scanner sc;
     private static final String LINE = "--------------------------------------------------";
+
+    private Scanner sc;
 
     public Ui() {
         this.sc = new Scanner(System.in);

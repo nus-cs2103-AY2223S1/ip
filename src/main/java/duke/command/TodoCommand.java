@@ -5,7 +5,7 @@ import duke.TaskList;
 import duke.Ui;
 
 public class TodoCommand extends Command {
-    String description;
+    private String description;
 
     public TodoCommand(String description) {
         super();

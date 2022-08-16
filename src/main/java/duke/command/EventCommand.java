@@ -1,14 +1,14 @@
 package duke.command;
 
+import java.time.LocalDate;
+
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 
-import java.time.LocalDate;
-
 public class EventCommand extends Command {
-    String description;
-    LocalDate at;
+    private String description;
+    private LocalDate at;
 
     public EventCommand(String description, LocalDate at) {
         super();

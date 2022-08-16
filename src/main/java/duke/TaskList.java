@@ -1,13 +1,16 @@
 package duke;
 
-import duke.task.*;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
+
 public class TaskList {
-    ArrayList<Task> tasks;
-    int size;
+    private ArrayList<Task> tasks;
+    private int size;
 
     public TaskList() {
         this.tasks = new ArrayList<>();
