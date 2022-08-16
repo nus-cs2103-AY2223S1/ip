@@ -5,7 +5,6 @@ public class Duke {
 
     public static void main(String[] args) {
         boolean bye = false;
-        ArrayList<String> toDoList = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -14,23 +13,22 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
         System.out.println("HELLO!");
-
         while (!bye) {
             String input = sc.nextLine();
             if (input.equals("bye")) {
                 bye = true;
-                System.out.println("Bye Bye!");
+                UserInterface.Bye();
             } else if (input.equals("list")) {
-                for (int i = 1; i <= toDoList.size(); i++) {
-                    System.out.println(i +  ". " +toDoList.get(i-1));
-                }
-            }
-
-            else {
-                toDoList.add(input);
-                System.out.println("added: " + input);
+                UserInterface.showList();
+            } else if (input.contains("unmark")) {
+                int index = Integer.parseInt(input.substring(7)) - 1;
+                UserInterface.unmarkChild(index);
+            } else if (input.contains("mark")) {
+                int index = Integer.parseInt(input.substring(5)) - 1;
+                UserInterface.markChild(index);
+            } else {
+                UserInterface.addToDo(input);
             }
         }
-
     }
 }
