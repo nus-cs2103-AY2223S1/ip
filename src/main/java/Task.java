@@ -10,13 +10,13 @@ public class Task {
     public String mark() {
         this.isDone = true;
         return " Great job! I will mark the task as completed.\n" +
-                "   " + this.toString();
+                "   " + this;
     }
 
     public String unmark() {
         this.isDone = false;
         return " Understood. I will mark the task as uncompleted.\n" +
-                "   " + this.toString();
+                "   " + this;
     }
 
     @Override

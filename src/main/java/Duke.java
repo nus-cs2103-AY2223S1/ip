@@ -1,11 +1,12 @@
 import java.util.Scanner;
 
 public class Duke {
-    private static Scanner scanner = new Scanner(System.in);
-    private static Task[] tasks = new Task[100];
+    private static final Scanner scanner = new Scanner(System.in);
+    private static final Task[] tasks = new Task[100];
 
     /**
-     * Points to the current index of tasks to insert the next task in
+     * Points to the index of the tasks array to insert the next task in.
+     * Also acts as a counter for the number of tasks in the tasks array.
      */
     private static int pointer = 0;
 
@@ -27,22 +28,38 @@ public class Duke {
         if (pointer == 0) {
             speak(" You have not added any tasks!\n");
         } else {
-            String result = " Here are your current tasks:\n";
+            StringBuilder result = new StringBuilder(" Here are your current tasks:\n");
             for (int i = 0; i < pointer; i++) {
-                result += " " + (i + 1) + "." + tasks[i].toString();
+                result.append(" ").append(i + 1).append(".").append(tasks[i].toString());
             }
-            speak(result);
+            speak(result.toString());
         }
     }
 
-    private static void addTask(String task) {
-        tasks[pointer] = new Task(task);
+    private static void addTask(int type, String task, String dateTime) {
+        Task newTask;
+        switch (type) {
+            case 0:
+                newTask = new Todo(task);
+                break;
+            case 1:
+                newTask = new Deadline(task, dateTime);
+                break;
+            case 2:
+                newTask = new Event(task, dateTime);
+                break;
+            default:
+                newTask = new Task(task);
+        }
+        tasks[pointer] = newTask;
         pointer++;
-        speak(" added: " + task + "\n");
+        speak(" Understood. I have added the following task:\n" +
+                "   " + newTask +
+                " You have a total of " + pointer + " task(s).\n");
     }
 
     private static void markTask(int taskNum) {
-        if (taskNum < pointer + 1) {
+        if (taskNum <= pointer && taskNum > 0) {
             speak(tasks[taskNum - 1].mark());
         } else {
 
@@ -50,10 +67,67 @@ public class Duke {
     }
 
     private static void unmarkTask(int taskNum) {
-        if (taskNum < pointer + 1) {
+        if (taskNum <= pointer && taskNum > 0) {
             speak(tasks[taskNum - 1].unmark());
         } else {
 
+        }
+    }
+
+    private static void parseCommand(String cmd) {
+        String[] firstParse = cmd.split(" ", 2);
+        String firstTerm = firstParse[0];
+        boolean hasSecondTerm = firstParse.length > 1;
+
+        switch (firstTerm) {
+            case "bye":
+                goodbye();
+                break;
+            case "list":
+                listTasks();
+                break;
+            case "mark":
+                try {
+                    String secondTerm = hasSecondTerm
+                            ? firstParse[1].split(" ", 2)[0]
+                            : "0";
+                    markTask(Integer.parseInt(secondTerm));
+                    break;
+                } catch (NumberFormatException e) {
+                    break;
+                }
+            case "unmark":
+                try {
+                    String secondTerm = hasSecondTerm
+                            ? firstParse[1].split(" ", 2)[0]
+                            : "0";
+                    unmarkTask(Integer.parseInt(secondTerm));
+                    break;
+                } catch (NumberFormatException e) {
+                    break;
+                }
+            case "todo":
+                if (hasSecondTerm) {
+                    addTask(0, firstParse[1], "");
+                }
+                break;
+            case "deadline":
+                if (hasSecondTerm) {
+                    String[] secondParse = firstParse[1].split("/by", 2);
+                    if (secondParse.length > 1) {
+                        addTask(1, secondParse[0], secondParse[1]);
+                    }
+                }
+                break;
+            case "event":
+                if (hasSecondTerm) {
+                    String[] secondParse = firstParse[1].split("/at", 2);
+                    if (secondParse.length > 1) {
+                        addTask(2, secondParse[0], secondParse[1]);
+                    }
+                }
+                break;
+            default:
         }
     }
 
@@ -63,27 +137,7 @@ public class Duke {
         String cmd = "";
         while (!cmd.equals("bye")) {
             cmd = scanner.nextLine().trim();
-            if (cmd.equals("bye")) {
-                goodbye();
-            } else if (cmd.equals("list")) {
-                listTasks();
-            } else if (cmd.split(" ")[0].equals("mark")) {
-                try {
-                    int num = Integer.parseInt(cmd.split(" ")[1]);
-                    markTask(num);
-                } catch (NumberFormatException e) {
-
-                }
-            } else if (cmd.split(" ")[0].equals("unmark")) {
-                try {
-                    int num = Integer.parseInt(cmd.split(" ")[1]);
-                    unmarkTask(num);
-                } catch (NumberFormatException e) {
-
-                }
-            } else {
-                addTask(cmd);
-            }
+            parseCommand(cmd);
         }
     }
 }
