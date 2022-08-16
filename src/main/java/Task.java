@@ -43,4 +43,8 @@ public class Task {
         return taskDescription;
     }
 
+    @Override
+    public String toString() {
+        return String.format("[%s] %s", isDone() ? "X" : " ", getTaskDescription());
+    }
 }

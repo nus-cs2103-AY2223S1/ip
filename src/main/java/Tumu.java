@@ -1,10 +1,16 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.List;
 
 public class Tumu {
     private static List<Task> userTasks = new ArrayList<>();
     private static final String horizontalLines = "\t" + "_".repeat(40);
+
+    private static final String END_CHAT_BOT_CMD = "bye";
+    private static final String LIST_USER_TEXT_CMD = "list";
+    private static final String MARK_CMD = "mark";
+    private static final String UNMARK_CMD = "unmark";
 
     public static void main(String[] args) {
         greeting();
@@ -17,26 +23,41 @@ public class Tumu {
          */
 
         Scanner sc = new Scanner(System.in);
-        final String endChatBotCMD = "bye";
-        final String listUserTextCMD = "list";
-        String userInput;
+        String command;
 
         do {
-            userInput = sc.nextLine().toLowerCase();
+            command = sc.next().toLowerCase();
+
             printHorizontalLine();
-            switch (userInput) {
-                case endChatBotCMD:
+            switch (command) {
+                case END_CHAT_BOT_CMD:
                     goodbye();
                     break;
-                case listUserTextCMD:
+                case LIST_USER_TEXT_CMD:
                     listTasks();
                     break;
+                case MARK_CMD:
+                    try {
+                        markTask(sc.nextInt());
+                    } catch (InputMismatchException e) {
+                        System.out.println("\tPlease mark a task by its list position (must be an integer)!");
+                        sc.nextLine(); //clear buffer
+                    }
+                    break;
+                case UNMARK_CMD:
+                    try {
+                        unmarkTask(sc.nextInt());
+                    } catch (InputMismatchException e) {
+                        System.out.println("\tPlease unmark a task by its list position (must be an integer)!");
+                        sc.nextLine(); //clear buffer
+                    }
+                    break;
                 default:
-                    addTask(userInput);
+                    addTask(command);
             }
             printHorizontalLine();
 
-        } while (!userInput.equalsIgnoreCase(endChatBotCMD));
+        } while (!command.equalsIgnoreCase(END_CHAT_BOT_CMD));
     }
 
     private static void greeting() {
@@ -77,9 +98,39 @@ public class Tumu {
         System.out.println("\tHere are your current tasks:");
         for (int i = 1; i <= userTasks.size(); i++) {
             Task task = userTasks.get(i - 1);
-            String output = String.format("\t %d. [%s] %s",
-                    i, task.isDone() ? "X" : " ", task.getTaskDescription());
+            String output = String.format("\t %d. %s", i, task);
             System.out.println(output);
+        }
+    }
+
+    private static void markTask(int oneIndexedNum) {
+        /**
+         * Mark the oneIndexedNumth Task in userTasks.
+         */
+        if (oneIndexedNum < 1 || oneIndexedNum > userTasks.size()) {
+            //Specified index from user is out of bounds of list.
+            if (userTasks.isEmpty()) System.out.println("\tNo tasks currently available. Add a task before marking!");
+            else System.out.println("\tSpecified index is out of bounds, please key a value from 1 to " + userTasks.size());
+        } else {
+            Task task = userTasks.get(oneIndexedNum - 1);
+            task.markDone();
+            System.out.println("\tAlright, I have marked this task as done: \n\t" + task);
+        }
+    }
+
+    private static void unmarkTask(int oneIndexedNum) {
+        /**
+         * Unmark the oneIndexedNumth Task in userTasks.
+         */
+
+        if (oneIndexedNum < 1 || oneIndexedNum > userTasks.size()) {
+            //Specified index from user is out of bounds of list.
+            if (userTasks.isEmpty()) System.out.println("\tNo tasks currently available. Add a task before unmarking!");
+            else System.out.println("\tSpecified index is out of bounds, please key a value from 1 to " + userTasks.size());
+        } else {
+            Task task = userTasks.get(oneIndexedNum - 1);
+            task.unmarkDone();
+            System.out.println("\tAlright, I have unmarked this task: \n\t" + task);
         }
     }
 
