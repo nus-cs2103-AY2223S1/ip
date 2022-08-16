@@ -7,38 +7,69 @@ public class Duke {
         this.taskList = new TaskList();
     }
     public static void main(String[] args) {
-        Duke duke = new Duke();
+        final Duke duke = new Duke();
         duke.printMessage("Hello! I'm Duke \nWhat can I do for you?");
 
         Scanner sc = new Scanner(System.in);
-        String input;
 
         while(true) {
-            input = sc.nextLine();
+            String input = sc.nextLine();
             if (input.equals("bye")) {
                 break;
             }
-            if (input.equals("list")) {
-                duke.printMessage(duke.taskList.toString());
-            } else {
-                duke.addTask(input);
-            }
+            duke.receiveCommand(input);
         }
         duke.printMessage("Bye. Hope to see you again soon!");
     }
 
-    public void addTask(String task) {
+    public void receiveCommand(String input) {
+        String[] arg = input.split(" ", 2);
+        String command = arg[0];
+        String commandArg = arg.length > 1 ? arg[1] : "";
+
+        switch (command) {
+            case "list":
+                this.viewList();
+                break;
+            case "mark":
+                this.markTask(commandArg);
+                break;
+            case "unmark":
+                this.unmarkTask(commandArg);
+                break;
+            default:
+                addTask(input);
+                break;
+        }
+    }
+
+    private void viewList() {
+        this.printMessage(this.taskList.toString());
+    }
+
+    private void addTask(String task) {
         this.taskList.addTask(task);
         printMessage("added: " + task);
     }
 
-    public void printMessage(String message) {
-        System.out.println(outlineMessage(message));
+    private void markTask(String n) {
+        // handle cases when n is invalid
+        int index = Integer.parseInt(n);
+        this.taskList.markTaskN(index, true);
+        printMessage("Nice! I've marked this task as done: \n\t" + this.taskList.getTaskN(index));
     }
 
-    private String outlineMessage(String message) {
+    private void unmarkTask(String n) {
+        // handle cases when n is invalid
+        int index = Integer.parseInt(n);
+        this.taskList.markTaskN(index, false);
+        printMessage("OK, I've marked this task as not done yet: \n\t" + this.taskList.getTaskN(index));
+    }
+
+    public void printMessage(String message) {
         String line = "____________________________________________________________";
         String res = line + "\n" + message + "\n" +line;
-        return res.replaceAll("(?m)^", "\t");
+        res = res.replaceAll("(?m)^", "\t");
+        System.out.println(res);
     }
 }
