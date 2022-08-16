@@ -2,7 +2,7 @@ class Task {
     protected String itself;
     protected boolean isDone;
 
-    public Task(String itself, boolean isDone) {
+    public Task(String itself) {
         this.itself = itself;
         this.isDone = false;
     }
@@ -21,6 +21,6 @@ class Task {
 
     @Override
     public String toString() {
-        return "[" + getStatus() + "]" + itself;
+        return "[" + getStatus() + "] " + itself;
     }
 }
