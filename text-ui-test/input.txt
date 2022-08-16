@@ -9,4 +9,11 @@ mark 3
 unmark 3
 mark 3
 list
+wee
+todo
+deadline
+event
+mark
+deadline read book
+list
 bye
