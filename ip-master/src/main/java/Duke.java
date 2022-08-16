@@ -1,6 +1,7 @@
 import java.util.Scanner;
+
 /*
-Duke IP for CS2103T by Yuvaraj Kumaresan
+Duke IP for CS2103T by Yuvaraj Kumaresan AY2023
  */
 public class Duke {
     /*
