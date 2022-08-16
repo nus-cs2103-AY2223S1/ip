@@ -46,6 +46,10 @@ public class Poolsheen {
         this.scanner = new Scanner(System.in);
     }
 
+    private enum Command {
+        BYE, LIST, MARK, UNMARK, DELETE, TODO, DEADLINE, EVENT
+    }
+
     /**
      * The first method to be run for Poolsheen to listen to our user.
      */
@@ -63,43 +67,43 @@ public class Poolsheen {
                 String command = arl.get(0);
                 arl.remove(0);
 
-                switch (command.toUpperCase()) {
-                    case "BYE":
+                switch (Enum.valueOf(Command.class, command.toUpperCase())) {
+                    case BYE:
                         if (!arl.isEmpty()) {
                             throw new IncompleteCommandException("this.userInput", "bye", "Were you trying to enter 'bye'?");
                         } else {
                             this.exit();
                         }
                         break;
-                    case "LIST":
+                    case LIST:
                         if (!arl.isEmpty()) {
                             throw new IncompleteCommandException("this.userInput", "list", "Were you trying to enter 'list'?");
                         } else {
                             this.displayList();
                         }
                         break;
-                    case "MARK":
+                    case MARK:
                         if (arl.isEmpty() || arl.size() != 1) {
                             throw new IncompleteCommandException(this.userInput, "mark", "Please enter 1 appropriate integer");
                         } else {
                             this.mark(java.lang.Integer.parseInt(arl.get(0)));
                         }
                         break;
-                    case "UNMARK":
+                    case UNMARK:
                         if (arl.isEmpty()) {
                             throw new IncompleteCommandException(this.userInput, "unmark", "Please enter 1 appropriate integer");
                         } else {
                             this.unmark(java.lang.Integer.parseInt(arl.get(0)));
                         }
                         break;
-                    case "DELETE":
+                    case DELETE:
                         if (arl.isEmpty()) {
                             throw new IncompleteCommandException(this.userInput, "delete", "Please enter 1 appropriate integer");
                         } else {
                             this.deleteTask(java.lang.Integer.parseInt(arl.get(0)));
                         }
                         break;
-                    case "TODO":
+                    case TODO:
                         if (arl.isEmpty()) {
                             throw new IncompleteCommandException(this.userInput, "todo", "The description of a todo cannot be empty");
                         } else {
@@ -109,7 +113,7 @@ public class Poolsheen {
                             this.say("Poolsheen now remembers: " + descTD);
                         }
                         break;
-                    case "DEADLINE":
+                    case DEADLINE:
                         if (arl.isEmpty()) {
                             throw new IncompleteCommandException(this.userInput, "deadline", "Deadlines need a description and time");
                         } else if (!arl.contains("/by")) {
@@ -126,7 +130,7 @@ public class Poolsheen {
                             }
                         }
                         break;
-                    case "EVENT":
+                    case EVENT:
                         if (arl.isEmpty()) {
                             throw new IncompleteCommandException(this.userInput, "event", "Events need a description and time");
                         } else if (!arl.contains("/at")) {
@@ -146,7 +150,7 @@ public class Poolsheen {
                     default:
                         throw new UnknownCommandException(this.userInput);
                 }
-            } catch (UnknownCommandException e) {
+            }  catch (UnknownCommandException e) {
                 this.say(e.toString() + "\n" + Poolsheen.startReply + "Please try again!");
             } catch (IncompleteCommandException e) {
                 this.say(e.toString());
@@ -154,6 +158,8 @@ public class Poolsheen {
                 this.say("Poolsheen thinks no task has this position. Please try another number!");
             } catch (NumberFormatException e) {
                 this.say("Poolsheen believes this command needs an integer. Please try again!");
+            } catch(IllegalArgumentException e) {
+                this.say("Poolsheen has never seen this command and is confused :(\n" + Poolsheen.startReply + "Please try again!");
             } catch (Exception e) {
                 System.out.println("An unexpected error has occurred and the program will end.");
                 System.out.println("Error is: " + e.toString());
