@@ -1,3 +1,4 @@
+import exception.*;
 import task.Deadline;
 import task.Event;
 import task.Task;
@@ -38,7 +39,8 @@ public class Blob {
         for (int i = 0; i < taskList.size(); i++) {
             tasksStringBuilder.append(String.format("\t\t%d. %s \n", i + 1, taskList.get(i).toString()));
         }
-        speak(String.format("Blob remembers %d task(s)...", taskList.size()), tasksStringBuilder.toString());
+        speak(String.format("Blob remembers %d task(s)...", taskList.size()),
+                taskList.size() == 0 ? "Give Blob task to remember...?" : tasksStringBuilder.toString());
     }
 
     /**
@@ -54,11 +56,10 @@ public class Blob {
     /**
      * Adds a Deadline task to the list of tasks
      */
-    private void addDeadline(String details) {
-        String[] deconstructedDetails = details.split(" /by ", 2);
+    private void addDeadline(String details) throws InvalidDeadlineException {
+        String[] deconstructedDetails = details.split("\\s+(/by)\\s+", 2);
         if (deconstructedDetails.length < 2) {
-            speak("Blob needs to know your deadline...");
-            return;
+            throw new InvalidDeadlineException();
         }
         Deadline task = new Deadline(deconstructedDetails[0], deconstructedDetails[1]);
         taskList.add(task);
@@ -69,11 +70,11 @@ public class Blob {
     /**
      * Adds an Event task to the list of tasks
      */
-    private void addEvent(String details) {
-        String[] deconstructedDetails = details.split(" /at ", 2);
+    private void addEvent(String details) throws InvalidEventException {
+        String[] deconstructedDetails = details.split("\\s+(/at)\\s+", 2);
+        System.out.println(Arrays.toString(deconstructedDetails));
         if (deconstructedDetails.length < 2) {
-            speak("Blob needs to know your event timing...");
-            return;
+            throw new InvalidEventException();
         }
         Event task = new Event(deconstructedDetails[0], deconstructedDetails[1]);
         taskList.add(task);
@@ -86,13 +87,13 @@ public class Blob {
      *
      * @param index The index of the task to be marked done
      */
-    private void markTaskAtIndexDone(int index) {
+    private void markTaskAtIndexDone(int index) throws InvalidTaskIndexException {
         try {
             Task task = taskList.get(index - 1);
             task.markAsDone();
             speak("Blob congratulates on task well done...", String.format("\n\t\t%s \n", task));
         } catch (IndexOutOfBoundsException exception) {
-            speak("Blob cannot find task...", "Maybe task don't exist...?");
+            throw new InvalidTaskIndexException();
         }
     }
 
@@ -101,13 +102,13 @@ public class Blob {
      *
      * @param index The index of the task to be marked undone
      */
-    private void markTaskAtIndexUndone(int index) {
+    private void markTaskAtIndexUndone(int index) throws InvalidTaskIndexException {
         try {
             Task task = taskList.get(index - 1);
             task.markAsUndone();
             speak("Blob will mark as undone...", String.format("\n\t\t%s \n", task));
         } catch (IndexOutOfBoundsException exception) {
-            speak("Blob cannot find task...", "Maybe task don't exist...?");
+            throw new InvalidTaskIndexException();
         }
     }
 
@@ -131,60 +132,63 @@ public class Blob {
     public void start() {
         this.greet();
         Scanner sc = new Scanner(System.in);
-        boolean isRunning = true;
-        while (isRunning) {
-            System.out.print(">> ");
-            String input = sc.nextLine().trim();
-            String[] deconstructedInput = input.split("\\s+", 2);
-            String command = deconstructedInput[0];
-            switch (command) {
-            case "bye":
-                sayGoodbye();
-                isRunning = false;
-                break;
-            case "list":
-                listTasks();
-                break;
-            case "mark":
-                try {
-                    int index = Integer.parseInt(deconstructedInput[1]);
-                    markTaskAtIndexDone(index);
-                } catch(NumberFormatException exception) {
-                    speak("Blob cannot find task...", "Maybe task don't exist...?");
+        while (true) {
+            try {
+                System.out.print(">> ");
+                String input = sc.nextLine().trim();
+                String[] deconstructedInput = input.split("\\s+", 2);
+                String command = deconstructedInput[0];
+                switch (command) {
+                case "bye":
+                    end();
+                case "list":
+                    listTasks();
+                    break;
+                case "mark":
+                    try {
+                        int index = Integer.parseInt(deconstructedInput[1]);
+                        markTaskAtIndexDone(index);
+                    } catch (NumberFormatException exception) {
+                        throw new InvalidTaskIndexException();
+                    }
+                    break;
+                case "unmark":
+                    try {
+                        int index = Integer.parseInt(deconstructedInput[1]);
+                        markTaskAtIndexUndone(index);
+                    } catch (NumberFormatException exception) {
+                        throw new InvalidTaskIndexException();
+                    }
+                    break;
+                case "todo":
+                    if (deconstructedInput.length < 2) {
+                        throw new MissingTaskDescriptionException();
+                    }
+                    addTodo(deconstructedInput[1]);
+                    break;
+                case "deadline":
+                    if (deconstructedInput.length < 2) {
+                        throw new MissingTaskDescriptionException();
+                    }
+                    addDeadline(deconstructedInput[1]);
+                    break;
+                case "event":
+                    if (deconstructedInput.length < 2) {
+                        throw new MissingTaskDescriptionException();
+                    }
+                    addEvent(deconstructedInput[1]);
+                    break;
+                default:
+                    throw new UnknownCommandException();
                 }
-                break;
-            case "unmark":
-                try {
-                    int index = Integer.parseInt(deconstructedInput[1]);
-                    markTaskAtIndexUndone(index);
-                } catch(NumberFormatException exception) {
-                    speak("Blob cannot find task...", "Maybe task don't exist...?");
-                }
-                break;
-            case "todo":
-                if (deconstructedInput.length < 2) {
-                    speak("Blob needs to know your task details...");
-                    continue;
-                }
-                addTodo(deconstructedInput[1]);
-                break;
-            case "deadline":
-                if (deconstructedInput.length < 2) {
-                    speak("Blob needs to know your task details...");
-                    continue;
-                }
-                addDeadline(deconstructedInput[1]);
-                break;
-            case "event":
-                if (deconstructedInput.length < 2) {
-                    speak("Blob needs to know your task details...");
-                    continue;
-                }
-                addEvent(deconstructedInput[1]);
-                break;
-            default:
-                speak("Sorry... Blob no understand your command...");
+            } catch (BlobException exception) {
+                speak(exception.getBlobMessages());
             }
         }
+    }
+
+    public void end() {
+        sayGoodbye();
+        System.exit(0);
     }
 }
