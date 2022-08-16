@@ -27,9 +27,15 @@ public class Duke {
 
         Scanner sc = new Scanner(System.in);
         String command = sc.nextLine();
+        TaskList taskList = new TaskList();
         while (!command.equals("bye")) {
             makeLine();
-            echo(command);
+            if (command.equals("list")) {
+               System.out.print(taskList);
+            } else {
+                System.out.println(taskList.addTask(command));
+            }
+            // echo(command);
             makeLine();
             command = sc.nextLine();
         }
