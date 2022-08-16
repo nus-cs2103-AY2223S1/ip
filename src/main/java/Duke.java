@@ -27,7 +27,12 @@ public class Duke {
             System.out.println("-------------------");
             this.input = scanner.nextLine();
             Command command = new Command(input, this.storage);
-            this.keepRunning = command.execution();
+            try {
+                this.keepRunning = command.execution();
+            } catch (DukeException e) {
+                this.keepRunning = true;
+                System.out.println(e.getMessage());
+            }
         }
     }
 
