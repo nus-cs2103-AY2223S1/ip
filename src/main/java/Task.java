@@ -1,14 +1,14 @@
 public class Task {
     private boolean isComplete;
-    private String toDoName;
+    private String taskTitle;
 
-    public Task(String toDoName, boolean isComplete) {
-        this.toDoName = toDoName;
+    public Task(String taskTitle, boolean isComplete) {
+        this.taskTitle = taskTitle;
         this.isComplete = isComplete;
     }
 
-    public String getToDoName() {
-        return this.toDoName;
+    public String getTaskTitle() {
+        return this.taskTitle;
     }
 
     public boolean getIsComplete() {
@@ -21,6 +21,6 @@ public class Task {
 
     @Override
     public String toString() {
-        return String.format("[%s] %s", this.isComplete ? "X" : " ", this.toDoName);
+        return String.format("[%s] %s", this.isComplete ? "X" : " ", this.taskTitle);
     }
 }
