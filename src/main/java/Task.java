@@ -27,15 +27,16 @@ public class Task {
         completedTask = false;
     }
 
-    public boolean isDone() {
+    private String getStatusIcon() {
         /**
-         * Checks whether this specific task is done.
+         * Checks whether the task is marked, and update the status icon
+         * to be an "X".
          */
 
-        return completedTask;
+        return (completedTask ? "X" : " ");
     }
 
-    public String getTaskDescription() {
+    private String getTaskDescription() {
         /**
          * Gets description for this task.
          */
@@ -45,6 +46,6 @@ public class Task {
 
     @Override
     public String toString() {
-        return String.format("[%s] %s", isDone() ? "X" : " ", getTaskDescription());
+        return String.format("[%s] %s", getStatusIcon(), getTaskDescription());
     }
 }
