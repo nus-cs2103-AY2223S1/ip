@@ -1,7 +1,7 @@
 package utils;
 
 public enum UserOperation {
-    MARK("mark"), BYE("bye"), LIST("list");
+    MARK("mark"), BYE("bye"), LIST("list"), DELETE("delete");
 
     private String operation;
 
