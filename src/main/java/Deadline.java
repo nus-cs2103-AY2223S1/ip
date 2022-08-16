@@ -1,8 +1,8 @@
 public class Deadline extends Task {
   private String by;
 
-  public Deadline(String title, boolean done, String by) {
-    super(title, done);
+  public Deadline(String description, boolean done, String by) {
+    super(description, done);
     this.by = by;
   }
 
@@ -10,6 +10,6 @@ public class Deadline extends Task {
   public String toString() {
     String checkbox = this.getDone() ? "[D][X]" : "[D][ ]";
     String dateFormatted = "(by: " + by + ")";
-    return checkbox + " " + super.getTitle() + " " + dateFormatted;
+    return checkbox + " " + super.getDescription() + " " + dateFormatted;
   }
 }

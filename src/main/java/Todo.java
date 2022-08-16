@@ -1,11 +1,11 @@
 public class Todo extends Task {
-  public Todo(String title, boolean done) {
-    super(title, done);
+  public Todo(String description, boolean done) {
+    super(description, done);
   }
 
   @Override
   public String toString() {
     String checkbox = this.getDone() ? "[T][X]" : "[T][ ]";
-    return checkbox + " " + super.getTitle();
+    return checkbox + " " + super.getDescription();
   }
 }
