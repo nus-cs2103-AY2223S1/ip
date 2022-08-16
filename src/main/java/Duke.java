@@ -30,8 +30,8 @@ public class Duke {
    */
   public void markTask(int index) {
     this.taskList.markTask(index);
-    String msg = "Nice! I've marked this task as done: \n "
-        + this.taskList.getTaskToString(index).toString();
+    String msgBegin = "Nice! I've marked this task as done: \n ";
+    String msg = msgBegin + this.taskList.getTaskToString(index).toString();
     prettyPrint(msg);
   }
 
@@ -43,8 +43,8 @@ public class Duke {
    */
   public void unmarkTask(int index) {
     this.taskList.unmarkTask(index);
-    String msg = "OK, I've marked this task as not done yet: \n "
-        + this.taskList.getTaskToString(index).toString();
+    String msgBegin = "OK, I've marked this task as not done yet: \n ";
+    String msg = msgBegin + this.taskList.getTaskToString(index).toString();
     prettyPrint(msg);
   }
 
@@ -52,8 +52,8 @@ public class Duke {
    * Prints an overview of all added tasks and their status.
    */
   public void viewAllTask() {
-    String msgHeader = "Here are the tasks in your list:\n";
-    String msg = msgHeader + this.taskList.toString();
+    String msgBegin = "Here are the tasks in your list:\n";
+    String msg = msgBegin + this.taskList.toString();
     prettyPrint(msg);
   }
 
