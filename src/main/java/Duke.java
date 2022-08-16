@@ -93,6 +93,9 @@ public class Duke {
                 System.out.println("I have marked this task as not done:");
                 System.out.println(list.get(index));
             } else if (command[0].equals("todo")) {
+                if (command.length < 2) {
+                    throw new DukeException("oops the description of a todo cannot be empty!");
+                }
                 list.add(new Todo(command[1]));
                 int count = list.size();
                 System.out.println("Added Task");
@@ -114,12 +117,17 @@ public class Duke {
                 System.out.println("Now you have " + count + " tasks in the list");
             }
             else {
-                System.out.println("added: " + next);
-                list.add(new Task(next));
+                throw new DukeException("oops! I do not know what that means!");
             }
         }
 
 
+    }
+}
+
+ class DukeException extends RuntimeException{
+    public DukeException(String message) {
+        super(message);
     }
 }
 
