@@ -1,3 +1,4 @@
+import java.util.Scanner;
 public class Duke {
     public static void makeLine() {
         for (int i = 0; i < 50; i++) {
@@ -6,11 +7,11 @@ public class Duke {
         System.out.println();
     }
 
-    private void echo(String command) {
+    private static void echo(String command) {
         System.out.println(command);
     }
 
-    private void bye() {
+    private static void bye() {
         System.out.println("Bye. Hope to see you again soon!");
     }
 
@@ -23,5 +24,15 @@ public class Duke {
         makeLine();
         System.out.println("Hello from\n" + logo);
         makeLine();
+
+        Scanner sc = new Scanner(System.in);
+        String command = sc.nextLine();
+        while (!command.equals("bye")) {
+            makeLine();
+            echo(command);
+            makeLine();
+            command = sc.nextLine();
+        }
+        bye();
     }
 }
