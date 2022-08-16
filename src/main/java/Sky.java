@@ -65,9 +65,9 @@ public class Sky {
             System.out.println("  Got it. I've added this task: \n" +
                     "    " + task +
                     "\n  Now you have " + taskList.size() +
-                    (taskList.size() <= 1 ? " task in the list.": " tasks in the list"));
+                    (taskList.size() <= 1 ? " task in the list.": " tasks in the list."));
         } catch (IndexOutOfBoundsException e) {
-            System.out.println(" Are you new? Specify a task after typing todo");
+            System.out.println(" Are you new? Specify a task after typing todo.");
         }
     }
 
@@ -87,7 +87,7 @@ public class Sky {
             System.out.println("  Got it. I've added this task: \n" +
                     "    " + task +
                     "\n  Now you have " + taskList.size() +
-                    (taskList.size() <= 1 ? " task in the list.": " tasks in the list"));
+                    (taskList.size() <= 1 ? " task in the list.": " tasks in the list."));
         } catch (IndexOutOfBoundsException e) {
             System.out.println("  You have either not entered any text after typing deadline, \n" +
                     "  or you have positioned your slash wrongly.");
@@ -110,7 +110,7 @@ public class Sky {
             System.out.println("  Got it. I've added this task: \n" +
                     "    " + task +
                     "\n  Now you have " + taskList.size() +
-                    (taskList.size() <= 1 ? " task in the list.": " tasks in the list"));
+                    (taskList.size() <= 1 ? " task in the list.": " tasks in the list."));
         } catch (IndexOutOfBoundsException e) {
             System.out.println("  You have either not entered any text after typing event, \n" +
                     "  or you have positioned your slash wrongly.");
@@ -126,9 +126,9 @@ public class Sky {
     public static void main(String[] args) {
         Sky sky = new Sky();
         sky.greetUser();
+        Scanner in = new Scanner(System.in);
 
         while (true) {
-            Scanner in = new Scanner(System.in);
             String userInput = in.nextLine();
             System.out.println("  ____________________________________________________________");
             if (userInput.startsWith("bye")) {

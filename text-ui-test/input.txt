@@ -1,0 +1,10 @@
+todo Read Book
+todo Return Book
+mark 1
+list
+event Eat ice cream /at Monday 2-4pm
+deadline Submit assignment /by Tuesday
+list
+mark 2
+list
+bye
