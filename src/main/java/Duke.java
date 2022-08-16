@@ -7,16 +7,8 @@ public class Duke {
     private static final String GOODBYE_MESSAGE = "Bye! Hope to see you soon ༼- つ ◕_◕ ༽つ";
     private static final String UNKNOWN_COMMAND_MESSAGE = "Sorry, I don't know what that means.\n"
             + "Did you make a mistake? Please note that commands are case-sensitive.";
-    private static final int TASKLIST_MAX_SIZE = 100;
 
-    private static Task[] taskList = new Task[TASKLIST_MAX_SIZE];
-    private static int taskCount = 0;
-
-    private static void addTask(Task task) {
-        assert taskCount < TASKLIST_MAX_SIZE;
-        taskList[taskCount++] = task;
-        System.out.printf("Gotcha! I added the following task to the list:\n  %s\nCurrently, I have %d tasks recorded\n", task, taskCount);
-    }
+    private static final TaskList taskList = new TaskList();
 
     public static void main(String[] args) {
 
@@ -30,7 +22,6 @@ public class Duke {
                assumed to be seperated by whitespace (can be multiple characters).
              */
             String[] userQuery = sysIn.nextLine().split("\\s+", 2);
-            String[] userParams;
 
             if (userQuery.length == 0) {
                 // TODO: Add Exception when this occurs.
@@ -39,63 +30,90 @@ public class Duke {
             }
 
             switch (userQuery[0]) {
-                case "list":
+                case "list": {
+                    String[] stringifiedTaskList = taskList.toStringList();
                     System.out.println("Here are your tasks that I have recorded:");
-                    if (taskCount == 0) {
+                    if (stringifiedTaskList.length == 0) {
                         System.out.println("Congratulations, you don't need to do anything right now!");
                     }
-                    for (int i = 0; i < taskCount; i++) {
-                        System.out.printf("%02d. %s\n", i + 1, taskList[i]);
+                    for (int i = 0; i < stringifiedTaskList.length; i++) {
+                        System.out.printf("%02d. %s\n", i + 1, stringifiedTaskList[i]);
                     }
                     break;
-                case "bye":
+                }
+
+                case "bye": {
                     System.out.println(GOODBYE_MESSAGE);
                     exitCalled = true;
                     break;
-                case "add":
-                    addTask(new Task(userQuery[1]));
+                }
+
+                // TODO: A lot of code repetition for the next four pieces of code... Not sure how to resolve yet.
+                case "add": {
+                    Task newTask = new Task(userQuery[1]);
+                    taskList.addTask(newTask);
+                    System.out.printf("Gotcha! I added the following task to the list:\n  %s\nCurrently, I have %d tasks recorded\n", newTask, taskList.getLength());
                     break;
-                case "todo":
-                    addTask(new Todo(userQuery[1]));
+                }
+
+                case "todo": {
+                    Todo newTodo = new Todo(userQuery[1]);
+                    taskList.addTask(newTodo);
+                    System.out.printf("Gotcha! I added the following task to the list:\n  %s\nCurrently, I have %d tasks recorded\n", newTodo, taskList.getLength());
                     break;
-                case "deadline":
+                }
+
+                case "deadline": {
                     // Matches the String by the /by keyword and splits it.
-                    userParams = userQuery[1].split("\\s+/by\\s+", 2);
+                    String[] userParams = userQuery[1].split("\\s+/by\\s+", 2);
                     // TODO: Add Exception when a parameter isn't passed
-                    addTask(new Deadline(userParams[0], userParams[1]));
+                    Deadline newDeadline = new Deadline(userParams[0], userParams[1]);
+                    taskList.addTask(newDeadline);
+                    System.out.printf("Gotcha! I added the following task to the list:\n  %s\nCurrently, I have %d tasks recorded\n", newDeadline, taskList.getLength());
                     break;
-                case "event":
+                }
+
+                case "event": {
                     // Matches the String by the /at keyword and splits it.
-                    userParams = userQuery[1].split("\\s+/at\\s+", 2);
+                    String[] userParams = userQuery[1].split("\\s+/at\\s+", 2);
                     // TODO: Add Exception when a parameter isn't passed
-                    addTask(new Event(userParams[0], userParams[1]));
+                    Event newEvent = new Event(userParams[0], userParams[1]);
+                    taskList.addTask(newEvent);
+                    System.out.printf("Gotcha! I added the following task to the list:\n  %s\nCurrently, I have %d tasks recorded\n", newEvent, taskList.getLength());
                     break;
-                case "mark":
+                }
+
+                case "mark": {
                     // TODO: Check for non-integer inputs.
                     int markIndex = Integer.parseInt(userQuery[1]) - 1;
-                    if (markIndex >= taskCount || markIndex < 0) {
+                    if (markIndex >= taskList.getLength() || markIndex < 0) {
                         System.out.println("I do not have a task with that number in my list.");
-                    } else if (taskList[markIndex].getIsDone()) {
-                        System.out.printf("Sorry, but it seems you have marked this task as done:\n  %s\n", taskList[markIndex]);
+                    } else if (taskList.getTask(markIndex).getIsDone()) {
+                        System.out.printf("Sorry, but it seems you have marked this task as done:\n  %s\n", taskList.getTask(markIndex));
                     } else {
-                        taskList[markIndex].setDone(true);
-                        System.out.printf("Noice! I've marked this task as done:\n  %s\n", taskList[markIndex]);
+                        taskList.getTask(markIndex).setDone(true);
+                        System.out.printf("Noice! I've marked this task as done:\n  %s\n", taskList.getTask(markIndex));
                     }
                     break;
-                case "unmark":
+                }
+
+                case "unmark": {
                     // TODO: Check for non-integer inputs.
                     int unmarkIndex = Integer.parseInt(userQuery[1]) - 1;
-                    if (unmarkIndex >= taskCount || unmarkIndex < 0) {
+                    if (unmarkIndex >= taskList.getLength() || unmarkIndex < 0) {
                         System.out.println("I do not have a task with that number in my list.");
-                    } else if (taskList[unmarkIndex].getIsDone()) {
-                        taskList[unmarkIndex].setDone(false);
-                        System.out.printf("Alright, I've marked this task as not done:\n  %s\n", taskList[unmarkIndex]);
+                    } else if (taskList.getTask(unmarkIndex).getIsDone()) {
+                        taskList.getTask(unmarkIndex).setDone(false);
+                        System.out.printf("Alright, I've marked this task as not done:\n  %s\n", taskList.getTask(unmarkIndex));
                     } else {
-                        System.out.printf("Sorry, but it seems you haven't marked this task as done:\n  %s\n", taskList[unmarkIndex]);
+                        System.out.printf("Sorry, but it seems you haven't marked this task as done:\n  %s\n", taskList.getTask(unmarkIndex));
                     }
                     break;
-                default:
+                }
+
+                default: {
                     System.out.println(UNKNOWN_COMMAND_MESSAGE);
+                }
             }
         }
     }
