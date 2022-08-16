@@ -1,56 +1,66 @@
-Hello! I'm Duke.
-What can I do for you?
->> Got it. I've added this task:
-[T][ ] cry
-Now you have 1 task in the list.
+|  Welcome to JDuke -- Version 1.0
+|  What can I do for you?
 
->> 1. [T][ ] cry
+jduke> |  added task:
+|    [T][ ] cry
+|  1 task in list
 
->> Nice! I've marked this task as done
-[T][X] cry
+jduke> 1 ==> [T][ ] cry
 
->> Provide a numeric task number!
+jduke> |  marked task:
+|    [T][X] cry
 
->> Provide a valid number!
+jduke> |  Error:
+|  incompatible number type: integer required
+|    provided: a
+|  mark <integer>
 
->> Got it. I've added this task:
-[D][ ] CS2103T Week 2 (by: Aug 18)
-Now you have 2 tasks in the list.
+jduke> |  Error:
+|  invalid task number: positive integer required
+|    provided: 0
+|  delete <integer>
 
->> Got it. I've added this task:
-[T][ ] cry harder
-Now you have 3 tasks in the list.
+jduke> |  added task:
+|    [D][ ] CS2103T Week 2 (by: Aug 18)
+|  2 tasks in list
 
->> Got it. I've added this task:
-[E][ ] end of sem (at: NEVER)
-Now you have 4 tasks in the list.
+jduke> |  added task:
+|    [T][ ] cry harder
+|  3 tasks in list
 
->> 1. [T][X] cry
-2. [D][ ] CS2103T Week 2 (by: Aug 18)
-3. [T][ ] cry harder
-4. [E][ ] end of sem (at: NEVER)
+jduke> |  added task:
+|    [E][ ] end of sem (at: NEVER)
+|  4 tasks in list
 
->> Provide a valid task number!
+jduke> 1 ==> [T][X] cry
+2 ==> [D][ ] CS2103T Week 2 (by: Aug 18)
+3 ==> [T][ ] cry harder
+4 ==> [E][ ] end of sem (at: NEVER)
 
->> Nice! I've marked this task as done
-[D][X] CS2103T Week 2 (by: Aug 18)
+jduke> |  Error:
+|  invalid task number
+|    provided: 1
+|  mark <integer>
 
->> OK. I've removed this task:
-[D][X] CS2103T Week 2 (by: Aug 18)
-Now you have 3 tasks in the list.
+jduke> |  marked task:
+|    [D][X] CS2103T Week 2 (by: Aug 18)
 
->> 1. [T][X] cry
-2. [T][ ] cry harder
-3. [E][ ] end of sem (at: NEVER)
+jduke> |  deleted task:
+|    [D][X] CS2103T Week 2 (by: Aug 18)
+|  3 tasks in list
 
->> Nice! I've marked this task as done
-[T][X] cry
+jduke> 1 ==> [T][X] cry
+2 ==> [T][ ] cry harder
+3 ==> [E][ ] end of sem (at: NEVER)
 
->> Nice! I've marked this task as undone
-[T][ ] cry harder
+jduke> |  marked task:
+|    [T][X] cry
 
->> 1. [T][X] cry
-2. [T][ ] cry harder
-3. [E][ ] end of sem (at: NEVER)
+jduke> |  unmarked task:
+|    [T][ ] cry harder
 
->> Bye. Hope to see you again soon!
+jduke> 1 ==> [T][X] cry
+2 ==> [T][ ] cry harder
+3 ==> [E][ ] end of sem (at: NEVER)
+
+jduke> |  Goodbye
