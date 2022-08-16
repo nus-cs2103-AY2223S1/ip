@@ -4,6 +4,7 @@ import task.Task;
 import task.ToDo;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Blob {
@@ -133,8 +134,8 @@ public class Blob {
         boolean isRunning = true;
         while (isRunning) {
             System.out.print(">> ");
-            String input = sc.nextLine();
-            String[] deconstructedInput = input.split(" ", 2);
+            String input = sc.nextLine().trim();
+            String[] deconstructedInput = input.split("\\s+", 2);
             String command = deconstructedInput[0];
             switch (command) {
             case "bye":
