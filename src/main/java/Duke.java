@@ -3,31 +3,79 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
+    public static class Task {
+        protected String description;
+        protected boolean isDone;
+
+        public Task(String description) {
+            this.description = description;
+            this.isDone = false;
+        }
+
+        public String getStatusIcon() {
+            return (isDone ? "X" : " "); // mark done task with X
+        }
+
+        public void markAsDone() {
+            this.isDone = true;
+        }
+
+        public void markAsUndone() {
+            this.isDone = false;
+        }
+
+        @Override
+        public String toString() {
+            return "[" + getStatusIcon() + "] " + this.description;
+        }
+    }
     public static void main(String[] args) {
         String reply = "";
         String exit = "bye";
-        List<String> todoList = new ArrayList<>();
+        List<Task> todoList = new ArrayList<>();
         System.out.println("hi im chompers what do u need!!!\n");
 
         while(true) {
             Scanner scanIn = new Scanner(System.in);
             reply = scanIn.nextLine();
+
             if(reply.equals(exit)) {
                 System.out.println("bye see u");
                 scanIn.close();
                 break;
             } else if (reply.equals("list")) {
                 printList(todoList);
-            }else {
-                todoList.add(reply);
-                System.out.println("added: " + reply);
+            } else if (reply.contains("unmark")) {
+                Integer index = Integer.parseInt(reply.substring(7)) - 1;
+                if(index < 0 || index >= todoList.size()) {
+                    System.out.println("thrs nth there :<");
+                    continue;
+                }
+                Task temp = todoList.get(index);
+                temp.markAsUndone();
+                System.out.println("oke this is undone now:\n" + temp);
+
+            } else if (reply.contains("mark")) {
+                Integer index = Integer.parseInt(reply.substring(5)) - 1;
+                if(index < 0 || index >= todoList.size()) {
+                    System.out.println("thrs nth there :<");
+                    continue;
+                }
+                Task temp = todoList.get(index - 1);
+                temp.markAsDone();
+                System.out.println("oke this is done now:\n" + temp);
+            } else {
+                Task tempTask = new Task(reply);
+                todoList.add(tempTask);
+                System.out.println("added: " + tempTask.toString());
             }
 
         }
     }
-    public static void printList(List<String> list) {
+    public static void printList(List<Task> list) {
         for(int i = 1; i <= list.size(); i++) {
-            System.out.println(i + ". " + list.get(i-1));
+            Task task = list.get(i-1);
+            System.out.println(i + "." + task.toString());
         }
     }
 }
