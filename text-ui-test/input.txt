@@ -1,0 +1,15 @@
+todo read a book
+event project meeting /on Sunday 2-4pm
+deadline spanish homework /by Wednesday 6pm
+mark 2
+mark 2
+list
+unmark 2
+list
+unmark 2
+mark 4
+unmark 4
+mark asdwa
+unmark sawd
+random
+bye
