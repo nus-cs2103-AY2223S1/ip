@@ -2,8 +2,13 @@ import java.util.Scanner;
 import java.util.ArrayList;
 public class Kirby {
     public static int taskCount = 0;
-    public static void printTaskCount() {
+    public static void addTaskCount() {
         taskCount += 1;
+    }
+    public static void subtractTaskCount() {
+        taskCount -= 1;
+    }
+    public static void printTaskCount() {
         if (taskCount > 1) {
             System.out.println("Now you have " + taskCount + " tasks in the bag!");
         } else {
@@ -28,7 +33,10 @@ public class Kirby {
         if (inputString.split(" ").length != 2) {
             throw new KirbyMissingArgumentException("mark");
         }
-            int taskIndex = Integer.parseInt(inputString.split(" ")[1]);
+        int taskIndex = Integer.parseInt(inputString.split(" ")[1]);
+        if (Tasks.size() == 0 || taskIndex < 1 || taskIndex > Tasks.size()) {
+            throw new KirbyMissingArgumentException("mark");
+        }
             Task currTask = Tasks.get(taskIndex - 1);
             currTask.setCompleted();
             System.out.println("Awesome :D I've marked " + currTask.toString() + " completed!");
@@ -39,11 +47,13 @@ public class Kirby {
         if (inputString.split(" ").length != 2) {
             throw new KirbyMissingArgumentException("unmark");
         }
-            int taskIndex = Integer.parseInt(inputString.split(" ")[1]);
-            Task currTask = Tasks.get(taskIndex - 1);
-            currTask.setIncomplete();
-            System.out.println("Okay, I've marked " + currTask.toString() + " pending!");
-
+        int taskIndex = Integer.parseInt(inputString.split(" ")[1]);
+        if (Tasks.size() == 0 || taskIndex < 1 || taskIndex > Tasks.size()) {
+            throw new KirbyMissingArgumentException("unmark");
+        }
+        Task currTask = Tasks.get(taskIndex - 1);
+        currTask.setIncomplete();
+        System.out.println("Okay, I've marked " + currTask.toString() + " pending!");
     }
 
     public static void toDo(String inputString, ArrayList<Task> Tasks) throws KirbyMissingArgumentException {
@@ -55,6 +65,7 @@ public class Kirby {
         Todo todo = new Todo(taskName);
         Tasks.add(todo);
         System.out.println("Added into your bag of fabulous tasks: " + todo.toString());
+        addTaskCount();
         printTaskCount();
     }
 
@@ -67,6 +78,7 @@ public class Kirby {
         Deadline deadline = new Deadline(taskName, by);
         Tasks.add(deadline);
         System.out.println("Added into your bag of fabulous tasks: " + deadline.toString());
+        addTaskCount();
         printTaskCount();
     }
 
@@ -79,11 +91,27 @@ public class Kirby {
         Event event = new Event(taskName, at);
         Tasks.add(event);
         System.out.println("Added into your bag of fabulous tasks: " + event.toString());
+        addTaskCount();
         printTaskCount();
     }
 
     public static void notDefinedCommand() throws KirbyInvalidCommandException {
         throw new KirbyInvalidCommandException();
+    }
+
+    public static void delete(String inputString, ArrayList<Task> Tasks) throws KirbyMissingArgumentException {
+        if (inputString.split(" ").length != 2) {
+            throw new KirbyMissingArgumentException("delete");
+        }
+        int taskIndex = Integer.parseInt(inputString.split(" ")[1]);
+        if (Tasks.size() == 0 || taskIndex < 1 || taskIndex > Tasks.size()) {
+            throw new KirbyMissingArgumentException("delete");
+        }
+        Task currTask = Tasks.get(taskIndex - 1);
+        Tasks.remove(taskIndex - 1);
+        subtractTaskCount();
+        System.out.println("Removed from your bag of fabulous tasks: " + currTask.toString());
+        printTaskCount();
     }
 
     public static void main(String[] args) {
@@ -147,6 +175,16 @@ public class Kirby {
                             System.out.println(e.getMessage());
                         }
                     }
+
+                    // delete
+                    else if (inputString.split(" ")[0].equals("delete")) {
+                        try {
+                            delete(inputString, Tasks);
+                        } catch (KirbyMissingArgumentException e) {
+                            System.out.println(e.getMessage());
+                        }
+                    }
+
                     else {
                         notDefinedCommand();
                     }
