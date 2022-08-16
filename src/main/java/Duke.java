@@ -11,7 +11,11 @@ public class Duke {
     public static final String initText = "Hello! I'm Duke\n    What can I do for you?";
     public static final String endText = "Bye bye! Hope to see you again soon!";
 
-    public static void main(String[] args) {
+    private enum Command {
+        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE
+    }
+
+    public static void main(String[] args) throws DukeException {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -28,48 +32,100 @@ public class Duke {
             String input = scan.nextLine();
             String[] com = input.split(" ", 2);
 
-            //command to terminate Duke.
-            if (input.equals("bye") || com[0] == "bye") {
-                printMsg(endText);
-                scan.close();
-                break;
+            try {
+                Command command = Command.valueOf(com[0].toUpperCase());
+            } catch (IllegalArgumentException e) {
+                throw new DukeException("No such command exist...");
             }
 
-            //if else ladder.
-            switch (com[0]) {
-                case "list":
-                    printMsg(ls.enumerate());
-                    break;
+            Command command = Command.valueOf(com[0].toUpperCase());
 
-                case "mark":
-                    printMsg(ls.updateMark(Integer.parseInt(com[1])));
-                    break;
+            if (com.length == 1) {
+                switch (command) {
+                    case BYE:
+                        printMsg(endText);
+                        scan.close();
+                        break;
 
-                case "unmark":
-                    printMsg(ls.updateUnmark(Integer.parseInt(com[1])));
-                    break;
+                    case LIST:
+                        printMsg(ls.enumerate());
+                        break;
 
-                case "todo":
-                    printMsg(ls.addTask(new Task(com[1], "[T]")));
-                    break;
+                    case MARK:
+                        throw new DukeException("The index to mark cannot be left empty");
 
-                case "deadline":
-                    printMsg(ls.addTask(new Task(com[1], "[D]")));
-                    break;
+                    case UNMARK:
+                        throw new DukeException("The index to unmark cannot be left empty");
 
-                case "event":
-                    printMsg(ls.addTask(new Task(com[1], "[E]")));
-                    break;
+                    case TODO:
+                        throw new DukeException("The description of todo cannot be left empty");
 
-                case "delete":
-                    printMsg(ls.deleteTask(Integer.parseInt(com[1])));
-                    break;
+                    case DEADLINE:
+                        throw new DukeException("The description of deadline cannot be left empty");
 
-                default:
-                    printMsg("Invalid command...I can't understand :( Try again.");
+                    case EVENT:
+                        throw new DukeException("The description of event cannot be left empty");
+
+                    case DELETE:
+                        throw new DukeException("The index to delete cannot be left empty");
+
+                    default:
+                        throw new DukeException("No such command exist... please try again");
+                }
+            } else {
+                switch (command) {
+                    case BYE:
+                        printMsg(endText);
+                        scan.close();
+                        break;
+
+                    case LIST:
+                        printMsg(ls.enumerate());
+                        break;
+
+                    case MARK:
+                        try {
+                            printMsg(ls.updateMark(Integer.parseInt(com[1])));
+                        } catch (IndexOutOfBoundsException e) {
+                            throw new DukeException("You don't have so many tasks phew...");
+                        }
+                        break;
+
+                    case UNMARK:
+                        try {
+                            printMsg(ls.updateUnmark(Integer.parseInt(com[1])));
+                        } catch (IndexOutOfBoundsException e) {
+                            throw new DukeException("You don't have so many tasks phew...");
+                        }
+                        break;
+
+                    case TODO:
+                        printMsg(ls.addTask(new Task(com[1], "[T]")));
+                        break;
+
+                    case DEADLINE:
+                        printMsg(ls.addTask(new Task(com[1], "[D]")));
+                        break;
+
+                    case EVENT:
+                        printMsg(ls.addTask(new Task(com[1], "[E]")));
+                        break;
+
+                    case DELETE:
+                        try {
+                            printMsg(ls.deleteTask(Integer.parseInt(com[1])));
+                        } catch (IndexOutOfBoundsException e) {
+                            throw new DukeException("You don't have so many tasks phew...");
+                        }
+                        break;
+
+                    default:
+                        throw new DukeException("No such command exist... please try again");
+                }
             }
         }
     }
+
     /**
      * Class method to print message with horizontal line.
      * @param str
