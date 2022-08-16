@@ -1,5 +1,4 @@
 import java.util.Arrays;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 public class Command {
@@ -33,7 +32,7 @@ public class Command {
     private String extraInformation;
     private Storage storage;
 
-    public Command(String str, Storage storage) throws NoSuchElementException, NumberFormatException {
+    public Command(String str, Storage storage) throws DukeException {
         extractInformation(str);
         this.storage = storage;
     }
@@ -45,12 +44,15 @@ public class Command {
         this.instruction = Instruction.get(keyword).orElse(Instruction.NONE);
     }
 
-    public void extractInformation(String str) {
+    public void extractInformation(String str) throws DukeException {
         extractKeyword(str);
         switch (this.instruction) {
             case MARK: case UNMARK: case DELETE:
                 String s = str.replaceAll("[^0-9]", "");
-                this.extraInformation = s.equals("") ? null : s;
+                if (s.equals("")) {
+                    throw new DukeException("☹ OOPS!!! Please enter an index of a task");
+                }
+                this.extraInformation = s;
                 break;
             case EVENT: case DEADLINE:
                 if (str.contains("/")) {

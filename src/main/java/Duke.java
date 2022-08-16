@@ -26,8 +26,8 @@ public class Duke {
         while(this.keepRunning) {
             System.out.println("-------------------");
             this.input = scanner.nextLine();
-            Command command = new Command(input, this.storage);
             try {
+                Command command = new Command(input, this.storage);
                 this.keepRunning = command.execution();
             } catch (DukeException e) {
                 this.keepRunning = true;

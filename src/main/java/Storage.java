@@ -22,24 +22,18 @@ public class Storage {
         System.out.println("Now you have " + this.count + " tasks in the list.");
     }
     public void mark(String str) throws DukeException {
-        if (str == null) {
-            throw new DukeException("☹ OOPS!!! Please enter an index of a task");
-        }
         int index = Integer.parseInt(str) - 1;
+        if (index >= count || index < 0) {
+            throw new DukeException("☹ OOPS!!! Please enter a valid index");
+        }
         this.taskList.get(index).markAsDone();
     }
-    public void unmark(String str) throws DukeException {
-        if (str == null) {
-            throw new DukeException("☹ OOPS!!! Please enter an index of a task");
-        }
+    public void unmark(String str) {
         int index = Integer.parseInt(str) - 1;
         this.taskList.get(index).markAsNotDone();
     }
 
     public void delete(String str) throws DukeException {
-        if (str == null) {
-            throw new DukeException("☹ OOPS!!! Please enter an index of a task");
-        }
         int index = Integer.parseInt(str) - 1;
         if (index >= count || index < 0) {
             throw new DukeException("☹ OOPS!!! Please enter a valid index");
