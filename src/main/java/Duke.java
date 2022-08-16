@@ -62,7 +62,7 @@ public class Duke {
                     System.out.println(dialog(
                             "Got it. I've added this task:\n       "
                                     + todoTask + "\n   " +
-                                    String.format("Now you have [%d] tasks in the list.", memo.size())
+                                    String.format("Now you have %d tasks in the list.", memo.size())
                     ));
                 } else if (message.startsWith("deadline")) {
                     String subString = message.substring(9);
@@ -75,7 +75,7 @@ public class Duke {
                     System.out.println(dialog(
                             "Got it. I've added this task:\n       "
                                     + deadlineTask + "\n   " +
-                                    String.format("Now you have [%d] tasks in the list.", memo.size())
+                                    String.format("Now you have %d tasks in the list.", memo.size())
                     ));
                 } else if (message.startsWith("event")) {
                     String subString = message.substring(6);
@@ -86,7 +86,7 @@ public class Duke {
                     System.out.println(dialog(
                             "Got it. I've added this task:\n       "
                                     + eventTask + "\n   " +
-                                    String.format("Now you have [%d] tasks in the list.", memo.size())
+                                    String.format("Now you have %d tasks in the list.", memo.size())
                     ));
                 }
             }
