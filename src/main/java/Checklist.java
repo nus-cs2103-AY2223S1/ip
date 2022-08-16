@@ -24,18 +24,30 @@ class Checklist {
     void event(String input) {
         String name = input.substring(input.indexOf(" ") + 1, input.indexOf("/"));
         String eventDate = input.substring(input.indexOf("/") + 4);
-        taskList.add(new Event(taskList.size() + 1, name, eventDate));
+        Event event = new Event(taskList.size() + 1, name, eventDate);
+        taskList.add(event);
+        System.out.println("Got it. I've added this task: ");
+        System.out.println(event.toString());
+        System.out.println("Now you have " + taskList.size() + " tasks in the list.");
     }
 
     void deadline(String input) {
         String name = input.substring(input.indexOf(" ") + 1, input.indexOf("/"));
         String deadline = input.substring(input.indexOf("/") + 4);
-        taskList.add(new Deadline(taskList.size() + 1, name, deadline));
+        Deadline deadlineEvent = new Deadline(taskList.size() + 1, name, deadline);
+        taskList.add(deadlineEvent);
+        System.out.println("Got it. I've added this task: ");
+        System.out.println(deadlineEvent.toString());
+        System.out.println("Now you have " + taskList.size() + " tasks in the list.");
     }
 
 
     void todo(String task) {
-        taskList.add(new Todo(taskList.size() + 1, task));
+        Todo todo = new Todo(taskList.size() + 1, task);
+        taskList.add(todo);
+        System.out.println("Got it. I've added this task: ");
+        System.out.println(todo.toString());
+        System.out.println("Now you have " + taskList.size() + " tasks in the list.");
     }
 
 }
