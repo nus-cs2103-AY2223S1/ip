@@ -11,7 +11,7 @@ public class ToDo extends Task{
 
     @Override
     public String toString() {
-        return String.format("[%s]%s", tag(), super.toString());
+        return String.format("[%s] %s", tag(), super.toString());
     }
 
 }

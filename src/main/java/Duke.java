@@ -12,49 +12,61 @@ public class Duke {
     }
 
     public void run() {
-        try {
-            userInput();
-        } catch(DukeException dukeEx) {
-            System.out.println(dukeEx.getMessage());
-        }
-
-    }
-
-    public void userInput() throws DukeException{
         System.out.println("Hello I'm Duke\n What can I do for you?");
 
         while (scanner.hasNextLine()) {
             System.out.println();
-            String ss = scanner.nextLine();
+            String userInput = scanner.nextLine();
 
-            String[] splitSS = ss.split(" ");
-
-            switch (splitSS[0]) {
-                case "bye":
-                    terminate();
-                    return;
-                case "list":
-                    list();
-                    break;
-                case "mark":
-                    changeMarkStatus(ss, true);
-                    break;
-                case "unmark":
-                    changeMarkStatus(ss, false);
-                    break;
-                case "todo":
-                    todo(ss);
-                    break;
-                case "deadline":
-                    deadline(ss);
-                    break;
-                case "event":
-                    event(ss);
-                    break;
-                default:
-                    throw new DukeException("     ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+            try {
+                userInputHandler(userInput);
+            } catch(DukeException dukeEx) {
+                System.out.println(dukeEx.getMessage());
             }
+
+
         }
+
+
+    }
+
+    public void userInputHandler(String userInput) throws DukeException{
+        String[] splitSS = userInput.split(" ");
+        switch (splitSS[0]) {
+            case "bye":
+                terminate();
+                return;
+            case "list":
+                list();
+                break;
+            case "delete":
+                delete(userInput);
+                break;
+            case "mark":
+                changeMarkStatus(userInput, true);
+                break;
+            case "unmark":
+                changeMarkStatus(userInput, false);
+                break;
+            case "todo":
+                try {
+                    todo(userInput);
+                    break;
+                } catch (DukeException exception) {
+                    System.out.println(exception.getMessage());
+                    break;
+                }
+            case "deadline":
+                deadline(userInput);
+                break;
+            case "event":
+                event(userInput);
+                break;
+            default:
+                throw new DukeException("     ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+        }
+
+
     }
 
     private void terminate() {
@@ -81,17 +93,12 @@ public class Duke {
         System.out.printf("\t%s\n", this.taskList.get(indexOfTask));
     }
 
-    private void add(Task s) {
-        taskList.add(s);
-    }
-
-    private void todo(String input) {
+    private void todo(String input) throws DukeException {
 
         String[] splitInput = input.split(" ");
 
         if (splitInput.length < 2) {
-            System.out.println("     ☹ OOPS!!! The description of a todo cannot be empty.");
-            return;
+            throw new DukeException("     ☹ OOPS!!! The description of a todo cannot be empty.");
         }
 
         System.out.println("Got it. I've added this task");
@@ -141,4 +148,8 @@ public class Duke {
         System.out.printf("Now you have %d tasks in the list.\n", this.taskList.size());
     }
 
+    private void delete(String input) {
+        int indexToDelete = Integer.parseInt(input.split(" ")[1]);
+        this.taskList.remove(indexToDelete);
+    }
 }
