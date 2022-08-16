@@ -1,8 +1,8 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 public class Jduke {
-    public enum Command {
-        LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, BYE
+    public enum TaskType {
+        TODO, DEADLINE, EVENT
     }
     private static ArrayList<Task> tasks = new ArrayList<>();
     public static String getTaskDetails(int pos) {
@@ -15,7 +15,7 @@ public class Jduke {
     }
     public static void addTask(String input) throws JdukeException {
         String[] inputArr = input.split(" ", 2);
-        String type = inputArr[0];
+        TaskType type = TaskType.valueOf(inputArr[0].toUpperCase());
         if (inputArr.length != 2) {
             throw new JdukeException(
                     "|  cannot find description\n" +
@@ -25,24 +25,24 @@ public class Jduke {
         }
         String details = inputArr[1];
         switch (type) {
-            case "todo":
+            case TODO:
                 tasks.add(new ToDo(details));
                 break;
-            case "deadline":
-            case "event":
+            case DEADLINE:
+            case EVENT:
                 String[] detailsArr = details.split("/");
                 if (detailsArr.length != 2) {
                     throw new JdukeException(
                             "|  cannot find timing\n" +
                                     "|    task type: " + type +
                                     "\n|  " + type +
-                                    (type.equals("deadline") ? " /by" : " /at") +
+                                    (type.equals(TaskType.DEADLINE) ? " /by" : " /at") +
                                     " <timing> "
                     );
                 }
                 String description = details.split("/")[0];
                 String timing = details.split("/")[1].split(" ", 2)[1];
-                if (type.equals("deadline")) {
+                if (type.equals(TaskType.DEADLINE)) {
                     tasks.add(new Deadline(description, timing));
                 } else {
                     tasks.add(new Event(description, timing));
@@ -153,22 +153,22 @@ public class Jduke {
         );
         String input = scanner.nextLine();
         while (!input.equals("bye")) {
-            Command mainCmd = Command.valueOf(input.split(" ", 2)[0].toUpperCase());
+            String mainCmd = input.split(" ", 2)[0].toLowerCase();
             try {
                 switch (mainCmd) {
-                    case LIST:
+                    case "list":
                         listTasks();
                         break;
-                    case MARK:
-                    case UNMARK:
+                    case "mark":
+                    case "unmark":
                         markTask(input);
                         break;
-                    case TODO:
-                    case DEADLINE:
-                    case EVENT:
+                    case "todo":
+                    case "deadline":
+                    case "event":
                         addTask(input);
                         break;
-                    case DELETE:
+                    case "delete":
                         deleteTask(input);
                         break;
                     default:

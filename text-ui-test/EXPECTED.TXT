@@ -1,6 +1,10 @@
 |  Welcome to JDuke -- Version 1.0
 |  What can I do for you?
 
+jduke> |  Error:
+|  cannot understand command
+|    command: hello
+
 jduke> |  added task:
 |    [T][ ] cry
 |  1 task in list
