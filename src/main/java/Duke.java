@@ -7,11 +7,6 @@ public class Duke {
     }
 
     public static void initProgram() {
-//        String logo = " ____        _        \n"
-//                + "|  _ \\ _   _| | _____ \n"
-//                + "| | | | | | | |/ / _ \\\n"
-//                + "| |_| | |_| |   <  __/\n"
-//                + "|____/ \\__,_|_|\\_\\___|\n";
         String logo = " _    _ ______ _      _      ____     ______ _____   ____  __  __    _____  _    _ _  ________ \n"
                     + "| |  | |  ____| |    | |    / __ \\   |  ____|  __ \\ / __ \\|  \\/  |  |  __ \\| |  | | |/ /  ____|\n"
                     + "| |__| | |__  | |    | |   | |  | |  | |__  | |__) | |  | | \\  / |  | |  | | |  | | ' /| |__   \n"
@@ -26,13 +21,32 @@ public class Duke {
     public static void program() {
         Scanner sc = new Scanner(System.in);
         String input = null;
+        LinkedList<String> lst = new LinkedList<>();
         do {
             input = sc.nextLine();
-            if (!input.equals("bye")) {
-                System.out.println(" " + input);
-                newLine();
+            newLine();
+            switch(input) {
+                case "bye":
+                    break;
+                case "list":
+                    printList(lst);
+                    break;
+                default:
+                    lst.add(input);
+                    System.out.println("added: " + input);
+                    newLine();
             }
         } while (!input.equals("bye"));
+    }
+
+    public static void printList(List lst) {
+        if (lst.size() == 0) {
+            System.out.println("List is empty!");
+        }
+        for (int i = 1; i <= lst.size(); i++) {
+            System.out.println(i + ": " + lst.get(i - 1));
+        }
+        newLine();
     }
 
 
