@@ -1,25 +1,10 @@
-import java.util.*;
 public class Duke {
     public static void main(String[] args) {
-        String request;
-        String print;
-        Scanner sc= new Scanner(System.in);
-
-        String line = "________________________________________________________________\n";
-        System.out.println(line + "Hello! I'm Shanice:)");
-        System.out.println("What can I do for you?\n" + line);
-
-        //level 1:
-        request = sc.next();
-        while (!request.toLowerCase(Locale.ROOT).equals("bye")) {
-            print = request;
-            System.out.println(line + print + "\n" + line);
-            request = sc.next();
-        }
-
-        print = "Bye. Hope to see you again soon!";
-        System.out.println(line + print + "\n" + line);
-
-
+        String logo = " ____        _        \n"
+                + "|  _ \\ _   _| | _____ \n"
+                + "| | | | | | | |/ / _ \\\n"
+                + "| |_| | |_| |   <  __/\n"
+                + "|____/ \\__,_|_|\\_\\___|\n";
+        System.out.println("Hello from\n" + logo);
     }
 }
