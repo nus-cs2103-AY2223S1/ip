@@ -151,6 +151,28 @@ public class Duke {
                 }
             }
 
+            else if (line.contains("delete")) {
+                if (line.equals("delete")) {
+                    System.out.println("☹ OOPS!!! The description of a delete cannot be empty.");
+
+                } else {
+                    int removal = Integer.parseInt(line.substring(7));
+
+                    System.out.println("Noted. I've removed this task:");
+                    if (ls.get(removal-1) instanceof Todo) {
+                        System.out.println("[T][ ]" +" "+ ls.get(removal-1).toString());
+                    } else if (ls.get(removal-1) instanceof Deadline) {
+                        System.out.println("[D][ ]" + " "+ls.get(removal-1).toString());
+                    } else if (ls.get(removal-1) instanceof Event) {
+                        System.out.println("[E][ ]" + " "+ls.get(removal-1).toString());
+                    } else {
+                        System.out.println(ls.get(removal-1).toString());
+                    }
+                    ls.remove(removal-1);
+                    System.out.println("Now you have" + " " + ls.size() + " " + "tasks in the list.");
+                }
+            }
+
             else {
                 System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-()");
             }
