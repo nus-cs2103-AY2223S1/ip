@@ -38,10 +38,11 @@ public class TaskManager {
 
     public void deleteTask(String inputDesc) throws DukeException {
         int index = checkIndex(inputDesc);
+        Task task = tasks.get(index);
         tasks.remove(index);
         DukeUtils.printMessages(
                 Constants.MSG_TASK_DELETED,
-                "  " + tasks.get(index),
+                "  " + task,
                 String.format(Constants.MSG_TASK_NUMBER, tasks.size()));
     }
 
@@ -56,7 +57,9 @@ public class TaskManager {
     private void updateTaskStatus(String inputDesc, boolean isDone) throws DukeException {
         int index = checkIndex(inputDesc);
         tasks.get(index).setDone(isDone);
-        DukeUtils.printMessages(Constants.MSG_TASK_UPDATE_STATUS, "  " + getTask(index));
+        DukeUtils.printMessages(
+                String.format(Constants.MSG_TASK_UPDATE_STATUS, isDone ? "done" : "not done"),
+                "  " + getTask(index));
     }
 
     private int checkIndex(String inputDesc) throws DukeException {

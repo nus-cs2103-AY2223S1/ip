@@ -2,14 +2,6 @@ package utils;
 
 public class DukeUtils {
 
-    public static void sendGreetings() {
-        printMessages(Constants.MSG_GREETINGS);
-    }
-
-    public static void sendExit() {
-        printMessages(Constants.MSG_EXIT);
-    }
-
     public static void printWithIndent(String message) {
         System.out.println("\t" + message);
     }

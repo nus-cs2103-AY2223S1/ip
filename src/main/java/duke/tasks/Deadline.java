@@ -5,8 +5,8 @@ public class Deadline extends Task {
     private final String by;
 
     public Deadline(String description) {
-        super(description.split("/by")[0]);
-        this.by = description.split("/by")[1];
+        super(description.split("/by")[0].trim());
+        this.by = description.split("/by")[1].trim();
     }
 
     @Override

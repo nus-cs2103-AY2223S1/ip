@@ -101,8 +101,16 @@ public enum Command {
             throw new DukeException(Constants.ERROR_INVALID_ARGUMENTS);
         }
 
-        String[] inputArray = inputDesc.split(separator);
-        if (inputArray.length == 0 || Arrays.stream(inputArray).anyMatch(String::isBlank)) {
+        if (!Arrays.asList(inputDesc.split(" ")).contains(separator)) {
+            throw new DukeException(String.format(Constants.ERROR_MISSING_SEPARATOR, separator));
+        }
+
+        String[] inputArray = Arrays.stream(inputDesc.split(separator))
+                .map(String::trim)
+                .filter(x -> !x.isBlank())
+                .toArray(String[]::new);
+
+        if (inputArray.length != 2) {
             throw new DukeException(Constants.ERROR_EMPTY_DESCRIPTION_TIME);
         }
 

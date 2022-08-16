@@ -1,6 +1,30 @@
-test
-todo test 1
-todo test 2
+hi
+todo todo1
+deadline
+deadline test test
+deadline test /by
+deadline /by test
+deadline test /byy test
+deadline deadline1 /by date1
+event
+event test test
+event test /at
+event /at
+event /at test
+event event1 /at date
+mark 0
+mark -1
+mark a
+mark 1
+mark 1
 list
-deadline test 3 /by Sunday
-deadline test 4 /by
+mark 2
+list
+unmark 1
+list
+delete 1
+list
+delete 0
+delete -1
+delete a
+bye

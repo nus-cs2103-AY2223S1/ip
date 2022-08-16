@@ -17,19 +17,19 @@ public class Duke {
     }
 
     public void startDuke() {
-        DukeUtils.sendGreetings();
+        DukeUtils.printMessages(Constants.MSG_GREETINGS);
         Scanner scanner = new Scanner(System.in);
 
         while (isDukeRunning) {
-            processCommand(scanner.nextLine());
+            processCommand(scanner);
         }
 
         scanner.close();
-        DukeUtils.sendExit();
+        DukeUtils.printMessages(Constants.MSG_EXIT);
     }
 
-    private void processCommand(String userInput) {
-        String[] inputs = userInput.trim().split(" ", 2);
+    private void processCommand(Scanner scanner) {
+        String[] inputs = scanner.nextLine().trim().split(" ", 2);
         String inputCommand = inputs[0].trim();
         String inputDesc = (inputs.length == 1) ? "" : inputs[1].trim();
 
