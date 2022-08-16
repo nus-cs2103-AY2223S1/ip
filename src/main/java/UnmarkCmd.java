@@ -6,7 +6,7 @@ public class UnmarkCmd extends Command {
     }
 
     @Override
-    public void execute(String str, Tasks[] tasks) {
+    public void execute(String str, Task[] tasks) {
         tasks[this.num].unmarkT();
         String out = "Nice! I've marked this task as done:! \n" +
                 tasks[this.num].toString();

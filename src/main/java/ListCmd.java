@@ -5,7 +5,7 @@ public class ListCmd extends Command {
     }
 
     @Override
-    public void execute (String str, Tasks[] tasks) {
+    public void execute (String str, Task[] tasks) {
         for (int i = 0; i < tasks.length; i ++) {
             if (tasks[i] == null) {
                 break;

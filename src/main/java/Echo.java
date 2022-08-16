@@ -6,7 +6,7 @@ public class Echo {
 
     private static Scanner sc = new Scanner(System.in);
 
-    public static void echo (Tasks[] tasks) {
+    public static void echo (Task[] tasks) {
         String str = sc.nextLine();
         Command cmd;
         if (str.equals("bye")) {

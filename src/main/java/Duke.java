@@ -1,7 +1,7 @@
 
 public class Duke {
 
-    private static Tasks[] tasks = new Tasks[100];
+    private static Task[] tasks = new Task[100];
 
     public static void main(String[] args) {
         String logo = " ____        _        \n"

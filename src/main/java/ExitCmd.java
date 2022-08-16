@@ -5,7 +5,7 @@ public class ExitCmd extends Command {
     }
 
     @Override
-    public void execute (String str, Tasks[] tasks) {
+    public void execute (String str, Task[] tasks) {
         String out = "Bye. Hope to see you again soon!";
         System.out.println(out);
         System.exit(0);

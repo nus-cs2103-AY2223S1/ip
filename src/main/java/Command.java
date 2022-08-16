@@ -9,5 +9,5 @@ abstract class Command {
         return this.cmd;
     }
 
-    abstract void execute(String str, Tasks[] tasks);
+    abstract void execute(String str, Task[] tasks);
 }

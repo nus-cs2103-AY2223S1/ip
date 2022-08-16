@@ -5,10 +5,10 @@ public class AddCmd extends Command {
     }
 
     @Override
-    public void execute(String name, Tasks[] tasks) {
+    public void execute(String name, Task[] tasks) {
         for (int i = 0; i < tasks.length; i++) {
             if (tasks[i] == null) {
-                tasks[i] = new Tasks(name);
+                tasks[i] = new Task(name);
                 break;
             }
         }
