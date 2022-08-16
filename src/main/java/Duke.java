@@ -79,6 +79,17 @@ public class Duke {
                     this.outputMessage(Messages.MISSING_TIME[messageState]);
                 }
                 break;
+            case "delete":
+                try {
+                    handleDelete(command);
+                } catch (InvalidIndexException e) {
+                    this.outputMessage(Messages.INVALID_INDEX[messageState]);
+                } catch (MissingDescriptionException e) {
+                    this.outputMessage(Messages.WRONG_COMMAND_FORMAT[messageState]);
+                } catch (NumberFormatException e) {
+                    this.outputMessage(Messages.NOT_A_NUMBER[messageState]);
+                }
+                break;
             default:
                 this.outputMessage(Messages.INVALID_COMMAND[this.messageState]);
         }
@@ -103,7 +114,7 @@ public class Duke {
         }
     }
 
-    private void checkCommandInt(String[] command) throws NumberFormatException, InvalidIndexException, MissingDescriptionException {
+    private void checkCommandInt(String[] command) throws InvalidIndexException, MissingDescriptionException {
         checkCommandArgs(command, 2);
         int index = Integer.parseInt(command[1]);
         if (index > taskList.size() || index < 1) {
@@ -162,6 +173,16 @@ public class Duke {
         this.taskList.add(task);
         this.outputMessage(Messages.ADD_LIST[this.messageState]);
         this.outputMessage(task.toString());
+        this.outputMessage(Messages.getListSizeMsg(taskList.size(), messageState));
+    }
+
+    private void handleDelete(String[] command) throws InvalidIndexException, MissingDescriptionException {
+        checkCommandInt(command);
+        int index = Integer.parseInt(command[1]) - 1;
+        Task task = taskList.get(index);
+        this.outputMessage(Messages.DELETE_LIST[messageState]);
+        this.outputMessage(task.toString());
+        taskList.remove(index);
         this.outputMessage(Messages.getListSizeMsg(taskList.size(), messageState));
     }
 

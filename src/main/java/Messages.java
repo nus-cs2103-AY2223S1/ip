@@ -5,6 +5,7 @@ public class Messages {
     public static String[] BEFORE_LIST = {"Here's your task list!"};
     public static String[] AFTER_LIST = {"I'm useful right?"};
     public static String[] ADD_LIST = {"Yep! I've added this task: "};
+    public static String[] DELETE_LIST = {"OK! I've removed this task: "};
 
     public static String[] MARK_DONE = {"I've marked this task as done:"};
     public static String[] MARK_UNDONE = {"I've marked this task as not done:"};
