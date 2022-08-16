@@ -5,3 +5,14 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
+Got it. I've added this task:
+[T][ ] borrow book
+Now you have 1 tasks in the list
+Got it. I've added this task:
+[D][ ] go home (by: tomorrow)
+Now you have 2 tasks in the list
+1. [T][ ] borrow book
+2. [D][ ] go home (by: tomorrow)
+Nice I have marked the following task as done:
+[T][X] borrow book
+Bye. Hope to see you again soon!
