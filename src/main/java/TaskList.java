@@ -20,6 +20,10 @@ public class TaskList {
         return task;
     }
 
+    Task deleteTask(int index) {
+        return tasks.remove(index);
+    }
+
     Task markTask(int index) {
         tasks.get(index).markAsDone();
         return tasks.get(index);

@@ -29,6 +29,8 @@ public class Parser {
                 return new Command.EventCommand(args);
             case "deadline":
                 return new Command.DeadlineCommand(args);
+            case "delete":
+                return new Command.DeleteCommand(args);
             case "":
                 return new Command.EmptyCommand(args);
             default:

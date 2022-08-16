@@ -19,9 +19,9 @@ public class ui {
         System.out.println(LINE_DIVIDER);
     }
 
-    public static void printAddedTask(Task task, TaskList taskList) {
+    public static void printTaskChange(String message, Task task, TaskList taskList) {
         printMessages(new String[] {
-                "Got it. I've added this task:",
+                message,
                 task.toString(),
                 String.format("Now you have %d tasks in the list.", taskList.size())
         });
