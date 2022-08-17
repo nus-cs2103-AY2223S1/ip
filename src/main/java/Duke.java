@@ -1,20 +1,33 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
+    static ArrayList<String> tasks = new ArrayList<>();
+    static String exitWord = "bye";
+    static String listWord = "list";
     public static void main(String[] args) {
-        printGreeting();
-        String exitWord = "bye";
         String inputText = "";
 
-        while (!inputText.equals(exitWord)) {
+        printGreeting();
+        while (true) {
             Scanner input = new Scanner(System.in);
             inputText = input.nextLine();
 
-            System.out.println("\n  _______________");
-            System.out.println("  You entered " + inputText);
-            System.out.println("  _______________\n");
+            if (inputText.equals(exitWord)) {
+                printBye();
+                return;
+            }
+
+            if (inputText.equals(listWord)) {
+                printTasks();
+            } else {
+                tasks.add(inputText);
+
+                System.out.println("\n  _______________");
+                System.out.println("  Added: " + inputText);
+                System.out.println("  _______________\n");
+            }
         }
-        printBye();
     }
 
     private static void printGreeting() {
@@ -28,5 +41,12 @@ public class Duke {
 
     private static void printBye() {
         System.out.println("Goodbye. Hope to see you again soon 😈 \n");
+    }
+
+    private static void printTasks() {
+        System.out.println("Your tasks:");
+        for (String task: tasks) {
+            System.out.println(tasks.indexOf(task)+1 + ": " + task);
+        }
     }
 }
