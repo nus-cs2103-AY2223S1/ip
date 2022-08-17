@@ -1,9 +1,10 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Duke {
     public static void main(String[] args) throws EmptyDescriptionException, OutOfRangeException, UnknownCommandException {
 
-        Task[] arr = new Task[100];
+        ArrayList<Task> arr = new ArrayList<>();
         int count = 0;
 
         System.out.println("Hello I'm Duke" + "\nWhat can I do for you?");
@@ -23,7 +24,7 @@ public class Duke {
             } else if (input.equals("list")) {
                 System.out.println("\nHere are the tasks in your list:");
                 for (int i = 0; i < count; i ++) {
-                    System.out.println((i + 1) + ". " + arr[i].toString());
+                    System.out.println((i + 1) + ". " + arr.get(i).toString());
                 }
             } else if (input.contains("mark")) {
                 int index = -1;
@@ -38,11 +39,11 @@ public class Duke {
                     if (index > count - 1 || index < 0) {
                         throw new OutOfRangeException(index + 1);
                     } else {
-                        arr[index].setDone();
+                        arr.get(index).setDone();
                     }
 
                     System.out.println("Nice! I've marked this task as done:\n" +
-                            arr[index].toString());
+                            arr.get(index).toString());
                 } catch (EmptyDescriptionException | OutOfRangeException e) {
                     System.out.println(e.getMessage());
                 }
@@ -52,10 +53,10 @@ public class Duke {
                         throw new EmptyDescriptionException();
                     }
                     input = input.replaceAll("todo ", "");
-                    arr[count] = new Todo(input);
+                    arr.add(new Todo(input));
 
                     System.out.println("Got it. I've added this task:");
-                    System.out.println(arr[count].toString());
+                    System.out.println(arr.get(count).toString());
                     System.out.printf( "Now you have %d tasks in the list.", count + 1);
                     count++;
                 } catch (EmptyDescriptionException e) {
@@ -68,9 +69,9 @@ public class Duke {
                 //string format
                 String[] s_arr = input.split("/", -1); //split array
                 s_arr[1] = s_arr[1].replaceAll("by ", "");
-                arr[count] = new Deadline(s_arr[0], s_arr[1]);
+                arr.add(new Deadline(s_arr[0], s_arr[1]));
 
-                System.out.println(arr[count].toString());
+                System.out.println(arr.get(count).toString());
                 System.out.printf( "Now you have %d tasks in the list.", count + 1);
                 count++;
 
@@ -80,11 +81,23 @@ public class Duke {
 
                 String[] s_arr = input.split("/", -1); //split array
                 s_arr[1] = s_arr[1].replaceAll("at ", "");
-                arr[count] = new Event(s_arr[0], s_arr[1]);
+                arr.add(new Event(s_arr[0], s_arr[1]));
 
-                System.out.println(arr[count].toString());
+                System.out.println(arr.get(count).toString());
                 System.out.printf( "Now you have %d tasks in the list.", count + 1);
                 count++;
+            } else if (input.contains("delete")) {
+                int index = -1;
+                System.out.println("Noted. I've removed this task:");
+
+                input = input.replaceAll("delete ", "");
+                index = Integer.parseInt(input) - 1;
+
+                System.out.println(arr.get(index).toString());
+
+                arr.remove(index);
+                count--;
+                System.out.printf( "Now you have %d tasks in the list.", count);
             } else {
                 try {
                     throw new UnknownCommandException();
