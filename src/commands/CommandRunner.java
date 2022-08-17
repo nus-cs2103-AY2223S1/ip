@@ -24,9 +24,10 @@ public class CommandRunner {
         Command mark = new MarkCommand(taskModel);
         Command unmark = new UnmarkCommand(taskModel);
         Command deadline = new DeadlineCommand(taskModel);
+        Command event = new EventCommand(taskModel);
         Command exit = new ExitCommand();
 
-        Command[] commands = new Command[] { list, add, mark, exit, unmark, deadline };
+        Command[] commands = new Command[] { list, add, mark, exit, unmark, deadline, event };
         commandMap = new HashMap<>();
 
         for (int i = 0; i < commands.length; i++) {
