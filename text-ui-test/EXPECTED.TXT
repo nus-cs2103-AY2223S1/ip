@@ -14,28 +14,26 @@ Hello from
     ____________________________________________________________
     ____________________________________________________________
      1. [T][ ] read book
-     2. [D][ ] return book (by: June 6th)
-     3. [D][ ] project meeting (at: Aug 6th 2-4pm)
-     4. [T][ ] join sports club
-     5. [T][ ] borrow book
+     2. [T][ ] join sports club
+     3. [T][ ] borrow book
     ____________________________________________________________
     ____________________________________________________________
      Task added: 
-       [D][ ] return book (by: Sunday)
-     There are now 6 tasks in the list.
+       [D][ ] return book (by: 7 Aug 2022)
+     There are now 4 tasks in the list.
     ____________________________________________________________
     ____________________________________________________________
      Task added: 
-       [D][ ] project meeting (at: Mon 2-4pm)
-     There are now 7 tasks in the list.
+       [D][ ] project meeting (at: 7 Sep 2022)
+     There are now 5 tasks in the list.
     ____________________________________________________________
     ____________________________________________________________
      I have marked this task as done: 
-       [D][X] return book (by: June 6th)
+       [T][X] join sports club
     ____________________________________________________________
     ____________________________________________________________
      I have unmarked the completion of this task: 
-       [D][ ] return book (by: June 6th)
+       [T][ ] join sports club
     ____________________________________________________________
     ____________________________________________________________
      I have marked this task as done: 
@@ -43,26 +41,22 @@ Hello from
     ____________________________________________________________
     ____________________________________________________________
      1. [T][X] read book
-     2. [D][ ] return book (by: June 6th)
-     3. [D][ ] project meeting (at: Aug 6th 2-4pm)
-     4. [T][ ] join sports club
-     5. [T][ ] borrow book
-     6. [D][ ] return book (by: Sunday)
-     7. [D][ ] project meeting (at: Mon 2-4pm)
+     2. [T][ ] join sports club
+     3. [T][ ] borrow book
+     4. [D][ ] return book (by: 7 Aug 2022)
+     5. [D][ ] project meeting (at: 7 Sep 2022)
     ____________________________________________________________
     ____________________________________________________________
      Index out of range!
     ____________________________________________________________
     ____________________________________________________________
      Task deleted: 
-       [D][ ] project meeting (at: Aug 6th 2-4pm)
-     There are now 6 tasks in the list.
+       [T][ ] borrow book
+     There are now 4 tasks in the list.
     ____________________________________________________________
     ____________________________________________________________
      1. [T][X] read book
-     2. [D][ ] return book (by: June 6th)
-     3. [T][ ] join sports club
-     4. [T][ ] borrow book
-     5. [D][ ] return book (by: Sunday)
-     6. [D][ ] project meeting (at: Mon 2-4pm)
+     2. [T][ ] join sports club
+     3. [D][ ] return book (by: 7 Aug 2022)
+     4. [D][ ] project meeting (at: 7 Sep 2022)
     ____________________________________________________________
