@@ -19,29 +19,47 @@ public class Duke {
             String input = sc.nextLine();
             String[] spacedArr = input.split(" ", 2);
             String command = spacedArr[0];
-
+            
             if (command.equals("bye")) {
                 System.out.println("Bye. Hope to see you again soon!\n");
                 return;
             } else if (command.equals("list")) {
                 System.out.println(list);
-            } else if (command.equals("mark")) {
-                int pos = Integer.parseInt(spacedArr[1]) - 1;
+                continue;
+            }
+            
+            try {
+                if (!command.equals("mark") && !command.equals("unmark") && !command.equals("todo") && !command.equals("deadline") && !command.equals("event")) {
+                    throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                }
+                
+                if (spacedArr.length == 1) {
+                    throw new DukeException("☹ OOPS!!! The description cannot be empty.");
+                }
+            } catch (DukeException e) {
+                System.out.println(e.getMessage() + "\n");
+                continue;
+            } 
+
+            String suffix = spacedArr[1];
+            
+            if (command.equals("mark")) {
+                int pos = Integer.parseInt(suffix) - 1;
                 list.markTask(pos, true);
             } else if (command.equals("unmark")) {
-                int pos = Integer.parseInt(spacedArr[1]) - 1;
+                int pos = Integer.parseInt(suffix) - 1;
                 list.markTask(pos, false);
             } else if (command.equals("todo")) {
-                Task task = new ToDoTask(spacedArr[1]);
+                Task task = new ToDoTask(suffix);
                 list.addTask(task);
             } else if (command.equals("deadline")) {
                 String by = input.split(" /by ")[1];
-                String description = spacedArr[1].split(" /by ")[0];
+                String description = suffix.split(" /by ")[0];
                 Task task = new DeadlineTask(description, by);
                 list.addTask(task);
             } else if (command.equals("event")) {
                 String at = input.split(" /at ")[1];
-                String description = spacedArr[1].split(" /at ")[0];
+                String description = suffix.split(" /at ")[0];
                 Task task = new EventTask(description, at);
                 list.addTask(task);
             }
