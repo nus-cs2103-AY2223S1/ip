@@ -19,6 +19,10 @@ public class Memory {
         return storage.size();
     }
 
+    public void deleteTask(int index) {
+        storage.remove(index);
+    }
+
     public String toString() {
         String output = "";
         for (int i = 0; i < storage.size(); i ++) {

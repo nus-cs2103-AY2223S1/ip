@@ -55,6 +55,21 @@ public class Duke {
             } else {
                 throw new DukeException("☹ OOPS!!! The The task you want to unmark is not here.");
             }
+        } else if(input.length() > 5 && input.substring(0, 6).equals("delete")) {
+            if (input.length() == 6) {
+                throw new DukeException("☹ OOPS!!! The task you want to delete cannot be empty.");
+            }
+            String indexString = input.substring(7);
+            int index = Integer.valueOf(indexString) - 1;
+            if (index > -1 && index < memory.getNumOfTask()) {
+                Task deletedTask = memory.getTask(index);
+                memory.deleteTask(index);
+                String content = "Noted. I've removed this task:\n" + deletedTask.toString()
+                        + memory.numOfTaskToString();
+                System.out.println(wrapper(content));
+            } else {
+                throw new DukeException("☹ OOPS!!! The The task you want to delete is not here.");
+            }
         } else if (input.length() > 3 && input.substring(0, 4).equals("todo")) {
             if (input.length() == 4) {
                 throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
