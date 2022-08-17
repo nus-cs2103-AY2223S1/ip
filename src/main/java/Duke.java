@@ -50,7 +50,7 @@ public class Duke {
                 System.out.println(Messages.MARK_UNDONE);
                 break;
             default: // Invalid command
-                System.out.println(Messages.ERROR);
+                break;
         }
         for (String msg : message) {
             System.out.println(msg);
@@ -98,7 +98,7 @@ public class Duke {
         }
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, DukeException {
         // Setting up to read command line inputs
         BufferedReader reader = new BufferedReader(
                 new InputStreamReader(System.in));
@@ -128,29 +128,40 @@ public class Duke {
 
             } else if (cmd.equals(Commands.ADD_TODO.command)) { // Add todo
                 // Retrieve description and date from input
-                String desc = retrieve_arguments(input, Commands.ADD_TODO)[0];
-                Todo current_todo = new Todo(desc);
-                tasks.addTask(current_todo);
-                display(Commands.ADD_TODO, current_todo.toString());
+                try {
+                    String desc = retrieve_arguments(input, Commands.ADD_TODO)[0];
+                    Todo current_todo = new Todo(desc);
+                    tasks.addTask(current_todo);
+                    display(Commands.ADD_TODO, current_todo.toString());
+                } catch (StringIndexOutOfBoundsException | ArrayIndexOutOfBoundsException e) {
+                    display(Commands.ERROR, Messages.ERROR_MISSING_PARAMETERS.toString());
+                }
 
             } else if (cmd.equals(Commands.ADD_EVENT.command)) {
                 // Retrieve description and date from input
-                String desc = retrieve_arguments(input, Commands.ADD_EVENT)[0];
-                String date = retrieve_arguments(input, Commands.ADD_EVENT)[1];
-                Event current_event = new Event(desc, date);
-                tasks.addTask(current_event);
-                display(Commands.ADD_EVENT, current_event.toString());
+                try {
+                    String desc = retrieve_arguments(input, Commands.ADD_EVENT)[0];
+                    String date = retrieve_arguments(input, Commands.ADD_EVENT)[1];
+                    Event current_event = new Event(desc, date);
+                    tasks.addTask(current_event);
+                } catch (StringIndexOutOfBoundsException | ArrayIndexOutOfBoundsException e) {
+                    display(Commands.ERROR, Messages.ERROR_MISSING_PARAMETERS.toString());
+                }
 
             } else if (cmd.equals(Commands.ADD_DEADLINE.command)) {
                 // Retrieve description and date from input
-                String desc = retrieve_arguments(input, Commands.ADD_DEADLINE)[0];
-                String date = retrieve_arguments(input, Commands.ADD_DEADLINE)[1];
-                Deadline current_deadline = new Deadline(desc, date);
-                tasks.addTask(current_deadline);
-                display(Commands.ADD_DEADLINE, current_deadline.getDescription());
+                try {
+                    String desc = retrieve_arguments(input, Commands.ADD_DEADLINE)[0];
+                    String date = retrieve_arguments(input, Commands.ADD_DEADLINE)[1];
+                    Deadline current_deadline = new Deadline(desc, date);
+                    tasks.addTask(current_deadline);
+                    display(Commands.ADD_DEADLINE, current_deadline.getDescription());
+                } catch (StringIndexOutOfBoundsException | ArrayIndexOutOfBoundsException e) {
+                    display(Commands.ERROR, Messages.ERROR_MISSING_PARAMETERS.toString());
+                }
 
             } else { // Invalid command
-                display(Commands.ERROR);
+                display(Commands.ERROR, Messages.ERROR_INVALID_COMMAND.toString());
             }
             // Reads next input
             input = reader.readLine();
