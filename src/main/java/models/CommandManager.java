@@ -6,31 +6,48 @@ import handlers.*;
 import java.util.HashMap;
 
 public class CommandManager {
-    // List of valid commands for the user
-    private static final String LIST_TASKS_COMMAND = "list";
-    private static final String MARK_TASK_COMMAND = "mark";
-    private static final String UNMARK_TASK_COMMAND = "unmark";
-    private static final String TODO_TASK_COMMAND = "todo";
-    private static final String DEADLINE_TASK_COMMAND = "deadline";
-    private static final String EVENT_TASK_COMMAND = "event";
-    private static final String DELETE_TASK_COMMAND = "delete";
-    private static final String BYE_COMMAND = "bye";
-
-    private static final String UNKNOWN_COMMAND_ERROR = "I do not understand your command!";
-
-    public final HashMap<String, DukeCommand> commands;
+    public final HashMap<CommandType, DukeCommand> commands;
 
     public CommandManager() {
-        this.commands = new HashMap<>(){{
-            put(LIST_TASKS_COMMAND, new ListTasksCommand());
-            put(MARK_TASK_COMMAND, new MarkTaskCommand());
-            put(UNMARK_TASK_COMMAND, new UnmarkTaskCommand());
-            put(TODO_TASK_COMMAND, new AddToDoTaskCommand());
-            put(DEADLINE_TASK_COMMAND, new AddDeadlineTaskCommand());
-            put(EVENT_TASK_COMMAND, new AddEventTaskCommand());
-            put(DELETE_TASK_COMMAND, new DeleteTaskCommand());
-            put(BYE_COMMAND, new ByeCommand());
-        }};
+        // Ensure that all commands have a corresponding command initializer
+        CommandType[] allCommands = CommandType.values();
+        this.commands = new HashMap<>();
+
+        for (CommandType command : allCommands) {
+            switch (command) {
+                // List all tasks in the task manager
+                case LIST:
+                    this.commands.put(command, new ListTasksCommand());
+                    break;
+
+                // Modifying operations on a task
+                case MARK:
+                    this.commands.put(command, new MarkTaskCommand());
+                    break;
+                case UNMARK:
+                    this.commands.put(command, new UnmarkTaskCommand());
+                    break;
+                case DELETE:
+                    this.commands.put(command, new DeleteTaskCommand());
+                    break;
+
+                // Creating operations on a task
+                case TODO:
+                    this.commands.put(command, new AddToDoTaskCommand());
+                    break;
+                case DEADLINE:
+                    this.commands.put(command, new AddDeadlineTaskCommand());
+                    break;
+                case EVENT:
+                    this.commands.put(command, new AddEventTaskCommand());
+                    break;
+
+                // Termination of program
+                case BYE:
+                    this.commands.put(command, new ByeCommand());
+                    break;
+            }
+        }
     }
 
     /**
@@ -39,15 +56,11 @@ public class CommandManager {
      * @param key Command key entered by the user
      * @return Corresponding DukeCommand if the key is valid
      */
-    public DukeCommand get(String key) throws DukeException {
-        DukeCommand command = this.commands.get(key);
-        if (command == null) {
-            throw new DukeException(CommandManager.UNKNOWN_COMMAND_ERROR);
-        }
-        return command;
+    public DukeCommand get(CommandType key) {
+        return this.commands.get(key);
     }
 
-    public boolean isTerminatingCommand(String key) {
-        return key.equals(CommandManager.BYE_COMMAND);
+    public boolean isTerminatingCommand(CommandType key) {
+        return key.equals(CommandType.BYE);
     }
 }

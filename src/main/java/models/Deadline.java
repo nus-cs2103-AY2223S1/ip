@@ -9,7 +9,6 @@ package models;
 
 public class Deadline extends Task {
     protected String deadline;
-    private static final String TASK_TYPE_ICON = "D";
 
     public Deadline(String description, String deadline) {
         super(description);
@@ -18,7 +17,7 @@ public class Deadline extends Task {
 
     @Override
     public String getTaskTypeIcon() {
-        return Deadline.TASK_TYPE_ICON;
+        return TaskType.DEADLINE.toString();
     }
 
     @Override

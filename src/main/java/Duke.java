@@ -1,3 +1,4 @@
+import handlers.CommandType;
 import handlers.DukeCommand;
 import exceptions.DukeException;
 import models.CommandManager;
@@ -17,6 +18,8 @@ public class Duke {
     // The greeting message used by the chatbot when the program starts
     private static final String GREETING_MESSAGE = String.format("Hello! I'm %s\nWhat can I do for you?", Duke.NAME);
 
+    private static final String UNKNOWN_COMMAND_ERROR = "I do not understand your command!";
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         TaskManager taskManager = new TaskManager();
@@ -32,14 +35,15 @@ public class Duke {
             String command = input[0];
             String arguments = inputLine.replaceFirst(command, "").strip();
 
-            DukeCommand dukeCommand;
+            CommandType commandType;
             try {
-                dukeCommand = commandManager.get(command);
-            } catch (DukeException e) {
-                DukeErrorPrinter.print(e.getMessage());
+                commandType = CommandType.valueOf(command.toUpperCase());
+            } catch (IllegalArgumentException e) {
+                DukeErrorPrinter.print(Duke.UNKNOWN_COMMAND_ERROR);
                 continue;
             }
 
+            DukeCommand dukeCommand = commandManager.get(commandType);
             try {
                 String status = dukeCommand.execute(taskManager, arguments);
                 DukePrinter.print(status);
@@ -47,7 +51,7 @@ public class Duke {
                 DukeErrorPrinter.print(e.getMessage());
             }
 
-            if (commandManager.isTerminatingCommand(command)) {
+            if (commandManager.isTerminatingCommand(commandType)) {
                 break;
             }
         }

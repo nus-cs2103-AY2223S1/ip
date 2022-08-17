@@ -9,7 +9,6 @@ package models;
 
 public class Event extends Task {
     protected String datetime;
-    private static final String TASK_TYPE_ICON = "E";
 
     public Event(String description, String datetime) {
         super(description);
@@ -18,7 +17,7 @@ public class Event extends Task {
 
     @Override
     public String getTaskTypeIcon() {
-        return Event.TASK_TYPE_ICON;
+        return TaskType.EVENT.toString();
     }
 
     @Override

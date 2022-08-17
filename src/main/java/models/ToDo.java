@@ -7,14 +7,12 @@ package models;
  */
 
 public class ToDo extends Task {
-    private static final String TASK_TYPE_ICON = "T";
-
     public ToDo(String description) {
         super(description);
     }
 
     @Override
     public String getTaskTypeIcon() {
-        return ToDo.TASK_TYPE_ICON;
+        return TaskType.TODO.toString();
     }
 }
