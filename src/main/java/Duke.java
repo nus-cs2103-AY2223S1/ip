@@ -16,10 +16,10 @@ public class Duke {
             "list (lists your tasks)\nbye (ends the program)";
     public static final String END_PROGRAM = "Bye. Hope to see you again soon!";
     public static int taskCount = 0;
+    public static final Scanner reader = new Scanner(System.in);
 
     public static void main(String[] args) {
 
-        Scanner reader = new Scanner(System.in);
 
         try {
             ArrayList<Task> toDoList = new ArrayList<>();
@@ -31,7 +31,6 @@ public class Duke {
                 String userRequest = reader.nextLine();
                 if (userRequest.equals(BYE.getOperation())) {
                     end = true;
-                    taskCount = 0;
                     System.out.println(END_PROGRAM);
                 } else if (userRequest.equals(LIST.getOperation())) {
                     printTasksInList(toDoList);
@@ -65,13 +64,11 @@ public class Duke {
         } else if (operation.equals(DEADLINE.getOperation())) {
             String description = taskDescription();
             System.out.println("When does this need to get completed by?");
-            Scanner reader = new Scanner(System.in);
             String deadline = reader.nextLine();
             return new DeadlineTask(description, deadline);
         } else if (operation.equals(EVENT.getOperation())) {
             String description = taskDescription();
             System.out.println("When is this event happening?");
-            Scanner reader = new Scanner(System.in);
             String eventDate = reader.nextLine();
             return new EventTask(description, eventDate);
         } else {
@@ -81,7 +78,6 @@ public class Duke {
 
     private static String taskDescription() throws EmptyBodyException {
         System.out.println("Give a brief overview of your task:");
-        Scanner reader = new Scanner(System.in);
         String description = reader.nextLine();
         if (description.equals("")) {
             throw new EmptyBodyException();
@@ -100,10 +96,10 @@ public class Duke {
 
     private static void removeTaskFromList(ArrayList<Task> list) throws InvalidInputException {
         System.out.print("Which task would you like to remove?\n");
-        Scanner intReader = new Scanner(System.in);
         printTasksInList(list);
         System.out.print("Task number: ");
-        int chosenTaskIndex = intReader.nextInt();
+        int chosenTaskIndex = reader.nextInt();
+        reader.nextLine();
         if (chosenTaskIndex > taskCount || chosenTaskIndex < 1) {
             throw new InvalidInputException("Are you sure this number corresponds to a task?");
         }
@@ -124,10 +120,10 @@ public class Duke {
 
     private static void markTask(ArrayList<Task> list) throws InvalidInputException {
         System.out.print("Which task would you like to mark as complete?\n");
-        Scanner intReader = new Scanner(System.in);
         printTasksInList(list);
         System.out.print("Task number: ");
-        int chosenTask = intReader.nextInt();
+        int chosenTask = reader.nextInt();
+        reader.nextLine();
         if (chosenTask > taskCount || chosenTask < 1) {
             throw new InvalidInputException("Are you sure this number corresponds to a task?");
         }

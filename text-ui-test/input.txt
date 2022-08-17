@@ -1,0 +1,20 @@
+todo
+some random thing
+deadline
+CS2103T code refactoring
+August 17th 2pm
+deadline
+Do CS2100 Tutorial
+August 18th 2pm
+event
+Meet some friends
+5pm
+list
+mark
+1
+mark
+2
+delete
+1
+list
+bye

@@ -1,7 +1,78 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
+Hello!! I'm Duke, and I can help you do up a simple to-do list!
+The following commands are valid:
+--------------
+todo (creates a new todo task)
+event (creates a new event)
+deadline (creates a new task with a deadline)
+mark (marks the completion of your tasks)
+delete (removes a task)
+list (lists your tasks)
+bye (ends the program)
+Give a brief overview of your task:
+I have added the task! Type 'list' to show all tasks.
+What else would you like to do?
+Please type here: 
+Give a brief overview of your task:
+When does this need to get completed by?
+I have added the task! Type 'list' to show all tasks.
+What else would you like to do?
+Please type here: 
+Give a brief overview of your task:
+When does this need to get completed by?
+I have added the task! Type 'list' to show all tasks.
+What else would you like to do?
+Please type here: 
+Give a brief overview of your task:
+When is this event happening?
+I have added the task! Type 'list' to show all tasks.
+What else would you like to do?
+Please type here: 
+Here are the tasks in your list:
+1: [T][ ] some random thing
+2: [D][ ] CS2103T code refactoring (by: August 17th 2pm)
+3: [D][ ] Do CS2100 Tutorial (by: August 18th 2pm)
+4: [E][ ] Meet some friends (at: 5pm)
+If you would like to mark a task as complete, type 'mark', otherwise, you can continue using other commands.
+Please type here: Which task would you like to mark as complete?
+Here are the tasks in your list:
+1: [T][ ] some random thing
+2: [D][ ] CS2103T code refactoring (by: August 17th 2pm)
+3: [D][ ] Do CS2100 Tutorial (by: August 18th 2pm)
+4: [E][ ] Meet some friends (at: 5pm)
+Task number: Here are the tasks in your list:
+1: [T][X] some random thing
+2: [D][ ] CS2103T code refactoring (by: August 17th 2pm)
+3: [D][ ] Do CS2100 Tutorial (by: August 18th 2pm)
+4: [E][ ] Meet some friends (at: 5pm)
+You have marked task 1 as complete! Congrats!
+If you want to mark another task as complete, please type 'mark' again.
+Else, you can input a new task!
+Please type here: Which task would you like to mark as complete?
+Here are the tasks in your list:
+1: [T][X] some random thing
+2: [D][ ] CS2103T code refactoring (by: August 17th 2pm)
+3: [D][ ] Do CS2100 Tutorial (by: August 18th 2pm)
+4: [E][ ] Meet some friends (at: 5pm)
+Task number: Here are the tasks in your list:
+1: [T][X] some random thing
+2: [D][X] CS2103T code refactoring (by: August 17th 2pm)
+3: [D][ ] Do CS2100 Tutorial (by: August 18th 2pm)
+4: [E][ ] Meet some friends (at: 5pm)
+You have marked task 2 as complete! Congrats!
+If you want to mark another task as complete, please type 'mark' again.
+Else, you can input a new task!
+Please type here: Which task would you like to remove?
+Here are the tasks in your list:
+1: [T][X] some random thing
+2: [D][X] CS2103T code refactoring (by: August 17th 2pm)
+3: [D][ ] Do CS2100 Tutorial (by: August 18th 2pm)
+4: [E][ ] Meet some friends (at: 5pm)
+Task number: I have removed the task: [T][X] some random thing. Type 'list' to show all tasks.
+What else would you like to do?
+Please type here: 
+Here are the tasks in your list:
+1: [D][X] CS2103T code refactoring (by: August 17th 2pm)
+2: [D][ ] Do CS2100 Tutorial (by: August 18th 2pm)
+3: [E][ ] Meet some friends (at: 5pm)
+If you would like to mark a task as complete, type 'mark', otherwise, you can continue using other commands.
+Please type here: Bye. Hope to see you again soon!
