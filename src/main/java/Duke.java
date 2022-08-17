@@ -8,7 +8,7 @@ public class Duke {
         bot.introduce();
         while (true) {
             String input = sc.nextLine();
-            bot.answer(input);
+            System.out.println(bot.answer(input));
             if (input.equals("bye")) {
                 break;
             }
