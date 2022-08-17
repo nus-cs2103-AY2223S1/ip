@@ -48,6 +48,27 @@ public class Duke {
                 task.markAsDone();
                 System.out.println(Style.INDENTATION + "Nice! I've marked this task as done:");
                 System.out.println(Style.INDENTATION + Style.HALF_INDENTATION + task + "\n");
+            } else if (command.contains("deadline") || command.contains("event") || command.contains("todo")) {
+                String temp = command.split(" ", 2)[1];
+                Task task = new Task("null");
+
+                if (command.contains("deadline")) {
+                    String[] taskDetails = temp.split(" /by ");
+                    task = new Deadline(taskDetails[0], taskDetails[1]);
+                } else if (command.contains("event")) {
+                    String[] taskDetails = temp.split(" /at ");
+                    task = new Event(taskDetails[0], taskDetails[1]);
+                } else if (command.contains("todo")) {
+                    task = new ToDo(temp);
+                }
+
+                data.add(task);
+                String taskOrTasks = data.size() == 1 ? "task" : "tasks";
+                
+                System.out.println(Style.INDENTATION + "Got it. I've added this task:");
+                System.out.println(Style.INDENTATION + Style.HALF_INDENTATION + task);
+                System.out.println(Style.INDENTATION + "Now you have " + data.size() + " "
+                        + taskOrTasks + " in the list.\n");
             } else {
                 data.add(new Task(command));
                 System.out.println(Style.INDENTATION + "added: " + command + '\n');
