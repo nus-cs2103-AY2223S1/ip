@@ -21,8 +21,20 @@ public class Parser {
     } else {
       String description = instructions[1];
       switch (command) {
-        case ("add"):
-          return new AddCommand(description);
+        case ("todo"):
+          return new ToDoCommand(description);
+        case ("deadline"):
+          String[] deadlinelst = description.split("/by", 2);
+          if (deadlinelst.length < 2) {
+            throw new DukeException("Alamak, tell me when you need it by...");
+          }
+          return new DeadlineCommand(deadlinelst[0], deadlinelst[1]);
+        case ("event"):
+          String[] eventlst = description.split("/at", 2);
+          if (eventlst.length < 2) {
+            throw new DukeException("Alamak, tell me when the event is...");
+          }
+          return new EventCommand(eventlst[0], eventlst[1]);
         case ("mark"):
           return new MarkCommand(description);
         case ("unmark"):
