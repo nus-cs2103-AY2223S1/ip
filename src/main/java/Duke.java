@@ -14,48 +14,46 @@ public class Duke {
         greetResponse.action();
 
         while (notEnded) {
-            String input = scanner.nextLine();
-            String [] inputArr = input.split(" ", 2);
-            String command = inputArr[0];
             try {
+                String input = scanner.nextLine();
+                String [] inputArr = input.split(" ", 2);
+                Command command = Command.parse(inputArr[0]);
                 switch (command) {
-                    case "bye":
+                    case BYE:
                         scanner.close();
                         byeResponse.action();
                         notEnded = false;
                         break;
-                    case "list":
+                    case LIST:
                         ListResponse listResponse = new ListResponse(taskList);
                         listResponse.action();
                         break;
-                    case "mark": {
+                    case MARK: {
                         MarkResponse markResponse = new MarkResponse(taskList, inputArr);
                         markResponse.action();
                         break;
                     }
-                    case "unmark": {
+                    case UNMARK: {
                         UnmarkResponse unmarkResponse = new UnmarkResponse(taskList, inputArr);
                         unmarkResponse.action();
                         break;
-                    } case "todo": {
+                    } case TODO: {
                         ToDoResponse toDoResponse = new ToDoResponse(taskList, inputArr);
                         toDoResponse.action();
                         break;
-                    } case "event": {
+                    } case EVENT: {
                         EventResponse eventResponse = new EventResponse(taskList, inputArr);
                         eventResponse.action();
                         break;
-                    } case "deadline": {
+                    } case DEADLINE: {
                         DeadlineResponse deadlineResponse = new DeadlineResponse(taskList, inputArr);
                         deadlineResponse.action();
                         break;
-                    } case "delete": {
+                    } case DELETE: {
                         DeleteResponse deleteResponse = new DeleteResponse(taskList, inputArr);
                         deleteResponse.action();
                         break;
                     }
-                    default:
-                        throw new DukeException("I'm sorry, but I don't know what that means :-(");
                 }
             } catch (DukeException e){
                 InvalidResponse invalidResponse = new InvalidResponse(e.getMessage());
