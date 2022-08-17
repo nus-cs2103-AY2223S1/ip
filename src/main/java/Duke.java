@@ -5,7 +5,7 @@ public class Duke {
         Bot bot = new Bot();
         Scanner sc = new Scanner(System.in);
 
-        bot.introduce();
+        System.out.println(bot.introduce());
         while (true) {
             String input = sc.nextLine();
             System.out.println(bot.answer(input));

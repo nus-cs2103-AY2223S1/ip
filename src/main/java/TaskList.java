@@ -5,7 +5,7 @@ public class TaskList {
     protected final ArrayList<Task> taskList;
 
     public TaskList() {
-        taskList = new ArrayList<Task>();
+        taskList = new ArrayList<>();
     }
 
     public String toString() {

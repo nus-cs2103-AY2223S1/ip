@@ -23,7 +23,7 @@ public abstract class Task {
     abstract String getType();
 
     public String getStatus() {
-        return this.isDone ? "X" : " ";
+        return this.isDone() ? "X" : " ";
     }
 
     public void mark() {
