@@ -11,24 +11,17 @@ public class Duke {
 
         Checklist tasks = new Checklist();
         Scanner scanner = new Scanner(System.in);
+        InputParser parser = new InputParser();
         String input = "";
         while (scanner.hasNextLine()) {
             input = scanner.nextLine();
-            if (input.equals("bye")) {
-                System.out.println("Bye. Hope to see you again soon!");
-                break;
-            } else if (input.equals("list")) {
-                tasks.list();
-            } else if (input.startsWith("mark")) {
-                tasks.mark(Integer.parseInt(input.substring(5)), true);
-            } else if (input.startsWith("unmark")) {
-                tasks.mark(Integer.parseInt(input.substring(7)), false);
-            } else if (input.startsWith("todo")) {
-                tasks.todo(input);
-            } else if (input.startsWith("deadline")) {
-                tasks.deadline(input);
-            } else if (input.startsWith("event")) {
-                tasks.event(input);
+            try {
+                parser.parse(input, tasks);
+            } catch (Exception e) {
+                System.out.println(e.toString());
+                if (e.equals(new EndProgramException()))
+                    break;
+
             }
         }
     }

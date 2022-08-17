@@ -21,9 +21,7 @@ class Checklist {
         System.out.println(task.toString());
     }
 
-    void event(String input) {
-        String name = input.substring(input.indexOf(" ") + 1, input.indexOf("/"));
-        String eventDate = input.substring(input.indexOf("/") + 4);
+    void event(String name, String eventDate) {
         Event event = new Event(taskList.size() + 1, name, eventDate);
         taskList.add(event);
         System.out.println("Got it. I've added this task: ");
@@ -31,9 +29,7 @@ class Checklist {
         System.out.println("Now you have " + taskList.size() + " tasks in the list.");
     }
 
-    void deadline(String input) {
-        String name = input.substring(input.indexOf(" ") + 1, input.indexOf("/"));
-        String deadline = input.substring(input.indexOf("/") + 4);
+    void deadline(String name, String deadline) {
         Deadline deadlineEvent = new Deadline(taskList.size() + 1, name, deadline);
         taskList.add(deadlineEvent);
         System.out.println("Got it. I've added this task: ");
