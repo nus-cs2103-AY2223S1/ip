@@ -42,7 +42,7 @@ public class Duke {
      */
     public static void taskAdd(Task task, ArrayList<Task> inputList) {
         inputList.add(task);
-        String output = String.format("Got it. I've added this task: \n%s\nNow you have %s tasks in the list.",
+        String output = String.format("Got it. I've added this task:\n%s\nNow you have %s tasks in the list.",
                 task.toString(),
                 inputList.size());
         System.out.println(output);
@@ -81,11 +81,7 @@ public class Duke {
                 String[] taskBy = taskType[1].split("/at ", 2);
                 Event event = new Event(taskBy[0], taskBy[1]);
                 taskAdd(event, inputList);
-            } else {
-                System.out.println("Got it. I've added this task:\n" + input);
-                Task inputTask = new Task(input);
-                inputList.add(inputTask);
-            }
+            } else { }
             input = myObj.nextLine();
             parts = input.split(" ");
         }
