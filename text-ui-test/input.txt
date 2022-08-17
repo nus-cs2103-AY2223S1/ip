@@ -1,0 +1,7 @@
+todo do laundry
+deadline 2103t project /by Thursday
+event orbital splashdown /at August 24th
+list
+mark 1
+unmark 1
+bye
