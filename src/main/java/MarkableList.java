@@ -9,8 +9,14 @@ public class MarkableList {
             throw new ArrayIndexOutOfBoundsException();
         }
         
-        if (newItem.split(" ", 2).length < 2) {
-            return "Please specify the task!";
+        if (newItem.split(" ", 2).length < 2 && newItem.equals("todo")) {
+            return "☹ OOPS!!! The description of a todo cannot be empty.";
+        } else if (newItem.split(" ", 2).length < 2 && newItem.equals("deadline")) {
+            return "☹ OOPS!!! The description of a deadline cannot be empty.";
+        } else if (newItem.split(" ", 2).length < 2 && newItem.equals("event")) {
+            return "☹ OOPS!!! The description of a event cannot be empty.";
+        } else if (newItem.split(" ", 2).length < 2) {
+            return "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
         }
 
         String taskType = newItem.split(" ", 2)[0];
@@ -18,20 +24,22 @@ public class MarkableList {
 
         if (taskType.equalsIgnoreCase("deadline")) {
             if (taskDetails.split("/by").length < 2) {
-                return "Please specify the deadline!";
+                return "☹ Please specify the deadline!";
             }
             items[numOfElements] = new DeadlineTask(
                 taskDetails.split("/by")[0].trim(), 
                 taskDetails.split("/by")[1].trim());
         } else if (taskType.equalsIgnoreCase("event")) {
             if (taskDetails.split("/at").length < 2) {
-                return "Please specify the period!";
+                return "☹ Please specify the period!";
             }
             items[numOfElements] = new EventTask(
                 taskDetails.split("/at")[0].trim(), 
                 taskDetails.split("/at")[1].trim());
         } else if (taskType.equalsIgnoreCase("todo")) {
             items[numOfElements] = new ToDoTask(taskDetails.trim());
+        } else {
+            return "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
         }
 
         numOfElements += 1;

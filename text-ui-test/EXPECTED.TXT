@@ -63,6 +63,18 @@ Here are the tasks in your list:
  4.[D][ ] do homework (by: no idea :-p)
 ―――
 ―――
+☹ OOPS!!! The description of a todo cannot be empty.
+―――
+―――
+☹ OOPS!!! I'm sorry, but I don't know what that means :-(
+―――
+―――
+☹ Please specify the deadline!
+―――
+―――
+Uhoh! The item doesn't exist
+―――
+―――
 Good bye!
 Hope to see you soon!
 ―――

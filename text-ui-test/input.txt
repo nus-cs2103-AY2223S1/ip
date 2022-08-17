@@ -8,4 +8,8 @@ mark 1
 list
 unmark 1
 list
+todo
+blah
+deadline k /by
+mark 10
 bye
