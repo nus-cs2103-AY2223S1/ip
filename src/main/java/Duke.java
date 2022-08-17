@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 
 /**
- * Duke is a basic chatbot that echoes whatever the user inputs.
+ * Duke is a basic chat-bot that echoes whatever the user inputs.
  *
  * @author Chi Song Yi Amadeus
  * @version Level-1
