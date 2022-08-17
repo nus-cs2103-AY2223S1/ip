@@ -39,7 +39,50 @@ public class Duke {
 
         @Override
         public String toString() {
-            return "["+ this.getStatusIcon()+"] "+ this.getDescription();
+            return "[" + this.getStatusIcon() + "] " + this.getDescription();
+        }
+    }
+
+    public static class Deadline extends Task {
+
+        protected String by;
+
+        public Deadline(String description, String by) {
+            super(description);
+            this.by = by;
+        }
+
+        @Override
+        public String toString() {
+            return "[D]" + super.toString() + " (by: " + by + ")";
+        }
+    }
+
+    public static class Event extends Task {
+
+        protected String at;
+
+        public Event(String description, String at) {
+            super(description);
+            this.at = at;
+        }
+
+        @Override
+        public String toString() {
+            return "[E]" + super.toString() + " (at: " + at + ")";
+        }
+    }
+
+    public static class ToDo extends Task {
+
+
+        public ToDo(String description) {
+            super(description);
+        }
+
+        @Override
+        public String toString() {
+            return "[T]" + super.toString();
         }
     }
 
@@ -56,46 +99,83 @@ public class Duke {
 
      */
     public static void list() {
-        Scanner input = new Scanner(System.in);
-        String text = input.nextLine();
-        if (text.equalsIgnoreCase("list")) {
-            if (storage.size() == 0) {
-                System.out.println("No items have been added to the list");
-            } else {
-                for (int i = 0; i < storage.size(); i++) {
-                    System.out.println((i + 1) + ". " + storage.get(i).toString() );
-                }
-            }
-            list();
-        } else if (text.equalsIgnoreCase("bye")) {
-            System.out.println("Bye. Hope to see you again soon!\n");
-        } else if (text.startsWith("mark")) {
-            if (Integer.parseInt(text.replace("mark ", "")) - 1 < storage.size() && Integer.parseInt(text.replace("mark ", "")) > 0) {
-                if (!storage.get(Integer.parseInt(text.replace("mark ", "")) - 1).getIsDone()) {
-                    storage.get(Integer.parseInt(text.replace("mark ", "")) - 1).setIsDone(true);
-                    System.out.println("Nice! I've marked this task as done \n" + storage.get(Integer.parseInt(text.replace("mark ", "")) - 1).toString());
+        try {
+            Scanner input = new Scanner(System.in);
+            String text = input.nextLine();
+            if (text.equalsIgnoreCase("list")) {
+                if (storage.size() == 0) {
+                    System.out.println("No items have been added to the list");
                 } else {
-                    System.out.println("This task is already marked done");
+                    System.out.println("Here are the tasks in your list : ");
+                    for (int i = 0; i < storage.size(); i++) {
+                        System.out.println((i + 1) + ". " + storage.get(i).toString());
+                    }
                 }
-            } else {
-                System.out.println("Such an item does not exist");
-            }
-            list();
-        } else if (text.startsWith("unmark")) {
-            if (Integer.parseInt(text.replace("unmark ", "")) - 1 < storage.size() && Integer.parseInt(text.replace("unmark ", "")) > 0) {
-                if (storage.get(Integer.parseInt(text.replace("unmark ", "")) - 1).getIsDone()) {
-                    storage.get(Integer.parseInt(text.replace("unmark ", "")) - 1).setIsDone(false);
-                    System.out.println("Ok, I've marked this task as not done yet \n" + storage.get(Integer.parseInt(text.replace("unmark ", "")) - 1).toString() );
+                list();
+            } else if (text.equalsIgnoreCase("bye")) {
+                System.out.println("Bye. Hope to see you again soon!\n");
+            } else if (text.startsWith("todo")) {
+                ToDo item = new ToDo(text.replace("todo ", ""));
+                storage.add(item);
+                System.out.println("Got it. I've added this task. \n" + item.toString() + "\nNow you have " + storage.size() + " tasks in the list");
+                list();
+            } else if (text.startsWith("deadline")) {
+                try {
+                    String[] description = text.replace("deadline ", "").split("/by ");
+                    Deadline item = new Deadline(description[0], description[1]);
+                    storage.add(item);
+                    System.out.println("Got it. I've added this task. \n" + item.toString() + "\nNow you have " + storage.size() + " tasks in the list");
+                } catch (ArrayIndexOutOfBoundsException error) {
+                    System.out.println("Please provide a deadline and a by time e.g. deadline <description of the deadline> /by <time of the deadline>");
+                }
+                list();
+            } else if (text.startsWith("event")) {
+                try {
+                    String[] description = text.replace("event ", "").split("/at ");
+                    Event item = new Event(description[0], description[1]);
+                    storage.add(item);
+                    System.out.println("Got it. I've added this task. \n" + item.toString() + "\nNow you have " + storage.size() + " tasks in the list");
+                } catch (ArrayIndexOutOfBoundsException error) {
+                    System.out.println("Please provide a event and an at time e.g. event <description of the event> /at <time of the event>");
+                }
+                list();
+            } else if (text.startsWith("mark")) {
+                if (Integer.parseInt(text.replace("mark ", "")) - 1 < storage.size() && Integer.parseInt(text.replace("mark ", "")) > 0) {
+                    if (!storage.get(Integer.parseInt(text.replace("mark ", "")) - 1).getIsDone()) {
+                        storage.get(Integer.parseInt(text.replace("mark ", "")) - 1).setIsDone(true);
+                        System.out.println("Nice! I've marked this task as done \n" +
+                                storage.get(Integer.parseInt(text.replace("mark ", "")) - 1).toString() +
+                                "\n Now you have " + storage.size() + " tasks in the list");
+                    } else {
+                        System.out.println("This task is already marked done");
+                    }
                 } else {
-                    System.out.println("This task has already been marked not done");
+                    System.out.println("Such an item does not exist");
                 }
+                list();
+            } else if (text.startsWith("unmark")) {
+                if (Integer.parseInt(text.replace("unmark ", "")) - 1 < storage.size() && Integer.parseInt(text.replace("unmark ", "")) > 0) {
+                    if (storage.get(Integer.parseInt(text.replace("unmark ", "")) - 1).getIsDone()) {
+                        storage.get(Integer.parseInt(text.replace("unmark ", "")) - 1).setIsDone(false);
+                        System.out.println("Ok, I've marked this task as not done yet \n" +
+                                storage.get(Integer.parseInt(text.replace("unmark ", "")) - 1).toString() +
+                                "\n Now you have " + storage.size() + " tasks in the list");
+                    } else {
+                        System.out.println("This task has already been marked not done");
+                    }
+                } else {
+                    System.out.println("Such an item does not exist");
+                }
+                list();
             } else {
-                System.out.println("Such an item does not exist");
+                System.out.println("Please provide a Todo or a deadline or an event to add to the list formats are as follows \n" +
+                        "Todo : todo <description of the task> \n" +
+                        "Deadline : deadline <description of the deadline> /by <time of the deadline> \n" +
+                        "Event : event <description of the event> /at <time of the event> \n");
+                list();
             }
-            list();
-        } else {
-            System.out.println("Added:" + text);
-            storage.add(new Task(text));
+        } catch (NumberFormatException error) {
+            System.out.println("Invalid command please add a space between mark/unmark and the list item you would like to interact with.");
             list();
         }
 
