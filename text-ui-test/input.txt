@@ -3,16 +3,28 @@ meet someone
 todo finish CS2103T Individual Project
 deadline CS2103T Individual Project /by 18 Aug 2022, 2359hrs
 event Go out and have fun! /at Saturday or Sunday
+event Family gathering /at Some time next week
 list
 mark 1
 mark 3
 unmark 1
 list
+delete 2
+delete 2
+list
+
+mark -1
+unmark 100
+delete 0
+list
 blah
 todo
 deadline
 event
+list
 deadline Finish work
 event Go out and party
 list
+
+
 bye

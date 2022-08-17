@@ -5,7 +5,7 @@ public class EmptyTaskException extends DoemonException {
     private String task;
 
     /**
-     * Constructor for an EmptyTaskException
+     * Constructor for an EmptyTaskException.
      * @param task a string indicating the type of task that threw this exception
      */
     public EmptyTaskException(String task) {

@@ -33,10 +33,16 @@
 	You now have 3 task(s) recorded on my bread.
 	____________________________________________________________
 	____________________________________________________________
+	Alright! I have recorded this task on my bread:
+	  [E][ ] Family gathering (at: Some time next week)
+	You now have 4 task(s) recorded on my bread.
+	____________________________________________________________
+	____________________________________________________________
 	Here is what's on my bread:
 	1.[T][ ] finish CS2103T Individual Project
 	2.[D][ ] CS2103T Individual Project (by: 18 Aug 2022, 2359hrs)
 	3.[E][ ] Go out and have fun! (at: Saturday or Sunday)
+	4.[E][ ] Family gathering (at: Some time next week)
 	____________________________________________________________
 	____________________________________________________________
 	Yay! This task is now marked as done:
@@ -55,6 +61,55 @@
 	1.[T][ ] finish CS2103T Individual Project
 	2.[D][ ] CS2103T Individual Project (by: 18 Aug 2022, 2359hrs)
 	3.[E][X] Go out and have fun! (at: Saturday or Sunday)
+	4.[E][ ] Family gathering (at: Some time next week)
+	____________________________________________________________
+	____________________________________________________________
+	I used a knife to slice off this task from my bread:
+	  [D][ ] CS2103T Individual Project (by: 18 Aug 2022, 2359hrs)
+	There are 3 items left on my bread.
+	____________________________________________________________
+	____________________________________________________________
+	I used a knife to slice off this task from my bread:
+	  [E][X] Go out and have fun! (at: Saturday or Sunday)
+	There are 2 items left on my bread.
+	____________________________________________________________
+	____________________________________________________________
+	Here is what's on my bread:
+	1.[T][ ] finish CS2103T Individual Project
+	2.[E][ ] Family gathering (at: Some time next week)
+	____________________________________________________________
+	____________________________________________________________
+	Oh my doe!! Sorry I don't recognise that command...
+	Please try again with a valid command
+	____________________________________________________________
+	____________________________________________________________
+	Oh my doe!! Looks like you want to mark a task that doesn't
+	exist! Try again with a valid number.
+	____________________________________________________________
+	____________________________________________________________
+	Oh my doe!! Sorry I don't recognise that command...
+	Please try again with a valid command
+	____________________________________________________________
+	____________________________________________________________
+	Oh my doe!! Looks like you want to unmark a task that doesn't
+	exist! Try again with a valid number.
+	____________________________________________________________
+	____________________________________________________________
+	Oh my doe!! Sorry I don't recognise that command...
+	Please try again with a valid command
+	____________________________________________________________
+	____________________________________________________________
+	Oh my doe!! Looks like you want to delete a task that doesn't
+	exist! Try again with a valid number.
+	____________________________________________________________
+	____________________________________________________________
+	Oh my doe!! Sorry I don't recognise that command...
+	Please try again with a valid command
+	____________________________________________________________
+	____________________________________________________________
+	Here is what's on my bread:
+	1.[T][ ] finish CS2103T Individual Project
+	2.[E][ ] Family gathering (at: Some time next week)
 	____________________________________________________________
 	____________________________________________________________
 	Oh my doe!! Sorry I don't recognise that command...
@@ -70,16 +125,30 @@
 	Oh my doe!! I can't put an empty event on my bread...
 	____________________________________________________________
 	____________________________________________________________
-	Oh my doe!! Looks like you may be missing a date/time for this deadline...Remember to use the /by flag!
+	Here is what's on my bread:
+	1.[T][ ] finish CS2103T Individual Project
+	2.[E][ ] Family gathering (at: Some time next week)
 	____________________________________________________________
 	____________________________________________________________
-	Oh my doe!! Looks like you may be missing a date/time for this event...Remember to use the /at flag!
+	Oh my doe!! Looks like you may be missing a date/time for
+	this deadline...Remember to use the /by flag!
+	____________________________________________________________
+	____________________________________________________________
+	Oh my doe!! Looks like you may be missing a date/time for
+	this event...Remember to use the /at flag!
 	____________________________________________________________
 	____________________________________________________________
 	Here is what's on my bread:
 	1.[T][ ] finish CS2103T Individual Project
-	2.[D][ ] CS2103T Individual Project (by: 18 Aug 2022, 2359hrs)
-	3.[E][X] Go out and have fun! (at: Saturday or Sunday)
+	2.[E][ ] Family gathering (at: Some time next week)
+	____________________________________________________________
+	____________________________________________________________
+	Oh my doe!! Sorry I don't recognise that command...
+	Please try again with a valid command
+	____________________________________________________________
+	____________________________________________________________
+	Oh my doe!! Sorry I don't recognise that command...
+	Please try again with a valid command
 	____________________________________________________________
 	____________________________________________________________
 	I'm going to sleep now...See you again soon!

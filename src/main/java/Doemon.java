@@ -66,28 +66,16 @@ public class Doemon {
                 continue;
             }
 
-            // Check for mark/unmark
             String[] inputArr = inputStr.split(" ");
-            if (inputArr.length == 2
-                    && (inputArr[0].equals("mark") || inputArr[0].equals("unmark"))
-                    && isInteger(inputArr[1])) {
-                int index = Integer.parseInt(inputArr[1]) - 1;
-                if (index >= 0 && index < this.tasks.size()) {
-                    if (inputArr[0].equals("mark")) {
-                        this.tasks.get(index).mark();
-                        System.out.println(
-                                output("Yay! This task is now marked as done:\n\t  "
-                                        + this.tasks.get(index).toString()));
-                    } else {
-                        this.tasks.get(index).unmark();
-                        System.out.println(
-                                output("I guess you weren't done with that one:\n\t  "
-                                        + this.tasks.get(index).toString()));
-                    }
-                    continue;
-                }
+
+            // Check for mark/unmark/delete
+            try {
+                if (hasMarkedOrDeleted(inputArr)) continue;
+            } catch (InvalidTaskNumberException itne) {
+                System.out.println(output(itne.toString()));
             }
 
+            // Add task
             try {
                 addTask(inputStr, inputArr);
             } catch (EmptyTaskException ete) {
@@ -100,6 +88,53 @@ public class Doemon {
         }
     }
 
+    /**
+     * Attempts to mark/unmark/delete a task depending on the input. Returns a boolean indicating if the command was
+     * to mark/unmark/delete.
+     * @param inputArr the user-inputted string split into String array using a space delimiter
+     * @return a boolean indicating if the command was a mark/unmark/delete command
+     * @throws InvalidTaskNumberException if the task number indicated does not exist
+     */
+    private boolean hasMarkedOrDeleted(String[] inputArr) throws InvalidTaskNumberException{
+        if (inputArr.length == 2
+                && (inputArr[0].equals("mark") || inputArr[0].equals("unmark") || inputArr[0].equals("delete"))
+                && isInteger(inputArr[1])) {
+            int index = Integer.parseInt(inputArr[1]) - 1;
+            if (index >= 0 && index < this.tasks.size()) {
+                if (inputArr[0].equals("mark")) {
+                    this.tasks.get(index).mark();
+                    System.out.println(
+                            output(String.format("Yay! This task is now marked as done:\n\t  %s",
+                                    this.tasks.get(index).toString())));
+                } else if (inputArr[0].equals("unmark")){
+                    this.tasks.get(index).unmark();
+                    System.out.println(
+                            output(String.format("I guess you weren't done with that one:\n\t  %s",
+                                    this.tasks.get(index).toString())));
+                } else {
+                    Task removed = this.tasks.remove(index);
+                    System.out.println(
+                            output(String.format("I used a knife to slice off this task from my bread:\n\t  %s" +
+                                            "\n\tThere are %d items left on my bread.",
+                                    removed.toString(),
+                                    this.tasks.size())));
+                }
+                return true;
+            } else {
+                throw new InvalidTaskNumberException(inputArr[0]);
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Adds a task to the list of tasks
+     * @param inputStr the user-inputted string
+     * @param inputArr the user-inputted string split into String array using a space delimiter
+     * @throws EmptyTaskException if task description is empty
+     * @throws InvalidTaskException if the add task command given is invalid
+     * @throws MissingArgumentException if there is a missing argument from a deadline or event
+     */
     private void addTask(String inputStr, String[] inputArr) throws EmptyTaskException, InvalidTaskException,
             MissingArgumentException {
         // Add item to list of tasks
