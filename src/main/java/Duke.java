@@ -157,74 +157,81 @@ public class Duke {
     }
 
     public static void startDuke() throws DukeException {
-        Scanner sc = new Scanner(System.in);
-        boolean isRunning = true;
-        while (isRunning) {
-            String input = sc.nextLine();
-            String[] inputArray = input.split(" ", 2);
-            String firstWord = inputArray[0];
-            String secondWord = "";
-            if (inputArray.length == 2) {
-                secondWord = inputArray[1];
-            }
-            switch (firstWord) {
-                case "bye":
-                    if (inputArray.length == 1) {
-                        exit();
-                        isRunning = false;
-                    } else {
-                        throw new DukeException("\t OOPS!!! I'm sorry, but I don't know what that means :-(");
+
+            Scanner sc = new Scanner(System.in);
+            boolean isRunning = true;
+            while (isRunning) {
+                try {
+                    String input = sc.nextLine();
+                    String[] inputArray = input.split(" ", 2);
+                    String firstWord = inputArray[0];
+                    String secondWord = "";
+                    if (inputArray.length == 2) {
+                        secondWord = inputArray[1];
                     }
-                    break;
-                case "list":
-                    if (inputArray.length == 1) {
-                        listTasks();
-                    } else {
-                        throw new DukeException("\t OOPS!!! I'm sorry, but I don't know what that means :-(");
+                    switch (firstWord) {
+                        case "bye":
+                            if (inputArray.length == 1) {
+                                exit();
+                                isRunning = false;
+                            } else {
+                                throw new DukeException("\t OOPS!!! I'm sorry, but I don't know what that means :-(");
+                            }
+                            break;
+                        case "list":
+                            if (inputArray.length == 1) {
+                                listTasks();
+                            } else {
+                                throw new DukeException("\t OOPS!!! I'm sorry, but I don't know what that means :-(");
+                            }
+                            break;
+                        case "mark":
+                            if (secondWord.length() == 0) {
+                                throw new DukeException("\t OOPS!!! You need to mark a number");
+                            }
+                            try {
+                                markAsDone(Integer.parseInt(inputArray[1]));
+                            } catch (NumberFormatException e) {
+                                throw new DukeException("\t OOPS!!! You need to mark a number");
+                            }
+                            break;
+                        case "unmark":
+                            if (secondWord.length() == 0) {
+                                throw new DukeException("\t OOPS!!! You need to unmark a number");
+                            }
+                            try {
+                                markAsNotDone(Integer.parseInt((inputArray[1])));
+                            } catch (NumberFormatException e) {
+                                throw new DukeException("\t OOPS!!! You need to unmark a number");
+                            }
+                            break;
+                        case "todo":
+                            addTask(secondWord, Commands.TODO);
+                            break;
+                        case "deadline":
+                            addTask(secondWord, Commands.DEADLINE);
+                            break;
+                        case "event":
+                            addTask(secondWord, Commands.EVENT);
+                            break;
+                        case "delete":
+                            if (secondWord.length() == 0) {
+                                throw new DukeException("\t OOPS!!! You need to delete a number");
+                            }
+                            try {
+                                deleteTask(Integer.parseInt(inputArray[1]));
+                            } catch (NumberFormatException e) {
+                                throw new DukeException("\t OOPS!!! You need to delete a number");
+                            }
+                            break;
+                        default:
+                            throw new DukeException("\t OOPS!!! I'm sorry, but I don't know what that means :-(");
                     }
-                    break;
-                case "mark":
-                    if (secondWord.length() == 0) {
-                        throw new DukeException("\t OOPS!!! You need to mark a number");
-                    }
-                    try {
-                        markAsDone(Integer.parseInt(inputArray[1]));
-                    } catch (NumberFormatException e) {
-                        throw new DukeException("\t OOPS!!! You need to mark a number");
-                    }
-                    break;
-                case "unmark":
-                    if (secondWord.length() == 0) {
-                        throw new DukeException("\t OOPS!!! You need to unmark a number");
-                    }
-                    try {
-                        markAsNotDone(Integer.parseInt((inputArray[1])));
-                    } catch (NumberFormatException e) {
-                        throw new DukeException("\t OOPS!!! You need to unmark a number");
-                    }
-                    break;
-                case "todo":
-                    addTask(secondWord, Commands.TODO);
-                    break;
-                case "deadline":
-                    addTask(secondWord, Commands.DEADLINE);
-                    break;
-                case "event":
-                    addTask(secondWord, Commands.EVENT);
-                    break;
-                case "delete":
-                    if (secondWord.length() == 0) {
-                        throw new DukeException("\t OOPS!!! You need to delete a number");
-                    }
-                    try {
-                        deleteTask(Integer.parseInt(inputArray[1]));
-                    } catch (NumberFormatException e) {
-                        throw new DukeException("\t OOPS!!! You need to delete a number");
-                    }
-                    break;
-                default:
-                    throw new DukeException("\t OOPS!!! I'm sorry, but I don't know what that means :-(");
-            }
+                } catch (DukeException e) {
+                    printLine();
+                    System.out.println(e);
+                    printLine();
+                }
         }
     }
 

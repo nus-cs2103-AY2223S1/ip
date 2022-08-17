@@ -8,4 +8,14 @@ mark 4
 list
 unmark 2
 list
+delete 3
+list
+mark 20
+delete 20
+boom shakalaka
+todo
+event
+deadline
+event abc
+deadline abc
 bye
