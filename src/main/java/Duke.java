@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class Duke {
 
@@ -26,8 +25,9 @@ public class Duke {
             } else if (input.startsWith("unmark")) {
                 int index = Integer.parseInt(input.substring(7)) - 1;
                 UserInterface.unmarkChild(index);
-            } else {
-                UserInterface.addToDo(input);
+            }
+            else {
+                UserInterface.addTodo(input);
             }
         }
     }

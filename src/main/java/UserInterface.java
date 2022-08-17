@@ -3,9 +3,11 @@ import java.util.ArrayList;
 public class UserInterface {
     private static ArrayList<Task> taskList = new ArrayList<>();
 
-    static void addToDo(String input) {
+    static void addTodo(String input) {
         TaskHandler.add(input, taskList);
     }
+
+
 
     static void showList() {
         for (int i = 1; i <= taskList.size(); i++) {
