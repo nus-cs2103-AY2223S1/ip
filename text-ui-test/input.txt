@@ -35,4 +35,11 @@ deadline /at mysterious
 deadline /by mysterious number 2
 deadline rush this please /by when? /option is ignored
 list
+delete 2
+delete 2
+list
+delete 0
+delete
+delete nan
+delete 24
 bye

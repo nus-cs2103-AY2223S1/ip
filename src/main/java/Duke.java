@@ -124,6 +124,18 @@ public class Duke {
             Duke.messagePrint(output);
         }));
 
+        commands.add(new PrefixCommandMatcher("delete", (str, map) -> {
+            getTask(str).ifPresent((task) -> {
+                list.remove(task);
+                String[] output = {
+                    "It seems you didn't need this task anymore, so I removed it:",
+                    task.toString(),
+                    String.format("You have %d tasks left.", list.size())
+                };
+                Duke.messagePrint(output);
+            });
+        }));
+
         // default command matcher - add to list
         commands.add(new CommandMatcher((str) -> true, (str) -> {
             Duke.messagePrint("(>.<')  I'm sorry, I don't really know what that means.");
