@@ -32,58 +32,48 @@ public class Tumu {
             command = sc.next().toLowerCase();
 
             printHorizontalLine();
-            switch (command) {
-                case END_CHAT_BOT_CMD:
-                    goodbye();
-                    break;
-                case LIST_USER_TEXT_CMD:
-                    listTasks();
-                    break;
-                case MARK_CMD:
-                    try {
-                        markTask(sc.nextInt());
-                    } catch (InputMismatchException e) {
-                        System.out.println("\tPlease mark a task by its list position (must be an integer)!");
-                        sc.nextLine(); //clear buffer
-                    } catch (TumuException e) {
-                        System.out.println(e);
-                    }
-                    break;
-                case UNMARK_CMD:
-                    try {
-                        unmarkTask(sc.nextInt());
-                    } catch (InputMismatchException e) {
-                        System.out.println("\tPlease unmark a task by its list position (must be an integer)!");
-                        sc.nextLine(); //clear buffer
-                    } catch (TumuException e) {
-                        System.out.println(e);
-                    }
-                    break;
-                case TODO_CMD:
-                    try {
+            try {
+                switch (command) {
+                    case END_CHAT_BOT_CMD:
+                        goodbye();
+                        break;
+                    case LIST_USER_TEXT_CMD:
+                        listTasks();
+                        break;
+                    case MARK_CMD:
+                        try {
+                            markTask(sc.nextInt());
+                        } catch (InputMismatchException e) {
+                            System.out.println("\tPlease mark a task by its list position (must be an integer)!");
+                            sc.nextLine(); //clear buffer
+                        }
+                        break;
+                    case UNMARK_CMD:
+                        try {
+                            unmarkTask(sc.nextInt());
+                        } catch (InputMismatchException e) {
+                            System.out.println("\tPlease unmark a task by its list position (must be an integer)!");
+                            sc.nextLine(); //clear buffer
+                        }
+                        break;
+                    case TODO_CMD:
                         addTodoTask(sc.nextLine().trim());
-                    } catch (TumuException e) {
-                        System.out.println(e);
-                    }
-                    break;
-                case DEADLINE_CMD:
-                    try {
+                        break;
+                    case DEADLINE_CMD:
                         addDeadlineTask(sc.nextLine().trim());
-                    } catch (TumuException e) {
-                        System.out.println(e);
-                    }
-                    break;
-                case EVENT_CMD:
-                    try {
+                        break;
+                    case EVENT_CMD:
                         addEventTask(sc.nextLine().trim());
-                    } catch (TumuException e) {
-                        System.out.println(e);
-                    }
-                    break;
-                default:
-                    //TODO
-                    addNormalTask(command.trim());
+                        break;
+                    default:
+                        //No commands are recognised.
+                        //throw new UnrecognisedCommandException(command.trim());
+                        addNormalTask(command.trim());
+                }
+            } catch (TumuException e) {
+                System.out.println(e);
             }
+
             printHorizontalLine();
 
         } while (!command.equalsIgnoreCase(END_CHAT_BOT_CMD));
