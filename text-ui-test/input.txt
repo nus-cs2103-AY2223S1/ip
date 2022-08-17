@@ -12,4 +12,7 @@ unmark
 todo
 deadline
 event
+delete invalidIndex
+delete 1
+delete
 bye

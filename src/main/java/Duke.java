@@ -16,7 +16,7 @@ public class Duke {
             input = sc.nextLine();
             String[] inputTokens = input.split(" ", 2); // Delimit over " " to extract first keyword
 
-            // Handles Keyword Mapping
+            /* Handles Keyword Mapping */
             String keywordInput = inputTokens[0];
             Keyword keyword;
             try {
@@ -28,47 +28,47 @@ public class Duke {
                 continue;
             }
 
-            // Exits Loop
+            /* Exits Loop */
             if (keyword == Keyword.BYE) {
                 sayGoodbye();
                 break;
             }
 
-            // Handles marking tasks as done or not done
+            /* Handles marking tasks as done or not done */
             if (keyword ==  keyword.MARK || keyword == Keyword.UNMARK) {
-                int index;
-                try {
-                    index = Integer.parseInt(inputTokens[1]); // Throw NFE if invalid int
-                    Task task = taskList.get(index - 1); // Throws IOOBE if invalid index
+               try {
+                   String indexString = inputTokens[1]; // Throws AIOOBE
+                   markUnmarkTask(taskList, indexString, keyword);
+               }
+               catch (ArrayIndexOutOfBoundsException e) {
+                   System.out.println("\tRemember to add a Task Number!");
+               }
+               finally {
+                   continue;
+               }
+            }
 
-                    // Mark as done or not done
-                    if (keyword == Keyword.MARK) {
-                        task.markAsDone();
-                        String taskListString = String.format("\tGood Job! The following task " +
-                                "has been marked as done:\n\t%s", task);
-                        System.out.println(taskListString);
-                    } else {
-                        task.markAsNotdone();
-                        String taskListString = String.format("\tOkay! The following task " +
-                                "has been marked as not done:\n\t%s", task);
-                        System.out.println(taskListString);
-                    }
+            /* Handle deletion of tasks */
+            if (keyword == Keyword.DELETE) {
+                try {
+                    String indexString = inputTokens[1]; // Throws AIOOBE
+                    deleteTask(taskList, indexString);
                 }
-                catch (NumberFormatException | IndexOutOfBoundsException | NullPointerException e) {
-                    System.out.println("\tSorry, that Task Number doesn't look right...");
+                catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.println("\tRemember to add a Task Number!");
                 }
                 finally {
                     continue;
                 }
             }
 
-            // Outputs Task List
+            /* Handles outputting of Task List */
             if (keyword == Keyword.LIST) {
                 displayTaskList(taskList);
                 continue;
             }
 
-            // Handles creation of new tasks
+            /* Handles creation of new tasks */
             String content;
 
             // invalid content check
@@ -124,24 +124,32 @@ public class Duke {
                         break;
                     }
                 }
-                default : {
-                    System.out.println("\tSorry, I didn't understand that keyword");
-                }
             }
 
-            // Handles output
+            /* Handles success message output */
             successMessage(taskAdded, taskList.size());
         }
     }
 
+    /**
+     * Outputs greeting message to user.
+     */
     private static void greetUser(){
         System.out.println("\tHey there! I'm Tutter! \n\tHow can I help?");
     }
 
+    /**
+     * Outputs goodbye message to user.
+     */
     private static void sayGoodbye() {
         System.out.println("\tGoodbye!");
     }
 
+    /**
+     * Outputs success message to user when task is added successfully.
+     * @param task Task object that was added to the task list.
+     * @param size Number of tasks in the task list.
+     */
     private static void successMessage(Task task, int size) {
         if (task != null) {
             String output = String.format("\tYou have added \"%s\" into your Task List!\n" +
@@ -150,6 +158,10 @@ public class Duke {
         }
     }
 
+    /**
+     * Outputs all tasks in task list.
+     * @param taskList Task list containing tasks to be outputted.
+     */
     private static void displayTaskList(ArrayList<Task> taskList) {
         int i = 1;
         for (Task t : taskList) {
@@ -162,6 +174,55 @@ public class Duke {
             String taskListString = String.format("\t%d. %s", i, t);
             System.out.println(taskListString);
             i++;
+        }
+    }
+
+    /**
+     * Set task status of task at given index of task list as completed or not completed.
+     * @param taskList Task list containing task to be marked.
+     * @param indexString String input containing index of task to be marked.
+     * @param keyword Keyword value to determine whether to mark or unmark the task.
+     */
+    private static void markUnmarkTask(ArrayList<Task> taskList, String indexString, Keyword keyword) {
+        try {
+            int index = Integer.parseInt(indexString); // Throw NFE if invalid int
+            Task task = taskList.get(index - 1); // Throws IOOBE if invalid index
+
+            // Mark as done or not done
+            if (keyword == Keyword.MARK) {
+                task.markAsDone();
+                String taskListString = String.format("\tGood Job! The following task " +
+                        "has been marked as done:\n\t%s", task);
+                System.out.println(taskListString);
+            } else {
+                task.markAsNotdone();
+                String taskListString = String.format("\tOkay! The following task " +
+                        "has been marked as not done:\n\t%s", task);
+                System.out.println(taskListString);
+            }
+        }
+        catch (NumberFormatException | IndexOutOfBoundsException e) {
+            System.out.println("\tSorry, that Task Number doesn't look right...");
+        }
+    }
+
+    /**
+     * Deletes task at given index from task list.
+     * @param taskList Task list containing task to be deleted.
+     * @param indexString String input containing index of task to be deleted.
+     */
+    private static void deleteTask(ArrayList<Task> taskList, String indexString) {
+        try {
+            int index = Integer.parseInt(indexString); // Throw NFE if invalid int
+            Task task = taskList.get(index - 1); // Throws IOOBE if invalid index
+            taskList.remove(index - 1);
+
+            String output = String.format("\tYou have deleted \"%s\" into your Task List!\n" +
+                    "\tYou have %d tasks in your Task List!", task, taskList.size());
+            System.out.println(output);
+        }
+        catch (NumberFormatException | IndexOutOfBoundsException e) {
+            System.out.println("\tSorry, that Task Number doesn't look right...");
         }
     }
 }

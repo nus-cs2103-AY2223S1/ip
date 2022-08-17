@@ -1,6 +1,6 @@
 	Hey there! I'm Tutter!
 	How can I help?
-	 Sorry, I don't understand...
+	Sorry, I don't understand...
 	You have added "[T][ ] task" into your Task List!
 	You have 1 tasks in your Task List!
 	You have added "[D][ ] task  (by: xxx)" into your Task List!
@@ -13,12 +13,16 @@
 	Good Job! The following task has been marked as done:
 	[T][X] task
 	Sorry, that Task Number doesn't look right...
-	Sorry, that Task Number doesn't look right...
+	Remember to add a Task Number!
 	Okay! The following task has been marked as not done:
 	[T][ ] task
 	Sorry, that Task Number doesn't look right...
+	Remember to add a Task Number!
+	Hey! Did you forget to add a task name?
+	Hey! Did you forget to add a task name?
+	Hey! Did you forget to add a task name?
 	Sorry, that Task Number doesn't look right...
-	Hey! Did you forget to add a task name?
-	Hey! Did you forget to add a task name?
-	Hey! Did you forget to add a task name?
+	You have deleted "[T][ ] task" into your Task List!
+	You have 2 tasks in your Task List!
+	Remember to add a Task Number!
 	Goodbye!
