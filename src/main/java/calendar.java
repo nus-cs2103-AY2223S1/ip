@@ -9,7 +9,7 @@ public class calendar {
 
     public int add_entry(calendar_entry to_add){
         this.cache.add(to_add);
-        return 0;
+        return 200;
     }
 
     public calendar_entry get_entry(int index){

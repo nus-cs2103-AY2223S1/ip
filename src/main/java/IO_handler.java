@@ -20,8 +20,9 @@ public class IO_handler {
         this.out=System.out;
     }
 
-    public IO_handler(InputStream stream){
+    public IO_handler(InputStream stream, PrintStream ostream){
         this.sc=new Scanner(stream);
+        this.out=ostream;
     }
 
     /**
@@ -45,12 +46,24 @@ public class IO_handler {
                 "=====================================================\n\n";
     }
 
+    public static String generate_help_msg(){
+        return "Currently the following commands are supported:\n"+
+                "    todo {title}\n"+
+                "    deadline {title} /by {time}\n"+
+                "    event {title} /at {time start} - {time end}\n"+
+                "    list\n"+
+                "    ls\n"+
+                "    mark {entry index}\n"+
+                "    unmark {entry index}\n"+
+                "    help\n";
+    }
+
     public String get_greeting(){
         String result=get_logo();
 
         result=result+"Hello, this is Olivia, your personal assistant\n";
         result=result+"Hallo, ich bin Olivia, Ihre persönliche Assistentin\n";
-
+        result=result+"    For help message on how to communicate with me, type help\n";
         return generate_section(result);
     }
 
@@ -74,7 +87,7 @@ public class IO_handler {
     }
 
     public void print_status_msg(int status_code){
-        if (status_code==400){
+        if (status_code==400 || status_code==500){
             cout(generate_section("Sorry, I don't seem to understand you.\nMaybe there is a syntax error or the command is unsupported?\n"));
         }
         else if (status_code==200 || status_code==208){
