@@ -1,8 +1,5 @@
 import java.time.DateTimeException;
-import java.time.LocalDateTime;
 import java.time.Month;
-import java.time.Year;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -82,7 +79,11 @@ public class Duke {
                    break;
 
                 default:
-                   addToCheckList(input);
+                    try {
+                        addToCheckList(input);
+                    } catch (InvalidJobException ex) {
+                        printInStyle(ex.getMessage());
+                    }
             }
             input = askForInput("").split(" ");
         }
@@ -150,44 +151,65 @@ public class Duke {
         }
     }
 
-    private static void addToCheckList(String[] input) {
+    private static void addToCheckList(String[] input) throws InvalidJobException{
         Job job;
         String[][] nameAndDate;
+        String name;
         switch (input[0]) {
             case "todo":
-                job = new ToDo(Arrays.stream(input).skip(1).collect(Collectors.joining(" ")));
+                try {
+                    job = new ToDo(concatName(input));
+                } catch (JobCreationException ex) {
+                    printInStyle(ex.getMessage());
+                    return;
+                }
                 break;
+
             case "deadline":
                 nameAndDate = splitStringArray(input, "/by");
                 if (nameAndDate.length != 2) {
-                    printInStyle(String.format("Please use /by to set a time"));
+                    printInStyle("Please use /by to set a time");
                     return;
                 }
 
-                job = new Deadline(Arrays.stream(nameAndDate[0]).skip(1).collect(Collectors.joining(" ")),
-                       String.join(" ", nameAndDate[1]));
+                try {
+                    job = new Deadline(concatName(nameAndDate[0]), String.join(" ", nameAndDate[1]));
+                } catch (JobCreationException ex) {
+                    printInStyle(ex.getMessage());
+                    return;
+                }
                 break;
+
             case "event":
                 nameAndDate = splitStringArray(input, "/at");
                 if (nameAndDate.length != 2) {
-                    printInStyle(String.format("Please use /at to set a time"));
+                    printInStyle("Please use /at to set a time");
                     return;
                 }
 
-                job = new Event(Arrays.stream(nameAndDate[0]).skip(1).collect(Collectors.joining(" ")),
-                        String.join(" ", nameAndDate[1]));
+                try {
+                    job = new Event(concatName(nameAndDate[0]), String.join(" ", nameAndDate[1]));
+                } catch (JobCreationException ex) {
+                    printInStyle(ex.getMessage());
+                    return;
+                }
                 break;
             default:
-                printInStyle("Please also specify what kind of job you want to record - " +
-                        "todo, deadline or event!");
-                return;
-
+                throw new InvalidJobException();
         }
         toDoList.add(job);
         printInStyle(
                 "Got it. I've added this task:",
                 job.toString(),
                 String.format("Now you have %d tasks in the list", toDoList.size()));
+    }
+
+    private static String concatName(String[] input) throws JobCreationException{
+        String name = Arrays.stream(input).skip(1).collect(Collectors.joining(" "));
+        if (name.equals("")) {
+            throw new JobCreationException(input[0]);
+        }
+        return name;
     }
 
     private static String[][] splitStringArray(String[] input, String delimiter) {
