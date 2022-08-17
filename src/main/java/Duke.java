@@ -1,32 +1,6 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
-
-class Task {
-
-    private String taskname;
-    private boolean isDone;
-
-    public Task(String taskname) {
-        this.taskname = taskname;
-        this.isDone = false;
-    }
-
-    public void markDone() {
-        this.isDone = true;
-    }
-
-    public void markNotDone() {
-        this.isDone = false;
-    }
-
-    @Override
-    public String toString() {
-        String status = isDone ? "X" : " ";
-        return "[" + status + "]" + " " + this.taskname;
-    }
-
-
-}
 
 public class Duke {
     public static void main(String[] args) {
@@ -42,8 +16,8 @@ public class Duke {
 
         Scanner sc = new Scanner(System.in);
 
-        String str = sc.nextLine();
-
+        String[] strArray = sc.nextLine().split(" ");
+        String str = strArray[0];
         ArrayList<Task> arrayList = new ArrayList<>();
 
         while (!str.equals("bye")) {
@@ -53,33 +27,67 @@ public class Duke {
                     int j = i + 1;
                     System.out.println(j + "." + arrayList.get(i));
                 }
-            } else {
+            } else if (str.equals("mark")) {
+                int i = Integer.parseInt(strArray[1]) - 1;
+                arrayList.get(i).markDone();
 
-                String[] strArray = str.split(" ");
+                System.out.println("Nice! You actually did something!:");
+                System.out.println(arrayList.get(i));
+            } else if (str.equals("unmark")) {
+                int i = Integer.parseInt(strArray[1]) - 1;
+                arrayList.get(i).markNotDone();
 
-                if (strArray[0].equals("mark")) {
-                    int i = Integer.parseInt(strArray[1]) - 1;
-                    arrayList.get(i).markDone();
+                System.out.println("OK, I've marked this task as not done yet:");
+                System.out.println(arrayList.get(i));
+            } else if (str.equals("todo") || str.equals("deadline") || str.equals("event")) {
 
-                    System.out.println("Nice! I've marked this task as done:");
-                    System.out.println(arrayList.get(i));
+                String taskname = "";
+                String time = "";
+                int i = 1;
 
-                } else if (strArray[0].equals("unmark")) {
-                    int i = Integer.parseInt(strArray[1]) - 1;
-                    arrayList.get(i).markNotDone();
+                while (i < strArray.length && strArray[i].charAt(0) != '/') {
+                    taskname += strArray[i] + " ";
+                    i++;
+                }
 
-                    System.out.println("OK, I've marked this task as not done yet:");
-                    System.out.println(arrayList.get(i));
+                while (i < strArray.length) { //means now strArray[i] == /by or /at
+
+                    if (strArray[i].charAt(0) != '/') {
+                        time += strArray[i] + " ";
+                    }
+
+                    i++;
+                }
+
+                if (str.equals("todo")) {
+                    Task todo = new Todo(taskname.trim());
+                    arrayList.add(todo);
+                    System.out.println("Got it. I've added this task:");
+                    System.out.println(todo);
+                    System.out.println("Now you have " + arrayList.size() + " task(s) in the list.");
+
+                } else if (str.equals("deadline")) {
+                    Task deadline = new Deadline(taskname.trim(), time.trim());
+                    arrayList.add(deadline);
+                    System.out.println("Got it. I've added this task:");
+                    System.out.println(deadline);
+                    System.out.println("Now you have " + arrayList.size() + " task(s) in the list.");
 
                 } else {
-                    arrayList.add(new Task(str));
-                    System.out.println("added: " + str);
+                    Task event = new Event(taskname.trim(), time.trim());
+                    arrayList.add(event);
+                    System.out.println("Got it. I've added this task:");
+                    System.out.println(event);
+                    System.out.println("Now you have " + arrayList.size() + " task(s) in the list.");
                 }
+            } else {
+                System.out.println("Please enter a valid input");
             }
-            str = sc.nextLine();
+
+            strArray = sc.nextLine().split(" ");
+            str = strArray[0];
         }
 
         System.out.println("Bye. Hope to see you again soon!");
-
     }
 }
