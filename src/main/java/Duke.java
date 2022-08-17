@@ -1,6 +1,10 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
+    private final static List<String> taskList = new ArrayList<>();
+
     public static void main(String[] args) {
         final String LOGO = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -18,7 +22,6 @@ public class Duke {
 
         Scanner sc = new Scanner(System.in);
 
-
         while (sc.hasNextLine()) {
             String command = sc.nextLine();
 
@@ -28,6 +31,7 @@ public class Duke {
                 break;
             }
 
+            // Execute the command
             executeCommand(command);
         }
 
@@ -44,11 +48,27 @@ public class Duke {
     }
 
     /**
-     * Prints out the command entered by users
+     * Execute the command entered by user
      *
      * @param command The specified command
      */
     public static void executeCommand(String command) {
-        printTextWithDivider(command+"\n");
+        switch (command) {
+            // List out all abilities
+            case ("list"): {
+                StringBuilder str = new StringBuilder();
+                for (int i = 0; i < taskList.size(); i++) {
+                    str.append(i + 1 + ". " + taskList.get(i) + "\n");
+                }
+                printTextWithDivider(str.toString());
+                break;
+            }
+            default: {
+                // Add ability to task list
+                taskList.add(command);
+                String addAbilityMessage = "added: " + command + "\n";
+                printTextWithDivider(addAbilityMessage);
+            }
+        }
     }
 }
