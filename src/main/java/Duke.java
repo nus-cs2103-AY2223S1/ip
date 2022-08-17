@@ -47,7 +47,7 @@ public class Duke {
      * Checks if a given string value represents an integer.
      *
      * @param s The specified string value to check.
-     * @return true if the string represents is an integer.
+     * @return true if the string represents an integer.
      */
     private static boolean isInteger(String s) {
         try {
