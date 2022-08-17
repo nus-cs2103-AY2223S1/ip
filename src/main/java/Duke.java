@@ -9,13 +9,13 @@ public class Duke {
     private static final String INTRODUCE_MESSAGE = "Hello! I'm Duke";
     private static final String ASK_MESSAGE = "What can I do for you?";
     private static final String EXIT_MESSAGE = "Bye. Hope to see you again soon!";
-
+    
     /**
      * Print messages passed into the parameter
      *
      * @param message Message to be logged
      */
-    public void printMessage(String message) {
+    private void printMessage(String message) {
         System.out.println(message);
     }
 
