@@ -55,63 +55,71 @@ public class Duke {
         System.out.println(Duke.line);
     }
 
+    public enum Keyword
+    {
+        EXIT("bye"), LIST("list"), TODO("todo"), DEADLINE("deadline"), EVENT("event"), DELETE("delete"), MARK("mark"),
+        UNMARK("unmark");
+
+        private String keyword;
+
+        private Keyword(String keyword) {
+            this.keyword = keyword;
+        }
+
+        public String getKeyword() {
+            return this.keyword;
+        }
+    }
+
     private static boolean processUserInput(String userInput, ArrayList<Task> taskList) throws DukeException{
         String command;
         String taskDetails;
 
         String exitMessage = "Bye. Hope to see you again soon!";
-        String exitKeyword = "bye";
-        String listKeyword = "list";
-        String todoKeyword = "todo";
-        String deadlineKeyword = "deadline";
-        String eventKeyword = "event";
-        String deleteKeyword = "delete";
-        String markKeyword = "mark";
-        String unmarkKeyword = "unmark";
 
         if (userInput.isEmpty()) {
             throw new DukeException("☹ OOPS!!! The user input cannot be empty.");
         }
         command = userInput.split(" ")[0];
-        if (command.equals(exitKeyword)) {
+        if (command.equals(Keyword.EXIT.getKeyword())) {
             printResponse(exitMessage);
             return true;
-        } else if (command.equals(listKeyword)) {
+        } else if (command.equals(Keyword.LIST.getKeyword())) {
             printTaskList(taskList);
-        } else if (command.equals(markKeyword) || command.equals(unmarkKeyword)) {
+        } else if (command.equals(Keyword.MARK.getKeyword()) || command.equals(Keyword.UNMARK.getKeyword())) {
             if (userInput.split(" ").length == 1) {
                 throw new DukeException("☹ OOPS!!! The mark/unmark command cannot have a missing index.");
             }
             String index = userInput.split(" ")[1];
-            updateAndPrintTaskStatus(taskList, Integer.parseInt(index), (command.equals(markKeyword) ? true : false));
+            updateAndPrintTaskStatus(taskList, Integer.parseInt(index), (command.equals(Keyword.MARK.getKeyword()) ? true : false));
         } else {
             Task task;
             if (userInput.split(" ", 2).length == 1) {
-                if (command.equals(todoKeyword)) {
+                if (command.equals(Keyword.TODO.getKeyword())) {
                     throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
-                } else if (command.equals(eventKeyword)) {
+                } else if (command.equals(Keyword.EVENT.getKeyword())) {
                     throw new DukeException("☹ OOPS!!! The description of a event cannot be empty.");
-                } else if (command.equals(deadlineKeyword)) {
+                } else if (command.equals(Keyword.DEADLINE.getKeyword())) {
                     throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
-                } else if (command.equals(deleteKeyword)) {
+                } else if (command.equals(Keyword.DEADLINE.getKeyword())) {
                     throw new DukeException("☹ OOPS!!! The delete command cannot have a missing index.");
                 } else {
                     throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
             }
             taskDetails = userInput.split(" ", 2)[1];
-            if (command.equals(todoKeyword)) {
+            if (command.equals(Keyword.TODO.getKeyword())) {
                 task = new Todo(taskDetails);
                 addAndPrintTask(taskList, task);
-            } else if (command.equals(eventKeyword)) {
+            } else if (command.equals(Keyword.EVENT.getKeyword())) {
                 task = new Event(taskDetails.split("/")[0], taskDetails.split("/")[1].split(" ", 2)[1]);
                 addAndPrintTask(taskList, task);
-            } else if (command.equals(deadlineKeyword)) {
+            } else if (command.equals(Keyword.DEADLINE.getKeyword())) {
                 task = new Deadline(taskDetails.split("/")[0], taskDetails.split("/")[1].split(" ", 2)[1]);
                 addAndPrintTask(taskList, task);
-            }  else if (command.equals(deleteKeyword)) {
+            }  else if (command.equals(Keyword.DELETE.getKeyword())) {
                 int taskIndex = Integer.parseInt(taskDetails);
-                if (taskIndex > taskList.size()) {
+                if (taskIndex > taskList.size()  || taskIndex == 0) {
                     throw new DukeException("☹ OOPS!!! The task index is out of range");
                 }
                 deleteAndPrintTask(taskList, taskIndex);
