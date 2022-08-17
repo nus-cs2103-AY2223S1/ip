@@ -1,4 +1,4 @@
-public  class Task {
+public class Task {
     protected String name;
     protected boolean isDone;
     Task(String name){

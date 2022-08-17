@@ -8,6 +8,6 @@ public class Events extends Task{
     }
     @Override
     public String toString() {
-        return this.type + super.getStatus() + "(" + this.time + ")";
+        return this.type + super.getStatus() + " (" + this.time + ")";
     }
 }

@@ -17,7 +17,11 @@ public class Duke {
         System.out.println("Got it. I've added this task:");
         listOfTask.add(task);
         System.out.println(task.toString());
-        System.out.println("Now you have " + listOfTask.size() + " tasks in the list.");
+        if (listOfTask.size() == 1){
+            System.out.println("Now you have 1 task in the list.");
+        } else {
+            System.out.println("Now you have " + listOfTask.size() + " tasks in the list.");
+        }
     }
 
     static void markHelper(String s) {
@@ -45,33 +49,48 @@ public class Duke {
     }
 
 
-    public static void main(String[] args) {
-        System.out.println("Hello I'm Duke\nWhat can I do for you?");
+    public static void main(String[] args) throws DukeException {
+       System.out.println("Hello I'm Duke\nWhat can I do for you?");
         Scanner input = new Scanner(System.in);
-        while (input.hasNext()) {
-            String s = input.nextLine();
-            int index = s.indexOf("/");
-            if (s.equals("bye")) {
-                break;
-            } else if (s.equals("list")) {
-                showList();
-            } else if (s.length() > 5 && s.substring(0, 4).equals("mark")) {
-                markHelper(s);
-            } else if (s.length() > 7 && s.substring(0, 6).equals("unmark")) {
-                unmarkHelper(s);
-            } else if (s.length() > 8 && s.substring(0,8).equals("deadline")) {
-                Task t = new Deadlines(s.substring(9, index - 1),s.substring(index + 1));
-                addList(t);
-            } else if (s.length() > 5 && s.substring(0,5).equals("event")){
-                Task t = new Events(s.substring(6,index - 1),s.substring(index + 1));
-                addList(t);
-            } else if (s.length() > 4 && s.substring(0,4).equals("todo")){
-                Task t = new ToDos(s.substring(5));
-                addList(t);
-            } else if (s.length() > 7 && s.substring(0,6).equals("delete")) {
-                delete(s)   ;
+            while (input.hasNext()) {
+                try {
+                    String s = input.nextLine();
+                    int index = s.indexOf("/");
+                    if (s.equals("bye")) {
+                        break;
+                    } else if (s.equals("list")) {
+                        showList();
+                    } else if (s.length() > 5 && s.substring(0, 4).equals("mark")) {
+                        markHelper(s);
+                    } else if (s.length() > 7 && s.substring(0, 6).equals("unmark")) {
+                        unmarkHelper(s);
+                    } else if (s.length() >= 8 && s.substring(0, 8).equals("deadline")) {
+                        if(s.length() == 8){
+                            throw new DukeDeadlineEmptyException();
+                        }
+                        Task t = new Deadlines(s.substring(9, index - 1), s.substring(index + 1));
+                        addList(t);
+                    } else if (s.length() >= 5 && s.substring(0, 5).equals("event")) {
+                        if(s.length() == 5){
+                            throw new DukeEventEmptyException();
+                        }
+                        Task t = new Events(s.substring(6, index - 1), s.substring(index + 1));
+                        addList(t);
+                    } else if (s.length() >= 4 && s.substring(0, 4).equals("todo")) {
+                        if(s.length() == 4){
+                            throw new DukeTodoEmptyException();
+                        }
+                        Task t = new ToDos(s.substring(5));
+                        addList(t);
+                    } else if (s.length() > 7 && s.substring(0, 6).equals("delete")) {
+                        delete(s);
+                    } else {
+                        throw new DukeUnknownWordException();
+                    }
+                } catch (DukeException e) {
+                    System.out.println(e.toString());
+                }
             }
-        }
         System.out.println("Bye. Hope to see you again soon!");
     }
 }

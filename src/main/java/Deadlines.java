@@ -8,6 +8,6 @@ public class Deadlines extends Task{
     }
     @Override
     public String toString() {
-        return this.type + super.getStatus() + "(" + this.by + ")";
+        return this.type + super.getStatus() + " (" + this.by + ")";
     }
 }

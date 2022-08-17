@@ -1,7 +1,24 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
+Hello I'm Duke
+What can I do for you?
+Got it. I've added this task:
+[T][] clean room
+Now you have 1 task in the list.
+Got it. I've added this task:
+[D][] project (by June 6th)
+Now you have 2 tasks in the list.
+Got it. I've added this task:
+[E][] meeting (at Aug 6th 2-3pm)
+Now you have 3 tasks in the list.
+Here are the tasks in your list:
+1.[T][] clean room
+2.[D][] project (by June 6th)
+3.[E][] meeting (at Aug 6th 2-3pm)
+Nice! I've marked this task as done:
+[T][X] clean room
+Here are the tasks in your list:
+1.[T][X] clean room
+2.[D][] project (by June 6th)
+3.[E][] meeting (at Aug 6th 2-3pm)
+OK, I've marked this task as not done yet:
+[T][] clean room
+Bye. Hope to see you again soon!
