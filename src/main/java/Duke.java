@@ -67,6 +67,42 @@ public class Duke {
         }
     }
 
+    private static class IllegalIndexException extends Exception {
+
+        public IllegalIndexException(String message) {
+            super(message);
+        }
+
+        @Override
+        public String toString() {
+            return getMessage();
+        }
+
+
+    }
+
+    private static class EmptyDescriptionException extends Exception {
+        public EmptyDescriptionException(String message) {
+           super(message);
+        }
+
+        @Override
+        public String toString() {
+            return getMessage();
+        }
+    }
+
+    private static class InvalidTaskException extends Exception {
+        public InvalidTaskException(String message) {
+            super(message);
+        }
+
+        @Override
+        public String toString() {
+            return getMessage();
+        }
+    }
+
     //  initialise task list and counter
     private static Task[] list = new Task[100];
     private static int counter = 0;
@@ -91,10 +127,10 @@ public class Duke {
         }
     }
 
-    public static void mark(int index) {
+    public static void mark (int index) throws IllegalIndexException {
         //  error checking
         if (index < 0 || list[index] == null) {
-            System.out.println("Invalid task!");
+            throw new IllegalIndexException("Index invalid!");
         } else {
         list[index].setDone();
         System.out.println("Nice! I've marked this task as done:");
@@ -102,10 +138,10 @@ public class Duke {
         }
     }
 
-    public static void unmark(int index) {
+    public static void unmark(int index) throws IllegalIndexException {
         //  error checking
         if (index < 0 || list[index] == null) {
-            System.out.println("Invalid task!");
+            throw new IllegalIndexException("Index invalid!");
         } else {
         list[index].setNotDone();
         System.out.println("OK, I've marked this task as not done yet:");
@@ -140,31 +176,52 @@ public class Duke {
             }
             //  Marking
             if ((str.length() >= 6) && (str.substring(0, 4).equals("mark"))) {
-                String remainder = str.substring(5);
-                int index = Integer.valueOf(remainder) - 1;
-                mark(index);
-                continue;
+                try {
+                    String remainder = str.substring(5);
+                    int index = Integer.valueOf(remainder) - 1;
+                    mark(index);
+                    continue;
+                } catch (IllegalIndexException e) {
+                    System.out.println(e);
+                    continue;
+                }
             }
             //  Unmarking
             if ((str.length() >= 8) && (str.substring(0, 6).equals("unmark"))) {
-                String remainder = str.substring(7);
-                int index = Integer.valueOf(remainder) - 1;
-                unmark(index);
-                continue;
+                try {
+                    String remainder = str.substring(7);
+                    int index = Integer.valueOf(remainder) - 1;
+                    unmark(index);
+                    continue;
+                } catch (IllegalIndexException e) {
+                    System.out.println(e);
+                    continue;
+                }
             }
             //  Add Todo Task
             if (str.length() >= 4 && str.substring(0, 4).equals("todo")) {
-                String remainder = str.substring(5);
-                addTask(new ToDo(remainder));
+                try {
+                    String remainder = str.substring(5);
+                    if (remainder.equals("")) {
+                        throw new EmptyDescriptionException("OOPS!!! The description of a todo cannot be empty.");
+                    }
+                    addTask(new ToDo(remainder));
+                    continue;
+                } catch (EmptyDescriptionException e) {
+                    System.out.println(e);
+                    continue;
+                }
             }
             //  Add Deadline Task
             if (str.length() >= 8 && str.substring(0, 8).equals("deadline")) {
-                String remainder = str.substring(9);
-                String[] arr = remainder.split("/by");
-                String description = arr[0];
-                String deadline = arr[1];
-                addTask(new Deadline(description, deadline));
+                    String remainder = str.substring(9);
+                    String[] arr = remainder.split("/by");
+                    String description = arr[0];
+                    String deadline = arr[1];
+                    addTask(new Deadline(description, deadline));
+                    continue;
             }
+
             //  Add Event Task
             if (str.length() >= 5 && str.substring(0, 5).equals("event")) {
                 String remainder = str.substring(6);
@@ -172,6 +229,13 @@ public class Duke {
                 String description = arr[0];
                 String time = arr[1];
                 addTask(new Event(description, time));
+                continue;
+            }
+
+            try {
+                throw new InvalidTaskException("OOPS!!! I'm sorry, but I don't know what that means :-(");
+            } catch (InvalidTaskException e) {
+                System.out.println(e);
             }
         }
     }
