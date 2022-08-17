@@ -1,9 +1,7 @@
 package models.task;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Manages state for Tasks and exposes methods for CRUD. Injected into Commands that require usage.
@@ -25,7 +23,7 @@ public class TaskModel {
     }
 
     /**
-     * @return a Collection of all the Tasks at the current time
+     * @return a List of all the Tasks at the current time
      */
     public List<Task> getAllTasks() {
         return tasks;
