@@ -1,10 +1,13 @@
 todo read book
+todo
 deadline return book /by June 6th
 fake command
 event project meeting /at Aug 6th 2-4pm
 todo join sport club
 mark 1
+mark foo
 mark 4
+unmark 23
 todo borrow book
 list
 deadline return book /by Sunday

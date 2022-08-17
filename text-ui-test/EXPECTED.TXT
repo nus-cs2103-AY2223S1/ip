@@ -1,9 +1,11 @@
-Hello! I'm Duke
+Hello! I'm Duke.
 What can I do for you?
 
 Got it. I've added this task:
   [T][ ] read book
 Now you have 1 tasks in the list.
+
+The description of a todo cannot be empty.
 
 Got it. I've added this task:
   [D][ ] return book (by: June 6th)
@@ -22,8 +24,12 @@ Now you have 4 tasks in the list.
 Nice! I've marked this task as done:
   [T][X] read book
 
+foo is not a valid task index
+
 Nice! I've marked this task as done:
   [T][X] join sport club
+
+23 is not a valid task index
 
 Got it. I've added this task:
   [T][ ] borrow book
