@@ -2,15 +2,7 @@ import java.util.Scanner;
 
 public class Duke {
 
-    public static void echo() {
-
-        Scanner scanner = new Scanner(System.in);
-
-        while (true) {
-            String input = scanner.nextLine();
-            System.out.println(input);
-        }
-    }
+    private static final TaskList tasks = new TaskList();
 
     public static void main(String[] args) {
 //        String logo = " ____        _        \n"
@@ -20,6 +12,19 @@ public class Duke {
 //                + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello! I'm Dave! What can I do for you?");
 
-        echo();
+        Scanner scanner = new Scanner(System.in);
+        boolean run = true;
+        while (run) {
+            String input = scanner.nextLine();
+            if (input.equals("bye")) {
+                System.out.println("Bye. Hope to see you again soon!");
+                run = false;
+            } else if (input.equals("list")) {
+                System.out.println(tasks);
+            } else {
+                Task newtask = new Task(input);
+                System.out.println(tasks.add(newtask));
+            }
+        }
     }
 }
