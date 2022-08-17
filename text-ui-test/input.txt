@@ -13,4 +13,12 @@ unmark 1
 unmark 1
 mark 4
 list
+blah
+todo
+event
+event do tasks
+deadline
+deadline do tasks
+list a
+bye 2
 bye

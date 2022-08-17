@@ -19,14 +19,14 @@ public class Duke {
                     break;
                 case "bye":
                     if (parsedUserResponse.length > 1) {
-                        System.out.println("Invalid number of arguments");
+                        System.out.println("    " + "Invalid number of arguments, only one required");
                     } else {
                         dukeOutput = "    " + "Bye. Hope to see you again soon!";
                     }
                     break;
                 case "list":
                     if (parsedUserResponse.length > 1) {
-                        System.out.println("Invalid number of arguments");
+                        System.out.println("    " + "Invalid number of arguments, only one required");
                     } else {
                         dukeOutput = "    " + "Here are the tasks in your list:\n";
                         for (int i = 0; i < userTasks.size(); i++) {
@@ -40,30 +40,38 @@ public class Duke {
                         System.out.println("Invalid number of arguments");
                     } else {
                         Integer taskNumber = Integer.parseInt(userResponse.replaceAll("[^0-9]", "")) - 1;
-                        Task userTask = userTasks.get(taskNumber);
-                        if (userTask.isCompleted()) {
-                            dukeOutput = "    " + "This task is already marked as done.\n";
-                        } else {
-                            userTask.setCompleted();
-                            dukeOutput = "    " + "Nice! I've marked this task as done:\n"
-                                    + "      " + userTask + "\n";
+                        try {
+                            Task userTask = userTasks.get(taskNumber);
+                            if (userTask.isCompleted()) {
+                                dukeOutput = "    " + "This task is already marked as done.\n";
+                            } else {
+                                userTask.setCompleted();
+                                dukeOutput = "    " + "Nice! I've marked this task as done:\n"
+                                        + "      " + userTask + "\n";
+                            }
+                        } catch (ArrayIndexOutOfBoundsException e) {
+                            dukeOutput = "    " + "No such task exists.\n";
                         }
                     }
+
                     break;
                 case "unmark":
                     if (parsedUserResponse.length != 2) {
                         System.out.println("Invalid number of arguments");
                     } else {
                         Integer taskNumber = Integer.parseInt(userResponse.replaceAll("[^0-9]", "")) - 1;
-                        Task userTask = userTasks.get(taskNumber);
-                        if (!userTask.isCompleted()) {
-                            dukeOutput = "    " + "This task is already marked as not done yet.\n";
-                        } else {
-                            userTask.setUncompleted();
-                            dukeOutput = "    " + "OK, I've marked this task as not done yet:\n"
-                                    + "      " + userTask + "\n";
+                        try {
+                            Task userTask = userTasks.get(taskNumber);
+                            if (!userTask.isCompleted()) {
+                                dukeOutput = "    " + "This task is already marked as not done yet.\n";
+                            } else {
+                                userTask.setUncompleted();
+                                dukeOutput = "    " + "OK, I've marked this task as not done yet:\n"
+                                        + "      " + userTask + "\n";
+                            }
+                        } catch (ArrayIndexOutOfBoundsException e) {
+                            dukeOutput = "    " + "No such task exists.\n";
                         }
-
                     }
                     break;
                 case "todo":
@@ -85,8 +93,6 @@ public class Duke {
                     int bySeparationIndex = Arrays.asList(parsedUserResponse).indexOf("/by");
                     if (bySeparationIndex == -1) {
                         dukeOutput = "    " + "Error: No date added for the deadline.\n";
-                    } else if (parsedUserResponse.length < 2) {
-                        dukeOutput = "    " + "☹ OOPS!!! The description of a deadline cannot be empty.\n";
                     } else {
                         String newTaskDescription = String.join(" ",
                                                                 Arrays.copyOfRange(parsedUserResponse,
@@ -108,8 +114,6 @@ public class Duke {
                     int atSeparationIndex = Arrays.asList(parsedUserResponse).indexOf("/at");
                     if (atSeparationIndex == -1) {
                         dukeOutput = "    " + "Error: No date added for the event.\n";
-                    } else if (parsedUserResponse.length < 2) {
-                        dukeOutput = "    " + "☹ OOPS!!! The description of an event cannot be empty.\n";
                     } else {
                         String newTaskDescription = String.join(" ",
                                 Arrays.copyOfRange(parsedUserResponse,

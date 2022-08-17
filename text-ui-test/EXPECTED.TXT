@@ -62,4 +62,20 @@ What can I do for you?
         7. [E][ ] project meeting (at: Mon 2-4pm)
         8. [D][ ] do homework (by: no idea :-p)
 
+    ☹ OOPS!!! I'm sorry, but I don't know what that means :-(
+
+    ☹ OOPS!!! The description of a todo cannot be empty.
+
+    Error: No date added for the event.
+
+    Error: No date added for the event.
+
+    Error: No date added for the deadline.
+
+    Error: No date added for the deadline.
+
+    Invalid number of arguments, only one required
+
+    Invalid number of arguments, only one required
+
     Bye. Hope to see you again soon!
