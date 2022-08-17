@@ -14,23 +14,18 @@
     __________________________________________________
     __________________________________________________
     Got it. I've added this task:
-      [D][ ] return book (by: June 6th)
+      [D][ ] return book (by: the time fire nation stops attacking)
     Now you have 3 tasks in the list.
     __________________________________________________
     __________________________________________________
     Got it. I've added this task:
-      [D][ ] return book (by: the time fire nation stops attacking)
+      [E][ ] project meeting (at: Mon 2-4pm)
     Now you have 4 tasks in the list.
     __________________________________________________
     __________________________________________________
     Got it. I've added this task:
-      [E][ ] project meeting (at: Mon 2-4pm)
-    Now you have 5 tasks in the list.
-    __________________________________________________
-    __________________________________________________
-    Got it. I've added this task:
       [T][ ] read book
-    Now you have 6 tasks in the list.
+    Now you have 5 tasks in the list.
     __________________________________________________
     __________________________________________________
     Nice! I've marked this task as done:
@@ -40,27 +35,25 @@
     Here are the tasks in your list:
     1.[T][ ] borrow book
     2.[D][X] return book (by: Sunday)
-    3.[D][ ] return book (by: June 6th)
-    4.[D][ ] return book (by: the time fire nation stops attacking)
-    5.[E][ ] project meeting (at: Mon 2-4pm)
-    6.[T][ ] read book
+    3.[D][ ] return book (by: the time fire nation stops attacking)
+    4.[E][ ] project meeting (at: Mon 2-4pm)
+    5.[T][ ] read book
     __________________________________________________
     __________________________________________________
     Nice! I've marked this task as done:
-    [D][X] return book (by: June 6th)
+    [D][X] return book (by: the time fire nation stops attacking)
     __________________________________________________
     __________________________________________________
     Here are the tasks in your list:
     1.[T][ ] borrow book
     2.[D][X] return book (by: Sunday)
-    3.[D][X] return book (by: June 6th)
-    4.[D][ ] return book (by: the time fire nation stops attacking)
-    5.[E][ ] project meeting (at: Mon 2-4pm)
-    6.[T][ ] read book
+    3.[D][X] return book (by: the time fire nation stops attacking)
+    4.[E][ ] project meeting (at: Mon 2-4pm)
+    5.[T][ ] read book
     __________________________________________________
     __________________________________________________
     OK, I've marked this task as not done yet:
-    [D][ ] return book (by: the time fire nation stops attacking)
+    [E][ ] project meeting (at: Mon 2-4pm)
     __________________________________________________
     __________________________________________________
     OK, I've marked this task as not done yet:
@@ -70,10 +63,9 @@
     Here are the tasks in your list:
     1.[T][ ] borrow book
     2.[D][X] return book (by: Sunday)
-    3.[D][X] return book (by: June 6th)
-    4.[D][ ] return book (by: the time fire nation stops attacking)
-    5.[E][ ] project meeting (at: Mon 2-4pm)
-    6.[T][ ] read book
+    3.[D][X] return book (by: the time fire nation stops attacking)
+    4.[E][ ] project meeting (at: Mon 2-4pm)
+    5.[T][ ] read book
     __________________________________________________
     __________________________________________________
     Nice! I've marked this task as done:
@@ -83,10 +75,9 @@
     Here are the tasks in your list:
     1.[T][X] borrow book
     2.[D][X] return book (by: Sunday)
-    3.[D][X] return book (by: June 6th)
-    4.[D][ ] return book (by: the time fire nation stops attacking)
-    5.[E][ ] project meeting (at: Mon 2-4pm)
-    6.[T][ ] read book
+    3.[D][X] return book (by: the time fire nation stops attacking)
+    4.[E][ ] project meeting (at: Mon 2-4pm)
+    5.[T][ ] read book
     __________________________________________________
     __________________________________________________
     OK, I've marked this task as not done yet:
@@ -94,18 +85,35 @@
     __________________________________________________
     __________________________________________________
     Got it. I've added this task:
-      [T][ ] finish this project
+      [T][ ] abc
+    Now you have 6 tasks in the list.
+    __________________________________________________
+    __________________________________________________
+    Got it. I've added this task:
+      [T][ ] xyz
     Now you have 7 tasks in the list.
+    __________________________________________________
+    __________________________________________________
+    ☹ OOPS!!! I'm sorry, but I don't know what that means :-(
+    __________________________________________________
+    __________________________________________________
+    Got it. I've added this task:
+      [T][ ] finish this project
+    Now you have 8 tasks in the list.
     __________________________________________________
     __________________________________________________
     Here are the tasks in your list:
     1.[T][ ] borrow book
     2.[D][X] return book (by: Sunday)
-    3.[D][X] return book (by: June 6th)
-    4.[D][ ] return book (by: the time fire nation stops attacking)
-    5.[E][ ] project meeting (at: Mon 2-4pm)
-    6.[T][ ] read book
-    7.[T][ ] finish this project
+    3.[D][X] return book (by: the time fire nation stops attacking)
+    4.[E][ ] project meeting (at: Mon 2-4pm)
+    5.[T][ ] read book
+    6.[T][ ] abc
+    7.[T][ ] xyz
+    8.[T][ ] finish this project
+    __________________________________________________
+    __________________________________________________
+    ☹ OOPS!!! I'm sorry, but I don't know what that means :-(
     __________________________________________________
     __________________________________________________
     Bye. Hope to see you again soon!

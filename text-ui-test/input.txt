@@ -1,6 +1,5 @@
 todo borrow book
 deadline return book /by Sunday
-deadline return book /by June 6th
 deadline return book /by the time fire nation stops attacking
 event project meeting /at Mon 2-4pm
 todo read book
@@ -14,6 +13,10 @@ list
 mark 1
 list
 unmark 1
+todo abc
+todo     xyz
+hahahaha
 todo finish this project
 list
+what do you do
 bye
