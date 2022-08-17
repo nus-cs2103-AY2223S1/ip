@@ -1,6 +1,9 @@
 import java.util.Scanner;
+import java.util.function.Function;
+import java.util.function.Supplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.IntStream;
 
 /**
  * @author Emily Ong Hui Qi
@@ -74,6 +77,25 @@ public class Duke {
         }
     }
 
+    /**
+     * Retrieve the task supplied by the caller and adds that task to the specified task manager.
+     *
+     * @param taskManager Task manager in charge of the list of tasks
+     * @param taskSupplier Supplier function that returns a task
+     */
+    private static void addTask(TaskManager taskManager, Supplier<? extends Task> taskSupplier) {
+        Task task = taskSupplier.get();
+        taskManager.add(task);
+        DukePrinter.print(
+                String.format(
+                        "%s\n\t%s\n%s",
+                        Duke.ADD_TASK_MESSAGE,
+                        task,
+                        String.format(Duke.TASK_LIST_STATUS_MESSAGE, taskManager.count())
+                )
+        );
+    }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         TaskManager taskManager = new TaskManager();
@@ -140,48 +162,23 @@ public class Duke {
                     DukePrinter.print(Duke.INVALID_TODO_TASK_ERROR);
                     continue;
                 }
-                ToDo todoTask = new ToDo(arguments.strip());
-                taskManager.add(todoTask);
-                DukePrinter.print(
-                        String.format(
-                                "%s\n\t%s\n%s",
-                                Duke.ADD_TASK_MESSAGE,
-                                todoTask,
-                                String.format(Duke.TASK_LIST_STATUS_MESSAGE, taskManager.count())
-                        )
-                );
+                Duke.addTask(taskManager, () -> new ToDo(arguments.strip()));
             } else if (command.equals(Command.DEADLINE.toString())) {
                 Matcher matcher = Duke.MATCH_DEADLINE_TASK.matcher(arguments);
                 if (!matcher.find()) {
                     DukePrinter.print(Duke.INVALID_DEADLINE_TASK_ERROR);
                     continue;
                 }
-                Deadline deadlineTask = new Deadline(matcher.group(1).strip(), matcher.group(2).strip());
-                taskManager.add(deadlineTask);
-                DukePrinter.print(
-                        String.format(
-                                "%s\n\t%s\n%s",
-                                Duke.ADD_TASK_MESSAGE,
-                                deadlineTask,
-                                String.format(Duke.TASK_LIST_STATUS_MESSAGE, taskManager.count())
-                        )
-                );
+
+                Duke.addTask(taskManager, () -> new Deadline(matcher.group(1).strip(), matcher.group(2).strip()));
             } else if (command.equals(Command.EVENT.toString())) {
                 Matcher matcher = Duke.MATCH_EVENT_TASK.matcher(arguments);
                 if (!matcher.find()) {
                     DukePrinter.print(Duke.INVALID_EVENT_TASK_ERROR);
                     continue;
                 }
-                Event eventTask = new Event(matcher.group(1).strip(), matcher.group(2).strip());
-                taskManager.add(eventTask);
-                DukePrinter.print(
-                        String.format(
-                                "%s\n\t%s\n%s",
-                                Duke.ADD_TASK_MESSAGE,
-                                eventTask,
-                                String.format(Duke.TASK_LIST_STATUS_MESSAGE, taskManager.count())
-                        )
-                );
+
+                Duke.addTask(taskManager, () -> new Event(matcher.group(1).strip(), matcher.group(2).strip()));
             } else {
                 DukePrinter.print(Duke.UNKNOWN_COMMAND_ERROR);
             }
