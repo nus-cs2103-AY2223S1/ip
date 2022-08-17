@@ -5,3 +5,7 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
+What may I do for you?
+Got it. I've added this task:
+  [T][ ] todo borrow book
+Now you have 1 tasks in the list
