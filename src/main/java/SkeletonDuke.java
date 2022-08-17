@@ -23,21 +23,25 @@ class SkeletonDuke {
         String description = s;
         String date = s;
         Task newTask = new Task(s);
-        if(typeOfTask.equals("todo")) {
-            description = this.processDescription(strarr);
-            newTask = new ToDo(description);
-        } else if(typeOfTask.equals("deadline")) {
-            description = this.processDescription(strarr);
-            newTask = new Deadline(description);
-        } else if(typeOfTask.equals("event")) {
-            description = this.processDescription(strarr);
-            newTask = new Event(description);
+        try {
+            if (typeOfTask.equals("todo")) {
+                description = this.processDescription(strarr);
+                newTask = new ToDo(description);
+            } else if (typeOfTask.equals("deadline")) {
+                description = this.processDescription(strarr);
+                newTask = new Deadline(description);
+            } else if (typeOfTask.equals("event")) {
+                description = this.processDescription(strarr);
+                newTask = new Event(description);
+            }
+            list.add(newTask);
+            this.noOfTasks++;
+            System.out.println("Got it. I've added this task:");
+            System.out.println(newTask.toString());
+            System.out.println("Now you have " + this.noOfTasks + " tasks in the list.");
+        } catch(TaskWithNoDescriptionException ex) {
+            System.err.print(ex);
         }
-        list.add(newTask);
-        this.noOfTasks++;
-        System.out.println("Got it. I've added this task:");
-        System.out.println(newTask.toString());
-        System.out.println("Now you have " + this.noOfTasks + " tasks in the list.");
 
     }
 
@@ -63,12 +67,16 @@ class SkeletonDuke {
         System.out.println(taskToBeModify.toString());
     }
 
-    String processDescription(String[] strarr) {
-        String description = strarr[1];
-        for(int i = 2; i < strarr.length; i++) {
-            description = description + " " + strarr[i];
+    String processDescription(String[] strarr) throws TaskWithNoDescriptionException {
+        if(strarr.length > 1) {
+            String description = strarr[1];
+            for (int i = 2; i < strarr.length; i++) {
+                description = description + " " + strarr[i];
+            }
+            return description;
+        } else {
+            throw new TaskWithNoDescriptionException(":( OOPS!!! The description of a " + strarr[0] + " cannot be empty.");
         }
-        return description;
     }
 
 

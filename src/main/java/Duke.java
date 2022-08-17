@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Duke {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws MismatchInputException {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -26,8 +26,10 @@ public class Duke {
             } else if(command.equals("unmark")){
                 int taskNo = Integer.parseInt(strarr[1]);
                 duke.unmark(taskNo);
-            } else {
+            } else if(command.equals("todo") || command.equals("deadline") || command.equals("event")){
                 duke.add(str);
+            } else {
+                throw new MismatchInputException(":( OOPS!!! I'm sorry, but I don't know what that means" );
             }
         }
 
