@@ -68,14 +68,18 @@ public class CaCa {
                 break;
 
             } else if (command[0].equals("list")) {
-                System.out.println("Here are the tasks in your list:");
+                if (tasks.isEmpty()) {
+                    // No task in the tasks list.
+                    System.out.println("There is no task in your list!\n" + line);
+                } else {
+                    System.out.println("Here are the tasks in your list:");
+                    for (int i = 0; i < tasks.size(); i++) {
+                        Task task = tasks.get(i);
+                        System.out.printf("%d.%s%n", i + 1, task);
 
-                for (int i = 0; i < tasks.size(); i++) {
-                    Task task = tasks.get(i);
-                    System.out.printf("%d.%s%n", i + 1, task);
-
-                    if (i == tasks.size() - 1) {
-                        System.out.print(line);
+                        if (i == tasks.size() - 1) {
+                            System.out.print(line);
+                        }
                     }
                 }
 
