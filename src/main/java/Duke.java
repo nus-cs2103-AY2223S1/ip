@@ -1,14 +1,15 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Duke {
     // FORMATTING
     private static final String logo =
-            "$$\\                                     $$\\       \n" +
-            "$$ |                                    $$ |      \n" +
-            "$$ |      $$\\   $$\\  $$$$$$\\   $$$$$$$\\ $$$$$$$\\  \n" +
-            "$$ |      $$ |  $$ |$$  __$$\\ $$  _____|$$  __$$\\ \n" +
+            "$$\\                                     $$\\\n" +
+            "$$ |                                    $$ |\n" +
+            "$$ |      $$\\   $$\\  $$$$$$\\   $$$$$$$\\ $$$$$$$\\\n" +
+            "$$ |      $$ |  $$ |$$  __$$\\ $$  _____|$$  __$$\\\n" +
             "$$ |      $$ |  $$ |$$ |  \\__|$$ /      $$ |  $$ |\n" +
             "$$ |      $$ |  $$ |$$ |      $$ |      $$ |  $$ |\n" +
             "$$$$$$$$\\ \\$$$$$$  |$$ |      \\$$$$$$$\\ $$ |  $$ |\n" +
@@ -28,6 +29,7 @@ public class Duke {
     private static final String exitCommand = "bye";
     private static final String markPattern = "^mark \\d+$";
     private static final String unmarkPattern = "^unmark \\d+$";
+    private static final String taskPattern = "(^todo|^event|^deadline)(\\s+)?(.+)?$";
 
     // INSTANCE VARIABLES
     private final ArrayList<Task> taskList = new ArrayList<>();
@@ -46,14 +48,35 @@ public class Duke {
     }
 
     public void addTask(String task) {
-        this.taskList.add(new Task(task));
-        lurchMessage("added: " + task);
+        Pattern p = Pattern.compile(taskPattern);
+        Matcher m = p.matcher(task);
+        if (!m.find()) return; // THROW ERROR
+        String mode = m.group(1);
+        String whitespace = m.group(2); // USE LATER FOR ERROR HANDLING
+        String meta = m.group(3);
+        Task newTask;
+        switch (mode) {
+            case "todo": newTask = new Todo(meta); break;
+            case "event": newTask = new Event(meta); break;
+            case "deadline": newTask = new Deadline(meta); break;
+            default: newTask = new Task(meta); break; // HANDLE ERROR HERE
+        }
+        this.taskList.add(newTask);
+        lurchMessage("Got it! I've added this task:"
+                + lineBreak
+                + indent
+                + newTask
+                + lineBreak
+                + "Now, you have "
+                + this.taskList.size()
+                + " tasks in the list!"
+                );
     }
 
     public void listTasks() {
         String message = "";
         for (int i = 0; i < this.taskList.size(); i++) {
-            message += i + 1 + ". " + this.taskList.get(i).toString();
+            message += i + 1 + ". " + this.taskList.get(i);
             if (i < this.taskList.size() - 1) message += lineBreak;
         }
         lurchMessage(message);
@@ -63,14 +86,14 @@ public class Duke {
         final int idx = Integer.parseInt(cmd.replaceAll("[^0-9]", ""));
         Task selectedTask = this.taskList.get(idx - 1);
         selectedTask.mark();
-        lurchMessage(markMessage + lineBreak + indent + selectedTask.toString());
+        lurchMessage(markMessage + lineBreak + indent + selectedTask);
     }
 
     public void unmarkTask(String cmd) {
         final int idx = Integer.parseInt(cmd.replaceAll("[^0-9]", ""));
         Task selectedTask = this.taskList.get(idx - 1);
         selectedTask.unmark();
-        lurchMessage(unmarkMessage + lineBreak + indent + selectedTask.toString());
+        lurchMessage(unmarkMessage + lineBreak + indent + selectedTask);
     }
 
     public void command(String cmd) {
@@ -78,7 +101,8 @@ public class Duke {
         else if (cmd.equals(listCommand)) this.listTasks();
         else if (Pattern.matches(unmarkPattern, cmd)) unmarkTask(cmd);
         else if (Pattern.matches(markPattern, cmd)) markTask(cmd);
-        else this.addTask(cmd);
+        else if (Pattern.matches(taskPattern, cmd)) addTask(cmd);
+        else lurchMessage("Not available.");
     }
 
     public void terminate() {
