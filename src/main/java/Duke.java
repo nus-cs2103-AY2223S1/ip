@@ -44,6 +44,7 @@ public class Duke {
             }
             cmd = sc.nextLine();
         }
+        sc.close();
     }
 
     public void addTask(String cmd) {

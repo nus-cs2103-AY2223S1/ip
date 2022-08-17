@@ -1,0 +1,4 @@
+todo borrow book
+event project meeting /at Tomorrow
+deadline submit project /by August 18
+bye
