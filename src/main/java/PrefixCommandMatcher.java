@@ -11,7 +11,7 @@ public class PrefixCommandMatcher extends CommandMatcher {
     PrefixCommandMatcher(String prefix, BiConsumer<String, Map<String, String>> action) {
         super((cmd) -> cmd.startsWith(prefix + " "), (cmd) -> {
             String withoutPrefix = cmd.split(" ", 2)[1];
-            String[] commandParts = withoutPrefix.split(" \\\\");
+            String[] commandParts = withoutPrefix.split(" /");
             Map<String, String> map = new HashMap<>();
             for (int i = 1; i < commandParts.length; i++) {
                 String[] keyAndValue = commandParts[i].split(" ", 2);

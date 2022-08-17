@@ -1,0 +1,31 @@
+random
+list
+mark 1
+mark 2
+mark 0
+mark -1
+mark not a number
+unmark not a number
+todo homework /at /by 1:23
+todo other homework /options ignored
+todo project 12
+unmark 1
+unmark 2
+list
+mark 3
+list
+mark 4
+list
+mark 5
+list
+mark 6
+list
+event meet friends
+event meet people at dinner /at 6:25 pm
+event meet people at function x/y/z whatever /at oh no not this /by /at 7:12am
+list
+deadline /at mysterious
+deadline /by mysterious number 2
+deadline rush this please /by when? /option is ignored
+list
+bye
