@@ -23,6 +23,7 @@ public class Duke {
     private static final String byeMessage = "Have a lovely day with dark and cloudy skies.";
     private static final String markMessage = "Nice! I've marked this task as done:";
     private static final String unmarkMessage = "OK, I've marked this task as not done yet:";
+    private static final String deleteMessage = "OK, I've deleted this task:";
     private static final String oopsMessage = "Oh bother!";
     private static final String noTasksMessage = "You have no tasks in the list right now";
     private static final String taskAddedMessage = "Got it! I've added this task:";
@@ -37,6 +38,7 @@ public class Duke {
     private static final String exitCommand = "bye";
     private static final String markPattern = "^mark(\\s+)?(.+)?$";
     private static final String unmarkPattern = "^unmark(\\s+)?(.+)?$";
+    private static final String deletePattern = "^delete(\\s+)?(.+)?$";
     private static final String taskPattern = "(^todo|^event|^deadline)(\\s+)?(.+)?$";
 
     // INSTANCE VARIABLES
@@ -117,11 +119,25 @@ public class Duke {
         }
     }
 
+    public void deleteTask(String cmd) throws DukeException {
+        try {
+            final int idx = Integer.parseInt(cmd.replaceAll("[^0-9]", ""));
+            Task selectedTask = this.taskList.get(idx - 1);
+            this.taskList.remove(idx - 1);
+            lurchMessage(deleteMessage + lineBreak + indent + selectedTask);
+        } catch (NumberFormatException e) {
+            throw new DukeException(invalidTaskIndexMessage);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(outOfBoundsMessage);
+        }
+    }
+
     public void command(String cmd) throws DukeException {
         if (cmd.equals(exitCommand)) this.terminate();
         else if (cmd.equals(listCommand)) this.listTasks();
         else if (Pattern.matches(unmarkPattern, cmd)) unmarkTask(cmd);
         else if (Pattern.matches(markPattern, cmd)) markTask(cmd);
+        else if (Pattern.matches(deletePattern, cmd)) deleteTask(cmd);
         else if (Pattern.matches(taskPattern, cmd)) addTask(cmd);
         else throw new DukeException(invalidCommandMessage + " \"" + cmd + "\"");
     }
