@@ -29,6 +29,45 @@ public class Duke {
             return "[" + getStatusIcon() + "] " + this.description;
         }
     }
+    public static class Deadline extends Task {
+
+        protected String by;
+
+        public Deadline(String description, String by) {
+            super(description);
+            this.by = by;
+        }
+
+        @Override
+        public String toString() {
+            return "[D]" + super.toString() + " (by: " + by + ")";
+        }
+    }
+    public static class Todo extends Task {
+
+        public Todo(String description) {
+            super(description);
+        }
+
+        @Override
+        public String toString() {
+            return "[T]" + super.toString();
+        }
+    }
+
+    public static class Event extends Task {
+        protected String at;
+
+        public Event(String description, String at) {
+            super(description);
+            this.at = at;
+        }
+
+        @Override
+        public String toString() {
+            return "[E]" + super.toString() + " (at: " + at + ")";
+        }
+    }
     public static void main(String[] args) {
         String reply = "";
         String exit = "bye";
@@ -44,30 +83,79 @@ public class Duke {
                 scanIn.close();
                 break;
             } else if (reply.equals("list")) {
+                System.out.println("here! ur tasks:");
                 printList(todoList);
-            } else if (reply.contains("unmark")) {
-                Integer index = Integer.parseInt(reply.substring(7)) - 1;
-                if(index < 0 || index >= todoList.size()) {
-                    System.out.println("thrs nth there :<");
-                    continue;
-                }
-                Task temp = todoList.get(index);
-                temp.markAsUndone();
-                System.out.println("oke this is undone now:\n" + temp);
-
-            } else if (reply.contains("mark")) {
-                Integer index = Integer.parseInt(reply.substring(5)) - 1;
-                if(index < 0 || index >= todoList.size()) {
-                    System.out.println("thrs nth there :<");
-                    continue;
-                }
-                Task temp = todoList.get(index - 1);
-                temp.markAsDone();
-                System.out.println("oke this is done now:\n" + temp);
+//            } else if (reply.contains("unmark")) {
+//                Integer index = Integer.parseInt(reply.substring(7)) - 1;
+//                if(index < 0 || index >= todoList.size()) {
+//                    System.out.println("thrs nth there :<");
+//                    continue;
+//                }
+//                Task temp = todoList.get(index);
+//                temp.markAsUndone();
+//                System.out.println("oke this is undone now:\n" + temp);
+//
+//            } else if (reply.contains("mark")) {
+//                Integer index = Integer.parseInt(reply.substring(5)) - 1;
+//                if(index < 0 || index >= todoList.size()) {
+//                    System.out.println("thrs nth there :<");
+//                    continue;
+//                }
+//                Task temp = todoList.get(index - 1);
+//                temp.markAsDone();
+//                System.out.println("oke this is done now:\n" + temp);
             } else {
-                Task tempTask = new Task(reply);
-                todoList.add(tempTask);
-                System.out.println("added: " + tempTask.toString());
+                String[] substr = reply.split(" ", 2);
+                Integer index;
+                Task temp;
+                switch (substr[0]) {
+                    case "mark":
+                        index = Integer.parseInt(substr[1]) - 1;
+                        if(index < 0 || index >= todoList.size()) {
+                            System.out.println("thrs nth there :<");
+                            continue;
+                        }
+                        temp = todoList.get(index);
+                        temp.markAsDone();
+                        System.out.println("oke this is done now:\n" + temp);
+                        break;
+                    case "unmark":
+                        index = Integer.parseInt(substr[1]) - 1;
+                        if(index < 0 || index >= todoList.size()) {
+                            System.out.println("thrs nth there :<");
+                            continue;
+                        }
+                        temp = todoList.get(index);
+                        temp.markAsUndone();
+                        System.out.println("oke this is undone now:\n" + temp);
+                        break;
+                    case "todo":
+                        temp = new Todo(substr[1]);
+                        todoList.add(temp);
+                        System.out.println("oke i added:\n" + temp.toString());
+                        System.out.println("now u have " + todoList.size() + " task(s)!");
+                        break;
+                    case "deadline":
+                        String[] dlDesc = substr[1].split(" /by ", 2);
+                        temp = new Deadline(dlDesc[0], dlDesc[1]);
+                        todoList.add(temp);
+                        System.out.println("oke i added:\n" + temp.toString());
+                        System.out.println("now u have " + todoList.size() + " task(s)!");
+                        break;
+                    case "event":
+                        String[] eventDesc = substr[1].split(" /at ", 2);
+                        temp = new Event(eventDesc[0], eventDesc[1]);
+                        todoList.add(temp);
+                        System.out.println("oke i added:\n" + temp.toString());
+                        System.out.println("now u have " + todoList.size() + " task(s)!");
+                        break;
+                    default:
+                        System.out.println("idk what that means :(");
+                        break;
+                }
+//                Task tempTask = new Task(reply);
+//                todoList.add(tempTask);
+//                System.out.println("added: " + tempTask.toString());
             }
 
         }
