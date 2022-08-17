@@ -3,12 +3,8 @@ public class Todo extends Task {
         super(description);
     }
 
-    public String getTaskIcon() {
-        return "T";
-    }
-
     @Override
     public String toString() {
-        return "[" + this.getTaskIcon() + "]" + super.toString();
+        return "[" + TaskType.T + "]" + super.toString();
     }
 }

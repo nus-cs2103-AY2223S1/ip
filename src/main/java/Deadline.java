@@ -6,12 +6,8 @@ public class Deadline extends Task {
         this.by = by;
     }
 
-    public String getTaskIcon() {
-        return "D";
-    }
-
     @Override
     public String toString() {
-        return "[" + this.getTaskIcon() + "]" + super.toString() + " (by: " + this.by + ")";
+        return "[" + TaskType.D + "]" + super.toString() + " (by: " + this.by + ")";
     }
 }

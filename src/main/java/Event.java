@@ -6,12 +6,8 @@ public class Event extends Task {
         this.at = at;
     }
 
-    public String getTaskIcon() {
-        return "E";
-    }
-
     @Override
     public String toString() {
-        return "[" + this.getTaskIcon() + "]" + super.toString() + " (at: " + this.at + ")";
+        return "[" + TaskType.E + "]" + super.toString() + " (at: " + this.at + ")";
     }
 }
