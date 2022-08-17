@@ -100,6 +100,13 @@ public class Input {
         return tokens[index];
     }
 
+    /**
+     * @return The original input string
+     */
+    public String getInputString() {
+        return inputString;
+    }
+
     /** Factory method to return new instance of Input
      * @param input String input to process
      * @return Input instance representing intermediate representation of the input string
