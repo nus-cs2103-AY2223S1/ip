@@ -2,13 +2,40 @@ import java.util.Scanner;
 
 public class Duke {
     public static void main(String[] args) {
+        class Task {
+            private boolean isDone = false;
+            private String item;
+
+            public Task(String item){
+                this.item = item;
+            }
+
+            public void setDone() {
+                this.isDone = true;
+            }
+
+            public void setNotDone() {
+                this.isDone = false;
+            }
+
+            public String getStatusIcon() {
+                return (isDone ? "[X] " : "[ ] "); // mark done task with X
+            }
+
+            public String getTask() {
+                return this.getStatusIcon() + this.item;
+            }
+        }
+
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        String[] list = new String[500];
+        Task[] list = new Task[500];
         int count = 0;
+        String marked = "[X]";
+        String unmarked = "[ ]";
 
         System.out.println("Hello from\n" + logo);
 
@@ -23,11 +50,23 @@ public class Duke {
                     if (list[i] == null) {
                         break;
                     }
-                    System.out.println(Integer.toString(i + 1) + ". " + list[i]);
+                    System.out.println(Integer.toString(i + 1) + ". " + list[i].getTask());
                 }
             }
+            else if(item.length() == 6 &&  item.substring(0,4).equals("mark")) {
+                int index = Integer.parseInt(item.substring(5)) - 1;
+                list[index].setDone();
+                System.out.println("Nice! I've marked this task as done:");
+                System.out.println(list[index].getTask());
+            }
+            else if(item.length() == 8 &&  item.substring(0,6).equals("unmark")) {
+                int index = Integer.parseInt(item.substring(7)) - 1;
+                list[index].setNotDone();
+                System.out.println("OK, I've marked this task as not done yet:");
+                System.out.println(list[index].getTask());
+            }
             else{
-                list[count] = item;
+                list[count] = new Task(item);
                 count = count + 1;
                 System.out.println("Duke: added: " + item);
             }
