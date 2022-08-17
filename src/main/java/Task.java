@@ -4,7 +4,7 @@ public class Task {
     protected String description;
     protected boolean isDone;
     public static ArrayList<Task> tasks;
-    private static String sep = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+    private static String sep = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
 
     public Task(String description) {
         this.description = description;
@@ -31,10 +31,13 @@ public class Task {
     }
 
     public static void list() {
-        System.out.println(sep);
-        System.out.println("Stuff you have to do!\n");
+        System.out.println(sep + "\nStuff you have to do!\n");
         for(int i = 0; i < tasks.size(); i++) {
-            System.out.println(i + 1 + ". " + tasks.get(i) + "\n");
+            if (i == tasks.size() - 1) {
+                System.out.println(i + 1 + ". " + tasks.get(i));
+            } else {
+                System.out.println(i + 1 + ". " + tasks.get(i) + "\n");
+            }
         }
         System.out.println(sep);
     }

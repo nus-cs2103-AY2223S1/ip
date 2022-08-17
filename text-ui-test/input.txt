@@ -1,0 +1,5 @@
+todo task
+deadline task /by date
+event task /at date
+list
+bye

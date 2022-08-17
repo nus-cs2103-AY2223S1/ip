@@ -2,11 +2,11 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Duke {
-    private static String sep = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+    private static String sep = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
     private static Scanner sc;
 
     public static void bye() {
-        System.out.println(sep + "byebye see you again :D" + "\n" + sep);
+        System.out.println(sep + "\nbyebye see you again :D\n" + sep);
         sc.close();
     }
 
@@ -24,9 +24,9 @@ public class Duke {
 
     public static void print(Task task) {
         if (Task.tasks.size() == 1) {
-            System.out.println(sep + "\nAdded:\n" + task.toString() + "\nThere is only " + Task.tasks.size() + " task in your list!\n" + sep);
+            System.out.println(sep + "\nLuna has added:\n" + task.toString() + "\nThere is " + Task.tasks.size() + " task in your list :)\n" + sep);
         } else {
-            System.out.println(sep + "\nAdded:\n" + task.toString() + "\nThere are currently " + Task.tasks.size() + " tasks in your list!\n" + sep);
+            System.out.println(sep + "\nLuna has added:\n" + task.toString() + "\nThere are currently " + Task.tasks.size() + " tasks in your list :)\n" + sep);
         }
     }
 
@@ -63,7 +63,7 @@ public class Duke {
                 + "   | |   | | | |  __ \\ /     |\n"
                 + "   | |__ | |_| | |  | |    | |   \n"
                 + "   |____| \\__,_|_|  |_|\\__/|_|   \n";
-        System.out.println("Hello. \n   This is \n" + logo + "\n   How may I assist you today?");
+        System.out.println(sep + "\nHello. \n   This is \n" + logo + "\n   How may I assist you today?\n" + sep);
         sc = new Scanner(System.in);
         Task.tasks = new ArrayList<Task>();
         handleCommands(sc);
