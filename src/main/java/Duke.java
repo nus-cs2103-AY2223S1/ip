@@ -6,6 +6,14 @@ public class Duke {
     private String[] tasks = new String[100];
     private int taskIndex = 0;
 
+    private void greet() {
+        System.out.println("Hello! I'm Ee Suan!\nWhat can I do for you?");
+    }
+
+    private void exit() {
+        System.out.println("Bye. Hope to see you again soon!");
+    }
+
     private void echo() {
         System.out.println(LINE_BREAK + "\n\t added: " + input + "\n" + LINE_BREAK);
     }
@@ -23,7 +31,7 @@ public class Duke {
 
     public static void main(String[] args) {
         Duke duke = new Duke();
-        System.out.println("Hello! I'm Ee Suan!\nWhat can I do for you?");
+        duke.greet();
         Scanner scan = new Scanner(System.in);
         duke.input = scan.nextLine();
         while (!duke.input.equals("bye")) {
@@ -35,7 +43,7 @@ public class Duke {
             }
             duke.input = scan.nextLine();
         }
-        System.out.println("Bye. Hope to see you again soon!");
+        duke.exit();
 
     }
 }
