@@ -30,7 +30,6 @@ public class Duke {
                         for (int i = 0; i < toDoList.size(); i++) {
                             System.out.println(i + 1 + "." + toDoList.get(i).toString());
                         }
-                        System.out.println(horizontalLn);
                         break;
                     }
 
@@ -42,7 +41,6 @@ public class Duke {
                         toDoList.get(itemNumber).markDone();
                         System.out.println("Nice! I've marked this task as done: ");
                         System.out.println(toDoList.get(itemNumber).toString());
-                        System.out.println(horizontalLn);
                         break;
                     }
 
@@ -55,7 +53,6 @@ public class Duke {
                         System.out.println("OK, I've marked this task as not done yet");
                         System.out.println("[" + toDoList.get(itemNumber).getStatusIcon() + "] "
                                 + toDoList.get(itemNumber).description);
-                        System.out.println(horizontalLn);
                         break;
                     }
 
@@ -66,6 +63,7 @@ public class Duke {
                         ToDo toBeAddedToDo = new ToDo(splitInput[1]);
                         toDoList.add(toBeAddedToDo);
                         System.out.println(toBeAddedToDo);
+                        System.out.println("Now you have " + toDoList.size() + " task(s) in the list.");
                         break;
                     }
 
@@ -78,6 +76,7 @@ public class Duke {
                         Deadline toBeAddedDeadline = new Deadline(furtherSplitInput[0], furtherSplitInput[1]);
                         toDoList.add(toBeAddedDeadline);
                         System.out.println(toBeAddedDeadline);
+                        System.out.println("Now you have " + toDoList.size() + " task(s) in the list.");
                         break;
                     }
 
@@ -90,6 +89,7 @@ public class Duke {
                         Event toBeAddedEvent = new Event(furtherSplitInput[0], furtherSplitInput[1]);
                         toDoList.add(toBeAddedEvent);
                         System.out.println(toBeAddedEvent);
+                        System.out.println("Now you have " + toDoList.size() + " task(s) in the list.");
                         break;
                     }
 
@@ -101,12 +101,14 @@ public class Duke {
                         System.out.println("Noted. I've removed this task: " +
                                 toDoList.get(itemNumber));
                         toDoList.remove(itemNumber);
+                        System.out.println("Now you have " + toDoList.size() + " task(s) in the list.");
                         break;
                     }
 
                     default:
                         throw new InvalidCommandException("This is an invalid command");
                 }
+                System.out.println(horizontalLn);
 
             } catch (IncompleteInputException e) {
                 System.out.println(e.getMessage());
