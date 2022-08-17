@@ -1,23 +1,16 @@
 event project meeting /at Aug 15th 3-4pm
 deadline coding project homework /by 16 Aug
 todo plan for next semester
-list
 blah
 todo
 event party
 deadline /by 3pm
-deadline sign up for art workshop /by Friday 5pm
-todo compile notes
-list
 mark 3
 mark 6
-mark 4
-mark 2
-mark
 list
 unmark 3
-list
-delete 3
-list
+mark
+delete 2
 delete
+list
 bye
