@@ -1,7 +1,142 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+============================================================
 
+ Greetings! My Name is Alfred ^_^
+ How may I be of service today?
+
+============================================================
+============================================================
+
+ Understood. I have added the following task:
+   [T][ ] todoTest
+ You have a total of 1 task(s).
+
+============================================================
+============================================================
+
+ Understood. I have added the following task:
+   [T][ ] todoTest2 todoTest2
+ You have a total of 2 task(s).
+
+============================================================
+============================================================
+
+ Understood. I have added the following task:
+   [D][ ] deadlineTest (by:)
+ You have a total of 3 task(s).
+
+============================================================
+============================================================
+
+ Understood. I have added the following task:
+   [D][ ] deadlineTest (by: TestDay)
+ You have a total of 4 task(s).
+
+============================================================
+============================================================
+
+ Understood. I have added the following task:
+   [D][ ] deadlineTest2 deadlineTest2 (by: TestDay2 TestDay2)
+ You have a total of 5 task(s).
+
+============================================================
+============================================================
+
+ Understood. I have added the following task:
+   [E][ ] eventTest (at:)
+ You have a total of 6 task(s).
+
+============================================================
+============================================================
+
+ Understood. I have added the following task:
+   [E][ ] eventTest (at: TestDay)
+ You have a total of 7 task(s).
+
+============================================================
+============================================================
+
+ Understood. I have added the following task:
+   [E][ ] eventTest2 eventTest2 (at: TestDay2 TestDay2)
+ You have a total of 8 task(s).
+
+============================================================
+============================================================
+
+ Here are your current tasks:
+ 1.[T][ ] todoTest
+ 2.[T][ ] todoTest2 todoTest2
+ 3.[D][ ] deadlineTest (by:)
+ 4.[D][ ] deadlineTest (by: TestDay)
+ 5.[D][ ] deadlineTest2 deadlineTest2 (by: TestDay2 TestDay2)
+ 6.[E][ ] eventTest (at:)
+ 7.[E][ ] eventTest (at: TestDay)
+ 8.[E][ ] eventTest2 eventTest2 (at: TestDay2 TestDay2)
+
+============================================================
+============================================================
+
+ Great job! I will mark the task as completed.
+   [T][X] todoTest2 todoTest2
+
+============================================================
+============================================================
+
+ Great job! I will mark the task as completed.
+   [D][X] deadlineTest (by:)
+
+============================================================
+============================================================
+
+ Great job! I will mark the task as completed.
+   [T][X] todoTest2 todoTest2
+
+============================================================
+============================================================
+
+ Here are your current tasks:
+ 1.[T][ ] todoTest
+ 2.[T][X] todoTest2 todoTest2
+ 3.[D][X] deadlineTest (by:)
+ 4.[D][ ] deadlineTest (by: TestDay)
+ 5.[D][ ] deadlineTest2 deadlineTest2 (by: TestDay2 TestDay2)
+ 6.[E][ ] eventTest (at:)
+ 7.[E][ ] eventTest (at: TestDay)
+ 8.[E][ ] eventTest2 eventTest2 (at: TestDay2 TestDay2)
+
+============================================================
+============================================================
+
+ Understood. I will mark the task as uncompleted.
+   [T][ ] todoTest2 todoTest2
+
+============================================================
+============================================================
+
+ Understood. I will mark the task as uncompleted.
+   [D][ ] deadlineTest (by:)
+
+============================================================
+============================================================
+
+ Understood. I will mark the task as uncompleted.
+   [T][ ] todoTest2 todoTest2
+
+============================================================
+============================================================
+
+ Here are your current tasks:
+ 1.[T][ ] todoTest
+ 2.[T][ ] todoTest2 todoTest2
+ 3.[D][ ] deadlineTest (by:)
+ 4.[D][ ] deadlineTest (by: TestDay)
+ 5.[D][ ] deadlineTest2 deadlineTest2 (by: TestDay2 TestDay2)
+ 6.[E][ ] eventTest (at:)
+ 7.[E][ ] eventTest (at: TestDay)
+ 8.[E][ ] eventTest2 eventTest2 (at: TestDay2 TestDay2)
+
+============================================================
+============================================================
+
+ Farewell!
+
+============================================================
