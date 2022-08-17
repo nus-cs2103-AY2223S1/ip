@@ -24,6 +24,24 @@ public class Duke {
             } else if (in.startsWith("unmark")) {
                 int index = Integer.valueOf(in.split(" ")[1]) - 1;
                 list.unmark(index);
+            } else if (in.startsWith("delete")) {
+                int index = Integer.valueOf(in.split(" ")[1]) - 1;
+
+                try {
+                    if (index >= list.getSize()) {
+                        throw new InvalidCommandException();
+                    }
+
+                    Task task = list.getTask(index);
+                    Messages.delete(task);
+                    list.delete(index);
+                    Messages.countTasks(list);
+                }
+
+                catch (InvalidCommandException e) {
+                    System.out.println(e.toString());
+                }
+
             } else {
                 try {
                     Task task = TaskCreator.CreateTask(in);
@@ -35,7 +53,7 @@ public class Duke {
                         throw new NoDescriptionException();
                     } else {
                         list.add(task);
-                        System.out.println("added: " + task.toString());
+                        Messages.add(task);
                     }
                 }
 

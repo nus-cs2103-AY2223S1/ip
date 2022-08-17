@@ -13,11 +13,24 @@ public class Messages {
         System.out.println("-------------------------------------------");
     }
 
+    public static void add(Task task) {
+        System.out.println("added: " + task.toString());
+    }
+
     public static void mark() {
         System.out.println("Roger sir the task has been marked!");
     }
 
     public static void unmark() {
         System.out.println("Aww okay the task has been unmarked.");
+    }
+
+    public static void delete(Task task) {
+        System.out.println("Alrighty! I have deleted the following task:");
+        System.out.println(task.toString());
+    }
+
+    public static void countTasks(TaskList list) {
+        System.out.println("We now have " + list.getSize() + " tasks left.");
     }
 }

@@ -6,9 +6,16 @@ public class TaskList {
      */
     private ArrayList<Task> taskList = new ArrayList<>();
 
-    public void add(Task task) {
-        taskList.add(task);
+    public void add(Task task) { taskList.add(task); }
+
+    public void delete(int index) {
+        taskList.remove(index);
     }
+
+    public Task getTask(int index) { return taskList.get(index); }
+
+    public int getSize() { return taskList.size(); }
+
     public void printTasks() {
         int index = 0;
         Task item;
