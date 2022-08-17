@@ -15,6 +15,10 @@ public class Task {
         return description;
     }
 
+    public static String newTask() {
+        return "Got it. I've added this task: ";
+    }
+
     public String mark() {
         this.isDone = true;
         return "Nice! I've marked this task as done: \n" + this;
