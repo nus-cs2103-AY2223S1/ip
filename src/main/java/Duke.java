@@ -19,21 +19,6 @@ public class Duke {
         }
     }
 
-    public static void lvlOne() {
-        System.out.println("Hello! I'm Duke\n");
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Tell me a word!");
-        String str = sc.nextLine();
-        System.out.println(str);
-
-        while (!str.equals("bye") && !str.equals("goodbye")) {
-            sc = new Scanner(System.in);
-            str = sc.nextLine();
-            System.out.println(str);
-        }
-        System.out.println("Bye! See you soon!");
-    }
-
     public static void toDo() throws DukeException {
         //String[] tasks = new String[100];
         //Task[] tasks = new Task[100];
