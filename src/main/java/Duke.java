@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Duke {
     public static void main(String[] args) {
@@ -13,6 +15,7 @@ public class Duke {
 
         // Scanner to get input
         Scanner scan = new Scanner(System.in);
+        ArrayList<String> log = new ArrayList<>();
 
         System.out.println("--------------------------------------");
         String s;
@@ -20,14 +23,21 @@ public class Duke {
         while(true) {
             s = scan.nextLine();
             System.out.println("--------------------------------------");
-            if (!s.equals("bye")) {
-                System.out.println(s);
-                System.out.println("--------------------------------------");
-            } else {
+            if (s.equals("bye")) {
                 scan.close();
                 System.out.println("Bye. Hope to see you again soon!");
                 break;
+            } else if (s.equals("list")){
+                int count = 1;
+                for (String item : log) {
+                    System.out.println(count + ". " + item);
+                    count++;
+                }
+            } else {
+                log.add(s);
+                System.out.println("added: " + s);
             }
+            System.out.println("--------------------------------------");
         }
 
     }
