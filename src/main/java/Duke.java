@@ -1,7 +1,3 @@
-import javax.swing.undo.UndoManager;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
@@ -58,6 +54,10 @@ public class Duke {
                     case "EVENT":
                         EventRequest eventRequest = new EventRequest(this.tasksList, inputArray);
                         eventRequest.execute();
+                        break;
+                    case "DELETE":
+                        DeleteRequest deleteRequest = new DeleteRequest(this.tasksList, inputArray);
+                        deleteRequest.execute();
                         break;
                     default:
                         throw new DukeException("Please enter a valid request / command!");

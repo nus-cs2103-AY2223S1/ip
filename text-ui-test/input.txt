@@ -26,6 +26,11 @@ mark 4
 unmark
 unmark a
 unmark 4
+delete
+delete a
+delete 4
+delete 1
+list
 invalidcommand
 bye
 

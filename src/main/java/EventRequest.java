@@ -1,7 +1,7 @@
 public class EventRequest extends Request {
     private String[] inputArray;
     private TasksList tasksList;
-    private static final String DELIMITER = " /at";
+    private static final String DELIMITER = " /at ";
     private static final String EVENT_MSG = "Got it. I've added this task: \n";
 
     public EventRequest(TasksList tasksList, String[] inputArray) {
@@ -18,7 +18,7 @@ public class EventRequest extends Request {
         //split again to get date/time
         String[] splitArray = this.inputArray[1].split(EventRequest.DELIMITER, 2);
 
-        if (splitArray.length < 2 || splitArray[1].equals("")) {
+        if (splitArray.length < 2) {
             throw new DukeException("Please enter a starting and ending time for this task!");
         }
 

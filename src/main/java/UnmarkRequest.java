@@ -15,8 +15,8 @@ public class UnmarkRequest extends Request{
         }
          try {
              int taskNumber = Integer.parseInt(this.inputArray[1]);
-             Task markedTask = this.tasksList.markAsUndone(taskNumber);
-             super.printResponse(UnmarkRequest.UNMARK_MSG + markedTask);
+             Task deletedTask = this.tasksList.markAsUndone(taskNumber);
+             super.printResponse(UnmarkRequest.UNMARK_MSG + deletedTask);
              //exception due to parsing
          } catch (NumberFormatException exception) {
              throw new DukeException("Please enter a integer for task number!");

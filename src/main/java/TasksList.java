@@ -32,6 +32,16 @@ public class TasksList {
         }
     }
 
+    public Task deleteTask(int taskNumber) throws DukeException{
+        if (taskNumber < 1 || taskNumber > this.listOfTasks.size()) {
+            throw new DukeException("Please enter a valid task number!");
+        } else {
+            Task taskToDelete = this.listOfTasks.get(taskNumber - 1);
+            this.listOfTasks.remove(taskToDelete);
+            return taskToDelete;
+        }
+    }
+
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Here are the tasks in your list: \n");

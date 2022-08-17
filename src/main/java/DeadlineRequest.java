@@ -3,7 +3,7 @@ import java.util.Arrays;
 public class DeadlineRequest extends Request {
     private String[] inputArray;
     private TasksList tasksList;
-    private static final String DELIMITER = " /by";
+    private static final String DELIMITER = " /by ";
     private static final String DEADLINE_MSG = "Got it. I've added this task: \n";
 
     public DeadlineRequest(TasksList tasksList, String[] inputArray) {
@@ -20,7 +20,7 @@ public class DeadlineRequest extends Request {
         //split again to get date/time
         String[] splitArray = this.inputArray[1].split(DeadlineRequest.DELIMITER, 2);
 
-        if (splitArray.length < 2 || splitArray[1].equals("")) {
+        if (splitArray.length < 2) {
             throw new DukeException("Please enter a due date for this task!");
         }
 
