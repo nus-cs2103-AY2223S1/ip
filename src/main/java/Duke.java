@@ -2,29 +2,6 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Duke {
-    private static class Task {
-        private String description;
-        private Boolean isDone;
-
-        Task(String description) {
-            this.description = description;
-            this.isDone = false;
-        }
-
-        public void markDone() {
-            this.isDone = true;
-        }
-
-        public void markNotDone() {
-            this.isDone = false;
-        }
-
-        @Override
-        public String toString() {
-            return "[" + (this.isDone ? "X" : " ") + "]" + " " + this.description;
-        }
-    }
-
     private static ArrayList<Task> tasks = new ArrayList<>();
 
     public static void main(String[] args) {
@@ -70,10 +47,34 @@ public class Duke {
                     prettyPrint("mark this as not done, I have: \n\t" + tasks.get(taskNumber - 1));
                     break;
                 }
-                default:
-                    Task newTask = new Task(s);
+                case "todo": {
+                    Task newTask = new ToDo(s);
                     tasks.add(newTask);
-                    prettyPrint("added: " + newTask);
+                    prettyPrint("this task, I've added: \n\t" + newTask + "\n\t" + "you have " + tasks.size() + " tasks left");
+                    break;
+                }
+                case "deadline": {
+                    int separatorIndex = s.indexOf("/by");
+                    String description = s.substring(9, separatorIndex);
+                    String by = s.substring(separatorIndex + 4, s.length());
+
+                    Task newTask = new Deadline(description, by);
+                    tasks.add(newTask);
+                    prettyPrint("this task, I've added: \n\t" + newTask + "\n\t" + "you have " + tasks.size() + " tasks left");
+                    break;
+                }
+                case "event": {
+                    int separator = s.indexOf("/at");
+                    String description = s.substring(6, separator);
+                    String at = s.substring(separator + 4, s.length());
+
+                    Task newTask = new Event(description, at);
+                    tasks.add(newTask);
+                    prettyPrint("this task, I've added: \n\t" + newTask + "\n\t" + "you have " + tasks.size() + " tasks left");
+                    break;
+                }
+                default:
+                    prettyPrint("Know that, I don't");
             }
         }
 
