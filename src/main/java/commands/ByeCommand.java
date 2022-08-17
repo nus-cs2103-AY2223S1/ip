@@ -1,7 +1,12 @@
-public class ByeCommand is Command {
+package commands;
 
-  public ByeCommand(String[] commandArgs) {
-    this.commandArgs = commandArgs;
+import tasks.Task;
+import java.util.ArrayList;
+
+public class ByeCommand extends Command {
+
+  public ByeCommand(String[] commandArgs, ArrayList<Task> tasks) {
+    super(commandArgs, tasks);
   }
 
   public boolean performAction() {

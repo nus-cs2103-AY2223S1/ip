@@ -1,6 +1,9 @@
-import tasks.Task;
+package commands;
 
-public class MarkCommand is Command {
+import tasks.Task;
+import java.util.ArrayList;
+
+public class MarkCommand extends Command {
 
   public MarkCommand(String[] commandArgs, ArrayList<Task> tasks) {
     super(commandArgs, tasks);
@@ -12,13 +15,13 @@ public class MarkCommand is Command {
       Integer index = Integer.parseInt(this.commandArgs[1]) - 1;
       Task taskToUpdate = this.tasks.get(index);
       System.out.println(taskToUpdate.updateStatus(true) + "\n");
-      return true;
 
     } else if (this.commandArgs[0].equals("unmark")) {
       Integer index = Integer.parseInt(this.commandArgs[1]) - 1;
       Task taskToUpdate = this.tasks.get(index);
       System.out.println(taskToUpdate.updateStatus(false) + "\n");
-      return true;
     } //TODO: else throw error
+
+    return true;
   }
 }
