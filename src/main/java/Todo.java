@@ -1,5 +1,5 @@
 /**
- * Class tto represent "To Do" tasks.
+ * Class to represent "To Do" tasks.
  */
 public class Todo extends Task {
     /**

@@ -1,9 +1,10 @@
 /**
  * Class to represent the tasks.
  */
-public class Task {
+public abstract class Task {
     private String description;
     private Boolean isDone;
+    protected Boolean isBye;
 
     /**
      * The constructor for task.
@@ -13,6 +14,7 @@ public class Task {
     public Task(String description, boolean isDone) {
         this.description = description;
         this.isDone = isDone;
+        this.isBye = false;
     }
 
     /**
