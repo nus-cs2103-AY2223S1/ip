@@ -1,4 +1,6 @@
+import java.util.Arrays;
 import java.util.Scanner;
+import java.util.function.UnaryOperator;
 
 public class Duke {
 
@@ -17,23 +19,81 @@ public class Duke {
         System.out.println(divider());
     }
 
-    private static void printData(String[] data) {
-        int index = 1;
-        for (String s : data) {
-            if (s == null) {
-                return;
-            }
-            System.out.println(index + ". " + s);
-            index++;
-        }
-        return;
+    private static String checkbox(Boolean mark) {
+        return mark ? "[x]" : "[ ]";
     }
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        String[] data = new String[100];
-        int pointer = 0;
+        class Todo {
+            class Task {
+                protected String description;
+                protected boolean isDone;
 
+                public Task(String description) {
+                    this.description = description;
+                    this.isDone = false;
+                }
+
+                public boolean getIsDone() {
+                    return isDone;
+                }
+
+                public String getDescription() {
+                    return description;
+                }
+
+                public void mark() {
+                    this.isDone = true;
+                }
+
+                public void unmark() {
+                    this.isDone = false;
+                }
+            }
+
+            int pointer = 0;
+            protected Task[] list;
+            protected int length;
+
+            public Todo(int length) {
+                this.list = new Task[length];
+                this.length = length;
+            }
+
+            public void addTask(String description) {
+                this.list[pointer] = new Task(description);
+                pointer++;
+            }
+
+            public int getLength() {
+                return this.length;
+            }
+
+            protected Task get(int index) {
+                return list[index];
+            }
+
+            public void mark(int index) {
+                this.get(index).mark();
+            }
+
+            public void unmark(int index) {
+                this.get(index).unmark();
+            }
+
+            private void printData() {
+                for (int i = 0; i < this.length; i++) {
+                    if (this.get(i) == null) {
+                        return;
+                    }
+                    Task task = this.get(i);
+                    //                  Could use format strings for this
+                    System.out.println((i + 1) + ". " + checkbox(task.getIsDone()) + " " + task.getDescription());
+                }
+            }
+        }
+        Scanner scanner = new Scanner(System.in);
+        Todo todolist = new Todo(100);
         setup();
 
         while (true) {
@@ -47,12 +107,34 @@ public class Duke {
                     return;
 
                 case "list":
-                    printData(data);
+                    todolist.printData();
                     break;
 
                 default:
-                    data[pointer] = line;
-                    pointer++;
+//                  We can't use switch statements since we want regex matching
+                    if (line.matches("mark \\d+")) {
+                        int index = Integer.parseInt(line.split(" ")[1]);
+                        if (index > 100) {
+                            break;
+                        }
+
+                        todolist.mark(index - 1);
+                        todolist.printData();
+                        break;
+                    }
+
+                    if (line.matches("unmark \\d+")) {
+                        int index = Integer.parseInt(line.split(" ")[1]);
+                        if (index > 100) {
+                            break;
+                        }
+
+                        todolist.unmark(index - 1);
+                        todolist.printData();
+                        break;
+                    }
+
+                    todolist.addTask(line);
                     System.out.println("Added: " + line);
                     break;
             }
