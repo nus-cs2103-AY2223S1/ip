@@ -2,8 +2,6 @@ import java.util.Scanner;
 
 public class Duke {
     static Scanner input = new Scanner(System.in);
-    //private static String response = "";
-    //private static String[] responseStore = new String[100];
 
     public static void responseRepeater() {
         String response = input.nextLine();
