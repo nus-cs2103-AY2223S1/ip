@@ -41,6 +41,16 @@ public class Ui {
         System.out.println(line);
     }
 
+    public void unmarked(Task task){
+        String taskName = task.toString();
+        String statusIcon = task.getStatusIcon();
+
+        System.out.println(line);
+        System.out.println("OK, I've marked this task as not done yet:");
+        System.out.println("[" + statusIcon + "] " + taskName);
+        System.out.println(line);
+    }
+
     public void exit(){
         String exitLine = "Bye. Hope to see you again soon!";
         System.out.println(line + "\n" + exitLine + "\n" + line);

@@ -18,6 +18,12 @@ public class Duke {
                 Task task = taskList.get(num - 1);
                 task.markAsDone();
                 ui.marked(task);
+            } else if (cmd.split(" ")[0].equals("unmark")) {
+                String number = cmd.split(" ")[1];
+                int num = Integer.parseInt(number);
+                Task task = taskList.get(num - 1);
+                task.unmarkAsDone();
+                ui.unmarked(task);
             } else {
                 Task newTask = new Task(cmd);
                 taskList.add(newTask);
