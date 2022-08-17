@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class Duke {
+
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         BotResponse.welcome();
@@ -12,11 +13,13 @@ public class Duke {
         if (userResponse.equalsIgnoreCase("bye")) {
             BotResponse.bye();
             System.exit(0);
+        } else if (userResponse.equalsIgnoreCase("list")) {
+            Task.printTasks();
         } else {
-            System.out.println(userResponse);
-            BotResponse.separationLine();
-            checkResponse(input);
+            Task t = new Task(userResponse);
+            BotResponse.addTaskLog(userResponse);
         }
+        checkResponse(input);
     }
 
 }

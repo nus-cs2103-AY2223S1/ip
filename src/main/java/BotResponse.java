@@ -10,4 +10,9 @@ public class BotResponse {
     public static void bye() {
         System.out.println("Sorry to see you go, goodbye :(");
     }
+
+    public static void addTaskLog(String description) {
+        System.out.println("added: " + description);
+        separationLine();
+    }
 }
