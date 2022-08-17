@@ -2,13 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Duke {
-    private static final String LOGO = " ____        _        \n"
-            + "|  _ \\ _   _| | _____ \n"
-            + "| | | | | | | |/ / _ \\\n"
-            + "| |_| | |_| |   <  __/\n"
-            + "|____/ \\__,_|_|\\_\\___|\n";
-    private static final String GREET_MESSAGE = "Hello! I am Duke! \n" + "What can I do for you?";
+public class Jarvis {
+    private static final String GREET_MESSAGE = "Hello! I am Jarvis! \n" + "What can I do for you?";
     private static final String EXIT_MESSAGE = "Bye! Hope to see you again soon!";
     private static final String INDEX_OUT_OF_BOUNDS_MESSAGE = "Sorry! The task index is out of bounds. Please try again with a valid index.";
 
@@ -17,14 +12,12 @@ public class Duke {
     }
 
     private static void greet() {
-        Duke.printMessage("Hello from\n" + LOGO);
-        Duke.printMessage(GREET_MESSAGE);
+        Jarvis.printMessage(GREET_MESSAGE);
     }
 
-    private static String[] getUserCommand(Scanner sc) {
+    private static String[] parseUserCommand(Scanner sc) {
         System.out.print("<< ");
-        String[] commands = sc.nextLine().strip().split(" ");
-        return commands;
+        return sc.nextLine().strip().split(" ", 2);
     }
 
     private static String listTasks(List<Task> tasks) {
@@ -44,51 +37,51 @@ public class Duke {
     }
 
     private static void run() {
-        Duke.greet();
+        Jarvis.greet();
 
         Scanner sc = new Scanner(System.in);
         List<Task> tasks = new ArrayList<>();
         boolean terminated = false;
 
         while (!terminated) {
-            String[] commands = Duke.getUserCommand(sc);
+            String[] commands = Jarvis.parseUserCommand(sc);
 
             switch (commands[0].toLowerCase()) {
                 case "bye":
-                    Duke.printMessage(EXIT_MESSAGE);
+                    Jarvis.printMessage(EXIT_MESSAGE);
                     terminated = true;
                     break;
                 case "list":
-                    Duke.printMessage(Duke.listTasks(tasks));
+                    Jarvis.printMessage(Jarvis.listTasks(tasks));
                     break;
                 case "mark":
                     int markTaskIndex = Integer.parseInt(commands[1]) - 1;
                     if (markTaskIndex < 0 || markTaskIndex >= tasks.size()) {
-                        Duke.printMessage(INDEX_OUT_OF_BOUNDS_MESSAGE);
+                        Jarvis.printMessage(INDEX_OUT_OF_BOUNDS_MESSAGE);
                         break;
                     }
                     markTask(tasks, markTaskIndex, true);
-                    Duke.printMessage("Nice! I've marked this task as done:\n\t" + tasks.get(markTaskIndex));
+                    Jarvis.printMessage("Nice! I've marked this task as done:\n\t" + tasks.get(markTaskIndex));
                     break;
                 case "unmark":
                     int unmarkTaskIndex = Integer.parseInt(commands[1]) - 1;
                     if (unmarkTaskIndex < 0 || unmarkTaskIndex >= tasks.size()) {
-                        Duke.printMessage(INDEX_OUT_OF_BOUNDS_MESSAGE);
+                        Jarvis.printMessage(INDEX_OUT_OF_BOUNDS_MESSAGE);
                         break;
                     }
                     markTask(tasks, unmarkTaskIndex, false);
-                    Duke.printMessage("Okay, I've marked this task as not done yet:\n\t" + tasks.get(unmarkTaskIndex));
+                    Jarvis.printMessage("Okay, I've marked this task as not done yet:\n\t" + tasks.get(unmarkTaskIndex));
                     break;
                 default:
                     String taskDescription = String.join(" ", commands);
                     Task task = new Task(taskDescription);
                     tasks.add(task);
-                    Duke.printMessage("Added task: " + taskDescription);
+                    Jarvis.printMessage("Added task: " + taskDescription);
             }
         }
     }
 
     public static void main(String[] args) {
-        Duke.run();
+        Jarvis.run();
     }
 }
