@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 public class Duke {
 
@@ -10,6 +11,17 @@ public class Duke {
 
     private static final TaskList taskList = new TaskList();
 
+    /* Parses a command into an n x 2 array, where n is the number of
+       parameters passed by the user. Parameters are seperated by a "/".
+       Each parameter is then split into two, the parameter name, and
+       the parameter's content.
+     */
+    private static String[][] parseCommand(String command) {
+        return Stream.of(command.trim().split("\\s+/"))
+                .map(s -> s.split("\\s+", 2))
+                .toArray(String[][]::new);
+    }
+
     public static void main(String[] args) {
 
         Scanner sysIn = new Scanner(System.in);
@@ -18,18 +30,11 @@ public class Duke {
         System.out.println(GREETING_MESSAGE);
 
         while (!exitCalled) {
-            /* Splits a user query into two, the command and its arguments,
-               assumed to be seperated by whitespace (can be multiple characters).
-             */
-            String[] userQuery = sysIn.nextLine().split("\\s+", 2);
 
-            if (userQuery.length == 0) {
-                // TODO: Add Exception when this occurs.
-                System.out.println(UNKNOWN_COMMAND_MESSAGE);
-                continue;
-            }
+            String[][] userParams = parseCommand(sysIn.nextLine());
+            String commandName = userParams[0][0];
 
-            switch (userQuery[0]) {
+            switch (commandName) {
                 case "list": {
                     String[] stringifiedTaskList = taskList.toStringList();
                     System.out.println("Here are your tasks that I have recorded:");
@@ -50,24 +55,28 @@ public class Duke {
 
                 // TODO: A lot of code repetition for the next four pieces of code... Not sure how to resolve yet.
                 case "add": {
-                    Task newTask = new Task(userQuery[1]);
+                    Task newTask = new Task(userParams[0][1]);
                     taskList.addTask(newTask);
                     System.out.printf("Gotcha! I added the following task to the list:\n  %s\nCurrently, I have %d tasks recorded\n", newTask, taskList.getLength());
                     break;
                 }
 
                 case "todo": {
-                    Todo newTodo = new Todo(userQuery[1]);
+                    Todo newTodo = new Todo(userParams[0][1]);
                     taskList.addTask(newTodo);
                     System.out.printf("Gotcha! I added the following task to the list:\n  %s\nCurrently, I have %d tasks recorded\n", newTodo, taskList.getLength());
                     break;
                 }
 
                 case "deadline": {
-                    // Matches the String by the /by keyword and splits it.
-                    String[] userParams = userQuery[1].split("\\s+/by\\s+", 2);
+                    String endTime = null;
+                    for (int i = 1; i < userParams.length; i++) {
+                        if (userParams[i][0].equals("by")) {
+                            endTime = userParams[i][1];
+                        }
+                    }
                     // TODO: Add Exception when a parameter isn't passed
-                    Deadline newDeadline = new Deadline(userParams[0], userParams[1]);
+                    Deadline newDeadline = new Deadline(userParams[0][1], endTime);
                     taskList.addTask(newDeadline);
                     System.out.printf("Gotcha! I added the following task to the list:\n  %s\nCurrently, I have %d tasks recorded\n", newDeadline, taskList.getLength());
                     break;
@@ -75,9 +84,14 @@ public class Duke {
 
                 case "event": {
                     // Matches the String by the /at keyword and splits it.
-                    String[] userParams = userQuery[1].split("\\s+/at\\s+", 2);
+                    String rangeTime = null;
+                    for (int i = 1; i < userParams.length; i++) {
+                        if (userParams[i][0].equals("at")) {
+                            rangeTime = userParams[i][1];
+                        }
+                    }
                     // TODO: Add Exception when a parameter isn't passed
-                    Event newEvent = new Event(userParams[0], userParams[1]);
+                    Event newEvent = new Event(userParams[0][1], rangeTime);
                     taskList.addTask(newEvent);
                     System.out.printf("Gotcha! I added the following task to the list:\n  %s\nCurrently, I have %d tasks recorded\n", newEvent, taskList.getLength());
                     break;
@@ -85,7 +99,7 @@ public class Duke {
 
                 case "mark": {
                     // TODO: Check for non-integer inputs.
-                    int markIndex = Integer.parseInt(userQuery[1]) - 1;
+                    int markIndex = Integer.parseInt(userParams[0][1]) - 1;
                     if (markIndex >= taskList.getLength() || markIndex < 0) {
                         System.out.println("I do not have a task with that number in my list.");
                     } else if (taskList.getTask(markIndex).getIsDone()) {
@@ -99,7 +113,7 @@ public class Duke {
 
                 case "unmark": {
                     // TODO: Check for non-integer inputs.
-                    int unmarkIndex = Integer.parseInt(userQuery[1]) - 1;
+                    int unmarkIndex = Integer.parseInt(userParams[0][1]) - 1;
                     if (unmarkIndex >= taskList.getLength() || unmarkIndex < 0) {
                         System.out.println("I do not have a task with that number in my list.");
                     } else if (taskList.getTask(unmarkIndex).getIsDone()) {
