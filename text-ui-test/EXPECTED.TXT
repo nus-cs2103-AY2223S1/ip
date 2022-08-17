@@ -247,13 +247,13 @@
 
 >>====================================[**]====================================<<
   Enter a task number, nitwit.
-  Type "unmark <task number>" to mark a task as complete.
+  Type "unmark <task number>" to mark a task as incomplete.
 >>====================================[**]====================================<<
 
 
 >>====================================[**]====================================<<
   Enter a task number, nitwit.
-  Type "unmark <task number>" to mark a task as complete.
+  Type "unmark <task number>" to mark a task as incomplete.
 >>====================================[**]====================================<<
 
 
@@ -335,6 +335,56 @@
 
 
 >>====================================[**]====================================<<
+  Enter a task number, nitwit.
+  Type "delete <task number>" to delete a task.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  Enter a task number, nitwit.
+  Type "delete <task number>" to delete a task.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  Impressive. You've figured out how to delete non-existent tasks.
+  Task number -1 does not exist.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  Impressive. You've figured out how to delete non-existent tasks.
+  Task number 8 does not exist.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  Good riddance, I say.
+    [D][ ] spanish homework (by Wednesday 6pm /5pm)
+  You have 6 tasks.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  *rolls eyes*
+  Do I have to?
+  Fine. Here are your tasks:
+  1. [T][ ] read a book
+  2. [E][ ] project meeting/tea (on Sunday 2-4pm)
+  3. [E][ ] project meeting (on Sunday 2-4pm)
+  4. [E][ ] project meeting (on Sunday 2-4pm /3-5pm)
+  5. [D][ ] spanish homework/extra (by Wednesday 6pm)
+  6. [D][ ] spanish homework (by Wednesday 6pm)
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  Do you need me to teach you what a number is?
+  asdf is not a number.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
   Do you need me to teach you what a number is?
   asdwa is not a number.
 >>====================================[**]====================================<<
@@ -362,5 +412,5 @@
 
 
 >>====================================[**]====================================<<
-  Good riddance, I say. With all due disrespect, leave me alone next time.
+  With all due disrespect, leave me alone next time.
 >>====================================[**]====================================<<
