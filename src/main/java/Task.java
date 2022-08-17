@@ -11,13 +11,15 @@ public class Task {
         return "[" + (isDone ? "X" : " ") + "] ";
     }
 
-    public String getDescription() {
-        return this.description;
+    @Override
+    public String toString() {
+        return this.getStatusIcon() + this.description;
     }
 
     public void markAsDone() {
         this.isDone = true;
     }
+
     public void markAsUndone() {
         this.isDone = false;
     }

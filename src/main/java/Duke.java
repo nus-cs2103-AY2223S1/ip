@@ -30,8 +30,7 @@ public class Duke {
                         Task t = items[i];
                         t.markAsDone();
                         Duke.echo("Nice! I've marked this task as done:\n" +
-                                "\t  " + t.getStatusIcon()
-                                + t.getDescription());
+                                "\t  " + t);
                     }
                 } catch (NumberFormatException e) {
                     Duke.echo("Please enter an integer id after \"mark\"");
@@ -44,8 +43,7 @@ public class Duke {
                         Task t = items[i];
                         t.markAsUndone();
                         Duke.echo("OK! I've marked this task as not done yet:\n" +
-                                "\t  " + t.getStatusIcon()
-                                + t.getDescription());
+                                "\t  " + t);
                     }
                 } catch (NumberFormatException e) {
                     Duke.echo("Please enter an integer id after \"ummark\"");
@@ -76,7 +74,7 @@ public class Duke {
             String s = "";
             for (int i = 0; i < id; i++) {
                 Task t = items[i];
-                s = s + "\t" + (i + 1) + "." + t.getStatusIcon() + t.getDescription() + "\n";
+                s = s + "\t" + (i + 1) + "." + t + "\n";
             }
             Duke.echo(s.trim());
         }
