@@ -45,14 +45,12 @@ public class Duke {
         String uncap = str.toLowerCase();
         while (!uncap.equals("bye")) {
             if (!uncap.equals("list")) {
-                if (!uncap.startsWith("mark")) {
+                if (!uncap.contains("mark")) {
                     Task t = new Task(str);
                     al.add(t);
                     System.out.println("------------------------------\n");
                     System.out.printf("\tAdded: %s\n", str);
                     System.out.println("------------------------------\n");
-                    str = sc.nextLine();
-                    uncap = str.toLowerCase();
                 } else {
                     if (uncap.startsWith("unmark")) {
                         int i = Integer.parseInt(String.valueOf(uncap.charAt(7)));
@@ -71,14 +69,12 @@ public class Duke {
                         System.out.println("\t\t" + call.toString());
                         System.out.println("-------------------------------\n");
                     }
-                    str = sc.nextLine();
-                    uncap = str.toLowerCase();
                 }
             } else {
                 listOut(al);
-                str = sc.nextLine();
-                uncap = str.toLowerCase();
             }
+            str = sc.nextLine();
+            uncap = str.toLowerCase();
         }
         sc.close();
         bye();
