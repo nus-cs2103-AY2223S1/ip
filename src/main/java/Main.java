@@ -10,10 +10,10 @@ public class Main {
         while (!command.equals("bye")) {
             switch (command) {
                 case "list":
-                    duke.printTasks();
+                    duke.printAllTasks();
                     break;
                 default:
-                    duke.addTask(command);
+                    duke.addTaskProcess(command);
             }
             command = scanner.nextLine();
         }
