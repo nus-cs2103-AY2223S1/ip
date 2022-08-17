@@ -3,5 +3,6 @@ public enum Commands {
     deadline,
     event,
     mark,
-    unmark
+    unmark,
+    delete
 }

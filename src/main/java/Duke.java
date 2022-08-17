@@ -67,11 +67,15 @@ public class Duke {
         }
     }
 
+    public static String tasksLeft() {
+        return "\nNow you have " + storage.size() + " tasks in the list.";
+    }
+
     public static void addTask(Task task) {
         storage.add(task);
         String message = "Got it. I've added this task:\n"
                 + "\t" + task
-                + "\nNow you have " + storage.size() + " tasks in the list.";
+                + tasksLeft();
         generateMessage(message);
     }
 
@@ -133,7 +137,7 @@ public class Duke {
         }
         int index = Integer.parseInt(information) - 1;
         if (index < 0 || index >= storage.size()) {
-            throw new MarkException();
+            throw new InvalidTaskNumberException();
         }
         Task task = storage.get(index);
         task.markAsDone();
@@ -149,18 +153,26 @@ public class Duke {
         }
         int index = Integer.parseInt(information) - 1;
         if (index < 0 || index >= storage.size()) {
-            throw new MarkException();
+            throw new InvalidTaskNumberException();
         }
         Task task = storage.get(index);
         task.markAsIncomplete();
         generateMessage("OK, I've marked this task as not done yet:\n" + task);
     }
 
-    public static void deleteTask(String information) {
+    public static void deleteTask(String information) throws DukeException {
+        if (information.isEmpty()) {
+            throw new EmptyArgumentException(Commands.delete);
+        }
+        if (!information.chars().allMatch( Character :: isDigit )) {
+            throw new InvalidArgumentException(Commands.delete);
+        }
         int index = Integer.parseInt(information) - 1;
+        if (index < 0 || index >= storage.size()) {
+            throw new InvalidTaskNumberException();
+        }
         String task = storage.get(index).toString();
         storage.remove(index);
-        generateMessage("Noted. I've removed this task:\n" + task);
-
+        generateMessage("Noted. I've removed this task:\n" + task + tasksLeft());
     }
 }
