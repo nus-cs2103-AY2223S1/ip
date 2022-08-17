@@ -15,6 +15,6 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         String greeting = logo + "Hello! I'm Duke\n" + "What can I do for you?\n";
         System.out.println(greeting);
-        List.add();
+        List.run();
     }
 }
