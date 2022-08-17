@@ -10,13 +10,16 @@ public class Duke {
 //        System.out.println("Hello from\n" + logo);
         System.out.println("Hello! I'm Duke\n"+"What can I do for you?");
         Scanner scanner=new Scanner(System.in);
+        TaskList taskList=new TaskList();
         while(scanner.hasNextLine()){
             String ans=scanner.nextLine();
             if(ans.equals("bye")){
                 System.out.println("Bye. Hope to see you soon.");
                 break;
+            }else if(ans.equals("list")){
+                System.out.println(taskList.listAllTask());
             }else {
-                System.out.println(ans);
+                taskList.addTask(ans);
             }
         }
     }
