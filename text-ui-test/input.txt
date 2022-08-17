@@ -6,4 +6,12 @@ list
 deadline do homework /by no idea :-p
 todo help with house chores
 list
+todo jogging
+mark 1
+todo running
+mark 3
+unmark 1
+list
+delete 1
+list
 blah

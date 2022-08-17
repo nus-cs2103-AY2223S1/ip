@@ -46,4 +46,50 @@ ____________________________________________________________
  4.[D][ ] do homework (by: no idea :-p)
  5.[T][ ] help with house chores
 ____________________________________________________________
+____________________________________________________________
+ Got it. I've added this task:
+  [T][ ] jogging
+ Now you have 6 tasks in the list
+____________________________________________________________
+____________________________________________________________
+ Nice! I've marked this task as done:
+  [X] complete assignment
+____________________________________________________________
+____________________________________________________________
+ Got it. I've added this task:
+  [T][ ] running
+ Now you have 7 tasks in the list
+____________________________________________________________
+____________________________________________________________
+ Nice! I've marked this task as done:
+  [X] project meeting
+____________________________________________________________
+____________________________________________________________
+ OK, I've marked this task as not done yet:
+  [ ] complete assignment
+____________________________________________________________
+____________________________________________________________
+ Here are the tasks in your list:
+ 1.[T][ ] complete assignment
+ 2.[D][ ] chemistry lab (by: Sunday)
+ 3.[E][X] project meeting (at: Mon 2-4pm)
+ 4.[D][ ] do homework (by: no idea :-p)
+ 5.[T][ ] help with house chores
+ 6.[T][ ] jogging
+ 7.[T][ ] running
+____________________________________________________________
+____________________________________________________________
+ Noted. I've removed this task:
+  [T][ ] complete assignment
+ Now you have 6 tasks in the list
+____________________________________________________________
+____________________________________________________________
+ Here are the tasks in your list:
+ 1.[D][ ] chemistry lab (by: Sunday)
+ 2.[E][X] project meeting (at: Mon 2-4pm)
+ 3.[D][ ] do homework (by: no idea :-p)
+ 4.[T][ ] help with house chores
+ 5.[T][ ] jogging
+ 6.[T][ ] running
+____________________________________________________________
 :( OOPS!!! I'm sorry, but I don't know what that means :-(
