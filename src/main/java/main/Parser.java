@@ -32,6 +32,8 @@ public class Parser {
         return new MarkCommand(instructions[1]);
       case ("unmark"):
         return new UnmarkCommand(instructions[1]);
+      case ("delete"):
+        return new DeleteCommand(instructions[1]);
       default:
         throw new DukeException("Unknown command received");
     }

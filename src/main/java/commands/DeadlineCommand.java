@@ -17,7 +17,7 @@ public class DeadlineCommand extends AddCommand {
    * @param by When the task is required by
    */
   public DeadlineCommand(String description) throws DukeException {
-    String[] eventlst = description.split("/at", 2);
+    String[] eventlst = description.split("/by", 2);
     if (eventlst.length < 2) {
       throw new DukeException("Alamak! Fill in when the deadline is by...");
     }
