@@ -1,0 +1,8 @@
+todo hi
+event hi2 /at 5pm
+list
+mark 1
+list
+unmark 1
+list
+bye
