@@ -1,7 +1,8 @@
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
-public class Command {
+public abstract class Command {
     private final String keyCommand;
     private final Optional<String> arguments;
 
@@ -19,4 +20,18 @@ public class Command {
         return arguments.map(s -> Arrays.stream(s.split("/by|/at", 2)).map(String::trim)
                 .toArray(String[]::new)).orElse(null);
     }
+
+    String getKeyCommand() {
+        return this.keyCommand;
+    }
+
+    int getTaskIndex() {
+        if (arguments.isPresent()) {
+            return Integer.parseInt(arguments.get()) - 1;
+        } else {
+            return -1;
+        }
+    }
+
+    public abstract String execute(List<Task> tasks);
 }
