@@ -90,7 +90,7 @@ public class Duke {
         String str = sc.nextLine();
         String und = str.toLowerCase();
         while (!und.equals("bye")) {
-            if (und.contains("mark")) {
+            if (und.startsWith("mark")) {
                 int i = Integer.parseInt(String.valueOf(und.charAt(5)));
                 Task call = at.get(i - 1);
                 call.markAsDone();
@@ -98,7 +98,7 @@ public class Duke {
                 System.out.println("\tNice! I have marked this task as done: ");
                 System.out.println("\t\t" + call.toString());
                 System.out.println("-------------------------------\n");
-            } else if (und.contains("unmark")) {
+            } else if (und.startsWith("unmark")) {
                 int i = Integer.parseInt(String.valueOf(und.charAt(7)));
                 Task call = at.get(i - 1);
                 call.markAsUndone();
