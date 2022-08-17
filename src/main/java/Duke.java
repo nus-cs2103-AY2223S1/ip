@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
@@ -104,16 +105,22 @@ public class Duke {
     }
 
     //  initialise task list and counter
-    private static Task[] list = new Task[100];
-    private static int counter = 0;
+    private static ArrayList<Task> list = new ArrayList<>(100);
 
     // Methods Start
     public static void addTask(Task task) {
-        list[counter] = task;
-        counter++;
+        list.add(task);
         System.out.println("Got it. I've added this task:");
         System.out.println(task.toString());
-        System.out.println(String.format("Now you have %s task(s) in the list", counter));
+        System.out.println(String.format("Now you have %s task(s) in the list", list.size()));
+    }
+
+    public static void deleteTask(int index) {
+        System.out.println("Noted, I've removed this task:");
+        System.out.println(list.get(index).toString());
+        list.remove(index);
+        System.out.println(String.format("Now you have %s task(s) in the list", list.size()));
+
     }
 
     public static void sayBye() {
@@ -122,30 +129,30 @@ public class Duke {
 
     public static void list() {
         System.out.println("Here are the tasks in your list:");
-        for (int x = 0; x < counter; x++) {
-            System.out.println(String.format("%s.%s", x+1, list[x].toString()));
+        for (int x = 0; x < list.size(); x++) {
+            System.out.println(String.format("%s.%s", x+1, list.get(x).toString()));
         }
     }
 
     public static void mark (int index) throws IllegalIndexException {
         //  error checking
-        if (index < 0 || list[index] == null) {
+        if (index < 0 || list.get(index) == null) {
             throw new IllegalIndexException("Index invalid!");
         } else {
-        list[index].setDone();
+        list.get(index).setDone();
         System.out.println("Nice! I've marked this task as done:");
-        System.out.println(String.format("%s.%s", index+1, list[index].toString()));
+        System.out.println(String.format("%s.%s", index+1, list.get(index).toString()));
         }
     }
 
     public static void unmark(int index) throws IllegalIndexException {
         //  error checking
-        if (index < 0 || list[index] == null) {
+        if (index < 0 || list.get(index) == null) {
             throw new IllegalIndexException("Index invalid!");
         } else {
-        list[index].setNotDone();
+        list.get(index).setNotDone();
         System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println(String.format("%s.%s", index+1, list[index].toString()));
+        System.out.println(String.format("%s.%s", index+1, list.get(index).toString()));
         }
     }
 
@@ -229,6 +236,14 @@ public class Duke {
                 String description = arr[0];
                 String time = arr[1];
                 addTask(new Event(description, time));
+                continue;
+            }
+
+            //  Delete Tasks
+            if (str.length() >= 6 && str.substring(0,6).equals("delete")) {
+                String remainder = str.substring(7);
+                int index = Integer.valueOf(remainder) - 1;
+                deleteTask(index);
                 continue;
             }
 
