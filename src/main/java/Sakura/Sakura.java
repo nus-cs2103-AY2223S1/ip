@@ -19,6 +19,8 @@ public class Sakura {
             taskManager.unmarkTask(input);
         } else if (input.toLowerCase().startsWith("todo") || input.toLowerCase().startsWith("deadline") || input.toLowerCase().startsWith("event")) {
             taskManager.addTask(input);
+        } else if (input.toLowerCase().startsWith("delete")) {
+            taskManager.deleteTask(input);
         } else {
             SakuraException.genericTask();
         }
@@ -41,7 +43,7 @@ public class Sakura {
         System.out.println("\t" + DIV2 + "\n");
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IndexOutOfBoundsException {
         String logo =
                   "   ▄████████    ▄████████    ▄█   ▄█▄ ███    █▄     ▄████████    ▄████████             ▄■▄          \n"
                 + "  ███    ███   ███    ███   ███ ▄███▀ ███    ███   ███    ███   ███    ███       ▄■██■█   █■██■▄    \n"

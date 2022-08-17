@@ -20,4 +20,7 @@ public class SakuraException {
     protected static void invalidEvent() {
         System.out.println("\tEvent format is invalid\n");
     }
+    protected static void invalidCommand() {
+        System.out.println("\tCommand written incorrectly. Please check again.\n");
+    }
 }

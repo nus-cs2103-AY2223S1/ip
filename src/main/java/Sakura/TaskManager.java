@@ -18,6 +18,14 @@ public class TaskManager {
                 + " tasks in the list.");
     }
 
+    public void deleteDescription(Task deletedTask) {
+        System.out.println("\tRight away Sir! I've SHREDDED this task: \n\t  "
+                + deletedTask
+                + " \n\tNow you have "
+                + tasks.size()
+                + " tasks in the list.");
+    }
+
     public void addTask(String input) {
         if (input.toLowerCase().startsWith("todo")) {
             Todo todo = new Todo(input.substring("todo ".length()));
@@ -74,6 +82,21 @@ public class TaskManager {
                 Task task = tasks.get(taskIndex - 1);
                 task.markUndone();
                 System.out.println("\tHey this is not done yet? Remember to finish it soon: \n\t  " + task);
+            }
+        } catch (IndexOutOfBoundsException e) {
+            SakuraException.noSuchTask();
+        }
+    }
+
+    public void deleteTask(String input) {
+        try {
+            if (input.split(" ").length != 2) {
+                SakuraException.invalidCommand();
+            } else {
+                int taskIndex = Integer.parseInt(input.substring("delete ".length()));
+                Task task = tasks.get(taskIndex - 1);
+                tasks.remove(task);
+                deleteDescription(task);
             }
         } catch (IndexOutOfBoundsException e) {
             SakuraException.noSuchTask();
