@@ -4,14 +4,32 @@ import java.util.Scanner;
 public class Duke {
     private static ArrayList<Task> storage = new ArrayList<>();
     private static int i = 0;
-    private static void mark(String userInput) {
+    private static void mark(String userInput) throws DukeException{
+        try {
+            Integer.parseInt(userInput.substring(5));
+        } catch (Exception e) {
+            throw new DukeException("Don't try anything funny!");
+        }
         int intCollect = Integer.parseInt(userInput.substring(5));
-        storage.get(intCollect - 1).mark();
+        try {
+            storage.get(intCollect - 1).mark();
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException("Are you sure that you pressed the right number?");
+        }
     }
 
-    private static void unmark(String userInput) {
+    private static void unmark(String userInput) throws DukeException {
+        try {
+            Integer.parseInt(userInput.substring(7));
+        } catch (Exception e) {
+            throw new DukeException("Don't try anything funny!");
+        }
         int intCollect = Integer.parseInt(userInput.substring(7));
-        storage.get(intCollect - 1).unmark();
+        try {
+            storage.get(intCollect - 1).unmark();
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException("Are you sure that you pressed the right number?");
+        }
     }
 
     private static void printList() {
@@ -25,8 +43,9 @@ public class Duke {
 
     private static void toDo(String userInput) throws DukeException {
         if (userInput.length() <= 5) {
-            throw new DukeException();
+            throw new DukeException("The description of a todo cannot be empty.");
         }
+
         storage.add(new ToDo(userInput.substring(5)));
         i++;
         System.out.println("Got it. I've added this task:\n"
@@ -36,10 +55,14 @@ public class Duke {
 
     private static void deadline(String userInput) throws DukeException {
         if (userInput.length() <= 9) {
-            throw new DukeException();
+            throw new DukeException("The description of a deadline cannot be empty.");
         }
         String[] box = userInput.substring(9).split(" /by ");
-        storage.add(new Deadline(box[0], box[1]));
+        try {
+            storage.add(new Deadline(box[0], box[1]));
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new DukeException("Please follow the appropriate format for deadline!");
+        }
         i++;
         System.out.println("Got it. I've added this task:\n"
                 +storage.get(i-1).toString()
@@ -48,17 +71,22 @@ public class Duke {
 
     private static void event(String userInput) throws DukeException {
         if (userInput.length() <= 6) {
-            throw new DukeException();
+            throw new DukeException("The description of a event cannot be empty.");
         }
+
         String[] box = userInput.substring(6).split(" /at ");
-        storage.add(new Event(box[0], box[1]));
+        try {
+            storage.add(new Event(box[0], box[1]));
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new DukeException("Please follow the appropriate format for event!");
+        }
         i++;
         System.out.println("Got it. I've added this task:\n"
                 +storage.get(i-1).toString()
                 + "\nNow you have " + i + " tasks in the list.");
     }
-    private static void exceptionThrower() throws DukeException {
-        throw new DukeException();
+    private static void incomprehensible() throws DukeException {
+        throw new DukeException("I'm sorry, but I don't know what that means :-(");
     }
 
     private static void delete(String userInput) {
@@ -74,38 +102,46 @@ public class Duke {
         String userInput = sc.nextLine();
         while (!userInput.equals("bye")) {
             if (userInput.startsWith("mark ")) {
-                mark(userInput);
+                try {
+                    mark(userInput);
+                } catch (DukeException e) {
+                    System.out.println(e.toString());
+                }
             } else if (userInput.startsWith("unmark ")) {
-                unmark(userInput);
+                try {
+                    unmark(userInput);
+                } catch (DukeException e) {
+                    System.out.println(e.toString());
+                }
             } else if (userInput.equals("list")) {
                 printList();
             } else if (userInput.equals("todo") || userInput.startsWith("todo" )) {
                 try {
                     toDo(userInput);
                 } catch (DukeException e) {
-                    System.out.println("☹ OOPS!!! The description of a todo cannot be empty.");
+                    System.out.println(e.toString());
                 }
             } else if (userInput.equals("deadline") || userInput.startsWith("deadline ")) {
                 try {
                     deadline(userInput);
                 } catch (DukeException e) {
-                    System.out.println("☹ OOPS!!! The description of a deadline cannot be empty.");
+                    System.out.println(e.toString());
                 }
             } else if (userInput.equals("event") || userInput.startsWith("event ")) {
                 try {
                     event(userInput);
                 } catch (DukeException e) {
-                    System.out.println("☹ OOPS!!! The description of a event cannot be empty.");
+                    System.out.println(e.toString());
                 }
             } else if (userInput.startsWith("delete ")) {
                 delete(userInput);
             }
             else {
                 try {
-                    exceptionThrower();
+                    incomprehensible();
                 }
                 catch (DukeException e){
-                    System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                    System.out.println(e.toString());
                 }
             }
             userInput = sc.nextLine();
