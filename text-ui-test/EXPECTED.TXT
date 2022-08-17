@@ -1,7 +1,75 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
+	____________________________________________________________
+	Hello! I'm Duke
+	What can I do for you?
+	____________________________________________________________
+	____________________________________________________________
+	Sorry, I don't understand your command :(
+	____________________________________________________________
+	____________________________________________________________
+	Sorry, I don't understand your command :(
+	____________________________________________________________
+	____________________________________________________________
+	Got it. I've added this task:
+		[T][ ] testing todo function
+	Now you have 1 tasks in the list.
+	____________________________________________________________
+	____________________________________________________________
+	Here are the tasks in your list:
+	1.[T][ ] testing todo function
+	____________________________________________________________
+	____________________________________________________________
+	Got it. I've added this task:
+		[D][ ] testing deadline function (by: 19 August)
+	Now you have 2 tasks in the list.
+	____________________________________________________________
+	____________________________________________________________
+	Here are the tasks in your list:
+	1.[T][ ] testing todo function
+	2.[D][ ] testing deadline function (by: 19 August)
+	____________________________________________________________
+	____________________________________________________________
+	Got it. I've added this task:
+		[E][ ] testing event function (at: 12 pm)
+	Now you have 3 tasks in the list.
+	____________________________________________________________
+	____________________________________________________________
+	Got it. I've added this task:
+		[E][ ] testing event function 2 (at: 3 am)
+	Now you have 4 tasks in the list.
+	____________________________________________________________
+	____________________________________________________________
+	Here are the tasks in your list:
+	1.[T][ ] testing todo function
+	2.[D][ ] testing deadline function (by: 19 August)
+	3.[E][ ] testing event function (at: 12 pm)
+	4.[E][ ] testing event function 2 (at: 3 am)
+	____________________________________________________________
+	____________________________________________________________
+	Nice! I've marked this task as done:
+		[T][X] testing todo function
+	____________________________________________________________
+	____________________________________________________________
+	Nice! I've marked this task as done:
+		[E][X] testing event function (at: 12 pm)
+	____________________________________________________________
+	____________________________________________________________
+	Here are the tasks in your list:
+	1.[T][X] testing todo function
+	2.[D][ ] testing deadline function (by: 19 August)
+	3.[E][X] testing event function (at: 12 pm)
+	4.[E][ ] testing event function 2 (at: 3 am)
+	____________________________________________________________
+	____________________________________________________________
+	OK, I've marked this task as not done yet:
+		[E][ ] testing event function (at: 12 pm)
+	____________________________________________________________
+	____________________________________________________________
+	Here are the tasks in your list:
+	1.[T][X] testing todo function
+	2.[D][ ] testing deadline function (by: 19 August)
+	3.[E][ ] testing event function (at: 12 pm)
+	4.[E][ ] testing event function 2 (at: 3 am)
+	____________________________________________________________
+	____________________________________________________________
+	Bye. Hope to see you again soon!
+	____________________________________________________________

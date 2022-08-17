@@ -27,7 +27,7 @@ public class TaskList {
     @Override
     public String toString() {
         if (taskList.isEmpty()) return "List is empty";
-        StringBuilder result = new StringBuilder("Here are the tasks in your list: \n");
+        StringBuilder result = new StringBuilder("Here are the tasks in your list:\n");
         for (int i = 0; i < taskList.size(); i++) {
             result.append(i + 1).append(".").append(taskList.get(i)).append(i == taskList.size() - 1 ? "" : "\n");
         }
