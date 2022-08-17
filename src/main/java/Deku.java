@@ -26,7 +26,7 @@ public class Deku {
         boolean active = true;
         while (active) {
             Scanner scanner = new Scanner(System.in);
-            String[] userInput = scanner.nextLine().split("\\s+");
+            String userInput = scanner.nextLine();
             if (userInput.equals("bye")) {
                 active = false;
             }
@@ -36,10 +36,10 @@ public class Deku {
         }
     }
 
-    private String parseReply(String[] input) {
-        String reply = input[0];
-        String command = input[0];
-        switch (command) {
+    private String parseReply(String input) {
+        String reply = input;
+        String[] separate = input.split("\\s+");;
+        switch (separate[0]) {
             case ("bye"):
                 reply = "Bye! Until next time!";
                 break;
@@ -47,11 +47,13 @@ public class Deku {
                 reply = this.botList.toString();
                 break;
             case ("mark"):
-                this.botList.mark(Integer.parseInt(input[1]));
+                reply = this.botList.mark(Integer.parseInt(separate[1]));
+                break;
             case ("unmark"):
-                this.botList.unmark(Integer.parseInt(input[1]));
+                reply = this.botList.unmark(Integer.parseInt(separate[1]));
+                break;
             default:
-                reply = this.botList.add(command);
+                reply = this.botList.add(input);
         }
         return SEPARATOR + "\n" + reply + "\n" + SEPARATOR;
     }
