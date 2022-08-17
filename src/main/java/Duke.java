@@ -65,9 +65,9 @@ public class Duke {
                                 System.out.printf("%d. %s\n", i + 1, tasks.get(i).toString());
                             }
                             break;
-                        default:
-                            tasks.add(new Task(false, command));
-                            System.out.printf("added: %s\n", command);
+                        default:    // default task type will be todo
+                            tasks.add(new Todo(false, command));
+                            System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
                             break;
                     }
             }
