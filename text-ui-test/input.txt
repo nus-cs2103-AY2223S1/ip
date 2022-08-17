@@ -1,0 +1,10 @@
+todo task1
+deadline go sch /by today
+mark 1
+list
+event lunch /at home
+mark 2
+list
+unmark 2
+list
+bye
