@@ -19,16 +19,25 @@ public class Duke {
     private static void processCommand() {
         Scanner sc = new Scanner(System.in);
         String command = sc.nextLine();
-        List<String> userList = new ArrayList<String>();
+        List<Task> userList = new ArrayList<Task>();
         int index = 0;
         while (!command.equals("bye")) {
             if (command.equals("list")) {
                 userList.forEach(System.out::println);
-            }
-            else {
+            } else if (command.length() > 5 && command.substring(0,4).equals("mark")) {
+                int tempIndex = command.charAt(5) - '0' - 1;
+                if (tempIndex <= index) {
+                    userList.set(tempIndex, userList.get(tempIndex).performTask());
+                }
+            } else if (command.length() > 7 && command.substring(0,6).equals("unmark")) {
+                int tempIndex = command.charAt(7) - '0' - 1;
+                if (tempIndex <= index) {
+                    userList.set(tempIndex, userList.get(tempIndex).undoTask());
+                }
+            } else {
                 index++;
-                String labelledCommand = String.format("\t%d. %s", index, command);
-                userList.add(labelledCommand);
+                Task newTask = new Task(command, index);
+                userList.add(newTask);
                 System.out.printf("\tadded: %s\n", command);
             }
             command = sc.nextLine();
