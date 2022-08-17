@@ -14,7 +14,7 @@ public class Task {
     public void unmark() {
         this.isDone = false;
     }
-    private String getStatusIcon() {
+    public String getStatusIcon() {
         return (isDone ? "X" : " ");
     }
 
@@ -22,5 +22,4 @@ public class Task {
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;
     }
-
 }
