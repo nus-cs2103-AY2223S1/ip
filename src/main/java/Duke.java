@@ -47,7 +47,7 @@ public class Duke {
                         Duke.allTasks.get(j).unmark();
                         break;
                     default:
-                        Task newTask = new Task(userInput);
+                        Task newTask = Task.createTask(userInput);
                         Duke.allTasks.add(newTask);
                 }
             } catch (ClassCastException e) {

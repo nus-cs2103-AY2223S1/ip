@@ -1,15 +1,34 @@
-public class Task {
-    private String task;
-    private boolean isComplete = false;
+public abstract class Task {
+    protected String task;
+    protected boolean isComplete = false;
 
     /**
-     * Constructor to create a new Task
+     * Factory method used to create a new Task
      *
-     * @param task  the task that you want to complete (String)
+     * @param userCommand  the command entered by the user to be parsed by the method
+     * @return a Task obj, either a Todo, Deadline or Event
      */
-    public Task(String task) {
-        this.task = task;
-        System.out.println("added: " + this.task);
+    public static Task createTask(String userCommand) {
+        String task;
+        String date;
+        String[] cmdArray = userCommand.split(" ", 2);
+        String cmd = cmdArray[0];
+
+        switch (cmd) {
+            case "todo":
+                task = cmdArray[1];
+                return new Todo(task);
+            case "deadline":
+                task = cmdArray[1].substring(0, cmdArray[1].indexOf("/by"));
+                date = cmdArray[1].substring(cmdArray[1].indexOf("/by") + 1);
+                return new Deadline(task, date);
+            case "event":
+                task = cmdArray[1].substring(0, cmdArray[1].indexOf("/at"));
+                date = cmdArray[1].substring(cmdArray[1].indexOf("/at") + 1);
+                return new Event(task, date);
+            default:
+                return new Todo("");
+        }
     }
 
     /**
