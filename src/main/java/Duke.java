@@ -15,7 +15,7 @@ public class Duke {
         System.out.println(divider + logo + openingStatement + divider);
 
         Scanner scanner = new Scanner(System.in);
-        ArrayList<String> taskList = new ArrayList<>();
+        ArrayList<Task> taskList = new ArrayList<>();
 
         while (scanner.hasNext()) {
             String input = scanner.nextLine();
@@ -23,16 +23,30 @@ public class Duke {
                 break;
             } else if (input.equals("list")) {
                 System.out.print(divider);
+                System.out.print(indent + "Here are the tasks in your list:\n");
                 for (int index = 0; index < taskList.size(); ++index) {
                     System.out.print(indent);
                     System.out.print(index + 1);
                     System.out.println(". " + taskList.get(index));
                 }
                 System.out.println(divider);
+            } else if (input.contains("mark")) {
+                int taskIndex = Integer.parseInt(input.substring(input.length() - 1)) - 1;
+                if (input.contains("unmark")) {
+                    taskList.get(taskIndex).unmarkAsDone();
+                    System.out.println(divider + indent + "Okay, I've marked this task as not done yet:");
+                    System.out.println(indent + indent + taskList.get(taskIndex) + "\n" + divider);
+                } else {
+                    taskList.get(taskIndex).markAsDone();
+                    System.out.println(divider + indent + "Nice! I've marked this as done:");
+                    System.out.println(indent + indent + taskList.get(taskIndex) + "\n" + divider);
+                }
             } else {
-                boolean response = taskList.add(input);
+                Task newTask = new Task(input);
+                boolean response = taskList.add(newTask);
                 if (response) {
-                    System.out.println(divider + indent + "added: " + input + "\n" + divider);
+                    System.out.println(divider + indent + "new task added! "
+                                        + newTask.getDescription() + "\n" + divider);
                 }
             }
         }
