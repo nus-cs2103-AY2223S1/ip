@@ -1,23 +1,28 @@
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 public abstract class Task {
     private String description;
     private boolean isDone;
 
-    public static Task parse(String str) {
-        String[] entry = str.split(" \\| ");
-        Task task = null;
-        if (entry[0].equals("T")) {
-            task = new ToDo(entry[2]);
-        } else if (entry[0].equals("D")) {
-            task = new Deadline(entry[2], LocalDate.parse(entry[3]));
-        } else {
-            task = new Event(entry[2], LocalDate.parse(entry[3]));
+    public static Task parse(String str) throws DukeException {
+        try {
+            String[] entry = str.split(" \\| ");
+            Task task = null;
+            if (entry[0].equals("T")) {
+                task = new ToDo(entry[2]);
+            } else if (entry[0].equals("D")) {
+                task = new Deadline(entry[2], LocalDate.parse(entry[3]));
+            } else {
+                task = new Event(entry[2], LocalDate.parse(entry[3]));
+            }
+            if (entry[1].equals("1")) {
+                task.mark();
+            }
+            return task;
+        } catch (DateTimeParseException | ArrayIndexOutOfBoundsException e) {
+            throw new DukeException("Invalid string in file.");
         }
-        if (entry[1].equals("1")) {
-            task.mark();
-        }
-        return task;
     }
 
     public Task(String description) {

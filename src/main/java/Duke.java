@@ -1,5 +1,3 @@
-import java.time.format.DateTimeParseException;
-
 public class Duke {
     private Storage storage;
     private TaskList taskList;
@@ -10,8 +8,8 @@ public class Duke {
             this.ui = new Ui();
             this.storage = new Storage(filePath);
             this.taskList = new TaskList(this.storage.loadLocalData());
-        } catch (DukeException | ArrayIndexOutOfBoundsException | DateTimeParseException e) {
-            this.ui.showLoadingError();
+        } catch (DukeException e) {
+            this.ui.printErrorMessage(e.getMessage());
             this.taskList = new TaskList();
         }
     }
@@ -27,8 +25,6 @@ public class Duke {
                 isExit = command.getExit();
             } catch (DukeException e) {
                 this.ui.printErrorMessage(e.getMessage());
-            } catch (DateTimeParseException e) {
-                this.ui.printErrorMessage("Please format date in YYYY-MM-DD.");
             }
         }
     }

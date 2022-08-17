@@ -9,7 +9,7 @@ public class TaskList {
         this.tasks = new ArrayList<>();
     }
 
-    public TaskList(List<String> data) {
+    public TaskList(List<String> data) throws DukeException {
         this.tasks = new ArrayList<>();
         for (String entry : data) {
             this.tasks.add(Task.parse(entry));
