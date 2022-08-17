@@ -70,4 +70,21 @@ DukeException: Invalid Task, please prefix your task!
 
 DukeException: Invalid Task, please prefix your task!
 
+Please add an index to delete a task!
+
+Invalid index, please input the index of an available task!
+
+Ok, I've removed this task:
+[D][ ] task 2  (by: xxx)
+You have 2 tasks left currently
+
+1. [T][ ] task 1
+2. [E][ ] task 3  (at: xxx)
+
+Ok, I've removed this task:
+[T][ ] task 1
+You have 1 tasks left currently
+
+1. [E][ ] task 3  (at: xxx)
+
 Have a nice day!

@@ -82,6 +82,23 @@ public class Duke {
     }
 
     /**
+     * Deletes the task with the specified index.
+     * @param inputIndex index to be deleted.
+     */
+    private static void deleteTask(String inputIndex) {
+        try {
+            int taskNo = Integer.parseInt(inputIndex);
+            Task task = tasks.get(taskNo - 1);
+            System.out.println("Ok, I've removed this task:");
+            System.out.println(task);
+            tasks.remove(taskNo - 1);
+            System.out.println("You have " + tasks.size() + " tasks left currently\n");
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            System.out.println("Invalid index, please input the index of an available task!\n");
+        }
+    }
+
+    /**
      * Handles the logic for the task manager.
      */
     private static void taskHandler() {
@@ -103,6 +120,12 @@ public class Duke {
                 printTaskList();
             } else if (command.equals("mark") || (command.equals("unmark"))) {
                 taskMarker(command, inputArr);
+            } else if (command.equals("delete")) {
+                try{
+                    deleteTask(inputArr[1]);
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("Please add an index to delete a task!\n");
+                }
             } else {
                 try {
                     addTask(command, inputArr[1]);

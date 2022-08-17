@@ -23,4 +23,10 @@ deadline
 event
 list 2
 test invalid task
+delete
+delete 99
+delete 2
+list
+delete 1
+list
 bye
