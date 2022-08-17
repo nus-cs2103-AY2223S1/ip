@@ -1,9 +1,13 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
     private boolean isActive = true;
     private String emoji = "<_>";
     private Scanner reader = new Scanner(System.in);
+    private String[] todos = new String[100];
+    private int pointer = 0;
 
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -27,16 +31,31 @@ public class Duke {
         String userInput = reader.nextLine();
         if (userInput.equals("bye")) {
             bye();
+        } else if (userInput.equals("list")) {
+            listTasks();
         } else {
-            System.out.println(userInput + " " + emoji);
+           addTask(userInput);
         }
 
         System.out.println();
     }
 
+    private void addTask(String task) {
+        System.out.println("\tlazily added: " + task + " " + emoji);
+        todos[pointer] = task;
+        pointer++;
+    }
+
+    private void listTasks() {
+        System.out.println("Really?");
+        for (int i = 1; i <= pointer; i++) {
+            System.out.println(i + ". " + todos[i - 1]);
+        }
+    }
+
     private void bye() {
         this.isActive = false;
-        System.out.println("Bye. zzz FINALLY~~" + " " + emoji);
+        System.out.println("\tBye. zzz FINALLY~~" + " " + emoji);
         reader.close();
     }
 }
