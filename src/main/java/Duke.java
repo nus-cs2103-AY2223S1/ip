@@ -29,7 +29,7 @@ public class Duke {
 
     private void enumerateArrayList(){
         line();
-        System.out.println("Here are the tasks in your list: ");
+        System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < list.size(); i++) {
             Task t = list.get(i);
             System.out.println(i + 1 + "." + t);
@@ -41,7 +41,7 @@ public class Duke {
         Task t = this.list.get(index);
         t.markDone();
         line();
-        System.out.println("Nice! I've marked this task as done: ");
+        System.out.println("Nice! I've marked this task as done:");
         System.out.println(t);
         line();
     }
@@ -50,7 +50,7 @@ public class Duke {
         Task t = this.list.get(index);
         t.markUndone();
         line();
-        System.out.println("OK, I've marked this task as not done yet: ");
+        System.out.println("OK, I've marked this task as not done yet:");
         System.out.println(t);
         line();
     }
@@ -63,7 +63,7 @@ public class Duke {
         Todo todo = new Todo(input);
         addTask(todo);
         line();
-        System.out.println("Got it. I've added this task: ");
+        System.out.println("Got it. I've added this task:");
         System.out.println(todo);
         System.out.println("Now you have " + getArraySize() + " tasks in the list.");
         line();
@@ -78,7 +78,7 @@ public class Duke {
         Deadline deadline = new Deadline(description, dateBy);
         addTask(deadline);
         line();
-        System.out.println("Got it, I've added this task: ");
+        System.out.println("Got it, I've added this task:");
         System.out.println(deadline);
         System.out.println("Now you have " + getArraySize() + " tasks in the list.");
         line();
@@ -93,7 +93,7 @@ public class Duke {
         Event event = new Event(description, dateAt);
         addTask(event);
         line();
-        System.out.println("Got it. I've added this task: ");
+        System.out.println("Got it. I've added this task:");
         System.out.println(event);
         System.out.println("Now you have " + getArraySize() + " tasks in the list.");
         line();
@@ -119,8 +119,8 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
         duke.greet();
+        Scanner scanner = new Scanner(System.in); // creating scanner for user input
         while (!isDone) {
-            Scanner scanner = new Scanner(System.in); // creating scanner for user input
             String input = scanner.nextLine();
             String[] strArray = input.split(" ", 2);
             String first = strArray[0];
@@ -159,8 +159,6 @@ public class Duke {
                     break;
                 }
                 default: {
-                    duke.store(first);
-                    break;
                 }
             }
         }
