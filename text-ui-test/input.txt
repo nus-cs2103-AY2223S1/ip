@@ -1,5 +1,13 @@
+todo
+todo       
 todo play basketball
+mark
 mark 1
+deadline cs2103t project
 deadline cs2103t project /by Friday
+event group meeting
 event group meeting /at Mon 3-6pm
+blah
+test
+list
 bye

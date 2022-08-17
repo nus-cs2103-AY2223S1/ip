@@ -1,14 +1,25 @@
 Hello! I'm Luke
 What can I do for you?
+OOPS!!! The description of a todo cannot be empty
+OOPS!!! The description of a todo cannot be empty
 Got it. I've added this task:
 [T][ ] play basketball
 Now you have 1 task in the list.
+OOPS!!! Choose which task to mark as done!
 Nice! I've marked this task as done:
 [X] play basketball
+OOPS!!! The date of the deadline cannot be empty
 Got it. I've added this task:
 [D][ ] cs2103t project (by: Friday)
 Now you have 2 tasks in the list.
+OOPS!!! The date of the event cannot be empty
 Got it. I've added this task:
 [E][ ] group meeting (at: Mon 3-6pm)
 Now you have 3 tasks in the list.
+OOPS!!! I'm sorry, but I dont know what you mean :(
+OOPS!!! I'm sorry, but I dont know what you mean :(
+Here are the tasks in your list:
+1.[T][X] play basketball
+2.[D][ ] cs2103t project (by: Friday)
+3.[E][ ] group meeting (at: Mon 3-6pm)
 Bye! Thanks for using Luke!
