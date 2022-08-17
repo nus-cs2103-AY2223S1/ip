@@ -1,4 +1,4 @@
-package commandhandler;
+package command;
 
 public enum Command {
     BYE, // termination

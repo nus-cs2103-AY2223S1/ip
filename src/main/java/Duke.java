@@ -1,6 +1,6 @@
-import commandhandler.Command;
-import commandhandler.CommandFactory;
-import commandhandler.CommandHandler;
+import command.Command;
+import command.CommandFactory;
+import command.CommandHandler;
 
 import data.TaskList;
 

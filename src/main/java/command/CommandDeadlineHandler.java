@@ -1,4 +1,4 @@
-package commandhandler;
+package command;
 
 import data.TaskList;
 import data.tasks.TaskDeadline;
