@@ -6,16 +6,16 @@
 	There are no items in the list!
 	--------------------------------------------------
 	--------------------------------------------------
-	Invalid task selected!
+	OOPS!!! Invalid task selected!
 	--------------------------------------------------
 	--------------------------------------------------
-	Invalid task selected!
+	OOPS!!! Invalid task selected!
 	--------------------------------------------------
 	--------------------------------------------------
-	Invalid task selected!
+	OOPS!!! Invalid task selected!
 	--------------------------------------------------
 	--------------------------------------------------
-	Invalid task selected!
+	OOPS!!! Invalid task selected!
 	--------------------------------------------------
 	--------------------------------------------------
 	Got it. I've added this task:
@@ -23,7 +23,7 @@
 	Now you have 1 tasks in the list
 	--------------------------------------------------
 	--------------------------------------------------
-	[todo] Invalid command parameters!
+	OOPS!!! The `todo` command expects a description!
 	--------------------------------------------------
 	--------------------------------------------------
 	Got it. I've added this task:
@@ -31,10 +31,10 @@
 	Now you have 2 tasks in the list
 	--------------------------------------------------
 	--------------------------------------------------
-	[deadline] Invalid command parameters!
+	OOPS!!! Invalid parameters passed to `deadline` command! (Expected: deadline <task-title> /by <deadline>)
 	--------------------------------------------------
 	--------------------------------------------------
-	[deadline] Invalid command parameters!
+	OOPS!!! Invalid parameters passed to `deadline` command! (Expected: deadline <task-title> /by <deadline>)
 	--------------------------------------------------
 	--------------------------------------------------
 	Got it. I've added this task:
@@ -42,13 +42,13 @@
 	Now you have 3 tasks in the list
 	--------------------------------------------------
 	--------------------------------------------------
-	[event] Invalid command parameters!
+	OOPS!!! Invalid parameters passed to `event` command! (Expected: event <event-title> /at <timing>)
 	--------------------------------------------------
 	--------------------------------------------------
-	[event] Invalid command parameters!
+	OOPS!!! Invalid parameters passed to `event` command! (Expected: event <event-title> /at <timing>)
 	--------------------------------------------------
 	--------------------------------------------------
-	Invalid task selected!
+	OOPS!!! Invalid task selected!
 	--------------------------------------------------
 	--------------------------------------------------
 	Nice! I've mark this task as done:
@@ -63,7 +63,7 @@
 		[E][X] event task-1 (at: Mon, 7pm-8pm)
 	--------------------------------------------------
 	--------------------------------------------------
-	Invalid task selected!
+	OOPS!!! Invalid task selected!
 	--------------------------------------------------
 	--------------------------------------------------
 	OK, I've marked this task as not done yet:
@@ -78,14 +78,14 @@
 		[T][ ] todo task-1
 	--------------------------------------------------
 	--------------------------------------------------
-	Unknown command!
+	OOPS!!! Unknown command!
 	--------------------------------------------------
 	--------------------------------------------------
-	Unknown command!
+	OOPS!!! Unknown command!
 	--------------------------------------------------
 	--------------------------------------------------
-	Unknown command!
+	OOPS!!! Unknown command!
 	--------------------------------------------------
 	--------------------------------------------------
-	Unknown command!
+	OOPS!!! Unknown command!
 	--------------------------------------------------
