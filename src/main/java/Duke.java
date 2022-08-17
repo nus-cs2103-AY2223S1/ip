@@ -10,7 +10,7 @@ public class Duke {
     private static final String WELCOME = "こんにちは (Konnichiwa)! Rem だよ! (I'm Rem!) :>\n"
             + "今日は何ができますか? (What can I do for you today?)";
 
-    private CheckList checklist;
+    protected CheckList checklist;
 
     // Constructor
     public Duke() {
@@ -31,22 +31,43 @@ public class Duke {
         while (true) {
             System.out.print(">> ");
             input = sc.nextLine();
-            if (input.equals("bye")) break;
-            if (input.equals("list")) {
-                System.out.println(SPACER);
-                System.out.println(checklist.printList());
-                System.out.println(SPACER);
-                continue;
+            String keyWord = input.split(" ")[0];
+            switch (keyWord) {
+                case "list":
+                    System.out.println(SPACER);
+                    System.out.println("Here's your list ^3^:");
+                    System.out.println(checklist.printList());
+                    System.out.println(SPACER);
+                    break;
+                case "bye":
+                    System.out.println("またね! (See you soon!) <3");
+                    System.exit(0);
+                    break;
+                case "mark":
+                    int taskNum = Integer.parseInt(input.split(" ")[1]);
+                    checklist.tasks.get(taskNum - 1).markDone();
+                    System.out.println(SPACER);
+                    System.out.println("Great Job on completing this task! ^.^ :");
+                    System.out.println(checklist.printTaskStatus(taskNum - 1));
+                    System.out.println(SPACER);
+                    break;
+                case "unmark":
+                    taskNum = Integer.parseInt(input.split(" ")[1]);
+                    checklist.tasks.get(taskNum - 1).markUndone();
+                    System.out.println(SPACER);
+                    System.out.println("Grrr, remember to finish your task! =3=:");
+                    System.out.println(checklist.printTaskStatus(taskNum - 1));
+                    System.out.println(SPACER);
+                    break;
+                default:
+                    Task task = new Task(input);
+                    checklist.addTask(task);
+                    System.out.println(SPACER);
+                    System.out.println("I've added '" + input + "' to your list. :)");
+                    System.out.println(SPACER);
+                    break;
             }
-
-            Task task = new Task(checklist.getTaskCount() + ". " + input);
-            checklist.addTask(task);
-
-            System.out.println(SPACER);
-            System.out.println("I've added '" + input + "' to your list. :)");
-            System.out.println(SPACER);
         }
-        System.out.println("またね! (See you soon!) <3");
     }
 
     // Main Method

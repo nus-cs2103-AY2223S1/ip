@@ -2,8 +2,8 @@ import java.util.ArrayList;
 
 public class CheckList {
     // Class Fields
-    private ArrayList<Task> tasks;
-    private int taskCount;
+    protected ArrayList<Task> tasks;
+    protected int taskCount;
 
     // Constructor
     public CheckList() {
@@ -24,12 +24,32 @@ public class CheckList {
     public String printList() {
         StringBuilder output = new StringBuilder();
         for (int i = 0; i < tasks.size(); ++i) {
+            Task curr = tasks.get(i);
             if (i == tasks.size() - 1) {
-                output.append(tasks.get(i).toString());
+                output.append(i + 1)
+                        .append(".[")
+                        .append(curr.getStatusIcon())
+                        .append("] ")
+                        .append(curr);
             } else {
-                output.append(tasks.get(i).toString()).append("\n");
+                output.append(i + 1)
+                        .append(".[")
+                        .append(curr.getStatusIcon())
+                        .append("] ")
+                        .append(curr)
+                        .append("\n");
             }
         }
+        return output.toString();
+    }
+
+    public String printTaskStatus(int idx) {
+        StringBuilder output = new StringBuilder();
+        Task curr = tasks.get(idx);
+        output.append("[")
+                .append(curr.getStatusIcon())
+                .append("] ")
+                .append(curr.toString());
         return output.toString();
     }
 }
