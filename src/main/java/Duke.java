@@ -14,7 +14,7 @@ public class Duke {
     private static final String ADD_TASK_MESSAGE = "added:";
     private static final String MARK_TASK_AS_DONE_MESSAGE = "Nice! I've marked this task as done:";
     private static final String MARK_TASK_AS_UNDONE_MESSAGE = "OK, I've marked this task as not done yet:";
-    
+
     private static final String MISSING_TASK_INDEX_ERROR = "Oops! You are missing a task number!\n" +
             "Use the 'list' command to view the tasks and their number.";
     private static final String NAN_TASK_INDEX_ERROR = "Oops! The task number you provided is not a number!";

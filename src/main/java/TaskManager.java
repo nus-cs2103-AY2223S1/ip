@@ -22,7 +22,8 @@ public class TaskManager {
      * @param taskDescription Task description received from the caller
      */
     public void add(String taskDescription) {
-        this.taskList.add(new Task(taskDescription));
+        // TODO: Allow creation of various task types
+        this.taskList.add(new ToDo(taskDescription));
     }
 
     /**

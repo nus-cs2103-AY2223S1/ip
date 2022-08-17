@@ -3,7 +3,7 @@
  *
  * @author Emily Ong Hui Qi
  */
-public class Task {
+abstract public class Task {
     protected String description;
     protected boolean isDone;
 
@@ -27,6 +27,14 @@ public class Task {
     }
 
     /**
+     * Return the task type icon of the current task. For example, a "Deadline" task has a
+     * task type icon of 'D'.
+     *
+     * @return Task type icon of the task
+     */
+    abstract public String getTaskTypeIcon();
+
+    /**
      * Return the status icon of the current task, where a task that is done is marked with
      * a 'X' and a task that is undone is marked with an empty space
      *
@@ -37,6 +45,6 @@ public class Task {
     }
 
     public String toString() {
-        return String.format("[%s] %s", this.getStatusIcon(), this.description);
+        return String.format("[%s] [%s] %s", this.getTaskTypeIcon(), this.getStatusIcon(), this.description);
     }
 }
