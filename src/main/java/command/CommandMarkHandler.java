@@ -46,7 +46,7 @@ public class CommandMarkHandler extends CommandHandler {
                 responseList.add(String.format("\t%s", task));
             }
         } catch (NumberFormatException error) {
-            responseList.add("Invalid task index!");
+            throw new CommandException("Invalid task selected!");
         }
 
         return responseList;

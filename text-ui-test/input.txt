@@ -3,6 +3,8 @@ mark 0
 unmark 0
 mark 100
 unmark 100
+mark a
+unmark b
 todo todo task-1
 todo
 deadline dl task-1 /by 18-Aug, Thursday
