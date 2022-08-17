@@ -1,10 +1,11 @@
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Duke {
     Scanner scanner = new Scanner(System.in);
     int index = 0;
-    Task[] inputArray = new Task[100];
+    ArrayList<Task> inputArray = new ArrayList<>();
 
     Duke() {
         Greet();
@@ -26,12 +27,15 @@ public class Duke {
                     addDeadlines(input);
                 } else if (input.startsWith("event")) {
                     addEvents(input);
+                } else if (input.startsWith("delete")) {
+                    deleteTask(input);
                 } else {
                     System.out.println("Sorry, I do not accept that as a task!");
                     continue;
                 }
                 reportNum();
-            } catch (InputMismatchException | ArrayIndexOutOfBoundsException | NumberFormatException | NullPointerException e) {
+            } catch (InputMismatchException | ArrayIndexOutOfBoundsException |
+                    NumberFormatException | NullPointerException e) {
                 System.out.println("Please input correctly");
             }
         }
@@ -51,15 +55,15 @@ public class Duke {
 
     private void List(){
         for (int i = 0; i < index; i++) {
-            System.out.println(i + 1 + ": " + inputArray[i]);
+            System.out.println(i + 1 + ": " + inputArray.get(i));
         }
     }
 
     private void addTodo(String input) {
         try {
             if (input.length() > 5) {
-                inputArray[index] = new Todo(input.substring(5));
-                System.out.println("Got it. I've added this task:\n" + inputArray[index]);
+                inputArray.add(index, new Todo(input.substring(5)));
+                System.out.println("Got it. I've added this task:\n" + inputArray.get(index));
                 index++;
             } else {
                 System.out.println("Please fill in what you want on the Todo!");
@@ -73,8 +77,8 @@ public class Duke {
         try {
             if (input.length() > 6) {
                 int slashIndex = input.indexOf("/");
-                inputArray[index] = new Events(input.substring(6, slashIndex), input.substring(slashIndex + 4));
-                System.out.println("Got it. I've added this task:\n" + inputArray[index]);
+                inputArray.add(index, new Events(input.substring(6, slashIndex), input.substring(slashIndex + 4)));
+                System.out.println("Got it. I've added this task:\n" + inputArray.get(index));
                 index++;
             } else {
                 System.out.println("Please fill in what you want on the Events!");
@@ -88,8 +92,8 @@ public class Duke {
         try {
             if (input.length() > 9) {
                 int slashIndex = input.indexOf("/");
-                inputArray[index] = new Deadlines(input.substring(9, slashIndex), input.substring(slashIndex + 4));
-                System.out.println("Got it. I've added this task:\n" + inputArray[index]);
+                inputArray.add(index, new Deadlines(input.substring(9, slashIndex), input.substring(slashIndex + 4)));
+                System.out.println("Got it. I've added this task:\n" + inputArray.get(index));
                 index++;
             } else {
                 System.out.println("Please fill in what you want on the Deadlines!");
@@ -99,18 +103,27 @@ public class Duke {
         }
     }
 
-    private void markTask(String input) throws NullPointerException, ArrayIndexOutOfBoundsException, NumberFormatException {
+    private void markTask(String input) throws NullPointerException, ArrayIndexOutOfBoundsException,
+            NumberFormatException {
         int markIndex = Integer.parseInt(input.substring(5));
-        inputArray[markIndex - 1].done();
         System.out.println("Nice! I've marked this task as done liao!:\n"
-                + inputArray[markIndex - 1]);
+                + inputArray.get(markIndex - 1));
+        inputArray.get(markIndex -1).done();
     }
 
-    private void unmarkTask(String input) throws NullPointerException, ArrayIndexOutOfBoundsException , NumberFormatException{
+    private void unmarkTask(String input) throws NullPointerException, ArrayIndexOutOfBoundsException,
+            NumberFormatException {
         int markIndex = Integer.parseInt(input.substring(7));
-        inputArray[markIndex - 1].unDone();
         System.out.println("OK, I unmark this task as not done le:\n"
-                + inputArray[markIndex - 1]);
+                + inputArray.get(markIndex - 1));
+        inputArray.get(markIndex - 1).unDone();
+    }
+
+    private void deleteTask(String input) throws NullPointerException, ArrayIndexOutOfBoundsException , NumberFormatException {
+        int markIndex = Integer.parseInt(input.substring(7));
+        System.out.println("Swee! Task removed: " + inputArray.get(markIndex - 1));
+        inputArray.remove(markIndex - 1);
+        index--;
     }
 
     public static void main(String[] args) {
