@@ -1,10 +1,12 @@
+import com.sun.security.jgss.GSSUtil;
+
 import java.util.Scanner;
 
 public class Duke {
     private static Task[] items = new Task[100];
     private static int id;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DukeException {
         String introduction = "Hello! I'm Duke\n" + "\tWhat can I do for you?";
         Duke.echo(introduction);
 
@@ -12,56 +14,67 @@ public class Duke {
         while (sc.hasNext()) {
             String s = sc.nextLine();
             String[] arr = s.split(" ");
-
-
             if (s.equals("bye")) {
                 Duke.echo("Bye. Hope to see you again soon!");
                 break;
-            } else if (s.equals("list")) {
-                Duke.list();
-            } else if (arr[0].equals("mark")) {
-                int i;
-                try {
-                    i = Integer.parseInt(arr[1]) - 1;
-                    if (i >= 0 && i < id) {
-                        Task t = items[i];
-                        t.markAsDone();
-                        Duke.echo("Nice! I've marked this task as done:\n" +
-                                "\t  " + t);
-                    }
-                } catch (NumberFormatException e) {
-                    Duke.echo("Please enter an integer id after \"mark\"");
-                }
-            } else if (arr[0].equals("unmark")) {
-                int i;
-                try {
-                    i = Integer.parseInt(arr[1]) - 1;
-                    if (i >= 0 && i < id) {
-                        Task t = items[i];
-                        t.markAsUndone();
-                        Duke.echo("OK! I've marked this task as not done yet:\n" +
-                                "\t  " + t);
-                    }
-                } catch (NumberFormatException e) {
-                    Duke.echo("Please enter an integer id after \"ummark\"");
-
-                }
-            } else if (arr[0].equals("todo")) {
-                String todo = s.substring(4).trim();
-                Duke.add(todo, "todo", "");
-            } else if (arr[0].equals("deadline")) {
-                String[] deadlineBy = s.substring(8).trim().split("/by");
-                String deadline = deadlineBy[0].trim();
-                String by = deadlineBy[1].trim();
-                Duke.add(deadline, "deadline", by);
-            } else if (arr[0].equals("event")) {
-                String[] eventAt = s.substring(5).trim().split("/at");
-                String event = eventAt[0].trim();
-                String at = eventAt[1].trim();
-                Duke.add(event, "event", at);
-            }  else {
-                Duke.add(s, "task", "");
             }
+            try {
+                Duke.decide(s, arr);
+            } catch (DukeException e) {
+                Duke.echo(e.toString());
+            }
+        }
+    }
+
+    private static void decide(String s, String[] arr) throws DukeException {
+        if (s.equals("list")) {
+            Duke.list();
+        } else if (arr[0].equals("mark")) {
+            int i;
+            try {
+                i = Integer.parseInt(arr[1]) - 1;
+                if (i >= 0 && i < id) {
+                    Task t = items[i];
+                    t.markAsDone();
+                    Duke.echo("Nice! I've marked this task as done:\n" +
+                            "\t  " + t);
+                }
+            } catch (NumberFormatException e) {
+                Duke.echo("Please enter an integer id after \"mark\"");
+            }
+        } else if (arr[0].equals("unmark")) {
+            int i;
+            try {
+                i = Integer.parseInt(arr[1]) - 1;
+                if (i >= 0 && i < id) {
+                    Task t = items[i];
+                    t.markAsUndone();
+                    Duke.echo("OK! I've marked this task as not done yet:\n" +
+                            "\t  " + t);
+                }
+            } catch (NumberFormatException e) {
+                Duke.echo("Please enter an integer id after \"ummark\"");
+
+            }
+        } else if (arr[0].equals("todo")) {
+            if (arr.length == 1) {
+                throw new DukeException("Error. The description of a todo cannot be empty.");
+            }
+            String todo = s.substring(4).trim();
+            Duke.add(todo, "todo", "");
+        } else if (arr[0].equals("deadline")) {
+            String[] deadlineBy = s.substring(8).trim().split("/by");
+            String deadline = deadlineBy[0].trim();
+            String by = deadlineBy[1].trim();
+            Duke.add(deadline, "deadline", by);
+        } else if (arr[0].equals("event")) {
+            String[] eventAt = s.substring(5).trim().split("/at");
+            String event = eventAt[0].trim();
+            String at = eventAt[1].trim();
+            Duke.add(event, "event", at);
+        }  else {
+            // Duke.add(s, "task", "");
+            throw new DukeException("Error. I'm sorry, but I don't know what that means.");
         }
     }
 
