@@ -46,10 +46,30 @@ public class Duke {
         while (!uncap.equals("bye")) {
             if (!uncap.equals("list")) {
                 if (!uncap.contains("mark")) {
-                    Task t = new Task(str);
+                    Task t = null;
+                    if (uncap.contains("/") && (uncap.contains("deadline")
+                            || uncap.contains("event"))) {
+                        if (uncap.contains("deadline")) {
+                            int idOfSlash= str.indexOf('/');
+                            t = new Deadline(str.substring(9, idOfSlash), str.substring(idOfSlash + 4));
+                        } else if (uncap.contains("event")) {
+                            int idOfSlash = str.indexOf('/');
+                            t = new Event(str.substring(6, idOfSlash), str.substring(idOfSlash + 4));
+                        }
+                    } else if (uncap.contains("todo")) {
+                            t = new Todo(str.substring(5));
+                    } else {
+                        t = new Task(str);
+                    }
                     al.add(t);
                     System.out.println("------------------------------\n");
-                    System.out.printf("\tAdded: %s\n", str);
+                    System.out.printf("\tGot it. I've added this task: \n\t\t%s\n", t.toString());
+                    int sizeOfAl = al.size();
+                    if (sizeOfAl == 1) {
+                        System.out.println("\tNow you have " + sizeOfAl + " task in the list.");
+                    } else {
+                        System.out.println("\tNow you have " + sizeOfAl + " tasks in the list.");
+                    }
                     System.out.println("------------------------------\n");
                     str = sc.nextLine();
                     uncap = str.toLowerCase();
