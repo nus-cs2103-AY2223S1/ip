@@ -1,4 +1,6 @@
-public class Task {
+import java.util.Arrays;
+
+public abstract class Task {
 
     protected final String name;
     protected boolean isDone;
@@ -6,6 +8,10 @@ public class Task {
     public Task(String name) {
         this.name = name;
         this.isDone = false;
+    }
+
+    public String toString() {
+        return String.format("[%s] %s", this.getStatus(), this.getName());
     }
 
     public String getName() {
@@ -16,6 +22,8 @@ public class Task {
         return this.isDone;
     }
 
+    abstract String getType();
+
     public String getStatus() {
         return this.isDone ? "X" : " ";
     }
@@ -24,7 +32,7 @@ public class Task {
         this.isDone = true;
     }
 
-    void unmark() {
+    public void unmark() {
         this.isDone = false;
     }
 }
