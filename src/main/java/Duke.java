@@ -49,7 +49,7 @@ public class Duke {
             int index = Integer.parseInt(i) - 1;
 
             if (index >= idx) {
-                throw new DukeException("☹ OOPS!!! Error: No Such Task");
+                throw new DukeException("OOPS!!! Error: No Such Task");
             }
             String removedTask = list[index].toString();
             for (int j = index; j < idx; j++) {
@@ -62,7 +62,7 @@ public class Duke {
             System.out.println("--------------------------");
         }
         catch (Exception e) {
-            System.out.println("☹ OOPS!!! Error: No Such Task");
+            System.out.println("OOPS!!! Error: No Such Task");
             System.out.println("--------------------------");
         }
     }
@@ -87,7 +87,7 @@ public class Duke {
                 list[idx] = new DeadlineTask(action.substring(8, i).strip(), by);
                 idx++;
             } else {
-                System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(");
                 System.out.println("--------------------------");
                 return;
             }
@@ -134,7 +134,7 @@ public class Duke {
             System.out.println("--------------------------");
         }
         catch (Exception e) {
-            System.out.println("☹ OOPS!!! Error: No Such Task");
+            System.out.println("OOPS!!! Error: No Such Task");
             System.out.println("--------------------------");
         }
     }
