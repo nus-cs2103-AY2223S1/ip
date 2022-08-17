@@ -116,7 +116,6 @@ public class Duke {
         return new Event(description, timeQualifier, timeDescription);
     }
 
-    /*
     public static void deleteTask(int index) throws DukeException {
         if (index < 0) {
             throw new DukeException("I cannot delete this task because your index is invalid");
@@ -133,7 +132,6 @@ public class Duke {
         taskList.remove(index);
 
     }
-    */
 
     public static void main(String[] args) throws DukeException {
         Scanner sc = new Scanner(System.in);
@@ -170,9 +168,9 @@ public class Duke {
                                 markTaskAsDone(index);
                             } else if (commands[0].equals("unmark")) {
                                 markTaskAsNotDone(index);
-                            } /*else if (commands[0].equals("delete")) {
+                            } else if (commands[0].equals("delete")) {
                                 deleteTask(index);
-                            } */else {
+                            } else {
                                 throw new DukeException("I do not understand that command :(");
                             }
                         } else {
