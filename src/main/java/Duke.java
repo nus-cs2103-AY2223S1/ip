@@ -97,7 +97,7 @@ public class Duke {
                         throw new DukeException("     ☹ OOPS!!! The description of a deadline cannot be empty.\n");
                     }
                     String[] deadlineStrings = inputStrings[1].split(" /by ", 2);
-                    if (deadlineStrings.length == 1) {
+                    if (deadlineStrings.length == 1 || deadlineStrings[1] == "") {
                         throw new DukeException("     ☹ OOPS!!! The date/time of a deadline cannot be empty.\n");
                     }
                     Deadline deadline = new Deadline(deadlineStrings[0], deadlineStrings[1]);
@@ -114,7 +114,7 @@ public class Duke {
                         throw new DukeException("     ☹ OOPS!!! The description of an event cannot be empty.\n");
                     }
                     String[] eventStrings = inputStrings[1].split(" /at ", 2);
-                    if (eventStrings.length == 1) {
+                    if (eventStrings.length == 1 || eventStrings[1] == "") {
                         throw new DukeException("     ☹ OOPS!!! The date/time of an event cannot be empty.\n");
                     }
                     Event event = new Event(eventStrings[0], eventStrings[1]);
