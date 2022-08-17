@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class Duke {
     private static Task[] tasks = new Task[100];
-    private static int numTask = 0;
     private static Scanner sc = new Scanner((System.in));
     public static void main(String[] args) {
         System.out.println("Hello! I'm Fungusta\n" + "Peter's personal chatbot\n");
@@ -16,27 +15,38 @@ public class Duke {
         if (instruction.equals("bye")) {
             System.out.println("Goodbye!");
             return false;
-        } else {
-            switch (instruction) {
-                case "list" -> listOut();
-                case "mark" -> tasks[sc.nextInt() - 1].markTask();
-                case "unmark" -> tasks[sc.nextInt() - 1].unmarkTask();
-                default -> addList(instruction + sc.nextLine());
-            }
-            return true;
         }
+        switch (instruction) {
+            case "list" -> listOut();
+            case "mark" -> tasks[sc.nextInt() - 1].markTask();
+            case "unmark" -> tasks[sc.nextInt() - 1].unmarkTask();
+            default -> addList(instruction);
+        }
+        return true;
     }
-    public static void addList(String userInput) {
-            tasks[numTask] = new Task(userInput);
-            numTask++;
-            System.out.println("added: " + userInput + "\n");
+    public static void addList(String instruction) {
+        Task newTask;
+        switch (instruction) {
+            case "todo" -> newTask = new ToDos(sc.nextLine());
+            case "deadline" -> {
+                String[] input = sc.nextLine().split(" /by ");
+                newTask = new Deadlines(input[0], input[1]);
+            }
+            case "event" -> {
+                String[] input = sc.nextLine().split(" /at ");
+                newTask = new Events(input[0], input[1]);
+            }
+            default -> throw new IllegalStateException("Unexpected value: " + instruction);
+        }
+            tasks[Task.getNumTasks() - 1] = newTask;
+            System.out.println("Got it. I've added this task:");
+            System.out.println(newTask.toString());
+            System.out.println(String.format("Now you have %d tasks in the list.\n", Task.getNumTasks()));
     }
 
     public static void listOut() {
-        for(int i = 0; i < numTask; i++) {
-            int num = i + 1;
-            String header = num + ". ";
-            System.out.println(header + tasks[i].toString());
+        for(int i = 0; i < Task.getNumTasks(); i++) {
+            System.out.println(String.format("%d.%s", i + 1, tasks[i].toString()));
         }
         System.out.println("");
     }
