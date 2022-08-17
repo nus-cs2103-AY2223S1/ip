@@ -11,13 +11,21 @@ public class Duke {
         System.out.println("Hello! I'm Duke\nWhat can I do for you?");
 
         Scanner sc = new Scanner(System.in);
+        String[] storedItems = new String[100];
+        int index = 0;
         while (true) {
             String str = sc.nextLine();
             if ("bye".equals(str)) {
                 System.out.println("Bye! Hope to see you again soon");
                 break;
+            } else if ("list".equals(str)) {
+                int p = 0;
+                while (p < 100 && storedItems[p] != null) {
+                    System.out.printf("%d. %s\n", p + 1, storedItems[p++]);
+                }
             } else {
-                System.out.println(str);
+                storedItems[index++] = str;
+                System.out.println("Added: " + str);
             }
         }
     }
