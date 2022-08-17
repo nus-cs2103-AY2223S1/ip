@@ -25,3 +25,16 @@ Got it. I've added this task:
 [E][ ]  project meeting  (at: Mon 2-4pm)
 Now you have 3 tasks in the list.
 ________________________________________________________________
+
+________________________________________________________________
+Here are the tasks in your list:
+1. [T][ ]  borrow book
+2. [D][ ]  return book  (by: Sunday)
+3. [E][ ]  project meeting  (at: Mon 2-4pm)
+________________________________________________________________
+
+________________________________________________________________
+Noted. I've removed this task:
+[D][ ]  return book  (by: Sunday)
+Now you have 2 tasks in the list.
+________________________________________________________________

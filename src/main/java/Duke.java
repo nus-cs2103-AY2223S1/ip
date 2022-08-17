@@ -26,7 +26,7 @@ public class Duke {
                 System.out.println(line + "Bye. Hope to see you again soon!\n" + line);
                 break;
             }
-            else if (input.equals("list")) { //if input is list, check if can display list
+            else if (input.equals("list")) {
                 if (items.size() != 0) {
                     System.out.println(line + "Here are the tasks in your list: ");
                     for (int i = 0; i < items.size(); i++) {
@@ -89,6 +89,26 @@ public class Duke {
                     System.out.println(line + "Got it. I've added this task:");
                     System.out.println(t);
                     System.out.println("Now you have " + items.size() + " tasks in the list.\n" + line);
+                }
+            }
+            else if (segments2[0].equals("delete")) {
+                if (!input.replace(segments2[0],"").equals("")) {
+                    int index = Integer.parseInt(segments2[1]);
+                    if (index <= items.size()) {
+                        Task t = items.get(index - 1);
+                        items.remove(t);
+                        System.out.println(line + "Noted. I've removed this task:");
+                        System.out.println(t);
+                        System.out.println("Now you have " + items.size() + " tasks in the list.\n" + line);
+                    }
+                    else {
+                        System.out.println(line + new DukeException("There is no such task available."));
+                        System.out.println(line);
+                    }
+                }
+                else {
+                    System.out.println(line + new DukeException("Please specify which tasks to delete."));
+                    System.out.println(line);
                 }
             }
             else {
