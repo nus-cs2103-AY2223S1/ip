@@ -33,8 +33,19 @@ public class Duke {
                 System.out.println("Great! This task is completed:\n" + tasks[index]);
             }
             else {
-                tasks[currIndex++] = new Task(command);
-                System.out.println("added: " + command);
+                if (command.contains("todo")) {
+                    tasks[currIndex++] = new Todo(command.split("todo ")[1]);
+                }
+                if (command.contains("deadline")) {
+                    String[] res = command.split("deadline ")[1].split("\\\\by ");
+                    tasks[currIndex++] = new Deadline(res[0], res[1]);
+                }
+                if (command.contains("event")) {
+                    String[] res = command.split("event ")[1].split("\\\\at ");
+                    tasks[currIndex++] = new Event(res[0], res[1]);
+                }
+                System.out.println("Got it. I've added this task:\n" + tasks[currIndex - 1]);
+                continue;
             }
         }
     }
