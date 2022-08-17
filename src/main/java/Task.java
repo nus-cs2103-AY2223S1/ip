@@ -1,3 +1,8 @@
+/**
+ * Encapsulates a task containing a description and a completion status
+ *
+ * @author Emily Ong Hui Qi
+ */
 public class Task {
     protected String description;
     protected boolean isDone;

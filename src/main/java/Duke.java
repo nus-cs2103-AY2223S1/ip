@@ -1,5 +1,8 @@
 import java.util.Scanner;
 
+/**
+ * @author Emily Ong Hui Qi
+ */
 public class Duke {
     // Name of the chatbot
     private static final String NAME = "Duke";
@@ -12,6 +15,7 @@ public class Duke {
     private static final String MARK_TASK_AS_DONE_MESSAGE = "Nice! I've marked this task as done:";
     private static final String MARK_TASK_AS_UNDONE_MESSAGE = "OK, I've marked this task as not done yet:";
 
+    // FIXME: Refactor to use proper enums (A-Enums level)
     private enum Command {
         // The 'bye' command is used to indicate to the program to exit
         BYE,
@@ -46,13 +50,13 @@ public class Duke {
 
             if (command.equals(Command.LIST.toString())) {
                 DukePrinter.print(taskManager.toString());
-            } else if (command.startsWith(Command.MARK.toString())) {
+            } else if (command.equals(Command.MARK.toString())) {
                 // Retrieve the task index (1-indexed) to mark the task as done
                 // FIXME: Error handling if there is no task index provided or the task index provided is not an integer
                 Task doneTask = taskManager.get(Integer.parseInt(input[1]));
                 doneTask.markAsDone();
                 DukePrinter.print(String.format("%s\n\t%s", Duke.MARK_TASK_AS_DONE_MESSAGE, doneTask));
-            } else if (command.startsWith(Command.UNMARK.toString())) {
+            } else if (command.equals(Command.UNMARK.toString())) {
                 // Retrieve the task index (1-indexed) to mark the task as undone
                 // FIXME: Error handling if there is no task index provided or the task index provided is not an integer
                 Task undoneTask = taskManager.get(Integer.parseInt(input[1]));

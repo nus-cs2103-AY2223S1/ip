@@ -1,6 +1,8 @@
 /**
  * Enables printing to screen display to be beautified according to the
  * line separator and tab formatter
+ *
+ * @author Emily Ong Hui Qi
  */
 public class DukePrinter {
     // Horizontal line separator used in beautifying print commands

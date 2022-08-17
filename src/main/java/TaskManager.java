@@ -3,6 +3,8 @@ import java.util.ArrayList;
 /**
  * Utility class to manage the list of tasks and provides augmenting operations to
  * add to the list of tasks or to enumerate through the list of tasks
+ *
+ * @author Emily Ong Hui Qi
  */
 public class TaskManager {
     // The list of tasks
