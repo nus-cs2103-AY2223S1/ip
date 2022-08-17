@@ -1,8 +1,16 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
+    /**
+     * Takes in commands entered by the user.
+     */
     private static final Scanner scanner = new Scanner(System.in);
-    private static final Task[] tasks = new Task[100];
+
+    /**
+     * Stores the list of tasks added by the user.
+     */
+    private static final ArrayList<Task> tasks = new ArrayList<>();
 
     /**
      * Points to the index of the tasks array to insert the next task in.
@@ -17,23 +25,11 @@ public class Duke {
     }
 
     private static void greet() {
-        speak(" Greetings! My Name is Alfred ^_^\n How may I be of service today?\n");
+        speak(" Greetings! My name is Alfred ^_^\n How may I be of service today?\n");
     }
 
     private static void goodbye() {
         speak(" Farewell!\n");
-    }
-
-    private static void listTasks() {
-        if (pointer == 0) {
-            speak(" You have not added any tasks!\n");
-        } else {
-            StringBuilder result = new StringBuilder(" Here are your current tasks:\n");
-            for (int i = 0; i < pointer; i++) {
-                result.append(" ").append(i + 1).append(".").append(tasks[i].toString());
-            }
-            speak(result.toString());
-        }
     }
 
     private static void addTask(int type, String task, String dateTime) {
@@ -51,27 +47,57 @@ public class Duke {
             default:
                 newTask = new Task(task);
         }
-        tasks[pointer] = newTask;
+        tasks.add(newTask);
         pointer++;
         speak(" Understood. I have added the following task:\n" +
                 "   " + newTask +
                 " You have a total of " + pointer + " task(s).\n");
     }
 
+    private static void deleteTask(int taskNum) throws DukeException {
+        if (taskNum <= pointer && taskNum > 0) {
+            pointer--;
+            speak(" Understood. I have removed the following task:\n" +
+                    "   " + tasks.get(taskNum - 1) +
+                    " You have a total of " + pointer + " task(s).\n");
+            tasks.remove(taskNum - 1);
+        } else {
+            throw new DukeException("Please indicate a task no. between 1 to " + pointer + ".");
+        }
+    }
+
     private static void markTask(int taskNum) throws DukeException {
         if (taskNum <= pointer && taskNum > 0) {
-            speak(tasks[taskNum - 1].mark());
+            speak(tasks.get(taskNum - 1).mark());
         } else {
-            throw new DukeException("Please indicate a task no. between 1 to " + pointer);
+            throw new DukeException("Please indicate a task no. between 1 to " + pointer + ".");
         }
     }
 
     private static void unmarkTask(int taskNum) throws DukeException {
         if (taskNum <= pointer && taskNum > 0) {
-            speak(tasks[taskNum - 1].unmark());
+            speak(tasks.get(taskNum - 1).unmark());
         } else {
-            throw new DukeException("Please indicate a task no. between 1 to " + pointer);
+            throw new DukeException("Please indicate a task no. between 1 to " + pointer + ".");
         }
+    }
+
+    private static void listTasks() {
+        if (pointer == 0) {
+            speak(" You have not added any tasks!\n");
+        } else {
+            StringBuilder result = new StringBuilder(" Here are your current tasks:\n");
+            for (int i = 0; i < pointer; i++) {
+                result.append(" ").append(i + 1).append(".").append(tasks.get(i).toString());
+            }
+            speak(result.toString());
+        }
+    }
+
+    private static void emptyList() {
+        tasks.clear();
+        pointer = 0;
+        speak(" Understood. I have emptied your list of tasks.");
     }
 
     private static void parseCommand(String cmd) throws DukeException {
@@ -83,9 +109,50 @@ public class Duke {
             case "bye":
                 goodbye();
                 break;
-            case "list":
-                listTasks();
-                break;
+            case "todo":
+                if (hasSecondTerm) {
+                    addTask(0, firstParse[1], "");
+                    break;
+                } else {
+                    throw new DukeException("Please provide a description for the todo.");
+                }
+            case "deadline":
+                if (hasSecondTerm) {
+                    String[] secondParse = firstParse[1].split("/by", 2);
+                    if (secondParse.length > 1) {
+                        addTask(1, secondParse[0], secondParse[1]);
+                        break;
+                    } else {
+                        throw new DukeException("Please provide a date/time for the deadline.");
+                    }
+                } else {
+                    throw new DukeException("Please provide a description for the deadline.");
+                }
+            case "event":
+                if (hasSecondTerm) {
+                    String[] secondParse = firstParse[1].split("/at", 2);
+                    if (secondParse.length > 1) {
+                        addTask(2, secondParse[0], secondParse[1]);
+                        break;
+                    } else {
+                        throw new DukeException("Please provide a date/time for the event.");
+                    }
+                } else {
+                    throw new DukeException("Please provide a description for the event.");
+                }
+            case "delete":
+                try {
+                    String secondTerm = hasSecondTerm
+                            ? firstParse[1].split(" ", 2)[0]
+                            : "0";
+                    deleteTask(Integer.parseInt(secondTerm));
+                    break;
+                } catch (NumberFormatException e) {
+                    throw new DukeException("Please indicate the task no. in digits.");
+                } catch (DukeException f) {
+                    speak(f.toString());
+                    break;
+                }
             case "mark":
                 try {
                     String secondTerm = hasSecondTerm
@@ -94,7 +161,7 @@ public class Duke {
                     markTask(Integer.parseInt(secondTerm));
                     break;
                 } catch (NumberFormatException e) {
-                    throw new DukeException("Please indicate the task no. in digits");
+                    throw new DukeException("Please indicate the task no. in digits.");
                 } catch (DukeException f) {
                     speak(f.toString());
                     break;
@@ -107,44 +174,19 @@ public class Duke {
                     unmarkTask(Integer.parseInt(secondTerm));
                     break;
                 } catch (NumberFormatException e) {
-                    throw new DukeException("Please indicate the task no. in digits");
+                    throw new DukeException("Please indicate the task no. in digits.");
                 } catch (DukeException f) {
                     speak(f.toString());
                     break;
                 }
-            case "todo":
-                if (hasSecondTerm) {
-                    addTask(0, firstParse[1], "");
-                    break;
-                } else {
-                    throw new DukeException("Please provide a description for the todo");
-                }
-            case "deadline":
-                if (hasSecondTerm) {
-                    String[] secondParse = firstParse[1].split("/by", 2);
-                    if (secondParse.length > 1) {
-                        addTask(1, secondParse[0], secondParse[1]);
-                        break;
-                    } else {
-                        throw new DukeException("Please provide a date/time for the deadline");
-                    }
-                } else {
-                    throw new DukeException("Please provide a description for the deadline");
-                }
-            case "event":
-                if (hasSecondTerm) {
-                    String[] secondParse = firstParse[1].split("/at", 2);
-                    if (secondParse.length > 1) {
-                        addTask(2, secondParse[0], secondParse[1]);
-                        break;
-                    } else {
-                        throw new DukeException("Please provide a date/time for the event");
-                    }
-                } else {
-                    throw new DukeException("Please provide a description for the event");
-                }
+            case "list":
+                listTasks();
+                break;
+            case "empty":
+                emptyList();
+                break;
             default:
-                throw new DukeException("Please enter a supported command");
+                throw new DukeException("Please enter a supported command.");
         }
     }
 

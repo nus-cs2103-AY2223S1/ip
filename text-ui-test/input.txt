@@ -9,20 +9,36 @@ event eventTest
 event eventTest /at TestDay
 list
 mark
-mark 2
 mark -1
 mark 99
 mark three
+mark 2
 mark 3 please
 mark 2
 list
 unmark
-unmark 2
 unmark -1
 unmark 99
 unmark three
+unmark 2
 unmark 3 please
 unmark 2
 list
 blah
+delete
+delete -1
+delete 99
+delete three
+delete 3
+delete 3
+list
+mark 3
+unmark 3
+event eventTest /at TestDay
+empty
+list
+empty
+list
+mark 1
+unmark 1
 bye
