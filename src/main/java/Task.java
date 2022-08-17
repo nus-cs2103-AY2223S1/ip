@@ -2,22 +2,39 @@
  * The Task class represents a task added to Duke.
  */
 public class Task {
-    private static int total = 0;
-    private String name;
-    private int id;
+    private String description;
+    private boolean isDone = false;
 
     /**
-     * Initialises a Task with a name.
+     * Constructs a new Task with a specified description.
      *
-     * @param name A string representing the name of the Task.
+     * @param description A string specifying the description of the Task.
      */
-    public Task(String name) {
-        this.name = name;
-        id = ++total;
+    public Task(String description) {
+        this.description = description;
     }
 
-    public static int getTotal() {
-        return total;
+    /**
+     * Marks a Task as done.
+     */
+    public void markAsDone() {
+        isDone = true;
+    }
+
+    /**
+     * Marks a Task as not done.
+     */
+    public void unmarkAsDone() {
+        isDone = false;
+    }
+
+    /**
+     * Returns an icon that represents if the task is done or not.
+     *
+     * @return "X" if the task is done, " " if not.
+     */
+    public String getStatusIcon() {
+        return isDone ? "X" : " ";
     }
 
     /**
@@ -27,6 +44,6 @@ public class Task {
      */
     @Override
     public String toString() {
-        return id + ". " + name;
+        return "[" + getStatusIcon() + "] " + description;
     }
 }
