@@ -57,7 +57,7 @@ public class Duke {
 
     public static void echoTask(Task toAdd, int size) {
         String mess = "Got it. I've added this task:\n\t\t" + toAdd +
-                "\n\t Now you have " + size + "tasks in the list.";
+                "\n\tNow you have " + size + " tasks in the list.";
         echo(mess);
     }
 
