@@ -1,25 +1,20 @@
+import javax.swing.undo.UndoManager;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
 
-    private List<Task> listOfTasks;
+    private TasksList tasksList;
     private boolean hasEnded = false;
+    private static final WelcomeRequest welcomeRequest = new WelcomeRequest();
+    private static final GoodbyeRequest goodbyeRequest = new GoodbyeRequest();
+    private static final InvalidRequest invalidRequest = new InvalidRequest();
 
     public Duke() {
-        this.listOfTasks = new ArrayList<>();
+        this.tasksList = new TasksList();
     }
-
-    private static final String ROW_INDENT = "    ";
-    private static final String WORD_INDENT = " ";
-    private static final String HORIZONTAL_LINE = "____________________________________________________________";
-
-    private static final String WELCOME_MSG = "Hello! I'm Duke \n" + Duke.ROW_INDENT + Duke.WORD_INDENT + "What can I do for you?";
-    private static final String BYE_MSG = "Bye. Hope to see you again soon!";
-    private static final String DONE_MSG = "Nice! I've marked this task as done: \n" + Duke.ROW_INDENT + Duke.WORD_INDENT;
-    private static final String UNDONE_MSG = "Sure! I've marked this task as not done yet \n" + Duke.ROW_INDENT + Duke.WORD_INDENT;
-
 
     public static void main(String[] args) {
         Duke duke = new Duke();
@@ -37,54 +32,38 @@ public class Duke {
             switch (command.toUpperCase()) {
                 case "BYE":
                     goodBye();
+                    sc.close();
                     hasEnded = true;
                     break;
                 case "LIST":
-                    displayList();
+                    ListRequest listRequest= new ListRequest(this.tasksList);
+                    listRequest.execute();
                     break;
                 case "MARK":
-                    markAsDone(Integer.valueOf(inputArray[1]));
+                    MarkRequest markRequest = new MarkRequest(this.tasksList, inputArray[1]);
+                    markRequest.execute();
                     break;
                 case "UNMARK":
-                    markAsUndone(Integer.valueOf(inputArray[1]));
+                    UnmarkRequest unmarkRequest = new UnmarkRequest(this.tasksList, inputArray[1]);
+                    unmarkRequest.execute();
+                    break;
+                case "TODO":
+                    TodoRequest todoRequest = new TodoRequest(this.tasksList, inputArray[1]);
+                    todoRequest.execute();
+                    break;
+                case "DEADLINE":
+                    DeadlineRequest deadlineRequest = new DeadlineRequest(this.tasksList, inputArray[1]);
+                    deadlineRequest.execute();
+                    break;
+                case "EVENT":
+                    EventRequest eventRequest = new EventRequest(this.tasksList, inputArray[1]);
+                    eventRequest.execute();
                     break;
                 default:
-                    Task task = new Task(userInput);
-                    addToList(task);
+                    InvalidRequest invalidRequest = new InvalidRequest();
+                    invalidRequest.execute();
             }
         }
-    }
-
-    public void markAsDone(int taskNumber) {
-        Task taskToMark = listOfTasks.get(taskNumber - 1);
-        taskToMark.markAsDone();
-        StringBuilder sb = new StringBuilder(DONE_MSG);
-        sb.append("[" + taskToMark.getStatusIcon() + "] " + taskToMark);
-        printMessage(sb.toString());
-    }
-
-    public void markAsUndone(int taskNumber) {
-        Task taskToMark = listOfTasks.get(taskNumber - 1);
-        taskToMark.markAsUndone();
-        StringBuilder sb = new StringBuilder(UNDONE_MSG);
-        sb.append("[" + taskToMark.getStatusIcon() + "] " + taskToMark);
-        printMessage(sb.toString());
-    }
-
-    public void addToList(Task task) {
-        this.listOfTasks.add(task);
-        printMessage("added: " + task);
-    }
-
-    public void displayList() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Here are the tasks in your list: \n");
-        for (int i = 1; i <= this.listOfTasks.size(); i++) {
-            sb.append("\n" + ROW_INDENT + WORD_INDENT);
-            sb.append(i + ".[" + this.listOfTasks.get(i - 1).getStatusIcon() + "] " + this.listOfTasks.get(i - 1));
-
-        }
-        printMessage(sb.toString());
     }
 
     public String getInput(Scanner sc) {
@@ -93,16 +72,11 @@ public class Duke {
     }
 
     public void greet() {
-        printMessage(Duke.WELCOME_MSG);
+        Duke.welcomeRequest.execute();
     }
 
     public void goodBye() {
-        printMessage(Duke.BYE_MSG);
-    }
-
-    public void printMessage(String message) {
-        System.out.println(Duke.ROW_INDENT + Duke.HORIZONTAL_LINE);
-        System.out.println(Duke.ROW_INDENT + Duke.WORD_INDENT + message);
-        System.out.println(Duke.ROW_INDENT + Duke.HORIZONTAL_LINE);
+        Duke.goodbyeRequest.execute();
     }
 }
+
