@@ -1,4 +1,9 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 public class Task {
+    protected static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("d MMM yyyy");
     private final String description;
     private boolean isComplete;
 
@@ -21,6 +26,14 @@ public class Task {
 
     String getStatusIcon() {
         return isComplete ? "[X]" : "[ ]";
+    }
+
+    static LocalDate parseDate(String dateString) throws DukeException {
+        try {
+            return LocalDate.parse(dateString);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Date format is invalid!", e);
+        }
     }
 
     @Override
