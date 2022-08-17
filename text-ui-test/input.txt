@@ -20,4 +20,8 @@ list
 unmark 6
 unmark 1
 list
+delete -10
+delete 6
+delete 2
+list
 bye
