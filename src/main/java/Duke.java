@@ -1,7 +1,6 @@
-import pnkp.duke.modules.Todos;
-
 import java.util.Scanner;
 import static pnkp.duke.IOFormat.say;
+import pnkp.duke.modules.Todos;
 
 public class Duke {
     public static void main(String[] args) {
@@ -16,17 +15,21 @@ public class Duke {
         while (!fExit) {
             String line = stdin.nextLine();
             Scanner scanner = new Scanner(line);
-            String command = scanner.next();
+            String command = scanner.hasNext() ? scanner.next() : "";
+            String rest = scanner.hasNextLine() ? scanner.nextLine() : "";
             switch (command) {
+                case "":
+                    // say("Sorry, I didn't catch that?")
+                    break;
                 case "list":
-                    todos.cmdList(scanner);
+                    todos.cmdList();
                     break;
                 case "bye":
                     say("OK. See you next time! *boings away*");
                     fExit = true;
                     break;
                 default:
-                    todos.cmdAdd(new Scanner(line));
+                    todos.cmdAdd(line);
                     break;
             }
         }
