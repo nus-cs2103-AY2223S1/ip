@@ -32,7 +32,7 @@ public class Duke {
         System.out.println("Here are the tasks in your list: ");
         for (int i = 0; i < list.size(); i++) {
             Task t = list.get(i);
-            System.out.println(i+1 + "." + t);
+            System.out.println(i + 1 + "." + t);
         }
         line();
     }
@@ -55,6 +55,54 @@ public class Duke {
         line();
     }
 
+    private int getArraySize() {
+        return this.list.size();
+    }
+
+    private void handleTodo(String input) {
+        Todo todo = new Todo(input);
+        addTask(todo);
+        line();
+        System.out.println("Got it. I've added this task: ");
+        System.out.println(todo);
+        System.out.println("Now you have " + getArraySize() + " tasks in the list.");
+        line();
+    }
+
+    private void handleDeadline(String input) {
+        String[] modifiedInput = input.split("/", 2);
+        String description = modifiedInput[0];
+        String when = modifiedInput[1];
+        String[] secondModifiedInput = when.split(" ", 2);
+        String dateBy = secondModifiedInput[1];
+        Deadline deadline = new Deadline(description, dateBy);
+        addTask(deadline);
+        line();
+        System.out.println("Got it, I've added this task: ");
+        System.out.println(deadline);
+        System.out.println("Now you have " + getArraySize() + " tasks in the list.");
+        line();
+    }
+
+    private void handleEvent(String input) {
+        String[] modifiedInput = input.split("/", 2);
+        String description = modifiedInput[0];
+        String when = modifiedInput[1];
+        String[] secondModifiedInput = when.split(" ", 2);
+        String dateAt = secondModifiedInput[1];
+        Event event = new Event(description, dateAt);
+        addTask(event);
+        line();
+        System.out.println("Got it. I've added this task: ");
+        System.out.println(event);
+        System.out.println("Now you have " + getArraySize() + " tasks in the list.");
+        line();
+    }
+
+    private void addTask(Task t) {
+        this.list.add(t);
+    }
+
     private void exit() {
         line();
         System.out.println("Bye. Hope to see you again soon!");
@@ -74,11 +122,11 @@ public class Duke {
         while (!isDone) {
             Scanner scanner = new Scanner(System.in); // creating scanner for user input
             String input = scanner.nextLine();
-            String[] strArray = input.split(" ");
+            String[] strArray = input.split(" ", 2);
             String first = strArray[0];
-            String num = "";
+            String second = "";
             if (strArray.length == 2) {
-                num = strArray[1];
+                second = strArray[1];
             }
             switch (first) {
                 case ("bye"): {
@@ -91,15 +139,27 @@ public class Duke {
                     break;
                 }
                 case("mark"): {
-                    duke.markDone(Integer.parseInt(num) - 1);
+                    duke.markDone(Integer.parseInt(second) - 1);
                     break;
                 }
                 case("unmark"): {
-                    duke.markUndone(Integer.parseInt(num) - 1);
+                    duke.markUndone(Integer.parseInt(second) - 1);
+                    break;
+                }
+                case("todo"): {
+                    duke.handleTodo(second);
+                    break;
+                }
+                case("deadline"): {
+                    duke.handleDeadline(second);
+                    break;
+                }
+                case("event"): {
+                    duke.handleEvent(second);
                     break;
                 }
                 default: {
-                    duke.store(input);
+                    duke.store(first);
                     break;
                 }
             }
