@@ -27,21 +27,12 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
         String str = sc.nextLine();
 
-        while(true)
+        while(!str.equals("bye"))
         {
-            if(!str.equals("bye"))
-            {
-                 System.out.println(answer(str));
-                 str = sc.nextLine();
-            }
-            else
-            {
-                System.out.println("_______________________________________________________" +
-                        "\n" + "Bye. Hope to see you again soon!" + "\n" +
-                        "_______________________________________________________");
-                System.exit(1);
-             
-            }
+            System.out.println(answer(str));
+            str = sc.nextLine();
         }
+        System.out.println("_______________________________________________________" +
+                "\n" + "Bye. Hope to see you again soon!");
     }
 }
