@@ -2,7 +2,7 @@ package pnkp.duke.modules.todos;
 
 import static java.lang.String.format;
 
-public class Task {
+public abstract class Task {
     private String name;
     private boolean done;
 

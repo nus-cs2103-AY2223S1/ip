@@ -35,7 +35,7 @@ public class Duke {
                     todos.cmdUnmark(scanner);
                     break;
                 default:
-                    todos.cmdAdd(new Scanner(line));
+                    todos.cmdAddTodo(new Scanner(line));
                     break;
             }
         }
