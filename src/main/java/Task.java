@@ -20,12 +20,12 @@ public class Task {
 
     public String markAsDone() {
         this.isDone= true;
-        return("Nice! I've marked this task as done:\n  [X] " + this.item);
+        return("Nice! I've marked this task as done:\n  " + this);
     }
 
     public String markAsNotDone() {
         this.isDone= false;
-        return("OK, I've marked this task as not done yet:\n  [ ] " + this.item);
+        return("OK, I've marked this task as not done yet:\n  " + this);
     }
 
     @Override

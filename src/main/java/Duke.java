@@ -2,8 +2,7 @@ import java.util.Scanner;
 public class Duke {
     public static void main(String[] args) {
 
-        System.out.println("Hello! I'm Duke\nWhat can I do for you?");
-
+        System.out.println("Hello! I'm Duke\nWhat can I do for you?" + "\n");
         Scanner sc = new Scanner(System.in);
 
         String input = "";
@@ -72,9 +71,9 @@ public class Duke {
 
                     default:
                         System.out.println("No such command");
-
                 }
             }
+            System.out.println("");
         }
         System.out.println("Bye. Hope to see you again soon!");
     }
