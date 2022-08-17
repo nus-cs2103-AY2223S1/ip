@@ -130,13 +130,28 @@ public class Carbon {
     }
 
     private void validateAndMark(String input, boolean doneness) {
-        // add missing param exception
         int taskNumber;
+            int len = input.length();
         if (doneness) {
-            taskNumber = Integer.valueOf(input.substring("mark ".length()));
+            int requiredLen = "mark ".length();
+            if (len <= requiredLen) {
+                CarbonException invalidParam = new InvalidParamException(input);
+                Carbon.printOut(invalidParam.toString());
+                return;
+            } else {
+                taskNumber = Integer.valueOf(input.substring(requiredLen));
+            }
         } else {
-            taskNumber = Integer.valueOf(input.substring("unmark ".length()));
+            int requiredLen = "unmark ".length();
+            if (len <= requiredLen) {
+                CarbonException invalidParam = new InvalidParamException(input);
+                Carbon.printOut(invalidParam.toString());
+                return;
+            } else {
+                taskNumber = Integer.valueOf(input.substring(requiredLen));
+            }
         }
+
         if (taskNumber < 1 || taskNumber > this.tasks.size()) {
             CarbonException outOfBounds = new OutOfBoundsException(taskNumber, this.tasks.size());
             Carbon.printOut(outOfBounds.toString());
@@ -153,17 +168,52 @@ public class Carbon {
     }
 
     private void addTask(String input, String type) {
+        // add invalid flag exception 
+        // add invalid param exception
         Task newTask;
+        int len = input.length();
         switch (type) {
-            case "todo":
-                newTask = new Todo(input);
+            case "todo": {
+                int requiredLen = "todo ".length();
+                if (len <= requiredLen) {
+                    CarbonException invalidParam = new InvalidParamException(input);
+                    Carbon.printOut(invalidParam.toString());
+                    return;
+                } else {
+                    newTask = new Todo(input);
+                }
                 break;
-            case "deadline":
-                newTask = new Deadline(input);
+            }
+            case "deadline": {
+                int flagIndex = input.indexOf(Deadline.FLAG);
+                if (flagIndex == -1) {
+                    CarbonException invalidFlag = new InvalidFlagException(input, "deadline");
+                    Carbon.printOut(invalidFlag.toString());
+                    return;
+                } else if (len <= flagIndex + Deadline.FLAG.length() + 1) {
+                    CarbonException invalidParam = new InvalidParamException(input);
+                    Carbon.printOut(invalidParam.toString());
+                    return;
+                } else {
+                    newTask = new Deadline(input);
+                }
                 break;
-            case "event":
-                newTask = new Event(input);
+            }
+            case "event": {
+                int flagIndex = input.indexOf(Event.FLAG);
+                if (flagIndex == -1) {
+                    CarbonException invalidFlag = new InvalidFlagException(input, "event");
+                    Carbon.printOut(invalidFlag.toString());
+                    return;
+                } else if (len <= flagIndex + Event.FLAG.length() + 1) {
+                    CarbonException invalidParam = new InvalidParamException(input);
+                    Carbon.printOut(invalidParam.toString());
+                    return;
+                } else {
+                    newTask = new Event(input);
+                }
                 break;
+            }
             default:
                 // should never reach here
                 newTask = null;

@@ -1,5 +1,5 @@
 class Deadline extends Task {
-    public static String FLAG = " /by ";
+    public static String FLAG = " /by";
     private String time;
 
     public static String extractName(String input) {
@@ -10,7 +10,7 @@ class Deadline extends Task {
 
     public static String extractTime(String input) {
         int flagIndex = input.indexOf(Deadline.FLAG);
-        String name = input.substring(flagIndex + Deadline.FLAG.length());
+        String name = input.substring(flagIndex + Deadline.FLAG.length() + 1);
         return name;
     }
 

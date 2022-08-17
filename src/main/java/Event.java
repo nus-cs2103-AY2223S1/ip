@@ -1,5 +1,5 @@
 class Event extends Task {
-    public static String FLAG = " /at ";
+    public static String FLAG = " /at";
     private String time;
 
     public static String extractName(String input) {
@@ -10,7 +10,7 @@ class Event extends Task {
 
     public static String extractTime(String input) {
         int flagIndex = input.indexOf(Event.FLAG);
-        String name = input.substring(flagIndex + Event.FLAG.length());
+        String name = input.substring(flagIndex + Event.FLAG.length() + 1);
         return name;
     }
 
