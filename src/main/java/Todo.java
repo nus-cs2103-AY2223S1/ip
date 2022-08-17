@@ -7,4 +7,10 @@ public class Todo extends Task {
     public String toString() {
         return "[T]" + super.toString();
     }
+
+    public static void validateInput(String[] input) throws DukeException {
+        if (input.length < 2 || input[1].strip().equals("")) {
+            throw new DukeException(DukeException.ErrorCode.MISSING_TODO_ITEM);
+        }
+    }
 }
