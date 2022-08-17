@@ -12,7 +12,7 @@ public class Duke {
                 "　　　　　　　　　　　　ヽ （＿＿|＿＿＿＿)　/　 /\n" +
                 "　　　　　　　　　　　 　＼　　　　　　　　 /　/\n" +
                 "　　　　　　　　　　　 　 　l━━（ｔ）━━━━┥＿___";
-        System.out.println("Hello I'm\n" + logo + "\tDoraemon!");
+        System.out.println(output("Hello I'm\n" + logo + "\tDoraemon!"));
 
         // Handling inputs
         Scanner sc = new Scanner(System.in);
@@ -20,10 +20,24 @@ public class Duke {
         while (true) {
             String inputStr = sc.nextLine();
             if (inputStr.equals("bye")) {
-                System.out.println("I'm going to sleep now...See you again soon!");
+                System.out.println(output("I'm going to sleep now...See you again soon!"));
                 break;
             }
-            System.out.println(inputStr);
+            System.out.println(output(inputStr));
         }
+    }
+
+    /**
+     * Returns a formatted string to display the given text.
+     *
+     * @param text the text to be formatted
+     * @return the formatted string
+     */
+    private static String output(String text) {
+        String line = "____________________________________________________________";
+        String outputStr = "\t" + line + "\n" +
+                "\t" + text + "\n" +
+                "\t" + line;
+        return outputStr;
     }
 }
