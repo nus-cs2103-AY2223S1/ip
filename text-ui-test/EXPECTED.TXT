@@ -1,7 +1,21 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
+Duke: Hello! I am Duke.
+Duke: I have added the to-do todo1.
+Duke: I have added the to-do todo2.
+Duke: I have added the event event1.
+Duke: I have added the event event2.
+Duke: I have added the deadline deadline1.
+Duke: I have added the deadline deadline2.
+Duke: Task marked as complete.
+[T] [X] todo1
+Duke: Task marked as complete.
+[E] [X] event1 (at eventtime1)
+Duke: Task marked as complete.
+[D] [X] deadline2 (by deadlinetime2)
+Duke: Here are your tasks.
+  1: [T] [X] todo1
+  2: [T] [ ] todo2
+  3: [E] [X] event1 (at eventtime1)
+  4: [E] [ ] event2 (at eventtime2)
+  5: [D] [ ] deadline1 (by deadlinetime1)
+  6: [D] [X] deadline2 (by deadlinetime2)
+Duke: Bye!
