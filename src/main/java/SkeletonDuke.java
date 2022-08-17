@@ -45,6 +45,15 @@ class SkeletonDuke {
 
     }
 
+    void delete(int taskNo) {
+        Task deletedTask = list.get(taskNo - 1);
+        list.remove(taskNo - 1);
+        noOfTasks--;
+        System.out.println("Noted. I've removed this task:");
+        System.out.println(deletedTask.toString());
+        System.out.println("Now you have " + noOfTasks + " tasks in the list.");
+    }
+
     void getList() {
         System.out.println("Here are the tasks in your list:");
         for(int i = 1; i < list.size() + 1; i++) {

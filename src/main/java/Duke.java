@@ -26,8 +26,11 @@ public class Duke {
             } else if(command.equals("unmark")){
                 int taskNo = Integer.parseInt(strarr[1]);
                 duke.unmark(taskNo);
-            } else if(command.equals("todo") || command.equals("deadline") || command.equals("event")){
+            } else if(command.equals("todo") || command.equals("deadline") || command.equals("event")) {
                 duke.add(str);
+            } else if(command.equals("delete")){
+                int taskNo = Integer.parseInt(strarr[1]);
+                duke.delete(taskNo);
             } else {
                 throw new MismatchInputException(":( OOPS!!! I'm sorry, but I don't know what that means" );
             }
