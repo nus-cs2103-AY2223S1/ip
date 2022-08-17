@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -54,13 +56,13 @@ public class Duke {
                     continue;
                 }
 
-                if (split[0].equals("deadline")) {
+                if (split[0].equals("deadline") && userInput.contains("/by")) {
                     int index = userInput.indexOf("/by");
                     addDeadline(userInput.substring(8, index).trim(), userInput.substring(index + 3).trim());
                     continue;
                 }
 
-                if (split[0].equals("event")) {
+                if (split[0].equals("event") && userInput.contains("/at")) {
                     int index = userInput.indexOf("/at");
                     addEvent(userInput.substring(5, index).trim(), userInput.substring(index + 3).trim());
                     continue;
@@ -128,6 +130,11 @@ public class Duke {
         }
         if (by.length() == 0) {
             throw new DukeException("OOPS!!! The date of a deadline cannot be empty.");
+        }
+        try {
+            LocalDate.parse(by);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("OOPS!!! Please input date in YYYY-MM-DD format.");
         }
         addToTasks(new Deadline(description, by));
     }
