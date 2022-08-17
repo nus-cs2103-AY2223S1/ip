@@ -1,7 +1,60 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
+	____________________________________________________________
+	Hello I'm
+                       _______________
+                      /  --. --.      \
+                     /  | '| ' |   \   \
+                    / /  `-O--'     \   \
+                   |.  --  |  --     |   |
+                   |  --   |  --     |   |
+                    \  (___|_______) /  /
+                     \              /  /
+                       |== (t) ===|____			Doemon!
+	____________________________________________________________
+	____________________________________________________________
+	You have no tasks!
+	____________________________________________________________
+	____________________________________________________________
+	Please try again with a valid bread command...
+	____________________________________________________________
+	____________________________________________________________
+	Alright! I have recorded this task on my bread:
+	  [D][ ] finish CS2103T Individual Project
+	You now have 1 task(s) recorded on my bread.
+	____________________________________________________________
+	____________________________________________________________
+	Alright! I have recorded this task on my bread:
+	  [D][ ] CS2103T Individual Project (by: 18 Aug 2022, 2359hrs)
+	You now have 2 task(s) recorded on my bread.
+	____________________________________________________________
+	____________________________________________________________
+	Alright! I have recorded this task on my bread:
+	  [E][ ] Go out and have fun! (at: Saturday or Sunday)
+	You now have 3 task(s) recorded on my bread.
+	____________________________________________________________
+	____________________________________________________________
+	Here is what's on my bread:
+	1.[D][ ] finish CS2103T Individual Project
+	2.[D][ ] CS2103T Individual Project (by: 18 Aug 2022, 2359hrs)
+	3.[E][ ] Go out and have fun! (at: Saturday or Sunday)
+	____________________________________________________________
+	____________________________________________________________
+	Yay! This task is now marked as done:
+	  [D][X] finish CS2103T Individual Project
+	____________________________________________________________
+	____________________________________________________________
+	Yay! This task is now marked as done:
+	  [E][X] Go out and have fun! (at: Saturday or Sunday)
+	____________________________________________________________
+	____________________________________________________________
+	I guess you weren't done with that one:
+	  [D][ ] finish CS2103T Individual Project
+	____________________________________________________________
+	____________________________________________________________
+	Here is what's on my bread:
+	1.[D][ ] finish CS2103T Individual Project
+	2.[D][ ] CS2103T Individual Project (by: 18 Aug 2022, 2359hrs)
+	3.[E][X] Go out and have fun! (at: Saturday or Sunday)
+	____________________________________________________________
+	____________________________________________________________
+	I'm going to sleep now...See you again soon!
+	____________________________________________________________

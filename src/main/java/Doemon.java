@@ -2,22 +2,22 @@ import java.util.Scanner;
 
 public class Doemon {
     /**
-     * Picture of Doemon made using ASCII art
+     * Picture of Doemon made using text
      */
-    private static String logo = "　　　　　　　　　 　　　　　  ＿＿＿＿＿\n" +
-            "　　　　　　　　　　　　　　／ －､ －､　　 ＼\n" +
-            "　　　　　　　　　　　　　/  | ・|・ |  ､　　＼\n" +
-            "　　　　　　　　　　　　/ ／　`-●－  ′　  ＼   ヽ\n" +
-            "　　　　　　　　　　　　|.　──　|　 ──　 　 |　 |\n" +
-            "　　　　　　　　　　　　|　──　 |　 ── 　 　| 　l\n" +
-            "　　　　　　　　　　　　ヽ （＿＿|＿＿＿＿)　/　 /\n" +
-            "　　　　　　　　　　　 　＼　　　　　　　　 /　/\n" +
-            "　　　　　　　　　　　 　 　l━━（ｔ）━━━━┥＿___";
+    private static String logo = "                       _______________\n" +
+            "                      /  --. --.      \\ \n" +
+            "                     /  | '| ' |   \\   \\ \n" +
+            "                    / /  `-O--'     \\   \\ \n" +
+            "                   |.  --  |  --     |   |\n" +
+            "                   |  --   |  --     |   |\n" +
+            "                    \\  (___|_______) /  /\n" +
+            "                     \\              /  /\n" +
+            "                       |== (t) ===|____";
 
     /**
      * Introduction string that is printed when Doemon is started.
      */
-    private static String introStr = "Hello I'm\n" + logo + "\tDoemon!";
+    private static String introStr = "Hello I'm\n" + logo + "\t\t\tDoemon!";
 
     /**
      * The string that is printed when Doemon is exited.

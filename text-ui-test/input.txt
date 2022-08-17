@@ -1,0 +1,11 @@
+list
+meet someone
+todo finish CS2103T Individual Project
+deadline CS2103T Individual Project /by 18 Aug 2022, 2359hrs
+event Go out and have fun! /at Saturday or Sunday
+list
+mark 1
+mark 3
+unmark 1
+list
+bye
