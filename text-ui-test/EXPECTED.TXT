@@ -1,25 +1,23 @@
 Hai I'm Kirby (੭｡╹▿╹｡)੭ your friendly chat assistant!! 
 What amazing plans do you have today?
-Added into your bag of fabulous tasks: [T] [ ] math task
+Added into your bag of fabulous tasks: [T] [ ] cs2105 assignment
 Now you have 1 task in the bag!
-Here is your bag of fabulous tasks: 
-1: [T] [ ] math task
-Added into your bag of fabulous tasks: [E] [ ] attend briefing (at: Tuesday, 2pm)
+Added into your bag of fabulous tasks: [D] [ ] st2334 (by: tmr)
 Now you have 2 tasks in the bag!
-Awesome :D I've marked [T] [X] math task completed!
-Added into your bag of fabulous tasks: [D] [ ] cs2103t assignment (by: today )
+Awesome :D I've marked [T] [X] cs2105 assignment completed!
+T_T Aaaaaaah, the description of a mark is invalid! Try again!
+Added into your bag of fabulous tasks: [E] [ ] concert (at: imaginary concert uh :p)
 Now you have 3 tasks in the bag!
-Added into your bag of fabulous tasks: [T] [ ] pay school fees
-Now you have 4 tasks in the bag!
-Okay, I've marked [T] [ ] math task pending!
-Awesome :D I've marked [E] [X] attend briefing (at: Tuesday, 2pm) completed!
-Added into your bag of fabulous tasks: [E] [ ] attend examination (at: today :o)
-Now you have 5 tasks in the bag!
-Here is your bag of fabulous tasks: 
-1: [T] [ ] math task
-2: [E] [X] attend briefing (at: Tuesday, 2pm)
-3: [D] [ ] cs2103t assignment (by: today )
-4: [T] [ ] pay school fees
-5: [E] [ ] attend examination (at: today :o)
+Here is your bag of fabulous tasks:
+1: [T] [X] cs2105 assignment
+2: [D] [ ] st2334 (by: tmr)
+3: [E] [ ] concert (at: imaginary concert uh :p)
+Okay, I've marked [T] [ ] cs2105 assignment pending!
+Here is your bag of fabulous tasks:
+1: [T] [ ] cs2105 assignment
+2: [D] [ ] st2334 (by: tmr)
+3: [E] [ ] concert (at: imaginary concert uh :p)
+T_T Aaaaaaah, I don't understand you :(
+Try adding a command (todo, deadline, event) :)
 I loved talking to you ･ω･
 Hope to see you again!

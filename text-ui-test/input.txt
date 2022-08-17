@@ -1,11 +1,10 @@
-todo math task
+todo cs2105 assignment
+deadline st2334 /by tmr
+mark 1
+mark 0
+event concert /at imaginary concert uh :p
 list
-event attend briefing /at Tuesday, 2pm
-mark 1 
-deadline cs2103t assignment /by today 
-todo pay school fees
 unmark 1
-mark 2
-event attend examination /at today :o
 list
+blah
 bye

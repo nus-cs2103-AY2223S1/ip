@@ -1,13 +1,33 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+/**
+ * The Kirby class implements the main method of the chatbot
+ * with all the relevant commands.
+ * @author Sheryl-Lynn Tan (G11)
+ */
 public class Kirby {
+    /**
+     * Static variable to store the number of tasks in the bag.
+     */
     public static int taskCount = 0;
+
+    /**
+     * This method is to increment the static variable taskCount.
+     */
     public static void addTaskCount() {
         taskCount += 1;
     }
+
+    /**
+     * This method is to decrement the static variable taskCount.
+     */
     public static void subtractTaskCount() {
         taskCount -= 1;
     }
+
+    /**
+     * This method is to print the static variable taskCount.
+     */
     public static void printTaskCount() {
         if (taskCount > 1) {
             System.out.println("Now you have " + taskCount + " tasks in the bag!");
@@ -16,19 +36,39 @@ public class Kirby {
         }
     }
 
+    /**
+     * This method is to print the welcome message.
+     */
+    public static void welcome() {
+        System.out.println("Hai I'm Kirby (੭｡╹▿╹｡)੭ your friendly chat assistant!! \n" + "What amazing plans do you have today?");
+    }
+
+    /**
+     * This method is to print the goodbye message.
+     */
     public static void goodbye() {
-        System.out.println("I loved talking to you ･ω･ \n" +
+        System.out.println("I loved talking to you ･ω･\n" +
                 "Hope to see you again!");
     }
 
+    /**
+     * This method is to print all the tasks in the list Tasks.
+     * @param Tasks this is the arraylist storing all the tasks in the bag.
+     */
     public static void showList(ArrayList<Task> Tasks) {
-        System.out.println("Here is your bag of fabulous tasks: ");
+        System.out.println("Here is your bag of fabulous tasks:");
         for (int i = 0; i < Tasks.size(); i++) {
             Task currTask = Tasks.get(i);
             System.out.println(i + 1 + ": " + currTask.toString());
         }
     }
 
+    /**
+     * This method is to mark the task selected.
+     * @param inputString the command entered by the user specifying 'mark' and the task number.
+     * @param Tasks this is the arraylist storing all the tasks in the bag.
+     * @exception KirbyMissingArgumentException if there is an invalid task number.
+     */
     public static void mark(String inputString, ArrayList<Task> Tasks) throws KirbyMissingArgumentException {
         if (inputString.split(" ").length != 2) {
             throw new KirbyMissingArgumentException("mark");
@@ -40,9 +80,14 @@ public class Kirby {
             Task currTask = Tasks.get(taskIndex - 1);
             currTask.setCompleted();
             System.out.println("Awesome :D I've marked " + currTask.toString() + " completed!");
-
     }
 
+    /**
+     * This method is to unmark the task selected.
+     * @param inputString the command entered by the user specifying 'unmark' and the task number.
+     * @param Tasks this is the arraylist storing all the tasks in the bag.
+     * @exception KirbyMissingArgumentException if there is an invalid task number.
+     */
     public static void unmark(String inputString, ArrayList<Task> Tasks) throws KirbyMissingArgumentException {
         if (inputString.split(" ").length != 2) {
             throw new KirbyMissingArgumentException("unmark");
@@ -56,8 +101,13 @@ public class Kirby {
         System.out.println("Okay, I've marked " + currTask.toString() + " pending!");
     }
 
+    /**
+     * This method is to add a Todo task.
+     * @param inputString the command entered by the user specifying 'mark' and the task number.
+     * @param Tasks this is the arraylist storing all the tasks in the bag.
+     * @exception KirbyMissingArgumentException if there is an invalid task number.
+     */
     public static void toDo(String inputString, ArrayList<Task> Tasks) throws KirbyMissingArgumentException {
-        // rest of the string
         if (inputString.length() <= 5) {
             throw new KirbyMissingArgumentException("todo");
         }
@@ -69,6 +119,12 @@ public class Kirby {
         printTaskCount();
     }
 
+    /**
+     * This method is to add a Deadline task.
+     * @param inputString the command entered by the user specifying 'mark' and the task number.
+     * @param Tasks this is the arraylist storing all the tasks in the bag.
+     * @exception KirbyMissingArgumentException if there is an invalid task number.
+     */
     public static void deadline(String inputString, ArrayList<Task> Tasks) throws KirbyMissingArgumentException {
         if (!inputString.contains("/by") || inputString.length() - 1 < inputString.indexOf("/by") + 4) {
             throw new KirbyMissingArgumentException("deadline");
@@ -82,6 +138,12 @@ public class Kirby {
         printTaskCount();
     }
 
+    /**
+     * This method is to add an Event task.
+     * @param inputString the command entered by the user specifying 'mark' and the task number.
+     * @param Tasks this is the arraylist storing all the tasks in the bag.
+     * @exception KirbyMissingArgumentException if there is an invalid task number.
+     */
     public static void event(String inputString, ArrayList<Task> Tasks) throws KirbyMissingArgumentException {
         if (!inputString.contains("/at") || inputString.length() - 1 < inputString.indexOf("/at") + 4) {
             throw new KirbyMissingArgumentException("event");
@@ -95,10 +157,20 @@ public class Kirby {
         printTaskCount();
     }
 
+    /**
+     * This method is to handle commands that are not defined.
+     * @exception KirbyInvalidCommandException if there is an invalid command.
+     */
     public static void notDefinedCommand() throws KirbyInvalidCommandException {
         throw new KirbyInvalidCommandException();
     }
 
+    /**
+     * This method is to delete a task.
+     * @param inputString the command entered by the user specifying 'mark' and the task number.
+     * @param Tasks this is the arraylist storing all the tasks in the bag.
+     * @exception KirbyMissingArgumentException if there is an invalid task number.
+     */
     public static void delete(String inputString, ArrayList<Task> Tasks) throws KirbyMissingArgumentException {
         if (inputString.split(" ").length != 2) {
             throw new KirbyMissingArgumentException("delete");
@@ -114,25 +186,30 @@ public class Kirby {
         printTaskCount();
     }
 
+    /**
+     * This is the main method to initialise the bot.
+     */
     public static void main(String[] args) {
+        // Arraylist of Task to store all the tasks added.
         ArrayList<Task> Tasks = new ArrayList<>();
-        System.out.println("Hai I'm Kirby (੭｡╹▿╹｡)੭ your friendly chat assistant!! \n" + "What amazing plans do you have today?");
+        welcome();
         Scanner scanner = new Scanner(System.in);
+        // Keep taking in input
         while (scanner.hasNextLine()) {
                 String inputString = scanner.nextLine();
                 try {
-                    // bye
+                    // Bye
                     if (inputString.equals("bye")) {
                         goodbye();
                         break;
                     }
 
-                    // list
+                    // List
                     else if (inputString.equals("list")) {
                         showList(Tasks);
                     }
 
-                    //mark
+                    //Mark
                     else if (inputString.split(" ")[0].equals("mark")) {
                         try {
                             mark(inputString, Tasks);
@@ -140,7 +217,8 @@ public class Kirby {
                             System.out.println(e.getMessage());
                         }
                     }
-                    // unmark
+
+                    // Unmark
                     else if (inputString.split(" ")[0].equals("unmark")) {
                         try {
                             unmark(inputString, Tasks);
@@ -149,7 +227,7 @@ public class Kirby {
                         }
                     }
 
-                    // add task
+                    // Add task
                     else if (inputString.split(" ")[0].equals("todo")) {
                         try {
                             toDo(inputString, Tasks);
@@ -158,7 +236,7 @@ public class Kirby {
                         }
                     }
 
-                    // deadline
+                    // Deadline
                     else if (inputString.split(" ")[0].equals("deadline")) {
                         try {
                             deadline(inputString, Tasks);
@@ -167,7 +245,7 @@ public class Kirby {
                         }
                     }
 
-                    // event
+                    // Event
                     else if (inputString.split(" ")[0].equals("event")) {
                         try {
                             event(inputString, Tasks);
@@ -176,7 +254,7 @@ public class Kirby {
                         }
                     }
 
-                    // delete
+                    // Delete
                     else if (inputString.split(" ")[0].equals("delete")) {
                         try {
                             delete(inputString, Tasks);
@@ -185,6 +263,7 @@ public class Kirby {
                         }
                     }
 
+                    // Undefined command
                     else {
                         notDefinedCommand();
                     }
