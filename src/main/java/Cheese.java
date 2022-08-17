@@ -23,7 +23,7 @@ public class Cheese {
       System.out.println(BORDER);
 
       if (userInput.equals("bye")) {
-        System.out.println("So soon? :') Bye bye");
+        System.out.println("Going so soon? :') Bye");
         scanner.close();
         break;
       }
@@ -37,7 +37,7 @@ public class Cheese {
           continue;
         }
         Cheese.list.get(itemNum - 1).markAsDone();
-        System.out.println("Nice! Another task done!");
+        System.out.println("Paw-some! Another task done!");
         System.out.println(Cheese.list.get(itemNum - 1));
       } else if (userInput.indexOf("unmark") == 0) {
         int itemNum = Integer.parseInt(userInput.substring(7));
@@ -46,7 +46,7 @@ public class Cheese {
           continue;
         }
         Cheese.list.get(itemNum - 1).markAsNotDone();
-        System.out.println("Okie! I've marked this task as not done yet.");
+        System.out.println("Okay, I've marked this task as not done yet.");
         System.out.println(Cheese.list.get(itemNum - 1));
       } else if (userInput.indexOf("todo") == 0){
         String description = userInput.substring(5);

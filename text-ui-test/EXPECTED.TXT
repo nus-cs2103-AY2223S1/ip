@@ -27,11 +27,11 @@ You have 3 task(s) in the list.
 3. [E][ ] House barbeque (at: 27 July 1800 - 2000)
 -----
 -----
-Nice! Another task done!
+Paw-some! Another task done!
 [T][X] Wash laundry
 -----
 -----
-Nice! Another task done!
+Paw-some! Another task done!
 [E][X] House barbeque (at: 27 July 1800 - 2000)
 -----
 -----
@@ -40,7 +40,7 @@ Nice! Another task done!
 3. [E][X] House barbeque (at: 27 July 1800 - 2000)
 -----
 -----
-Okie! I've marked this task as not done yet.
+Okay, I've marked this task as not done yet.
 [E][ ] House barbeque (at: 27 July 1800 - 2000)
 -----
 -----
