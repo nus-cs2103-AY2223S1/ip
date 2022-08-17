@@ -36,7 +36,7 @@ public class Duke {
         return todo;
     }
 
-    public static Deadline addDeadline(String input) {
+    public static Deadline addDeadline(String input) throws DukeException {
         if (input.length() == 0) {
             throw new DukeException("\t ☹ OOPS!!! The description of a deadline cannot be empty.");
         }
@@ -50,7 +50,7 @@ public class Duke {
         return deadline;
     }
 
-    public static Event addEvent(String input) {
+    public static Event addEvent(String input) throws DukeException {
         if (input.length() == 0) {
             throw new DukeException("\t ☹ OOPS!!! The description of a event cannot be empty.");
         }
@@ -64,7 +64,7 @@ public class Duke {
         return event;
     }
 
-    public static void addTask(String input, int type) {
+    public static void addTask(String input, int type) throws DukeException {
         Task task = null;
         switch (type) {
             // To-do
