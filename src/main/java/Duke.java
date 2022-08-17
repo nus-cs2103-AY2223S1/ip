@@ -73,9 +73,17 @@ public class Duke {
             } else if (input.contains("mark")) {
                 Integer taskNo = Integer.valueOf(input.substring(5));
                 tasks.get(taskNo - 1).markAsDone();
-                System.out.println(indent + "Alright! I've marked this task as done :) \n"
+                System.out.println(indent + "alright! I've marked this task as done :) \n"
                         + indent + " " + tasks.get(taskNo - 1));
                 System.out.println(divider);
+            } else if (input.contains("delete")) {
+                Integer taskNo = Integer.valueOf(input.substring(7));
+                Task taskToRemove = tasks.get(taskNo - 1);
+                System.out.println(indent + "got it, i'll remove this task from your list: \n"
+                        + indent + " " + taskToRemove);
+                tasks.remove(taskToRemove);
+                System.out.println(indent + "You now have " + tasks.size() + " total tasks in your list \n"
+                        + divider);
             } else {
                 if (input.contains("todo")) {
                     try {
