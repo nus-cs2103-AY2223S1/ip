@@ -18,6 +18,7 @@ public class Duke {
     private static final String MARK_TASK_AS_DONE_MESSAGE = "Nice! I've marked this task as done:";
     private static final String MARK_TASK_AS_UNDONE_MESSAGE = "OK, I've marked this task as not done yet:";
     private static final String TASK_LIST_STATUS_MESSAGE = "Now you have %s task(s) in the list.";
+    private static final String DELETE_TASK_MESSAGE = "Noted. I've removed this task:";
 
     private static final String UNKNOWN_COMMAND_ERROR = "I do not understand your command!";
     private static final String MISSING_TASK_INDEX_ERROR = "You are missing a task number!\n" +
@@ -32,12 +33,14 @@ public class Duke {
     private static final String INVALID_EVENT_TASK_ERROR = "Use the 'event' command together with the " +
             "task description and date time\nFor example: 'event project meeting /at Mon 2-4pm'";
 
+    // List of valid commands for the user
     private static final String LIST_COMMAND = "list";
     private static final String MARK_COMMAND = "mark";
     private static final String UNMARK_COMMAND = "unmark";
     private static final String TODO_COMMAND = "todo";
     private static final String DEADLINE_COMMAND = "deadline";
     private static final String EVENT_COMMAND = "event";
+    private static final String DELETE_COMMAND = "delete";
     private static final String BYE_COMMAND = "bye";
 
     // Regex patterns for matching input commands
@@ -119,6 +122,33 @@ public class Duke {
                         if (task != null) {
                             task.markAsDone();
                             DukePrinter.print(String.format("%s\n\t%s", Duke.MARK_TASK_AS_DONE_MESSAGE, task));
+                        } else {
+                            throw new DukeException(Duke.TASK_NUMBER_IS_INVALID_ERROR);
+                        }
+                        break;
+                    }
+                    case DELETE_COMMAND: {
+                        // Retrieve the task index (1-indexed) to mark the task as done
+                        if (arguments.length() == 0) {
+                            throw new DukeException(Duke.MISSING_TASK_INDEX_ERROR);
+                        }
+                        int taskNumber;
+                        try {
+                            taskNumber = Integer.parseInt(arguments);
+                        } catch (NumberFormatException e) {
+                            throw new DukeException(Duke.NAN_TASK_NUMBER_ERROR);
+                        }
+                        Task task = Duke.getTask(taskManager, taskNumber);
+                        if (task != null) {
+                            taskManager.delete(taskNumber);
+                            DukePrinter.print(
+                                    String.format(
+                                            "%s\n\t%s\n%s",
+                                            Duke.DELETE_TASK_MESSAGE,
+                                            task,
+                                            String.format(Duke.TASK_LIST_STATUS_MESSAGE, taskManager.count())
+                                    )
+                            );
                         } else {
                             throw new DukeException(Duke.TASK_NUMBER_IS_INVALID_ERROR);
                         }

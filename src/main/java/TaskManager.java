@@ -26,10 +26,23 @@ public class TaskManager {
     }
 
     /**
+     * Deletes the specified task number (1-index) from the task list
+     *
+     * @param taskNumber The 1-based task number, possibly corresponding to a particular task
+     */
+    public void delete(int taskNumber) throws IndexOutOfBoundsException {
+        if (!this.isValidTask(taskNumber)) {
+            throw new IndexOutOfBoundsException();
+        }
+        int taskIndex = this.getTaskIndexFromTaskNumber(taskNumber);
+        this.taskList.remove(taskIndex);
+    }
+
+    /**
      * Retrieve the task
      *
      * @param taskNumber An index (1-index) corresponding to a particular task
-     * @return Task corresponding to the particular task index
+     * @return Task corresponding to the particular task number
      */
     public Task get(int taskNumber) throws IndexOutOfBoundsException {
         if (!this.isValidTask(taskNumber)) {
