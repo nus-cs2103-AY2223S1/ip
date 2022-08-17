@@ -1,15 +1,53 @@
+list
+todo
+todo
 todo read a book
+event
+event
+event /on Sunday 2-4pm
+event / on Sunday 2-4pm
+event  /on Sunday 2-4pm
+event /on Sunday 2-4pm /3-5pm
+event project meeting
+event project meeting
+event project meeting /
+event project meeting/
+event project meeting/tea /
+event project meeting/tea /on Sunday 2-4pm
 event project meeting /on Sunday 2-4pm
+event project meeting /on Sunday 2-4pm /3-5pm
+deadline
+deadline
+deadline /by Wednesday 6pm
+deadline / by Wednesday 6pm
+deadline  /by Wednesday 6pm
+deadline /by Wednesday 6pm /5pm
+deadline spanish homework
+deadline spanish homework
+deadline spanish homework /
+deadline spanish homework/
+deadline spanish homework/extra /
+deadline spanish homework/extra /by Wednesday 6pm
 deadline spanish homework /by Wednesday 6pm
+deadline spanish homework /by Wednesday 6pm /5pm
+list
+mark
+mark
+unmark
+unmark
+mark -1
+unmark -1
+mark 8
+unmark 8
 mark 2
 mark 2
 list
 unmark 2
 list
 unmark 2
-mark 4
-unmark 4
 mark asdwa
 unmark sawd
-random
+list sss
+bye asda
+random word
 bye
