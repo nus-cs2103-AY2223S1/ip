@@ -102,6 +102,13 @@ public class Duke {
                 System.out.printf("Duke: I have added the deadline %s.\n", deadlineName);
             }
 
+            else if (userInput.startsWith("delete ")) {
+                // TODO: Ensure that the input is reasonable.
+                int index = Integer.parseInt(userInput.substring(7)) - 1;
+                System.out.printf("Duke: I have removed the task %s.\n", tasks.get(index));
+                tasks.remove(index);
+            }
+
             else {
                 System.out.println("Duke: I don't understand!");
             }
