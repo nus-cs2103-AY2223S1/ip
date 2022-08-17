@@ -1,3 +1,7 @@
+/**
+ * The Deadline class is a subclass of Task. It represents
+ * a task in real life that has a deadline associated.
+ */
 public class Deadline extends Task {
     public String date;
 

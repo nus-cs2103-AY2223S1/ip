@@ -1,3 +1,8 @@
+/**
+ * The Event class is a subclass of Task emulating
+ * an event in a real life where there is a date that is
+ * tied to the event.
+ */
 public class Event extends Task {
     public String date;
 
