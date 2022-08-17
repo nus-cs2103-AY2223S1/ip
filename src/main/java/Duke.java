@@ -12,7 +12,8 @@ public class Duke {
 
         while(!input.equals("bye")) {
             input = sc.nextLine();
-            String words[] = input.split(" "); // splits sentences
+            String phrases[] = input.split(" /.. ", 2); // splits sentence and removes by/at
+            String words[] = phrases[0].split(" ", 2);
 
             if (input.equals("list")) {
                 // when user request list
@@ -24,30 +25,55 @@ public class Duke {
                     System.out.println(i+1 + ". " + items[i]);
                 }
             }
-            else if (words[0].equals("mark")) {
-                // when user wants to mark as done
-                int num = Integer.valueOf(words[1]) - 1;
-                if (items[num] == null) {
-                    System.out.println("No such task");
+            else {
+                switch(words[0]) {
+                    case "mark":
+                        // when user wants to mark as done
+                        int num = Integer.valueOf(words[1]) - 1;
+                        if (items[num] == null) {
+                            System.out.println("No such task");
+                        }
+                        else {
+                            System.out.println(items[num].markAsDone());
+                        }
+                        break;
+
+                    case "unmark":
+                        // when user wants to mark as not done
+                        int numb = Integer.valueOf(words[1]) - 1;
+                        if (items[numb] == null) {
+                            System.out.println("No such task");
+                        }
+                        else {
+                            System.out.println(items[numb].markAsNotDone());
+                        }
+                        break;
+
+                    case "todo":
+                        // when user wants to add todo task
+                        items[index] = new Todo(words[1]);
+                        System.out.println("Got it. I've added this task:\n  " + items[index++] +"\n" + Task.getCount());
+                        break;
+
+                    case "deadline":
+                        // when user wants to add deadline task
+                        items[index] = new Deadline(words[1], phrases[1]);
+                        System.out.println("Got it. I've added this task:\n  " + items[index++] +"\n" + Task.getCount());
+                        break;
+
+                    case "event":
+                        // when user wants to add event task
+                        items[index] = new Event(words[1], phrases[1]);
+                        System.out.println("Got it. I've added this task:\n  " + items[index++] +"\n" + Task.getCount());
+                        break;
+
+                    case "bye":
+                        break;
+
+                    default:
+                        System.out.println("No such command");
+
                 }
-                else {
-                    System.out.println(items[num].markAsDone());
-                }
-            }
-            else if (words[0].equals("unmark")) {
-                // when user wants to mark as not done
-                int num = Integer.valueOf(words[1]) - 1;
-                if (items[num] == null) {
-                    System.out.println("No such task");
-                }
-                else {
-                    System.out.println(items[num].markAsNotDone());
-                }
-            }
-            else if (!input.equals("list") && !input.equals("bye")) {
-                // when user wants to add task
-                items[index++] = new Task(input);
-                System.out.println("added: "+ input);
             }
         }
         System.out.println("Bye. Hope to see you again soon!");

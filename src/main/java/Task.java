@@ -2,10 +2,16 @@ public class Task {
 
     private boolean isDone;
     private String item;
+    private static int count = 0;
 
     public Task(String description) {
         this.item = description;
         this.isDone = false;
+        count++;
+    }
+
+    public static String getCount() {
+        return ("Now you have " + String.valueOf(count) + " tasks in the list.");
     }
 
     public String getStatusIcon() {
