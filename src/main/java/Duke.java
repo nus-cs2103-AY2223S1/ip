@@ -9,7 +9,7 @@ public class Duke {
         System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < list.size(); i ++) {
             Task task = list.get(i);
-            System.out.println((i+ 1) + ". " + (task.getTaskStatus() ? "[X]" : "[ ]") + " " + task.getTaskName());
+            System.out.println((i+ 1) + "." + task.toString());
         }
         System.out.println(Duke.line);
     }
@@ -31,8 +31,15 @@ public class Duke {
             task.setTaskStatus(false);
         }
         list.set(index, task);
-        System.out.println((task.getTaskStatus() ? "[X]" : "[ ]") + " " + task.getTaskName());
+        System.out.println(task.toString());
     }
+
+    private static void printTaskAdded(ArrayList<Task> list, Task task) {
+        System.out.println("Got it. I've added this task:");
+        System.out.println("\t" + task.toString());
+        System.out.println("Now you have " + list.size() + " tasks in the list.");
+    }
+
     public static void main(String[] args) {
         Scanner scanner  = new Scanner(System.in);
 
@@ -40,10 +47,15 @@ public class Duke {
         String exitMessage = "Bye. Hope to see you again soon!";
         String exitKeyword = "bye";
         String listKeyword = "list";
+        String todoKeyword = "todo";
+        String deadlineKeyword = "deadline";
+        String eventKeyword = "event";
         String markKeyword = "mark";
         String unmarkKeyword = "unmark";
+
         String userInput;
         String command;
+        String taskDetails;
 
         ArrayList<Task> taskList = new ArrayList<Task>();
 
@@ -64,7 +76,19 @@ public class Duke {
                 String index = userInput.split(" ")[1];
                 updateAndPrintTaskStatus(taskList, Integer.parseInt(index), false);
             } else {
-                taskList.add(new Task(userInput));
+                Task task;
+                taskDetails = userInput.split(" ", 2)[1];
+                if (command.equals(todoKeyword)) {
+                    task = new Todo(taskDetails);
+                    taskList.add(task);
+                } else if (command.equals(eventKeyword)) {
+                    task = new Event(taskDetails.split("/")[0], taskDetails.split("/")[1]);
+                    taskList.add(task);
+                } else if (command.equals(deadlineKeyword)) {
+                    task = new Deadline(taskDetails.split("/")[0], taskDetails.split("/")[1]);
+                    taskList.add(task);
+                }
+
                 printResponse("added: " + userInput);
             }
         }

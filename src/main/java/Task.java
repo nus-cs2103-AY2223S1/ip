@@ -18,4 +18,9 @@ public class Task {
     public Boolean getTaskStatus() {
         return this.isDone;
     }
+
+    @Override
+    public String toString() {
+        return (this.getTaskStatus() ? "[X]" : "[ ]") + " " + this.getTaskName();
+    }
 }
