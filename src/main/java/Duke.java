@@ -14,19 +14,9 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        /*String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);*/
-
-
         String greetings = "Good day to you! I'm Jake\n"
                             + "How can I help you?";
         System.out.println(greetings);
         responseRepeater();
-        //String response = input.next();
-        //System.out.println("You entered: " + response);
     }
 }
