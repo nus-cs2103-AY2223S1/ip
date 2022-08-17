@@ -1,0 +1,10 @@
+todo Test todo
+deadline Test deadline /by Thu, Aug 18th 2359
+event Test event /at Fri, Aug 19th 4pm
+list
+mark 2
+mark 3
+list
+unmark 3
+list
+bye

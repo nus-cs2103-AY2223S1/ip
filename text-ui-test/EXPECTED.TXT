@@ -1,7 +1,30 @@
-Hello from
  ____        _        
 |  _ \ _   _| | _____ 
 | | | | | | | |/ / _ \
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
+Hello there! I'm Duke!
+How can I help you?
+Got it, I've added this to-do:
+(T) [ ] Test todo
+Got it, I've added this deadline:
+(D) [ ] Test deadline (by: Thu, Aug 18th 2359)
+Got it, I've added this event:
+(E) [ ] Test event (at: Fri, Aug 19th 4pm)
+1. (T) [ ] Test todo
+2. (D) [ ] Test deadline (by: Thu, Aug 18th 2359)
+3. (E) [ ] Test event (at: Fri, Aug 19th 4pm)
+Well done! I've marked task 2 as done:
+(D) [✔] Test deadline (by: Thu, Aug 18th 2359)
+Well done! I've marked task 3 as done:
+(E) [✔] Test event (at: Fri, Aug 19th 4pm)
+1. (T) [ ] Test todo
+2. (D) [✔] Test deadline (by: Thu, Aug 18th 2359)
+3. (E) [✔] Test event (at: Fri, Aug 19th 4pm)
+Sure, I've marked task 3 as not done:
+(E) [ ] Test event (at: Fri, Aug 19th 4pm)
+1. (T) [ ] Test todo
+2. (D) [✔] Test deadline (by: Thu, Aug 18th 2359)
+3. (E) [ ] Test event (at: Fri, Aug 19th 4pm)
+Ok, see you next time!
