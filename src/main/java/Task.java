@@ -1,5 +1,5 @@
 public class Task {
-    private final String TaskItem;
+    private String TaskItem;
     private boolean isMarked;
 
     public Task(String TaskItem) {
@@ -15,7 +15,8 @@ public class Task {
         return checkbox + this.TaskItem;
     }
 
-    public void setIsMarked(boolean status) {
+    public String setIsMarked(boolean status) {
         isMarked = status;
+        return this.toString();
     }
 }

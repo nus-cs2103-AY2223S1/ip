@@ -18,15 +18,11 @@ public class TaskList {
     }
 
     public String markItem(int index) {
-        Task taskItem = this.list.get(index - 1);
-        taskItem.setIsMarked(true);
-        return taskItem.toString();
+        return this.list.get(index - 1).setIsMarked(true);
     }
 
     public String unmarkItem(int index) {
-        Task taskItem = this.list.get(index - 1);
-        taskItem.setIsMarked(false);
-        return taskItem.toString();
+        return this.list.get(index - 1).setIsMarked(false);
     }
 }
 
