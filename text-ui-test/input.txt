@@ -1,0 +1,9 @@
+todo todotest
+deadline do homework /by Sunday
+event meeting /at 10-12pm Monday
+list
+mark 2
+unmark 2
+mark 1
+list
+bye
