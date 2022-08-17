@@ -1,5 +1,6 @@
 package handlers;
 
+import exceptions.DukeException;
 import models.Task;
 import models.TaskManager;
 
@@ -26,12 +27,11 @@ public class DeleteTaskCommand implements DukeCommand {
 
         Task task;
         try {
-            task = taskManager.get(taskNumber);
+            task = taskManager.delete(taskNumber);
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException(DeleteTaskCommand.TASK_NUMBER_IS_INVALID_ERROR);
         }
 
-        taskManager.delete(taskNumber);
         return String.format(
                 "%s\n\t%s\n%s",
                 DeleteTaskCommand.DELETE_TASK_MESSAGE,

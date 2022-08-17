@@ -1,6 +1,7 @@
 package handlers;
 
-import models.Deadline;
+import exceptions.DukeException;
+import models.Event;
 import models.TaskManager;
 
 import java.util.regex.Matcher;
@@ -20,6 +21,6 @@ public class AddEventTaskCommand extends AddTaskCommand implements DukeCommand {
         if (!matcher.find()) {
             throw new DukeException(AddEventTaskCommand.INVALID_EVENT_TASK_ERROR);
         }
-        return this.addTask(taskManager, () -> new Deadline(matcher.group(1).strip(), matcher.group(2).strip()));
+        return this.addTask(taskManager, () -> new Event(matcher.group(1).strip(), matcher.group(2).strip()));
     }
 }

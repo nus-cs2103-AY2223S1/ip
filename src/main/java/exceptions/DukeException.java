@@ -1,4 +1,4 @@
-package handlers;
+package exceptions;
 
 public class DukeException extends Exception{
     private static final String OOPS_MESSAGE = "☹ OOPS!!!";

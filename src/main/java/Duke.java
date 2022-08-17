@@ -1,5 +1,5 @@
 import handlers.DukeCommand;
-import handlers.DukeException;
+import exceptions.DukeException;
 import models.CommandManager;
 import models.TaskManager;
 import utils.DukeErrorPrinter;

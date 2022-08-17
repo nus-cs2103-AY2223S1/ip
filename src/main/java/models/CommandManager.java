@@ -1,5 +1,6 @@
 package models;
 
+import exceptions.DukeException;
 import handlers.*;
 
 import java.util.HashMap;
