@@ -6,6 +6,107 @@ public class Duke {
     private static final String indentation = "    ";
     private static final String horizontalLine = indentation + "____________________________________________________________";
 
+    private static void list(ArrayList<Task> tasks) {
+        for (int i = 0; i < tasks.size(); i++) {
+            System.out.printf(indentation + "%d: %s\n", i + 1, tasks.get(i));
+        }
+    }
+
+    private static void mark(ArrayList<Task> tasks, String[] split) throws DukeException {
+        if (split.length != 2) {
+            throw DukeException.noIndex;
+        }
+        String indexInput = split[1];
+        int i = Integer.parseInt(indexInput);
+        if (i <= 0 || i > tasks.size()) {
+            throw DukeException.invalidIndex;
+        }
+        // Subtract 1 to account for 0-index data structure.
+        Task task = tasks.get(i - 1);
+        task.markAsDone();
+
+        System.out.printf(indentation + "Marked task %d as done!\n", i);
+        System.out.println(indentation + minorIndentation + task);
+    }
+
+    private static void unmark(ArrayList<Task> tasks, String[] split) throws DukeException {
+        if (split.length != 2) {
+            throw DukeException.noIndex;
+        }
+        String indexInput = split[1];
+        int i = Integer.parseInt(indexInput);
+        if (i <= 0 || i > tasks.size()) {
+            throw DukeException.invalidIndex;
+        }
+        // Subtract 1 to account for 0-index data structure.
+        Task task = tasks.get(i - 1);
+        task.markAsUndone();
+
+        System.out.printf(indentation + "Marked task %d as not done!\n", i);
+        System.out.println(indentation + minorIndentation + task);
+    }
+
+    private static void delete(ArrayList<Task> tasks, String[] split) throws DukeException {
+        if (split.length != 2) {
+            throw DukeException.noIndex;
+        }
+        String indexInput = split[1];
+        int i = Integer.parseInt(indexInput);
+        if (i <= 0 || i > tasks.size()) {
+            throw DukeException.invalidIndex;
+        }
+        // Subtract 1 to account for 0-index data structure.
+        Task task = tasks.get(i - 1);
+        tasks.remove(i - 1);
+        int numberOfTasks = tasks.size();
+
+        System.out.println(indentation + "Removing this todo!");
+        System.out.println(indentation + minorIndentation + task);
+        System.out.printf(indentation + "Now you have %d tasks.\n", numberOfTasks);
+    }
+
+    private static void todo(ArrayList<Task> tasks, String[] split) throws DukeException {
+        if (split.length != 2) {
+            throw Todo.emptyDescription;
+        }
+        String description = split[1];
+        Task task = Todo.create(description);
+        tasks.add(task);
+        int numberOfTasks = tasks.size();
+
+        System.out.println(indentation + "Added this todo!");
+        System.out.println(indentation + minorIndentation + task);
+        System.out.printf(indentation + "Now you have %d tasks.\n", numberOfTasks);
+    }
+
+    private static void deadline(ArrayList<Task> tasks, String[] split) throws DukeException {
+        if (split.length != 2) {
+            throw Deadline.emptyDescription;
+        }
+        String descAndDate = split[1];
+        Task task = Deadline.create(descAndDate);
+        tasks.add(task);
+        int numberOfTasks = tasks.size();
+
+        System.out.println(indentation + "Added this deadline!");
+        System.out.println(indentation + minorIndentation + task);
+        System.out.printf(indentation + "Now you have %d tasks.\n", numberOfTasks);
+    }
+
+    private static void event(ArrayList<Task> tasks, String[] split) throws DukeException {
+        if (split.length != 2) {
+            throw Event.emptyDescription;
+        }
+        String descAndDate = split[1];
+        Task task = Event.create(descAndDate);
+        tasks.add(task);
+        int numberOfTasks = tasks.size();
+
+        System.out.println(indentation + "Added this event!");
+        System.out.println(indentation + minorIndentation + task);
+        System.out.printf(indentation + "Now you have %d tasks.\n", numberOfTasks);
+    }
+
     public static void main(String[] args) {
         System.out.println(horizontalLine);
         String logo = indentation + "____        _        \n"
@@ -37,103 +138,30 @@ public class Duke {
                         // Stops the application, by breaking out of the scan loop.
                         break scanLoop;
                     case "list":
-                        for (int i = 0; i < tasks.size(); i++) {
-                            System.out.printf(indentation + "%d: %s\n", i + 1, tasks.get(i));
-                        }
+                        Duke.list(tasks);
                         break;
                     case "mark": {
-                        if (split.length != 2) {
-                            throw DukeException.noIndex;
-                        }
-                        String indexInput = split[1];
-                        int i = Integer.parseInt(indexInput);
-                        if (i <= 0 || i > tasks.size()) {
-                            throw DukeException.invalidIndex;
-                        }
-                        // Subtract 1 to account for 0-index data structure.
-                        Task task = tasks.get(i - 1);
-                        task.markAsDone();
-
-                        System.out.printf(indentation + "Marked task %d as done!\n", i);
-                        System.out.println(indentation + minorIndentation + task);
+                        Duke.mark(tasks, split);
                         break;
                     }
                     case "unmark": {
-                        if (split.length != 2) {
-                            throw DukeException.noIndex;
-                        }
-                        String indexInput = split[1];
-                        int i = Integer.parseInt(indexInput);
-                        if (i <= 0 || i > tasks.size()) {
-                            throw DukeException.invalidIndex;
-                        }
-                        // Subtract 1 to account for 0-index data structure.
-                        Task task = tasks.get(i - 1);
-                        task.markAsUndone();
-
-                        System.out.printf(indentation + "Marked task %d as not done!\n", i);
-                        System.out.println(indentation + minorIndentation + task);
+                        Duke.unmark(tasks, split);
                         break;
                     }
                     case "delete": {
-                        if (split.length != 2) {
-                            throw DukeException.noIndex;
-                        }
-                        String indexInput = split[1];
-                        int i = Integer.parseInt(indexInput);
-                        if (i <= 0 || i > tasks.size()) {
-                            throw DukeException.invalidIndex;
-                        }
-                        // Subtract 1 to account for 0-index data structure.
-                        Task task = tasks.get(i - 1);
-                        tasks.remove(i - 1);
-                        int numberOfTasks = tasks.size();
-
-                        System.out.println(indentation + "Removing this todo!");
-                        System.out.println(indentation + minorIndentation + task);
-                        System.out.printf(indentation + "Now you have %d tasks.\n", numberOfTasks);
+                        Duke.delete(tasks, split);
                         break;
                     }
                     case "todo": {
-                        if (split.length != 2) {
-                            throw Todo.emptyDescription;
-                        }
-                        String description = split[1];
-                        Task task = Todo.create(description);
-                        tasks.add(task);
-                        int numberOfTasks = tasks.size();
-
-                        System.out.println(indentation + "Added this todo!");
-                        System.out.println(indentation + minorIndentation + task);
-                        System.out.printf(indentation + "Now you have %d tasks.\n", numberOfTasks);
+                        Duke.todo(tasks, split);
                         break;
                     }
                     case "deadline": {
-                        if (split.length != 2) {
-                            throw Deadline.emptyDescription;
-                        }
-                        String descAndDate = split[1];
-                        Task task = Deadline.create(descAndDate);
-                        tasks.add(task);
-                        int numberOfTasks = tasks.size();
-
-                        System.out.println(indentation + "Added this deadline!");
-                        System.out.println(indentation + minorIndentation + task);
-                        System.out.printf(indentation + "Now you have %d tasks.\n", numberOfTasks);
+                        Duke.deadline(tasks, split);
                         break;
                     }
                     case "event": {
-                        if (split.length != 2) {
-                            throw Event.emptyDescription;
-                        }
-                        String descAndDate = split[1];
-                        Task task = Event.create(descAndDate);
-                        tasks.add(task);
-                        int numberOfTasks = tasks.size();
-
-                        System.out.println(indentation + "Added this event!");
-                        System.out.println(indentation + minorIndentation + task);
-                        System.out.printf(indentation + "Now you have %d tasks.\n", numberOfTasks);
+                        Duke.event(tasks, split);
                         break;
                     }
                     default:
