@@ -29,7 +29,7 @@ public class Duke {
                     list.get(index).finished();
                     System.out.println("Nice! I've marked this task as done:");
                     System.out.println(list.get(index));
-                } else if (splitReply[0].equals("mark") && splitReply.length == 2) {
+                } else if (splitReply[0].equals("unmark") && splitReply.length == 2) {
                     int index = Integer.parseInt(userReply.replaceAll("[^0-9]", ""));
                     index--;
                     list.get(index).notFinished();
@@ -79,6 +79,13 @@ public class Duke {
                     Task task = new Events(description, duration);
                     list.add(task);
                     System.out.println("Got it. I've added this task:");
+                    System.out.println(task);
+                    System.out.println("Now you have " + list.size() + " tasks in the list.");
+                } else if (splitReply[0].equals("delete") && splitReply.length == 2) {
+                    int index = Integer.parseInt(userReply.replaceAll("[^0-9]", ""));
+                    index--;
+                    Task task = list.remove(index);
+                    System.out.println("Noted. I've removed this task:");
                     System.out.println(task);
                     System.out.println("Now you have " + list.size() + " tasks in the list.");
                 } else {
