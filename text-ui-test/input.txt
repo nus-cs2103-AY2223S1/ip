@@ -1,14 +1,10 @@
-todo run
-deadline tutorial /by Sunday
-event dinner /at night 4-5am
-blah
-todo
-mark 1
-mark 2
+todo smth
+deadline homework /by Sunday
+event dinner /at Wed 9-10pm
 list
-todo jump
-unmark 2
+mark 2
+mark 1
+unmark 1
 delete 1
-mark 3
 list
 bye
