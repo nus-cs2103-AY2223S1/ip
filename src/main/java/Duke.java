@@ -1,3 +1,12 @@
+import exceptions.EmptyNameException;
+import exceptions.InvalidTaskIndexException;
+import exceptions.NoTasksException;
+import exceptions.UnknownCommandException;
+import objects.Deadline;
+import objects.Event;
+import objects.Task;
+import objects.Todo;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -21,7 +30,10 @@ public class Duke {
     /**
      * Prints out all the added tasks.
      */
-    public static void showTasks() {
+    public static void showTasks() throws NoTasksException {
+        if (tasks.size() == 0) {
+            throw new NoTasksException();
+        }
         int id = 1;
         for (Task task: tasks) {
             System.out.println(id + "." + task.toString());
@@ -33,38 +45,34 @@ public class Duke {
      * Marks the task at the taskIndex in the list as done.
      * @param taskIndex position of the task in the list (1-indexed)
      */
-    public static void markTaskAsDone(int taskIndex) {
+    public static void markTaskAsDone(int taskIndex) throws NoTasksException, InvalidTaskIndexException {
         if (tasks.size() == 0) {
-            System.out.println("You can't do that! There are no tasks added yet...");
-            return;
+            throw new NoTasksException();
         }
         if (taskIndex > tasks.size() || taskIndex <= 0) {
-            System.out.println("There are no tasks with that index...");
-            return;
+            throw new InvalidTaskIndexException();
         }
         Task currTask = tasks.get(taskIndex - 1); // label starting from 1
         currTask.markAsDone();
         System.out.println("Nice! I've marked this task as done:");
-        System.out.println("  " + currTask.toString());
+        System.out.println("  " + currTask);
     }
 
     /**
      * Marks the task at the taskIndex in the list as not done.
      * @param taskIndex position of the task in the list (1-indexed)
      */
-    public static void markTaskAsNotDone(int taskIndex) {
+    public static void markTaskAsNotDone(int taskIndex) throws NoTasksException, InvalidTaskIndexException {
         if (tasks.size() == 0) {
-            System.out.println("You can't do that! There are no tasks added yet...");
-            return;
+            throw new NoTasksException();
         }
         if (taskIndex > tasks.size() || taskIndex <= 0) {
-            System.out.println("There are no tasks with that index...");
-            return;
+            throw new InvalidTaskIndexException();
         }
         Task currTask = tasks.get(taskIndex - 1); // label starting from 1
         currTask.markAsNotDone();
         System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println("  " + currTask.toString());
+        System.out.println("  " + currTask);
     }
 
     /**
@@ -79,10 +87,13 @@ public class Duke {
     }
 
     /**
-     * Creates a new Todo object and adds it to the tasks list.
+     * Creates a new objects.Todo object and adds it to the tasks list.
      * @param inputs array of input strings
      */
-    public static void addTodo(String[] inputs) {
+    public static void addTodo(String[] inputs) throws EmptyNameException {
+        if (inputs.length == 1) {
+            throw new EmptyNameException("objects.Todo name cannot be empty...");
+        }
         StringBuilder todoName = new StringBuilder();
         for (int i = 1; i < inputs.length - 1; i++) {
             todoName.append(inputs[i]).append(" ");
@@ -93,15 +104,18 @@ public class Duke {
         Todo newTodo = new Todo(todoName.toString());
         tasks.add(newTodo);
         System.out.println("Got it. I've added this task:");
-        System.out.println("  " + newTodo.toString());
+        System.out.println("  " + newTodo);
         printNumberOfTasks();
     }
 
     /**
-     * Creates a new Deadline object and adds it to the tasks list.
+     * Creates a new objects.Deadline object and adds it to the tasks list.
      * @param inputs array of input strings
      */
-    public static void addDeadline(String[] inputs) {
+    public static void addDeadline(String[] inputs) throws EmptyNameException {
+        if (inputs.length == 1) {
+            throw new EmptyNameException("objects.Deadline name cannot be empty...");
+        }
         StringBuilder deadlineName = new StringBuilder();
         StringBuilder endDateTime = new StringBuilder();
         boolean readDateTime = false;
@@ -117,20 +131,27 @@ public class Duke {
             }
         }
         // To prevent space at the end of the string
-        endDateTime.append(inputs[inputs.length - 1]);
+        if (!readDateTime) {
+            deadlineName.append(inputs[inputs.length - 1]).append(" ");
+        } else {
+            endDateTime.append(inputs[inputs.length - 1]);
+        }
 
         Deadline newDeadline = new Deadline(deadlineName.toString(), endDateTime.toString());
         tasks.add(newDeadline);
         System.out.println("Got it. I've added this task:");
-        System.out.println("  " + newDeadline.toString());
+        System.out.println("  " + newDeadline);
         printNumberOfTasks();
     }
 
     /**
-     * Creates a new Event object and adds it to the tasks list.
+     * Creates a new objects.Event object and adds it to the tasks list.
      * @param inputs array of input strings
      */
-    public static void addEvent(String[] inputs) {
+    public static void addEvent(String[] inputs) throws EmptyNameException {
+        if (inputs.length == 1) {
+            throw new EmptyNameException("objects.Event name cannot be empty...");
+        }
         StringBuilder eventName = new StringBuilder();
         StringBuilder periodDateTime = new StringBuilder();
         boolean readDateTime = false;
@@ -146,7 +167,11 @@ public class Duke {
             }
         }
         // To prevent space at the end of the string
-        periodDateTime.append(inputs[inputs.length - 1]);
+        if (!readDateTime) {
+            eventName.append(inputs[inputs.length - 1]).append(" ");
+        } else {
+            periodDateTime.append(inputs[inputs.length - 1]);
+        }
 
         Event newEvent = new Event(eventName.toString(), periodDateTime.toString());
         tasks.add(newEvent);
@@ -171,32 +196,35 @@ public class Duke {
         System.out.println("Hello there! My name's Duck...");
         System.out.println("Please type in a command...");
         Scanner input = new Scanner(System.in);
+
         while (true) {
             String inputLine = input.nextLine();
             String[] inputs = inputLine.split(" ");
             String command = inputs[0];
-
-            if (inputLine.equals(Command.BYE.name().toLowerCase())) {
-                endSession(input);
-                return;
-            } else if (inputLine.equals(Command.LIST.name().toLowerCase())) {
-                if (tasks.isEmpty()) System.out.println("You have no tasks...");
-                showTasks();
-            } else if (command.equals(Command.MARK.name().toLowerCase())) {
-                // inputs[1] is the index number of the task to be marked
-                markTaskAsDone(Integer.parseInt(inputs[1]));
-            } else if (command.equals(Command.UNMARK.name().toLowerCase())) {
-                // inputs[1] is the index number of the task to be unmarked
-                markTaskAsNotDone(Integer.parseInt(inputs[1]));
-            } else if (command.equals(Command.TODO.name().toLowerCase())) {
-                addTodo(inputs);
-            } else if (command.equals(Command.DEADLINE.name().toLowerCase())) {
-                addDeadline(inputs);
-            } else if (command.equals(Command.EVENT.name().toLowerCase())) {
-                addEvent(inputs);
-            } else {
-                // when none of the commands match
-                System.out.println("I don't get what you are saying...");
+            try {
+                if (inputLine.equals(Command.BYE.name().toLowerCase())) {
+                    endSession(input);
+                    return;
+                } else if (inputLine.equals(Command.LIST.name().toLowerCase())) {
+                    showTasks();
+                } else if (command.equals(Command.MARK.name().toLowerCase())) {
+                    // inputs[1] is the index number of the task to be marked
+                    markTaskAsDone(Integer.parseInt(inputs[1]));
+                } else if (command.equals(Command.UNMARK.name().toLowerCase())) {
+                    // inputs[1] is the index number of the task to be unmarked
+                    markTaskAsNotDone(Integer.parseInt(inputs[1]));
+                } else if (command.equals(Command.TODO.name().toLowerCase())) {
+                    addTodo(inputs);
+                } else if (command.equals(Command.DEADLINE.name().toLowerCase())) {
+                    addDeadline(inputs);
+                } else if (command.equals(Command.EVENT.name().toLowerCase())) {
+                    addEvent(inputs);
+                } else {
+                    // when none of the commands match
+                    throw new UnknownCommandException();
+                }
+            } catch (EmptyNameException | UnknownCommandException | NoTasksException | InvalidTaskIndexException e) {
+                System.out.println(e.getMessage());
             }
         }
     }

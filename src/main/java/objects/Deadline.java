@@ -1,3 +1,7 @@
+package objects;
+
+import objects.Task;
+
 public class Deadline extends Task {
     private String endDateTime;
 
