@@ -25,8 +25,9 @@ public class Duke {
             } else if (input.startsWith("unmark")) {
                 int index = Integer.parseInt(input.substring(7)) - 1;
                 UserInterface.unmarkChild(index);
-            }
-            else {
+            } else if (input.startsWith("delete")) {
+                UserInterface.deleteTodo(input);
+            } else {
                 UserInterface.addTodo(input);
             }
         }

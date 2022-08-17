@@ -50,5 +50,20 @@ public class TaskHandler {
         }
 
     }
-
+    public static void delete(String input, ArrayList<Task> taskList) {
+        if (!input.equals("delete")) {
+            try {
+                int index = Integer.parseInt(input.substring(7)) - 1;
+                Task removedTask = taskList.remove(index);
+                System.out.println("Noted. I've removed this task: \n" +
+                        "   " + removedTask.toString() +
+                        "\n Now you have " + taskList.size() +
+                        (taskList.size() > 1 ? " tasks in your list." : " task in your list."));
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println(new DukeException("ERROR: there is no item in the list there!").getMessage());
+            }
+        } else {
+            System.out.println(new DukeException("ERROR: please specify an index.").getMessage());
+        }
+    }
 }
