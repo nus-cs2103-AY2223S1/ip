@@ -1,7 +1,7 @@
 /**
  * This class represents tasks added by the user.
  */
-public class Task {
+public abstract class Task {
     protected String description;
     protected boolean isDone;
 
@@ -26,19 +26,17 @@ public class Task {
     }
 
     /**
-     * Checks task status.
-     * @return True if the task is done; false otherwise.
+     * Marks a task as done.
      */
-    public boolean getIsDone() {
-        return this.isDone;
+    public void markAsDone() {
+        this.isDone = true;
     }
 
     /**
-     * Updates task status.
-     * @param isDone Whether the task should be marked as done or undone.
+     * Marks a task as not done.
      */
-    public void setIsDone(boolean isDone) {
-        this.isDone = isDone;
+    public void markAsUndone() {
+        this.isDone = false;
     }
 
     /**
@@ -50,6 +48,21 @@ public class Task {
     // from https://nus-cs2103-ay2223s1.github.io/website/schedule/week2/project.html#ip
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
+    }
+
+    /**
+     * Displays the type of task.
+     * @return A letter to represent the type of task.
+     */
+    public abstract String taskType();
+
+    /**
+     * Displays the task with its type, status (done or undone) and description.
+     * @return Task type, status and description.
+     */
+    @Override
+    public String toString() {
+        return String.format("[%s][%s] %s", this.taskType(), this.getStatusIcon(), this.getDescription());
     }
 
 }
