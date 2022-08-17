@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
@@ -5,9 +7,7 @@ public class Duke {
         System.out.println("Hello! I'm Duke\nWhat can I do for you?");
 
         Scanner sc = new Scanner(System.in);
-        final int MAXSIZE = 100;
-        Task[] storedTasks = new Task[MAXSIZE];
-        int index = 0;
+        List<Task> storedTasks = new ArrayList<>();
         while (true) {
             String str = sc.nextLine();
             try {
@@ -15,68 +15,101 @@ public class Duke {
                     System.out.println("Bye! Hope to see you again soon");
                     break;
                 } else if ("list".equals(str)) {
-                    int p = 0;
-                    while (p < MAXSIZE && storedTasks[p] != null) {
-                        System.out.printf("%d. %s\n", p + 1, storedTasks[p]);
-                        p++;
+                    for (int i = 0; i < storedTasks.size(); i++) {
+                        System.out.printf("%d. %s\n", i + 1, storedTasks.get(i));
                     }
+                    System.out.println("That's all!");
                 } else {
                     String[] command = str.split(" ", 2);
-                    if(command[0].equals("mark")) {
+                    if (command[0].equals("mark")) {
                         try {
                             int i = Integer.parseInt(command[1]) - 1;
-                            assert i >= 0 && i < index;
-                            storedTasks[i].markAsDone();
+                            if (i < 0 || i >= storedTasks.size()) {
+                                throw new DukeException("Exception: Invalid task number.");
+                            };
+                            Task task = storedTasks.get(i);
+                            task.markAsDone();
                             System.out.println("Marked task " + (i + 1) + " as done!");
-                            System.out.printf("%d. %s\n", i + 1, storedTasks[i]);
-                        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-                            throw new DukeException("Exception: Invalid mark command syntax.");
-                        } catch (AssertionError e) {
+                            System.out.printf("%d. %s\n", i + 1, task);
+                        } catch (NumberFormatException e) {
+                            throw new DukeException("Exception: Invalid command syntax.");
+                        } catch (IndexOutOfBoundsException e) {
                             throw new DukeException("Exception: Invalid task number.");
                         }
                     } else if(command[0].equals("unmark")) {
                         try {
                             int i = Integer.parseInt(command[1]) - 1;
-                            assert i >= 0 && i < index;
-                            storedTasks[i].markAsNotDone();
+                            if (i < 0 || i >= storedTasks.size()) {
+                                throw new DukeException("Exception: Invalid task number.");
+                            };
+                            Task task = storedTasks.get(i);
+                            task.markAsNotDone();
                             System.out.println("Marked task " + (i + 1) + " as not done!");
-                            System.out.printf("%d. %s\n", i + 1, storedTasks[i]);
-                        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-                            throw new DukeException("Exception: Invalid mark command syntax.");
-                        } catch (AssertionError e) {
+                            System.out.printf("%d. %s\n", i + 1, task);
+                        } catch (NumberFormatException e) {
+                            throw new DukeException("Exception: Invalid command syntax.");
+                        } catch (IndexOutOfBoundsException e) {
+                            throw new DukeException("Exception: Invalid task number.");
+                        }
+                    } else if(command[0].equals("delete")) {
+                        try {
+                            int i = Integer.parseInt(command[1]) - 1;
+                            if (i < 0 || i >= storedTasks.size()) {
+                                throw new DukeException("Exception: Invalid task number.");
+                            };
+                            Task task = storedTasks.get(i);
+                            System.out.println("The following task is deleted:");
+                            System.out.printf("%d. %s\n", i + 1, task);
+                            storedTasks.remove(i);
+                        } catch (NumberFormatException e) {
+                            throw new DukeException("Exception: Invalid command syntax.");
+                        } catch (IndexOutOfBoundsException e) {
                             throw new DukeException("Exception: Invalid task number.");
                         }
                     } else if(command[0].equals("todo")) {
                         try {
+                            if (command[1].length() == 0) {
+                                throw new DukeException("Exception: Empty task entry.");
+                            }
                             Task task = new Todo(command[1]);
-                            storedTasks[index++] = task;
-                            System.out.printf("Got it! I stored this task:\n" + task + "\nNow you have %d tasks in the list.\n", index);
-                        } catch (ArrayIndexOutOfBoundsException e) {
+                            storedTasks.add(task);
+                            System.out.printf("Got it! I stored this task:\n" + task +
+                                    "\nNow you have %d tasks in the list.\n", storedTasks.size());
+                        } catch (IndexOutOfBoundsException e) {
                             throw new DukeException("Exception: Empty task entry.");
                         }
                     } else if(command[0].equals("deadline")) {
                         try {
+                            if (command[1].length() == 0) {
+                                throw new DukeException("Exception: Empty task entry.");
+                            }
                             String[] taskAndDateTime = command[1].split("/by ", 2);
-                            assert taskAndDateTime.length == 2;
+                            if (taskAndDateTime.length != 2) {
+                                throw new DukeException("Exception: No date-time.");
+                            }
                             Task task = new Deadline(taskAndDateTime[0], taskAndDateTime[1]);
-                            storedTasks[index++] = task;
-                            System.out.printf("Got it! I stored this task:\n" + task + "\nNow you have %d tasks in the list.\n", index);
-                        } catch (ArrayIndexOutOfBoundsException e) {
+                            storedTasks.add(task);
+                            System.out.printf("Got it! I stored this task:\n" + task +
+                                    "\nNow you have %d tasks in the list.\n", storedTasks.size());
+                        } catch (IndexOutOfBoundsException e) {
                             throw new DukeException("Exception: Empty task entry.");
-                        } catch (AssertionError e) {
-                            throw new DukeException("Exception: No date-time.");
                         }
                     } else if(command[0].equals("event")) {
                         try {
+                            if (command[1].length() == 0) {
+                                throw new DukeException("Exception: Empty task entry.");
+                            }
                             String[] taskAndDateTime = command[1].split("/at ");
-                            assert taskAndDateTime.length == 2;
+                            if (taskAndDateTime.length != 2) {
+                                throw new DukeException("Exception: No date-time.");
+                            }
+                            System.out.println(taskAndDateTime.length);
                             Task task = new Event(taskAndDateTime[0], taskAndDateTime[1]);
-                            storedTasks[index++] = task;
-                            System.out.printf("Got it! I stored this task:\n" + task + "\nNow you have %d tasks in the list.\n", index);
-                        } catch (ArrayIndexOutOfBoundsException e) {
+                            storedTasks.add(task);
+                            System.out.printf("Got it! I stored this task:\n" + task +
+                                    "\nNow you have %d tasks in the list.\n", storedTasks.size());
+                        } catch (IndexOutOfBoundsException e) {
                             throw new DukeException("Exception: Empty task entry.");
-                        } catch (AssertionError e) {
-                            throw new DukeException("Exception: No date-time.");
                         }
                     } else {
                         throw new DukeException("Exception: Unknown command.");
