@@ -33,6 +33,10 @@ public class OutputLogger {
         return out.toString();
     }
 
+    /** Return an appropriate error string given a list of issues
+     * @param errMsgs A list of error messages for the user of length >= 1
+     * @return Appropriate error string
+     */
     public static String errorOutput(List<String> errMsgs) {
         if (errMsgs.size() == 1) {
             return "The following issue occurred with your command:\n" + OutputLogger.indent(errMsgs.get(0));

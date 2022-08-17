@@ -22,9 +22,11 @@ public class CommandRunner {
         Command list = new ListCommand(taskModel);
         Command add = new AddCommand(taskModel);
         Command mark = new MarkCommand(taskModel);
+        Command unmark = new UnmarkCommand(taskModel);
         Command exit = new ExitCommand();
 
-        Command[] commands = new Command[] { list, add, mark, exit };
+
+        Command[] commands = new Command[] { list, add, mark, exit, unmark };
         commandMap = new HashMap<>();
 
         for (int i = 0; i < commands.length; i++) {

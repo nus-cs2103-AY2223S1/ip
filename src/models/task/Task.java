@@ -25,6 +25,9 @@ public abstract class Task {
     public void markAsDone() {
         this.isDone = true;
     }
+    public void unmark() {
+        this.isDone = false;
+    }
 
     @Override
     public String toString() {
