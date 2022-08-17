@@ -20,7 +20,7 @@ public class Duke {
     private static final String LIST = "list";
 
     // List to store text entered by the user and display them back to the user when requested
-    private static String[] wordList = new String[100];
+    private static Task[] wordList = new Task[100];
 
     //Parameter to keep track of the number of items in the list
     private static int numOfItems = 0;
@@ -54,7 +54,7 @@ public class Duke {
      */
     private static void add(String message) {
         Duke.echo("Added item: " + message);
-        Duke.wordList[numOfItems] = message;
+        Duke.wordList[numOfItems] = new Task(message);
         numOfItems++;
     }
 
@@ -63,7 +63,7 @@ public class Duke {
      */
     private static void listItems() {
         for (int i = 0; i < numOfItems; i++) {
-            System.out.println((i+1) + ") " + wordList[i]);
+            System.out.println((i+1) + ") " + wordList[i].getStatusIcon() + wordList[i].getDetail());
         }
     }
 
@@ -77,10 +77,16 @@ public class Duke {
 
         // Echoing
         while (!userInput.equals(Duke.EXIT)) {
-            if (!userInput.equals(Duke.LIST)) {
-                Duke.add(userInput);
-            } else {
+            if (userInput.equals(Duke.LIST)) {
                 Duke.listItems();
+            } else if (userInput.contains("unmark")){
+                int index =  Integer.parseInt(userInput.split(" ")[1]);
+                wordList[index-1].unmark();
+            } else if (userInput.contains("mark")){
+                int index =  Integer.parseInt(userInput.split(" ")[1]);
+                wordList[index-1].markAsDone();
+            } else {
+                Duke.add(userInput);
             }
             userInput = scanner.nextLine();
         }
