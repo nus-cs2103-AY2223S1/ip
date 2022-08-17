@@ -9,9 +9,9 @@ public class List {
     public void addTask(Task task) {
         data[position] = task;
         position++;
-        System.out.println("Got it. I've added this task: \n" +
+        System.out.println("Got it. I've added this task:\n" +
                 " " + task + "\n" +
-                "Now you have " + position + " tasks in the list. \n");
+                "Now you have " + position + " tasks in the list.\n");
     }
 
     public void markTask (int pos, boolean isDone) {
