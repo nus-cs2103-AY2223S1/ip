@@ -5,3 +5,47 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
+Yes? I'm Zlimez~~ 
+What can I possibly do for you?
+ >>>^<<<
+
+	Your command lacks the keyword for me to act upon
+
+	Lazily added this task for you <_>
+		[T][ ] sleep
+	Wala now you have 1 tasks in the list.
+
+	Really? If you are so forgetful...
+	1. [T][ ] sleep
+
+	Read the index of the existing tasks carefully...
+
+	Wellz, I've marked this task for YOU:
+		[T][X] sleep
+
+	-_-, I've unmarked this task for YOU AGAIN:
+		[T][ ] sleep
+
+	Please your task lacks the necessary specifications
+
+	Lazily added this task for you <_>
+		[D][ ] kiss you (by: Mon)
+	Wala now you have 2 tasks in the list.
+
+	Really? If you are so forgetful...
+	1. [T][ ] sleep
+	2. [D][ ] kiss you (by: Mon)
+
+	Please your task lacks the necessary specifications
+
+	Lazily added this task for you <_>
+		[E][ ] kayak (at: Sun)
+	Wala now you have 3 tasks in the list.
+
+	Really? If you are so forgetful...
+	1. [T][ ] sleep
+	2. [D][ ] kiss you (by: Mon)
+	3. [E][ ] kayak (at: Sun)
+
+	Bye. zzz FINALLY~~ <_>
+

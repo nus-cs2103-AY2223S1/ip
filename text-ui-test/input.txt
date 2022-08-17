@@ -1,0 +1,13 @@
+sleep
+todo sleep
+list
+mark 2
+mark 1
+unmark 1
+deadline kiss you /at Mon
+deadline kiss you /by Mon
+list
+event Kayak /by Today
+event kayak /at Sun
+list
+bye
