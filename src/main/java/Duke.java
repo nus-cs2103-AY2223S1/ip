@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class Duke {
     private static String lastLine = "";
+    private static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
         System.out.println("My name is [insert name here], how can I help?");
         while (true) {
@@ -15,7 +16,6 @@ public class Duke {
     }
 
     private static void listen() {
-        Scanner sc = new Scanner(System.in);
         lastLine = sc.nextLine();
     }
 
