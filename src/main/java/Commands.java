@@ -15,13 +15,19 @@ public enum Commands {
     ADD_TODO("todo"),
     ADD_EVENT("event"),
     ADD_DEADLINE("deadline"),
+    DELETE("delete"),
     MARK_DONE("mark"),
     MARK_UNDONE("mark"),
     ERROR("");
 
-    public String command;
+    private String command;
 
     Commands(String cmd) {
         command = cmd;
+    }
+
+    @Override
+    public String toString() {
+        return command;
     }
 }

@@ -49,9 +49,12 @@ public class Duke {
             case MARK_UNDONE:
                 System.out.println(Messages.MARK_UNDONE);
                 break;
-            default: // Invalid command
+            case DELETE:
+                System.out.println(Messages.DELETE);
+            default: // Every other command and invalid commands
                 break;
         }
+
         for (String msg : message) {
             System.out.println(msg);
         }
@@ -92,6 +95,9 @@ public class Duke {
             case MARK_DONE:
                 String[] indx = { input.split(" ")[1] };
                 return indx;
+            case DELETE:
+                String[] ind = { input.split(" ")[1] };
+                return ind;
             default: // No match or Invalid command
                 String[] empty = { "" };
                 return empty;
@@ -107,26 +113,38 @@ public class Duke {
         display(Commands.GREET, "");
         // Continue to read inputs until the exit command is entered
         String input = reader.readLine();
-        while (!input.equals(Commands.EXIT.command)) {
+        while (!input.equals(Commands.EXIT.toString())) {
             String cmd = retrieve_arguments(input, Commands.GET_COMMAND)[0];
 
             // Show task description in list
-            if (cmd.equals(Commands.SHOW_LIST.command)) {
+            if (cmd.equals(Commands.SHOW_LIST.toString())) {
                 display(Commands.SHOW_LIST, tasks.toString());
 
-            } else if (cmd.equals(Commands.MARK_DONE.command)) { // Mark task as done
-                // Retrieve index from input
-                int indx = retrieve_arguments(input, Commands.MARK_DONE)[0].charAt(0) - '1';
-                Task current_task = tasks.get(indx);
-                current_task.toggleComplete();
-                // Display the marked message
-                if (current_task.isDone()) {
-                    display(Commands.MARK_DONE, current_task.toString());
-                } else {
-                    display(Commands.MARK_UNDONE, current_task.toString());
+            } else if (cmd.equals(Commands.MARK_DONE.toString())) { // Mark task as done
+                try {
+                    // Retrieve index from input
+                    int indx = retrieve_arguments(input, Commands.MARK_DONE)[0].charAt(0) - '1';
+                    Task current_task = tasks.get(indx);
+                    current_task.toggleComplete();
+                    // Display the marked message
+                    if (current_task.isDone()) {
+                        display(Commands.MARK_DONE, current_task.toString());
+                    } else {
+                        display(Commands.MARK_UNDONE, current_task.toString());
+                    }
+                } catch (IndexOutOfBoundsException e) {
+                    display(Commands.ERROR, Messages.ERROR_INVALID_INDEX.toString());
                 }
 
-            } else if (cmd.equals(Commands.ADD_TODO.command)) { // Add todo
+            } else if (cmd.equals(Commands.DELETE.toString())) { // delete task
+                try {
+                    int indx = retrieve_arguments(input, Commands.DELETE)[0].charAt(0) - '1';
+                    Task deleted = tasks.removeTask(indx);
+                    display(Commands.DELETE, deleted.toString());
+                } catch (IndexOutOfBoundsException e) {
+                    display(Commands.ERROR, Messages.ERROR_INVALID_INDEX.toString());
+                }
+            } else if (cmd.equals(Commands.ADD_TODO.toString())) { // Add todo
                 // Retrieve description and date from input
                 try {
                     String desc = retrieve_arguments(input, Commands.ADD_TODO)[0];
@@ -137,7 +155,7 @@ public class Duke {
                     display(Commands.ERROR, Messages.ERROR_MISSING_PARAMETERS.toString());
                 }
 
-            } else if (cmd.equals(Commands.ADD_EVENT.command)) {
+            } else if (cmd.equals(Commands.ADD_EVENT.toString())) {
                 // Retrieve description and date from input
                 try {
                     String desc = retrieve_arguments(input, Commands.ADD_EVENT)[0];
@@ -148,7 +166,7 @@ public class Duke {
                     display(Commands.ERROR, Messages.ERROR_MISSING_PARAMETERS.toString());
                 }
 
-            } else if (cmd.equals(Commands.ADD_DEADLINE.command)) {
+            } else if (cmd.equals(Commands.ADD_DEADLINE.toString())) {
                 // Retrieve description and date from input
                 try {
                     String desc = retrieve_arguments(input, Commands.ADD_DEADLINE)[0];
