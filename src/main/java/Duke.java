@@ -9,9 +9,6 @@ public class Duke {
     public static void main(String[] args) throws DukeException {
         //Create a Duke object
         Duke duke = new Duke();
-        //ArrayList to store tasks
-//        List<Task> lst = new ArrayList<>();
-
         //Scanner object to take in input from user
         Scanner input = new Scanner(System.in);
         //Welcome message
@@ -88,6 +85,11 @@ public class Duke {
         //Goodbye message
         System.out.println("\tBye! Hope to see you again soon!");
     }
+
+    /**
+     * @param tDescription A String of the description for the task
+     * @throws DukeException
+     */
     public void printTodo(String tDescription) throws DukeException {
         if (tDescription.equals("")) {
             throw new DukeException("OOPS! The description of a todo cannot be empty.");
@@ -101,6 +103,10 @@ public class Duke {
         }
     }
 
+    /**
+     * @param dDescription A String of the description for the task
+     * @param dBy A String representing the deadline for the task
+     */
     public void printDeadline(String dDescription, String dBy) {
         Task deadline = new Deadline(dDescription, dBy);
         lst.add(deadline);
@@ -110,6 +116,10 @@ public class Duke {
                 size2);
     }
 
+    /**
+     * @param eDescription A String of the description for the task
+     * @param eAt A String representing the day for the task
+     */
     public void printEvent(String eDescription, String eAt) {
         Task event = new Event(eDescription, eAt);
         lst.add(event);
@@ -119,6 +129,9 @@ public class Duke {
                 size3);
     }
 
+    /**
+     * @param index An int representing the index of task to be marked
+     */
     public void markTask(int index) {
         Task taskToBeMarked = lst.get(index);
         taskToBeMarked.markAsDone();
@@ -126,6 +139,9 @@ public class Duke {
                 taskToBeMarked);
     }
 
+    /**
+     * @param index An int representing the index of task to be unmarked
+     */
     public void unmarkTask(int index) {
         Task taskToBeUnmarked = lst.get(index);
         taskToBeUnmarked.markAsUndone();
@@ -133,6 +149,9 @@ public class Duke {
                 taskToBeUnmarked);
     }
 
+    /**
+     * @param index An int representing the index of task to be deleted
+     */
     public void deleteTask(int index) {
         Task taskToBeDeleted = lst.get(index);
         lst.remove(index);
