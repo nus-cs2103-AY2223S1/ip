@@ -55,8 +55,18 @@ public class Duke {
                         list.addTodo(target);
                         break;
                     case EVENT:
+                        if (target == null || target.split(" /at ").length != 2) {
+                            throw new IllegalArgumentException();
+                        }
+                        String[] inputE = target.split(" /at ");
+                        list.addEvent(inputE[0], inputE[1]);
                         break;
                     case DEADLINE:
+                        if (target == null || target.split(" /by ").length != 2) {
+                            throw new IllegalArgumentException();
+                        }
+                        String[] inputD = target.split(" /by ");
+                        list.addDeadline(inputD[0], inputD[1]);
                         break;
                     case MARK:
                         if (target == null) {
@@ -77,7 +87,9 @@ public class Duke {
                 System.out.println("Nyat a valid instruction! Rub my belly instead!\n"
                                     + "    'bye' to exit.\n"
                                     + "    'list' for overview\n"
-                                    + "    'add ABC' to add task ABC\n"
+                                    + "    'todo ABC' to add task ABC\n"
+                                    + "    'event ABC /at DATE' to add event ABC on DATE\n"
+                                    + "    'deadline ABC /by DATE' to add deadline ABC due by DATE\n"
                                     + "    'mark x' to mark task x as complete\n"
                                     + "    'unmark x' to mark task x as incomplete\n"
                                     + "    NYAAAAAA!\n");

@@ -11,7 +11,13 @@ public class TaskList {
 
 
     public String tasksLeft() {
-        return "Nyaw you have " + totalTasks + " tasks in the list";
+        String str;
+        if (totalTasks > 1) {
+            str = "tasks in the list";
+        } else {
+            str = "task in the list";
+        }
+        return "Nyaw you have " + Math.max(totalTasks, 0) + " " + str;
     }
 
     public void addTodo(String description) {
@@ -21,6 +27,24 @@ public class TaskList {
         System.out.println("Meow! I'm a cat. I've added this task:\n"
                             + task + "\n"
                             + tasksLeft());
+    }
+
+    public void addEvent(String description, String date) {
+        totalTasks++;
+        Task task = new Event(description, date);
+        allTaskList.add(task);
+        System.out.println("Moo! I'm a cat. I've added this task:\n"
+                + task + "\n"
+                + tasksLeft());
+    }
+
+    public void addDeadline(String description, String date) {
+        totalTasks++;
+        Task task = new Deadline(description, date);
+        allTaskList.add(task);
+        System.out.println("Woof! I'm a cat. I've added this task:\n"
+                + task + "\n"
+                + tasksLeft());
     }
 
     public void mark(Integer rank) {
@@ -59,7 +83,7 @@ public class TaskList {
 
         for(int i = 1; i <= totalTasks; i++) {
             Task t = allTaskList.get(i - 1);
-            System.out.println(i + "." + t + "\n");
+            System.out.println(i + "." + t);
         }
     }
 }
