@@ -48,4 +48,28 @@ public class BotUI {
                 "New task is registered as you wish, you can come back to check if you wish!:\n %s\n"
                         + "Now you have %d tasks on your list.", task, lst.size());
     }
+
+    String invalidCommand() {
+        return "Huh? I don't understand your instructions XD\n" +
+                "------Available command------\n" +
+                "add task command: | todo | deadline | event |\n" +
+                "check DONE command: | mark [number] | unmark [number]|\n" +
+                "other: | bye | list |";
+    }
+
+    String invalidFormat() {
+        return "Base on my understanding, your instruction didn't follow the format ( ͡❛ ͜ʖ ͡❛)\n" +
+                "todo : todo [task description]\n" +
+                "deadline: deadline [task description] /by [your date/time]\n" +
+                "event: event [task description] /at [your date/time]";
+    }
+
+    String taskNotExist(TaskRecords taskList) {
+        return String.format("Opps! we only have %d tasks in the list :(",
+                taskList.getList().size());
+    }
+
+    String invalidCheckFormat() {
+        return "Sorry, last character after mark/unmark command should be integer!";
+    }
 }
