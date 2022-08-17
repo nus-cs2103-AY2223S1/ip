@@ -15,4 +15,14 @@ public class BotResponse {
         System.out.println("added: " + description);
         separationLine();
     }
+
+    public static void markLog(Task task, boolean done) {
+        if (done) {
+            System.out.println("This task is done, goodjob! :)");
+        } else {
+            System.out.println("Oops, this task hasn't been done? I've updated it for you");
+        }
+        System.out.println(task);
+        separationLine();
+    }
 }
