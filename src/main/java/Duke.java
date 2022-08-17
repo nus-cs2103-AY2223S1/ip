@@ -23,38 +23,27 @@ public class Duke {
     private static void Process(String s) {
         String[] words = s.split(" ");
         String command = words[0];
-        Task task;
-        int index;
-        String[] items;
         switch(command) {
             case "list":
                 OutputList();
                 break;
             case "done":
-                index = Integer.parseInt(words[1]);
-                MarkItemDone(index);
+                MarkItemDone(s);
                 break;
             case "unmark":
-                index = Integer.parseInt(words[1]);
-                MarkItemUndone(index);
+                MarkItemUndone(s);
                 break;
             case "todo":
-                task = new Todo(words[1]);
-                InsertTask(task);
+                InsertTodo(s);
                 break;
-             case "deadline": 
-                items = s.substring(9).split(" /by ");
-                task = new Deadline(items[0], items[1]);
-                InsertTask(task);
+            case "deadline":
+                InsertDeadline(s);
                 break;
-             case "event":
-                items = s.substring(6).split(" /at ");
-                task = new Event(items[0], items[1]);
-                InsertTask(task);
+            case "event":
+                InsertEvent(s);
                 break;
-             default:
-                task = new Task(s);
-                InsertTask(task);
+            default:
+                System.out.println("sorry, I don't understand you");
                 break;
         }
     }
@@ -70,6 +59,32 @@ public class Duke {
         }
     }
 
+    private static void InsertTodo(String input) {
+        try {
+            String description = input.substring(5);
+            InsertTask(new Todo(description));
+        } catch (StringIndexOutOfBoundsException e) {
+            System.out.println("description cannot be empty");
+        }
+    }
+
+    private static void InsertDeadline(String input) {
+        try {
+            String[] items = input.substring(9).split(" /by ");
+            InsertTask(new Deadline(items[0], items[1]));
+        } catch (StringIndexOutOfBoundsException | ArrayIndexOutOfBoundsException e) {
+            System.out.println("description cannot be empty");
+        }
+    }
+
+    private static void InsertEvent(String input) {
+        try {
+            String[] items = input.substring(6).split(" /at ");
+            InsertTask(new Event(items[0], items[1]));
+        } catch (StringIndexOutOfBoundsException | ArrayIndexOutOfBoundsException e) {
+            System.out.println("description cannot be empty");
+        }
+    }
     private static void InsertTask(Task task) {
         taskList.add(task);
         System.out.println("added: ");
@@ -77,15 +92,37 @@ public class Duke {
         System.out.format("you have %d task(s) in the list\n", taskList.size());
     }
 
-    private static void MarkItemDone(int index) {
-        taskList.get(index - 1).markDone();
-        System.out.println("cool, this task is marked as done");
-        System.out.println("\t" + taskList.get(index - 1));
+    private static void MarkItemDone(String input) {
+        try {
+            String[] words = input.split(" ");
+            if (words.length > 2) {
+                throw new DukeException();
+            }
+            int index = Integer.parseInt(words[1]);
+            taskList.get(index - 1).markDone();
+            System.out.println("cool, this task is marked as done");
+            System.out.println("\t" + taskList.get(index - 1));
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException | DukeException e) {
+            System.out.println("format: mark <number>");
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("enter a valid index");
+        }
     }
 
-    private static void MarkItemUndone(int index) {
-        taskList.get(index - 1).markUndone();
-        System.out.println("ok, this task is marked as not done yet");
-        System.out.println("\t" + taskList.get(index - 1));
+    private static void MarkItemUndone(String input) {
+        try {
+            String[] words = input.split(" ");
+            if (words.length > 2) {
+                throw new DukeException();
+            }
+            int index = Integer.parseInt(words[1]);
+            taskList.get(index - 1).markUndone();
+            System.out.println("ok, this task is marked as not done yet");
+            System.out.println("\t" + taskList.get(index - 1));
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException | DukeException e) {
+            System.out.println("format: mark <number>");
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("enter a valid index");
+        }
     }
 }
