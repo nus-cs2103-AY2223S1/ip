@@ -1,14 +1,21 @@
 random
+
+todo
+deadline
+event
+mark
+unmark
 list
+todo homework /at /by 1:23
+todo other homework /options ignored
+todo project 12
 mark 1
 mark 2
 mark 0
 mark -1
 mark not a number
 unmark not a number
-todo homework /at /by 1:23
-todo other homework /options ignored
-todo project 12
+list
 unmark 1
 unmark 2
 list

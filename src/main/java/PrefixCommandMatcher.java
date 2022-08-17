@@ -9,7 +9,11 @@ import java.util.function.BiConsumer;
  */
 public class PrefixCommandMatcher extends CommandMatcher {
     PrefixCommandMatcher(String prefix, BiConsumer<String, Map<String, String>> action) {
-        super((cmd) -> cmd.startsWith(prefix + " "), (cmd) -> {
+        super((cmd) -> cmd.startsWith(prefix + " ") || cmd.equals(prefix), (cmd) -> {
+            if (cmd.equals(prefix)) {
+                Duke.messagePrint("(>.<') Add a description to your " + prefix + ".");
+                return;
+            }
             String withoutPrefix = cmd.split(" ", 2)[1];
             String[] commandParts = withoutPrefix.split(" /");
             Map<String, String> map = new HashMap<>();
@@ -20,6 +24,11 @@ public class PrefixCommandMatcher extends CommandMatcher {
                 } else {
                     map.put(keyAndValue[0].strip(), "");
                 }
+            }
+            commandParts[0] = commandParts[0].strip();
+            if (commandParts[0].equals("")) {
+                Duke.messagePrint("(>.<') The description for " + prefix + " shouldn't be empty.");
+                return;
             }
             action.accept(commandParts[0].strip(), map);
         });

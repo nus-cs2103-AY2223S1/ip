@@ -126,8 +126,7 @@ public class Duke {
 
         // default command matcher - add to list
         commands.add(new CommandMatcher((str) -> true, (str) -> {
-            list.add(new Task(str));
-            Duke.messagePrint("added: " + str);
+            Duke.messagePrint("(>.<')  I'm sorry, I don't really know what that means.");
         }));
     }
 
