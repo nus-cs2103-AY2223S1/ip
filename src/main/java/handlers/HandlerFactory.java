@@ -53,6 +53,8 @@ public class HandlerFactory {
                 return new MarkHandler(this);
             case UNMARK:
                 return new UnmarkHandler(this);
+            case DELETE:
+                return new DeleteHandler(this);
             default:
                 return new UnknownHandler();
         }
