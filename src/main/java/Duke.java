@@ -46,7 +46,7 @@ public class Duke {
             if (command.toLowerCase().equals(exit_command)) {
                 flag = false;
                 System.out.println(exit_message);
-            } else if (response.toLowerCase().equals(list_command)) {
+            } else if (command.toLowerCase().equals(list_command)) {
                 display(ls);
             } else if (command.toLowerCase().equals(mark_command)) {
                 String ind = cmd_descp[1];
@@ -55,15 +55,38 @@ public class Duke {
                 String ind = cmd_descp[1];
                 ls.get(valueOf(ind) - 1).undo();
             } else if (command.toLowerCase().equals(todo_command)){
-                addToList(new Todo(task_description));
+                try {
+                    String test = cmd_descp[1];
+                    addToList(new Todo(task_description));
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("The description of a todo cannot be empty");
+                }
             } else if (command.toLowerCase().equals(deadline_command)){
-                String [] time_part = split_slash[1].split(" ");
-                String time = String.join(" ", Arrays.copyOfRange(time_part,1,time_part.length));
-                addToList(new Deadline(task_description,time));
+                try {
+                    String test = cmd_descp[1];
+                    try {
+                        String[] time_part = split_slash[1].split(" ");
+                        String time = String.join(" ", Arrays.copyOfRange(time_part, 1, time_part.length));
+                        addToList(new Deadline(task_description, time));
+                    } catch (IndexOutOfBoundsException e) {
+                        System.out.println("Deadline require a /by");
+                    }
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("The description of a deadline cannot be empty");
+                }
             } else if (command.toLowerCase().equals(event_command)){
-                String [] time_part = split_slash[1].split(" ");
-                String time = String.join(" ", Arrays.copyOfRange(time_part,1,time_part.length));
-                addToList(new Event(task_description,time));
+                try {
+                    String test = cmd_descp[1];
+                    try {
+                        String[] time_part = split_slash[1].split(" ");
+                        String time = String.join(" ", Arrays.copyOfRange(time_part, 1, time_part.length));
+                        addToList(new Event(task_description, time));
+                    } catch (IndexOutOfBoundsException e) {
+                        System.out.println("Event require a /at");
+                    }
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("The description of a event cannot be empty");
+                }
             } else {
                 System.out.println("Invalid Command. Try again.");
             }
