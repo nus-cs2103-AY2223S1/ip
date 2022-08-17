@@ -52,7 +52,7 @@ public class Dobby {
                 try {
                     int toMark = Integer.parseInt(chat.substring(5));
                     dobbyList.mark(toMark);
-                    DobbyChat.marked(dobbyList.getTask(toMark));
+                    DobbyChat.marked(dobbyList.getTaskString(toMark));
 
                 } catch(StringIndexOutOfBoundsException e) {
                     DobbyChat.noTaskNumber();
@@ -65,13 +65,27 @@ public class Dobby {
                 try {
                     int toUnmark = Integer.parseInt(chat.substring(7));
                     dobbyList.mark(toUnmark);
-                    DobbyChat.unmarked(dobbyList.getTask(toUnmark));
+                    DobbyChat.unmarked(dobbyList.getTaskString(toUnmark));
 
                 } catch(StringIndexOutOfBoundsException e) {
                     DobbyChat.noTaskNumber();
                     continue;
                 } catch(NumberFormatException e) {
                     DobbyChat.noNumber();
+                }
+            } else if(chat.startsWith("delete")) {
+                try {
+                    int toDelete = Integer.parseInt(chat.substring(7)) - 1;
+                    DobbyChat.deleted(dobbyList.getTask(toDelete), dobbyList);
+                    dobbyList.delete(toDelete);
+
+                } catch(StringIndexOutOfBoundsException e) {
+                    DobbyChat.noTaskNumber();
+                    continue;
+                } catch(NumberFormatException e) {
+                    DobbyChat.noNumber();
+                } catch(IndexOutOfBoundsException e) {
+                    DobbyChat.tooLittleTasks();
                 }
             } else if(chat.startsWith("todo")) {
                 try {

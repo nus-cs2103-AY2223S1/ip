@@ -18,6 +18,9 @@ public class DobbyList {
     public void unmark(int toUnmark) {
         dobbyList.get(toUnmark - 1).unmark();
     }
+    public void delete(int toDelete) {
+        dobbyList.remove(toDelete);
+    }
     @Override
     public String toString() {
         String dobbyListString = "";
@@ -38,7 +41,7 @@ public class DobbyList {
         }
         return intro + dobbyListString;
     }
-    public String getTask(int i) {
+    public String getTaskString(int i) {
 /*      Old method of getting individual task in string form
 
         String task = dobbyList.get(i).toString();
@@ -46,6 +49,9 @@ public class DobbyList {
         return "\t[" + status + "] " + task;
  */
         return dobbyList.get(i).toString();
+    }
+    public Task getTask(int i) {
+        return dobbyList.get(i);
     }
     public int getLength() {
         return dobbyList.size();

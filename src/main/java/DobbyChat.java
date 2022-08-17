@@ -36,6 +36,14 @@ public class DobbyChat {
         String toPrint = unmarked + s;
         printChat(toPrint);
     }
+    public static void deleted(Task task, DobbyList list) {
+        String taskString = task.toString() + "\n\t";
+
+        String deleted = "Task deleted! Less work for master! Dobby is HAAAAAPPY!\n\t"
+                + "Dobby has removed this task: \n\t";
+        String length = "Now you have " + (list.getLength() - 1) + " tasks in the list.\n";
+        printChat(deleted + taskString + length);
+    }
     public static void noDeadlineDate() {
         printChat("Please add the deadline after the task name using /by");
     }
@@ -43,8 +51,9 @@ public class DobbyChat {
         printChat("Please add the event date after the task name using /at");
     }
     public static void added(Task task, DobbyList list) {
-        String accept = "Got it. I've added this task:\n\t";
         String taskString = task.toString() + "\n\t";
+
+        String accept = "Got it. I've added this task:\n\t";
         String length = "Now you have " + list.getLength()+ " tasks in the list.\n";
         printChat(accept + taskString + length);
     }
@@ -59,5 +68,8 @@ public class DobbyChat {
     }
     public static void noTask() {
         printChat("Please tell Dobby the task you want to add");
+    }
+    public static void tooLittleTasks() {
+        printChat("There's not that many tasks...would you like Dobby to add more?");
     }
 }
