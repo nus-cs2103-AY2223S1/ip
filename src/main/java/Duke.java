@@ -12,7 +12,7 @@ public class Duke {
     private static final String GREETINGS = "Hello! I'm Duke\nWhat can I do for you?\n";
 
     private static void echo(String str) {
-        System.out.println("added: " + str);
+        System.out.println("Got it. I've added this task:\n" + str);
     }
 
     private static void printArrAsNumberedList(ArrayList<Task> arr) {
@@ -38,8 +38,20 @@ public class Duke {
             } else if (input.startsWith("unmark")){
                 taskArr.get(Integer.parseInt(input.substring(7))).unmark();
             } else {
-                taskArr.add(new Task(input));
-                echo(input);
+                // this is under the so called task creation
+                if (input.startsWith("event")) {
+                    String[] inputArr = input.split("/");
+                    taskArr.add(new Event(inputArr[0], inputArr[1].substring(3)));
+                } else if (input.startsWith("todo")){
+                    taskArr.add(new ToDo(input));
+                } else if (input.startsWith("deadline")){
+                    String[] inputArr = input.split("/");
+                    taskArr.add(new Deadline(inputArr[0], inputArr[1].substring(3)));
+                } else {
+                    System.out.println("Eh this input doesn't seem right, try again");
+//                    taskArr.add(new Task(input));
+                }
+                echo(taskArr.get(taskArr.size() - 1).toString());
             }
             input = sc.nextLine();
         }
