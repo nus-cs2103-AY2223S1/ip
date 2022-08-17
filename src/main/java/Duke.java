@@ -30,7 +30,7 @@ public class Duke {
 
     public static ToDo addTodo(String input) throws DukeException{
         if (input.length() == 0) {
-            throw new DukeException("\t ☹ OOPS!!! The description of a todo cannot be empty.");
+            throw new DukeException("\t OOPS!!! The description of a todo cannot be empty.");
         }
         ToDo todo = new ToDo(input);
         return todo;
@@ -38,11 +38,11 @@ public class Duke {
 
     public static Deadline addDeadline(String input) throws DukeException {
         if (input.length() == 0) {
-            throw new DukeException("\t ☹ OOPS!!! The description of a deadline cannot be empty.");
+            throw new DukeException("\t OOPS!!! The description of a deadline cannot be empty.");
         }
         String[] inputArray = input.split(" /by ", 2);
         if (inputArray.length == 1) {
-            throw new DukeException("\t ☹ OOPS!!! You need to add a deadline.");
+            throw new DukeException("\t OOPS!!! You need to add a deadline.");
         }
         String description = inputArray[0];
         String by = inputArray[1];
@@ -52,11 +52,11 @@ public class Duke {
 
     public static Event addEvent(String input) throws DukeException {
         if (input.length() == 0) {
-            throw new DukeException("\t ☹ OOPS!!! The description of a event cannot be empty.");
+            throw new DukeException("\t OOPS!!! The description of a event cannot be empty.");
         }
         String[] inputArray = input.split(" /at ", 2);
         if (inputArray.length == 1) {
-            throw new DukeException("\t ☹ OOPS!!! You need to add a duration.");
+            throw new DukeException("\t OOPS!!! You need to add a duration.");
         }
         String description = inputArray[0];
         String at = inputArray[1];
@@ -173,34 +173,34 @@ public class Duke {
                         exit();
                         isRunning = false;
                     } else {
-                        throw new DukeException("\t ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                        throw new DukeException("\t OOPS!!! I'm sorry, but I don't know what that means :-(");
                     }
                     break;
                 case "list":
                     if (inputArray.length == 1) {
                         listTasks();
                     } else {
-                        throw new DukeException("\t ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                        throw new DukeException("\t OOPS!!! I'm sorry, but I don't know what that means :-(");
                     }
                     break;
                 case "mark":
                     if (secondWord.length() == 0) {
-                        throw new DukeException("\t ☹ OOPS!!! You need to mark a number");
+                        throw new DukeException("\t OOPS!!! You need to mark a number");
                     }
                     try {
                         markAsDone(Integer.parseInt(inputArray[1]));
                     } catch (NumberFormatException e) {
-                        throw new DukeException("\t ☹ OOPS!!! You need to mark a number");
+                        throw new DukeException("\t OOPS!!! You need to mark a number");
                     }
                     break;
                 case "unmark":
                     if (secondWord.length() == 0) {
-                        throw new DukeException("\t ☹ OOPS!!! You need to unmark a number");
+                        throw new DukeException("\t OOPS!!! You need to unmark a number");
                     }
                     try {
                         markAsNotDone(Integer.parseInt((inputArray[1])));
                     } catch (NumberFormatException e) {
-                        throw new DukeException("\t ☹ OOPS!!! You need to unmark a number");
+                        throw new DukeException("\t OOPS!!! You need to unmark a number");
                     }
                     break;
                 case "todo":
@@ -214,16 +214,16 @@ public class Duke {
                     break;
                 case "delete":
                     if (secondWord.length() == 0) {
-                        throw new DukeException("\t ☹ OOPS!!! You need to delete a number");
+                        throw new DukeException("\t OOPS!!! You need to delete a number");
                     }
                     try {
                         deleteTask(Integer.parseInt(inputArray[1]));
                     } catch (NumberFormatException e) {
-                        throw new DukeException("\t ☹ OOPS!!! You need to delete a number");
+                        throw new DukeException("\t OOPS!!! You need to delete a number");
                     }
                     break;
                 default:
-                    throw new DukeException("\t ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                    throw new DukeException("\t OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
         }
     }
