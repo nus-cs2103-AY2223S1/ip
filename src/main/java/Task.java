@@ -8,12 +8,12 @@ public class Task {
 
     public String markTask() {
         this.isMarked = true;
-        return "Nice! I've marked this task as done:\n\t    " + this.toString();
+        return "Nice! I've marked this task as done:\n " + this.toString();
     }
 
     public String unmarkTask() {
         this.isMarked = false;
-        return "OK, I've marked this task as not done yet:\n\t    " + this.toString();
+        return "OK, I've marked this task as not done yet:\n " + this.toString();
     }
 
     @Override

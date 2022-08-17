@@ -13,7 +13,7 @@ public class Duke {
         String input = "";
         MarkableList list = new MarkableList();
 
-        String welcomeMsg = "Hello I'm Duke!\n\t  What can I do for you?";
+        String welcomeMsg = "Hello I'm Duke!\nWhat can I do for you?";
         Duke.printText(welcomeMsg);
 
         while (input != "bye") {
@@ -45,7 +45,7 @@ public class Duke {
             }
         }
 
-        String exitMsgs = "Good bye!\n\t  Hope to see you soon!";
+        String exitMsgs = "Good bye!\nHope to see you soon!";
         Duke.printText(exitMsgs);
     }
 
@@ -54,9 +54,9 @@ public class Duke {
      * @param text The text to print
      */ 
     public static void printText(String text) {
-        System.out.println("\t\u2015\u2015\u2015");
-        System.out.println("\t  " + text);
-        System.out.println("\t\u2015\u2015\u2015");
+        System.out.println("\u2015\u2015\u2015");
+        System.out.println("" + text);
+        System.out.println("\u2015\u2015\u2015");
     }
 
 }

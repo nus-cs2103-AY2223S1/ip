@@ -13,6 +13,6 @@ public class EventTask extends Task{
 
     @Override
     public String toString() {
-        return String.format("[E]%s at %s", super.toString(), this.period);
+        return String.format("[E]%s (at: %s)", super.toString(), this.period);
     }
 }
