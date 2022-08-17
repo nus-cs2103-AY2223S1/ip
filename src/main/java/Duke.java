@@ -16,8 +16,17 @@ public class Duke {
     // Keyword to quit the program
     private static final String EXIT = "bye";
 
+    // Keyword to request stored items
+    private static final String LIST = "list";
+
+    // List to store text entered by the user and display them back to the user when requested
+    private static String[] wordList = new String[100];
+
+    //Parameter to keep track of the number of items in the list
+    private static int numOfItems = 0;
+
     /**
-     * Method to start the program.
+     * Start the program
      */
     private static void greet() {
         System.out.println("Hello I am\n" + Duke.LOGO);
@@ -25,7 +34,7 @@ public class Duke {
     }
 
     /**
-     * Method to echo user input (except 'bye').
+     * Repeat user input (except 'bye')
      * @param input the message that user type
      */
     private static void echo(String input) {
@@ -33,10 +42,29 @@ public class Duke {
     }
 
     /**
-     * Method to exit when user type 'bye'.
+     * Exit when user type 'bye'
      */
     private static void exit() {
         System.out.println("Great that you joined. See you soon. Bye!");
+    }
+
+    /**
+     * Add text that user typed to the word list
+     * @param message text the user typed
+     */
+    private static void add(String message) {
+        Duke.echo("Added item: " + message);
+        Duke.wordList[numOfItems] = message;
+        numOfItems++;
+    }
+
+    /**
+     * Print all item in the word list
+     */
+    private static void listItems() {
+        for (int i = 0; i < numOfItems; i++) {
+            System.out.println((i+1) + ") " + wordList[i]);
+        }
     }
 
     public static void main(String[] args) {
@@ -49,7 +77,11 @@ public class Duke {
 
         // Echoing
         while (!userInput.equals(Duke.EXIT)) {
-            Duke.echo(userInput);
+            if (!userInput.equals(Duke.LIST)) {
+                Duke.add(userInput);
+            } else {
+                Duke.listItems();
+            }
             userInput = scanner.nextLine();
         }
 
