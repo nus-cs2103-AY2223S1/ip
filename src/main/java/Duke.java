@@ -31,11 +31,11 @@ public class Duke {
                 OutputList();
                 break;
             case "done":
-                index = Integer.valueOf(words[1]);
+                index = Integer.parseInt(words[1]);
                 MarkItemDone(index);
                 break;
             case "unmark":
-                index = Integer.valueOf(words[1]);
+                index = Integer.parseInt(words[1]);
                 MarkItemUndone(index);
                 break;
             case "todo":
