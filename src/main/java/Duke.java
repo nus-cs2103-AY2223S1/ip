@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Duke {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        ArrayList<String> tasks = new ArrayList<>();
+        ArrayList<Task> tasks = new ArrayList<>();
 
         String logo = "_________                     ___\n"
                 + "\\    ___ \\  ___________   ____\\_ |_________  ____\n"
@@ -22,10 +22,10 @@ public class Duke {
                 break;
             } else if (input.equals("list")) {
                 for (int i = 0; i < tasks.size(); i++) {
-                    System.out.println((i + 1) + ". " + tasks.get(i));
+                    System.out.println((i + 1) + ". " + tasks.get(i).toString());
                 }
             } else {
-                tasks.add(input);
+                tasks.add(new Task(input));
                 System.out.println("Added: " + input);
             }
         }
