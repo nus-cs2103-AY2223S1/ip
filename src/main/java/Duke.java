@@ -35,10 +35,22 @@ public class Duke {
      *
      * @param in input string for the task creation
      */
-    private static void addTask(String in) {
-        Task task = new Task(in);
-        System.out.println("Added: " + task.getDescription() + "\n");
-        tasks.add(task);
+    private static void addTask(String in, String type) {
+        Task task;
+        if (type.equals("todo") || type.equals("deadline") || type.equals("event")) {
+
+            if (type.equals("todo")) {
+                task = new ToDo(in);
+            } else if (type.equals("deadline")) {
+                task = new Deadline(in);
+            } else {
+                task = new Event(in);
+            }
+            System.out.println("Added: " + task.toString() + "\n");
+            tasks.add(task);
+        } else {
+            System.out.println("Invalid Task");
+        }
     }
 
     private static void taskMarker(String markStatus, String[] inputArr) {
@@ -79,14 +91,15 @@ public class Duke {
             if (in.equals("list")) {
                 printTaskList();
             } else if (command.equals("mark")) {
-                    System.out.println("gz");
-                    taskMarker(command, inputArr);
+                System.out.println("gz");
+                taskMarker(command, inputArr);
             } else if (command.equals("unmark")) {
-                    System.out.println("rip");
-                    taskMarker(command, inputArr);
+                System.out.println("rip");
+                taskMarker(command, inputArr);
             } else {
                 // Add Task to taskList
-                addTask(in);
+                // invalid task scenario handled by addTask
+                addTask(in, command);
             }
             in = sc.nextLine();
         }

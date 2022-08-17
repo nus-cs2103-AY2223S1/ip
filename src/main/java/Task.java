@@ -1,5 +1,5 @@
 // This class encapsulates the logic of a task
-public class Task {
+public abstract class Task {
     protected String description;
     protected boolean isDone;
 
@@ -8,7 +8,7 @@ public class Task {
         this.isDone = false;
     }
 
-    private String getStatusIcon() {
+    protected String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
