@@ -1,0 +1,8 @@
+Buy Grapes
+Submit Homework by tonight
+Go for lecture at 9am tomorrow
+list
+mark 1
+mark 3
+unmark 1
+bye
