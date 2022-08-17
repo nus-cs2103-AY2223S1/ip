@@ -1,8 +1,8 @@
-public class Task {
+public class Todo {
     private final String title;
     private boolean completed;
 
-    public Task(String title) {
+    public Todo(String title) {
         this.title = title;
         this.completed = false;
     }
@@ -22,6 +22,6 @@ public class Task {
     }
     public String toString() {
         String s = completed ? "[X]" : "[ ]";
-        return s + " " + title;
+        return String.format("[T] %s %s",s , this.title);
     }
 }
