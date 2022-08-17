@@ -56,6 +56,9 @@ public class Deku {
                 case ("unmark"):
                     reply = this.botList.unmark(Integer.parseInt(separate.get(0)));
                     break;
+                case ("delete"):
+                    reply = this.botList.delete(Integer.parseInt(separate.get(0)));
+                    break;
                 case ("deadline"):
                     reply = this.botList.add(new Deadline(separate));
                     break;
@@ -65,6 +68,7 @@ public class Deku {
                 case ("todo"):
                     reply = this.botList.add(new ToDo(separate));
                     break;
+
                 default:
                     throw new DekuExceptions("I have no idea what that means. (T _ T)");
             }

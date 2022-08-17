@@ -61,6 +61,23 @@ Here are your tasks:
 3) [E][ ] - project meeting (at: Mon 2-4pm)
 __________________________________
 __________________________________
+Noted.
+[T][X] - borrow book
+has been deleted.
+Now you have 2 task(s) in total.
+__________________________________
+__________________________________
+Noted.
+[E][ ] - project meeting (at: Mon 2-4pm)
+has been deleted.
+Now you have 1 task(s) in total.
+__________________________________
+__________________________________
+Here are your tasks:
+
+1) [D][ ] - return book (by: Sunday)
+__________________________________
+__________________________________
 AUUUUUGH! The description of a todo cannot be empty.
 __________________________________
 __________________________________
