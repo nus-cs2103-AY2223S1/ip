@@ -1,6 +1,7 @@
 import commands.*;
 import input.Input;
 import models.task.TaskModel;
+import output.OutputLogger;
 
 import java.util.Scanner;
 
@@ -18,14 +19,7 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        String logo = "\n" +
-                "     _   _    ___ __   __ ___  ___ \n" +
-                "  _ | | /_\\  | _ \\\\ \\ / /|_ _|/ __|\n" +
-                " | || |/ _ \\ |   / \\ V /  | | \\__ \\\n" +
-                "  \\__//_/ \\_\\|_|_\\  \\_/  |___||___/\n";
-
-        System.out.print(logo);
-        output("Hello,I'm JARVIS!\nWhat can I do for you?");
+        OutputLogger.printIntroduction();
         Scanner sc = new Scanner(System.in);
 
         CommandRunner cmdRunner = new CommandRunner();
@@ -38,7 +32,7 @@ public class Duke {
                 Input ir = Input.newInput(input);
 
                 CommandResponse res = cmdRunner.run(ir);
-                output(res.getMessage());
+                OutputLogger.output(res.getMessage());
 
                 if (res.isExit()) {
                     break;
