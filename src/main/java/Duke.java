@@ -39,88 +39,134 @@ public class Duke {
 
     public void start() {
         botReply("Hello! I'm " + botName + "\nWhat can I do for you?");
+
         while (true) {
-            String input = sc.nextLine();
+            try {
+                String input = sc.nextLine().trim();
 
-            if (input.equals("bye")) {
-                botReply("Bye. Hope to see you again soon!");
-                break;
-            }
+                if (input.equals("bye")) {
+                    botReply("Bye. Hope to see you again soon!");
+                    break;
+                }
 
-            if (input.equals("list")) {
-                botReply(this.taskListToString(this.taskList));
-                continue;
-            }
-
-            if (input.startsWith("mark ") || input.startsWith("unmark ")) {
-                String[] parts = input.split(" ");
-
-                // Input validation
-                if (parts.length != 2) {
-                    botReply("Wrong input format! mark/unmark <item number>\ne.g. 'mark 3'");
+                if (input.equals("list")) {
+                    botReply(this.taskListToString(this.taskList));
                     continue;
                 }
 
-                int taskIndex;
-                Task pickedTask;
-                try {
-                    taskIndex = Integer.parseInt(parts[1]) - 1;
-                } catch (NumberFormatException e) {
-                    botReply("Please enter a valid task number! mark/unmark <item number>\ne.g. 'mark 3'");
+                // Marking tasks
+                if (input.startsWith("mark") || input.startsWith("unmark")) {
+                    String[] parts = input.split(" ");
+
+                    // Input validation
+                    if (parts.length != 2) {
+                        throw new DukeException("Wrong input format! mark/unmark <item number>\ne.g. 'mark 3'");
+                    }
+
+                    int taskIndex;
+                    Task pickedTask;
+                    try {
+                        taskIndex = Integer.parseInt(parts[1]) - 1;
+                    } catch (NumberFormatException e) {
+                        throw new DukeException("Please enter a valid task number! mark/unmark <item number>\ne.g. 'mark 3'");
+                    }
+
+                    try {
+                        pickedTask = this.taskList.get(taskIndex);
+                    } catch (IndexOutOfBoundsException e) {
+                        throw new DukeException("Task number doesn't exist!");
+                    }
+
+                    String markOperation = parts[0];
+                    String reply = "";
+
+                    if (markOperation.equals("mark")) {
+                        pickedTask.markTask(true);
+                        reply += "Nice! I've marked this task as done:\n";
+                    } else if (markOperation.equals("unmark")) {
+                        pickedTask.markTask(false);
+                        reply += "OK, I've marked this task as not done yet:\n";
+                    }
+
+                    reply += " " + pickedTask.toString();
+                    botReply(reply);
+
                     continue;
                 }
-                try {
-                    pickedTask = this.taskList.get(taskIndex);
-                } catch (IndexOutOfBoundsException e) {
-                    botReply("Task number doesn't exist!");
+
+                // Adding tasks
+                if (input.startsWith("todo")) {
+                    String[] parts = input.split("todo", 2);
+                    String description = parts[1].trim();
+
+                    if (parts[1].equals("")) {
+                        throw new DukeException("The description of a todo cannot be empty.");
+                    }
+
+                    Task newTask = new Todo(description);
+                    this.addToList(newTask);
                     continue;
                 }
 
-                String markOperation = parts[0];
-                String reply = "";
+                if (input.startsWith("deadline")) {
+                    String[] parts = input.split("deadline", 2);
 
-                if (markOperation.equals("mark")) {
-                    pickedTask.markTask(true);
-                    reply += "Nice! I've marked this task as done:\n";
-                } else if (markOperation.equals("unmark")) {
-                    pickedTask.markTask(false);
-                    reply += "OK, I've marked this task as not done yet:\n";
+                    if (parts[1].equals("")) {
+                        throw new DukeException("The description of a deadline cannot be empty.");
+                    }
+
+                    String[] details = parts[1].split("/by", 2);
+
+                    String description;
+                    String date;
+
+                    try {
+                        description = details[0].trim();
+                        date = details[1].trim();
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        throw new DukeException("A deadline needs a by date! e.g. deadline buy dinner /by 6pm");
+                    }
+
+                    if (date.equals("")) {
+                        throw new DukeException("A deadline needs a by date! e.g. deadline buy dinner /by 6pm");
+                    }
+
+                    Task newTask = new Deadline(description, date);
+                    this.addToList(newTask);
+                    continue;
                 }
 
-                reply += " " + pickedTask.toString();
-                botReply(reply);
+                if (input.startsWith("event")) {
+                    String[] parts = input.split("event", 2);
 
-                continue;
-            }
+                    if (parts[1].equals("")) {
+                        throw new DukeException("The description of a event cannot be empty.");
+                    }
 
-            if (input.startsWith("todo ")) {
-                String[] parts = input.split("todo ", 2);
-                String description = parts[1];
+                    String[] details = parts[1].split("/at", 2);
 
-                Task newTask = new Todo(description);
-                this.addToList(newTask);
-            }
+                    String description;
+                    String date;
 
-            if (input.startsWith("deadline ")) {
-                String[] parts = input.split("deadline ", 2);
-                String[] details = parts[1].split(" /by ", 2);
-                //todo: make sure user enters /by
-                String description = details[0];
-                String date = details[1];
+                    try {
+                        description = details[0].trim();
+                        date = details[1].trim();
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        throw new DukeException("An event needs a date! e.g. event meeting /at 2pm-4pm");
+                    }
 
-                Task newTask = new Deadline(description, date);
-                this.addToList(newTask);
-            }
+                    if (date.equals("")) {
+                        throw new DukeException("An event needs a date! e.g. event meeting /at 2pm-4pm");
+                    }
 
-            if (input.startsWith("event ")) {
-                String[] parts = input.split("event ", 2);
-                String[] details = parts[1].split(" /at ", 2);
-                //todo: make sure user enters /at
-                String description = details[0];
-                String date = details[1];
+                    Task newTask = new Event(description, date);
+                    this.addToList(newTask);
+                    continue;
+                }
 
-                Task newTask = new Event(description, date);
-                this.addToList(newTask);
+                throw new DukeException("I'm sorry, but I don't know what that means :-(");
+            } catch (DukeException e) {
+                botReply("\uD83E\uDD22" + " OOPS!!! " + e.getMessage());
             }
         }
     }
