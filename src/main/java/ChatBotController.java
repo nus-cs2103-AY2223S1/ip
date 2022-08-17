@@ -14,71 +14,8 @@ public class ChatBotController {
             " ".repeat(10) + "3. Add a Deadline\n" + " ".repeat(10) + "4. List all Tasks\n"
             + " ".repeat(10) + "5. Mark\n" + " ".repeat(10) + "6. Unmark\n" + " ".repeat(10)
             + "7. Exit";
-
     private final String splitLine = " ".repeat(5) + "*".repeat(50);
     private final ArrayList<Task> tasks = new ArrayList<>();
-    /**
-     * Check if the given string is a "bye".
-     * @param s The string that requires checking
-     * @return if s is any version of "bye", then true; Otherwise false.
-     */
-    public Boolean checkBye(String s) {
-        return s.equalsIgnoreCase("bye");
-    }
-
-    /**
-     * Check if the given string is a "list".
-     * @param s The string that requires checking
-     * @return if s is any version of "list", then true; Otherwise false.
-     */
-    public Boolean checkList(String s) {
-        return s.equalsIgnoreCase("list");
-    }
-
-    /**
-     * Check if the given input is a mark command.
-     * @param s given input
-     * @return if s is a mark command, then true; Otherwise false.
-     */
-    public Boolean checkMark(String s) {
-        return s.split(" ")[0].equalsIgnoreCase("mark");
-    }
-
-    /**
-     * Check if the given input is an unmark command.
-     * @param s given input
-     * @return if s is an unmark command, then true; Otherwise false.
-     */
-    public Boolean checkUnmark(String s) {
-        return s.split(" ")[0].equalsIgnoreCase("unmark");
-    }
-
-    /**
-     * Check if the user add an event
-     * @param s user's input
-     * @return true if it's an event; otherwise false.
-     */
-    public Boolean checkEvent(String s) {
-        return s.contains("/at");
-    }
-
-    /**
-     * Check if the user add a deadline
-     * @param s user's input
-     * @return true if it's a deadline; otherwise false.
-     */
-    public Boolean checkDeadline(String s) {
-        return s.contains("/by");
-    }
-
-    /**
-     * Check if the user add a todo
-     * @param s user's input
-     * @return true if it's a todo; otherwise false.
-     */
-    public Boolean checkToDo(String s) {
-        return s.split(" ")[0].equalsIgnoreCase("todo");
-    }
 
     /**
      * Retrieve input from the user
