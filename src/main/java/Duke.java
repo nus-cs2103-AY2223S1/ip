@@ -13,8 +13,14 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
         greeting();
-        storeman();
-        //checklist(storeman());
+        try {
+            storeman();
+        } catch (DukeException de) {
+            System.out.println("--------------------------------------\n");
+            System.out.println(de.getMessage());
+            System.out.println("--------------------------------------\n");
+            main(args);
+        }
     }
 
     public static void greeting() {
@@ -38,7 +44,7 @@ public class Duke {
         sc.close();
     }
 
-    public static ArrayList<Task> storeman() {
+    public static ArrayList<Task> storeman() throws DukeException {
         ArrayList<Task> al = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
         String str = sc.nextLine();
@@ -49,17 +55,29 @@ public class Duke {
                     Task t = null;
                     if (uncap.startsWith("deadline")
                             || uncap.startsWith("event")) {
+                        if (!uncap.contains("/")) throw new DukeException(
+                                "☹ OOPS!!! Associated time for event or deadline cannot be empty.");
                         if (uncap.startsWith("deadline")) {
                             int idOfSlash = str.indexOf('/');
+                            if (idOfSlash - 9 == 0) throw new DukeException("" +
+                                    "☹ OOPS!!! The description of a deadline cannot be empty.");
+                            if (str.length() < idOfSlash + 4) throw new DukeException(
+                                    "☹ OOPS!!! The dude date of a deadline cannot be empty.");
                             t = new Deadline(str.substring(9, idOfSlash), str.substring(idOfSlash + 4));
                         } else if (uncap.startsWith("event")) {
                             int idOfSlash = str.indexOf('/');
+                            if (idOfSlash - 6 == 0) throw new DukeException("" +
+                                    "☹ OOPS!!! The description of an event cannot be empty.");
+                            if (str.length() < idOfSlash + 4) throw new DukeException(
+                                    "☹ OOPS!!! The duration of event cannot be empty.");
                             t = new Event(str.substring(6, idOfSlash), str.substring(idOfSlash + 4));
                         }
                     } else if (uncap.startsWith("todo")) {
+                        if (str.length() < 6) throw new DukeException("" +
+                                "☹ OOPS!!! The description of a todo cannot be empty.");
                         t = new Todo(str.substring(5));
                     } else {
-                        t = new Task(str);
+                        throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                     }
                     al.add(t);
                     System.out.println("------------------------------\n");
