@@ -94,6 +94,35 @@ public class Duke {
                     continue;
                 }
 
+                // Deleting tasks
+                if (input.startsWith("delete")) {
+                    String[] parts = input.split(" ");
+
+                    // Input validation
+                    if (parts.length != 2) {
+                        throw new DukeException("Wrong format! delete <item number>\ne.g. 'delete 3'");
+                    }
+
+                    int taskIndex;
+                    Task pickedTask;
+                    try {
+                        taskIndex = Integer.parseInt(parts[1]) - 1;
+                    } catch (NumberFormatException e) {
+                        throw new DukeException("Please enter a valid task number! delete <item number>\ne.g. 'delete 3'");
+                    }
+
+                    try {
+                        pickedTask = this.taskList.get(taskIndex);
+                    } catch (IndexOutOfBoundsException e) {
+                        throw new DukeException("Task number doesn't exist!");
+                    }
+
+                    this.taskList.remove(taskIndex);
+                    botReply("Noted. I've removed this task:\n " + pickedTask + "\nNow you have " + this.taskList.size() + " tasks in the list");
+
+                    continue;
+                }
+
                 // Adding tasks
                 if (input.startsWith("todo")) {
                     String[] parts = input.split("todo", 2);
