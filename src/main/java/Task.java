@@ -4,7 +4,7 @@ public class Task {
 
     public Task(String description) throws DukeException {
         if (description.equals("blah")) {
-            throw new DukeException("I blah don't blah know blah ... blah ... zzz");
+            throw new DukeException("I blah don't blah know blah ... blah ... zzz\n");
         } else if (description.equals("todo") || description.equals("deadline")
                 || description.equals("event") || description.equals("mark")
                 || description.equals("unmark")) {

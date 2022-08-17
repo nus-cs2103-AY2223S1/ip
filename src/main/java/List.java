@@ -21,4 +21,11 @@ public class List {
         taskList.add(command);
     }
 
+    public Task getTask(int taskNumber) throws DukeException {
+        if (taskNumber < 0 || taskNumber > this.taskList.size() - 1) {
+            throw new DukeException("You do not have that task. Try seeing your task list instead!\n");
+        }
+        return this.taskList.get(taskNumber);
+    }
+
 }
