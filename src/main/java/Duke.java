@@ -39,7 +39,7 @@ public class Duke {
         }
         messageFormatter(farewell);
     }
-
+    
     public static void main(String[] args) {
         Duke newDuke = new Duke();
         newDuke.command();
