@@ -5,3 +5,32 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
+What can I do for you?
+	List is empty!
+	Got it. I've added this task:
+		[T][ ] read book
+	Now you have 1 task in the list.
+	Got it. I've added this task:
+		[D][ ] return book (by: June 6th)
+	Now you have 2 tasks in the list.
+	Got it. I've added this task:
+		[E][ ] project meeting (at: Aug 6th 2-4pm)
+	Now you have 3 tasks in the list.
+	Here are the tasks in your list:
+		1.[T][ ] read book
+		2.[D][ ] return book (by: June 6th)
+		3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+	Nice! I've marked this task as done:
+		[T][X] read book
+	Here are the tasks in your list:
+		1.[T][X] read book
+		2.[D][ ] return book (by: June 6th)
+		3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+	OK, I've marked this task as not done yet:
+		[T][ ] read book
+	Here are the tasks in your list:
+		1.[T][ ] read book
+		2.[D][ ] return book (by: June 6th)
+		3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+	Task type not indicated.
+Bye. Hope to see you again soon!

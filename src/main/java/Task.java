@@ -49,12 +49,13 @@ public abstract class Task {
 
     public static void printList() {
         if (count == 0) {
-            System.out.println("List is empty!");
+            System.out.println("\tList is empty!");
         } else {
+            System.out.println("\tHere are the tasks in your list:");
             for (int i = 0; i < count; i++) {
-                System.out.print("\t");
+                System.out.print("\t\t");
                 System.out.print(i + 1);
-                System.out.print(". " + list[i] + "\n");
+                System.out.print("." + list[i] + "\n");
             }
         }
     }

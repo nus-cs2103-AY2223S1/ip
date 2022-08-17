@@ -11,9 +11,9 @@ public class Duke {
 
         System.out.println("What can I do for you?");
         Scanner scanner = new Scanner(System.in);
-        String text = scanner.next();
 
         while (true) {
+            String text = scanner.next();
             if (text.equals("bye")) {
                 break;
             } else if (text.equals("list")) {
@@ -38,9 +38,8 @@ public class Duke {
                 event.add();
             } else {
                 System.out.println("\tTask type not indicated.");
+                text = scanner.nextLine();
             }
-            scanner = new Scanner(System.in);
-            text = scanner.next();
         }
         System.out.println("Bye. Hope to see you again soon!");
     }
