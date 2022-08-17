@@ -6,7 +6,9 @@ public class EchoCommand extends Command {
     public EchoCommand(String echo) {
         this.echo = echo;
     }
-    public void execute(Ui ui) {
+
+    @Override
+    public void execute(Ui ui, TaskList taskList) {
         ui.echoCommand(this.echo);
     }
 }

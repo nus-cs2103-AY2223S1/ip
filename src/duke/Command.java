@@ -11,6 +11,6 @@ public abstract class Command {
         return this.isExit;
     }
 
-    public void execute(Ui ui) {
+    public void execute(Ui ui, TaskList taskList) {
     }
 }

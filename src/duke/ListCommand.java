@@ -1,10 +1,9 @@
 package duke;
 
-public class ExitCommand extends Command{
+public class ListCommand extends Command{
 
     @Override
     public void execute(Ui ui, TaskList taskList) {
-        toggleExit();
-        ui.showBye();
+        ui.showList(taskList);
     }
 }

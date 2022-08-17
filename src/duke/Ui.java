@@ -37,4 +37,12 @@ public class Ui {
     public void echoCommand(String echo) {
         System.out.println(echo);
     }
+
+    public void addSuccess(Task task) {
+        System.out.println("Added: " + task.toString());
+    }
+
+    public void showList(TaskList taskList) {
+        System.out.println(taskList.toString());
+    }
 }
