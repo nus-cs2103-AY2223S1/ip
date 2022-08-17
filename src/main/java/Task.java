@@ -6,13 +6,16 @@ public class Task {
         this.isDone = false;
     }
     public String getStatusIcon() {
-        return (isDone ? "X" : " "); // mark done task with X
+        return (isDone ? "X" : " ");
     }
     public void mark() {
         isDone = true;
     }
     public void unmark() {
         isDone = false;
+    }
+    public Boolean isMarked() {
+        return isDone;
     }
     @Override
     public String toString() {
