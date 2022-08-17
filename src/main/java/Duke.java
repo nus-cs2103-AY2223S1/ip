@@ -4,7 +4,6 @@ import java.util.ArrayList;
 public class Duke {
     public static void main(String[] args) {
         String input;
-        String print;
         String[] segments;
         String[] segments2;
         ArrayList<Task> items = new ArrayList<Task>();
@@ -17,11 +16,15 @@ public class Duke {
         System.out.println("What can I do for you?\n" + line);
 
         //level 4:
-        input = sc.nextLine();
-        segments = input.split("/");
-        segments2 = segments[0].split(space);
-        while (!input.equals("bye")) {
-            if (input.equals("list") && items.size() != 0) {
+        while (sc.hasNextLine()) {
+            input = sc.nextLine();
+            segments = input.split("/");
+            segments2 = segments[0].split(space);
+            if (input.equals("bye")) {
+                System.out.println(line + "Bye. Hope to see you again soon!\n" + line);
+                break;
+            }
+            else if (input.equals("list") && items.size() != 0) {
                     System.out.println(line + "Here are the tasks in your list: ");
                     for (int i = 0; i < items.size(); i++) {
                         System.out.println(i+1 + ". " + items.get(i));
@@ -67,13 +70,7 @@ public class Duke {
                 items.add(t);
                 System.out.println(line + "added: " + input + "\n" + line);
             }
-            input = sc.nextLine();
-            segments = input.split("/");
-            segments2 = segments[0].split(space);
         }
-
-        print = "Bye. Hope to see you again soon!";
-        System.out.println(line + print + "\n" + line);
     }
 
 }
