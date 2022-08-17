@@ -47,6 +47,24 @@ public class Duke {
         printMessage(message);
     }
 
+    /**
+     * addTask will add the new task to tasks
+     * if tasks is full, it returns nothing
+     *
+     * @param task task to be added to tasks
+     */
+    public void addTask(String task) {
+        if (taskIndex >= TASK_SIZE) return;
+        tasks[taskIndex] = task;
+        taskIndex++;
+    }
+
+    /**
+     * This message displays the newly added task to tasks
+     */
+    public void addTaskMessage() {
+        printMessage("added: " + tasks[taskIndex - 1]);
+    }
 
 
     public static void main(String[] args) {
