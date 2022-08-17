@@ -4,12 +4,35 @@ public abstract class Task {
     protected static int taskCount = 0;
 
     /**
+     * A method used to validate a userCommand to for a specific task type
+     *
+     * @param userCommand  the command entered by the user to be parsed by the method
+     * @param taskType  the task type either Todo, Deadline or Event
+     * @throws DukeException
+     */
+    private static void validateTaskCreation(String userCommand, String taskType) throws DukeException {
+        String[] cmdArray = userCommand.split(" ", 2);
+        if (cmdArray.length <= 1 || cmdArray[1].length() == 0) {
+            throw new DukeException("☹ OOPS!!! The description of a " + taskType + " cannot be empty.");
+        }
+
+        if (taskType == "deadline" && cmdArray[1].indexOf("/by") < 0) {
+            throw new DukeException("☹ OOPS!!! The description of a deadline must contain a '/by'");
+        }
+
+        if (taskType == "event" && cmdArray[1].indexOf("/at") < 0) {
+            throw new DukeException("☹ OOPS!!! The description of a event must contain a '/at'");
+        }
+    }
+
+    /**
      * Factory method used to create a new Task
      *
      * @param userCommand  the command entered by the user to be parsed by the method
      * @return a Task obj, either a Todo, Deadline or Event
+     * @throws DukeException
      */
-    public static Task createTask(String userCommand) throws Exception {
+    public static Task createTask(String userCommand) throws DukeException {
         String task;
         String date;
         String[] cmdArray = userCommand.split(" ", 2);
@@ -18,21 +41,24 @@ public abstract class Task {
 
         switch (cmd) {
             case "todo":
+                Task.validateTaskCreation(userCommand, "todo");
                 task = cmdArray[1].trim();
                 newTask = new Todo(task);
                 break;
             case "deadline":
-                task = cmdArray[1].substring(0, cmdArray[1].indexOf("/by")).trim();
-                date = cmdArray[1].substring(cmdArray[1].indexOf("/by") + 4).trim();
+                Task.validateTaskCreation(userCommand, "deadline");
+                task = cmdArray[1].split("/by", 2)[0].trim();
+                date = cmdArray[1].split("/by", 2)[1].trim();
                 newTask = new Deadline(task, date);
                 break;
             case "event":
-                task = cmdArray[1].substring(0, cmdArray[1].indexOf("/at")).trim();
-                date = cmdArray[1].substring(cmdArray[1].indexOf("/at") + 4).trim();
+                Task.validateTaskCreation(userCommand, "event");
+                task = cmdArray[1].split("/at", 2)[0].trim();
+                date = cmdArray[1].split("/at", 2)[1].trim();
                 newTask = new Event(task, date);
                 break;
             default:
-                throw new Exception("Command Unrecognised");
+                throw new DukeException();
         }
         System.out.println("\nGot it. I've added this task:");
         System.out.println(newTask);

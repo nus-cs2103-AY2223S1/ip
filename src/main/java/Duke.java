@@ -50,7 +50,9 @@ public class Duke {
                         Task newTask = Task.createTask(userInput);
                         Duke.allTasks.add(newTask);
                 }
-            } catch (ClassCastException e) {
+            } catch (NumberFormatException e) {
+                System.out.println("Error: Cannot cast a non-integer into an integer");
+            } catch (DukeException e) {
                 System.out.println(e.getMessage());
             } catch (Exception e) {
                 System.out.println(e.getMessage());
