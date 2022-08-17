@@ -36,6 +36,12 @@ public class Duke {
         System.out.println(GOODBYE_MESSAGE);
     }
 
+    /**
+     * Executes user's command and prints the corresponding response message to the
+     * console
+     *
+     * @param command The specified command.
+     */
     public void executeCommand(String command) {
         // Used to generate the response message after executing commands
         StringBuilder sb = new StringBuilder();
@@ -84,12 +90,8 @@ public class Duke {
                         throw new DukeException("     ☹ OOPS!!! The description of a todo cannot be empty.\n");
                     }
                     Todo todo = new Todo(inputStrings[1]);
-                    this.taskList.add(todo);
-                    sb.append(LONG_LINE)
-                            .append("     Got it. I've added this task:\n")
-                            .append("       ").append(todo).append("\n")
-                            .append("     Now you have ").append(this.taskList.size()).append(" task(s) in the list.\n")
-                            .append(LONG_LINE);
+
+                    sb.append(this.addTask(todo));
                     break;
                 }
                 case "deadline": {
@@ -101,12 +103,8 @@ public class Duke {
                         throw new DukeException("     ☹ OOPS!!! The date/time of a deadline cannot be empty.\n");
                     }
                     Deadline deadline = new Deadline(deadlineStrings[0], deadlineStrings[1]);
-                    this.taskList.add(deadline);
-                    sb.append(LONG_LINE)
-                            .append("     Got it. I've added this task:\n")
-                            .append("       ").append(deadline).append("\n")
-                            .append("     Now you have ").append(this.taskList.size()).append(" task(s) in the list.\n")
-                            .append(LONG_LINE);
+
+                    sb.append(this.addTask(deadline));
                     break;
                 }
                 case "event": {
@@ -118,12 +116,8 @@ public class Duke {
                         throw new DukeException("     ☹ OOPS!!! The date/time of an event cannot be empty.\n");
                     }
                     Event event = new Event(eventStrings[0], eventStrings[1]);
-                    this.taskList.add(event);
-                    sb.append(LONG_LINE)
-                            .append("     Got it. I've added this task:\n")
-                            .append("       ").append(event).append("\n")
-                            .append("     Now you have ").append(this.taskList.size()).append(" task(s) in the list.\n")
-                            .append(LONG_LINE);
+
+                    sb.append(this.addTask(event));
                     break;
                 }
                 case "delete": {
@@ -132,11 +126,7 @@ public class Duke {
                     int taskIndex = Integer.parseInt(inputStrings[1]) - 1;
                     Task task = this.taskList.remove(taskIndex);
 
-                    sb.append(LONG_LINE)
-                            .append("     Noted. I've removed this task:\n")
-                            .append("       ").append(task).append("\n")
-                            .append("     Now you have ").append(this.taskList.size()).append(" task(s) in the list.\n")
-                            .append(LONG_LINE);
+                    sb.append(this.addTask(task));
                     break;
                 }
                 default: {
@@ -154,5 +144,21 @@ public class Duke {
 
         // Print out response after executing command
         System.out.println(sb);
+    }
+
+    /**
+     * Add task to the current task list, and returns the formatted response message
+     * to be printed to the console
+     *
+     * @param task The specified task.
+     * @return formatted message after adding a task.
+     */
+    public String addTask(Task task) {
+        this.taskList.add(task);
+        return LONG_LINE +
+                "     Noted. I've removed this task:\n" +
+                "       " + task + "\n" +
+                "     Now you have " + this.taskList.size() + " task(s) in the list.\n" +
+                LONG_LINE;
     }
 }
