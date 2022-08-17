@@ -1,4 +1,4 @@
-testinput1
+invalid task
 todo task 1
 deadline task 2 /by xxx
 event task 3 /at xxx
@@ -7,10 +7,13 @@ mark 1
 mark 2
 mark 3
 mark 4
+list
 unmark 1
 unmark 2
+list
 unmark 3
 unmark 4
+list
 unmark a
 mark a
 mark
@@ -18,4 +21,6 @@ unmark
 todo
 deadline
 event
+list 2
+test invalid task
 bye

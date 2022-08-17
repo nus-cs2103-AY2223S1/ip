@@ -6,37 +6,68 @@ Greetings from Elp
 |  |____  | | | |
 |_______| |_| |_|
 What can I help you with?
-Invalid Task
-Added: [T][ ] todo task 1
+DukeException: Invalid Task, please prefix your task!
 
-Added: [D][ ] deadline task 2  (by: xxx)
+Added: [T][ ] task 1
 
-Added: [E][ ] event task 3  (at: xxx)
+Added: [D][ ] task 2  (by: xxx)
 
-1. [T][ ] todo task 1
-2. [D][ ] deadline task 2  (by: xxx)
-3. [E][ ] event task 3  (at: xxx)
+Added: [E][ ] task 3  (at: xxx)
 
-gz
-[T][X] todo task 1
-gz
-[D][X] deadline task 2  (by: xxx)
-gz
-[E][X] event task 3  (at: xxx)
-gz
-invalid index
-rip
-[T][ ] todo task 1
-rip
-[D][ ] deadline task 2  (by: xxx)
-rip
-[E][ ] event task 3  (at: xxx)
-rip
-invalid index
-Added: [T][ ] todo
+1. [T][ ] task 1
+2. [D][ ] task 2  (by: xxx)
+3. [E][ ] task 3  (at: xxx)
 
-Added: [D][ ] deadline (by: No due date given)
+Task successfully marked!
+[T][X] task 1
 
-Added: [E][ ] event (at: No duration given)
+Task successfully marked!
+[D][X] task 2  (by: xxx)
+
+Task successfully marked!
+[E][X] task 3  (at: xxx)
+
+Invalid input, please input an available integer index!
+
+1. [T][X] task 1
+2. [D][X] task 2  (by: xxx)
+3. [E][X] task 3  (at: xxx)
+
+Task successfully unmarked!
+[T][ ] task 1
+
+Task successfully unmarked!
+[D][ ] task 2  (by: xxx)
+
+1. [T][ ] task 1
+2. [D][ ] task 2  (by: xxx)
+3. [E][X] task 3  (at: xxx)
+
+Task successfully unmarked!
+[E][ ] task 3  (at: xxx)
+
+Invalid input, please input an available integer index!
+
+1. [T][ ] task 1
+2. [D][ ] task 2  (by: xxx)
+3. [E][ ] task 3  (at: xxx)
+
+Invalid input, please input an available integer index!
+
+Invalid input, please input an available integer index!
+
+Invalid input, please input an available integer index!
+
+Invalid input, please input an available integer index!
+
+Please add a description to your task!
+
+Please add a description to your task!
+
+Please add a description to your task!
+
+DukeException: Invalid Task, please prefix your task!
+
+DukeException: Invalid Task, please prefix your task!
 
 Have a nice day!
