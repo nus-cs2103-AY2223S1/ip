@@ -7,6 +7,16 @@ public class Deadline extends Task {
     }
 
     @Override
+    public String getTaskType() {
+        return "D";
+    }
+
+    @Override
+    public String stringifyTask() {
+        return String.format("%s | %s | %s", "D", super.stringifyTask(), this.by);
+    }
+
+    @Override
     public String toString() {
         return String.format("[D]%s (by: %s)", super.toString(), this.by);
     }
