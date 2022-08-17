@@ -27,7 +27,7 @@ public class Dobby {
         }
     }
 /*
-    //future to-add: specify whith list to add to?
+    //future to-add: specify which list to add to?
     private static void addTask(Task task, DobbyList list) {}
 
  */
@@ -49,37 +49,74 @@ public class Dobby {
                 DobbyChat.echo(dobbyList.toString());
 
             } else if(chat.startsWith("mark")) {
-                int toMark = Integer.parseInt(chat.substring(5));
-                dobbyList.mark(toMark);
-                DobbyChat.marked(dobbyList.getTask(toMark));
+                try {
+                    int toMark = Integer.parseInt(chat.substring(5));
+                    dobbyList.mark(toMark);
+                    DobbyChat.marked(dobbyList.getTask(toMark));
 
+                } catch(StringIndexOutOfBoundsException e) {
+                    DobbyChat.noTaskNumber();
+                    continue;
+
+                } catch(NumberFormatException e) {
+                    DobbyChat.noNumber();
+                }
             } else if(chat.startsWith("unmark")) {
-                int toUnmark = Integer.parseInt(chat.substring(7));
-                dobbyList.mark(toUnmark);
-                DobbyChat.unmarked(dobbyList.getTask(toUnmark));
+                try {
+                    int toUnmark = Integer.parseInt(chat.substring(7));
+                    dobbyList.mark(toUnmark);
+                    DobbyChat.unmarked(dobbyList.getTask(toUnmark));
 
+                } catch(StringIndexOutOfBoundsException e) {
+                    DobbyChat.noTaskNumber();
+                    continue;
+                } catch(NumberFormatException e) {
+                    DobbyChat.noNumber();
+                }
             } else if(chat.startsWith("todo")) {
-                String task = getTask(chat, "todo");
-                Todo newTodo = new Todo(chat);
+                try {
+                    String task = getTask(chat, "todo");
+                    Todo newTodo = new Todo(chat);
 
-                dobbyList.add(newTodo);
-                DobbyChat.added(newTodo, dobbyList);
-
+                    if(task.isBlank()) {
+                        DobbyChat.noTask();
+                    } else {
+                        dobbyList.add(newTodo);
+                        DobbyChat.added(newTodo, dobbyList);
+                    }
+                } catch(StringIndexOutOfBoundsException e) {
+                    DobbyChat.noTask();
+                    continue;
+                }
             } else if(chat.startsWith("deadline")) {
                 String task = getTask(chat, "deadline");
                 String date = getDate(chat, "deadline");
-                Deadline newDeadline = new Deadline(task, date);
 
-                dobbyList.add(newDeadline);
-                DobbyChat.added(newDeadline, dobbyList);
+                if(task.isEmpty()) {
+                    DobbyChat.noTask();
+                } else if(date.isBlank()) {
+                    DobbyChat.noDeadlineDate();
+                } else {
+                    Deadline newDeadline = new Deadline(task, date);
+                    dobbyList.add(newDeadline);
+                    DobbyChat.added(newDeadline, dobbyList);
+                }
 
             } else if(chat.startsWith("event")) {
                 String task = getTask(chat, "event");
                 String date = getDate(chat, "event");
-                Event newEvent = new Event(task, date);
 
-                dobbyList.add(newEvent);
-                DobbyChat.added(newEvent, dobbyList);
+                if(task.isEmpty()) {
+                    DobbyChat.noTask();
+                } else if(date.isBlank()) {
+                    DobbyChat.noDeadlineDate();
+                } else {
+                    Event newEvent = new Event(task, date);
+                    dobbyList.add(newEvent);
+                    DobbyChat.added(newEvent, dobbyList);
+                }
+            } else {
+                DobbyChat.unknown();
 
             }
         }

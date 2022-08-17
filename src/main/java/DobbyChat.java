@@ -4,10 +4,10 @@ public class DobbyChat {
 //        BYE("\t" + "Byebyeeee. Hope to see you soon!"),
 //        LINE("\t------------------------------------");
 
-    private static final String hello = "Hello! I'm Bobby\n" +
+    private static final String hello = "Hello! I'm Dobby\n" +
                            "\t" + "What can I do for you?";
     private static final String bye = "Byebyeeee. Hope to see you soon!";
-    private static final String line = "\t------------------------------------";
+    private static final String line = "\t-----------------------------------------";
 
     private static void printChat(String c) {
         System.out.println(line);
@@ -47,5 +47,17 @@ public class DobbyChat {
         String taskString = task.toString() + "\n\t";
         String length = "Now you have " + list.getLength()+ " tasks in the list.\n";
         printChat(accept + taskString + length);
+    }
+    public static void unknown() {
+        printChat("Dobby doesn't know what you're saying....");
+    }
+    public static void noTaskNumber() {
+        printChat("You need to tell Dobby the task number D:");
+    }
+    public static void noNumber() {
+        printChat("Dobby doesn't see a number...");
+    }
+    public static void noTask() {
+        printChat("Please tell Dobby the task you want to add");
     }
 }
