@@ -5,3 +5,26 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
+	-------------------------
+		Got it. I've added this task:
+		[T][ ] buy cheese
+		Now you have 1 tasks in the list
+	-------------------------
+	-------------------------
+		Got it. I've added this task:
+		[E][ ] attend water party (at: 12 noon on Monday)
+		Now you have 2 tasks in the list
+	-------------------------
+	-------------------------
+		Got it. I've added this task:
+		[D][ ] bake cake (by: Saturday)
+		Now you have 3 tasks in the list
+	-------------------------
+	-------------------------
+		[T][ ] buy cheese
+		[E][ ] attend water party (at: 12 noon on Monday)
+		[D][ ] bake cake (by: Saturday)
+	-------------------------
+	-------------------------
+		Goodbye! Hope to see you again soon!
+	-------------------------

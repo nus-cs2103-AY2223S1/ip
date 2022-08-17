@@ -51,7 +51,11 @@ public class Duke {
 
     public static String askForInput(String prompt) {
         System.out.print(prompt + " ");
-        return scanner.nextLine();
+        if (scanner.hasNextLine()) {
+            return scanner.nextLine();
+        } else {
+            return "bye";
+        }
     }
 
     private static void echo() {
@@ -65,7 +69,7 @@ public class Duke {
     }
 
     private static void useToDoList() {
-        String[] input = askForInput("Add something:").split(" ");
+        String[] input = askForInput("").split(" ");
 
         while (!input[0].toLowerCase(Locale.ROOT).equals("bye")) {
             switch (input[0]) {
@@ -80,7 +84,7 @@ public class Duke {
                 default:
                    addToCheckList(input);
             }
-            input = askForInput("Add something:").split(" ");
+            input = askForInput("").split(" ");
         }
     }
 
@@ -199,7 +203,6 @@ public class Duke {
             splitArrays[i] = new String[splitIndex - lastIndex];
             System.arraycopy(input, lastIndex, splitArrays[i], 0, splitArrays[i].length);
             lastIndex = splitIndex + 1;
-            System.out.println(Arrays.toString(splitArrays[i]));
         }
         splitArrays[splitArrays.length - 1] = new String[input.length - lastIndex];
         System.arraycopy(input, lastIndex, splitArrays[splitArrays.length - 1],

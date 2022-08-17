@@ -1,0 +1,4 @@
+todo buy cheese
+event attend water party /at 12 noon on Monday
+deadline bake cake /by Saturday
+list
