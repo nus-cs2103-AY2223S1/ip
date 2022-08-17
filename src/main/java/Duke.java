@@ -1,7 +1,9 @@
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Duke {
-    private static String DIVIDER = "\t____________________________________________________________";
+    private static final String DIVIDER = "\t____________________________________________________________";
+    private static LinkedList<String> tasks = new LinkedList<>();
 
     /**
      * Formats Duke's messages by adding horizontal line dividers and indentation.
@@ -32,13 +34,42 @@ public class Duke {
         prettyPrint(farewellMessage);
     }
 
+    /**
+     * Lists all the tasks entered thus far by the user.
+     * Will print 'No tasks' if no tasks are found.
+     */
+    private static void listTasks() {
+        String taskList = "";
+        int count = 0;
+        for (String task : tasks) {
+            count++;
+            taskList += String.format("\n%d. %s", count, task);
+        }
+        prettyPrint(count != 0 ? taskList.substring(1) : "No tasks");
+    }
+
+    /**
+     * Stores the specified task into the linked list.
+     * @param task The task to be recorded
+     */
+    private static void addTask(String task) {
+        tasks.add(task);
+        prettyPrint("added: " + task);
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String cmd;
         greet();
         // Echoes user's input until the user types 'bye', for which the program exits
         while(!(cmd = sc.nextLine()).equals("bye")) {
-            prettyPrint(cmd);
+            switch (cmd) {
+                case "list":
+                    listTasks();
+                    continue;
+                default:
+                    addTask(cmd);
+            }
         }
         goodbye();
     }
