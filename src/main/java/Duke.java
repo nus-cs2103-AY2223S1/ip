@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
@@ -8,7 +9,7 @@ public class Duke {
         String input = myObj.nextLine();
         String[] words = input.split(" ");
         String response = words[0];
-        Task[] tasks = new Task[100];
+        ArrayList<Task> tasks = new ArrayList<>();
         int i = 0;
         while (!response.equals("bye")) {
             try {
@@ -16,20 +17,31 @@ public class Duke {
                     case "list":
                         System.out.println("Here are the tasks in your list:");
                         for (int a = 1; a <= i; a++) {
-                            String output = a + "." + tasks[a - 1].toString();
+                            String output = a + "." + tasks.get(a - 1).toString();
                             System.out.println(output);
                         }
                         break;
                     case "mark": {
                         String taskNumber = words[1];
                         int number = Integer.parseInt(taskNumber);
-                        tasks[number - 1].markAsDone();
+                        tasks.get(number - 1).markAsDone();
                         break;
                     }
                     case "unmark": {
                         String taskNumber = words[1];
                         int number = Integer.parseInt(taskNumber);
-                        tasks[number - 1].markNotDone();
+                        tasks.get(number - 1).markNotDone();
+                        break;
+                    }
+                    case "delete": {
+                        String taskNumber = words[1];
+                        int number = Integer.parseInt(taskNumber);
+                        i--;
+                        System.out.println("Noted. I've removed this task:");
+                        System.out.println(tasks.get(number - 1));
+                        System.out.println("Now you have " + i + " tasks in the list.");
+                        tasks.remove(number - 1);
+
                         break;
                     }
                     case "deadline": {
@@ -46,12 +58,11 @@ public class Duke {
                             deadline.append(" ");
                             deadline.append(words[b]);
                         }
-                        tasks[i] = new Deadline(task.toString(), deadline.toString());
-                        int numOfTasks = i + 1;
-                        System.out.println("Got it. I've added this task:");
-                        System.out.println(tasks[i]);
-                        System.out.println("Now you have " + numOfTasks + " tasks in the list.");
+                        tasks.add(i, new Deadline(task.toString(), deadline.toString()));
                         i++;
+                        System.out.println("Got it. I've added this task:");
+                        System.out.println(tasks.get(i-1));
+                        System.out.println("Now you have " + i + " tasks in the list.");
                         break;
                     }
                     case "event": {
@@ -68,12 +79,12 @@ public class Duke {
                             deadline.append(" ");
                             deadline.append(words[b]);
                         }
-                        tasks[i] = new Event(task.toString(), deadline.toString());
-                        int numOfTasks = i + 1;
-                        System.out.println("Got it. I've added this task:");
-                        System.out.println(tasks[i]);
-                        System.out.println("Now you have " + numOfTasks + " tasks in the list.");
+                        tasks.add(i, new Event(task.toString(), deadline.toString()));
                         i++;
+                        System.out.println("Got it. I've added this task:");
+                        System.out.println(tasks.get(i-1));
+                        System.out.println("Now you have " + i + " tasks in the list.");
+
                         break;
                     }
                     case "todo": {
@@ -85,12 +96,11 @@ public class Duke {
                             task.append(" ");
                             task.append(words[a]);
                         }
-                        tasks[i] = new Todo(task.toString());
-                        int numOfTasks = i + 1;
-                        System.out.println("Got it. I've added this task:");
-                        System.out.println(tasks[i]);
-                        System.out.println("Now you have " + numOfTasks + " tasks in the list.");
+                        tasks.add(i, new Todo(task.toString()));
                         i++;
+                        System.out.println("Got it. I've added this task:");
+                        System.out.println(tasks.get(i-1));
+                        System.out.println("Now you have " + i + " tasks in the list.");
                         break;
                     }
                     default:
