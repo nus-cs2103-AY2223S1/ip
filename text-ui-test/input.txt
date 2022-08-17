@@ -1,0 +1,13 @@
+list 1
+list
+Testing
+deadline Math Homework /by 24 Aug
+todo Laundry and Cleaning
+event Career Fair /at 30 aug 12PM - 5PM
+deadline Do Homework
+list
+mark 1
+unmark 2
+unmark 1
+list
+bye
