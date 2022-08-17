@@ -29,9 +29,11 @@ public class Duke {
         }
 
         System.out.println("Here are the tasks in your list:");
-        for (int i = 0; i < currEmpty; i++) {
+        for (int i = 0; i < taskList.size(); i++) {
             Task curr = taskList.get(i);
-            System.out.println(i + 1 + "." + curr.toString());
+            if (curr != null) {
+                System.out.println(i + 1 + "." + curr.toString());
+            }
         }
     }
 
@@ -47,6 +49,15 @@ public class Duke {
             throw new DukeMissingIndexException();
         }
         taskList.get(index).setNotDone();
+    }
+
+    private void delete(int index) throws DukeMissingIndexException {
+        if (index >= currEmpty) {
+            throw new DukeMissingIndexException();
+        }
+        Task task = taskList.get(index);
+        System.out.println("Removed the task \n" + task.toString());
+        taskList.remove(index);
     }
 
     public static void main(String[] args) {
@@ -118,12 +129,35 @@ public class Duke {
                     }
 
                     break;
+                case "delete":
+                    String unParsedIndex2 = myScanner.nextLine();
+                    if (unParsedIndex2.isBlank()) {
+                        throw new DukeEmptyCommandException();
+                    }
+
+                    String[] split2 = unParsedIndex2.split(" ", 3);
+
+                    if (split2.length != 2) {
+                        throw new DukeTooManyArgumentException();
+                    }
+
+                    int index2 = Integer.parseInt(split2[1]);
+
+                    System.out.println(SEPARATOR);
+
+                    if (index2 < 0) {
+                        throw new DukeArrayOutOfBoundException();
+                    } else {
+                        duke.delete(index2 - 1);
+                    }
+
+                    break;
                 case "deadline":
                     String unParsed = myScanner.nextLine();
                     if (unParsed.isBlank()) {
                         throw new DukeEmptyDescriptionException();
                     }
-                    String[] descriptionAndBy =  unParsed.split("/at", 2);
+                    String[] descriptionAndBy =  unParsed.split("/by", 2);
 
                     if (descriptionAndBy.length != 2) {
                         throw new DukeInvalidDescriptionException();

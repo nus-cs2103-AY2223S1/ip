@@ -11,7 +11,8 @@ What do you want me to do?
 Sorry. I do not understand the entered command
 ------------------------------------
 What do you want me to do?
-Description of entry is invalid
+------------------------------------
+added: [D][ ]  Math Homework  (by: 24 Aug)
 ------------------------------------
 What do you want me to do?
 ------------------------------------
@@ -27,13 +28,14 @@ Description of entry is invalid
 What do you want me to do?
 ------------------------------------
 Here are the tasks in your list:
-1.[T][ ]  Laundry and Cleaning
-2.[E][ ]  Career Fair  (at: 30 aug 12PM - 5PM)
+1.[D][ ]  Math Homework  (by: 24 Aug)
+2.[T][ ]  Laundry and Cleaning
+3.[E][ ]  Career Fair  (at: 30 aug 12PM - 5PM)
 ------------------------------------
 What do you want me to do?
 ------------------------------------
 Task is marked as Done 
-[T][X]  Laundry and Cleaning
+[D][X]  Math Homework  (by: 24 Aug)
 ------------------------------------
 What do you want me to do?
 ------------------------------------
@@ -42,7 +44,19 @@ Task is still undone
 What do you want me to do?
 ------------------------------------
 Task is marked as undone 
-[T][ ]  Laundry and Cleaning
+[D][ ]  Math Homework  (by: 24 Aug)
+------------------------------------
+What do you want me to do?
+------------------------------------
+Here are the tasks in your list:
+1.[D][ ]  Math Homework  (by: 24 Aug)
+2.[T][ ]  Laundry and Cleaning
+3.[E][ ]  Career Fair  (at: 30 aug 12PM - 5PM)
+------------------------------------
+What do you want me to do?
+------------------------------------
+Removed the task 
+[D][ ]  Math Homework  (by: 24 Aug)
 ------------------------------------
 What do you want me to do?
 ------------------------------------
