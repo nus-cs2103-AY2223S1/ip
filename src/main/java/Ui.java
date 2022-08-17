@@ -57,4 +57,15 @@ public class Ui {
         System.out.println(line + "\n" + exitLine + "\n" + line);
     }
 
+    public void commandDoesNotExist(){
+        System.out.println(line);
+        System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+        System.out.println(line);
+    }
+
+    public void errorMessage(DukeException e) {
+        System.out.println(line);
+        System.out.println(e.toString());
+        System.out.println(line);
+    }
 }

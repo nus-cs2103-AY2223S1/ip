@@ -10,50 +10,40 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
         String cmd = sc.nextLine();
         while (!cmd.equals("bye")){
-
-            if (cmd.equals("")) {
-
-            }
             if (cmd.equals("list")) {
                 ui.list(taskList);
-            }
-
-            if (cmd.split(" ")[0].equals("mark")) {
-                Commands.mark(cmd, taskList);
-            }
-
-            if (cmd.split(" ")[0].equals("unmark")) {
-                String number = cmd.split(" ")[1];
-                int num = Integer.parseInt(number);
-                Task task = taskList.get(num - 1);
-                task.unmarkAsDone();
-                ui.unmarked(task);
-            }
-
-            if (cmd.split(" ")[0].equals("deadline")){
-                String taskName = cmd.substring(cmd.indexOf(" ") + 1, cmd.indexOf("/") - 1);
-                String by = cmd.substring(cmd.indexOf("/") + 4);
-                Task newTask = new Deadline(taskName, by);
-                taskList.add(newTask);
-                int amountOfTasks = taskList.size();
-                ui.addTask(newTask, amountOfTasks);
-            }
-
-            if (cmd.split(" ")[0].equals("event")){
-                String taskName = cmd.substring(cmd.indexOf(" ") + 1, cmd.indexOf("/") - 1);
-                String at = cmd.substring(cmd.indexOf("/") + 4);
-                Task newTask = new Event(taskName, at);
-                taskList.add(newTask);
-                int amountOfTasks = taskList.size();
-                ui.addTask(newTask, amountOfTasks);
-            }
-
-            if (cmd.split(" ")[0].equals("todo")){
-                String taskName = cmd.substring(cmd.indexOf(" ") + 1);
-                Task newTask = new ToDo(taskName);
-                taskList.add(newTask);
-                int amountOfTasks = taskList.size();
-                ui.addTask(newTask, amountOfTasks);
+            } else if (cmd.split(" ")[0].equals("mark")) {
+                try {
+                    Commands.mark(cmd, taskList);
+                } catch (DukeException e) {
+                    ui.errorMessage(e);
+                }
+            } else if (cmd.split(" ")[0].equals("unmark")) {
+                try {
+                    Commands.unmark(cmd, taskList);
+                } catch (DukeException e) {
+                    ui.errorMessage(e);
+                }
+            } else if (cmd.split(" ")[0].equals("deadline")){
+                try {
+                    Commands.deadline(cmd, taskList);
+                } catch (DukeException e) {
+                    ui.errorMessage(e);
+                }
+            } else if (cmd.split(" ")[0].equals("event")){
+                try {
+                    Commands.event(cmd, taskList);
+                } catch (DukeException e) {
+                    ui.errorMessage(e);
+                }
+            } else if (cmd.split(" ")[0].equals("todo")){
+                    try {
+                        Commands.toDo(cmd, taskList);
+                    } catch (DukeException e) {
+                        ui.errorMessage(e);
+                    }
+            } else {
+                ui.commandDoesNotExist();
             }
 
             cmd = sc.nextLine();
