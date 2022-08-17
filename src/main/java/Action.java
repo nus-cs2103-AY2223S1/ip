@@ -7,8 +7,6 @@ public class Action {
 
     @Override
     public String toString() {
-        return "\t____________________________________________________________\n"
-                + "\t" + this.action + "\n"
-                + "\t____________________________________________________________\n";
+        return this.action + "\n";
     }
 }
