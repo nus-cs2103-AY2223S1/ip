@@ -1,6 +1,10 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Duke {
+    private static String[] items = new String[100];
+    private static int id;
+
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "\t|  _ \\ _   _| | _____ \n"
@@ -17,7 +21,7 @@ public class Duke {
                 Duke.echo("Bye. Hope to see you again soon!");
                 break;
             } else {
-                Duke.echo(s);
+                Duke.add(s);
             }
         }
     }
@@ -26,5 +30,11 @@ public class Duke {
         System.out.println("\t_________________________________________________");
         System.out.println("\t" + s);
         System.out.println("\t_________________________________________________");
+    }
+
+    private static void add(String item) {
+        Duke.items[id] = item;
+        Duke.id++;
+        Duke.echo("added: " + item);
     }
 }
