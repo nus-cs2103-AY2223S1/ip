@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Duke {
-    private static String[] items = new String[100];
+    private static Task[] items = new Task[100];
     private static int id;
 
     public static void main(String[] args) {
@@ -34,7 +34,7 @@ public class Duke {
     }
 
     private static void add(String item) {
-        Duke.items[id] = item;
+        Duke.items[id] = new Task(item);
         Duke.id++;
         Duke.echo("added: " + item);
     }
@@ -45,7 +45,8 @@ public class Duke {
         } else {
             String s = "";
             for (int i = 0; i < id; i++) {
-                s = s + "\t" + (i + 1) + ". " + items[i] + "\n";
+                Task t = items[i];
+                s = s + "\t" + (i + 1) + ". " + t.getStatusIcon() + t.getDescription() + "\n";
             }
             Duke.echo(s.trim());
         }
