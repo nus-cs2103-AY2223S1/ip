@@ -6,4 +6,5 @@ mark 1
 unmark 1
 todo
 blah
+delete 1
 bye

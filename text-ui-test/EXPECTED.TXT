@@ -28,4 +28,8 @@ OK, I've marked this task as not done yet:
 
 ☹ OOPS!!! I'm sorry, but I don't know what that means :-(
 
+Noted. I've removed this task:
+ [T][ ] borrow book
+Now you have 2 tasks in the list.
+
 Bye. Hope to see you again soon!
