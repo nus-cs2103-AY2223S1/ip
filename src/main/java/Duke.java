@@ -47,7 +47,15 @@ public class Duke {
                     System.out.println("Okay, I've marked this task as not done yet:");
                     System.out.println(tasks.get(index));
                     System.out.println("=======================");
-                } 
+                } else {
+                    Task removedTask = tasks.get(index);
+                    tasks.remove(index);
+                    System.out.println("=======================");
+                    System.out.println("Okay, I've removed this task:");
+                    System.out.println(removedTask);
+                    System.out.println("You now have " + tasks.size() + " tasks in your list.");
+                    System.out.println("=======================");
+                }
                 continue;
             }
 
