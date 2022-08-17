@@ -29,7 +29,7 @@ public class Duke {
         String welcome = "Hello! I'm Duke\nWhat can I do for you?\n";
         System.out.println(welcome);
         Scanner sc = new Scanner(System.in);
-        while (true) {
+        while (sc.hasNext()) {
             String input = sc.next();
             if (input.equals("bye")) {
                 System.out.println("Bye. Hope to see you again soon!");
