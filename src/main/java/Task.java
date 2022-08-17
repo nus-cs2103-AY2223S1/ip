@@ -7,8 +7,18 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    public abstract String getTaskType();
+
+    public String stringifyTask() {
+        return String.format("%d | %s", this.isDone ? 1 : 0, this.description);
+    }
+
+    public boolean getStatus() {
+        return this.isDone;
+    }
+
     public String getStatusIcon() {
-        return isDone ? "X" : " ";
+        return this.isDone ? "X" : " ";
     }
 
     public void mark() {
