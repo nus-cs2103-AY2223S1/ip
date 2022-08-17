@@ -4,6 +4,7 @@ import commands.*;
 import exception.DukeException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import tasks.*;
 
 public class Duke {
 

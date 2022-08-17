@@ -2,7 +2,7 @@ package commands;
 
 import exception.DukeException;
 import java.util.ArrayList;
-import main.*;
+import tasks.*;
 
 public abstract class Command {
 
