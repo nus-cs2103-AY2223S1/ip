@@ -45,13 +45,6 @@ list
 unmark 2
 list
 unmark 2
-delete
-delete
-delete -1
-delete 8
-delete 2
-list
-delete asdf
 mark asdwa
 unmark sawd
 list sss
