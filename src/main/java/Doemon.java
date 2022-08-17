@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Doemon {
@@ -27,11 +28,7 @@ public class Doemon {
     /**
      * A fixed-sized string array that stores user input.
      */
-    private Task[] tasks = new Task[100];
-    /**
-     * An integer representing the index of the array that the next task will be stored.
-     */
-    private int taskIndex = 0;
+    private ArrayList<Task> tasks = new ArrayList<>();
 
     public static void main(String[] args) {
         // Introduction
@@ -75,17 +72,17 @@ public class Doemon {
                     && (inputArr[0].equals("mark") || inputArr[0].equals("unmark"))
                     && isInteger(inputArr[1])) {
                 int index = Integer.parseInt(inputArr[1]) - 1;
-                if (index >= 0 && index < this.taskIndex) {
+                if (index >= 0 && index < this.tasks.size()) {
                     if (inputArr[0].equals("mark")) {
-                        this.tasks[index].mark();
+                        this.tasks.get(index).mark();
                         System.out.println(
                                 output("Yay! This task is now marked as done:\n\t  "
-                                        + this.tasks[index].toString()));
+                                        + this.tasks.get(index).toString()));
                     } else {
-                        this.tasks[index].unmark();
+                        this.tasks.get(index).unmark();
                         System.out.println(
                                 output("I guess you weren't done with that one:\n\t  "
-                                        + this.tasks[index].toString()));
+                                        + this.tasks.get(index).toString()));
                     }
                     continue;
                 }
@@ -109,23 +106,23 @@ public class Doemon {
         if (inputArr[0].equals("todo")) {
             String detail = inputStr.substring(4).trim();
             if (detail.trim().equals("")) throw new EmptyTaskException("todo");
-            this.tasks[this.taskIndex] = new Todo(detail);
+            this.tasks.add(new Todo(detail));
         } else if (inputArr[0].equals("deadline")) {
             String[] details = inputStr.substring(8).trim().split(" /by ");
             if (details[0].trim().equals("")) throw new EmptyTaskException("deadline");
             if (details.length == 1) throw new MissingArgumentException("deadline", "/by");
-            this.tasks[this.taskIndex] = new Deadline(details[0], details[1]);
+            this.tasks.add(new Deadline(details[0], details[1]));
         } else if (inputArr[0].equals("event")) {
             String[] details = inputStr.substring(5).trim().split(" /at ");
             if (details[0].trim().equals("")) throw new EmptyTaskException("event");
             if (details.length == 1) throw new MissingArgumentException("event", "/at");
-            this.tasks[this.taskIndex] = new Event(details[0], details[1]);
+            this.tasks.add(new Event(details[0], details[1]));
         } else {
             throw new InvalidTaskException();
         }
         System.out.println(output("Alright! I have recorded this task on my bread:\n\t  "
-                + this.tasks[this.taskIndex++].toString()
-                + "\n\tYou now have " + this.taskIndex + " task(s) recorded on my bread."));
+                + this.tasks.get(this.tasks.size() - 1).toString()
+                + "\n\tYou now have " + this.tasks.size() + " task(s) recorded on my bread."));
     }
 
     /**
