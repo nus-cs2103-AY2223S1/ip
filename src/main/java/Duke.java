@@ -28,49 +28,50 @@ public class Duke {
     private static void handleCommands() throws DukeException {
         Scanner myObj = new Scanner(System.in);
         while (true) {
-            String command = myObj.nextLine();
-            if (Objects.equals(command, "bye")) {
+            String commandLineArgument = myObj.nextLine();
+            String[] commands = commandLineArgument.split(" ", 2);
+
+            if (Objects.equals(commands[0], "bye")) {
                 System.out.println(Style.INDENTATION + "Bye. Hope to see you again soon!\n");
                 break;
-            } else if (Objects.equals(command, "list")) {
+            } else if (Objects.equals(commands[0], "list")) {
                 System.out.println(Style.INDENTATION + "Here are the tasks in your list:");
                 for (int i = 0; i < data.size(); i++) {
                     System.out.println(Style.INDENTATION + (i + 1)  + "." + data.get(i));
                 }
                 System.out.println("");
-            } else if (command.contains("unmark") || command.contains("mark")) {
-                String[] temp = command.split(" ");
-                int taskIndex = Integer.parseInt(temp[1]) - 1;
+            } else if (Objects.equals(commands[0], "unmark") || Objects.equals(commands[0], "mark")) {
+                int taskIndex = Integer.parseInt(commands[1]) - 1;
                 Task task = data.get(taskIndex);
-                if (command.contains("unmark")) {
+                if (Objects.equals(commands[0], "unmark")) {
                     task.unmark();
                     System.out.println(Style.INDENTATION + "OK, I've marked this task as not done yet:");
-                } else if (command.contains("mark")) {
+                } else if (Objects.equals(commands[0], "mark")) {
                     task.markAsDone();
                     System.out.println(Style.INDENTATION + "Nice! I've marked this task as done:");
                 }
                 System.out.println(Style.INDENTATION + Style.HALF_INDENTATION + task + "\n");
-            } else if (command.contains("deadline") || command.contains("event") || command.contains("todo")) {
-                String temp[] = command.split(" ", 2);
+            } else if (Objects.equals(commands[0], "deadline") || Objects.equals(commands[0], "event")
+                        || Objects.equals(commands[0], "todo")) {
                 Task task = new Task("null");
 
-                if (command.contains("deadline")) {
+                if (Objects.equals(commands[0], "deadline")) {
                     try {
-                        String[] taskDetails = temp[1].split(" /by ");
+                        String[] taskDetails = commands[1].split(" /by ");
                         task = new Deadline(taskDetails[0], taskDetails[1]);
                     } catch (ArrayIndexOutOfBoundsException e) {
                         throw new DukeException("The description or date time of a deadline cannot be empty.");
                     }
-                } else if (command.contains("event")) {
+                } else if (Objects.equals(commands[0], "event")) {
                     try {
-                        String[] taskDetails = temp[1].split(" /at ");
+                        String[] taskDetails = commands[1].split(" /at ");
                         task = new Event(taskDetails[0], taskDetails[1]);
                     } catch (ArrayIndexOutOfBoundsException e) {
                         throw new DukeException("The description or date time of an event cannot be empty.");
                     }
-                } else if (command.contains("todo")) {
+                } else if (Objects.equals(commands[0], "todo")) {
                     try {
-                        task = new ToDo(temp[1]);
+                        task = new ToDo(commands[1]);
                     } catch (ArrayIndexOutOfBoundsException e) {
                         throw new DukeException("The description of a todo cannot be empty.");
                     }
@@ -82,9 +83,8 @@ public class Duke {
                 System.out.println(Style.INDENTATION + Style.HALF_INDENTATION + task);
                 System.out.println(Style.INDENTATION + "Now you have " + data.size() + " "
                         + taskOrTasks + " in the list.\n");
-            } else if (command.contains("delete")) {
-                String[] temp = command.split(" ");
-                int taskIndex = Integer.parseInt(temp[1]) - 1;
+            } else if (Objects.equals(commands[0], "delete")) {
+                int taskIndex = Integer.parseInt(commands[1]) - 1;
                 Task task = data.get(taskIndex);
                 data.remove(taskIndex);
 
