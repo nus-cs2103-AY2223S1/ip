@@ -2,35 +2,26 @@ import java.util.Scanner;
 
 public class Duke {
     // Class Fields
+    private static final String logo = " ___  ___  __ __ \n"
+                                     + "| . \\| __>|  \\  \\\n"
+                                     + "|   /| _> |     |\n"
+                                     + "|_\\_\\|___>|_|_|_|";
     private static final String SPACER = "----------------------------------------------------";
-    private static final String WELCOME = "こんにちは (Konnichiwa)! Rem だよ! :>\n"
-            + "今日は何ができますか? (What can I do for you today?)\n"
-            + SPACER;
+    private static final String WELCOME = "こんにちは (Konnichiwa)! Rem だよ! (I'm Rem!) :>\n"
+            + "今日は何ができますか? (What can I do for you today?)";
 
     // Class Methods
     private void start() {
-        String logo2 = " ____        _        \n"
-                    + "|  _ \\ _   _| | _____ \n"
-                    + "| | | | | | | |/ / _ \\\n"
-                    + "| |_| | |_| |   <  __/\n"
-                    + "|____/ \\__,_|_|\\_\\___|";
-        String logo = " _____\n"
-                    + "|  _  \\ \n"
-                    + "| |_| / \n"
-                    + "| | \\ \\ \n"
-                    + "|_|  \\_\\ \n";
-
-        System.out.println("Hello from\n" + logo2);
-        System.out.println(logo);
-        System.out.println(SPACER);
+        System.out.println(logo + "\n");
         System.out.println(WELCOME);
+        System.out.println(SPACER);
     }
 
     private void getInput() {
         String input;
         Scanner sc = new Scanner(System.in);
 
-        // Keep
+        // Keep input on standby until user enters "bye"
         while (true) {
             System.out.print(">> ");
             input = sc.nextLine();
@@ -44,6 +35,6 @@ public class Duke {
     public static void main(String[] args) {
         Duke dk = new Duke();
         dk.start();
-        //dk.getInput();
+        dk.getInput();
     }
 }
