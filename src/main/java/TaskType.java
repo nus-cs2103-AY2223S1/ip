@@ -1,4 +1,10 @@
+/**
+ * Enums for the possible tasks Duke can handle.
+ */
 public enum TaskType {
+    /**
+     * A to do task, which only has a description and no tied date/ time.
+     */
     TODO {
         @Override
         public ToDo validateCommand(String cmd) throws DukeException {
@@ -10,7 +16,11 @@ public enum TaskType {
                         "The description of a todo cannot be empty!");
             }
         }
-    }, EVENT {
+    },
+    /**
+     * An event task, which has a description and start/end datetime.
+     */
+    EVENT {
         @Override
         public Event validateCommand(String cmd) throws DukeException {
             if (cmd.matches("(?i)^event\\s.+\\s\\/(at)\\s.+")) {
@@ -21,7 +31,11 @@ public enum TaskType {
                         "\nMake sure you follow the format: event [description] /at [event datetime]");
             }
         }
-    }, DEADLINE {
+    },
+    /**
+     * A deadline task, which has a description and needs to be done before a specific date/time.
+     */
+    DEADLINE {
         @Override
         public Deadline validateCommand(String cmd) throws DukeException {
             if (cmd.matches("(?i)^deadline\\s.+\\s\\/(by)\\s.+")) {
@@ -34,5 +48,13 @@ public enum TaskType {
         }
     };
 
+    /**
+     * Takes in a user's command and validates that it is a valid command (follows the
+     * required format) based on the TaskType.
+     *
+     * @param cmd The user's command
+     * @return The task created by the command, provided the command is valid
+     * @throws DukeException Exception thrown when the provided command is invalid.
+     */
     public abstract Task validateCommand(String cmd) throws DukeException;
 }

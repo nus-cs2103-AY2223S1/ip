@@ -1,8 +1,14 @@
 import java.util.LinkedList;
 
+/**
+ * A task list is used to store tasks.
+ */
 public class TaskList {
     private LinkedList<Task> tasks = new LinkedList<>();
 
+    /**
+     * Constructor for a task list.
+     */
     public TaskList() {
         this.tasks = new LinkedList<>();
     }
@@ -50,6 +56,7 @@ public class TaskList {
      * Marks the specified task number as not done, if it exists.
      *
      * @param i The task number to be marked as not done
+     * @throws DukeException An exception is thrown when the specified task does not exist
      */
     public String markTaskNotDone(int i) throws DukeException {
         isValidTask(i);
@@ -58,12 +65,27 @@ public class TaskList {
         return (String.format("OK, I've marked this task as not done yet:\n %s", task));
     }
 
+    /**
+     * Adds a specified task to the task list.
+     *
+     * @param task The task to be added to the task list
+     * @return String representation of task completion, displays task added and number
+     *         of tasks in the task list
+     */
     public String addTask(Task task) {
         tasks.add(task);
         return (String.format("Got it. I've added this task:\n" +
                 "  %s\nNow you have %d tasks in the list.", task, tasks.size()));
     }
 
+    /**
+     * Deletes a specified task from the task list.
+     *
+     * @param i The task number of the task to be deleted from the task list
+     * @return String representation of the task deletion, displays task removed and
+     *         the number of remaining tasks in the task list
+     * @throws DukeException Exception thrown when the specified task does not exist
+     */
     public String deleteTask(int i) throws DukeException {
         isValidTask(i);
         Task task = tasks.remove(i - 1);
