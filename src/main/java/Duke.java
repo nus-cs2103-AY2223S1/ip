@@ -60,7 +60,7 @@ public class Duke {
                     print(curr);
                 } else if (cmd.startsWith("event")) {
                     if (cmd.length() <= 6) {
-                        throw new DukeException("Please enter an and date :)");
+                        throw new DukeException("Please enter an event and date :)");
                     }
                     String[] cmds = cmd.split(" /at ");
                     Task curr = new Event(cmds[0], cmds[1]);
