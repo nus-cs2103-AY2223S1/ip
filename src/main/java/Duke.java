@@ -16,15 +16,25 @@ public class Duke {
     // Keyword to quit the program
     private static final String EXIT = "bye";
 
+    /**
+     * Method to start the program.
+     */
     private static void greet() {
         System.out.println("Hello I am\n" + Duke.LOGO);
         System.out.println("May I help you?");
     }
 
+    /**
+     * Method to echo user input (except 'bye').
+     * @param input the message that user type
+     */
     private static void echo(String input) {
         System.out.println(Duke.ARROW + input);
     }
 
+    /**
+     * Method to exit when user type 'bye'.
+     */
     private static void exit() {
         System.out.println("Great that you joined. See you soon. Bye!");
     }
