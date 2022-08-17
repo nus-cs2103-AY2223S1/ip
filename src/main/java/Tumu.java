@@ -115,14 +115,14 @@ public class Tumu {
         }
     }
 
-    private static void markTask(int oneIndexedNum) {
+    private static void markTask(int oneIndexedNum) throws MarkNoTaskException, MarkOutOfBoundsException {
         /**
          * Mark the oneIndexedNumth Task in userTasks.
          */
         if (oneIndexedNum < 1 || oneIndexedNum > userTasks.size()) {
             //Specified index from user is out of bounds of list.
-            if (userTasks.isEmpty()) System.out.println("\tNo tasks currently available. Add a task before marking!");
-            else System.out.println("\tSpecified index is out of bounds, please key a value from 1 to " + userTasks.size());
+            if (userTasks.isEmpty()) throw new MarkNoTaskException();
+            else throw new MarkOutOfBoundsException(userTasks.size());
         } else {
             Task task = userTasks.get(oneIndexedNum - 1);
             task.markDone();
