@@ -32,6 +32,15 @@ public class Duke {
         public boolean getIsDone() {
             return this.isDone;
         }
+
+        public String getDescription() {
+            return this.description;
+        }
+
+        @Override
+        public String toString() {
+            return "["+ this.getStatusIcon()+"] "+ this.getDescription();
+        }
     }
 
     public static ArrayList<Task> storage = new ArrayList<Task>();
@@ -54,7 +63,7 @@ public class Duke {
                 System.out.println("No items have been added to the list");
             } else {
                 for (int i = 0; i < storage.size(); i++) {
-                    System.out.println((i + 1) + ". " + "[" + storage.get(i).getStatusIcon() + "] " + storage.get(i).description);
+                    System.out.println((i + 1) + ". " + storage.get(i).toString() );
                 }
             }
             list();
@@ -64,7 +73,7 @@ public class Duke {
             if (Integer.parseInt(text.replace("mark ", "")) - 1 < storage.size() && Integer.parseInt(text.replace("mark ", "")) > 0) {
                 if (!storage.get(Integer.parseInt(text.replace("mark ", "")) - 1).getIsDone()) {
                     storage.get(Integer.parseInt(text.replace("mark ", "")) - 1).setIsDone(true);
-                    System.out.println("Nice! I've marked this task as done \n" + "[" + storage.get(Integer.parseInt(text.replace("mark ", "")) - 1).getStatusIcon() + "] " + storage.get(Integer.parseInt(text.replace("mark ", "")) - 1).description);
+                    System.out.println("Nice! I've marked this task as done \n" + storage.get(Integer.parseInt(text.replace("mark ", "")) - 1).toString());
                 } else {
                     System.out.println("This task is already marked done");
                 }
@@ -76,7 +85,7 @@ public class Duke {
             if (Integer.parseInt(text.replace("unmark ", "")) - 1 < storage.size() && Integer.parseInt(text.replace("unmark ", "")) > 0) {
                 if (storage.get(Integer.parseInt(text.replace("unmark ", "")) - 1).getIsDone()) {
                     storage.get(Integer.parseInt(text.replace("unmark ", "")) - 1).setIsDone(false);
-                    System.out.println("Ok, I've marked this task as not done yet \n" + "[" + storage.get(Integer.parseInt(text.replace("unmark ", "")) - 1).getStatusIcon() + "] " + storage.get(Integer.parseInt(text.replace("unmark ", "")) - 1).description);
+                    System.out.println("Ok, I've marked this task as not done yet \n" + storage.get(Integer.parseInt(text.replace("unmark ", "")) - 1).toString() );
                 } else {
                     System.out.println("This task has already been marked not done");
                 }
