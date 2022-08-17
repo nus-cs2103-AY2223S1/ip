@@ -22,6 +22,12 @@ public class TaskModel {
         return new TaskResponse(newTask, tasks.size());
     }
 
+    public TaskResponse addDeadline(String description, String by) {
+        Task deadline = new Deadline(description, by);
+        tasks.add(deadline);
+        return new TaskResponse(deadline, tasks.size());
+    }
+
     // taskId from 1-length
     public Task markTask(Integer taskId) throws IllegalArgumentException {
         try {

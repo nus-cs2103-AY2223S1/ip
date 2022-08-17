@@ -23,10 +23,10 @@ public class CommandRunner {
         Command add = new TodoCommand(taskModel);
         Command mark = new MarkCommand(taskModel);
         Command unmark = new UnmarkCommand(taskModel);
+        Command deadline = new DeadlineCommand(taskModel);
         Command exit = new ExitCommand();
 
-
-        Command[] commands = new Command[] { list, add, mark, exit, unmark };
+        Command[] commands = new Command[] { list, add, mark, exit, unmark, deadline };
         commandMap = new HashMap<>();
 
         for (int i = 0; i < commands.length; i++) {

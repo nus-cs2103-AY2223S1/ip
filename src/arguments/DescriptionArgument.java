@@ -18,7 +18,6 @@ public class DescriptionArgument extends Argument<String> {
             if (desc.trim().equals("")) {
                 throw new EmptyArgumentException("The description should not be empty!");
             }
-            System.out.println(desc.trim().equals(""));
         } catch (IllegalArgumentException ex) {
             throw new IllegalArgumentException("This command needs a non-empty description.");
         } catch (EmptyArgumentException e) {
