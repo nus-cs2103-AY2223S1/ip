@@ -19,8 +19,33 @@ public class Duke {
         }
     }
 
+    public static String commandGuide(String keyword, Command cmd) {
+        String msg = "";
+        switch (cmd) {
+            case TODO:
+                msg = "  Type \"" + keyword + " <description>\" to add a new todo.";
+                break;
+            case DEADLINE:
+                msg = "  Type \"" + keyword + " <description> /<time>\" to add a new deadline.";
+                break;
+            case EVENT:
+                msg = "  Type \"" + keyword + " <description> /<time>\" to add a new event.";
+                break;
+            case MARK:
+                msg = "  Type \"" + keyword + " <task number>\" to mark a task as complete.";
+                break;
+            case UNMARK:
+                msg = "  Type \"" + keyword + " <task number>\" to mark a task as incomplete.";
+                break;
+            case DELETE:
+                msg = "  Type \"" + keyword + " <task number>\" to delete a task.";
+                break;
+        }
+        return msg;
+    }
+
     // overload method
-    public static void addTask(String taskType, String description) {
+    public static void addTask(String description) {
         ToDo todo = new ToDo(description);
         taskList.add(todo);
         System.out.println("  Seriously? Another one?\n" + "  Give me strength...\n"
@@ -90,20 +115,20 @@ public class Duke {
                 list();
             } else if (keyword.compareTo("mark") == 0) {
                 if (parsed.length < 2 || parsed[1].isBlank()) {
-                    throw new MissingTaskNumberException("  Type \"mark <task number>\" to mark a task as complete.");
+                    throw new MissingTaskNumberException(commandGuide(keyword, Command.MARK));
                 }
                 int num = Integer.parseInt(parsed[1]);
                 mark(num);
             } else if (keyword.compareTo("unmark") == 0) {
                 if (parsed.length < 2 || parsed[1].isBlank()) {
                     // replace messages using enums
-                    throw new MissingTaskNumberException("  Type \"unmark <task number>\" to mark a task as complete.");
+                    throw new MissingTaskNumberException(commandGuide(keyword, Command.UNMARK));
                 }
                 int num = Integer.parseInt(parsed[1]);
                 unmark(num);
             } else if (keyword.compareTo("delete") == 0) {
                 if (parsed.length < 2 || parsed[1].isBlank()) {
-                    throw new MissingTaskNumberException("  Type \"delete <task number>\" to delete a task.");
+                    throw new MissingTaskNumberException(commandGuide(keyword, Command.DELETE));
                 }
                 int num = Integer.parseInt(parsed[1]);
                 deleteTask(num);
@@ -111,38 +136,38 @@ public class Duke {
             } else if (keyword.compareTo("todo") == 0) {
                 if (parsed.length < 2 || parsed[1].isBlank()) {
                     // replace messages using enums
-                    throw new MissingDescriptionException("  Type \"todo <description>\" to add a new todo.");
+                    throw new MissingDescriptionException(commandGuide(keyword, Command.TODO));
                 }
-                addTask(keyword, parsed[1]);
+                addTask(parsed[1]);
             } else if (keyword.compareTo("deadline") == 0) {
                 // handles case where only "deadline" or "deadline<whitespace>" is entered
                 if (parsed.length < 2 || parsed[1].isBlank()) {
-                    throw new MissingDescriptionException("  Type \"deadline <description> /<time>\" to add a new deadline.");
+                    throw new MissingDescriptionException(commandGuide(keyword, Command.DEADLINE));
                 } else {
                     String[] parsedTask = parsed[1].split(" /", 2); // only splits at first instance of /
                     // handles case where description is an empty string/only made up of whitespace
                     if ((parsedTask.length < 2 && parsedTask[0].isBlank())
                             || parsed[1].trim().startsWith("/")) {
-                        throw new MissingDescriptionException("  Type \"deadline <description> /<time>\" to add a new deadline.");
+                        throw new MissingDescriptionException(commandGuide(keyword, Command.DEADLINE));
                     // case where description is filled in but not the deadline (deadline is either blank or whitespace)
                     } else if ((parsedTask.length < 2 && !parsedTask[0].startsWith("/"))
                             || parsedTask[1].isBlank()) {
-                        throw new MissingTimeException("  Type \"deadline <description> /<time>\" to add a new deadline.");
+                        throw new MissingTimeException(commandGuide(keyword, Command.DEADLINE));
                     } else {
                         addTask(keyword, parsedTask[0], parsedTask[1]);
                     }
                 }
             } else if (keyword.compareTo("event") == 0) {
                 if (parsed.length < 2 || parsed[1].isBlank()) {
-                    throw new MissingDescriptionException("  Type \"event <description> /<time>\" to add a new event.");
+                    throw new MissingDescriptionException(commandGuide(keyword, Command.EVENT));
                 } else {
                     String[] parsedTask = parsed[1].split(" /", 2); // only splits at first instance of /
                     if ((parsedTask.length < 2 && parsedTask[0].isBlank())
                             || parsed[1].trim().startsWith("/")) {
-                        throw new MissingDescriptionException("  Type \"event <description> /<time>\" to add a new event.");
+                        throw new MissingDescriptionException(commandGuide(keyword, Command.EVENT));
                     } else if ((parsedTask.length < 2 && !parsedTask[0].startsWith("/"))
                             || parsedTask[1].isBlank()) {
-                        throw new MissingTimeException("  Type \"event <description> /<time>\" to add a new event.");
+                        throw new MissingTimeException(commandGuide(keyword, Command.EVENT));
                     } else {
                         addTask(keyword, parsedTask[0], parsedTask[1]);
                     }
