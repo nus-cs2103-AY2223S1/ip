@@ -1,12 +1,15 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
+
 public class Bob {
     public static void main(String[] args) {
         ArrayList<Task> tasks = new ArrayList<>(100);
         Scanner scanner = new Scanner(System.in);
         System.out.println("hey, i'm bob!\ndo you need help?");
         String reply = scanner.nextLine();
+
+        int taskCount = 0;
 
         while (!reply.equalsIgnoreCase("bye")) {
             if (reply.equalsIgnoreCase("list")) {
@@ -34,9 +37,29 @@ public class Bob {
                     System.out.println("which task to unmark?");
                 }
             } else {
-                System.out.println("now in your list: " + reply);
-                Task newTask = new Task(reply);
-                tasks.add(newTask);
+                if (reply.toLowerCase().matches("todo(.*)")) {
+                    String taskName = reply.substring(5);
+                    ToDo newTask = new ToDo(taskName);
+                    tasks.add(newTask);
+                    taskCount = taskCount + 1;
+                    System.out.println("okay! new task: " + "\n" + newTask.toString() + "\njust " + taskCount + " tasks left!");
+                } else if (reply.toLowerCase().matches("deadline(.*)")) {
+                    String[] temp = reply.split("/");
+                    String taskName = temp[0].substring(9);
+                    String time = temp[1].substring(3);
+                    Deadline newTask = new Deadline(taskName, time);
+                    tasks.add(newTask);
+                    taskCount = taskCount + 1;
+                    System.out.println("okay! new task: " + "\n" + newTask.toString() + "\njust " + taskCount + " tasks left!");
+                } else if (reply.toLowerCase().matches("event(.*)")) {
+                    String[] temp = reply.split("/");
+                    String taskName = temp[0].substring(6);
+                    String time = temp[1].substring(3);
+                    Event newTask = new Event(taskName, time);
+                    tasks.add(newTask);
+                    taskCount = taskCount + 1;
+                    System.out.println("okay! new task: " + "\n" + newTask.toString() + "\njust " + taskCount + " tasks left!");
+                }
             }
             reply = scanner.nextLine();
         }
