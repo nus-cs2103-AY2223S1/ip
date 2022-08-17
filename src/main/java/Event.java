@@ -4,6 +4,7 @@ public class Event extends Task {
     public Event(boolean isDone, String text, String time) {
         super(isDone, text);
         this.time = time;
+        System.out.println(this.toString());
     }
 
     @Override

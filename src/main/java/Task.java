@@ -5,6 +5,7 @@ public class Task {
     public Task(boolean isDone, String text) {
         this.isDone = isDone;
         this.text = text;
+        System.out.printf("Got it. I've added this task:\n  ");
     }
 
     public void mark() {

@@ -4,6 +4,7 @@ public class Deadline extends Task {
     public Deadline(boolean isDone, String text, String deadline) {
         super(isDone, text);
         this.deadline = deadline;
+        System.out.println(this.toString());
     }
 
     @Override
