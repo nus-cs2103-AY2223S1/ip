@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Tumu {
     private static List<Task> userTasks = new ArrayList<>();
-    private static final String horizontalLines = "\t" + "_".repeat(40);
+    private static final String horizontalLines = "\t" + "_".repeat(60);
 
     private static final String END_CHAT_BOT_CMD = "bye";
     private static final String LIST_USER_TEXT_CMD = "list";
@@ -56,9 +56,16 @@ public class Tumu {
                     }
                     break;
                 case TODO_CMD:
-
+                    addTodoTask(sc.nextLine().trim());
+                    break;
+                case DEADLINE_CMD:
+                    addDeadlineTask(sc.nextLine().trim());
+                    break;
+                case EVENT_CMD:
+                    addEventTask(sc.nextLine().trim());
+                    break;
                 default:
-                    addTask(command);
+                    addNormalTask(command.trim());
             }
             printHorizontalLine();
 
@@ -139,13 +146,58 @@ public class Tumu {
         }
     }
 
-    private static void addTask(String userInput) {
+    private static void addTodoTask(String userInput) {
+        /**
+         * Adds a todo task to list.
+         */
+
+        TaskTypeFormatting(new Todo(userInput));
+    }
+
+    private static void addDeadlineTask(String userInput) {
+        /**
+         * Adds a deadline to list.
+         */
+
+        //Check for "/by", if not available then prompt user to add timing.
+        if (!userInput.contains("/by")) {
+            System.out.println("\tRemember to add a timing for the deadline using /by! (╥﹏╥)");
+        } else {
+            //Parse the string. Make sure there is no multiple "/by" statements.
+            String[] parse = userInput.replaceAll("\\s+", "").split("/by");
+            if (parse.length > 2) System.out.println("\tThere's too many timings, I'm confused. ◔_◔");
+            else TaskTypeFormatting(new Deadline(parse[0], parse[1]));
+        }
+    }
+
+    private static void addEventTask(String userInput) {
+        /**
+         * Adds an event to list.
+         */
+
+        //Check for "/at", if not available then prompt user to add timing.
+        if (!userInput.contains("/at")) {
+            System.out.println("\tRemember to add a timing for the event using /at! (╥﹏╥)");
+        } else {
+            //Parse the string. Make sure there is no multiple "/at" statements.
+            String[] parse = userInput.replaceAll("\\s+", "").split("/at");
+            if (parse.length > 2) System.out.println("\tThere's too many timings, I'm confused. ◔_◔");
+            else TaskTypeFormatting(new Event(parse[0], parse[1]));
+        }
+    }
+
+    private static void addNormalTask(String userInput) {
         /**
          * Adds userInput as a task.
          */
 
-        System.out.println("\tI've added a task into your list:\n\t\t" + userInput);
-        userTasks.add(new Task(userInput, false));
+        TaskTypeFormatting(new NormalTask(userInput));
+    }
+
+    private static void TaskTypeFormatting(Task task) {
+        System.out.println("\tI've added a task into your list:\n\t\t" + task);
+        userTasks.add(task);
+        System.out.println(String.format("\tYou have %d task(s) in the list.", userTasks.size()));
     }
 
     private static void printHorizontalLine() {

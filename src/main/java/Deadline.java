@@ -1,8 +1,8 @@
 public class Deadline extends Task {
     private String timing;
 
-    public Deadline(String taskDescription, boolean completedTask, String timing) {
-        super(taskDescription, completedTask);
+    public Deadline(String taskDescription, String timing) {
+        super(taskDescription);
         this.timing = timing;
     }
 

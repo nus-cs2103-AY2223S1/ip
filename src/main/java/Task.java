@@ -6,9 +6,9 @@ public class Task {
     private String taskDescription;
     private boolean completedTask;
 
-    public Task(String taskDescription, boolean completedTask) {
+    public Task(String taskDescription) {
         this.taskDescription = taskDescription;
-        this.completedTask = completedTask;
+        completedTask = false;
     }
 
     public void markDone() {
