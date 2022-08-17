@@ -91,7 +91,7 @@ public class Duke {
 
         tasks.add(addedTask);
         prettyPrint(String.format("Got it. I've added this task:\n" +
-                "  %s\n Now you have %d tasks in the list.", addedTask, tasks.size()));
+                "  %s\nNow you have %d tasks in the list.", addedTask, tasks.size()));
     }
 
     /**
