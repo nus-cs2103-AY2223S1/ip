@@ -19,6 +19,12 @@ then
     exit 1
 fi
 
+# delete old storage file
+rm ./data/duke.txt
+
+# run the program and generate storage file
+java -classpath ../bin Duke < preinput.txt > /dev/null
+
 # run the program, feed commands from input.txt file and redirect the output to the ACTUAL.TXT
 java -classpath ../bin Duke < input.txt > ACTUAL.TXT
 

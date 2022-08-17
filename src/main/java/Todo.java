@@ -8,6 +8,11 @@ public class Todo extends Task {
     }
 
     @Override
+    String toStorageFormat() {
+        return "T | " + super.toStorageFormat();
+    }
+
+    @Override
     public String toString() {
         return "[T]" + super.toString();
     }

@@ -10,6 +10,15 @@ public class Deadline extends Task {
         this(description, false, by);
     }
 
+    String getDate() {
+        return this.by;
+    }
+
+    @Override
+    String toStorageFormat() {
+        return "D | " + super.toStorageFormat() + " | " + this.by;
+    }
+
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + by + ")";

@@ -19,12 +19,24 @@ public class Task {
         this.isComplete = false;
     }
 
+    String getDescription() {
+        return this.description;
+    }
+
     String getStatusIcon() {
         return isComplete ? "[X]" : "[ ]";
     }
 
+    int getStatusNumber() {
+        return isComplete ? 1 : 0;
+    }
+
+    String toStorageFormat() {
+        return this.getStatusNumber() + " | " + this.description;
+    }
+
     @Override
     public String toString() {
-        return String.format("%s %s", getStatusIcon(), description);
+        return String.format("%s %s", this.getStatusIcon(), description);
     }
 }
