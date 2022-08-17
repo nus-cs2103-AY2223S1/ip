@@ -49,11 +49,18 @@ public class Duck {
                             System.out.println("Quack, unmarked! " + currentMarkedItem);
                             break;
                         default:
-                            System.out.println("Speak properly! Quack!");
+                            System.out.println("Quack!?! What does that even mean!?!?!");
                             break;
                     }
                 } catch (ArrayIndexOutOfBoundsException a) {
-                    System.out.println("Speak properly! Quack!");
+                    if (word.toUpperCase().contains("TODO") ||
+                            word.toUpperCase().contains("DEADLINE") ||
+                            word.toUpperCase().contains("EVENT"))
+                    {
+                        System.out.println("Quack!!!!! " + word.toUpperCase() + " Arguments cannot be blank!");
+                    } else {
+                        System.out.println("Speak properly! Quack!");
+                    }
                 }
             }
             /*if (word.equals("list")) {

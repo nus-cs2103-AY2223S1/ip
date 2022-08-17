@@ -1,7 +1,3 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
+Hello! Got any grapes?
+Added todo [T] [ ] asd Quack!
+Quack!
