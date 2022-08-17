@@ -12,48 +12,48 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
         String input = "";
 
-        String[] welcomeMsgs = {"Hello I'm Duke!","What can I do for you?"};
-        Duke.printFormatted(welcomeMsgs);
+        String welcomeMsg = "Hello I'm Duke!\n\t  What can I do for you?";
+        Duke.printText(welcomeMsg);
 
         String[] textList = new String[100];
         int numOfItems = 0;
         while (input != "bye") {
-            input = sc.next();
+            input = sc.nextLine();
             if (input.equalsIgnoreCase("bye")) {
                 break;
             } else if (input.equalsIgnoreCase("list")) {
-                Duke.printFormatted(textList);
+                Duke.printList(textList);
             } else {
-                textList[numOfItems] = String.format("%d. %s", numOfItems + 1, input);
+                textList[numOfItems] = input;
                 numOfItems += 1;
-                Duke.printFormatted("Added " + input);
+                Duke.printText("Added " + input);
             }
         }
 
-        String[] exitMsgs = {"Good bye!", "Hope to see you soon!"};
-        Duke.printFormatted(exitMsgs);
+        String exitMsgs = "Good bye!\n\t  Hope to see you soon!";
+        Duke.printText(exitMsgs);
     }
 
     /**
      * Print the output in customised format.
-     * @param texts Array of sentences to print
+     * @param list The list to print
      */ 
-    public static void printFormatted(String[] texts) {
+    public static void printList(String[] list) {
         System.out.println("\t\u2015\u2015\u2015");
-        for (String line : texts) {
-            if (line == null) {
+        for (int i = 0; i < list.length; i++) {
+            if (list[i] == null) {
                 break;
             }
-            System.out.println("\t  " + line);
+            System.out.println(String.format("\t  %d.[ ] %s", i, list[i]));
         }
         System.out.println("\t\u2015\u2015\u2015");
     }
 
-        /**
+    /**
      * Print the output in customised format.
-     * @param text The single sentence to print
+     * @param text The text to print
      */ 
-    public static void printFormatted(String text) {
+    public static void printText(String text) {
         System.out.println("\t\u2015\u2015\u2015");
         System.out.println("\t  " + text);
         System.out.println("\t\u2015\u2015\u2015");
