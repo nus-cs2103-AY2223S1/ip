@@ -1,5 +1,3 @@
-
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -30,19 +28,22 @@ public class Duke {
                     break;
                 } else if (userInput.equals("list")) {
                     printList();
-                } else if (split.length == 2 && split[0].equals("mark") && isNumeric(split[1])) {
-                    markDone(Integer.parseInt(split[1]));
-                } else if (split.length == 2 && split[0].equals("unmark") && isNumeric(split[1])) {
-                    markNotDone(Integer.parseInt(split[1]));
-                } else if (split.length == 2 && split[0].equals("delete") && isNumeric(split[1])) {
-                    delete(Integer.parseInt(split[1]));
                 } else if (split[0].equals("todo")) {
                     handleTodo(split);
                 } else if (split[0].equals("deadline")) {
                     handleDeadline(split);
                 } else if (split[0].equals("event")) {
                     handleEvent(split);
-                } else {
+                } else if (split.length == 2 && isNumeric(split[1])) {
+                    String keyword = split[0];
+                    int index = Integer.parseInt(split[1]);
+                    switch (keyword) {
+                        case "mark" : markDone(index);
+                        case "unmark" : markNotDone(index);
+                        case "delete" : delete(index);
+                    }
+                }
+                else {
                     throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
             } catch (DukeException error) {
@@ -194,3 +195,4 @@ public class Duke {
         return input.matches("^[0-9]*$");
     }
 }
+

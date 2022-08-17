@@ -1,9 +1,14 @@
 todo task 1
 event task 2 /at time 1
 deadline task 3 /by time 2
+todo
+event failure 1
+deadline failure 2
 list
 mark 1
 list
 unmark 1
+list
+delete 1
 list
 bye
