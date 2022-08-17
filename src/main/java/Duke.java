@@ -5,6 +5,9 @@ public class Duke {
     private static boolean END;
     private static Memory memory;
 
+    enum Level {
+        bye, todo, deadline
+    }
     /*
     Wraps the text with lines on top and below
      */
@@ -21,7 +24,7 @@ public class Duke {
             System.out.println(wrapper("Bye. Hope to see you again soon!"));
         } else if (input.equals("list")) {
             System.out.println(wrapper(memory.toString()));
-        } else if (input.length() > 3 && input.substring(0, 4).equals("mark")) {
+        } else if (input.startsWith("mark")) {
             if (input.length() == 4) {
                 throw new DukeException("☹ OOPS!!! The task you want to mark cannot be empty.");
             }
@@ -38,13 +41,13 @@ public class Duke {
             } else {
                 throw new DukeException("☹ OOPS!!! The task you want to mark is not here.");
             }
-        } else if (input.length() > 5 && input.substring(0, 6).equals("unmark")) {
+        } else if (input.startsWith("unmark")) {
             if (input.length() == 6) {
                 throw new DukeException("☹ OOPS!!! The task you want to unmark cannot be empty.");
             }
             String indexString = input.substring(7);
             int index = Integer.valueOf(indexString) - 1;
-            if (index > -1 && index < memory.getNumOfTask()) {
+            if (memory.checkValidIndex(index)) {
                 Task current = memory.getTask(index);
                 if (!current.getStatus()) {
                     throw new DukeException("☹ OOPS!!! The task you want to unmark is already unmarked.");
@@ -55,13 +58,13 @@ public class Duke {
             } else {
                 throw new DukeException("☹ OOPS!!! The The task you want to unmark is not here.");
             }
-        } else if(input.length() > 5 && input.substring(0, 6).equals("delete")) {
+        } else if(input.startsWith("delete")) {
             if (input.length() == 6) {
                 throw new DukeException("☹ OOPS!!! The task you want to delete cannot be empty.");
             }
             String indexString = input.substring(7);
             int index = Integer.valueOf(indexString) - 1;
-            if (index > -1 && index < memory.getNumOfTask()) {
+            if (memory.checkValidIndex(index)) {
                 Task deletedTask = memory.getTask(index);
                 memory.deleteTask(index);
                 String content = "Noted. I've removed this task:\n" + deletedTask.toString()
@@ -70,7 +73,7 @@ public class Duke {
             } else {
                 throw new DukeException("☹ OOPS!!! The The task you want to delete is not here.");
             }
-        } else if (input.length() > 3 && input.substring(0, 4).equals("todo")) {
+        } else if (input.startsWith("todo")) {
             if (input.length() == 4) {
                 throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
             }
@@ -78,7 +81,7 @@ public class Duke {
             memory.saveTask(todo);
             String message = done + "  " + todo.toString() + memory.numOfTaskToString();
             System.out.println(wrapper(message));
-        } else if (input.length() > 7 && input.substring(0, 8).equals("deadline")) {
+        } else if (input.startsWith("deadline")) {
             if (input.length() == 8) {
                 throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
             }
@@ -91,7 +94,7 @@ public class Duke {
             memory.saveTask(deadline);
             String message = done + "  " + deadline.toString() + memory.numOfTaskToString();
             System.out.println(wrapper(message));
-        } else if (input.length() > 4 && input.substring(0, 5).equals("event")) {
+        } else if (input.startsWith("event")) {
             if (input.length() == 5) {
                 throw new DukeException("☹ OOPS!!! The description of a event cannot be empty.");
             }

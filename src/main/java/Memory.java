@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 
+/*
+This class encapsulates the idea of a memory/storage of the chatbot
+ */
 public class Memory {
     private static ArrayList<Task> storage;
 
@@ -17,6 +20,10 @@ public class Memory {
 
     public int getNumOfTask() {
         return storage.size();
+    }
+
+    public boolean checkValidIndex(int index) {
+        return index > -1 && index < storage.size();
     }
 
     public void deleteTask(int index) {
