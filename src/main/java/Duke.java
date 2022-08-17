@@ -1,6 +1,17 @@
 import java.util.*;
 
 public class Duke {
+
+    public enum Command {
+        BYE,
+        LIST,
+        MARK,
+        UNMARK,
+        TODO,
+        DEADLINE,
+        EVENT,
+        DELETE
+    }
     public static void main(String[] args) {
 
         String dukeGreeting = "Hello! I'm Duke\nWhat can I do for you?";
