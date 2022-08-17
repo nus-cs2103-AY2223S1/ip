@@ -11,13 +11,25 @@ public class Duke {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?");
+        String[] arr = new String[100];
+        int count=0;
         String str = scanner.nextLine();
         while(!str.equals("bye")) {
-                System.out.println(str);
-                str = scanner.nextLine();
+            if(str.equals("list")){
+                for(int i=0;i<count;i++){
+                    System.out.println(i+1 +". "+arr[i]);
+                }
+            } else{
+                arr[count] = str;
+                count++;
+                System.out.println("added: "+str);
+            }
+
+            str = scanner.nextLine();
         }
+
         if (str.equals("bye")) {
-            System.out.println("Bye.Hope to see you again soon!");
+            System.out.println("Bye. Hope to see you again soon!");
         }
 
     }
