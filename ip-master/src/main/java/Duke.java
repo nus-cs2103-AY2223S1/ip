@@ -43,6 +43,8 @@ public class Duke {
         }
     }
 
+    // Deadline a child class of Task has the same functionality
+    // but adds on with a by field which allows users to set a deadline
     public static class Deadline extends Task {
 
         protected String by;
@@ -58,6 +60,8 @@ public class Duke {
         }
     }
 
+    // Event a child class of Task has the same functionality
+    // but adds on with an at field which allows users to set an event timing.
     public static class Event extends Task {
 
         protected String at;
@@ -72,6 +76,7 @@ public class Duke {
             return "[E]" + super.toString() + " (at: " + at + ")";
         }
     }
+    // ToDo class a child class of the task and has similar functionality.
 
     public static class ToDo extends Task {
 
