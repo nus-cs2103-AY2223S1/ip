@@ -1,21 +1,18 @@
+list
 todo
 todo todoTest
-todo todoTest2 todoTest2
 deadline
 deadline deadlineTest
-deadline deadlineTest /by
 deadline deadlineTest /by TestDay
-deadline deadlineTest2 deadlineTest2 /by TestDay2 TestDay2
 event
 event eventTest
-event eventTest /at
 event eventTest /at TestDay
-event eventTest2 eventTest2 /at TestDay2 TestDay2
 list
 mark
 mark 2
 mark -1
 mark 99
+mark three
 mark 3 please
 mark 2
 list
@@ -23,7 +20,9 @@ unmark
 unmark 2
 unmark -1
 unmark 99
-unmark 3 now
+unmark three
+unmark 3 please
 unmark 2
 list
+blah
 bye
