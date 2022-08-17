@@ -84,14 +84,51 @@
 		[T][ ] todo task-1
 	--------------------------------------------------
 	--------------------------------------------------
-	OOPS!!! Unknown command!
+	1. [T][ ] todo task-1
+	2. [D][ ] dl task-1 (by: 18-Aug, Thursday)
+	3. [E][ ] event task-1 (at: Mon, 7pm-8pm)
 	--------------------------------------------------
 	--------------------------------------------------
-	OOPS!!! Unknown command!
+	Noted. I've removed this task:
+		[T][ ] todo task-1
+	Now you have 2 tasks in the list
 	--------------------------------------------------
 	--------------------------------------------------
-	OOPS!!! Unknown command!
+	Noted. I've removed this task:
+		[D][ ] dl task-1 (by: 18-Aug, Thursday)
+	Now you have 1 tasks in the list
 	--------------------------------------------------
 	--------------------------------------------------
-	OOPS!!! Unknown command!
+	Noted. I've removed this task:
+		[E][ ] event task-1 (at: Mon, 7pm-8pm)
+	Now you have 0 tasks in the list
+	--------------------------------------------------
+	--------------------------------------------------
+	OOPS!!! Invalid task selected!
+	--------------------------------------------------
+	--------------------------------------------------
+	OOPS!!! Invalid task selected!
+	--------------------------------------------------
+	--------------------------------------------------
+	Got it. I've added this task:
+		[T][ ] todo task-2
+	Now you have 1 tasks in the list
+	--------------------------------------------------
+	--------------------------------------------------
+	Got it. I've added this task:
+		[D][ ] dl task-2 (by: 19-Aug, Friday)
+	Now you have 2 tasks in the list
+	--------------------------------------------------
+	--------------------------------------------------
+	Got it. I've added this task:
+		[E][ ] event task-2 (at: Tue, 7pm-8pm)
+	Now you have 3 tasks in the list
+	--------------------------------------------------
+	--------------------------------------------------
+	1. [T][ ] todo task-2
+	2. [D][ ] dl task-2 (by: 19-Aug, Friday)
+	3. [E][ ] event task-2 (at: Tue, 7pm-8pm)
+	--------------------------------------------------
+	--------------------------------------------------
+	Bye. Hope to see you again soon!
 	--------------------------------------------------

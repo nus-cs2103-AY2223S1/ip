@@ -21,7 +21,14 @@ unmark 4
 unmark 3
 unmark 2
 unmark 1
-lst
-add
-abc
-123
+list
+delete 1
+delete 1
+delete 1
+delete 1
+delete a
+todo todo task-2
+deadline dl task-2 /by 19-Aug, Friday
+event event task-2 /at Tue, 7pm-8pm
+list
+bye
