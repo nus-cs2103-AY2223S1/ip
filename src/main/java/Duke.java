@@ -23,6 +23,12 @@ public class Duke {
         while (!str.equals("bye")) {
 
             if (str.equals("list")) {
+                System.out.println("Here are the tasks in your current list:");
+
+                if (arrayList.size() == 0) {
+                    System.out.println("  Wow! You have no tasks to do currently!!");
+                }
+
                 for (int i = 0; i < arrayList.size(); i++) {
                     int j = i + 1;
                     System.out.println(j + "." + arrayList.get(i));
@@ -31,14 +37,21 @@ public class Duke {
                 int i = Integer.parseInt(strArray[1]) - 1;
                 arrayList.get(i).markDone();
 
-                System.out.println("Nice! You actually did something!:");
-                System.out.println(arrayList.get(i));
+                System.out.println("Nice! You actually did something:");
+                System.out.println(" " + arrayList.get(i));
             } else if (str.equals("unmark")) {
                 int i = Integer.parseInt(strArray[1]) - 1;
                 arrayList.get(i).markNotDone();
 
                 System.out.println("OK, I've marked this task as not done yet:");
-                System.out.println(arrayList.get(i));
+                System.out.println(" " + arrayList.get(i));
+            } else if (str.equals("delete")) {
+                int i = Integer.parseInt(strArray[1]) - 1;
+                Task deletedTask = arrayList.remove(i);
+
+                System.out.println("Noted. I've removed this task:");
+                System.out.println(" " + deletedTask);
+                System.out.println("Now you have " + arrayList.size() + " task(s) in the list.");
             } else if (str.equals("todo") || str.equals("deadline") || str.equals("event")) {
 
                 String taskname = "";
@@ -67,7 +80,7 @@ public class Duke {
                     Task todo = new Todo(taskname.trim());
                     arrayList.add(todo);
                     System.out.println("Got it. I've added this task:");
-                    System.out.println(todo);
+                    System.out.println(" " + todo);
                     System.out.println("Now you have " + arrayList.size() + " task(s) in the list.");
 
                 } else if (str.equals("deadline")) {
@@ -78,7 +91,7 @@ public class Duke {
                     Task deadline = new Deadline(taskname.trim(), time.trim());
                     arrayList.add(deadline);
                     System.out.println("Got it. I've added this task:");
-                    System.out.println(deadline);
+                    System.out.println(" " + deadline);
                     System.out.println("Now you have " + arrayList.size() + " task(s) in the list.");
 
                 } else {
@@ -89,7 +102,7 @@ public class Duke {
                     Task event = new Event(taskname.trim(), time.trim());
                     arrayList.add(event);
                     System.out.println("Got it. I've added this task:");
-                    System.out.println(event);
+                    System.out.println(" " + event);
                     System.out.println("Now you have " + arrayList.size() + " task(s) in the list.");
                 }
             } else {
