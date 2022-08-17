@@ -19,7 +19,7 @@ public class InvalidArgumentException extends DukeException {
                 break;
             case mark:
             case unmark:
-                message += "\nPlease input a integer within the range of the tasks number.";
+                message += "\nPlease input a integer within the range of the tasks.";
                 break;
         }
         return "☹ OOPS!!! The description of the " +  this.command + " command is invalid!" + message;
