@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Ui {
-    String line = "____________________________________________________________";
+    protected String line = "____________________________________________________________";
 
     public void greeting() {
         String greetings = "\nHello! I'm Duke\n" + "What can I do for you?\n";
@@ -19,13 +19,25 @@ public class Ui {
 
     public void list(ArrayList<Task> taskList) {
         System.out.println(line);
+        System.out.println("Here are the tasks in your list:");
         int count = 1;
         for (Task task : taskList) {
             String taskName = task.toString();
-            System.out.println(count + ". " + taskName);
+            String statusIcon = task.getStatusIcon();
+            System.out.println(count + ".[" + statusIcon + "] " + taskName);
             count++;
         }
 
+        System.out.println(line);
+    }
+
+    public void marked(Task task){
+        String taskName = task.toString();
+        String statusIcon = task.getStatusIcon();
+
+        System.out.println(line);
+        System.out.println("Nice! I've marked this task as done:");
+        System.out.println("[" + statusIcon + "] " + taskName);
         System.out.println(line);
     }
 
@@ -33,4 +45,5 @@ public class Ui {
         String exitLine = "Bye. Hope to see you again soon!";
         System.out.println(line + "\n" + exitLine + "\n" + line);
     }
+
 }
