@@ -1,10 +1,20 @@
 package duke.tasks;
 
+import duke.Duke;
 import duke.DukeException;
 import utils.Constants;
 import utils.DukeUtils;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class TaskManager {
@@ -28,7 +38,7 @@ public class TaskManager {
     }
 
     public void addTask(String inputCommand, String inputDesc) {
-        Task task = TaskFactory.createTask(inputCommand, inputDesc);
+        Task task = TaskFactory.createTask(TaskType.valueOf(inputCommand.toUpperCase()), inputDesc);
         tasks.add(task);
         DukeUtils.printMessages(
                 Constants.MSG_TASK_ADDED,
@@ -52,6 +62,59 @@ public class TaskManager {
 
     public void unmarkTask(String inputDesc) throws DukeException {
         updateTaskStatus(inputDesc, false);
+    }
+
+    public void saveTasksToDisk() {
+        Path path = Paths.get(Duke.DATA_RELATIVE_URL);
+        try {
+            new PrintWriter(Duke.DATA_RELATIVE_URL).close();
+            for (Task t : tasks) {
+                Files.writeString(path, t.savedString(), StandardOpenOption.APPEND);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void readTasksFromDisk() {
+        BufferedReader reader;
+        try {
+            reader = new BufferedReader((new FileReader(Duke.DATA_RELATIVE_URL)));
+            String line = reader.readLine();
+
+            String[] taskArray;
+            String taskType, description, time;
+            boolean isDone;
+
+            while (line != null) {
+                taskArray = Arrays.stream(line.split("\\|")).map(String::trim).toArray(String[]::new);
+                taskType = taskArray[0];
+                isDone = taskArray[1].equals("0");
+                description = taskArray[2];
+                Task task = null;
+
+                switch (taskType) {
+                case "T":
+                    task = TaskFactory.createTask(TaskType.TODO, description);
+                    break;
+                case "D":
+                    task = TaskFactory.createTask(TaskType.DEADLINE, description + " /by " + taskArray[3]);
+                    break;
+                case "E":
+                    task = TaskFactory.createTask(TaskType.EVENT, description + " /at " + taskArray[3]);
+                    break;
+                }
+
+                if (task != null) {
+                    task.setDone(!isDone);
+                    tasks.add(task);
+                }
+
+                line = reader.readLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void updateTaskStatus(String inputDesc, boolean isDone) throws DukeException {

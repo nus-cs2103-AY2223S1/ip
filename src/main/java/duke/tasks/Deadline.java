@@ -10,6 +10,12 @@ public class Deadline extends Task {
     }
 
     @Override
+    public String savedString() {
+        String status = isDone ? "1" : "0";
+        return String.format("E | %s | %s | %s", status, description, by);
+    }
+
+    @Override
     public String toString() {
         return String.format("[D]%s %s (by: %s)", super.getStatusIcon(), description, by);
     }

@@ -2,16 +2,8 @@ package duke.tasks;
 
 public class TaskFactory {
 
-    private enum TaskType {
-        TODO, DEADLINE, EVENT
-    }
-
-    public static Task createTask(String taskType, String inputDesc) {
-        if (taskType.isEmpty()) {
-            return null;
-        }
-
-        switch (TaskType.valueOf(taskType.toUpperCase())) {
+    public static Task createTask(TaskType taskType, String inputDesc) {
+        switch (taskType) {
         case TODO:
             return new ToDo(inputDesc);
         case DEADLINE:

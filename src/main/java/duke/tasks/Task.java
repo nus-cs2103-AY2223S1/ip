@@ -17,4 +17,6 @@ public abstract class Task {
     protected void setDone(boolean isDone) {
         this.isDone = isDone;
     }
+
+    public abstract String savedString();
 }

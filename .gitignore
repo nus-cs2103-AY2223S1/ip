@@ -15,4 +15,5 @@ bin/
 
 /text-ui-test/ACTUAL.TXT
 /text-ui-test/ACTUAL-KS-Mac.TXT
-text-ui-test/EXPECTED-UNIX.TXT
+/text-ui-test/EXPECTED-UNIX.TXT
+data/

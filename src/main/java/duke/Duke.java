@@ -4,12 +4,17 @@ import duke.tasks.TaskManager;
 import utils.Constants;
 import utils.DukeUtils;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class Duke {
 
     private final TaskManager tm;
     private boolean isDukeRunning;
+    public static final String DATA_RELATIVE_URL = "./data/duke.txt";
 
     Duke() {
         tm = new TaskManager();
@@ -19,6 +24,7 @@ public class Duke {
     public void startDuke() {
         DukeUtils.printMessages(Constants.MSG_GREETINGS);
         Scanner scanner = new Scanner(System.in);
+        loadTaskData();
 
         while (isDukeRunning) {
             processCommand(scanner);
@@ -27,6 +33,22 @@ public class Duke {
         scanner.close();
         DukeUtils.printMessages(Constants.MSG_EXIT);
     }
+
+    private void loadTaskData() {
+        File dataFile = new File(DATA_RELATIVE_URL);
+        try {
+            if (!new File("./data").isDirectory()) {
+                Files.createDirectory(Paths.get("./data"));
+            }
+            if (dataFile.createNewFile()) {
+                System.out.println("First launch, file created.");
+            }
+            tm.readTasksFromDisk();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private void processCommand(Scanner scanner) {
         String[] inputs = scanner.nextLine().trim().split(" ", 2);
@@ -40,6 +62,7 @@ public class Duke {
                 tm.printTasks();
                 break;
             case BYE:
+                tm.saveTasksToDisk();
                 isDukeRunning = false;
                 break;
             case TODO:

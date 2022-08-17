@@ -10,6 +10,12 @@ public class Event extends Task {
     }
 
     @Override
+    public String savedString() {
+        String status = isDone ? "1" : "0";
+        return String.format("E | %s | %s | %s", status, description, at);
+    }
+
+    @Override
     public String toString() {
         return String.format("[E]%s %s (at: %s)", super.getStatusIcon(), description, at);
     }
