@@ -4,8 +4,12 @@ public enum Messages {
     EXIT("Goodbye! Hope to see you soon!"),
     LINE_SEPARATION("-*-*-*-*-*-*-*-*-*-*-*"),
     ADD_TASK("Added task: "),
+    ADD_TODO("Added todo: "),
+    ADD_EVENT("Added event: "),
+    ADD_DEADLINE("Added deadline: "),
     MARK_DONE("Nice! I've marked this task as done:"),
-    MARK_UNDONE(":( Stop Procrastinating! I've marked it as undone.");
+    MARK_UNDONE(":( Stop Procrastinating! I've marked it as undone."),
+    ERROR("Beep-Boop, I don't understand you :<");
 
     public String message;
 

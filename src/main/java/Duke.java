@@ -20,40 +20,42 @@ public class Duke {
      * @param message Any additional information that should be printed with the
      *                command
      */
-    private static void display(Commands command, String message) {
+    private static void display(Commands command, String... message) {
         System.out.println(Messages.LINE_SEPARATION);
         switch (command) {
             case EXIT:
                 System.out.println(Messages.EXIT);
                 break;
             case SHOW_LIST:
-                System.out.println(message);
                 break;
             case GREET:
                 System.out.println(Messages.GREET);
                 System.out.println(Messages.LOGO);
                 break;
             case ADD_TASK:
-                System.out.println(message);
+                break;
+            case ADD_TODO:
+                System.out.println(Messages.ADD_TODO);
+                break;
+            case ADD_EVENT:
+                System.out.println(Messages.ADD_EVENT);
+                break;
+            case ADD_DEADLINE:
+                System.out.println(Messages.ADD_DEADLINE);
                 break;
             case MARK_DONE:
                 System.out.println(Messages.MARK_DONE);
-                System.out.println(message);
                 break;
             case MARK_UNDONE:
                 System.out.println(Messages.MARK_UNDONE);
-                System.out.println(message);
+                break;
+            default: // Invalid command
+                System.out.println(Messages.ERROR);
+        }
+        for (String msg : message) {
+            System.out.println(msg);
         }
         System.out.println(Messages.LINE_SEPARATION);
-    }
-
-    /**
-     * Adds task to list
-     * 
-     * @param task Task description in String
-     */
-    private static void addTask(String task) {
-        tasks.addTask(new Task(task));
     }
 
     /**
@@ -66,6 +68,36 @@ public class Duke {
         System.out.println(input);
     }
 
+    /**
+     * This retrieves the user input
+     * 
+     * @param input The user input to retrieve from
+     * @param type  The type of input we are retrieving
+     * @return The argument from the
+     */
+    private static String[] retrieve_arguments(String input, Commands cmd) {
+        String[] inputs = input.split("./..."); // remove the /by
+        switch (cmd) {
+            case GET_COMMAND:
+                String[] output = { input.split(" ")[0] };
+                return output;
+            case ADD_TODO:
+                // TODO: Remove the hard-coded substring index
+                inputs[0] = inputs[0].substring(5); // user description
+                return inputs; // (descrpition)
+            case ADD_EVENT:
+                return inputs; // (descrpition, date)
+            case ADD_DEADLINE:
+                return inputs; // (description, date)
+            case MARK_DONE:
+                String[] indx = { input.split(" ")[1] };
+                return indx;
+            default: // No match or Invalid command
+                String[] empty = { "" };
+                return empty;
+        }
+    }
+
     public static void main(String[] args) throws IOException {
         // Setting up to read command line inputs
         BufferedReader reader = new BufferedReader(
@@ -76,14 +108,15 @@ public class Duke {
         // Continue to read inputs until the exit command is entered
         String input = reader.readLine();
         while (!input.equals(Commands.EXIT.command)) {
-            String[] inputs = input.split(" ");
+            String cmd = retrieve_arguments(input, Commands.GET_COMMAND)[0];
 
             // Show task description in list
-            if (input.equals(Commands.SHOW_LIST.command)) {
+            if (cmd.equals(Commands.SHOW_LIST.command)) {
                 display(Commands.SHOW_LIST, tasks.toString());
-                // Mark task as done
-            } else if (inputs[0].equals(Commands.MARK_DONE.command)) {
-                int indx = inputs[1].charAt(0) - '1';
+
+            } else if (cmd.equals(Commands.MARK_DONE.command)) { // Mark task as done
+                // Retrieve index from input
+                int indx = retrieve_arguments(input, Commands.MARK_DONE)[0].charAt(0) - '1';
                 Task current_task = tasks.get(indx);
                 current_task.toggleComplete();
                 // Display the marked message
@@ -92,9 +125,32 @@ public class Duke {
                 } else {
                     display(Commands.MARK_UNDONE, current_task.toString());
                 }
-            } else {
-                addTask(input);
-                display(Commands.ADD_TASK, Messages.ADD_TASK + input);
+
+            } else if (cmd.equals(Commands.ADD_TODO.command)) { // Add todo
+                // Retrieve description and date from input
+                String desc = retrieve_arguments(input, Commands.ADD_TODO)[0];
+                Todo current_todo = new Todo(desc);
+                tasks.addTask(current_todo);
+                display(Commands.ADD_TODO, current_todo.toString());
+
+            } else if (cmd.equals(Commands.ADD_EVENT.command)) {
+                // Retrieve description and date from input
+                String desc = retrieve_arguments(input, Commands.ADD_EVENT)[0];
+                String date = retrieve_arguments(input, Commands.ADD_EVENT)[1];
+                Event current_event = new Event(desc, date);
+                tasks.addTask(current_event);
+                display(Commands.ADD_EVENT, current_event.toString());
+
+            } else if (cmd.equals(Commands.ADD_DEADLINE.command)) {
+                // Retrieve description and date from input
+                String desc = retrieve_arguments(input, Commands.ADD_DEADLINE)[0];
+                String date = retrieve_arguments(input, Commands.ADD_DEADLINE)[1];
+                Deadline current_deadline = new Deadline(desc, date);
+                tasks.addTask(current_deadline);
+                display(Commands.ADD_DEADLINE, current_deadline.getDescription());
+
+            } else { // Invalid command
+                display(Commands.ERROR);
             }
             // Reads next input
             input = reader.readLine();

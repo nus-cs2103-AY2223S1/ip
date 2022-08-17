@@ -18,8 +18,22 @@ public class Task {
         isComplete = !isComplete;
     }
 
+    /**
+     * Checks if the boolean is complete
+     * 
+     * @return true if completed else false
+     */
     public boolean isDone() {
         return isComplete;
+    }
+
+    /**
+     * Retrieves the description of the task
+     * 
+     * @return Description of task
+     */
+    public String getDescription() {
+        return description;
     }
 
     @Override
