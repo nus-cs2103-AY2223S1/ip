@@ -42,6 +42,9 @@ public class Duke {
             case "event":
                 InsertEvent(s);
                 break;
+            case "delete":
+                DeleteTask(s);
+                break;
             default:
                 System.out.println("sorry, I don't understand you");
                 break;
@@ -119,6 +122,22 @@ public class Duke {
             taskList.get(index - 1).markUndone();
             System.out.println("ok, this task is marked as not done yet");
             System.out.println("\t" + taskList.get(index - 1));
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException | DukeException e) {
+            System.out.println("format: mark <number>");
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("enter a valid index");
+        }
+    }
+
+    private static void DeleteTask(String input) {
+        try {
+            String[] words = input.split(" ");
+            if (words.length > 2) {
+                throw new DukeException();
+            }
+            int index = Integer.parseInt(words[1]);
+            taskList.remove(index - 1);
+            System.out.println("ok, i removed this task");
         } catch (NumberFormatException | ArrayIndexOutOfBoundsException | DukeException e) {
             System.out.println("format: mark <number>");
         } catch (IndexOutOfBoundsException e) {
