@@ -4,5 +4,11 @@ event dinner /at night 4-5am
 blah
 todo
 mark 1
+mark 2
+list
+todo jump
+unmark 2
+delete 1
+mark 3
 list
 bye

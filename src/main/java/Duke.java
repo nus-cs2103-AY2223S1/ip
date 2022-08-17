@@ -14,7 +14,7 @@ public class Duke {
         UNMARK,
         DELETE;
     }
-    //Initialise a memo variable to track the memo of tasks
+    //Initialise a memo variable to track the list of tasks
     static List<Task> memo = new ArrayList<>();
 
     static Enum currCommand = null;
@@ -35,25 +35,33 @@ public class Duke {
 
         while (true) {
 
-            String decodedMessage = decode(sc.nextLine());
+            String decodedMessage = decode(sc.nextLine().trim());
 
             if (currCommand == null) {
-                System.out.println(dialog("I'm sorry, but I don't know what that means :-("));
+                try {
+                    throw new InvalidCommand("I'm sorry, but I don't know what that means :-(");
+                } catch (InvalidCommand e) {
+                    System.out.println(dialog(e.getMessage()));
+                }
             } else if (currCommand == taskCommands.BYE) {
                 System.out.println(dialog("Bye. Hope to see you again soon!"));
                 sc.close();
                 break;
             } else if (currCommand == taskCommands.LIST) {
-                String[] strArr = new String[memo.size()];
-                for (int i = 0; i < strArr.length; i++) {
-                    strArr[i] = (i + 1) + ". " + memo.get(i);
+                String[] strArr = new String[memo.size() + 1];
+                strArr[0] = "Here are the tasks in your list:";
+                for (int i = 1; i < strArr.length; i++) {
+                    strArr[i] = i + ". " + memo.get(i - 1);
                 }
                 System.out.println(dialog(strArr));
             } else {
                 //Check if empty description is being given to a command
-                if(decodedMessage == null) {
-                    System.out.println(dialog("OOPS!!! The description of a command cannot be empty."));
-                    continue;
+                if (decodedMessage == null) {
+                    try {
+                        throw new EmptyDescription("OOPS!!! The description of a command cannot be empty.");
+                    } catch (EmptyDescription e) {
+                        System.out.println(dialog(e.getMessage()));
+                    }
                 }
 
                 //Since description is not empty, we can proceed
@@ -68,6 +76,12 @@ public class Duke {
                     Task selectedTask = memo.get(index);
                     selectedTask.unMark();
                     System.out.println(dialog("Nice! I've marked this task as not done yet:", selectedTask.toString()));
+                } else if (currCommand == taskCommands.DELETE) {
+                    Integer index = Integer.valueOf(decodedMessage) - 1;
+                    Task selectedTask = memo.get(index);
+                    memo.remove(index);
+                    String reminder = String.format("Now you have %d tasks in the list.", memo.size());
+                    System.out.println(dialog("Noted. I've removed this task:", selectedTask.toString(), reminder));
                 } else if (currCommand == taskCommands.TODO) {
                     Task todoTask = new Todo(decodedMessage);
                     memo.add(todoTask);
@@ -135,6 +149,9 @@ public class Duke {
                 break;
             case "unmark":
                 currCommand = taskCommands.UNMARK;
+                break;
+            case "delete":
+                currCommand = taskCommands.DELETE;
                 break;
         }
         return subStr;
