@@ -1,6 +1,4 @@
-import java.sql.SQLOutput;
 import java.util.Scanner;
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 
 
@@ -10,17 +8,82 @@ public class Duke {
     static String logo = " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
             + "| | | | | | | |/ / _ \\\n"
-            + "| |_| | |_| |   <  /\n"
+            + "| |_| | |_| |    <  /\n"
             + "|____/ \\,_|_|\\_\\___|\n";
 
     Scanner myScanner = new Scanner(System.in);
-    ArrayList<String> toDoList;
+    ToDoList toDoList;
+
     String  command = "";
+
+    // Starts the duke program
+    Duke(ToDoList toDoList) {
+        this.toDoList = toDoList;
+
+        greet();
+
+        while (!command.equals(exitWord)) {
+            try {
+                if (command.equals("list")) {
+                    System.out.println(hLine);
+                    toDoList.listTasks();
+                    System.out.println(hLine);
+                }
+                else if (command.matches("mark [0-9]+") || command.matches("unmark [0-9]+")) {
+                    String[] splitComm = command.split(" ");
+                    String action = splitComm[0];
+                    int index = Integer.parseInt(splitComm[1]) - 1;
+
+                    changeMark(index, action);
+                }
+                else if (!command.equals("")) {
+                    System.out.println(hLine);
+                    toDoList.addTask(new Task(command));
+                    System.out.println(hLine);
+                }
+
+                command = myScanner.nextLine();
+            } catch (InputMismatchException e) {
+                System.out.println("\tError: please input a valid command");
+                System.out.println(hLine);
+                command = "";
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("\tIndex specified out of range, please try again.");
+                System.out.println(hLine);
+                command = "";
+            } catch (Exception e) {
+                System.out.println("\t" + e.getMessage());
+                System.out.println(hLine);
+                command = "";
+            }
+        }
+
+        goodBye();
+    }
+
+    /* Changes status of the task according to index given
+     *
+     * @param index
+     * @param action
+     */
+    private void changeMark(int index, String action) {
+        if (action.equals("mark")) {
+            System.out.println(hLine);
+            toDoList.complete(index);
+            System.out.println(hLine);
+        } else if (action.equals("unmark")){
+            System.out.println(hLine);
+            toDoList.incomplete(index);
+            System.out.println(hLine);
+        }
+    }
 
     // Prints generic greet message
     private static void greet() {
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What can I do for you?");
+        System.out.println(hLine);
+        System.out.println("\tHello I'm DUKE!");
+        System.out.println("\tWhat can I do for you?");
+        System.out.println(hLine);
     }
 
     // Prints generic goodbye message
@@ -30,50 +93,8 @@ public class Duke {
         System.out.println(hLine);
     }
 
-    /* Add task to todoList
-     *
-     * @param task
-     */
-    private void addTask(String task) {
-        System.out.println(hLine);
-        toDoList.add(task);
-        System.out.println("\tadded: " + task);
-        System.out.println(hLine);
-    }
-    // Add task to todoList
-    private void listTasks() {
-        System.out.println(hLine);
-        for (int i = 0; i < toDoList.size(); i ++) {
-            System.out.printf("\t%d. %s\n", i + 1, toDoList.get(i));
-        }
-        System.out.println(hLine);
-    }
-
-    // Starts the duke program
-    Duke() {
-        toDoList = new ArrayList<>();
-        greet();
-
-        while (!command.equals(exitWord)) {
-            if (command.equals("list")) {
-                listTasks();
-            }
-            else if (command != "") {
-                addTask(command);
-            }
-
-            try {
-                command = myScanner.nextLine();
-            } catch (InputMismatchException e) {
-                System.out.println("\tError: please input a valid command");
-                command = "";
-            }
-        }
-
-        goodBye();
-    }
-
     public static void main(String[] args) {
-        new Duke();
+        ToDoList toDoList = new ToDoList();
+        new Duke(toDoList);
     }
 }
