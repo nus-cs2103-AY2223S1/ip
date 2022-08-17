@@ -10,6 +10,18 @@ public class TaskList {
         System.out.println("Now you have " + itemList.size() + " tasks in the list.");
     }
 
+    public void deleteTask(String stringDex) throws DukeException {
+        int index = Integer.parseInt(stringDex);
+        if (index >= itemList.size()) {
+            throw new DukeException("Item to be deleted not found");
+        } else {
+            System.out.println("Noted. I've removed this task:");
+            System.out.println("\t" + itemList.get(index - 1));
+            itemList.remove(index - 1);
+            System.out.println("Now you have " + itemList.size() + " tasks in the list.");
+
+        }
+    }
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Here are the tasks in your list:\n");

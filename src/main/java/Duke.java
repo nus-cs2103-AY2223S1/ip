@@ -24,6 +24,10 @@ public class Duke {
                     System.out.println(itemList);
                     command = sc.nextLine();
                 }
+                else if (words[0].equals("delete")) {
+                    itemList.deleteTask(words[1]);
+                    command = sc.nextLine();
+                }
                 // mark items
                 else if (words[0].equals("mark")) {
                     int index = Integer.parseInt(words[1]) - 1;
