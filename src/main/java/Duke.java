@@ -13,18 +13,18 @@ public class Duke {
             return this.message;
         }
     }
-    ArrayList<Task> list;
-    private void line() {
+    public static ArrayList<Task> list;
+    public static void line() {
         System.out.println("________________________________________");
     }
-    private void greet() {
+    public static void greet() {
         line();
         System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?");
         line();
     }
 
-    private void echo(String message) {
+    public static void echo(String message) {
         line();
         System.out.println(message);
         line();
@@ -38,8 +38,8 @@ public class Duke {
         line();
     }
 
-    private void enumerateArrayList() throws DukeException {
-        int numOfTasks = this.list.size();
+    public static void enumerateArrayList() throws DukeException {
+        int numOfTasks = list.size();
         if (numOfTasks == 0) {
             throw new DukeException("Unfortunately, you do not have any tasks at hand." +
             " Try creating some first.");
@@ -53,8 +53,8 @@ public class Duke {
         line();
     }
 
-    private Task getTask(int index) throws DukeException {
-        int numOfTasks = this.list.size();
+    public static Task getTask(int index) throws DukeException {
+        int numOfTasks = list.size();
         if (numOfTasks == 0) {
             throw new DukeException("Unfortunately, you do not have any tasks at hand." +
                     " Try creating some first.");
@@ -66,10 +66,10 @@ public class Duke {
             throw new DukeException("Hey there! Are you sure you are referring to a correct task? " +
                     "It definitely has to be at least 1!");
         }
-        return this.list.get(index - 1);
+        return list.get(index - 1);
     }
 
-    private void markDone(int index) throws DukeException {
+    public static void markDone(int index) throws DukeException {
         Task t = getTask(index);
         t.markDone();
         line();
@@ -78,7 +78,7 @@ public class Duke {
         line();
     }
 
-    private void markUndone(int index) throws DukeException {
+    public static void markUndone(int index) throws DukeException {
         Task t = getTask(index);
         t.markUndone();
         line();
@@ -87,19 +87,18 @@ public class Duke {
         line();
     }
 
-    private void printArraySize() {
-        System.out.println("Now you have " + this.list.size() + " tasks in the list.");
+    public static void printArraySize() {
+        System.out.println("Now you have " + list.size() + " tasks in the list.");
     }
 
-    private void handleTodo(String input) throws DukeException {
+    public static Todo handleTodo(String input) throws DukeException {
         if (input.length() == 0) {
             throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
         }
-        Todo todo = new Todo(input);
-        addTask(todo);
+        return new Todo(input);
     }
 
-    private void handleDeadline(String input) throws DukeException {
+    public static Deadline handleDeadline(String input) throws DukeException {
         if (input.length() == 0) {
             throw new DukeException("Did you forget to specify what?");
         }
@@ -111,11 +110,10 @@ public class Duke {
         String when = modifiedInput[1];
         String[] secondModifiedInput = when.split(" ", 2);
         String dateBy = secondModifiedInput[1];
-        Deadline deadline = new Deadline(description, dateBy);
-        addTask(deadline);
+        return new Deadline(description, dateBy);
     }
 
-    private void handleEvent(String input) throws DukeException {
+    public static Event handleEvent(String input) throws DukeException {
         if (input.length() == 0) {
             throw new DukeException("Did you forget to specify what?");
         }
@@ -127,12 +125,29 @@ public class Duke {
         String when = modifiedInput[1];
         String[] secondModifiedInput = when.split(" ", 2);
         String dateAt = secondModifiedInput[1];
-        Event event = new Event(description, dateAt);
-        addTask(event);
+        return new Event(description, dateAt);
     }
 
-    private void addTask(Task t) {
-        this.list.add(t);
+    public static void addTask(String input, Commands type) throws DukeException {
+        Task t;
+        switch(type) {
+            case TODO: {
+                t = handleTodo(input);
+                break;
+            }
+            case DEADLINE: {
+                t = handleDeadline(input);
+                break;
+            }
+            case EVENT: {
+                t = handleEvent(input);
+                break;
+            }
+            default:
+                throw new IllegalArgumentException("Invalid task type entered");
+                // this should only be seen by developer
+        }
+        list.add(t);
         line();
         System.out.println("Got it. I've added this task:");
         System.out.println(t);
@@ -140,8 +155,8 @@ public class Duke {
         line();
     }
 
-    private void deleteTask(int index) throws DukeException {
-        int numOfTasks = this.list.size();
+    public static void deleteTask(int index) throws DukeException {
+        int numOfTasks = list.size();
         if (index < 1) {
             throw new DukeException("Hey there! Are you sure you are referring to a correct task? " +
                     " It definitely has to be at least 1!");
@@ -154,7 +169,7 @@ public class Duke {
         }
         Task t = getTask(index);
         int indexInList = index - 1;
-        this.list.remove(indexInList);
+        list.remove(indexInList);
         line();
         System.out.println("Noted. I've removed this task:");
         System.out.println(t);
@@ -162,7 +177,7 @@ public class Duke {
         line();
     }
 
-    private void handleDelete(String input) throws DukeException {
+    public static void handleDelete(String input) throws DukeException {
         if (input.length() == 0) {
             throw new DukeException("Did you forget to specify which task to delete?");
         }
@@ -170,7 +185,7 @@ public class Duke {
         deleteTask(index);
     }
 
-    private void exit() {
+    public static void exit() {
         line();
         System.out.println("Bye. Hope to see you again soon!");
         line();
@@ -178,14 +193,14 @@ public class Duke {
     public static void main(String[] args) {
         Duke duke = new Duke();
         boolean isDone = false;
-        duke.list = new ArrayList<>();
+        list = new ArrayList<>();
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
-        duke.greet();
+        greet();
         Scanner scanner = new Scanner(System.in); // creating scanner for user input
         while (!isDone) {
             try {
@@ -198,36 +213,36 @@ public class Duke {
                 }
                 switch (first) {
                     case ("bye"): {
-                        duke.exit();
+                        exit();
                         isDone = true;
                         break;
                     }
                     case ("list"): {
-                        duke.enumerateArrayList();
+                        enumerateArrayList();
                         break;
                     }
                     case ("mark"): {
-                        duke.markDone(Integer.parseInt(second));
+                        markDone(Integer.parseInt(second));
                         break;
                     }
                     case ("unmark"): {
-                        duke.markUndone(Integer.parseInt(second));
+                        markUndone(Integer.parseInt(second));
                         break;
                     }
                     case ("todo"): {
-                        duke.handleTodo(second);
+                        addTask(second, Commands.TODO);
                         break;
                     }
                     case ("deadline"): {
-                        duke.handleDeadline(second);
+                        addTask(second, Commands.DEADLINE);
                         break;
                     }
                     case ("event"): {
-                        duke.handleEvent(second);
+                        addTask(second, Commands.EVENT);
                         break;
                     }
                     case ("delete"): {
-                        duke.handleDelete(second);
+                        handleDelete(second);
                         break;
                     }
                     default: {
@@ -235,9 +250,9 @@ public class Duke {
                     }
                 }
             } catch (DukeException e) {
-                duke.line();
+                line();
                 System.out.println(e.toString());
-                duke.line();
+                line();
             }
         }
     }
