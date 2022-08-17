@@ -52,6 +52,16 @@ public class TaskList {
         this.addTask(newTask);
     }
 
+    public void deletetask(int taskIndex) {
+        if (taskIndex < 1 || taskIndex > this.tasks.size()) {
+            throw new InvalidTaskIndexException(taskIndex);
+        }
+        Task t = this.tasks.remove(taskIndex - 1);
+        System.out.println("Noted. I've removed this task:");
+        System.out.println("  " + t);
+        System.out.println("Now you have " + this.tasks.size() + " tasks in the list.");
+    }
+
     public void listTasks() {
         System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < this.tasks.size(); i++) {

@@ -10,6 +10,8 @@ mark 4
 unmark 23
 todo borrow book
 list
+mark 2
+delete 3
 deadline return book /by Sunday
 event project meeting /at Mon 2-4pm
 bye

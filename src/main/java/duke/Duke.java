@@ -36,6 +36,16 @@ public class Duke {
                     System.out.println(e.getMessage());
                 }
                 break;
+            case "delete":
+                try {
+                    int taskIndex = Integer.parseInt(commandSplit[1]);
+                    Duke.taskList.deletetask(taskIndex);
+                } catch (NumberFormatException e) {
+                    System.out.println(commandSplit[1] + " is not a valid task index");
+                } catch (InvalidTaskIndexException e) {
+                    System.out.println(e.getMessage());
+                }
+                break;
             case "todo":
                 if (commandSplit.length > 1) {
                     Duke.taskList.addTask(TaskList.TaskType.TODO, commandSplit[1]);
