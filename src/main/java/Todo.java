@@ -30,6 +30,22 @@ public class Todo extends Task {
     }
 
     /**
+     * Factory method for a Todo, with done and description.
+     *
+     * @param done Whether the Todo is done.
+     * @param description Description of Todo.
+     *
+     * @return Todo object with the given parameters.
+     */
+    public static Todo create(String done, String description) {
+        Todo todo = new Todo(description);
+        if (done.equals("1")) {
+            todo.markAsDone();
+        }
+        return todo;
+    }
+
+    /**
      * Gets the string representation of a todo.
      *
      * @return String representation of a todo.

@@ -44,6 +44,23 @@ public class Deadline extends Task {
     }
 
     /**
+     * Factory method for a Deadline, with done and description and date.
+     *
+     * @param done Whether the Deadline is done.
+     * @param description Description of Deadline.
+     * @param date Date of Deadline.
+     *
+     * @return Deadline object with the given parameters.
+     */
+    public static Deadline create(String done, String description, String date) {
+        Deadline deadline = new Deadline(description, date);
+        if (done.equals("1")) {
+            deadline.markAsDone();
+        }
+        return deadline;
+    }
+
+    /**
      * Gets the string representation of a deadline.
      *
      * @return String representation of a deadline.
