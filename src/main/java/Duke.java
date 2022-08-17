@@ -10,8 +10,7 @@ public class Duke {
                 + "How can I assist you today?");
 
         Scanner sc = new Scanner(System.in).useDelimiter("\\n");
-        String[] tasks = new String[100];
-        int taskCounter = 0;
+        Task[] tasks = new Task[100];
 
         while (sc.hasNext()) {
             String command = sc.next();
@@ -24,7 +23,7 @@ public class Duke {
 
             if (command.equals("list")) {
                 System.out.println("~ ʕ•́ᴥ•̀ʔっ ~\n" + "Your tasklist:");
-                for (int i = 0; i < taskCounter; i++) {
+                for (int i = 0; i < Task.getTotalNumberOfTasks(); i++) {
                     int bulletPoint = i + 1;
                     System.out.println(bulletPoint + ". " + tasks[i]);
                 }
@@ -32,9 +31,25 @@ public class Duke {
                 continue;
             }
 
+            if (command.length() > 4 && command.substring(0, 4).equals("mark")) {
+                int currTaskNumber = Integer.parseInt(command.substring(5));
+                Task currTask = tasks[currTaskNumber - 1];
+                currTask.markDone();
 
-            tasks[taskCounter] = command;
-            taskCounter++;
+                System.out.println("~ ʕ•́ᴥ•̀ʔっ ~\n" + "Great! Task done:\n" + currTask + "\n~\n");
+                continue;
+            }
+
+            if (command.length() > 6 && command.substring(0, 6).equals("unmark")) {
+                int currTaskNumber = Integer.parseInt(command.substring(7));
+                Task currTask = tasks[currTaskNumber - 1];
+                currTask.unmarkDone();
+
+                System.out.println("~ ʕ•́ᴥ•̀ʔっ ~\n" + "Aw :( Task undone:\n" + currTask + "\n~\n");
+                continue;
+            }
+
+            tasks[Task.getTotalNumberOfTasks()] = new Task(command);
             System.out.println("~ ʕ•́ᴥ•̀ʔっ ~\n" + "added to tasklist: " + command + "\n" + "~\n");
         }
     }
