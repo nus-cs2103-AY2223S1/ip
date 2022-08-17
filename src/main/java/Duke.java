@@ -24,9 +24,9 @@ public class Duke {
 
             } else if (res.toLowerCase().startsWith("mark")) {
                 int min_length = "mark ".length();
-                if (res.length() <= min_length){
+                if (res.length() <= min_length) {
                     throw new IncompleteParamException(res);
-                } else{
+                } else {
                     int taskNumber = Integer.valueOf(res.substring("mark ".length()));
                     if (taskNumber < 1 || taskNumber > this.taskList.size()) {
                         throw new OutOfListException(res);
@@ -36,7 +36,7 @@ public class Duke {
                 }
             } else if (res.toLowerCase().startsWith("unmark")) {
                 int min_length = "unmark ".length();
-                if (res.length() <= min_length){
+                if (res.length() <= min_length) {
                     throw new IncompleteParamException(res);
                 } else {
                     int taskNumber = Integer.valueOf(res.substring("unmark ".length()));
@@ -48,7 +48,7 @@ public class Duke {
                 }
             } else if (res.toLowerCase().startsWith("todo")) {
                 int min_length = "todo ".length();
-                if (res.length() <= min_length){
+                if (res.length() <= min_length) {
                     throw new IncompleteParamException(res);
                 } else {
                     String taskdes = res.substring("todo ".length());
@@ -56,9 +56,8 @@ public class Duke {
                 }
 
             } else if (res.toLowerCase().startsWith("deadline")) {
-                int min_length = "deadline ".length();
                 int endPointer = res.indexOf('/');
-                if (res.length() <= endPointer + 3 || endPointer == -1){
+                if (res.length() <= endPointer + 3 || endPointer == -1) {
                     throw new IncompleteParamException(res);
                 } else {
                     String taskdes = res.substring("deadline ".length(), endPointer);
@@ -66,15 +65,27 @@ public class Duke {
                     return this.handleAdd(new Deadline(taskdes, by));
                 }
             } else if (res.toLowerCase().startsWith("event")) {
-                int min_length = "event ".length();
                 int endPointer = res.indexOf('/');
-                if (res.length() <= endPointer + 3 || endPointer == -1){
+                if (res.length() <= endPointer + 3 || endPointer == -1) {
                     throw new IncompleteParamException(res);
                 } else {
                     String taskdes = res.substring("event ".length(), endPointer);
                     String at = res.substring(endPointer + 3);
                     return this.handleAdd(new Event(taskdes, at));
                 }
+            } else if (res.toLowerCase().startsWith("delete")){
+                int min_length = "delete ".length();
+                if (res.length() <= min_length) {
+                    throw new IncompleteParamException(res);
+                } else {
+                    int taskNumber = Integer.valueOf(res.substring("delete ".length()));
+                    if (taskNumber < 1 || taskNumber > this.taskList.size()) {
+                        throw new OutOfListException(res);
+                    } else {
+                        return this.handleDelete(taskNumber);
+                    }
+                }
+
             } else {
                 throw new InvalidInputException(res);
             }
@@ -100,6 +111,11 @@ public class Duke {
         return String.format("Got it. I've added this task: \n %s \n  Now you have %d tasks in the list.", task ,this.taskList.size());
     }
 
+    private String handleDelete(int num){
+        Task task = this.taskList.get(num - 1);
+        this.taskList.remove(num -1 );
+        return String.format("Got it. I've removed this task: \n %s \n  Now you have %d tasks in the list.", task ,this.taskList.size());
+    }
 
     private void run() {
         Scanner sc= new Scanner(System.in);
