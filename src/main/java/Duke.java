@@ -36,6 +36,23 @@ public class Duke {
                 unmark(inputTaskIndex);
                 continue;
             }
+            if(userInput.split(" ", 2)[0].equals("todo")) {
+                String taskInput = userInput.split(" ", 2)[1];
+                todo(taskInput);
+                continue;
+            }
+            if(userInput.split(" ", 2)[0].equals("deadline")) {
+                String taskInput = userInput.split(" ", 2)[1].split("/", 2)[0];
+                String by = userInput.split("/", 2)[1].split(" ", 2)[1];
+                deadline(taskInput, by);
+                continue;
+            }
+            if(userInput.split(" ", 2)[0].equals("event")) {
+                String taskInput = userInput.split(" ", 2)[1].split("/", 2)[0];
+                String duration = userInput.split("/", 2)[1].split(" ", 2)[1];
+                event(taskInput, duration);
+                continue;
+            }
             addTask(userInput);
         }
 
@@ -63,7 +80,7 @@ public class Duke {
         System.out.println("Here are the tasks in your list:");
         for(int i=0; i < storeList.size(); i++){
 //            System.out.printf("%i. [%c] %s", i + 1, storeList.get(i).getStatusIcon(), storeList.get(i).description);
-            System.out.println(i + 1 + ". " + "[" + storeList.get(i).getStatusIcon() + "] " + storeList.get(i).description);
+            System.out.println(i + 1 + ". " + storeList.get(i).toString());
         }
     }
 
@@ -73,6 +90,31 @@ public class Duke {
 
     public static void unmark(int taskIndex) {
         storeList.get(taskIndex).markAsNotDone();
+    }
+
+    public static void todo(String userInput) {
+        Todo t = new Todo(userInput);
+        storeList.add(t);
+        System.out.println("Got it. I've added this task:");
+        System.out.println("\t" + t.toString());
+        System.out.println("Now you have " + storeList.size() + " tasks in the list.");
+
+    }
+
+    public static void deadline(String userInput, String by) {
+        Deadline d = new Deadline(userInput, by);
+        storeList.add(d);
+        System.out.println("Got it. I've added this task:");
+        System.out.println("\t" + d.toString());
+        System.out.println("Now you have " + storeList.size() + " tasks in the list.");
+    }
+
+    public static void event(String userInput, String duration) {
+        Event e = new Event(userInput, duration);
+        storeList.add(e);
+        System.out.println("Got it. I've added this task:");
+        System.out.println("\t" + e.toString());
+        System.out.println("Now you have " + storeList.size() + " tasks in the list.");
     }
 
     public static void farewell() {
