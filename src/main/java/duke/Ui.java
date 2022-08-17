@@ -26,12 +26,14 @@ public class Ui {
      * Helper method that prints out a message fed into the UI
      * @param message
      */
-    public static void displayMessage(String message) {
+    public static String displayMessage(String message) {
         System.out.println(message);
+        return message + "\n";
     }
 
-    public static void indentTaskDisplay(Task t) {
+    public static String indentTaskDisplay(Task t) {
         System.out.println("  " + t);
+        return (" " + t + "\n");
     }
 
     /**
@@ -40,19 +42,29 @@ public class Ui {
      * @param taskList
      */
 
-    public static void displayOrderedList(List<Task> taskList) {
+    public static String displayOrderedList(List<Task> taskList) {
+        String display = "";
         for (int i = 0; i < taskList.size(); i++) {
             Task currentTask = taskList.get(i);
             System.out.println(i + 1 + ". " + currentTask);
+            display += i + 1 + ". " + currentTask + "\n";
         }
+        return display;
     }
 
-    public static void displayTasksLeft(int tasksLeft) {
+    /**
+     * Returns the number of tasks left
+     * @param tasksLeft
+     * @return taskLeftDescription, without newline character
+     */
+    public static String displayTasksLeft(int tasksLeft) {
         System.out.println("Now you have " + tasksLeft + " tasks in the list");
+        return "Now you have " + tasksLeft + " tasks in the list";
     }
 
-    public static void displayException(Exception e) {
+    public static String displayException(Exception e) {
         System.out.println(e);
+        return e.toString();
     }
 
 }

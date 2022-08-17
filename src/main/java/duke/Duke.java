@@ -38,6 +38,8 @@ public class Duke extends Application {
 
     @Override
     public void start(Stage stage) {
+        //Initialization
+        tasks = Storage.load();
         //The container for the content of the chat to scroll.
         scrollPane = new ScrollPane();
         dialogContainer = new VBox();
@@ -123,7 +125,7 @@ public class Duke extends Application {
      * @return
      */
     private String getResponse(String input) {
-        return "goddem";
+        return Parser.parseData(input, tasks);
     }
     public Duke() {
         tasks = Storage.load();
@@ -146,6 +148,7 @@ public class Duke extends Application {
         String input;
         while (true) {
             input = sc.nextLine();
+            //how does the user end this//
             if (input.equals("bye")) {
                 Ui.displayMessage(ENDING_MESSAGE);
                 break;

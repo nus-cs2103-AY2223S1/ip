@@ -4,10 +4,11 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * Encapsulation of Array
- * Has the functionality of add/delete
- * mark/unmark
- * list/finding tasks
+ * Helper class that contains the following:
+ * 1. Encapsulation of Array
+ * 2  Functionality of add/delete
+ * 3. Functionality of mark/unmark
+ * 4. Functionality of list/finding tasks
  */
 
 
@@ -36,12 +37,14 @@ public class TaskList {
      * and marks it as done
      * @param taskIndex
      */
-    public void markTask(int taskIndex) {
+    public String markTask(int taskIndex) {
+        String display = "";
         Task currentTask = taskList.get(taskIndex);
         currentTask.setDone();
-        Ui.displayMessage(DONE_MESSAGE);
-        Ui.indentTaskDisplay(currentTask);
+        display += Ui.displayMessage(DONE_MESSAGE);
+        display += Ui.indentTaskDisplay(currentTask);
         Storage.save(taskList);
+        return display;
     }
 
     /**
@@ -50,21 +53,25 @@ public class TaskList {
      * @param taskIndex
      */
 
-    public void unmarkTask(int taskIndex) {
+    public String unmarkTask(int taskIndex) {
+        String display = "";
         Task currentTask = taskList.get(taskIndex);
         currentTask.removeDone();
-        Ui.displayMessage(UNDONE_MESSAGE);
-        Ui.indentTaskDisplay(currentTask);
+        display += Ui.displayMessage(UNDONE_MESSAGE);
+        display += Ui.indentTaskDisplay(currentTask);
         Storage.save(taskList);
+        return display;
     }
 
     /**
      * Loops through the taskList
      * And signifies to the UI to display it nicely
      */
-    public void list() {
-        Ui.displayMessage(LIST_HEADER);
-        Ui.displayOrderedList(taskList);
+    public String list() {
+        String display = "";
+        display += Ui.displayMessage(LIST_HEADER);
+        display += Ui.displayOrderedList(taskList);
+        return display;
     }
 
     /**
@@ -73,13 +80,15 @@ public class TaskList {
      * @param taskIndex
      */
 
-    public void deleteTask(int taskIndex) {
+    public String deleteTask(int taskIndex) {
+        String display = "";
         Task deletedTask = taskList.get(taskIndex);
         taskList.remove(taskIndex);
-        Ui.displayMessage(DELETE_HEADER);
-        Ui.indentTaskDisplay(deletedTask);
-        Ui.displayTasksLeft(taskList.size());
+        display += Ui.displayMessage(DELETE_HEADER);
+        display += Ui.indentTaskDisplay(deletedTask);
+        display += Ui.displayTasksLeft(taskList.size());
         Storage.save(taskList);
+        return display;
     }
 
     /**
@@ -87,12 +96,14 @@ public class TaskList {
      * @param t of type Task
      */
 
-    public void addTask(Task t) {
+    public String addTask(Task t) {
+        String display = "";
         taskList.add(t);
         Storage.save(taskList);
-        Ui.displayMessage(ADD_HEADER);
-        Ui.indentTaskDisplay(t);
-        Ui.displayTasksLeft(taskList.size());
+        display += Ui.displayMessage(ADD_HEADER);
+        display += Ui.indentTaskDisplay(t);
+        display += Ui.displayTasksLeft(taskList.size());
+        return display;
     }
 
     /**
@@ -100,7 +111,10 @@ public class TaskList {
      * And signposts the UI to display it nicely
      * @param keyword
      */
-    public void findTask(String keyword) {
+    public String findTask(String keyword) {
+        String display = "";
+        //Loop through current tasks to find tasks
+        //Containing the keyword in it's description
         List<Task> tasksContainingKeyword = new ArrayList<>();
         for (int i = 0; i < taskList.size(); i++) {
             Task t = taskList.get(i);
@@ -108,8 +122,9 @@ public class TaskList {
                 tasksContainingKeyword.add(t);
             }
         }
-        Ui.displayMessage(FIND_HEADER);
-        Ui.displayOrderedList(tasksContainingKeyword);
+        display += Ui.displayMessage(FIND_HEADER);
+        display += Ui.displayOrderedList(tasksContainingKeyword);
+        return display;
     }
 
 
