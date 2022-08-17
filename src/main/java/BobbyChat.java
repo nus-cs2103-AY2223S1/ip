@@ -23,4 +23,7 @@ public class BobbyChat {
     public static void sayBye() {
         printChat(bye);
     }
+    public static void added(String s) {
+        printChat("added: " + s);
+    }
 }

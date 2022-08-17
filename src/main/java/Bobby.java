@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class Bobby {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        BobbyList bobbyList = new BobbyList();
 
         BobbyChat.sayHello();
 
@@ -12,8 +13,12 @@ public class Bobby {
                 case "bye" :
                     BobbyChat.sayBye();
                     break;
+                case "list" :
+                    BobbyChat.echo(bobbyList.toString());
+                    break;
                 default:
-                    BobbyChat.echo(chat);
+                    bobbyList.add(chat);
+                    BobbyChat.added(chat);
             }
         }
     }
