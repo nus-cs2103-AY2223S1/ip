@@ -51,6 +51,10 @@ public class Duke {
                     System.out.println(line_divider);
                     break;
                 } else if (msgWords[i].equalsIgnoreCase("todo")) {
+                    if (curr.length() < 6) {
+                        System.out.println("☹ OOPS!!! Why empty");
+                        break;
+                    }
                     String item = curr.substring(5);
                     marked.add(false);
                     list.add(item);
@@ -61,6 +65,10 @@ public class Duke {
                     System.out.println(line_divider);
                     break;
                 } else if (msgWords[i].equalsIgnoreCase("deadline")) {
+                    if (curr.length() < 10 || !curr.contains("/by")) {
+                        System.out.println("Why not complete deadline?");
+                        break;
+                    }
                     int slashPos = curr.indexOf("/by");
                     String taskName = curr.substring(9, slashPos - 1);
                     String deadline = " (by:" + curr.substring(slashPos + 3) + ")";
@@ -71,7 +79,12 @@ public class Duke {
                     System.out.println("Ok I add your task already:");
                     System.out.println("[D]" + "[ ] " + taskName + deadline + "\nNow " + list.size() + " tasks already!");
                     System.out.println(line_divider);
+                    break;
                 } else if (msgWords[i].equalsIgnoreCase("event")) {
+                    if (curr.length() < 7 || !curr.contains("/at")) {
+                        System.out.println("Why not complete event?");
+                        break;
+                    }
                     int slashPos = curr.indexOf("/at");
                     String taskName = curr.substring(6, slashPos - 1);
                     String deadline = " (at:" + curr.substring(slashPos + 3) + ")";
@@ -82,6 +95,10 @@ public class Duke {
                     System.out.println("Ok I add your task already:");
                     System.out.println("[E]" + "[ ] " + taskName + deadline + "\nNow " + list.size() + " tasks already!");
                     System.out.println(line_divider);
+                    break;
+                } else {
+                    System.out.println("☹ Walao what does that mean");
+                    break;
                 }
 //                if (i == msgWords.length - 1) {
 //                    marked.add(false);
