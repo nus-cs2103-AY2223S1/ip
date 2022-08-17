@@ -1,0 +1,12 @@
+list
+todo wash dishes
+deadline do homework /by 3pm
+deadline do homework /by3pm
+mark 1
+mark 0
+mark 2
+unmark 1
+list
+event medical appointment /at 24th aug 2022
+bye
+
