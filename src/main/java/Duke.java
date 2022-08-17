@@ -46,7 +46,6 @@ public class Duke {
             return;
         }
 
-
         if (command[0].equals("todo")) {
             store[++count] = new ToDo(command[1]);
         } else if (command[0].equals("deadline")) {
