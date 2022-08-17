@@ -11,13 +11,13 @@ public class List {
                     "╚═╝░░░░░╚══════╝░╚════╝░╚═╝░░╚═╝╚══════╝╚═╝░░╚══╝\n" +
                     "What can I do for you?\n";
 
-    public ArrayList<String> taskList = new ArrayList<>();
+    public ArrayList<Task> taskList = new ArrayList<>();
 
     public List() {
         System.out.println(greet);
     }
 
-    public void addTask(String command) {
+    public void addTask(Task command) {
         taskList.add(command);
     }
 }
