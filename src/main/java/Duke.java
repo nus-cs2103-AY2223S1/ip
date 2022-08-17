@@ -84,7 +84,7 @@ public class Duke {
                 msg(content);
             }
         } catch (DukeException e) {
-            throw new DukeException(INDENT + e.getMessage() + "\n");
+            msg(INDENT + e.getMessage() + "\n");
         }
     }
 
