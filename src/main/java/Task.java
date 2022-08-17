@@ -9,8 +9,6 @@ public class Task {
     public Task(String description) {
         this.description = description;
         this.isDone = false;
-        taskList.add(this);
-        System.out.println("added: " + this);
     }
 
     public String getStatusIcon() {
@@ -26,7 +24,7 @@ public class Task {
                             ? "OK, I've marked this task as not done yet: \n"
                             : "Nice! I've marked this task as done: \n")
                             + task);
-        } catch (IndexOutOfBoundsException e){
+        } catch (IndexOutOfBoundsException e) {
             System.out.println("Invalid task number");
         }
     }
@@ -35,7 +33,15 @@ public class Task {
         System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < taskList.size(); i++) {
             System.out.println((i + 1) + "." + taskList.get(i));
-        };
+        }
+    }
+
+    public void addNewTask() {
+        taskList.add(this);
+        System.out.println(
+                "Got it. I've added this task: \n "
+                        + this
+                        + "\nNow you have " + taskList.size() + " tasks in the list.");
     }
 
     @Override
