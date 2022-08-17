@@ -22,4 +22,10 @@ Here are the tasks in your list:
 1.[T][X] play basketball
 2.[D][ ] cs2103t project (by: Friday)
 3.[E][ ] group meeting (at: Mon 3-6pm)
+Noted. I've removed this task:
+[D][ ] cs2103t project (by: Friday)
+Now you have 2 tasks in the list.
+Here are the tasks in your list:
+1.[T][X] play basketball
+2.[E][ ] group meeting (at: Mon 3-6pm)
 Bye! Thanks for using Luke!

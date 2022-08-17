@@ -5,6 +5,7 @@ public class Duke {
 
     public static void main(String[] args) throws DukeException {
         final String ADDED_TASK = "Got it. I've added this task:";
+        final String REMOVED_TASK = "Noted. I've removed this task:";
         ArrayList<Task> tasks = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Hello! I'm Luke\nWhat can I do for you?");
@@ -76,6 +77,16 @@ public class Duke {
                     Task task = new Deadline(split[0], split[1].substring(3));
                     tasks.add(task);
                     System.out.println(String.format("%s\n%s", ADDED_TASK, task));
+                    System.out.println("Now you have " + tasks.size() + (tasks.size() == 1 ?" task" : " tasks") + " in the list.");
+
+                } else if (command.startsWith("delete")) {
+                    if (command.strip().length() == 6) {
+                        throw new DukeException("Choose which task to delete!");
+                    }
+                    int taskNumber = Integer.parseInt(command.substring(7)) - 1 ;
+                    Task task = tasks.get(taskNumber);
+                    tasks.remove(taskNumber);
+                    System.out.println(String.format("%s\n%s", REMOVED_TASK, task));
                     System.out.println("Now you have " + tasks.size() + (tasks.size() == 1 ?" task" : " tasks") + " in the list.");
 
                 } else if (command.equals("bye")) {

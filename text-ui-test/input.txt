@@ -10,4 +10,6 @@ event group meeting /at Mon 3-6pm
 blah
 test
 list
+delete 2
+list
 bye
