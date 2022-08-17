@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
@@ -7,23 +8,30 @@ public class Duke {
                 + " _  | |/ _ \\ | |_) \\ \\ / / | |\\___ \\\n"
                 + "| |_| / ___ \\|  _ < \\ V /  | | ___) |\n"
                 + " \\___/_/   \\_\\_| \\_\\ \\_/  |___|____/\n";
-
-
         System.out.println(logo);
 
+        // greeting messages
         say("Hello. I'm Jarvis", true, false);
         say("What can I do for you?", false, true);
 
-
         Scanner scanner = new Scanner(System.in);
+        ArrayList<String> task = new ArrayList<>();
         while (scanner.hasNextLine()) {
             String userInput = scanner.nextLine();
             if (userInput.equals("bye")) {
+                // when user enters bye
+                // exit programme
                 say("Bye. Hope to see you again soon.", true, true);
                 break;
             }
+            if (userInput.equals("list")) {
+                // when user enters list
+                // display the current list
+            }
             else {
-                say(userInput, true, true);
+                // add user input to the list
+                task.add(userInput);
+                say("added: " + userInput, true, true);
             }
         }
     }
