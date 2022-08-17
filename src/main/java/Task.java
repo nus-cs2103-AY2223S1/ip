@@ -13,10 +13,16 @@ public class Task {
     }
 
     public void markAsDone() {
-        isDone = true;
+        this.isDone = true;
     }
 
     public void markAsUndone() {
-        isDone = false;
+        this.isDone = false;
     }
+
+    @Override
+    public String toString() {
+        return String.format("[%s] %s", this.getStatusIcon(), this.description);
+    }
+
 }
