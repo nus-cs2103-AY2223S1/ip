@@ -1,4 +1,4 @@
-todo todotest
+todo go buy dinner
 deadline do homework /by Sunday
 event meeting /at 10-12pm Monday
 list
@@ -6,4 +6,13 @@ mark 2
 unmark 2
 mark 1
 list
+mark NAN
+unmark NAN
+thisisnotacommand
+
+todo 
+deadline
+deadline s
+event
+event s
 bye
