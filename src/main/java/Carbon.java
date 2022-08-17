@@ -117,6 +117,8 @@ public class Carbon {
                 this.validateAndMark(input, true);
             } else if (lowerCaseInput.startsWith("unmark")) {
                 this.validateAndMark(input, false);
+            } else if (lowerCaseInput.startsWith("delete")) {
+                this.deleteTask(input);
             } else if (lowerCaseInput.startsWith("todo")) {
                 this.addTask(input, "todo"); // TODO: change to using enums
             } else if (lowerCaseInput.startsWith("deadline")) {
@@ -199,6 +201,29 @@ public class Carbon {
                 this.countTasks()
                 );
         Carbon.printOut(log);
+    }
+
+    private void deleteTask(String input) throws CarbonException {
+        int len = input.length();
+        int requiredLen = "delete ".length();
+        if (len <= requiredLen) {
+            CarbonException invalidParam = new InvalidParamException(input);
+            throw invalidParam;
+        } else {
+            int taskNumber = Integer.valueOf(input.substring(requiredLen));
+            if (taskNumber < 1 || taskNumber > this.tasks.size()) {
+                CarbonException outOfBounds = new OutOfBoundsException(taskNumber, this.tasks.size());
+                throw outOfBounds;
+            } else {
+                Task taskDeleted = this.tasks.remove(taskNumber - 1);
+                String log = String.format(
+                        "I have removed: \n    %s\n\n    We've got %s left.",
+                        taskDeleted,
+                        this.countTasks()
+                        );
+                Carbon.printOut(log);
+            }
+        }
     }
 
     private void listItems() {
