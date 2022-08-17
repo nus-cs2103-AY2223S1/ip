@@ -7,7 +7,7 @@ public class StorageWriter {
             case DEADLINE:
                 return String.format("%s | %d | %s| %s", "D", done, task.description, task.getBy());
             case EVENT:
-                return String.format("%s | %d | %s| %s", "D", done, task.description, task.getBy());
+                return String.format("%s | %d | %s| %s", "E", done, task.description, task.getBy());
             default:
                 return "";
         }

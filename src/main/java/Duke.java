@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.util.Date;
@@ -14,12 +15,7 @@ public class Duke {
         Scanner scanner = new Scanner(System.in);
         StorageHandler storageHandler = new StorageHandler();
         Storage storage = storageHandler.loadSavedData();
-        DateTimeFormatterBuilder dateFormatBuilder = new DateTimeFormatterBuilder();
-        dateFormatBuilder
-                .appendOptional(DateTimeFormatter.ofPattern("d/MM/yyyy HHmm"))
-                .appendOptional(DateTimeFormatter.ofPattern("HHmm d/MM/yyyy"))
-                .appendOptional(DateTimeFormatter.ofPattern("MMM dd yyyy"));
-        DateTimeFormatter dateTimeFormatter = dateFormatBuilder.toFormatter();
+        DateTimeFormatter dateTimeFormatter = DateHandler.getDateTimeFormatter();
         System.out.println(GREETING);
 
         while (scanner.hasNext()) {
@@ -86,7 +82,7 @@ public class Duke {
                     String doneBy = nextCommand.substring(lastIdx + 4);
                     if (doneBy.isEmpty()) throw new DukeException("No deadline given, please try again");
 
-                    LocalDate doneByDate = LocalDate.parse(doneBy, dateTimeFormatter);
+                    LocalDateTime doneByDate = LocalDateTime.parse(doneBy, dateTimeFormatter);
                     Task taskToAdd = new Deadline(mainTask, doneByDate);
                     storage.addTaskToList(taskToAdd);
                     storageHandler.writeDataToFile(storage);
@@ -104,7 +100,7 @@ public class Duke {
                     String doneAt = nextCommand.substring(lastIdx + 4);
                     if (doneAt.isEmpty()) throw new DukeException("No date given, please try again");
 
-                    LocalDate doneAtDate = LocalDate.parse(doneAt, dateTimeFormatter);
+                    LocalDateTime doneAtDate = LocalDateTime.parse(doneAt, dateTimeFormatter);
                     Task taskToAdd = new Event(mainTask, doneAtDate);
                     storage.addTaskToList(taskToAdd);
                     storageHandler.writeDataToFile(storage);

@@ -1,3 +1,4 @@
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,7 +20,7 @@ public class StorageParser {
 
         switch (identifier) {
             case "T":
-                if (rawTask.contains("1")) marked = true;
+                if (segments[1].contains("1")) marked = true;
 
                 for (int i = 0; i < segments.length; i++) {
                     if (i >= 2) {
@@ -36,7 +37,7 @@ public class StorageParser {
                 return formattedTask;
 
             case "D":
-                if (rawTask.contains("1")) marked = true;
+                if (segments[1].contains("1")) marked = true;
 
                 String deadlineDesc = "";
                 StringBuilder deadlineBy = new StringBuilder();
@@ -46,14 +47,15 @@ public class StorageParser {
                     if (i >= 3) deadlineBy.append(segments[i]);
                 }
 
-                formattedTask = new Deadline(deadlineDesc, deadlineBy.toString());
+                LocalDateTime doneBy = DateHandler.parseDateString(deadlineBy.toString());
+                formattedTask = new Deadline(deadlineDesc, doneBy);
 
                 if (marked) formattedTask.markAsDone(true);
 
                 return formattedTask;
 
             case "E":
-                if (rawTask.contains("1")) marked = true;
+                if (segments[1].contains("1")) marked = true;
 
                 String eventDesc = "";
                 StringBuilder eventBy = new StringBuilder();
@@ -63,7 +65,8 @@ public class StorageParser {
                     if (i >= 3) eventBy.append(segments[i]);
                 }
 
-                formattedTask = new Event(eventDesc, eventBy.toString());
+                LocalDateTime eventAt = DateHandler.parseDateString(eventBy.toString());
+                formattedTask = new Event(eventDesc, eventAt);
 
                 if (marked) formattedTask.markAsDone(true);
 

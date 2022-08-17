@@ -1,6 +1,3 @@
-T | 1 | e
-T | 0 | ea
-T | 1 | eat
-T | 0 | eat shit
-D | 1 | eat shit | 10pm
-T | 0 | eat
+D | 0 | eat | 2021-12-12 1200
+D | 1 | iP | 2021-10-16 1000
+E | 0 | staycation | 2022-10-19 1900
