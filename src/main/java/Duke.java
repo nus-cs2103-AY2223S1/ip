@@ -1,9 +1,10 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
     private static final String line = "    ____________________________________________________________";
     private static int index = 0;
-    private static Task[] arr = new Task[100];
+    private static ArrayList<Task> arr = new ArrayList<>();
     private static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -24,13 +25,11 @@ public class Duke {
         String[] splitStr = str.split(" ", 2);
         switch (splitStr[0]) {
             case "list":
-                int k = 0;
                 int i = 1;
                 System.out.println(line);
                 System.out.println("     Here are the tasks in your list");
-                while (arr[k] != null) {
-                    System.out.println("     " + i + "." + arr[k]);
-                    k++;
+                for (Task t : arr) {
+                    System.out.println("     " + i + "." + t);
                     i++;
                 }
                 System.out.println(line);
@@ -43,7 +42,7 @@ public class Duke {
                 try {
                     markNo = Integer.parseInt(splitStr[1]);
                 } catch (NumberFormatException e) {
-                    throw new DukeException("Please indicate a task number to mark.");
+                    throw new DukeException("Please specify task number to mark.");
                 }
                 if (markNo <= 0) {
                     throw new DukeException("Invalid task number.");
@@ -51,10 +50,10 @@ public class Duke {
                 if (markNo > index) {
                     throw new DukeException("There are not that many tasks!");
                 }
-                arr[markNo - 1].markAsDone();
+                arr.get(markNo - 1).markAsDone();
                 System.out.println(line);
                 System.out.println("     Nice! I've marked this task as done:");
-                System.out.println("       " + arr[markNo - 1]);
+                System.out.println("       " + arr.get(markNo - 1));
                 System.out.println(line);
                 break;
             case "unmark":
@@ -65,7 +64,7 @@ public class Duke {
                 try {
                     unmarkNo = Integer.parseInt(splitStr[1]);
                 } catch (NumberFormatException e) {
-                    throw new DukeException("Please indicate a task number to mark.");
+                    throw new DukeException("Please specify task number to unmark.");
                 }
                 if (unmarkNo <= 0) {
                     throw new DukeException("Invalid task number.");
@@ -73,20 +72,20 @@ public class Duke {
                 if (unmarkNo > index) {
                     throw new DukeException("There are not that many tasks!");
                 }
-                arr[unmarkNo - 1].markAsUnDone();
+                arr.get(unmarkNo - 1).markAsUnDone();
                 System.out.println(line);
                 System.out.println("     Nice! I've marked this task as not done yet:");
-                System.out.println("       " + arr[unmarkNo - 1]);
+                System.out.println("       " + arr.get(unmarkNo - 1));
                 System.out.println(line);
                 break;
             case "todo":
                 if (splitStr.length < 2) {
                     throw new DukeException("The description of a todo cannot be empty");
                 }
-                arr[index] = new Todo(splitStr[1]);
+                arr.add(new Todo(splitStr[1]));
                 System.out.println(line);
                 System.out.println("     Got it. I've added this task:");
-                System.out.println("       " + arr[index]);
+                System.out.println("       " + arr.get(index));
                 index++;
                 System.out.println("     Now you have " + index + " tasks in the list");
                 System.out.println(line);
@@ -99,10 +98,10 @@ public class Duke {
                 if (strDeadline.length < 2 || strDeadline[1].equals("")) {
                     throw new DukeException("Please also specify the date and time.");
                 }
-                arr[index] = new Deadline(strDeadline[0], strDeadline[1]);
+                arr.add(new Deadline(strDeadline[0], strDeadline[1]));
                 System.out.println(line);
                 System.out.println("     Got it. I've added this task:");
-                System.out.println("       " + arr[index]);
+                System.out.println("       " + arr.get(index));
                 index++;
                 System.out.println("     Now you have " + index + " tasks in the list");
                 System.out.println(line);
@@ -115,13 +114,37 @@ public class Duke {
                 if (strEvent.length < 2 || strEvent[1].equals("")) {
                     throw new DukeException("Please also specify the date and time.");
                 }
-                arr[index] = new Event(strEvent[0], strEvent[1]);
+                arr.add(new Event(strEvent[0], strEvent[1]));
                 System.out.println(line);
                 System.out.println("     Got it. I've added this task:");
-                System.out.println("       " + arr[index]);
+                System.out.println("       " + arr.get(index));
                 index++;
                 System.out.println("     Now you have " + index + " tasks in the list");
                 System.out.println(line);
+                break;
+            case "delete":
+                if (splitStr.length < 2) {
+                    throw new DukeException("Please specify task number to delete.");
+                }
+                int deleteNo;
+                try {
+                    deleteNo = Integer.parseInt(splitStr[1]);
+                } catch (NumberFormatException e) {
+                    throw new DukeException("Please specify task number to delete.");
+                }
+                if (deleteNo <= 0) {
+                    throw new DukeException("Invalid task number.");
+                }
+                if (deleteNo > index) {
+                    throw new DukeException("There are not that many tasks!");
+                }
+                System.out.println(line);
+                System.out.println("     Noted. I've removed this task:");
+                System.out.println("       " + arr.get(deleteNo - 1));
+                index--;
+                System.out.println("     Now you have " + index + " tasks in the list");
+                System.out.println(line);
+                arr.remove(deleteNo - 1);
                 break;
             default:
                 throw new DukeException("I'm sorry, but I don't know what that means!");

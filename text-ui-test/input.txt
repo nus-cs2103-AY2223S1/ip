@@ -15,4 +15,10 @@ deadline
 deadline s
 event
 event s
+delete 2
+delete yes
+delete 0
+delete 1
+list
+delete 1
 bye
