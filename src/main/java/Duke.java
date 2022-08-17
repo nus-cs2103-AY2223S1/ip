@@ -77,6 +77,7 @@ public class Duke {
                         for (int i = 1; i < userParams.length; i++) {
                             if (userParams[i][0].equals("by")) {
                                 endTime = userParams[i][1];
+                                break;
                             }
                         }
                         Deadline newDeadline = new Deadline(userParams[0][1], endTime);
@@ -90,6 +91,7 @@ public class Duke {
                         for (int i = 1; i < userParams.length; i++) {
                             if (userParams[i][0].equals("at")) {
                                 rangeTime = userParams[i][1];
+                                break;
                             }
                         }
                         Event newEvent = new Event(userParams[0][1], rangeTime);
@@ -101,9 +103,7 @@ public class Duke {
                     case "mark": {
                         try {
                             int markIndex = Integer.parseInt(userParams[0][1]) - 1;
-                            if (markIndex >= taskList.getLength() || markIndex < 0) {
-                                throw new DukeException("I do not have a task with that number in my list.");
-                            } else if (taskList.getTask(markIndex).getIsDone()) {
+                            if (taskList.getTask(markIndex).getIsDone()) {
                                 System.out.printf("Sorry, but it seems you have marked this task as done:\n  %s\n", taskList.getTask(markIndex));
                             } else {
                                 taskList.getTask(markIndex).setDone(true);
@@ -111,10 +111,12 @@ public class Duke {
                             }
                         } catch (NumberFormatException e) {
                             if (userParams[0][1] == null) {
-                                throw new DukeException("You must pass an index value.");
+                                throw new DukeException("You must pass an index value.", e);
                             } else {
                                 throw new DukeException("You must pass an integer value. " + userParams[0][1] + " is not an integer.", e);
                             }
+                        } catch (IndexOutOfBoundsException e) {
+                            throw new DukeException("I do not have a task with that number in my list.", e);
                         }
                         break;
                     }
@@ -122,9 +124,7 @@ public class Duke {
                     case "unmark": {
                         try {
                             int unmarkIndex = Integer.parseInt(userParams[0][1]) - 1;
-                            if (unmarkIndex >= taskList.getLength() || unmarkIndex < 0) {
-                                throw new DukeException("I do not have a task with that number in my list.");
-                            } else if (taskList.getTask(unmarkIndex).getIsDone()) {
+                            if (taskList.getTask(unmarkIndex).getIsDone()) {
                                 taskList.getTask(unmarkIndex).setDone(false);
                                 System.out.printf("Alright, I've marked this task as not done:\n  %s\n", taskList.getTask(unmarkIndex));
                             } else {
@@ -136,6 +136,8 @@ public class Duke {
                             } else {
                                 throw new DukeException("You must pass an integer value. " + userParams[0][1] + " is not an integer.", e);
                             }
+                        } catch (IndexOutOfBoundsException e) {
+                            throw new DukeException("I do not have a task with that number in my list.", e);
                         }
                         break;
                     }
@@ -143,19 +145,17 @@ public class Duke {
                     case "delete": {
                         try {
                             int delIndex = Integer.parseInt(userParams[0][1]) - 1;
-                            if (delIndex >= taskList.getLength() || delIndex < 0) {
-                                throw new DukeException("I do not have a task with that number in my list.");
-                            } else {
-                                Task delTask = taskList.getTask(delIndex);
-                                taskList.deleteTask(delIndex);
-                                System.out.printf("Understood, I've deleted the following task:\n  %s\nYou now have %d tasks remaining.\n", delTask, taskList.getLength());
-                            }
+                            Task delTask = taskList.getTask(delIndex);
+                            taskList.deleteTask(delIndex);
+                            System.out.printf("Understood, I've deleted the following task:\n  %s\nYou now have %d tasks remaining.\n", delTask, taskList.getLength());
                         } catch (NumberFormatException e) {
                             if (userParams[0][1] == null) {
                                 throw new DukeException("You must pass an index value.");
                             } else {
                                 throw new DukeException("You must pass an integer value. " + userParams[0][1] + " is not an integer.", e);
                             }
+                        } catch (IndexOutOfBoundsException e) {
+                            throw new DukeException("I do not have a task with that number in my list.", e);
                         }
                         break;
                     }
