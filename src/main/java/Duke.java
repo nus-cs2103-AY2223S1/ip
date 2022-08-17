@@ -21,6 +21,7 @@ public class Duke {
     }
 
     private static void updateAndPrintTaskStatus(ArrayList<Task> list, int index, boolean isMark) {
+        System.out.println(Duke.line);
         index = index - 1;
         Task task = list.get(index);
         if (isMark) {
@@ -32,12 +33,15 @@ public class Duke {
         }
         list.set(index, task);
         System.out.println(task.toString());
+        System.out.println(Duke.line);
     }
 
     private static void printTaskAdded(ArrayList<Task> list, Task task) {
+        System.out.println(Duke.line);
         System.out.println("Got it. I've added this task:");
         System.out.println("\t" + task.toString());
         System.out.println("Now you have " + list.size() + " tasks in the list.");
+        System.out.println(Duke.line);
     }
 
     public static void main(String[] args) {
@@ -81,15 +85,18 @@ public class Duke {
                 if (command.equals(todoKeyword)) {
                     task = new Todo(taskDetails);
                     taskList.add(task);
+                    printTaskAdded(taskList, task);
                 } else if (command.equals(eventKeyword)) {
-                    task = new Event(taskDetails.split("/")[0], taskDetails.split("/")[1]);
+                    task = new Event(taskDetails.split("/")[0], taskDetails.split("/")[1].split(" ", 2)[1]);
                     taskList.add(task);
+                    printTaskAdded(taskList, task);
                 } else if (command.equals(deadlineKeyword)) {
-                    task = new Deadline(taskDetails.split("/")[0], taskDetails.split("/")[1]);
+                    task = new Deadline(taskDetails.split("/")[0], taskDetails.split("/")[1].split(" ", 2)[1]);
                     taskList.add(task);
+                    printTaskAdded(taskList, task);
+                }  else {
+                    printResponse("Invalid command. Please try again.");
                 }
-
-                printResponse("added: " + userInput);
             }
         }
     }
