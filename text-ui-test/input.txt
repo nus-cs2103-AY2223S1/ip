@@ -1,7 +1,15 @@
+todo
 todo test task 1
+mark asd
+mark
 mark 1
 list
+deadline
+deadline test no time
+deadline /by test no description
 deadline test deadline 1 /by 6 Jun 6pm
+event test no time
+event /on test no description
 event test event 1 /on 9 Jun 9pm
 list
 unmark 1
