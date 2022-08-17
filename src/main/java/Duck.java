@@ -1,10 +1,14 @@
+import java.util.Objects;
+import java.util.Scanner;
+
 public class Duck {
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+        System.out.println("Hello! Got any grapes?");
+        Scanner scanner = new Scanner(System.in);
+        String word = "";
+        while (!word.equals("bye")) {
+            word = scanner.next();
+            System.out.println(word);
+        }
     }
 }
