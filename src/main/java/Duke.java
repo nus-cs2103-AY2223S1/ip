@@ -78,6 +78,10 @@ public class Duke {
                    markCheckList(input);
                    break;
 
+                case "delete":
+                    deleteFromCheckList(input);
+                    break;
+
                 default:
                     try {
                         addToCheckList(input);
@@ -149,6 +153,38 @@ public class Duke {
                             index + 1,
                             toDoList.size()));
         }
+    }
+
+    private static void deleteFromCheckList(String[] input) {
+        if (input.length < 1) {
+            printInStyle("Please specify the index of the job you want to delete.");
+            return;
+        }
+
+        int index;
+        try {
+            index = Integer.parseInt(input[1]) - 1;
+        } catch (NumberFormatException ex) {
+            printInStyle("Please specify a number beginning from 1!");
+            return;
+        }
+
+        if (index <= -1) {
+            printInStyle("Please specify a number beginning from 1!");
+            return;
+        }
+
+        if (index >= toDoList.size()) {
+            printInStyle(String.format("You wanted to delete task %d but there were only %d jobs in the list.",
+                    index + 1, toDoList.size()));
+            return;
+        }
+
+        Job jobRemoved = toDoList.get(index);
+        toDoList.remove(index);
+        printInStyle("Noted. I've removed this task:",
+                jobRemoved.toString(),
+                String.format("Now you have %d tasks in the list.", toDoList.size()));
     }
 
     private static void addToCheckList(String[] input) throws InvalidJobException{
