@@ -74,6 +74,20 @@ public class Duke {
                     System.out.println("☹ OOPS!!! The description of a todo cannot be empty.");
                 }
             }
+            else if (parts.length >= 1 && (parts[0].equals("delete"))) {
+                try {
+                    int pos = Integer.parseInt(parts[1]) - 1;
+                    Task removedTask = taskList.get(pos);
+                    taskList.remove(pos);
+                    System.out.println("Noted. I've removed this task:\n " + removedTask + "Now you have " + taskList.size() + " tasks in the list.\n");
+                }
+                catch (ArrayIndexOutOfBoundsException ex) {
+                    System.out.println("☹ OOPS!!! You did not specify which task to be delete.");
+                }
+                catch (IndexOutOfBoundsException ex) {
+                    System.out.println("☹ OOPS!!! Your list only has " + taskList.size() + " tasks.");
+                }
+            }
             else {
                 try {
                     throw new InvalidCommandException();
