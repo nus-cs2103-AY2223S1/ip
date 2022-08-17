@@ -30,6 +30,15 @@ public class Task {
         System.out.println(sep + "\nYayy! Marked as completed :D\n  " + this.toString() + "\n" + sep);
     }
 
+    public static void delete(int num) {
+        Task removed = tasks.remove(num - 1);
+        if (Task.tasks.size() == 1) {
+            System.out.println(sep + "\nLuna has removed:\n" + removed + "\nThere is currently " + Task.tasks.size() + " task in your list!\n" + sep);
+        } else {
+            System.out.println(sep + "\nLuna has removed:\n" + removed + "\nThere are currently " + Task.tasks.size() + " tasks in your list!\n" + sep);
+        }
+    }
+
     public static void list() {
         System.out.println(sep + "\nStuff you have to do!\n");
         for(int i = 0; i < tasks.size(); i++) {

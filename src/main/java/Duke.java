@@ -22,9 +22,14 @@ public class Duke {
         curr.unmark();
     }
 
+    public static void delete(String cmd) {
+        int num = Integer.parseInt(cmd.substring(cmd.length() - 1));
+        Task.delete(num);
+    }
+
     public static void print(Task task) {
         if (Task.tasks.size() == 1) {
-            System.out.println(sep + "\nLuna has added:\n" + task.toString() + "\nThere is " + Task.tasks.size() + " task in your list :)\n" + sep);
+            System.out.println(sep + "\nLuna has added:\n" + task.toString() + "\nThere is currently " + Task.tasks.size() + " task in your list :)\n" + sep);
         } else {
             System.out.println(sep + "\nLuna has added:\n" + task.toString() + "\nThere are currently " + Task.tasks.size() + " tasks in your list :)\n" + sep);
         }
@@ -60,7 +65,10 @@ public class Duke {
                     String[] cmds = cmd.split(" /at ");
                     Task curr = new Event(cmds[0], cmds[1]);
                     print(curr);
-                } else if (!cmd.equals("bye")) {
+                } else if (cmd.startsWith("delete")) {
+                    delete(cmd);
+                }
+                else if (!cmd.equals("bye")) {
                     throw new DukeException("I'm not sure what that means..:( Please try again!");
                 }
             } catch (DukeException e) {
