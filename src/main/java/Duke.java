@@ -2,7 +2,11 @@ import java.util.Scanner;
 
 public class Duke {
 
+    private static final String LINE = "    ____________________________________________________________";
+    private static final String INDENT = "     ";
+
     private static boolean isClosed = false;
+    private static String[] list = new String[100];
 
     public static void main(String[] args) {
         greetingMessage();
@@ -18,16 +22,30 @@ public class Duke {
     }
 
     private static void greetingMessage() {
-        System.out.println("Hello! I'm Duke");
-        System.out.println("What can I do for you?");
+        drawLine();
+        indentMessage("Hello! I'm Duke");
+        indentMessage("What can I do for you?");
+        drawLine();
     }
 
     private static void bye() {
         isClosed = true;
-        System.out.println("Bye. Hope to see you again soon!");
+        drawLine();
+        indentMessage("Bye, Hope to see you again soon!");
+        drawLine();
     }
 
     private static void echo(String msg) {
-        System.out.println(msg);
+        drawLine();
+        indentMessage(msg);
+        drawLine();
+    }
+
+    public static void indentMessage(String msg) {
+        System.out.println(INDENT + msg);
+    }
+
+    public static void drawLine() {
+        System.out.println(LINE);
     }
 }
