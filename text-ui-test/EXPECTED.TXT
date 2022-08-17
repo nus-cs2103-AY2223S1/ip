@@ -3,13 +3,13 @@ Hey there! I'm Bob
 What can I do for you?
 _____________________________________________________________
 [T] [ ] borrow book
-Now you have 1 tasks in the list.
+Now you have 1 task(s) in the list.
 _____________________________________________________________
 [D] [ ] return book  (by:  Sunday)
-Now you have 2 tasks in the list.
+Now you have 2 task(s) in the list.
 _____________________________________________________________
 [E] [ ] project meeting  (at:  Mon 2-4pm)
-Now you have 3 tasks in the list.
+Now you have 3 task(s) in the list.
 _____________________________________________________________
 Nice! I've marked this task as done:
 [T] [X] borrow book
@@ -26,3 +26,4 @@ Here are the tasks in your list
 3.[E] [ ] project meeting  (at:  Mon 2-4pm)
 _____________________________________________________________
 Bye. Hope to see you again soon!
+_____________________________________________________________
