@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Duke {
-    public static final String START = "Hey there! I'm Duke.\nWhat do you want to do today?\n";
+    public static final String START = "Hey there! I'm Duke.\nWhat do you want to do today?";
 
 
     private boolean ended;
