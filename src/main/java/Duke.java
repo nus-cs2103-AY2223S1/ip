@@ -23,22 +23,33 @@ public class Duke {
             } else if (s.equals("list")) {
                 Duke.list();
             } else if (arr[0].equals("mark")) {
-                int i = Integer.parseInt(arr[1]) - 1;
-                if (i >= 0 && i < id) {
-                    Task t = items[i];
-                    t.markDone();
-                    Duke.echo("Nice! I've marked this task as done:\n" +
-                            "\t  " + t.getStatusIcon()
-                            + t.getDescription());
+                int i;
+                try {
+                    i = Integer.parseInt(arr[1]) - 1;
+                    if (i >= 0 && i < id) {
+                        Task t = items[i];
+                        t.markDone();
+                        Duke.echo("Nice! I've marked this task as done:\n" +
+                                "\t  " + t.getStatusIcon()
+                                + t.getDescription());
+                    }
+                } catch (NumberFormatException e) {
+                    Duke.echo("Please enter an integer id after \"mark\"");
                 }
             } else if (arr[0].equals("unmark")) {
-                int i = Integer.parseInt(arr[1]) - 1;
-                if (i >= 0 && i < id) {
-                    Task t = items[i];
-                    t.markUndone();
-                    Duke.echo("OK! I've marked this task as not done yet:\n" +
-                            "\t  " + t.getStatusIcon()
-                            + t.getDescription());
+                int i;
+                try {
+                    i = Integer.parseInt(arr[1]) - 1;
+                    if (i >= 0 && i < id) {
+                        Task t = items[i];
+                        t.markUndone();
+                        Duke.echo("OK! I've marked this task as not done yet:\n" +
+                                "\t  " + t.getStatusIcon()
+                                + t.getDescription());
+                    }
+                } catch (NumberFormatException e) {
+                    Duke.echo("Please enter an integer id after \"ummark\"");
+
                 }
             } else {
                 Duke.add(s);
