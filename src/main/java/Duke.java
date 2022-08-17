@@ -111,7 +111,7 @@ public class Duke {
                     System.out.println(line_divider);
                     break;
                 } else {
-                    System.out.println("☹ Walao what does that mean");
+                    System.out.println("☹ Walao what do you mean");
                     break;
                 }
             }
