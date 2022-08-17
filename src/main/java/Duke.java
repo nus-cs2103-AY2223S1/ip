@@ -1,9 +1,8 @@
 import java.util.*;
-import java.util.ArrayList;
 
 public class Duke {
     public static void main(String[] args) {
-        ArrayList<Task> itemList = new ArrayList<>();
+        TaskList itemList = new TaskList();
         Scanner sc= new Scanner(System.in);
 
         System.out.print("Hello! I'm Duke \nWhat can I do for you? \n");
@@ -12,7 +11,8 @@ public class Duke {
         boolean carryOn = true;
 
         while (carryOn){
-            String[] words = command.split(" ");
+            String[] words = command.split(" ", 2);
+            String[] taskName = command.split("/");
 
             // Exit
             if (command.equals("bye")) {
@@ -21,33 +21,39 @@ public class Duke {
             }
             // List out items
             else if (command.equals("list")) {
-                System.out.print("Here are the tasks in your list:\n");
-                for (int i = 0; i < itemList.size(); i++) {
-                    System.out.print(i + 1 + ":" + itemList.get(i) + "\n");
-                }
+                System.out.println(itemList);
                 command = sc.nextLine();
             }
             // mark items
             else if (words[0].equals("mark")) {
                 int index = Integer.parseInt(words[1]) - 1;
-                Task marked = itemList.get(index);
-                marked.setStatusIcon(true);
-                marked.update();
+                itemList.markTask(index);
                 command = sc.nextLine();
             }
             // unmark items
             else if (words[0].equals("unmark")) {
                 int index = Integer.parseInt(words[1]) - 1;
-                Task marked = itemList.get(index);
-                marked.setStatusIcon(false);
-                marked.update();
+                itemList.unmarkTask(index);
+                command = sc.nextLine();
+            }
+            else if (words[0].equals("todo")) {
+                Task toAdd = new ToDo(taskName[0].substring(5));
+                itemList.addTask(toAdd);
+                command = sc.nextLine();
+            }
+            else if (words[0].equals("deadline")) {
+                Task toAdd = new Deadline(taskName[0].substring(9), taskName[1].substring(3));
+                itemList.addTask(toAdd);
+                command = sc.nextLine();
+            }
+            else if (words[0].equals("event")) {
+                Task toAdd = new Event(taskName[0].substring(5), taskName[1].substring(3));
+                itemList.addTask(toAdd);
                 command = sc.nextLine();
             }
             // unrecognised commands
             else {
                 System.out.print(command + "\n");
-                Task toAdd = new Task(command);
-                itemList.add(toAdd);
                 command = sc.nextLine();
             }
         }

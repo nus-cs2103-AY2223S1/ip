@@ -1,4 +1,4 @@
-public class Task {
+abstract public class Task {
     protected String description;
     protected boolean isDone;
 
@@ -20,7 +20,7 @@ public class Task {
         return '[' + getStatusIcon() + "] " + description;
     }
 
-    public void update() {
+    public void updateStatus() {
         String acknowledgement;
         if (isDone) {
             acknowledgement = "Nice! I've marked this task as done:\n\t" + this;
