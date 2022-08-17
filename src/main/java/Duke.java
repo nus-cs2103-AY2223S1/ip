@@ -1,6 +1,11 @@
 import java.util.Scanner;
 
+/**
+ * This class represents the chatbot interface that allows
+ * user to interact with the todo list.
+ */
 public class Duke {
+
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -11,7 +16,7 @@ public class Duke {
 
         Scanner sc = new Scanner(System.in);
         String input = "";
-        MarkableList list = new MarkableList();
+        TaskList list = new TaskList();
 
         String welcomeMsg = "Hello I'm Duke!\nWhat can I do for you?";
         Duke.printText(welcomeMsg);
@@ -52,6 +57,7 @@ public class Duke {
             }
         }
 
+        sc.close();
         String exitMsgs = "Good bye!\nHope to see you soon!";
         Duke.printText(exitMsgs);
     }

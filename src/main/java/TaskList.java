@@ -1,9 +1,21 @@
 import java.util.ArrayList;
 
-public class MarkableList {
+/**
+ * This class represents the todo-list that allows users
+ * to insert and remove different tasks, and also to mark or
+ * unmark the tasks as completed.
+ */
+public class TaskList {
 
+    /** This represents the todo-list to be populated with tasks */
     private ArrayList<Task> items = new ArrayList<>();
 
+    /**
+     * Insert a new task into the todo-list.
+     * @param newItem The task to be added
+     * @return Prompts indicating the result of the insertion
+     * @throws ArrayIndexOutOfBoundsException
+     */
     public String insertItem(String newItem) 
             throws ArrayIndexOutOfBoundsException {
 
@@ -48,6 +60,12 @@ public class MarkableList {
             items.size());
     }
 
+    /**
+     * Mark an item in the list as done.
+     * @param index The index of the task to be marked as done
+     * @return Prompt indicating the result of the marking
+     * @throws ArrayIndexOutOfBoundsException
+     */
     public String markItem(int index) 
             throws ArrayIndexOutOfBoundsException {
         index -= 1;
@@ -57,6 +75,12 @@ public class MarkableList {
         return items.get(index).markTask();
     }
 
+    /**
+     * Unmark an item in the list.
+     * @param index The index of the task to be unmarked as done
+     * @return Prompt indicating the result of the unmarking
+     * @throws ArrayIndexOutOfBoundsException
+     */
     public String unmarkItem(int index) 
             throws ArrayIndexOutOfBoundsException {
         index -= 1;
@@ -81,7 +105,8 @@ public class MarkableList {
     /**
      * Print the output in customised format.
      * @param list The list to print
-     */ 
+     * @return String representation of the todo-list
+     */
     @Override
     public String toString() {
         String res = ("Here are the tasks in your list:");
