@@ -1,6 +1,7 @@
 package pnkp.duke.modules;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import static java.lang.String.format;
@@ -27,5 +28,29 @@ public class Todos {
             output.add(format("%d. %s", i, todos.get(i).toString()));
         }
         say(output);
+    }
+
+    public void cmdMark(Scanner rest) {
+        if (!rest.hasNextInt()) {
+            say("Please give me a task number to mark!");
+            return;
+        }
+
+        int taskID = rest.nextInt();
+        todos.get(taskID).setDone(true);
+        say(List.of("Nice! I've marked this task as done:",
+                    todos.get(taskID).toString()));
+    }
+
+    public void cmdUnmark(Scanner rest) {
+        if (!rest.hasNextInt()) {
+            say("Please give me a task number to unmark!");
+            return;
+        }
+
+        int taskID = rest.nextInt();
+        todos.get(taskID).setDone(false);
+        say(List.of("Alright, I've marked this task as not done yet:",
+                todos.get(taskID).toString()));
     }
 }

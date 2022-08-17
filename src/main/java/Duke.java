@@ -21,12 +21,18 @@ public class Duke {
                 case "":
                     // say("Sorry, I didn't catch that?")
                     break;
-                case "list":
-                    todos.cmdList();
-                    break;
                 case "bye":
                     say("OK. See you next time! *boings away*");
                     fExit = true;
+                    break;
+                case "list":
+                    todos.cmdList();
+                    break;
+                case "mark":
+                    todos.cmdMark(scanner);
+                    break;
+                case "unmark":
+                    todos.cmdUnmark(scanner);
                     break;
                 default:
                     todos.cmdAdd(new Scanner(line));
