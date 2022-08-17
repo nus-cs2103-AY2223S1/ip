@@ -3,9 +3,20 @@ import java.util.List;
 public class TaskList {
     private List<Task> taskList=new ArrayList<>();
     //the method that add task to list and print reply.
+    public int countTask(){
+        int res=0;
+        for (int i=0;i<taskList.size();i++){
+            if(taskList.get(i)!=null){
+                res+=1;
+            }
+        }
+        return res;
+    }
     public void addTask(Task task){
-        System.out.println("added: "+task.printTask());
         this.taskList.add(task);
+        System.out.println("Got it. I've added this task:\n"+task.printTask()+
+                "\nNow you have "+this.countTask()+" task in the list.");
+
     }
     //the method that return all the tasks in a formatted string
     public String listAllTask(){
@@ -15,7 +26,7 @@ public class TaskList {
                 res+=(i+1)+". "+this.taskList.get(i).printTask()+"\n";
             }
         }
-        return res;
+        return  "Here are the tasks in your list:\n"+res;
     }
     //mark a certain task as done and print reply
     public void markAsDone(int i){

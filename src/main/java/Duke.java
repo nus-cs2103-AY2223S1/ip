@@ -22,8 +22,12 @@ public class Duke {
                 taskList.markUndone(Integer.valueOf(ans.split(" ")[1])-1);
             }else if(ans.split(" ")[0].equals("mark")){
                 taskList.markAsDone(Integer.valueOf(ans.split(" ")[1])-1);
+            }else if (ans.split(" ")[0].equals("todo")){
+                taskList.addTask(new ToDo(ans));
+            }else if(ans.split(" ")[0].equals("deadline")){
+                taskList.addTask(new DeadLine(ans));
             }else{
-                taskList.addTask(new Task(ans));
+                taskList.addTask(new Event(ans));
             }
         }
     }
