@@ -18,11 +18,31 @@ public class Duke {
                 echo(allMessages);
             } else if (isMarkUnMark(next, allMessages.size())) {
                 printMarkUnMark(next, allMessages);
-            } else if (isToDos(next)) {
-                printToDos(next, allMessages);
             } else {
-                allMessages.add(new Task(next));
-                echo(next);
+                try {
+                    String[] words = next.split(" ", 2);
+                    String type = words[0];
+                    Task item;
+
+                    if (type.equals("todo")) {
+                        checkToDo(words);
+                        item = new ToDo(words[1]);
+                    } else if (type.equals("deadline")) {
+                        checkDeadline(words);
+                        String[] splitted = words[1].split("/by ", 2);
+                        item = new Deadline(splitted[0], splitted[1]);
+                    } else if (type.equals("event")) {
+                        checkEvent(words);
+                        String[] splitted = words[1].split("/at ", 2);
+                        item = new Event(splitted[0], splitted[1]);
+                    } else {
+                        throw new InvalidInputException();
+                    }
+                    allMessages.add(item);
+                    echoTask(item, allMessages.size());
+                } catch (DukeException e) {
+                    System.out.println(e.getMessage());
+                }
             }
             next = sc.nextLine();
         }
@@ -87,42 +107,31 @@ public class Duke {
         }
     }
 
-    public static boolean isToDos(String phrase) {
-        String[] words = phrase.split(" ", 2);
-        try {
-            String type = words[0];
-            String text = words[1];
-            if (type.equals("todo")) {
-                return true;
-            }
-            if (type.equals("deadline") && text.contains("/by")) {
-                return true;
-            }
-            if (type.equals("event") && text.contains("/at")) {
-                return true;
-            }
-            return false;
-        } catch (Exception e) {
-            return false;
+    public static void checkToDo(String[] words) throws DukeException {
+        if (words.length < 2 || words[1].trim().equals("")) {
+            throw new InvalidToDoException();
         }
     }
 
-    public static void printToDos(String next, ArrayList<Task> allMessages) {
-        String[] words = next.split(" ", 2);
-        String type = words[0];
-        String text = words[1];
-        Task task;
-
-        if (type.equals("todo")) {
-            task = new ToDo(text);
-        } else if (type.equals("deadline")) {
-            String[] splitted = text.split("/by ", 2);
-            task = new Deadline(splitted[0], splitted[1]);
+    public static void checkDeadline(String[] words) throws DukeException {
+        if (words.length < 2 || !words[1].contains("/by")) {
+            throw new InvalidDeadlineException();
         } else {
-            String[] splitted = text.split("/at ", 2);
-            task = new Event(splitted[0], splitted[1]);
+            String[] splitted = words[1].split("/by");
+            if (splitted[0].trim().equals("")) throw new InvalidDeadlineException("description");
+            if (splitted.length < 2 || splitted[1].trim().equals(""))
+                throw new InvalidDeadlineException("date");
         }
-        allMessages.add(task);
-        echoTask(task, allMessages.size());
+    }
+
+    public static void checkEvent(String[] words) throws DukeException {
+        if (words.length < 2 || !words[1].contains("/at")) {
+            throw new InvalidEventException();
+        } else {
+            String[] splitted = words[1].split("/at");
+            if (splitted[0].trim().equals("")) throw new InvalidEventException("description");
+            if (splitted.length < 2 || splitted[1].trim().equals(""))
+                throw new InvalidEventException("time");
+        }
     }
 }
