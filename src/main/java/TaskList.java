@@ -66,4 +66,70 @@ public class TaskList {
         this.drawLine();
     }
 
+    public void addTodo(String msg) {
+        Task task = new Todo(msg);
+        this.tasks.add(task);
+
+        this.drawLine();
+        this.indentMessage("Got it. I've added this task:");
+        this.indentMessage("  " + task);
+        this.indentMessage("Now you have " + this.tasks.size() + " tasks in the list.");
+        this.drawLine();
+    }
+
+    public void addDeadline(String msg) {
+        String description = "";
+        String by = "";
+
+        String[] splitted = msg.split("\\s+");
+
+        boolean isSplitterFound = false;
+
+        for (int i = 1; i < splitted.length; i++) {
+            if (splitted[i].equals("/by")) {
+                isSplitterFound = true;
+            } else if (isSplitterFound) {
+                by = by + splitted[i] + " ";
+            } else {
+                description = description + splitted[i] + " ";
+            }
+        }
+
+        Task task = new Deadline(description.trim(), by.trim());
+        this.tasks.add(task);
+
+        this.drawLine();
+        this.indentMessage("Got it. I've added this task:");
+        this.indentMessage("  " + task);
+        this.indentMessage("Now you have " + this.tasks.size() + " tasks in the list.");
+        this.drawLine();
+    }
+
+    public void addEvent(String msg) {
+        String description = "";
+        String at = "";
+
+        String[] splitted = msg.split("\\s+");
+
+        boolean isSplitterFound = false;
+
+        for (int i = 1; i < splitted.length; i++) {
+            if (splitted[i].equals("/at")) {
+                isSplitterFound = true;
+            } else if (isSplitterFound) {
+                at = at + splitted[i] + " ";
+            } else {
+                description = description + splitted[i] + " ";
+            }
+        }
+
+        Task task = new Event(description.trim(), at.trim());
+        this.tasks.add(task);
+
+        this.drawLine();
+        this.indentMessage("Got it. I've added this task:");
+        this.indentMessage("  " + task);
+        this.indentMessage("Now you have " + this.tasks.size() + " tasks in the list.");
+        this.drawLine();
+    }
 }

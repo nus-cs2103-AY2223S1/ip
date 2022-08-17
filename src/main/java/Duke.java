@@ -45,8 +45,15 @@ public class Duke {
                         indentMessage("Example: unmark 1");
                         drawLine();
                     }
-                } else {
-                    tasks.addToList(command);
+                } else if (command.startsWith("todo")) {
+                    tasks.addTodo(command);
+                } else if (command.startsWith("deadline")) {
+                    tasks.addDeadline(command);
+                } else if (command.startsWith("event")) {
+                    tasks.addEvent(command);
+                }
+                else {
+
                 }
             }
         }
