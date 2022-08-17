@@ -19,8 +19,8 @@ public class Rabbit {
             + "   - To add deadline, type 'deadline the content /the time' such as 'deadline do homework /9am'.\n"
             + "   - To add event, type 'event the content /the time' such as 'event do homework /9am'.\n"
             + "2. Type 'list' then I'll show all the existing lines to you.\n"
-            + "3. Type 'mark + the index of a existing task' to marks it as done. Like 'mark 1'.\n"
-            + "4. Type 'unmark + the index of a existing task' to unmark a task.\n"
+            + "3. Type 'mark + the index of an existing task' to marks it as done. Like 'mark 1'.\n"
+            + "4. Type 'unmark + the index of an existing task' to unmark a task.\n"
             + "-----------------------------------------------------------------------------\n"
             + "Actually why not just do me a favour? Type 'bye' in the console and free both of us.";
 
@@ -159,7 +159,7 @@ public class Rabbit {
      */
     private static void unmark(String input) {
         try {
-            Integer.parseInt(input.substring(5));
+            Integer.parseInt(input.substring(7));
         } catch (NumberFormatException ex) {
             // if input is mark + a non-integer,
             // reminds the user of the correct format
@@ -168,7 +168,7 @@ public class Rabbit {
             return;
         }
 
-        int i = Integer.parseInt(input.substring(5));
+        int i = Integer.parseInt(input.substring(7));
         if (i > list.size() || i <= 0) {
             System.out.println("Hey, be careful.\n"
                     + "The index must be between 1 and the size of the list, alright?");
@@ -225,12 +225,13 @@ public class Rabbit {
 
         while (true) {
             String input = sc.nextLine();
+            if (input.equals("bye")) {
+                System.out.println(bye);
+                sc.close();
+                break;
+            }
             String function = input.substring(0, scanFunction(input));
-
             switch(function) {
-                case "bye":
-                    System.out.println(bye);
-                    break;
                 case "list":
                     list();
                     continue;
@@ -254,7 +255,5 @@ public class Rabbit {
                     System.out.println("Ummm...what is that? I don't get it.");
             }
         }
-
-
     }
 }

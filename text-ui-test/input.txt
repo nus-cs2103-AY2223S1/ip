@@ -1,0 +1,15 @@
+blablabla
+list
+mark 1
+todo play basketball 
+deadline do homework /9am 
+event meet with friends /3pm 
+event 
+event do homework 
+mark a
+unmark 1
+mark 1
+mark 1
+unmark 1
+List
+bye
