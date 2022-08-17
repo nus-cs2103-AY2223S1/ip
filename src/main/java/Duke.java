@@ -2,8 +2,30 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Duke {
+    private static class Task {
+        private String description;
+        private Boolean isDone;
 
-    private static ArrayList<String> tasks = new ArrayList<>();
+        Task(String description) {
+            this.description = description;
+            this.isDone = false;
+        }
+
+        public void markDone() {
+            this.isDone = true;
+        }
+
+        public void markNotDone() {
+            this.isDone = false;
+        }
+
+        @Override
+        public String toString() {
+            return "[" + (this.isDone ? "X" : " ") + "]" + " " + this.description;
+        }
+    }
+
+    private static ArrayList<Task> tasks = new ArrayList<>();
 
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -19,19 +41,39 @@ public class Duke {
         Scanner in = new Scanner(System.in);
         String s = "";
 
-        while (true) {
+        Boolean isRunning = true;
+
+        while (isRunning) {
             s = in.nextLine();
-            if (s.equals("bye"))
-                break;
-            if (s.equals("list")) {
-                StringBuilder list = new StringBuilder();
-                for (int i = 0; i < tasks.size(); i++) {
-                    list.append(i + 1).append(" ").append(tasks.get(i)).append(i != tasks.size() - 1 ? "\n\t" : "");
+            String[] inputTokens = s.split(" ");
+
+            switch (inputTokens[0]) {
+                case "bye":
+                    isRunning = false;
+                    break;
+                case "list":
+                    StringBuilder list = new StringBuilder();
+                    for (int i = 0; i < tasks.size(); i++) {
+                        list.append(i + 1).append(" ").append(tasks.get(i)).append(i != tasks.size() - 1 ? "\n\t" : "");
+                    }
+                    prettyPrint(list.toString());
+                    break;
+                case "mark": {
+                    int taskNumber = Integer.parseInt(inputTokens[1]);
+                    tasks.get(taskNumber - 1).markDone();
+                    prettyPrint("mark this as done, I have: \n\t" + tasks.get(taskNumber - 1));
+                    break;
                 }
-                prettyPrint(list.toString());
-            } else {
-                tasks.add(s);
-                prettyPrint("added: " + s);
+                case "unmark": {
+                    int taskNumber = Integer.parseInt(inputTokens[1]);
+                    tasks.get(taskNumber - 1).markNotDone();
+                    prettyPrint("mark this as not done, I have: \n\t" + tasks.get(taskNumber - 1));
+                    break;
+                }
+                default:
+                    Task newTask = new Task(s);
+                    tasks.add(newTask);
+                    prettyPrint("added: " + newTask);
             }
         }
 
