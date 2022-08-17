@@ -1,6 +1,9 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
+import tasks.*;
+import commands.*;
+
 /*
  * TODO: add exceptions
  * - when input for mark or unmark does not contian a proper index 
@@ -43,6 +46,93 @@ public class Duke {
    * @return Returns true if the programme should continue prompting the user
    * for inputs. Returns false if the programme is to be terminated.
    */
+  private static boolean settleInput(String input) {
+    String[] splitInput = input.split(" ");
+    String action = splitInput[0];
+    if (action.equals("Bye")) {
+      Command command = new ByeCommand(splitInput);
+      return command.performAction();
+
+    } else if (action.equals("list")) {
+      Command command = new ListCommand(this.tasks);
+      return command.performAction();
+
+    } else if (
+        action.equals("mark") ||
+        action.equals("unmark")
+        )
+    {
+      Command command = new MarkCommand(splitInput);
+      return command.performAction();
+
+    } else if (
+        action.equals("event") ||
+        action.equals("deadline") ||
+        actions.equals("todo")
+        )
+    {
+      String[] newSplitInput = parseString(action, splitInput);
+      Command command = new TaskCommand(newSplitInput);
+      return command.performAction();
+    }
+  }
+
+  /*
+   * Parses a String[] for an "event", "deadline" or "todo" task.
+   */
+  private static String[] parseString(String action, String[] splitInput) {
+
+    if (action.equals("todo")) {
+      String[] newSplitInput = new String[2];
+      String taskDetails = "";
+
+      for (int i = 1; i < splitInput.length(); i++) {
+        taskDetails += splitInput[i];
+      }
+
+      newSplitInput[1] = taskDetails;
+
+    } else {
+      String dateDelimiter;
+      if (action.equals("event")) {
+        dateDelimiter = "/at";
+      } else if (action.equals("deadline")) {
+        dateDelimiter = "/by";
+      }
+
+      String[] newSplitInput = new String[3];
+
+      // parse the splitInput String[]
+      newSplitInput[0] = splitInput[0];
+
+      String taskDetails = ""
+      String date = ""
+
+      boolean reachedDate = false;
+      for (int i = 1; i < splitInput.length(); i++) {
+        String substring = splitInput[i];
+        if (substring.equals(dateDelimiter) {
+          reachedDate = true;
+          continue;
+        }
+
+        if (!reachedDate) {
+          taskDetails += splitInput[i];
+        } else {
+          date += splitInput[i];
+        }
+      }
+
+      newSplitInput[1] = taskDetails;
+      newSplitInput[2] = date;
+    }
+
+    return newSplitInput;
+  }
+
+
+
+
   private static boolean settleInput(String input) {
     if (input.equals("Bye")) {
       goodbye();
@@ -94,5 +184,7 @@ public class Duke {
       System.out.print("You: ");
       input = sc.nextLine();
     }
+
+    System.exit(0);
   }
 }
