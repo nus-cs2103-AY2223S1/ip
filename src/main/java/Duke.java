@@ -1,5 +1,9 @@
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Duke {
     private ArrayList<Task> storage = new ArrayList<Task>();
@@ -84,50 +88,58 @@ public class Duke {
     }
 
     private void addTask(String[] input) throws DukeException {
-        switch (input[0]) {
-            case "todo":
-                if (input.length <= 1) {
-                    throw new DukeException("Description of a todo cannot be empty!");
-                }
-                Todo todo = new Todo(input[1].trim());
-                this.storage.add(todo);
-                System.out.printf("added %s\n", todo);
-                break;
-            case "deadline":
-                if (input.length <= 1) {
-                    throw new DukeException("Description of a deadline " +
-                            "cannot be empty!");
-                }
-                if (!input[1].contains("/by") ||
-                        input[1].indexOf("/by") == input[1].length() - 3) {
-                    throw new DukeException("No date inserted for deadline");
-                }
-                String[] deadlineInfo = input[1].split("/by", 2);
-                Deadline deadline = new Deadline(deadlineInfo[0].trim(),
-                        deadlineInfo[1].trim());
-                this.storage.add(deadline);
-                System.out.printf("added %s\n", deadline);
-                break;
-            case "event":
-                if (input.length <= 1) {
-                    throw new DukeException("Description of an event " +
-                            "cannot be empty!");
-                }
-                if (!input[1].contains("/at") ||
-                        input[1].indexOf("/at") == input[1].length() - 3) {
-                    throw new DukeException("No date inserted for event");
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.
+                    ofPattern("yyyy-MM-dd HHmm");
+            switch (input[0]) {
+                case "todo":
+                    if (input.length <= 1) {
+                        throw new DukeException("Description of a todo cannot be empty!");
+                    }
+                    Todo todo = new Todo(input[1].trim());
+                    this.storage.add(todo);
+                    System.out.printf("added %s\n", todo);
+                    break;
+                case "deadline":
+                    if (input.length <= 1) {
+                        throw new DukeException("Description of a deadline " +
+                                "cannot be empty!");
+                    }
+                    if (!input[1].contains("/by") ||
+                            input[1].indexOf("/by") == input[1].length() - 3) {
+                        throw new DukeException("No date inserted for deadline");
+                    }
+                    String[] deadlineInfo = input[1].split("/by", 2);
+                    Deadline deadline = new Deadline(deadlineInfo[0].trim(),
+                            LocalDateTime.parse(deadlineInfo[1].trim(), formatter));
+                    this.storage.add(deadline);
+                    System.out.printf("added %s\n", deadline);
+                    break;
+                case "event":
+                    if (input.length <= 1) {
+                        throw new DukeException("Description of an event " +
+                                "cannot be empty!");
+                    }
+                    if (!input[1].contains("/at") ||
+                            input[1].indexOf("/at") == input[1].length() - 3) {
+                        throw new DukeException("No date inserted for event");
 
-                }
-                String[] eventInfo = input[1].split("/at", 2);
-                Event event = new Event(eventInfo[0].trim(), eventInfo[1].trim());
-                this.storage.add(event);
-                System.out.printf("added %s\n", event);
-                break;
-            default:
-                throw new DukeException("Invalid task");
+                    }
+                    String[] eventInfo = input[1].split("/at", 2);
+                    Event event = new Event(eventInfo[0].trim(),
+                            LocalDateTime.parse(eventInfo[1].trim(), formatter));
+                    this.storage.add(event);
+                    System.out.printf("added %s\n", event);
+                    break;
+                default:
+                    throw new DukeException("Invalid task");
+            }
+            System.out.printf("Now you have %d tasks in the list\n",
+                    storage.size());
+        } catch (DateTimeParseException e) {
+            System.out.println(e.getMessage());
         }
-        System.out.printf("Now you have %d tasks in the list\n",
-                storage.size());
+
     }
 
 
