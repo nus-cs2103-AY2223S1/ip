@@ -1,4 +1,4 @@
-public class Task {
+public abstract class Task {
     protected String description;
     protected boolean isDone;
 
@@ -13,11 +13,5 @@ public class Task {
 
     public void markUncompleted() {
         this.isDone = false;
-    }
-
-    @Override
-    public String toString() {
-        String completionString = this.isDone ? "[x]" : "[ ]";
-        return completionString + " " + this.description;
     }
 }

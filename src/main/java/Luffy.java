@@ -55,9 +55,27 @@ public class Luffy {
                 System.out.println("------------------------------------------------------");
             } else {
                 System.out.println("------------------------------------------------------");
-                tasks[counter] = new Task(s);
+                Task newTask;
+                if (s.length() >= 4 && s.substring(0, 4).equals("todo")) {
+                    newTask = new Todo(s.substring(5));
+                } else if (s.length() >= 8 && s.substring(0, 8).equals("deadline")){
+                    String[] splitString = s.split(" /by ");
+                    newTask = new Deadline(splitString[0].substring(9), splitString[1]);
+                } else if (s.length() >= 5 && s.substring(0, 5).equals("event")) {
+                    String[] splitString = s.split(" /at ");
+                    newTask = new Event(splitString[0].substring(6), splitString[1]);
+                } else {
+                    continue;
+                }
+                tasks[counter] = newTask;
                 counter++;
-                System.out.println("added: " + s);
+                System.out.println("Got it, I've added this task:");
+                System.out.println(newTask);
+                if (counter > 1) {
+                    System.out.println("Now you have " + counter + " tasks in the list.");
+                } else {
+                    System.out.println("Now you have " + counter + " task in the list.");
+                }
                 System.out.println("------------------------------------------------------");
             }
         }
