@@ -13,7 +13,7 @@ public class Duke {
             "     Bye. Hope to see you again soon!\n" +
             LONG_LINE;
 
-    private final List<Task> taskList = new ArrayList<>();
+    private final List<Task> taskList = new ArrayList<>(100);
 
     public static void main(String[] args) {
         // Initialize Duke chatbot
@@ -122,6 +122,19 @@ public class Duke {
                     sb.append(LONG_LINE)
                             .append("     Got it. I've added this task:\n")
                             .append("       ").append(event).append("\n")
+                            .append("     Now you have ").append(this.taskList.size()).append(" task(s) in the list.\n")
+                            .append(LONG_LINE);
+                    break;
+                }
+                case "delete": {
+                    // Tasks are displayed as 1-indexed, but they are stored as 0-indexed
+                    // Hence, we need to account for this offset here
+                    int taskIndex = Integer.parseInt(inputStrings[1]) - 1;
+                    Task task = this.taskList.remove(taskIndex);
+
+                    sb.append(LONG_LINE)
+                            .append("     Noted. I've removed this task:\n")
+                            .append("       ").append(task).append("\n")
                             .append("     Now you have ").append(this.taskList.size()).append(" task(s) in the list.\n")
                             .append(LONG_LINE);
                     break;
