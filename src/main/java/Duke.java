@@ -27,6 +27,17 @@ public class Duke {
             if (userInput.equals("list")) {
                 // when user enters list
                 // display the current list
+                for (int i = 0; i < task.size(); i++) {
+                    boolean isFirstLine = false;
+                    boolean isLastLine = false;
+                    if (i == 0) {
+                        isFirstLine = true;
+                    }
+                    if (i == task.size() - 1) {
+                        isLastLine = true;
+                    }
+                    say(i + ". " + task.get(i), isFirstLine, isLastLine);
+                }
             }
             else {
                 // add user input to the list
@@ -38,11 +49,11 @@ public class Duke {
 
     public static void say(String message, boolean firstLine, boolean lastLine) {
         String line = "____________________________________________________________";
-        if (firstLine == true) {
+        if (firstLine) {
             System.out.println(line);
         }
         System.out.println(" " + message);
-        if (lastLine == true) {
+        if (lastLine) {
             System.out.println(line);
         }
     }
