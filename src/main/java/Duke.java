@@ -5,12 +5,16 @@ public class Duke {
     private static Task[] addedTask = new Task[100];
     private static int addedTaskCount = 0;
 
-    private static void addTask(String task) {
-        Duke.addedTask[Duke.addedTaskCount] = new Task(task);
+    private static void addTask(Task task) {
+        Duke.addedTask[Duke.addedTaskCount] = task;
         Duke.addedTaskCount++;
+        System.out.println("Task added:");
+        System.out.println(task);
+        System.out.println("There are " + addedTaskCount + " tasks in your list.");
     }
 
     private static void listTask() {
+        System.out.println("Listing your current tasks:");
         for (int i = 0; i < Duke.addedTask.length; ++i) {
             if (Duke.addedTask[i] == null) {
                 return;
@@ -41,22 +45,45 @@ public class Duke {
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextLine()) {
             String command = scanner.nextLine();
-            if (command.equals("bye")) {
-                System.out.println("Come again soon!");
-                System.exit(0);
-            } else if (command.equals("list")) {
-                Duke.listTask();
-            } else if (command.startsWith("mark ")) {
-                String[] splitCommand = command.split(" ");
-                Duke.markTask(Integer.parseInt(splitCommand[1]));
-            } else if (command.startsWith("unmark ")) {
-                String[] splitCommand = command.split(" ");
-                Duke.unmarkTask(Integer.parseInt(splitCommand[1]));
-            } else if (command.equals("")) {
-                continue;
-            } else {
-                Duke.addTask(command);
-                System.out.println("added: " + command);
+            String[] commandArgs = command.split(" ", 2);
+            String keyword = commandArgs[0];
+            switch (keyword) {
+                case "bye":
+                    System.out.println("Come again soon!");
+                    System.exit(0);
+                case "list":
+                    Duke.listTask();
+                    break;
+                case "mark":
+                    Duke.markTask(Integer.parseInt(commandArgs[1]));
+                    break;
+                case "unmark":
+                    Duke.unmarkTask(Integer.parseInt(commandArgs[1]));
+                    break;
+                case "todo":
+                    Todo todo = new Todo(commandArgs[1]);
+                    Duke.addTask(todo);
+                    break;
+                case "deadline":
+                    String[] deadlineDetails = commandArgs[1].split(" /by ");
+                    if (deadlineDetails.length <= 1) {
+                        System.out.println("Invalid deadline, try again.");
+                    } else {
+                        Duke.addTask(new Deadline(deadlineDetails[0],
+                                deadlineDetails[1]));
+                    }
+                    break;
+                case "event":
+                    String[] eventDetails = commandArgs[1].split(" /at ");
+                    if (eventDetails.length <= 1) {
+                        System.out.println("Invalid event, try again.");
+                    } else {
+                        Duke.addTask(new Event(eventDetails[0],
+                                eventDetails[1]));
+                    }
+                    break;
+                default:
+                    Duke.addTask(new Task(command));
             }
         }
     }
