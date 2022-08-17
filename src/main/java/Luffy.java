@@ -1,5 +1,5 @@
 import java.util.Scanner;
-
+import java.util.ArrayList;
 
 public class Luffy {
     public static void main(String[] args) {
@@ -16,7 +16,7 @@ public class Luffy {
 
         //Actual Luffy Logic:
         Scanner in = new Scanner(System.in);
-        Task[] tasks = new Task[100];
+        ArrayList<Task> tasks = new ArrayList<Task>();
         int counter = 0;
 
         while (true) {
@@ -28,7 +28,7 @@ public class Luffy {
             } else if (s.equals("list")) {
                 System.out.println("------------------------------------------------------");
                 for (int i = 0; i < counter; i++) {
-                    System.out.println((i + 1) + "." + tasks[i]);
+                    System.out.println((i + 1) + "." + tasks.get(i));
                 }
                 System.out.println("------------------------------------------------------");
             } else if (s.length() >= 6 && s.substring(0, 4).equals("mark")) {
@@ -36,9 +36,9 @@ public class Luffy {
                     System.out.println("------------------------------------------------------");
                     int taskIndex = Integer.parseInt(s.substring(5, 6)) - 1;
                     if (taskIndex >= 0 && taskIndex < counter) {
-                        tasks[taskIndex].markCompleted();
+                        tasks.get(taskIndex).markCompleted();
                         System.out.println("Nice! I've marked this task as done:");
-                        System.out.println("  " + tasks[taskIndex]);
+                        System.out.println("  " + tasks.get(taskIndex));
                     } else {
                         System.out.println("Task index " + (taskIndex + 1) + " is not valid!");
                     }
@@ -53,9 +53,9 @@ public class Luffy {
                     System.out.println("------------------------------------------------------");
                     int taskIndex = Integer.parseInt(s.substring(7, 8)) - 1;
                     if (taskIndex >= 0 && taskIndex < counter) {
-                        tasks[taskIndex].markUncompleted();
+                        tasks.get(taskIndex).markUncompleted();
                         System.out.println("Alright! I've marked this task as not done yet:");
-                        System.out.println("  " + tasks[taskIndex]);
+                        System.out.println("  " + tasks.get(taskIndex));
                     } else {
                         System.out.println("Task index " + (taskIndex + 1) + " is not valid!");
                     }
@@ -108,14 +108,8 @@ public class Luffy {
                         int taskIndex = Integer.parseInt(s.substring(7, 8)) - 1;
                         if (taskIndex >= 0 && taskIndex < counter) {
                             System.out.println("Noted. I've removed this task:");
-                            System.out.println("  " + tasks[taskIndex]);
-                            for (int i = 0; i < counter; i++) {
-                                if (i == counter - 1) {
-                                    tasks[i] = null;
-                                } else if (i >= taskIndex) {
-                                    tasks[i] = tasks[i + 1];
-                                }
-                            }
+                            System.out.println("  " + tasks.get(taskIndex));
+                            tasks.remove(taskIndex);
                             counter--;
                             System.out.println("Now you have " + counter + " tasks in the list.");
                         } else {
@@ -133,7 +127,7 @@ public class Luffy {
                     System.out.println("------------------------------------------------------");
                     continue;
                 }
-                tasks[counter] = newTask;
+                tasks.add(newTask);
                 counter++;
                 System.out.println("Got it, I've added this task:");
                 System.out.println(newTask);
