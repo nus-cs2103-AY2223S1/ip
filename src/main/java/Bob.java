@@ -38,6 +38,24 @@ public class Bob {
                 } catch(NumberFormatException e) {
                     System.out.println("which task to unmark?");
                 }
+            } else if (reply.toLowerCase().matches("remove(.*)") ) {
+                try {
+                    int index = Integer.valueOf(reply.replaceAll("[^0-9]",""));
+                    ArrayList<Task> temp = new ArrayList<>(taskCount);
+                    Task removedTask = tasks.get(index - 1);
+                    for (int i = 0; i < taskCount; i++) {
+                        if (i == (index - 1)) {
+                            continue;
+                        } else {
+                            temp.add(tasks.get(i));
+                        }
+                    }
+                    tasks = temp;
+                    taskCount = taskCount - 1;
+                    System.out.println("that's one less task for you! removed:" + "\n  " + removedTask.toString() + "\njust " + taskCount + " tasks left!");
+                } catch(NumberFormatException e) {
+                    System.out.println("which task do you want to delete?");
+                }
             } else {
                 if (reply.toLowerCase().matches("todo(.*)")) {
                     try {
