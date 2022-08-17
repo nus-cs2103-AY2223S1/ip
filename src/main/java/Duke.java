@@ -22,7 +22,13 @@ public class Duke {
         System.out.println(breakLine);
     }
 
-    public static void markTaskAsDone(int index) {
+    public static void markTaskAsDone(int index) throws DukeException{
+        if (index < 0) {
+            throw new DukeException("I cannot mark this task because your index is invalid");
+        } else if (index >= taskList.size()) {
+            throw new DukeException("I cannot mark this task because task does not exist");
+        }
+
         System.out.println(breakLine);
         taskList.get(index).markAsDone();
         System.out.println("Nice! I've marked this task as done:");
@@ -30,7 +36,13 @@ public class Duke {
         System.out.println(breakLine);
     }
 
-    public static void markTaskAsNotDone(int index) {
+    public static void markTaskAsNotDone(int index) throws DukeException{
+        if (index < 0) {
+            throw new DukeException("I cannot unmark this task because your index is invalid");
+        } else if (index >= taskList.size()) {
+            throw new DukeException("I cannot unmark this task because task does not exist");
+        }
+
         System.out.println(breakLine);
         taskList.get(index).markAsNotDone();
         System.out.println("OK, I've marked this task as not done yet:");
@@ -104,7 +116,26 @@ public class Duke {
         return new Event(description, timeQualifier, timeDescription);
     }
 
-    public static void main(String[] args) {
+    /*
+    public static void deleteTask(int index) throws DukeException {
+        if (index < 0) {
+            throw new DukeException("I cannot delete this task because your index is invalid");
+        } else if (index >= taskList.size()) {
+            throw new DukeException("I cannot delete this task because task does not exist");
+        }
+
+        System.out.println(breakLine);
+        System.out.println("Noted. I've removed this task:");
+        System.out.println(taskList.get(index));
+        System.out.println("Now you have " + (taskList.size() - 1)+ " tasks in the list.\n");
+        System.out.println(breakLine);
+
+        taskList.remove(index);
+
+    }
+    */
+
+    public static void main(String[] args) throws DukeException {
         Scanner sc = new Scanner(System.in);
 
         boolean stopLish = false;
@@ -125,28 +156,46 @@ public class Duke {
                     printTaskList();
                     break;
                 default:
-                    String[] commands = input.split(" ");
+                    try {
+                        String[] commands = input.split(" ");
 
-                    if (commands[0].equals("mark") || commands[0].equals("unmark")) {
-                        int index = Integer.parseInt(commands[1]) - 1;
-                        if (commands[0].equals("mark")) {
-                            markTaskAsDone(index);
-                        } else {
-                            markTaskAsNotDone(index);
-                        }
-                    } else {
-                        Task newTask;
-                        if (commands[0].equals("todo")) {
-                            newTask = generateToDoFromInput(input);
-                        } else if (commands[0].equals("deadline")) {
-                            newTask = generateDeadlineFromInput(input);
-                        } else {
-                            newTask = generateEventFromInput(input);
+                        if (commands.length < 2) {
+                            throw new DukeException("Task description cannot be empty!");
                         }
 
-                        taskList.add(newTask);
-                        printResponse("Got it. I've added this task:\n" + newTask.toString() + "\n" + "Now you have " + taskList.size() + " tasks in the list.\n");
+                        if (commands[0].equals("mark") || commands[0].equals("unmark") || commands[0].equals("delete")) {
+                            int index = Integer.parseInt(commands[1]) - 1;
+
+                            if (commands[0].equals("mark")) {
+                                markTaskAsDone(index);
+                            } else if (commands[0].equals("unmark")) {
+                                markTaskAsNotDone(index);
+                            } /*else if (commands[0].equals("delete")) {
+                                deleteTask(index);
+                            } */else {
+                                throw new DukeException("I do not understand that command :(");
+                            }
+                        } else {
+                            Task newTask;
+                            if (commands[0].equals("todo")) {
+                                newTask = generateToDoFromInput(input);
+                            } else if (commands[0].equals("deadline")) {
+                                newTask = generateDeadlineFromInput(input);
+                            } else if (commands[0].equals("event")) {
+                                newTask = generateEventFromInput(input);
+                            } else {
+                                throw new DukeException("I do not understand that command :(");
+                            }
+
+
+
+                            taskList.add(newTask);
+                            printResponse("Got it. I've added this task:\n" + newTask.toString() + "\n" + "Now you have " + taskList.size() + " tasks in the list.\n");
+                        }
+                    } catch (DukeException e) {
+                        printResponse(e.toString());
                     }
+
             }
         }
     }
