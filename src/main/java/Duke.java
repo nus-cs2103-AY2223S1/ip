@@ -4,8 +4,7 @@ import java.util.Scanner;
 
 public class Duke {
     static ArrayList<Task> tasks = new ArrayList<>();
-    static String exitWord = "bye";
-    static String listWord = "list";
+
     public static void main(String[] args) throws Exception {
         printGreeting();
         while (true) {
@@ -66,7 +65,7 @@ public class Duke {
         System.out.println("Your tasks:");
         for (Task task: tasks) {
             int taskIndex = tasks.indexOf(task) + 1;
-            String taskString = String.format("%d. [%s] %s", taskIndex, task.getStatus() ? "X" : " " , task.getTitle());
+            String taskString = String.format("%d. %s", taskIndex, task);
             System.out.println(taskString);
         }
     }
@@ -78,14 +77,7 @@ public class Duke {
             throw new Exception();
         }
 
-        if (!task.getStatus()) {
-            System.out.println("OK, I've marked this task as done: ");
-            task.markIsDone();
-            String taskString = String.format("[%s] %s", task.getStatus() ? "X" : " " , task.getTitle());
-            System.out.println(taskString);
-        } else {
-            System.out.println("Error: Task is already done");
-        }
+        task.markIsDone();
     }
 
     private static void unmarkTask(String input) throws Exception {
@@ -95,14 +87,7 @@ public class Duke {
             throw new Exception();
         }
 
-        if (task.getStatus()) {
-            System.out.println("OK, I've marked this task as not done yet: ");
-            task.unmarkIsDone();
-            String taskString = String.format("[%s] %s", task.getStatus() ? "X" : " " , task.getTitle());
-            System.out.println(taskString);
-        } else {
-            System.out.println("Error: Task is already undone");
-        }
+        task.unmarkIsDone();
     }
 
     private static Task getTask(String input) throws Exception {

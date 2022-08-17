@@ -8,18 +8,28 @@ public class Task {
     }
 
     public void markIsDone() {
-        this.isDone = true;
+        if (isDone) {
+            System.out.println("Error: Task is already done");
+        } else {
+            System.out.println("OK, I've marked this task as done: ");
+            this.isDone = true;
+            System.out.println(this);
+        }
     }
 
     public void unmarkIsDone() {
-        this.isDone = false;
+        if (isDone) {
+            System.out.println("OK, I've marked this task as not done yet: ");
+            this.isDone = false;
+            System.out.println(this);
+        } else {
+            System.out.println("Error: Task is not done");
+        }
     }
 
-    public Boolean getStatus() {
-        return isDone;
-    }
-
-    public String getTitle() {
-        return title;
+    @Override
+    public String toString() {
+        String newString = String.format("[%s] %s", isDone ? "X" : " " , title);
+        return newString;
     }
 }
