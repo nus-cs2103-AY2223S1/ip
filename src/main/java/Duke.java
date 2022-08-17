@@ -55,6 +55,9 @@ public class Duke {
                         Event event = handleEvent(argument);
                         addTask(event);
                         break;
+                    case "delete":
+                        deleteTask(argument);
+                        break;
                     default:
                         throw new InvalidCommandException(command);
                 }
@@ -151,5 +154,13 @@ public class Duke {
         Task task = storage.get(index);
         task.markAsIncomplete();
         generateMessage("OK, I've marked this task as not done yet:\n" + task);
+    }
+
+    public static void deleteTask(String information) {
+        int index = Integer.parseInt(information) - 1;
+        String task = storage.get(index).toString();
+        storage.remove(index);
+        generateMessage("Noted. I've removed this task:\n" + task);
+
     }
 }
