@@ -1,31 +1,32 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
-    static String[] storage = new String[100];
-    static Task[] taskList = new Task[100];
+    static ArrayList<Task> taskArray = new ArrayList<>(100);
     static int index = 0;
 
     public static String printList() {
         String list = "Here are the tasks in your list:\n";
-        for (int i = 0; i < 100; i++) {
-            if (storage[i] != null) {
-                list += ((i + 1) + "." + taskList[i].toString() + "\n");
+        int size = taskArray.size();
+        for (int i = 0; i < size; i++) {
+            if (taskArray.get(i) != null) {
+                list += ((i + 1) + "." + taskArray.get(i).toString() + "\n");
             }
         }
         return list;
     }
 
     public static void markList(int i) {
-        taskList[i - 1].markAsDone();
-        System.out.println("Nice! I've marked this task as done:\n " + taskList[i - 1].toString() + "\n");
+        taskArray.get(i - 1).markAsDone();
+        System.out.println("Nice! I've marked this task as done:\n " + taskArray.get(i - 1).toString() + "\n");
     }
 
     public static void unMarkList(int i) {
-        taskList[i - 1].unMarkTask();
-        System.out.println("OK, I've marked this task as not done yet:\n " + taskList[i - 1].toString() + "\n");
+        taskArray.get(i - 1).unMarkTask();
+        System.out.println("OK, I've marked this task as not done yet:\n " + taskArray.get(i - 1).toString() + "\n");
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DukeException {
         String welcome = "Hello! I'm Duke\nWhat can I do for you?\n";
         System.out.println(welcome);
         Scanner sc = new Scanner(System.in);
@@ -44,44 +45,62 @@ public class Duke {
                 unMarkList(number);
             } else if (input.equals("todo")) {
                 String toDo = sc.nextLine();
-                storage[index] = toDo;
-                taskList[index] = new Todo(toDo);
-                System.out.println("Got it. I've added this task:\n " + taskList[index].toString() +
-                        "\nNow you have " + (index + 1) + " tasks in the list.\n");
-                index += 1;
+                if (toDo.equals("")) {
+                    DukeException toDoError = new DukeException("☹ OOPS!!! " +
+                            "The description of a todo cannot be empty.\n");
+                    System.out.println(toDoError.toString());
+                } else {
+                    taskArray.add(index, new Todo(toDo));
+                    System.out.println("Got it. I've added this task:\n " + taskArray.get(index).toString() +
+                            "\nNow you have " + (index + 1) + " tasks in the list.\n");
+                    index += 1;
+                }
             } else if (input.equals("deadline")) {
-                String activity = "";
-                String word = sc.next();
-                while(!word.equals("/by")) {
-                    activity += (" " + word);
-                    word = sc.next();
+                String deadlineTask = sc.nextLine();
+                if (deadlineTask.equals("")) {
+                    DukeException deadLineError = new DukeException("☹ OOPS!!! " +
+                            "The description of a deadline cannot be empty.\n");
+                    System.out.println(deadLineError.toString());
+                } else {
+                    int integer = deadlineTask.indexOf("/by");
+                    String description = deadlineTask.substring(0, integer - 1);
+                    String by = deadlineTask.substring(integer + 4);
+                    taskArray.add(index, new Deadline(description, by));
+                    System.out.println("Got it. I've added this task:\n " + taskArray.get(index).toString() +
+                            "\nNow you have " + (index + 1) + " tasks in the list.\n");
+                    index += 1;
                 }
-                String deadline = sc.nextLine();
-                storage[index] = deadline;
-                taskList[index] = new Deadline(activity, deadline);
-                System.out.println("Got it. I've added this task:\n " + taskList[index].toString() +
-                        "\nNow you have " + (index + 1) + " tasks in the list.\n");
-                index += 1;
             } else if (input.equals("event")) {
-                String activity = "";
-                String word = sc.next();
-                while(!word.equals("/at")) {
-                    activity += (" " + word);
-                    word = sc.next();
-                }
                 String event = sc.nextLine();
-                storage[index] = event;
-                taskList[index] = new Event(activity, event);
-                System.out.println("Got it. I've added this task:\n " + taskList[index].toString() +
-                        "\nNow you have " + (index + 1) + " tasks in the list.\n");
-                index += 1;
+                if (event.equals("")) {
+                    DukeException deadLineError = new DukeException("☹ OOPS!!! " +
+                            "The description of a event cannot be empty.\n");
+                    System.out.println(deadLineError.toString());
+                } else {
+                    int integer = event.indexOf("/at");
+                    String description = event.substring(0, integer - 1);
+                    String at = event.substring(integer + 4);
+                    taskArray.add(index, new Event(description, at));
+                    System.out.println("Got it. I've added this task:\n " + taskArray.get(index).toString() +
+                            "\nNow you have " + (index + 1) + " tasks in the list.\n");
+                    index += 1;
+                }
+            } else if (input.equals("delete")) {
+                int deleteIndex = sc.nextInt();
+                Task task = taskArray.get(deleteIndex - 1);
+                taskArray.remove(deleteIndex - 1);
+                index -= 1;
+                System.out.println("Noted. I've removed this task:\n " + task.toString() + "\nNow you have "
+                        + index + " tasks in the list.\n");
             } else {
                 input += sc.nextLine();
-                System.out.println("added: " + input + "\n");
-                storage[index] = input;
-                taskList[index] = new Task(input);
-                index += 1;
+                DukeException incorrectInput = new DukeException("☹ OOPS!!! I'm sorry, " +
+                        "but I don't know what that means :-(\n");
+                System.out.println(incorrectInput.toString());
+
             }
         }
+
     }
+
 }
