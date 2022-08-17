@@ -1,4 +1,5 @@
 import command.Command;
+import command.CommandException;
 import command.CommandFactory;
 import command.CommandHandler;
 
@@ -58,6 +59,10 @@ public class Duke {
         printLine(LINE_STR, 1);
     }
 
+    private static void respondError(String errorMsg) {
+        respond(String.format("OOPS!!! %s", errorMsg));
+    }
+
     public static void main(String[] args) {
         // Greetings
         respond(Arrays.asList(String.format("Hi I'm %s", NAME), "What can I do for you?"));
@@ -71,27 +76,17 @@ public class Duke {
             List<String> tokens = Arrays.asList(query.split(" "));
 
             String commandToken = tokens.get(0);
-            Command command = commandFactory.parseCommand(commandToken);
-
-            // Handle special commands
-            if (command == Command.BYE) {
-                terminate = true;
-                respond("Bye. Hope to see you again soon!");
-                continue;
-            }
-            if (command == Command.UNKNOWN) {
-                respond("Unknown command!");
-                continue;
-            }
-
-            CommandHandler commandHandler = commandFactory.getCommandHandler(command, taskList);
-            // Validate command
-            if (!commandHandler.validateCommand(tokens)) {
-                respond(String.format("[%s] Invalid command parameters!",
-                    command.toString().toLowerCase()));
-            } else {
-                List<String> commandResponse = commandHandler.run(tokens);
-                respond(commandResponse);
+            try {
+                Command command = commandFactory.parseCommand(commandToken);
+                if (command == Command.BYE) {
+                    terminate = true;
+                    respond("Bye. Hope to see you again soon!");
+                    continue;
+                }
+                CommandHandler commandHandler = commandFactory.getCommandHandler(command, taskList);
+                respond(commandHandler.run(tokens));
+            } catch (CommandException commandError) {
+                respondError(commandError.getMessage());
             }
         }
     }
