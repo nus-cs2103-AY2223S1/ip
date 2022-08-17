@@ -10,12 +10,22 @@ list
 unmark 2
 list
 mark 1
-unmark 3
 mark 3
+unmark 3
 list
-LIS
 mar 3
 deadline
 event event 2
 event event 2 /at 20/09
+list
+mark 6
+delete 4
+delete 4.1
+mark m
+unmark m 12 m
+unmark
+delete 5
+delete 4
+list me
+deadline deadline 2 /b 21/9
 bye

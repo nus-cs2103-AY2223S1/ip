@@ -37,7 +37,7 @@ public class Duke {
         String command = splitInput[0].trim();
         String detail = "";
         Boolean description_needed = command.equals("todo") || command.equals("deadline") || command.equals("event") ||
-                command.equals("mark") || command.equals("unmark");
+                command.equals("mark") || command.equals("unmark") || command.equals("delete");
         if (splitInput.length <= 1 && description_needed) {
             throw new DukeException("Description of command is required.\n");
         } else if (description_needed){
@@ -62,31 +62,39 @@ public class Duke {
                 System.out.println(message);
                 break;
             case "mark":
-                int markIndex = Integer.parseInt(detail) - 1;
-                if (markIndex < 0 || markIndex >= this.tasks.size()) {
-                    throw new DukeException(String.format("There is no task with index %d\n", markIndex + 1));
-                } else {
-                    Task markTask = this.tasks.get(markIndex);
-                    if (markTask.isDone) {
-                        System.out.println("This task is already marked as done:\n" + markTask.toString() + "\n");
+                if (detail.matches("\\d+")) {
+                    int markIndex = Integer.parseInt(detail) - 1;
+                    if (markIndex < 0 || markIndex >= this.tasks.size()) {
+                        throw new DukeException(String.format("There is no task with index %d\n", markIndex + 1));
                     } else {
-                        markTask.markDone();
-                        System.out.println("Nice! I've marked this task as done:\n" + markTask.toString() + "\n");
+                        Task markTask = this.tasks.get(markIndex);
+                        if (markTask.isDone) {
+                            throw new DukeException("This task is already marked as done:\n" + markTask.toString() + "\n");
+                        } else {
+                            markTask.markDone();
+                            System.out.println("Nice! I've marked this task as done:\n" + markTask.toString() + "\n");
+                        }
                     }
+                } else {
+                    throw new DukeException(detail + " is not an integer.\n");
                 }
                 break;
             case "unmark":
-                int unMarkIndex = Integer.parseInt(detail) - 1;
-                if (unMarkIndex < 0 || unMarkIndex >= this.tasks.size()) {
-                    throw new DukeException(String.format("There is no task with index %d\n", unMarkIndex + 1));
-                } else {
-                    Task unMarkTask = this.tasks.get(unMarkIndex);
-                    if (!unMarkTask.isDone) {
-                        System.out.println("This task is already marked as undone:\n" + unMarkTask.toString() + "\n");
+                if (detail.matches("\\d+")) {
+                    int unMarkIndex = Integer.parseInt(detail) - 1;
+                    if (unMarkIndex < 0 || unMarkIndex >= this.tasks.size()) {
+                        throw new DukeException(String.format("There is no task with index %d\n", unMarkIndex + 1));
                     } else {
-                        unMarkTask.markUndone();
-                        System.out.println("OK, I've marked this task as not done yet:\n" + unMarkTask.toString() + "\n");
+                        Task unMarkTask = this.tasks.get(unMarkIndex);
+                        if (!unMarkTask.isDone) {
+                            throw new DukeException("This task is already marked as undone:\n" + unMarkTask.toString() + "\n");
+                        } else {
+                            unMarkTask.markUndone();
+                            System.out.println("OK, I've marked this task as not done yet:\n" + unMarkTask.toString() + "\n");
+                        }
                     }
+                } else {
+                    throw new DukeException(detail + " is not an integer.\n");
                 }
                 break;
             case "todo":
@@ -122,6 +130,22 @@ public class Duke {
                     String eventMessage = "added: " + event.toString() + "\n";
                     eventMessage += String.format("Now, you have %d task(s) in the list.", this.tasks.size());
                     System.out.println(eventMessage + "\n");
+                }
+                break;
+            case "delete":
+                if (detail.matches("\\d+")) {
+                    int deleteIndex = Integer.parseInt(detail) - 1;
+                    if (deleteIndex < 0 || deleteIndex >= this.tasks.size()) {
+                        throw new DukeException(String.format("There is no task with index %d\n", deleteIndex + 1));
+                    } else {
+                        Task deletedTask = this.tasks.get(deleteIndex);
+                        this.tasks.remove(deleteIndex);
+                        String deleteMessage = "Noted. I've removed this task:\n" + deletedTask.toString() +
+                                "\nNow you have %d task(s) in the list\n";
+                        System.out.println(String.format(deleteMessage, this.tasks.size()));
+                    }
+                } else {
+                    throw new DukeException(detail + " is not an integer.\n");
                 }
                 break;
             default:
