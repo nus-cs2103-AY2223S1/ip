@@ -35,22 +35,22 @@ public class Duke {
             String cmd = inputArray[0];
             int taskIndex;
             try {
-                switch (cmd) {
-                    case "bye":
+                switch (Commands.valueOf(cmd)) {
+                    case bye:
                         System.out.println(" Bye. Hope to see you again soon!");
                         return;
-                    case "list":
+                    case list:
                         Duke.listTasks();
                         break;
-                    case "mark":
+                    case mark:
                         taskIndex = Integer.parseInt(inputArray[1]) - 1;
                         Duke.allTasks.get(taskIndex).markAsDone();
                         break;
-                    case "unmark":
+                    case unmark:
                         taskIndex = Integer.parseInt(inputArray[1]) - 1;
                         Duke.allTasks.get(taskIndex).unmark();
                         break;
-                    case "delete":
+                    case delete:
                         taskIndex = Integer.parseInt(inputArray[1]) - 1;
                         Task task = Duke.allTasks.get(taskIndex);
                         System.out.println("Noted. I've removed this task:");
