@@ -4,6 +4,9 @@ import exception.*;
 import java.util.ArrayList;
 import tasks.*;
 
+/**
+ * ByeCommand says bye to user
+ */
 public class ByeCommand extends Command {
 
   @Override

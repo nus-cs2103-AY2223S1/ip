@@ -8,6 +8,12 @@ public class UnmarkCommand extends Command {
 
   private int index;
 
+  /**
+   * Constuctor for UnmarkCommand
+   *
+   * @param description String representation of task number to be marked
+   * @throws DukeException if user did not type in a correct task number
+   */
   public UnmarkCommand(String description) throws DukeException {
     try {
       this.index = Integer.parseInt(description);
@@ -16,6 +22,11 @@ public class UnmarkCommand extends Command {
     }
   }
 
+  /**
+   * Unmarks command
+   *
+   * @throws DukeException if task chosen is out of bounds
+   */
   @Override
   public void execute(ArrayList<Task> tasklist) throws DukeException {
     if (index <= 0 || index > tasklist.size()) {

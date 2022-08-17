@@ -3,8 +3,17 @@ package main;
 import commands.*;
 import exception.*;
 
+/**
+ * A parser that parses user input to the commands
+ */
 public class Parser {
 
+  /**
+   * Returns the correct command based on user input
+   * @param text The text received from user
+   * @return The correct command based on user input
+   * @throws DukeException Unknown or incomplete command message if user input does not qualify
+   */
   static Command parse(String text) throws DukeException {
     String[] instructions = text.split(" ", 2);
     String command = instructions[0];
@@ -40,7 +49,7 @@ public class Parser {
         case ("unmark"):
           return new UnmarkCommand(description);
         default:
-          throw new DukeException("Uknown command received");
+          throw new DukeException("Unknown or incomplete command received");
       }
     }
   }
