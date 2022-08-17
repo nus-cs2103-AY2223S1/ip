@@ -1,27 +1,17 @@
 /**
  * A class of tasks noted by Rabbit.
  */
-public class Task {
+public abstract class Task {
     // the specification of the task.
     private String content;
     // whether the task is marked as done.
     private boolean done;
 
-    /** a constructor of the Task
+    /** a constructor of Task
      *
      * @param content the content of the task
      */
     public Task(String content) {
-        this.content = content;
-        this.done = false;
-    }
-
-    /** a constructor of the Task
-     *
-     * @param content the content of the task
-     * @boolean done whether the task is done
-     */
-    public Task(String content, boolean done) {
         this.content = content;
         this.done = false;
     }

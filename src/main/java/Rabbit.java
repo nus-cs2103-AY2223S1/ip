@@ -13,16 +13,23 @@ public class Rabbit {
             + "Yo...nice to meet you. This is rabbit...Ughhhhh I hate this job.\n"
             + "You can input stuff that you want me to write on this grandma-aged notebook.\n"
             + "-----------------------------------------------------------------------------\n"
-            + "Type the name of a task to add it to the list such as 'Do homework'.\n"
-            + "Type 'list' then I'll show all the existing lines to you.\n"
-            + "Type 'mark + the index of a existing task' to marks it as done. Like 'mark 1'.\n"
-            + "Type 'unmark + the index of a existing task' to unmark a task.\n"
+            + "1. Type the type of a task followed by its content and time to add it into the list.\n"
+            + "   There are three types: todo, deadline and event.\n"
+            + "   - To add todo, type 'todo the content' such as 'todo do homework'.\n"
+            + "   - To add deadline, type 'deadline the content /the time' such as 'deadline do homework /9am'.\n"
+            + "   - To add event, type 'event the content /the time' such as 'event do homework /9am'.\n"
+            + "2. Type 'list' then I'll show all the existing lines to you.\n"
+            + "3. Type 'mark + the index of a existing task' to marks it as done. Like 'mark 1'.\n"
+            + "4. Type 'unmark + the index of a existing task' to unmark a task.\n"
             + "-----------------------------------------------------------------------------\n"
             + "Actually why not just do me a favour? Type 'bye' in the console and free both of us.";
 
     private static String bye = "Thanks a lot. I'm gonna have some carrot tea later. See you...";
     // initialise the list that stores tasks.
     private static ArrayList<Task> list = new ArrayList<>();
+    private enum TaskType {
+        TODO, DEADLINE, EVENT;
+    }
 
     /**
      * a function that continues to take in a line from the user
@@ -54,17 +61,47 @@ public class Rabbit {
      *  Rabbit adds the input lines the user types into
      *  a list with a size no more than 100.
      *
-     * @param input the content of the task the user inputs
+     * @param task the type of the task that is to be added
+     * @param input the content (and the time) of the task the user inputs
      */
-    private static void addToList(String input) {
-        if (list.size() < 100) {
-            list.add(new Task(input));
-            System.out.println("Okay...noted.");
-        } else {
+    private static void addToList(TaskType task, String input) {
+        if (list.size() == 100) {
             // warns the user when there are already 100 lines in
             // the list when the user is trying to input a new line.
             System.out.println("There are too many lines! Don't exceed 100 lines please.\n"
                     + "Type 'list' to list out all the existing lines.");
+        }
+
+        try {
+            // initialise the task to be added
+            Task added = new Todo("");
+            switch (task) {
+
+                case TODO:
+                    added = new Todo(input.substring(5, input.length()));
+                    list.add(added);
+                    break;
+                case DEADLINE:
+                    // the content and time of the task
+                    String deadline = input.substring(9, input.length());
+                    // the index of the character in the string before which is the content
+                    int i = scanContent(deadline);
+                    added = new Deadline(deadline.substring(0, i - 1), deadline.substring(i + 1, deadline.length()));
+                    list.add(added);
+                    break;
+                case EVENT:
+                    // the content and time of the task
+                    String event = input.substring(6, input.length());
+                    // the index of the character in the string before which is the content
+                    int j = scanContent(event);
+                    added = new Event(event.substring(0, j - 1), event.substring(j + 1, event.length()));
+                    list.add(added);
+                    break;
+
+            }
+            System.out.println("Okay...noted.\n" + added.getContent() + "...Huh? Hope you can remember it.");
+        } catch (StringIndexOutOfBoundsException e) {
+            System.out.println("That's a wrong format of creating a task.");
         }
     }
 
@@ -85,12 +122,24 @@ public class Rabbit {
     /**
      * marks the task at index i as done
      *
-     * @param i the index of the task marked done.
+     * @param input the user's input.
      */
-    private static void mark(int i) {
+    private static void mark(String input) {
+        try {
+            Integer.parseInt(input.substring(5));
+        } catch (NumberFormatException ex) {
+            // if input is mark + a non-integer,
+            // reminds the user of the correct format
+            System.out.println("Type 'mark + the index of the task' "
+                    + "if that's what you want.");
+            return;
+        }
+
+        int i = Integer.parseInt(input.substring(5));
+
         if (i > list.size() || i <= 0) {
             System.out.println("Hey, be careful.\n"
-                    + "The index must be between 0 and the size of the list, alright?");
+                    + "The index must be between 1 and the size of the list, alright?");
             return;
         }
 
@@ -106,12 +155,23 @@ public class Rabbit {
     /**
      * unmarks the task at index i as not done
      *
-     * @param i the index of the task unmarked.
+     * @param input the user's input.
      */
-    private static void unmark(int i) {
+    private static void unmark(String input) {
+        try {
+            Integer.parseInt(input.substring(5));
+        } catch (NumberFormatException ex) {
+            // if input is mark + a non-integer,
+            // reminds the user of the correct format
+            System.out.println("Type 'unmark + the index of the task' "
+                    + "if that's what you want.");
+            return;
+        }
+
+        int i = Integer.parseInt(input.substring(5));
         if (i > list.size() || i <= 0) {
             System.out.println("Hey, be careful.\n"
-                    + "The index must be between 0 and the size of the list, alright?");
+                    + "The index must be between 1 and the size of the list, alright?");
             return;
         }
 
@@ -124,59 +184,77 @@ public class Rabbit {
         list.get(i - 1).unmark();
     }
 
+    /**
+     * scans which function of Rabbit is called by
+     * returning the first word of the string.
+     * Functions include "mark, unmark, list, todo,
+     * deadline, event and bye.
+     *
+     * @param input the user's input
+     * @return the index of the character in the string
+     * before which is the first word
+     */
+    private static int scanFunction(String input) {
+        for (int i = 0; i < input.length(); i++) {
+            if (input.charAt(i) == ' ') {
+                return i + 1;
+            }
+        }
+       return input.length();
+    }
+
+    /**
+     * scans the content of the task when the user
+     * is trying to create a task
+     *
+     * @param input the string after the task type in the input
+     * @return the index of the character in the string before which
+     * is the content, after which is the time, -1 if the format is wrong.
+     */
+    private static int scanContent(String input) {
+        for (int i = 0; i < input.length() - 1; i++) {
+            if (input.charAt(i) == ' ' && input.charAt(i + 1) == '/') {
+                return i + 1;
+            }
+        }
+        return -1;
+    }
     public static void main(String[] args) {
         System.out.println(greet);
         Scanner sc = new Scanner(System.in);
 
         while (true) {
             String input = sc.nextLine();
-            if (input.length() > 5 && input.substring(0, 5).equals("mark ")) {
-                // the input string is parsed to be the integer
-                // that the string represents, 0 if it is not an integer
-                try {
-                    mark(Integer.parseInt(input.substring(5)));
+            String function = input.substring(0, scanFunction(input));
+
+            switch(function) {
+                case "bye":
+                    System.out.println(bye);
+                    break;
+                case "list":
+                    list();
                     continue;
-                } catch (NumberFormatException ex) {
-                    System.out.println("Is '" + input + "' a task?");
-                    if (!sc.nextLine().equals("yes")) {
-                        System.out.println("Type 'mark + the index of the task' "
-                                + "if that's what you want instead.");
-                        continue;
-                    }
-                }
-            }
-
-            if (input.length() > 6 && input.substring(0, 7).equals("unmark ")) {
-                // the input string is parsed to be the integer
-                // that the string represents, 0 if it is not an integer
-                try {
-                    unmark(Integer.parseInt(input.substring(7)));
+                case "mark ":
+                    mark(input);
                     continue;
-                } catch (NumberFormatException ex) {
-                    System.out.println("Is '" + input + "' a task?");
-                    if (!sc.nextLine().equals("yes")) {
-                        System.out.println("Type 'unmark + the index of the task' "
-                                + "if that's what you want instead.");
-                        continue;
-                    }
-                }
+                case "unmark ":
+                    unmark(input);
+                    continue;
+                case "todo ":
+                    addToList(TaskType.TODO, input);
+                    continue;
+                case "deadline ":
+                    addToList(TaskType.DEADLINE, input);
+                    continue;
+                case "event ":
+                    addToList(TaskType.EVENT, input);
+                    continue;
+                default:
+                    // the user keyed in an invalid input
+                    System.out.println("Ummm...what is that? I don't get it.");
             }
-
-            // program terminates when the user inputs 'bye'.
-            if (input.equals("bye")) {
-                System.out.println(bye);
-                break;
-            }
-                // Rabbit lists out all the lines in the list.
-            if (input.equals("list")) {
-                // prints out the all the current tasks
-                list();
-                // skips the part where input line is stored into the list.
-                continue;
-            }
-
-            addToList(input);
-
         }
+
+
     }
 }
