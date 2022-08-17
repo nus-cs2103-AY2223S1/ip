@@ -5,3 +5,13 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
+What can I do for you?
+------------------------------
+: 
+Got it. I've added this task:
+[T] [ ] homework
+Now you have 1 task(s) in the list.
+------------------------------
+
+------------------------------
+: 
