@@ -15,13 +15,26 @@ public class Duke {
         System.out.println(divider + logo + openingStatement + divider);
 
         Scanner scanner = new Scanner(System.in);
+        ArrayList<String> taskList = new ArrayList<>();
 
         while (scanner.hasNext()) {
             String input = scanner.nextLine();
             if (input.equals("bye")) {
                 break;
+            } else if (input.equals("list")) {
+                System.out.print(divider);
+                for (int index = 0; index < taskList.size(); ++index) {
+                    System.out.print(indent);
+                    System.out.print(index + 1);
+                    System.out.println(". " + taskList.get(index));
+                }
+                System.out.println(divider);
+            } else {
+                boolean response = taskList.add(input);
+                if (response) {
+                    System.out.println(divider + indent + "added: " + input + "\n" + divider);
+                }
             }
-            System.out.println(divider + indent + input + "\n" + divider);
         }
 
         String exitStatement = "Bye. Hope to see you again soon! :)";
