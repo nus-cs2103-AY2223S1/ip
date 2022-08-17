@@ -14,4 +14,8 @@ public class Task {
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
     }
+
+    public void setStatus(boolean status) {
+        isDone = status;
+    }
 }
