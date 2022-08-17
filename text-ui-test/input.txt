@@ -8,4 +8,5 @@ unmark 10
 todo
 deadline
 event
+delete 1
 bye

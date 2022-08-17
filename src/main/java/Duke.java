@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class Duke {
     public enum Command {
-        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT
+        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE
     }
 
     private static List<Task> tasks = new ArrayList<>();
@@ -31,7 +31,7 @@ public class Duke {
      * Prints out all the added tasks.
      */
     public static void showTasks() throws NoTasksException {
-        if (tasks.size() == 0) {
+        if (tasks.isEmpty()) {
             throw new NoTasksException();
         }
         int id = 1;
@@ -46,7 +46,7 @@ public class Duke {
      * @param taskIndex position of the task in the list (1-indexed)
      */
     public static void markTaskAsDone(int taskIndex) throws NoTasksException, InvalidTaskIndexException {
-        if (tasks.size() == 0) {
+        if (tasks.isEmpty()) {
             throw new NoTasksException();
         }
         if (taskIndex > tasks.size() || taskIndex <= 0) {
@@ -63,7 +63,7 @@ public class Duke {
      * @param taskIndex position of the task in the list (1-indexed)
      */
     public static void markTaskAsNotDone(int taskIndex) throws NoTasksException, InvalidTaskIndexException {
-        if (tasks.size() == 0) {
+        if (tasks.isEmpty()) {
             throw new NoTasksException();
         }
         if (taskIndex > tasks.size() || taskIndex <= 0) {
@@ -92,7 +92,7 @@ public class Duke {
      */
     public static void addTodo(String[] inputs) throws EmptyNameException {
         if (inputs.length == 1) {
-            throw new EmptyNameException("objects.Todo name cannot be empty...");
+            throw new EmptyNameException("Todo name cannot be empty...");
         }
         StringBuilder todoName = new StringBuilder();
         for (int i = 1; i < inputs.length - 1; i++) {
@@ -114,7 +114,7 @@ public class Duke {
      */
     public static void addDeadline(String[] inputs) throws EmptyNameException {
         if (inputs.length == 1) {
-            throw new EmptyNameException("objects.Deadline name cannot be empty...");
+            throw new EmptyNameException("Deadline name cannot be empty...");
         }
         StringBuilder deadlineName = new StringBuilder();
         StringBuilder endDateTime = new StringBuilder();
@@ -150,7 +150,7 @@ public class Duke {
      */
     public static void addEvent(String[] inputs) throws EmptyNameException {
         if (inputs.length == 1) {
-            throw new EmptyNameException("objects.Event name cannot be empty...");
+            throw new EmptyNameException("Event name cannot be empty...");
         }
         StringBuilder eventName = new StringBuilder();
         StringBuilder periodDateTime = new StringBuilder();
@@ -177,6 +177,27 @@ public class Duke {
         tasks.add(newEvent);
         System.out.println("Got it. I've added this task:");
         System.out.println("  " + newEvent.toString());
+        printNumberOfTasks();
+    }
+
+    /**
+     * Deletes a task at a specific index.
+     *
+     * @param taskIndex index of the task to be removed (1-indexed)
+     * @throws NoTasksException
+     * @throws InvalidTaskIndexException
+     */
+    public static void deleteTask(int taskIndex) throws NoTasksException, InvalidTaskIndexException {
+        if (tasks.isEmpty()) {
+            throw new NoTasksException();
+        }
+        if (taskIndex > tasks.size() || taskIndex <= 0) {
+            throw new InvalidTaskIndexException();
+        }
+        // taskIndex is 1-indexed
+        Task t = tasks.remove(taskIndex - 1);
+        System.out.println("Noted. I've removed this task:");
+        System.out.println("  " + t);
         printNumberOfTasks();
     }
 
@@ -209,9 +230,15 @@ public class Duke {
                     showTasks();
                 } else if (command.equals(Command.MARK.name().toLowerCase())) {
                     // inputs[1] is the index number of the task to be marked
+                    if (inputs.length < 2) {
+                        throw new InvalidTaskIndexException();
+                    }
                     markTaskAsDone(Integer.parseInt(inputs[1]));
                 } else if (command.equals(Command.UNMARK.name().toLowerCase())) {
                     // inputs[1] is the index number of the task to be unmarked
+                    if (inputs.length < 2) {
+                        throw new InvalidTaskIndexException();
+                    }
                     markTaskAsNotDone(Integer.parseInt(inputs[1]));
                 } else if (command.equals(Command.TODO.name().toLowerCase())) {
                     addTodo(inputs);
@@ -219,6 +246,12 @@ public class Duke {
                     addDeadline(inputs);
                 } else if (command.equals(Command.EVENT.name().toLowerCase())) {
                     addEvent(inputs);
+                } else if (command.equals(Command.DELETE.name().toLowerCase())) {
+                    // inputs[1] is the index number of the task to be marked
+                    if (inputs.length < 2) {
+                        throw new InvalidTaskIndexException();
+                    }
+                    deleteTask(Integer.parseInt(inputs[1]));
                 } else {
                     // when none of the commands match
                     throw new UnknownCommandException();
