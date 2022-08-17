@@ -38,6 +38,8 @@ public class Duke {
                     System.out.println(handler.handleDeadline(echo));
                 } else if (echo.startsWith("event")) {
                     System.out.println(handler.handleEvent(echo));
+                } else if (echo.startsWith("delete")){
+                    System.out.println(handler.handleDelete(echo));
                 } else {
                     throw new DukeUnknownTaskException();
                 }

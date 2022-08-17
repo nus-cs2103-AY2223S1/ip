@@ -50,6 +50,14 @@ public class UserInterface {
                 + " tasks in the list.";
     }
 
+    public String printDelete(Task task, int index) {
+        return "Noted. I've removed this task:" + "\n"
+                + "  "
+                + task + "\n"
+                + "Now you have " + TaskList.taskList.size() + " tasks in the list." + "\n";
+
+    }
+
     public void printError(String message) {
         System.out.println(message);
     }

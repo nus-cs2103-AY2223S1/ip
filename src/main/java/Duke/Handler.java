@@ -60,6 +60,15 @@ public class Handler {
         return  userInterface.printTask(event);
     }
 
+    public String handleDelete(String echo) throws DukeEmptyDescriptionException {
+        if (echo.length()==6) {
+            throw new DukeEmptyDescriptionException();
+        }
+        int index = Integer.parseInt(String.valueOf(echo.charAt(7))) - 1;
+        Task task = TaskList.taskList.remove(index);
+        return userInterface.printDelete(task,index);
+    }
+
     public String addTask(Task task){
         taskList.add(task);
         return userInterface.printTask(task);
