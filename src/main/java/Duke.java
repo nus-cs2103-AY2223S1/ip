@@ -14,7 +14,8 @@ public class Duke {
 
         while(!terminate) {
             String nextLine = sc.nextLine();
-            String[] splitted = nextLine.split("\\s+");
+            // Regex "//s+" matches one or more spaces
+            String[] splitted = nextLine.split("\\s+", 2);
             String command = splitted[0];
             switch (command) {
                 case "bye":
@@ -47,9 +48,49 @@ public class Duke {
                             unmarkedItem
                     ));
                     break;
+                case "todo":
+                    String todo = splitted[1];
+                    String taskItem = "  " + dukelist.addTodo(todo);
+                    String startLine = "Got it. I've added this task:";
+                    String endLine = String.format(
+                        "Now you have %d tasks in the list.",
+                        dukelist.getTaskCount());
+                    System.out.println(TextFormatter.formatLinesIntoParagraph(
+                        startLine,
+                        taskItem,
+                        endLine
+                    ));
+                    break;
+                case "deadline":
+                    // Regex "\\s+\\\\" matches one or more space followed by a \
+                    String[] taskArgs = splitted[1].split("\\s+\\\\",2);
+                    taskItem = "  " + dukelist.addDeadline(taskArgs[0], taskArgs[1]);
+                    startLine = "Got it. I've added this task:";
+                    endLine = String.format(
+                            "Now you have %d tasks in the list.",
+                            dukelist.getTaskCount());
+                    System.out.println(TextFormatter.formatLinesIntoParagraph(
+                            startLine,
+                            taskItem,
+                            endLine
+                    ));
+                    break;
+                case "event":
+                    // Regex "\\s+\\\\" matches one or more space followed by a \
+                    taskArgs = splitted[1].split("\\s+\\\\",2);
+                    taskItem = "  " + dukelist.addEvent(taskArgs[0], taskArgs[1]);
+                    startLine = "Got it. I've added this task:";
+                    endLine = String.format(
+                            "Now you have %d tasks in the list.",
+                            dukelist.getTaskCount());
+                    System.out.println(TextFormatter.formatLinesIntoParagraph(
+                            startLine,
+                            taskItem,
+                            endLine
+                    ));
+                    break;
                 default:
-                    dukelist.add(nextLine);
-                    String outputString = "added: " + command;
+                    String outputString = "No such command";
                     System.out.println(TextFormatter.formatLinesIntoParagraph(outputString));
             }
         }
