@@ -1,7 +1,7 @@
 /**
  * Tasks that can be marked as done or not done
  */
-public class Task {
+public abstract class Task {
 
     /** Description of what the task entails */
     protected String description;
@@ -10,7 +10,7 @@ public class Task {
     protected boolean isDone;
 
     /**
-     * Constructs a new not done task with the given description
+     * Constructs a new task with the given description
      * @param description The task description
      */
     public Task(String description) {
@@ -33,6 +33,11 @@ public class Task {
     }
 
     /**
+     * @return A symbol indicating what kind of task this is
+     */
+    protected abstract String getTypeSymbol();
+
+    /**
      * @return "X" if the task is done, " " otherwise
      */
     private String getStatusIcon() {
@@ -47,10 +52,10 @@ public class Task {
     }
 
     /**
-     * @return The task status and description
+     * @return The task type, status and description
      */
     @Override
     public String toString() {
-        return "[" + getStatusIcon() + "] " + getDescription();
+        return "[" + getTypeSymbol() + "][" + getStatusIcon() + "] " + getDescription();
     }
 }
