@@ -80,6 +80,9 @@ public class Input {
         }
     }
 
+    /**
+     * @return Command name from the input according to input rules
+     */
     public String getCommandName() {
         return commandName;
     }
@@ -109,6 +112,27 @@ public class Input {
      */
     public String getInputString() {
         return inputString;
+    }
+
+    /** Returns true if input contains the specified argument
+     * @param argument Argument name to check existence of
+     * @return true if argument is present in input, else false
+     */
+    public boolean hasArgument(String argument) {
+        return parameters.containsKey(argument);
+    }
+
+    /** Returns parameter corresponding to an argument name if it exists
+     * @param argument Argument to get parameter of
+     * @return Parameter corresponding to the argument
+     * @throws IllegalArgumentException - if the specified argument was not provided
+     */
+    public String getParameter(String argument) throws IllegalArgumentException {
+        if (!hasArgument(argument)) {
+            throw new IllegalArgumentException(String.format("Argument %s was not provided", argument));
+        }
+
+        return parameters.get(argument);
     }
 
     /** Factory method to return new instance of Input
