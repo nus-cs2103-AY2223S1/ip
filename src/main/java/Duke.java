@@ -7,6 +7,7 @@ public class Duke {
         initDuke();
     }
 
+    // Duke Initializer starts the duke program
     private static void initDuke() {
         Scanner myScanner = new Scanner(System.in);
         String exitWord = "bye";
@@ -22,7 +23,7 @@ public class Duke {
         String  command = "";
         ArrayList<String> toDoList = new ArrayList<>();
 
-        while ( !command.equals(exitWord)) {
+        while (!command.equals(exitWord)) {
             if (command.equals("list")) {
                 System.out.println(hLine);
                 for (int i = 0; i < toDoList.size(); i ++) {
@@ -37,8 +38,12 @@ public class Duke {
                 System.out.println("\tadded: " + command);
                 System.out.println(hLine);
             }
-
-            command = myScanner.nextLine();
+            try {
+                command = myScanner.nextLine();
+            } catch (java.util.InputMismatchException e) {
+                System.out.println("\tError: please input a valid command");
+                command = "";
+            }
         }
         System.out.println(hLine);
         System.out.println("\tBye. Hope to see you again soon!");
