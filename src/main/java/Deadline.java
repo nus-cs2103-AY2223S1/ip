@@ -1,7 +1,7 @@
 public class Deadline extends Task {
     public String date;
 
-    public Deadline(String taskName) {
+    public Deadline(String taskName) throws IndexOutOfBoundsException {
         super(taskName.substring(9, taskName.indexOf(" /by")));
         this.date = taskName.substring(taskName.indexOf(" /by") + 5);
     }

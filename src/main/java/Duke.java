@@ -38,14 +38,19 @@ public class Duke {
         } else if (userInput.startsWith("unmark")) {
             unmarkTask(Integer.parseInt(userInput.substring(7)));
         } else {
-           addTask(userInput);
+            try {
+                addTask(userInput);
+            } catch (DukeException e) {
+                System.out.println(e.toString());
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println(new DukeException("Please your task lacks the necessary specifications"));
+            }
         }
 
         System.out.println();
     }
 
-    private void addTask(String task) {
-        System.out.println("\tLazily added this task for you " + emoji);
+    private void addTask(String task) throws DukeException {
 
         Task newTask;
         if (task.startsWith("todo")) {
@@ -56,9 +61,10 @@ public class Duke {
             newTask= new Event(task);
         } else {
             // Fallback should not occur
-            newTask = new Task(task);
+            throw new DukeException("Your command lacks the keyword for me to act upon");
         }
 
+        System.out.println("\tLazily added this task for you " + emoji);
         todos[pointer] = newTask;
         pointer++;
         System.out.println("\t\t" + newTask);
@@ -73,15 +79,23 @@ public class Duke {
     }
 
     private void markTask(int index) {
-        todos[index - 1].mark();
-        System.out.println("\tWellz, I've marked this task for YOU:");
-        System.out.println("\t\t" + todos[index - 1]);
+        try {
+            todos[index - 1].mark();
+            System.out.println("\tWellz, I've marked this task for YOU:");
+            System.out.println("\t\t" + todos[index - 1]);
+        } catch (NullPointerException e) {
+            System.out.println(new DukeException("Read the index of the existing tasks carefully..."));
+        }
     }
 
     private void unmarkTask(int index) {
-        todos[index - 1].unmark();
-        System.out.println("\t-_-, I've unmarked this task for YOU AGAIN:");
-        System.out.println("\t\t" + todos[index - 1]);
+        try {
+            todos[index - 1].unmark();
+            System.out.println("\t-_-, I've unmarked this task for YOU AGAIN:");
+            System.out.println("\t\t" + todos[index - 1]);
+        } catch (NullPointerException e) {
+            System.out.println(new DukeException("Read the index of the existing tasks carefully..."));
+        }
     }
 
     private void bye() {
