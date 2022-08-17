@@ -45,7 +45,7 @@ public class Duke {
         String uncap = str.toLowerCase();
         while (!uncap.equals("bye")) {
             if (!uncap.equals("list")) {
-                if (!uncap.contains("mark")) {
+                if (!uncap.startsWith("mark") && !uncap.startsWith("unmark")) {
                     Task t = new Task(str);
                     al.add(t);
                     System.out.println("------------------------------\n");
