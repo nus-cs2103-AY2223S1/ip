@@ -6,6 +6,7 @@ public class Todo extends Task {
      */
     public Todo(String task) {
         this.task = task;
+        System.out.println("added: " + this);
     }
 
     /**
@@ -15,6 +16,6 @@ public class Todo extends Task {
      */
     @Override
     public String toString() {
-        return "[T] " + this;
+        return "[T] " + super.toString();
     }
 }

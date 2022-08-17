@@ -10,6 +10,7 @@ public class Deadline extends Task {
     public Deadline(String task, String dueDate) {
         this.task = task;
         this.dueDate = dueDate;
+        System.out.println("added: " + this);
     }
 
     /**
@@ -19,6 +20,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D] " + this + " (by: " + this.dueDate + ")";
+        return "[D] " + super.toString() + " (by: " + this.dueDate + ")";
     }
 }

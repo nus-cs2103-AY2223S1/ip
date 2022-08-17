@@ -9,6 +9,7 @@ public class Event extends Task {
     public Event(String task, String eventTime) {
         this.task = task;
         this.eventTime = eventTime;
+        System.out.println("added: " + this);
     }
 
     /**
@@ -18,6 +19,6 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E] " + this + " (at: " + this.eventTime + ")";
+        return "[E] " + super.toString() + " (at: " + this.eventTime + ")";
     }
 }

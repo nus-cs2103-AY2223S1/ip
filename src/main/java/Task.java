@@ -8,7 +8,7 @@ public abstract class Task {
      * @param userCommand  the command entered by the user to be parsed by the method
      * @return a Task obj, either a Todo, Deadline or Event
      */
-    public static Task createTask(String userCommand) {
+    public static Task createTask(String userCommand) throws Exception {
         String task;
         String date;
         String[] cmdArray = userCommand.split(" ", 2);
@@ -27,7 +27,7 @@ public abstract class Task {
                 date = cmdArray[1].substring(cmdArray[1].indexOf("/at") + 1);
                 return new Event(task, date);
             default:
-                return new Todo("");
+                throw new Exception("Command Unrecognised");
         }
     }
 
