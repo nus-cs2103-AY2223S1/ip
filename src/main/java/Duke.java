@@ -14,22 +14,33 @@ public class Duke {
 
         while (!isDone) {
             String command = sc.nextLine();
-            String[] splitCommandSpace = command.split("\\s+");
 
             if (command.equals("bye")) {
                 bye();
             } else if (command.equals("list")) {
                 displayList();
-            } else if (splitCommandSpace[0].equals("mark")) {
-                String markItem = splitCommandSpace[1];
-                mark(markItem);
-            } else if (splitCommandSpace[0].equals("unmark")) {
-                String unmarkItem = splitCommandSpace[1];
-                unmark(unmarkItem);
-            } else {
-                printMessage(INDENTATION + "added: " + command);
-                Task currentTask = new Task(command);
-                addList(currentTask);
+            } else if (command.startsWith("mark")) {
+                String[] splitCommand = command.split("\\s+",2);
+                String markItem = splitCommand[1];
+                int itemNumber = Integer.parseInt(markItem);
+                mark(itemNumber);
+            } else if (command.startsWith("unmark")) {
+                String[] splitCommand = command.split("\\s+",2);
+                String unmarkItem = splitCommand[1];
+                int itemNumber = Integer.parseInt(unmarkItem);
+                unmark(itemNumber);
+            } else if (command.startsWith("todo")) {
+                String[] splitCommand = command.split("\\s+",2);
+                String desc = splitCommand[1];
+                addTodo(desc);
+            } else if (command.startsWith("deadline")) {
+                String[] splitCommand = command.split("\\s+",2);
+                String desc = splitCommand[1];
+                addDeadline(desc);
+            } else if (command.startsWith("event")) {
+                String[] splitCommand = command.split("\\s+",2);
+                String desc = splitCommand[1];
+                addEvent(desc);
             }
         }
     }
@@ -78,8 +89,7 @@ public class Duke {
         displayLine();
     }
 
-    private static void mark(String item) {
-        int itemNumber = Integer.parseInt(item);
+    private static void mark(int itemNumber) {
         int index = itemNumber - 1;
         Task markedTask = taskList.get(index);
         markedTask.markAsDone();
@@ -90,8 +100,7 @@ public class Duke {
         displayLine();
     }
 
-    private static void unmark(String item) {
-        int itemNumber = Integer.parseInt(item);
+    private static void unmark(int itemNumber) {
         int index = itemNumber - 1;
         Task unmarkedTask = taskList.get(index);
         unmarkedTask.unmarkAsDone();
@@ -100,5 +109,37 @@ public class Duke {
         System.out.println(unmarkMessage);
         System.out.println(INDENTATION + unmarkedTask.toString());
         displayLine();
+    }
+
+    private static void displayAddTask(Task taskAdded) {
+        displayLine();
+        System.out.println(INDENTATION + "Got it. I've added this task:");
+        System.out.println(INDENTATION + taskAdded.toString());
+        System.out.println(INDENTATION + "Now you have " + taskList.size() + " tasks in the list.");
+        displayLine();
+    }
+
+    private static void addTodo(String description) {
+        ToDo todo = new ToDo(description);
+        addList(todo);
+        displayAddTask(todo);
+    }
+
+    private static void addDeadline(String description) {
+        String[] splitDescription = description.split(" /by ", 2);
+        String instruction = splitDescription[0];
+        String by = splitDescription[1];
+        Deadline deadline = new Deadline(instruction, by);
+        addList(deadline);
+        displayAddTask(deadline);
+    }
+
+    private static void addEvent(String description) {
+        String[] splitDescription = description.split(" /at ", 2);
+        String instruction = splitDescription[0];
+        String at = splitDescription[1];
+        Event event = new Event(instruction, at);
+        addList(event);
+        displayAddTask(event);
     }
 }
