@@ -1,3 +1,5 @@
+package models;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +13,7 @@ public class TaskManager {
     // The list of tasks, accessed using 0-based indices
     private final List<Task> taskList;
     private static final String NO_TASKS_AVAILABLE = "There are currently no tasks available. Add one now!";
+    private static final String TASK_LIST_STATUS_MESSAGE = "Now you have %s task(s) in the list.";
 
     public TaskManager() {
         this.taskList = new ArrayList<>();
@@ -59,6 +62,14 @@ public class TaskManager {
      */
     public int count() {
         return this.taskList.size();
+    }
+
+    /**
+     * Returns the status of the task manager on the number of tasks in the list
+     * @return Status of the task manager
+     */
+    public String getStatus() {
+        return String.format(TASK_LIST_STATUS_MESSAGE, this.count());
     }
 
     /**

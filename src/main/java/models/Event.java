@@ -1,3 +1,5 @@
+package models;
+
 /**
  * Encapsulates a task that starts at a specific time and ends at a specific time,
  * e.g., team project meeting on 2/10/2019 2-4pm

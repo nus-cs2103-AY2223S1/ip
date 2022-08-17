@@ -1,3 +1,5 @@
+package models;
+
 /**
  * Encapsulates a task containing a description and a completion status
  *

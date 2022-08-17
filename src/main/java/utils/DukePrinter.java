@@ -1,3 +1,5 @@
+package utils;
+
 /**
  * Enables printing to screen display to be beautified according to the
  * line separator and tab formatter
