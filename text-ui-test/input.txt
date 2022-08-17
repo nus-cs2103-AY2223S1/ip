@@ -1,0 +1,10 @@
+todo read book
+deadline individual project /by Thursday
+event attend lecture /at Friday
+list
+mark 2
+unmark 2
+delete 2
+event attend lecture /at :P Skip lecture
+list
+bye
