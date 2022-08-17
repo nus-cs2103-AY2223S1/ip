@@ -12,6 +12,21 @@ public class Task {
         System.out.println("added: " + this.task);
     }
 
+    /**
+     * Method used to mark this task as complete
+     */
+    public void markAsDone() {
+        this.isComplete = true;
+        System.out.println(this.toString());
+    }
+
+    /**
+     * Method used to mark this task as incomplete
+     */
+    public void unmark() {
+        this.isComplete = false;
+        System.out.println(this.toString());
+    }
 
     /**
      * To String method that returns the task in string form to the user
@@ -20,6 +35,7 @@ public class Task {
      */
     @Override
     public String toString() {
-        return this.task;
+        String checkBox = this.isComplete ? "[X] " : "[ ] ";
+        return checkBox + this.task;
     }
 }
