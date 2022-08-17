@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Deku {
@@ -38,8 +41,8 @@ public class Deku {
 
     private String parseReply(String input) {
         String reply = input;
-        String[] separate = input.split("\\s+");;
-        switch (separate[0]) {
+        List<String> separate = new LinkedList<>(Arrays.asList(input.split("\\s+")));;
+        switch (separate.remove(0)) {
             case ("bye"):
                 reply = "Bye! Until next time!";
                 break;
@@ -47,13 +50,20 @@ public class Deku {
                 reply = this.botList.toString();
                 break;
             case ("mark"):
-                reply = this.botList.mark(Integer.parseInt(separate[1]));
+                reply = this.botList.mark(Integer.parseInt(separate.get(0)));
                 break;
             case ("unmark"):
-                reply = this.botList.unmark(Integer.parseInt(separate[1]));
+                reply = this.botList.unmark(Integer.parseInt(separate.get(0)));
                 break;
-            default:
-                reply = this.botList.add(input);
+            case ("deadline"):
+                reply = this.botList.add(new Deadline(separate));
+                break;
+            case ("event"):
+                reply = this.botList.add(new Event(separate));
+                break;
+            case ("todo"):
+                reply = this.botList.add(new ToDo(separate));
+                break;
         }
         return SEPARATOR + "\n" + reply + "\n" + SEPARATOR;
     }

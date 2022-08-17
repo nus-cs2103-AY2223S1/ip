@@ -13,11 +13,11 @@ public class BotList {
     * @param element a String to be added to the array
     * @return String of either the element is added successfully or not
     */
-    String add(String element) {
-        Task newTask = new Task(element);
-        this.internalArray[pointer] = newTask;
+    String add(Task task) {
+        StringBuilder output = new StringBuilder("I've added this task:\n").append(task);
+        this.internalArray[pointer] = task;
         this.pointer++;
-        return "Added: " + element;
+        return output.append("\n").append(this.getNoTasks()).toString();
     }
 
     /*
@@ -41,6 +41,11 @@ public class BotList {
         this.internalArray[taskIndex - 1].setCompletionStatus(false);
         return "This task is now yet to be done:\n" + this.internalArray[taskIndex - 1];
     }
+
+    private String getNoTasks() {
+        return "Now you have " + (this.pointer) + " task(s) in total.";
+    }
+
 
     @Override
     public String toString() {
