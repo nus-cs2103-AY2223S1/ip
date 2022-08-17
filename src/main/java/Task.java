@@ -1,5 +1,4 @@
 public class Task {
-    private int taskNumber;
     private String taskDescription;
     private boolean completed;
 
@@ -18,6 +17,10 @@ public class Task {
 
     public boolean isCompleted() {
         return this.completed;
+    }
+
+    public String getTaskDescription() {
+        return this.taskDescription;
     }
 
     @Override

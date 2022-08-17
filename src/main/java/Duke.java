@@ -66,10 +66,69 @@ public class Duke {
 
                     }
                     break;
+                case "todo":
+                    if (parsedUserResponse.length < 2) {
+                        dukeOutput = "    " + "☹ OOPS!!! The description of a todo cannot be empty.\n";
+                    } else {
+                        String newTaskDescription = String.join(" ",
+                                                                Arrays.copyOfRange(parsedUserResponse,
+                                                                              1,
+                                                                                   parsedUserResponse.length));
+                        Task newUserTask = new Todo(newTaskDescription);
+                        userTasks.add(newUserTask);
+                        dukeOutput = "    " + "Got it. I've added this task:\n"
+                                   + "        " + newUserTask + "\n"
+                                   + "    " + "Now you have " + userTasks.size() + " tasks in the list.\n";
+                    }
+                    break;
+                case "deadline":
+                    int bySeparationIndex = Arrays.asList(parsedUserResponse).indexOf("/by");
+                    if (bySeparationIndex == -1) {
+                        dukeOutput = "    " + "Error: No date added for the deadline.\n";
+                    } else if (parsedUserResponse.length < 2) {
+                        dukeOutput = "    " + "☹ OOPS!!! The description of a deadline cannot be empty.\n";
+                    } else {
+                        String newTaskDescription = String.join(" ",
+                                                                Arrays.copyOfRange(parsedUserResponse,
+                                                                              1,
+                                                                                bySeparationIndex));
+                        String newTaskDeadline = String.join(" ",
+                                                            Arrays.copyOfRange(parsedUserResponse,
+                                                                    bySeparationIndex + 1,
+                                                                    parsedUserResponse.length));
+                        Task newUserTask = new Deadline(newTaskDescription, newTaskDeadline);
+                        userTasks.add(newUserTask);
+                        dukeOutput = "    " + "Got it. I've added this task:\n"
+                                + "        " + newUserTask + "\n"
+                                + "    " + "Now you have " + userTasks.size() + " tasks in the list.\n";
+                    }
+
+                    break;
+                case "event":
+                    int atSeparationIndex = Arrays.asList(parsedUserResponse).indexOf("/at");
+                    if (atSeparationIndex == -1) {
+                        dukeOutput = "    " + "Error: No date added for the event.\n";
+                    } else if (parsedUserResponse.length < 2) {
+                        dukeOutput = "    " + "☹ OOPS!!! The description of an event cannot be empty.\n";
+                    } else {
+                        String newTaskDescription = String.join(" ",
+                                Arrays.copyOfRange(parsedUserResponse,
+                                        1,
+                                        atSeparationIndex));
+                        String newEventTime = String.join(" ",
+                                Arrays.copyOfRange(parsedUserResponse,
+                                        atSeparationIndex + 1,
+                                        parsedUserResponse.length));
+                        Task newUserTask = new Event(newTaskDescription, newEventTime);
+                        userTasks.add(newUserTask);
+                        dukeOutput = "    " + "Got it. I've added this task:\n"
+                                + "        " + newUserTask + "\n"
+                                + "    " + "Now you have " + userTasks.size() + " tasks in the list.\n";
+                    }
+
+                    break;
                 default:
-                    Task newUserTask = new Task(userResponse);
-                    userTasks.add(newUserTask);
-                    dukeOutput = "    " + "added: " + userResponse;
+                    dukeOutput = "    " + "☹ OOPS!!! I'm sorry, but I don't know what that means :-(\n";
             }
             System.out.println(dukeOutput);
         }
