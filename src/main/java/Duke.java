@@ -28,32 +28,21 @@ public class Duke {
         output("Hello,I'm JARVIS!\nWhat can I do for you?");
         Scanner sc = new Scanner(System.in);
 
-        TaskModel taskModel = new TaskModel();
-
-        Command list = new ListCommand(taskModel);
-        Command add = new AddCommand(taskModel);
-        Command mark = new MarkCommand(taskModel);
+        CommandRunner cmdRunner = new CommandRunner();
 
         while (true) {
             try {
-                System.out.printf(">> ");
+                System.out.print(">> ");
                 String input = sc.nextLine().trim();
 
                 Input ir = Input.newInput(input);
 
-                Command toRun = add;
-
-                if (input.equals("bye")) {
-                    output("Bye. See you again soon!");
-                    break;
-                } else if (list.isCommand(ir.getCommandName())) {
-                    toRun = list;
-                } else if (mark.isCommand(ir.getCommandName())) {
-                    toRun = mark;
-                }
-
-                CommandResponse res = toRun.run(ir);
+                CommandResponse res = cmdRunner.run(ir);
                 output(res.getMessage());
+
+                if (res.isExit()) {
+                    break;
+                }
 
             } catch (Exception err) {
                 output(err.getMessage());

@@ -22,7 +22,7 @@ public class MarkCommand extends Command {
             taskId.validate();
             Integer id = taskId.getParameter();
             Task markedTask = taskModel.markTask(id);
-            return new CommandResponse(String.format("Nice! I've marked this task as done:%n    %s", markedTask.toString()));
+            return new CommandResponse(String.format("Nice! I've marked this task as done:%n%s", markedTask.toString()));
         } catch (IllegalArgumentException ex) {
             return new CommandResponse(ex.getMessage());
         }

@@ -8,14 +8,14 @@ public class AddCommand extends Command {
     protected TaskModel taskModel;
 
     public AddCommand(TaskModel taskModel) {
-        super("");
+        super("add");
         this.taskModel = taskModel;
 
     }
 
     @Override
     public CommandResponse run(Input input) {
-        Task newTask = taskModel.addTask(input.getInputString());
+        Task newTask = taskModel.addTask(input.getInputString().substring(3));
         return new CommandResponse(String.format("added: %s", newTask.getDescription()));
     }
 }

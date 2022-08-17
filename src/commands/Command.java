@@ -6,7 +6,7 @@ import input.Input;
  * Represents a Command that the user can input. Acts as a controller to interface with state and return a response to the user.
  */
 public abstract class Command {
-    String commandName;
+    protected String commandName;
 
     public Command(String commandName) {
         this.commandName = commandName;
