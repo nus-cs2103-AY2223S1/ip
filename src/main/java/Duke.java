@@ -1,12 +1,50 @@
 import java.util.ArrayList;
+import java.util.ListResourceBundle;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Duke {
 
     private static String indent = "       ";
     private static String divider = " ___________________________________________________________________";
+    private enum taskTypes {TODO, DEADLINE, EVENT}
 
     private static ArrayList<Task> tasks = new ArrayList<>();
+
+    private static void addTask(taskTypes taskType, String taskToAdd) throws DukeException.EmptyTaskException {
+        switch (taskType) {
+            case TODO:
+                String task = taskToAdd.substring(5);
+                if (task.isBlank()) {
+                    throw new DukeException.EmptyTaskException();
+                } else {
+                    tasks.add(new Todo(task));
+                }
+                break;
+
+            case DEADLINE:
+                int deadlineChar = taskToAdd.indexOf("/");
+                String taskDesc = taskToAdd.substring(9, deadlineChar);
+                String deadline = taskToAdd.substring(deadlineChar + 4);
+                if (taskDesc.isBlank() || deadline.isBlank()) {
+                    throw new DukeException.EmptyTaskException();
+                } else {
+                    tasks.add(new Deadline(taskDesc, deadline));
+                }
+                break;
+
+            case EVENT:
+                int eventChar = taskToAdd.indexOf("/");
+                String eventDesc = taskToAdd.substring(6, eventChar);
+                String eventTime = taskToAdd.substring(eventChar + 4);
+                if (eventDesc.isBlank() || eventTime.isBlank()) {
+                    throw new DukeException.EmptyTaskException();
+                } else {
+                    tasks.add(new Event(eventDesc, eventTime));
+                }
+                break;
+        }
+    }
 
     public static void main(String[] args) {
         System.out.println("\n Hello there! \n"
@@ -40,15 +78,31 @@ public class Duke {
                 System.out.println(divider);
             } else {
                 if (input.contains("todo")) {
-                    tasks.add(new Todo(input.substring(5)));
+                    try {
+                        addTask(taskTypes.TODO, input);
+                    } catch (DukeException.EmptyTaskException | IndexOutOfBoundsException e) {
+                        System.out.println(indent + "oops, the description of your todo seems to be incomplete!\n"
+                                + divider);
+                        continue;
+                    }
                 } else if (input.contains("deadline")) {
-                    int deadlineChar = input.indexOf("/");
-                    tasks.add(new Deadline(input.substring(9, deadlineChar), input.substring(deadlineChar + 4)));
+                    try {
+                        addTask(taskTypes.DEADLINE, input);
+                    } catch (DukeException.EmptyTaskException | IndexOutOfBoundsException e) {
+                        System.out.println(indent + "oops, the description of the deadline seems to be incomplete!\n"
+                            + divider);
+                        continue;
+                    }
                 } else if (input.contains("event")) {
-                    int eventChar = input.indexOf("/");
-                    tasks.add(new Event(input.substring(6, eventChar), input.substring(eventChar + 4)));
+                    try {
+                        addTask(taskTypes.EVENT, input);
+                    } catch (DukeException.EmptyTaskException | IndexOutOfBoundsException e) {
+                        System.out.println(indent + "oops, the description of the event seems to be incomplete!\n"
+                            + divider);
+                        continue;
+                    }
                 } else {
-                    System.out.println(indent + input);
+                    System.out.println(indent + "I'm sorry, I'm not sure I understand what that means :( \n" + divider);
                     continue;
                 }
 
