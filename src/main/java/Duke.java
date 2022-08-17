@@ -111,7 +111,7 @@ public class Duke {
     }
 
     /**
-     * The main function of this chatbot :)
+     * The main function of this chatbot.
      */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
