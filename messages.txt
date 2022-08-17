@@ -1,0 +1,18 @@
+/*
+        Use scanner to scan for inputs
+        A class to represent Task with name, completed, etc.
+            individual tasks are instances of Task, stored as ArrayList
+        Types of Task  tdoo, Deadline, Event are subclasses of Task
+        Create custom DukeException to deal with errors
+         */
+
+String logo = " ____        _        \n"
+                + "|  _ \\ _   _| | _____ \n"
+                + "| | | | | | | |/ / _ \\\n"
+                + "| |_| | |_| |   <  __/\n"
+                + "|____/ \\__,_|_|\\_\\___|\n";
+
+String intro = Hello! I'm Duke
+                    What can I do for you?
+
+String bye = Bye. Hope to see you again soon!
