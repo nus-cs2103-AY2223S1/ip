@@ -85,25 +85,6 @@ public class Duke {
             } else if (reply.equals("list")) {
                 System.out.println("here! ur tasks:");
                 printList(todoList);
-//            } else if (reply.contains("unmark")) {
-//                Integer index = Integer.parseInt(reply.substring(7)) - 1;
-//                if(index < 0 || index >= todoList.size()) {
-//                    System.out.println("thrs nth there :<");
-//                    continue;
-//                }
-//                Task temp = todoList.get(index);
-//                temp.markAsUndone();
-//                System.out.println("oke this is undone now:\n" + temp);
-//
-//            } else if (reply.contains("mark")) {
-//                Integer index = Integer.parseInt(reply.substring(5)) - 1;
-//                if(index < 0 || index >= todoList.size()) {
-//                    System.out.println("thrs nth there :<");
-//                    continue;
-//                }
-//                Task temp = todoList.get(index - 1);
-//                temp.markAsDone();
-//                System.out.println("oke this is done now:\n" + temp);
             } else {
                 String[] substr = reply.split(" ", 2);
                 Integer index;
@@ -153,9 +134,7 @@ public class Duke {
                         System.out.println("idk what that means :(");
                         break;
                 }
-//                Task tempTask = new Task(reply);
-//                todoList.add(tempTask);
-//                System.out.println("added: " + tempTask.toString());
+
             }
 
         }
