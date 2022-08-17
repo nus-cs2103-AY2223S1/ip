@@ -164,7 +164,7 @@ public class Dobby {
         while(true) {
             String command = scanner.nextLine();
 
-            if(command.equals("bye")) {
+            if(command.equals("bye") || command.equals("end") || command.equals("quit")) {
                 DobbyChat.sayBye();
                 break;
             } else if(command.equals("list")) {
@@ -181,7 +181,7 @@ public class Dobby {
                 } else {
                     toUnmark(command);
                 }
-            } else if(command.startsWith("delete")) {
+            } else if(command.startsWith("delete") || command.startsWith("remove")) {
                 if (command.contains("all")) {
                     toDelete();
                 } else {
