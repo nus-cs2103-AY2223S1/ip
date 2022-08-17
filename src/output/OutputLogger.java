@@ -1,5 +1,6 @@
 package output;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -18,6 +19,18 @@ public class OutputLogger {
         String line = "____________________________________________________________";
         String out = String.format("%s%n%s:\n%s%n%s%n", line, NAME, msg, line);
         System.out.println(indent(out));
+    }
+
+    public static String numberedOutput(List<String> linesList) {
+        StringBuilder out = new StringBuilder();
+
+        for (int i = 0; i < linesList.size(); i++) {
+            int id = i + 1;
+            String taskItem = String.format("%d. %s%n", i + 1, linesList.get(i));
+            out.append(taskItem);
+        }
+
+        return out.toString();
     }
 
     public static void printIntroduction() {
