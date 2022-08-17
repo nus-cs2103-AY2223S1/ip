@@ -1,12 +1,41 @@
+import java.util.Scanner;
+
 public class Alan {
+    private Scanner input;
+
+    Alan() {
+        this.input = new Scanner(System.in);
+    }
+
     public static void main(String[] args) {
         // Create new instance of Alan and run him
         Alan alan = new Alan();
-        alan.run();
+        alan.start();
+    }
+
+    private void start() {
+        greet();
+        run();
     }
 
     private void run() {
-        String logo = " $$$$$$\\  $$\\        $$$$$$\\  $$\\   $$\\\n"
+        System.out.println("How may i be of service?");
+
+        while (true) {
+            String command = input.nextLine();
+            if (command.equals("bye")) {
+                break;
+            } else {
+                System.out.println(getFormattedReply(command));
+            }
+        }
+
+        System.out.println(getFormattedReply("Goodbye! See you soon!") );
+    }
+
+    // Prints a greeting
+    private void greet() {
+        final String logo = " $$$$$$\\  $$\\        $$$$$$\\  $$\\   $$\\\n"
                 + "$$  __$$\\ $$ |      $$  __$$\\ $$$\\  $$ |\n"
                 + "$$ /  $$ |$$ |      $$ /  $$ |$$$$\\ $$ |\n"
                 + "$$$$$$$$ |$$ |      $$$$$$$$ |$$ $$\\$$ |\n"
@@ -28,6 +57,11 @@ public class Alan {
                 ? "Afternoon"
                 : "Evening";
         return "\nGood " + greeting;
+    }
+
+    private String getFormattedReply(String reply) {
+        String separator = "_______________________________________";
+        return separator + "\n" + reply + "\n" + separator;
     }
 }
 
