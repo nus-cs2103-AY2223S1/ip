@@ -72,6 +72,21 @@ public class TaskList {
         }
         System.out.println(msg);
     }
+
+    public void delete(Integer rank) {
+        String msg;
+        if (rank <= 0 || rank > totalTasks) {
+            msg = "There are NYA tasks hereeeee";
+        } else {
+            totalTasks--;
+            Task t = allTaskList.get(rank - 1);
+            msg = "It's dead!! It's deadsss!\n"
+                    + "    "
+                    + t
+                    + tasksLeft();
+        }
+        System.out.println(msg);
+    }
     public void printList() {
         String intro;
         if (totalTasks == 0) {

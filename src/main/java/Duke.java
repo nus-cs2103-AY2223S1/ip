@@ -3,7 +3,7 @@ import static java.lang.System.exit;
 
 public class Duke {
     public enum Command {
-        BYE, LIST, MARK, UNMARK, TODO, EVENT, DEADLINE
+        BYE, LIST, MARK, UNMARK, TODO, EVENT, DEADLINE, DELETE
     }
     public static void main(String[] args) {
 
@@ -82,6 +82,13 @@ public class Duke {
                         position = Integer.parseInt(target);
                         list.unMark(position);
                         break;
+                    case DELETE:
+                        if (target == null) {
+                            throw new IllegalArgumentException();
+                        }
+                        position = Integer.parseInt(target);
+                        list.delete(position);
+                        break;
                 }
             } catch (IllegalArgumentException e) {
                 System.out.println("Nyat a valid instruction! Rub my belly instead!\n"
@@ -92,6 +99,7 @@ public class Duke {
                                     + "    'deadline ABC /by DATE' to add deadline ABC due by DATE\n"
                                     + "    'mark x' to mark task x as complete\n"
                                     + "    'unmark x' to mark task x as incomplete\n"
+                                    + "    'delete x' to delete task x from the list\n"
                                     + "    NYAAAAAA!\n");
             } finally {
                 System.out.println(border);
