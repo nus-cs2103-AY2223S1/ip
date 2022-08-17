@@ -5,7 +5,13 @@ import java.util.Scanner;
 Duke IP for CS2103T by Yuvaraj Kumaresan AY2022/23
  */
 public class Duke {
+    /*
+    Class Task
+    Description: An encapsulation of what a completable task is in the context of Duke.
+    Has description and isDone field to describe and mark completion status of a task.
 
+    @param String description Textual description of the task.
+     */
     public static class Task {
         protected String description;
         protected boolean isDone;
