@@ -1,10 +1,10 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
     private static final String LINE = "    ____________________________________________________________";
     private static final String INDENTATION = "     ";
-    private static String[] list = new String[100];
-    private static int listCounter = 0;
+    private static ArrayList<Task> taskList = new ArrayList<>();
 
     private static boolean isDone = false;
 
@@ -14,17 +14,22 @@ public class Duke {
 
         while (!isDone) {
             String command = sc.nextLine();
+            String[] splitCommandSpace = command.split("\\s+");
 
-            switch (command) {
-                case "bye":
-                    bye();
-                    break;
-                case "list":
-                    displayList();
-                    break;
-                default:
-                    printMessage("added: " + command);
-                    addList(command);
+            if (command.equals("bye")) {
+                bye();
+            } else if (command.equals("list")) {
+                displayList();
+            } else if (splitCommandSpace[0].equals("mark")) {
+                String markItem = splitCommandSpace[1];
+                mark(markItem);
+            } else if (splitCommandSpace[0].equals("unmark")) {
+                String unmarkItem = splitCommandSpace[1];
+                unmark(unmarkItem);
+            } else {
+                printMessage(INDENTATION + "added: " + command);
+                Task currentTask = new Task(command);
+                addList(currentTask);
             }
         }
     }
@@ -47,7 +52,6 @@ public class Duke {
     private static void greet() {
         String greetingMessage = INDENTATION + "Hello! I'm Duke\n" +
                 INDENTATION + "What can I do for you?\n";
-
         printMessage(greetingMessage);
     }
 
@@ -57,18 +61,44 @@ public class Duke {
         exitProgram();
     }
 
-    private static void addList(String input) {
-        list[listCounter] = input;
-        listCounter++;
+    private static void addList(Task input) {
+        taskList.add(input);
     }
 
     private static void displayList() {
         displayLine();
-        for (int i = 0; i < listCounter; i++) {
+        String listMessage = INDENTATION + "Here are the tasks in your list:";
+        System.out.println(listMessage);
+        int len = taskList.size();
+        for (int i = 0; i < len; i++) {
             int orderList = i + 1;
-            String message = INDENTATION + orderList + ". " + list[i];
+            String message = INDENTATION + orderList + ". " + taskList.get(i).toString();
             System.out.println(message);
         }
+        displayLine();
+    }
+
+    private static void mark(String item) {
+        int itemNumber = Integer.parseInt(item);
+        int index = itemNumber - 1;
+        Task markedTask = taskList.get(index);
+        markedTask.markAsDone();
+        displayLine();
+        String markMessage = INDENTATION + "Nice! I've marked this task as done:";
+        System.out.println(markMessage);
+        System.out.println(INDENTATION + markedTask.toString());
+        displayLine();
+    }
+
+    private static void unmark(String item) {
+        int itemNumber = Integer.parseInt(item);
+        int index = itemNumber - 1;
+        Task unmarkedTask = taskList.get(index);
+        unmarkedTask.unmarkAsDone();
+        displayLine();
+        String unmarkMessage = INDENTATION + "OK, I've marked this task as not done yet:";
+        System.out.println(unmarkMessage);
+        System.out.println(INDENTATION + unmarkedTask.toString());
         displayLine();
     }
 }
