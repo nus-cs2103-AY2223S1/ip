@@ -25,7 +25,7 @@ public abstract class Command {
 
         @Override
         public void execute(TaskList taskList) {
-            ui.printMessages(new String[]{"Bye. Hope to see you again soon!"});
+            Ui.printMessages(new String[]{"Bye. Hope to see you again soon!"});
         }
 
         @Override
@@ -46,9 +46,9 @@ public abstract class Command {
         public void execute(TaskList taskList) throws DukeException {
             String[] tasks = taskList.getAllTasks().toArray(new String[0]);
             if (tasks.length == 0) {
-                ui.printMessages(new String[]{"No tasks"});
+                Ui.printMessages(new String[]{"No tasks"});
             } else {
-                ui.printMessages(tasks);
+                Ui.printMessages(tasks);
             }
         }
 
@@ -74,7 +74,7 @@ public abstract class Command {
             try {
                 int taskIndex = Integer.parseInt(args[0]) - 1;
                 Task markedTask = taskList.markTask(taskIndex);
-                ui.printMessages(new String[]{"Nice! I've marked this task as done:", markedTask.toString()});
+                Ui.printMessages(new String[]{"Nice! I've marked this task as done:", markedTask.toString()});
             } catch (NumberFormatException e) {
                 throw new DukeException("Argument provided is not a number");
             } catch (IndexOutOfBoundsException e) {
@@ -104,7 +104,7 @@ public abstract class Command {
             try {
                 int taskIndex = Integer.parseInt(args[0]) - 1;
                 Task unmarkedTask = taskList.unmarkTask(taskIndex);
-                ui.printMessages(new String[]{"Ok, I've marked this task as not done yet:", unmarkedTask.toString()});
+                Ui.printMessages(new String[]{"Ok, I've marked this task as not done yet:", unmarkedTask.toString()});
             } catch (NumberFormatException e) {
                 throw new DukeException("Argument provided is not a number");
             } catch (IndexOutOfBoundsException e) {
@@ -132,7 +132,7 @@ public abstract class Command {
                 throw new DukeException("Wrong number of arguments provided.\nUsage: " + ToDoCommand.usage);
             }
             Task taskAdded = taskList.addTask(new ToDo(args[0]));
-            ui.printTaskChange("Got it. I've added this task:", taskAdded, taskList);
+            Ui.printTaskChange("Got it. I've added this task:", taskAdded, taskList);
         }
 
         @Override
@@ -155,7 +155,7 @@ public abstract class Command {
                 throw new DukeException("Wrong number of arguments provided.\nUsage: " + EventCommand.usage);
             }
             Task taskAdded = taskList.addTask((new Event(args[0], args[1])));
-            ui.printTaskChange("Got it. I've added this event:", taskAdded, taskList);
+            Ui.printTaskChange("Got it. I've added this event:", taskAdded, taskList);
         }
 
         @Override
@@ -178,7 +178,7 @@ public abstract class Command {
                 throw new DukeException("Wrong number of arguments provided.\nUsage: " + DeadlineCommand.usage);
             }
             Task taskAdded = taskList.addTask((new Deadline(args[0], args[1])));
-            ui.printTaskChange("Got it. I've added this task:", taskAdded, taskList);
+            Ui.printTaskChange("Got it. I've added this task:", taskAdded, taskList);
         }
 
         @Override
@@ -203,7 +203,7 @@ public abstract class Command {
             try {
                 int taskIndex = Integer.parseInt(args[0]) - 1;
                 Task deletedTask = taskList.deleteTask(taskIndex);
-                ui.printTaskChange("Noted. I've removed this task:", deletedTask, taskList);
+                Ui.printTaskChange("Noted. I've removed this task:", deletedTask, taskList);
             } catch (NumberFormatException e) {
                 throw new DukeException("Argument provided is not a number");
             } catch (IndexOutOfBoundsException e) {
@@ -232,7 +232,7 @@ public abstract class Command {
             for (String line: helpGuide) {
                 toPrint.add(line);
             }
-            ui.printMessages(toPrint.toArray(new String[0]));
+            Ui.printMessages(toPrint.toArray(new String[0]));
         }
 
         @Override
@@ -256,7 +256,7 @@ public abstract class Command {
             for (String line: helpGuide) {
                 toPrint.add(line);
             }
-            ui.printMessages(toPrint.toArray(new String[0]));
+            Ui.printMessages(toPrint.toArray(new String[0]));
         }
 
         @Override
@@ -289,7 +289,7 @@ public abstract class Command {
 
         @Override
         public void execute(TaskList taskList) throws DukeException {
-            ui.printMessages(HelpCommand.getHelpGuide());
+            Ui.printMessages(HelpCommand.getHelpGuide());
         }
 
         @Override

@@ -1,6 +1,9 @@
-public class ui {
+import java.util.Scanner;
+
+public class Ui {
     private static final String LINE_DIVIDER = "    ____________________________________________________________";
     private static final String INDENTATION = "     ";
+    public static final Scanner in = new Scanner(System.in);
 
     public static void showError(Exception e) {
         System.out.println(LINE_DIVIDER);
