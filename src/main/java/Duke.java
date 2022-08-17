@@ -7,6 +7,7 @@ public class Duke {
 
     private static boolean isClosed = false;
     private static String[] list = new String[100];
+    private static int counter = 0;
 
     public static void main(String[] args) {
         greetingMessage();
@@ -15,8 +16,10 @@ public class Duke {
             String command = sc.nextLine();
             if (command.equals("bye")) {
                 bye();
+            } else if (command.equals("list")) {
+                printList();
             } else {
-                echo(command);
+                addToList(command);
             }
         }
     }
@@ -47,5 +50,22 @@ public class Duke {
 
     public static void drawLine() {
         System.out.println(LINE);
+    }
+
+    private static void printList() {
+        drawLine();
+        for (int i = 0; i < counter; i++) {
+            String msg = (i + 1) + ". " + list[i];
+            indentMessage(msg);
+        }
+        drawLine();
+    }
+
+    private static void addToList(String msg) {
+        list[counter] = msg;
+        counter++;
+        drawLine();
+        indentMessage("Added: " + msg);
+        drawLine();
     }
 }
