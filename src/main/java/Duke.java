@@ -15,7 +15,7 @@ public class Duke {
             if (Arrays.asList(commands).contains(input.split(" ")[0])) {
                 parse(input);
             } else if (input.equals("bye")) {
-                System.out.println("\tBye! Hope that I helped!");
+                System.out.println("\tBye! Hope that I was of service!");
                 break;
             } else if (input.equals("list")) {
                 int number = 1;
@@ -24,6 +24,7 @@ public class Duke {
                     System.out.println("\t" + number + "." + task);
                     number++;
                 }
+                System.out.println("\nPls don't procrastinate on the above tasks!");
             } else {
                 System.out.println(input);
             }
@@ -55,7 +56,6 @@ public class Duke {
             String[] desc = command[1].split(" /at ");
             store[++count] = new Event(desc[0], desc[1]);
         }
-
         System.out.println("\tadded: " + store[count]);
         System.out.println("You now have " + count + " tasks in the list");
     }
