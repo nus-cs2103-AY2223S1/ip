@@ -1,4 +1,7 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Duke {
@@ -11,6 +14,7 @@ public class Duke {
         System.out.println("Hello from\n" + logo);
         greeting();
         storeman();
+        //checklist(storeman());
     }
 
     public static void greeting() {
@@ -34,37 +38,99 @@ public class Duke {
         sc.close();
     }
 
-    public static void storeman() {
-        ArrayList<String> al = new ArrayList<>();
+    public static ArrayList<Task> storeman() {
+        ArrayList<Task> al = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
         String str = sc.nextLine();
         String uncap = str.toLowerCase();
-        int count = 1;
         while (!uncap.equals("bye")) {
-            while (!uncap.equals("list")) {
-                al.add(count + ". " + str);
-                count++;
-                System.out.println("------------------------------\n");
-                System.out.printf("\tAdded: %s\n", str);
-                System.out.println("------------------------------\n");
+            if (!uncap.equals("list")) {
+                if (!uncap.contains("mark")) {
+                    Task t = new Task(str);
+                    al.add(t);
+                    System.out.println("------------------------------\n");
+                    System.out.printf("\tAdded: %s\n", str);
+                    System.out.println("------------------------------\n");
+                    str = sc.nextLine();
+                    uncap = str.toLowerCase();
+                } else {
+                    if (uncap.contains("unmark")) {
+                        int i = Integer.parseInt(String.valueOf(uncap.charAt(7)));
+                        Task call = al.get(i - 1);
+                        call.markAsUndone();
+                        System.out.println("-------------------------------\n");
+                        System.out.println("\tOK, I've marked this task as not done yet: ");
+                        System.out.println("\t\t" + call.toString());
+                        System.out.println("-------------------------------\n");
+                    } else if (uncap.contains("mark")) {
+                        int i = Integer.parseInt(String.valueOf(uncap.charAt(5)));
+                        Task call = al.get(i - 1);
+                        call.markAsDone();
+                        System.out.println("-------------------------------\n");
+                        System.out.println("\tNice! I have marked this task as done: ");
+                        System.out.println("\t\t" + call.toString());
+                        System.out.println("-------------------------------\n");
+                    }
+                    str = sc.nextLine();
+                    uncap = str.toLowerCase();
+                }
+            } else {
+                listOut(al);
                 str = sc.nextLine();
                 uncap = str.toLowerCase();
             }
-            System.out.println("-------------------------------\n");
-            al.forEach(System.out::println);
-            System.out.println("-------------------------------\n");
-            al.clear();
-            count = 1;
+        }
+        sc.close();
+        bye();
+        return al;
+    }
+
+    public static void checklist(ArrayList<Task> at) {
+        Scanner sc = new Scanner(System.in);
+        String str = sc.nextLine();
+        String und = str.toLowerCase();
+        while (!und.equals("bye")) {
+            if (und.contains("mark")) {
+                int i = Integer.parseInt(String.valueOf(und.charAt(5)));
+                Task call = at.get(i - 1);
+                call.markAsDone();
+                System.out.println("-------------------------------\n");
+                System.out.println("\tNice! I have marked this task as done: ");
+                System.out.println("\t\t" + call.toString());
+                System.out.println("-------------------------------\n");
+            } else if (und.contains("unmark")) {
+                int i = Integer.parseInt(String.valueOf(und.charAt(7)));
+                Task call = at.get(i - 1);
+                call.markAsUndone();
+                System.out.println("-------------------------------\n");
+                System.out.println("\tOK, I've marked this task as not done yet: ");
+                System.out.println("\t\t" + call.toString());
+                System.out.println("-------------------------------\n");
+            } else if (und.equals("list")) {
+                listOut(at);
+            }
             str = sc.nextLine();
-            uncap = str.toLowerCase();
+            und = str.toLowerCase();
         }
         sc.close();
         bye();
     }
+    private static void listOut(ArrayList<Task> al) {
+        int count = 1;
+        System.out.println("-------------------------------\n");
+        System.out.println("\tHere are the tasks in your list: ");
+        for (Iterator<Task> it = al.iterator(); it.hasNext(); ) {
+            Task curr = it.next();
+            System.out.println("\t\t" +count + ". " + curr.toString());
+            count++;
+        }
+        System.out.println("-------------------------------\n");
+        count = 1;
+    }
 
     public static void bye() {
         System.out.println("------------------------------\n");
-        System.out.println("Bye. Hope to see you soon again!");
+        System.out.println("\tBye. Hope to see you soon again!");
         System.out.println("------------------------------\n");
     }
 }
