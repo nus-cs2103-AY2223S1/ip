@@ -7,6 +7,7 @@
  */
 
 // Level 2
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class List {
@@ -23,70 +24,110 @@ public class List {
     /**
      * The method that initialises and runs the list.
      */
+
+    private static final String TODO_NO_DESC = "☹ OOPS!!! The description of a todo cannot be empty.";
+
+    private static final String DEADLINE_NO_DESC = "☹ OOPS!!! The description of a deadline cannot be empty.";
+    private static final String DEADLINE_NO_TIME = "☹ OOPS!!! The date/time of a deadline cannot be empty.";
+
+    private static final String EVENT_NO_DESC = "☹ OOPS!!! The description of an event cannot be empty.";
+    private static final String EVENT_NO_TIME = "☹ OOPS!!! The date/time of an event cannot be empty.";
+
+    private static final String NO_INDEX = "☹ OOPS!!! The index of the task to be marked/unmarked cannot be empty.";
+    private static final String INVALID_INDEX = "☹ OOPS!!! The index of the task to be marked/unmarked must be valid/within range.";
+
+    private static final String UNKNOWN_COMMAND = "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
+
     public static void run() {
         Scanner sc = new Scanner(System.in);
         while (sc.hasNextLine()) {
-            String text = sc.nextLine();
-            Scanner temp = new Scanner(text);
-            if (temp.hasNext("mark")) {
-                String mark = temp.next();
-                int i = temp.nextInt();
-                if (i > 0) {
-                    if (list[i - 1] != null) {
-                        Task t = list[i - 1];
-                        t.mark();
-                    }
-                }
-                temp.close();
-            } else if (temp.hasNext("unmark")) {
-                String unmark = temp.next();
-                int i = temp.nextInt();
-                if (i > 0) {
-                    if (list[i - 1] != null) {
-                        Task t = list[i - 1];
-                        t.unmark();
-                    }
-                }
-                temp.close();
-            } else {
-                if (temp.hasNext("deadline")) {
-                    temp.useDelimiter("deadline\\s*|\\s*/by\\s*");
-                    String description = temp.next();
-                    String by = temp.next();
-                    Deadline d = new Deadline(description, by);
-                    temp.close();
-                    List.add(d);
-                } else if (temp.hasNext("event")) {
-                    temp.useDelimiter("event\\s*|\\s*/at\\s*");
-                    String description = temp.next();
-                    String at = temp.next();
-                    Event e = new Event(description, at);
-                    temp.close();
-                    List.add(e);
-                } else if (temp.hasNext("todo")) {
-                    temp.useDelimiter("todo\\s*");
-                    String description = temp.next();
-                    Todo t = new Todo((description));
-                    temp.close();
-                    List.add(t);
-                } else {
-                    if (text.equals("bye")) {
-                        System.out.println("Bye. Hope to see you again soon!");
-                        break;
-                    } else if (text.equals("list")) {
-                        List.printList();
-                        List.run();
+            try {
+                String text = sc.nextLine();
+                Scanner temp = new Scanner(text);
+                if (temp.hasNext("mark")) {
+                    String mark = temp.next();
+                    if (!temp.hasNextInt()) {
+                        throw new DukeException(NO_INDEX);
                     } else {
-                        Task task = new Task(text);
-                        List.add(task);
+                        int i = temp.nextInt();
+                        if ((i > 0) && (list[i - 1] != null)) {
+                            Task t = list[i - 1];
+                            t.mark();
+                        } else {
+                            throw new DukeException(INVALID_INDEX);
+                        }
+                        temp.close();
+                    }
+                } else if (temp.hasNext("unmark")) {
+                    String unmark = temp.next();
+                    if (!temp.hasNextInt()) {
+                        throw new DukeException(NO_INDEX);
+                    } else {
+                        int i = temp.nextInt();
+                        if ((i > 0) && (list[i - 1] != null)) {
+                            Task t = list[i - 1];
+                            t.unmark();
+                        } else {
+                            throw new DukeException(INVALID_INDEX);
+                        }
+                        temp.close();
+                    }
+                } else {
+                    if (temp.hasNext("deadline")) {
+                        temp.useDelimiter("deadline\\s*|\\s*/by\\s*");
+                        if (!temp.hasNext()) {
+                            throw new DukeException(DEADLINE_NO_DESC);
+                        }
+                        String description = temp.next();
+                        if (!temp.hasNext()) {
+                            throw new DukeException(DEADLINE_NO_TIME);
+                        }
+                        String by = temp.next();
+                        Deadline d = new Deadline(description, by);
+                        temp.close();
+                        List.add(d);
+                    } else if (temp.hasNext("event")) {
+                        temp.useDelimiter("event\\s*|\\s*/at\\s*");
+                        if (!temp.hasNext()) {
+                            throw new DukeException(EVENT_NO_DESC);
+                        }
+                        String description = temp.next();
+                        if (!temp.hasNext()) {
+                            throw new DukeException(EVENT_NO_TIME);
+                        }
+                        String at = temp.next();
+                        Event e = new Event(description, at);
+                        temp.close();
+                        List.add(e);
+                    } else if (temp.hasNext("todo")) {
+                        temp.useDelimiter("todo\\s*");
+                        if (!temp.hasNext()) {
+                            throw new DukeException(TODO_NO_DESC);
+                        }
+                        String description = temp.next();
+                        Todo t = new Todo((description));
+                        temp.close();
+                        List.add(t);
+                    } else {
+                        if (text.equals("bye")) {
+                            System.out.println("Bye. Hope to see you again soon!");
+                            break;
+                        } else if (text.equals("list")) {
+                            List.printList();
+                            List.run();
+                        } else {
+                            throw new DukeException(UNKNOWN_COMMAND);
+                        }
                     }
                 }
+            } catch (DukeException e){
+                System.out.println(e.getMessage());
             }
         }
         sc.close();
     }
     /**
-     * Helper function that returns a string
+     * Helper function that returns a string.
      *
      * @return task/tasks depending on the number of existing tasks in the list.
      */
@@ -113,5 +154,4 @@ public class List {
             }
         }
     }
-
 }
