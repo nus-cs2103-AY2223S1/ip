@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Duke {
@@ -5,9 +6,10 @@ public class Duke {
     private static String EXIT_MSG = "Bye. Hope to see you again soon!";
     private static String NO_TASK_NAME = "No task name defined, please try again";
     private static String NO_INDEX_SPECIFIED = "No index specified, try again";
-    public static void main(String[] args) {
+    public static void main(String[] args) throws StorageHandler.InvalidStorageFilePathException, IOException, StorageHandler.StorageOperationException {
         Scanner scanner = new Scanner(System.in);
-        Storage storage = new Storage();
+        StorageHandler storageHandler = new StorageHandler();
+        Storage storage = storageHandler.loadSavedData();
         System.out.println(GREETING);
 
         while (scanner.hasNext()) {
@@ -30,6 +32,7 @@ public class Duke {
 
                     Integer targetIndex = Integer.parseInt(nextCommand.substring(7));
                     storage.removeTaskFromList(targetIndex);
+                    storageHandler.writeDataToFile(storage);
                     continue;
                 }
 
@@ -38,6 +41,7 @@ public class Duke {
 
                     Integer targetIndex = Integer.parseInt(nextCommand.substring(5));
                     storage.markTaskAsDone(targetIndex);
+                    storageHandler.writeDataToFile(storage);
                     continue;
                 }
 
@@ -46,16 +50,18 @@ public class Duke {
 
                     Integer targetIndex = Integer.parseInt(nextCommand.substring(7));
                     storage.markTaskAsUnDone(targetIndex);
+                    storageHandler.writeDataToFile(storage);
                     continue;
                 }
 
                 if (nextCommand.startsWith("todo")) {
-                    if (nextCommand.length() < 6) throw new DukeException(NO_INDEX_SPECIFIED);
+                    if (nextCommand.length() < 6) throw new DukeException(NO_TASK_NAME);
 
                     String taskName = nextCommand.substring(5);
                     if (taskName.isEmpty()) throw new DukeException(NO_TASK_NAME);
                     Task taskToAdd = new ToDo(taskName);
                     storage.addTaskToList(taskToAdd);
+                    storageHandler.writeDataToFile(storage);
                     continue;
                 }
 
@@ -72,6 +78,7 @@ public class Duke {
 
                     Task taskToAdd = new Deadline(mainTask, doneBy);
                     storage.addTaskToList(taskToAdd);
+                    storageHandler.writeDataToFile(storage);
                     continue;
                 }
 
@@ -88,6 +95,7 @@ public class Duke {
 
                     Task taskToAdd = new Event(mainTask, doneAt);
                     storage.addTaskToList(taskToAdd);
+                    storageHandler.writeDataToFile(storage);
                     continue;
                 }
                 // Handle unknown commands

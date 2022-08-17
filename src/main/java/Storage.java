@@ -2,11 +2,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Storage {
-    private final List<Task> taskList;
+    protected final List<Task> taskList;
     static String NO_SUCH_INDEX = "No such index in the list, please try again.";
 
     Storage() {
         this.taskList = new ArrayList<>();
+    }
+
+    Storage(List<Task> taskList) {
+        this.taskList = taskList;
     }
 
     String handleTaskOutput(Task task, int id) {
@@ -51,6 +55,7 @@ public class Storage {
     void listTasks() {
         if (taskList.isEmpty()) {
             System.out.println("List is empty!");
+            return;
         }
         String toPrint = "";
 
@@ -69,7 +74,7 @@ public class Storage {
                 throw new DukeException(NO_SUCH_INDEX);
             }
             Task targetTask = taskList.get(id-1);
-            targetTask.markAsDone();
+            targetTask.markAsDone(false);
         } catch (Exception e) {
             System.out.println(e);
         }
