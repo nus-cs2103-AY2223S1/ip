@@ -8,22 +8,22 @@ public class Duke {
     public static void main(String[] args) {
         Greet();
         Scanner userInput = new Scanner(System.in);
-        String userReply = userInput.nextLine();
+        String userReply = userInput.nextLine().strip();
         while(!userReply.toLowerCase().equals("bye")) {
             if (userReply.equals("")) {
                 System.out.println("##############################################");
                 System.out.println("Please enter some valid text");
                 System.out.println("##############################################");
-                userReply = userInput.nextLine();
+                userReply = userInput.nextLine().strip();
                 continue;
             }
             if (userReply.toLowerCase().equals("list")) {
                 List();
-                userReply = userInput.nextLine();
+                userReply = userInput.nextLine().strip();
                 continue;
             }
             Add(userReply);
-            userReply = userInput.nextLine();
+            userReply = userInput.nextLine().strip();
         }
         GoodBye();
     }
