@@ -7,4 +7,12 @@ mark 3
 list
 unmark 3
 list
+blah
+mark
+mark -1
+todo
+deadline
+event
+deadline something
+event something
 bye
