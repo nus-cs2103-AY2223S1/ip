@@ -9,9 +9,9 @@ public class BotResponse {
         separationLine();
     }
     public static void bye() {
-        BotResponse.separationLine();
+        separationLine();
         System.out.println("Sorry to see you go, goodbye :(");
-        BotResponse.separationLine();
+        separationLine();
     }
 
     public static void addTaskLog(Task task) {
@@ -35,7 +35,7 @@ public class BotResponse {
         if (done) {
             System.out.println("This task is done, goodjob! :)");
         } else {
-            System.out.println("Oops, this task hasn't been done? I've updated it for you");
+            System.out.println("This task hasn't been done yet? I've updated it for you");
         }
         System.out.println(task);
         separationLine();

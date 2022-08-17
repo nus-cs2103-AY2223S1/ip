@@ -1,5 +1,7 @@
 public class InvalidTimeException extends Exception {
     public InvalidTimeException() {
-        super("Oh no! This command requires a time input!");
+        super("____________________________________________________________\n" +
+                "Oh no! This command requires a time input!\n" +
+                "____________________________________________________________");
     }
 }
