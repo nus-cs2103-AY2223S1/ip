@@ -41,6 +41,8 @@ public class Duke {
                 mark(cmd);
             } else if (cmd.split(" ")[0].equals("unmark")) {
                 unmark(cmd);
+            } else if (cmd.split(" ")[0].equals("delete")) {
+                delete(cmd);
             } else {
                 addTask(cmd);
             }
@@ -187,6 +189,27 @@ public class Duke {
             } else {
                 msg(INDENT + "This task has not been done in the first place.\n" + INDENT + "  " + curr + "\n");
             }
+        } catch (DukeException e) {
+            msg(INDENT + e.getMessage() + "\n");
+        }
+    }
+
+    public void delete(String cmd) {
+        try {
+            String content;
+            String[] wordArr = cmd.split(" ");
+            if (wordArr.length < 2) {
+                throw new DukeException("☹ OOPS!!! This delete command is invalid.");
+            }
+            int index = Integer.parseInt(cmd.split(" ")[1]) - 1;
+            if (index < 0 || index >= tasks.size()) {
+                throw new DukeException("☹ OOPS!!! The index is invalid.");
+            }
+            Task deleted = tasks.remove(index);
+            content = INDENT + "Noted. I've removed this task:\n";
+            content += INDENT + "  " + deleted + "\n";
+            content += INDENT + "Now you have " + tasks.size() + " tasks in the list.\n";
+            msg(content);
         } catch (DukeException e) {
             msg(INDENT + e.getMessage() + "\n");
         }
