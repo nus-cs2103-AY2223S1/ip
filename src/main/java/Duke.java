@@ -3,10 +3,11 @@ import java.util.Scanner;
 
 public class Duke {
     private static final String DIVIDER = "\t____________________________________________________________";
-    private static LinkedList<String> tasks = new LinkedList<>();
+    private static LinkedList<Task> tasks = new LinkedList<>();
 
     /**
      * Formats Duke's messages by adding horizontal line dividers and indentation.
+     *
      * @param str Duke's message to be printed out
      */
     private static void prettyPrint(String str) {
@@ -41,20 +42,60 @@ public class Duke {
     private static void listTasks() {
         String taskList = "";
         int count = 0;
-        for (String task : tasks) {
+        for (Task task : tasks) {
             count++;
             taskList += String.format("\n%d. %s", count, task);
         }
-        prettyPrint(count != 0 ? taskList.substring(1) : "No tasks");
+        prettyPrint(count != 0 ? "Here are the tasks in your list:\n"
+                + taskList.substring(1) : "No tasks");
     }
 
     /**
      * Stores the specified task into the linked list.
+     *
      * @param task The task to be recorded
      */
     private static void addTask(String task) {
-        tasks.add(task);
+        tasks.add(new Task(task));
         prettyPrint("added: " + task);
+    }
+
+    /**
+     * Marks the specified task number as done, if it exists.
+     *
+     * @param i The task number to be marked as done
+     */
+    private static void markTaskDone(int i) {
+        if (isValidTask(i)) {
+            Task task = tasks.get(i - 1);
+            task.markTaskAsDone();
+            prettyPrint(String.format("Nice! I've marked this task as done:\n %s", task));
+        }
+    }
+
+    /**
+     * Marks the specified task number as not done, if it exists.
+     *
+     * @param i The task number to be marked as not done
+     */
+    private static void markTaskNotDone(int i) {
+        if (isValidTask(i)) {
+            Task task = tasks.get(i - 1);
+            task.markTaskAsUndone();
+            prettyPrint(String.format("OK, I've marked this task as not done yet:\n %s", task));
+        }
+    }
+
+    /**
+     * Checks that the specified task is a task that exists.
+     *
+     * @param i The task number of the task to be verified
+     * @return True if the task exists, false otherwise
+     */
+    private static boolean isValidTask(int i) {
+        boolean isValid = i <= tasks.size();
+        if (!isValid) prettyPrint("Hm... Duke can't find this task.");
+        return isValid;
     }
 
     public static void main(String[] args) {
@@ -62,13 +103,19 @@ public class Duke {
         String cmd;
         greet();
         // Echoes user's input until the user types 'bye', for which the program exits
-        while(!(cmd = sc.nextLine()).equals("bye")) {
+        while (!(cmd = sc.nextLine()).equals("bye")) {
             switch (cmd) {
                 case "list":
                     listTasks();
                     continue;
                 default:
-                    addTask(cmd);
+                    if (cmd.matches("mark \\d+")) {
+                        markTaskDone(Integer.parseInt(cmd.substring(5)));
+                    } else if (cmd.matches("unmark \\d+")) {
+                        markTaskNotDone(Integer.parseInt(cmd.substring(7)));
+                    } else {
+                        addTask(cmd);
+                    }
             }
         }
         goodbye();
