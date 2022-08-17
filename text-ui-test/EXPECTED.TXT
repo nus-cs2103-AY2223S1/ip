@@ -62,6 +62,19 @@ What can I do for you?
         7. [E][ ] project meeting (at: Mon 2-4pm)
         8. [D][ ] do homework (by: no idea :-p)
 
+    Noted. I've removed this task:
+    [T][X] join sports club
+    Now you have 7 tasks in the list.
+
+    Here are the tasks in your list:
+        1. [T][ ] read book
+        2. [D][ ] return book (by: June 6th)
+        3. [E][ ] project meeting (at: Aug 6th 2-4pm)
+        4. [T][ ] borrow book
+        5. [D][ ] return book (by: Sunday)
+        6. [E][ ] project meeting (at: Mon 2-4pm)
+        7. [D][ ] do homework (by: no idea :-p)
+
     ☹ OOPS!!! I'm sorry, but I don't know what that means :-(
 
     ☹ OOPS!!! The description of a todo cannot be empty.
@@ -77,5 +90,17 @@ What can I do for you?
     Invalid number of arguments, only one required
 
     Invalid number of arguments, only one required
+
+    Invalid number of arguments, two required
+
+    Invalid number of arguments, two required
+
+    Invalid number of arguments, two required
+
+    No such task exists.
+
+    No such task exists.
+
+    No such task exists.
 
     Bye. Hope to see you again soon!

@@ -13,6 +13,8 @@ unmark 1
 unmark 1
 mark 4
 list
+delete 4
+list
 blah
 todo
 event
@@ -21,4 +23,10 @@ deadline
 deadline do tasks
 list a
 bye 2
+mark
+unmark
+delete
+mark 15
+unmark 15
+delete 15
 bye

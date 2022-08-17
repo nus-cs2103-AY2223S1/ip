@@ -19,14 +19,14 @@ public class Duke {
                     break;
                 case "bye":
                     if (parsedUserResponse.length > 1) {
-                        System.out.println("    " + "Invalid number of arguments, only one required");
+                        dukeOutput = ("    " + "Invalid number of arguments, only one required\n");
                     } else {
                         dukeOutput = "    " + "Bye. Hope to see you again soon!";
                     }
                     break;
                 case "list":
                     if (parsedUserResponse.length > 1) {
-                        System.out.println("    " + "Invalid number of arguments, only one required");
+                        dukeOutput = ("    " + "Invalid number of arguments, only one required\n");
                     } else {
                         dukeOutput = "    " + "Here are the tasks in your list:\n";
                         for (int i = 0; i < userTasks.size(); i++) {
@@ -37,7 +37,7 @@ public class Duke {
                     break;
                 case "mark":
                     if (parsedUserResponse.length != 2) {
-                        System.out.println("Invalid number of arguments");
+                        dukeOutput = ("    " + "Invalid number of arguments, two required\n");
                     } else {
                         Integer taskNumber = Integer.parseInt(userResponse.replaceAll("[^0-9]", "")) - 1;
                         try {
@@ -49,7 +49,7 @@ public class Duke {
                                 dukeOutput = "    " + "Nice! I've marked this task as done:\n"
                                         + "      " + userTask + "\n";
                             }
-                        } catch (ArrayIndexOutOfBoundsException e) {
+                        } catch (IndexOutOfBoundsException e) {
                             dukeOutput = "    " + "No such task exists.\n";
                         }
                     }
@@ -57,7 +57,7 @@ public class Duke {
                     break;
                 case "unmark":
                     if (parsedUserResponse.length != 2) {
-                        System.out.println("Invalid number of arguments");
+                        dukeOutput = ("    " + "Invalid number of arguments, two required\n");
                     } else {
                         Integer taskNumber = Integer.parseInt(userResponse.replaceAll("[^0-9]", "")) - 1;
                         try {
@@ -69,7 +69,7 @@ public class Duke {
                                 dukeOutput = "    " + "OK, I've marked this task as not done yet:\n"
                                         + "      " + userTask + "\n";
                             }
-                        } catch (ArrayIndexOutOfBoundsException e) {
+                        } catch (IndexOutOfBoundsException e) {
                             dukeOutput = "    " + "No such task exists.\n";
                         }
                     }
@@ -128,6 +128,23 @@ public class Duke {
                         dukeOutput = "    " + "Got it. I've added this task:\n"
                                 + "        " + newUserTask + "\n"
                                 + "    " + "Now you have " + userTasks.size() + " tasks in the list.\n";
+                    }
+
+                    break;
+                case "delete":
+                    if (parsedUserResponse.length != 2) {
+                        dukeOutput = "    " + "Invalid number of arguments, two required\n";
+                    } else {
+                        int taskNumber = Integer.parseInt(userResponse.replaceAll("[^0-9]", "")) - 1;
+                        try {
+                            Task userTask = userTasks.get(taskNumber);
+                            userTasks.remove(taskNumber);
+                            dukeOutput = ("    " + "Noted. I've removed this task:\n" +
+                                    "    " + userTask + "\n" +
+                                    "    " + "Now you have " + userTasks.size() +  " tasks in the list.\n");
+                        } catch (IndexOutOfBoundsException e) {
+                            dukeOutput = "    " + "No such task exists.\n";
+                        }
                     }
 
                     break;
