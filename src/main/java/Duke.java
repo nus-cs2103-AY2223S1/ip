@@ -49,6 +49,16 @@ public class Duke {
         System.out.println("-----------------------------------------------");
     }
 
+    private static void deleteTask(int number) {
+        Task temp = storage.get(number - 1);
+        storage.remove(number - 1);
+        System.out.println("-----------------------------------------------");
+        System.out.println("Noted. I've removed this task:");
+        System.out.println(temp);
+        System.out.println("Now you have " + storage.size() +" tasks in the list.");
+        System.out.println("-----------------------------------------------");
+    }
+
     private static void reply(String response) throws DukeException {
         String[] parts = response.split(" ", 2);
         String part1 = parts[0];
@@ -79,10 +89,11 @@ public class Duke {
                 part2 = parts[1];
                 if (isInteger(part2)) {
                     int number = Integer.parseInt(part2);
-                    if(storage.size() < number) {
+                    if(storage.size() < number || number <= 0) {
                         throw new DukeException("There's no such task to mark!");
+                    } else {
+                        markString(storage.get(number - 1));
                     }
-                    markString(storage.get(number - 1));
                 } else {
                     throw new DukeException("I don't know which to mark!");
                 }
@@ -94,10 +105,11 @@ public class Duke {
                 part2 = parts[1];
                 if (isInteger(part2)) {
                     int number = Integer.parseInt(part2);
-                    if(storage.size() < number) {
+                    if(storage.size() < number || number <= 0) {
                         throw new DukeException("There's no such task to unmark!");
+                    } else {
+                        unMarkString(storage.get(number - 1));
                     }
-                    unMarkString(storage.get(number - 1));
                 } else {
                     throw new DukeException("I don't know which to unmark!");
                 }
@@ -136,6 +148,22 @@ public class Duke {
                 Event event = new Event(eventParts[0], eventParts[1]);
                 storage.add(event);
                 addDetailedTask(event);
+                break;
+            case "delete":
+                if(parts.length <= 1) {
+                    throw new DukeException("Please tell me what to delete!");
+                }
+                part2 = parts[1];
+                if (isInteger(part2)) {
+                    int number = Integer.parseInt(part2);
+                    if(storage.size() < number || number <= 0) {
+                        throw new DukeException("There's no such task to delete!");
+                    } else {
+                        deleteTask(number);
+                    }
+                } else {
+                    throw new DukeException("I don't know which to delete!");
+                }
                 break;
             default:
                 throw new DukeException("I'm sorry, but I don't know what that means.");
