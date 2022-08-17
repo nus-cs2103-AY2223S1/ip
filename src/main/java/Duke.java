@@ -23,7 +23,7 @@ public class Duke {
             for (int i = 0; i < msgWords.length; i++) {
                 if (msgWords[i].equalsIgnoreCase("bye")) {
                     System.out.println(line_divider + "\nBye. Zai Jian!\n" + line_divider);
-                    break;
+                    return;
                 } else if (msgWords[i].equalsIgnoreCase("list")) {
                     System.out.println(line_divider);
                     System.out.println("Here are your tasks la:");
@@ -38,7 +38,7 @@ public class Duke {
                     marked.add(index, true);
                     System.out.println(line_divider);
                     System.out.println("Ok ticked this already");
-                    System.out.println((marked.get(index) ? "[X] " : "[ ] ") + list.get(index));
+                    System.out.println(type.get(index) + (marked.get(index) ? "[X] " : "[ ] ") + list.get(index));
                     System.out.println(line_divider);
                     break;
                 } else if (msgWords[i].equalsIgnoreCase("unmark")) {
@@ -47,7 +47,21 @@ public class Duke {
                     marked.add(index, false);
                     System.out.println(line_divider);
                     System.out.println("Ok not done yet ah");
-                    System.out.println((marked.get(index) ? "[X] " : "[ ] ") + list.get(index));
+                    System.out.println(type.get(index) + (marked.get(index) ? "[X] " : "[ ] ") + list.get(index));
+                    System.out.println(line_divider);
+                    break;
+                } else if (msgWords[i].equalsIgnoreCase("delete")) {
+                    int index = Integer.parseInt(msgWords[2]) - 1;
+                    boolean removeMark = marked.get(index);
+                    String removeItem = list.get(index);
+                    String removeType = type.get(index);
+                    marked.remove(index);
+                    list.remove(index);
+                    type.remove(index);
+                    System.out.println(line_divider);
+                    System.out.println("I remove this ah:");
+                    System.out.println(removeType + removeMark + " " + removeItem);
+                    System.out.println("Now " + list.size() + " tasks only");
                     System.out.println(line_divider);
                     break;
                 } else if (msgWords[i].equalsIgnoreCase("todo")) {
@@ -100,13 +114,6 @@ public class Duke {
                     System.out.println("☹ Walao what does that mean");
                     break;
                 }
-//                if (i == msgWords.length - 1) {
-//                    marked.add(false);
-//                    list.add(curr);
-//                    System.out.println(line_divider);
-//                    System.out.println("added: " + curr);
-//                    System.out.println(line_divider);
-//                }
             }
         }
     }
