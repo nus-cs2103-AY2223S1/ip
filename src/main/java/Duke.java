@@ -9,7 +9,7 @@ public class Duke {
         System.out.println(lines);
 
         Scanner sc = new Scanner(System.in);
-        List<String> history = new ArrayList<>();
+        List<Task> history = new ArrayList<>();
 
         while(true) {
             String input = sc.nextLine();
@@ -21,15 +21,34 @@ public class Duke {
                 break;
             } else if(input.equals("list")){
                 System.out.println(lines);
-                ListIterator<String> listIterator = history.listIterator();
+                ListIterator<Task> listIterator = history.listIterator();
                 while(listIterator.hasNext()) {
-                    int index = listIterator.nextIndex()+1;
-                    System.out.println("     " +  +index + ". "+ listIterator.next());
+                    Task t = listIterator.next();
+                    System.out.println("     " + listIterator.nextIndex() +
+                            ". " + "[" + t.getStatusIcon() + "] "+
+                            t.description);
                 }
                 System.out.println(lines);
-
-            } else {
-                history.add(input);
+            } else if(input.startsWith("mark")) {
+                int index = Integer.parseInt(input.replaceAll("[\\D]", ""));
+                Task t = history.get(index-1);
+                t.markAsDone();
+                System.out.println(lines);
+                System.out.println("     Nice! I've marked this task as done");
+                System.out.println("        [" + t.getStatusIcon() + "] " + t.description);
+                System.out.println(lines);
+            } else if (input.startsWith("unmark")){
+                int index = Integer.parseInt(input.replaceAll("[\\D]", ""));
+                Task t = history.get(index-1);
+                t.markAsNotDone();
+                System.out.println("     OK, I've marked this task as not done yet");
+                System.out.println(lines);
+                System.out.println("        [" + t.getStatusIcon() + "] " + t.description);
+                System.out.println(lines);
+            }
+            else {
+                Task t = new Task(input);
+                history.add(t);
                 System.out.println(lines);
                 System.out.println("     " + "added: " + input);
                 System.out.println(lines);
