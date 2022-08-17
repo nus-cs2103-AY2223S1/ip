@@ -29,6 +29,10 @@ public class TaskList {
         this.taskList.add(task);
     }
 
+    public void removeTask(int num) {
+        this.taskList.remove(num-1);
+    }
+
     public Task getTask(int num) {
         return this.taskList.get(num-1);
     }

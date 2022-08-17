@@ -19,14 +19,14 @@ public class Bot {
     }
 
     public String answer(String input) {
-        String[] split = input.split("\\s");
-        String command = split[0];
-
         String response = "";
         try {
-            if (input.equals("")) {
+            String[] split = input.split("\\s");
+            if (split.length == 0) {
                 throw DukeException.DukeEmptyInputException();
-            } else if (command.equals("todo") | command.equals("event") | command.equals("deadline")) {
+            }
+            String command = split[0];
+            if (command.equals("todo") | command.equals("event") | command.equals("deadline")) {
                 Task task = null;
                 String name = "";
                 for (int i = 1; i < split.length; i++) {
@@ -34,14 +34,19 @@ public class Bot {
                 }
                 if (name.equals("")) {
                     throw DukeException.DukeEmptyNameException();
-                } else if (command.equals("todo")) {
-                    task = new Todo(name);
-                } else if (command.equals("deadline")) {
-                    String[] details = name.split("\\s/by\\s");
-                    task = new Deadline(details[0], details[1]);
-                } else if (command.equals("event")) {
-                    String[] details = name.split("\\s/at\\s");
-                    task = new Event(details[0], details[1]);
+                }
+                try {
+                    if (command.equals("todo")) {
+                        task = new Todo(name);
+                    } else if (command.equals("deadline")) {
+                        String[] details = name.split("\\s/by\\s");
+                        task = new Deadline(details[0], details[1]);
+                    } else if (command.equals("event")) {
+                        String[] details = name.split("\\s/at\\s");
+                        task = new Event(details[0], details[1]);
+                    }
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    throw DukeException.DukeInvalidFormatException();
                 }
                 this.taskList.addTask(task);
                 String header = "Got it. I've added this task:";
@@ -50,8 +55,8 @@ public class Bot {
                 response = String.format("%s\n%s\n%s", header, line, footer);
             } else if (command.equals("mark")) {
                 try {
-                    int index = Integer.parseInt(split[1]);
-                    Task task = this.taskList.getTask(index);
+                    int num = Integer.parseInt(split[1]);
+                    Task task = this.taskList.getTask(num);
                     task.mark();
                     String header = "Nice! I've marked this task as done:";
                     String line = String.format("  %s", task.toString());
@@ -63,10 +68,21 @@ public class Bot {
                 }
             } else if (command.equals("unmark")) {
                 try {
-                    int index = Integer.parseInt(split[1]);
-                    Task task = this.taskList.getTask(index);
+                    int num = Integer.parseInt(split[1]);
+                    Task task = this.taskList.getTask(num);
                     task.unmark();
                     String header = "OK, I've marked this task as not done yet:";
+                    String line = String.format("  %s", task.toString());
+                    response = String.format("%s\n%s", header, line);
+                } catch (NumberFormatException e) {
+                    throw DukeException.DukeInvalidIndexException();
+                }
+            } else if (command.equals("delete")) {
+                try {
+                    int num = Integer.parseInt(split[1]);
+                    Task task = this.taskList.getTask(num);
+                    taskList.removeTask(num);
+                    String header = "Noted. I've removed this task:";
                     String line = String.format("  %s", task.toString());
                     response = String.format("%s\n%s", header, line);
                 } catch (NumberFormatException e) {
