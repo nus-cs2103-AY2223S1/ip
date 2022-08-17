@@ -8,9 +8,11 @@ package task;
 public abstract class Task {
     protected String description;
     protected boolean isDone;
+    protected TaskType type;
 
-    public Task(String description) {
+    public Task(String description, TaskType type) {
         this.description = description;
+        this.type = type;
         this.isDone = false;
     }
 
@@ -43,6 +45,7 @@ public abstract class Task {
      * @return A string representation of the task
      */
     public String toString() {
-        return String.format("[%s] %s", this.getStatusIcon(), this.description);
+        return String.format("[%s][%s] %s", this.type.getAbbreviation(),
+                this.getStatusIcon(), this.description);
     }
 }

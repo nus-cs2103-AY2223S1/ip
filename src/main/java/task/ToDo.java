@@ -6,7 +6,7 @@ package task;
  */
 public class ToDo extends Task {
     public ToDo(String description) {
-        super(description);
+        super(description, TaskType.TODO);
     }
 
     /**
@@ -16,6 +16,6 @@ public class ToDo extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[%s]%s", "T", super.toString());
+        return super.toString();
     }
 }
