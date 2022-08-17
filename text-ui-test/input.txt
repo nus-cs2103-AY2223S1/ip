@@ -15,4 +15,6 @@ deadline
 event
 deadline something
 event something
+delete
+delete -1
 bye
