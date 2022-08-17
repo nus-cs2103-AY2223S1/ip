@@ -1,9 +1,11 @@
 import java.util.*;
 
 public class Duke {
-    public static void main(String[] args) {
 
-        String start = Duke.replyFormat("Oi! I'm Dook", "What you want?");
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>(100);
+
+        String start = Duke.replyFormat("Oi! I'm Dook", "What's up?");
         String end = Duke.replyFormat("Bye.", ">:)");
 
         System.out.println(start);
@@ -11,11 +13,16 @@ public class Duke {
 
         while (true) {
             String command = sc.nextLine();
+            if (command.equals("list")) {
+                System.out.println(Duke.replyFormat(list.toArray(new String[0])));
+                continue;
+            }
             if (command.equals("bye")) {
                 System.out.println(end);
                 break;
             }
-            System.out.println(Duke.replyFormat(command));
+            list.add(list.size() + 1 + ": " + command);
+            System.out.println(Duke.replyFormat("added: " + command));
         }
     }
 
