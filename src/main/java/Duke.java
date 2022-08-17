@@ -1,9 +1,9 @@
 import java.util.Scanner;
 
 public class Duke {
-    private static final String LINE_BREAK = "\t" + "-----------------------------";
+    private static final String LINE_BREAK = "\t" + "-------------------------------------------------";
     private String input;
-    private String[] tasks = new String[100];
+    private Task[] tasks = new Task[100];
     private int taskIndex = 0;
 
     private void greet() {
@@ -19,13 +19,31 @@ public class Duke {
     }
 
     private void list() {
+        System.out.println(LINE_BREAK);
         for (int i = 0; i < taskIndex; i++) {
-            System.out.println(i + 1 + ". " + tasks[i] + "\n");
+            System.out.println("\t" + (i + 1) + ". [" + tasks[i].getStatusIcon() + "] " + tasks[i].description + "\n");
         }
+        System.out.println(LINE_BREAK);
+    }
+
+    private void mark(int i) {
+        System.out.println(LINE_BREAK);
+        Task curTask = tasks[i - 1];
+        curTask.markAsDone();
+        System.out.println("\tNice! I've marked this task as done: \n\t  [" + curTask.getStatusIcon() + "] " + curTask.description + "\n" );
+        System.out.println(LINE_BREAK);
+    }
+
+    private void unmark(int i) {
+        System.out.println(LINE_BREAK);
+        Task curTask = tasks[i - 1];
+        curTask.markAsUndone();
+        System.out.println("\tOK, I've marked this task as not done yet: \n\t  [" + curTask.getStatusIcon() + "] " + curTask.description + "\n" );
+        System.out.println(LINE_BREAK);
     }
 
     private void addTask() {
-        tasks[taskIndex] = input;
+        tasks[taskIndex] = new Task(input);
         taskIndex++;
     }
 
@@ -33,15 +51,22 @@ public class Duke {
         Duke duke = new Duke();
         duke.greet();
         Scanner scan = new Scanner(System.in);
-        duke.input = scan.nextLine();
+        duke.input = scan.next();
         while (!duke.input.equals("bye")) {
             if (duke.input.equals("list")) {
                 duke.list();
+            } else if (duke.input.equals("mark")) {
+                int index = scan.nextInt();
+                duke.mark(index);
+                } else if (duke.input.equals("unmark")) {
+                int index = scan.nextInt();
+                duke.unmark(index);
             } else {
+                duke.input += scan.nextLine();
                 duke.addTask();
                 duke.echo();
             }
-            duke.input = scan.nextLine();
+            duke.input = scan.next();
         }
         duke.exit();
 
