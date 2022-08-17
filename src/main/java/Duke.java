@@ -16,10 +16,10 @@ public class Duke {
             + "|____/ \\__,_|_|\\_\\___|\n";
     private static final String PADDING = "  ";
     private static final Scanner scanner = new Scanner(System.in);
-    private static final Log log = new Log();
+    private static Log log = new Log();
     private static final int INVALID_INDEX = -1;
-    private static final String DEADLINE_INDICATOR_PATTERN = "\\s*/by\\s*";
-    private static final String EVENT_INDICATOR_PATTERN = "\\s*/at\\s*";
+    private static final String STORAGE_PATH = "data/duke.txt";
+    private static final Storage STORAGE = new Storage(STORAGE_PATH);
 
     /**
      * Main function for the chatbot.
@@ -29,7 +29,19 @@ public class Duke {
     public static void main(String[] args) {
         displayLogo();
         displayGreetingMessage();
+        load();
         listenForInputs();
+    }
+
+    private static void load() {
+        try {
+            log = new Log(STORAGE.readFile());
+            formatAndPrint("Successfully loaded from storage file.");
+        } catch (
+
+        DukeException e) {
+            formatAndPrint(e.getMessage());
+        }
     }
 
     private static void displayLogo() {
@@ -113,22 +125,24 @@ public class Duke {
     }
 
     private static void addTodo() {
-        addTask(() -> parseTodo());
+        addTask((input) -> CommandParser.parseTodo(input));
     }
 
     private static void addDeadline() {
-        addTask(() -> parseDeadline());
+        addTask((input) -> CommandParser.parseDeadline(input));
     }
 
     private static void addEvent() {
-        addTask(() -> parseEvent());
+        addTask((input) -> CommandParser.parseEvent(input));
     }
 
-    private static void addTask(TaskParser taskParser) {
+    private static void addTask(DukeParser<Task> taskParser) {
         try {
-            Task task = taskParser.get();
+            String input = parseLine(scanner);
+            Task task = taskParser.parse(input);
             updateLog((log) -> log.add(task),
                     "Task added: ");
+            STORAGE.save(task);
         } catch (DukeException e) {
             formatAndPrint(e.getMessage());
         }
@@ -216,6 +230,7 @@ public class Duke {
     private static String parseLine(Scanner sc) throws DukeException {
         String input;
         try {
+            sc.skip(sc.delimiter());
             input = sc.nextLine();
         } catch (NoSuchElementException e) {
             throw new DukeException("The description cannot be empty!", e);
@@ -224,35 +239,6 @@ public class Duke {
             throw new DukeException("The description cannot be empty!");
         }
         return input;
-    }
-
-    private static Todo parseTodo() throws DukeException {
-        String input = parseLine(scanner);
-        return new Todo(input);
-    }
-
-    private static Deadline parseDeadline() throws DukeException {
-        String input = parseLine(scanner);
-        try (Scanner lineScanner = new Scanner(input)
-                .useDelimiter(DEADLINE_INDICATOR_PATTERN)) {
-            String description = lineScanner.next();
-            String by = lineScanner.next();
-            return new Deadline(description, by);
-        } catch (NoSuchElementException e) {
-            throw new DukeException("Invalid format for adding deadline!", e);
-        }
-    }
-
-    private static Event parseEvent() throws DukeException {
-        String input = parseLine(scanner);
-        try (Scanner lineScanner = new Scanner(input)
-                .useDelimiter(EVENT_INDICATOR_PATTERN)) {
-            String description = lineScanner.next();
-            String at = lineScanner.next();
-            return new Event(description, at);
-        } catch (NoSuchElementException e) {
-            throw new DukeException("Invalid format for adding event!", e);
-        }
     }
 
     private static boolean isIndexInRange(int index) {

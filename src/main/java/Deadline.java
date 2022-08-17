@@ -1,5 +1,4 @@
 import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 
 public class Deadline extends Task {
     private LocalDate by;
@@ -27,6 +26,11 @@ public class Deadline extends Task {
 
     String getFormattedDate() {
         return this.getDate().format(DATE_FORMAT);
+    }
+
+    @Override
+    String toStorageFormat() {
+        return "D | " + super.toStorageFormat() + " | " + this.by;
     }
 
     @Override

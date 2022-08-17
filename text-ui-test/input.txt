@@ -1,8 +1,3 @@
-todo read book
-deadline return book /by 2022-06-06
-event project meeting /at 2022-06-08
-todo join sports club
-todo borrow book
 list
 deadline return book /by 2022-08-07
 event project meeting /at 2022-09-07

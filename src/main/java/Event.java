@@ -1,5 +1,4 @@
 import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 
 public class Event extends Task {
     private LocalDate at;
@@ -27,6 +26,11 @@ public class Event extends Task {
 
     String getFormattedDate() {
         return this.getDate().format(DATE_FORMAT);
+    }
+
+    @Override
+    String toStorageFormat() {
+        return "E | " + super.toStorageFormat() + " | " + this.at;
     }
 
     @Override
