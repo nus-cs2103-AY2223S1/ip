@@ -10,6 +10,7 @@ public class Duke {
             + "|____/ \\__,_|_|\\_\\___|\n";
     private static final String GREET_MESSAGE = "Hello! I am Duke! \n" + "What can I do for you?";
     private static final String EXIT_MESSAGE = "Bye! Hope to see you again soon!";
+    private static final String INDEX_OUT_OF_BOUNDS_MESSAGE = "Sorry! The task index is out of bounds. Please try again with a valid index.";
 
     private static void printMessage(String message) {
         System.out.println(">> " + message);
@@ -20,40 +21,69 @@ public class Duke {
         Duke.printMessage(GREET_MESSAGE);
     }
 
-    private static String getUserInput(Scanner sc) {
+    private static String[] getUserCommand(Scanner sc) {
         System.out.print("<< ");
-        return sc.nextLine();
+        String[] commands = sc.nextLine().strip().split(" ");
+        return commands;
+    }
+
+    private static String listTasks(List<Task> tasks) {
+        StringBuilder output = new StringBuilder();
+        output.append("Here are your tasks:\n");
+        for (int i = 0; i < tasks.size(); i++) {
+            output.append(String.format("\t %d. %s", i + 1, tasks.get(i)));
+            if (i + 1 < tasks.size()) {
+                output.append("\n");
+            }
+        }
+        return output.toString();
+    }
+
+    private static void markTask(List<Task> tasks, int taskIndex, boolean isDone) {
+        tasks.get(taskIndex).setIsDone(isDone);
     }
 
     private static void run() {
         Duke.greet();
 
         Scanner sc = new Scanner(System.in);
-        List<String> tasks = new ArrayList<>();
+        List<Task> tasks = new ArrayList<>();
         boolean terminated = false;
 
         while (!terminated) {
-            String command = Duke.getUserInput(sc);
+            String[] commands = Duke.getUserCommand(sc);
 
-            switch (command.toLowerCase()) {
-                case "list":
-                    StringBuilder output = new StringBuilder();
-                    output.append("Here are your tasks:\n");
-                    for (int i = 0; i < tasks.size(); i++) {
-                        output.append(String.format("\t %d. %s", i + 1, tasks.get(i)));
-                        if (i + 1 < tasks.size()) {
-                            output.append("\n");
-                        }
-                    }
-                    Duke.printMessage(output.toString());
-                    break;
+            switch (commands[0].toLowerCase()) {
                 case "bye":
                     Duke.printMessage(EXIT_MESSAGE);
                     terminated = true;
                     break;
+                case "list":
+                    Duke.printMessage(Duke.listTasks(tasks));
+                    break;
+                case "mark":
+                    int markTaskIndex = Integer.parseInt(commands[1]) - 1;
+                    if (markTaskIndex < 0 || markTaskIndex >= tasks.size()) {
+                        Duke.printMessage(INDEX_OUT_OF_BOUNDS_MESSAGE);
+                        break;
+                    }
+                    markTask(tasks, markTaskIndex, true);
+                    Duke.printMessage("Nice! I've marked this task as done:\n\t" + tasks.get(markTaskIndex));
+                    break;
+                case "unmark":
+                    int unmarkTaskIndex = Integer.parseInt(commands[1]) - 1;
+                    if (unmarkTaskIndex < 0 || unmarkTaskIndex >= tasks.size()) {
+                        Duke.printMessage(INDEX_OUT_OF_BOUNDS_MESSAGE);
+                        break;
+                    }
+                    markTask(tasks, unmarkTaskIndex, false);
+                    Duke.printMessage("Okay, I've marked this task as not done yet:\n\t" + tasks.get(unmarkTaskIndex));
+                    break;
                 default:
-                    tasks.add(command);
-                    Duke.printMessage("Added task: " + command);
+                    String taskDescription = String.join(" ", commands);
+                    Task task = new Task(taskDescription);
+                    tasks.add(task);
+                    Duke.printMessage("Added task: " + taskDescription);
             }
         }
     }

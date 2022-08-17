@@ -11,6 +11,10 @@ public class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
+    public void setIsDone(boolean isDone) {
+        this.isDone = isDone;
+    }
+
     public String toString() {
         return String.format("[%s] %s", this.getStatusIcon(), this.description);
     }
