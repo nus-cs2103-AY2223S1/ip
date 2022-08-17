@@ -1,12 +1,10 @@
 public abstract class Task {
     private String task;
     private boolean done;
-    public static int numTasks = 0;
 
     public Task(String task) {
         this.task = task;
         this.done = false;
-        numTasks++;
     }
 
     public void markTask() {
@@ -23,9 +21,6 @@ public abstract class Task {
         return done;
     }
 
-    public static int getNumTasks() {
-        return numTasks;
-    }
     @Override
     public String toString() {
         if (done) {
