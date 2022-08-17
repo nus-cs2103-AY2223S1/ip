@@ -105,6 +105,21 @@ public class Duke {
                 System.out.println("\tNow you have " + lst.size() + " tasks in the list.");
                 System.out.println("\t-----------------------------------------------");
             }
+            else if (line.startsWith("delete")) {
+                if (line.length() <= 7) {
+                    throw new DukeException("OOPS!!! Please enter a number after delete");
+                }
+                int index = Integer.parseInt(line.replaceAll("[^0-9]", ""));
+                if (index > lst.size() || index < 0) {
+                    throw new DukeException("OOPS!!! Invalid number to delete");
+                }
+                System.out.println("\t-----------------------------------------------");
+                System.out.println("\tNoted. I've removed this task:");
+                System.out.println("\t\t" + lst.get(index - 1));
+                lst.remove(index - 1);
+                System.out.println("\tNow you have " + lst.size() + " tasks in the list.");
+                System.out.println("\t-----------------------------------------------");
+            }
             else {
                 throw new DukeException("OOPS!!! I'm sorry, but I don't know that that means :(");
             }
