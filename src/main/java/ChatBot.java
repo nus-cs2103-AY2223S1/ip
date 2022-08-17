@@ -16,25 +16,25 @@ public class ChatBot {
             int command = controller.userCommand();
             switch (command) {
                 case 1:
-                    System.out.println("PLease type in your ToDo task: ");
+                    System.out.println("Please type in your ToDo task:");
                     String todo = controller.inputFromUser();
                     Task todoTask = controller.addToList(todo, null, "todo");
                     controller.display(todoTask.toString(), false, false, false);
                     break;
 
                 case 2:
-                    System.out.println("PLease type in your Event: ");
+                    System.out.println("Please type in your Event:");
                     String event = controller.inputFromUser();
-                    System.out.println("PLease type in date: ");
+                    System.out.println("Please type in date:");
                     String eventTime = controller.inputFromUser();
                     Task eventTask = controller.addToList(event, eventTime, "event");
                     controller.display(eventTask.toString(), false, false, false);
                     break;
 
                 case 3:
-                    System.out.println("PLease type in your Deadline task: ");
+                    System.out.println("Please type in your Deadline task:");
                     String ddl = controller.inputFromUser();
-                    System.out.println("PLease type in deadline: ");
+                    System.out.println("Please type in deadline:");
                     String ddlTime = controller.inputFromUser();
                     Task ddlTask = controller.addToList(ddl, ddlTime, "deadline");
                     controller.display(ddlTask.toString(), false, false, false);
@@ -45,7 +45,7 @@ public class ChatBot {
                     break;
 
                 case 5:
-                    System.out.println("Please type in the task index that you want to mark: ");
+                    System.out.println("Please type in the task index that you want to mark:");
                     int taskIndexToMark = controller.userTask() - 1;
                     controller.changeTaskStatus(taskIndexToMark, true);
                     String replyMark = controller.getTask(taskIndexToMark).toString();
@@ -53,7 +53,7 @@ public class ChatBot {
                     break;
 
                 case 6:
-                    System.out.println("Please type in the task index that you want to unmark: ");
+                    System.out.println("Please type in the task index that you want to unmark:");
                     int taskIndexToUnmark = controller.userTask() - 1;
                     controller.changeTaskStatus(taskIndexToUnmark, false);
                     String replyUnmark = controller.getTask(taskIndexToUnmark).toString();

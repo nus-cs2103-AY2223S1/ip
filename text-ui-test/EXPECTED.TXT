@@ -5,3 +5,191 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
+********************************************************************************
+Hello, I'm Logits. What can I do for you?
+1. Add a ToDo
+2. Add an Event
+3. Add a Deadline
+4. List all Tasks
+5. Mark
+6. Unmark
+7. Exit
+********************************************************************************
+Please type in your ToDo task:
+********************************************************************************
+Successfully added! You can see it in your task list as follows:
+[T][] CS2109S
+********************************************************************************
+Anything else? I'm always here for you!
+1. Add a ToDo
+2. Add an Event
+3. Add a Deadline
+4. List all Tasks
+5. Mark
+6. Unmark
+7. Exit
+********************************************************************************
+Please type in your Event:
+Please type in date:
+********************************************************************************
+Successfully added! You can see it in your task list as follows:
+[E][] CS2309S (at: September 18th)
+********************************************************************************
+Anything else? I'm always here for you!
+1. Add a ToDo
+2. Add an Event
+3. Add a Deadline
+4. List all Tasks
+5. Mark
+6. Unmark
+7. Exit
+********************************************************************************
+Please type in your Deadline task:
+Please type in deadline:
+********************************************************************************
+Successfully added! You can see it in your task list as follows:
+[D][] CS2109S (by: August 20th)
+********************************************************************************
+Anything else? I'm always here for you!
+1. Add a ToDo
+2. Add an Event
+3. Add a Deadline
+4. List all Tasks
+5. Mark
+6. Unmark
+7. Exit
+********************************************************************************
+********************************************************************************
+Here are all your tasks:
+1. [T][] CS2109S
+2. [E][] CS2309S (at: September 18th)
+3. [D][] CS2109S (by: August 20th)
+********************************************************************************
+Anything else? I'm always here for you!
+1. Add a ToDo
+2. Add an Event
+3. Add a Deadline
+4. List all Tasks
+5. Mark
+6. Unmark
+7. Exit
+********************************************************************************
+Please type in the task index that you want to mark:
+********************************************************************************
+Successfully marked! You can see it in your task list as follows:
+[T][X] CS2109S
+********************************************************************************
+Anything else? I'm always here for you!
+1. Add a ToDo
+2. Add an Event
+3. Add a Deadline
+4. List all Tasks
+5. Mark
+6. Unmark
+7. Exit
+********************************************************************************
+Please type in the task index that you want to unmark:
+********************************************************************************
+Successfully unmarked! You can see it in your task list as follows:
+[T][] CS2109S
+********************************************************************************
+Anything else? I'm always here for you!
+1. Add a ToDo
+2. Add an Event
+3. Add a Deadline
+4. List all Tasks
+5. Mark
+6. Unmark
+7. Exit
+********************************************************************************
+Please type in your ToDo task:
+********************************************************************************
+Successfully added! You can see it in your task list as follows:
+[T][] MA2108
+********************************************************************************
+Anything else? I'm always here for you!
+1. Add a ToDo
+2. Add an Event
+3. Add a Deadline
+4. List all Tasks
+5. Mark
+6. Unmark
+7. Exit
+********************************************************************************
+********************************************************************************
+Here are all your tasks:
+1. [T][] CS2109S
+2. [E][] CS2309S (at: September 18th)
+3. [D][] CS2109S (by: August 20th)
+4. [T][] MA2108
+********************************************************************************
+Anything else? I'm always here for you!
+1. Add a ToDo
+2. Add an Event
+3. Add a Deadline
+4. List all Tasks
+5. Mark
+6. Unmark
+7. Exit
+********************************************************************************
+Please type in the task index that you want to mark:
+********************************************************************************
+Successfully marked! You can see it in your task list as follows:
+[E][X] CS2309S (at: September 18th)
+********************************************************************************
+Anything else? I'm always here for you!
+1. Add a ToDo
+2. Add an Event
+3. Add a Deadline
+4. List all Tasks
+5. Mark
+6. Unmark
+7. Exit
+********************************************************************************
+Please type in the task index that you want to mark:
+********************************************************************************
+Successfully marked! You can see it in your task list as follows:
+[D][X] CS2109S (by: August 20th)
+********************************************************************************
+Anything else? I'm always here for you!
+1. Add a ToDo
+2. Add an Event
+3. Add a Deadline
+4. List all Tasks
+5. Mark
+6. Unmark
+7. Exit
+********************************************************************************
+Please type in the task index that you want to unmark:
+********************************************************************************
+Successfully unmarked! You can see it in your task list as follows:
+[T][] CS2109S
+********************************************************************************
+Anything else? I'm always here for you!
+1. Add a ToDo
+2. Add an Event
+3. Add a Deadline
+4. List all Tasks
+5. Mark
+6. Unmark
+7. Exit
+********************************************************************************
+********************************************************************************
+Here are all your tasks:
+1. [T][] CS2109S
+2. [E][X] CS2309S (at: September 18th)
+3. [D][X] CS2109S (by: August 20th)
+4. [T][] MA2108
+********************************************************************************
+Anything else? I'm always here for you!
+1. Add a ToDo
+2. Add an Event
+3. Add a Deadline
+4. List all Tasks
+5. Mark
+6. Unmark
+7. Exit
+********************************************************************************
+********************************************************************************
+Bye. Hope to see you soon!
+********************************************************************************

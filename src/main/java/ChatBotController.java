@@ -10,11 +10,9 @@ public class ChatBotController {
     private final String initialGreeting = "Hello, I'm Logits. What can I do for you?";
     private final String goodbyeGreeting = "Bye. Hope to see you soon!";
     private final String listString = "list";
-    private final String commandList = "1. Add a ToDo\n" + " ".repeat(10) + "2. Add an Event\n" +
-            " ".repeat(10) + "3. Add a Deadline\n" + " ".repeat(10) + "4. List all Tasks\n"
-            + " ".repeat(10) + "5. Mark\n" + " ".repeat(10) + "6. Unmark\n" + " ".repeat(10)
-            + "7. Exit";
-    private final String splitLine = " ".repeat(5) + "*".repeat(50);
+    private final String commandList = "1. Add a ToDo\n" + "2. Add an Event\n" + "3. Add a Deadline\n" +
+            "4. List all Tasks\n" + "5. Mark\n" + "6. Unmark\n" + "7. Exit";
+    private final String splitLine = "*".repeat(80);
     private final ArrayList<Task> tasks = new ArrayList<>();
 
     /**
@@ -106,8 +104,8 @@ public class ChatBotController {
      */
     public void startGreeting() {
         System.out.println(splitLine);
-        System.out.println(" ".repeat(10) + initialGreeting);
-        System.out.println(" ".repeat(10) + commandList);
+        System.out.println(initialGreeting);
+        System.out.println(commandList);
         System.out.println(splitLine);
     }
 
@@ -116,7 +114,7 @@ public class ChatBotController {
      */
     public void sayBye() {
         System.out.println(splitLine);
-        System.out.println(" ".repeat(10) + goodbyeGreeting);
+        System.out.println(goodbyeGreeting);
         System.out.println(splitLine);
     }
 
@@ -130,28 +128,25 @@ public class ChatBotController {
     public void display(String info, boolean isList, boolean isMark, boolean isUnmark) {
         if (isList) {
             System.out.println(splitLine);
-            System.out.println(" ".repeat(10) + "Here are all your tasks:");
+            System.out.println("Here are all your tasks:");
             for(int i = 0; i < tasks.size(); ++i) {
-                System.out.println(" ".repeat(10) + (i + 1) + ". " + tasks.get(i));
+                System.out.println( + (i + 1) + ". " + tasks.get(i));
             }
             System.out.println(splitLine);
         } else if (isMark) {
             System.out.println(splitLine);
-            System.out.println(" ".repeat(10) + "Successfully marked! You can see it in your task " +
-                    "list as follows:");
-            System.out.println(" ".repeat(10) + info);
+            System.out.println("Successfully marked! You can see it in your task list as follows:");
+            System.out.println(info);
             System.out.println(splitLine);
         } else if (isUnmark) {
             System.out.println(splitLine);
-            System.out.println(" ".repeat(10) + "Successfully unmarked! You can see it in your task " +
-                    "list as follows:");
-            System.out.println(" ".repeat(10) + info);
+            System.out.println( "Successfully unmarked! You can see it in your task list as follows:");
+            System.out.println(info);
             System.out.println(splitLine);
         } else {
             System.out.println(splitLine);
-            System.out.println(" ".repeat(10) + "Successfully added! You can see it in your task " +
-                    "list as follows:");
-            System.out.println(" ".repeat(10) + info);
+            System.out.println("Successfully added! You can see it in your task list as follows:");
+            System.out.println(info);
             System.out.println(splitLine);
         }
     }
@@ -160,9 +155,8 @@ public class ChatBotController {
      * Display the command list.
      */
     public void showCommandList() {
-        System.out.println(splitLine);
-        System.out.println(" ".repeat(10) + "Anything else? I'm always here for you!");
-        System.out.println(" ".repeat(10) + commandList);
+        System.out.println("Anything else? I'm always here for you!");
+        System.out.println(commandList);
         System.out.println(splitLine);
     }
 }
