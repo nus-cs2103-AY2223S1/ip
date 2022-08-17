@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Cheese {
   public static final String BORDER = "-----";
-  public static ArrayList<String> list = new ArrayList<String>();
+  public static ArrayList<Task> list = new ArrayList<Task>();
 
   public static void main(String[] args) {
     String greeting = new String("Woof! I'm Cheese, your puppy assistant.\n"
@@ -30,7 +30,7 @@ public class Cheese {
         Cheese.printList();
         continue;
       }
-      Cheese.list.add(userInput);
+      Cheese.list.add(new Task(userInput));
       System.out.println("added: " + userInput);
     }
   }
