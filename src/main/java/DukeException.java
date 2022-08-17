@@ -5,8 +5,7 @@ public class DukeException extends Exception{
 
     @Override
     public String toString() {
-        String message = Duke.line + "\n" + "☹ OOPS!!! I'm sorry, but I don't know what that means :-(" +
-                "\n" + Duke.line;
+        String message = super.getMessage();
         return message;
     }
 }

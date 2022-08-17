@@ -44,10 +44,10 @@ public class Duke {
         System.out.println(Duke.line);
     }
 
-    public static void main(String[] args) {
-        Scanner scanner  = new Scanner(System.in);
+    private static boolean processUserInput(String userInput, ArrayList<Task> taskList) throws DukeException{
+        String command;
+        String taskDetails;
 
-        String greetingMessage = "Hello! I'm Duke\nWhat can I do for you?";
         String exitMessage = "Bye. Hope to see you again soon!";
         String exitKeyword = "bye";
         String listKeyword = "list";
@@ -56,10 +56,60 @@ public class Duke {
         String eventKeyword = "event";
         String markKeyword = "mark";
         String unmarkKeyword = "unmark";
+        if (userInput.isEmpty()) {
+            throw new DukeException("☹ OOPS!!! The user input cannot be empty.");
+        }
+        command = userInput.split(" ")[0];
+        if (command.equals(exitKeyword)) {
+            printResponse(exitMessage);
+            return true;
+        } else if (command.equals(listKeyword)) {
+            printTaskList(taskList);
+        } else if (command.equals(markKeyword) || command.equals(unmarkKeyword)) {
+            if (userInput.split(" ").length == 1) {
+                throw new DukeException("☹ OOPS!!! The mark/unmark command cannot have a missing index.");
+            }
+            String index = userInput.split(" ")[1];
+            updateAndPrintTaskStatus(taskList, Integer.parseInt(index), (command.equals(markKeyword) ? true : false));
+        } else {
+            Task task;
+            if (userInput.split(" ", 2).length == 1) {
+                if (command.equals(todoKeyword)) {
+                    throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+                } else if (command.equals(eventKeyword)) {
+                    throw new DukeException("☹ OOPS!!! The description of a event cannot be empty.");
+                } else if (command.equals(deadlineKeyword)) {
+                    throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
+                } else {
+                    throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                }
+            }
+            taskDetails = userInput.split(" ", 2)[1];
+            if (command.equals(todoKeyword)) {
+                task = new Todo(taskDetails);
+                taskList.add(task);
+                printTaskAdded(taskList, task);
+            } else if (command.equals(eventKeyword)) {
+                task = new Event(taskDetails.split("/")[0], taskDetails.split("/")[1].split(" ", 2)[1]);
+                taskList.add(task);
+                printTaskAdded(taskList, task);
+            } else if (command.equals(deadlineKeyword)) {
+                task = new Deadline(taskDetails.split("/")[0], taskDetails.split("/")[1].split(" ", 2)[1]);
+                taskList.add(task);
+                printTaskAdded(taskList, task);
+            }  else {
+                throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+            }
+        }
+        return false;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner  = new Scanner(System.in);
+
+        String greetingMessage = "Hello! I'm Duke\nWhat can I do for you?";
 
         String userInput;
-        String command;
-        String taskDetails;
 
         ArrayList<Task> taskList = new ArrayList<Task>();
 
@@ -67,37 +117,15 @@ public class Duke {
 
         while(true) {
             userInput = scanner.nextLine();
-            command = userInput.split(" ")[0];
-            if (command.equals(exitKeyword)) {
-                printResponse(exitMessage);
-                break;
-            } else if (command.equals(listKeyword)) {
-                printTaskList(taskList);
-            } else if (command.equals(markKeyword)) {
-                String index = userInput.split(" ")[1];
-                updateAndPrintTaskStatus(taskList, Integer.parseInt(index), true);
-            } else if (command.equals(unmarkKeyword)) {
-                String index = userInput.split(" ")[1];
-                updateAndPrintTaskStatus(taskList, Integer.parseInt(index), false);
-            } else {
-                Task task;
-                taskDetails = userInput.split(" ", 2)[1];
-                if (command.equals(todoKeyword)) {
-                    task = new Todo(taskDetails);
-                    taskList.add(task);
-                    printTaskAdded(taskList, task);
-                } else if (command.equals(eventKeyword)) {
-                    task = new Event(taskDetails.split("/")[0], taskDetails.split("/")[1].split(" ", 2)[1]);
-                    taskList.add(task);
-                    printTaskAdded(taskList, task);
-                } else if (command.equals(deadlineKeyword)) {
-                    task = new Deadline(taskDetails.split("/")[0], taskDetails.split("/")[1].split(" ", 2)[1]);
-                    taskList.add(task);
-                    printTaskAdded(taskList, task);
-                }  else {
-                    printResponse("Invalid command. Please try again.");
+            try {
+                Boolean exitCommand = processUserInput(userInput, taskList);
+                if (exitCommand) {
+                    break;
                 }
+            } catch (DukeException exception) {
+                printResponse(exception.toString());
             }
+
         }
     }
 }
