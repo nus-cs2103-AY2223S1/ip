@@ -20,46 +20,46 @@ public class Duke {
         Scanner scanner = new Scanner(System.in);
         boolean active = true;
         while (active) {
-            String input = scanner.nextLine();
-            String[] inputArray = input.split(" ",2);
-            String command = inputArray[0];
-            String argument = "";
-            if (inputArray.length == 2) {
-                argument = inputArray[1];
-            }
+            try {
+                String input = scanner.nextLine();
+                String[] inputArray = input.split(" ",2);
+                String command = inputArray[0];
+                String argument = "";
+                if (inputArray.length == 2) {
+                    argument = inputArray[1];
+                }
 
-            switch(command) {
-                case "bye":
-                    generateMessage(farewell);
-                    active = false;
-                    break;
-                case "list":
-                    displayTasks();
-                    break;
-                case "mark":
-                    int index = Integer.parseInt(argument) - 1;
-                    markTask(storage.get(index));
-                    break;
-                case "unmark":
-                    int index2 = Integer.parseInt(argument) - 1;
-                    unmarkTask(storage.get(index2));
-                    break;
-                case "todo":
-                    ToDo todo = new ToDo(argument);
-                    addTask(todo);
-                    break;
-                case "deadline":
-                    Deadline deadline = handleDeadline(argument);
-                    addTask(deadline);
-                    break;
-                case "event":
-                    Event event = handleEvent(argument);
-                    addTask(event);
-                    break;
-                default:
-                    Task temp = new Task(input);
-                    addTask(temp);
-                    break;
+                switch(command) {
+                    case "bye":
+                        generateMessage(farewell);
+                        active = false;
+                        break;
+                    case "list":
+                        displayTasks();
+                        break;
+                    case "mark":
+                        markTask(argument);
+                        break;
+                    case "unmark":
+                        unmarkTask(argument);
+                        break;
+                    case "todo":
+                        ToDo todo = handleToDo(argument);
+                        addTask(todo);
+                        break;
+                    case "deadline":
+                        Deadline deadline = handleDeadline(argument);
+                        addTask(deadline);
+                        break;
+                    case "event":
+                        Event event = handleEvent(argument);
+                        addTask(event);
+                        break;
+                    default:
+                        throw new InvalidCommandException(command);
+                }
+            } catch (DukeException e) {
+                generateMessage(e.toString());
             }
         }
     }
@@ -72,13 +72,33 @@ public class Duke {
         generateMessage(message);
     }
 
-    public static Deadline handleDeadline(String information) {
+    public static ToDo handleToDo(String information) throws EmptyArgumentException {
+        if (information.isEmpty()) {
+            throw new EmptyArgumentException(Commands.todo);
+        }
+        ToDo todo = new ToDo(information);
+        return todo;
+    }
+
+    public static Deadline handleDeadline(String information) throws DukeException {
+        if (information.isEmpty()) {
+            throw new EmptyArgumentException(Commands.deadline);
+        }
+        if (!information.contains("/by")) {
+            throw new InvalidArgumentException(Commands.deadline);
+        }
         String[] stringArr = information.split(" /by ",2);
         Deadline deadline = new Deadline(stringArr[0], stringArr[1]);
         return deadline;
     }
 
-    public static Event handleEvent(String information) {
+    public static Event handleEvent(String information) throws DukeException {
+        if (information.isEmpty()) {
+            throw new EmptyArgumentException(Commands.event);
+        }
+        if (!information.contains("/at")) {
+            throw new InvalidArgumentException(Commands.event);
+        }
         String[] stringArr = information.split(" /at ",2);
         Event event = new Event(stringArr[0], stringArr[1]);
         return event;
@@ -101,12 +121,34 @@ public class Duke {
         generateMessage(display);
     }
 
-    public static void markTask(Task task) {
+    public static void markTask(String information) throws DukeException {
+        if (information.isEmpty()) {
+            throw new EmptyArgumentException(Commands.mark);
+        }
+        if (!information.chars().allMatch( Character :: isDigit )) {
+            throw new InvalidArgumentException(Commands.mark);
+        }
+        int index = Integer.parseInt(information) - 1;
+        if (index < 0 || index >= storage.size()) {
+            throw new MarkException();
+        }
+        Task task = storage.get(index);
         task.markAsDone();
         generateMessage("Nice! I've marked this task as done:\n" + task);
     }
 
-    public static void unmarkTask(Task task) {
+    public static void unmarkTask(String information) throws DukeException {
+        if (information.isEmpty()) {
+            throw new EmptyArgumentException(Commands.mark);
+        }
+        if (!information.chars().allMatch( Character :: isDigit )) {
+            throw new InvalidArgumentException(Commands.mark);
+        }
+        int index = Integer.parseInt(information) - 1;
+        if (index < 0 || index >= storage.size()) {
+            throw new MarkException();
+        }
+        Task task = storage.get(index);
         task.markAsIncomplete();
         generateMessage("OK, I've marked this task as not done yet:\n" + task);
     }

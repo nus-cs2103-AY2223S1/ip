@@ -1,5 +1,7 @@
 public enum Commands {
     todo,
     deadline,
-    event
+    event,
+    mark,
+    unmark
 }
