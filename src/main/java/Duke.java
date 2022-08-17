@@ -8,30 +8,57 @@ public class Duke {
     /** Number of Task objects in the list */
     private static int numOfTasks = 0;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws MultipleTasksException, NullTaskException, InvalidCommandException {
         Scanner sc = new Scanner(System.in);
         System.out.println("____________________________________________________________\n"
                 + " Hello! I'm Duke\n"
                 + " What can I do for you?\n"
                 + "____________________________________________________________");
-        while (sc.hasNextLine()) {
-            String strInput = sc.nextLine();
-            if ((strInput.equalsIgnoreCase("list"))) {
-                System.out.println("____________________________________________________________\n"
-                        + " Here are the tasks in your list:"
-                        + enumerateList()
-                        + "\n____________________________________________________________");
-            } else if (strInput.contains("todo")){
-                addToList(new Todo(strInput.substring(5)));
-            } else if (strInput.contains("deadline")) {
-                addToList(new Deadline(strInput.substring(9, strInput.indexOf("/") - 1),
-                        strInput.substring(strInput.indexOf("/by") + 4)));
-            } else if (strInput.contains("event")) {
-                addToList(new Event(strInput.substring(6, strInput.indexOf("/") - 1),
-                        strInput.substring(strInput.indexOf("/at") + 4)));
+        try {
+            while (sc.hasNextLine()) {
+                String strInput = sc.nextLine();
+                if ((strInput.equalsIgnoreCase("list"))) {
+                    System.out.println("____________________________________________________________\n"
+                            + " Here are the tasks in your list:"
+                            + enumerateList()
+                            + "\n____________________________________________________________");
+                } else if (strInput.contains("todo") && strInput.substring(0,4).equals("todo")){
+                    checkForNullTask(strInput.substring(4), "todo");
+                    checkForMultipleTasks(strInput.substring(4));
+                    addToList(new Todo(strInput.substring(5)));
+                } else if (strInput.contains("deadline") && strInput.substring(0,8).equals("deadline")) {
+                    checkForNullTask(strInput.substring(8), "deadline");
+                    checkForMultipleTasks(strInput.substring(8));
+                    addToList(new Deadline(strInput.substring(9, strInput.indexOf("/") - 1),
+                            strInput.substring(strInput.indexOf("/by") + 4)));
+                } else if (strInput.contains("event") && strInput.substring(0,5).equals("event")) {
+                    checkForNullTask(strInput.substring(5), "event");
+                    checkForMultipleTasks(strInput.substring(5));
+                    addToList(new Event(strInput.substring(6, strInput.indexOf("/") - 1),
+                            strInput.substring(strInput.indexOf("/at") + 4)));
+                } else {
+                    throw new InvalidCommandException("Cannot recognise the command.");
+                }
             }
+        } catch (MultipleTasksException e) {
+            System.out.println(e.toString());
+        } catch (NullTaskException e) {
+            System.out.println(e.toString());
+        } catch (InvalidCommandException e) {
+            System.out.println(e.toString());
         }
-        sc.close();
+    }
+
+    private static void checkForNullTask(String description, String typeOfTask) throws NullTaskException {
+        if (description.isBlank()) {
+            throw new NullTaskException("No task description.", typeOfTask);
+        }
+    }
+
+    private static void checkForMultipleTasks(String s) throws MultipleTasksException {
+        if (s.contains("todo") ||s.contains("deadline") || s.contains("event")) {
+            throw new MultipleTasksException("Multiple task detected.");
+        }
     }
 
     /**
