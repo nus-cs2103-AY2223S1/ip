@@ -18,6 +18,10 @@ public class Duke {
                 echo(allMessages);
             } else if (isMarkUnMark(next, allMessages.size())) {
                 printMarkUnMark(next, allMessages);
+            } else if (isDelete(next, allMessages.size())) {
+                String[] splited = next.split(" ");
+                echoDelete(allMessages.get(Integer.valueOf(splited[1]) - 1), allMessages.size() - 1);
+                allMessages.remove(Integer.valueOf(splited[1]) - 1);
             } else {
                 try {
                     String[] words = next.split(" ", 2);
@@ -81,12 +85,29 @@ public class Duke {
         echo(mess);
     }
 
+    public static void echoDelete(Task item, int size) {
+        String mess = "Noted. I've removed this task:\n\t\t" + item +
+                "\n\tNow you have " + size + " tasks in the list.";
+        echo(mess);
+    }
+
     public static boolean isMarkUnMark(String phrase, int listLength) {
         String[] splited = phrase.split(" ");
         if (splited.length != 2 || !splited[1].matches("\\d+")) {
             return false;
         } else {
             return (splited[0].equals("mark") || splited[0].equals("unmark"))
+                    && Integer.valueOf(splited[1]) <= listLength
+                    && Integer.valueOf(splited[1]) > 0;
+        }
+    }
+
+    public static boolean isDelete(String phrase, int listLength) {
+        String[] splited = phrase.split(" ");
+        if (splited.length != 2 || !splited[1].matches("\\d+")) {
+            return false;
+        } else {
+            return (splited[0].equals("delete"))
                     && Integer.valueOf(splited[1]) <= listLength
                     && Integer.valueOf(splited[1]) > 0;
         }
