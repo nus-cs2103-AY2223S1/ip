@@ -6,8 +6,43 @@ public class Duke {
 
     private static ArrayList<Task> list = new ArrayList<>();
 
-    private static void addToList(Task task) {
-        list.add(task);
+    private static void addTask(String taskType, String input) {
+        System.out.println("Got it. I've added this task:");
+        switch(taskType){
+            case "todo":
+                String[] removeTaskType = input.split("todo ");
+                String description = String.join("", removeTaskType);
+                Task todo = new ToDo(description);
+                list.add(todo);
+                System.out.println("  " + todo);
+                break;
+            case "deadline":
+                String[] removeTaskType2 = input.split("deadline ");
+                String desAndBy = String.join("", removeTaskType2);
+                String[] sliceByDesAndBy = desAndBy.split(" /by ");
+                String description2 = sliceByDesAndBy[0];
+                String dueTime = sliceByDesAndBy[1];
+                Task deadline = new Deadline(description2, dueTime);
+                list.add(deadline);
+                System.out.println("  " + deadline);
+                break;
+            case "event":
+                String[] removeTaskType3 = input.split("event ");
+                String desAndBy2 = String.join("", removeTaskType3);
+                String[] sliceByDesAndBy2 = desAndBy2.split(" /at ");
+                String description3 = sliceByDesAndBy2[0];
+                String dueTime2 = sliceByDesAndBy2[1];
+                Task event = new Event(description3, dueTime2);
+                list.add(event);
+                System.out.println("  " + event);
+                break;
+
+            }
+
+            // edge case of 1 task
+            String numTask = String.format("Now you have %s tasks in the list.", list.size());
+            System.out.println(numTask);
+
     }
 
     private static void printList() {
@@ -61,10 +96,8 @@ public class Duke {
                 }
                 String output = String.format("OK, I've marked this task as not done yet:\n%s", list.get(taskNum - 1));
                 System.out.println(output);
-            } else {
-                String taskName = String.join(" ", inputArr);
-                addToList(new Task(taskName));
-                System.out.println("added: " + input);
+            } else if (inputArr[0].equals("todo") || inputArr[0].equals("deadline") || inputArr[0].equals("event")){
+                addTask(inputArr[0], input);
             }
 
             System.out.println("____________________________________________________");
