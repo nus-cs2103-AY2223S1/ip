@@ -9,7 +9,9 @@ public class Duke {
         System.out.println("Hello! I'm Ted and I'm here to help you keep track of your tasks ʕ•́ᴥ•̀ʔっ\n"
                 + "How can I assist you today?");
 
-        Scanner sc = new Scanner(System.in).useDelimiter("\\n");;
+        Scanner sc = new Scanner(System.in).useDelimiter("\\n");
+        String[] tasks = new String[100];
+        int taskCounter = 0;
 
         while (sc.hasNext()) {
             String command = sc.next();
@@ -20,7 +22,20 @@ public class Duke {
                 return;
             }
 
-            System.out.println("~ ʕ•́ᴥ•̀ʔっ ~\n" + command + "\n" + "~\n");
+            if (command.equals("list")) {
+                System.out.println("~ ʕ•́ᴥ•̀ʔっ ~\n" + "Your tasklist:");
+                for (int i = 0; i < taskCounter; i++) {
+                    int bulletPoint = i + 1;
+                    System.out.println(bulletPoint + ". " + tasks[i]);
+                }
+                System.out.println("~\n");
+                continue;
+            }
+
+
+            tasks[taskCounter] = command;
+            taskCounter++;
+            System.out.println("~ ʕ•́ᴥ•̀ʔっ ~\n" + "added to tasklist: " + command + "\n" + "~\n");
         }
     }
 }
