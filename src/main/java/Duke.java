@@ -26,33 +26,45 @@ public class Duke {
                 int taskNumber = Integer.parseInt(response.substring(7, 8)) - 1;
                 Task t = taskStore[taskNumber];
                 t.markAsUnDone();
-            } else if (response.length() > 4 && response.substring(0, 4).equals("todo")) {
-                Task newTodo = new Todo(response.substring(5));
-                taskStore[counter] = newTodo;
-                counter += 1;
-                System.out.println("     Ok! I have added this Todo task:\n"
-                                  + "       " + newTodo.toString() + "\n"
-                                  + "     You now have a total of " + counter + " tasks!");
-            } else if (response.length() > 5 && response.substring(0, 5).equals("event")) {
-                int separatorPosition = response.indexOf("/");
-                Task newEvent = new Event(
-                                        response.substring(6, separatorPosition - 1),
-                                        response.substring(separatorPosition + 4));
-                taskStore[counter] = newEvent;
-                counter += 1;
-                System.out.println("     Ok! I have added this Event task:\n"
-                        + "       " + newEvent.toString() + "\n"
-                        + "     You now have a total of " + counter + " tasks!");
-            } else if (response.length() > 8 && response.substring(0, 8).equals("deadline")) {
-                int separatorPosition = response.indexOf("/");
-                Task newDeadline = new Deadline(
-                                        response.substring(9, separatorPosition - 1),
-                                        response.substring(separatorPosition + 4));
-                taskStore[counter] = newDeadline;
-                counter += 1;
-                System.out.println("     Ok! I have added this Deadline task:\n"
-                        + "       " + newDeadline.toString() + "\n"
-                        + "     You now have a total of " + counter + " tasks!");
+            } else if (response.length() > 3 && response.substring(0, 4).equals("todo")) {
+                if (response.length() <= 5) {
+                    System.out.println("     Please add a task after 'todo'!");
+                } else {
+                    Task newTodo = new Todo(response.substring(5));
+                    taskStore[counter] = newTodo;
+                    counter += 1;
+                    System.out.println("     Ok! I have added this Todo task:\n"
+                            + "       " + newTodo.toString() + "\n"
+                            + "     You now have a total of " + counter + " tasks!");
+                }
+            } else if (response.length() > 4 && response.substring(0, 5).equals("event")) {
+                if (response.length() <= 6) {
+                    System.out.println("     Please add a task after 'event'!");
+                } else {
+                    int separatorPosition = response.indexOf("/");
+                    Task newEvent = new Event(
+                            response.substring(6, separatorPosition - 1),
+                            response.substring(separatorPosition + 4));
+                    taskStore[counter] = newEvent;
+                    counter += 1;
+                    System.out.println("     Ok! I have added this Event task:\n"
+                            + "       " + newEvent.toString() + "\n"
+                            + "     You now have a total of " + counter + " tasks!");
+                }
+            } else if (response.length() > 7 && response.substring(0, 8).equals("deadline")) {
+                if (response.length() <= 9) {
+                    System.out.println("     Please add a task after 'deadline'!");
+                } else {
+                    int separatorPosition = response.indexOf("/");
+                    Task newDeadline = new Deadline(
+                            response.substring(9, separatorPosition - 1),
+                            response.substring(separatorPosition + 4));
+                    taskStore[counter] = newDeadline;
+                    counter += 1;
+                    System.out.println("     Ok! I have added this Deadline task:\n"
+                            + "       " + newDeadline.toString() + "\n"
+                            + "     You now have a total of " + counter + " tasks!");
+                }
             } else {
                 System.out.println("     Please specify one of the 3 commands before your task to add a task:\n"
                                   + "       todo\n"
