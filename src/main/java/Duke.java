@@ -18,7 +18,7 @@ public class Duke {
             try {
                 parser.parse(input, tasks);
             } catch (Exception e) {
-                System.out.println(e.toString());
+                System.out.println(e);
                 if (e.equals(new EndProgramException()))
                     break;
 

@@ -1,13 +1,7 @@
 class IllegalCommandException extends IllegalArgumentException {
-
-    private final int code = 2;
-
-    public int hashcode() {
-        return code;
-    }
     @Override
     public boolean equals(Object obj) {
-        return obj.hashCode() == code;
+        return obj.getClass() == this.getClass();
     }
     @Override
     public String toString() {

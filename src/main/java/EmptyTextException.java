@@ -1,14 +1,8 @@
 class EmptyTextException extends IllegalArgumentException {
 
-
-    private final int code = 3;
-
-    public int hashcode() {
-        return code;
-    }
     @Override
     public boolean equals(Object obj) {
-        return obj.hashCode() == code;
+        return obj.getClass() == this.getClass();
     }
 
     @Override

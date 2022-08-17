@@ -1,13 +1,8 @@
 class EndProgramException extends Exception {
 
-    private final int code = 1;
-
-    public int hashcode() {
-        return code;
-    }
     @Override
     public boolean equals(Object obj) {
-        return obj.hashCode() == code;
+        return obj.getClass() == this.getClass();
     }
     @Override
     public String toString() {
