@@ -25,16 +25,16 @@ public abstract class Task {
         this.isDone = false;
     }
 
-    public String getStatusIcon() {
-        return this.isDone ? "X" : " ";
-    }
-
     public void mark() {
         this.isDone = true;
     }
 
     public void unmark() {
         this.isDone = false;
+    }
+
+    private String getStatusIcon() {
+        return this.isDone ? "X" : " ";
     }
 
     public String stringify() {

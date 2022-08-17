@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.time.format.DateTimeParseException;
 
 public class Duke {
@@ -11,7 +10,7 @@ public class Duke {
             this.ui = new Ui();
             this.storage = new Storage(filePath);
             this.taskList = new TaskList(this.storage.loadLocalData());
-        } catch (IOException | ArrayIndexOutOfBoundsException | DateTimeParseException e) {
+        } catch (DukeException | ArrayIndexOutOfBoundsException | DateTimeParseException e) {
             this.ui.showLoadingError();
             this.taskList = new TaskList();
         }

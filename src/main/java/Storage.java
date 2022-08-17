@@ -12,23 +12,31 @@ public class Storage {
     private String filePath;
     private File file;
 
-    public Storage(String filePath) throws IOException {
+    public Storage(String filePath) throws DukeException {
         this.filePath = filePath;
-        Files.createDirectories(Paths.get(this.filePath.substring(0, this.filePath.lastIndexOf('/'))));
         this.file = new File(this.filePath);
-        if (!file.exists()) {
-            file.createNewFile();
+        try {
+            Files.createDirectories(Paths.get(this.filePath.substring(0, this.filePath.lastIndexOf('/'))));
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+        } catch (IOException e) {
+            throw new DukeException("Directory or file cannot be located. New file is created.");
         }
     }
 
-    public List<String> loadLocalData() throws FileNotFoundException {
+    public List<String> loadLocalData() throws DukeException {
         List<String> data = new ArrayList<>();
-        Scanner scanner = new Scanner(this.file);
-        while (scanner.hasNext()) {
-            data.add(scanner.nextLine());
+        try {
+            Scanner scanner = new Scanner(this.file);
+            while (scanner.hasNext()) {
+                data.add(scanner.nextLine());
+            }
+            scanner.close();
+            return data;
+        } catch (FileNotFoundException e) {
+            throw new DukeException("File is inaccessible");
         }
-        scanner.close();
-        return data;
     }
 
     public void saveLocalData(List<String> data) {
