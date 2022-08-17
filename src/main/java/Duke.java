@@ -1,37 +1,66 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 import org.apache.commons.text.WordUtils;
 
 public class Duke {
 
-    private static final String LINE = "──────────────────────────────────────────";
+    private static final String LINE = "──────────────────────────────────────────\n";
+    private static final String LOGO = " ____        _\n"
+            + "|  _ \\ _   _| | _____\n"
+            + "| | | | | | | |/ / _ \\\n"
+            + "| |_| | |_| |   <  __/\n"
+            + "|____/ \\__,_|_|\\_\\___|\n";
+    private static final String GREETING = "Hello! I'm Duke\nWhat can I do for you?";
 
-    public static String prettifyStr(String str) {
-        return String.format("\t%s\n\t %s\n\t%s", LINE,
-                WordUtils.wrap(str, 40, "\n\t ", false), LINE);
+    /**
+     * Pretty prints an output string
+     *
+     * @param output The string representing the output.
+     */
+    public static void printMsg(String output) {
+        String[] lines = output.split("\n");
+        String newStr = Arrays.stream(lines).map(line ->
+                String.format("\t %s%s\n", line.replace(line.stripLeading(), ""),
+                        WordUtils.wrap(line, 40, "\n\t ", false)))
+                .reduce("", String::concat);
+        System.out.printf("\t%s%s\t%s%n", LINE, newStr, LINE);
+    }
+
+    private final TaskList taskList;
+
+    /**
+     * Initialises Duke class with empty TaskList.
+     */
+    public Duke() {
+        this.taskList = new TaskList();
     }
 
     /**
-     * Starts the program.
+     * Runs the program.
      */
-    public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What can I do for you?");
+    public void run() {
+
+        printMsg(String.format("%s%s", LOGO, GREETING));
 
         Scanner sc = new Scanner(System.in);
-        while (sc.hasNextLine()) {
+        boolean hasExited = false;
+
+        while (!hasExited) {
+            System.out.print(">> ");
             String input = sc.nextLine();
-            if (input.equals("bye")) {
-                System.out.println(prettifyStr("Bye. Hope to see you again soon!"));
+            switch (input.toLowerCase()) {
+            case "bye":
+                printMsg("Bye. Hope to see you again soon!");
+                hasExited = true;
                 break;
+            case "list":
+                printMsg(this.taskList.toString());
+                break;
+            default:
+                this.taskList.addTask(input);
+                printMsg(String.format("Added task: %s", input));
             }
-            System.out.println(prettifyStr(input));
         }
-        sc.close();
     }
 }
