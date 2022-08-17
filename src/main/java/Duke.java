@@ -1,16 +1,39 @@
-import java.io.PrintStream;
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * The main class to run Duke.
+ */
 public class Duke {
+    /** Boolean to check if code should stop */
     private static boolean done;
+
+    /** Scanner Object */
     private static final Scanner echo = new Scanner(System.in);
+    /** To check if the string is an intger */
     private static Pattern checkString = Pattern.compile("-?\\d+");
 
+    enum Update {
+        MARK,
+        UNMARK
+    }
+
+    enum Type {
+        TODO,
+        DEADLINE,
+        EVENT
+    }
+
+    /** Store list */
     private static ArrayList<Task> storage = new ArrayList<Task>();
 
+    /**
+     * To check if the String is an integer.
+     *
+     * @param strNum  String for comparison
+     * @return True if it's an integer, otherwise, flase
+     */
     private static boolean isInteger(String strNum) {
         if (strNum == null) {
             return false;
@@ -18,6 +41,11 @@ public class Duke {
         return checkString.matcher(strNum).matches();
     }
 
+    /**
+     * Add task to list
+     *
+     * @param task
+     */
     private static void addTask(Task task) {
         storage.add(task);
         System.out.println("-----------------------------------------------");
@@ -25,6 +53,11 @@ public class Duke {
         System.out.println("-----------------------------------------------");
     }
 
+    /**
+     * mark task with an X
+     *
+     * @param task
+     */
     private static void markString(Task task) {
         task.mark();
         System.out.println("-----------------------------------------------");
@@ -33,6 +66,11 @@ public class Duke {
         System.out.println("-----------------------------------------------");
     }
 
+    /**
+     * Unmark task by removing the X.
+     *
+     * @param task
+     */
     private static void unMarkString(Task task) {
         task.unMark();
         System.out.println("-----------------------------------------------");
@@ -41,6 +79,60 @@ public class Duke {
         System.out.println("-----------------------------------------------");
     }
 
+    /**
+     * The number in the list to be mark or unmark.
+     *
+     * @param update   To mark or unmark.
+     * @param parts    The array that contains the action and the number to determine which task
+     * @throws DukeException
+     */
+    private static void updateTask(Update update, String[] parts ) throws DukeException {
+        String part2;
+        switch (update){
+            case MARK:
+                /** when there is no number declared */
+                if(parts.length <= 1) {
+                    throw new DukeException("Please tell me what to mark!");
+                }
+                part2 = parts[1];
+                if (isInteger(part2)) {
+                    int number = Integer.parseInt(part2);
+                    /** To check if the integer is valid */
+                    if(storage.size() < number || number <= 0) {
+                        throw new DukeException("There's no such task to mark!");
+                    } else {
+                        markString(storage.get(number - 1));
+                    }
+                } else {
+                    throw new DukeException("I don't know which to mark!");
+                }
+                break;
+            case UNMARK:
+                /** when there is no number declared */
+                if(parts.length <= 1) {
+                    throw new DukeException("Please tell me what to unmark!");
+                }
+                part2 = parts[1];
+                if (isInteger(part2)) {
+                    int number = Integer.parseInt(part2);
+                    /** To check if the integer is valid */
+                    if(storage.size() < number || number <= 0) {
+                        throw new DukeException("There's no such task to unmark!");
+                    } else {
+                        unMarkString(storage.get(number - 1));
+                    }
+                } else {
+                    throw new DukeException("I don't know which to unmark!");
+                }
+                break;
+        }
+    }
+
+    /**
+     * Add task to the list.
+     *
+     * @param task
+     */
     private static void addDetailedTask(Task task) {
         System.out.println("-----------------------------------------------");
         System.out.println("Got it. I've added this task:");
@@ -49,6 +141,65 @@ public class Duke {
         System.out.println("-----------------------------------------------");
     }
 
+    /**
+     * add the right type of task to the list.
+     * @param type     Type of task.
+     * @param parts    The array that contains the action and the name of the task.
+     * @throws DukeException
+     */
+    private static void addTaskType(Type type, String[] parts) throws DukeException{
+        String part2;
+        switch (type) {
+            case DEADLINE:
+                /** no task declared */
+                if(parts.length <= 1) {
+                    throw new DukeException("There's no deadline task!");
+                }
+                part2 = parts[1];
+                String[] deadlineParts =  part2.split("/by ", 2);
+                /** no declaration of deadline time */
+                if (deadlineParts.length <= 1) {
+                    throw new DukeException("You didn't specify the deadline! Please use /by.");
+                }
+                DeadlineTask deadline = new DeadlineTask(deadlineParts[0], deadlineParts[1]);
+                storage.add(deadline);
+                addDetailedTask(deadline);
+                break;
+            case TODO:
+                /** no task declared */
+                if(parts.length <= 1) {
+                    throw new DukeException("There's no todo task!");
+                }
+                part2 = parts[1];
+                TodoTask todo = new TodoTask(part2);
+                storage.add(todo);
+                addDetailedTask(todo);
+                break;
+            case EVENT:
+                /** no task declared */
+                if(parts.length <= 1) {
+                    throw new DukeException("There's no event task!");
+                }
+                part2 = parts[1];
+                String[] eventParts = part2.split("/at ", 2);
+                /** no declaration of event time */
+                if (eventParts.length <= 1) {
+                    throw new DukeException("You didn't specify the event time! Please use /at.");
+                }
+                EventTask event = new EventTask(eventParts[0], eventParts[1]);
+                storage.add(event);
+                addDetailedTask(event);
+                break;
+            default:
+                Task task = new Task(parts[0]);
+                addTask(task);
+        }
+    }
+
+    /**
+     * Delete task from the list
+     * @param number   The number in the list to be removed.
+     */
     private static void deleteTask(int number) {
         Task temp = storage.get(number - 1);
         storage.remove(number - 1);
@@ -59,8 +210,15 @@ public class Duke {
         System.out.println("-----------------------------------------------");
     }
 
+    /**
+     * The reply after taking in an input.
+     *
+     * @param response         The input.
+     * @throws DukeException
+     */
     private static void reply(String response) throws DukeException {
         String[] parts = response.split(" ", 2);
+        /** the action */
         String part1 = parts[0];
         String part2;
         switch (part1) {
@@ -83,73 +241,22 @@ public class Duke {
                 System.out.println("-----------------------------------------------");
                 break;
             case "mark":
-                if(parts.length <= 1) {
-                    throw new DukeException("Please tell me what to mark!");
-                }
-                part2 = parts[1];
-                if (isInteger(part2)) {
-                    int number = Integer.parseInt(part2);
-                    if(storage.size() < number || number <= 0) {
-                        throw new DukeException("There's no such task to mark!");
-                    } else {
-                        markString(storage.get(number - 1));
-                    }
-                } else {
-                    throw new DukeException("I don't know which to mark!");
-                }
+                updateTask(Update.MARK, parts);
                 break;
             case "unmark":
-                if(parts.length <= 1) {
-                    throw new DukeException("Please tell me what to unmark!");
-                }
-                part2 = parts[1];
-                if (isInteger(part2)) {
-                    int number = Integer.parseInt(part2);
-                    if(storage.size() < number || number <= 0) {
-                        throw new DukeException("There's no such task to unmark!");
-                    } else {
-                        unMarkString(storage.get(number - 1));
-                    }
-                } else {
-                    throw new DukeException("I don't know which to unmark!");
-                }
+                updateTask(Update.UNMARK, parts);
                 break;
             case "deadline":
-                if(parts.length <= 1) {
-                    throw new DukeException("There's no deadline task!");
-                }
-                part2 = parts[1];
-                String[] deadlineParts =  part2.split("/by ", 2);
-                if (deadlineParts.length <= 1) {
-                    throw new DukeException("You didn't specify the deadline! Please use /by.");
-                }
-                Deadline deadline = new Deadline(deadlineParts[0], deadlineParts[1]);
-                storage.add(deadline);
-                addDetailedTask(deadline);
+                addTaskType(Type.DEADLINE, parts);
                 break;
             case "todo":
-                if(parts.length <= 1) {
-                    throw new DukeException("There's no todo task!");
-                }
-                part2 = parts[1];
-                Todo todo = new Todo(part2);
-                storage.add(todo);
-                addDetailedTask(todo);
+                addTaskType(Type.TODO, parts);
                 break;
             case "event":
-                if(parts.length <= 1) {
-                    throw new DukeException("There's no event task!");
-                }
-                part2 = parts[1];
-                String[] eventParts = part2.split("/at ", 2);
-                if (eventParts.length <= 1) {
-                    throw new DukeException("You didn't specify the event time! Please use /at.");
-                }
-                Event event = new Event(eventParts[0], eventParts[1]);
-                storage.add(event);
-                addDetailedTask(event);
+                addTaskType(Type.EVENT, parts);
                 break;
             case "delete":
+                /** no task declared */
                 if(parts.length <= 1) {
                     throw new DukeException("Please tell me what to delete!");
                 }

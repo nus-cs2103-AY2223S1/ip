@@ -5,12 +5,23 @@ What can I do for you?
 Oh no! there's nothing!
 -----------------------------------------------
 -----------------------------------------------
+Oh no! There's no event task!
+-----------------------------------------------
+-----------------------------------------------
+Oh no! You didn't specify the event time! Please use /at.
+-----------------------------------------------
+-----------------------------------------------
+Got it. I've added this task:
+[E][ ] eventTest  (at: TestDay)
+Now you have 1 tasks in the list.
+-----------------------------------------------
+-----------------------------------------------
 Oh no! There's no todo task!
 -----------------------------------------------
 -----------------------------------------------
 Got it. I've added this task:
 [T][ ] todoTest
-Now you have 1 tasks in the list.
+Now you have 2 tasks in the list.
 -----------------------------------------------
 -----------------------------------------------
 Oh no! There's no deadline task!
@@ -21,23 +32,12 @@ Oh no! You didn't specify the deadline! Please use /by.
 -----------------------------------------------
 Got it. I've added this task:
 [D][ ] deadlineTest  (by: TestDay)
-Now you have 2 tasks in the list.
------------------------------------------------
------------------------------------------------
-Oh no! There's no event task!
------------------------------------------------
------------------------------------------------
-Oh no! You didn't specify the event time! Please use /at.
------------------------------------------------
------------------------------------------------
-Got it. I've added this task:
-[E][ ] eventTest  (at: TestDay)
 Now you have 3 tasks in the list.
 -----------------------------------------------
 -----------------------------------------------
-1.[T][ ] todoTest
-2.[D][ ] deadlineTest  (by: TestDay)
-3.[E][ ] eventTest  (at: TestDay)
+1.[E][ ] eventTest  (at: TestDay)
+2.[T][ ] todoTest
+3.[D][ ] deadlineTest  (by: TestDay)
 -----------------------------------------------
 -----------------------------------------------
 Oh no! Please tell me what to mark!
@@ -53,19 +53,19 @@ Oh no! I don't know which to mark!
 -----------------------------------------------
 -----------------------------------------------
 Nice! I've marked this task as done:
-[D][X] deadlineTest  (by: TestDay)
+[T][X] todoTest
 -----------------------------------------------
 -----------------------------------------------
 Oh no! I don't know which to mark!
 -----------------------------------------------
 -----------------------------------------------
 Nice! I've marked this task as done:
-[D][X] deadlineTest  (by: TestDay)
+[T][X] todoTest
 -----------------------------------------------
 -----------------------------------------------
-1.[T][ ] todoTest
-2.[D][X] deadlineTest  (by: TestDay)
-3.[E][ ] eventTest  (at: TestDay)
+1.[E][ ] eventTest  (at: TestDay)
+2.[T][X] todoTest
+3.[D][ ] deadlineTest  (by: TestDay)
 -----------------------------------------------
 -----------------------------------------------
 Oh no! Please tell me what to unmark!
@@ -81,19 +81,19 @@ Oh no! I don't know which to unmark!
 -----------------------------------------------
 -----------------------------------------------
 OK, I've marked this task as not done yet:
-[D][ ] deadlineTest  (by: TestDay)
+[T][ ] todoTest
 -----------------------------------------------
 -----------------------------------------------
 Oh no! I don't know which to unmark!
 -----------------------------------------------
 -----------------------------------------------
 OK, I've marked this task as not done yet:
-[D][ ] deadlineTest  (by: TestDay)
+[T][ ] todoTest
 -----------------------------------------------
 -----------------------------------------------
-1.[T][ ] todoTest
-2.[D][ ] deadlineTest  (by: TestDay)
-3.[E][ ] eventTest  (at: TestDay)
+1.[E][ ] eventTest  (at: TestDay)
+2.[T][ ] todoTest
+3.[D][ ] deadlineTest  (by: TestDay)
 -----------------------------------------------
 -----------------------------------------------
 Oh no! I'm sorry, but I don't know what that means.
@@ -112,50 +112,21 @@ Oh no! I don't know which to delete!
 -----------------------------------------------
 -----------------------------------------------
 Noted. I've removed this task:
-[E][ ] eventTest  (at: TestDay)
+[D][ ] deadlineTest  (by: TestDay)
 Now you have 2 tasks in the list.
 -----------------------------------------------
 -----------------------------------------------
 Oh no! There's no such task to delete!
 -----------------------------------------------
 -----------------------------------------------
-1.[T][ ] todoTest
-2.[D][ ] deadlineTest  (by: TestDay)
+1.[E][ ] eventTest  (at: TestDay)
+2.[T][ ] todoTest
 -----------------------------------------------
 -----------------------------------------------
 Oh no! There's no such task to mark!
 -----------------------------------------------
 -----------------------------------------------
 Oh no! There's no such task to unmark!
------------------------------------------------
------------------------------------------------
-Got it. I've added this task:
-[E][ ] eventTest  (at: TestDay)
-Now you have 3 tasks in the list.
------------------------------------------------
------------------------------------------------
-Oh no! I'm sorry, but I don't know what that means.
------------------------------------------------
------------------------------------------------
-1.[T][ ] todoTest
-2.[D][ ] deadlineTest  (by: TestDay)
-3.[E][ ] eventTest  (at: TestDay)
------------------------------------------------
------------------------------------------------
-Oh no! I'm sorry, but I don't know what that means.
------------------------------------------------
------------------------------------------------
-1.[T][ ] todoTest
-2.[D][ ] deadlineTest  (by: TestDay)
-3.[E][ ] eventTest  (at: TestDay)
------------------------------------------------
------------------------------------------------
-Nice! I've marked this task as done:
-[T][X] todoTest
------------------------------------------------
------------------------------------------------
-OK, I've marked this task as not done yet:
-[T][ ] todoTest
 -----------------------------------------------
 -----------------------------------------------
 Bye. Hope to see you again soon!
