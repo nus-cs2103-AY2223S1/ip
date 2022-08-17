@@ -1,7 +1,9 @@
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
 public class Duke {
+    private static ArrayList<String> data = new ArrayList<>();
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -26,8 +28,14 @@ public class Duke {
             if (Objects.equals(command, "bye")) {
                 System.out.println(Style.INDENTATION + "Bye. Hope to see you again soon!\n");
                 break;
+            } else if (Objects.equals(command, "list")) {
+                for (int i = 0; i < data.size(); i++) {
+                    System.out.println(Style.INDENTATION + (i + 1)  + ". " + data.get(i));
+                }
+                System.out.println("");
             } else {
-                System.out.println(Style.INDENTATION + command + "\n");
+                data.add(command);
+                System.out.println(Style.INDENTATION + "added: " + command + '\n');
             }
         }
     }
