@@ -57,11 +57,13 @@ public class Commands {
 
     public static void toDo(String cmd, ArrayList<Task> taskList) throws DukeException {
         try {
-            String taskName = cmd.substring(cmd.indexOf(" ") + 1);
-            Task newTask = new ToDo(taskName);
-            taskList.add(newTask);
-            int amountOfTasks = taskList.size();
-            ui.addTask(newTask, amountOfTasks);
+            if (cmd.split(" ")[1] != null) {
+                String taskName = cmd.substring(cmd.indexOf(" ") + 1);
+                Task newTask = new ToDo(taskName);
+                taskList.add(newTask);
+                int amountOfTasks = taskList.size();
+                ui.addTask(newTask, amountOfTasks);
+            }
         } catch (Exception e) {
             throw new DukeException("☹ OOPS!!! Please specify what you want to do!");
         }
