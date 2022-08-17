@@ -10,16 +10,36 @@ public class Duke {
     private MessagePrinter mp;
     private ArrayList<Task> tasks;
 
-    private String logo = " ____        _        \n"
+    private final String logo = " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
 
-    private HashMap<Action, Consumer<Command>> actionConsumerMap = new HashMap<>();
+    private final HashMap<Action, Consumer<Command>> actionConsumerMap = new HashMap<>();
+
+    public Duke() {
+        initialize();
+        greet();
+    }
+
+    public static void main(String[] args) {
+        Duke duke = new Duke();
+        Scanner scanner = new Scanner(System.in);
+        while (!duke.getIsTerminated()) {
+            try {
+                Command command = Compiler.parseCommand(scanner.nextLine());
+                duke.execute(command);
+            } catch (DukeException dukeException) {
+                duke.handle(dukeException);
+            }
+        }
+    }
 
     private void initializeActionConsumerMap() {
         HashMap<Action, Consumer<Command>> map = this.actionConsumerMap;
+        map.put(Action.DONOTHING, command -> {
+        });
 //        Level_1
         map.put(Action.GREET, command -> greet());
         map.put(Action.ECHO, command -> echo(command.getParameters().get(0)));
@@ -46,11 +66,6 @@ public class Duke {
         return this.isTerminated;
     }
 
-    public Duke() {
-        initialize();
-        greet();
-    }
-
     public void greet() {
         String HELLO_MESSAGE = "Hello! I'm Duke \n" + "What can I do for you?";
         mp.printMessage("Hello from\n" + this.logo + "\n" + HELLO_MESSAGE);
@@ -67,33 +82,44 @@ public class Duke {
     }
 
     public void list() {
-        String startMsg = "Here are the tasks in your list:\n";
-        mp.printMessage(startMsg + Stream.iterate(0, x -> x + 1)
-                .limit(tasks.size())
-                .map(x -> String.valueOf(x + 1) + ". " + tasks.get(x).toString())
-                .reduce("", (x, y) -> x + y + "\n" ));
+        String message = "Here are the tasks in your list:\n";
+        if (tasks.size() == 0) {
+            message = "Currently no tasks in the list.";
+        } else {
+            message = message + Stream.iterate(0, x -> x + 1)
+                    .limit(tasks.size())
+                    .map(x -> x + 1 + ". " + tasks.get(x).toString())
+                    .reduce("", (x, y) -> x + y + "\n");
+        }
+        mp.printMessage(message);
     }
 
-    public void mark(int idTask) {
+    public void mark(int idTask) throws DukeException.TaskNotFoundException {
+        if (idTask > this.tasks.size() || idTask <= 0) {
+            throw new DukeException.TaskNotFoundException(idTask);
+        }
         String successMsg = "Nice! I've marked this task as done:";
         Task task = this.tasks.get(idTask - 1);
         task.setIsDone(true);
-        mp.printMessage(successMsg + "\n" + task.toString());
+        mp.printMessage(successMsg + "\n" + task);
     }
 
-    public void unmark(int idTask) {
+    public void unmark(int idTask) throws DukeException.TaskNotFoundException {
+        if (idTask > this.tasks.size() || idTask <= 0) {
+            throw new DukeException.TaskNotFoundException(idTask);
+        }
         String successMsg = "OK, I've marked this task as not done yet:";
         Task task = this.tasks.get(idTask - 1);
         task.setIsDone(false);
-        mp.printMessage(successMsg + "\n" + task.toString());
+        mp.printMessage(successMsg + "\n" + task);
     }
 
     public void todo(String msg) {
         String successMsg = "Got it. I've added this task:";
         Task todo = Task.todo(msg);
         tasks.add(todo);
-        successMsg = successMsg + "\n" + todo.toString() + "\n" +
-                "Now you have " + String.valueOf(tasks.size()) + " tasks in the list.";
+        successMsg = successMsg + "\n" + todo + "\n" +
+                "Now you have " + tasks.size() + " tasks in the list.";
         mp.printMessage(successMsg);
     }
 
@@ -101,8 +127,8 @@ public class Duke {
         String successMsg = "Got it. I've added this task:";
         Task event = Task.event(msg, time);
         tasks.add(event);
-        successMsg = successMsg + "\n" + event.toString() + "\n" +
-                "Now you have " + String.valueOf(tasks.size()) + " tasks in the list.";
+        successMsg = successMsg + "\n" + event + "\n" +
+                "Now you have " + tasks.size() + " tasks in the list.";
         mp.printMessage(successMsg);
     }
 
@@ -110,8 +136,8 @@ public class Duke {
         String successMsg = "Got it. I've added this task:";
         Task deadline = Task.deadline(msg, time);
         tasks.add(deadline);
-        successMsg = successMsg + "\n" + deadline.toString() + "\n" +
-                "Now you have " + String.valueOf(tasks.size()) + " tasks in the list.";
+        successMsg = successMsg + "\n" + deadline + "\n" +
+                "Now you have " + tasks.size() + " tasks in the list.";
         mp.printMessage(successMsg);
     }
 
@@ -125,12 +151,7 @@ public class Duke {
         Optional.ofNullable(command).ifPresent(x -> this.actionConsumerMap.get(x.getAction()).accept(x));
     }
 
-    public static void main(String[] args) {
-        Duke duke = new Duke();
-        Scanner scanner = new Scanner(System.in);
-        while (!duke.getIsTerminated()) {
-            Command command = Parser.parseCommand(scanner.nextLine());
-            duke.execute(command);
-        }
+    public void handle(DukeException dukeException) {
+        this.mp.printMessage(dukeException.getMessage());
     }
 }
