@@ -18,7 +18,11 @@ public class CommandTodoHandler extends CommandHandler {
     }
 
     @Override
-    public List<String> run(List<String> commandTokens) {
+    public List<String> run(List<String> commandTokens) throws CommandException {
+        if (!validateCommand(commandTokens)) {
+            throw new CommandException("The `todo` command expects a description!");
+        }
+
         TaskTodo todoTask = new TaskTodo(
             gatherCommandTokens(commandTokens, 1, commandTokens.size(), " "));
         taskList.addTask(todoTask);

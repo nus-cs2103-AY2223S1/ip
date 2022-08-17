@@ -23,7 +23,12 @@ public class CommandEventHandler extends CommandHandler {
     }
 
     @Override
-    public List<String> run(List<String> commandTokens) {
+    public List<String> run(List<String> commandTokens) throws CommandException {
+        if (!validateCommand(commandTokens)) {
+            throw new CommandException(
+                "Invalid parameters passed to `event` command! (Expected: event <event-title> /at <timing>)");
+        }
+
         int timingMarkerIdx = commandTokens.indexOf(TaskEvent.timingMarker);
         String eventDesc = gatherCommandTokens(commandTokens, 1, timingMarkerIdx, " ");
         String timing = gatherCommandTokens(commandTokens, timingMarkerIdx + 1,

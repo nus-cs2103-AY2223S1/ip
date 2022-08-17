@@ -22,7 +22,13 @@ public class CommandDeadlineHandler extends CommandHandler {
     }
 
     @Override
-    public List<String> run(List<String> commandTokens) {
+    public List<String> run(List<String> commandTokens) throws CommandException {
+        if (!validateCommand(commandTokens)) {
+            throw new CommandException(
+                "Invalid parameters passed to `deadline` command! (Expected: deadline <task-title> /by <deadline>)"
+            );
+        }
+
         int deadlineMarkerIdx = commandTokens.indexOf(TaskDeadline.deadlineMarker);
         String deadlineDesc = gatherCommandTokens(commandTokens, 1, deadlineMarkerIdx, " ");
         String deadline = gatherCommandTokens(commandTokens, deadlineMarkerIdx + 1,

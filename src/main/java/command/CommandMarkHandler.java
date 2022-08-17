@@ -22,14 +22,18 @@ public class CommandMarkHandler extends CommandHandler {
     }
 
     @Override
-    public List<String> run(List<String> commandTokens) {
+    public List<String> run(List<String> commandTokens) throws CommandException{
+        if (!validateCommand(commandTokens)) {
+            throw new CommandException("The `mark` command only expects 1 parameter!");
+        }
+
         List<String> responseList = new ArrayList<>();
 
         String taskIdxStr = commandTokens.get(1);
         try {
             int taskIdx = Integer.parseInt(taskIdxStr);
             if (taskIdx <= 0 || taskIdx > taskList.size()) {
-                responseList.add("Invalid task selected!");
+                throw new CommandException("Invalid task selected!");
             } else {
                 Task task = taskList.getTask(taskIdx - 1);
                 if (toMark(commandTokens)) {

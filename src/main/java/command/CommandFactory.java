@@ -4,11 +4,11 @@ import data.TaskList;
 
 public class CommandFactory {
 
-    public Command parseCommand(String commandStr) {
+    public Command parseCommand(String commandStr) throws CommandException {
         try {
             return Command.valueOf(commandStr.toUpperCase());
         } catch (IllegalArgumentException error) {
-            return Command.UNKNOWN;
+            throw new CommandException("Unknown command!");
         }
     }
 

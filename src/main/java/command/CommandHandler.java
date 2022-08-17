@@ -4,6 +4,7 @@ import data.TaskList;
 import java.util.List;
 
 public abstract class CommandHandler {
+
     protected final TaskList taskList;
 
     public CommandHandler(TaskList taskList) {
@@ -17,5 +18,5 @@ public abstract class CommandHandler {
 
     abstract public boolean validateCommand(List<String> commandTokens);
 
-    abstract public List<String> run(List<String> commandTokens);
+    abstract public List<String> run(List<String> commandTokens) throws CommandException;
 }

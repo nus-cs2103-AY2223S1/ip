@@ -17,7 +17,11 @@ public class CommandListHandler extends CommandHandler {
     }
 
     @Override
-    public List<String> run(List<String> commandTokens) {
+    public List<String> run(List<String> commandTokens) throws CommandException{
+        if (!validateCommand(commandTokens)) {
+            throw new CommandException("The `list` command expects no parameters!");
+        }
+
         List<String> responseList = new ArrayList<>();
 
         if (taskList.isEmpty()) {
