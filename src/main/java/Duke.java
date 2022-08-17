@@ -1,11 +1,9 @@
-package dukebot;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
 
-    private static ArrayList<Task> taskList = new ArrayList<>();
+    private static final ArrayList<Task> taskList = new ArrayList<>();
 
     public static void main(String[] args) {
         System.out.println(Messages.startup);
@@ -37,7 +35,7 @@ public class Duke {
                     break;
                 case "todo":
                     String taskDesc = inputLessAction[1];
-                    taskList.add(new ToDo(taskDesc));
+                    taskList.add(new Todo(taskDesc));
                     System.out.println(Messages.taskAdded);
                     System.out.println(taskList.get(taskList.size() - 1).toString());
                     System.out.printf((Messages.taskCount) + "%n", taskList.size());
