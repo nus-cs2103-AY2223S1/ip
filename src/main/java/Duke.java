@@ -67,6 +67,7 @@ public class Duke {
                 if (userInput.startsWith("todo") && userInput.split(" ", 2).length != 1) {
                     // the task is a todo
                     String description = userInput.split(" ", 2)[1].split("/")[0].trim();
+
                     ToDo todo = new ToDo(description);
                     task.add(todo);
 
@@ -79,6 +80,7 @@ public class Duke {
                     // the task is a deadline
                     String description = userInput.split(" ", 2)[1].split("/")[0].trim();
                     String by = userInput.split(" ", 2)[1].split("/")[1].split(" ", 2)[1];
+
                     Deadline deadline = new Deadline(description, by);
                     task.add(deadline);
 
@@ -88,8 +90,10 @@ public class Duke {
                 }
 
                 else if (userInput.startsWith("event") && userInput.split(" ", 2).length != 1) {
+                    // the task is an event
                     String description = userInput.split(" ", 2)[1].split("/")[0].trim();
                     String at = userInput.split(" ", 2)[1].split("/")[1].split(" ", 2)[1];
+
                     Event event = new Event(description, at);
                     task.add(event);
 
