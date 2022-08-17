@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class Duke {
 
@@ -13,8 +14,27 @@ public class Duke {
             if(input.equalsIgnoreCase("bye")) {
                 break;
             }
+
             if(input.equalsIgnoreCase("list")) {
                 taskList.list();
+                input = sc.nextLine();
+                continue;
+            }
+
+            if(input.matches("^mark [0-9]*$")) {
+                int index = Integer.parseInt(input.substring(5)) - 1;
+                taskList.markTaskAsDone(index);
+                System.out.println("Nice! I've marked this task as done:");
+                System.out.println("  " + taskList.getTask(index));
+                input = sc.nextLine();
+                continue;
+            }
+
+            if(input.matches("^unmark [0-9]$")) {
+                int index = Integer.parseInt(input.substring(7)) - 1;
+                taskList.markTaskAsUndone(index);
+                System.out.println("OK, I've marked this task as not done yet:");
+                System.out.println("  " + taskList.getTask(index));
                 input = sc.nextLine();
                 continue;
             }

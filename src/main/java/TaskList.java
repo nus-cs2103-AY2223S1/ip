@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.lang.StringBuilder;
 
 public class TaskList {
     private ArrayList<Task> tasks = new ArrayList<>();
@@ -12,11 +11,24 @@ public class TaskList {
         System.out.println("added: " + task);
     }
 
+    public boolean markTaskAsDone(int index) {
+        return this.tasks.get(index).markAsDone();
+    }
+
+    public boolean markTaskAsUndone(int index) {
+        return this.tasks.get(index).markAsUndone();
+    }
+
+    public String getTask(int index) {
+        return tasks.get(index).toString();
+    }
+
     public void list() {
         Task[] x = new Task[tasks.size()];
         Task[] tasksArray = tasks.toArray(x);
         for(int i = 1; i <= tasksArray.length; i++) {
-            System.out.println(i + ". " + tasksArray[i - 1].toString());
+            Task task = tasksArray[i - 1];
+            System.out.println(i + "." + task.toString());
         }
     }
 }
