@@ -29,12 +29,12 @@ public class Duke {
             }
             
             try {
-                if (!command.equals("mark") && !command.equals("unmark") && !command.equals("todo") && !command.equals("deadline") && !command.equals("event")) {
-                    throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                if (!command.equals("mark") && !command.equals("unmark") && !command.equals("todo") && !command.equals("deadline") && !command.equals("event") && !command.equals("delete")) {
+                    throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
                 
                 if (spacedArr.length == 1) {
-                    throw new DukeException("☹ OOPS!!! The description cannot be empty.");
+                    throw new DukeException("OOPS!!! The description cannot be empty.");
                 }
             } catch (DukeException e) {
                 System.out.println(e.getMessage() + "\n");
@@ -62,6 +62,9 @@ public class Duke {
                 String description = suffix.split(" /at ")[0];
                 Task task = new EventTask(description, at);
                 list.addTask(task);
+            } else if (command.equals("delete")) {
+                int pos = Integer.parseInt(suffix) - 1;
+                list.deleteTask(pos);
             }
         }
     }
