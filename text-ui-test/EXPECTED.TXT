@@ -1,50 +1,38 @@
 Hi, my name is Duke
 and it's power hour!
 ***********************
-Task added:
-[ ] go running
-There are 1 tasks in your list.
-Task added:
-[ ] stop fishing
-There are 2 tasks in your list.
-Task added:
-[ ] spinning
-There are 3 tasks in your list.
+Command not found: go running
+Command not found: stop fishing
+Command not found: spinning
 Task added:
 [T][ ] finish THIS
-There are 4 tasks in your list.
+There are 1 tasks in your list.
 Task added:
 [T][ ] complete THAT
-There are 5 tasks in your list.
+There are 2 tasks in your list.
 Task added:
 [D][ ] find three (by: tomorrow)
-There are 6 tasks in your list.
-Invalid deadline, try again.
+There are 3 tasks in your list.
+Invalid deadline format.
 Task added:
 [E][ ] practice (at: 3-6pm)
-There are 7 tasks in your list.
-Invalid event, try again.
-Marked this task as done:
-[X] stop fishing
+There are 4 tasks in your list.
+Invalid event format.
 Marked this task as done:
 [T][X] complete THAT
+Task 5 does not exist.
 Listing your current tasks:
-1.[ ] go running
-2.[X] stop fishing
-3.[ ] spinning
-4.[T][ ] finish THIS
-5.[T][X] complete THAT
-6.[D][ ] find three (by: tomorrow)
-7.[E][ ] practice (at: 3-6pm)
+1.[T][ ] finish THIS
+2.[T][X] complete THAT
+3.[D][ ] find three (by: tomorrow)
+4.[E][ ] practice (at: 3-6pm)
 Marked this task as done:
-[T][X] finish THIS
+[E][X] practice (at: 3-6pm)
+Task 5 does not exist.
 Marked this task as undone:
 [T][ ] complete THAT
 Listing your current tasks:
-1.[ ] go running
-2.[X] stop fishing
-3.[ ] spinning
-4.[T][X] finish THIS
-5.[T][ ] complete THAT
-6.[D][ ] find three (by: tomorrow)
-7.[E][ ] practice (at: 3-6pm)
+1.[T][ ] finish THIS
+2.[T][ ] complete THAT
+3.[D][ ] find three (by: tomorrow)
+4.[E][X] practice (at: 3-6pm)

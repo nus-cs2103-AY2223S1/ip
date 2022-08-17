@@ -12,4 +12,5 @@ mark 5
 list
 mark 4
 unmark 5
+unmark 2
 list
