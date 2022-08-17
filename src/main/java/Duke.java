@@ -70,6 +70,9 @@ public class Duke {
             case "deadline":
                 message = this.taskList.addDeadline(value, flag, additionalValue);
                 break;
+            case "delete":
+                message = this.taskList.deleteTask(value);
+                break;
             default:
                 message = "";
                 break;
