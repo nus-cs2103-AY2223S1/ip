@@ -15,7 +15,7 @@ public class Duke {
         say("What can I do for you?", false, true);
 
         Scanner scanner = new Scanner(System.in);
-        ArrayList<String> task = new ArrayList<>();
+        ArrayList<Task> task = new ArrayList<>();
         while (scanner.hasNextLine()) {
             String userInput = scanner.nextLine();
             if (userInput.equals("bye")) {
@@ -36,12 +36,12 @@ public class Duke {
                     if (i == task.size() - 1) {
                         isLastLine = true;
                     }
-                    say(i + ". " + task.get(i), isFirstLine, isLastLine);
+                    say(i + 1 + ". " + task.get(i).getDescription(), isFirstLine, isLastLine);
                 }
             }
             else {
                 // add user input to the list
-                task.add(userInput);
+                task.add(new Task(userInput));
                 say("added: " + userInput, true, true);
             }
         }
