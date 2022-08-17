@@ -30,6 +30,13 @@ public class Duke {
 
                 System.out.println(straightLine);
 
+                int freshIndex = 1;
+
+                for (Task task : listOfThings) {
+                    task.setIndex(freshIndex);
+                    freshIndex++;
+                }
+
                 for (Task task : listOfThings) {
                     task.printTask();
                 }
@@ -84,6 +91,34 @@ public class Duke {
                     continue;
                 } catch (IndexOutOfBoundsException e) {
                     System.out.println(straightLine + "\n  HEY THERE'S NO SUCH TASK! >:(\n"
+                            + straightLine + "\n");
+                    input = sc.nextLine();
+                    continue;
+                }
+
+            }
+
+            if (input.startsWith("delete")) {
+
+                try {
+
+                    char i = input.charAt(7);
+                    int index = Character.getNumericValue(i);
+                    Task t = listOfThings.get(index - 1);
+
+                    t.printDeleted();
+                    System.out.println("  Now you have " + (listOfThings.size() - 1)+ " left\n" + straightLine + "\n");
+
+                    listOfThings.remove(index - 1);
+                    input = sc.nextLine();
+                    continue;
+                } catch (StringIndexOutOfBoundsException e) {
+                    System.out.println(straightLine + "\n  Insufficient information to delete! Please input more ;-;\n"
+                            + straightLine + "\n");
+                    input = sc.nextLine();
+                    continue;
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println(straightLine + "\n  Can't delete something that isn't there...\n"
                             + straightLine + "\n");
                     input = sc.nextLine();
                     continue;

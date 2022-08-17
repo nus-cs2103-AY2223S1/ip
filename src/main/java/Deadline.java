@@ -17,6 +17,11 @@ public class Deadline extends Task{
     }
 
     @Override
+    public void setIndex(int newIndex) {
+        super.setIndex(newIndex);
+    }
+
+    @Override
     public void printAdded() {
         System.out.println(straightLine + "\n  Yep, it's in!\n    [D][ ] " + this.getDescription() + " (by:" + date
                             + ")\n  " + this.getIndex() + " tasks left, 頑張れ!\n" + straightLine + "\n");
@@ -30,6 +35,16 @@ public class Deadline extends Task{
         } else {
             System.out.println("  " + this.getIndex() + ".[D][X] " + this.getDescription() + " (by:" +
                     date + ")");
+        }
+    }
+
+    public void printDeleted() {
+        if (!this.getStatus()) {
+            System.out.println(straightLine + "\n  Task deleted!\n    [D][ ] " + this.getDescription()
+                    + "(by:" + date + ")");
+        } else {
+            System.out.println(straightLine + "\n  Task deleted!\n    [D][X] " + this.getDescription()
+                    + "(by:" + date + ")");
         }
     }
 }

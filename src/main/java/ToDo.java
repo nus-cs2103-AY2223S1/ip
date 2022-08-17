@@ -15,6 +15,11 @@ public class ToDo extends Task {
     }
 
     @Override
+    public void setIndex(int newIndex) {
+        super.setIndex(newIndex);
+    }
+
+    @Override
     public void printAdded() {
         System.out.println(straightLine + "\n  Its been added!\n    [T][ ] " + this.getDescription()
                             + "\n  " + this.getIndex() + " tasks left! ^-^\n" + straightLine + "\n");
@@ -26,6 +31,15 @@ public class ToDo extends Task {
             System.out.println("  " + this.getIndex() + ".[T][ ] " + this.getDescription());
         } else {
             System.out.println("  " + this.getIndex() + ".[T][X] " + this.getDescription());
+        }
+    }
+
+    @Override
+    public void printDeleted() {
+        if (!this.getStatus()) {
+            System.out.println(straightLine + "\n  Task deleted!\n    [T][ ] " + this.getDescription());
+        } else {
+            System.out.println(straightLine + "\n  Task deleted!\n    [T][X] " + this.getDescription());
         }
     }
 

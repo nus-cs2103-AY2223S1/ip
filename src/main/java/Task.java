@@ -39,6 +39,12 @@ public class Task {
                 + "\n" + straightLine + "\n");
     }
 
+    public void setIndex(int newIndex) {
+
+        this.index = newIndex;
+
+    }
+
     public void printAdded() {
         System.out.println(straightLine + "\n added: " + taskDescription + "\n" + straightLine + "\n\n");
     }
@@ -50,6 +56,10 @@ public class Task {
             System.out.println("  " + index + ".[X] " + taskDescription);
         }
 
+    }
+
+    public void printDeleted() {
+        System.out.println(straightLine + "\n  Task deleted!\n" + straightLine + "\n");
     }
 
 }

@@ -16,6 +16,10 @@ public class Event extends Task{
         super.markUndone();
     }
 
+    @Override
+    public void setIndex(int newIndex) {
+        super.setIndex(newIndex);
+    }
 
     @Override
     public void printAdded() {
@@ -32,6 +36,17 @@ public class Event extends Task{
         } else {
             System.out.println("  " + this.getIndex() + ".[E][X] " + this.getDescription() + " (at:" +
                     dateAndTime + ")");
+        }
+    }
+
+    @Override
+    public void printDeleted() {
+        if (!this.getStatus()) {
+            System.out.println(straightLine + "\n  Task deleted!\n    [E][ ] " + this.getDescription()
+                    + "(at:" + dateAndTime + ")");
+        } else {
+            System.out.println(straightLine + "\n  Task deleted!\n    [E][X] " + this.getDescription()
+                    + "(at:" + dateAndTime + ")");
         }
     }
 
