@@ -8,6 +8,6 @@ public class Duke {
         System.out.println("Hello from\n" + logo);
 
         ChatBot chatBot = new ChatBot();
-        chatBot.greet();
+        chatBot.launch();
     }
 }
