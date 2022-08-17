@@ -1,6 +1,16 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Duke {
+    public static String[] keywords = {"bye", "list", "mark", "unmark", "todo", "deadline", "event"};
+    public static String getKeyword(Scanner scanner) throws DukeException {
+        String keyword = scanner.next();
+        if (Arrays.asList(keywords).contains(keyword)) {
+            return keyword;
+        } else {
+            throw new DukeException("\t☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+        }
+    }
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -13,7 +23,12 @@ public class Duke {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            String text = scanner.next();
+            String text = "";
+            try {
+                text = getKeyword(scanner);
+            } catch (DukeException e) {
+                System.out.println(e.getMessage());
+            }
             if (text.equals("bye")) {
                 break;
             } else if (text.equals("list")) {
@@ -26,8 +41,12 @@ public class Duke {
                 Task.unmark(index);
             } else if (text.equals("todo")) {
                 String description = scanner.nextLine();
-                Todo todo = new Todo(description);
-                todo.add();
+                try {
+                    Todo todo = new Todo(description);
+                    todo.add();
+                } catch (DukeException e) {
+                    System.out.println(e.getMessage());
+                }
             } else if (text.equals("deadline")) {
                 String[] sections = scanner.nextLine().split("/by");
                 Deadline deadline = new Deadline(sections[0], sections[1]);
@@ -36,9 +55,6 @@ public class Duke {
                 String[] sections = scanner.nextLine().split("/at");
                 Event event = new Event(sections[0], sections[1]);
                 event.add();
-            } else {
-                System.out.println("\tTask type not indicated.");
-                text = scanner.nextLine();
             }
         }
         System.out.println("Bye. Hope to see you again soon!");

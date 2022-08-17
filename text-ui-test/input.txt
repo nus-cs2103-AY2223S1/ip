@@ -7,5 +7,6 @@ mark 1
 list
 unmark 1
 list
-join sports club
+todo
+blah
 bye
