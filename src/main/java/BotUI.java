@@ -49,6 +49,13 @@ public class BotUI {
                         + "Now you have %d tasks on your list.", task, lst.size());
     }
 
+    String successRemoved(TaskRecords taskList, Task task) {
+        ArrayList<Task> lst = taskList.getList();
+        return String.format(
+                "Ching Ching Poof~~ This task is removed:\n %s\n"
+                        + "Now you have %d tasks on your list.", task, lst.size());
+    }
+
     String invalidCommand() {
         return "Huh? I don't understand your instructions XD\n" +
                 "------Available command------\n" +
@@ -72,4 +79,6 @@ public class BotUI {
     String invalidCheckFormat() {
         return "Sorry, last character after mark/unmark command should be integer!";
     }
+
+
 }

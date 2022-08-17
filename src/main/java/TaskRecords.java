@@ -15,6 +15,12 @@ public class TaskRecords {
         }
     }
 
+    Task delete(int idx) {
+        Task currTask =  this.lst.get(idx);
+        this.lst.remove(idx);
+        return currTask;
+    }
+
     Task get(int idx) {
         return this.lst.get(idx);
     }

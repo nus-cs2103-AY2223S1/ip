@@ -36,8 +36,13 @@ public class Duke {
                     taskList.addProcess(task);
                     System.out.print(ui.botSpeak(ui.addStatus(taskList, task)));
                 }
-                else if (input.startsWith("mark") || input.startsWith("unmark")) {
+                else if (input.startsWith("mark") || input.startsWith("unmark") || input.startsWith("delete")) {
                     int taskIdx = Integer.parseInt(input.substring(input.length() - 1)) - 1;
+                    if (input.startsWith("delete")) {
+                        System.out.print(ui.botSpeak(ui.successRemoved(taskList, taskList.delete(taskIdx))));
+                        input = scn.nextLine();
+                        continue;
+                    }
                     Task currTask = taskList.get(taskIdx);
                     currTask = (input.startsWith("mark")) ? currTask.markDone() : currTask.unmarkDone();
                     taskList.addProcess(currTask);
