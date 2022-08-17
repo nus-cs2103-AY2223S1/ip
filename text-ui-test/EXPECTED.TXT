@@ -15,6 +15,23 @@
 
 
 >>====================================[**]====================================<<
+  You don't have any tasks. Make yourself useful.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  It seems you've invented a way to do nothing. Typical...
+  Type "todo <description>" to add a new todo.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  It seems you've invented a way to do nothing. Typical...
+  Type "todo <description>" to add a new todo.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
   Seriously? Another one?
   Give me strength...
     [T][ ] read a book
@@ -23,9 +40,75 @@
 
 
 >>====================================[**]====================================<<
+  It seems you've invented a way to do nothing. Typical...
+  Type "event <description> /<time>" to add a new event.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  It seems you've invented a way to do nothing. Typical...
+  Type "event <description> /<time>" to add a new event.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  It seems you've invented a way to do nothing. Typical...
+  Type "event <description> /<time>" to add a new event.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  It seems you've invented a way to do nothing. Typical...
+  Type "event <description> /<time>" to add a new event.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  It seems you've invented a way to do nothing. Typical...
+  Type "event <description> /<time>" to add a new event.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  It seems you've invented a way to do nothing. Typical...
+  Type "event <description> /<time>" to add a new event.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  You do realise deadlines and events usually have a time or date, right?
+  Type "event <description> /<time>" to add a new event.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  You do realise deadlines and events usually have a time or date, right?
+  Type "event <description> /<time>" to add a new event.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  You do realise deadlines and events usually have a time or date, right?
+  Type "event <description> /<time>" to add a new event.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  You do realise deadlines and events usually have a time or date, right?
+  Type "event <description> /<time>" to add a new event.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  You do realise deadlines and events usually have a time or date, right?
+  Type "event <description> /<time>" to add a new event.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
   Seriously? Another one?
   Give me strength...
-    [E][ ] project meeting (on Sunday 2-4pm)
+    [E][ ] project meeting/tea (on Sunday 2-4pm)
   You have 2 tasks. Bummer.
 >>====================================[**]====================================<<
 
@@ -33,20 +116,180 @@
 >>====================================[**]====================================<<
   Seriously? Another one?
   Give me strength...
-    [D][ ] spanish homework (by Wednesday 6pm)
+    [E][ ] project meeting (on Sunday 2-4pm)
   You have 3 tasks. Bummer.
 >>====================================[**]====================================<<
 
 
 >>====================================[**]====================================<<
+  Seriously? Another one?
+  Give me strength...
+    [E][ ] project meeting (on Sunday 2-4pm /3-5pm)
+  You have 4 tasks. Bummer.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  It seems you've invented a way to do nothing. Typical...
+  Type "deadline <description> /<time>" to add a new deadline.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  It seems you've invented a way to do nothing. Typical...
+  Type "deadline <description> /<time>" to add a new deadline.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  It seems you've invented a way to do nothing. Typical...
+  Type "deadline <description> /<time>" to add a new deadline.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  It seems you've invented a way to do nothing. Typical...
+  Type "deadline <description> /<time>" to add a new deadline.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  It seems you've invented a way to do nothing. Typical...
+  Type "deadline <description> /<time>" to add a new deadline.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  It seems you've invented a way to do nothing. Typical...
+  Type "deadline <description> /<time>" to add a new deadline.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  You do realise deadlines and events usually have a time or date, right?
+  Type "deadline <description> /<time>" to add a new deadline.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  You do realise deadlines and events usually have a time or date, right?
+  Type "deadline <description> /<time>" to add a new deadline.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  You do realise deadlines and events usually have a time or date, right?
+  Type "deadline <description> /<time>" to add a new deadline.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  You do realise deadlines and events usually have a time or date, right?
+  Type "deadline <description> /<time>" to add a new deadline.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  You do realise deadlines and events usually have a time or date, right?
+  Type "deadline <description> /<time>" to add a new deadline.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  Seriously? Another one?
+  Give me strength...
+    [D][ ] spanish homework/extra (by Wednesday 6pm)
+  You have 5 tasks. Bummer.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  Seriously? Another one?
+  Give me strength...
+    [D][ ] spanish homework (by Wednesday 6pm)
+  You have 6 tasks. Bummer.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  Seriously? Another one?
+  Give me strength...
+    [D][ ] spanish homework (by Wednesday 6pm /5pm)
+  You have 7 tasks. Bummer.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  *rolls eyes*
+  Do I have to?
+  Fine. Here are your tasks:
+  1. [T][ ] read a book
+  2. [E][ ] project meeting/tea (on Sunday 2-4pm)
+  3. [E][ ] project meeting (on Sunday 2-4pm)
+  4. [E][ ] project meeting (on Sunday 2-4pm /3-5pm)
+  5. [D][ ] spanish homework/extra (by Wednesday 6pm)
+  6. [D][ ] spanish homework (by Wednesday 6pm)
+  7. [D][ ] spanish homework (by Wednesday 6pm /5pm)
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  Enter a task number, nitwit.
+  Type "mark <task number>" to mark a task as complete.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  Enter a task number, nitwit.
+  Type "mark <task number>" to mark a task as complete.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  Enter a task number, nitwit.
+  Type "unmark <task number>" to mark a task as complete.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  Enter a task number, nitwit.
+  Type "unmark <task number>" to mark a task as complete.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  Brilliant. You've asked me to mark an imaginary task as complete.
+  Task number -1 does not exist.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  Brilliant. You've asked me to mark an imaginary task as incomplete.
+  Task number -1 does not exist.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  Brilliant. You've asked me to mark an imaginary task as complete.
+  Task number 8 does not exist.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  Brilliant. You've asked me to mark an imaginary task as incomplete.
+  Task number 8 does not exist.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
   You really took your time with this one, didn't you?
-    [E][X] project meeting (on Sunday 2-4pm)
+    [E][X] project meeting/tea (on Sunday 2-4pm)
 >>====================================[**]====================================<<
 
 
 >>====================================[**]====================================<<
   You can't finish the same task twice, genius.
-    [E][X] project meeting (on Sunday 2-4pm)
+    [E][X] project meeting/tea (on Sunday 2-4pm)
 >>====================================[**]====================================<<
 
 
@@ -55,14 +298,18 @@
   Do I have to?
   Fine. Here are your tasks:
   1. [T][ ] read a book
-  2. [E][X] project meeting (on Sunday 2-4pm)
-  3. [D][ ] spanish homework (by Wednesday 6pm)
+  2. [E][X] project meeting/tea (on Sunday 2-4pm)
+  3. [E][ ] project meeting (on Sunday 2-4pm)
+  4. [E][ ] project meeting (on Sunday 2-4pm /3-5pm)
+  5. [D][ ] spanish homework/extra (by Wednesday 6pm)
+  6. [D][ ] spanish homework (by Wednesday 6pm)
+  7. [D][ ] spanish homework (by Wednesday 6pm /5pm)
 >>====================================[**]====================================<<
 
 
 >>====================================[**]====================================<<
   And here I was thinking you were getting somewhere...
-    [E][ ] project meeting (on Sunday 2-4pm)
+    [E][ ] project meeting/tea (on Sunday 2-4pm)
 >>====================================[**]====================================<<
 
 
@@ -71,42 +318,46 @@
   Do I have to?
   Fine. Here are your tasks:
   1. [T][ ] read a book
-  2. [E][ ] project meeting (on Sunday 2-4pm)
-  3. [D][ ] spanish homework (by Wednesday 6pm)
+  2. [E][ ] project meeting/tea (on Sunday 2-4pm)
+  3. [E][ ] project meeting (on Sunday 2-4pm)
+  4. [E][ ] project meeting (on Sunday 2-4pm /3-5pm)
+  5. [D][ ] spanish homework/extra (by Wednesday 6pm)
+  6. [D][ ] spanish homework (by Wednesday 6pm)
+  7. [D][ ] spanish homework (by Wednesday 6pm /5pm)
 >>====================================[**]====================================<<
 
 
 >>====================================[**]====================================<<
   You're trying to unmark a task you haven't done.
   Let that sink in for a moment.
-    [E][ ] project meeting (on Sunday 2-4pm)
->>====================================[**]====================================<<
-
-
->>====================================[**]====================================<<
-  Brilliant. You've asked me to mark an imaginary task as complete.
->>====================================[**]====================================<<
-
-
->>====================================[**]====================================<<
-  Brilliant. You've asked me to mark an imaginary task as incomplete.
+    [E][ ] project meeting/tea (on Sunday 2-4pm)
 >>====================================[**]====================================<<
 
 
 >>====================================[**]====================================<<
   Do you need me to teach you what a number is?
-  Type "mark <task number>" to mark a task as complete.
+  asdwa is not a number.
 >>====================================[**]====================================<<
 
 
 >>====================================[**]====================================<<
   Do you need me to teach you what a number is?
-  Type "unmark <task number>" to mark a task as incomplete.
+  sawd is not a number.
 >>====================================[**]====================================<<
 
 
 >>====================================[**]====================================<<
-If you want my help, the least you could do is type a command I understand.
+  If you want my help, the least you could do is say something I understand.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  If you want my help, the least you could do is say something I understand.
+>>====================================[**]====================================<<
+
+
+>>====================================[**]====================================<<
+  If you want my help, the least you could do is say something I understand.
 >>====================================[**]====================================<<
 
 
