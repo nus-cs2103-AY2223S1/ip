@@ -10,7 +10,12 @@ public class DukeList {
 
     public String add(Task item) {
         listItems.add(item);
-        return "added: " + item;
+        return "Got it. I've added this task:\n"
+                + item
+                + "\nNow you have "
+                + listItems.size()
+                + (listItems.size() == 1 ? " task" : " tasks")
+                + " in the list.";
     }
 
     public String done(int index) {
