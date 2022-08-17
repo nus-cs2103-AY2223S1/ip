@@ -16,16 +16,16 @@ public class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
-    public Task markAsDone() {
-        return new Task(this.description, true);
+    public void markAsDone() {
+        this.isDone = true;
     }
 
-    public Task unMark() {
-        return new Task(this.description, false);
+    public void unMark() {
+        this.isDone = false;
     }
 
     @Override
     public String toString() {
-        return this.description;
+        return "task";
     }
 }

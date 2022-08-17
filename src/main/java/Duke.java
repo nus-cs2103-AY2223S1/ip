@@ -8,48 +8,76 @@ public class Duke {
 
         while(true) {
             String input = sc.nextLine();
+            String[] words = input.split(" ",2);
+            String first = words[0];
+
             char check = ' ';
-            if (input.equals("bye")) {
+            if (first.equals("bye")) {
                 System.out.println("Bye! Hope to see you again soon!");
                 break;
             }
-            else if (input.equals("list")) {
+            else if (first.equals("list")) {
                 for (int i = 0; i < count; i++) {
-                    System.out.println((i+1) + ". " + "[" + lst[i].getStatusIcon() + "] " + lst[i]);
+                    System.out.println("Here are the tasks in your list: \n" + (i+1) + "." + lst[i]);
                 }
             }
 
-            else if (input.length() == 6 && (input.substring(0,4)).equals("mark")) {
+            else if (first.equals("mark")) {
                 char c = input.charAt(5);
                 System.out.println(c);
                 int index = Integer.parseInt(String.valueOf(c));
                 Task t = lst[index-1];
-                t = t.markAsDone();
+                t.markAsDone();
                 lst[index-1] = t;
                 System.out.println("Nice! I've marked this task as done:");
-                System.out.println("[" + lst[index-1].getStatusIcon() + "] " + lst[index-1]);
+                System.out.println(lst[index-1]);
 
             }
 
-            else if (input.length() == 8 && (input.substring(0,6)).equals("unmark")) {
+            else if (first.equals("unmark")) {
                 char c = input.charAt(7);
                 int index = Integer.parseInt(String.valueOf(c));
 
                 Task t = lst[index-1];
-                t = t.unMark();
+                t.unMark();
                 lst[index-1] = t;
                 System.out.println("OK, I've marked this task as not done yet:");
-                System.out.println("[" + lst[index-1].getStatusIcon() + "] " + lst[index-1]);
+                System.out.println(lst[index-1]);
 
             }
-            else {
-
-                Task t = new Task(input);
+            else if (first.equals("deadline")) {
+                String s = words[1];
+                String[] arr = s.split("/by");
+                String desc = arr[0];
+                String time = arr[1];
+                Deadline t = new Deadline(desc, time);
                 lst[count] = t;
 
-                System.out.println("added: " + input);
+                System.out.println("Got it. I've added this task: \n" + t + "\nNow you have " + (count+1) + " tasks in the list.");
                 count++;
             }
+
+            else if (first.equals("event")) {
+                String s = words[1];
+                String[] arr = s.split("/at");
+                String desc = arr[0];
+                String time = arr[1];
+                Event t = new Event(desc, time);
+                lst[count] = t;
+
+                System.out.println("Got it. I've added this task: \n" + t + "\nNow you have " + (count+1) + " tasks in the list.");
+                count++;
+            }
+
+            else if (first.equals("todo")) {
+                String desc = words[1];
+                ToDo t = new ToDo(desc);
+                lst[count] = t;
+
+                System.out.println("Got it. I've added this task: \n" + t + "\nNow you have " + (count+1) + " tasks in the list.");
+                count++;
+            }
+
         }
     }
 }
