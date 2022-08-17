@@ -45,4 +45,12 @@ public class Ui {
     public void showList(TaskList taskList) {
         System.out.println(taskList.toString());
     }
+
+    public void showToggleSuccess(Task task) {
+        if (!task.isDone()) {
+            System.out.println("MISTAKES WERE MADE!\nTHAT'S WHY YOU ARE HERE:\n" + task.toString());
+        } else {
+            System.out.println("GOOD JOB BROTHER!\n" + task.toString());
+        }
+    }
 }

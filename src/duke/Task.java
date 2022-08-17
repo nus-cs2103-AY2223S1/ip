@@ -14,7 +14,7 @@ public abstract class Task {
     }
 
     public void toggleStatus() {
-        isDone = !isDone;
+        this.isDone = !isDone;
     }
 
     public boolean isDone() {
