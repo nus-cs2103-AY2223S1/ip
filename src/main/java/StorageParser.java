@@ -15,7 +15,7 @@ public class StorageParser {
         boolean marked = false;
         String[] segments = rawTask.split("\\| ");
         StringBuilder sb = new StringBuilder();
-        Task formattedTask = new Task("");
+        Task formattedTask = new Task("", TaskType.TASK);
 
         switch (identifier) {
             case "T":

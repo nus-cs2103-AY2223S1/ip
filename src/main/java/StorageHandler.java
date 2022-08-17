@@ -28,10 +28,10 @@ public class StorageHandler {
     }
 
     public Storage loadSavedData() throws IOException, StorageOperationException {
-//        if (!Files.exists(path) || !Files.isRegularFile(path)) {
-//            // Create a new file
-//            Files.createFile(path);
-//        }
+        if (!Files.exists(path) || !Files.isRegularFile(path)) {
+            // Create a new file
+            Files.createFile(path);
+        }
 
         try {
             List<String> fileLines = Files.readAllLines(path);
@@ -42,6 +42,27 @@ public class StorageHandler {
             System.out.println(e);
             return new Storage();
         }
+    }
+
+    public Storage writeDataToFile(Storage storage) throws IOException {
+        if (!Files.exists(path) || !Files.isRegularFile(path)) {
+            // Create a new file
+            Files.createFile(path);
+        }
+
+        try {
+            StringBuilder sb = new StringBuilder();
+            storage.taskList.forEach((task) -> {
+                sb.append(StorageWriter.writeSingleTask(task) + "\n");
+            });
+            String toWrite = sb.subSequence(0, sb.length()-1).toString();
+            byte[] byteString = toWrite.getBytes();
+            Files.write(this.path, byteString);
+            return storage;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return storage;
     }
 
     /**

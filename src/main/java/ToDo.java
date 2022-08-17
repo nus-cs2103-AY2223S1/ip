@@ -1,7 +1,12 @@
 public class ToDo extends Task{
 
     ToDo(String description) {
-        super(description);
+        super(description, TaskType.TODO);
+    }
+
+    @Override
+    String getBy() {
+        return "";
     }
 
     @Override

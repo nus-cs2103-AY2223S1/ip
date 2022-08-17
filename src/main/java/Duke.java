@@ -32,6 +32,7 @@ public class Duke {
 
                     Integer targetIndex = Integer.parseInt(nextCommand.substring(7));
                     storage.removeTaskFromList(targetIndex);
+                    storageHandler.writeDataToFile(storage);
                     continue;
                 }
 
@@ -40,6 +41,7 @@ public class Duke {
 
                     Integer targetIndex = Integer.parseInt(nextCommand.substring(5));
                     storage.markTaskAsDone(targetIndex);
+                    storageHandler.writeDataToFile(storage);
                     continue;
                 }
 
@@ -48,16 +50,18 @@ public class Duke {
 
                     Integer targetIndex = Integer.parseInt(nextCommand.substring(7));
                     storage.markTaskAsUnDone(targetIndex);
+                    storageHandler.writeDataToFile(storage);
                     continue;
                 }
 
                 if (nextCommand.startsWith("todo")) {
-                    if (nextCommand.length() < 6) throw new DukeException(NO_INDEX_SPECIFIED);
+                    if (nextCommand.length() < 6) throw new DukeException(NO_TASK_NAME);
 
                     String taskName = nextCommand.substring(5);
                     if (taskName.isEmpty()) throw new DukeException(NO_TASK_NAME);
                     Task taskToAdd = new ToDo(taskName);
                     storage.addTaskToList(taskToAdd);
+                    storageHandler.writeDataToFile(storage);
                     continue;
                 }
 
@@ -74,6 +78,7 @@ public class Duke {
 
                     Task taskToAdd = new Deadline(mainTask, doneBy);
                     storage.addTaskToList(taskToAdd);
+                    storageHandler.writeDataToFile(storage);
                     continue;
                 }
 
@@ -90,6 +95,7 @@ public class Duke {
 
                     Task taskToAdd = new Event(mainTask, doneAt);
                     storage.addTaskToList(taskToAdd);
+                    storageHandler.writeDataToFile(storage);
                     continue;
                 }
                 // Handle unknown commands

@@ -1,12 +1,14 @@
 public class Task {
     protected String description;
     protected boolean isDone;
+    final TaskType type;
     private static String MARKED_TXT = "Nice ! I've marked this task as done:";
     private static String UNMARKED_TEXT = "OK, I've marked this task as not done yet:";
 
-    Task(String description) {
+    Task(String description, TaskType type) {
         this.description = description;
         this.isDone = false;
+        this.type = type;
     }
 
     String getMarkedStatus() {
@@ -25,6 +27,10 @@ public class Task {
     void markAsUnDone() {
         this.isDone = false;
         System.out.println(determineTextOutput() + "\n" + this + "\n");
+    }
+
+    String getBy() {
+        return "";
     }
 
     @Override
