@@ -8,6 +8,28 @@ public class Duke {
     private Scanner reader = new Scanner(System.in);
     private List<Task> todos = new ArrayList<>();
 
+    private enum Action {
+        MARK (5),
+        UNMARK (7),
+        DELETE (7);
+
+        private int parseIndex;
+
+        Action(int parseIndex) {
+            this.parseIndex = parseIndex;
+        }
+
+        int process(String userInput) throws DukeException {
+            try {
+                return Integer.parseInt(userInput.substring(parseIndex));
+            } catch (IndexOutOfBoundsException e) {
+                throw new DukeException("Do tell me the index...");
+            } catch (NumberFormatException e) {
+                throw new DukeException("HELLO do you know index is a number");
+            }
+        }
+    }
+
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -18,7 +40,13 @@ public class Duke {
         Duke bot = new Duke();
         bot.greet();
         while (bot.isActive) {
-            bot.respond();
+            try {
+                bot.respond();
+            } catch (DukeException e) {
+                System.out.println("\t" + e.getMessage());
+            } finally {
+                System.out.println();
+            }
         }
     }
 
@@ -26,33 +54,28 @@ public class Duke {
         System.out.print("Yes? I'm Zlimez~~ \nWhat can I possibly do for you?\n >>>^<<<\n\n");
     }
 
-    public void respond() {
+    public void respond() throws DukeException {
         String userInput = reader.nextLine();
         if (userInput.equals("bye")) {
             bye();
         } else if (userInput.equals("list")) {
             listTasks();
         } else if (userInput.startsWith("mark")) {
-            markTask(Integer.parseInt(userInput.substring(5)));
+            markTask(Action.MARK.process(userInput));
         } else if (userInput.startsWith("unmark")) {
-            unmarkTask(Integer.parseInt(userInput.substring(7)));
+            unmarkTask(Action.UNMARK.process(userInput));
         } else if (userInput.startsWith("delete")) {
-            deleteTask(Integer.parseInt(userInput.substring(7)));
+            deleteTask(Action.DELETE.process(userInput));
         } else {
             try {
                 addTask(userInput);
-            } catch (DukeException e) {
-                System.out.println(e.toString());
             } catch (IndexOutOfBoundsException e) {
-                System.out.println(new DukeException("Please your task lacks the necessary specifications"));
+                throw new DukeException("Please your task lacks the necessary specifications");
             }
         }
-
-        System.out.println();
     }
 
     private void addTask(String task) throws DukeException {
-
         Task newTask;
         if (task.startsWith("todo")) {
             newTask = new Todo(task);
@@ -71,14 +94,14 @@ public class Duke {
         System.out.println("\tWala now you have " + todos.size() + " tasks in the list.");
     }
 
-    private void deleteTask(int index) {
+    private void deleteTask(int index) throws DukeException {
         try {
             Task removed = todos.remove(index - 1);
             System.out.println("\tYES, I've removed this task for YOU:");
             System.out.println("\t\t" + removed);
             System.out.println("\tWala now you have " + todos.size() + " tasks in the list.");
         } catch (IndexOutOfBoundsException e) {
-            System.out.println(new DukeException("Read the index of the existing tasks carefully..."));
+            throw new DukeException("Read the index of the existing tasks carefully...");
         }
     }
 
@@ -89,23 +112,23 @@ public class Duke {
         }
     }
 
-    private void markTask(int index) {
+    private void markTask(int index) throws DukeException {
         try {
             todos.get(index - 1).mark();
             System.out.println("\tWellz, I've marked this task for YOU:");
             System.out.println("\t\t" + todos.get(index - 1));
         } catch (IndexOutOfBoundsException e) {
-            System.out.println(new DukeException("Read the index of the existing tasks carefully..."));
+            throw new DukeException("Read the index of the existing tasks carefully...");
         }
     }
 
-    private void unmarkTask(int index) {
+    private void unmarkTask(int index) throws DukeException {
         try {
             todos.get(index - 1).unmark();
             System.out.println("\t-_-, I've unmarked this task for YOU AGAIN:");
             System.out.println("\t\t" + todos.get(index - 1));
         } catch (NullPointerException e) {
-            System.out.println(new DukeException("Read the index of the existing tasks carefully..."));
+            throw new DukeException("Read the index of the existing tasks carefully...");
         }
     }
 
