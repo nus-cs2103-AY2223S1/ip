@@ -18,8 +18,12 @@ public class Duke {
                 break;
             }else if(ans.equals("list")){
                 System.out.println(taskList.listAllTask());
-            }else {
-                taskList.addTask(ans);
+            }else if(ans.split(" ")[0].equals("unmark")){
+                taskList.markUndone(Integer.valueOf(ans.split(" ")[1])-1);
+            }else if(ans.split(" ")[0].equals("mark")){
+                taskList.markAsDone(Integer.valueOf(ans.split(" ")[1])-1);
+            }else{
+                taskList.addTask(new Task(ans));
             }
         }
     }
