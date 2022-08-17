@@ -10,6 +10,7 @@ import java.util.List;
 public class TaskManager {
     // The list of tasks, accessed using 0-based indices
     private final List<Task> taskList;
+    private static final String NO_TASKS_AVAILABLE = "There are currently no tasks available. Add one now!";
 
     public TaskManager() {
         this.taskList = new ArrayList<>();
@@ -63,6 +64,9 @@ public class TaskManager {
 
     @Override
     public String toString() {
+        if (this.taskList.size() == 0) {
+            return TaskManager.NO_TASKS_AVAILABLE;
+        }
         StringBuilder taskManagerDisplay = new StringBuilder();
         for (int i = 0; i < this.taskList.size(); i++) {
             // Implicitly invoke the display of the task defined in the Task class
