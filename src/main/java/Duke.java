@@ -31,18 +31,48 @@ public class Duke {
             }
 
             else if (userInput.startsWith("mark ")) {
-                // TODO: Ensure that an index is provided (and not a word).
-                // TODO: Ensure that the index provided is reasonable.
-                int index = Integer.parseInt(userInput.substring(5)) - 1;
+
+                int index;
+
+                try {
+                    index = Integer.parseInt(userInput.substring(5)) - 1;
+                } catch (NumberFormatException e) {
+                    System.out.println("Duke: That doesn't look like a number to me. Try harder.");
+                    continue; // Let the user try again.
+                }
+
+                if (index == -1) { // The user entered 0.
+                    System.out.println("Duke: Oh, so you think you're a programmer?");
+                    continue; // Let the user try again.
+                }
+                if (index >= tasks.size()) {
+                    System.out.println("Duke: You don't even have that many tasks... yet!");
+                    continue; // Let the user try again.
+                }
+
                 tasks.get(index).setComplete(true);
                 System.out.println("Duke: Task marked as complete.");
                 System.out.println(tasks.get(index));
             }
 
             else if (userInput.startsWith("unmark ")) {
-                // TODO: Ensure that an index is provided (and not a word).
-                // TODO: Ensure that the index provided is reasonable.
-                int index = Integer.parseInt(userInput.substring(7)) - 1;
+                int index;
+
+                try {
+                    index = Integer.parseInt(userInput.substring(7)) - 1;
+                } catch (NumberFormatException e) {
+                    System.out.println("Duke: That doesn't look like a number to me. Try harder.");
+                    continue; // Let the user try again.
+                }
+
+                if (index == -1) { // The user entered 0.
+                    System.out.println("Duke: Oh, so you think you're a programmer?");
+                    continue; // Let the user try again.
+                }
+                if (index >= tasks.size()) {
+                    System.out.println("Duke: You don't even have that many tasks... yet!");
+                    continue; // Let the user try again.
+                }
                 tasks.get(index).setComplete(false);
                 System.out.println("Duke: Task marked as incomplete.");
                 System.out.println(tasks.get(index));
