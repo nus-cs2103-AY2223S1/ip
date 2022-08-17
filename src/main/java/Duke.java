@@ -1,9 +1,10 @@
-
+//only exceptions in example caught
+//without automatic ui testing
 import java.util.Scanner;
 
 public class Duke {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DukeException {
         Scanner sc = new Scanner(System.in);
         Task[] taskList = new Task[100];
         int indCount = 0;
@@ -19,62 +20,71 @@ public class Duke {
         String userReply = sc.nextLine();
 
         while (!userReply.equals("bye")) {
-            if (userReply.startsWith("mark")) {
-                int pos = Character.getNumericValue(userReply.charAt(5));
-                taskList[pos - 1].markAsDone();
-                System.out.println(buffLine + "\n" + "    Nice! I've marked this task as done: ");
-                taskList[pos - 1].fullDesc();
-                System.out.println(buffLine);
-                userReply = sc.nextLine();
-            } else if (userReply.startsWith("unmark")) {
-                int pos = Character.getNumericValue(userReply.charAt(7));
-                taskList[pos - 1].markAsUndone();
-                System.out.println(buffLine + "\n" + "    Ok, I've marked this task as not done yet: ");
-                taskList[pos - 1].fullDesc();
-                System.out.println(buffLine);
-                userReply = sc.nextLine();
-            } else if (userReply.startsWith("todo")) {
-                taskList[indCount] = new ToDos(userReply.substring(5, userReply.length()));
-                System.out.println(buffLine + "\n" + "    Got it. I've added this task: ");
-                taskList[indCount].fullDesc();
-                System.out.println("    Now you have " + String.valueOf(indCount + 1) + " tasks in this list." +
-                        "\n" + buffLine);
-                indCount++;
-                userReply = sc.nextLine();
-            } else if (userReply.startsWith("deadline")) {
-                int splitPoint = userReply.indexOf("/");
-                taskList[indCount] = new Deadlines(userReply.substring(9, splitPoint - 1),
+            try {
+                if (userReply.startsWith("mark")) {
+                    int pos = Character.getNumericValue(userReply.charAt(5));
+                    taskList[pos - 1].markAsDone();
+                    System.out.println(buffLine + "\n" + "    Nice! I've marked this task as done: ");
+                    taskList[pos - 1].fullDesc();
+                    System.out.println(buffLine);
+                    userReply = sc.nextLine();
+                } else if (userReply.startsWith("unmark")) {
+                    int pos = Character.getNumericValue(userReply.charAt(7));
+                    taskList[pos - 1].markAsUndone();
+                    System.out.println(buffLine + "\n" + "    Ok, I've marked this task as not done yet: ");
+                    taskList[pos - 1].fullDesc();
+                    System.out.println(buffLine);
+                    userReply = sc.nextLine();
+                } else if (userReply.startsWith("todo")) {
+                    try {
+                        taskList[indCount] = new ToDos(userReply.substring(5, userReply.length()));
+                        System.out.println(buffLine + "\n" + "    Got it. I've added this task: ");
+                        taskList[indCount].fullDesc();
+                        System.out.println("    Now you have " + String.valueOf(indCount + 1)
+                                + " tasks in this list." + "\n" + buffLine);
+                        indCount++;
+                        userReply = sc.nextLine();
+                    } catch (StringIndexOutOfBoundsException t) {
+                        System.out.println("☹ OOPS!!! The description of a todo cannot be empty.");
+                        userReply = sc.nextLine();
+                    }
+                } else if (userReply.startsWith("deadline")) {
+                    try {
+                        int splitPoint = userReply.indexOf("/");
+                        taskList[indCount] = new Deadlines(userReply.substring(9, splitPoint - 1),
+                                userReply.substring(splitPoint + 1, userReply.length()));
+                        System.out.println("    Got it. I've added this task: ");
+                        taskList[indCount].fullDesc();
+                        System.out.println("    Now you have " + String.valueOf(indCount + 1)
+                                + " tasks in this list." + "\n" + buffLine);
+                        indCount++;
+                        userReply = sc.nextLine();
+                    } catch (StringIndexOutOfBoundsException t) {
+                        System.out.println("☹ OOPS!!! The description of a todo cannot be empty.");
+                        userReply = sc.nextLine();
+                    }
+                } else if (userReply.startsWith("event")) {
+                    int splitPoint = userReply.indexOf("/");
+                    taskList[indCount] = new Events(userReply.substring(6, splitPoint - 1),
                         userReply.substring(splitPoint + 1, userReply.length()));
-                System.out.println("    Got it. I've added this task: ");
-                taskList[indCount].fullDesc();
-                System.out.println("    Now you have " + String.valueOf(indCount + 1) + " tasks in this list." +
-                        "\n" + buffLine);
-                indCount++;
-                userReply = sc.nextLine();
-            } else if (userReply.startsWith("event")) {
-                int splitPoint = userReply.indexOf("/");
-                taskList[indCount] = new Events(userReply.substring(6, splitPoint - 1),
-                        userReply.substring(splitPoint + 1, userReply.length()));
-                System.out.println("    Got it. I've added this task: ");
-                taskList[indCount].fullDesc();
-                System.out.println("    Now you have " + String.valueOf(indCount + 1) + " tasks in this list." +
-                        "\n" + buffLine);
-                indCount++;
-                userReply = sc.nextLine();
-            }
-            else if (!userReply.equals("list")) {
-                taskList[indCount] = new Task(userReply);
-                System.out.println(buffLine + "\n" + "    added: " + userReply);
-                System.out.println("    Now you have " + String.valueOf(indCount + 1) + " tasks in this list." +
-                        "\n" + buffLine);
-                indCount++;
-                userReply = sc.nextLine();
-            } else {
-                System.out.println(buffLine);
-                for (int i = 0; i <  indCount; i++) {
-                    System.out.println("    " + (i + 1) + ". " + taskList[i].stringDesc());
+                    System.out.println("    Got it. I've added this task: ");
+                    taskList[indCount].fullDesc();
+                    System.out.println("    Now you have " + String.valueOf(indCount + 1)
+                            + " tasks in this list." + "\n" + buffLine);
+                    indCount++;
+                    userReply = sc.nextLine();
+                } else if (userReply.equals("list")){
+                    System.out.println(buffLine);
+                    for (int i = 0; i <  indCount; i++) {
+                        System.out.println("    " + (i + 1) + ". " + taskList[i].stringDesc());
+                    }
+                    System.out.println(buffLine);
+                    userReply = sc.nextLine();
+                } else {
+                    throw new DukeException("");
                 }
-                System.out.println(buffLine);
+            } catch (DukeException e) {
+                System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                 userReply = sc.nextLine();
             }
         }
