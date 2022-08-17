@@ -57,14 +57,42 @@ public class Luffy {
                 System.out.println("------------------------------------------------------");
                 Task newTask;
                 if (s.length() >= 4 && s.substring(0, 4).equals("todo")) {
-                    newTask = new Todo(s.substring(5));
+                    try {
+                        newTask = new Todo(s.substring(5));
+                    } catch(StringIndexOutOfBoundsException e) {
+                        System.out.println("☹ OOPS!!! The description of a todo cannot be empty.");
+                        System.out.println("------------------------------------------------------");
+                        continue;
+                    }
                 } else if (s.length() >= 8 && s.substring(0, 8).equals("deadline")){
-                    String[] splitString = s.split(" /by ");
-                    newTask = new Deadline(splitString[0].substring(9), splitString[1]);
+                    try {
+                        String[] splitString = s.split(" /by ");
+                        newTask = new Deadline(splitString[0].substring(9), splitString[1]);
+                    } catch (StringIndexOutOfBoundsException e) {
+                        System.out.println("☹ OOPS!!! The description of a deadline cannot be empty.");
+                        System.out.println("------------------------------------------------------");
+                        continue;
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        System.out.println("☹ OOPS!!! The date of a deadline cannot be empty.");
+                        System.out.println("------------------------------------------------------");
+                        continue;
+                    }
                 } else if (s.length() >= 5 && s.substring(0, 5).equals("event")) {
-                    String[] splitString = s.split(" /at ");
-                    newTask = new Event(splitString[0].substring(6), splitString[1]);
+                    try {
+                        String[] splitString = s.split(" /at ");
+                        newTask = new Event(splitString[0].substring(6), splitString[1]);
+                    } catch(StringIndexOutOfBoundsException e) {
+                        System.out.println("☹ OOPS!!! The description of a event cannot be empty.");
+                        System.out.println("------------------------------------------------------");
+                        continue;
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        System.out.println("☹ OOPS!!! The period of an event cannot be empty.");
+                        System.out.println("------------------------------------------------------");
+                        continue;
+                    }
                 } else {
+                    System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                    System.out.println("------------------------------------------------------");
                     continue;
                 }
                 tasks[counter] = newTask;
