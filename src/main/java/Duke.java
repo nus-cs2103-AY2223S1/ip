@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Duke {
 
-    public static class UnknownCommandException extends RuntimeException {
+    public static class UnknownCommandException extends Exception {
         public UnknownCommandException() {
             super("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
@@ -176,6 +176,14 @@ public class Duke {
                     tasks.add(new Deadline(newCommand, deadlineString));
                     System.out.println(tasks.get(tasks.size() - 1));
                     System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+                } else if (commands[0].equals("delete")) {
+                    if (commands.length == 1) {
+                        throw new EmptyDescriptionException("delete");
+                    }
+                    System.out.println("Noted. I've removed this task:");
+                    int index = Integer.parseInt(commands[1]) - 1;
+                    System.out.println(tasks.get(index));
+                    tasks.remove(index);
                 } else {
                     throw new UnknownCommandException();
                 }
