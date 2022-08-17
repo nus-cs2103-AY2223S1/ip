@@ -1,8 +1,13 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
 
+    ArrayList<String> tasks = new ArrayList<>(100);
 
+    public Duke() {
+
+    }
 
     public void run() {
         welcome();
@@ -28,16 +33,29 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
         String cmd = sc.nextLine();
         while (!cmd.equals("bye")) {
-            echo(cmd);
+            if (cmd.equals("list")) {
+                list();
+            } else {
+                store(cmd);
+            }
             cmd = sc.nextLine();
         }
     }
 
-    public void echo(String cmd) {
+    public void store(String cmd) {
+        tasks.add(tasks.size(), cmd);
         System.out.println("    ____________________________________________________________");
-        System.out.println("     " + cmd);
+        System.out.println("     added: " + cmd);
         System.out.println("    ____________________________________________________________");
         System.out.println();
+    }
+
+    public void list() {
+        System.out.println("    ____________________________________________________________");
+        for (int i = 0; i < tasks.size(); i++) {
+            System.out.println("     " + (i + 1) + ". " + tasks.get(i));
+        }
+        System.out.println("    ____________________________________________________________");
     }
 
     public void bye() {
