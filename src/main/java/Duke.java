@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Duke {
     private static final String DIVIDER = "-------------------------------------\n";
     private ArrayList<Task> tasks;
-    public boolean end;
+    private boolean end;
 
     public Duke() {
         this.tasks = new ArrayList<Task>();
@@ -12,9 +12,13 @@ public class Duke {
     }
 
     private void run() {
+        String command;
+        Scanner sc = new Scanner(System.in);
+
         this.greet();
         while(!this.end) {
-            this.handler();
+            command = sc.nextLine();
+            this.handler(command);
         }
     }
 
@@ -33,12 +37,10 @@ public class Duke {
     }
 
     // handler method handles user input and outputs accordingly
-    private void handler() {
-        String command;
-        Scanner sc = new Scanner(System.in);
-        command = sc.next();
+    private void handler(String input) {
+        String[] args = input.split(" ", 2);
 
-        switch(command) {
+        switch(args[0]) {
             case "list":
                 list();
                 break;
@@ -47,11 +49,11 @@ public class Duke {
             case "event":
                 // deadline and event breaks if no input is entered after each command
                 // tod0 creates an empty task if no input after command
-                listAdd(command, sc.nextLine());
+                listAdd(args[0], args[1]);
                 break;
             case "mark":
                 // breaks if no input is entered after mark, or input isn't int, or index out of range
-                listToggle(sc.nextInt());
+                listToggle(args[1]);
                 break;
             case "bye":
                 exit();
@@ -59,9 +61,6 @@ public class Duke {
             default:
                 confuse();
         }
-
-        //if (!command.equals("bye")) { handler(); }
-
     }
 
     // sub methods associated with handler() for each user input case
@@ -100,7 +99,6 @@ public class Duke {
                 break;
             case "deadline":
                 args = item.split("/by");
-                System.out.println(item);
                 currTask = new Deadline(args[0], args[1]);
                 tasks.add(currTask);
                 System.out.println(DIVIDER + "OK, I've added this deadline:\n"
@@ -120,7 +118,8 @@ public class Duke {
         }
     }
 
-    private void listToggle(int index) {
+    private void listToggle(String indexString) {
+        int index = Integer.parseInt(indexString);
         Task currTask = tasks.get(index-1);
         if(currTask.completeToggle()) {
             System.out.println(DIVIDER + "Nice! I've marked this task as done:\n"

@@ -1,0 +1,12 @@
+list
+todo test1
+deadline test2 /by 2359
+event test3 /at 0800
+list
+mark 1
+mark 3
+list
+mark 1
+list
+bye
+
