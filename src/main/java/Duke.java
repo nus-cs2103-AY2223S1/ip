@@ -11,7 +11,11 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
         //lvlOne();
-        toDo();
+        try {
+            toDo();
+        } catch (DukeException de) {
+            System.out.println(de);
+        }
     }
 
     public static void lvlOne() {
@@ -29,7 +33,7 @@ public class Duke {
         System.out.println("Bye! See you soon!");
     }
 
-    public static void toDo() {
+    public static void toDo() throws DukeException {
         //String[] tasks = new String[100];
         Task[] tasks = new Task[100];
 
@@ -59,9 +63,13 @@ public class Duke {
                 System.out.println(tasks[taskNum].toString());
                 taskNum++;
                 System.out.println("Now you have " + taskNum + " tasks in the list.");
-                //addToDo(str2, tasks, taskNum);
+
                 str2 = sc.nextLine();
                 continue;
+            }
+
+            if (str2.length() == 4 && (str2.substring(0, 4)).equals("todo")) {
+                throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
             }
 
             if (str2.length() > 8 && (str2.substring(0, 8)).equals("deadline")) {
@@ -102,11 +110,13 @@ public class Duke {
                 continue;
             }
 
-            Task newTask = new Task(str2);
+            throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :(");
+
+            /**Task newTask = new Task(str2);
             tasks[taskNum] = newTask;
             taskNum++;
             System.out.println("added: " + str2);
-            str2 = sc.nextLine();
+            str2 = sc.nextLine();*/
         }
         System.out.println("Bye! See you soon!");
     }
@@ -132,15 +142,6 @@ public class Duke {
         taskToMark = Integer.parseInt(strTaskToMark);
         arr1[taskToMark - 1].isDone = true;
         System.out.println("[" + arr1[taskToMark - 1].getStatusIcon() + "] " + arr1[taskToMark - 1].description);
-    }
-
-    public static void addToDo(String todo, Task[] arr, int num) {
-        System.out.println("Got it. I've added this task:");
-        ToDos newToDo = new ToDos(todo.substring(5, todo.length()));
-        arr[num] = newToDo;
-        System.out.println(arr[num].toString());
-        num++;
-        System.out.println("Now you have " + num + " tasks in the list.");
     }
 
 }
