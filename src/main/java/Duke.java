@@ -100,31 +100,45 @@ public class Duke {
                 currreply = reply.nextLine();
             } else {
                 if (currreply.startsWith("todo")) {
-                    String acttask = currreply.substring(5);
-                    Task currtask = new Task(acttask, 0);
-                    currtask.setDate(null);
-                    list.add(currtask);
-                    System.out.println("Got it. I've added this task:\n" +
-                            " " + currtask.toString() + "\n" +
-                            "Now you have " + list.size() + " tasks in the list.\n");
+                    if (currreply.length() <= 4) {
+                        System.out.println("☹ OOPS!!! The description of a todo cannot be empty.\n");
+                    } else {
+                        String acttask = currreply.substring(5);
+                        Task currtask = new Task(acttask, 0);
+                        currtask.setDate(null);
+                        list.add(currtask);
+                        System.out.println("Got it. I've added this task:\n" +
+                                " " + currtask.toString() + "\n" +
+                                "Now you have " + list.size() + " tasks in the list.\n");
+                    }
                 } else if (currreply.startsWith("deadline")) {
-                    int slashindex = currreply.indexOf("/");
-                    String acttask = currreply.substring(9, slashindex - 1);
-                    Task currtask = new Task(acttask, 1);
-                    currtask.setDate(currreply.substring(slashindex + 4));
-                    list.add(currtask);
-                    System.out.println("Got it. I've added this task:\n" +
-                            " " + currtask.toString() + "\n" +
-                            "Now you have " + list.size() + " tasks in the list.\n");
+                    if (currreply.length() <= 8) {
+                        System.out.println("☹ OOPS!!! The description of a deadline cannot be empty.\n");
+                    } else {
+                        int slashindex = currreply.indexOf("/");
+                        String acttask = currreply.substring(9, slashindex - 1);
+                        Task currtask = new Task(acttask, 1);
+                        currtask.setDate(currreply.substring(slashindex + 4));
+                        list.add(currtask);
+                        System.out.println("Got it. I've added this task:\n" +
+                                " " + currtask.toString() + "\n" +
+                                "Now you have " + list.size() + " tasks in the list.\n");
+                    }
                 } else if (currreply.startsWith("event")) {
-                    int slashindex = currreply.indexOf("/");
-                    String acttask = currreply.substring(6, slashindex - 1);
-                    Task currtask = new Task(acttask, 2);
-                    currtask.setDate(currreply.substring(slashindex + 4));
-                    list.add(currtask);
-                    System.out.println("Got it. I've added this task:\n" +
-                            " " + currtask.toString() + "\n" +
-                            "Now you have " + list.size() + " tasks in the list.\n");
+                    if (currreply.length() <= 5) {
+                        System.out.println("☹ OOPS!!! The description of a event cannot be empty.\n");
+                    } else {
+                        int slashindex = currreply.indexOf("/");
+                        String acttask = currreply.substring(6, slashindex - 1);
+                        Task currtask = new Task(acttask, 2);
+                        currtask.setDate(currreply.substring(slashindex + 4));
+                        list.add(currtask);
+                        System.out.println("Got it. I've added this task:\n" +
+                                " " + currtask.toString() + "\n" +
+                                "Now you have " + list.size() + " tasks in the list.\n");
+                    }
+                } else {
+                    System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(\n");
                 }
                 currreply = reply.nextLine();
             }
