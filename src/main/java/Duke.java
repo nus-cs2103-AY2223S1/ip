@@ -9,7 +9,7 @@ public class Duke {
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        String straightLine = "  ----------------------------------";
+        String straightLine = "  ----------------------------------------------------------------------------------";
         Scanner sc = new Scanner(System.in);
         ArrayList<Task> listOfThings = new ArrayList<>(100);
 
@@ -31,12 +31,7 @@ public class Duke {
                 System.out.println(straightLine);
 
                 for (Task task : listOfThings) {
-                    if (task.isDone) {
-                        System.out.println("  " + task.index + ".[X] " + task.taskDescription);
-                    } else {
-                        System.out.println("  " + task.index + ".[ ] " + task.taskDescription);
-                    }
-
+                    task.printTask();
                 }
 
                 System.out.println(straightLine + "\n");
@@ -53,9 +48,6 @@ public class Duke {
 
                 t.markDone();
 
-                System.out.println(straightLine + "\n  Good Job! You're Killing It!\n  [X] " + t.taskDescription
-                                   + "\n" + straightLine + "\n");
-
                 input = sc.nextLine();
                 continue;
 
@@ -69,20 +61,46 @@ public class Duke {
 
                 t.markUndone();
 
-                System.out.println(straightLine + "\n  AAaaa please get it done soon...\n  [ ] " + t.taskDescription
-                                   + "\n" + straightLine + "\n");
-
                 input = sc.nextLine();
                 continue;
             }
 
+            if (input.startsWith("todo")) {
 
-            Task newTask = new Task(false, input, listOfThings.size() + 1);
-            listOfThings.add(newTask);
+                String task = input.substring(5);
+                ToDo newToDo = new ToDo(false, task, listOfThings.size() + 1);
+                listOfThings.add(newToDo);
 
-            System.out.print(straightLine + "\n  added: " + input + "\n" + straightLine + "\n\n");
+                newToDo.printAdded();
 
-            input = sc.nextLine();
+                input = sc.nextLine();
+            }
+
+            if (input.startsWith("deadline")) {
+
+                int indexOfSlash = input.indexOf("/");
+                String dateStr = input.substring(indexOfSlash + 3);
+                String task = input.substring(9, indexOfSlash);
+                Deadline newDeadline = new Deadline(false, task, listOfThings.size() + 1, dateStr);
+                listOfThings.add(newDeadline);
+
+                newDeadline.printAdded();
+
+                input = sc.nextLine();
+            }
+
+            if (input.startsWith("event")) {
+
+                int indexOfSlash = input.indexOf("/");
+                String dateAndTime = input.substring(indexOfSlash + 3);
+                String task = input.substring(6, indexOfSlash);
+                Event newEvent = new Event(false, task, listOfThings.size() + 1, dateAndTime);
+                listOfThings.add(newEvent);
+
+                newEvent.printAdded();
+
+                input = sc.nextLine();
+            }
         }
 
         System.out.println(straightLine + "\n  さよなら, goodbye\n" + straightLine);
