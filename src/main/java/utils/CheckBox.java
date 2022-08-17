@@ -1,3 +1,5 @@
+package utils;
+
 public class CheckBox {
     private boolean isChecked;
 

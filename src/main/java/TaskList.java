@@ -1,3 +1,9 @@
+import exceptions.DukeException;
+import tasks.Deadline;
+import tasks.Event;
+import tasks.Task;
+import tasks.ToDo;
+
 public class TaskList {
     private final Task[] taskList;
     private int size;
@@ -11,44 +17,44 @@ public class TaskList {
         return String.format("Now you have %d tasks in the list.", size);
     }
 
-    public String addTask(String taskName) {
-        Task task = new Task(taskName);
-        taskList[this.size] = task;
-        this.size++;
-        return "added: " + taskName;
-    }
-
-    public String addToDo(String taskName) {
+    public String addToDo(String taskName, String flag, String additionalValue) throws DukeException {
         Task task = new ToDo(taskName);
+        task.checkCommandValidity(taskName, flag, additionalValue);
         taskList[this.size] = task;
         this.size++;
         return "Got it. I've added this task:\n\t" + task + "\n" + getRemainingTasks();
     }
 
-    public String addEvent(String taskName, String at) {
-        Task task = new Event(taskName, at);
+    public String addEvent(String taskName, String flag, String additionalValue) throws DukeException {
+        Task task = new Event(taskName, additionalValue);
+        task.checkCommandValidity(taskName, flag, additionalValue);
         taskList[this.size] = task;
         this.size++;
         return "Got it. I've added this task:\n\t" + task + "\n" + getRemainingTasks();
     }
 
-    public String addDeadline(String taskName, String by) {
-        Task task = new Deadline(taskName, by);
+    public String addDeadline(String taskName, String flag, String additionalValue) throws DukeException {
+        Task task = new Deadline(taskName, additionalValue);
+        task.checkCommandValidity(taskName, flag, additionalValue);
         taskList[this.size] = task;
         this.size++;
         return "Got it. I've added this task:\n\t" + task + "\n" + getRemainingTasks();
     }
 
-    public String markTask(int taskNumber) {
-        Task task = taskList[taskNumber - 1];
-        task.mark(true);
-        return "Nice! I've marked this task as done:\n\t" + task;
-    }
-
-    public String unmarkTask(int taskNumber) {
-        Task task = taskList[taskNumber - 1];
-        task.mark(false);
-        return "Ok, I've marked this task as not done yet:\n\t" + task;
+    public String markTask(String value, boolean isCompleted) throws DukeException {
+        try {
+            int taskNumber = Integer.parseInt(value);
+            Task task = taskList[taskNumber - 1];
+            task.mark(isCompleted);
+            String message = isCompleted
+                    ? "Nice! I've marked this task as done:\n\t"
+                    : "Ok, I've marked this task as not done yet:\n\t";
+            return message + task;
+        } catch (NumberFormatException e) {
+            throw new DukeException("Please input a number.");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new DukeException(String.format("Please input a valid number! There are %d tasks remaining.", size));
+        }
     }
 
     public String toString() {

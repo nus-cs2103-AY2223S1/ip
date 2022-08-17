@@ -1,3 +1,5 @@
+import exceptions.DukeException;
+
 import java.util.Scanner;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
@@ -22,55 +24,70 @@ public class Duke {
         makeLine();
     }
 
-    private static void echo(String command) {
-        System.out.println(command);
-    }
-
     private static void bye() {
         System.out.println("Bye. Hope to see you again soon!");
     }
 
-    private static final Pattern commandParser = Pattern.compile("^([a-zA-Z]+)(?:\\s([^/]+))?(?:\\s/([a-zA-Z]+))?(?:\\s([^/]+))?$");
+    private static final Pattern commandParser =
+            Pattern.compile("^([a-zA-Z]+)(?:\\s([^/]+))?(?:\\s/([a-zA-Z]+))?(?:\\s([^/]+))?$");
+
+    private final TaskList taskList = new TaskList();
+
+    private void handle(String command) throws DukeException {
+        String function;
+        String value;
+        String flag;
+        String additionalValue;
+
+        try {
+            Matcher matcher = Duke.commandParser.matcher(command);
+            matcher.find();
+            function = matcher.group(1);
+            value = matcher.group(2);
+            flag = matcher.group(3);
+            additionalValue = matcher.group(4);
+        } catch (IllegalStateException e) {
+            throw new DukeException("This command does not exist!");
+        }
+
+        String message;
+        switch(function) {
+            case "list":
+                message = this.taskList.toString();
+                break;
+            case "mark":
+                message = this.taskList.markTask(value, true);
+                break;
+            case "unmark":
+                message = this.taskList.markTask(value, false);
+                break;
+            case "todo":
+                message = this.taskList.addToDo(value, flag, additionalValue);
+                break;
+            case "event":
+                message = this.taskList.addEvent(value, flag, additionalValue);
+                break;
+            case "deadline":
+                message = this.taskList.addDeadline(value, flag, additionalValue);
+                break;
+            default:
+                message = "";
+                break;
+        }
+        wrapWithLines(message);
+    }
 
     private void initialise() {
         wrapWithLines("Hello from\n" + Duke.logo);
 
         Scanner sc = new Scanner(System.in);
-        String command = sc.nextLine();
-        TaskList taskList = new TaskList();
-        while (!command.equals("bye")) {
-            Matcher matcher = Duke.commandParser.matcher(command);
-            boolean isValidInput = matcher.find();
-            String function = matcher.group(1);
-            String value = matcher.group(2);
-            String flag = matcher.group(3);
-            String additionalValue = matcher.group(4);
-            String message;
-            switch(function) {
-                case "list":
-                    message = taskList.toString();
-                    break;
-                case "mark":
-                    message = taskList.markTask(Integer.parseInt(value));
-                    break;
-                case "unmark":
-                    message = taskList.unmarkTask(Integer.parseInt(value));
-                    break;
-                case "todo":
-                    message = taskList.addToDo(value);
-                    break;
-                case "event":
-                    message = taskList.addEvent(value, additionalValue);
-                    break;
-                case "deadline":
-                    message = taskList.addDeadline(value, additionalValue);
-                    break;
-                default:
-                    message = taskList.addTask(command);
-                    break;
+        String command;
+        while (!(command = sc.nextLine()).equals("bye")) {
+            try {
+                handle(command);
+            } catch (DukeException e) {
+                wrapWithLines("☹ OOPS!!! " + e.getMessage());
             }
-            wrapWithLines(message);
-            command = sc.nextLine();
         }
         bye();
     }
