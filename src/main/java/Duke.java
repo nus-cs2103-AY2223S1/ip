@@ -29,9 +29,23 @@ public class Duke {
                 System.out.println("OK, I've marked this task as not done yet");
                 System.out.println(String.format("  %s", tasks[taskNumber - 1]));
             } else {
-                Task newTask = new Task(command);
+                Task newTask = null;
+                if (command.startsWith("todo")) {
+                    command = command.replace("todo ", "");
+                    newTask = new ToDo(command);
+
+                } else if (command.startsWith("deadline")) {
+                    command = command.replace("deadline ", "");
+                    String[] commands = command.split(" /by ");
+                    newTask = new Deadline(commands[0], commands[1]);
+                } else  if (command.startsWith("event")) {
+                    command = command.replace("event ", "");
+                    String[] commands = command.split(" /at ");
+                    newTask = new Event(commands[0], commands[1]);
+                }
                 tasks[taskCount++] = newTask;
-                System.out.println("added: " + command);
+                System.out.println("Got it. I've added this task:");
+                System.out.println(newTask);
             }
         }
         System.out.println("Bye. Hope to see you again soon!");
