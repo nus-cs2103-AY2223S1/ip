@@ -1,0 +1,11 @@
+list
+todo read book
+todo return book
+deadline finish ip /by thurs
+event attend lecture /at fri 4-6pm
+list
+mark 2
+list
+unmark 2
+list
+bye

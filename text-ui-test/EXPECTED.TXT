@@ -1,7 +1,70 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+~~~~~~~~~~~
+ TED |._.|
+~~~~~~~~~~~
 
+Hello! I'm Ted and I'm here to help you keep track of your tasks |._.|
+How can I assist you today?
+
+~ |._.| ~
+Your tasklist:
+~
+
+~ |._.| ~
+added to tasklist:
+[T][ ] read book
+task count: 1
+~
+
+~ |._.| ~
+added to tasklist:
+[T][ ] return book
+task count: 2
+~
+
+~ |._.| ~
+added to tasklist:
+[D][ ] finish ip (by: thurs)
+task count: 3
+~
+
+~ |._.| ~
+added to tasklist:
+[E][ ] attend lecture (at: fri 4-6pm)
+task count: 4
+~
+
+~ |._.| ~
+Your tasklist:
+1. [T][ ] read book
+2. [T][ ] return book
+3. [D][ ] finish ip (by: thurs)
+4. [E][ ] attend lecture (at: fri 4-6pm)
+~
+
+~ |._.| ~
+Great! Task done:
+[T][X] return book
+~
+
+~ |._.| ~
+Your tasklist:
+1. [T][ ] read book
+2. [T][X] return book
+3. [D][ ] finish ip (by: thurs)
+4. [E][ ] attend lecture (at: fri 4-6pm)
+~
+
+~ |._.| ~
+Aw :( Task undone:
+[T][ ] return book
+~
+
+~ |._.| ~
+Your tasklist:
+1. [T][ ] read book
+2. [T][ ] return book
+3. [D][ ] finish ip (by: thurs)
+4. [E][ ] attend lecture (at: fri 4-6pm)
+~
+
+Goodbye! Have a pleasant day |._.|

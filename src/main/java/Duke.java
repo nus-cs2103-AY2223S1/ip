@@ -4,16 +4,16 @@ public class Duke {
     private static Task[] tasks = new Task[100];
 
     public static void tedResponse(String filler) {
-        System.out.println("~ ʕ•́ᴥ•̀ʔっ ~\n" + filler + "~\n");
+        System.out.println("~ |._.| ~\n" + filler + "~\n");
     }
 
     public static void main(String[] args) {
-        String banner = "★★★★★★★★★★★★\n"
-                + " TED ʕ•́ᴥ•̀ʔっ \n"
-                + "★★★★★★★★★★★★\n";
+        String banner = "~~~~~~~~~~~\n"
+                + " TED |._.|\n"
+                + "~~~~~~~~~~~\n";
         System.out.println(banner);
-        System.out.println("Hello! I'm Ted and I'm here to help you keep track of your tasks ʕ•́ᴥ•̀ʔっ\n"
-                + "How can I assist you today?");
+        System.out.println("Hello! I'm Ted and I'm here to help you keep track of your tasks |._.|\n"
+                + "How can I assist you today?\n");
 
         Scanner sc = new Scanner(System.in).useDelimiter("\\n");
 
@@ -22,7 +22,7 @@ public class Duke {
 
             if (!command.contains(" ")) {
                 if (command.equals("bye")) {
-                    System.out.println("Goodbye! Have a pleasant day ʕ•́ᴥ•̀ʔっ");
+                    System.out.println("Goodbye! Have a pleasant day |._.|");
                     sc.close();
                     return;
                 }
