@@ -16,7 +16,7 @@ public class Duke {
             String line = stdin.nextLine();
             Scanner scanner = new Scanner(line);
             String command = scanner.hasNext() ? scanner.next() : "";
-            String rest = scanner.hasNextLine() ? scanner.nextLine() : "";
+
             switch (command) {
                 case "":
                     // say("Sorry, I didn't catch that?")
@@ -29,7 +29,7 @@ public class Duke {
                     fExit = true;
                     break;
                 default:
-                    todos.cmdAdd(line);
+                    todos.cmdAdd(new Scanner(line));
                     break;
             }
         }

@@ -1,6 +1,8 @@
 package pnkp.duke.modules;
 
 import java.util.ArrayList;
+import java.util.Scanner;
+
 import static java.lang.String.format;
 import static pnkp.duke.IOFormat.say;
 import pnkp.duke.modules.todos.Task;
@@ -12,7 +14,8 @@ public class Todos {
         todos = new ArrayList<>();
     }
 
-    public void cmdAdd(String name) {
+    public void cmdAdd(Scanner rest) {
+        String name = rest.hasNextLine() ? rest.nextLine() : "";
         todos.add(new Task(name));
         say("Added: " + name);
     }
