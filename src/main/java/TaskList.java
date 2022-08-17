@@ -3,8 +3,22 @@ import java.util.ArrayList;
 public class TaskList {
     private final ArrayList<Task> list = new ArrayList<>();
 
-    public void add(String str) {
-        this.list.add(new Task(str));
+    public Task addTodo(String taskItem) {
+        Task task = new Todo(taskItem);
+        this.list.add(task);
+        return task;
+    }
+
+    public Task addDeadline(String taskItem, String deadline) {
+        Task task = new Deadline(taskItem, deadline);
+        this.list.add(task);
+        return task;
+    }
+
+    public Task addEvent(String taskItem, String eventTiming) {
+        Task task = new Event(taskItem, eventTiming);
+        this.list.add(task);
+        return task;
     }
 
     @Override
@@ -17,12 +31,19 @@ public class TaskList {
         return res;
     }
 
-    public String markItem(int index) {
-        return this.list.get(index - 1).setIsMarked(true);
+    public Task markItem(int index) {
+        Task taskItem = this.list.get(index - 1);
+        taskItem.setIsMarked(true);
+        return taskItem;
     }
 
-    public String unmarkItem(int index) {
-        return this.list.get(index - 1).setIsMarked(false);
+    public Task unmarkItem(int index) {
+        Task taskItem = this.list.get(index - 1);
+        taskItem.setIsMarked(false);
+        return taskItem;
+    }
+
+    public int getTaskCount() {
+        return this.list.size();
     }
 }
-
