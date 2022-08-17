@@ -1,9 +1,6 @@
-import javax.naming.NameNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
-import static java.lang.Double.isNaN;
 
 public class Duke {
     //ArrayList to store tasks
@@ -60,20 +57,23 @@ public class Duke {
 
                     //Handle case when user wants to mark task
                     case "mark":
-                        int index = input.nextInt();
-                        Task taskToBeMarked = duke.lst.get(index-1);
-                        taskToBeMarked.markAsDone();
-                        System.out.printf("\tNice! I've marked this task as done:\n\t%s\n",
-                                taskToBeMarked);
+                        //-1 to get index in 0 indexing
+                        int index = input.nextInt() - 1;
+                        duke.markTask(index);
                         break;
 
                     //Handle case when user wants to unmark task
                     case "unmark":
-                        int index2 = input.nextInt();
-                        Task taskToBeUnmarked = duke.lst.get(index2-1);
-                        taskToBeUnmarked.markAsUndone();
-                        System.out.printf("\tOkay, I've marked this task as not done yet:\n\t%s\n",
-                                taskToBeUnmarked);
+                        //-1 to get index in 0 indexing
+                        int index2 = input.nextInt() - 1;
+                        duke.unmarkTask(index2);
+                        break;
+
+                    //Handle case when user wants to delete task
+                    case "delete":
+                        //-1 to get in 0 indexing
+                        int index3 = input.nextInt() - 1;
+                        duke.deleteTask(index3);
                         break;
 
                     //Default case: Not any of the tasks(aTodo, Deadline, Event) and hence, throws an Exception
@@ -119,16 +119,27 @@ public class Duke {
                 size3);
     }
 
-//    public void markTask(String stringIndex) throws DukeException {
-//        if (isNaN(Integer.parseInt(stringIndex))) {
-//            throw new DukeException("OOPS! The input is not a valid number.");
-//        } else {
-//            int index = Integer.parseInt(stringIndex);
-//            Task taskToBeMarked = lst.get(index-1);
-//            taskToBeMarked.markAsDone();
-//            System.out.printf("\tNice! I've marked this task as done:\n\t%s\n",
-//                    taskToBeMarked);
-//        }
-//    }
+    public void markTask(int index) {
+        Task taskToBeMarked = lst.get(index);
+        taskToBeMarked.markAsDone();
+        System.out.printf("\tNice! I've marked this task as done:\n\t%s\n",
+                taskToBeMarked);
+    }
+
+    public void unmarkTask(int index) {
+        Task taskToBeUnmarked = lst.get(index);
+        taskToBeUnmarked.markAsUndone();
+        System.out.printf("\tOkay, I've marked this task as not done yet:\n\t%s\n",
+                taskToBeUnmarked);
+    }
+
+    public void deleteTask(int index) {
+        Task taskToBeDeleted = lst.get(index);
+        lst.remove(index);
+        int newSize = lst.size();
+        System.out.printf("\tNoted. I've removed this task:\n\t%s\n" +
+                        "\tNow you have %d tasks in the list.\n",
+                taskToBeDeleted, newSize);
+    }
 }
 
