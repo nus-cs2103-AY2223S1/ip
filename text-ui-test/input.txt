@@ -1,0 +1,10 @@
+aaa bbb
+todo read book
+deadline do exam /by Mon 8pm
+event eat dinner /at 5pm-9pm on Tuesday
+list
+mark 4
+mark 1
+unmark 4
+mark 3
+list
