@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.util.regex.Pattern;
 
 public class Duke {
     public static void main(String[] args) {
@@ -18,29 +17,57 @@ public class Duke {
 
         while (true) {
             String input = sc.nextLine();
-
             if (input.equals("bye")) {
                 System.out.println("Ok, see you next time!");
                 break;
-            } else if (input.equals("list")) {
-                for (int i = 0; i < numTasks; i++) {
-                    System.out.printf("%d. %s%n", i + 1, tasks[i]);
+            }
+
+            String[] inputArgs = input.split(" ", 2);
+            String command = inputArgs[0];
+            switch (command) {
+                case "list": {
+                    for (int i = 0; i < numTasks; i++) {
+                        System.out.printf("%d. %s%n", i + 1, tasks[i]);
+                    }
+                    break;
                 }
-            } else if (Pattern.matches("^mark \\d+$", input)) {
-                int taskNum = Integer.parseInt(input.split(" ")[1]);
-                Task task = tasks[taskNum - 1];
-                task.markAsDone();
-                System.out.printf("Well done! I've marked task %d as done:%n", taskNum);
-                System.out.println(task);
-            } else if (Pattern.matches("^unmark \\d+$", input)) {
-                int taskNum = Integer.parseInt(input.split(" ")[1]);
-                Task task = tasks[taskNum - 1];
-                task.markAsUndone();
-                System.out.printf("Sure, I've marked task %d as not done:%n", taskNum);
-                System.out.println(task);
-            } else {
-                tasks[numTasks++] = new Task(input);
-                System.out.println("Added: " + input);
+                case "mark": {
+                    int taskNum = Integer.parseInt(inputArgs[1]);
+                    Task task = tasks[taskNum - 1];
+                    task.markAsDone();
+                    System.out.printf("Well done! I've marked task %d as done:%n", taskNum);
+                    System.out.println(task);
+                    break;
+                }
+                case "unmark": {
+                    int taskNum = Integer.parseInt(inputArgs[1]);
+                    Task task = tasks[taskNum - 1];
+                    task.markAsUndone();
+                    System.out.printf("Sure, I've marked task %d as not done:%n", taskNum);
+                    System.out.println(task);
+                    break;
+                }
+                case "todo": {
+                    Todo todo = new Todo(inputArgs[1]);
+                    tasks[numTasks++] = todo;
+                    System.out.println("Got it, I've added this to-do:");
+                    System.out.println(todo);
+                    break;
+                }
+                case "deadline": {
+                    Deadline deadline = new Deadline(inputArgs[1]);
+                    tasks[numTasks++] = deadline;
+                    System.out.println("Got it, I've added this deadline:");
+                    System.out.println(deadline);
+                    break;
+                }
+                case "event": {
+                    Event event = new Event(inputArgs[1]);
+                    tasks[numTasks++] = event;
+                    System.out.println("Got it, I've added this event:");
+                    System.out.println(event);
+                    break;
+                }
             }
         }
     }
