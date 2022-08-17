@@ -1,10 +1,12 @@
 public class Events extends Task {
+    private static final int SKIP_EVENT_COMMAND = 6;
+    private static final int SKIP_AT_COMMAND = 4;
     private final String time;
 
     private static String process(String command, boolean getDetail) {
-        String detail = command.substring(command.lastIndexOf("event "),
+        String detail = command.substring(SKIP_EVENT_COMMAND,
                 command.indexOf("/at"));
-        String time = command.substring(command.lastIndexOf("/at ") + 4);
+        String time = command.substring(command.lastIndexOf("/at ") + SKIP_AT_COMMAND);
         return (getDetail) ? detail : time;
     }
 

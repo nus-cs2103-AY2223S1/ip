@@ -1,11 +1,11 @@
 public class Deadlines extends Task {
-
+    private static final int SKIP_DEADLINE_COMMAND = 9;
+    private static final int SKIP_BY_COMMAND = 4;
     private final String time;
 
     private static String process(String command, boolean getDetail) {
-        String detail = command.substring(command.lastIndexOf("deadline "),
-                command.indexOf("/by"));
-        String time = command.substring(command.lastIndexOf("/by ") + 4);
+        String detail = command.substring(SKIP_DEADLINE_COMMAND, command.indexOf("/by"));
+        String time = command.substring(command.lastIndexOf("/by ") + SKIP_BY_COMMAND);
         return (getDetail) ? detail : time;
     }
 

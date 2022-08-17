@@ -19,6 +19,10 @@ abstract class Task {
         return this.detail;
     }
 
+    boolean isDone() {
+        return this.isDone;
+    }
+
     @Override
     public boolean equals(Object otherTask) {
         if (otherTask instanceof Task) {
