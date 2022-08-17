@@ -1,0 +1,9 @@
+todo
+todo homework
+deadline assignment /by Friday
+event block event /at tuesday
+mark 1
+list
+mark 5
+unmark 1
+bye

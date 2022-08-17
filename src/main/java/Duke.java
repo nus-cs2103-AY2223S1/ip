@@ -6,8 +6,8 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
         System.out.println("Hi, I'm Jamie.\nWhat do you want?");
 
-        String input = sc.nextLine();
-        while (!input.equals("bye")) {
+
+        for (String input = sc.nextLine(); !input.equals("bye"); input = sc.nextLine()) {
             if (input.equals("list")) {
                 Task.printTaskList();
             }
@@ -28,21 +28,43 @@ public class Duke {
                 }
             }
             if (input.startsWith("todo")) {
-                Task.addTask(new ToDo(input.substring(5)));
+                try {
+                    input = input.substring(5);
+                } catch (StringIndexOutOfBoundsException e) {
+                    System.out.println("The description of todo cannot be empty >:(");
+                    continue;
+                }
+                Task.addTask(new ToDo(input));
             }
             if (input.startsWith("deadline")) {
                 int end = input.indexOf("/by ");
-                Task.addTask(new Deadline(input.substring(9, end), input.substring(end + 4)));
+                String textInput;
+                String byInput;
+                try {
+                    textInput = input.substring(9, end);
+                    byInput = input.substring(end + 4);
+                } catch (StringIndexOutOfBoundsException e) {
+                    System.out.println("Something is missing in the description of this deadline >:(");
+                    continue;
+                }
+                Task.addTask(new Deadline(textInput, byInput));
             }
             if (input.startsWith("event")) {
-                int end = input.indexOf("/at");
-                Task.addTask(new Event(input.substring(6, end), input.substring(end + 4)));
+                int end = input.indexOf("/at ");
+                String atInput;
+                try {
+                    input = input.substring(6, end);
+                    atInput = input.substring(end + 4);
+                } catch (StringIndexOutOfBoundsException e) {
+                    System.out.println("Something is missing in the description of this event >:(");
+                    continue;
+                }
+                Task.addTask(new Event(input, atInput));
             }
-            System.out.println("ok next");
-            input = sc.nextLine();
+
         }
 
-        System.out.println("bye >:(");
+        System.out.println("bye :(");
 
     }
 }
