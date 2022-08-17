@@ -43,8 +43,8 @@ public class Duke {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
+                + "| |_| | |_| |   <  /\n"
+                + "|____/ \\,_|_|\\_\\___|\n";
 
         System.out.println("Hello I'm\n" + logo + "What can I do for you?\n");
         Scanner sc = new Scanner(System.in);
