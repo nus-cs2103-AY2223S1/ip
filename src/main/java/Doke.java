@@ -2,19 +2,15 @@ import java.util.*;
 
 public class Doke {
 
-    private static void listOut(Task[] taskList, int i) {
-        int j = 0;
+    private static void listOut(ArrayList<Task> arr) {
+        int len = arr.size();
+        int i=0;
         System.out.println("_________________________");
-        while (j < i) {
-            System.out.println((j + 1) + "." + taskList[j].toString());
-            j++;
+        while (i < len) {
+            System.out.println((i + 1) + "." + arr.get(i).toString());
+            i++;
         }
         System.out.println("_________________________");
-    }
-
-    private static void addTask(Task[] taskList, String str, int i) {
-        Task task = new Task(str);
-        taskList[i] = task;
     }
 
     private static boolean isInt(String str) {
@@ -69,9 +65,8 @@ public class Doke {
 
     public static void main(String[] args) {
 
-        Task taskList[] = new Task[100];
+        ArrayList<Task> arrayList = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
-        int i = 0;
 
         System.out.println("_________________________");
         System.out.println("    Hi, my name is Doke");
@@ -84,7 +79,7 @@ public class Doke {
         while (!str.equals("bye")) {
 
             if (str.equals("list")) {
-                listOut(taskList, i);
+                listOut(arrayList);
                 str = sc.nextLine();
                 continue;
             }
@@ -96,7 +91,7 @@ public class Doke {
 
                 if (x && num > 0) {
                     if (temp[0].equals("mark")) {
-                        Task current = taskList[num - 1];
+                        Task current = arrayList.get(num - 1);
                         try {
                             current.markDone();
                             System.out.println("_________________________");
@@ -113,7 +108,7 @@ public class Doke {
                         }
                     }
                     if (temp[0].equals("unmark")) {
-                        Task current = taskList[num - 1];
+                        Task current = arrayList.get(num - 1);
                         try {
                             current.markNotDone();
                             System.out.println("_________________________");
@@ -129,12 +124,21 @@ public class Doke {
                             System.out.println();
                         }
                     }
+                    if (temp[0].equals("delete")) {
+                        Task current = arrayList.get(num - 1);
+                        arrayList.remove(num-1);
+                        System.out.println("_________________________");
+                        System.out.println("This task has been removed:");
+                        System.out.println(current.toString());
+                        System.out.println("Nice, now you have " + arrayList.size() + " tasks!!");
+                        System.out.println("_________________________");
+                        System.out.println();
+                    }
                     str = sc.nextLine();
                     continue;
                 }
                 if (temp[0].equals("todo") || temp[0].equals("deadline") || temp[0].equals("event")) {
-
-                    taskList[i] = createSpecialTask(temp);
+                    arrayList.add(createSpecialTask(temp));
                 } else {
                     try {
                         Task dummy = new Task();
@@ -171,10 +175,9 @@ public class Doke {
                 continue;
             }
 
-            i++;
             System.out.println("_________________________");
-            System.out.println("added: " + taskList[i-1].toString());
-            System.out.println("Nice, now you have " + i + " tasks!!");
+            System.out.println("added: " + arrayList.get(arrayList.size() - 1).toString());
+            System.out.println("Nice, now you have " + arrayList.size() + " tasks!!");
             System.out.println("_________________________");
             System.out.println();
 
