@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -15,20 +16,33 @@ public class Duke {
             input = sc.nextLine();
             String[] inputTokens = input.split(" ", 2); // Delimit over " " to extract first keyword
 
+            // Handles Keyword Mapping
+            String keywordInput = inputTokens[0];
+            Keyword keyword;
+            try {
+                keyword = Keyword.getKeyword(keywordInput);
+            }
+            catch (IllegalArgumentException iae) {
+                // Invalid Keyword Input
+                System.out.println(iae.getMessage());
+                continue;
+            }
+
             // Exits Loop
-            if (input.equals("bye")) {
+            if (keyword == Keyword.BYE) {
+                sayGoodbye();
                 break;
             }
 
             // Handles marking tasks as done or not done
-            if (inputTokens[0].equals("mark") || inputTokens[0].equals("unmark")) {
+            if (keyword ==  keyword.MARK || keyword == Keyword.UNMARK) {
                 int index;
                 try {
                     index = Integer.parseInt(inputTokens[1]); // Throw NFE if invalid int
                     Task task = taskList.get(index - 1); // Throws IOOBE if invalid index
 
                     // Mark as done or not done
-                    if (inputTokens[0].equals("mark")) {
+                    if (keyword == Keyword.MARK) {
                         task.markAsDone();
                         String taskListString = String.format("\tGood Job! The following task " +
                                 "has been marked as done:\n\t%s", task);
@@ -49,27 +63,39 @@ public class Duke {
             }
 
             // Outputs Task List
-            if (input.equals("list")) {
+            if (keyword == Keyword.LIST) {
                 displayTaskList(taskList);
                 continue;
             }
 
-            // Add into task list
-            String taskType = inputTokens[0]; // Deadlines, Events or ToDos
+            // Handles creation of new tasks
+            String content;
+
+            // invalid content check
+            try {
+                // Retrieve input excluding keyword
+                content = inputTokens[1]; // Throws AIOOBE
+            }
+            catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println("\tHey! Did you forget to add a task name?");
+                continue;
+            }
+
+            // Add Task based on taskType
             Task taskAdded = null;
-            switch (taskType) {
-                case ("todo") : {
-                    taskAdded = new ToDo(inputTokens[1]);
-                    taskList.add(taskAdded);
-                    break;
+
+            switch (keyword) {
+                case TODO : {
+                     taskAdded = new ToDo(content);
+                     taskList.add(taskAdded);
+                     break;
                 }
-                case ("deadline") : {
-                    String content = inputTokens[1]; // Retrieve input excluding keyword
+                case DEADLINE: {
                     String[] taskTokens = content.split("/by "); // delimit over "/by" to retrieve deadline
                     try {
                         // If delimiting regex is not found, taskTokens returns single item array with the original string
                         String taskName = taskTokens[0];
-                        String deadline = taskTokens[1];
+                        String deadline = taskTokens[1]; // Throws AIOOBE
                         taskAdded = new Deadline(taskName, deadline);
                         taskList.add(taskAdded);
                     }
@@ -81,8 +107,7 @@ public class Duke {
                         break;
                     }
                 }
-                case ("event") : {
-                    String content = inputTokens[1]; // Retrieve input excluding keyword
+                case EVENT : {
                     String[] taskTokens = content.split("/at "); // delimit over "/at" to retrieve deadline
                     try {
                         // If delimiting regex is not found, taskTokens returns single item array with the original string
@@ -107,9 +132,6 @@ public class Duke {
             // Handles output
             successMessage(taskAdded, taskList.size());
         }
-
-        // Exit Statement
-        sayGoodbye();
     }
 
     private static void greetUser(){
