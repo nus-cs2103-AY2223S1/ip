@@ -15,12 +15,10 @@ public class Duke {
                 System.out.println("Please enter some valid text");
                 System.out.println("##############################################");
                 userReply = userInput.nextLine().strip();
-            }
-            else if (userReply.toLowerCase().equals("list")) {
+            } else if (userReply.toLowerCase().equals("list")) {
                 List();
                 userReply = userInput.nextLine().strip();
-            }
-            else if (userReply.toLowerCase().startsWith("mark")) {
+            } else if (userReply.toLowerCase().startsWith("mark")) {
                 try {
                     int number = Integer.parseInt(userReply.split(" ")[1]);
                     Mark(number);
@@ -31,8 +29,7 @@ public class Duke {
                     System.out.println("##############################################");
                     userReply = userInput.nextLine().strip();
                 }
-            }
-            else if(userReply.toLowerCase().startsWith("unmark")) {
+            } else if(userReply.toLowerCase().startsWith("unmark")) {
                 try {
                     int number = Integer.parseInt(userReply.split(" ")[1]);
                     UnMark(number);
@@ -43,9 +40,25 @@ public class Duke {
                     System.out.println("##############################################");
                     userReply = userInput.nextLine().strip();
                 }
-            }
-            else {
-                Add(userReply);
+            } else if (userReply.toLowerCase().startsWith("todo")) {
+                String task = userReply.split(" ", 2)[1];
+                ToDo(task);
+                userReply = userInput.nextLine().strip();
+            } else if (userReply.toLowerCase().startsWith("deadline")) {
+                String[] taskWithDeadline = userReply.split(" ",2)[1]
+                        .split(" /by ",2);
+                String task = taskWithDeadline[0];
+                String by = taskWithDeadline[1];
+                Deadline(task, by);
+                userReply = userInput.nextLine().strip();
+            } else if (userReply.toLowerCase().startsWith("event")) {
+                String[] taskWithPeriod = userReply.split(" ",2)[1]
+                        .split(" /at ",2);
+                String task = taskWithPeriod[0];
+                String period = taskWithPeriod[1];
+                Event(task, period);
+                userReply = userInput.nextLine().strip();
+            } else {
                 userReply = userInput.nextLine().strip();
             }
         }
@@ -58,14 +71,6 @@ public class Duke {
         System.out.println("##############################################");
     }
 
-
-    private static void Add(String userReply) {
-        System.out.println("##############################################");
-        System.out.println("\t\t\t" + "added: " + userReply);
-        System.out.println("##############################################");
-        Task currentTask = new Task(userReply);
-        botArray.add(currentTask);
-    }
     public static void List() {
         System.out.println("##############################################");
         if (botArray.size() == 0) {
@@ -94,6 +99,39 @@ public class Duke {
         Task currentTask = botArray.get(num - 1);
         currentTask.setCompleted(false);
         System.out.println("\t\t\t" + currentTask);
+        System.out.println("##############################################");
+    }
+
+    public static void ToDo(String task) {
+        System.out.println("##############################################");
+        System.out.println("Nice! This task has been successfully added!");
+        ToDo toDo = new ToDo(task);
+        System.out.println("\t\t\t" + toDo.toString());
+        botArray.add(toDo);
+        String numOfTasks = String.format("You currently have %d tasks in the list",botArray.size());
+        System.out.println(numOfTasks);
+        System.out.println("##############################################");
+    }
+
+    public static void Deadline(String task, String by) {
+        System.out.println("##############################################");
+        System.out.println("Nice! This task has been successfully added!");
+        Deadline deadline = new Deadline(task, by);
+        System.out.println("\t\t\t" + deadline.toString());
+        botArray.add(deadline);
+        String numOfTasks = String.format("You currently have %d tasks in the list",botArray.size());
+        System.out.println(numOfTasks);
+        System.out.println("##############################################");
+    }
+
+    public static void Event(String task, String at) {
+        System.out.println("##############################################");
+        System.out.println("Nice! This task has been successfully added!");
+        Event event = new Event(task, at);
+        System.out.println("\t\t\t" + event.toString());
+        botArray.add(event);
+        String numOfTasks = String.format("You currently have %d tasks in the list",botArray.size());
+        System.out.println(numOfTasks);
         System.out.println("##############################################");
     }
 
