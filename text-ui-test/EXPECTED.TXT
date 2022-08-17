@@ -8,25 +8,28 @@ Hello from
 Hello! I'm Duke
 What can I do for you?
 Got it. I've added this task:
-[T][ ] task1
+ [T][ ] task1
 Now you have 1 task(s) in the list.
 Got it. I've added this task:
-[D][ ] go sch (by: today)
+ [D][ ] go sch (by: today)
 Now you have 2 task(s) in the list.
-Nice! You actually did something!:
-[T][X] task1
+Nice! You actually did something:
+ [T][X] task1
+Here are the tasks in your current list:
 1.[T][X] task1
 2.[D][ ] go sch (by: today)
 Got it. I've added this task:
-[E][ ] lunch (at: home)
+ [E][ ] lunch (at: home)
 Now you have 3 task(s) in the list.
-Nice! You actually did something!:
-[D][X] go sch (by: today)
+Nice! You actually did something:
+ [D][X] go sch (by: today)
+Here are the tasks in your current list:
 1.[T][X] task1
 2.[D][X] go sch (by: today)
 3.[E][ ] lunch (at: home)
 OK, I've marked this task as not done yet:
-[D][ ] go sch (by: today)
+ [D][ ] go sch (by: today)
+Here are the tasks in your current list:
 1.[T][X] task1
 2.[D][ ] go sch (by: today)
 3.[E][ ] lunch (at: home)
