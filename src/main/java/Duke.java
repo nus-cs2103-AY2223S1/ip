@@ -89,8 +89,18 @@ public class Duke {
         throw new DukeException("I'm sorry, but I don't know what that means :-(");
     }
 
-    private static void delete(String userInput) {
+    private static void delete(String userInput) throws DukeException {
+        try {
+            Integer.parseInt(userInput.substring(7));
+        } catch(Exception e) {
+            throw new DukeException("Don't try to type funny things!");
+        }
         int intCollection = Integer.parseInt(userInput.substring(7));
+        try {
+            storage.get(intCollection - 1);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException("How to delete something not inside the list?");
+        }
         Task deleted = storage.remove(intCollection - 1);
         System.out.println("Noted. I've removed this task:\n" + deleted.toString()
                             + "\nNow you have " + storage.size() + " tasks in the list.");
@@ -115,7 +125,7 @@ public class Duke {
                 }
             } else if (userInput.equals("list")) {
                 printList();
-            } else if (userInput.equals("todo") || userInput.startsWith("todo" )) {
+            } else if (userInput.equals("todo") || userInput.startsWith("todo ")) {
                 try {
                     toDo(userInput);
                 } catch (DukeException e) {
@@ -134,7 +144,11 @@ public class Duke {
                     System.out.println(e.toString());
                 }
             } else if (userInput.startsWith("delete ")) {
-                delete(userInput);
+                try {
+                    delete(userInput);
+                } catch (DukeException e) {
+                    System.out.println(e.toString());
+                }
             }
             else {
                 try {
