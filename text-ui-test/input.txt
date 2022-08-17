@@ -1,0 +1,6 @@
+hello
+todo eat burger
+deadline cs2103t tasks /by tomorrow
+event football /at 6PM
+mark 3
+list
