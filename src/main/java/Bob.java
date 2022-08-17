@@ -40,29 +40,41 @@ public class Bob {
                 }
             } else {
                 if (reply.toLowerCase().matches("todo(.*)")) {
-                    String taskName = reply.substring(5);
-                    ToDo newTask = new ToDo(taskName);
-                    tasks.add(newTask);
-                    taskCount = taskCount + 1;
-                    System.out.println("okay! new task:" + "\n  " + newTask.toString() + "\njust " + taskCount + " tasks left!");
+                    try {
+                        String taskName = reply.substring(5);
+                        ToDo newTask = new ToDo(taskName);
+                        tasks.add(newTask);
+                        taskCount = taskCount + 1;
+                        System.out.println("okay! new task:" + "\n  " + newTask.toString() + "\njust " + taskCount + " tasks left!");
+                    } catch (StringIndexOutOfBoundsException e) {
+                        System.out.println("Oops! What do you want to do?");
+                    }
                 } else if (reply.toLowerCase().matches("deadline(.*)")) {
-                    String[] temp = reply.split("/");
-                    String taskName = temp[0].substring(9);
-                    String time = temp[1].substring(3);
-                    Deadline newTask = new Deadline(taskName, time);
-                    tasks.add(newTask);
-                    taskCount = taskCount + 1;
-                    System.out.println("okay! new task:" + "\n  " + newTask.toString() + "\njust " + taskCount + " tasks left!");
+                    try {
+                        String[] temp = reply.split("/");
+                        String taskName = temp[0].substring(9);
+                        String time = temp[1].substring(3);
+                        Deadline newTask = new Deadline(taskName, time);
+                        tasks.add(newTask);
+                        taskCount = taskCount + 1;
+                        System.out.println("okay! new task:" + "\n  " + newTask.toString() + "\njust " + taskCount + " tasks left!");
+                    } catch (StringIndexOutOfBoundsException e) {
+                        System.out.println("Oops! What's the deadline again?");
+                    }
                 } else if (reply.toLowerCase().matches("event(.*)")) {
-                    String[] temp = reply.split("/");
-                    String taskName = temp[0].substring(6);
-                    String time = temp[1].substring(3);
-                    Event newTask = new Event(taskName, time);
-                    tasks.add(newTask);
-                    taskCount = taskCount + 1;
-                    System.out.println("okay! new task:" + "\n  " + newTask.toString() + "\njust " + taskCount + " tasks left!");
+                    try {
+                        String[] temp = reply.split("/");
+                        String taskName = temp[0].substring(6);
+                        String time = temp[1].substring(3);
+                        Event newTask = new Event(taskName, time);
+                        tasks.add(newTask);
+                        taskCount = taskCount + 1;
+                        System.out.println("okay! new task:" + "\n  " + newTask.toString() + "\njust " + taskCount + " tasks left!");
+                    } catch (StringIndexOutOfBoundsException e) {
+                        System.out.println("Oops! When's your event again?");
+                    }
                 } else {
-                    System.out.println("maybe something else?");
+                    System.out.println("Oops! Maybe try something else? :(");
                 }
             }
             reply = scanner.nextLine();
