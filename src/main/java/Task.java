@@ -6,8 +6,12 @@ public class Task {
         this.taskName = taskName;
     }
 
-    public void changeState() {
-        this.completed = !this.completed;
+    public void mark() {
+        this.completed = true;
+    }
+
+    public void unmark() {
+        this.completed = false;
     }
 
     @Override

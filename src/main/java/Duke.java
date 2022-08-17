@@ -24,7 +24,7 @@ public class Duke {
     }
 
     public void greet() {
-        System.out.print("Hello! I'm Zlimez~~ \nWhat can I possibly do for you?\n >>>^<<<\n\n");
+        System.out.print("Yes? I'm Zlimez~~ \nWhat can I possibly do for you?\n >>>^<<<\n\n");
     }
 
     public void respond() {
@@ -45,26 +45,41 @@ public class Duke {
     }
 
     private void addTask(String task) {
-        System.out.println("\tlazily added: " + task + " " + emoji);
-        todos[pointer] = new Task(task);
+        System.out.println("\tLazily added this task for you " + emoji);
+
+        Task newTask;
+        if (task.startsWith("todo")) {
+            newTask = new Todo(task);
+        } else if (task.startsWith("deadline")) {
+            newTask = new Deadline(task);
+        } else if (task.startsWith("event")) {
+            newTask= new Event(task);
+        } else {
+            // Fallback should not occur
+            newTask = new Task(task);
+        }
+
+        todos[pointer] = newTask;
         pointer++;
+        System.out.println("\t\t" + newTask);
+        System.out.println("\tWala now you have " + pointer + " tasks in the list.");
     }
 
     private void listTasks() {
-        System.out.println("Really?");
+        System.out.println("\tReally? If you are so forgetful...");
         for (int i = 1; i <= pointer; i++) {
-            System.out.println(i + ". " + todos[i - 1]);
+            System.out.println("\t" + i + ". " + todos[i - 1]);
         }
     }
 
     private void markTask(int index) {
-        todos[index - 1].changeState();
+        todos[index - 1].mark();
         System.out.println("\tWellz, I've marked this task for YOU:");
         System.out.println("\t\t" + todos[index - 1]);
     }
 
     private void unmarkTask(int index) {
-        todos[index - 1].changeState();
+        todos[index - 1].unmark();
         System.out.println("\t-_-, I've unmarked this task for YOU AGAIN:");
         System.out.println("\t\t" + todos[index - 1]);
     }
