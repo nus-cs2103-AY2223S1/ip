@@ -44,6 +44,15 @@ public class Duke {
                         tasks.addDeadline(command);
                     } else if (command.startsWith("event")) {
                         tasks.addEvent(command);
+                    } else if (command.startsWith("delete")) {
+                        String[] splitted = command.split("\\s+");
+                        Integer index;
+                        try {
+                            index = Integer.valueOf(splitted[1]);
+                            tasks.deleteTask(index);
+                        } catch (NumberFormatException err) {
+                            throw new DukeInvalidNumberFormatException("delete");
+                        }
                     } else {
                         throw new DukeException("You have entered an invalid command");
                     }

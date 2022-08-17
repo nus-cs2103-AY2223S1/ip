@@ -78,7 +78,7 @@ public class TaskList {
         this.drawLine();
         this.indentMessage("Got it. I've added this task:");
         this.indentMessage("  " + task);
-        this.indentMessage("Now you have " + this.tasks.size() + " tasks in the list.");
+        showNumberOfTasks();
         this.drawLine();
     }
 
@@ -114,7 +114,7 @@ public class TaskList {
         this.drawLine();
         this.indentMessage("Got it. I've added this task:");
         this.indentMessage("  " + task);
-        this.indentMessage("Now you have " + this.tasks.size() + " tasks in the list.");
+        showNumberOfTasks();
         this.drawLine();
     }
 
@@ -150,7 +150,24 @@ public class TaskList {
         this.drawLine();
         this.indentMessage("Got it. I've added this task:");
         this.indentMessage("  " + task);
-        this.indentMessage("Now you have " + this.tasks.size() + " tasks in the list.");
+        showNumberOfTasks();
         this.drawLine();
+    }
+
+    public void deleteTask(int index) throws DukeException {
+        if (index < 1 || index > this.tasks.size()) {
+            throw new DukeOutOfRangeException(this.tasks.size());
+        }
+        Task task = this.tasks.get(index - 1);
+        this.tasks.remove(index - 1);
+        this.drawLine();
+        this.indentMessage("Noted. I've removed this task:");
+        this.indentMessage("  " + task);
+        showNumberOfTasks();
+        this.drawLine();
+    }
+
+    public void showNumberOfTasks() {
+        this.indentMessage("Now you have " + this.tasks.size() + " tasks in the list.");
     }
 }
