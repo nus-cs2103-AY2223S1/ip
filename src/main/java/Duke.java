@@ -4,6 +4,9 @@ public class Duke {
     private static ArrayList<Task> storage = new ArrayList<>();
     private static int i = 0;
     private static void mark(String userInput) throws DukeException{
+        if (userInput.length() <= 5) {
+            throw new DukeException("Mark which one??");
+        }
         try {
             Integer.parseInt(userInput.substring(5));
         } catch (Exception e) {
@@ -18,6 +21,9 @@ public class Duke {
     }
 
     private static void unmark(String userInput) throws DukeException {
+        if (userInput.length() <= 7) {
+            throw new DukeException("Unmark which one??");
+        }
         try {
             Integer.parseInt(userInput.substring(7));
         } catch (Exception e) {
@@ -110,13 +116,13 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
         String userInput = sc.nextLine();
         while (!userInput.equals("bye")) {
-            if (userInput.startsWith("mark ")) {
+            if (userInput.equals("mark") || userInput.startsWith("mark ")) {
                 try {
                     mark(userInput);
                 } catch (DukeException e) {
                     System.out.println(e.toString());
                 }
-            } else if (userInput.startsWith("unmark ")) {
+            } else if (userInput.equals("unmark") || userInput.startsWith("unmark ")) {
                 try {
                     unmark(userInput);
                 } catch (DukeException e) {
