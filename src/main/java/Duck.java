@@ -10,11 +10,13 @@ public class Duck {
         ArrayList<Todo> list = new ArrayList<>();
         while (!word.equals("bye")) {
             word = scanner.nextLine();
+            if (word.toUpperCase() == "BYE") break;
             if (word.toUpperCase().equals("LIST")) {
                 for (int i = 0; i < list.size(); i++) {
                     System.out.println(i+1 + ". " + list.get(i));
                 }
-            } else {
+            }
+            else {
                 try {
                     String[] arr = word.split(" ", 2);
                     String command = arr[0];
@@ -48,6 +50,10 @@ public class Duck {
                             currentMarkedItem.unCompleteTask();
                             System.out.println("Quack, unmarked! " + currentMarkedItem);
                             break;
+                        case "DELETE":
+                            Todo t = list.remove(Integer.parseInt(arguments) - 1);
+                            System.out.println(t + "\n Is gone!! Quack!");
+                            break;
                         default:
                             System.out.println("Quack!?! What does that even mean!?!?!");
                             break;
@@ -57,30 +63,12 @@ public class Duck {
                             word.toUpperCase().contains("DEADLINE") ||
                             word.toUpperCase().contains("EVENT"))
                     {
-                        System.out.println("Quack!!!!! " + word.toUpperCase() + " Arguments cannot be blank!");
+                        System.out.println("Quack!!!!! " + word.toUpperCase() + " Arguments are missing!");
                     } else {
                         System.out.println("Speak properly! Quack!");
                     }
                 }
             }
-            /*if (word.equals("list")) {
-                for (int i = 0; i < list.size(); i++) {
-                    System.out.println(i+1 + ". " + list.get(i));
-                }
-            } else if(word.contains("unmark")) {
-                String[] split= word.split("\\s+");
-                Todo currentTask = list.get(Integer.parseInt(split[1]) - 1);
-                currentTask.unCompleteTask();
-                System.out.println("Quack, unmarked! " + currentTask);
-            } else if(word.contains("mark")) {
-                String[] split = word.split("\\s+");
-                Todo currentTask = list.get(Integer.parseInt(split[1]) - 1);
-                currentTask.completeTask();
-                System.out.println("Quack, marked! " + currentTask);
-            }  else {
-                System.out.println("added: " + word);
-                list.add(new Todo(word));
-            }*/
         }
         System.out.println("Quack!");
     }
