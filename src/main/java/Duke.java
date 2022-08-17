@@ -4,16 +4,34 @@ import java.util.Scanner;
 
 public class Duke {
 
+    private static ArrayList<Task> taskList;
+    private static final String LINE = "____________________________________________________________";
+
+    private static final String LOGO = "Hello from\n" +
+            " ____        _        \n"
+            + "|  _ \\ _   _| | _____ \n"
+            + "| | | | | | | |/ / _ \\\n"
+            + "| |_| | |_| |   <  __/\n"
+            + "|____/ \\__,_|_|\\_\\___|\n";
+    private static final String MESSAGE_LOGO = "Hello from\n" + LOGO;
+
+    private static final String GREETING = "Hello! I'm Duke\n" +
+            "What can I do for you?";
+
+    private static final String GOODBYE_MESSAGE = "Bye, Hope to see you again soon!";
+
     //method to print in list format
-    public static void print(ArrayList<Task> taskArrayList) {
+    public static void printList(ArrayList<Task> taskArrayList) {
         int counter = 0;
         int numbering = 1;
         int len = taskArrayList.size();
+        System.out.println(LINE);
         while (counter < len) {
             Task temp = taskArrayList.get(counter);
-            System.out.println(numbering + ". " + "[" + temp.getStatusIcon() + "]" + temp);
+            System.out.println(numbering + "." + temp);
             counter++; numbering++;
         }
+        System.out.println(LINE);
     }
 
     //method to mark as done
@@ -22,51 +40,124 @@ public class Duke {
         int numberToRemoveInt = Integer.parseInt(numberToRemove) - 1;
         Task tsk = taskArrayList.get(numberToRemoveInt);
         tsk.markAsDone();
+        System.out.println(LINE);
         System.out.println("Nice! I've marked this task as done:\n" +
-                "[" + tsk.getStatusIcon() + "]" + tsk.toString());
+                "  " + tsk);
+        System.out.println(LINE);
+    }
+
+    public static void markAsUndone(ArrayList<Task> taskArrayList, String addTaskNumberString) {
+        String numberToAddAgain = addTaskNumberString.replaceAll("[^0-9]", "");
+        int numberToRemoveInt = Integer.parseInt(numberToAddAgain) - 1;
+        Task tsk = taskArrayList.get(numberToRemoveInt);
+        tsk.markAsUndone();
+        System.out.println(LINE);
+        System.out.println("OK, I've marked this task as not done yet:\n" +
+                "  " + tsk);
+        System.out.println(LINE);
+    }
+
+    public static void printAddition(Task task) {
+        int tasksLeft = taskList.size();
+        System.out.println(LINE);
+        System.out.println("Got it. I've added this task:\n " + task.toString() +
+                "\nNow you have " + tasksLeft + " tasks in the list.");
+        System.out.println(LINE);
+
+    }
+
+    public static void addTaskToArray(String s, Task.TYPE type) {
+        Task t;
+        switch (type) {
+            case DEADLINE:
+                String[] splitStringDL = s.split("/by");
+                String taskStringDL = splitStringDL[0];
+                String by = splitStringDL[1];
+                t = new Deadline(taskStringDL,by);
+                break;
+
+            case TODO:
+                t = new Todo(s);
+                break;
+
+            case EVENT:
+                String[] splitStringTD = s.split("/at");
+                String taskStringTD = splitStringTD[0];
+                String at = splitStringTD[1];
+                t = new Event(taskStringTD, at);
+                break;
+
+            default:
+                throw new NullPointerException();
+        }
+        taskList.add(t);
+        printAddition(t);
+    }
+
+    public static void end() {
+        System.out.println(LINE);
+        System.out.println(GOODBYE_MESSAGE);
+        System.out.println(LINE);
     }
 
     public static void main(String[] args) {
-        System.out.println("Hello! I'm Duke\n" +
-                "What can I do for you?");
+        System.out.println(LOGO);
+        System.out.println(GREETING);
+        System.out.println(LINE);
 
-        ArrayList<Task> taskList = new ArrayList<>(100);
+        taskList = new ArrayList<>(100);
 
         Scanner sc = new Scanner(System.in);
-        while (true) {
+        boolean running = true;
+
+        while (running) {
             try {
                 String str1 = sc.nextLine();
+                String[] wordArray = str1.toLowerCase().strip().split(" ", 2);
+                String word1 = wordArray[0];
+                String str2 = "";
+                if (wordArray.length >= 2) {
+                    str2 = wordArray[1];
+                }
 
-                if (str1.equals("bye")) {
-                    System.out.println("Bye, Hope to see you again soon!");
-                    break;
 
-                } else if (str1.equals("list")) {
-                    print(taskList);
+                switch(word1) {
 
-                } else if (str1.contains("mark")) {
-                    markAsDone(taskList, str1);
+                    case "bye":
+                        end();
+                        running = false;
+                        break;
 
-                } else {
-                    Task t = new Task(str1);
-                    taskList.add(t);
-                    System.out.println("added: " + str1);
+                    case "list":
+                        printList(taskList);
+                        break;
+
+                    case "mark":
+                        markAsDone(taskList, str2);
+                        break;
+
+                    case "unmark":
+                        markAsUndone(taskList, str2);
+                        break;
+
+                    case "deadline":
+                        addTaskToArray(str2, Task.TYPE.DEADLINE);
+                        break;
+
+                    case "todo":
+                        addTaskToArray(str2, Task.TYPE.TODO);
+                        break;
+
+                    case "event":
+                        addTaskToArray(str2, Task.TYPE.EVENT);
+                        break;
+
                 }
 
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input");
 
-            } catch (IndexOutOfBoundsException e1) {
-                System.out.println("List cannot be empty");
             }
         }
-
-
-//        String logo = " ____        _        \n"
-//                + "|  _ \\ _   _| | _____ \n"
-//                + "| | | | | | | |/ / _ \\\n"
-//                + "| |_| | |_| |   <  __/\n"
-//                + "|____/ \\__,_|_|\\_\\___|\n";
-//        System.out.println("Hello from\n" + logo);
     }
 }
