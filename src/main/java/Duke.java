@@ -42,6 +42,12 @@ public class Duke {
                     } catch (DukeException e) {
                         ui.errorMessage(e);
                     }
+            } else if (cmd.split(" ")[0].equals("delete")) {
+                try {
+                    Commands.delete(cmd, taskList);
+                } catch (DukeException e) {
+                    ui.errorMessage(e);
+                }
             } else {
                 ui.commandDoesNotExist();
             }

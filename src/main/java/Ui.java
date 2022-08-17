@@ -63,6 +63,13 @@ public class Ui {
         System.out.println(line);
     }
 
+    public void delete(Task task, int amountOfTasks) {
+        System.out.println(line);
+        System.out.println("Noted. I've removed this task:");
+        System.out.println(task.toString());
+        System.out.println("Now you have " + amountOfTasks + " tasks in the list.");
+        System.out.println(line);
+    }
     public void errorMessage(DukeException e) {
         System.out.println(line);
         System.out.println(e.toString());

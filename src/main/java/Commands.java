@@ -32,7 +32,7 @@ public class Commands {
     public static void deadline(String cmd, ArrayList<Task> taskList) throws DukeException {
         try {
             String taskName = cmd.substring(cmd.indexOf(" ") + 1, cmd.indexOf("/") - 1);
-            String by = cmd.substring(cmd.indexOf("/") + 4);
+            String by = cmd.substring(cmd.indexOf("/") + 5);
             Task newTask = new Deadline(taskName, by);
             taskList.add(newTask);
             int amountOfTasks = taskList.size();
@@ -45,7 +45,7 @@ public class Commands {
     public static void event(String cmd, ArrayList<Task> taskList) throws DukeException {
         try {
             String taskName = cmd.substring(cmd.indexOf(" ") + 1, cmd.indexOf("/") - 1);
-            String at = cmd.substring(cmd.indexOf("/") + 4);
+            String at = cmd.substring(cmd.indexOf("/") + 5);
             Task newTask = new Event(taskName, at);
             taskList.add(newTask);
             int amountOfTasks = taskList.size();
@@ -64,6 +64,19 @@ public class Commands {
             ui.addTask(newTask, amountOfTasks);
         } catch (Exception e) {
             throw new DukeException("☹ OOPS!!! Please specify what you want to do!");
+        }
+    }
+
+    public static void delete(String cmd, ArrayList<Task> taskList) throws DukeException {
+        try {
+            String number = cmd.split(" ")[1];
+            int num = Integer.parseInt(number);
+            Task task = taskList.get(num - 1);
+            taskList.remove(num - 1);
+            int amountOfTasksLeft = taskList.size();
+            ui.delete(task, amountOfTasksLeft);
+        } catch (Exception e) {
+            throw new DukeException("☹ OOPS!!! Looks like the task you're looking for does not exist :-(");
         }
     }
 
