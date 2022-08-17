@@ -15,6 +15,12 @@ public class Duke {
     private static final String MARK_TASK_AS_DONE_MESSAGE = "Nice! I've marked this task as done:";
     private static final String MARK_TASK_AS_UNDONE_MESSAGE = "OK, I've marked this task as not done yet:";
 
+    private static final String MISSING_TASK_INDEX_ERROR = "Oops! You are missing a task number!\n" +
+            "Use the 'list' command to view the tasks and their number.";
+    private static final String NAN_TASK_INDEX_ERROR = "Oops! The task number you provided is not a number!";
+    private static final String TASK_INDEX_IS_INVALID_ERROR = "Oops! The task number you provided is not valid!\n" +
+            "Use the 'list' command to view the tasks and their number.";
+
     // FIXME: Refactor to use proper enums (A-Enums level)
     private enum Command {
         // The 'bye' command is used to indicate to the program to exit
@@ -29,6 +35,16 @@ public class Duke {
         @Override
         public String toString() {
             return this.name().toLowerCase();
+        }
+    }
+
+    private static Task getTask(TaskManager taskManager, int taskNumber) {
+        Task task;
+        try {
+            task = taskManager.get(taskNumber);
+            return task;
+        } catch (IndexOutOfBoundsException e) {
+            return null;
         }
     }
 
@@ -52,16 +68,44 @@ public class Duke {
                 DukePrinter.print(taskManager.toString());
             } else if (command.equals(Command.MARK.toString())) {
                 // Retrieve the task index (1-indexed) to mark the task as done
-                // FIXME: Error handling if there is no task index provided or the task index provided is not an integer
-                Task doneTask = taskManager.get(Integer.parseInt(input[1]));
-                doneTask.markAsDone();
-                DukePrinter.print(String.format("%s\n\t%s", Duke.MARK_TASK_AS_DONE_MESSAGE, doneTask));
+                if (input.length == 1) {
+                    DukePrinter.print(Duke.MISSING_TASK_INDEX_ERROR);
+                    continue;
+                }
+                int taskNumber;
+                try {
+                    taskNumber = Integer.parseInt(input[1]);
+                } catch (NumberFormatException e) {
+                    DukePrinter.print(Duke.NAN_TASK_INDEX_ERROR);
+                    continue;
+                }
+                Task task = Duke.getTask(taskManager, taskNumber);
+                if (task != null) {
+                    task.markAsDone();
+                    DukePrinter.print(String.format("%s\n\t%s", Duke.MARK_TASK_AS_DONE_MESSAGE, task));
+                } else {
+                    DukePrinter.print(Duke.TASK_INDEX_IS_INVALID_ERROR);
+                }
             } else if (command.equals(Command.UNMARK.toString())) {
                 // Retrieve the task index (1-indexed) to mark the task as undone
-                // FIXME: Error handling if there is no task index provided or the task index provided is not an integer
-                Task undoneTask = taskManager.get(Integer.parseInt(input[1]));
-                undoneTask.markAsUndone();
-                DukePrinter.print(String.format("%s\n\t%s", Duke.MARK_TASK_AS_UNDONE_MESSAGE, undoneTask));
+                if (input.length == 1) {
+                    DukePrinter.print(Duke.MISSING_TASK_INDEX_ERROR);
+                    continue;
+                }
+                int taskNumber;
+                try {
+                    taskNumber = Integer.parseInt(input[1]);
+                } catch (NumberFormatException e) {
+                    DukePrinter.print(Duke.NAN_TASK_INDEX_ERROR);
+                    continue;
+                }
+                Task task = Duke.getTask(taskManager, taskNumber);
+                if (task != null) {
+                    task.markAsUndone();
+                    DukePrinter.print(String.format("%s\n\t%s", Duke.MARK_TASK_AS_UNDONE_MESSAGE, task));
+                } else {
+                    DukePrinter.print(Duke.TASK_INDEX_IS_INVALID_ERROR);
+                }
             } else {
                 taskManager.add(command);
                 DukePrinter.print(String.format("%s %s", Duke.ADD_TASK_MESSAGE, command));

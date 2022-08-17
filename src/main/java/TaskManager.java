@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Utility class to manage the list of tasks and provides augmenting operations to
@@ -7,8 +8,8 @@ import java.util.ArrayList;
  * @author Emily Ong Hui Qi
  */
 public class TaskManager {
-    // The list of tasks
-    private final ArrayList<Task> taskList;
+    // The list of tasks, accessed using 0-based indices
+    private final List<Task> taskList;
 
     public TaskManager() {
         this.taskList = new ArrayList<>();
@@ -26,12 +27,38 @@ public class TaskManager {
     /**
      * Retrieve the task
      *
-     * @param taskIndex An index (1-index) corresponding to a particular task
+     * @param taskNumber An index (1-index) corresponding to a particular task
      * @return Task corresponding to the particular task index
      */
-    public Task get(int taskIndex) {
-        // FIXME: Error handling if the task index is invalid
-        return this.taskList.get(taskIndex - 1);
+    public Task get(int taskNumber) throws IndexOutOfBoundsException {
+        if (!this.isValidTask(taskNumber)) {
+            throw new IndexOutOfBoundsException();
+        }
+        int taskIndex = this.getTaskIndexFromTaskNumber(taskNumber);
+        return this.taskList.get(taskIndex);
+    }
+
+    /**
+     * Utility method to check if the provided 1-based task number is valid, i.e. there exists a
+     * task corresponding to the specified task number
+     *
+     * @param taskNumber The 1-based task number, possibly corresponding to a particular task
+     * @return true if the task index corresponds to a valid task, and false otherwise
+     */
+    private boolean isValidTask(int taskNumber) {
+        int taskIndex = this.getTaskIndexFromTaskNumber(taskNumber);
+        return taskIndex >= 0 && taskIndex < this.taskList.size();
+    }
+
+    /**
+     * Utility method to retrieve the task index from the task number by applying a transformation
+     * operation to deduct 1 from the task number to convert it to a 0-based index
+     *
+     * @param taskNumber The provided task number in 1-based index
+     * @return The corresponding task index in 0-based index
+     */
+    private int getTaskIndexFromTaskNumber(int taskNumber) {
+        return taskNumber - 1;
     }
 
     @Override
