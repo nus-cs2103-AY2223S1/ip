@@ -75,6 +75,21 @@ public class Task {
                 + "Now you have " + taskList.size() + " tasks in the list :)");
         System.out.println("____________________________________________________________");
     }
+
+    public static void deleteTask(int num) {
+        if (num > taskList.size() || num == 0) {
+            System.out.println("____________________________________________________________");
+            System.out.println("There's no such task!");
+            System.out.println("____________________________________________________________");
+            return;
+        }
+        Task removed = taskList.remove(num - 1);
+        System.out.println("____________________________________________________________");
+        System.out.println("Ok, I've removed this task:\n  "
+                + removed.toString() + "\n"
+                + "Now you have " + taskList.size() + " tasks in the list :)");
+        System.out.println("____________________________________________________________");
+    }
 }
 
 
