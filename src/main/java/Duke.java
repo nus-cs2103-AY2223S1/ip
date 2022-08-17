@@ -1,5 +1,9 @@
+import java.lang.StringBuilder;
 import java.util.Scanner;
 
+/**
+ * The Duke class is a personal chatbot assistant.
+ */
 public class Duke {
     private static final String INDENTATION = "    ";
     private static final String LINE = INDENTATION + "──────────────────────────────────────────────────";
@@ -20,6 +24,25 @@ public class Duke {
     }
 
     /**
+     * Adds a task to be tracked and
+     * prints a message that the task is added.
+     *
+     * @param task The specified task to be added onto the tracked list.
+     */
+    private static void addTask(Task task) {
+        tasks[taskCount++] = task;
+        printLine();
+        System.out.println(INDENTATION + "Got it. I've added this task:\n"
+                + INDENTATION + "  " + task);
+        if (taskCount == 1) {
+            System.out.println(INDENTATION + "Now you have 1 task in your list.");
+        } else {
+            System.out.println(INDENTATION + "Now you have " + taskCount + " tasks in your list.");
+        }
+        printLine();
+    }
+
+    /**
      * Checks if a given string value represents an integer.
      *
      * @param s The specified string value to check.
@@ -34,6 +57,11 @@ public class Duke {
         }
     }
 
+    /**
+     * The main method for the chatbot.
+     *
+     * @param args The command line arguments.
+     */
     public static void main(String[] args) {
         System.out.println(INDENTATION + "Hello from\n" + LOGO);
         printLine();
@@ -54,7 +82,7 @@ public class Duke {
                 printLine();
                 System.out.println(INDENTATION + "Here are the tasks in your list:");
                 for (int i = 0; i < taskCount; i++) {
-                    System.out.println(INDENTATION + (i + 1) + ". " + tasks[i]);
+                    System.out.println(INDENTATION + (i + 1) + "." + tasks[i]);
                 }
                 printLine();
 
@@ -77,10 +105,22 @@ public class Duke {
                             + INDENTATION + "  " + specifiedTask);
                     printLine();
 
+                } else if (strings[0].equals("todo") && strings.length > 1) {
+                    addTask(new Todo(input.substring(5)));
+
+                } else if (strings[0].equals("deadline")  && strings.length > 1) {
+                    input = input.substring(9);
+                    strings = input.split(" /by ");
+                    addTask(new Deadline(strings[0], strings[1]));
+
+                } else if (strings[0].equals("event") && strings.length > 1) {
+                    input = input.substring(6);
+                    strings = input.split(" /at ");
+                    addTask(new Event(strings[0], strings[1]));
+
                 } else {
-                    tasks[taskCount++] = new Task(input);
                     printLine();
-                    System.out.println(INDENTATION + "added: " + input);
+                    System.out.println(input);
                     printLine();
                 }
             }
