@@ -24,11 +24,21 @@ public class Duke {
                             System.out.println((i + 1) + "." + taskList.get(i).toString());
                         }
                         break;
+                    case "remove":
+                        if (inputLessAction.length < 2) {
+                            throw new EmptyDescriptionException("remove");
+                        }
+                        int currentPos = Integer.parseInt(inputLessAction[1]) - 1;
+                        System.out.println(Messages.taskRemoved);
+                        System.out.println(taskList.get(currentPos).toString());
+                        taskList.remove(Integer.parseInt(inputLessAction[1]) - 1);
+                        System.out.printf((Messages.taskCount) + "%n", taskList.size());
+                        break;
                     case "mark":
                         if (inputLessAction.length < 2) {
                             throw new EmptyDescriptionException("mark");
                         }
-                        int currentPos = Integer.parseInt(inputLessAction[1]) - 1;
+                        currentPos = Integer.parseInt(inputLessAction[1]) - 1;
                         taskList.get(currentPos).markDone();
                         System.out.println(Messages.taskMarked);
                         System.out.println(taskList.get(currentPos).toString());

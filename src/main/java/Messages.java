@@ -6,7 +6,8 @@ public final class Messages {
     static String taskMarked = "Nice! I've marked this task as done:";
     static String taskUnmarked = "OK, I've marked this task as not done yet:";
     static String taskAdded = "Got it. I've added this task:";
-    static String taskCount = "Now you have %d tasks in the list.";
+    static String taskCount = "Now you have %d task(s) in the list.";
+    static String taskRemoved = "Noted. I've removed this task:";
 
     private Messages() {
 
