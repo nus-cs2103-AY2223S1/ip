@@ -11,6 +11,9 @@ public class Tumu {
     private static final String LIST_USER_TEXT_CMD = "list";
     private static final String MARK_CMD = "mark";
     private static final String UNMARK_CMD = "unmark";
+    private static final String TODO_CMD = "todo";
+    private static final String DEADLINE_CMD = "deadline";
+    private static final String EVENT_CMD = "event";
 
     public static void main(String[] args) {
         greeting();
@@ -52,6 +55,8 @@ public class Tumu {
                         sc.nextLine(); //clear buffer
                     }
                     break;
+                case TODO_CMD:
+
                 default:
                     addTask(command);
             }
