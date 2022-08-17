@@ -52,14 +52,23 @@ public class Duke {
                     case "mark":
                         //-1 to get index in 0 indexing
                         int index = input.nextInt() - 1;
-                        duke.markTask(index);
+                        try {
+                            duke.markTask(index);
+                        } catch (DukeException dE) {
+                            System.out.println("Caught Exception is " + dE);
+                        }
+
                         break;
 
                     //Handle case when user wants to unmark task
                     case "unmark":
                         //-1 to get index in 0 indexing
                         int index2 = input.nextInt() - 1;
-                        duke.unmarkTask(index2);
+                        try {
+                            duke.unmarkTask(index2);
+                        } catch (DukeException dE) {
+                            System.out.println("Caught Exception is " + dE);
+                        }
                         break;
 
                     //Handle case when user wants to delete task
@@ -143,22 +152,34 @@ public class Duke {
 
     /**
      * @param index An int representing the index of task to be marked
+     * @throws DukeException
      */
-    public void markTask(int index) {
-        Task taskToBeMarked = lst.get(index);
-        taskToBeMarked.markAsDone();
-        System.out.printf("\tNice! I've marked this task as done:\n\t%s\n",
-                taskToBeMarked);
+    public void markTask(int index) throws DukeException {
+        int size = lst.size();
+        if (index >= size || index < 0) {
+            throw new DukeException("OOPS! The index of the todo does not exists.");
+        } else {
+            Task taskToBeMarked = lst.get(index);
+            taskToBeMarked.markAsDone();
+            System.out.printf("\tNice! I've marked this task as done:\n\t%s\n",
+                    taskToBeMarked);
+        }
     }
 
     /**
      * @param index An int representing the index of task to be unmarked
+     * @throws DukeException
      */
-    public void unmarkTask(int index) {
-        Task taskToBeUnmarked = lst.get(index);
-        taskToBeUnmarked.markAsUndone();
-        System.out.printf("\tOkay, I've marked this task as not done yet:\n\t%s\n",
-                taskToBeUnmarked);
+    public void unmarkTask(int index) throws DukeException {
+        int size = lst.size();
+        if (index >= size || index < 0) {
+            throw new DukeException("OOPS! The index of the todo does not exists.");
+        } else {
+            Task taskToBeUnmarked = lst.get(index);
+            taskToBeUnmarked.markAsUndone();
+            System.out.printf("\tOkay, I've marked this task as not done yet:\n\t%s\n",
+                    taskToBeUnmarked);
+        }
     }
 
     /**
