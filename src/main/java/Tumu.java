@@ -126,7 +126,7 @@ public class Tumu {
         } else {
             Task task = userTasks.get(oneIndexedNum - 1);
             task.markDone();
-            System.out.println("\tAlright, I have marked this task as done: \n\t" + task);
+            System.out.println("\tAlright, I have marked this task as done:\n\t" + task);
         }
     }
 
@@ -142,7 +142,7 @@ public class Tumu {
         } else {
             Task task = userTasks.get(oneIndexedNum - 1);
             task.unmarkDone();
-            System.out.println("\tAlright, I have unmarked this task: \n\t" + task);
+            System.out.println("\tAlright, I have unmarked this task:\n\t" + task);
         }
     }
 
@@ -151,7 +151,8 @@ public class Tumu {
          * Adds a todo task to list.
          */
 
-        TaskTypeFormatting(new Todo(userInput));
+        if (userInput.isBlank()) System.out.println("\tPlease enter a task.");
+        else TaskTypeFormatting(new Todo(userInput));
     }
 
     private static void addDeadlineTask(String userInput) {
@@ -161,11 +162,13 @@ public class Tumu {
 
         //Check for "/by", if not available then prompt user to add timing.
         if (!userInput.contains("/by")) {
-            System.out.println("\tRemember to add a timing for the deadline using /by! (╥﹏╥)");
+            System.out.println("\tRemember to add a timing for the deadline using /by! (╥_╥)");
         } else {
             //Parse the string. Make sure there is no multiple "/by" statements.
             String[] parse = userInput.replaceAll("\\s+", "").split("/by");
             if (parse.length > 2) System.out.println("\tThere's too many timings, I'm confused. ◔_◔");
+            else if (parse.length < 2 || parse[0].isBlank() || parse[1].isBlank())
+                System.out.println("\tPlease fill in the task and/or deadline!");
             else TaskTypeFormatting(new Deadline(parse[0], parse[1]));
         }
     }
@@ -177,11 +180,13 @@ public class Tumu {
 
         //Check for "/at", if not available then prompt user to add timing.
         if (!userInput.contains("/at")) {
-            System.out.println("\tRemember to add a timing for the event using /at! (╥﹏╥)");
+            System.out.println("\tRemember to add a timing for the event using /at! (╥_╥)");
         } else {
             //Parse the string. Make sure there is no multiple "/at" statements.
             String[] parse = userInput.replaceAll("\\s+", "").split("/at");
             if (parse.length > 2) System.out.println("\tThere's too many timings, I'm confused. ◔_◔");
+            else if (parse.length < 2 || parse[0].isBlank() || parse[1].isBlank())
+                System.out.println("\tPlease fill in the task and/or timing!");
             else TaskTypeFormatting(new Event(parse[0], parse[1]));
         }
     }

@@ -1,0 +1,23 @@
+checking
+todo
+todo a task
+todo todo task
+deadline task /by tonight
+deadline task /by tonight /by tomorrow
+deadline
+deadline /by
+list
+event
+event /at
+event/at
+event /at 2 /at 2
+event /at 2
+event taskevent /at 2
+mark3
+mark 3
+unmark 4
+list
+unmark 3
+list
+LIST
+BYE
