@@ -87,12 +87,8 @@ public class Duke {
         line();
     }
 
-    private int getArraySize() throws DukeException {
-        if (this.list.size() == 0) {
-            throw new DukeException("Unfortunately, you do not have any tasks at hand. " +
-                    "Try creating some first.");
-        }
-        return this.list.size();
+    private void printArraySize() {
+        System.out.println("Now you have " + this.list.size() + " tasks in the list.");
     }
 
     private void handleTodo(String input) throws DukeException {
@@ -135,13 +131,43 @@ public class Duke {
         addTask(event);
     }
 
-    private void addTask(Task t) throws DukeException {
+    private void addTask(Task t) {
         this.list.add(t);
         line();
         System.out.println("Got it. I've added this task:");
         System.out.println(t);
-        System.out.println("Now you have " + getArraySize() + " tasks in the list.");
+        printArraySize();
         line();
+    }
+
+    private void deleteTask(int index) throws DukeException {
+        int numOfTasks = this.list.size();
+        if (index < 1) {
+            throw new DukeException("Hey there! Are you sure you are referring to a correct task? " +
+                    " It definitely has to be at least 1!");
+        }
+        if (index > numOfTasks) {
+            throw new DukeException(String.format("That's magical! You only have %d task(s) at hand!", numOfTasks));
+        }
+        if (numOfTasks == 0) {
+            throw new DukeException("You cant delete anything yet! Try creating some tasks first!");
+        }
+        Task t = getTask(index);
+        int indexInList = index - 1;
+        this.list.remove(indexInList);
+        line();
+        System.out.println("Noted. I've removed this task:");
+        System.out.println(t);
+        printArraySize();
+        line();
+    }
+
+    private void handleDelete(String input) throws DukeException {
+        if (input.length() == 0) {
+            throw new DukeException("Did you forget to specify which task to delete?");
+        }
+        int index = Integer.parseInt(input);
+        deleteTask(index);
     }
 
     private void exit() {
@@ -198,6 +224,10 @@ public class Duke {
                     }
                     case ("event"): {
                         duke.handleEvent(second);
+                        break;
+                    }
+                    case ("delete"): {
+                        duke.handleDelete(second);
                         break;
                     }
                     default: {

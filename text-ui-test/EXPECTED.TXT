@@ -79,6 +79,11 @@ Here are the tasks in your list:
 3.[E][ ] project meeting (at: Mon 2-4pm)
 ________________________________________
 ________________________________________
+Noted. I've removed this task:
+[E][ ] project meeting (at: Mon 2-4pm)
+Now you have 2 tasks in the list.
+________________________________________
+________________________________________
 Invalid command entered. I don't recognize it. Sorry!
 ________________________________________
 ________________________________________
