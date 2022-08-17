@@ -42,27 +42,53 @@ public class Duke {
 
             if (input.startsWith("mark")) {
 
-                char i = input.charAt(5);
-                int index = Character.getNumericValue(i);
-                Task t = listOfThings.get(index - 1);
+                try {
+                    char i = input.charAt(5);
+                    int index = Character.getNumericValue(i);
+                    Task t = listOfThings.get(index - 1);
 
-                t.markDone();
+                    t.markDone();
 
-                input = sc.nextLine();
-                continue;
+                    input = sc.nextLine();
+                    continue;
+                } catch (StringIndexOutOfBoundsException e) {
+                    System.out.println(straightLine + "\n  Insufficient information to mark! Please input more ;-;\n"
+                            + straightLine + "\n");
+                    input = sc.nextLine();
+                    continue;
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println(straightLine + "\n  HEY THERE'S NO SUCH TASK! >:(\n"
+                            + straightLine + "\n");
+                    input = sc.nextLine();
+                    continue;
+                }
 
             }
 
             if (input.startsWith("unmark")) {
 
-                char i = input.charAt(7);
-                int index = Character.getNumericValue(i);
-                Task t = listOfThings.get(index - 1);
+                try {
 
-                t.markUndone();
+                    char i = input.charAt(7);
+                    int index = Character.getNumericValue(i);
+                    Task t = listOfThings.get(index - 1);
 
-                input = sc.nextLine();
-                continue;
+                    t.markUndone();
+
+                    input = sc.nextLine();
+                    continue;
+                } catch (StringIndexOutOfBoundsException e) {
+                    System.out.println(straightLine + "\n  Insufficient information to unmark! Please input more ;-;\n"
+                            + straightLine + "\n");
+                    input = sc.nextLine();
+                    continue;
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println(straightLine + "\n  HEY THERE'S NO SUCH TASK! >:(\n"
+                            + straightLine + "\n");
+                    input = sc.nextLine();
+                    continue;
+                }
+
             }
 
             if (input.startsWith("todo")) {
