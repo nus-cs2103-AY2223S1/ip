@@ -41,10 +41,10 @@ public class Duke {
                     this.unmarkTask(commandArg);
                     break;
                 case "todo": case "deadline": case "event":
-                    if (commandArg.equals("")) {
-                        throw new DukeException("OOPS! The description of a task cannot be empty.");
-                    }
                     this.addTask(commandArg, command);
+                    break;
+                case "delete":
+                    this.deleteTask(commandArg);
                     break;
                 default:
                     throw new DukeException("Sorry, I don't understand what that means :(");
@@ -60,7 +60,12 @@ public class Duke {
     }
 
     private void addTask(String task, String type) throws DukeException {
+        if (task.equals("")) {
+            throw new DukeException("OOPS! The description of a task cannot be empty.");
+        }
+
         Task newTask = null;
+
         switch (type) {
             case "todo" :
                 newTask = new ToDo(task);
@@ -86,7 +91,19 @@ public class Duke {
             printMessage("Got it. I've added this task:\n\t" + newTask
                     + "\nNow you have " + this.taskList.totalTask() + " tasks in the list.");
         }
-
+    }
+    private void deleteTask(String n) {
+        try {
+            int index = Integer.parseInt(n);
+            Task deleted = this.taskList.getTaskN(index);
+            this.taskList.deleteTaskN(index);
+            printMessage("Noted. I've removed this task:\n\t" + deleted.toString() +
+                    "\nNow you have " + this.taskList.totalTask() + " tasks in the list.");
+        } catch (NumberFormatException e) {
+            this.printMessage("OOPS! You must enter the number of task to be deleted.");
+        } catch (IndexOutOfBoundsException e) {
+            this.printMessage("OOPS! The number you entered is not within the valid range.");
+        }
     }
 
     private void markTask(String n) {

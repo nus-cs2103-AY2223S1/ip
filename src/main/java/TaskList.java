@@ -19,6 +19,10 @@ public class TaskList {
         this.taskList.get(n - 1).isDoneSetter(isDone);
     }
 
+    public void deleteTaskN(int n) {
+        this.taskList.remove(n - 1);
+    }
+
     public Task getTaskN(int n) {
         // start counting from 1
         return this.taskList.get(n - 1);
