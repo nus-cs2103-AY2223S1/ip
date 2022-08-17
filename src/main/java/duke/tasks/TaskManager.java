@@ -5,10 +5,7 @@ import duke.DukeException;
 import utils.Constants;
 import utils.DukeUtils;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -65,12 +62,15 @@ public class TaskManager {
     }
 
     public void saveTasksToDisk() {
-        Path path = Paths.get(Duke.DATA_RELATIVE_URL);
+        BufferedWriter writer;
         try {
             new PrintWriter(Duke.DATA_RELATIVE_URL).close();
+            writer = new BufferedWriter(new FileWriter(new File(Duke.DATA_RELATIVE_URL)));
             for (Task t : tasks) {
-                Files.writeString(path, t.savedString(), StandardOpenOption.APPEND);
+                writer.write(t.savedString());
+                writer.newLine();
             }
+            writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
