@@ -28,7 +28,7 @@ public class Duke {
                     for (int i = 0; i < Task.lsSize(); i++) {
                         System.out.printf("     %d. %s%n", i + 1, ls[i].myTask());
                     }
-                    System.out.print("\n");
+                    System.out.println("\n");
                 } else if (curr.startsWith("mark")) {
                     int index = Integer.parseInt(curr.split("\\s")[1]);
                     Task myTask = ls[index - 1];
