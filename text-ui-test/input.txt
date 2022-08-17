@@ -12,4 +12,6 @@ todo
 blah
 deadline k /by
 mark 10
+delete 3
+list
 bye

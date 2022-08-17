@@ -36,6 +36,13 @@ public class Duke {
                 } catch (ArrayIndexOutOfBoundsException e) {
                     Duke.printText("Uhoh! The item doesn't exist");
                 }
+            } else if (input.matches("delete \\d+")) {
+                int itemIndex = Integer.parseInt(input.replaceAll("[^0-9]", ""));
+                try {
+                    Duke.printText(list.deleteItem(itemIndex));
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    Duke.printText("Uhoh! The item doesn't exist");
+                }
             } else {
                 try {
                     Duke.printText(list.insertItem(input));
