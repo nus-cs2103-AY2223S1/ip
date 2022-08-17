@@ -6,7 +6,7 @@ public class Duke {
         int j = 0;
         System.out.println("_________________________");
         while (j < i) {
-            System.out.println((j + 1) + ".[" + taskList[j].getStatusIcon() + "] " + taskList[j].getDesc());
+            System.out.println((j + 1) + "." + taskList[j].toString());
             j++;
         }
         System.out.println("_________________________");
@@ -39,6 +39,32 @@ public class Duke {
             return -1; //String is not an Integer
         }
 
+    }
+
+    private static Task createSpecialTask(String[] arr) {
+        String word = arr[1];
+        String time="";
+        int i = 2;
+        int length = arr.length;
+        while (i < length && arr[i].charAt(0) != '/') {
+            word = word + " " + arr[i];
+            i++;
+        }
+        if (i != length) {
+            time = arr[++i];
+            i++;
+            while (i< length) {
+                time += " " + arr[i];
+                i++;
+            }
+        }
+        if (arr[0].equals("todo")) {
+            return new ToDo(word);
+        } else if (arr[0].equals("deadline")) {
+            return new Deadline(word, time);
+        } else {
+            return new Events(word, time);
+        }
     }
 
     public static void main(String[] args) {
@@ -75,15 +101,13 @@ public class Duke {
                             current.markDone();
                             System.out.println("_________________________");
                             System.out.println("Nice! I've marked this task as done:");
-                            System.out.println("[" + current.getStatusIcon()
-                                    + "] " + current.getDesc());
+                            System.out.println(current.toString());
                             System.out.println("_________________________");
                             System.out.println();
                         } catch (Exception a) {
                             System.out.println("_________________________");
                             System.out.println("This task is already marked done:");
-                            System.out.println("[" + current.getStatusIcon()
-                                    + "] " + current.getDesc());
+                            System.out.println(current.toString());
                             System.out.println("_________________________");
                             System.out.println();
                         }
@@ -94,15 +118,13 @@ public class Duke {
                             current.markNotDone();
                             System.out.println("_________________________");
                             System.out.println("OK, I've marked this task as not done yet:");
-                            System.out.println("[" + current.getStatusIcon()
-                                    + "] " + current.getDesc());
+                            System.out.println(current.toString());
                             System.out.println("_________________________");
                             System.out.println();
                         } catch (Exception a) {
                             System.out.println("_________________________");
                             System.out.println("This task is already marked not done:");
-                            System.out.println("[" + current.getStatusIcon()
-                                    + "] " + current.getDesc());
+                            System.out.println(current.toString());
                             System.out.println("_________________________");
                             System.out.println();
                         }
@@ -110,12 +132,19 @@ public class Duke {
                     str = sc.nextLine();
                     continue;
                 }
+                if (temp[0].equals("todo") || temp[0].equals("deadline") || temp[0].equals("event")) {
+                    taskList[i] = createSpecialTask(temp);
+                } else {
+                    addTask(taskList, str, i);
+                }
+            } else {
+                addTask(taskList, str, i);
             }
 
-            addTask(taskList, str, i);
             i++;
             System.out.println("_________________________");
-            System.out.println("added: " + str);
+            System.out.println("added: " + taskList[i-1].toString());
+            System.out.println("Nice, now you have " + i + " tasks!!");
             System.out.println("_________________________");
             System.out.println();
 
