@@ -7,17 +7,17 @@ public class Duke {
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-
+        Scanner sc = new Scanner(System.in);
         String horizontalLine = new String(new char[50]).replace("\0", "~");
         String greeting = "Hello! I'm Duke\n" +
                 "\tWhat can I duke for you?";
+
+        System.out.println("Hello from\n" + logo);
 
         System.out.println("\t" + horizontalLine);
         System.out.println("\t" + greeting);
         System.out.println("\t" + horizontalLine);
 
-        Scanner sc = new Scanner(System.in);
         String input = sc.nextLine();
 
         while (!input.toLowerCase().equals("bye")) {
