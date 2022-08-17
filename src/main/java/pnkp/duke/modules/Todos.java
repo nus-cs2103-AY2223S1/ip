@@ -26,7 +26,7 @@ public class Todos {
         ArrayList<String> output = new ArrayList<>(todos.size());
         output.add("Here are the tasks in your list:");
         for(int i=0; i<todos.size(); i++) {
-            output.add(format("%d. %s", i, todos.get(i).toString()));
+            output.add(format("%d. %s", i+1, todos.get(i).toString()));
         }
         say(output);
     }
@@ -37,7 +37,8 @@ public class Todos {
             return;
         }
 
-        int taskID = rest.nextInt();
+        int taskID = rest.nextInt() - 1;
+        // if IndexOOB then say("OOB") return end
         todos.get(taskID).setDone(true);
         say(List.of("Nice! I've marked this task as done:",
                     todos.get(taskID).toString()));
@@ -49,7 +50,8 @@ public class Todos {
             return;
         }
 
-        int taskID = rest.nextInt();
+        int taskID = rest.nextInt() - 1;
+        // if IndexOOB then say("OOB") return end
         todos.get(taskID).setDone(false);
         say(List.of("Alright, I've marked this task as not done yet:",
                 todos.get(taskID).toString()));
