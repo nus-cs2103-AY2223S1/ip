@@ -6,7 +6,8 @@ import java.util.Scanner;
  */
 public class Duke {
     private static final String INDENTATION = "    ";
-    private static final String LINE = INDENTATION + "──────────────────────────────────────────────────";
+    private static final String LINE = INDENTATION
+            + "____________________________________________________________";
     private static final String LOGO = " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
             + "| | | | | | | |/ / _ \\\n"
@@ -120,7 +121,7 @@ public class Duke {
 
                 } else {
                     printLine();
-                    System.out.println(input);
+                    System.out.println(INDENTATION + input);
                     printLine();
                 }
             }
