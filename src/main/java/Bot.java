@@ -4,18 +4,17 @@ import java.util.HashMap;
 public class Bot {
 
     protected final String name;
-    protected final ArrayList<Task> tasks;
-    protected static final String SPACE = "    ";
-    protected static final String BORDER = "    ____________________________________________________________";
+    protected final TaskList taskList;
+    protected static final String BORDER = "____________________________________________________________";
 
     public Bot() {
         this.name = "Bocil";
-        this.tasks = new ArrayList<Task>();
+        this.taskList = new TaskList();
     }
 
     public void introduce() {
-        String line1 = String.format("%sHello! I'm %s", SPACE, this.name);
-        String line2 = String.format("%sWhat can I do for you?", SPACE);
+        String line1 = String.format("Hello! I'm %s", this.name);
+        String line2 = String.format("What can I do for you?");
         System.out.println(String.format("%s\n%s\n%s\n%s\n", BORDER, line1, line2, BORDER));
     }
 
@@ -32,43 +31,35 @@ public class Bot {
             if (command.equals("todo")) {
                 task = new Todo(name);
             } else if (command.equals("deadline")) {
-                String[] details = name.split("\\s/by");
+                String[] details = name.split("\\s/by\\s");
                 task = new Deadline(details[0], details[1]);
             } else if (command.equals("event")) {
-                String[] details = name.split("\\s/at");
+                String[] details = name.split("\\s/at\\s");
                 task = new Event(details[0], details[1]);
             }
-            this.tasks.add(task);
+            this.taskList.addTask(task);
             String header = "Got it. I've added this task:";
             String line = String.format("  %s", task.toString());
-            String footer = String.format("Now you have %s task in the list", this.tasks.size());
-            response = String.format("%s%s\n%s%s\n%s%s", SPACE, header, SPACE, line, SPACE, footer);
+            String footer = String.format("Now you have %s task in the list", this.taskList.getSize());
+            response = String.format("%s\n%s\n%s", header, line, footer);
         } else if (split[0].equals("mark")) {
-            Task task = this.tasks.get(Integer.parseInt(split[1])-1);
+            Task task = this.taskList.getTask(Integer.parseInt(split[1]));
             task.mark();
             String header = "Nice! I've marked this task as done:";
             String line = String.format("  %s", task.toString());
-            response = String.format("%s%s\n%s%s", SPACE, header, SPACE, line);
+            response = String.format("%s\n%s", header, line);
         } else if (split[0].equals("unmark")) {
-            Task task = this.tasks.get(Integer.parseInt(split[1])-1);
+            Task task = this.taskList.getTask(Integer.parseInt(split[1])-1);
             task.unmark();
             String header = "OK, I've marked this task as not done yet:";
             String line = String.format("  %s", task.toString());
-            response = String.format("%s%s\n%s%s", SPACE, header, SPACE, line);
+            response = String.format("%s\n%s", header, line);
         } else if (input.equals("bye")) {
             String header = "Bye. Hope to see you again soon!";
-            response = String.format("%s%s", SPACE, header);
+            response = String.format("%s", header);
         } else if (input.equals("list")) {
             String header = "Here are the tasks in your list";
-            response = String.format("%s%s\n", SPACE, header);
-            for (int i = 0; i < this.tasks.size(); i++) {
-                Task task = this.tasks.get(i);
-                String line = String.format("%s.%s", i + 1, task.toString());
-                response = String.format("%s%s%s", response, SPACE, line);
-                if (i < this.tasks.size() - 1) {
-                    response = response.concat("\n");
-                }
-            }
+            response = String.format("%s\n%s", header, taskList.toString());
         } else {
             response = "WRONG!!!!!";
         }
