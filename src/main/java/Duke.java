@@ -2,12 +2,73 @@ import java.util.Scanner;
 
 public class Duke {
     private static final String LINE_BREAK = "\t" + "-------------------------------------------------";
+    private final Scanner sc;
     private String input;
     private Task[] tasks = new Task[100];
     private int taskIndex = 0;
 
+    public Duke(Scanner sc) {
+        this.sc = sc;
+    }
+
     private void greet() {
         System.out.println("Hello! I'm Ee Suan!\nWhat can I do for you?");
+    }
+
+    public void start() throws DukeException {
+        this.greet();
+        try {
+        input = sc.next();
+        while (!input.equals("bye")) {
+            switch (input) {
+                case "list":
+                    printList();
+                    break;
+                case "mark": {
+                    int index = sc.nextInt();
+                    mark(index);
+                    break;
+                }
+                case "unmark": {
+                    int index = sc.nextInt();
+                    unmark(index);
+                    break;
+                }
+                case "todo": {
+                    if (sc.nextLine().equals("")) {
+                        throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+                    }
+                    input += sc.nextLine();
+                    Task todo = createToDo();
+                    addTask(todo);
+                    echoTask(todo);
+                    break;
+                }
+                case "deadline": {
+                    input += sc.nextLine();
+                    Task deadline = createDeadline();
+                    addTask(deadline);
+                    echoTask(deadline);
+                    break;
+                }
+                case "event": {
+                    input += sc.nextLine();
+                    Task event = createEvent();
+                    addTask(event);
+                    echoTask(event);
+                    break;
+                }
+                default:
+                    throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+            }
+        }
+            input = sc.next();
+        }
+        catch (DukeException e) {
+            System.out.println(LINE_BREAK);
+            System.out.println("\t" + e.getMessage());
+            System.out.println(LINE_BREAK);
+        }
     }
 
     private void exit() {
@@ -22,7 +83,7 @@ public class Duke {
         System.out.println(LINE_BREAK + "\n\tGot it. I've added this task: \n\t  " + task + "\n\tNow you have " + taskIndex + " task(s) in the list.\n" + LINE_BREAK);
     }
 
-    private void list() {
+    private void printList() {
         System.out.println(LINE_BREAK + "\n\tHere are the tasks in your list:\n\t");
         for (int i = 0; i < taskIndex; i++) {
             Task curTask = tasks[i];
@@ -71,56 +132,10 @@ public class Duke {
         taskIndex++;
     }
 
-    public static void main(String[] args) {
-        Duke duke = new Duke();
-        duke.greet();
-        Scanner scan = new Scanner(System.in);
-        duke.input = scan.next();
-        while (!duke.input.equals("bye")) {
-            switch (duke.input) {
-                case "list":
-                    duke.list();
-                    break;
-                case "mark": {
-                    int index = scan.nextInt();
-                    duke.mark(index);
-                    break;
-                }
-                case "unmark": {
-                    int index = scan.nextInt();
-                    duke.unmark(index);
-                    break;
-                }
-                case "todo": {
-                    duke.input += scan.nextLine();
-                    Task todo = duke.createToDo();
-                    duke.addTask(todo);
-                    duke.echoTask(todo);
-                    break;
-                }
-                case "deadline": {
-                    duke.input += scan.nextLine();
-                    Task deadline = duke.createDeadline();
-                    duke.addTask(deadline);
-                    duke.echoTask(deadline);
-                    break;
-                }
-                case "event": {
-                    duke.input += scan.nextLine();
-                    Task event = duke.createEvent();
-                    duke.addTask(event);
-                    duke.echoTask(event);
-                    break;
-                }
-                default:
-                    duke.input += scan.nextLine();
-                    Task task = new Task(duke.input);
-                    duke.addTask(task);
-                    duke.echoTask(task);
-                    break;
-            }
-            duke.input = scan.next();
-        }
+    public static void main(String[] args) throws DukeException {
+        Scanner sc = new Scanner(System.in);
+        Duke duke = new Duke(sc);
+        duke.start();
         duke.exit();
 
     }
