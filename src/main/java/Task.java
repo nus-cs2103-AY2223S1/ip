@@ -1,8 +1,8 @@
-public class Task {
+abstract class Task {
     protected String taskName;
     protected boolean isDone;
 
-    public Task(String taskName){
+    protected Task(String taskName){
         this.taskName = taskName;
         this.isDone = false;
     }
@@ -21,6 +21,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return taskName;
+        String statusIcon = getStatusIcon();
+        return "[" + statusIcon + "] " + taskName;
     }
 }

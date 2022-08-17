@@ -12,9 +12,13 @@ public class Ui {
         System.out.println(line + "\n" + text + "\n" + line);
     }
 
-    public void addTask(Task task) {
-        String taskAdded = "added: " + task.toString();
-        System.out.println(line + "\n" + taskAdded + "\n" + line);
+    public void addTask(Task task, int amountOfTasks) {
+        System.out.println(line);
+        System.out.println("Got it. I've added this task:");
+        System.out.println(task.toString());
+        System.out.println("Now you have " + amountOfTasks + " tasks in the list.");
+        System.out.println(line);
+
     }
 
     public void list(ArrayList<Task> taskList) {
@@ -23,8 +27,7 @@ public class Ui {
         int count = 1;
         for (Task task : taskList) {
             String taskName = task.toString();
-            String statusIcon = task.getStatusIcon();
-            System.out.println(count + ".[" + statusIcon + "] " + taskName);
+            System.out.println(count + "." + taskName);
             count++;
         }
 
@@ -33,21 +36,19 @@ public class Ui {
 
     public void marked(Task task){
         String taskName = task.toString();
-        String statusIcon = task.getStatusIcon();
 
         System.out.println(line);
         System.out.println("Nice! I've marked this task as done:");
-        System.out.println("[" + statusIcon + "] " + taskName);
+        System.out.println(taskName);
         System.out.println(line);
     }
 
     public void unmarked(Task task){
         String taskName = task.toString();
-        String statusIcon = task.getStatusIcon();
 
         System.out.println(line);
         System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println("[" + statusIcon + "] " + taskName);
+        System.out.println(taskName);
         System.out.println(line);
     }
 
