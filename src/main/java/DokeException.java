@@ -2,7 +2,6 @@ public class DokeException extends RuntimeException{
     String text = null;
 
     public DokeException(String text) {
-        System.out.println(2);
         this.text = text;
     }
 
