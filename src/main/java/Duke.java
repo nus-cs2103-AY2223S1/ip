@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class Duke {
     public static void main(String[] args) {
@@ -25,6 +26,18 @@ public class Duke {
                 for (int i = 0; i < numTasks; i++) {
                     System.out.printf("%d. %s%n", i + 1, tasks[i]);
                 }
+            } else if (Pattern.matches("^mark \\d+$", input)) {
+                int taskNum = Integer.parseInt(input.split(" ")[1]);
+                Task task = tasks[taskNum - 1];
+                task.markAsDone();
+                System.out.printf("Well done! I've marked task %d as done:%n", taskNum);
+                System.out.println(task);
+            } else if (Pattern.matches("^unmark \\d+$", input)) {
+                int taskNum = Integer.parseInt(input.split(" ")[1]);
+                Task task = tasks[taskNum - 1];
+                task.markAsUndone();
+                System.out.printf("Sure, I've marked task %d as not done:%n", taskNum);
+                System.out.println(task);
             } else {
                 tasks[numTasks++] = new Task(input);
                 System.out.println("Added: " + input);
