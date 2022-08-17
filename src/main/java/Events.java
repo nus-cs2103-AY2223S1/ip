@@ -6,6 +6,10 @@ public class Events extends Task{
         this.at = at;
     }
 
+    public Events() throws DokeException {
+        throw new DokeException("Events");
+    }
+
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + at + ")";

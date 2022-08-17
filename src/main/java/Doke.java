@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Duke {
+public class Doke {
 
     private static void listOut(Task[] taskList, int i) {
         int j = 0;
@@ -104,7 +104,7 @@ public class Duke {
                             System.out.println(current.toString());
                             System.out.println("_________________________");
                             System.out.println();
-                        } catch (Exception a) {
+                        } catch (DokeException a) {
                             System.out.println("_________________________");
                             System.out.println("This task is already marked done:");
                             System.out.println(current.toString());
@@ -121,7 +121,7 @@ public class Duke {
                             System.out.println(current.toString());
                             System.out.println("_________________________");
                             System.out.println();
-                        } catch (Exception a) {
+                        } catch (DokeException a) {
                             System.out.println("_________________________");
                             System.out.println("This task is already marked not done:");
                             System.out.println(current.toString());
@@ -133,12 +133,42 @@ public class Duke {
                     continue;
                 }
                 if (temp[0].equals("todo") || temp[0].equals("deadline") || temp[0].equals("event")) {
+
                     taskList[i] = createSpecialTask(temp);
                 } else {
-                    addTask(taskList, str, i);
+                    try {
+                        Task dummy = new Task();
+                    } catch (DokeException d){
+                        System.out.println(d.toString());
+                    }
+                    str = sc.nextLine();
+                    continue;
                 }
             } else {
-                addTask(taskList, str, i);
+                String temp = str.split(" ")[0];
+                if (temp.equals("todo")
+                        || temp.equals("deadline")
+                        || temp.equals("event")) {
+                    try {
+                        if (temp.equals("todo")) {
+                            throw new DokeException("todo");
+                        } else if (temp.equals("deadline")) {
+                            throw new DokeException("deadline");
+                        } else {
+                            throw new DokeException("event");
+                        }
+                    } catch (DokeException d) {
+                        System.out.println(d.toString());
+                    }
+                }else {
+                    try {
+                        Task dummy = new Task();
+                    } catch (DokeException d) {
+                        System.out.println(d.toString());
+                    }
+                }
+                str = sc.nextLine();
+                continue;
             }
 
             i++;

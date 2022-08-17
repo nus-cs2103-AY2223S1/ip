@@ -8,6 +8,10 @@ public class Task {
         isDone = false;
     }
 
+    public Task() throws DokeException {
+        throw new DokeException();
+    }
+
     //a method to get Status Icon of the task
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
@@ -19,17 +23,17 @@ public class Task {
     }
 
     //a method to mark a task done
-    public void markDone() throws Exception {
+    public void markDone() throws DokeException {
         if (isDone) {
-            throw new Exception();
+            throw new DokeException();
         }
         isDone = true;
     }
 
     //a method to mark a task not done
-    public void markNotDone() throws Exception{
+    public void markNotDone() throws DokeException{
         if (!isDone) {
-            throw new Exception();
+            throw new DokeException();
         }
         isDone = false;
     }
