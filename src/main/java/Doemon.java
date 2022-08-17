@@ -24,6 +24,12 @@ public class Doemon {
      */
     private static String exitStr = "I'm going to sleep now...See you again soon!";
 
+    /**
+     * A fixed-sized string array that stores user input.
+     */
+    private String[] tasks = new String[100];
+    private int taskIndex = 0;
+
     public static void main(String[] args) {
         // Introduction
         System.out.println(output(introStr));
@@ -44,7 +50,9 @@ public class Doemon {
                 System.out.println(output(exitStr));
                 break;
             }
-            System.out.println(output(inputStr));
+            this.tasks[this.taskIndex] = inputStr;
+            this.taskIndex++;
+            System.out.println(output("added: " + inputStr));
         }
     }
 
