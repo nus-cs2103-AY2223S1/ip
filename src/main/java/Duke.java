@@ -1,41 +1,29 @@
-import java.util.*;
-import java.util.List;
+import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Duke {
-    private List<Task> storage = new ArrayList<Task>();
+    private ArrayList<Task> storage = new ArrayList<Task>();
 
-    public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What can I do for you?");
-        Duke chatBotInstance = new Duke();
-        chatBotInstance.handleInput();
-    }
-
-    public void list() {
-        if (storage.size() == 0) {
+    private void list() {
+        if (this.storage.size() == 0) {
             System.out.println("List is currently empty");
         } else {
             System.out.println("Here are your tasks:");
-            for (int i = 0; i < storage.size(); i++) {
+            for (int i = 0; i < this.storage.size(); i++) {
                 System.out.printf("%d.%s\n", i + 1,
-                        storage.get(i).toString());
+                        this.storage.get(i).toString());
             }
         }
     }
 
-    public void unmark(String input) throws DukeException {
+    private void unmark(String input) throws DukeException {
         if (this.storage.size() == 0) {
             throw new DukeException("No tasks to unmark!");
         } else {
             if (input == null) {
                 throw new DukeException("No input provided for unmarking");
             }
-            String s = input.replaceAll("\\D+", "" );
+            String s = input.replaceAll("\\D+", "");
             if (!s.equals("")) {
                 int idx = Integer.parseInt(s);
                 if (idx - 1 >= this.storage.size() || idx < 1) {
@@ -50,14 +38,14 @@ public class Duke {
         }
     }
 
-    public void mark(String input) throws DukeException {
+    private void mark(String input) throws DukeException {
         if (this.storage.size() == 0) {
             throw new DukeException("No tasks to mark!");
         } else {
             if (input == null) {
                 throw new DukeException("No input provided for marking");
             }
-            String s = input.replaceAll("\\D+", "" );
+            String s = input.replaceAll("\\D+", "");
             if (!s.equals("")) {
                 int idx = Integer.parseInt(s);
                 if (idx - 1 >= this.storage.size() || idx < 1) {
@@ -72,14 +60,14 @@ public class Duke {
         }
     }
 
-    public void delete(String input) throws DukeException {
+    private void delete(String input) throws DukeException {
         if (this.storage.size() == 0) {
             throw new DukeException("No tasks to delete!");
         }
         if (input == null) {
             throw new DukeException("No input provided for deletion");
         }
-        String s = input.replaceAll("\\D+", "" );
+        String s = input.replaceAll("\\D+", "");
         if (!s.equals("")) {
             int idx = Integer.parseInt(s);
             if (idx - 1 >= this.storage.size() || idx < 1) {
@@ -95,51 +83,55 @@ public class Duke {
         }
     }
 
-    public void addTask(String[] input) throws DukeException {
-        if (input[0].equals("todo")) {
-            if (input.length <= 1) {
-                throw new DukeException("Description of a todo cannot be empty!");
-            }
-            Todo todo = new Todo(input[1].trim());
-            storage.add(todo);
-            System.out.printf("added %s\n", todo);
-        } else if (input[0].equals("deadline")) {
-            if (input.length <= 1) {
-                throw new DukeException("Description of a deadline " +
-                        "cannot be empty!");
-            }
-            if (!input[1].contains("/by") ||
-                    input[1].indexOf("/by") == input[1].length() - 3) {
-                throw new DukeException("No date inserted for deadline");
-            }
-            String[] deadlineInfo = input[1].split("/by", 2);
-            Deadline deadline = new Deadline(deadlineInfo[0].trim(),
-                    deadlineInfo[1].trim());
-            storage.add(deadline);
-            System.out.printf("added %s\n", deadline);
-        } else if (input[0].equals("event")) {
-            if (input.length <= 1) {
-                throw new DukeException("Description of an event " +
-                        "cannot be empty!");
-            }
-            if (!input[1].contains("/at") ||
-                    input[1].indexOf("/at") == input[1].length() - 3) {
-                throw new DukeException("No date inserted for event");
+    private void addTask(String[] input) throws DukeException {
+        switch (input[0]) {
+            case "todo":
+                if (input.length <= 1) {
+                    throw new DukeException("Description of a todo cannot be empty!");
+                }
+                Todo todo = new Todo(input[1].trim());
+                this.storage.add(todo);
+                System.out.printf("added %s\n", todo);
+                break;
+            case "deadline":
+                if (input.length <= 1) {
+                    throw new DukeException("Description of a deadline " +
+                            "cannot be empty!");
+                }
+                if (!input[1].contains("/by") ||
+                        input[1].indexOf("/by") == input[1].length() - 3) {
+                    throw new DukeException("No date inserted for deadline");
+                }
+                String[] deadlineInfo = input[1].split("/by", 2);
+                Deadline deadline = new Deadline(deadlineInfo[0].trim(),
+                        deadlineInfo[1].trim());
+                this.storage.add(deadline);
+                System.out.printf("added %s\n", deadline);
+                break;
+            case "event":
+                if (input.length <= 1) {
+                    throw new DukeException("Description of an event " +
+                            "cannot be empty!");
+                }
+                if (!input[1].contains("/at") ||
+                        input[1].indexOf("/at") == input[1].length() - 3) {
+                    throw new DukeException("No date inserted for event");
 
-            }
-            String[] eventInfo = input[1].split("/at", 2);
-            Event event = new Event(eventInfo[0].trim(), eventInfo[1].trim());
-            storage.add(event);
-            System.out.printf("added %s\n", event);
-        } else {
-            throw new DukeException("Invalid task");
+                }
+                String[] eventInfo = input[1].split("/at", 2);
+                Event event = new Event(eventInfo[0].trim(), eventInfo[1].trim());
+                this.storage.add(event);
+                System.out.printf("added %s\n", event);
+                break;
+            default:
+                throw new DukeException("Invalid task");
         }
         System.out.printf("Now you have %d tasks in the list\n",
-                this.storage.size());
+                storage.size());
     }
 
 
-    public void handleInput() {
+    private void handleInput() {
         Scanner in = new Scanner(System.in);
 
         while (in.hasNext()) {
@@ -149,30 +141,50 @@ public class Duke {
                 next[i] = temp[i].trim();
             }
 
+            next[0] = next[0].toLowerCase();
             String command = next[0];
 
             try {
 
-                if (command.equals("bye")) {
-                    System.out.println("Bye. Hope to see you again soon!");
-                    return;
-                } else if (command.equals("list")) {
-                    this.list();
-                } else if (command.equals("unmark")) {
-                    this.unmark(next[1]);
-                } else if (command.equals("mark")) {
-                    this.mark(next[1]);
-                } else if (command.equals("todo") || command.equals("deadline")
-                        || command.equals("event")) {
-                    this.addTask(temp);
-                } else if (command.equals("delete")) {
-                    this.delete(next[1]);
-                } else {
-                    throw new DukeException("Invalid command");
+                switch (command) {
+                    case "bye":
+                        System.out.println("Bye. Hope to see you again soon!");
+                        return;
+                    case "list":
+                        this.list();
+                        break;
+                    case "unmark":
+                        this.unmark(next[1]);
+                        break;
+                    case "mark":
+                        this.mark(next[1]);
+                        break;
+                    case "todo":
+                    case "deadline":
+                    case "event":
+                        this.addTask(next);
+                        break;
+                    case "delete":
+                        this.delete(next[1]);
+                        break;
+                    default:
+                        throw new DukeException("Invalid command");
                 }
             } catch (DukeException e) {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    public static void main(String[] args) {
+        String logo = " ____        _        \n"
+                + "|  _ \\ _   _| | _____ \n"
+                + "| | | | | | | |/ / _ \\\n"
+                + "| |_| | |_| |   <  __/\n"
+                + "|____/ \\__,_|_|\\_\\___|\n";
+        System.out.println("Hello from\n" + logo);
+        System.out.println("What can I do for you?");
+        Duke chatBotInstance = new Duke();
+        chatBotInstance.handleInput();
     }
 }

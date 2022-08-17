@@ -15,3 +15,7 @@ unmark 25
 mark
 unmark
 delete
+TODO cycle
+DEADLINE math assignment /by 10pm
+EVENT concert /at 10 December 9pm
+bye

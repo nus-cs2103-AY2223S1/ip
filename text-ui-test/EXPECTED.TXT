@@ -35,3 +35,10 @@ Invalid selection for unmarking
 No input provided for marking
 No input provided for unmarking
 No input provided for deletion
+added [T][ ] cycle
+Now you have 5 tasks in the list
+added [D][ ] math assignment (by: 10pm)
+Now you have 6 tasks in the list
+added [E][ ] concert (at: 10 December 9pm)
+Now you have 7 tasks in the list
+Bye. Hope to see you again soon!
