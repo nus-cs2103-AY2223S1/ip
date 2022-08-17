@@ -13,6 +13,14 @@ public class Duke {
         }
     }
 
+    public enum Command {
+        MARK, UNMARK
+    }
+
+    public enum Type {
+        TODO, DEADLINE, EVENT
+    }
+    
     public void greet() {
         System.out.println("Hello! I'm Pip :)\nWhat can I do for you?");
     }
@@ -34,11 +42,11 @@ public class Duke {
         }
     }
 
-    public void changeTaskStatus(String taskNumAsString, String command) throws DukeException {
+    public void changeTaskStatus(String taskNumAsString, Command command) throws DukeException {
         int taskNum = Integer.parseInt(taskNumAsString);
         if (taskNum > 0 && taskNum <= tasks.size()) {
             Task task = tasks.get(taskNum - 1);
-            if (command.equals("mark")) {
+            if (command == Command.MARK) {
                 task.markAsDone();
             } else {
                 task.markAsNotDone();
@@ -48,12 +56,12 @@ public class Duke {
         }
     }
 
-    public void addTask(String details, String type) throws DukeException {
+    public void addTask(String details, Type type) throws DukeException {
         Task task;
-        if (type.equals("todo")) {
+        if (type == Type.TODO) {
             task = new ToDo(details);
         } else {
-            boolean isDeadline = type.equals("deadline");
+            boolean isDeadline = type == Type.DEADLINE;
             int pos = details.indexOf(isDeadline ? " /by " : " /at ");
             if (pos > 0 && details.length() > pos + 5) {
                 String description = details.substring(0, pos);
@@ -100,13 +108,13 @@ public class Duke {
                     duke.list();
                 } else if (firstWord.equals("mark") || firstWord.equals("unmark")) {
                     if (splitInputArray.length > 1 && isNumber(splitInputArray[1])) {
-                        duke.changeTaskStatus(splitInputArray[1], firstWord);
+                        duke.changeTaskStatus(splitInputArray[1], Command.valueOf(firstWord.toUpperCase()));
                     } else {
                         throw new DukeException("Please specify a task number!");
                     }
                 } else if (firstWord.equals("todo") || firstWord.equals("deadline") || firstWord.equals("event")) {
                     if (splitInputArray.length > 1) {
-                        duke.addTask(splitInputArray[1], firstWord);
+                        duke.addTask(splitInputArray[1], Type.valueOf(firstWord.toUpperCase()));
                         duke.displayNumOfTasks();
                     } else {
                         throw new DukeException("Please provide a task description"
