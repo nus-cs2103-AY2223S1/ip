@@ -1,4 +1,3 @@
-import java.util.Locale;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -7,6 +6,7 @@ public class Duke {
         String input;
         String print;
         String[] segments;
+        String[] segments2;
         ArrayList<Task> items = new ArrayList<Task>();
         String space = " ";
 
@@ -16,33 +16,51 @@ public class Duke {
         System.out.println(line + "Hello! I'm Shanice:)");
         System.out.println("What can I do for you?\n" + line);
 
-        //level 3:
+        //level 4:
         input = sc.nextLine();
-        segments = input.split(space);
-        while (!input.toLowerCase(Locale.ROOT).equals("bye")) {
-            if (input.toLowerCase(Locale.ROOT).equals("list")) {
-                if (items.size() != 0) {
+        segments = input.split("/");
+        segments2 = segments[0].split(space);
+        while (!input.equals("bye")) {
+            if (input.equals("list") && items.size() != 0) {
                     System.out.println(line + "Here are the tasks in your list: ");
                     for (int i = 0; i < items.size(); i++) {
-                        System.out.println(i+1 + ". " + items.get(i).getStatusIcon() + space + items.get(i).description);
+                        System.out.println(i+1 + ". " + items.get(i));
                     }
                     System.out.println(line);
-                }
             }
-            else if (segments[0].toLowerCase(Locale.ROOT).equals("mark") || segments[0].toLowerCase(Locale.ROOT).equals("unmark")) {
-                String input1 = segments[0].toLowerCase(Locale.ROOT);
-                int index = Integer.parseInt(segments[1]);
+            else if (segments2[0].equals("mark") || segments2[0].equals("unmark")) {
+                int index = Integer.parseInt(segments2[1]);
                 Task t = items.get(index - 1);
-                if (input1.equals("mark")) {
-                    t.markAsDone();
+                if (segments2[0].equals("mark")) {
                     System.out.println(line + "Nice! I've marked this task as done: ");
+                    t.markAsDone();
                 }
                 else {
-                    t.markAsNotDone();
                     System.out.println(line + "OK, I've marked this task as not done yet:");
+                    t.markAsNotDone();
                 }
-                System.out.println(t.getStatusIcon() + space + t.description );
+                System.out.println(t);
                 System.out.println(line);
+            }
+            else if (segments2[0].equals("todo") || segments2[0].equals("deadline") || segments2[0].equals("event")) {
+                Task t;
+                segments[0] = segments[0].replace(segments2[0], "");
+                if (segments2[0].equals("todo")) {
+                    t = new Todo(segments[0]);
+                }
+                else if (segments2[0].equals("deadline")) {
+                    segments[1] = segments[1].replace("by ", "");
+                    t = new Deadline(segments[0], segments[1]);
+                }
+                else {
+                    segments[1] = segments[1].replace("at ", "");
+                    t = new Events(segments[0], segments[1]);
+                }
+
+                items.add(t);
+                System.out.println(line + "Got it. I've added this task:");
+                System.out.println(t);
+                System.out.println("Now you have " + items.size() + " tasks in the list.\n" + line);
             }
             else {
                 Task t = new Task(input);
@@ -50,7 +68,8 @@ public class Duke {
                 System.out.println(line + "added: " + input + "\n" + line);
             }
             input = sc.nextLine();
-            segments = input.split(space);
+            segments = input.split("/");
+            segments2 = segments[0].split(space);
         }
 
         print = "Bye. Hope to see you again soon!";
