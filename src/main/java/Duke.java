@@ -28,7 +28,7 @@ public class Duke {
                     i = Integer.parseInt(arr[1]) - 1;
                     if (i >= 0 && i < id) {
                         Task t = items[i];
-                        t.markDone();
+                        t.markAsDone();
                         Duke.echo("Nice! I've marked this task as done:\n" +
                                 "\t  " + t.getStatusIcon()
                                 + t.getDescription());
@@ -42,7 +42,7 @@ public class Duke {
                     i = Integer.parseInt(arr[1]) - 1;
                     if (i >= 0 && i < id) {
                         Task t = items[i];
-                        t.markUndone();
+                        t.markAsUndone();
                         Duke.echo("OK! I've marked this task as not done yet:\n" +
                                 "\t  " + t.getStatusIcon()
                                 + t.getDescription());

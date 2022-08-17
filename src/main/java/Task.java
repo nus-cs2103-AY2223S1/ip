@@ -15,10 +15,10 @@ public class Task {
         return this.description;
     }
 
-    public void markDone() {
+    public void markAsDone() {
         this.isDone = true;
     }
-    public void markUndone() {
+    public void markAsUndone() {
         this.isDone = false;
     }
 }
