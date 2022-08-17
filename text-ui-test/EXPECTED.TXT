@@ -13,8 +13,11 @@
 	No tasks currently available. Add a task before (un)marking!
 	____________________________________________________________
 	____________________________________________________________
+	°՞(ᗒᗣᗕ)՞°Sorry, I don't understand this command: checking
+	____________________________________________________________
+	____________________________________________________________
 	I've added a task into your list:
-		[ ][ ] checking
+		[T][ ] task 1
 	You have 1 task(s) in the list.
 	____________________________________________________________
 	____________________________________________________________
@@ -49,7 +52,7 @@
 	____________________________________________________________
 	____________________________________________________________
 	Here are your current tasks:
-	 1. [ ][ ] checking
+	 1. [T][ ] task 1
 	 2. [T][ ] a task
 	 3. [T][ ] todo task
 	 4. [D][ ] task (by: tonight)
@@ -61,9 +64,7 @@
 	Please fill in the task and/or timing!
 	____________________________________________________________
 	____________________________________________________________
-	I've added a task into your list:
-		[ ][ ] event/at
-	You have 5 task(s) in the list.
+	°՞(ᗒᗣᗕ)՞°Sorry, I don't understand this command: event/at
 	____________________________________________________________
 	____________________________________________________________
 	There's too many timings, I'm confused. ◔_◔
@@ -74,12 +75,7 @@
 	____________________________________________________________
 	I've added a task into your list:
 		[E][ ] taskevent (at: 2)
-	You have 6 task(s) in the list.
-	____________________________________________________________
-	____________________________________________________________
-	I've added a task into your list:
-		[ ][ ] mark3
-	You have 7 task(s) in the list.
+	You have 5 task(s) in the list.
 	____________________________________________________________
 	____________________________________________________________
 	Alright, I have marked this task as done:
@@ -91,13 +87,11 @@
 	____________________________________________________________
 	____________________________________________________________
 	Here are your current tasks:
-	 1. [ ][ ] checking
+	 1. [T][ ] task 1
 	 2. [T][ ] a task
 	 3. [T][X] todo task
 	 4. [D][ ] task (by: tonight)
-	 5. [ ][ ] event/at
-	 6. [E][ ] taskevent (at: 2)
-	 7. [ ][ ] mark3
+	 5. [E][ ] taskevent (at: 2)
 	____________________________________________________________
 	____________________________________________________________
 	Alright, I have unmarked this task:
@@ -105,26 +99,14 @@
 	____________________________________________________________
 	____________________________________________________________
 	Here are your current tasks:
-	 1. [ ][ ] checking
+	 1. [T][ ] task 1
 	 2. [T][ ] a task
 	 3. [T][ ] todo task
 	 4. [D][ ] task (by: tonight)
-	 5. [ ][ ] event/at
-	 6. [E][ ] taskevent (at: 2)
-	 7. [ ][ ] mark3
+	 5. [E][ ] taskevent (at: 2)
 	____________________________________________________________
 	____________________________________________________________
-	Here are your current tasks:
-	 1. [ ][ ] checking
-	 2. [T][ ] a task
-	 3. [T][ ] todo task
-	 4. [D][ ] task (by: tonight)
-	 5. [ ][ ] event/at
-	 6. [E][ ] taskevent (at: 2)
-	 7. [ ][ ] mark3
-	____________________________________________________________
-	____________________________________________________________
-	Please mark a task by its list position (must be an integer)!
+	Please (un)mark a task by its list position (must be an integer)!
 	____________________________________________________________
 	____________________________________________________________
 	Goodbye, and have a nice day ahead!

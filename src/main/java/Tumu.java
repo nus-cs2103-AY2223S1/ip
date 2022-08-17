@@ -41,20 +41,10 @@ public class Tumu {
                         listTasks();
                         break;
                     case MARK_CMD:
-                        try {
-                            markTask(sc.nextInt());
-                        } catch (InputMismatchException e) {
-                            System.out.println("\tPlease mark a task by its list position (must be an integer)!");
-                            sc.nextLine(); //clear buffer
-                        }
+                        markTask(sc.nextInt());
                         break;
                     case UNMARK_CMD:
-                        try {
-                            unmarkTask(sc.nextInt());
-                        } catch (InputMismatchException e) {
-                            System.out.println("\tPlease unmark a task by its list position (must be an integer)!");
-                            sc.nextLine(); //clear buffer
-                        }
+                        unmarkTask(sc.nextInt());
                         break;
                     case TODO_CMD:
                         addTodoTask(sc.nextLine().trim());
@@ -67,9 +57,11 @@ public class Tumu {
                         break;
                     default:
                         //No commands are recognised.
-                        //throw new UnrecognisedCommandException(command.trim());
-                        addNormalTask(command.trim());
+                        throw new UnrecognisedCommandException(command.trim());
                 }
+            } catch (InputMismatchException e) {
+                System.out.println("\tPlease (un)mark a task by its list position (must be an integer)!");
+                sc.nextLine(); //clear buffer
             } catch (TumuException e) {
                 System.out.println(e);
             }
@@ -196,14 +188,6 @@ public class Tumu {
                 throw new DENoArgException();
             else taskTypeFormatting(new Event(parse[0], parse[1]));
         }
-    }
-
-    private static void addNormalTask(String userInput) {
-        /**
-         * Adds userInput as a task.
-         */
-
-        taskTypeFormatting(new NormalTask(userInput));
     }
 
     private static void taskTypeFormatting(Task task) {

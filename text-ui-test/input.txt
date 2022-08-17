@@ -1,5 +1,6 @@
 mark 999
 checking
+todo task 1
 mark -1
 todo
 todo a task
@@ -15,12 +16,10 @@ event/at
 event /at 2 /at 2
 event /at 2
 event taskevent /at 2
-mark3
 mark 3
 unmark 4
 list
 unmark 3
-list
-LIST
+LIsT
 mark hungryyy
 BYE
