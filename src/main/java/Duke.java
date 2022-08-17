@@ -92,6 +92,14 @@ public class Duke {
                 "  %s\nNow you have %d tasks in the list.", addedTask, tasks.size()));
     }
 
+    private static void deleteTask(int i) throws DukeException {
+        if (isValidTask(i)) {
+            Task task = tasks.remove(i - 1);
+            prettyPrint(String.format("Noted. I've removed this task:\n" +
+                    "  %s\nNow you have %d tasks in the list.", task, tasks.size()));
+        }
+    }
+
     /**
      * Marks the specified task number as done, if it exists.
      *
@@ -146,6 +154,8 @@ public class Duke {
                             markTaskDone(Integer.parseInt(cmd.substring(5)));
                         } else if (cmd.matches("unmark \\d+")) {
                             markTaskNotDone(Integer.parseInt(cmd.substring(7)));
+                        } else if (cmd.matches("delete \\d+")) {
+                            deleteTask(Integer.parseInt(cmd.substring(7)));
                         } else if (cmd.matches("(?i)^(todo|deadline|event)(.*)")) {
                             addTask(cmd);
                         } else {
