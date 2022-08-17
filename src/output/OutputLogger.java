@@ -33,6 +33,13 @@ public class OutputLogger {
         return out.toString();
     }
 
+    public static String errorOutput(List<String> errMsgs) {
+        if (errMsgs.size() == 1) {
+            return "The following issue occurred with your command:\n" + OutputLogger.indent(errMsgs.get(0));
+        }
+        return "The following issues occurred with your command:\n" + numberedOutput(errMsgs);
+    }
+
     public static void printIntroduction() {
         String logo = "\n" +
                 "     _   _    ___ __   __ ___  ___ \n" +
