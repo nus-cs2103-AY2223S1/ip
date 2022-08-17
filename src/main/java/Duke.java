@@ -10,13 +10,15 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
         SkeletonDuke duke = new SkeletonDuke();
         duke.greet();
-        while(sc.hasNext()) {
-            String command = sc.next();
+        while(sc.hasNextLine()) {
+            String command = sc.nextLine();
             if(command.equals("bye")) {
                 duke.exit();
                 break;
+            } else if(command.equals("list")) {
+                duke.getList();
             } else {
-                duke.echo(command);
+                duke.add(command);
             }
         }
 
