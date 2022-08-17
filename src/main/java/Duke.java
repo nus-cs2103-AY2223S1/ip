@@ -41,8 +41,20 @@ public class Duke {
                 + (taskList.size() > 1 ? "s" : "") + ". Bummer.");
     }
 
+    public static void deleteTask(int num) {
+        try {
+            Task removed = taskList.remove(num - 1);
+            System.out.println("  Good riddance, I say.\n" + "    " + removed
+                + "\n  You have " + taskList.size() + " task"
+                    + (taskList.size() == 1 ? "" : "s") + ".");
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("  Impressive. You've figured out how to delete non-existent tasks.\n"
+                    + "  Task number " + num + " does not exist.");
+        }
+    }
+
     public static void quit() {
-        System.out.println("  Good riddance, I say. With all due disrespect, leave me alone next time.");
+        System.out.println("  With all due disrespect, leave me alone next time.");
         isRunning = false;
     }
 
@@ -77,7 +89,7 @@ public class Duke {
             } else if (input.compareTo("list") == 0) {
                 list();
             } else if (keyword.compareTo("mark") == 0) {
-                if (parsed.length < 2 || parsed[1].trim().isEmpty()) {
+                if (parsed.length < 2 || parsed[1].isBlank()) {
                     throw new MissingTaskNumberException("  Type \"mark <task number>\" to mark a task as complete.");
                 }
                 int num = Integer.parseInt(parsed[1]);
@@ -89,6 +101,12 @@ public class Duke {
                 }
                 int num = Integer.parseInt(parsed[1]);
                 unmark(num);
+            } else if (keyword.compareTo("delete") == 0) {
+                if (parsed.length < 2 || parsed[1].isBlank()) {
+                    throw new MissingTaskNumberException("  Type \"delete <task number>\" to delete a task.");
+                }
+                int num = Integer.parseInt(parsed[1]);
+                deleteTask(num);
                 // repetitive; try to abstract away with another method
             } else if (keyword.compareTo("todo") == 0) {
                 if (parsed.length < 2 || parsed[1].isBlank()) {
