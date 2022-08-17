@@ -12,7 +12,7 @@ public class Duke {
         System.out.println("How can I help you?");
 
         Scanner sc = new Scanner(System.in);
-        String[] tasks = new String[100];
+        Task[] tasks = new Task[100];
         int numTasks = 0;
 
         while (true) {
@@ -26,7 +26,7 @@ public class Duke {
                     System.out.printf("%d. %s%n", i + 1, tasks[i]);
                 }
             } else {
-                tasks[numTasks++] = input;
+                tasks[numTasks++] = new Task(input);
                 System.out.println("Added: " + input);
             }
         }
