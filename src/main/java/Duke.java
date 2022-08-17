@@ -101,7 +101,7 @@ public class Duke {
         printLine();
         System.out.println("\t" + " Here are the tasks in your list:");
         for (int i = 0; i < tasks.size(); i++) {
-            System.out.println("\t" + " " + String.valueOf(i + 1) + ". " + tasks.get(i));
+            System.out.println("\t" + " " + (i + 1) + ". " + tasks.get(i));
         }
         printLine();
     }
@@ -138,6 +138,21 @@ public class Duke {
         printLine();
         System.out.println("\t" + " OK! I've marked this task as not done yet:");
         System.out.println("\t " + task);
+        printLine();
+    }
+
+    public static void deleteTask(int taskNumber) throws DukeException {
+        Task task = getTask(taskNumber);
+        tasks.remove(taskNumber - 1);
+        int numTasks = tasks.size();
+        printLine();
+        System.out.println("\t Noted. I've removed this task:");
+        System.out.println("\t " + task);
+        if (tasks.size() == 1) {
+            System.out.println(String.format("\t Now you have %d task in the list.", tasks.size()));
+        } else {
+            System.out.println(String.format("\t Now you have %d tasks in the list.", tasks.size()));
+        }
         printLine();
     }
 
@@ -196,6 +211,16 @@ public class Duke {
                     break;
                 case "event":
                     addTask(secondWord, 2);
+                    break;
+                case "delete":
+                    if (secondWord.length() == 0) {
+                        throw new DukeException("\t ☹ OOPS!!! You need to delete a number");
+                    }
+                    try {
+                        deleteTask(Integer.parseInt(inputArray[1]));
+                    } catch (NumberFormatException e) {
+                        throw new DukeException("\t ☹ OOPS!!! You need to delete a number");
+                    }
                     break;
                 default:
                     throw new DukeException("\t ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
