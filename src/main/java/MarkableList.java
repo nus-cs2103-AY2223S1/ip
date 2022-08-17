@@ -1,24 +1,41 @@
 public class MarkableList {
     private static final int LIST_SIZE = 100;
-    private String[] items = new String[LIST_SIZE];
-    private Boolean[] itemMarked = new Boolean[LIST_SIZE];
+    private Task[] items = new Task[LIST_SIZE];
     private int numOfElements = 0;
-
-    public MarkableList() {
-        for (int i = 0; i < LIST_SIZE; i++) {
-            items[i] = null;
-            itemMarked[i] = false;
-        }
-    }
 
     public String insertItem(String newItem) 
             throws ArrayIndexOutOfBoundsException {
         if (numOfElements == LIST_SIZE) {
             throw new ArrayIndexOutOfBoundsException();
         }
-        items[numOfElements] = newItem;
+        
+        if (newItem.split(" ", 2).length < 2) {
+            return "Please specify the task!";
+        }
+
+        String taskType = newItem.split(" ", 2)[0];
+        String taskDetails = newItem.split(" ", 2)[1];
+
+        if (taskType.equalsIgnoreCase("deadline")) {
+            if (taskDetails.split("/by").length < 2) {
+                return "Please specify the deadline!";
+            }
+            items[numOfElements] = new DeadlineTask(
+                taskDetails.split("/by")[0], 
+                taskDetails.split("/by")[1]);
+        } else if (taskType.equalsIgnoreCase("event")) {
+            if (taskDetails.split("/at").length < 2) {
+                return "Please specify the period!";
+            }
+            items[numOfElements] = new EventTask(
+                taskDetails.split("/at")[0], 
+                taskDetails.split("/at")[1]);
+        } else if (taskType.equalsIgnoreCase("todo")) {
+            items[numOfElements] = new ToDoTask(taskDetails);
+        }
+
         numOfElements += 1;
-        return "Added " + newItem;
+        return "Added " + items[numOfElements - 1].toString();
     }
 
     public String markItem(int index) 
@@ -27,8 +44,7 @@ public class MarkableList {
         if (index >= numOfElements) {
             throw new ArrayIndexOutOfBoundsException();
         }
-        itemMarked[index] = true;
-        return "Nice! I've marked this task as done:\n\t    [X] " + items[index];
+        return items[index].markTask();
     }
 
     public String unmarkItem(int index) 
@@ -37,8 +53,7 @@ public class MarkableList {
         if (index >= numOfElements) {
             throw new ArrayIndexOutOfBoundsException();
         }
-        itemMarked[index] = false;
-        return "OK, I've marked this task as not done yet:\n\t    [ ] " + items[index];
+        return items[index].unmarkTask();
     }
 
     /**
@@ -52,10 +67,7 @@ public class MarkableList {
             if (items[i] == null) {
                 break;
             }
-            res += String.format("\n\t  %d.[%c] %s", 
-                    i + 1, 
-                    itemMarked[i] ? 'X' : ' ', 
-                    items[i]);
+            res += String.format("\n\t  %d.%s", i + 1, items[i].toString());
         }
         return res;
     }
