@@ -42,8 +42,9 @@ public class Duke {
         String[] commands = input.split(" ");
         String description = "";
         for (int i = 1; i < commands.length; ++i) {
-            description += commands[i];
+            description += commands[i] + " ";
         }
+        description = description.substring(0, description.length() - 1);
         return new ToDo(description);
     }
 
@@ -60,14 +61,17 @@ public class Duke {
                 timeQualifierIndex = i;
                 break;
             }
-            description += commands[i];
+            description += commands[i] + " ";
         }
+        description = description.substring(0, description.length() - 1);
 
         timeQualifier = commands[timeQualifierIndex].substring(1);
 
         for (int i = timeQualifierIndex + 1; i < commands.length; ++i) {
-            timeDescription += commands[i];
+            timeDescription += commands[i] + " ";
         }
+
+        timeDescription = timeDescription.substring(0, timeDescription.length() - 1);
 
         return  new Deadline(description, timeQualifier, timeDescription);
     }
@@ -85,14 +89,17 @@ public class Duke {
                 timeQualifierIndex = i;
                 break;
             }
-            description += commands[i];
+            description += commands[i] + " ";
         }
+        description = description.substring(0, description.length() - 1);
 
         timeQualifier = commands[timeQualifierIndex].substring(1);
 
         for (int i = timeQualifierIndex + 1; i < commands.length; ++i) {
-            timeDescription += commands[i];
+            timeDescription += commands[i] + " ";
         }
+
+        timeDescription = timeDescription.substring(0, timeDescription.length() - 1);
 
         return new Event(description, timeQualifier, timeDescription);
     }
