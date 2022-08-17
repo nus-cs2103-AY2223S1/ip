@@ -67,44 +67,77 @@ public class Duke {
 
             if (input.startsWith("todo")) {
 
-                String task = input.substring(5);
-                ToDo newToDo = new ToDo(false, task, listOfThings.size() + 1);
-                listOfThings.add(newToDo);
+                try {
+                    String task = input.substring(5);
 
-                newToDo.printAdded();
+                    ToDo newToDo = new ToDo(false, task, listOfThings.size() + 1);
+                    listOfThings.add(newToDo);
 
-                input = sc.nextLine();
+                    newToDo.printAdded();
+                    input = sc.nextLine();
+                    continue;
+                } catch (StringIndexOutOfBoundsException e) {
+                    System.out.println(straightLine + "\n  Insufficient information to make a to do! Please input more ;-;\n"
+                                        + straightLine + "\n");
+                    input = sc.nextLine();
+                    continue;
+                }
+
             }
 
             if (input.startsWith("deadline")) {
 
-                int indexOfSlash = input.indexOf("/");
-                String dateStr = input.substring(indexOfSlash + 3);
-                String task = input.substring(9, indexOfSlash);
-                Deadline newDeadline = new Deadline(false, task, listOfThings.size() + 1, dateStr);
-                listOfThings.add(newDeadline);
+                try {
+                    int indexOfSlash = input.indexOf("/");
+                    String dateStr = input.substring(indexOfSlash + 3);
+                    String task = input.substring(9, indexOfSlash);
+                    Deadline newDeadline = new Deadline(false, task, listOfThings.size() + 1, dateStr);
+                    listOfThings.add(newDeadline);
 
-                newDeadline.printAdded();
+                    newDeadline.printAdded();
 
-                input = sc.nextLine();
+                    input = sc.nextLine();
+                    continue;
+
+                } catch (StringIndexOutOfBoundsException e) {
+                    System.out.println(straightLine + "\n  Insufficient information to make a deadline! Please input more ;-;\n"
+                            + straightLine + "\n");
+                    input = sc.nextLine();
+                    continue;
+                }
             }
 
             if (input.startsWith("event")) {
 
-                int indexOfSlash = input.indexOf("/");
-                String dateAndTime = input.substring(indexOfSlash + 3);
-                String task = input.substring(6, indexOfSlash);
-                Event newEvent = new Event(false, task, listOfThings.size() + 1, dateAndTime);
-                listOfThings.add(newEvent);
+                try {
 
-                newEvent.printAdded();
+                    int indexOfSlash = input.indexOf("/");
+                    String dateAndTime = input.substring(indexOfSlash + 3);
+                    String task = input.substring(6, indexOfSlash);
+                    Event newEvent = new Event(false, task, listOfThings.size() + 1, dateAndTime);
+                    listOfThings.add(newEvent);
 
-                input = sc.nextLine();
+                    newEvent.printAdded();
+
+                    input = sc.nextLine();
+                    continue;
+
+
+                } catch (StringIndexOutOfBoundsException e) {
+                    System.out.println(straightLine + "\n  Insufficient information to make a event! Please input more ;-;\n"
+                            + straightLine + "\n");
+                    input = sc.nextLine();
+                    continue;
+                }
             }
+
+
+            System.out.println(straightLine + "\n  What do you mean by Justin Bieber plays~\n" + straightLine + "\n");
+
+            input = sc.nextLine();
         }
 
         System.out.println(straightLine + "\n  さよなら, goodbye\n" + straightLine);
-
 
     }
 }
