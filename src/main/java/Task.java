@@ -4,7 +4,7 @@ public class Task {
     protected String description;
     protected boolean isDone;
     public static ArrayList<Task> tasks;
-    private static String sep = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
+    private static String sep = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
 
     public Task(String description) {
         this.description = description;

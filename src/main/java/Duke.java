@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Duke {
-    private static String sep = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
+    private static String sep = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
     private static Scanner sc;
 
     public static void bye() {
@@ -33,26 +33,42 @@ public class Duke {
     public static void handleCommands(Scanner sc) {
         String cmd = sc.nextLine();
         while (!cmd.equals("bye")) {
-            if (cmd.equals("list")) {
-                Task.list();
-            } else if (cmd.startsWith("mark")) {
-                mark(cmd);
-            } else if (cmd.startsWith("unmark")) {
-                unmark(cmd);
-            } else if (cmd.startsWith("todo")) {
-                Task curr = new Todo(cmd.substring(5));
-                print(curr);
-            } else if (cmd.startsWith("deadline")) {
-                String[] cmds = cmd.split(" /by ");
-                Task curr = new Deadline(cmds[0], cmds[1]);
-                print(curr);
-            } else if (cmd.startsWith("event")) {
-                String[] cmds = cmd.split(" /at ");
-                Task curr = new Event(cmds[0], cmds[1]);
-                print(curr);
+            try {
+                if (cmd.equals("list")) {
+                    Task.list();
+                } else if (cmd.startsWith("mark")) {
+                    mark(cmd);
+                } else if (cmd.startsWith("unmark")) {
+                    unmark(cmd);
+                } else if (cmd.startsWith("todo")) {
+                    if (cmd.length() <= 5) {
+                        throw new DukeException("Please enter a task to do :)");
+                    }
+                    Task curr = new Todo(cmd.substring(5));
+                    print(curr);
+                } else if (cmd.startsWith("deadline")) {
+                    if (cmd.length() <= 9) {
+                        throw new DukeException("Please enter a task and deadline :)");
+                    }
+                    String[] cmds = cmd.split(" /by ");
+                    Task curr = new Deadline(cmds[0], cmds[1]);
+                    print(curr);
+                } else if (cmd.startsWith("event")) {
+                    if (cmd.length() <= 6) {
+                        throw new DukeException("Please enter an and date :)");
+                    }
+                    String[] cmds = cmd.split(" /at ");
+                    Task curr = new Event(cmds[0], cmds[1]);
+                    print(curr);
+                } else if (!cmd.equals("bye")) {
+                    throw new DukeException("I'm not sure what that means..:( Please try again!");
+                }
+            } catch (DukeException e) {
+                System.out.println(e);
             }
             cmd = sc.nextLine();
         }
+
         bye();
     }
 
