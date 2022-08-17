@@ -7,24 +7,46 @@ public class DukeList {
     items = new ArrayList<>();
   }
 
-  public String addItem(String newItem) {
-    if (newItem.equals("")) {
+  public String addItem(String[] newItem) {
+    String s = String.join(" ", newItem);
+    if (newItem[0].equals("")) {
       return "";
     }
-    items.add(new DukeTask(newItem));
-    return "Item added: " + newItem;
+    DukeTask newTask;
+    switch (newItem[0]) {
+      case "todo": {
+        newTask = new ToDo(s);
+        items.add(newTask);
+        return "Item added: " + newTask + listCount();
+      }
+      case "deadline": {
+        String[] deadlineSplit = s.split(" /by ");
+        newTask = new Deadline(deadlineSplit[0], deadlineSplit[1]);
+        items.add(newTask);
+        return "Item added: " + newTask + listCount();
+      }
+      case "event": {
+        String[] deadlineSplit = s.split(" /at ");
+        newTask = new Event(deadlineSplit[0], deadlineSplit[1]);
+        items.add(newTask);
+        return "Item added: " + newTask + listCount();
+      }
+      default:
+        throw new IllegalStateException("Unexpected value: " + newItem[0]);
+    }
   }
 
   public String mark(int i) {
-    items.get(i - 1).markAsDone();
-    return "Good job! This task has been completed:\n"
-        + items.get(i - 1);
+    return items.get(i - 1).markAsDone();
   }
 
   public String unmark(int i) {
-    items.get(i - 1).markAsNotDone();
-    return "Whoops! This task is yet to be completed:\n"
-        + items.get(i - 1);
+    return items.get(i - 1).markAsNotDone();
+  }
+
+  public String listCount() {
+    return "\nNow you have " + items.size() + " task" +
+        (items.size() == 1 ? "" : "s") +" in the list.";
   }
 
   @Override

@@ -34,7 +34,7 @@ public class Duke {
         } else if (input[0].equals("unmark")) {
             output = itemList.unmark(Integer.parseInt(input[1]));
         } else {
-            output = itemList.addItem(inputString);
+            output = itemList.addItem(input);
         }
         System.out.println(output + divider);
         checkInput(s.nextLine());

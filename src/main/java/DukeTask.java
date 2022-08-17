@@ -11,12 +11,16 @@ public class DukeTask {
     return (isDone ? "X" : " "); // mark done task with X
   }
 
-  public void markAsDone() {
+  public String markAsDone() {
     isDone = true;
+    return "Good job! This task has been completed:\n"
+        + this;
   }
 
-  public void markAsNotDone() {
+  public String markAsNotDone() {
     isDone = false;
+    return "Whoops! This task is now yet to be completed:\n"
+        + this;
   }
 
   @Override
