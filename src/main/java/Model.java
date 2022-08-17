@@ -52,6 +52,7 @@ public class Model {
 
     /**
      * Parse the string message to the index that is readable by memo
+     *
      * @param message Integer of String type starting from "1"
      * @return
      */

@@ -8,8 +8,8 @@ public class View {
 //                + "| | | | | | | |/ / _ \\\n"
 //                + "| |_| | |_| |   <  __/\n"
 //                + "|____/ \\__,_|_|\\_\\___|\n";
-        String logo = "xiao ai";
-        System.out.println("Hello from\n" + logo);
+
+        System.out.println("Hello from\n" + "logo");
     }
 
     public static void printWelcomeText() {
@@ -59,13 +59,13 @@ public class View {
         System.out.println(dialog(e.getMessage()));
     }
 
-    public static String dialog(String ...strings) {
+    public static String dialog(String... strings) {
         StringBuilder sb = new StringBuilder();
         sb.append("  ____________________________________________________________\n");
-        for (String message: strings) {
-            sb.append( "   " + message + "\n");
+        for (String message : strings) {
+            sb.append("   " + message + "\n");
         }
-        sb.append("  ____________________________________________________________\n");
+        sb.append("  ____________________________________________________________");
         return sb.toString();
     }
 }

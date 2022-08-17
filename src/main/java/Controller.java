@@ -21,24 +21,6 @@ public class Controller {
         }
         return description;
     }
-//    public static Object[] parse(String input) {
-//        Enum command = null;
-//        String description = null;
-//
-//        try {
-//            command = Model.getCommand(input);
-//        } catch (InvalidCommandException e) {
-//            View.printInvalidCommandException(e);
-//        }
-//
-//        try {
-//            description = Model.getDescription(input);
-//        } catch (EmptyDescriptionException e) {
-//            description = null;
-//        }
-//
-//        return new Object[]{command, description};
-//    }
 
     public static void execute(Enum commands, String description) {
         if (commands == dukeCommands.BYE) {

@@ -19,4 +19,4 @@ java -classpath ..\bin Duke < input.txt > ACTUAL.TXT
 
 REM compare the output to the expected output
 fc ACTUAL.TXT EXPECTED.TXT
-git diff -b --no-index ACTUAL.TXT EXPECTED.TXT
+REM git diff -b --no-index ACTUAL.TXT EXPECTED.TXT
