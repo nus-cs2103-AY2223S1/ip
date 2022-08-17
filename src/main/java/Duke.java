@@ -35,9 +35,56 @@ public class Duke {
             }
         }
 
+        @Override
+        public String toString() {
+            return String.format("[%s] %s", this.getStatusIcon(), this.getDescription());
+        }
     }
 
-    public static void add_list() {
+    public static class Deadline extends Task {
+
+        protected String by;
+
+        public Deadline(String description, String by) {
+            super(description);
+            this.by = by;
+        }
+
+        @Override
+        public String toString() {
+            return "[D]" + super.toString() + " (by: " + by + ")";
+        }
+    }
+
+    public static class Event extends Task {
+
+        protected String at;
+
+        public Event(String description, String at) {
+            super(description);
+            this.at = at;
+        }
+
+        @Override
+        public String toString() {
+            return "[E]" + super.toString() + " (at: " + at + ")";
+        }
+    }
+
+
+    public static class Todo extends Task {
+
+        public Todo(String description) {
+            super(description);
+        }
+
+        @Override
+        public String toString() {
+            return "[T]" + super.toString();
+        }
+    }
+
+    public static void chat() {
         Scanner myScan = new Scanner(System.in);
         String s;
         Task[] list = new Task[100];
@@ -54,8 +101,7 @@ public class Duke {
                 System.out.println("----------------------");
                 for (int i = 0; i < 100; i++) {
                     if (list[i] != null) {
-                        String display = String.format("%d.[%s] %s", i + 1, list[i].getStatusIcon(),
-                                list[i].getDescription());
+                        String display = String.format("%d.%s", i + 1, list[i].toString());
                         System.out.println(display);
                     }
                 }
@@ -65,10 +111,9 @@ public class Duke {
                 int a = Integer.parseInt(subString) - 1;
                 list[a].markDone();
 
-                String display = String.format("[%s] %s", list[a].getStatusIcon(), list[a].getDescription());
                 System.out.println("----------------------");
                 System.out.println("Ok! I've marked this task as done");
-                System.out.println(display);
+                System.out.println(list[a].toString());
                 System.out.println("----------------------");
 
             } else if (s.indexOf("unmark") == 0) {
@@ -76,10 +121,38 @@ public class Duke {
                 int a = Integer.parseInt(subString) - 1;
                 list[a].markUndone();
 
-                String display = String.format("[%s] %s", list[a].getStatusIcon(), list[a].getDescription());
                 System.out.println("----------------------");
                 System.out.println("Ok! I've marked this task as undone");
-                System.out.println(display);
+                System.out.println(list[a].toString());
+                System.out.println("----------------------");
+
+            } else if (s.indexOf("todo") == 0) {
+                String subString = s.substring(5, s.length());
+                list[list_counter] = new Todo(subString);
+                list_counter += 1;
+                System.out.println("----------------------");
+                System.out.println("added: " + list[list_counter - 1].toString());
+                System.out.println(String.format("Now you have %d tasks in the list", list_counter));
+                System.out.println("----------------------");
+
+            } else if (s.indexOf("deadline") == 0 ) {
+                String descript = s.substring(9, s.indexOf("/") - 1);
+                String by = s.substring(s.indexOf("/") + 4);
+                list[list_counter] = new Deadline(descript, by);
+                list_counter += 1;
+                System.out.println("----------------------");
+                System.out.println("added: " + list[list_counter - 1].toString());
+                System.out.println(String.format("Now you have %d tasks in the list", list_counter));
+                System.out.println("----------------------");
+
+            } else if (s.indexOf("event") == 0 ) {
+                String descript = s.substring(6, s.indexOf("/") - 1);
+                String at = s.substring(s.indexOf("/") + 4);
+                list[list_counter] = new Event(descript, at);
+                list_counter += 1;
+                System.out.println("----------------------");
+                System.out.println("added: " + list[list_counter - 1].toString());
+                System.out.println(String.format("Now you have %d tasks in the list", list_counter));
                 System.out.println("----------------------");
 
             } else {
@@ -105,6 +178,6 @@ public class Duke {
         System.out.println("What can i do for you?");
         System.out.println("----------------------");
 
-        add_list();
+        chat();
     }
 }
