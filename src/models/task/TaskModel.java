@@ -22,6 +22,17 @@ public class TaskModel {
         return newTask;
     }
 
+    // taskId from 1-length
+    public Task markTask(Integer taskId) throws IllegalArgumentException {
+        try {
+            Task task = tasks.get(taskId - 1);
+            task.markAsDone();
+            return task;
+        } catch (IndexOutOfBoundsException ex) {
+            throw new IllegalArgumentException(String.format("Task number %d does not exist :(", taskId));
+        }
+    }
+
     /**
      * @return a List of all the Tasks at the current time
      */

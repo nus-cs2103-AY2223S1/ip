@@ -20,7 +20,11 @@ public abstract class Task {
         return isDone ? "X" : " ";
     }
 
-    abstract String getTypeIndicator();
+    protected abstract String getTypeIndicator();
+
+    public void markAsDone() {
+        this.isDone = true;
+    }
 
     @Override
     public String toString() {

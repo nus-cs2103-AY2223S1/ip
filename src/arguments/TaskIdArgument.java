@@ -7,7 +7,7 @@ public class TaskIdArgument extends Argument<Integer> {
         super(input, "id");
     }
 
-    // This method exists so we can process arbitary no. of arguments and get error messages to show to user
+    // This method exists so we can process arbitary no. of arguments and get error messages for all to show to user
     @Override
     public void validate() throws IllegalArgumentException {
         // validate was already called
@@ -19,18 +19,11 @@ public class TaskIdArgument extends Argument<Integer> {
         }
 
         catch (NumberFormatException ex) {
-            throw new IllegalArgumentException("Oops! Task number should be an integer :)");
+            throw new IllegalArgumentException("Task number should be an integer e.g 1 :)");
         }
 
         catch (IllegalArgumentException ex) {
-            throw new IllegalArgumentException("Oops! This command needs a task number");
+            throw new IllegalArgumentException("This command needs a task number e.g 1");
         }
-
-    }
-
-    @Override
-    public Integer getParameter() throws IllegalArgumentException {
-        validate();
-        return super.value;
     }
 }

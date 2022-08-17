@@ -1,7 +1,4 @@
-import commands.AddCommand;
-import commands.Command;
-import commands.CommandResponse;
-import commands.ListCommand;
+import commands.*;
 import input.Input;
 import models.task.TaskModel;
 
@@ -35,6 +32,7 @@ public class Duke {
 
         Command list = new ListCommand(taskModel);
         Command add = new AddCommand(taskModel);
+        Command mark = new MarkCommand(taskModel);
 
         while (true) {
             try {
@@ -50,6 +48,8 @@ public class Duke {
                     break;
                 } else if (list.isCommand(ir.getCommandName())) {
                     toRun = list;
+                } else if (mark.isCommand(ir.getCommandName())) {
+                    toRun = mark;
                 }
 
                 CommandResponse res = toRun.run(ir);

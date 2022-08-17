@@ -6,7 +6,7 @@ public class ConcreteTask extends Task {
     }
 
     @Override
-    String getTypeIndicator() {
+    protected String getTypeIndicator() {
         return "T";
     }
 }
