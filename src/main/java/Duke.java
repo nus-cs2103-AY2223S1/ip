@@ -5,13 +5,8 @@ public class Duke {
     private static int id;
 
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "\t|  _ \\ _   _| | _____ \n"
-                + "\t| | | | | | | |/ / _ \\\n"
-                + "\t| |_| | |_| |   <  __/\n"
-                + "\t|____/ \\__,_|_|\\_\\___|\n";
-        String introduction = "\tHello! I'm Duke\n" + "\tWhat can I do for you?";
-        Duke.echo(logo + introduction);
+        String introduction = "Hello! I'm Duke\n" + "\tWhat can I do for you?";
+        Duke.echo(introduction);
 
         Scanner sc = new Scanner(System.in);
         while (sc.hasNext()) {
@@ -74,6 +69,7 @@ public class Duke {
         System.out.println("\t_________________________________________________");
         System.out.println("\t" + s);
         System.out.println("\t_________________________________________________");
+        System.out.println();
     }
 
     private static void add(String description, String type, String remarks) {
