@@ -1,16 +1,16 @@
 package pnkp.duke;
 
+import java.util.List;
+
 public class IOFormat {
     public static void say(String text) {
-        String[] lines = new String[1];
-        lines[0] = text;
-        say(lines);
+        say(List.of(text));
     }
 
-    public static void say(String[] lines) {
-        for (int i=0; i < lines.length; i++) {
-            if (i==0) System.out.println("\uD83D\uDCAC " + lines[i]);
-            else      System.out.println("   " + lines[i]);
+    public static void say(List<String> lines) {
+        for (int i=0; i < lines.size(); i++) {
+            if (i==0) System.out.println("\uD83D\uDCAC " + lines.get(i));
+            else      System.out.println("   " + lines.get(i));
         }
         System.out.println("─────");
     }
