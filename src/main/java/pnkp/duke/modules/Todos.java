@@ -6,6 +6,8 @@ import java.util.Scanner;
 
 import static java.lang.String.format;
 import static pnkp.duke.IOFormat.say;
+
+import pnkp.duke.modules.todos.Deadline;
 import pnkp.duke.modules.todos.Task;
 import pnkp.duke.modules.todos.Todo;
 
@@ -16,10 +18,30 @@ public class Todos {
         todos = new ArrayList<>();
     }
 
+    private void addWrapper(Task newTask) {
+        todos.add(newTask);
+        say(List.of(
+            "Got it. I've added this task:",
+            newTask.toString(),
+            format("Now you have %d tasks in the list.", todos.size())
+        ));
+    }
+
     public void cmdAddTodo(Scanner rest) {
         String name = rest.hasNextLine() ? rest.nextLine() : "";
-        todos.add(new Todo(name));
-        say("Added: " + name);
+        addWrapper(new Todo(name));
+    }
+
+    public void cmdAddDeadline(Scanner rest) {
+        final Task task;
+        try {
+            task = Deadline.fromChat(rest);
+        } catch(IllegalArgumentException e) {
+            say("Deadlines are added like this: deadline return book /by Sunday");
+            return;
+        }
+
+        addWrapper(task);
     }
 
     public void cmdList() {

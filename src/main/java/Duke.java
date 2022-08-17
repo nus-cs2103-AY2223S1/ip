@@ -1,6 +1,8 @@
-import java.util.Scanner;
-import static pnkp.duke.IOFormat.say;
 import pnkp.duke.modules.Todos;
+
+import java.util.Scanner;
+
+import static pnkp.duke.IOFormat.say;
 
 public class Duke {
     public static void main(String[] args) {
@@ -19,11 +21,17 @@ public class Duke {
 
             switch (command) {
                 case "":
-                    // say("Sorry, I didn't catch that?")
+                    say("Sorry, I didn't catch that?");
                     break;
                 case "bye":
                     say("OK. See you next time! *boings away*");
                     fExit = true;
+                    break;
+                case "todo":
+                    todos.cmdAddTodo(scanner);
+                    break;
+                case "deadline":
+                    todos.cmdAddDeadline(scanner);
                     break;
                 case "list":
                     todos.cmdList();
@@ -35,7 +43,7 @@ public class Duke {
                     todos.cmdUnmark(scanner);
                     break;
                 default:
-                    todos.cmdAddTodo(new Scanner(line));
+                    say("Sorry, I didn't understand what you said :(");
                     break;
             }
         }
