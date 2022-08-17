@@ -27,6 +27,22 @@ public class Duke {
                 }
                 command = sc.nextLine();
             }
+            // mark items
+            else if (words[0].equals("mark")) {
+                int index = Integer.parseInt(words[1]) - 1;
+                Task marked = itemList.get(index);
+                marked.setStatusIcon(true);
+                marked.update();
+                command = sc.nextLine();
+            }
+            // unmark items
+            else if (words[0].equals("unmark")) {
+                int index = Integer.parseInt(words[1]) - 1;
+                Task marked = itemList.get(index);
+                marked.setStatusIcon(false);
+                marked.update();
+                command = sc.nextLine();
+            }
             // unrecognised commands
             else {
                 System.out.print(command + "\n");
