@@ -31,13 +31,29 @@ public class Duke {
             System.out.println("------------------------------");
             System.out.print(": ");
             String userInput = scanner.nextLine();
-            // Guard Clause
-            if (userInput.equals(Duke.CMD_LIST)) {
-                Duke.listTasks();
-                continue;
+            String[] inputArray = userInput.split(" ");
+            String cmd = inputArray[0];
+            try {
+                switch (cmd) {
+                    case "list":
+                        Duke.listTasks();
+                        break;
+                    case "mark":
+                        int i = Integer.parseInt(inputArray[1]) - 1;
+                        Duke.allTasks.get(i).markAsDone();
+                        break;
+                    case "unmark":
+                        int j = Integer.parseInt(inputArray[1]) - 1;
+                        Duke.allTasks.get(j).unmark();
+                        break;
+                    default:
+                        Task newTask = new Task(userInput);
+                        Duke.allTasks.add(newTask);
+                }
+            } catch (ClassCastException e) {
+                System.out.println(e.getMessage());
             }
-            Task newTask = new Task(userInput);
-            Duke.allTasks.add(newTask);
+
             System.out.println("------------------------------\n");
         }
     }
