@@ -22,6 +22,15 @@ public class TaskList {
     }
 
     /**
+     * Method to remove a task.
+     * @param i
+     * @return Task taskDeleted
+     */
+    public Task delete(int i) {
+        return task.remove(i);
+    }
+
+    /**
      * Method to mark a task as done.
      * @param i
      */

@@ -1,11 +1,9 @@
-import java.util.Scanner;
-
 /**
  * Class to represent a parser.
  */
 public class Parser {
     private enum Commands {
-        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT
+        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE
     }
     private static UI ui = new UI();
 
@@ -94,6 +92,25 @@ public class Parser {
     }
 
     /**
+     * The method to delete task.
+     * @param tasklist
+     * @param chat
+     * @return Task object
+     * @throws NoDescriptionException
+     * @throws NoCommandException
+     */
+    public static Task delete(String chat, TaskList tasklist) throws NoDescriptionException {
+
+        int order = tasklist.size();
+        if (chat.split(" ").length == 1)  {
+            throw new NoDescriptionException("Delete");
+        } else {
+            int num = Integer.parseInt(chat.split(" ")[1]) - 1;
+            return new Delete(num);
+        }
+    }
+
+    /**
      * The method to parse the command.
      * @param chat
      * @param tasklist
@@ -130,6 +147,9 @@ public class Parser {
 
                 case EVENT:
                     return addTask(chat, tasklist);
+
+                case DELETE:
+                    return delete(chat, tasklist);
 
                 default:
                     throw new NoCommandException(chat);

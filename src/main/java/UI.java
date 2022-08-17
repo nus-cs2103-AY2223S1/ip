@@ -37,6 +37,18 @@ public class UI {
     }
 
     /**
+     * The method to show added task.
+     * @param task
+     */
+    public void showDeleteTask(TaskList task, Task taskDeleted) {
+        System.out.println(indentation + underline);
+        System.out.println(indentation + "Noted. I've removed this task:");
+        System.out.println(indentation + taskDeleted);
+        System.out.println(indentation + "Now you have " + task.size() + " tasks in the list.");
+        System.out.println(indentation + underline);
+    }
+
+    /**
      * The method to show task being done.
      * @param task
      */
