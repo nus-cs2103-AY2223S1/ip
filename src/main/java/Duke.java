@@ -18,21 +18,25 @@ public class Duke {
     void run() {
         System.out.println(intro);
         System.out.println(divider);
-        checkInput(s.next());
+        checkInput(s.nextLine());
     }
 
     void checkInput(String inputString) {
-        if (inputString.equals("bye")) {
+        String[] input = inputString.split(" ");
+        String output = "";
+        if (input[0].equals("bye")) {
             System.out.println("Goodbye, see you soon!" + divider);
             return;
-        } else if (inputString.equals("list")) {
-            System.out.println(itemList.getList() + divider);
+        } else if (input[0].equals("list")) {
+            output = itemList.toString();
+        } else if (input[0].equals("mark")) {
+            output = itemList.mark(Integer.parseInt(input[1]));
+        } else if (input[0].equals("unmark")) {
+            output = itemList.unmark(Integer.parseInt(input[1]));
         } else {
-            String output = itemList.addItem(inputString);
-            if (!output.equals("")) {
-                System.out.println(output + divider);
-            }
+            output = itemList.addItem(inputString);
         }
+        System.out.println(output + divider);
         checkInput(s.nextLine());
     }
 
