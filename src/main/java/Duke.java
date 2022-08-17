@@ -10,7 +10,6 @@ public class Duke {
     private boolean hasEnded = false;
     private static final WelcomeRequest welcomeRequest = new WelcomeRequest();
     private static final GoodbyeRequest goodbyeRequest = new GoodbyeRequest();
-    private static final InvalidRequest invalidRequest = new InvalidRequest();
 
     public Duke() {
         this.tasksList = new TasksList();
@@ -26,42 +25,46 @@ public class Duke {
         greet();
         while (!hasEnded) {
             String userInput = getInput(sc);
-            String[] inputArray = userInput.split(" ", 2);
+            String[] inputArray = userInput.trim().split("\\s+", 2);
             String command = inputArray[0];
 
-            switch (command.toUpperCase()) {
-                case "BYE":
-                    goodBye();
-                    sc.close();
-                    hasEnded = true;
-                    break;
-                case "LIST":
-                    ListRequest listRequest= new ListRequest(this.tasksList);
-                    listRequest.execute();
-                    break;
-                case "MARK":
-                    MarkRequest markRequest = new MarkRequest(this.tasksList, inputArray[1]);
-                    markRequest.execute();
-                    break;
-                case "UNMARK":
-                    UnmarkRequest unmarkRequest = new UnmarkRequest(this.tasksList, inputArray[1]);
-                    unmarkRequest.execute();
-                    break;
-                case "TODO":
-                    TodoRequest todoRequest = new TodoRequest(this.tasksList, inputArray[1]);
-                    todoRequest.execute();
-                    break;
-                case "DEADLINE":
-                    DeadlineRequest deadlineRequest = new DeadlineRequest(this.tasksList, inputArray[1]);
-                    deadlineRequest.execute();
-                    break;
-                case "EVENT":
-                    EventRequest eventRequest = new EventRequest(this.tasksList, inputArray[1]);
-                    eventRequest.execute();
-                    break;
-                default:
-                    InvalidRequest invalidRequest = new InvalidRequest();
-                    invalidRequest.execute();
+            try {
+                switch (command.toUpperCase()) {
+                    case "BYE":
+                        goodBye();
+                        sc.close();
+                        hasEnded = true;
+                        break;
+                    case "LIST":
+                        ListRequest listRequest = new ListRequest(this.tasksList);
+                        listRequest.execute();
+                        break;
+                    case "MARK":
+                        MarkRequest markRequest = new MarkRequest(this.tasksList, inputArray);
+                        markRequest.execute();
+                        break;
+                    case "UNMARK":
+                        UnmarkRequest unmarkRequest = new UnmarkRequest(this.tasksList, inputArray);
+                        unmarkRequest.execute();
+                        break;
+                    case "TODO":
+                        TodoRequest todoRequest = new TodoRequest(this.tasksList, inputArray);
+                        todoRequest.execute();
+                        break;
+                    case "DEADLINE":
+                        DeadlineRequest deadlineRequest = new DeadlineRequest(this.tasksList, inputArray);
+                        deadlineRequest.execute();
+                        break;
+                    case "EVENT":
+                        EventRequest eventRequest = new EventRequest(this.tasksList, inputArray);
+                        eventRequest.execute();
+                        break;
+                    default:
+                        throw new DukeException("Please enter a valid request / command!");
+                }
+            } catch (DukeException exception) {
+                InvalidRequest invalidRequest = new InvalidRequest(exception.getMessage());
+                invalidRequest.execute();
             }
         }
     }

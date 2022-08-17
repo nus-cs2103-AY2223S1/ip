@@ -1,11 +1,11 @@
 public abstract class Request {
-    private static final String HORIZONTAL_LINE = "____________________________________________________________";
+    private static final String HORIZONTAL_LINE = "_______________________________________________________________";
 
     public void printResponse(String response) {
         System.out.println(Request.HORIZONTAL_LINE + "\n" + response + "\n" + Request.HORIZONTAL_LINE);
     }
 
-    public abstract void execute();
+    public abstract void execute() throws DukeException;
 
 
 

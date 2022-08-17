@@ -12,16 +12,24 @@ public class TasksList {
         this.listOfTasks.add(task);
     }
 
-    public Task markAsDone(int taskNumber) {
-        Task taskToMark = this.listOfTasks.get(taskNumber - 1);
-        taskToMark.markAsDone();
-        return taskToMark;
+    public Task markAsDone(int taskNumber) throws DukeException {
+       if (taskNumber < 1 || taskNumber > this.listOfTasks.size()) {
+           throw new DukeException("Please enter a valid task number!");
+       } else {
+           Task taskToMark = this.listOfTasks.get(taskNumber - 1);
+           taskToMark.markAsDone();
+           return taskToMark;
+       }
     }
 
-    public Task markAsUndone(int taskNumber) {
-        Task taskToMark = this.listOfTasks.get(taskNumber - 1);
-        taskToMark.markAsUndone();
-        return taskToMark;
+    public Task markAsUndone(int taskNumber) throws DukeException{
+        if (taskNumber < 1 || taskNumber > this.listOfTasks.size()) {
+            throw new DukeException("Please enter a valid task number!");
+        } else {
+            Task taskToMark = this.listOfTasks.get(taskNumber - 1);
+            taskToMark.markAsUndone();
+            return taskToMark;
+        }
     }
 
     public String toString() {

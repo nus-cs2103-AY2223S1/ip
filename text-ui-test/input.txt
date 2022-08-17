@@ -1,6 +1,13 @@
 todo CS2100
+todo
 deadline CS1231 /by Monday
+deadline
+deadline CS1231
+deadline CS1231 /by
 event meeting with Tom /at Tuesday 2-3pm
+event
+event meeting with Tom
+event meeting with Tom /at
 mark 1
 list
 mark 2
@@ -13,5 +20,16 @@ unmark 2
 list
 unmark 3
 list
+mark
+mark a
+mark 4
+unmark
+unmark a
+unmark 4
+invalidcommand
 bye
+
+
+
+
 

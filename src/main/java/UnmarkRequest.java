@@ -1,17 +1,28 @@
 public class UnmarkRequest extends Request{
-    private int taskNumber;
+    private String[] inputArray;
     private TasksList tasksList;
     private static final String UNMARK_MSG = "Sure! I've marked this task as not done yet: \n";
 
-    public UnmarkRequest(TasksList tasksList, String requestCommand) {
-        this.taskNumber = Integer.valueOf(requestCommand);
+    public UnmarkRequest(TasksList tasksList, String[] inputArray) {
         this.tasksList = tasksList;
+        this.inputArray = inputArray;
     }
 
     @Override
-    public void execute() {
-        Task markedTask = this.tasksList.markAsUndone(this.taskNumber);
-        super.printResponse(UnmarkRequest.UNMARK_MSG + markedTask);
+    public void execute() throws DukeException {
+        if (this.inputArray.length < 2) {
+            throw new DukeException("Missing Task Number!");
+        }
+         try {
+             int taskNumber = Integer.parseInt(this.inputArray[1]);
+             Task markedTask = this.tasksList.markAsUndone(taskNumber);
+             super.printResponse(UnmarkRequest.UNMARK_MSG + markedTask);
+             //exception due to parsing
+         } catch (NumberFormatException exception) {
+             throw new DukeException("Please enter a integer for task number!");
+         }
     }
-
 }
+
+
+
