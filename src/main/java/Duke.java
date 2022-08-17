@@ -60,6 +60,7 @@ public class Duke {
                     if (input.toLowerCase().equals("todo")) {
                         throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
                     }
+
                     String description = input.substring(5);
                     Task task = new Todo(description);
                     list.add(task);
@@ -72,6 +73,7 @@ public class Duke {
                     if (input.toLowerCase().equals("deadline")) {
                         throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
                     }
+
                     String description = input.substring(9).split(" /by ")[0];
                     String by = input.substring(9).split(" /by ")[1];
                     Task task = new Deadline(description, by);
@@ -85,12 +87,26 @@ public class Duke {
                     if (input.toLowerCase().equals("event")) {
                         throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.");
                     }
+
                     String description = input.substring(6).split(" /at ")[0];
                     String at = input.substring(6).split(" /at ")[1];
                     Task task = new Event(description, at);
                     list.add(task);
 
                     System.out.println("\tGot it. I've added this task:");
+                    System.out.println("\t" + task.toString());
+                    System.out.println(String.format("\tNow you have %s tasks in the list.",
+                                                    list.size()));
+                } else if (input.toLowerCase().startsWith("delete")) {
+                    if (input.toLowerCase().equals("delete")) {
+                        throw new DukeException("☹ OOPS!!! The description of an delete cannot be empty.");
+                    }
+
+                    int index = Integer.parseInt(input.split(" ")[1]);
+                    Task task = list.get(index - 1);
+                    list.remove(index - 1);
+
+                    System.out.println("\tNoted. I've removed this task:");
                     System.out.println("\t" + task.toString());
                     System.out.println(String.format("\tNow you have %s tasks in the list.",
                                                     list.size()));
