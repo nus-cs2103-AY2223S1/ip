@@ -31,17 +31,22 @@ public class Task {
      * Mark task as Done and Print acknowledge message.
      */
     protected void markAsDone() {
-        System.out.println("Good job! Marked this task as Done");
+        System.out.println(Constants.MARK_AS_DONE_MESSAGE);
         this.isDone = true;
-        System.out.println(this.getStatusIcon() + " " + this.detail);
+        System.out.println(this.toString());
     }
 
     /**
      * Mark task as not Done and Print acknowledge message.
      */
     protected void unmark() {
-        System.out.println("Marked this task as not Done yet!");
+        System.out.println(Constants.UNMARK_MESSAGE);
         this.isDone = false;
-        System.out.println(this.getStatusIcon() + " " + this.detail);
+        System.out.println(this.toString());
+    }
+
+    @Override
+    public String toString() {
+        return this.getStatusIcon() + " " + this.detail;
     }
 }

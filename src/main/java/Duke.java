@@ -1,24 +1,6 @@
 import java.util.Scanner;
 
 public class Duke {
-    // Logo
-    private static final String LOGO =
-            "   _____    _____   ___    __    ___    ____    _______ \n" +
-            "  / ____|  / ____| |__ \\  /_ |  / _ \\  |___ \\  |__   __|\n" +
-            " | |      | (___      ) |  | | | | | |   __) |    | |   \n" +
-            " | |       \\___ \\    / /   | | | | | |  |__ <     | |   \n" +
-            " | |____   ____) |  / /_   | | | |_| |  ___) |    | |   \n" +
-            "  \\_____| |_____/  |____|  |_|  \\___/  |____/     |_|   \n";
-
-    // Arrow to start the answer
-    private static final String ARROW = "--> ";
-
-    // Keyword to quit the program
-    private static final String EXIT = "bye";
-
-    // Keyword to request stored items
-    private static final String LIST = "list";
-
     // List to store text entered by the user and display them back to the user when requested
     private static Task[] wordList = new Task[100];
 
@@ -29,7 +11,7 @@ public class Duke {
      * Start the program
      */
     private static void greet() {
-        System.out.println("Hello I am\n" + Duke.LOGO);
+        System.out.println("Hello I am\n" + Constants.LOGO);
         System.out.println("May I help you?");
     }
 
@@ -38,7 +20,7 @@ public class Duke {
      * @param input the message that user type
      */
     private static void echo(String input) {
-        System.out.println(Duke.ARROW + input);
+        System.out.println(Constants.ARROW + input);
     }
 
     /**
@@ -50,20 +32,22 @@ public class Duke {
 
     /**
      * Add text that user typed to the word list
-     * @param message text the user typed
+     * @param task text the user typed
      */
-    private static void add(String message) {
-        Duke.echo("Added item: " + message);
-        Duke.wordList[numOfItems] = new Task(message);
+    private static void add(Task task) {
+        System.out.println(Constants.ARROW + "Added task: " + task.toString());
+        Duke.wordList[numOfItems] = task;
         numOfItems++;
+        System.out.println("Now you have " + Duke.numOfItems + " task(s) on your list.");
     }
 
     /**
      * Print all item in the word list
      */
     private static void listItems() {
+        System.out.println(Constants.LISTING_MESSAGE);
         for (int i = 0; i < numOfItems; i++) {
-            System.out.println((i+1) + ") " + wordList[i].getStatusIcon() + wordList[i].getDetail());
+            System.out.println((i+1) + ") " + wordList[i].toString());
         }
     }
 
@@ -76,17 +60,32 @@ public class Duke {
         String userInput = scanner.nextLine();
 
         // Echoing
-        while (!userInput.equals(Duke.EXIT)) {
-            if (userInput.equals(Duke.LIST)) {
-                Duke.listItems();
-            } else if (userInput.contains("unmark")){
-                int index =  Integer.parseInt(userInput.split(" ")[1]);
-                wordList[index-1].unmark();
-            } else if (userInput.contains("mark")){
-                int index =  Integer.parseInt(userInput.split(" ")[1]);
-                wordList[index-1].markAsDone();
-            } else {
-                Duke.add(userInput);
+        while (!userInput.equals(Constants.EXIT)) {
+            String typeOfTask = userInput.split(" ")[0];
+            int index;
+            switch (typeOfTask) {
+                case Constants.LIST:
+                    Duke.listItems();
+                    break;
+                case Constants.UNMARK:
+                    index =  Integer.parseInt(userInput.split(" ")[1]);
+                    wordList[index-1].unmark();
+                    break;
+                case Constants.MARK:
+                    index =  Integer.parseInt(userInput.split(" ")[1]);
+                    wordList[index-1].markAsDone();
+                    break;
+                case Constants.TODO:
+                    Duke.add(new ToDo(userInput.substring(5)));
+                    break;
+                case Constants.DEADLINE:
+                    String[] deadline = userInput.substring(9).split(" /by ");
+                    Duke.add(new Deadline(deadline[0], deadline[1]));
+                    break;
+                case Constants.EVENT:
+                    String[] event = userInput.substring(6).split(" /at ");
+                    Duke.add(new Event(event[0], event[1]));
+                    break;
             }
             userInput = scanner.nextLine();
         }
