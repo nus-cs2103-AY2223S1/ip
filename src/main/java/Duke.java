@@ -2,6 +2,12 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Duke {
+    private ArrayList<Task> tasks;
+
+    public Duke() {
+        this.tasks = new ArrayList<>();
+    }
+
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -13,80 +19,113 @@ public class Duke {
         System.out.println("What can I do for you?\n");
 
         Scanner sc = new Scanner(System.in);
-        ArrayList<Task> arrayList = new ArrayList<>();
+        Duke duke = new Duke();
 
-        loop:
-        while(sc.hasNextLine()) {
+        while (sc.hasNextLine()) {
             String input = sc.nextLine();
-            String[] splitInput = input.split(" ", 2);
-            String command = splitInput[0];
-            String detail = "";
-            if(splitInput.length > 1) {
-                detail = splitInput[1];
+            try {
+                duke.execute(input);
+            } catch (DukeException d) {
+                System.out.println(d.getMessage());
             }
-            switch (command) {
-                case "bye":
-                    System.out.println("Bye. Hope to see you again soon!");
-                    break loop;
-                case "list":
-                    String message = "Here are the tasks in your list:\n";
-                    int length = arrayList.size();
-                    for(int i = 0; i < length; i++) {
-                        message += String.format("%d. " + arrayList.get(i).toString() + "\n", i + 1);
+        }
+
+    }
+
+    public void execute(String input) throws DukeException{
+        String[] splitInput = input.split(" ", 2);
+        String command = splitInput[0].trim();
+        String detail = "";
+        Boolean description_needed = command.equals("todo") || command.equals("deadline") || command.equals("event") ||
+                command.equals("mark") || command.equals("unmark");
+        if (splitInput.length <= 1 && description_needed) {
+            throw new DukeException("Description of command is required.\n");
+        } else if (description_needed){
+            detail = splitInput[1].trim();
+        }
+
+        switch (command) {
+            case "bye":
+                System.out.println("Bye. Hope to see you again soon!");
+                break;
+            case "list":
+                String message = "";
+                int length = this.tasks.size();
+                if (length == 0) {
+                    message += "List of tasks is currently empty.";
+                } else {
+                    message += "Here are the tasks in your list:\n";
+                    for (int i = 0; i < length; i++) {
+                        message += String.format("%d. " + this.tasks.get(i).toString() + "\n", i + 1);
                     }
-                    System.out.println(message);
-                    break;
-                case "mark":
-                    int markIndex = Integer.parseInt(detail) - 1;
-                    Task markTask = arrayList.get(markIndex);
-                    if(markTask.isDone) {
+                }
+                System.out.println(message);
+                break;
+            case "mark":
+                int markIndex = Integer.parseInt(detail) - 1;
+                if (markIndex < 0 || markIndex >= this.tasks.size()) {
+                    throw new DukeException(String.format("There is no task with index %d\n", markIndex + 1));
+                } else {
+                    Task markTask = this.tasks.get(markIndex);
+                    if (markTask.isDone) {
                         System.out.println("This task is already marked as done:\n" + markTask.toString() + "\n");
                     } else {
                         markTask.markDone();
                         System.out.println("Nice! I've marked this task as done:\n" + markTask.toString() + "\n");
                     }
-                    break;
-                case "unmark":
-                    int unMarkIndex = Integer.parseInt(detail) - 1;
-                    Task unMarkTask = arrayList.get(unMarkIndex);
-                    if(!unMarkTask.isDone) {
+                }
+                break;
+            case "unmark":
+                int unMarkIndex = Integer.parseInt(detail) - 1;
+                if (unMarkIndex < 0 || unMarkIndex >= this.tasks.size()) {
+                    throw new DukeException(String.format("There is no task with index %d\n", unMarkIndex + 1));
+                } else {
+                    Task unMarkTask = this.tasks.get(unMarkIndex);
+                    if (!unMarkTask.isDone) {
                         System.out.println("This task is already marked as undone:\n" + unMarkTask.toString() + "\n");
                     } else {
                         unMarkTask.markUndone();
                         System.out.println("OK, I've marked this task as not done yet:\n" + unMarkTask.toString() + "\n");
                     }
-                    break;
-                case "todo":
-                    Todo todo = new Todo(detail);
-                    arrayList.add(todo);
-                    String todoMessage = "added: " + todo.toString() + "\n";
-                    todoMessage += String.format("Now, you have %d task(s) in the list.", arrayList.size());
-                    System.out.println(todoMessage + "\n");
-                    break;
-                case "deadline":
-                    String[] splitDetailDeadline = detail.split(" /by ", 2);
-                    String deadlineAction = splitDetailDeadline[0];
-                    String deadlineTime = splitDetailDeadline[1];
+                }
+                break;
+            case "todo":
+                Todo todo = new Todo(detail);
+                this.tasks.add(todo);
+                String todoMessage = "added: " + todo.toString() + "\n";
+                todoMessage += String.format("Now, you have %d task(s) in the list.", this.tasks.size());
+                System.out.println(todoMessage + "\n");
+                break;
+            case "deadline":
+                String[] splitDetailDeadline = detail.split("/by", 2);
+                if (splitDetailDeadline.length == 1) {
+                    throw new DukeException("Description of deadline must be followed by /by then followed by time of deadline.\n");
+                } else {
+                    String deadlineAction = splitDetailDeadline[0].trim();
+                    String deadlineTime = splitDetailDeadline[1].trim();
                     Deadline deadline = new Deadline(deadlineAction, deadlineTime);
-                    arrayList.add(deadline);
+                    this.tasks.add(deadline);
                     String deadlineMessage = "added: " + deadline.toString() + "\n";
-                    deadlineMessage += String.format("Now, you have %d task(s) in the list.", arrayList.size());
+                    deadlineMessage += String.format("Now, you have %d task(s) in the list.", this.tasks.size());
                     System.out.println(deadlineMessage + "\n");
-                    break;
-                case "event":
-                    String[] splitDetailEvent = detail.split(" /at ", 2);
-                    String eventAction = splitDetailEvent[0];
-                    String eventTime = splitDetailEvent[1];
+                }
+                break;
+            case "event":
+                String[] splitDetailEvent = detail.split("/at", 2);
+                if (splitDetailEvent.length == 1) {
+                    throw new DukeException("Description of event must be followed by /at then followed by time of event.\n");
+                } else {
+                    String eventAction = splitDetailEvent[0].trim();
+                    String eventTime = splitDetailEvent[1].trim();
                     Event event = new Event(eventAction, eventTime);
-                    arrayList.add(event);
+                    this.tasks.add(event);
                     String eventMessage = "added: " + event.toString() + "\n";
-                    eventMessage += String.format("Now, you have %d task(s) in the list.", arrayList.size());
+                    eventMessage += String.format("Now, you have %d task(s) in the list.", this.tasks.size());
                     System.out.println(eventMessage + "\n");
-                    break;
-                default:
-                    System.out.println("Invalid input");
-            }
+                }
+                break;
+            default:
+                throw new DukeException(command + " is an invalid command.\n");
         }
-        sc.close();
     }
 }
