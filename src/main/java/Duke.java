@@ -1,6 +1,8 @@
 import java.util.Scanner;
 
 public class Duke {
+    private static String[] textList = new String[100];
+    private static int count = 0;
     public static void printBot(String s) {
         String lineBreak = "____________________________________________________________";
         System.out.println(lineBreak);
@@ -8,6 +10,19 @@ public class Duke {
         System.out.println(lineBreak);
         System.out.println();
     }
+
+    public static void printBot(String[] s) {
+        String lineBreak = "____________________________________________________________";
+        System.out.println(lineBreak);
+        for (int i = 0; i < s.length; ++i) {
+            if (s[i] != null) {
+                System.out.println((i + 1) + ". " + s[i]);
+            }
+        }
+        System.out.println(lineBreak);
+        System.out.println();
+    }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Hello! I'm Nuke");
@@ -15,11 +30,15 @@ public class Duke {
         String s;
         while(true) {
             s = scanner.nextLine();
-            if (s.equals("bye")) {
+            if (s.equals("list")) {
+                printBot(textList);
+            } else if (s.equals("bye")) {
                 printBot("Bye. Hope to see you again soon!");
                 return;
             } else {
-                printBot(s);
+                textList[count] = s;
+                ++count;
+                printBot("added: " + s);
             }
         }
     }
