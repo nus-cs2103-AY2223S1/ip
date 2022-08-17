@@ -50,7 +50,6 @@ public class Duke {
         String str = sc.nextLine();
         String uncap = str.toLowerCase();
         while (!uncap.equals("bye")) {
-            System.out.println("DEBUG: " + str );
             if (uncap.startsWith("delete")) {
                 Integer i = Integer.parseInt(String.valueOf(str.charAt(7)));
                 Task del = delete(al, i);
