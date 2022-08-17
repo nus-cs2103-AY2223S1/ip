@@ -1,9 +1,30 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
+
+    private static final ArrayList<String> botArray = new ArrayList<String>();
+
     public static void main(String[] args) {
         Greet();
-        Echo();
+        Scanner userInput = new Scanner(System.in);
+        String userReply = userInput.nextLine();
+        while(!userReply.toLowerCase().equals("bye")) {
+            if (userReply.equals("")) {
+                System.out.println("##############################################");
+                System.out.println("Please enter some valid text");
+                System.out.println("##############################################");
+                userReply = userInput.nextLine();
+                continue;
+            }
+            if (userReply.toLowerCase().equals("list")) {
+                List();
+                userReply = userInput.nextLine();
+                continue;
+            }
+            Add(userReply);
+            userReply = userInput.nextLine();
+        }
         GoodBye();
     }
 
@@ -13,22 +34,24 @@ public class Duke {
         System.out.println("##############################################");
     }
 
-    private static void Echo() {
-        Scanner userInput = new Scanner(System.in);
-        String userReply = userInput.nextLine();
-        while (!userReply.toLowerCase().equals("bye")) {
-            if (userReply.equals("")) {
-                System.out.println("##############################################");
-                System.out.println("Please enter a valid command");
-                System.out.println("##############################################");
-                userReply = userInput.nextLine();
-                continue;
-            }
-            System.out.println("##############################################");
-            System.out.println("\t\t\t\t\t" + userReply);
-            System.out.println("##############################################");
-            userReply = userInput.nextLine();
+
+    private static void Add(String userReply) {
+        System.out.println("##############################################");
+        System.out.println("\t\t\t" + "added: " + userReply);
+        System.out.println("##############################################");
+        botArray.add(userReply);
+    }
+    public static void List() {
+        System.out.println("##############################################");
+        if (botArray.size() == 0) {
+            System.out.println("\t\t\t" + "No items are in the list");
         }
+        for (int i = 0; i < botArray.size(); i++) {
+            int pos = i + 1;
+            String itemDisplayed = String.format("\t\t\t%d. %s",pos, botArray.get(i));
+            System.out.println(itemDisplayed);
+        }
+        System.out.println("##############################################");
     }
 
     private static void GoodBye() {
