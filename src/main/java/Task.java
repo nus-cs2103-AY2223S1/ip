@@ -7,8 +7,22 @@ public class Task {
         isDone = false;
     }
 
+    private String getStatusIcon() {
+        return isDone
+                ? "[X]"
+                : "[ ]";
+    }
+
     @Override
     public String toString() {
-        return task;
+        return getStatusIcon() + " " + task;
+    }
+
+    public void markAsDone() {
+        isDone = true;
+    }
+
+    public void markAsUndone() {
+        isDone = false;
     }
 }
