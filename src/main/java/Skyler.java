@@ -20,7 +20,7 @@ public class Skyler {
             } else if (description.equals("list")) {
                 System.out.println("Tasks:");
                 for (int i = 0; i < tasks.size(); i++) {
-                    String str = String.format("%d.[%s] %s", i + 1, tasks.get(i).getStatusIcon(), tasks.get(i));
+                    String str = String.format("%d.%s", i + 1, tasks.get(i));
                     System.out.println(str);
                 }
             } else if (description.startsWith("mark")) {
@@ -28,14 +28,14 @@ public class Skyler {
                 Task currTask = tasks.get(item - 1);
                 currTask.markAsDone();
                 System.out.println("You have completed this task:");
-                String show = String.format("  [%s] %s", currTask.getStatusIcon(), currTask);
+                String show = String.format("  %s", currTask);
                 System.out.println(show);
             } else if (description.startsWith("unmark")) {
                 int item = Integer.parseInt(description.substring(description.length() - 1));
                 Task currTask = tasks.get(item - 1);
                 currTask.markAsNotDone();
                 System.out.println("OK, I've marked this task as not done yet:");
-                String show = String.format("  [%s] %s", currTask.getStatusIcon(), currTask);
+                String show = String.format("  %s", currTask);
                 System.out.println(show);
             } else {
                 Task newTask = new Task(description);
