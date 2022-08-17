@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class Duke {
+public class Cheese {
   public static final String BORDER = "-----";
   public static ArrayList<Task> list = new ArrayList<Task>();
 
@@ -10,7 +10,7 @@ public class Duke {
             + "What can I do for you?");
     System.out.println(greeting);
 
-    Duke.chat();
+    Cheese.chat();
   }
 
   public static void chat() {
@@ -29,41 +29,41 @@ public class Duke {
       }
 
       if (userInput.equals("list")) {
-        Duke.printList();
+        Cheese.printList();
       } else if (userInput.indexOf("mark") == 0) {
         int itemNum = Integer.parseInt(userInput.substring(5));
         if (notInListRange(itemNum)) {
           System.out.println("Invalid list item number.");
           continue;
         }
-        Duke.list.get(itemNum - 1).markAsDone();
+        Cheese.list.get(itemNum - 1).markAsDone();
         System.out.println("Nice! Another task done!");
-        System.out.println(Duke.list.get(itemNum - 1));
+        System.out.println(Cheese.list.get(itemNum - 1));
       } else if (userInput.indexOf("unmark") == 0) {
         int itemNum = Integer.parseInt(userInput.substring(7));
         if (notInListRange(itemNum)) {
           System.out.println("Invalid list item number.");
           continue;
         }
-        Duke.list.get(itemNum - 1).markAsNotDone();
+        Cheese.list.get(itemNum - 1).markAsNotDone();
         System.out.println("Okie! I've marked this task as not done yet.");
-        System.out.println(Duke.list.get(itemNum - 1));
+        System.out.println(Cheese.list.get(itemNum - 1));
       } else if (userInput.indexOf("todo") == 0){
         String description = userInput.substring(5);
         Task task = new Todo(description);
-        Duke.addTask(task);
+        Cheese.addTask(task);
       } else if (userInput.indexOf("deadline") == 0 && userInput.indexOf("/by") != -1) {
         int byFlagIndex = userInput.indexOf("/by");
         String description = userInput.substring(9, byFlagIndex - 1);
         String deadline = userInput.substring(byFlagIndex + 4);
         Task task = new Deadline(description, deadline);
-        Duke.addTask(task);
+        Cheese.addTask(task);
       } else if (userInput.indexOf("event") == 0 && userInput.indexOf("/at") != -1) {
         int atFlagIndex = userInput.indexOf("/at");
         String description = userInput.substring(6, atFlagIndex - 1);
         String timeInterval = userInput.substring(atFlagIndex + 4);
         Task task = new Event(description, timeInterval);
-        Duke.addTask(task);
+        Cheese.addTask(task);
       } else {
         System.out.println("Sowwy, I don't understand");
       }
@@ -71,19 +71,19 @@ public class Duke {
   }
 
   private static void addTask(Task task) {
-    Duke.list.add(task);
+    Cheese.list.add(task);
     System.out.println("Gotcha! I have a paw-fect memory!");
     System.out.println("  " + task);
-    System.out.println("You have " + Duke.list.size() + " task(s) in the list.");
+    System.out.println("You have " + Cheese.list.size() + " task(s) in the list.");
   }
 
   private static boolean notInListRange(int itemNum) {
-    return itemNum < 1 || itemNum > Duke.list.size();
+    return itemNum < 1 || itemNum > Cheese.list.size();
   }
 
   public static void printList() {
-    for (int i = 1; i <= Duke.list.size(); i++) {
-      System.out.println(i + ". " + Duke.list.get(i - 1));
+    for (int i = 1; i <= Cheese.list.size(); i++) {
+      System.out.println(i + ". " + Cheese.list.get(i - 1));
     }
   }
 }
