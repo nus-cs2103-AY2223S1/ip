@@ -1,0 +1,24 @@
+todo Run in the Morning
+deadline homework
+deadline homework /by. tomorrow
+blah
+event Concert /at. Buona Vista
+event sleep
+todo sleep
+list
+todo test 5
+todo test 6
+deadline assignment 3 /by. 26th June
+deadline cca commitments /by. 2044
+list
+delete 4
+list
+delete 4
+list
+mark 2
+mark 3
+list
+unmark 2
+list
+unmark 400
+bye

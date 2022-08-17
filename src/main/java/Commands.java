@@ -24,7 +24,7 @@ public class Commands {
             task.unmarkAsDone();
             ui.unmarked(task);
         } catch (Exception e) {
-            throw new DukeException("☹ OOPS!!! The number you are talking about does not exist. " +
+            throw new DukeException("☹ OOPS!!! The number you are talking about does not exist." +
                     "\nPerhaps it is not a number at all? Please check again!");
         }
     }
