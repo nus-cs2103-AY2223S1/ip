@@ -51,13 +51,47 @@ public class Duke {
     }
 
     /**
-     * Stores the specified task into the linked list.
+     * Stores the specified task (to-do, event, deadline) into the linked list,
+     * provided the respective task formats are properly followed.
      *
      * @param task The task to be recorded
      */
     private static void addTask(String task) {
-        tasks.add(new Task(task));
-        prettyPrint("added: " + task);
+        Task addedTask;
+        if (task.matches("(?i)(^todo)(.*)")) {
+            // adding a to-do task, check that format is followed
+            if (task.matches("(?i)^todo\\s.+")) {
+                addedTask = new ToDo(task.substring(5));
+            } else {
+                prettyPrint("Hm... Duke's confused. Are you trying to create a todo?" +
+                        "\nMake sure you follow the format: todo [description]");
+                return;
+            }
+        } else if (task.matches("(?i)(^deadline)(.*)")) {
+            // adding a deadline, check that format is followed
+            if (task.matches("(?i)^deadline\\s.+\\s\\/(by)\\s.+")) {
+                String[] sp = task.substring(9).split("\\/(by)\\s", 2);
+                addedTask = new Deadline(sp[0], sp[1]);
+            } else {
+                prettyPrint("Hm... Duke's confused. Are you trying to create a deadline?" +
+                        "\nMake sure you follow the format: deadline [description] /by [deadline]");
+                return;
+            }
+        } else {
+            // adding an event, check that format is followed
+            if (task.matches("(?i)^event\\s.+\\s\\/(at)\\s.+")) {
+                String[] sp = task.substring(6).split("\\/(at)\\s", 2);
+                addedTask = new Event(sp[0], sp[1]);
+            } else {
+                prettyPrint("Hm... Duke's confused. Are you trying to create an event?" +
+                        "\nMake sure you follow the format: event [description] /at [event datetime]");
+                return;
+            }
+        }
+
+        tasks.add(addedTask);
+        prettyPrint(String.format("Got it. I've added this task:\n" +
+                "  %s\n Now you have %d tasks in the list.", addedTask, tasks.size()));
     }
 
     /**
@@ -113,8 +147,10 @@ public class Duke {
                         markTaskDone(Integer.parseInt(cmd.substring(5)));
                     } else if (cmd.matches("unmark \\d+")) {
                         markTaskNotDone(Integer.parseInt(cmd.substring(7)));
-                    } else {
+                    } else if (cmd.matches("(?i)^(todo|deadline|event)(.*)")) {
                         addTask(cmd);
+                    } else {
+                        prettyPrint("Hm...Duke doesn't understand what that means :(");
                     }
             }
         }
