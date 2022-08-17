@@ -7,18 +7,18 @@ public class Duke {
         System.out.println("-----------------------------------------------");
         Scanner sc = new Scanner(System.in);
         String[] tasks = new String[100];
-        int task_count = 0;
+        int taskCount = 0;
         while (sc.hasNext()) {
             String command = sc.nextLine();
             if (command.equals("bye")) {
                 break;
             }
             else if (command.equals("list")) {
-                for (int i = 0; i < task_count; i++) {
+                for (int i = 0; i < taskCount; i++) {
                     System.out.println(String.format("%d. %s", i + 1, tasks[i]));
                 }
             } else {
-                tasks[task_count++] = command;
+                tasks[taskCount++] = command;
                 System.out.println("added: " + command);
             }
         }
