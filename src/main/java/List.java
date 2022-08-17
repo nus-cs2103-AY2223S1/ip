@@ -25,49 +25,88 @@ public class List {
      */
     public static void run() {
         Scanner sc = new Scanner(System.in);
-        if (sc.hasNext("mark")) {
-            String mark = sc.next();
-            int i = sc.nextInt();
+        String text = sc.nextLine();
+        Scanner temp = new Scanner(text);
+        if (temp.hasNext("mark")) {
+            String mark = temp.next();
+            int i = temp.nextInt();
             if (i > 0) {
                 if (list[i - 1] != null) {
                     Task t = list[i - 1];
                     t.mark();
                 }
             }
+            temp.close();
             List.run();
-        } else if (sc.hasNext("unmark")) {
-            String unmark = sc.next();
-            int i = sc.nextInt();
+        } else if (temp.hasNext("unmark")) {
+            String unmark = temp.next();
+            int i = temp.nextInt();
             if (i > 0) {
                 if (list[i - 1] != null) {
                     Task t = list[i - 1];
                     t.unmark();
                 }
             }
+            temp.close();
             List.run();
         } else {
-            String str = sc.nextLine();
-            if (str.equals("bye")) {
-                System.out.println("Bye. Hope to see you again soon!");
-                sc.close();
-            } else if (str.equals("list"))  {
-                for (int i = 0; i < list.length; i++) {
-                    if (list[i] != null) {
-                        System.out.println(i + 1 + ". " + list[i].getDescription());
-                    }
-                }
-                List.run();
+            if (temp.hasNext("deadline")) {
+                temp.useDelimiter("deadline\\s*|\\s*/by\\s*");
+                String description = temp.next();
+                String by = temp.next();
+                Deadline d = new Deadline(description, by);
+                temp.close();
+                List.add(d);
+            } else if (temp.hasNext("event")) {
+                temp.useDelimiter("event\\s*|\\s*/at\\s*");
+                String description = temp.next();
+                String at = temp.next();
+                Event e = new Event(description, at);
+                temp.close();
+                List.add(e);
+            } else if (temp.hasNext("todo")) {
+                temp.useDelimiter("todo\\s*");
+                String description = temp.next();
+                Todo t = new Todo((description));
+                temp.close();
+                List.add(t);
             } else {
-                List.add(str);
+                if (text.equals("bye")) {
+                    System.out.println("Bye. Hope to see you again soon!");
+                    sc.close();
+                } else if (text.equals("list")) {
+                    for (int i = 0; i < list.length; i++) {
+                        if (list[i] != null) {
+                            System.out.println(i + 1 + ". " + list[i].toString());
+                        }
+                    }
+                    List.run();
+                } else {
+                    Task task = new Task(text);
+                    List.add(task);
+                }
             }
         }
     }
-
-    public static void add(String str) {
-        System.out.println("added: " + str);
-        Task curr = new Task(str);
-        list[index] = curr;
+    /**
+     * Helper function that returns a string
+     *
+     * @return task/tasks depending on the number of existing tasks in the list.
+     */
+    private static String taskString() {
+        if (index <= 1) {
+            return " task ";
+        } else {
+            return " tasks ";
+        }
+    }
+    /**
+     * The method that adds a Task to the list.
+     */
+    public static void add(Task t) {
+        list[index] = t;
         index++;
+        System.out.println("Got it. I've added this task:\n" + t.toString() + "\n" + "Now you have " + index + taskString() + "in the list.");
         List.run();
     }
 }

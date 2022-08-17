@@ -1,5 +1,5 @@
 /**
- * An object that represents a task that the user has input into the checklist.
+ * An object that represents a task that is input into the checklist.
  * CS2103T iP
  * AY22/23 Semester 1
  *
@@ -38,7 +38,7 @@ public class Task {
      */
     public void mark() {
         this.isDone = true;
-        System.out.println("Nice! I've marked this task as done:\n" + getDescription());
+        System.out.println("Nice! I've marked this task as done:\n" + toString());
     }
 
     /**
@@ -46,7 +46,7 @@ public class Task {
      */
     public void unmark() {
         this.isDone = false;
-        System.out.println("OK, I've marked this task as not done yet:\n" + getDescription());
+        System.out.println("OK, I've marked this task as not done yet:\n" + toString());
     }
 
     /**
@@ -54,7 +54,7 @@ public class Task {
      *
      * @return The description of the task along with its status.
      */
-    public String getDescription() {
+    public String toString() {
         return "[" + getStatusIcon() + "] " + description;
     }
 }
