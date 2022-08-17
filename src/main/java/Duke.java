@@ -10,8 +10,7 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
         greeting();
-        echo();
-
+        storeman();
     }
 
     public static void greeting() {
@@ -33,6 +32,34 @@ public class Duke {
         }
         bye();
         sc.close();
+    }
+
+    public static void storeman() {
+        ArrayList<String> al = new ArrayList<>();
+        Scanner sc = new Scanner(System.in);
+        String str = sc.nextLine();
+        String uncap = str.toLowerCase();
+        int count = 1;
+        while (!uncap.equals("bye")) {
+            while (!uncap.equals("list")) {
+                al.add(count + ". " + str);
+                count++;
+                System.out.println("------------------------------\n");
+                System.out.printf("\tAdded: %s\n", str);
+                System.out.println("------------------------------\n");
+                str = sc.nextLine();
+                uncap = str.toLowerCase();
+            }
+            System.out.println("-------------------------------\n");
+            al.forEach(System.out::println);
+            System.out.println("-------------------------------\n");
+            al.clear();
+            count = 1;
+            str = sc.nextLine();
+            uncap = str.toLowerCase();
+        }
+        sc.close();
+        bye();
     }
 
     public static void bye() {
