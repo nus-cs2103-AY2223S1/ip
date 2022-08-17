@@ -2,6 +2,7 @@
  * Class to represent a parser.
  */
 public class Parser {
+    // usage of Enum
     private enum Commands {
         BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE
     }
