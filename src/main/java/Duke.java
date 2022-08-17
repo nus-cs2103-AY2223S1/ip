@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
-    private static final String line = "____________________________________________________________";
+    public static final String line = "____________________________________________________________";
 
     private static void printTaskList(ArrayList<Task> list) {
         System.out.println(Duke.line);
