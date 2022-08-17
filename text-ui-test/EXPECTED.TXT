@@ -2,36 +2,62 @@ Hello! I'm Jean
 How can I help you?
 Bonjour! Je m'appelle Jean
 Vous désirez?
-
+The description must not be empty!
+Vous devez donner une description!
 	added / ajouté:
-		[T][ ] borrow book
+		[T][ ] this
 	You now have 1 task(s)!
 	Vous avez 1 tâche(s)!
+The description must not be empty!
+Vous devez donner une description!
+You must give a deadline!
+Vous devez donner un délai!
 	added / ajouté:
-		[D][ ] return book (by: Sunday)
+		[D][ ] this (by: tomorrow)
 	You now have 2 task(s)!
 	Vous avez 2 tâche(s)!
+The description must not be empty!
+Vous devez donner une description!
+You must give a time!
+Vous devez donner une heure!
 	added / ajouté:
-		[E][ ] project meeting (at: Mon 2-4pm)
+		[E][ ] that (at: tomorrow)
 	You now have 3 task(s)!
 	Vous avez 3 tâche(s)!
-	1.	 [T][ ] borrow book
-	2.	 [D][ ] return book (by: Sunday)
-	3.	 [E][ ] project meeting (at: Mon 2-4pm)
+You must name a valid task to mark!
+Nom d'un valable tâche à marqué comme fait!
 	I have marked it as done:
 	Je l'ai marqué comme fait:
-	[T][X] borrow book
-	I have marked it as done:
-	Je l'ai marqué comme fait:
-	[D][X] return book (by: Sunday)
-	1.	 [T][X] borrow book
-	2.	 [D][X] return book (by: Sunday)
-	3.	 [E][ ] project meeting (at: Mon 2-4pm)
+	[T][X] this
+There are only 3 task(s)!
+Il y a seulement 3 tâche(s)!
+It is already marked!
+C'est déjaà fini!
+You must name a valid task to unmark!
+Nom d'une valable tâche à marqué comme défait!
 	I have marked it as undone:
 	Je l'ai marqué comme défait:
-	[T][ ] borrow book
-	1.	 [T][ ] borrow book
-	2.	 [D][X] return book (by: Sunday)
-	3.	 [E][ ] project meeting (at: Mon 2-4pm)
+	[T][ ] this
+It is not marked!
+Ce n'est pas encore fini!
+There are only 3 task(s)!
+Il y a seulement 3 tâche(s)!
+	1.	 [T][ ] this
+	2.	 [D][ ] this (by: tomorrow)
+	3.	 [E][ ] that (at: tomorrow)
+It is not possible!
+C'est impossible!
+	I have deleted the task:
+	Je l'ai supprimé:
+	[T][ ] this
+	You now have 2 tasks remaining!
+	Il vous reste maintenant 2 tâches!
+	1.	 [D][ ] this (by: tomorrow)
+	2.	 [E][ ] that (at: tomorrow)
+It is not possible!
+C'est impossible!
+	1.	 [D][ ] this (by: tomorrow)
+	2.	 [E][ ] that (at: tomorrow)
+No such command!
 	Goodbye! See you soon!
 	Au revoir! À tout à l'heure!

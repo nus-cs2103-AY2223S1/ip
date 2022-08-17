@@ -73,9 +73,12 @@ public class Jean {
 
     private static void checkMark(String input, ArrayList<Task> taskList) {
         try {
-            if (input.trim().length() == 4) {
-                throw new JeanException("You must name a task to mark!" +
-                                        "\nNom d'un tâche à marqué comme fait!");
+            if (input.trim().length() == 4 || Integer.parseInt(input.substring(5)) < 1) {
+                throw new JeanException("You must name a valid task to mark!" +
+                                        "\nNom d'un valable tâche à marqué comme fait!");
+            } else if (Integer.parseInt(input.substring(5)) > Task.numberOfTasks) {
+                throw new JeanException("There are only " + Task.numberOfTasks + " task(s)!" +
+                                        "\nIl y a seulement " + Task.numberOfTasks + " tâche(s)!");
             } else if (taskList.get(Integer.parseInt(input.substring(5)) - 1).isDone){
                 throw new JeanException("It is already marked!" +
                                         "\nC'est déjaà fini!");
@@ -97,9 +100,12 @@ public class Jean {
 
     private static void checkUnmark(String input, ArrayList<Task> taskList) {
         try {
-            if (input.trim().length() == 6) {
-                throw new JeanException("You must name a task to unmark!" +
-                                        "\nNom d'une tâche à marqué comme défait!");
+            if (input.trim().length() == 6 || Integer.parseInt(input.substring(7))  < 1) {
+                throw new JeanException("You must name a valid task to unmark!" +
+                                        "\nNom d'une valable tâche à marqué comme défait!");
+            } else if (Integer.parseInt(input.substring(7)) > Task.numberOfTasks) {
+                throw new JeanException("There are only " + Task.numberOfTasks + " task(s)!" +
+                                        "\nIl y a seulement " + Task.numberOfTasks + " tâche(s)!");
             } else if (!taskList.get(Integer.parseInt(input.substring(7)) - 1).isDone){
                 throw new JeanException("It is not marked!" +
                                         "\nCe n'est pas encore fini!");
@@ -136,9 +142,9 @@ public class Jean {
     }
 
     private static void delete(ArrayList<Task> taskList, int taskIndex) {
-        Task curr = taskList.get(taskIndex - 1);
+        Task curr = taskList.get(taskIndex);
         Task.numberOfTasks -= 1;
-        taskList.remove(taskIndex - 1);
+        taskList.remove(taskIndex);
         System.out.println("\tI have deleted the task:" +
                            "\n\tJe l'ai supprimé:" +
                            "\n\t" + curr.toString() +
