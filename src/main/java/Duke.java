@@ -1,3 +1,6 @@
+import exceptions.*;
+
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Duke {
@@ -31,18 +34,16 @@ public class Duke {
         }
     }
 
-    private void mark(int index) {
+    private void mark(int index) throws DukeMissingIndexException {
         if (index >= currEmpty) {
-            System.out.println("There is no task with that index");
-            return;
+            throw new DukeMissingIndexException();
         }
         lst[index].setDone();
     }
 
-    private void unMark(int index) {
+    private void unMark(int index) throws DukeMissingIndexException {
         if (index >= currEmpty) {
-            System.out.println("There is no task with that index");
-            return;
+            throw new DukeMissingIndexException();
         }
         lst[index].setNotDone();
     }
@@ -54,53 +55,63 @@ public class Duke {
         System.out.println("Hello! i am Duke");
 
 
-
         while (true) {
-            System.out.println(SEPARATOR);
-            System.out.println("What do you want me to do?");
-            String command = myScanner.next();
 
-            switch (command) {
+
+            try {
+                System.out.println(SEPARATOR);
+                System.out.println("What do you want me to do?");
+                String command = myScanner.next();
+                switch (command) {
                 case "list":
                     if (!myScanner.nextLine().isBlank()) {
-                        System.out.println("Too many Arguments");
-                        break;
+                        throw new DukeTooManyArgumentException();
                     }
 
                     System.out.println(SEPARATOR);
                     duke.read();
                     break;
                 case "mark":
-                    int index = myScanner.nextInt();
-
-                    if (!myScanner.nextLine().isBlank()) {
-                        System.out.println("Too many Arguments");
-                        break;
+                    String unParsedIndex = myScanner.nextLine();
+                    if (unParsedIndex.isBlank()) {
+                        throw new DukeEmptyCommandException();
                     }
+
+                    String[] split = unParsedIndex.split(" ", 3);
+
+                    if (split.length != 2) {
+                        throw new DukeTooManyArgumentException();
+                    }
+
+                    int index = Integer.parseInt(split[1]);
 
                     System.out.println(SEPARATOR);
 
                     if (index <= 0) {
-                        System.out.println("index cannot be zero or negative");
-                        break;
+                        throw new DukeArrayOutOfBoundException();
                     } else {
                         duke.mark(index - 1);
                     }
 
                     break;
                 case "unmark":
-                    int index1 = myScanner.nextInt();
-
-                    if (!myScanner.nextLine().isBlank()) {
-                        System.out.println("Too many Arguments");
-                        break;
+                    String unParsedIndex1 = myScanner.nextLine();
+                    if (unParsedIndex1.isBlank()) {
+                        throw new DukeEmptyCommandException();
                     }
+
+                    String[] split1 = unParsedIndex1.split(" ", 3);
+
+                    if (split1.length != 2) {
+                        throw new DukeTooManyArgumentException();
+                    }
+
+                    int index1 = Integer.parseInt(split1[1]);
 
                     System.out.println(SEPARATOR);
 
                     if (index1 < 0) {
-                        System.out.println("index cannot be negative");
-                        break;
+                        throw new DukeArrayOutOfBoundException();
                     } else {
                         duke.unMark(index1 - 1);
                     }
@@ -108,13 +119,14 @@ public class Duke {
                     break;
                 case "deadline":
                     String unParsed = myScanner.nextLine();
-                    String[] descriptionAndBy =  unParsed.split("/by", 2);
+                    if (unParsed.isBlank()) {
+                        throw new DukeEmptyDescriptionException();
+                    }
+                    String[] descriptionAndBy =  unParsed.split("/at", 2);
 
                     if (descriptionAndBy.length != 2) {
-                        System.out.println("Invalid Commands");
-                        break;
+                        throw new DukeInvalidDescriptionException();
                     }
-
                     System.out.println(SEPARATOR);
 
                     Deadline newDeadLine = new Deadline(descriptionAndBy[0], descriptionAndBy[1]);
@@ -125,7 +137,7 @@ public class Duke {
                     String description = myScanner.nextLine();
 
                     if (description.isBlank()) {
-                        System.out.println("Empty Arguments");
+                        throw new DukeEmptyDescriptionException();
                     }
 
                     System.out.println(SEPARATOR);
@@ -136,11 +148,13 @@ public class Duke {
                     break;
                 case "event":
                     String unParsed1 = myScanner.nextLine();
+                    if (unParsed1.isBlank()) {
+                        throw new DukeEmptyDescriptionException();
+                    }
                     String[] descriptionAndBy1 =  unParsed1.split("/at", 2);
 
                     if (descriptionAndBy1.length != 2) {
-                        System.out.println("Invalid Commands");
-                        break;
+                        throw new DukeInvalidDescriptionException();
                     }
 
                     System.out.println(SEPARATOR);
@@ -157,9 +171,15 @@ public class Duke {
 
                     break;
                 default:
-                    System.out.println("Unknown Command");
-                    myScanner.nextLine();
+                    throw new DukeUnknownCommandException();
+                }
+            } catch (DukeException e) {
+                System.out.println(e.getMessage());
+            } catch (NumberFormatException e) {
+                System.out.println("Index can only be Integer");
             }
+
+
         }
 
 

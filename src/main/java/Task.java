@@ -1,33 +1,33 @@
 public class Task {
     protected String description;
-    protected boolean done;
+    protected boolean isDone;
 
     public Task(String description) {
         this.description = description;
-        this.done = false;
+        this.isDone = false;
     }
 
     public void setDone() {
-        if (this.done) {
+        if (this.isDone) {
             System.out.println("Task is already done");
             return;
         }
-        this.done = true;
+        this.isDone = true;
         System.out.println("Task is marked as Done \n" + this.toString());
     }
 
     public void setNotDone() {
-        if (!this.done) {
+        if (!this.isDone) {
             System.out.println("Task is still undone");
             return;
         }
-        this.done = false;
+        this.isDone = false;
         System.out.println("Task is marked as undone \n" + this.toString());
     }
 
     @Override
     public String toString() {
-        if (this.done) {
+        if (this.isDone) {
             return "[X] " + description;
         } else {
             return "[ ] " + description;
