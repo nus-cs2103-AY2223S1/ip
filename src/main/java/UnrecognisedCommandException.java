@@ -8,7 +8,7 @@ public class UnrecognisedCommandException extends TumuException {
 
     @Override
     public String toString() {
-        return String.format("\t°՞(ᗒᗣᗕ)՞°Sorry, I don't " +
+        return String.format("\t°՞(ᗒᗣᗕ)՞° Sorry, I don't " +
                 "understand this command: %s", command);
     }
 }

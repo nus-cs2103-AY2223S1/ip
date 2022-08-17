@@ -10,10 +10,16 @@
 	What is on your mind today?
 
 	____________________________________________________________
-	No tasks currently available. Add a task before (un)marking!
+	No tasks currently available. Add a task before (un)marking or deleting!
 	____________________________________________________________
 	____________________________________________________________
-	°՞(ᗒᗣᗕ)՞°Sorry, I don't understand this command: checking
+	No tasks currently available. Add a task before (un)marking or deleting!
+	____________________________________________________________
+	____________________________________________________________
+	Please (un)mark or delete a task by its list position (must be an integer)!
+	____________________________________________________________
+	____________________________________________________________
+	°՞(ᗒᗣᗕ)՞° Sorry, I don't understand this command: checking
 	____________________________________________________________
 	____________________________________________________________
 	I've added a task into your list:
@@ -64,7 +70,7 @@
 	Please fill in the task and/or timing!
 	____________________________________________________________
 	____________________________________________________________
-	°՞(ᗒᗣᗕ)՞°Sorry, I don't understand this command: event/at
+	°՞(ᗒᗣᗕ)՞° Sorry, I don't understand this command: event/at
 	____________________________________________________________
 	____________________________________________________________
 	There's too many timings, I'm confused. ◔_◔
@@ -106,7 +112,22 @@
 	 5. [E][ ] taskevent (at: 2)
 	____________________________________________________________
 	____________________________________________________________
-	Please (un)mark a task by its list position (must be an integer)!
+	Please (un)mark or delete a task by its list position (must be an integer)!
+	____________________________________________________________
+	____________________________________________________________
+	Specified index is out of bounds, please key a value from 1 to 5
+	____________________________________________________________
+	____________________________________________________________
+	Alright, I have removed this task for you:
+		[T][ ] todo task
+	You have 4 task(s) in the list.
+	____________________________________________________________
+	____________________________________________________________
+	Here are your current tasks:
+	 1. [T][ ] task 1
+	 2. [T][ ] a task
+	 3. [D][ ] task (by: tonight)
+	 4. [E][ ] taskevent (at: 2)
 	____________________________________________________________
 	____________________________________________________________
 	Goodbye, and have a nice day ahead!

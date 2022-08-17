@@ -1,4 +1,6 @@
 mark 999
+delete -1
+delete - 1
 checking
 todo task 1
 mark -1
@@ -22,4 +24,7 @@ list
 unmark 3
 LIsT
 mark hungryyy
+delete 9
+delete 3
+list
 BYE

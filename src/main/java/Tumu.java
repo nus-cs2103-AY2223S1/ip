@@ -14,6 +14,7 @@ public class Tumu {
     private static final String TODO_CMD = "todo";
     private static final String DEADLINE_CMD = "deadline";
     private static final String EVENT_CMD = "event";
+    private static final String DELETE_CMD = "delete";
 
     public static void main(String[] args) {
         greeting();
@@ -55,12 +56,17 @@ public class Tumu {
                     case EVENT_CMD:
                         addEventTask(sc.nextLine().trim());
                         break;
+                    case DELETE_CMD:
+                        deleteTask(sc.nextInt());
+                        break;
                     default:
                         //No commands are recognised.
+                        sc.nextLine(); //clear buffer
                         throw new UnrecognisedCommandException(command.trim());
                 }
             } catch (InputMismatchException e) {
-                System.out.println("\tPlease (un)mark a task by its list position (must be an integer)!");
+                System.out.println("\tPlease (un)mark or delete a task by " +
+                        "its list position (must be an integer)!");
                 sc.nextLine(); //clear buffer
             } catch (TumuException e) {
                 System.out.println(e);
@@ -120,8 +126,8 @@ public class Tumu {
          */
         if (oneIndexedNum < 1 || oneIndexedNum > userTasks.size()) {
             //Specified index from user is out of bounds of list.
-            if (userTasks.isEmpty()) throw new MarkNoTaskException();
-            else throw new MarkOutOfBoundsException(userTasks.size());
+            if (userTasks.isEmpty()) throw new NoTaskException();
+            else throw new OutOfBoundsException(userTasks.size());
         } else {
             Task task = userTasks.get(oneIndexedNum - 1);
             task.markDone();
@@ -136,8 +142,8 @@ public class Tumu {
 
         if (oneIndexedNum < 1 || oneIndexedNum > userTasks.size()) {
             //Specified index from user is out of bounds of list.
-            if (userTasks.isEmpty()) throw new MarkNoTaskException();
-            else throw new MarkOutOfBoundsException(userTasks.size());
+            if (userTasks.isEmpty()) throw new NoTaskException();
+            else throw new OutOfBoundsException(userTasks.size());
         } else {
             Task task = userTasks.get(oneIndexedNum - 1);
             task.unmarkDone();
@@ -187,6 +193,22 @@ public class Tumu {
             else if (parse.length < 2 || parse[0].isBlank() || parse[1].isBlank())
                 throw new DENoArgException();
             else taskTypeFormatting(new Event(parse[0], parse[1]));
+        }
+    }
+
+    private static void deleteTask(int oneIndexedNum) throws TumuException {
+        /**
+         * Deletes a task at position oneIndexedNum - 1.
+         */
+
+        if (oneIndexedNum < 1 || oneIndexedNum > userTasks.size()) {
+            //Specified index from user is out of bounds of list.
+            if (userTasks.isEmpty()) throw new NoTaskException();
+            else throw new OutOfBoundsException(userTasks.size());
+        } else {
+            Task removedTask = userTasks.remove(oneIndexedNum - 1);
+            System.out.println("\tAlright, I have removed this task for you:\n\t\t" + removedTask);
+            System.out.println(String.format("\tYou have %d task(s) in the list.", userTasks.size()));
         }
     }
 
