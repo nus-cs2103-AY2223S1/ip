@@ -57,9 +57,24 @@ public class Duke {
         String[] inputs = command.split(" ", 2);
 
         switch (inputs[0]) {
-            // List out all abilities
+            // List out all tasks
             case ("list"): {
                 listCommand();
+                break;
+            }
+            // Add todo task
+            case ("todo"): {
+                addTodoCommand(inputs[1]);
+                break;
+            }
+            // Add deadline task
+            case ("deadline"): {
+                addDeadlineCommand(inputs[1]);
+                break;
+            }
+            // Add event task
+            case ("event"): {
+                addEventCommand(inputs[1]);
                 break;
             }
             // Mark the task as done
@@ -73,7 +88,8 @@ public class Duke {
                 break;
             }
             default: {
-                addTaskCommand(command);
+                printTextWithDivider("Sorry, I don't understand this command.\n" +
+                        "Please enter again!\n");
             }
         }
     }
@@ -82,20 +98,29 @@ public class Duke {
         StringBuilder str = new StringBuilder();
         str.append("Here are the tasks in your list:\n");
         for (int i = 0; i < taskList.size(); i++) {
+            // Display task as 1-index
             str.append(i + 1).append(".").append(taskList.get(i)).append("\n");
         }
         printTextWithDivider(str.toString());
     }
 
-    private static void addTaskCommand(String description) {
-        Task task = new Task(description);
-        taskList.add(task);
-        String addTaskMessage = "added: " + description + "\n";
-        printTextWithDivider(addTaskMessage);
+    private static void addTodoCommand(String description) {
+        addTask(new Todo(description));
+    }
+
+    private static void addDeadlineCommand(String description) {
+        String[] deadlineInputs = description.split("/by", 2);
+        addTask(new Deadline(deadlineInputs[0], deadlineInputs[1]));
+    }
+
+    private static void addEventCommand(String description) {
+        String[] eventInputs = description.split("/at", 2);
+        addTask(new Event(eventInputs[0], eventInputs[1]));
     }
 
     private static void markTaskCommand(String taskIndexStr) {
-        // Tasks are stored as 0-indexed but display as 1-index
+        // Tasks are stored as 0-index but display as 1-index
+        // Minus 1 to get the correct task in the taskList
         int taskIndex = Integer.parseInt(taskIndexStr) - 1;
         Task task = taskList.get(taskIndex);
         task.markAsDone();
@@ -106,6 +131,8 @@ public class Duke {
     }
 
     private static void unmarkTaskCommand(String taskIndexStr) {
+        // Tasks are stored as 0-index but display as 1-index
+        // Minus 1 to get the correct task in the taskList
         int taskIndex = Integer.parseInt(taskIndexStr) - 1;
         Task task = taskList.get(taskIndex);
         task.maskUndone();
@@ -113,5 +140,15 @@ public class Duke {
         String str = "Ok, I've marked this task as not done yet:\n" +
                 task + "\n";
         printTextWithDivider(str);
+    }
+
+    private static void addTask(Task task) {
+        taskList.add(task);
+
+        String addTaskMessage =  "Got it. I've added this task:\n" +
+                "  " + task + "\n" +
+                "Now you have " + taskList.size() + " task(s) in the list.\n";
+
+        printTextWithDivider(addTaskMessage);
     }
 }
