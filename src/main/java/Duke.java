@@ -39,39 +39,39 @@ public class Duke {
 
     private void output(String s) throws DukeException {
         switch (getInput(s)) {
-            case BYE:
-                this.end = true;
-                break;
-            case LIST:
-                printList();
-                break;
-            case MARK:
-                int markNum = Integer.parseInt(s.replace("mark ", ""));
-                mark(markNum);
-                break;
-            case UNMARK:
-                int unmarkNum = Integer.parseInt(s.replace("unmark ", ""));
-                unmark(unmarkNum);
-                break;
-            case TODO:
-                String tDes = s.replace("todo", "");
-                addList(new Todo(tDes));
-                break;
-            case EVENT:
-                String[] eDes = s.replace("event", "").split(" /at ");
-                addList(new Event(eDes[0], eDes[1]));
-                break;
-            case DEADLINE:
-                String[] dDes = s.replace("deadline", "").split(" /by ");
-                addList(new Deadline(dDes[0], dDes[1]));
-                break;
-            case DELETE:
-                int delNum = Integer.parseInt(s.replace("delete ", ""));
-                delete(delNum);
-                break;
-            default:
-                addList(new Task(null));
-                break;
+        case BYE:
+            this.end = true;
+            break;
+        case LIST:
+            printList();
+            break;
+        case MARK:
+            int markNum = Integer.parseInt(s.replace("mark ", ""));
+            mark(markNum);
+            break;
+        case UNMARK:
+            int unmarkNum = Integer.parseInt(s.replace("unmark ", ""));
+            unmark(unmarkNum);
+            break;
+        case TODO:
+            String tDes = s.replace("todo", "");
+            addList(new Todo(tDes));
+            break;
+        case EVENT:
+            String[] eDes = s.replace("event", "").split(" /at ");
+            addList(new Event(eDes[0], eDes[1]));
+            break;
+        case DEADLINE:
+            String[] dDes = s.replace("deadline", "").split(" /by ");
+            addList(new Deadline(dDes[0], dDes[1]));
+            break;
+        case DELETE:
+            int delNum = Integer.parseInt(s.replace("delete ", ""));
+            delete(delNum);
+            break;
+        default:
+            addList(new Task(null));
+            break;
         }
     }
 
