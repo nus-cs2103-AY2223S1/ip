@@ -38,19 +38,17 @@ public class Duke {
                     System.out.println(Style.INDENTATION + (i + 1)  + "." + data.get(i));
                 }
                 System.out.println("");
-            } else if (command.contains("unmark")) {
+            } else if (command.contains("unmark") || command.contains("mark")) {
                 String[] temp = command.split(" ");
                 int taskIndex = Integer.parseInt(temp[1]) - 1;
                 Task task = data.get(taskIndex);
-                task.unmark();
-                System.out.println(Style.INDENTATION + "OK, I've marked this task as not done yet:");
-                System.out.println(Style.INDENTATION + Style.HALF_INDENTATION + task + "\n");
-            } else if (command.contains("mark")) {
-                String[] temp = command.split(" ");
-                int taskIndex = Integer.parseInt(temp[1]) - 1;
-                Task task = data.get(taskIndex);
-                task.markAsDone();
-                System.out.println(Style.INDENTATION + "Nice! I've marked this task as done:");
+                if (command.contains("unmark")) {
+                    task.unmark();
+                    System.out.println(Style.INDENTATION + "OK, I've marked this task as not done yet:");
+                } else if (command.contains("mark")) {
+                    task.markAsDone();
+                    System.out.println(Style.INDENTATION + "Nice! I've marked this task as done:");
+                }
                 System.out.println(Style.INDENTATION + Style.HALF_INDENTATION + task + "\n");
             } else if (command.contains("deadline") || command.contains("event") || command.contains("todo")) {
                 String temp[] = command.split(" ", 2);
@@ -80,8 +78,18 @@ public class Duke {
 
                 data.add(task);
                 String taskOrTasks = data.size() == 1 ? "task" : "tasks";
-
                 System.out.println(Style.INDENTATION + "Got it. I've added this task:");
+                System.out.println(Style.INDENTATION + Style.HALF_INDENTATION + task);
+                System.out.println(Style.INDENTATION + "Now you have " + data.size() + " "
+                        + taskOrTasks + " in the list.\n");
+            } else if (command.contains("delete")) {
+                String[] temp = command.split(" ");
+                int taskIndex = Integer.parseInt(temp[1]) - 1;
+                Task task = data.get(taskIndex);
+                data.remove(taskIndex);
+
+                String taskOrTasks = data.size() == 1 ? "task" : "tasks";
+                System.out.println(Style.INDENTATION + "Noted. I've removed this task:");
                 System.out.println(Style.INDENTATION + Style.HALF_INDENTATION + task);
                 System.out.println(Style.INDENTATION + "Now you have " + data.size() + " "
                         + taskOrTasks + " in the list.\n");
