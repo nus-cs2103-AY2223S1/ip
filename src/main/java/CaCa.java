@@ -1,14 +1,26 @@
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * CaCa is a personal assistant chatbot that helps users manage and track your things.
- * It greets user, echos inputs by user and exits when user types bye.
  */
 // ASCII text banner below created and adapted from
 // https://manytools.org/hacker-tools/ascii-banner/
 // with the following settings:
 // Banner text: CaCa, Font: Big, Horizontal spacing: Normal, Vertical spacing: Normal.
 public class CaCa {
+
+    /**
+     * A class-level array to store all user inputs.
+     */
+    private static List<String> items = new ArrayList<>();
+
+    /**
+     * The program greets user, reads and stores user input,
+     * displays items when user inputs list and exits when user inputs bye.
+     * @param args Command line arguments
+     */
     public static void main(String[] args) {
         String line = "____________________________________________________________\n";
 
@@ -31,8 +43,18 @@ public class CaCa {
             if (input.equals("bye")) {
                 System.out.println("Bye. Hope to see you again soon!\n" + line);
                 break;
+            } else if (input.equals("list")) {
+                for (int i = 0; i < items.size(); i++) {
+                    String item = items.get(i);
+                    System.out.printf("%d. %s%n", i + 1, item);
+                    if (i == items.size() - 1) {
+                        System.out.print(line);
+                    }
+                }
+            } else {
+                items.add(input);
+                System.out.println("added: " + input + "\n" + line);
             }
-            System.out.println(input + "\n" + line);
         }
     }
 }
