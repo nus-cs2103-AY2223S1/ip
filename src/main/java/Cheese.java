@@ -28,16 +28,38 @@ public class Cheese {
       }
       if (userInput.equals("list")) {
         Cheese.printList();
-        continue;
+      } else if (userInput.matches("mark \\d+$")) {
+        int itemNum = Integer.parseInt(userInput.substring(5));
+        if (notInListRange(itemNum)) {
+          System.out.println("Invalid list item number.");
+          continue;
+        }
+        Cheese.list.get(itemNum - 1).markAsDone();
+        System.out.println("Nice! Another task done!");
+        System.out.println(Cheese.list.get(itemNum - 1));
+      } else if (userInput.matches("unmark \\d+$")) {
+        int itemNum = Integer.parseInt(userInput.substring(7));
+        if (notInListRange(itemNum)) {
+          System.out.println("Invalid list item number.");
+          continue;
+        }
+        Cheese.list.get(itemNum - 1).markAsNotDone();
+        System.out.println("Okie! I've marked this task as not done yet.");
+        System.out.println(Cheese.list.get(itemNum - 1));
+      } else {
+        Cheese.list.add(new Task(userInput));
+        System.out.println("added: " + userInput);
       }
-      Cheese.list.add(new Task(userInput));
-      System.out.println("added: " + userInput);
     }
   }
 
+  private static boolean notInListRange(int itemNum) {
+    return itemNum < 1 || itemNum > Cheese.list.size();
+  }
+
   public static void printList() {
-    for (int i = 1; i <= list.size(); i++) {
-      System.out.println(i + ". " + list.get(i - 1));
+    for (int i = 1; i <= Cheese.list.size(); i++) {
+      System.out.println(i + ". " + Cheese.list.get(i - 1));
     }
   }
 }
