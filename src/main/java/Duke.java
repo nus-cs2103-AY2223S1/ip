@@ -76,7 +76,7 @@ public class Duke {
             String s = "";
             for (int i = 0; i < id; i++) {
                 Task t = items[i];
-                s = s + "\t" + (i + 1) + ". " + t.getStatusIcon() + t.getDescription() + "\n";
+                s = s + "\t" + (i + 1) + "." + t.getStatusIcon() + t.getDescription() + "\n";
             }
             Duke.echo(s.trim());
         }
