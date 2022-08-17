@@ -13,7 +13,11 @@ public class Duke {
         System.out.println("Hello from\n" + logo);
 
         greet();
-        handleCommands();
+        try {
+            handleCommands();
+        } catch (DukeException e) {
+            System.out.println(Style.INDENTATION + e);
+        }
     }
 
     private static void greet() {
@@ -21,7 +25,7 @@ public class Duke {
         + "What can I do for you?\n");
     }
 
-    private static void handleCommands() {
+    private static void handleCommands() throws DukeException {
         Scanner myObj = new Scanner(System.in);
         while (true) {
             String command = myObj.nextLine();
@@ -49,29 +53,40 @@ public class Duke {
                 System.out.println(Style.INDENTATION + "Nice! I've marked this task as done:");
                 System.out.println(Style.INDENTATION + Style.HALF_INDENTATION + task + "\n");
             } else if (command.contains("deadline") || command.contains("event") || command.contains("todo")) {
-                String temp = command.split(" ", 2)[1];
+                String temp[] = command.split(" ", 2);
                 Task task = new Task("null");
 
                 if (command.contains("deadline")) {
-                    String[] taskDetails = temp.split(" /by ");
-                    task = new Deadline(taskDetails[0], taskDetails[1]);
+                    try {
+                        String[] taskDetails = temp[1].split(" /by ");
+                        task = new Deadline(taskDetails[0], taskDetails[1]);
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        throw new DukeException("The description or date time of a deadline cannot be empty.");
+                    }
                 } else if (command.contains("event")) {
-                    String[] taskDetails = temp.split(" /at ");
-                    task = new Event(taskDetails[0], taskDetails[1]);
+                    try {
+                        String[] taskDetails = temp[1].split(" /at ");
+                        task = new Event(taskDetails[0], taskDetails[1]);
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        throw new DukeException("The description or date time of an event cannot be empty.");
+                    }
                 } else if (command.contains("todo")) {
-                    task = new ToDo(temp);
+                    try {
+                        task = new ToDo(temp[1]);
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        throw new DukeException("The description of a todo cannot be empty.");
+                    }
                 }
 
                 data.add(task);
                 String taskOrTasks = data.size() == 1 ? "task" : "tasks";
-                
+
                 System.out.println(Style.INDENTATION + "Got it. I've added this task:");
                 System.out.println(Style.INDENTATION + Style.HALF_INDENTATION + task);
                 System.out.println(Style.INDENTATION + "Now you have " + data.size() + " "
                         + taskOrTasks + " in the list.\n");
             } else {
-                data.add(new Task(command));
-                System.out.println(Style.INDENTATION + "added: " + command + '\n');
+                throw new DukeException("I'm sorry, but I don't know what that means :-(");
             }
         }
     }
