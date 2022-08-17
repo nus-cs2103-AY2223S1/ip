@@ -2,10 +2,11 @@ Hello! I'm TedBot ヾ(≧▽≦*)o
 What do you want to do today?
 Here are your tasks that I have recorded:
 Congratulations, you don't need to do anything right now!
-Sorry, I don't know what that means.
+Uh-oh ☹! Sorry, I don't know what that means.
 Did you make a mistake? Please note that commands are case-sensitive.
-Sorry, I don't know what that means.
+Uh-oh ☹! Sorry, I don't know what that means.
 Did you make a mistake? Please note that commands are case-sensitive.
+Uh-oh ☹! I do not have a task with that number in my list.
 Gotcha! I added the following task to the list:
   [ ] hello world
 Currently, I have 1 tasks recorded
@@ -18,6 +19,16 @@ Currently, I have 3 tasks recorded
 Gotcha! I added the following task to the list:
   [E][ ] NUS SoC Career Fair (at: Wednesday, 12-5pm)
 Currently, I have 4 tasks recorded
+Uh-oh ☹! The description of a Task must not be empty.
+Uh-oh ☹! The description of a Task must not be empty.
+Uh-oh ☹! The description of a Task must not be empty.
+Uh-oh ☹! The description of a Task must not be empty.
+Uh-oh ☹! A Deadline-type Task must be provided with an ending time. Use the /by parameter to add a deadline.
+Uh-oh ☹! An Event-type Task must be provided with a time range. Use the /at parameter to add a time range.
+Uh-oh ☹! A Deadline-type Task must be provided with an ending time. Use the /by parameter to add a deadline.
+Uh-oh ☹! An Event-type Task must be provided with a time range. Use the /at parameter to add a time range.
+Uh-oh ☹! You must pass an index value.
+Uh-oh ☹! You must pass an integer value. asda is not an integer.
 Here are your tasks that I have recorded:
 01. [ ] hello world
 02. [T][ ] CS2103T iP Level-4
@@ -38,13 +49,11 @@ Here are your tasks that I have recorded:
 04. [E][ ] NUS SoC Career Fair (at: Wednesday, 12-5pm)
 Alright, I've marked this task as not done:
   [ ] hello world
-I do not have a task with that number in my list.
-I do not have a task with that number in my list.
+Uh-oh ☹! I do not have a task with that number in my list.
+Uh-oh ☹! I do not have a task with that number in my list.
 Here are your tasks that I have recorded:
 01. [ ] hello world
 02. [T][✔] CS2103T iP Level-4
 03. [D][ ] CS2105 HW (by: Sunday, 21 August 2022)
 04. [E][ ] NUS SoC Career Fair (at: Wednesday, 12-5pm)
 Bye! Hope to see you soon ༼- つ ◕_◕ ༽つ
-
-
