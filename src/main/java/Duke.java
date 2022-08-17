@@ -5,17 +5,25 @@ public class Duke {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         BotResponse.welcome();
-        checkResponse(input);
+        String userResponse = input.nextLine();
+        while (!userResponse.equalsIgnoreCase("bye")) {
+            try {
+                checkResponse(userResponse);
+            } catch (InvalidInputException e) {
+                BotResponse.separationLine();
+                System.out.println(e.getMessage());
+                BotResponse.separationLine();
+            }
+            userResponse = input.nextLine();
+        }
+
+        BotResponse.bye();
+        System.exit(0);
     }
 
-    public static void checkResponse(Scanner input) {
-        String userResponse = input.nextLine();
+    public static void checkResponse(String userResponse) throws InvalidInputException {
 
-        if (userResponse.equalsIgnoreCase("bye")) {
-            BotResponse.bye();
-            System.exit(0);
-
-        } else if (userResponse.equalsIgnoreCase("list")) {
+        if (userResponse.equalsIgnoreCase("list")) {
             Task.printTasks();
 
         } else if (userResponse.startsWith("unmark")) {
@@ -29,24 +37,72 @@ public class Duke {
             Task.markDone(index, true);
 
         } else if (userResponse.startsWith("todo")) {
-            ToDo todo = new ToDo(userResponse.substring(5));
-            BotResponse.addTaskLog(todo);
+            try {
+                String description = userResponse.substring(4).trim();
+                if (description.isEmpty()) {
+                    throw new InvalidDescriptionException();
+                }
+                ToDo todo = new ToDo(description);
+                BotResponse.addTaskLog(todo);
+            } catch (InvalidDescriptionException e) {
+                BotResponse.separationLine();
+                System.out.println(e.getMessage());
+                BotResponse.separationLine();
+            }
+
 
         } else if (userResponse.startsWith("deadline")) {
-            int timeIndex = userResponse.indexOf("/by ");
-            Deadline deadline = new Deadline(userResponse.substring(9, timeIndex - 1), userResponse.substring(timeIndex + 4));
-            BotResponse.addTaskLog(deadline);
+            try {
+                int timeIndex = userResponse.indexOf("/by");
+                if (timeIndex == -1) {
+                    throw new InvalidTimeException();
+                }
+                String description = userResponse.substring(8, timeIndex - 1).trim();
+                String time = userResponse.substring(timeIndex + 3).trim();
+                if (description.isEmpty()) {
+                    throw new InvalidDescriptionException();
+                }
+                if (time.isEmpty()) {
+                    throw new InvalidTimeException();
+                }
+                Deadline deadline = new Deadline(description, time);
+                BotResponse.addTaskLog(deadline);
+            } catch (InvalidDescriptionException e) {
+                BotResponse.separationLine();
+                System.out.println(e.getMessage());
+                BotResponse.separationLine();
+            } catch (InvalidTimeException e) {
+                BotResponse.separationLine();
+                System.out.println(e.getMessage());
+                BotResponse.separationLine();
+            }
 
         } else if (userResponse.startsWith("event")) {
-            int timeIndex = userResponse.indexOf("/at ");
-            Event event = new Event(userResponse.substring(6, timeIndex - 1), userResponse.substring(timeIndex + 4));
-            BotResponse.addTaskLog(event);
-            
+            try {
+                int timeIndex = userResponse.indexOf("/at");
+                if (timeIndex == -1) {
+                    throw new InvalidTimeException();
+                }
+                String description = userResponse.substring(5, timeIndex - 1).trim();
+                String time = userResponse.substring(timeIndex + 3).trim();
+                if (description.isEmpty()) {
+                    throw new InvalidDescriptionException();
+                }
+                if (time.isEmpty()) {
+                    throw new InvalidTimeException();
+                }
+                Event event = new Event(description, time);
+                BotResponse.addTaskLog(event);
+            } catch (InvalidDescriptionException e) {
+                System.out.println(e.getMessage());
+                BotResponse.separationLine();
+            } catch (InvalidTimeException e) {
+                System.out.println(e.getMessage());
+                BotResponse.separationLine();
+            }
         } else {
-            Task task = new Task(userResponse);
-            BotResponse.addTaskLog(task);
+            throw new InvalidInputException();
         }
-        checkResponse(input);
     }
 
 }

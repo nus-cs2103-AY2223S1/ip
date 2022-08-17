@@ -34,6 +34,7 @@ public class Task {
     }
 
     public static void printTasks() {
+        BotResponse.separationLine();
         for (int i = 0; i < counter; i++) {
             System.out.println((i + 1) + "." + tasks[i]);
         }
