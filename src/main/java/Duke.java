@@ -1,3 +1,9 @@
+import tasks.Deadline;
+import tasks.Task;
+import tasks.Todo;
+import tasks.Event;
+import exceptions.DukeException;
+
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,26 +26,28 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
         while (true) {
             String input = sc.nextLine();
+            input = sanitiseUserInput(input);
 
             // Splits the input of the string into a string array
             String[] splitInput = input.split(" ");
 
             // For mark and unmark, the string array should be of length 2 only
-            if (splitInput.length == 2 && (splitInput[0].equals("mark") || splitInput[0].equals("unmark"))) {
+            if (splitInput.length == 2 && (splitInput[0].equals("mark") || splitInput[0].equals("unmark") ||
+                    splitInput[0].equals("delete"))) {
                 int index = Integer.valueOf(splitInput[1]) - 1;
                 if (splitInput[0].equals("mark")) {
                     tasks.get(index).markAsDone();
                     System.out.println("=======================");
                     System.out.println("Nice! I've marked this task as having been completed:");
-                    System.out.println("=======================");
                     System.out.println(tasks.get(index));
-                } else {
+                    System.out.println("=======================");
+                } else if (splitInput[0].equals("unmark")) {
                     tasks.get(index).markAsUndone();
                     System.out.println("=======================");
                     System.out.println("Okay, I've marked this task as not done yet:");
-                    System.out.println("=======================");
                     System.out.println(tasks.get(index));
-                }
+                    System.out.println("=======================");
+                } 
                 continue;
             }
 
@@ -60,18 +68,54 @@ public class Duke {
             } else {
                 Task newTask = null;
                 if (input.startsWith("todo")) {
-                    String description = input.substring(5);
-                    newTask = new Todo(description);
+                    if (input.length() != 4) {
+                        String description = input.substring(5);
+                        newTask = new Todo(description);
+                    } else {
+                     // Throw exception? But interrupts program flow
+                        System.out.println("=======================");
+                        System.out.println("Oops... A todo task must have a description!");
+                        System.out.println("=======================");
+                        continue;
+                    }
                 } else if (input.startsWith("deadline")) {
-                    int slashIdx = input.indexOf("/");
-                    String description = input.substring(9, slashIdx);
-                    String deadline = input.substring(slashIdx + 4);
-                    newTask = new Deadline(description, deadline);
+                    if (input.length() != 8) {
+                        int slashIdx = input.indexOf("/");
+                        if (slashIdx == -1) {
+                            System.out.println("=======================");
+                            System.out.println("Oops... An deadline must have a set deadline!");
+                            System.out.println("=======================");
+                            continue;
+                        }
+                        String description = input.substring(9, slashIdx);
+                        String deadline = input.substring(slashIdx + 4);
+                        newTask = new Deadline(description, deadline);
+                    } else {
+                        System.out.println("=======================");
+                        System.out.println("Oops... A deadline must have a description!");
+                        System.out.println("=======================");
+                        continue;
+                    }
+
                 } else if (input.startsWith("event")) {
-                    int slashIdx = input.indexOf("/");
-                    String description = input.substring(6, slashIdx);
-                    String eventDateTime = input.substring(slashIdx + 4);
-                    newTask = new Deadline(description, eventDateTime);
+                    if (input.length() != 5) {
+                        int slashIdx = input.indexOf("/");
+                        if (slashIdx == -1) {
+                            System.out.println("=======================");
+                            System.out.println("Oops... An event must have a set date when it will occur!");
+                            System.out.println("=======================");
+                            continue;
+                        }
+                        String description = input.substring(6, slashIdx);
+                        String eventDateTime = input.substring(slashIdx + 4);
+                        newTask = new Event(description, eventDateTime);
+                    } else {
+                        System.out.println("=======================");
+                        System.out.println("Oops... An event must have a description!");
+                        System.out.println("=======================");
+                        continue;
+                    }
+
                 }
 
                 if (newTask != null) {
@@ -94,4 +138,20 @@ public class Duke {
         return;
 
     }
+
+    /**
+     Sanitises user input.
+     @param input User input that needs to be sanitised
+     @return Sanitised user input
+     */
+    public static String sanitiseUserInput(String input) {
+        // Clear trailing whitespace
+        String out = input.trim();
+
+        return out;
+    }
 }
+
+/* TODO
+Add error checking for user input after the /: Should be "at" and "by" for Event and Deadline
+ */
