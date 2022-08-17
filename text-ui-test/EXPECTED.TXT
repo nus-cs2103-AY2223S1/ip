@@ -1,7 +1,24 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
+	Hey there! I'm Tutter!
+	How can I help?
+	 Sorry, I don't understand...
+	You have added "[T][ ] task" into your Task List!
+	You have 1 tasks in your Task List!
+	You have added "[D][ ] task  (by: xxx)" into your Task List!
+	You have 2 tasks in your Task List!
+	You have added "[E][ ] task  (at: yyy)" into your Task List!
+	You have 3 tasks in your Task List!
+	1. [T][ ] task
+	2. [D][ ] task  (by: xxx)
+	3. [E][ ] task  (at: yyy)
+	Good Job! The following task has been marked as done:
+	[T][X] task
+	Sorry, that Task Number doesn't look right...
+	Sorry, that Task Number doesn't look right...
+	Okay! The following task has been marked as not done:
+	[T][ ] task
+	Sorry, that Task Number doesn't look right...
+	Sorry, that Task Number doesn't look right...
+	Hey! Did you forget to add a task name?
+	Hey! Did you forget to add a task name?
+	Hey! Did you forget to add a task name?
+	Goodbye!

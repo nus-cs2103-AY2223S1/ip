@@ -1,0 +1,15 @@
+thisisawronginput
+todo task
+deadline task /by xxx
+event task /at yyy
+list
+mark 1
+mark invalidindex
+mark
+unmark 1
+unmark invalidindex
+unmark
+todo
+deadline
+event
+bye
