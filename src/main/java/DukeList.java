@@ -18,10 +18,10 @@ public class DukeList {
                 + " in the list.";
     }
 
-    public String done(int index) {
+    public String done(int index) throws DukeException {
         int listIndex = index - 1;
         if (listIndex < 0 || listIndex > listItems.size() - 1) {
-            return "Invalid task.";
+            throw new DukeException("Invalid task to mark as done.");
         }
 
         Task t = listItems.get(listIndex);
@@ -29,10 +29,10 @@ public class DukeList {
         return "Nice! I've marked this task as done:\n" + t;
     }
 
-    public String undone(int index) {
+    public String undone(int index) throws DukeException {
         int listIndex = index - 1;
         if (listIndex < 0 || listIndex > listItems.size() - 1) {
-            return "Invalid task.";
+            throw new DukeException("Invalid task to mark as undone.");
         }
 
         Task t = listItems.get(listIndex);

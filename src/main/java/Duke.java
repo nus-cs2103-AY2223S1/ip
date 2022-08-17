@@ -1,10 +1,6 @@
 import java.util.Scanner;
 
 public class Duke {
-    private static final String DIVIDER = "____________________________________________________________";
-    private static final String INTRO = DIVIDER + "\n" + "Hello! I'm Duke!\n" + "What can I do for you?\n" + DIVIDER;
-    private static final String OUTRO = DIVIDER + "\n" + "Bye. Hope to see you again soon!\n" + DIVIDER;
-
     private static final String EXIT_KEYWORD = "bye";
     private static final String LIST_KEYWORD = "list";
     private static final String MARK_KEYWORD = "mark";
@@ -14,75 +10,58 @@ public class Duke {
     private static final String EVENT_KEYWORD = "event";
 
     public static void main(String[] args) {
-        System.out.println(INTRO);
+        DukeResponse.intro();
 
+        boolean isRunning = true;
         Scanner scanner = new Scanner(System.in);
         DukeList list = new DukeList();
 
-        while (true) {
+        while (isRunning) {
             String input = scanner.nextLine();
+            String command = input.contains(" ") ? input.split(" ", 2)[0] : input;
+            String data = input.contains(" ") ? input.split(" ", 2)[1].trim() : "";
 
-            if (input.equals(EXIT_KEYWORD)) {
-                // Exit Duke
-                scanner.close();
-                break;
-            } else {
-                System.out.println(DIVIDER);
-                if (input.equals(LIST_KEYWORD)) {
+            try {
+                switch (command) {
+                case EXIT_KEYWORD:
+                    // Exit Duke
+                    scanner.close();
+                    isRunning = false;
+
+                    break;
+                case LIST_KEYWORD:
                     // Print list
-                    System.out.println(list);
-                } else if (input.startsWith(MARK_KEYWORD)) {
+                    new ListResponse(list).run();
+                    break;
+                case MARK_KEYWORD:
                     // Mark task as done
-                    System.out.println(list
-                            .done(Integer.parseInt(input.substring(4).trim())));
-                } else if (input.startsWith(UNMARK_KEYWORD)) {
+                    new MarkResponse(list, data).run();
+                    break;
+                case UNMARK_KEYWORD:
                     // Mark task as undone
-                    System.out.println(list
-                            .undone(Integer.parseInt(input.substring(6).trim())));
-                } else {
-                    // Add some task to list
-                    if (input.startsWith(TODO_KEYWORD)) {
-                        // Add task as to do
-                        Todo t = new Todo(input.substring(5));
-                        System.out.println(list.add(t));
-                    } else if (input.startsWith(DEADLINE_KEYWORD)) {
-                        // Add task as deadline
-                        String data = input.substring(8);
-
-                        int splitIndex = data.indexOf("/");
-                        if (splitIndex == -1) {
-                            System.out.println("Please enter valid deadline task.");
-                        } else {
-                            String description = data.substring(0, splitIndex).trim();
-                            String dateTime = data.substring(splitIndex + 3).trim();
-
-                            Deadline d = new Deadline(description, dateTime);
-                            System.out.println(list.add(d));
-                        }
-                    } else if (input.startsWith(EVENT_KEYWORD)) {
-                        // Add task as event
-                        String data = input.substring(5);
-
-                        int splitIndex = data.indexOf("/");
-                        if (splitIndex == -1) {
-                            System.out.println("Please enter valid event task.");
-                        } else {
-                            String description = data.substring(0, splitIndex).trim();
-                            String dateTime = data.substring(splitIndex + 3).trim();
-
-                            Event e = new Event(description, dateTime);
-                            System.out.println(list.add(e));
-                        }
-                    } else {
-                        // Add item to list
-                        Task t = new Task(input);
-                        System.out.println(list.add(t));
-                    }
+                    new UnmarkResponse(list, data).run();
+                    break;
+                case TODO_KEYWORD:
+                    // Add task as to do
+                    new TodoResponse(list, data).run();
+                    break;
+                case DEADLINE_KEYWORD:
+                    // Add task as deadline
+                    new DeadlineResponse(list, data).run();
+                    break;
+                case EVENT_KEYWORD:
+                    // Add task as event
+                    new EventResponse(list, data).run();
+                    break;
+                default:
+                    // Unknown command
+                    throw new DukeException("I'm sorry, but I don't know what that means :(");
                 }
-                System.out.println(DIVIDER);
+            } catch (DukeException e) {
+                new ExceptionResponse(e).run();
             }
         }
 
-        System.out.println(OUTRO);
+        DukeResponse.outro();
     }
 }
