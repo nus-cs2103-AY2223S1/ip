@@ -1,4 +1,4 @@
-public class BobbyChat {
+public class DobbyChat {
 //        HELLO("\t" + "Hello! I'm Bobby\n" +
 //               "\t" + "What can I do for you?"),
 //        BYE("\t" + "Byebyeeee. Hope to see you soon!"),
@@ -25,5 +25,15 @@ public class BobbyChat {
     }
     public static void added(String s) {
         printChat("added: " + s);
+    }
+    public static void marked(String s) {
+        String marked = "Nice! I've marked this task as done\n";
+        String toPrint = marked + s;
+        printChat(toPrint);
+    }
+    public static void unmarked(String s) {
+        String unmarked = "OK, I've marked this task as not done yet\n";
+        String toPrint = unmarked + s;
+        printChat(toPrint);
     }
 }
