@@ -14,4 +14,11 @@ public class Task {
     public String getDescription() {
         return this.description;
     }
+
+    public void markDone() {
+        this.isDone = true;
+    }
+    public void markUndone() {
+        this.isDone = false;
+    }
 }
