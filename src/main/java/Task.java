@@ -25,10 +25,6 @@ public abstract class Task {
         this.isDone = false;
     }
 
-    public String stringify() {
-        return String.format("%d | %s", this.isDone ? 1 : 0, this.description);
-    }
-
     public String getStatusIcon() {
         return this.isDone ? "X" : " ";
     }
@@ -41,6 +37,10 @@ public abstract class Task {
     public String unmark() {
         this.isDone = false;
         return this.toString();
+    }
+
+    public String stringify() {
+        return String.format("%d | %s", this.isDone ? 1 : 0, this.description);
     }
 
     @Override

@@ -42,30 +42,30 @@ public class TaskList {
     }
 
     public String addToDo(String description) {
-        ToDo task = new ToDo(description);
-        this.addToTasks(task);
-        return task.toString();
+        ToDo todo = new ToDo(description);
+        this.addToTasks(todo);
+        return todo.toString();
     }
 
     public String addDeadline(String description, LocalDate by) {
-        Deadline task = new Deadline(description, by);
-        this.addToTasks(task);
-        return task.toString();
+        Deadline deadline = new Deadline(description, by);
+        this.addToTasks(deadline);
+        return deadline.toString();
     }
 
     public String addEvent(String description, LocalDate at) {
-        Event task = new Event(description, at);
-        this.addToTasks(task);
-        return task.toString();
+        Event event = new Event(description, at);
+        this.addToTasks(event);
+        return event.toString();
     }
 
     @Override
     public String toString() {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         for (int i = 0; i < this.tasks.size(); i++) {
-            result += String.format("%d. %s\n", 1 + i, this.tasks.get(i).toString());
+            result.append(String.format("%d. %s\n", 1 + i, this.tasks.get(i).toString()));
         }
-        return result;
+        return result.toString();
     }
 
     private void addToTasks(Task task) {

@@ -7,13 +7,13 @@ public class Duke {
     private Ui ui;
 
     public Duke(String filePath) {
-        this.ui = new Ui();
-        this.storage = new Storage(filePath);
         try {
+            this.ui = new Ui();
+            this.storage = new Storage(filePath);
             this.taskList = new TaskList(this.storage.loadLocalData());
-        } catch (IOException e) {
+        } catch (IOException | ArrayIndexOutOfBoundsException | DateTimeParseException e) {
+            this.ui.showLoadingError();
             this.taskList = new TaskList();
-            System.out.println(e.getMessage());
         }
     }
 

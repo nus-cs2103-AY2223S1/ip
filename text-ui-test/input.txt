@@ -1,7 +1,8 @@
+list
 todo first task
 list
-deadline second task /by date 123-456
-event third task /at 456-123 date
+deadline second task /by 2022-09-20
+event third task /at 2022-11-03
 list
 mark 1
 list
