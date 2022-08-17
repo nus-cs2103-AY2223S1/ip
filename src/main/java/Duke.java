@@ -3,6 +3,16 @@ import java.util.Scanner;
 
 public class Duke {
 
+    enum Keywords {
+        mark,
+        unmark,
+        list,
+        delete,
+        todo,
+        deadline,
+        event
+    }
+
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -12,6 +22,7 @@ public class Duke {
         String straightLine = "  ----------------------------------------------------------------------------------";
         Scanner sc = new Scanner(System.in);
         ArrayList<Task> listOfThings = new ArrayList<>(100);
+
 
         System.out.println("Hello from\n" + logo);
 
