@@ -6,8 +6,7 @@ public class Duke {
     private boolean isActive = true;
     private String emoji = "<_>";
     private Scanner reader = new Scanner(System.in);
-    private Task[] todos = new Task[100];
-    private int pointer = 0;
+    private List<Task> todos = new ArrayList<>();
 
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -37,6 +36,8 @@ public class Duke {
             markTask(Integer.parseInt(userInput.substring(5)));
         } else if (userInput.startsWith("unmark")) {
             unmarkTask(Integer.parseInt(userInput.substring(7)));
+        } else if (userInput.startsWith("delete")) {
+            deleteTask(Integer.parseInt(userInput.substring(7)));
         } else {
             try {
                 addTask(userInput);
@@ -65,34 +66,44 @@ public class Duke {
         }
 
         System.out.println("\tLazily added this task for you " + emoji);
-        todos[pointer] = newTask;
-        pointer++;
+        todos.add(newTask);
         System.out.println("\t\t" + newTask);
-        System.out.println("\tWala now you have " + pointer + " tasks in the list.");
+        System.out.println("\tWala now you have " + todos.size() + " tasks in the list.");
+    }
+
+    private void deleteTask(int index) {
+        try {
+            Task removed = todos.remove(index - 1);
+            System.out.println("\tYES, I've removed this task for YOU:");
+            System.out.println("\t\t" + removed);
+            System.out.println("\tWala now you have " + todos.size() + " tasks in the list.");
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println(new DukeException("Read the index of the existing tasks carefully..."));
+        }
     }
 
     private void listTasks() {
         System.out.println("\tReally? If you are so forgetful...");
-        for (int i = 1; i <= pointer; i++) {
-            System.out.println("\t" + i + ". " + todos[i - 1]);
+        for (int i = 1; i <= todos.size(); i++) {
+            System.out.println("\t" + i + ". " + todos.get(i - 1));
         }
     }
 
     private void markTask(int index) {
         try {
-            todos[index - 1].mark();
+            todos.get(index - 1).mark();
             System.out.println("\tWellz, I've marked this task for YOU:");
-            System.out.println("\t\t" + todos[index - 1]);
-        } catch (NullPointerException e) {
+            System.out.println("\t\t" + todos.get(index - 1));
+        } catch (IndexOutOfBoundsException e) {
             System.out.println(new DukeException("Read the index of the existing tasks carefully..."));
         }
     }
 
     private void unmarkTask(int index) {
         try {
-            todos[index - 1].unmark();
+            todos.get(index - 1).unmark();
             System.out.println("\t-_-, I've unmarked this task for YOU AGAIN:");
-            System.out.println("\t\t" + todos[index - 1]);
+            System.out.println("\t\t" + todos.get(index - 1));
         } catch (NullPointerException e) {
             System.out.println(new DukeException("Read the index of the existing tasks carefully..."));
         }
