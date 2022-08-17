@@ -3,8 +3,7 @@ import java.util.Scanner;
 public class Duke {
     public static void main(String[] args) {
 
-        System.out.println("Hi... I'm Bishop... ");
-        System.out.println("What can I do for you today?");
+        System.out.println("Hi... I'm Bishop... \nWhat can I do for you today?");
 
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextLine()) {
