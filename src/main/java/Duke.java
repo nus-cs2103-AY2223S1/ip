@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class Duke {
     public static void main(String[] args) {
@@ -15,13 +14,27 @@ public class Duke {
 
         // Scanner to get input
         Scanner scan = new Scanner(System.in);
-        ArrayList<String> log = new ArrayList<>();
+
+        ArrayList<Task> log = new ArrayList<>();
 
         System.out.println("--------------------------------------");
+
+        int indexOfSpace;
         String s;
+        String firstWord = "";
+        String restWord = "";
+
+        boolean isMultipleWords = false;
 
         while(true) {
             s = scan.nextLine();
+            indexOfSpace = s.indexOf(' ');
+            isMultipleWords = indexOfSpace > -1;
+            if (isMultipleWords) {
+                firstWord = s.substring(0, indexOfSpace);
+                restWord = s.substring(indexOfSpace).trim();
+            }
+
             System.out.println("--------------------------------------");
             if (s.equals("bye")) {
                 scan.close();
@@ -29,16 +42,30 @@ public class Duke {
                 break;
             } else if (s.equals("list")){
                 int count = 1;
-                for (String item : log) {
-                    System.out.println(count + ". " + item);
+                System.out.println("Here are the tasks in your list:");
+                for (Task item : log) {
+                    System.out.println(count + ". " + item.toString());
                     count++;
                 }
             } else {
-                log.add(s);
-                System.out.println("added: " + s);
+                if (isMultipleWords && firstWord.equals("mark")) {
+                    int index = Integer.parseInt(restWord) - 1; //array starts from 0
+                    Task temp = log.get(index);
+                    temp.Mark();
+                    System.out.println("This task is now done: \n" + temp);
+                } else if (isMultipleWords && firstWord.equals("unmark")) {
+                    int index = Integer.parseInt(restWord) - 1; //array starts from 0
+                    Task temp = log.get(index);
+                    temp.Unmark();
+                    System.out.println("This task is now not done: \n" + temp);
+                } else {
+                    log.add(new Task(s, false));
+                    System.out.println("added: " + s);
+                }
             }
             System.out.println("--------------------------------------");
         }
 
     }
 }
+
