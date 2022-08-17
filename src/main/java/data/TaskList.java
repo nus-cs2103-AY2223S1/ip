@@ -1,31 +1,36 @@
 package data;
 
 import data.tasks.Task;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TaskList {
 
-    private final Task[] tasks;
-    private int currentTaskIdx;
+    private final List<Task> tasks;
 
     public TaskList() {
-        this.tasks = new Task[100];
-        this.currentTaskIdx = 0;
+        this.tasks = new ArrayList<>();
     }
 
     public int size() {
-        return currentTaskIdx;
+        return tasks.size();
     }
 
     public boolean isEmpty() {
-        return currentTaskIdx == 0;
+        return tasks.isEmpty();
     }
 
     public Task getTask(int taskIdx) {
-        return tasks[taskIdx];
+        return this.tasks.get(taskIdx);
     }
 
     public void addTask(Task task) {
-        tasks[currentTaskIdx] = task;
-        currentTaskIdx++;
+        this.tasks.add(task);
+    }
+
+    public Task deleteTask(int taskIdx) {
+        Task deletedTask = this.getTask(taskIdx);
+        this.tasks.remove(taskIdx);
+        return deletedTask;
     }
 }

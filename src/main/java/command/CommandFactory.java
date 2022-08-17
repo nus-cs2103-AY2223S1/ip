@@ -25,6 +25,8 @@ public class CommandFactory {
                 return new CommandDeadlineHandler(taskList);
             case EVENT:
                 return new CommandEventHandler(taskList);
+            case DELETE:
+                return new CommandDeleteHandler(taskList);
         }
 
         return null;

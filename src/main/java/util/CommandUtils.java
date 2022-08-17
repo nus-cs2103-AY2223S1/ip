@@ -11,4 +11,9 @@ public class CommandUtils {
         return Arrays.asList("Got it. I've added this task:", String.format("\t%s", task),
             String.format("Now you have %d tasks in the list", currNumTasks));
     }
+
+    public static List<String> generateDeleteTaskResponse(Task task, int currNumTasks) {
+        return Arrays.asList("Noted. I've removed this task:", String.format("\t%s", task),
+            String.format("Now you have %d tasks in the list", currNumTasks));
+    }
 }

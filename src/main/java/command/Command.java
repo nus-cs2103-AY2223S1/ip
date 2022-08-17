@@ -8,5 +8,6 @@ public enum Command {
     LIST, // display list
     MARK, // mark a task
     UNMARK, // unmark a task
+    DELETE, // delete a task
 }
 
