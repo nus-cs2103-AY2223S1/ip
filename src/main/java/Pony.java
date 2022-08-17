@@ -5,10 +5,10 @@ public class Pony {
     String greet = "Hello! I'm Pony" + "\n" + "What can I do for you? ";
     String exit = "Bye. Hope to see you again soon!";
     Scanner sc = new Scanner(System.in);
-    ArrayList<String> list;
+    ArrayList<Task> tasks;
 
     public Pony() {
-        this.list = new ArrayList();
+        this.tasks = new ArrayList<>();
     };
 
     public void initialise() {
@@ -17,21 +17,41 @@ public class Pony {
     public void run() {
         String command = takeCommand();
         if (command.equals("list")) {
-            if (this.list.size() == 0) {
+            if (this.tasks.size() == 0) {
                 System.out.println("Nothing on the list!");
                 run();
             } else {
-                for (int i = 0; i < this.list.size(); i++) {
+                System.out.println("Here are the tasks in your list:");
+                for (int i = 0; i < this.tasks.size(); i++) {
                     int sn = i + 1;
-                    System.out.println(sn + ". " + this.list.get(i));
+                    System.out.println(sn + ". " + this.tasks.get(i).viewTask());
                 }
                 run();
             }
+        } else if (command.equals("mark")) {
+            System.out.println("Which task are you done with?");
+            int taskIndex = sc.nextInt();
+            sc.nextLine();
+            Task target = this.tasks.get(taskIndex - 1);
+            target.markAsDone();
+            System.out.println("Nice! I've marked this task as done:");
+            System.out.println(target.viewTask());
+            run();
+        } else if (command.equals("unmark")) {
+            System.out.println("Which task are you not done with?");
+            int taskIndex = sc.nextInt();
+            sc.nextLine();
+            Task target = this.tasks.get(taskIndex - 1);
+            target.markAsNotDone();
+            System.out.println("OK, I've marked this task as not done yet: ");
+            System.out.println(target.viewTask());
+            run();
         } else if (command.equals("bye")) {
             System.out.println(this.exit);
         } else {
-            this.list.add(command);
-            System.out.println("added: " + command);
+            Task newTask = new Task(command);
+            this.tasks.add(newTask);
+            System.out.println("added: " + newTask.description);
             run();
         }
     }
