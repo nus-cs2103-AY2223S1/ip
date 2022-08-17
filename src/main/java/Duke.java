@@ -18,12 +18,14 @@ public class Duke {
         ArrayList<Task> task = new ArrayList<>();
         while (scanner.hasNextLine()) {
             String userInput = scanner.nextLine();
+
             if (userInput.equals("bye")) {
                 // when user enters bye
                 // exit programme
                 say("Bye. Hope to see you again soon.", true, true);
                 break;
             }
+
             else if (userInput.equals("list")) {
                 // when user enters list
                 // display the current list
@@ -37,26 +39,64 @@ public class Duke {
                     say(i + 1 + ". " + task.get(i).toString(), isFirstLine, isLastLine);
                 }
             }
+
             else if (userInput.startsWith("mark") && userInput.split(" ", 2).length != 1) {
                 // when user enters mark and a number
                 // mark the corresponding task as done
                 int index = Integer.parseInt(userInput.split(" ", 2)[1]) - 1;
                 task.get(index).setStatus(true);
+
                 say("Nice! I've marked this task as done:", true, false);
                 say(task.get(index).toString(), false, true);
             }
+
             else if (userInput.startsWith("unmark") && userInput.split(" ", 2).length != 1) {
                 // when user enters unmark and a number
                 // mark the corresponding task as not done
                 int index = Integer.parseInt(userInput.split(" ", 2)[1]) - 1;
                 task.get(index).setStatus(false);
+
                 say("OK, I've marked this task as not done yet:", true, false);
                 say(task.get(index).toString(), false, true);
             }
+
             else {
                 // add user input to the list
-                task.add(new Task(userInput));
-                say("added: " + userInput, true, true);
+                // check what type of task it is
+
+                if (userInput.startsWith("todo") && userInput.split(" ", 2).length != 1) {
+                    // the task is a todo
+                    String description = userInput.split(" ", 2)[1].split("/")[0].trim();
+                    ToDo todo = new ToDo(description);
+                    task.add(todo);
+
+                    say("Got it. I've added this task:", true, false);
+                    say("  " + todo.toString(), false, false);
+                    say("Now you have " + task.size() + " tasks in the list.", false, true);
+                }
+
+                else if (userInput.startsWith("deadline") && userInput.split(" ", 2).length != 1) {
+                    // the task is a deadline
+                    String description = userInput.split(" ", 2)[1].split("/")[0].trim();
+                    String by = userInput.split(" ", 2)[1].split("/")[1].split(" ", 2)[1];
+                    Deadline deadline = new Deadline(description, by);
+                    task.add(deadline);
+
+                    say("Got it. I've added this task:", true, false);
+                    say("  " + deadline.toString(), false, false);
+                    say("Now you have " + task.size() + " tasks in the list.", false, true);
+                }
+
+                else if (userInput.startsWith("event") && userInput.split(" ", 2).length != 1) {
+                    String description = userInput.split(" ", 2)[1].split("/")[0].trim();
+                    String at = userInput.split(" ", 2)[1].split("/")[1].split(" ", 2)[1];
+                    Event event = new Event(description, at);
+                    task.add(event);
+
+                    say("Got it. I've added this task:", true, false);
+                    say("  " + event.toString(), false, false);
+                    say("Now you have " + task.size() + " tasks in the list.", false, true);
+                }
             }
         }
     }
