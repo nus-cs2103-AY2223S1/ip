@@ -84,4 +84,13 @@ public class DobbyChat {
     public static void alreadyUnmarked() {
         printChat("Master has never marked this task done before...");
     }
+    public static void allMarked() {
+        printChat("All tasks marked, master!");
+    }
+    public static void allUnmarked() {
+        printChat("All tasks unmarked, master!");
+    }
+    public static void allDeleted() {
+        printChat("All tasks deleted, master!");
+    }
 }

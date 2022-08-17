@@ -42,6 +42,13 @@ public class Dobby {
             DobbyChat.tooLittleTasks();
         }
     }
+    private static void toMark() {
+        int listLen = dobbyList.getLength();
+        for(int i = 1; i <= listLen; i++) {
+            dobbyList.mark(i);
+        }
+        DobbyChat.allMarked();
+    }
     private static void toUnmark(String s) {
         try {
             int toUnmark = Integer.parseInt(s.substring(7));
@@ -62,6 +69,13 @@ public class Dobby {
         }
 
     }
+    private static void toUnmark() {
+        int listLen = dobbyList.getLength();
+        for(int i = 1; i <= listLen; i++) {
+            dobbyList.unmark(i);
+        }
+        DobbyChat.allUnmarked();
+    }
     private static void toDelete(String s) {
         try {
             int toDelete = Integer.parseInt(s.substring(7));
@@ -80,6 +94,13 @@ public class Dobby {
         } catch(NumberFormatException e) {
             DobbyChat.noNumber();
         }
+    }
+    private static void toDelete() {
+        int listLen = dobbyList.getLength();
+        for(int i = 1; i < listLen; i++) {
+            dobbyList.delete(i);
+        }
+        DobbyChat.allDeleted();
     }
     private static void toAddTodo(String s) {
         try {
@@ -149,11 +170,23 @@ public class Dobby {
             } else if(command.equals("list")) {
                 toList(command);
             } else if(command.startsWith("mark")) {
-                toMark(command);
+                if (command.contains("all")) {
+                    toMark();
+                } else {
+                    toMark(command);
+                }
             } else if(command.startsWith("unmark")) {
-                toUnmark(command);
+                if (command.contains("all")) {
+                    toUnmark();
+                } else {
+                    toUnmark(command);
+                }
             } else if(command.startsWith("delete")) {
-                toDelete(command);
+                if (command.contains("all")) {
+                    toDelete();
+                } else {
+                    toDelete(command);
+                }
             } else if(command.startsWith("todo")) {
                 toAddTodo(command);
             } else if(command.startsWith("deadline")) {
