@@ -13,7 +13,8 @@
 	____________________________________________________________
 	____________________________________________________________
 	  Hm... Duke's confused. Are you trying to create a todo?
-	  Make sure you follow the format: todo [description]
+	  Make sure you follow the format: todo [description].
+	  The description of a todo cannot be empty!
 	____________________________________________________________
 	____________________________________________________________
 	  Hm... Duke's confused. Are you trying to create a deadline?

@@ -56,16 +56,16 @@ public class Duke {
      *
      * @param task The task to be recorded
      */
-    private static void addTask(String task) {
+    private static void addTask(String task) throws DukeException {
         Task addedTask;
         if (task.matches("(?i)(^todo)(.*)")) {
             // adding a to-do task, check that format is followed
             if (task.matches("(?i)^todo\\s.+")) {
                 addedTask = new ToDo(task.substring(5));
             } else {
-                prettyPrint("Hm... Duke's confused. Are you trying to create a todo?" +
-                        "\nMake sure you follow the format: todo [description]");
-                return;
+                throw new DukeException("Hm... Duke's confused. Are you trying to create a todo?" +
+                        "\nMake sure you follow the format: todo [description].\n" +
+                        "The description of a todo cannot be empty!");
             }
         } else if (task.matches("(?i)(^deadline)(.*)")) {
             // adding a deadline, check that format is followed
@@ -73,9 +73,8 @@ public class Duke {
                 String[] sp = task.substring(9).split("\\/(by)\\s", 2);
                 addedTask = new Deadline(sp[0], sp[1]);
             } else {
-                prettyPrint("Hm... Duke's confused. Are you trying to create a deadline?" +
+                throw new DukeException("Hm... Duke's confused. Are you trying to create a deadline?" +
                         "\nMake sure you follow the format: deadline [description] /by [deadline]");
-                return;
             }
         } else {
             // adding an event, check that format is followed
@@ -83,9 +82,8 @@ public class Duke {
                 String[] sp = task.substring(6).split("\\/(at)\\s", 2);
                 addedTask = new Event(sp[0], sp[1]);
             } else {
-                prettyPrint("Hm... Duke's confused. Are you trying to create an event?" +
+                throw new DukeException("Hm... Duke's confused. Are you trying to create an event?" +
                         "\nMake sure you follow the format: event [description] /at [event datetime]");
-                return;
             }
         }
 
@@ -99,7 +97,7 @@ public class Duke {
      *
      * @param i The task number to be marked as done
      */
-    private static void markTaskDone(int i) {
+    private static void markTaskDone(int i) throws DukeException {
         if (isValidTask(i)) {
             Task task = tasks.get(i - 1);
             task.markTaskAsDone();
@@ -112,7 +110,7 @@ public class Duke {
      *
      * @param i The task number to be marked as not done
      */
-    private static void markTaskNotDone(int i) {
+    private static void markTaskNotDone(int i) throws DukeException {
         if (isValidTask(i)) {
             Task task = tasks.get(i - 1);
             task.markTaskAsUndone();
@@ -126,10 +124,10 @@ public class Duke {
      * @param i The task number of the task to be verified
      * @return True if the task exists, false otherwise
      */
-    private static boolean isValidTask(int i) {
+    private static boolean isValidTask(int i) throws DukeException {
         boolean isValid = i <= tasks.size();
-        if (!isValid) prettyPrint("Hm... Duke can't find this task.");
-        return isValid;
+        if (!isValid) throw new DukeException("Hm... Duke can't find this task.");
+        return true;
     }
 
     public static void main(String[] args) {
@@ -138,20 +136,24 @@ public class Duke {
         greet();
         // Echoes user's input until the user types 'bye', for which the program exits
         while (!(cmd = sc.nextLine()).equals("bye")) {
-            switch (cmd) {
-                case "list":
-                    listTasks();
-                    continue;
-                default:
-                    if (cmd.matches("mark \\d+")) {
-                        markTaskDone(Integer.parseInt(cmd.substring(5)));
-                    } else if (cmd.matches("unmark \\d+")) {
-                        markTaskNotDone(Integer.parseInt(cmd.substring(7)));
-                    } else if (cmd.matches("(?i)^(todo|deadline|event)(.*)")) {
-                        addTask(cmd);
-                    } else {
-                        prettyPrint("Hm...Duke doesn't understand what that means :(");
-                    }
+            try {
+                switch (cmd) {
+                    case "list":
+                        listTasks();
+                        continue;
+                    default:
+                        if (cmd.matches("mark \\d+")) {
+                            markTaskDone(Integer.parseInt(cmd.substring(5)));
+                        } else if (cmd.matches("unmark \\d+")) {
+                            markTaskNotDone(Integer.parseInt(cmd.substring(7)));
+                        } else if (cmd.matches("(?i)^(todo|deadline|event)(.*)")) {
+                            addTask(cmd);
+                        } else {
+                            throw new DukeException("Hm...Duke doesn't understand what that means :(");
+                        }
+                }
+            } catch (DukeException e) {
+                prettyPrint(e.getMessage());
             }
         }
         goodbye();
