@@ -1,10 +1,15 @@
+import java.util.ArrayList;
+
 public class Task {
     protected String description;
     protected boolean isDone;
+    public static ArrayList<Task> tasks;
+    private static String sep = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
 
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+        tasks.add(this);
     }
 
     public String getStatusIcon() {
@@ -17,12 +22,21 @@ public class Task {
 
     public void unmark() {
         this.setStatusIcon(false);
-        System.out.println("Marked as uncompleted!\n  " + this.toString());
+        System.out.println(sep + "\nMarked as uncompleted!\n  " + this.toString() + "\n" + sep);
     }
 
     public void mark() {
         this.setStatusIcon(true);
-        System.out.println("Yayy! Marked as completed :D\n  " + this.toString());
+        System.out.println(sep + "\nYayy! Marked as completed :D\n  " + this.toString() + "\n" + sep);
+    }
+
+    public static void list() {
+        System.out.println(sep);
+        System.out.println("Stuff you have to do!\n");
+        for(int i = 0; i < tasks.size(); i++) {
+            System.out.println(i + 1 + ". " + tasks.get(i) + "\n");
+        }
+        System.out.println(sep);
     }
 
     @Override
