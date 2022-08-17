@@ -9,18 +9,30 @@ public class Duke {
                 + "How may I help you today?";
 
         System.out.println(intro);
-        String act = scanObj.nextLine();            // read user input
 
-        switch (act) {
-            case "list":
-                System.out.println("list");
+        while (true) {
+            String act = scanObj.nextLine();            // read user input
+
+            if (act.equals("list")) {
+                for (int i = 0; i < 100; i++) {
+                    if (strLst[i] == null) {
+                        break;
+                    }
+                    int index = i + 1;
+                    System.out.println(index + ". " + strLst[i]);
+                }
+            } else if (act.equals("bye")) {
+                System.out.println("Goodbye, hope to see you again soon!");
                 break;
-            case "blah":
-                System.out.println("blah");
-                break;
-            case "bye":
-                System.out.println("Bye. Hope to see you again!");
-                break;
+            } else {
+                for (int i = 0; i < 100; i++) {
+                    if (strLst[i] == null) {
+                        strLst[i] = act;
+                        break;
+                    }
+                }
+                System.out.println("added: " + act);
+            }
         }
     }
 }
