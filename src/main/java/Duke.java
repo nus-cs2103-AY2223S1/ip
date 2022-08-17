@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Duke {
@@ -31,40 +33,78 @@ public class Duke {
         while (true) {
             System.out.print(">> ");
             input = sc.nextLine();
-            String keyWord = input.split(" ")[0];
-            switch (keyWord) {
+            ArrayList<String> words = new ArrayList<>(Arrays.asList(input.split(" ")));
+            String firstWord = words.remove(0);
+
+            switch (firstWord) {
                 case "list":
-                    System.out.println(SPACER);
-                    System.out.println("Here's your list ^3^:");
-                    System.out.println(checklist.printList());
-                    System.out.println(SPACER);
+                    System.out.println(SPACER + "\n"
+                            + "Here's your list ^3^:\n"
+                            + checklist.printList() + "\n"
+                            + SPACER);
                     break;
                 case "bye":
                     System.out.println("またね! (See you soon!) <3");
                     System.exit(0);
                     break;
                 case "mark":
-                    int taskNum = Integer.parseInt(input.split(" ")[1]);
+                    int taskNum = Integer.parseInt(words.get(0));
                     checklist.tasks.get(taskNum - 1).markDone();
-                    System.out.println(SPACER);
-                    System.out.println("Great Job on completing this task! ^.^ :");
-                    System.out.println(checklist.printTaskStatus(taskNum - 1));
-                    System.out.println(SPACER);
+                    System.out.println(SPACER + "\n"
+                        + "Great Job on completing this task! ^.^ :\n"
+                        + checklist.printTaskStatus(taskNum - 1) + "\n"
+                        + SPACER);
                     break;
                 case "unmark":
-                    taskNum = Integer.parseInt(input.split(" ")[1]);
+                    taskNum = Integer.parseInt(words.get(0));
                     checklist.tasks.get(taskNum - 1).markUndone();
-                    System.out.println(SPACER);
-                    System.out.println("Grrr, remember to finish your task! =3=:");
-                    System.out.println(checklist.printTaskStatus(taskNum - 1));
-                    System.out.println(SPACER);
+                    System.out.println(SPACER + "\n"
+                        + "Grrr, remember to finish your task! =3=:\n"
+                        + checklist.printTaskStatus(taskNum - 1) + "\n"
+                        + SPACER);
+                    break;
+                case "todo":
+                    String remainingTodoWords = String.join(" ", words);
+                    Todo todo = new Todo(remainingTodoWords);
+                    checklist.addTask(todo);
+                    System.out.println(SPACER + "\n"
+                        + "I've added this task for you! :>\n"
+                        + todo + "\n"
+                        + "You have " + checklist.tasks.size()
+                        + (checklist.tasks.size() == 1 ? " task! :D\n" : " tasks! :D\n")
+                        + SPACER);
+                    break;
+                case "deadline":
+                    String remainingDdlWords = String.join(" ",words.subList(0, words.indexOf("/by")));
+                    String ddl = String.join(" ", words.subList(words.indexOf("/by") + 1, words.size()));
+                    Deadline deadline = new Deadline(remainingDdlWords, ddl);
+                    checklist.addTask(deadline);
+                    System.out.println(SPACER + "\n"
+                        + "I've added this task for you! :>\n"
+                        + deadline + "\n"
+                        + "You have " + checklist.tasks.size()
+                        + (checklist.tasks.size() == 1 ? " task! :D\n" : " tasks! :D\n")
+                        + SPACER);
+                    break;
+                case "event":
+                    String remainingEventWords = String.join(" ",words.subList(0, words.indexOf("/at")));
+                    String evt = String.join(" ", words.subList(words.indexOf("/at") + 1, words.size()));
+                    Event event = new Event(remainingEventWords, evt);
+                    checklist.addTask(event);
+                    System.out.println(SPACER + "\n"
+                        + "I've added this task for you! :>\n"
+                        + event + "\n"
+                        + "You have " + checklist.tasks.size()
+                        + (checklist.tasks.size() == 1 ? " task! :D\n" : " tasks! :D\n")
+                        + SPACER);
                     break;
                 default:
                     Task task = new Task(input);
                     checklist.addTask(task);
-                    System.out.println(SPACER);
-                    System.out.println("I've added '" + input + "' to your list. :)");
-                    System.out.println(SPACER);
+                    System.out.println(SPACER + "\n"
+                        + "I've added this task for you! :>\n"
+                        + task + "\n"
+                        + SPACER);
                     break;
             }
         }
