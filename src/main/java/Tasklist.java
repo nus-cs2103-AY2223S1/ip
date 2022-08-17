@@ -15,8 +15,8 @@ public class Tasklist {
         tasks.get(i - 1).unmark();
     }
 
-    void add(String s) {
-        tasks.add(new Task(s));
+    void add(Task task) {
+        tasks.add(task);
     }
 
     void show() {

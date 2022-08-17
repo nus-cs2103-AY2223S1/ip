@@ -12,16 +12,46 @@ public class Duke {
                 System.out.println("See you next time...");
                 break;
             } else {
-                String[] cmds = lastLine.split(" ");
+                Scanner words = new Scanner(lastLine);
                 if (lastLine.equals("list")) {
                     taskList.show();
-                } else if (cmds[0].equals("mark")) {
-                    taskList.mark(Integer.parseInt(cmds[1]));
-                } else if (cmds[0].equals("unmark")) {
-                    taskList.unmark(Integer.parseInt(cmds[1]));
                 } else {
-                    taskList.add(lastLine);
-                    System.out.println("Added: " + "\"" + lastLine + "\"");
+                    String cmd = words.next();
+                    String desc = "";
+                    String prev = "";
+                    switch (cmd) {
+                        case "mark":
+                            taskList.mark(Integer.parseInt(words.next()));
+                            break;
+                        case "unmark":
+                            taskList.unmark(Integer.parseInt(words.next()));
+                            break;
+                        case "todo":
+                            desc = words.nextLine().substring(1);
+                            taskList.add(new ToDo(desc));
+                            break;
+                        case "deadline":
+                            prev = words.next();
+                            while (!prev.equals("/by")) {
+                                desc += prev;
+                                prev = words.next();
+                            }
+                            String deadline = words.nextLine().substring(1);
+                            taskList.add(new Deadline(desc, deadline));
+                            break;
+                        case "event":
+                            prev = words.next();
+                            while (!prev.equals("/at")) {
+                                desc += prev;
+                                prev = words.next();
+                            }
+                            String period = words.nextLine().substring(1);
+                            taskList.add(new Event(desc, period));
+                            break;
+                        default:
+                            taskList.add(new Task(lastLine));
+                            System.out.println("Added: " + "\"" + lastLine + "\"");
+                    }
                 }
             }
         }
