@@ -1,5 +1,5 @@
 /**
- * A task with a deadline
+ * Tasks with a deadline
  */
 public class Deadline extends Task {
 

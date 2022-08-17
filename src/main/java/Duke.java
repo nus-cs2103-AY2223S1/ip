@@ -1,9 +1,11 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 /**
- * Personal Assistant that helps you keep track of your tasks
+ * Personal Assistant that helps you keep track of your tasks/
+ * Task descriptions given are autocorrected to have only 1 white space
  */
 public class Duke {
 
@@ -45,44 +47,69 @@ public class Duke {
 
     /**
      * Tries to store a Todo with the given specifications and notifies user of outcome
-     * @param userInput The command entered, always starts with "todo "
+     * @param words The words of the command entered, first is always "todo"
      */
-    private static void addTodo(String userInput) {
-        int startOfDescArg = "todo ".length();
-        addTask(new Todo(userInput.substring(startOfDescArg)));
+    private static void addTodo(String[] words) {
+        StringBuilder descBuilder = new StringBuilder();
+        int currIndex = 1;
+        while (currIndex < words.length) {
+            descBuilder.append(words[currIndex++]).append(" ");
+        }
+        descBuilder.deleteCharAt(descBuilder.length()-1);
+
+        addTask(new Todo(descBuilder.toString()));
     }
 
     /**
      * Tries to store a Deadline with the given specifications and notifies user of outcome
-     * @param userInput The command entered, always starts with "deadline "
+     * @param words The words of the command entered, first is always "deadline"
      */
-    private static void addDeadline(String userInput) {
-        int startOfDescArg = "deadline ".length();
-        int startOfByFlag = userInput.indexOf(" /by ");
-        addTask(new Deadline(userInput.substring(startOfDescArg, startOfByFlag),
-                userInput.substring(startOfByFlag + 5)));
+    private static void addDeadline(String[] words) {
+        StringBuilder descBuilder = new StringBuilder();
+        int currIndex = 1;
+        while (currIndex < words.length && !words[currIndex].equals("/by")) {
+            descBuilder.append(words[currIndex++]).append(" ");
+        }
+        descBuilder.deleteCharAt(descBuilder.length()-1);
+
+        ++currIndex;
+        StringBuilder byBuilder = new StringBuilder();
+        while (currIndex < words.length) {
+            byBuilder.append(words[currIndex++]).append(" ");
+        }
+        byBuilder.deleteCharAt(byBuilder.length()-1);
+
+        addTask(new Deadline(descBuilder.toString(), byBuilder.toString()));
     }
 
     /**
      * Tries to store an Event with the given specifications and notifies user of outcome
-     * @param userInput The command entered, always starts with "event "
+     * @param words The words of the command entered, first is always "event"
      */
-    private static void addEvent(String userInput) {
-        int startOfDescArg = "event ".length();
-        int startOfAtFlag = userInput.indexOf(" /at ");
-        addTask(new Event(userInput.substring(startOfDescArg, startOfAtFlag),
-                userInput.substring(startOfAtFlag + 5)));
+    private static void addEvent(String[] words) {
+        StringBuilder descBuilder = new StringBuilder();
+        int currIndex = 1;
+        while (currIndex < words.length && !words[currIndex].equals("/at")) {
+            descBuilder.append(words[currIndex++]).append(" ");
+        }
+        descBuilder.deleteCharAt(descBuilder.length()-1);
+
+        ++currIndex;
+        StringBuilder atBuilder = new StringBuilder();
+        while (currIndex < words.length) {
+            atBuilder.append(words[currIndex++]).append(" ");
+        }
+        atBuilder.deleteCharAt(atBuilder.length()-1);
+
+        addTask(new Event(descBuilder.toString(), atBuilder.toString()));
     }
 
     /**
      * Tries to mark the specified task as done and notifies user of outcome
-     * @param userInput The command entered, always starts with "mark "
+     * @param words The words of the command entered, first is always "mark"
      */
-    private static void markTaskAsDone(String userInput) {
-        //cases to handle:
-        //taskNumber >= tasks.size()
-        //task is alr done
-        int taskNumber = Integer.parseInt(userInput.substring(5));
+    private static void markTaskAsDone(String[] words) {
+        int taskNumber = Integer.parseInt(words[1]);
         Task task = tasks.get(taskNumber - 1);
         task.markAsDone();
         sayLines(new String[] {
@@ -93,13 +120,10 @@ public class Duke {
 
     /**
      * Tries to mark the specified task as not done and notifies user of outcome
-     * @param userInput The command entered, always starts with "unmark "
+     * @param words The words of the command entered, first is always "unmark"
      */
-    private static void markTaskAsNotDone(String userInput) {
-        //cases to handle:
-        //taskNumber >= tasks.size()
-        //task is alr not done
-        int taskNumber = Integer.parseInt(userInput.substring(7));
+    private static void markTaskAsNotDone(String[] words) {
+        int taskNumber = Integer.parseInt(words[1]);
         Task task = tasks.get(taskNumber - 1);
         task.markAsNotDone();
         sayLines(new String[] {
@@ -133,26 +157,26 @@ public class Duke {
         introduceSelf();
 
         Scanner inputScanner = new Scanner(System.in);
-        String userInput = inputScanner.nextLine();
-        while (!userInput.equals("bye")) {
-            if (userInput.equals("list")) {
-                listTasks();
-            } else if (userInput.startsWith("todo ")) {
-                addTodo(userInput);
-            } else if (userInput.startsWith("deadline ")) {
-                addDeadline(userInput);
-            } else if (userInput.startsWith("event ")) {
-                addEvent(userInput);
-            } else if (userInput.startsWith("mark ")) {
-                markTaskAsDone(userInput);
-            } else if (userInput.startsWith("unmark ")) {
-                markTaskAsNotDone(userInput);
-            } else {
-                sayLines(new String[] {
-                        "I'm sorry but I don't know what that means"
-                });
+        String[] words = Arrays.stream(inputScanner.nextLine().strip().split(" ")).toArray(String[]::new);
+        while (!(words.length == 1 && words[0].equals("bye"))) {
+            if (words.length > 0) {
+                if (words.length == 1 && words[0].equals("list")) {
+                    listTasks(); //could put words.length == 1 cases all here
+                } else if (words[0].equals("todo")) {
+                    addTodo(words);
+                } else if (words[0].equals("deadline")) {
+                    addDeadline(words);
+                } else if (words[0].equals("event")) {
+                    addEvent(words);
+                } else if (words[0].equals("mark")) {
+                    markTaskAsDone(words);
+                } else if (words[0].equals("unmark")) {
+                    markTaskAsNotDone(words);
+                } else {
+                    sayLines(new String[]{"I'm sorry but I don't know what that means"});
+                }
             }
-            userInput = inputScanner.nextLine();
+            words = Arrays.stream(inputScanner.nextLine().strip().split(" ")).toArray(String[]::new);
         }
         inputScanner.close();
 

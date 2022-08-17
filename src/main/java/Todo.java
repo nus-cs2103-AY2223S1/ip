@@ -1,5 +1,5 @@
 /**
- * A task without date/time info
+ * Tasks without date/time info
  */
 public class Todo extends Task {
 
