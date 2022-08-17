@@ -5,8 +5,19 @@ eVEnT Career Fair /at Wednesday 2pm
 Mark 2
 mark 1
 list
-todo Eat dinner
-unmark 1
+todo 
+deadline test /at fail
+event test2 /at 
+deadline Make milo /by 5
+event 
+event Gym Training /at G
+list
+mark -1
+mark 10
+mark 5
 mark 4
+list
+unmark 6
+unmark 1
 list
 bye
