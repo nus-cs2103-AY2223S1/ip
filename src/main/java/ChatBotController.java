@@ -9,11 +9,11 @@ import java.util.regex.Pattern;
 public class ChatBotController {
 
     private final Scanner sc = new Scanner(System.in);
-    private final String initialGreeting = "Hello, I'm Logits. What can I do for you?";
+    private final String initialGreeting = "Hello, I'm Duke. What can I do for you?";
     private final String goodbyeGreeting = "Bye. Hope to see you soon!";
     private final String listString = "list";
     private final String commandList = "1. Add a ToDo\n" + "2. Add an Event\n" + "3. Add a Deadline\n" +
-            "4. List all Tasks\n" + "5. Mark\n" + "6. Unmark\n" + "7. Exit";
+            "4. List all Tasks\n" + "5. Mark\n" + "6. Unmark\n" + "7. Delete a Task\n" + "8. Exit";
     private final String splitLine = "*".repeat(80);
     private final ArrayList<Task> tasks = new ArrayList<>();
 
@@ -104,19 +104,32 @@ public class ChatBotController {
         return task;
     }
 
+    public void deleteFromList(int taskIndex) throws NoSuchTaskException {
+        if (taskIndex < 0 || taskIndex >= tasks.size()) {
+            throw new NoSuchTaskException("ERROR: The task you choose doesn't exist!");
+        }
+        tasks.remove(taskIndex);
+    }
+
     /**
      * Return the target task.
-     * @param index task index
+     * @param taskIndex task index
      * @return the target task.
      */
-    public Task getTask(int index) {
-        return tasks.get(index);
+    public Task getTask(int taskIndex) throws NoSuchTaskException {
+        if (taskIndex < 0 || taskIndex >= tasks.size()) {
+            throw new NoSuchTaskException("ERROR: The task you choose doesn't exist!");
+        }
+        return tasks.get(taskIndex);
     }
 
     /**
      * A bridging method for changing the status of a task
      */
-    public void changeTaskStatus(int taskIndex, boolean status) {
+    public void changeTaskStatus(int taskIndex, boolean status) throws NoSuchTaskException {
+        if (taskIndex < 0 || taskIndex >= tasks.size()) {
+            throw new NoSuchTaskException("ERROR: The task you choose doesn't exist!");
+        }
         tasks.get(taskIndex).changeStatus(status);
     }
 
@@ -146,7 +159,7 @@ public class ChatBotController {
      * @param isMark boolean value to show if the user asked for a mark command
      * @param isUnmark boolean value to show if the user asked for an unmark command
      */
-    public void display(String info, boolean isList, boolean isMark, boolean isUnmark) {
+    public void display(String info, boolean isList, boolean isMark, boolean isUnmark, boolean isDelete) {
         if (isList) {
             System.out.println(splitLine);
             System.out.println("Here are all your tasks:");
@@ -163,6 +176,10 @@ public class ChatBotController {
             System.out.println(splitLine);
             System.out.println( "Successfully unmarked! You can see it in your task list as follows:");
             System.out.println(info);
+            System.out.println(splitLine);
+        } else if (isDelete) {
+            System.out.println(splitLine);
+            System.out.println("Successfully deleted! You can use list command to check your tasks.");
             System.out.println(splitLine);
         } else {
             System.out.println(splitLine);

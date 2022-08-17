@@ -23,7 +23,7 @@ public class ChatBot {
                             throw new EmptyContentException("ERROR: No empty task is allowed! Please try again.");
                         }
                         Task todoTask = controller.addToList(todo, null, "todo");
-                        controller.display(todoTask.toString(), false, false, false);
+                        controller.display(todoTask.toString(), false, false, false, false);
                         break;
 
                     case 2:
@@ -38,7 +38,7 @@ public class ChatBot {
                             throw new InvalidTimeException("ERROR: The format of time you input is invalid!");
                         }
                         Task eventTask = controller.addToList(event, eventTime, "event");
-                        controller.display(eventTask.toString(), false, false, false);
+                        controller.display(eventTask.toString(), false, false, false, false);
                         break;
 
                     case 3:
@@ -53,11 +53,11 @@ public class ChatBot {
                             throw new InvalidTimeException("ERROR: The format of time you input is invalid!");
                         }
                         Task ddlTask = controller.addToList(ddl, ddlTime, "deadline");
-                        controller.display(ddlTask.toString(), false, false, false);
+                        controller.display(ddlTask.toString(), false, false, false, false);
                         break;
 
                     case 4:
-                        controller.display(null, true, false, false);
+                        controller.display(null, true, false, false, false);
                         break;
 
                     case 5:
@@ -65,7 +65,7 @@ public class ChatBot {
                         int taskIndexToMark = controller.userTask() - 1;
                         controller.changeTaskStatus(taskIndexToMark, true);
                         String replyMark = controller.getTask(taskIndexToMark).toString();
-                        controller.display(replyMark, false, true, false);
+                        controller.display(replyMark, false, true, false, false);
                         break;
 
                     case 6:
@@ -73,12 +73,18 @@ public class ChatBot {
                         int taskIndexToUnmark = controller.userTask() - 1;
                         controller.changeTaskStatus(taskIndexToUnmark, false);
                         String replyUnmark = controller.getTask(taskIndexToUnmark).toString();
-                        controller.display(replyUnmark, false, false, true);
+                        controller.display(replyUnmark, false, false, true, false);
                         break;
 
                     case 7:
+                        System.out.println("Please type in the task index that you want to unmark:");
+                        int taskIndexToDelete = controller.userTask() - 1;
+                        controller.deleteFromList(taskIndexToDelete);
+                        controller.display(null, false, false, false, true);
+                        break;
+                    case 8:
                         controller.sayBye();
-                        return;
+                        System.exit(0);
                 }
             } catch (DukeExceptions e) {
                 System.out.println("#".repeat(80));
@@ -86,7 +92,6 @@ public class ChatBot {
                 System.out.println("Please try again");
                 System.out.println("#".repeat(80));
             } finally {
-                controller.showSplitLine();
                 controller.showCommandList();
             }
         }
