@@ -14,20 +14,20 @@ public class Duke {
                 break;
             } else if (command.equals("list")) {
                 for (int i = 0; i < taskCount; i++) {
-                    System.out.println(String.format("%d. [%s] %s", i + 1, tasks[i].getStatusIcon(), tasks[i]));
+                    System.out.println(String.format("%d. %s", i + 1, tasks[i]));
                 }
             } else if (command.startsWith("mark")) {
                 String taskNumberString = command.split(" ")[1];
                 int taskNumber = Integer.parseInt(taskNumberString);
                 tasks[taskNumber - 1].markComplete();
                 System.out.println("Nice! I've marked this task as done:");
-                System.out.println(String.format("  [%s] %s", tasks[taskNumber - 1].getStatusIcon(), tasks[taskNumber - 1]));
+                System.out.println(String.format("  %s", tasks[taskNumber - 1]));
             } else if (command.startsWith("unmark")) {
                 String taskNumberString = command.split(" ")[1];
                 int taskNumber = Integer.parseInt(taskNumberString);
                 tasks[taskNumber - 1].markIncomplete();
                 System.out.println("OK, I've marked this task as not done yet");
-                System.out.println(String.format("  [%s] %s", tasks[taskNumber - 1].getStatusIcon(), tasks[taskNumber - 1]));
+                System.out.println(String.format("  %s", tasks[taskNumber - 1]));
             } else {
                 Task newTask = new Task(command);
                 tasks[taskCount++] = newTask;
