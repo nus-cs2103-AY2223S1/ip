@@ -14,16 +14,16 @@ public class Duke {
         System.out.println("Bye. Hope to see you again soon!");
     }
 
-    private void echo() {
-        System.out.println(LINE_BREAK + "\n\t added: " + input + "\n" + LINE_BREAK);
-    }
+//    private void echo() {
+//        System.out.println(LINE_BREAK + "\n\t added: " + input + "\n" + LINE_BREAK);
+//    }
 
-    private void echoSpecialTask(Task task) {
+    private void echoTask(Task task) {
         System.out.println(LINE_BREAK + "\n\tGot it. I've added this task: \n\t  " + task + "\n\tNow you have " + taskIndex + " task(s) in the list.\n" + LINE_BREAK);
     }
 
     private void list() {
-        System.out.println(LINE_BREAK);
+        System.out.println(LINE_BREAK + "\n\tHere are the tasks in your list:\n\t");
         for (int i = 0; i < taskIndex; i++) {
             Task curTask = tasks[i];
             System.out.println("\t" + (i + 1) + ". " + curTask + "\n");
@@ -71,11 +71,6 @@ public class Duke {
         taskIndex++;
     }
 
-    private void createAndAddTask() {
-        tasks[taskIndex] = new Task(input);
-        taskIndex++;
-    }
-
     public static void main(String[] args) {
         Duke duke = new Duke();
         duke.greet();
@@ -100,27 +95,28 @@ public class Duke {
                     duke.input += scan.nextLine();
                     Task todo = duke.createToDo();
                     duke.addTask(todo);
-                    duke.echoSpecialTask(todo);
+                    duke.echoTask(todo);
                     break;
                 }
                 case "deadline": {
                     duke.input += scan.nextLine();
                     Task deadline = duke.createDeadline();
                     duke.addTask(deadline);
-                    duke.echoSpecialTask(deadline);
+                    duke.echoTask(deadline);
                     break;
                 }
                 case "event": {
                     duke.input += scan.nextLine();
                     Task event = duke.createEvent();
                     duke.addTask(event);
-                    duke.echoSpecialTask(event);
+                    duke.echoTask(event);
                     break;
                 }
                 default:
                     duke.input += scan.nextLine();
-                    duke.createAndAddTask();
-                    duke.echo();
+                    Task task = new Task(duke.input);
+                    duke.addTask(task);
+                    duke.echoTask(task);
                     break;
             }
             duke.input = scan.next();
