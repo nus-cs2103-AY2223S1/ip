@@ -22,17 +22,10 @@ public class Duke {
                 int taskNumber = Integer.parseInt(response.substring(5, 6)) - 1;
                 Task t = taskStore[taskNumber];
                 t.markAsDone();
-                /*System.out.println("     Task has been marked as done!: \n"
-                                  + "       "
-                                  + t.toString());*/
-
             } else if (response.length() > 6 && response.substring(0, 6).equals("unmark")) {
                 int taskNumber = Integer.parseInt(response.substring(7, 8)) - 1;
                 Task t = taskStore[taskNumber];
                 t.markAsUnDone();
-                /*System.out.println("     Task has been marked as NOT done!: \n"
-                        + "       "
-                        + t.toString());*/
             } else {
                 Task newTask = new Task(response);
                 taskStore[counter] = newTask;
