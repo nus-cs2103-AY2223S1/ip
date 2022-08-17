@@ -10,7 +10,15 @@ public class Task {
         return (isComplete ? "X" : " "); // mark completed task with X
     }
 
-    public void toggle_complete() {
-        this.isComplete = !this.isComplete;
+    public void markComplete() {
+        this.isComplete = true;
+    }
+
+    public void markIncomplete() {
+        this.isComplete = false;
+    }
+
+    public String toString() {
+        return this.description;
     }
 }
