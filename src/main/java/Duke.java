@@ -51,6 +51,8 @@ public class Duke {
                 }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
+            } finally {
+                lst.savetoFile();
             }
         }
         scan.close();

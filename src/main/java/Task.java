@@ -18,6 +18,14 @@ public class Task {
         return this.marked ? "[X] " : "[ ] ";
     }
 
+    public String getTaskName() {
+        return this.taskName;
+    }
+
+    public String getDate() {
+        return "";
+    }
+
     public String toString() {
         return  getMarkedStatus() + this.taskName;
     }
