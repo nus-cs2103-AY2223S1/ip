@@ -1,0 +1,16 @@
+todo leave house
+todo take the bus
+todo reach school
+event attend programming class /at Mon 08:00-10:00
+todo take a break
+event attend math class /at Mon 12:00-14:00
+deadline submit math assignment /by Tuesday 23:59
+deadline submit programming assignment /by Wednesday 23:59
+list
+mark 1
+mark 3
+mark 7
+list
+unmark 3
+list
+bye
