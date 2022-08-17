@@ -1,7 +1,7 @@
 package models.task;
 
-public class ConcreteTask extends Task {
-    public ConcreteTask(String description) {
+public class Todo extends Task {
+    public Todo(String description) {
         super(description);
     }
 

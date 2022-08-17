@@ -16,10 +16,10 @@ public class TaskModel {
      * @param description
      * @return The task created
      */
-    public Task addTask(String description) {
-        Task newTask = new ConcreteTask(description);
+    public TaskResponse addTodo(String description) {
+        Task newTask = new Todo(description);
         tasks.add(newTask);
-        return newTask;
+        return new TaskResponse(newTask, tasks.size());
     }
 
     // taskId from 1-length

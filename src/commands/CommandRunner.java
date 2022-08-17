@@ -20,7 +20,7 @@ public class CommandRunner {
 
         // Add new commands here
         Command list = new ListCommand(taskModel);
-        Command add = new AddCommand(taskModel);
+        Command add = new TodoCommand(taskModel);
         Command mark = new MarkCommand(taskModel);
         Command unmark = new UnmarkCommand(taskModel);
         Command exit = new ExitCommand();

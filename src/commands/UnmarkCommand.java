@@ -10,14 +10,16 @@ import output.OutputLogger;
 import java.util.List;
 
 public class UnmarkCommand extends Command {
-    TaskModel taskModel;
-    TaskIdArgument taskId;
+    protected TaskModel taskModel;
+    protected TaskIdArgument taskId;
 
     public UnmarkCommand(TaskModel taskModel) {
         super("unmark");
         this.taskModel = taskModel;
     }
 
+    // Template: initialise arguments, validate, return errorOutput if errs. then get parameters, call relevant model method
+    // return commandresponse for success and exception cases
     @Override
     public CommandResponse run(Input input) {
         taskId = new TaskIdArgument(input);
