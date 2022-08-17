@@ -9,7 +9,11 @@ public class Duke {
     private static final String INTRODUCE_MESSAGE = "Hello! I'm Duke";
     private static final String ASK_MESSAGE = "What can I do for you?";
     private static final String EXIT_MESSAGE = "Bye. Hope to see you again soon!";
-    
+
+    public Duke() {
+        String[] tasks = new String[100];
+    }
+
     /**
      * Print messages passed into the parameter
      *
