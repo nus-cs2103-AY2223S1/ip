@@ -6,5 +6,5 @@ public abstract class Response {
         System.out.println(BORDER + message + BORDER);
     }
 
-    public abstract void action();
+    public abstract void action() throws DukeException;
 }

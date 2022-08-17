@@ -1,8 +1,12 @@
 public class InvalidResponse extends Response{
-    private static final String INVALID = "Invalid task!" + "\n";
+    private static final String OOPS = "☹ OOPS!!!";
+    private String message;
+    public InvalidResponse(String message) {
+        this.message = message;
+    }
 
     @Override
     public void action() {
-        super.printMessage(INVALID);
+        super.printMessage(OOPS + this.message + "\n");
     }
 }

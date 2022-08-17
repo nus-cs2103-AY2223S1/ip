@@ -16,23 +16,22 @@ public class TaskList {
         return this.taskList.size();
     }
 
-    public boolean markDone(int index) {
+    public void markDone(int index) throws DukeException{
         if (index < 0 || index >= this.getSize()) {
-            return false;
+            throw new DukeException("Invalid task number.");
         } else {
             Task task = this.getTask(index);
             task.markDone();
-            return true;
         }
     }
 
-    public boolean unmarkDone(int index) {
+    public void unmarkDone(int index) throws DukeException{
         if (index < 0 || index >= this.getSize()) {
-            return false;
+            throw new DukeException("Invalid task number.");
         } else {
             Task task = this.getTask(index);
             task.markUndone();
-            return true;
+
         }
     }
 

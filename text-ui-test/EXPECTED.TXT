@@ -5,68 +5,100 @@ ____________________________________________________________
 
 ____________________________________________________________
 Got it. I've added this task:
-[T][ ] todo borrow book
+[T][ ] borrow book
 Now you have 1 tasks in the list.
 ____________________________________________________________
 
 ____________________________________________________________
 Got it. I've added this task:
-[D][ ] deadline return book (by: Sunday)
+[D][ ] return book (by: Sunday)
 Now you have 2 tasks in the list.
 ____________________________________________________________
 
 ____________________________________________________________
 Got it. I've added this task:
-[E][ ] event project meeting (at: Mon 2-4pm)
+[E][ ] project meeting (at: Mon 2-4pm)
 Now you have 3 tasks in the list.
 ____________________________________________________________
 
 ____________________________________________________________
-1. [T][ ] todo borrow book
-2. [D][ ] deadline return book (by: Sunday)
-3. [E][ ] event project meeting (at: Mon 2-4pm)
+1. [T][ ] borrow book
+2. [D][ ] return book (by: Sunday)
+3. [E][ ] project meeting (at: Mon 2-4pm)
 ____________________________________________________________
 
 ____________________________________________________________
 Nice! I've marked this task as done:
-[T][X] todo borrow book
+[T][X] borrow book
 ____________________________________________________________
 
 ____________________________________________________________
 Nice! I've marked this task as done:
-[D][X] deadline return book (by: Sunday)
+[D][X] return book (by: Sunday)
 ____________________________________________________________
 
 ____________________________________________________________
 Nice! I've marked this task as done:
-[E][X] event project meeting (at: Mon 2-4pm)
+[E][X] project meeting (at: Mon 2-4pm)
 ____________________________________________________________
 
 ____________________________________________________________
-1. [T][X] todo borrow book
-2. [D][X] deadline return book (by: Sunday)
-3. [E][X] event project meeting (at: Mon 2-4pm)
-____________________________________________________________
-
-____________________________________________________________
-OK, I've marked this task as not done yet:
-[E][ ] event project meeting (at: Mon 2-4pm)
+1. [T][X] borrow book
+2. [D][X] return book (by: Sunday)
+3. [E][X] project meeting (at: Mon 2-4pm)
 ____________________________________________________________
 
 ____________________________________________________________
 OK, I've marked this task as not done yet:
-[D][ ] deadline return book (by: Sunday)
+[E][ ] project meeting (at: Mon 2-4pm)
 ____________________________________________________________
 
 ____________________________________________________________
 OK, I've marked this task as not done yet:
-[T][ ] todo borrow book
+[D][ ] return book (by: Sunday)
 ____________________________________________________________
 
 ____________________________________________________________
-1. [T][ ] todo borrow book
-2. [D][ ] deadline return book (by: Sunday)
-3. [E][ ] event project meeting (at: Mon 2-4pm)
+OK, I've marked this task as not done yet:
+[T][ ] borrow book
+____________________________________________________________
+
+____________________________________________________________
+1. [T][ ] borrow book
+2. [D][ ] return book (by: Sunday)
+3. [E][ ] project meeting (at: Mon 2-4pm)
+____________________________________________________________
+
+____________________________________________________________
+☹ OOPS!!!The description of a todo cannot be empty.
+____________________________________________________________
+
+____________________________________________________________
+☹ OOPS!!!The description of a deadline cannot be empty.
+____________________________________________________________
+
+____________________________________________________________
+☹ OOPS!!!The description of an event cannot be empty.
+____________________________________________________________
+
+____________________________________________________________
+☹ OOPS!!!The date of a deadline cannot be empty.
+____________________________________________________________
+
+____________________________________________________________
+☹ OOPS!!!The date of an event cannot be empty.
+____________________________________________________________
+
+____________________________________________________________
+☹ OOPS!!!Invalid task number.
+____________________________________________________________
+
+____________________________________________________________
+☹ OOPS!!!Missing task number.
+____________________________________________________________
+
+____________________________________________________________
+☹ OOPS!!!I'm sorry, but I don't know what that means :-(
 ____________________________________________________________
 
 ____________________________________________________________
