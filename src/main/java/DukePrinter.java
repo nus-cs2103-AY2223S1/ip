@@ -20,11 +20,11 @@ public class DukePrinter {
     }
 
     public static void print(String input) {
-        System.out.println(DukePrinter.getSeparatorLine());
+        System.out.println("\t" + DukePrinter.getSeparatorLine());
         String[] inputs = input.split("\n");
         for (String value : inputs) {
             System.out.println("\t" + value);
         }
-        System.out.println(DukePrinter.getSeparatorLine());
+        System.out.println("\t" + DukePrinter.getSeparatorLine());
     }
 }
