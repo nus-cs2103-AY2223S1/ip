@@ -27,7 +27,7 @@ class Task {
         return this.taskDescription;
     }
 
-    String getFullDescription() {
+    public String toString() {
         return "[" + this.getStatus() + "] " + this.getTaskDescription();
     }
 }

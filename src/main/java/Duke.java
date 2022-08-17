@@ -1,5 +1,5 @@
 import java.util.*;
-import java.io.*;
+
 public class Duke {
     public static void main(String[] args) throws Exception {
         String logo = " ____        _        \n"
