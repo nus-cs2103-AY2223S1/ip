@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class Duke {
     public static void main(String[] args) {
@@ -9,6 +9,7 @@ public class Duke {
         System.out.println(lines);
 
         Scanner sc = new Scanner(System.in);
+        List<String> history = new ArrayList<>();
 
         while(true) {
             String input = sc.nextLine();
@@ -18,9 +19,19 @@ public class Duke {
                 System.out.println(lines);
                 sc.close();
                 break;
-            } else {
+            } else if(input.equals("list")){
                 System.out.println(lines);
-                System.out.println("     " + input);
+                ListIterator<String> listIterator = history.listIterator();
+                while(listIterator.hasNext()) {
+                    int index = listIterator.nextIndex()+1;
+                    System.out.println("     " +  +index + ". "+ listIterator.next());
+                }
+                System.out.println(lines);
+
+            } else {
+                history.add(input);
+                System.out.println(lines);
+                System.out.println("     " + "added: " + input);
                 System.out.println(lines);
             }
         }
