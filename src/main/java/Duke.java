@@ -6,8 +6,7 @@ public class Duke {
 
         Scanner sc = new Scanner(System.in);
         final int MAXSIZE = 100;
-        String[] storedItems = new String[MAXSIZE];
-        boolean[] status = new boolean[MAXSIZE];
+        Task[] storedTasks = new Task[MAXSIZE];
         int index = 0;
         while (true) {
             String str = sc.nextLine();
@@ -18,26 +17,26 @@ public class Duke {
                 String[] s = str.split(" ");
                 if (s.length > 1) {
                     int i = Integer.parseInt(s[1]) - 1;
-                    status[i] = true;
+                    storedTasks[i].markAsDone();
                     System.out.println("Marked task " + (i + 1) + " as done!");
-                    System.out.printf("%d. [%s] %s\n", i + 1, status[i] ? "x" : " ", storedItems[i]);
+                    System.out.printf("%d. %s\n", i + 1, storedTasks[i]);
                 }
             } else if(str.length() > 7 && str.substring(0, 7).equals("unmark ")) {
                 String[] s = str.split(" ");
                 if (s.length > 1) {
                     int i = Integer.parseInt(s[1]) - 1;
-                    status[i] = false;
+                    storedTasks[i].markAsNotDone();
                     System.out.println("Marked task " + (i + 1) + " as not done!");
-                    System.out.printf("%d. [%s] %s\n", i + 1, status[i] ? "x" : " ", storedItems[i]);
+                    System.out.printf("%d. %s\n", i + 1, storedTasks[i]);
                 }
             } else if ("list".equals(str)) {
                 int p = 0;
-                while (p < MAXSIZE && storedItems[p] != null) {
-                    System.out.printf("%d. [%s] %s\n", p + 1, status[p] ? "x" : " ", storedItems[p]);
+                while (p < MAXSIZE && storedTasks[p] != null) {
+                    System.out.printf("%d. %s\n", p + 1, storedTasks[p]);
                     p++;
                 }
             } else {
-                storedItems[index++] = str;
+                storedTasks[index++] = new Task(str);
                 System.out.println("Added: " + str);
             }
         }
