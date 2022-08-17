@@ -2,7 +2,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Duke {
-    public static String[] keywords = {"bye", "list", "mark", "unmark", "todo", "deadline", "event"};
+    public static String[] keywords = {"bye", "list", "mark", "unmark", "todo", "deadline", "event", "delete"};
     public static String getKeyword(Scanner scanner) throws DukeException {
         String keyword = scanner.next();
         if (Arrays.asList(keywords).contains(keyword)) {
@@ -55,6 +55,9 @@ public class Duke {
                 String[] sections = scanner.nextLine().split("/at");
                 Event event = new Event(sections[0], sections[1]);
                 event.add();
+            } else if (text.equals("delete")) {
+                int index = scanner.nextInt();
+                Task.delete(index);
             }
         }
         System.out.println("Bye. Hope to see you again soon!");

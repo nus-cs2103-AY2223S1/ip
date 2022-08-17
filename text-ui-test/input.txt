@@ -7,6 +7,8 @@ mark 1
 list
 unmark 1
 list
+delete 2
+list
 todo
 blah
 bye
