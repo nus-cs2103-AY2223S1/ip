@@ -36,4 +36,16 @@ public class DobbyChat {
         String toPrint = unmarked + s;
         printChat(toPrint);
     }
+    public static void noDeadlineDate() {
+        printChat("Please add the deadline after the task name using /by");
+    }
+    public static void noEventDate() {
+        printChat("Please add the event date after the task name using /at");
+    }
+    public static void added(Task task, DobbyList list) {
+        String accept = "Got it. I've added this task:\n\t";
+        String taskString = task.toString() + "\n\t";
+        String length = "Now you have " + list.getLength()+ " tasks in the list.\n";
+        printChat(accept + taskString + length);
+    }
 }
