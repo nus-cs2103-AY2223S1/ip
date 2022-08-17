@@ -23,8 +23,12 @@ public class Task {
         return this.markDone;
     }
 
+    public String getTaskName() {
+        return taskName;
+    }
+
     @Override
     public String toString() {
-        return this.taskName + "\n";
+        return "[" + (this.isMarked() ? "X" : " ") + "]" + this.taskName + "\n";
     }
 }
