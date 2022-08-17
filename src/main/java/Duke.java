@@ -1,8 +1,10 @@
 import java.util.Scanner;
 
 public class Duke {
-    private static final String LINE = "    ____________________________________________________________\n";
+    private static final String LINE = "    ____________________________________________________________";
     private static final String INDENTATION = "     ";
+    private static String[] list = new String[100];
+    private static int listCounter = 0;
 
     private static boolean isDone = false;
 
@@ -17,8 +19,12 @@ public class Duke {
                 case "bye":
                     bye();
                     break;
+                case "list":
+                    displayList();
+                    break;
                 default:
-                    printMessage(command);
+                    printMessage("added: " + command);
+                    addList(command);
             }
         }
     }
@@ -27,10 +33,15 @@ public class Duke {
         isDone = true;
     }
 
+    private static void displayLine() {
+        System.out.println(LINE);
+    }
+
+
     private static void printMessage(String message) {
-        System.out.println(LINE +
-                message + "\n" +
-                LINE);
+        displayLine();
+        System.out.println(message);
+        displayLine();
     }
 
     private static void greet() {
@@ -44,5 +55,20 @@ public class Duke {
         String byeMessage = INDENTATION + "Bye. Hope to see you again soon!\n";
         printMessage(byeMessage);
         exitProgram();
+    }
+
+    private static void addList(String input) {
+        list[listCounter] = input;
+        listCounter++;
+    }
+
+    private static void displayList() {
+        displayLine();
+        for (int i = 0; i < listCounter; i++) {
+            int orderList = i + 1;
+            String message = orderList + ". " + list[i];
+            System.out.println(message);
+        }
+        displayLine();
     }
 }
