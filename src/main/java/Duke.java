@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class Duke {
 
     private static String indent = "       ";
+    private static String divider = " ___________________________________________________________________";
 
     private static ArrayList<Task> tasks = new ArrayList<>();
 
@@ -11,7 +12,7 @@ public class Duke {
         System.out.println("\n Hello there! \n"
                 + "\n My name is Zelk, nice to meet you :D \n"
                 + " What can I do for you?\n"
-                + " ___________________________________________________________________");
+                + divider);
 
         Scanner s = new Scanner(System.in);
         String input = "";
@@ -24,23 +25,36 @@ public class Duke {
                 for (int i = 0; i < tasks.size(); i++) {
                     System.out.println(indent + (i+1) + ". " + tasks.get(i));
                 }
-                System.out.println(" ___________________________________________________________________");
+                System.out.println(divider);
             } else if (input.contains("unmark")) {
                 Integer taskNo = Integer.valueOf(input.substring(7));
                 tasks.get(taskNo - 1).markAsUndone();
                 System.out.println(indent + "Okay, I'll mark this task as undone: \n"
                         + indent + " " + tasks.get(taskNo - 1));
-                System.out.println(" ___________________________________________________________________");
+                System.out.println(divider);
             } else if (input.contains("mark")) {
                 Integer taskNo = Integer.valueOf(input.substring(5));
                 tasks.get(taskNo - 1).markAsDone();
                 System.out.println(indent + "Alright! I've marked this task as done :) \n"
                         + indent + " " + tasks.get(taskNo - 1));
-                System.out.println(" ___________________________________________________________________");
+                System.out.println(divider);
             } else {
-                tasks.add(new Task(input));
-                System.out.println(indent + "added: " + input
-                        + "\n ___________________________________________________________________");
+                if (input.contains("todo")) {
+                    tasks.add(new Todo(input.substring(5)));
+                } else if (input.contains("deadline")) {
+                    int deadlineChar = input.indexOf("/");
+                    tasks.add(new Deadline(input.substring(9, deadlineChar), input.substring(deadlineChar + 4)));
+                } else if (input.contains("event")) {
+                    int eventChar = input.indexOf("/");
+                    tasks.add(new Event(input.substring(6, eventChar), input.substring(eventChar + 4)));
+                } else {
+                    System.out.println(indent + input);
+                    continue;
+                }
+
+                System.out.println(indent + "new task added: " + tasks.get(tasks.size() - 1)
+                        + "\n" + indent + "You now have " + tasks.size() + " total tasks in your list"
+                        + "\n" + divider);
             }
         }
 
