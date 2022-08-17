@@ -11,8 +11,10 @@ public class BotResponse {
         System.out.println("Sorry to see you go, goodbye :(");
     }
 
-    public static void addTaskLog(String description) {
-        System.out.println("added: " + description);
+    public static void addTaskLog(Task task) {
+        System.out.println("Ok, new task for you: \n"
+                        + " " + task);
+        System.out.print("You now have " + Task.length() + " tasks. \n");
         separationLine();
     }
 

@@ -18,19 +18,33 @@ public class Duke {
         } else if (userResponse.equalsIgnoreCase("list")) {
             Task.printTasks();
 
-        } else if (userResponse.contains("unmark")) {
+        } else if (userResponse.startsWith("unmark")) {
             int length = userResponse.length();
             int index = userResponse.charAt(length - 1) - '0' - 1;
             Task.markDone(index, false);
 
-        } else if (userResponse.contains("mark")) {
+        } else if (userResponse.startsWith("mark")) {
             int length = userResponse.length();
             int index = userResponse.charAt(length - 1) - '0' - 1;
             Task.markDone(index, true);
 
+        } else if (userResponse.startsWith("todo")) {
+            ToDo todo = new ToDo(userResponse.substring(5));
+            BotResponse.addTaskLog(todo);
+
+        } else if (userResponse.startsWith("deadline")) {
+            int timeIndex = userResponse.indexOf("/by ");
+            Deadline deadline = new Deadline(userResponse.substring(9, timeIndex - 1), userResponse.substring(timeIndex + 4));
+            BotResponse.addTaskLog(deadline);
+
+        } else if (userResponse.startsWith("event")) {
+            int timeIndex = userResponse.indexOf("/at ");
+            Event event = new Event(userResponse.substring(6, timeIndex - 1), userResponse.substring(timeIndex + 4));
+            BotResponse.addTaskLog(event);
+            
         } else {
-            Task t = new Task(userResponse);
-            BotResponse.addTaskLog(userResponse);
+            Task task = new Task(userResponse);
+            BotResponse.addTaskLog(task);
         }
         checkResponse(input);
     }

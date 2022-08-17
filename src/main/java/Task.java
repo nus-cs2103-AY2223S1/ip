@@ -7,8 +7,17 @@ public class Task {
 
     public Task(String description) {
         this.description = description;
-        Task.tasks[counter] = this;
+        this.done = false;
+        addTask(this);
+    }
+
+    public static void addTask(Task task) {
+        Task.tasks[counter] = task;
         Task.counter++;
+    }
+
+    public static int length() {
+        return counter;
     }
 
     private String getStatus() {
