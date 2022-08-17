@@ -76,6 +76,22 @@ public class Duke {
                         System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
                     }
                     break;
+                case "delete":
+                    int deleteI;
+                    try {
+                        deleteI = Integer.parseInt(commandArr[1]);
+                    } catch (NumberFormatException e) {     // if second word not integer
+                        System.out.println("🙁 OOPS!!! Provide a number to delete a task.");
+                        break;
+                    }
+                    if (deleteI >= 1 && deleteI <= tasks.size()) {   // ensure i given is within range
+                        String taskToString = tasks.get(deleteI - 1).toString();
+                        tasks.remove(deleteI - 1);
+                        System.out.printf("Noted. I've removed this task:\n  %s\n", taskToString);
+                    } else {
+                        System.out.printf("🙁 OOPS!!! Provide a valid number (from 1 to %d) to delete a task.\n", tasks.size());
+                    }
+                    break;
                 default:
                     switch (command) {
                         case "bye":
