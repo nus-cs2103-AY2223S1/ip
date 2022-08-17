@@ -4,35 +4,23 @@ import java.util.ArrayList;
  * Object to represent a list of tasks created based on input and to print the list as output.
  *
  */
-public class ToDoList {
+public class TaskList {
     private Integer totalTasks = 0;
-    private ArrayList<Task> complete = new ArrayList<>();
-    private ArrayList<Task> incomplete = new ArrayList<>();
+
     private ArrayList<Task> allTaskList = new ArrayList<>();
 
-    private String notDoneSymbol = "[Zzzzz]";
-    private String doneSymbol    = "[/ᐠ｡ꞈ｡ᐟ\\]";
 
-    public Integer tasksLeft() {
-        return incomplete.size();
+    public String tasksLeft() {
+        return "Nyaw you have " + totalTasks + " tasks in the list";
     }
 
-    public Integer tasksDone() {
-        return complete.size();
-    }
-
-    public void addTask(String description) {
+    public void addTodo(String description) {
         totalTasks++;
-        Task task = new Task(description);
+        Task task = new Todo(description);
         allTaskList.add(task);
-
-        if (task.status()) {
-            complete.add(task);
-        } else {
-            incomplete.add(task);
-        }
-
-        System.out.println("added: " + task.describe());
+        System.out.println("Meow! I'm a cat. I've added this task:\n"
+                            + task + "\n"
+                            + tasksLeft());
     }
 
     public void mark(Integer rank) {
@@ -41,9 +29,9 @@ public class ToDoList {
             msg = "There are NYA tasks hereeeee";
         } else {
             Task t = allTaskList.get(rank - 1);
+            t.markAsDone();
             msg = "Nyace! One step closer to nap!\n"
-                + "    "    + doneSymbol + " " + t;
-            t.markAsDone();;
+                + "    " + t;
         }
         System.out.println(msg);
     }
@@ -54,9 +42,9 @@ public class ToDoList {
             msg = "There are NYA tasks hereeeee";
         } else {
             Task t = allTaskList.get(rank - 1);
-            msg = "You nyapped for too long!\n"
-                    + "    "    + notDoneSymbol + " " + t;
             t.markAsNotDone();
+            msg = "You nyapped for too long!\n"
+                    + "    " + t;
         }
         System.out.println(msg);
     }
@@ -71,11 +59,7 @@ public class ToDoList {
 
         for(int i = 1; i <= totalTasks; i++) {
             Task t = allTaskList.get(i - 1);
-            String symbol = notDoneSymbol;
-            if (t.status()) {
-                symbol = doneSymbol;
-            }
-            System.out.println(i + "." + symbol + " " + t + "\n");
+            System.out.println(i + "." + t + "\n");
         }
     }
 }

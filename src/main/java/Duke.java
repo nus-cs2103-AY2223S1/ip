@@ -3,7 +3,7 @@ import static java.lang.System.exit;
 
 public class Duke {
     public enum Command {
-        BYE, LIST, MARK, UNMARK, ADD
+        BYE, LIST, MARK, UNMARK, TODO, EVENT, DEADLINE
     }
     public static void main(String[] args) {
 
@@ -26,7 +26,7 @@ public class Duke {
         System.out.println(border + "Meow from\n" + cat + service + border);
 
         Scanner sc= new Scanner(System.in);
-        ToDoList list = new ToDoList();
+        TaskList list = new TaskList();
 
         while (sc.hasNextLine()) {
             String input = sc.nextLine();
@@ -43,16 +43,20 @@ public class Duke {
                 Command c = Command.valueOf(cmd.toUpperCase());
                 switch(c) {
                     case BYE:
-                        System.out.println(border + goodbye + border);
+                        System.out.println(goodbye + border);
                         exit(0);
                     case LIST:
                         list.printList();
                         break;
-                    case ADD:
+                    case TODO:
                         if (target == null) {
                             throw new IllegalArgumentException();
                         }
-                        list.addTask(target);
+                        list.addTodo(target);
+                        break;
+                    case EVENT:
+                        break;
+                    case DEADLINE:
                         break;
                     case MARK:
                         if (target == null) {

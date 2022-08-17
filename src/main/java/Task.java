@@ -1,7 +1,12 @@
-public class Task {
+abstract public class Task {
+    private  String modifier = "[?]";
     private String description;
     private String addOn = "nya!";
     private Boolean completed;
+
+    private String notDoneSymbol = "[Zzzzz]";
+
+    private String doneSymbol    = "[/ᐠ｡ꞈ｡ᐟ\\]";
 
     public Task(String description) {
         this.description = description;
@@ -25,6 +30,12 @@ public class Task {
 
     @Override
     public String toString() {
-        return this.description;
+        String symbol;
+        if (this.completed) {
+            symbol = doneSymbol;
+        } else {
+            symbol = notDoneSymbol;
+        }
+        return symbol + " " + this.description + " " + addOn;
     }
 }
