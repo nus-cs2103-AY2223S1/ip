@@ -1,4 +1,5 @@
-import java.util.*;
+import java.util.List;
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,13 +14,13 @@ public class Duke {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
-        dukeTasks = new ArrayList<Task>();
         startService();
     }
 
     private static void startService() {
         dukePrint("Hello! I'm Duke\nWhat can I do for you?\n");
         sc = new Scanner(System.in);
+        dukeTasks = SaveManager.loadData();
         getUserInput();
     }
 
@@ -183,6 +184,7 @@ public class Duke {
 
     private static void endService() {
         dukePrint("Bye. Hope to see you again!");
+        SaveManager.saveData(dukeTasks);
         sc.close();
         return;
     }
