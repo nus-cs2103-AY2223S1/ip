@@ -41,7 +41,7 @@ public class Storage {
 
     public void saveLocalData(List<String> data) {
         try {
-            FileWriter fw = new FileWriter("data/duke.txt");
+            FileWriter fw = new FileWriter(this.filePath);
             fw.write(String.join(System.lineSeparator(), data));
             fw.close();
         } catch (IOException e) {
