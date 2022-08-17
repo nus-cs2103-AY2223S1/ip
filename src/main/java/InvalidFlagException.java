@@ -15,7 +15,7 @@ class InvalidFlagException extends CarbonException {
     @Override
     public String toString() {
         return String.format(
-                "%s\n    Looks like you're missing the '%s' flag for your %s.",
+                "%s\n    Use '%s' to indicate the time for your %s.",
                 super.toString(),
                 this.flag,
                 this.type

@@ -1,7 +1,14 @@
 class Todo extends Task {
-    public static String extractName(String input) {
-        String name = input.substring("todo ".length());
-        return name;
+    private static String extractName(String input) throws CarbonException {
+        int len = input.length();
+        int requiredLen = "todo ".length();
+        if (len <= requiredLen) {
+            CarbonException invalidParam = new InvalidParamException(input);
+            throw invalidParam;
+        } else {
+            String name = input.substring("todo ".length());
+            return name;
+        }
     }
 
     public Todo(String input) {

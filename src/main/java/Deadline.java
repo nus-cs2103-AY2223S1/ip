@@ -2,16 +2,27 @@ class Deadline extends Task {
     public static String FLAG = " /by";
     private String time;
 
-    public static String extractName(String input) {
+    private static String extractName(String input) throws CarbonException {
         int flagIndex = input.indexOf(Deadline.FLAG);
-        String name = input.substring("deadline ".length(), flagIndex);
-        return name;
+        if (flagIndex == -1) {
+            CarbonException invalidFlag = new InvalidFlagException(input, "deadline");
+            throw invalidFlag;
+        } else {
+            String name = input.substring("deadline ".length(), flagIndex);
+            return name;
+        }
     }
 
-    public static String extractTime(String input) {
+    private static String extractTime(String input) throws CarbonException {
+        int len = input.length();
         int flagIndex = input.indexOf(Deadline.FLAG);
-        String name = input.substring(flagIndex + Deadline.FLAG.length() + 1);
-        return name;
+        if (len <= flagIndex + Deadline.FLAG.length() + 1) {
+            CarbonException invalidParam = new InvalidParamException(input);
+            throw invalidParam;
+        } else {
+            String time = input.substring(flagIndex + Deadline.FLAG.length() + 1);
+            return time;
+        }
     }
 
     public Deadline(String input) {

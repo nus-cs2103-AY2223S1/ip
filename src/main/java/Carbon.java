@@ -8,38 +8,38 @@ public class Carbon {
     // ascii art generated from patorjk.com
     // logo for Carbon
     private static String logo = "                 _ _ _ ____ _    ____ ____ _  _ ____ \n" + 
-            "                 | | | |___ |    |    |  | |\\/| |___ \n" + 
-            "                 |_|_| |___ |___ |___ |__| |  | |___ \n\n" + 
-            "  ▄████████    ▄████████    ▄████████ ▀█████████▄   ▄██████▄  ███▄▄▄▄   \n" + 
-            " ███    ███   ███    ███   ███    ███   ███    ███ ███    ███ ███▀▀▀██▄ \n" + 
-            " ███    █▀    ███    ███   ███    ███   ███    ███ ███    ███ ███   ███ \n" + 
-            " ███          ███    ███  ▄███▄▄▄▄██▀  ▄███▄▄▄██▀  ███    ███ ███   ███ \n" + 
-            " ███        ▀███████████ ▀▀███▀▀▀▀▀   ▀▀███▀▀▀██▄  ███    ███ ███   ███ \n" +
-            " ███    █▄    ███    ███ ▀███████████   ███    ██▄ ███    ███ ███   ███ \n" + 
-            " ███    ███   ███    ███   ███    ███   ███    ███ ███    ███ ███   ███ \n" + 
-            " ████████▀    ███    █▀    ███    ███ ▄█████████▀   ▀██████▀   ▀█   █▀  \n" + 
-            "                           ███    ███                                   \n";
+        "                 | | | |___ |    |    |  | |\\/| |___ \n" + 
+        "                 |_|_| |___ |___ |___ |__| |  | |___ \n\n" + 
+        "  ▄████████    ▄████████    ▄████████ ▀█████████▄   ▄██████▄  ███▄▄▄▄   \n" + 
+        " ███    ███   ███    ███   ███    ███   ███    ███ ███    ███ ███▀▀▀██▄ \n" + 
+        " ███    █▀    ███    ███   ███    ███   ███    ███ ███    ███ ███   ███ \n" + 
+        " ███          ███    ███  ▄███▄▄▄▄██▀  ▄███▄▄▄██▀  ███    ███ ███   ███ \n" + 
+        " ███        ▀███████████ ▀▀███▀▀▀▀▀   ▀▀███▀▀▀██▄  ███    ███ ███   ███ \n" +
+        " ███    █▄    ███    ███ ▀███████████   ███    ██▄ ███    ███ ███   ███ \n" + 
+        " ███    ███   ███    ███   ███    ███   ███    ███ ███    ███ ███   ███ \n" + 
+        " ████████▀    ███    █▀    ███    ███ ▄█████████▀   ▀██████▀   ▀█   █▀  \n" + 
+        "                           ███    ███                                   \n";
 
     // actual introduction
     private static String intro = "Hey, Carbon here. ";
     private static String[] initPrompts = {
-            "What's up?",
-            "How's things going?",
-            "Nice weather today, huh?",
-            "How can I help you?",
-            "Please don't talk to me.",
-            "To get an A+ for CS2103T, you have t---[REDACTED]"
-        };
+        "What's up?",
+        "How's things going?",
+        "Nice weather today, huh?",
+        "How can I help you?",
+        "Please don't talk to me.",
+        "To get an A+ for CS2103T, you have t---[REDACTED]"
+    };
 
     // text for exits
     private static String[] goodbyes = {
-            "Bye-bye, see you again soon!",
-            "Farewell. Stay safe.",
-            "Nice meeting you. Let's catch up again sometime.",
-            "Bye. Good riddance.",
-            "...zzzzzz...",
-            "What? Yeah, sorry I gotta run now."
-        };
+        "Bye-bye, see you again soon!",
+        "Farewell. Stay safe.",
+        "Nice meeting you. Let's catch up again sometime.",
+        "Bye. Good riddance.",
+        "...zzzzzz...",
+        "What? Yeah, sorry I gotta run now."
+    };
 
     // scanner for inputs
     private static Scanner sc = new Scanner(System.in);
@@ -112,32 +112,39 @@ public class Carbon {
 
     private void processAdvanced(String input) {
         String lowerCaseInput = input.toLowerCase();
-        if (lowerCaseInput.startsWith("mark")) {
-            this.validateAndMark(input, true);
-        } else if (lowerCaseInput.startsWith("unmark")) {
-            this.validateAndMark(input, false);
-        } else if (lowerCaseInput.startsWith("todo")) {
-            this.addTask(input, "todo"); // TODO: change to using enums
-        } else if (lowerCaseInput.startsWith("deadline")) {
-            this.addTask(input, "deadline"); // TODO: change to using enums
-        } else if (lowerCaseInput.startsWith("event")) {
-            this.addTask(input, "event"); // TODO: change to using enums
-        } else {
-            // not a command, return invalid input
-            CarbonException invalidInput = new InvalidInputException(input);
-            Carbon.printOut(invalidInput.toString());
+        try {
+            if (lowerCaseInput.startsWith("mark")) {
+                this.validateAndMark(input, true);
+            } else if (lowerCaseInput.startsWith("unmark")) {
+                this.validateAndMark(input, false);
+            } else if (lowerCaseInput.startsWith("todo")) {
+                this.addTask(input, "todo"); // TODO: change to using enums
+            } else if (lowerCaseInput.startsWith("deadline")) {
+                this.addTask(input, "deadline"); // TODO: change to using enums
+            } else if (lowerCaseInput.startsWith("event")) {
+                this.addTask(input, "event"); // TODO: change to using enums
+            } else {
+                // not a command, return invalid input
+                CarbonException invalidInput = new InvalidInputException(input);
+                throw invalidInput;
+            }
+        } catch (CarbonException error) {
+            this.processError(error);
         }
     }
 
-    private void validateAndMark(String input, boolean doneness) {
+    private void processError(CarbonException error) {
+        Carbon.printOut(error.toString());
+    }
+
+    private void validateAndMark(String input, boolean doneness) throws CarbonException {
         int taskNumber;
-            int len = input.length();
+        int len = input.length();
         if (doneness) {
             int requiredLen = "mark ".length();
             if (len <= requiredLen) {
                 CarbonException invalidParam = new InvalidParamException(input);
-                Carbon.printOut(invalidParam.toString());
-                return;
+                throw invalidParam;
             } else {
                 taskNumber = Integer.valueOf(input.substring(requiredLen));
             }
@@ -145,8 +152,7 @@ public class Carbon {
             int requiredLen = "unmark ".length();
             if (len <= requiredLen) {
                 CarbonException invalidParam = new InvalidParamException(input);
-                Carbon.printOut(invalidParam.toString());
-                return;
+                throw invalidParam;
             } else {
                 taskNumber = Integer.valueOf(input.substring(requiredLen));
             }
@@ -154,7 +160,7 @@ public class Carbon {
 
         if (taskNumber < 1 || taskNumber > this.tasks.size()) {
             CarbonException outOfBounds = new OutOfBoundsException(taskNumber, this.tasks.size());
-            Carbon.printOut(outOfBounds.toString());
+            throw outOfBounds;
         } else {
             this.setTaskDoneness(taskNumber, doneness);
         }
@@ -167,51 +173,19 @@ public class Carbon {
         Carbon.printOut(log);
     }
 
-    private void addTask(String input, String type) {
-        // add invalid flag exception 
-        // add invalid param exception
+    private void addTask(String input, String type) throws CarbonException {
         Task newTask;
-        int len = input.length();
         switch (type) {
             case "todo": {
-                int requiredLen = "todo ".length();
-                if (len <= requiredLen) {
-                    CarbonException invalidParam = new InvalidParamException(input);
-                    Carbon.printOut(invalidParam.toString());
-                    return;
-                } else {
-                    newTask = new Todo(input);
-                }
+                newTask = new Todo(input);
                 break;
             }
             case "deadline": {
-                int flagIndex = input.indexOf(Deadline.FLAG);
-                if (flagIndex == -1) {
-                    CarbonException invalidFlag = new InvalidFlagException(input, "deadline");
-                    Carbon.printOut(invalidFlag.toString());
-                    return;
-                } else if (len <= flagIndex + Deadline.FLAG.length() + 1) {
-                    CarbonException invalidParam = new InvalidParamException(input);
-                    Carbon.printOut(invalidParam.toString());
-                    return;
-                } else {
-                    newTask = new Deadline(input);
-                }
+                newTask = new Deadline(input);
                 break;
             }
             case "event": {
-                int flagIndex = input.indexOf(Event.FLAG);
-                if (flagIndex == -1) {
-                    CarbonException invalidFlag = new InvalidFlagException(input, "event");
-                    Carbon.printOut(invalidFlag.toString());
-                    return;
-                } else if (len <= flagIndex + Event.FLAG.length() + 1) {
-                    CarbonException invalidParam = new InvalidParamException(input);
-                    Carbon.printOut(invalidParam.toString());
-                    return;
-                } else {
-                    newTask = new Event(input);
-                }
+                newTask = new Event(input);
                 break;
             }
             default:

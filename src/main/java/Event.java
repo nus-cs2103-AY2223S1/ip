@@ -2,16 +2,27 @@ class Event extends Task {
     public static String FLAG = " /at";
     private String time;
 
-    public static String extractName(String input) {
+    private static String extractName(String input) {
         int flagIndex = input.indexOf(Event.FLAG);
-        String name = input.substring("event ".length(), flagIndex);
-        return name;
+        if (flagIndex == -1) {
+            CarbonException invalidFlag = new InvalidFlagException(input, "event");
+            throw invalidFlag;
+        } else {
+            String name = input.substring("event ".length(), flagIndex);
+            return name;
+        }
     }
 
-    public static String extractTime(String input) {
+    private static String extractTime(String input) {
+        int len = input.length();
         int flagIndex = input.indexOf(Event.FLAG);
-        String name = input.substring(flagIndex + Event.FLAG.length() + 1);
-        return name;
+        if (len <= flagIndex + Event.FLAG.length() + 1) {
+            CarbonException invalidParam = new InvalidParamException(input);
+            throw invalidParam;
+        } else {
+            String time = input.substring(flagIndex + Event.FLAG.length() + 1);
+            return time;
+        }
     }
 
     public Event(String input) {
