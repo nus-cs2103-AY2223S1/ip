@@ -1,4 +1,5 @@
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Duke {
@@ -48,8 +49,11 @@ public class Duke {
      */
     public void add(Task task) {
         this.taskList.addToTaskList(task);
+        int numTasks = this.taskList.getSize();
         System.out.println(INDENTATION + LINE);
-        System.out.println(INDENTATION + "added: " + task.getDescription());
+        System.out.println(INDENTATION + "Got it. I've added this task:");
+        System.out.println(INDENTATION + INDENTATION + "added: " + task.toString());
+        System.out.println(INDENTATION + "Now you have " + String.valueOf(numTasks) + " tasks in the list.");
         System.out.println(INDENTATION + LINE);
     }
 
@@ -96,6 +100,23 @@ public class Duke {
             } else if (command.equals("unmark")) {
                 int num = Integer.parseInt(input[1]);
                 this.unmark(num - 1);
+            } else if (command.equals("todo")) {
+                String[] taskDescription = Arrays.copyOfRange(input, 1, input.length);
+                Task toDo = new ToDo(String.join(" ", taskDescription));
+                this.add(toDo);
+            } else if (command.equals("deadline")) {
+                int byIndex = Arrays.asList(input).indexOf("/by");
+                String[] taskDescription = Arrays.copyOfRange(input, 1, byIndex);
+                String[] by = Arrays.copyOfRange(input, byIndex + 1, input.length);
+                Task deadline = new Deadline(String.join(" ", taskDescription), String.join(" ", by));
+                this.add(deadline);
+            } else if (command.equals("event")) {
+                int atIndex = Arrays.asList(input).indexOf("/at");
+                String[] taskDescription = Arrays.copyOfRange(input, 1, atIndex);
+                System.out.println(Arrays.toString(taskDescription));
+                String[] at = Arrays.copyOfRange(input, atIndex + 1, input.length);
+                Task event = new Event(String.join(" ", taskDescription), String.join(" ", at));
+                this.add(event);
             } else {
                 Task task = new Task(String.join(" ", input));
                 this.add(task);
