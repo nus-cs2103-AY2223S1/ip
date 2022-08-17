@@ -6,7 +6,7 @@ public class ByeCommand is Command {
 
   public boolean performAction() {
     System.out.println("MumBot: Goodbyeeee sweetheart <3");
-    System.exit(0);
+    return false;
   }
 }
 

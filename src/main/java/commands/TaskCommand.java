@@ -18,4 +18,5 @@ public class TaskCommand is Command {
       this.tasks.add(Event(commandArgs[1], commandArgs[2]));
     } // TODO: else throw error
   }
+  return true;
 }

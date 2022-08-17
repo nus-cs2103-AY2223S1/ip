@@ -2,8 +2,8 @@ import tasks.Task;
 
 public class ListCommand is Command {
 
-  public ListCommand(String[] commandArgs, ArrayList<Task> tasks) {
-    super(commandArgs, tasks);
+  public ListCommand(ArrayList<Task> tasks) {
+    this.tasks = tasks;
   }
 
   @Override
