@@ -36,7 +36,7 @@ public class Task {
     }
 
     /**
-     * Get a statement representing if the task is done or not
+     * Get a statement representing if the task is already done or not
      * @return a string representing the task and its status
      */
     @Override
