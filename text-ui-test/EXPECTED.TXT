@@ -1,7 +1,91 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+Good day, mate! I'm Skyler
+How can I help you?
 
+I've added the following task:
+  [T][ ] read book
+Total number of tasks: 1
+I've added the following task:
+  [D][ ] return book (by: June 6th)
+Total number of tasks: 2
+Tasks:
+1.[T][ ] read book
+2.[D][ ] return book (by: June 6th)
+I've added the following task:
+  [E][ ] project meeting (at: Aug 6th 2-4pm)
+Total number of tasks: 3
+I've added the following task:
+  [T][ ] join sports club
+Total number of tasks: 4
+Tasks:
+1.[T][ ] read book
+2.[D][ ] return book (by: June 6th)
+3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+4.[T][ ] join sports club
+You have completed this task:
+  [T][X] read book
+Tasks:
+1.[T][X] read book
+2.[D][ ] return book (by: June 6th)
+3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+4.[T][ ] join sports club
+You have completed this task:
+  [T][X] join sports club
+Tasks:
+1.[T][X] read book
+2.[D][ ] return book (by: June 6th)
+3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+4.[T][X] join sports club
+I've added the following task:
+  [T][ ] borrow book
+Total number of tasks: 5
+Tasks:
+1.[T][X] read book
+2.[D][ ] return book (by: June 6th)
+3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+4.[T][X] join sports club
+5.[T][ ] borrow book
+I've added the following task:
+  [D][ ] return book (by: Sunday)
+Total number of tasks: 6
+I've added the following task:
+  [E][ ] project meeting (at: Mon 2-4pm)
+Total number of tasks: 7
+Tasks:
+1.[T][X] read book
+2.[D][ ] return book (by: June 6th)
+3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+4.[T][X] join sports club
+5.[T][ ] borrow book
+6.[D][ ] return book (by: Sunday)
+7.[E][ ] project meeting (at: Mon 2-4pm)
+You have completed this task:
+  [E][X] project meeting (at: Mon 2-4pm)
+Tasks:
+1.[T][X] read book
+2.[D][ ] return book (by: June 6th)
+3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+4.[T][X] join sports club
+5.[T][ ] borrow book
+6.[D][ ] return book (by: Sunday)
+7.[E][X] project meeting (at: Mon 2-4pm)
+OK, I've marked this task as not done yet:
+  [E][ ] project meeting (at: Mon 2-4pm)
+Tasks:
+1.[T][X] read book
+2.[D][ ] return book (by: June 6th)
+3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+4.[T][X] join sports club
+5.[T][ ] borrow book
+6.[D][ ] return book (by: Sunday)
+7.[E][ ] project meeting (at: Mon 2-4pm)
+OK, I've marked this task as not done yet:
+  [D][ ] return book (by: Sunday)
+Tasks:
+1.[T][X] read book
+2.[D][ ] return book (by: June 6th)
+3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+4.[T][X] join sports club
+5.[T][ ] borrow book
+6.[D][ ] return book (by: Sunday)
+7.[E][ ] project meeting (at: Mon 2-4pm)
+Bye! See you again soon!
