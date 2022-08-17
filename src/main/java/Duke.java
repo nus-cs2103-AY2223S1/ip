@@ -3,8 +3,21 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
+    //List of task operation commands that can be used
+    public enum taskCommands {
+        BYE,
+        LIST,
+        TODO,
+        DEADLINE,
+        EVENT,
+        MARK,
+        UNMARK,
+        DELETE;
+    }
     //Initialise a memo variable to track the memo of tasks
     static List<Task> memo = new ArrayList<>();
+
+    static Enum currCommand = null;
 
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -15,89 +28,115 @@ public class Duke {
         System.out.println("Hello from\n" + logo);
 
         //Print the starting statement
-        System.out.println(dialog("Hello! I'm Duke" + "\n" + "   What can I do for you?"));
+        System.out.println(dialog("Hello! I'm Duke", "What can I do for you?"));
 
         //Initialise the scanner used.
         Scanner sc = new Scanner(System.in);
-        //Initialise a variable to receive the text entered.
-        String message;
-        while (true) {
-            //Update the message variable
-            message = sc.nextLine();
 
-            if (message.equals("bye")) {
+        while (true) {
+
+            String decodedMessage = decode(sc.nextLine());
+
+            if (currCommand == null) {
+                System.out.println(dialog("I'm sorry, but I don't know what that means :-("));
+            } else if (currCommand == taskCommands.BYE) {
                 System.out.println(dialog("Bye. Hope to see you again soon!"));
                 sc.close();
                 break;
-            } else if (message.equals("list")) {
-                StringBuilder sb = new StringBuilder();
-                for (int i = 0; i < memo.size(); i++) {
-                    if (i == memo.size() - 1) {
-                        sb.append(i + 1 + ". " + memo.get(i));
-                    } else {
-                        sb.append(i + 1 + ". " + memo.get(i) + "\n" + "   ");
-                    }
+            } else if (currCommand == taskCommands.LIST) {
+                String[] strArr = new String[memo.size()];
+                for (int i = 0; i < strArr.length; i++) {
+                    strArr[i] = (i + 1) + ". " + memo.get(i);
                 }
-                System.out.println(dialog(sb.toString()));
+                System.out.println(dialog(strArr));
             } else {
-                if (message.startsWith("mark")) {
-                    Integer index = Integer.valueOf(message.substring(5)) - 1;
-                    Task curr = memo.get(index);
-                    curr.markAsDone();
-                    System.out.println(dialog(
-                            "Nice! I've marked this task as done:\n" +
-                                    "   " + curr
-                    ));
-                } else if (message.startsWith("unmark")) {
-                    Integer index = Integer.valueOf(message.substring(7)) - 1;
-                    Task curr = memo.get(index);
-                    curr.unMark();
-                    System.out.println(dialog(
-                            "OK, I've marked this task as not done yet:\n" +
-                                    "   " + curr
-                    ));
-                } else if (message.startsWith("todo")) {
-                    Task todoTask = new Todo(message.substring(5));
-                    memo.add(todoTask);
-                    System.out.println(dialog(
-                            "Got it. I've added this task:\n       "
-                                    + todoTask + "\n   " +
-                                    String.format("Now you have %d tasks in the list.", memo.size())
-                    ));
-                } else if (message.startsWith("deadline")) {
-                    String subString = message.substring(9);
-                    String[] splittedStr = subString.split("/");
+                //Check if empty description is being given to a command
+                if(decodedMessage == null) {
+                    System.out.println(dialog("OOPS!!! The description of a command cannot be empty."));
+                    continue;
+                }
 
-                    //TODO (Try catch)
-                    //TODO (Simplify, these 3 are using repeating codes)
+                //Since description is not empty, we can proceed
+
+                if (currCommand == taskCommands.MARK) {
+                    Integer index = Integer.valueOf(decodedMessage) - 1;
+                    Task selectedTask = memo.get(index);
+                    selectedTask.markAsDone();
+                    System.out.println(dialog("Nice! I've marked this task as done:", selectedTask.toString()));
+                } else if (currCommand == taskCommands.UNMARK) {
+                    Integer index = Integer.valueOf(decodedMessage) - 1;
+                    Task selectedTask = memo.get(index);
+                    selectedTask.unMark();
+                    System.out.println(dialog("Nice! I've marked this task as not done yet:", selectedTask.toString()));
+                } else if (currCommand == taskCommands.TODO) {
+                    Task todoTask = new Todo(decodedMessage);
+                    memo.add(todoTask);
+                    String reminder = String.format("Now you have %d tasks in the list.", memo.size());
+                    System.out.println(dialog("Got it. I've added this task:", todoTask.toString(), reminder));
+                } else if (currCommand == taskCommands.DEADLINE) {
+                    String[] splittedStr = decodedMessage.split("/");
                     Task deadlineTask = new Deadline(splittedStr[0], splittedStr[1].substring(3));
                     memo.add(deadlineTask);
-                    System.out.println(dialog(
-                            "Got it. I've added this task:\n       "
-                                    + deadlineTask + "\n   " +
-                                    String.format("Now you have %d tasks in the list.", memo.size())
-                    ));
-                } else if (message.startsWith("event")) {
-                    String subString = message.substring(6);
-                    String[] splittedStr = subString.split("/");
-
+                    String reminder = String.format("Now you have %d tasks in the list.", memo.size());
+                    System.out.println(dialog("Got it. I've added this task:", deadlineTask.toString(), reminder));
+                } else if (currCommand == taskCommands.EVENT) {
+                    String[] splittedStr = decodedMessage.split("/");
                     Task eventTask = new Event(splittedStr[0], splittedStr[1].substring(3));
                     memo.add(eventTask);
-                    System.out.println(dialog(
-                            "Got it. I've added this task:\n       "
-                                    + eventTask + "\n   " +
-                                    String.format("Now you have %d tasks in the list.", memo.size())
-                    ));
+                    String reminder = String.format("Now you have %d tasks in the list.", memo.size());
+                    System.out.println(dialog("Got it. I've added this task:", eventTask.toString(), reminder));
                 }
             }
 
+            //Reset the command to null after each iteration;
+            currCommand = null;
         }
     }
 
     //To wrap the string in a dialog frame
-    public static String dialog(String message) {
-        return "  ____________________________________________________________\n" +
-                "   " + message + "\n" +
-                "  ____________________________________________________________\n";
+    public static String dialog(String ...strings) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("  ____________________________________________________________\n");
+        for (String message: strings) {
+            sb.append( "   " + message + "\n");
+        }
+        sb.append("  ____________________________________________________________\n");
+        return sb.toString();
+    }
+
+    public static String decode(String message) {
+        String[] strArr = message.split(" ", 2);
+        String subStr = null;
+
+        try {
+            subStr = strArr[1];
+        } catch (IndexOutOfBoundsException e) {
+            subStr = null;
+        }
+
+        switch (strArr[0]) {
+            case "bye":
+                currCommand = taskCommands.BYE;
+                break;
+            case "list":
+                currCommand = taskCommands.LIST;
+                break;
+            case "todo":
+                currCommand = taskCommands.TODO;
+                break;
+            case "deadline":
+                currCommand = taskCommands.DEADLINE;
+                break;
+            case "event":
+                currCommand = taskCommands.EVENT;
+                break;
+            case "mark":
+                currCommand = taskCommands.MARK;
+                break;
+            case "unmark":
+                currCommand = taskCommands.UNMARK;
+                break;
+        }
+        return subStr;
     }
 }
