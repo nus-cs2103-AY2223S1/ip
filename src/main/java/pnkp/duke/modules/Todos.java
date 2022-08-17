@@ -8,6 +8,7 @@ import static java.lang.String.format;
 import static pnkp.duke.IOFormat.say;
 
 import pnkp.duke.modules.todos.Deadline;
+import pnkp.duke.modules.todos.Event;
 import pnkp.duke.modules.todos.Task;
 import pnkp.duke.modules.todos.Todo;
 
@@ -38,6 +39,18 @@ public class Todos {
             task = Deadline.fromChat(rest);
         } catch(IllegalArgumentException e) {
             say("Deadlines are added like this: deadline return book /by Sunday");
+            return;
+        }
+
+        addWrapper(task);
+    }
+
+    public void cmdAddEvent(Scanner rest) {
+        final Task task;
+        try {
+            task = Event.fromChat(rest);
+        } catch(IllegalArgumentException e) {
+            say("Events are added like this: event project meeting /at Mon 2-4pm");
             return;
         }
 

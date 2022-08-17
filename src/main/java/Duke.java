@@ -33,6 +33,9 @@ public class Duke {
                 case "deadline":
                     todos.cmdAddDeadline(scanner);
                     break;
+                case "event":
+                    todos.cmdAddEvent(scanner);
+                    break;
                 case "list":
                     todos.cmdList();
                     break;
