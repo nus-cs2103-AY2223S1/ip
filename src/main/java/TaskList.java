@@ -17,6 +17,10 @@ public class TaskList {
         this.taskList.add(task);
     }
 
+    public void deleteTask(int index) {
+        this.taskList.remove(index);
+    }
+
     public String[] toStringList() {
         return this.taskList.stream()
                 .map(Task::toString)

@@ -26,4 +26,13 @@ unmark 1
 mark 5
 unmark -1
 list
+delete 5
+delete -1
+delete ab
+delete
+delete 2
+list
+delete 4
+delete 3
+list
 bye

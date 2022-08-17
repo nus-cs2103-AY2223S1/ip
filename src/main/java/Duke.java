@@ -140,6 +140,26 @@ public class Duke {
                         break;
                     }
 
+                    case "delete": {
+                        try {
+                            int delIndex = Integer.parseInt(userParams[0][1]) - 1;
+                            if (delIndex >= taskList.getLength() || delIndex < 0) {
+                                throw new DukeException("I do not have a task with that number in my list.");
+                            } else {
+                                Task delTask = taskList.getTask(delIndex);
+                                taskList.deleteTask(delIndex);
+                                System.out.printf("Understood, I've deleted the following task:\n  %s\nYou now have %d tasks remaining.\n", delTask, taskList.getLength());
+                            }
+                        } catch (NumberFormatException e) {
+                            if (userParams[0][1] == null) {
+                                throw new DukeException("You must pass an index value.");
+                            } else {
+                                throw new DukeException("You must pass an integer value. " + userParams[0][1] + " is not an integer.", e);
+                            }
+                        }
+                        break;
+                    }
+
                     default: {
                         throw new DukeException(UNKNOWN_COMMAND_MESSAGE);
                     }

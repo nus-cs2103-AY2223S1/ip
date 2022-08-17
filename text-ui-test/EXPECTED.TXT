@@ -56,4 +56,22 @@ Here are your tasks that I have recorded:
 02. [T][✔] CS2103T iP Level-4
 03. [D][ ] CS2105 HW (by: Sunday, 21 August 2022)
 04. [E][ ] NUS SoC Career Fair (at: Wednesday, 12-5pm)
+Uh-oh ☹! I do not have a task with that number in my list.
+Uh-oh ☹! I do not have a task with that number in my list.
+Uh-oh ☹! You must pass an integer value. ab is not an integer.
+Uh-oh ☹! You must pass an index value.
+Understood, I've deleted the following task:
+  [T][✔] CS2103T iP Level-4
+You now have 3 tasks remaining.
+Here are your tasks that I have recorded:
+01. [ ] hello world
+02. [D][ ] CS2105 HW (by: Sunday, 21 August 2022)
+03. [E][ ] NUS SoC Career Fair (at: Wednesday, 12-5pm)
+Uh-oh ☹! I do not have a task with that number in my list.
+Understood, I've deleted the following task:
+  [E][ ] NUS SoC Career Fair (at: Wednesday, 12-5pm)
+You now have 2 tasks remaining.
+Here are your tasks that I have recorded:
+01. [ ] hello world
+02. [D][ ] CS2105 HW (by: Sunday, 21 August 2022)
 Bye! Hope to see you soon ༼- つ ◕_◕ ༽つ
