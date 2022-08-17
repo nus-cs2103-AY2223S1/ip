@@ -1,4 +1,10 @@
 abstract class Task {
+    public static enum Type {
+        TODO,
+        DEADLINE,
+        EVENT
+    };
+
     protected String name;
     protected boolean isDone;
 

@@ -120,11 +120,11 @@ public class Carbon {
             } else if (lowerCaseInput.startsWith("delete")) {
                 this.deleteTask(input);
             } else if (lowerCaseInput.startsWith("todo")) {
-                this.addTask(input, "todo"); // TODO: change to using enums
+                this.addTask(input, Task.Type.TODO);
             } else if (lowerCaseInput.startsWith("deadline")) {
-                this.addTask(input, "deadline"); // TODO: change to using enums
+                this.addTask(input, Task.Type.DEADLINE);
             } else if (lowerCaseInput.startsWith("event")) {
-                this.addTask(input, "event"); // TODO: change to using enums
+                this.addTask(input, Task.Type.EVENT);
             } else {
                 // not a command, return invalid input
                 CarbonException invalidInput = new InvalidInputException(input);
@@ -175,18 +175,18 @@ public class Carbon {
         Carbon.printOut(log);
     }
 
-    private void addTask(String input, String type) throws CarbonException {
+    private void addTask(String input, Task.Type type) throws CarbonException {
         Task newTask;
         switch (type) {
-            case "todo": {
+            case TODO: {
                 newTask = new Todo(input);
                 break;
             }
-            case "deadline": {
+            case DEADLINE: {
                 newTask = new Deadline(input);
                 break;
             }
-            case "event": {
+            case EVENT: {
                 newTask = new Event(input);
                 break;
             }
