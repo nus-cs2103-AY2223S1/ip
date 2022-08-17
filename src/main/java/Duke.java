@@ -20,6 +20,8 @@ public class Duke {
             if (s.equals("bye")) {
                 Duke.echo("Bye. Hope to see you again soon!");
                 break;
+            } else if (s.equals("list")) {
+                Duke.list();
             } else {
                 Duke.add(s);
             }
@@ -36,5 +38,17 @@ public class Duke {
         Duke.items[id] = item;
         Duke.id++;
         Duke.echo("added: " + item);
+    }
+
+    private static void list() {
+        if (id == 0) {
+            Duke.echo("no items stored");
+        } else {
+            String s = "";
+            for (int i = 0; i < id; i++) {
+                s = s + "\t" + (i + 1) + ". " + items[i] + "\n";
+            }
+            Duke.echo(s.trim());
+        }
     }
 }
