@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
@@ -11,26 +12,27 @@ public class Duke {
         greeting();
         echo();
     }
+
     public static void greeting() {
         System.out.println("--------------------------------------\n");
         System.out.println("\tHello I'm Duke, what can I do for you?");
         System.out.println("--------------------------------------\n");
     }
+
     public static void echo() {
         Scanner sc = new Scanner(System.in);
-        String str = sc.next();
+        String str = sc.nextLine();
         String uncap = str.toLowerCase();
         while (!uncap.equals("bye")) {
-            System.out.print("-------------------------------");
-            System.out.println("\n");
+            System.out.println("------------------------------\n");
             System.out.printf("\t  %s  \n", str);
-            System.out.println("\n");
-            System.out.print("-------------------------------\n");
-            str = sc.next();
+            System.out.println("------------------------------\n");
+            str = sc.nextLine();
             uncap = str.toLowerCase();
         }
-        System.out.print("-------------------------------");
+        sc.close();
+        System.out.println("------------------------------\n");
         System.out.println("Bye. Hope to see you soon again!");
-        System.out.print("-------------------------------\n");
+        System.out.println("------------------------------\n");
     }
 }
