@@ -41,29 +41,35 @@ public class Deku {
 
     private String parseReply(String input) {
         String reply = input;
-        List<String> separate = new LinkedList<>(Arrays.asList(input.split("\\s+")));;
-        switch (separate.remove(0)) {
-            case ("bye"):
-                reply = "Bye! Until next time!";
-                break;
-            case ("list"):
-                reply = this.botList.toString();
-                break;
-            case ("mark"):
-                reply = this.botList.mark(Integer.parseInt(separate.get(0)));
-                break;
-            case ("unmark"):
-                reply = this.botList.unmark(Integer.parseInt(separate.get(0)));
-                break;
-            case ("deadline"):
-                reply = this.botList.add(new Deadline(separate));
-                break;
-            case ("event"):
-                reply = this.botList.add(new Event(separate));
-                break;
-            case ("todo"):
-                reply = this.botList.add(new ToDo(separate));
-                break;
+        List<String> separate = new LinkedList<>(Arrays.asList(input.split("\\s+")));
+        try {
+            switch (separate.remove(0)) {
+                case ("bye"):
+                    reply = "Bye! Until next time!";
+                    break;
+                case ("list"):
+                    reply = this.botList.toString();
+                    break;
+                case ("mark"):
+                    reply = this.botList.mark(Integer.parseInt(separate.get(0)));
+                    break;
+                case ("unmark"):
+                    reply = this.botList.unmark(Integer.parseInt(separate.get(0)));
+                    break;
+                case ("deadline"):
+                    reply = this.botList.add(new Deadline(separate));
+                    break;
+                case ("event"):
+                    reply = this.botList.add(new Event(separate));
+                    break;
+                case ("todo"):
+                    reply = this.botList.add(new ToDo(separate));
+                    break;
+                default:
+                    throw new DekuExceptions("I have no idea what that means. (T _ T)");
+            }
+        } catch (DekuExceptions e) {
+            reply = e.toString();
         }
         return SEPARATOR + "\n" + reply + "\n" + SEPARATOR;
     }

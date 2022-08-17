@@ -8,3 +8,8 @@ mark 2
 list
 unmark 2
 list
+todo
+blah
+deadline
+haha
+event
