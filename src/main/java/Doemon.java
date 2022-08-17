@@ -49,23 +49,26 @@ public class Doemon {
 
         while (true) {
             String inputStr = sc.nextLine();
+
             // Exit the chatbot
             if (inputStr.equals("bye")) {
                 System.out.println(output(exitStr));
                 break;
             }
+
             // List tasks
             if (inputStr.equals("list")) {
                 int listNum = 1;
-                String listStr = "";
+                String listStr = "Here is what's on my bread:\n\t";
                 for (Task task: tasks) {
                     if (task == null) break;
                     listStr += listNum++ + "." + task.toString() + "\n\t";
                 }
-                listStr = listStr == "" ? "You have no tasks!" : listStr.trim();
+                listStr = listNum == 1 ? "You have no tasks!" : listStr.trim();
                 System.out.println(output(listStr));
                 continue;
             }
+
             // Check for mark/unmark
             String[] inputArr = inputStr.split(" ");
             if (inputArr.length == 2
@@ -87,9 +90,23 @@ public class Doemon {
                     continue;
                 }
             }
+
             // Add item to list of tasks
-            this.tasks[this.taskIndex++] = new Task(inputStr);
-            System.out.println(output("added: " + inputStr));
+            if (inputArr[0].equals("todo")) {
+                this.tasks[this.taskIndex] = new Todo(inputStr.substring(5, inputStr.length()));
+            } else if (inputArr[0].equals("deadline")) {
+                String[] details = inputStr.substring(9, inputStr.length()).split(" /by ");
+                this.tasks[this.taskIndex] = new Deadline(details[0], details[1]);
+            } else if (inputArr[0].equals("event")) {
+                String[] details = inputStr.substring(6, inputStr.length()).split(" /at ");
+                this.tasks[this.taskIndex] = new Event(details[0], details[1]);
+            } else {
+                System.out.println(output("Please try again with a valid bread command..."));
+                continue;
+            }
+            System.out.println(output("Alright! I have recorded this task on my bread:\n\t  "
+                    + this.tasks[this.taskIndex++].toString()
+                    + "\n\tYou now have " + this.taskIndex + " task(s) recorded on my bread."));
         }
     }
 
@@ -109,7 +126,6 @@ public class Doemon {
 
     /**
      * Returns a formatted string to display the given text.
-     *
      * @param text the text to be formatted
      * @return the formatted string
      */

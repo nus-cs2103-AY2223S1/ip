@@ -12,7 +12,7 @@ public class Task {
      * Constructor for a Task object.
      * @param description the string description of the task
      */
-    Task(String description) {
+    public Task(String description) {
         this.description = description;
         this.isDone = false;
     }
@@ -33,7 +33,6 @@ public class Task {
 
     /**
      * Returns a string representation of this task.
-     *
      * @return a string representing this task
      */
     @Override
