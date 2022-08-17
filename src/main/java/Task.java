@@ -3,7 +3,6 @@ import java.util.List;
 public class Task {
     private final String TASK;
     private Boolean completionStatus;
-    private String error;
     private String completionIcon;
     Task(List<String> task) throws DekuExceptions {
         if (task.size() == 0) {
@@ -50,6 +49,6 @@ public class Task {
 
     @Override
     public String toString() {
-        return error.equals("") ? completionIcon + " - " + TASK : error;
+        return completionIcon + " - " + TASK;
     }
 }
