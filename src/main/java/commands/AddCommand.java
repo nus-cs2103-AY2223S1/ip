@@ -11,8 +11,14 @@ public class AddCommand extends Command {
 
   protected String description;
 
-  public AddCommand(String description) {
-    this.description = description;
+  public AddCommand() {}
+
+  public AddCommand(String description) throws DukeException {
+    String[] addlst = description.split(" ", 2);
+    if (addlst.length < 2) {
+      throw new DukeException("Task description missing!");
+    }
+    this.description = addlst[1];
   }
 
   @Override

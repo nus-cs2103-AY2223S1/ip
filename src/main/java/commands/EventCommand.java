@@ -16,9 +16,13 @@ public class EventCommand extends AddCommand {
    * @param description Description of event
    * @param at When the event is at
    */
-  public EventCommand(String description, String at) {
-    super(description);
-    this.at = at;
+  public EventCommand(String description) throws DukeException {
+    String[] eventlst = description.split("/at", 2);
+    if (eventlst.length < 2) {
+      throw new DukeException("Alamak! Fill in when the event is at...");
+    }
+    this.description = eventlst[0];
+    this.at = eventlst[1];
   }
 
   /**

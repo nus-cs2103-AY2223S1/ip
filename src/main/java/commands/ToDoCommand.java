@@ -13,7 +13,7 @@ public class ToDoCommand extends AddCommand {
    * Constructor for TodoCommand
    * @param description Description of Todo to be created
    */
-  public ToDoCommand(String description) {
+  public ToDoCommand(String description) throws DukeException {
     super(description);
   }
 
