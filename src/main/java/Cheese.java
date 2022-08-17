@@ -1,7 +1,9 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Cheese {
   public static final String BORDER = "-----";
+  public static ArrayList<String> list = new ArrayList<String>();
 
   public static void main(String[] args) {
     String greeting = new String("Woof! I'm Cheese, your puppy assistant.\n"
@@ -24,7 +26,18 @@ public class Cheese {
         System.out.println("So soon? :') Bye bye");
         break;
       }
-      System.out.println(userInput);
+      if (userInput.equals("list")) {
+        Cheese.printList();
+        continue;
+      }
+      Cheese.list.add(userInput);
+      System.out.println("added: " + userInput);
+    }
+  }
+
+  public static void printList() {
+    for (int i = 1; i <= list.size(); i++) {
+      System.out.println(i + ". " + list.get(i - 1));
     }
   }
 }
