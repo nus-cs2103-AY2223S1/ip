@@ -15,24 +15,21 @@ public class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
-    public static String printTask(Task task) {
-        return "[" + task.getStatusIcon() + "] " + task.name;
+    public String toString() {
+        return "[" + this.getStatusIcon() + "] " + this.name;
     }
 
-    public static String printOnAdd(Task task) {
-        return task.name;
-    }
 
     public static void markAsDone(Task task) {
         task.isDone = true;
         System.out.println("Nice! I've marked this task as done: ");
-        System.out.println("[" + task.getStatusIcon() + "] " + task.name);
+        System.out.println(task.toString());
     }
 
     public static void markAsUndone(Task task) {
         task.isDone = false;
         System.out.println("Ok. I've marked this task as not done yet: ");
-        System.out.println("[" + task.getStatusIcon() + "] " + task.name);
+        System.out.println(task.toString());
     }
 
 
