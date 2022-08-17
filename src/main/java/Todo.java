@@ -1,5 +1,5 @@
 public class Todo extends Task {
-    private static final String TAG = "[D]";
+    private static final String TAG = "[T]";
     public Todo(String description) {
         super(description);
     }
