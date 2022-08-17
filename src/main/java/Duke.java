@@ -2,75 +2,46 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Duke {
-    private class Task {
-        String name;
-        Boolean done = false;
-
-        Task(String name) {
-            this.name = name;
-        }
-        private void changeDone() {
-            this.done = !done;
-        }
-        @Override
-        public String toString() {
-            String mark = done ? "X" : "";
-            return "[" + mark + "] " + name;
-        }
-    }
-    private class Todo extends Task {
-        Todo(String name) {
-            super(name);
-        }
-
-        @Override
-        public String toString() {
-            return "[T]" + super.toString();
-        }
-    }
-    private class Deadlines extends Task {
-        String byDate;
-        Deadlines(String name, String byDate) {
-            super(name);
-            this.byDate = byDate;
-        }
-        @Override
-        public String toString() {
-            return "[D]" + super.toString() + "(by: " + byDate + ")";
-        }
-    }
-    private class Events extends Task {
-        String atDate;
-        Events(String name, String atDate) {
-            super(name);
-            this.atDate = atDate;
-        }
-        @Override
-        public String toString() {
-            return "[E]" + super.toString() + "(at: " + atDate + ")";
-        }
-    }
-
-
+    Scanner scanner = new Scanner(System.in);
+    int index = 0;
+    String[] inputArray = new String[100];
     Duke() {
         System.out.println("Hello! I'm Duke \nWhat can I do for you?");
-        Scanner scanner = new Scanner(System.in);
         try {
             while (true) {
                 String input = scanner.nextLine();
                 if (input.equals("bye")) {
-                    System.out.println("Bye. Hope to see you again soon!");
+                    Bye();
                     break;
                 } else if (input.equals("")) {
                     continue;
+                } else if(input.equals("list")) {
+                    List();
                 } else {
-                    System.out.println(input);
+                    addList(input);
                 }
             }
         } catch (IllegalStateException | NoSuchElementException e) {
             System.out.println("Exiting");
         }
     }
+
+    private void Bye(){
+        System.out.println("Bye. Please chat with me again!");
+    }
+
+    private void List(){
+        for (int i = 0; i < index; i++) {
+            System.out.println(i + 1 + ": " + inputArray[i]);
+        }
+    }
+
+    private void addList(String input) {
+        inputArray[index] = input;
+        index++;
+        System.out.println("added: " + input);
+    }
+
     public static void main(String[] args) {
         Duke duke = new Duke();
     }
