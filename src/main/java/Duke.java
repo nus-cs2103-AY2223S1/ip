@@ -14,7 +14,7 @@ public class Duke {
             Scanner input = new Scanner(System.in);  // Create a Scanner object
             String in = input.nextLine();  // Read user input
             if (in.contains("bye")) {
-                System.out.println("Bye. Hope to see you again soon!");
+                System.out.println("Bye. Hope to see you again soon!"); // Output the goodbye message
                 break;
             } else {
                 System.out.println(in);  // Output user input
@@ -22,3 +22,4 @@ public class Duke {
         }
     }
 }
+
