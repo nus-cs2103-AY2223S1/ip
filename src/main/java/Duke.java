@@ -1,7 +1,11 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Scanner;
+import java.time.DateTimeException;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.time.Year;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Duke {
     private static final Scanner scanner = new Scanner(System.in);
@@ -63,76 +67,188 @@ public class Duke {
     private static void useToDoList() {
         String[] input = askForInput("Add something:").split(" ");
 
-        final int ALL = -1;
-
         while (!input[0].toLowerCase(Locale.ROOT).equals("bye")) {
             switch (input[0]) {
                 case "list":
-                    printInStyle(toDoList);
+                    listCheckList();
                     break;
 
                 case "mark": case "unmark":
-                    int index;
-                    if (input.length > 1) {
-                        if (input[1].equals("all")) {
-                            index = ALL;
-                        } else {
-                            try {
-                                index = Integer.parseInt(input[1]) - 1;
-                            } catch (NumberFormatException ex) {
-                                printInStyle(String.format("I cannot understand what %s means in this context.", input[1]));
-                                break;
-                            }
-                        }
-                    } else {
-                        printInStyle("Please specify which task you want to mark or unmark " +
-                                "after the command. Otherwise, you may also specify all.");
-                        break;
-                    }
-
-                    if (index == ALL) {
-                        if (input[0].equals("mark")) {
-                            for (Job job : toDoList) {
-                                job.MarkJobState(true);
-                            }
-                            printInStyle("Ok, I've marked all items as completed!");
-                        } else if (input[0].equals("unmark")) {
-                            for (Job job : toDoList) {
-                                job.MarkJobState(false);
-                            }
-                            printInStyle("Ok, I've unmarked all items as undone.");
-                        }
-                    } else if (index < toDoList.size() && index >= 0) {
-                        String response;
-                        if (input[0].equals("mark")) {
-                            toDoList.get(index).MarkJobState(true);
-                            response = "Nice! I've marked this task as done:";
-                        } else {
-                            toDoList.get(index).MarkJobState(false);
-                            response = "Ok, I've marked this task as not done yet:";
-                        }
-
-                        printInStyle(
-                                response,
-                                toDoList.get(index).toString()
-                        );
-                    } else if (toDoList.isEmpty()) {
-                        printInStyle(String.format("%d is out of range, " +
-                                "you need to first add some items into the To-Do List", index + 1));
-                    } else {
-                        printInStyle(
-                                String.format("%d is out of range, please choose an integer between 1 to %d",
-                                        index + 1,
-                                        toDoList.size()));
-                    }
-                    break;
+                   markCheckList(input);
+                   break;
 
                 default:
-                    String jobName = String.join(" ", input);
-                    toDoList.add(new Job(jobName));
-                    printInStyle(String.format("added: %s", jobName));
+                   addToCheckList(input);
             }
             input = askForInput("Add something:").split(" ");
         }
+    }
+
+    private static void listCheckList() {
+        printInStyle(toDoList);
+    }
+
+    private static void markCheckList(String[] input) {
+        final int ALL = -1;
+
+        int index;
+        if (input.length > 1) {
+            if (input[1].equals("all")) {
+                index = ALL;
+            } else {
+                try {
+                    index = Integer.parseInt(input[1]) - 1;
+                } catch (NumberFormatException ex) {
+                    printInStyle(String.format("I cannot understand what %s means in this context.", input[1]));
+                    return;
+                }
+            }
+        } else {
+            printInStyle("Please specify which task you want to mark or unmark " +
+                    "after the command. Otherwise, you may also specify all.");
+            return;
+        }
+
+        if (index == ALL) {
+            if (input[0].equals("mark")) {
+                for (Job job : toDoList) {
+                    job.MarkJobState(true);
+                }
+                printInStyle("Ok, I've marked all items as completed!");
+            } else if (input[0].equals("unmark")) {
+                for (Job job : toDoList) {
+                    job.MarkJobState(false);
+                }
+                printInStyle("Ok, I've unmarked all items as undone.");
+            }
+        } else if (index < toDoList.size() && index >= 0) {
+            String response;
+            if (input[0].equals("mark")) {
+                toDoList.get(index).MarkJobState(true);
+                response = "Nice! I've marked this task as done:";
+            } else {
+                toDoList.get(index).MarkJobState(false);
+                response = "Ok, I've marked this task as not done yet:";
+            }
+
+            printInStyle(
+                    response,
+                    toDoList.get(index).toString()
+            );
+        } else if (toDoList.isEmpty()) {
+            printInStyle(String.format("%d is out of range, " +
+                    "you need to first add some items into the To-Do List", index + 1));
+        } else {
+            printInStyle(
+                    String.format("%d is out of range, please choose an integer between 1 to %d",
+                            index + 1,
+                            toDoList.size()));
+        }
+    }
+
+    private static void addToCheckList(String[] input) {
+        Job job;
+        String[][] nameAndDate;
+        switch (input[0]) {
+            case "todo":
+                job = new ToDo(Arrays.stream(input).skip(1).collect(Collectors.joining(" ")));
+                break;
+            case "deadline":
+                nameAndDate = splitStringArray(input, "/by");
+                if (nameAndDate.length != 2) {
+                    printInStyle(String.format("Please use /by to set a time"));
+                    return;
+                }
+
+                job = new Deadline(Arrays.stream(nameAndDate[0]).skip(1).collect(Collectors.joining(" ")),
+                       String.join(" ", nameAndDate[1]));
+                break;
+            case "event":
+                nameAndDate = splitStringArray(input, "/at");
+                if (nameAndDate.length != 2) {
+                    printInStyle(String.format("Please use /at to set a time"));
+                    return;
+                }
+
+                job = new Event(Arrays.stream(nameAndDate[0]).skip(1).collect(Collectors.joining(" ")),
+                        String.join(" ", nameAndDate[1]));
+                break;
+            default:
+                printInStyle("Please also specify what kind of job you want to record - " +
+                        "todo, deadline or event!");
+                return;
+
+        }
+        toDoList.add(job);
+        printInStyle(
+                "Got it. I've added this task:",
+                job.toString(),
+                String.format("Now you have %d tasks in the list", toDoList.size()));
+    }
+
+    private static String[][] splitStringArray(String[] input, String delimiter) {
+        int[] splitIndices = IntStream
+                .range(0, input.length)
+                .filter(i -> input[i].equals(delimiter))
+                .toArray();
+
+        String[][] splitArrays = new String[splitIndices.length + 1][];
+        int lastIndex = 0;
+        for (int i = 0; i < splitIndices.length; i++) {
+            int splitIndex = splitIndices[i];
+            splitArrays[i] = new String[splitIndex - lastIndex];
+            System.arraycopy(input, lastIndex, splitArrays[i], 0, splitArrays[i].length);
+            lastIndex = splitIndex + 1;
+            System.out.println(Arrays.toString(splitArrays[i]));
+        }
+        splitArrays[splitArrays.length - 1] = new String[input.length - lastIndex];
+        System.arraycopy(input, lastIndex, splitArrays[splitArrays.length - 1],
+                0, splitArrays[splitArrays.length - 1].length);
+        return splitArrays;
+    }
+
+
+    /**
+     * Parses a given input command to its Name and Data components
+     * @param input the given input
+     * @param outName an array of 1 element, the name will be stored in element 0
+     * @param outDate an array of 3 elements, the day is stored in element 0,
+     *                month in element 1 and year in element 2
+     * @return A boolean to signal if the parse was successful or not
+     */
+    private static boolean parseInputToNameDate(String[] input, String delimiter,
+                                                String[] outName, Object[] outDate) {
+
+        String[][] nameAndDate = splitStringArray(input, delimiter);
+        if (nameAndDate.length != 2) {
+            printInStyle(String.format("Please use %s to set a time", delimiter));
+            return false;
+        }
+
+        String[] namePart = nameAndDate[0];
+        String[] datePart = nameAndDate[1];
+
+        outName[0] = Arrays.stream(namePart).skip(1).collect(Collectors.joining(" "));
+
+        int year, day;
+        Month month;
+        try {
+            day = Integer.parseInt(datePart[0]);
+            month = Month.of(Integer.parseInt(datePart[1]));
+            year = Integer.parseInt(datePart[2]);
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException ex) {
+            outDate[0] = String.join(" ", datePart);
+            return false;
+        } catch (DateTimeException ex) {
+            printInStyle(String.format("%s is not a valid month", datePart[1]));
+            outDate[0] = String.join(" ", datePart);
+            return false;
+        }
+
+        outDate[0] = day;
+        outDate[1] = month;
+        outDate[2] = year;
+
+        return true;
     }
 }
