@@ -1,12 +1,8 @@
-public class MarkNoTaskException extends MarkException {
+public class MarkNoTaskException extends TumuException {
     private static final String NO_TASK_EXCEPTION =
-            "\tNo tasks currently available. Add a task before marking!";
+            "\tNo tasks currently available. Add a task before (un)marking!";
 
     public MarkNoTaskException() {
         super(NO_TASK_EXCEPTION);
-    }
-
-    public MarkNoTaskException(String message) {
-        super(message);
     }
 }

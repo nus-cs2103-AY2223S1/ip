@@ -10,9 +10,15 @@
 	What is on your mind today?
 
 	____________________________________________________________
+	No tasks currently available. Add a task before (un)marking!
+	____________________________________________________________
+	____________________________________________________________
 	I've added a task into your list:
 		[ ][ ] checking
 	You have 1 task(s) in the list.
+	____________________________________________________________
+	____________________________________________________________
+	Specified index is out of bounds, please key a value from 1 to 1
 	____________________________________________________________
 	____________________________________________________________
 	Please enter a task.
@@ -36,10 +42,10 @@
 	There's too many timings, I'm confused. ◔_◔
 	____________________________________________________________
 	____________________________________________________________
-	Remember to add a timing for the deadline using /by! (╥_╥)
+	Remember to add a timing for the deadline/event using /by! (╥_╥)
 	____________________________________________________________
 	____________________________________________________________
-	Please fill in the task and/or deadline!
+	Please fill in the task and/or timing!
 	____________________________________________________________
 	____________________________________________________________
 	Here are your current tasks:
@@ -49,7 +55,7 @@
 	 4. [D][ ] task (by: tonight)
 	____________________________________________________________
 	____________________________________________________________
-	Remember to add a timing for the event using /at! (╥_╥)
+	Remember to add a timing for the deadline/event using /at! (╥_╥)
 	____________________________________________________________
 	____________________________________________________________
 	Please fill in the task and/or timing!

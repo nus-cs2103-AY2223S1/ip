@@ -45,6 +45,8 @@ public class Tumu {
                     } catch (InputMismatchException e) {
                         System.out.println("\tPlease mark a task by its list position (must be an integer)!");
                         sc.nextLine(); //clear buffer
+                    } catch (TumuException e) {
+                        System.out.println(e);
                     }
                     break;
                 case UNMARK_CMD:
@@ -53,18 +55,33 @@ public class Tumu {
                     } catch (InputMismatchException e) {
                         System.out.println("\tPlease unmark a task by its list position (must be an integer)!");
                         sc.nextLine(); //clear buffer
+                    } catch (TumuException e) {
+                        System.out.println(e);
                     }
                     break;
                 case TODO_CMD:
-                    addTodoTask(sc.nextLine().trim());
+                    try {
+                        addTodoTask(sc.nextLine().trim());
+                    } catch (TumuException e) {
+                        System.out.println(e);
+                    }
                     break;
                 case DEADLINE_CMD:
-                    addDeadlineTask(sc.nextLine().trim());
+                    try {
+                        addDeadlineTask(sc.nextLine().trim());
+                    } catch (TumuException e) {
+                        System.out.println(e);
+                    }
                     break;
                 case EVENT_CMD:
-                    addEventTask(sc.nextLine().trim());
+                    try {
+                        addEventTask(sc.nextLine().trim());
+                    } catch (TumuException e) {
+                        System.out.println(e);
+                    }
                     break;
                 default:
+                    //TODO
                     addNormalTask(command.trim());
             }
             printHorizontalLine();
@@ -115,7 +132,7 @@ public class Tumu {
         }
     }
 
-    private static void markTask(int oneIndexedNum) throws MarkNoTaskException, MarkOutOfBoundsException {
+    private static void markTask(int oneIndexedNum) throws TumuException {
         /**
          * Mark the oneIndexedNumth Task in userTasks.
          */
@@ -130,15 +147,15 @@ public class Tumu {
         }
     }
 
-    private static void unmarkTask(int oneIndexedNum) {
+    private static void unmarkTask(int oneIndexedNum) throws TumuException {
         /**
          * Unmark the oneIndexedNumth Task in userTasks.
          */
 
         if (oneIndexedNum < 1 || oneIndexedNum > userTasks.size()) {
             //Specified index from user is out of bounds of list.
-            if (userTasks.isEmpty()) System.out.println("\tNo tasks currently available. Add a task before unmarking!");
-            else System.out.println("\tSpecified index is out of bounds, please key a value from 1 to " + userTasks.size());
+            if (userTasks.isEmpty()) throw new MarkNoTaskException();
+            else throw new MarkOutOfBoundsException(userTasks.size());
         } else {
             Task task = userTasks.get(oneIndexedNum - 1);
             task.unmarkDone();
@@ -146,48 +163,48 @@ public class Tumu {
         }
     }
 
-    private static void addTodoTask(String userInput) {
+    private static void addTodoTask(String userInput) throws TumuException {
         /**
          * Adds a todo task to list.
          */
 
-        if (userInput.isBlank()) System.out.println("\tPlease enter a task.");
-        else TaskTypeFormatting(new Todo(userInput));
+        if (userInput.isBlank()) throw new TodoException();
+        else taskTypeFormatting(new Todo(userInput));
     }
 
-    private static void addDeadlineTask(String userInput) {
+    private static void addDeadlineTask(String userInput) throws TumuException {
         /**
          * Adds a deadline to list.
          */
 
         //Check for "/by", if not available then prompt user to add timing.
         if (!userInput.contains("/by")) {
-            System.out.println("\tRemember to add a timing for the deadline using /by! (╥_╥)");
+            throw new DENoTimingException("by");
         } else {
             //Parse the string. Make sure there is no multiple "/by" statements.
             String[] parse = userInput.replaceAll("\\s+", "").split("/by");
-            if (parse.length > 2) System.out.println("\tThere's too many timings, I'm confused. ◔_◔");
+            if (parse.length > 2) throw new DETimingOverflowException();
             else if (parse.length < 2 || parse[0].isBlank() || parse[1].isBlank())
-                System.out.println("\tPlease fill in the task and/or deadline!");
-            else TaskTypeFormatting(new Deadline(parse[0], parse[1]));
+                throw new DENoArgException();
+            else taskTypeFormatting(new Deadline(parse[0], parse[1]));
         }
     }
 
-    private static void addEventTask(String userInput) {
+    private static void addEventTask(String userInput) throws TumuException {
         /**
          * Adds an event to list.
          */
 
         //Check for "/at", if not available then prompt user to add timing.
         if (!userInput.contains("/at")) {
-            System.out.println("\tRemember to add a timing for the event using /at! (╥_╥)");
+            throw new DENoTimingException("at");
         } else {
             //Parse the string. Make sure there is no multiple "/at" statements.
             String[] parse = userInput.replaceAll("\\s+", "").split("/at");
-            if (parse.length > 2) System.out.println("\tThere's too many timings, I'm confused. ◔_◔");
+            if (parse.length > 2) throw new DETimingOverflowException();
             else if (parse.length < 2 || parse[0].isBlank() || parse[1].isBlank())
-                System.out.println("\tPlease fill in the task and/or timing!");
-            else TaskTypeFormatting(new Event(parse[0], parse[1]));
+                throw new DENoArgException();
+            else taskTypeFormatting(new Event(parse[0], parse[1]));
         }
     }
 
@@ -196,10 +213,10 @@ public class Tumu {
          * Adds userInput as a task.
          */
 
-        TaskTypeFormatting(new NormalTask(userInput));
+        taskTypeFormatting(new NormalTask(userInput));
     }
 
-    private static void TaskTypeFormatting(Task task) {
+    private static void taskTypeFormatting(Task task) {
         System.out.println("\tI've added a task into your list:\n\t\t" + task);
         userTasks.add(task);
         System.out.println(String.format("\tYou have %d task(s) in the list.", userTasks.size()));
