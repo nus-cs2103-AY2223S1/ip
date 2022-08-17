@@ -1,3 +1,6 @@
+/**
+ * DukeExceptions represent errors in user input when using Alfred.
+ */
 public class DukeException extends Exception {
     public DukeException(String message) {
         super(message);
@@ -5,6 +8,6 @@ public class DukeException extends Exception {
 
     @Override
     public String toString() {
-        return " ☹ Apologies! "+ super.getMessage() + "\n";
+        return " ☹ Apologies! " + super.getMessage() + "\n";
     }
 }

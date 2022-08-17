@@ -1,3 +1,6 @@
+/**
+ * Todo Task represents an action that needs to be done.
+ */
 public class Todo extends Task {
     public Todo(String description) {
         super(description);
