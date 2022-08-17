@@ -18,6 +18,7 @@ public class Task {
         this.isComplete = false;
     }
 
+    @Override
     public String toString() {
         return this.description;
     }
