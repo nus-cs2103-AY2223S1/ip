@@ -17,9 +17,9 @@ public class TaskList {
         this.drawLine();
     }
 
-    public void markAsDone(int index) {
+    public void markAsDone(int index) throws DukeException {
         if (index < 1 || index > this.tasks.size()) {
-            this.showTaskNotFoundMessage();
+            throw new DukeOutOfRangeException(this.tasks.size());
         }
         Task task = this.tasks.get(index - 1);
         task.markAsDone();
@@ -29,22 +29,15 @@ public class TaskList {
         this.drawLine();
     }
 
-    public void markAsNotDone(int index) {
+    public void markAsNotDone(int index) throws DukeException {
         if (index < 1 || index > this.tasks.size()) {
-            this.showTaskNotFoundMessage();
+            throw new DukeOutOfRangeException(this.tasks.size());
         }
         Task task = this.tasks.get(index - 1);
         task.markAsNotDone();
         this.drawLine();
         this.indentMessage("OK, I've marked this task as not done yet:");
         this.indentMessage("  " + task);
-        this.drawLine();
-    }
-
-    public void showTaskNotFoundMessage() {
-        this.drawLine();
-        this.indentMessage("Oops! Looks like your number is out of range");
-        this.indentMessage("You can only mark/unmark a task between 0 to " + this.tasks.size());
         this.drawLine();
     }
     
@@ -66,8 +59,20 @@ public class TaskList {
         this.drawLine();
     }
 
-    public void addTodo(String msg) {
-        Task task = new Todo(msg);
+    public void addTodo(String msg) throws DukeException {
+
+        String description = "";
+        String[] splitted = msg.split("\\s+");
+
+        if (splitted.length <= 1) {
+            throw new DukeEmptyDescriptionException();
+        }
+
+        for (int i = 1; i < splitted.length; i++) {
+            description += splitted[i] + " ";
+        }
+
+        Task task = new Todo(description.trim());
         this.tasks.add(task);
 
         this.drawLine();
@@ -77,13 +82,17 @@ public class TaskList {
         this.drawLine();
     }
 
-    public void addDeadline(String msg) {
+    public void addDeadline(String msg) throws DukeException {
         String description = "";
         String by = "";
 
         String[] splitted = msg.split("\\s+");
 
         boolean isSplitterFound = false;
+
+        if (splitted.length <= 1) {
+            throw new DukeEmptyDescriptionException();
+        }
 
         for (int i = 1; i < splitted.length; i++) {
             if (splitted[i].equals("/by")) {
@@ -93,6 +102,10 @@ public class TaskList {
             } else {
                 description = description + splitted[i] + " ";
             }
+        }
+
+        if (!isSplitterFound) {
+            throw new DukeInvalidFormatException("deadline", "/by");
         }
 
         Task task = new Deadline(description.trim(), by.trim());
@@ -105,13 +118,17 @@ public class TaskList {
         this.drawLine();
     }
 
-    public void addEvent(String msg) {
+    public void addEvent(String msg) throws DukeException {
         String description = "";
         String at = "";
 
         String[] splitted = msg.split("\\s+");
 
         boolean isSplitterFound = false;
+
+        if (splitted.length <= 1) {
+            throw new DukeEmptyDescriptionException();
+        }
 
         for (int i = 1; i < splitted.length; i++) {
             if (splitted[i].equals("/at")) {
@@ -121,6 +138,10 @@ public class TaskList {
             } else {
                 description = description + splitted[i] + " ";
             }
+        }
+
+        if (!isSplitterFound) {
+            throw new DukeInvalidFormatException("event", "/at");
         }
 
         Task task = new Event(description.trim(), at.trim());

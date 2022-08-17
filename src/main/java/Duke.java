@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Duke {
 
-    private static final String LINE = "    ____________________________________________________________";
+    private static final String LINE = "    __________________________________________________________________________";
     private static final String INDENT = "     ";
 
     private static boolean isClosed = false;
@@ -13,48 +13,45 @@ public class Duke {
         greetingMessage();
         Scanner sc = new Scanner(System.in);
         while (!isClosed) {
-            String command = sc.nextLine();
-            if (command.equals("bye")) {
-                bye();
-            } else if (command.equals("list")) {
-                printList();
-            } else {
-                if (command.startsWith("mark")) {
-                    String[] splitted = command.split("\\s+");
-                    Integer index;
-                    try {
-                        index = Integer.valueOf(splitted[1]);
-                        tasks.markAsDone(index);
-                    } catch (NumberFormatException err) {
-                        drawLine();
-                        indentMessage("You have entered an invalid input.");
-                        indentMessage("Please enter a number instead.");
-                        indentMessage("Example: mark 1");
-                        drawLine();
+            try {
+                String command = sc.nextLine();
+                if (command.equals("bye")) {
+                    bye();
+                } else if (command.equals("list")) {
+                    printList();
+                } else {
+                    if (command.startsWith("mark")) {
+                        String[] splitted = command.split("\\s+");
+                        Integer index;
+                        try {
+                            index = Integer.valueOf(splitted[1]);
+                            tasks.markAsDone(index);
+                        } catch (NumberFormatException err) {
+                            throw new DukeInvalidNumberFormatException("mark");
+                        }
+                    } else if (command.startsWith("unmark")) {
+                        String[] splitted = command.split("\\s+");
+                        Integer index;
+                        try {
+                            index = Integer.valueOf(splitted[1]);
+                            tasks.markAsNotDone(index);
+                        } catch (NumberFormatException err) {
+                            throw new DukeInvalidNumberFormatException("unmark");
+                        }
+                    } else if (command.startsWith("todo")) {
+                        tasks.addTodo(command);
+                    } else if (command.startsWith("deadline")) {
+                        tasks.addDeadline(command);
+                    } else if (command.startsWith("event")) {
+                        tasks.addEvent(command);
+                    } else {
+                        throw new DukeException("You have entered an invalid command");
                     }
-                } else if (command.startsWith("unmark")) {
-                    String[] splitted = command.split("\\s+");
-                    Integer index;
-                    try {
-                        index = Integer.valueOf(splitted[1]);
-                        tasks.markAsNotDone(index);
-                    } catch (NumberFormatException err) {
-                        drawLine();
-                        indentMessage("You have entered an invalid input.");
-                        indentMessage("Please enter a number instead.");
-                        indentMessage("Example: unmark 1");
-                        drawLine();
-                    }
-                } else if (command.startsWith("todo")) {
-                    tasks.addTodo(command);
-                } else if (command.startsWith("deadline")) {
-                    tasks.addDeadline(command);
-                } else if (command.startsWith("event")) {
-                    tasks.addEvent(command);
                 }
-                else {
-
-                }
+            } catch (DukeException ex) {
+                drawLine();
+                indentMessage(ex.getMessage());
+                drawLine();
             }
         }
     }
