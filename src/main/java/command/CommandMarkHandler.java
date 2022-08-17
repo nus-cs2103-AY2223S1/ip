@@ -28,7 +28,7 @@ public class CommandMarkHandler extends CommandHandler {
         String taskIdxStr = commandTokens.get(1);
         try {
             int taskIdx = Integer.parseInt(taskIdxStr);
-            if (taskIdx < 0 || taskIdx > taskList.size()) {
+            if (taskIdx <= 0 || taskIdx > taskList.size()) {
                 responseList.add("Invalid task selected!");
             } else {
                 Task task = taskList.getTask(taskIdx - 1);
