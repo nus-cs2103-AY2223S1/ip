@@ -1,7 +1,9 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
     private static final String name = "Duke";
+    private static final ArrayList<String> userCommands = new ArrayList<>();
 
     public static void main(String[] args) {
         greet();
@@ -14,16 +16,33 @@ public class Duke {
     }
 
     private static void processUserCommand() {
+        boolean isDone = false;
         Scanner myScanner = new Scanner(System.in);
-        String userCommand = myScanner.nextLine();
 
-        if (userCommand.equalsIgnoreCase("bye")) {
-            System.out.println("Bye. Hope to see you again soon!");
-            return;
+        while (!isDone) {
+            String userCommand = myScanner.nextLine();
+
+            if (userCommand.equalsIgnoreCase("bye")) {
+                sayGoodbye();
+                isDone = true;
+            } else if (userCommand.equalsIgnoreCase("list")) {
+                listUserCommands();
+            } else {
+                userCommands.add(userCommand);
+                System.out.printf("added: %s\n", userCommand);
+            }
+
         }
+    }
 
-        System.out.println(userCommand);
-        processUserCommand();
+    private static void sayGoodbye() {
+        System.out.println("Bye. Hope to see you again soon!");
+    }
+
+    private static void listUserCommands() {
+        for (int i = 0; i < userCommands.size(); i++) {
+            System.out.printf("%d. %s\n", i+1, userCommands.get(i));
+        }
     }
 
 }
