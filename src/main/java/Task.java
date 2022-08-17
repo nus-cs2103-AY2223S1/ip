@@ -7,7 +7,7 @@ public class Task {
             throw new DukeException("I blah don't blah know blah ... blah ... zzz\n");
         } else if (description.equals("todo") || description.equals("deadline")
                 || description.equals("event") || description.equals("mark")
-                || description.equals("unmark")) {
+                || description.equals("unmark") || description.equals("delete")) {
             throw new DukeException("Need more details for your " + description + "!\n");
         }
         this.description = description;

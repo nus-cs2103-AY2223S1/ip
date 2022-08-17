@@ -28,4 +28,11 @@ public class List {
         return this.taskList.get(taskNumber);
     }
 
+    public void deleteTask(int taskNumber) throws DukeException {
+        if (taskNumber < 0 || taskNumber > this.taskList.size() - 1) {
+            throw new DukeException("You cannot delete what you don't have from the beginning, auch!\n");
+        }
+        this.taskList.remove(taskNumber);
+    }
+
 }

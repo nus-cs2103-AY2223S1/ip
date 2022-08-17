@@ -46,6 +46,18 @@ public class Duke {
                             System.out.println(invalidTask.getMessage());
                         }
 
+                    } else if (command.split(" ")[0].equals("delete")) {
+                        try {
+                            taskNumber = Integer.parseInt(command.split(" ")[1]);
+                            task = list.getTask(taskNumber - 1);
+                            list.deleteTask(taskNumber - 1);
+                            String message = "Yay, successfully removed this unwanted task :P \n";
+                            System.out.println(message + task.toString() + "\n"
+                                    + "Remaining " + list.taskList.size() + " tasks in the list.\n");
+                        } catch (DukeException invalidTask) {
+                            System.out.println(invalidTask.getMessage());
+                        }
+
                     } else if (command.split(" ", 2)[0].equals("todo")) {
                         try {
                             task = new ToDo(command.split(" ", 2)[1]);
