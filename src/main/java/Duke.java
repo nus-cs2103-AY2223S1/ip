@@ -1,11 +1,10 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
-    static String[] taskList = new String[100];
-    static int counter = 0;
+    static ArrayList<Task> taskList = new ArrayList<>();
     public static void main(String[] args) {
         Ui ui = new Ui();
-
         ui.greeting();
 
         Scanner sc = new Scanner(System.in);
@@ -15,11 +14,8 @@ public class Duke {
                 ui.list(taskList);
             } else {
                 Task newTask = new Task(cmd);
-                String taskName = newTask.toString();
-                taskList[counter] = taskName;
-                counter++;
-
-                ui.addTask(cmd);
+                taskList.add(newTask);
+                ui.addTask(newTask);
             }
 
             cmd = sc.nextLine();

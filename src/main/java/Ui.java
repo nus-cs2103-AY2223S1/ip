@@ -12,17 +12,18 @@ public class Ui {
         System.out.println(line + "\n" + text + "\n" + line);
     }
 
-    public void addTask(String task) {
-        String taskAdded = "added: " + task;
+    public void addTask(Task task) {
+        String taskAdded = "added: " + task.toString();
         System.out.println(line + "\n" + taskAdded + "\n" + line);
     }
 
-    public void list(String[] taskList) {
+    public void list(ArrayList<Task> taskList) {
         System.out.println(line);
-        int num = 0;
-        while(taskList[num] != null){
-            num++;
-            System.out.println(num + ". " + taskList[num - 1]);
+        int count = 1;
+        for (Task task : taskList) {
+            String taskName = task.toString();
+            System.out.println(count + ". " + taskName);
+            count++;
         }
 
         System.out.println(line);
