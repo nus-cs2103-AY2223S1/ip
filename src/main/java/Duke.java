@@ -23,6 +23,9 @@ public class Duke {
                     if (command.startsWith("mark")) {
                         String[] splitted = command.split("\\s+");
                         Integer index;
+                        if (splitted.length == 1) {
+                            throw new DukeUnspecifiedNumberException("mark");
+                        }
                         try {
                             index = Integer.valueOf(splitted[1]);
                             tasks.markAsDone(index);
@@ -32,6 +35,9 @@ public class Duke {
                     } else if (command.startsWith("unmark")) {
                         String[] splitted = command.split("\\s+");
                         Integer index;
+                        if (splitted.length == 1) {
+                            throw new DukeUnspecifiedNumberException("unmark");
+                        }
                         try {
                             index = Integer.valueOf(splitted[1]);
                             tasks.markAsNotDone(index);
@@ -47,6 +53,9 @@ public class Duke {
                     } else if (command.startsWith("delete")) {
                         String[] splitted = command.split("\\s+");
                         Integer index;
+                        if (splitted.length == 1) {
+                            throw new DukeUnspecifiedNumberException("delete");
+                        }
                         try {
                             index = Integer.valueOf(splitted[1]);
                             tasks.deleteTask(index);
