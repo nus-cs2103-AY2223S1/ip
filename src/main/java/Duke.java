@@ -57,8 +57,10 @@ public class Duke {
 
         while (scanner.hasNextLine()) {
             // Receive the command entered by the user
-            String[] input = scanner.nextLine().split(" ");
+            String inputLine = scanner.nextLine();
+            String[] input = inputLine.split(" ");
             String command = input[0];
+            String arguments = inputLine.replaceFirst(command, "").strip();
 
             if (command.equals(Command.BYE.toString())) {
                 break;
@@ -68,13 +70,13 @@ public class Duke {
                 DukePrinter.print(taskManager.toString());
             } else if (command.equals(Command.MARK.toString())) {
                 // Retrieve the task index (1-indexed) to mark the task as done
-                if (input.length == 1) {
+                if (arguments.length() == 0) {
                     DukePrinter.print(Duke.MISSING_TASK_INDEX_ERROR);
                     continue;
                 }
                 int taskNumber;
                 try {
-                    taskNumber = Integer.parseInt(input[1]);
+                    taskNumber = Integer.parseInt(arguments);
                 } catch (NumberFormatException e) {
                     DukePrinter.print(Duke.NAN_TASK_INDEX_ERROR);
                     continue;
@@ -88,13 +90,13 @@ public class Duke {
                 }
             } else if (command.equals(Command.UNMARK.toString())) {
                 // Retrieve the task index (1-indexed) to mark the task as undone
-                if (input.length == 1) {
+                if (arguments.length() == 0) {
                     DukePrinter.print(Duke.MISSING_TASK_INDEX_ERROR);
                     continue;
                 }
                 int taskNumber;
                 try {
-                    taskNumber = Integer.parseInt(input[1]);
+                    taskNumber = Integer.parseInt(arguments);
                 } catch (NumberFormatException e) {
                     DukePrinter.print(Duke.NAN_TASK_INDEX_ERROR);
                     continue;
@@ -107,8 +109,8 @@ public class Duke {
                     DukePrinter.print(Duke.TASK_INDEX_IS_INVALID_ERROR);
                 }
             } else {
-                taskManager.add(command);
-                DukePrinter.print(String.format("%s %s", Duke.ADD_TASK_MESSAGE, command));
+                taskManager.add(inputLine);
+                DukePrinter.print(String.format("%s %s", Duke.ADD_TASK_MESSAGE, inputLine));
             }
         }
 
