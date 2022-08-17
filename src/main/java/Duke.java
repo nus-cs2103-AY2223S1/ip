@@ -1,35 +1,48 @@
-import jdk.swing.interop.SwingInterOpUtils;
-
 import java.util.*;
 
 public class Duke {
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-
         System.out.println("Hello! I'm SmartBot\nWhat can I do for you?");
-        String[] lst = new String[100];
+        Task[] lst = new Task[100];
         int counter = 0;
         while(true) {
             Scanner sc = new Scanner(System.in);
-            String first = sc.next();
+            String first = sc.nextLine();
             if(first.equals("bye")) {
                 System.out.println("Bye. Hope to see you again soon!");
                 break;
             }
             else if(first.equals("list")) {
                 for (int i = 1; i < counter + 1; i++) {
-                    System.out.println((i) + ". " + lst[i - 1]);
+                    System.out.println((i) + ". [" + lst[i - 1].getStatusIcon() + "] " +
+                            lst[i - 1].description);
+                }
+            }
+            else if(first.length() == 6) {
+                if (first.substring(0, 4).equals("mark")) {
+                    char index = first.charAt(5);
+                    int number = Integer.parseInt(String.valueOf(index));
+                    Task t = lst[number - 1];
+                    t.mark();
+                    System.out.println("Nice! I've marked this task as done:\n  [X] " + t.description);
+                }
+            }
+            else if(first.length() == 8) {
+                if(first.substring(0, 6).equals("unmark")) {
+                    char index = first.charAt(7);
+                    int number = Integer.parseInt(String.valueOf(index));
+                    Task t = lst[number - 1];
+                    t.unmark();
+                    System.out.println("OK, I've marked this task as not done yet:\n  [ ] " + t.description);
                 }
             }
             else {
                 System.out.println("added: " + first);
-                lst[counter] = first;
+                Task t = new Task(first);
+                lst[counter] = t;
                 counter++;
             }
         }
     }
+
 }
