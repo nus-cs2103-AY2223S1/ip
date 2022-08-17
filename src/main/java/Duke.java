@@ -1,6 +1,12 @@
 import java.util.Scanner;
 
 public class Duke {
+    private static Task[] tasks = new Task[100];
+
+    public static void tedResponse(String filler) {
+        System.out.println("~ ʕ•́ᴥ•̀ʔっ ~\n" + filler + "~\n");
+    }
+
     public static void main(String[] args) {
         String banner = "★★★★★★★★★★★★\n"
                 + " TED ʕ•́ᴥ•̀ʔっ \n"
@@ -10,47 +16,67 @@ public class Duke {
                 + "How can I assist you today?");
 
         Scanner sc = new Scanner(System.in).useDelimiter("\\n");
-        Task[] tasks = new Task[100];
 
         while (sc.hasNext()) {
             String command = sc.next();
 
-            if (command.equals("bye")) {
-                System.out.println("Goodbye! Have a pleasant day ʕ•́ᴥ•̀ʔっ");
-                sc.close();
-                return;
-            }
-
-            if (command.equals("list")) {
-                System.out.println("~ ʕ•́ᴥ•̀ʔっ ~\n" + "Your tasklist:");
-                for (int i = 0; i < Task.getTotalNumberOfTasks(); i++) {
-                    int bulletPoint = i + 1;
-                    System.out.println(bulletPoint + ". " + tasks[i]);
+            if (!command.contains(" ")) {
+                if (command.equals("bye")) {
+                    System.out.println("Goodbye! Have a pleasant day ʕ•́ᴥ•̀ʔっ");
+                    sc.close();
+                    return;
                 }
-                System.out.println("~\n");
+
+                if (command.equals("list")) {
+                    String listOfTasks = "Your tasklist:\n";
+                    for (int i = 0; i < Task.getTotalNumberOfTasks(); i++) {
+                        int bulletPoint = i + 1;
+                        listOfTasks = listOfTasks + bulletPoint + ". " + tasks[i] + "\n";
+                    }
+                    tedResponse(listOfTasks);
+                    continue;
+                }
                 continue;
             }
 
-            if (command.length() > 4 && command.substring(0, 4).equals("mark")) {
-                int currTaskNumber = Integer.parseInt(command.substring(5));
+            String[] temp = command.split(" ", 2);
+            String action = temp[0];
+            String elaboration = temp[1];
+
+            if (action.equals("mark")) {
+                int currTaskNumber = Integer.parseInt(elaboration);
                 Task currTask = tasks[currTaskNumber - 1];
                 currTask.markDone();
-
-                System.out.println("~ ʕ•́ᴥ•̀ʔっ ~\n" + "Great! Task done:\n" + currTask + "\n~\n");
+                tedResponse("Great! Task done:\n" + currTask + "\n");
                 continue;
             }
-
-            if (command.length() > 6 && command.substring(0, 6).equals("unmark")) {
-                int currTaskNumber = Integer.parseInt(command.substring(7));
+            if (action.equals("unmark")) {
+                int currTaskNumber = Integer.parseInt(elaboration);
                 Task currTask = tasks[currTaskNumber - 1];
                 currTask.unmarkDone();
-
-                System.out.println("~ ʕ•́ᴥ•̀ʔっ ~\n" + "Aw :( Task undone:\n" + currTask + "\n~\n");
+                tedResponse("Aw :( Task undone:\n" + currTask + "\n");
                 continue;
             }
-
-            tasks[Task.getTotalNumberOfTasks()] = new Task(command);
-            System.out.println("~ ʕ•́ᴥ•̀ʔっ ~\n" + "added to tasklist: " + command + "\n" + "~\n");
+            if (action.equals("todo")) {
+                Task currTask = new Todo(elaboration);
+                tasks[Task.getTotalNumberOfTasks() - 1]= currTask;
+                tedResponse("added to tasklist:\n" + currTask + "\ntask count: "
+                        + Task.getTotalNumberOfTasks() + "\n");
+            }
+            if (action.equals("deadline")) {
+                String[] currTaskDesc = elaboration.split(" /by ", 2);
+                Task currTask = new Deadline(currTaskDesc[0], currTaskDesc[1]);
+                tasks[Task.getTotalNumberOfTasks() - 1]= currTask;
+                tedResponse("added to tasklist:\n" + currTask + "\ntask count: "
+                        + Task.getTotalNumberOfTasks() + "\n");
+            }
+            if (action.equals("event")) {
+                String[] currTaskDesc = elaboration.split(" /at ", 2);
+                Task currTask = new Event(currTaskDesc[0], currTaskDesc[1]);
+                tasks[Task.getTotalNumberOfTasks() - 1]= currTask;
+                tedResponse("added to tasklist:\n" + currTask + "\ntask count: "
+                        + Task.getTotalNumberOfTasks() + "\n");
+            }
         }
     }
 }

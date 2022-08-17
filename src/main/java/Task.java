@@ -6,7 +6,7 @@ public class Task {
     public Task(String taskDescription) {
         this.taskDescription = taskDescription;
         this.isTaskDone = false;
-        this.totalNumberOfTasks++;
+        totalNumberOfTasks++;
     }
 
     public void markDone() {
@@ -29,4 +29,6 @@ public class Task {
             return "[ ] " + this.taskDescription;
         }
     }
+
+
 }
