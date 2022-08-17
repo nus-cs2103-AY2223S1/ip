@@ -4,19 +4,24 @@ import java.util.regex.Pattern;
 public class Event extends Task {
     private String time;
 
-    private static final String metaPattern = "^(.+)(\\s?+/at\\s?+)(.+)?$";
-    private static String extractDescription(String meta) {
+    private static final String metaPattern = "(^.+)(\\s?+/at\\s?+)(.+)?$";
+    private static String extractDescription(String meta) throws DukeException {
         Matcher m = Pattern.compile(metaPattern).matcher(meta);
-        if (!m.find()) return ""; // THROW ERROR
+        if (!m.find()) {
+            throw new DukeException("You need to use \"/at\" to specify when the event is");
+        }
         return m.group(1);
     }
 
-    public Event(String meta) {
+    public Event(String meta) throws DukeException {
         super(extractDescription(meta));
         Matcher m = Pattern.compile(metaPattern).matcher(meta);
-        if (!m.find()) return; // THROW ERROR
-        String delimiter = m.group(2); // USE FOR ERROR HANDLING
-        this.time = m.group(3);
+        if (!m.find()) {
+            throw new DukeException("You need to use \"/at\" to specify when the event is");
+        }
+        String time = m.group(3);
+        if (time == null) throw new DukeException("You didn't specify the time.");
+        this.time = time;
     }
 
     @Override
