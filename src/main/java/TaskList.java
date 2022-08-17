@@ -1,21 +1,21 @@
 import java.util.ArrayList;
 
 public class TaskList {
-    private ArrayList<String> taskList;
+    private ArrayList<Task> taskList;
 
     /**
      * Constructor for TaskList, which stores text entered by user in Duke
      */
     public TaskList() {
-        this.taskList = new ArrayList<>();
+        this.taskList = new ArrayList<Task>();
     }
 
     /**
      * Function to add text to taskList
-     * @param text text to be added to taskList
+     * @param task task to be added to taskList
      */
-    public void addToTaskList(String text) {
-        this.taskList.add(text);
+    public void addToTaskList(Task task) {
+        this.taskList.add(task);
     }
 
     /**
@@ -28,10 +28,10 @@ public class TaskList {
 
     /**
      * Function to get text in taskList at specified index
-     * @param index
+     * @param index index of task in taskList
      * @return text in taskList at specified index
      */
-    public String getText(int index) {
+    public Task getTask(int index) {
         return this.taskList.get(index);
     }
 
