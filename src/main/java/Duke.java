@@ -10,11 +10,19 @@ public class Duke {
     private static final String line = "______________________________________________________________________________";
     private static final String list_message = "Here are the tasks in your list:";
     private static final String add_message = "Got it. I've added this task:";
+    private static final String delete_message = "Noted. I've removed this task:";
     private static final ArrayList<Task> ls = new ArrayList<>(100);
     private static void addToList(Task task) {
         ls.add(task);
         System.out.println(add_message);
         System.out.println(task.toString());
+        System.out.println("Now you have " + ls.size() + " tasks in the list.");
+    }
+    private static void delFromList(int ind) {
+        Task deleting_task = ls.get(ind);
+        ls.remove(ind);
+        System.out.println(delete_message);
+        System.out.println(deleting_task.toString());
         System.out.println("Now you have " + ls.size() + " tasks in the list.");
     }
     private static void display(ArrayList<Task> ls) {
@@ -35,6 +43,7 @@ public class Duke {
         String todo_command = "todo";
         String deadline_command = "deadline";
         String event_command = "event";
+        String delete_command = "delete";
         boolean flag = true;
         while (flag) {
             String response = sc.nextLine();
@@ -54,6 +63,9 @@ public class Duke {
             } else if (command.toLowerCase().equals(unmark_command)) {
                 String ind = cmd_descp[1];
                 ls.get(valueOf(ind) - 1).undo();
+            } else if (command.toLowerCase().equals(delete_command)) {
+                String ind = cmd_descp[1];
+                delFromList(valueOf(ind)-1);
             } else if (command.toLowerCase().equals(todo_command)){
                 try {
                     String test = cmd_descp[1];
