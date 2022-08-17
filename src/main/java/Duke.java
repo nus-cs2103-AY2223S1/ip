@@ -10,6 +10,12 @@ public class Duke {
         }
     }
 
+    private static void printTaskAdded(Task task, int taskNumber) {
+        System.out.println("Got it. I've added this task:");
+        System.out.println(task.toString());
+        System.out.println("Now you have " + taskNumber + " tasks in the list.");
+    }
+
     public static void main(String[] args) {
         ArrayList<Task> taskList = new ArrayList<Task>();
         String logo = "Botto";
@@ -28,6 +34,40 @@ public class Duke {
             Task task;
 
             switch(command) {
+                case "todo":
+                    //get the task by splitting input
+                    String taskString = input.split("\\s", 2)[1];
+                    task = new ToDo(taskString);
+                    taskList.add(task);
+                    printTaskAdded(task, taskList.size());
+                    break;
+
+                case "deadline":
+                    //some regex to parse the strings correctly
+                    //0th index: task, 1st index: deadline
+                    String[] splittedDeadline = input.split("\\s", 2)
+                            [1].split("\\s/by\\s", 2);
+                    String deadlineTask = splittedDeadline[0];
+                    String deadlineDate = splittedDeadline[1];
+
+                    task = new Deadline(deadlineTask, deadlineDate);
+                    taskList.add(task);
+                    printTaskAdded(task, taskList.size());
+                    break;
+
+                case "event":
+                    //some regex to parse the strings correctly
+                    //0th index: event, 1st index: date
+                    String[] splittedEvent = input.split("\\s", 2)
+                            [1].split("\\s/at\\s", 2);
+                    String eventString = splittedEvent[0];
+                    String eventDate = splittedEvent[1];
+
+                    task = new Event(eventString, eventDate);
+                    taskList.add(task);
+                    printTaskAdded(task, taskList.size());
+                    break;
+
                 case "mark":
                     //the index should be the "2nd word"
                     index = Integer.parseInt(splitted[1]);
@@ -58,9 +98,7 @@ public class Duke {
                     break;
 
                 default:
-                    Task newTask = new Task(input);
-                    taskList.add(new Task(input));
-                    System.out.println("added: " + newTask.toString());
+                   System.out.println("Error: Not A Valid Command!!!");
                     break;
             }
         }
