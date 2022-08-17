@@ -1,11 +1,12 @@
 import exceptions.*;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Duke {
 
-    private static Task[] lst = new Task[100];
+    private static ArrayList<Task> taskList = new ArrayList<>();
     private static int currEmpty = 0;
     private final static Scanner myScanner = new Scanner(System.in);
     private final static String SEPARATOR = "------------------------------------";
@@ -16,7 +17,7 @@ public class Duke {
             System.out.println("List is Already Full, Cannot add anymore item");
             return;
         }
-        lst[currEmpty] = task;
+        taskList.add(task);
         System.out.println("added: " + task.toString());
         currEmpty++;
     }
@@ -29,7 +30,7 @@ public class Duke {
 
         System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < currEmpty; i++) {
-            Task curr = lst[i];
+            Task curr = taskList.get(i);
             System.out.println(i + 1 + "." + curr.toString());
         }
     }
@@ -38,14 +39,14 @@ public class Duke {
         if (index >= currEmpty) {
             throw new DukeMissingIndexException();
         }
-        lst[index].setDone();
+        taskList.get(index).setDone();
     }
 
     private void unMark(int index) throws DukeMissingIndexException {
         if (index >= currEmpty) {
             throw new DukeMissingIndexException();
         }
-        lst[index].setNotDone();
+        taskList.get(index).setNotDone();
     }
 
     public static void main(String[] args) {
