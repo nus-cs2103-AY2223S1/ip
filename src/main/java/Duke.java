@@ -72,9 +72,8 @@ public class Duke {
             Duke.messagePrint(output);
         }));
 
-        commands.add(new CommandMatcher("mark ", (str) -> {
-            String[] parts = str.split(" ", 2);
-            getTask(parts[1]).ifPresent((task) -> {
+        commands.add(new PrefixCommandMatcher("mark", (str, map) -> {
+            getTask(str).ifPresent((task) -> {
                 task.markAsDone();
                 String[] output = {
                     "Marked your task as done:",
@@ -84,9 +83,8 @@ public class Duke {
             });
         }));
 
-        commands.add(new CommandMatcher("unmark ", (str) -> {
-            String[] parts = str.split(" ", 2);
-            getTask(parts[1]).ifPresent((task) -> {
+        commands.add(new PrefixCommandMatcher("unmark", (str, map) -> {
+            getTask(str).ifPresent((task) -> {
                 task.markAsNotDone();
                 String[] output = {
                     "Aw... it's not done yet:",
@@ -94,6 +92,36 @@ public class Duke {
                 };
                 Duke.messagePrint(output);
             });
+        }));
+
+        commands.add(new PrefixCommandMatcher("deadline", (str, map) -> {
+            Task task = new Deadline(str, map.getOrDefault("by", "[unknown]"));
+            list.add(task);
+            String[] output = {
+                "Good luck with the deadline, here's the task:",
+                task.toString()
+            };
+            Duke.messagePrint(output);
+        }));
+
+        commands.add(new PrefixCommandMatcher("todo", (str, map) -> {
+            Task task = new ToDo(str);
+            list.add(task);
+            String[] output = {
+                "I've recorded this thing you need to do:",
+                task.toString()
+            };
+            Duke.messagePrint(output);
+        }));
+
+        commands.add(new PrefixCommandMatcher("event", (str, map) -> {
+            Task task = new Event(str, map.getOrDefault("at", "[unknown]"));
+            list.add(task);
+            String[] output = {
+                "That's going to happen at some time later:",
+                task.toString()
+            };
+            Duke.messagePrint(output);
         }));
 
         // default command matcher - add to list
