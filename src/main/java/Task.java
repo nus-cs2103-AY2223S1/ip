@@ -19,14 +19,18 @@ public abstract class Task {
         System.out.println("OK, I've marked this task as not done yet:\n" + toString() + "\n");
     }
 
+    public boolean getDone() {
+        return done;
+    }
+
     public static int getNumTasks() {
         return numTasks;
     }
     @Override
     public String toString() {
         if (done) {
-            return "[X]" + task;
+            return "[X] " + task;
         }
-        return "[ ]" + task;
+        return "[ ] " + task;
     }
 }
