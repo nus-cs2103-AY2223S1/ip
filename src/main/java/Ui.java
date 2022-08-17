@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Ui {
     String line = "____________________________________________________________";
 
@@ -8,6 +10,22 @@ public class Ui {
 
     public void echo(String text) {
         System.out.println(line + "\n" + text + "\n" + line);
+    }
+
+    public void addTask(String task) {
+        String taskAdded = "added: " + task;
+        System.out.println(line + "\n" + taskAdded + "\n" + line);
+    }
+
+    public void list(String[] taskList) {
+        System.out.println(line);
+        int num = 0;
+        while(taskList[num] != null){
+            num++;
+            System.out.println(num + ". " + taskList[num - 1]);
+        }
+
+        System.out.println(line);
     }
 
     public void exit(){

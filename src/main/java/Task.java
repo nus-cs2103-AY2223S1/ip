@@ -1,2 +1,12 @@
-package PACKAGE_NAME;public class Task {
+public class Task {
+    protected String taskName;
+
+    public Task(String taskName){
+        this.taskName = taskName;
+    }
+
+    @Override
+    public String toString() {
+        return taskName;
+    }
 }
