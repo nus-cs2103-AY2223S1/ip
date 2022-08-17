@@ -12,6 +12,13 @@ public class TaskList {
         }
         return res;
     }
+    //delete the task and print out reply
+    public void delete(int i){
+        int index=i-1;
+        Task deletedTask=this.taskList.remove(i-1);
+        System.out.println(" Noted. I've removed this task:\n"+deletedTask.printTask()+
+                "\n"+"Now you have "+this.countTask()+" tasks in the list.");
+    }
     public void addTask(Task task){
         this.taskList.add(task);
         System.out.println("Got it. I've added this task:\n"+task.printTask()+

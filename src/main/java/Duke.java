@@ -30,7 +30,9 @@ public class Duke {
                     taskList.addTask(new DeadLine(ans));
                 } else if (ans.split(" ")[0].equals("event")) {
                     taskList.addTask(new Event(ans));
-                } else {
+                } else if(ans.split(" ")[0].equals("delete")){
+                    taskList.delete(Integer.valueOf(ans.split(" ")[1]));
+                }else{
                     throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
             }catch (DukeException de){
