@@ -1,5 +1,5 @@
 public class Event extends Task {
-    protected final String TAG = "[D]";
+    protected final String TAG = "[E]";
     protected String duration;
 
     public Event(String descriptor, String duration) {
