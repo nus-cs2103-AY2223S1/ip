@@ -1,3 +1,5 @@
+import java.io.*;
+import java.nio.file.Files;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -155,17 +157,21 @@ public class Duke {
                         break;
                     case "unmark":
                         this.unmark(next[1]);
+                        writeToSavedFile();
                         break;
                     case "mark":
                         this.mark(next[1]);
+                        writeToSavedFile();
                         break;
                     case "todo":
                     case "deadline":
                     case "event":
                         this.addTask(next);
+                        writeToSavedFile();
                         break;
                     case "delete":
                         this.delete(next[1]);
+                        writeToSavedFile();
                         break;
                     default:
                         throw new DukeException("Invalid command");
@@ -173,6 +179,70 @@ public class Duke {
             } catch (DukeException e) {
                 System.out.println(e.getMessage());
             }
+        }
+    }
+
+    private void readSavedTasks(){
+        try {
+            File dir = new File("data/");
+            if (!dir.exists()) {
+                boolean makeDir = dir.mkdir();
+            }
+            File temp = new File("data/duke.txt");
+            if (!temp.exists()) {
+                boolean makeFile = temp.createNewFile();
+            }
+
+            Scanner in = new Scanner(temp);
+            while (in.hasNext()) {
+                String[] curr = in.nextLine().split("\\s*\\|\\s*");
+                String command = curr[0];
+
+                switch (command) {
+                    case "T": {
+                        Task currTask = new Todo(curr[2]);
+                        if (curr[1].equals("1")) {
+                            currTask.savedTaskMarkAsDone();
+                        }
+                        this.storage.add(currTask);
+                        break;
+                    }
+                    case "D": {
+                        Task currTask = new Deadline(curr[2], curr[3]);
+                        if (curr[1].equals("1")) {
+                            currTask.savedTaskMarkAsDone();
+                        }
+                        this.storage.add(currTask);
+                        break;
+                    }
+                    case "E": {
+                        Task currTask = new Event(curr[2], curr[3]);
+                        if (curr[1].equals("1")) {
+                            currTask.savedTaskMarkAsDone();
+                        }
+                        this.storage.add(currTask);
+                        break;
+                    }
+                    default: {
+                        throw new DukeException("Invalid task");
+                    }
+
+                }
+            }
+        } catch (IOException | DukeException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void writeToSavedFile() {
+        try {
+            FileWriter writer = new FileWriter("data/duke.txt");
+            for (Task x : this.storage) {
+                writer.write(x.savedFileFormat() + "\n");
+            }
+            writer.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -184,7 +254,9 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
         System.out.println("What can I do for you?");
+
         Duke chatBotInstance = new Duke();
+        chatBotInstance.readSavedTasks();
         chatBotInstance.handleInput();
     }
 }
