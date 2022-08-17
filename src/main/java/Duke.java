@@ -19,64 +19,6 @@ public class Duke {
    */
   private static ArrayList<Task> tasks = new ArrayList<Task>();
 
-  private static void actionAfterInput(String userInput) {
-    Task newTask = new Task(userInput);
-    tasks.add(newTask);
-    System.out.println("Hey sweetie, I've added: '" + userInput + "' to your lists of tasks~\n");
-  }
-
-
-  private static void goodbye() {
-    System.out.println("MumBot: Goodbyeeee sweetheart <3");
-    System.exit(0);
-  }
-
-  private static void list() {
-    for (int i = 0; i < tasks.size(); i++) {
-      System.out.println((i + 1) + ". " + tasks.get(i));
-    }
-    System.out.println("");
-  }
-
-  /*
-   * Performs actions based on the input.
-   *
-   * @param input The input given by the user.
-   *
-   * @return Returns true if the programme should continue prompting the user
-   * for inputs. Returns false if the programme is to be terminated.
-   */
-  private static boolean settleInput(String input) {
-    String[] splitInput = input.split(" ");
-    String action = splitInput[0];
-    if (action.equals("Bye")) {
-      Command command = new ByeCommand(splitInput);
-      return command.performAction();
-
-    } else if (action.equals("list")) {
-      Command command = new ListCommand(this.tasks);
-      return command.performAction();
-
-    } else if (
-        action.equals("mark") ||
-        action.equals("unmark")
-        )
-    {
-      Command command = new MarkCommand(splitInput);
-      return command.performAction();
-
-    } else if (
-        action.equals("event") ||
-        action.equals("deadline") ||
-        actions.equals("todo")
-        )
-    {
-      String[] newSplitInput = parseString(action, splitInput);
-      Command command = new TaskCommand(newSplitInput);
-      return command.performAction();
-    }
-  }
-
   /*
    * Parses a String[] for an "event", "deadline" or "todo" task.
    */
@@ -126,45 +68,45 @@ public class Duke {
       newSplitInput[1] = taskDetails;
       newSplitInput[2] = date;
     }
-
     return newSplitInput;
   }
 
-
-
-
+  /*
+   * Performs actions based on the input.
+   *
+   * @param input The input given by the user.
+   *
+   * @return Returns true if the programme should continue prompting the user
+   * for inputs. Returns false if the programme is to be terminated.
+   */
   private static boolean settleInput(String input) {
-    if (input.equals("Bye")) {
-      goodbye();
-      return false;
+    String[] splitInput = input.split(" ");
+    String action = splitInput[0];
+    if (action.equals("Bye")) {
+      Command command = new ByeCommand(splitInput);
+      return command.performAction();
 
-    } else if (input.equals("list")) {
-      list();
-      return true;
-
-    } else if (
-        input.length() >= 6 &&
-        input.substring(0, 4).equals("mark")
-        )
-    {
-      int index = input.charAt(5) - '0';
-      Task taskToUpdate = tasks.get(index - 1);
-      System.out.println(taskToUpdate.updateStatus(true) + "\n");
-      return true;
+    } else if (action.equals("list")) {
+      Command command = new ListCommand(this.tasks);
+      return command.performAction();
 
     } else if (
-        input.length() >= 8 &&
-        input.substring(0, 6).equals("unmark")
+        action.equals("mark") ||
+        action.equals("unmark")
         )
     {
-      int index = input.charAt(7) - '0';
-      Task taskToUpdate = tasks.get(index - 1);
-      System.out.println(taskToUpdate.updateStatus(false) + "\n");
-      return true;
+      Command command = new MarkCommand(splitInput);
+      return command.performAction();
 
-    } else {
-      actionAfterInput(input);
-      return true;
+    } else if (
+        action.equals("event") ||
+        action.equals("deadline") ||
+        actions.equals("todo")
+        )
+    {
+      String[] newSplitInput = parseString(action, splitInput);
+      Command command = new TaskCommand(newSplitInput);
+      return command.performAction();
     }
   }
 
