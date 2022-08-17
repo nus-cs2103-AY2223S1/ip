@@ -29,7 +29,7 @@ public class Task {
      */
     public String markAsDone() {
         this.isDone = true; // mark task as true
-        String result = String.format("Nice! I've marked this task as done: \n%s", this.toString());
+        String result = String.format("Nice! I've marked this task as done:\n%s", this.toString());
         return result;
     }
 

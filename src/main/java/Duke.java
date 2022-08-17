@@ -34,6 +34,20 @@ public class Duke {
         }
     }
 
+    /**
+     * Adds the task to arraylist, and formats a String representation
+     * that is to be printed along with the task representation and size of list.
+     * @param task
+     * @param inputList
+     */
+    public static void taskAdd(Task task, ArrayList<Task> inputList) {
+        inputList.add(task);
+        String output = String.format("Got it. I've added this task: \n%s\nNow you have %s tasks in the list.",
+                task.toString(),
+                inputList.size());
+        System.out.println(output);
+    }
+
 
     public static void main(String[] args) {
         Scanner myObj = new Scanner(System.in);
@@ -53,8 +67,22 @@ public class Duke {
                 } catch (ArrayIndexOutOfBoundsException e) {
                     System.out.println("Sorry, there is no such Task!");
                 }
+            } else if (parts[0].equals("todo")) {
+                String[] taskType = input.split(" ", 2);
+                Todo todo = new Todo(taskType[1]);
+                taskAdd(todo, inputList);
+            } else if (parts[0].equals("deadline")) {
+                String[] taskType = input.split(" ", 2);
+                String[] taskBy = taskType[1].split("/by ", 2);
+                Deadline deadline = new Deadline(taskBy[0], taskBy[1]);
+                taskAdd(deadline, inputList);
+            } else if (parts[0].equals("event")) {
+                String[] taskType = input.split(" ", 2);
+                String[] taskBy = taskType[1].split("/at ", 2);
+                Event event = new Event(taskBy[0], taskBy[1]);
+                taskAdd(event, inputList);
             } else {
-                System.out.println("added: " + input);
+                System.out.println("Got it. I've added this task:\n" + input);
                 Task inputTask = new Task(input);
                 inputList.add(inputTask);
             }
