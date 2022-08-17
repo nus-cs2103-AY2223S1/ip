@@ -19,11 +19,10 @@ public class TaskManager {
     /**
      * Adds the received task into the task list
      *
-     * @param taskDescription Task description received from the caller
+     * @param task Task received from the caller
      */
-    public void add(String taskDescription) {
-        // TODO: Allow creation of various task types
-        this.taskList.add(new ToDo(taskDescription));
+    public void add(Task task) {
+        this.taskList.add(task);
     }
 
     /**
@@ -41,6 +40,15 @@ public class TaskManager {
     }
 
     /**
+     * Returns the number of tasks in the task manager list
+     *
+     * @return Number of tasks in the task manager list
+     */
+    public int count() {
+        return this.taskList.size();
+    }
+
+    /**
      * Utility method to check if the provided 1-based task number is valid, i.e. there exists a
      * task corresponding to the specified task number
      *
@@ -49,7 +57,7 @@ public class TaskManager {
      */
     private boolean isValidTask(int taskNumber) {
         int taskIndex = this.getTaskIndexFromTaskNumber(taskNumber);
-        return taskIndex >= 0 && taskIndex < this.taskList.size();
+        return taskIndex >= 0 && taskIndex < this.count();
     }
 
     /**

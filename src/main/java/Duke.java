@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Emily Ong Hui Qi
@@ -11,15 +13,34 @@ public class Duke {
     private static final String GREETING_MESSAGE = String.format("Hello! I'm %s\nWhat can I do for you?", Duke.NAME);
     // The goodbye message used by the chatbot when the program terminates
     private static final String GOODBYE_MESSAGE = "Bye. Hope to see you again soon!";
-    private static final String ADD_TASK_MESSAGE = "added:";
+    private static final String ADD_TASK_MESSAGE = "Got it. I've added this task:";
     private static final String MARK_TASK_AS_DONE_MESSAGE = "Nice! I've marked this task as done:";
     private static final String MARK_TASK_AS_UNDONE_MESSAGE = "OK, I've marked this task as not done yet:";
+    private static final String TASK_LIST_STATUS_MESSAGE = "Now you have %s task(s) in the list.";
 
+    private static final String UNKNOWN_COMMAND_ERROR = "Hmm...I do not understand your command!";
     private static final String MISSING_TASK_INDEX_ERROR = "Oops! You are missing a task number!\n" +
             "Use the 'list' command to view the tasks and their number.";
     private static final String NAN_TASK_INDEX_ERROR = "Oops! The task number you provided is not a number!";
     private static final String TASK_INDEX_IS_INVALID_ERROR = "Oops! The task number you provided is not valid!\n" +
             "Use the 'list' command to view the tasks and their number.";
+    private static final String INVALID_TODO_TASK_ERROR = "Oops! Use the 'todo' command together with a task " +
+            "description!\nFor example: 'todo borrow book'";
+    private static final String INVALID_DEADLINE_TASK_ERROR = "Oops! Use the 'deadline' command together with the " +
+            "task description and deadline\nFor example: 'deadline return book /by Sunday'";
+    private static final String INVALID_EVENT_TASK_ERROR = "Oops! Use the 'event' command together with the " +
+            "task description and date time\nFor example: 'event project meeting /at Mon 2-4pm'";
+
+    // Regex patterns for matching input commands
+
+    // Matches a non-empty description, for example: <description>
+    private static final Pattern MATCH_TODO_TASK = Pattern.compile("(.+)");
+    // Matches a non-empty description and a non-empty deadline, separated by a '/by' command
+    // For example: (<description> /by <deadline>)
+    private static final Pattern MATCH_DEADLINE_TASK = Pattern.compile("(.+?)\\s/by\\s(.+)");
+    // Matches a non-empty description and a non-empty datetime, separated by a '/at' command
+    // For example: <description> /at <datetime>
+    private static final Pattern MATCH_EVENT_TASK = Pattern.compile("(.+?)\\s/at\\s(.+)");
 
     // FIXME: Refactor to use proper enums (A-Enums level)
     private enum Command {
@@ -30,7 +51,12 @@ public class Duke {
         // The 'mark' command is used together with the task index to mark the specified task as done
         MARK,
         // The 'unmark' command is used together with the task index to mark the specified task as undone
-        UNMARK;
+        UNMARK,
+
+        // Commands related to task creation of various types
+        TODO,
+        DEADLINE,
+        EVENT;
 
         @Override
         public String toString() {
@@ -108,9 +134,56 @@ public class Duke {
                 } else {
                     DukePrinter.print(Duke.TASK_INDEX_IS_INVALID_ERROR);
                 }
+            } else if (command.equals(Command.TODO.toString())) {
+                Matcher matcher = Duke.MATCH_TODO_TASK.matcher(arguments);
+                if (!matcher.find()) {
+                    DukePrinter.print(Duke.INVALID_TODO_TASK_ERROR);
+                    continue;
+                }
+                ToDo todoTask = new ToDo(arguments.strip());
+                taskManager.add(todoTask);
+                DukePrinter.print(
+                        String.format(
+                                "%s\n\t%s\n%s",
+                                Duke.ADD_TASK_MESSAGE,
+                                todoTask,
+                                String.format(Duke.TASK_LIST_STATUS_MESSAGE, taskManager.count())
+                        )
+                );
+            } else if (command.equals(Command.DEADLINE.toString())) {
+                Matcher matcher = Duke.MATCH_DEADLINE_TASK.matcher(arguments);
+                if (!matcher.find()) {
+                    DukePrinter.print(Duke.INVALID_DEADLINE_TASK_ERROR);
+                    continue;
+                }
+                Deadline deadlineTask = new Deadline(matcher.group(1).strip(), matcher.group(2).strip());
+                taskManager.add(deadlineTask);
+                DukePrinter.print(
+                        String.format(
+                                "%s\n\t%s\n%s",
+                                Duke.ADD_TASK_MESSAGE,
+                                deadlineTask,
+                                String.format(Duke.TASK_LIST_STATUS_MESSAGE, taskManager.count())
+                        )
+                );
+            } else if (command.equals(Command.EVENT.toString())) {
+                Matcher matcher = Duke.MATCH_EVENT_TASK.matcher(arguments);
+                if (!matcher.find()) {
+                    DukePrinter.print(Duke.INVALID_EVENT_TASK_ERROR);
+                    continue;
+                }
+                Event eventTask = new Event(matcher.group(1).strip(), matcher.group(2).strip());
+                taskManager.add(eventTask);
+                DukePrinter.print(
+                        String.format(
+                                "%s\n\t%s\n%s",
+                                Duke.ADD_TASK_MESSAGE,
+                                eventTask,
+                                String.format(Duke.TASK_LIST_STATUS_MESSAGE, taskManager.count())
+                        )
+                );
             } else {
-                taskManager.add(inputLine);
-                DukePrinter.print(String.format("%s %s", Duke.ADD_TASK_MESSAGE, inputLine));
+                DukePrinter.print(Duke.UNKNOWN_COMMAND_ERROR);
             }
         }
 
