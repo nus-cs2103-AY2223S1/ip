@@ -91,6 +91,7 @@ public class Duke {
                 if (inputSplit.length < 2) {
                     throw new DukeException("Please provide a description for your todo.");
                 }
+                // Task creation operation
                 taskList.add(new Task(String.join(" ", Arrays.copyOfRange(inputSplit, 1, inputSplit.length))));
                 printAddTaskSuccessfully(taskList);
                 break;
@@ -104,6 +105,7 @@ public class Duke {
                 if (inputSlashSplit[0].split(" ").length < 2) {
                     throw new DukeException(String.format("Please provide a description for your %s.", inputSplit[0]));
                 }
+                // Task creation operation
                 String time = input.split("/")[1];
                 String[] description = inputSlashSplit[0].split(" ");
                 if (inputSplit[0].equals("deadline")) {
@@ -112,6 +114,22 @@ public class Duke {
                     taskList.add(new Event(String.join(" ", Arrays.copyOfRange(description, 1, description.length)), time));
                 }
                 printAddTaskSuccessfully(taskList);
+                break;
+            case "delete":
+                // Error handling
+                if (inputSplit.length < 2) {
+                    throw new DukeException("You did not specify what task number to delete.");
+                } else if (!isNumeric(inputSplit[1])) {
+                    throw new DukeException(String.format("Invalid task number provided: %s. Unable to delete task.", inputSplit[1]));
+                }
+                // Delete operation
+                index = Integer.parseInt(inputSplit[1]) - 1;
+                if (index == -1 || index >= taskList.size()) {
+                    throw new DukeException(String.format("Task number %d not found! Unable to delete task.", index + 1));
+                }
+                Task deleted = taskList.remove(index);
+                wrapPrint(leftPad("Noted. I've removed this task:\n  ")
+                        + leftPad(deleted.toString()));
                 break;
             default:
                 throw new DukeException("I'm sorry, but I don't know what that means :-(");
