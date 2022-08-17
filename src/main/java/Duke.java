@@ -7,7 +7,8 @@ public class Duke {
     public static void main(String[] args) {
         System.out.println("My name is [insert name here], how can I help?");
         while (true) {
-            listen();
+            if (!sc.hasNextLine()) break;
+            lastLine = sc.nextLine();
             if (lastLine.equals("bye")) {
                 System.out.println("See you next time...");
                 break;
