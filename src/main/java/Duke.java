@@ -12,7 +12,7 @@ public class Duke {
         String horizontalLine = new String(new char[50]).replace("\0", "~");
         String greeting = "Hello! I'm Duke\n" +
                 "\tWhat can I duke for you?";
-        ArrayList<String> list = new ArrayList<String>();
+        ArrayList<Task> list = new ArrayList<Task>();
 
         System.out.println("Hello from\n" + logo);
 
@@ -25,13 +25,37 @@ public class Duke {
         while (!input.toLowerCase().equals("bye")) {
             System.out.println("\t" + horizontalLine);
 
-            if (!input.toLowerCase().equals("list")) {
-                list.add(input);
-                System.out.println("\tadded: " + input);
-            } else {
+            if (input.toLowerCase().equals("list")) {
+                System.out.println("\tHere are the tasks in your list:");
+
                 for (int i = 0; i < list.size(); i++) {
-                    System.out.println("\t" + String.valueOf(i + 1) + ". " + list.get(i));
+                    Task task = list.get(i);
+                    System.out.println(String.format("\t%s.[%s] %s",
+                            i + 1,
+                            task.getStatusIcon(),
+                            task.description));
                 }
+            } else if (input.toLowerCase().startsWith("mark")){
+                int index = Integer.parseInt(input.split(" ")[1]);
+                Task task = list.get(index - 1);
+                task.markAsDone();
+
+                System.out.println("\tNice! I've marked this task as done:");
+                System.out.println(String.format("\t[%s] %s",
+                                                task.getStatusIcon(),
+                                                task.description));
+            } else if (input.toLowerCase().startsWith("unmark")){
+                int index = Integer.parseInt(input.split(" ")[1]);
+                Task task = list.get(index - 1);
+                task.markAsUndone();
+
+                System.out.println("\tOK, I've marked this task as not done yet:");
+                System.out.println(String.format("\t[%s] %s",
+                                                task.getStatusIcon(),
+                                                task.description));
+            } else {
+                list.add(new Task(input));
+                System.out.println("\tadded: " + input);
             }
 
             System.out.println("\t" + horizontalLine);
