@@ -18,6 +18,17 @@ public class Duke {
      */
     private static int pointer = 0;
 
+    enum TaskType {
+        TODO,
+        DEADLINE,
+        EVENT
+    }
+
+    enum TaskFunc {
+        MARK,
+        UNMARK
+    }
+
     private static void speak(String message) {
         System.out.println("============================================================\n");
         System.out.println(message);
@@ -32,16 +43,16 @@ public class Duke {
         speak(" Farewell!\n");
     }
 
-    private static void addTask(int type, String task, String dateTime) {
+    private static void addTask(TaskType type, String task, String dateTime) {
         Task newTask;
         switch (type) {
-            case 0:
+            case TODO:
                 newTask = new Todo(task);
                 break;
-            case 1:
+            case DEADLINE:
                 newTask = new Deadline(task, dateTime);
                 break;
-            case 2:
+            case EVENT:
                 newTask = new Event(task, dateTime);
                 break;
             default:
@@ -66,17 +77,16 @@ public class Duke {
         }
     }
 
-    private static void markTask(int taskNum) throws DukeException {
+    private static void updateTask(TaskFunc func, int taskNum) throws DukeException {
         if (taskNum <= pointer && taskNum > 0) {
-            speak(tasks.get(taskNum - 1).mark());
-        } else {
-            throw new DukeException("Please indicate a task no. between 1 to " + pointer + ".");
-        }
-    }
-
-    private static void unmarkTask(int taskNum) throws DukeException {
-        if (taskNum <= pointer && taskNum > 0) {
-            speak(tasks.get(taskNum - 1).unmark());
+            switch (func) {
+                case MARK:
+                    speak(tasks.get(taskNum - 1).mark());
+                    break;
+                case UNMARK:
+                    speak(tasks.get(taskNum - 1).unmark());
+                    break;
+            }
         } else {
             throw new DukeException("Please indicate a task no. between 1 to " + pointer + ".");
         }
@@ -111,7 +121,7 @@ public class Duke {
                 break;
             case "todo":
                 if (hasSecondTerm) {
-                    addTask(0, firstParse[1], "");
+                    addTask(TaskType.TODO, firstParse[1], "");
                     break;
                 } else {
                     throw new DukeException("Please provide a description for the todo.");
@@ -120,7 +130,7 @@ public class Duke {
                 if (hasSecondTerm) {
                     String[] secondParse = firstParse[1].split("/by", 2);
                     if (secondParse.length > 1) {
-                        addTask(1, secondParse[0], secondParse[1]);
+                        addTask(TaskType.DEADLINE, secondParse[0], secondParse[1]);
                         break;
                     } else {
                         throw new DukeException("Please provide a date/time for the deadline.");
@@ -132,7 +142,7 @@ public class Duke {
                 if (hasSecondTerm) {
                     String[] secondParse = firstParse[1].split("/at", 2);
                     if (secondParse.length > 1) {
-                        addTask(2, secondParse[0], secondParse[1]);
+                        addTask(TaskType.EVENT, secondParse[0], secondParse[1]);
                         break;
                     } else {
                         throw new DukeException("Please provide a date/time for the event.");
@@ -158,7 +168,7 @@ public class Duke {
                     String secondTerm = hasSecondTerm
                             ? firstParse[1].split(" ", 2)[0]
                             : "0";
-                    markTask(Integer.parseInt(secondTerm));
+                    updateTask(TaskFunc.MARK, Integer.parseInt(secondTerm));
                     break;
                 } catch (NumberFormatException e) {
                     throw new DukeException("Please indicate the task no. in digits.");
@@ -171,7 +181,7 @@ public class Duke {
                     String secondTerm = hasSecondTerm
                             ? firstParse[1].split(" ", 2)[0]
                             : "0";
-                    unmarkTask(Integer.parseInt(secondTerm));
+                    updateTask(TaskFunc.UNMARK, Integer.parseInt(secondTerm));
                     break;
                 } catch (NumberFormatException e) {
                     throw new DukeException("Please indicate the task no. in digits.");
