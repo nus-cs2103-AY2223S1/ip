@@ -1,4 +1,8 @@
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Duke {
@@ -10,6 +14,12 @@ public class Duke {
         Scanner scanner = new Scanner(System.in);
         StorageHandler storageHandler = new StorageHandler();
         Storage storage = storageHandler.loadSavedData();
+        DateTimeFormatterBuilder dateFormatBuilder = new DateTimeFormatterBuilder();
+        dateFormatBuilder
+                .appendOptional(DateTimeFormatter.ofPattern("d/MM/yyyy HHmm"))
+                .appendOptional(DateTimeFormatter.ofPattern("HHmm d/MM/yyyy"))
+                .appendOptional(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+        DateTimeFormatter dateTimeFormatter = dateFormatBuilder.toFormatter();
         System.out.println(GREETING);
 
         while (scanner.hasNext()) {
@@ -66,7 +76,7 @@ public class Duke {
                 }
 
                 if (nextCommand.startsWith("deadline")) {
-                    int lastIdx = nextCommand.lastIndexOf("/");
+                    int lastIdx = nextCommand.lastIndexOf("/by");
                     if (lastIdx == -1)
                         throw new DukeException("Please follow the format <taskname> /by <datetime>");
 
@@ -76,14 +86,15 @@ public class Duke {
                     String doneBy = nextCommand.substring(lastIdx + 4);
                     if (doneBy.isEmpty()) throw new DukeException("No deadline given, please try again");
 
-                    Task taskToAdd = new Deadline(mainTask, doneBy);
+                    LocalDate doneByDate = LocalDate.parse(doneBy, dateTimeFormatter);
+                    Task taskToAdd = new Deadline(mainTask, doneByDate);
                     storage.addTaskToList(taskToAdd);
                     storageHandler.writeDataToFile(storage);
                     continue;
                 }
 
                 if (nextCommand.startsWith("event")) {
-                    int lastIdx = nextCommand.lastIndexOf("/");
+                    int lastIdx = nextCommand.lastIndexOf("/at");
                     if (lastIdx == -1)
                         throw new DukeException("Please follow the format <taskname> /at <date and time>");
 
@@ -93,7 +104,8 @@ public class Duke {
                     String doneAt = nextCommand.substring(lastIdx + 4);
                     if (doneAt.isEmpty()) throw new DukeException("No date given, please try again");
 
-                    Task taskToAdd = new Event(mainTask, doneAt);
+                    LocalDate doneAtDate = LocalDate.parse(doneAt, dateTimeFormatter);
+                    Task taskToAdd = new Event(mainTask, doneAtDate);
                     storage.addTaskToList(taskToAdd);
                     storageHandler.writeDataToFile(storage);
                     continue;

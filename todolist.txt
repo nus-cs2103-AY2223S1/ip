@@ -1,0 +1,6 @@
+T | 1 | e
+T | 0 | ea
+T | 1 | eat
+T | 0 | eat shit
+D | 1 | eat shit | 10pm
+T | 0 | eat

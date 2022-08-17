@@ -1,6 +1,9 @@
+import java.time.LocalDate;
+
 public class Task {
     protected String description;
     protected boolean isDone;
+    protected LocalDate date;
     final TaskType type;
     private static String MARKED_TXT = "Nice ! I've marked this task as done:";
     private static String UNMARKED_TEXT = "OK, I've marked this task as not done yet:";
@@ -8,6 +11,13 @@ public class Task {
     Task(String description, TaskType type) {
         this.description = description;
         this.isDone = false;
+        this.date = LocalDate.now();
+    }
+
+    Task(String description, LocalDate date) {
+        this.description = description;
+        this.isDone = false;
+        this.date = date;
         this.type = type;
     }
 

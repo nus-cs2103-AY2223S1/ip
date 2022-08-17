@@ -1,7 +1,9 @@
+import java.time.LocalDate;
+
 public class Deadline extends Task {
-    String by;
-    Deadline(String description, String by) {
-        super(description, TaskType.DEADLINE);
+    LocalDate by;
+    Deadline(String description, LocalDate by) {
+        super(description, TaskType.DEADLINE, by);
         this.by = by;
     }
 
