@@ -66,7 +66,7 @@ public class Duke {
         displayLine();
         for (int i = 0; i < listCounter; i++) {
             int orderList = i + 1;
-            String message = orderList + ". " + list[i];
+            String message = INDENTATION + orderList + ". " + list[i];
             System.out.println(message);
         }
         displayLine();
