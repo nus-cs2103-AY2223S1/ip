@@ -6,8 +6,8 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public void execute(Storage storage, TaskList taskList, Ui ui) {
-        ui.printMarkTask(taskList.markTask(index));
+    public void execute(Storage storage, TaskList taskList, Ui ui) throws DukeException {
+        ui.printMarkTask(taskList.markTask(index - 1));
         storage.saveLocalData(taskList.stringify());
     }
 }

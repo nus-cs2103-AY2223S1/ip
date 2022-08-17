@@ -26,7 +26,7 @@ public class Duke {
                 Command command = Parser.parseInput(userInput);
                 command.execute(this.storage, this.taskList, this.ui);
                 isExit = command.getExit();
-            } catch (DukeException | IndexOutOfBoundsException e) {
+            } catch (DukeException e) {
                 this.ui.printErrorMessage(e.getMessage());
             } catch (DateTimeParseException e) {
                 this.ui.printErrorMessage("Please format date in YYYY-MM-DD.");

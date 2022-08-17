@@ -48,9 +48,9 @@ Here are the tasks in your list:
 2. [E][ ] third task (at: NOV 3 2022)
 
 OOPS!!! I'm sorry, but I don't know what that means :-(
-Index 65 out of bounds for length 2
-Index 98 out of bounds for length 2
-Index 41 out of bounds for length 2
+Task number does not exist.
+Task number does not exist.
+Task number does not exist.
 OOPS!!! The description of a todo cannot be empty :-(
 Please format date in YYYY-MM-DD.
 OOPS!!! The description of an event cannot be empty :-(

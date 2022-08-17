@@ -28,16 +28,29 @@ public class TaskList {
         return list;
     }
 
-    public String markTask(int index) {
-        return this.tasks.get(index - 1).mark();
+    public String markTask(int index) throws DukeException {
+        if (index < 0 || index >= this.size()) {
+            throw new DukeException("Task number does not exist.");
+        }
+        Task task = this.tasks.get(index);
+        task.mark();
+        return task.toString();
     }
 
-    public String unmarkTask(int index) {
-        return this.tasks.get(index - 1).unmark();
+    public String unmarkTask(int index) throws DukeException {
+        if (index < 0 || index >= this.size()) {
+            throw new DukeException("Task number does not exist.");
+        }
+        Task task = this.tasks.get(index);
+        task.unmark();
+        return task.toString();
     }
 
-    public String deleteTask(int index) {
-        Task task = this.tasks.remove(index - 1);
+    public String deleteTask(int index) throws DukeException {
+        if (index < 0 || index >= this.size()) {
+            throw new DukeException("Task number does not exist.");
+        }
+        Task task = this.tasks.remove(index);
         return task.toString();
     }
 

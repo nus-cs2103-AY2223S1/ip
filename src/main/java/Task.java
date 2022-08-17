@@ -29,14 +29,12 @@ public abstract class Task {
         return this.isDone ? "X" : " ";
     }
 
-    public String mark() {
+    public void mark() {
         this.isDone = true;
-        return this.toString();
     }
 
-    public String unmark() {
+    public void unmark() {
         this.isDone = false;
-        return this.toString();
     }
 
     public String stringify() {
