@@ -56,33 +56,24 @@ public class Duke {
         // Limit the words to 2
         String[] inputs = command.split(" ", 2);
 
-        if (inputs.length == 1) {
-            switch (inputs[0]) {
-                // List out all abilities
-                case ("list"): {
-                    listCommand();
-                    break;
-                }
-                // Add task to taskList
-                default: {
-                    addTaskCommand(command);
-                }
+        switch (inputs[0]) {
+            // List out all abilities
+            case ("list"): {
+                listCommand();
+                break;
             }
-        } else {
-            switch (inputs[0]) {
-                // Mark the task as done
-                case ("mark"): {
-                    markTaskCommand(inputs[1]);
-                    break;
-                }
-                // Mark the task as undone
-                case ("unmark"): {
-                    unmarkTaskCommand(inputs[1]);
-                    break;
-                }
-                default: {
-                    addTaskCommand(command);
-                }
+            // Mark the task as done
+            case ("mark"): {
+                markTaskCommand(inputs[1]);
+                break;
+            }
+            // Mark the task as undone
+            case ("unmark"): {
+                unmarkTaskCommand(inputs[1]);
+                break;
+            }
+            default: {
+                addTaskCommand(command);
             }
         }
     }
@@ -91,7 +82,7 @@ public class Duke {
         StringBuilder str = new StringBuilder();
         str.append("Here are the tasks in your list:\n");
         for (int i = 0; i < taskList.size(); i++) {
-            str.append(i + 1 + "." + taskList.get(i) + "\n");
+            str.append(i + 1).append(".").append(taskList.get(i)).append("\n");
         }
         printTextWithDivider(str.toString());
     }
@@ -109,10 +100,9 @@ public class Duke {
         Task task = taskList.get(taskIndex);
         task.markAsDone();
 
-        StringBuilder str = new StringBuilder();
-        str.append("Nice! I've marked this as done:\n");
-        str.append(task + "\n");
-        printTextWithDivider(str.toString());
+        String str = "Nice! I've marked this as done:\n" +
+                task + "\n";
+        printTextWithDivider(str);
     }
 
     private static void unmarkTaskCommand(String taskIndexStr) {
@@ -120,9 +110,8 @@ public class Duke {
         Task task = taskList.get(taskIndex);
         task.maskUndone();
 
-        StringBuilder str = new StringBuilder();
-        str.append("Ok, I've marked this task as not done yet:\n");
-        str.append(task + "\n");
-        printTextWithDivider(str.toString());
+        String str = "Ok, I've marked this task as not done yet:\n" +
+                task + "\n";
+        printTextWithDivider(str);
     }
 }
