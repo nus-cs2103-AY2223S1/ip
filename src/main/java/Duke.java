@@ -30,6 +30,14 @@ public class Duke {
      * @param taskIndex position of the task in the list (1-indexed)
      */
     public static void markTaskAsDone(int taskIndex) {
+        if (tasks.size() == 0) {
+            System.out.println("You can't do that! There are no tasks added yet...");
+            return;
+        }
+        if (taskIndex > tasks.size() || taskIndex <= 0) {
+            System.out.println("There are no tasks with that index...");
+            return;
+        }
         Task currTask = tasks.get(taskIndex - 1); // label starting from 1
         currTask.markAsDone();
         System.out.println("Nice! I've marked this task as done:");
@@ -41,6 +49,14 @@ public class Duke {
      * @param taskIndex position of the task in the list (1-indexed)
      */
     public static void markTaskAsNotDone(int taskIndex) {
+        if (tasks.size() == 0) {
+            System.out.println("You can't do that! There are no tasks added yet...");
+            return;
+        }
+        if (taskIndex > tasks.size() || taskIndex <= 0) {
+            System.out.println("There are no tasks with that index...");
+            return;
+        }
         Task currTask = tasks.get(taskIndex - 1); // label starting from 1
         currTask.markAsNotDone();
         System.out.println("OK, I've marked this task as not done yet:");
