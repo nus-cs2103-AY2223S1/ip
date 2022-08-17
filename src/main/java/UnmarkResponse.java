@@ -15,9 +15,9 @@ public class UnmarkResponse extends Response{
         }
         try {
             int index = Integer.parseInt(this.inputArr[1]) - 1;
-            this.taskList.unmarkDone(index);
+            Task task = this.taskList.unmarkDone(index);
             super.printMessage("OK, I've marked this task as not done yet:" + "\n"
-                    + this.taskList.getTask(index) + "\n");
+                    + task + "\n");
         } catch (NumberFormatException exception) {
             throw new DukeException("Invalid task number.");
         } catch (DukeException exception) {

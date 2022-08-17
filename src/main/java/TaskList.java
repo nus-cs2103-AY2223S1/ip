@@ -8,30 +8,41 @@ public class TaskList {
         this.taskList.add(task);
     }
 
-    public Task getTask(int index) {
+    private Task getTask(int index) {
         return this.taskList.get(index);
+    }
+
+    public Task deleteTask(int index) throws DukeException{
+        if (index < 0 || index >= this.getSize()) {
+            throw new DukeException("Invalid task number.");
+        } else {
+            Task task = this.taskList.get(index);
+            this.taskList.remove(index);
+            return task;
+        }
     }
 
     public int getSize() {
         return this.taskList.size();
     }
 
-    public void markDone(int index) throws DukeException{
+    public Task markDone(int index) throws DukeException{
         if (index < 0 || index >= this.getSize()) {
             throw new DukeException("Invalid task number.");
         } else {
             Task task = this.getTask(index);
             task.markDone();
+            return task;
         }
     }
 
-    public void unmarkDone(int index) throws DukeException{
+    public Task unmarkDone(int index) throws DukeException{
         if (index < 0 || index >= this.getSize()) {
             throw new DukeException("Invalid task number.");
         } else {
             Task task = this.getTask(index);
             task.markUndone();
-
+            return task;
         }
     }
 

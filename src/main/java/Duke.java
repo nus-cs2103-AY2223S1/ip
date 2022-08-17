@@ -49,6 +49,10 @@ public class Duke {
                         DeadlineResponse deadlineResponse = new DeadlineResponse(taskList, inputArr);
                         deadlineResponse.action();
                         break;
+                    } case "delete": {
+                        DeleteResponse deleteResponse = new DeleteResponse(taskList, inputArr);
+                        deleteResponse.action();
+                        break;
                     }
                     default:
                         throw new DukeException("I'm sorry, but I don't know what that means :-(");

@@ -1,8 +1,8 @@
-public class MarkResponse extends Response{
+public class DeleteResponse extends Response{
     private TaskList taskList;
     private String[] inputArr;
 
-    public MarkResponse(TaskList taskList, String[] inputArr) {
+    public DeleteResponse(TaskList taskList, String[] inputArr) {
         this.taskList = taskList;
         this.inputArr = inputArr;
     }
@@ -14,9 +14,10 @@ public class MarkResponse extends Response{
         }
         try {
             int index = Integer.parseInt(this.inputArr[1]) - 1;
-            Task task = this.taskList.markDone(index);
-            super.printMessage("Nice! I've marked this task as done:" + "\n"
-                    + task + "\n");
+            Task task = this.taskList.deleteTask(index);
+            super.printMessage("Noted. I've removed this task:" + "\n"
+                    + task + "\n"
+                    + "Now you have " + this.taskList.getSize() + " tasks in the list." + "\n");
         } catch (NumberFormatException exception) {
             throw new DukeException("Invalid task number.");
         } catch (DukeException exception) {
