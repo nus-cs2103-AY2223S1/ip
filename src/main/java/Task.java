@@ -14,6 +14,9 @@ public class Task {
         this.isDone=true;
 
     }
+    public void correctDescrition(String rightDescription){
+        this.description=rightDescription;
+    }
     //undone this task and print reply
     public void taskUndone(){
         this.isDone=false;
