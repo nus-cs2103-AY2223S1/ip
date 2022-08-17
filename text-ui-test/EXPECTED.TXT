@@ -1,7 +1,28 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+Hello! I'm Duke
+What can I do for you?
 
+Got it. I've added this task:
+[T][ ] task 1
+Now you have 1 task in the list.
+Got it. I've added this task:
+[E][ ] task 2 (at: noon)
+Now you have 2 tasks in the list.
+Got it. I've added this task:
+[D][ ] task 3 (by: midnight)
+Now you have 3 tasks in the list.
+1. [T][ ] task 1
+2. [E][ ] task 2 (at: noon)
+3. [D][ ] task 3 (by: midnight)
+Nice! I've marked this task as done:
+[E][X] task 2 (at: noon)
+Nice! I've marked this task as done:
+[D][X] task 3 (by: midnight)
+1. [T][ ] task 1
+2. [E][X] task 2 (at: noon)
+3. [D][X] task 3 (by: midnight)
+OK, I've marked this task as not done yet:
+[D][ ] task 3 (by: midnight)
+1. [T][ ] task 1
+2. [E][X] task 2 (at: noon)
+3. [D][ ] task 3 (by: midnight)
+Bye. Hope to see you again soon!
