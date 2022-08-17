@@ -7,10 +7,36 @@ public class TaskList {
         this.size = 0;
     }
 
+    public String getRemainingTasks() {
+        return String.format("Now you have %d tasks in the list.", size);
+    }
+
     public String addTask(String taskName) {
-        taskList[this.size] = new Task(taskName);
+        Task task = new Task(taskName);
+        taskList[this.size] = task;
         this.size++;
         return "added: " + taskName;
+    }
+
+    public String addToDo(String taskName) {
+        Task task = new ToDo(taskName);
+        taskList[this.size] = task;
+        this.size++;
+        return "Got it. I've added this task:\n\t" + task + "\n" + getRemainingTasks();
+    }
+
+    public String addEvent(String taskName, String at) {
+        Task task = new Event(taskName, at);
+        taskList[this.size] = task;
+        this.size++;
+        return "Got it. I've added this task:\n\t" + task + "\n" + getRemainingTasks();
+    }
+
+    public String addDeadline(String taskName, String by) {
+        Task task = new Deadline(taskName, by);
+        taskList[this.size] = task;
+        this.size++;
+        return "Got it. I've added this task:\n\t" + task + "\n" + getRemainingTasks();
     }
 
     public String markTask(int taskNumber) {
