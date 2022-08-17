@@ -1,7 +1,52 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
+Woof! I'm Cheese, your puppy assistant.
+What can I do for you?
+-----
+-----
+Sowwy, I don't understand
+-----
+-----
+-----
+-----
+Gotcha! I have a paw-fect memory!
+  [T][ ] Wash laundry
+You have 1 task(s) in the list.
+-----
+-----
+Gotcha! I have a paw-fect memory!
+  [D][ ] CS2103T project (by: 25 July 1000)
+You have 2 task(s) in the list.
+-----
+-----
+Gotcha! I have a paw-fect memory!
+  [E][ ] House barbeque (at: 27 July 1800 - 2000)
+You have 3 task(s) in the list.
+-----
+-----
+1. [T][ ] Wash laundry
+2. [D][ ] CS2103T project (by: 25 July 1000)
+3. [E][ ] House barbeque (at: 27 July 1800 - 2000)
+-----
+-----
+Nice! Another task done!
+[T][X] Wash laundry
+-----
+-----
+Nice! Another task done!
+[E][X] House barbeque (at: 27 July 1800 - 2000)
+-----
+-----
+1. [T][X] Wash laundry
+2. [D][ ] CS2103T project (by: 25 July 1000)
+3. [E][X] House barbeque (at: 27 July 1800 - 2000)
+-----
+-----
+Okie! I've marked this task as not done yet.
+[E][ ] House barbeque (at: 27 July 1800 - 2000)
+-----
+-----
+1. [T][X] Wash laundry
+2. [D][ ] CS2103T project (by: 25 July 1000)
+3. [E][ ] House barbeque (at: 27 July 1800 - 2000)
+-----
+-----
+Going so soon? :') Bye

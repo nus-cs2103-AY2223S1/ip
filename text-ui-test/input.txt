@@ -1,0 +1,12 @@
+asdfg
+list
+todo Wash laundry
+deadline CS2103T project /by 25 July 1000
+event House barbeque /at 27 July 1800 - 2000
+list
+mark 1
+mark 3
+list
+unmark 3
+list
+bye
