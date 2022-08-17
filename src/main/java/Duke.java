@@ -3,6 +3,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
+    public enum Command {
+        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT
+    }
+
     private static List<Task> tasks = new ArrayList<>();
 
     /**
@@ -63,6 +67,9 @@ public class Duke {
         System.out.println("  " + currTask.toString());
     }
 
+    /**
+     * Prints a comment on the number of tasks added so far.
+     */
     public static void printNumberOfTasks() {
         if (tasks.size() == 1) {
             System.out.println("Now you have " + tasks.size() + " task in the list.");
@@ -77,9 +84,12 @@ public class Duke {
      */
     public static void addTodo(String[] inputs) {
         StringBuilder todoName = new StringBuilder();
-        for (int i = 1; i < inputs.length; i++) {
+        for (int i = 1; i < inputs.length - 1; i++) {
             todoName.append(inputs[i]).append(" ");
         }
+        // To prevent space at the end of the string
+        todoName.append(inputs[inputs.length - 1]);
+
         Todo newTodo = new Todo(todoName.toString());
         tasks.add(newTodo);
         System.out.println("Got it. I've added this task:");
