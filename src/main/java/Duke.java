@@ -66,6 +66,13 @@ public class Duke {
         printMessage("added: " + tasks[taskIndex - 1]);
     }
 
+    public void printAllTasks() {
+        for (int i = 0; i < TASK_SIZE; i++) {
+            if (tasks[i] == null) break;
+            printMessage(String.format("%d. %s", i + 1, tasks[i]));
+        }
+    }
+
 
     public static void main(String[] args) {
         Duke duke = new Duke();
@@ -80,3 +87,30 @@ public class Duke {
         duke.printExitMessage();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
