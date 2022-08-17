@@ -5,6 +5,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Duke {
+
+    private static final Scanner echo = new Scanner(System.in);
     private static Pattern checkString = Pattern.compile("-?\\d+");
 
     private static ArrayList<Task> storage = new ArrayList<Task>();
@@ -40,7 +42,6 @@ public class Duke {
     }
 
     public static void reply() {
-        Scanner echo = new Scanner(System.in);
         String response = echo.nextLine();
         String[] parts = response.split(" ", 2);
         String part1 = parts[0];
@@ -51,6 +52,7 @@ public class Duke {
                 System.out.println("Bye. Hope to see you again soon!");
                 System.out.println("-----------------------------------------------");
                 storage.clear();
+                echo.close();
                 return;
             case "list":
                 System.out.println("-----------------------------------------------");
@@ -91,7 +93,7 @@ public class Duke {
                 storage.add(deadline);
                 System.out.println("-----------------------------------------------");
                 System.out.println("Got it. I've added this task:");
-                System.out.println("added: " + deadline.getDescription());
+                System.out.println(deadline);
                 System.out.println("Now you have " + storage.size() +" tasks in the list.");
                 System.out.println("-----------------------------------------------");
                 reply();
@@ -102,7 +104,7 @@ public class Duke {
                 storage.add(todo);
                 System.out.println("-----------------------------------------------");
                 System.out.println("Got it. I've added this task:");
-                System.out.println("added: " + todo.getDescription());
+                System.out.println(todo);
                 System.out.println("Now you have " + storage.size() +" tasks in the list.");
                 System.out.println("-----------------------------------------------");
                 reply();
@@ -114,7 +116,7 @@ public class Duke {
                 storage.add(event);
                 System.out.println("-----------------------------------------------");
                 System.out.println("Got it. I've added this task:");
-                System.out.println("added: " + event.getDescription());
+                System.out.println(event);
                 System.out.println("Now you have " + storage.size() +" tasks in the list.");
                 System.out.println("-----------------------------------------------");
                 reply();
