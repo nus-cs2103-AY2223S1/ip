@@ -12,7 +12,7 @@ public class Duke {
         "    ░ ░    ░   ▒   ░      ░    ░ ░  ░   ░   ▒   \n" +
         "      ░  ░     ░  ░       ░      ░          ░  ░\n" +
         "                               ░                \n";
-        
+
         System.out.print(logo);
         System.out.println("Hi, I am LaMDA.\nHow may I assist you today?\n");
         greeting();
