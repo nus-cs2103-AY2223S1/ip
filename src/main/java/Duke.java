@@ -33,16 +33,46 @@ public class Duke {
                 taskList[pos - 1].fullDesc();
                 System.out.println(buffLine);
                 userReply = sc.nextLine();
-            } else if (!userReply.equals("list")) {
-                taskList[indCount] = new Task(userReply);
+            } else if (userReply.startsWith("todo")) {
+                taskList[indCount] = new ToDos(userReply.substring(5, userReply.length()));
+                System.out.println(buffLine + "\n" + "    Got it. I've added this task: ");
+                taskList[indCount].fullDesc();
+                System.out.println("    Now you have " + String.valueOf(indCount + 1) + " tasks in this list." +
+                        "\n" + buffLine);
                 indCount++;
-                System.out.println(buffLine + "\n" + "    added: " + userReply + "\n" + buffLine);
+                userReply = sc.nextLine();
+            } else if (userReply.startsWith("deadline")) {
+                int splitPoint = userReply.indexOf("/");
+                taskList[indCount] = new Deadlines(userReply.substring(9, splitPoint - 1),
+                        userReply.substring(splitPoint + 1, userReply.length()));
+                System.out.println("    Got it. I've added this task: ");
+                taskList[indCount].fullDesc();
+                System.out.println("    Now you have " + String.valueOf(indCount + 1) + " tasks in this list." +
+                        "\n" + buffLine);
+                indCount++;
+                userReply = sc.nextLine();
+            } else if (userReply.startsWith("event")) {
+                int splitPoint = userReply.indexOf("/");
+                taskList[indCount] = new Events(userReply.substring(6, splitPoint - 1),
+                        userReply.substring(splitPoint + 1, userReply.length()));
+                System.out.println("    Got it. I've added this task: ");
+                taskList[indCount].fullDesc();
+                System.out.println("    Now you have " + String.valueOf(indCount + 1) + " tasks in this list." +
+                        "\n" + buffLine);
+                indCount++;
+                userReply = sc.nextLine();
+            }
+            else if (!userReply.equals("list")) {
+                taskList[indCount] = new Task(userReply);
+                System.out.println(buffLine + "\n" + "    added: " + userReply);
+                System.out.println("    Now you have " + String.valueOf(indCount + 1) + " tasks in this list." +
+                        "\n" + buffLine);
+                indCount++;
                 userReply = sc.nextLine();
             } else {
                 System.out.println(buffLine);
                 for (int i = 0; i <  indCount; i++) {
-                    System.out.println("    " + (i + 1) + ". " + taskList[i].getStatusIcon()
-                    + taskList[i].description);
+                    System.out.println("    " + (i + 1) + ". " + taskList[i].stringDesc());
                 }
                 System.out.println(buffLine);
                 userReply = sc.nextLine();

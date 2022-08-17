@@ -22,4 +22,8 @@ public class Task {
     public void fullDesc() {
         System.out.println("      " + this.getStatusIcon() + " " + this.description);
     }
+
+    public String stringDesc() {
+        return this.getStatusIcon() + " " + this.description;
+    }
 }
