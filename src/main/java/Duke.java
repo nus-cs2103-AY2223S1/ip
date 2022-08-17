@@ -19,7 +19,7 @@ public class Duke {
                 System.out.println("Bye. Hope to see you again soon!");
                 break;
             } else if (input.equals("list")) {
-                System.out.println("Here are the tasks in your list:");
+                System.out.println("\nHere are the tasks in your list:");
                 for (int i = 0; i < count; i ++) {
                     System.out.println((i + 1) + ". " + arr[i].toString());
                 }
@@ -53,7 +53,7 @@ public class Duke {
                 count++;
 
             } else if (input.contains("event")) {
-                System.out.println("Got it. I've added this task:");
+                System.out.println("\nGot it. I've added this task:");
                 input = input.replaceAll("event ", "");
 
                 String[] s_arr = input.split("/", -1); //split array
