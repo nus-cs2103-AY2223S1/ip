@@ -1,10 +1,33 @@
+import java.util.Scanner;
+
 public class Duke {
+
+    private static boolean isClosed = false;
+
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+        greetingMessage();
+        Scanner sc = new Scanner(System.in);
+        while (!isClosed) {
+            String command = sc.nextLine();
+            if (command.equals("bye")) {
+                bye();
+            } else {
+                echo(command);
+            }
+        }
+    }
+
+    private static void greetingMessage() {
+        System.out.println("Hello! I'm Duke");
+        System.out.println("What can I do for you?");
+    }
+
+    private static void bye() {
+        isClosed = true;
+        System.out.println("Bye. Hope to see you again soon!");
+    }
+
+    private static void echo(String msg) {
+        System.out.println(msg);
     }
 }
