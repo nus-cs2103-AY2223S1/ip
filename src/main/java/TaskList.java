@@ -1,43 +1,33 @@
-import java.util.stream.Stream;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class TaskList {
 
-    private static final int MAX_TASKLIST_SIZE = 100;
-    private Task[] taskList;
-    private int taskCount;
+    private ArrayList<Task> taskList;
 
     TaskList() {
-        this.taskList = new Task[TaskList.MAX_TASKLIST_SIZE];
-        this.taskCount = 0;
+        this.taskList = new ArrayList<>();
     }
 
     TaskList(Task... taskList) {
-        // Should not occur based on task constraints.
-        assert taskList.length <= MAX_TASKLIST_SIZE;
-        this.taskList = new Task[TaskList.MAX_TASKLIST_SIZE];
-        System.arraycopy(taskList, 0, this.taskList, 0, taskList.length);
+        this.taskList = new ArrayList<>(Arrays.asList(taskList));
     }
 
     public void addTask(Task task) {
-        // Should not occur based on task constraints.
-        assert taskCount < MAX_TASKLIST_SIZE;
-        this.taskList[taskCount++] = task;
-
+        this.taskList.add(task);
     }
 
     public String[] toStringList() {
-        return Stream.of(this.taskList)
-                .limit(this.taskCount)
+        return this.taskList.stream()
                 .map(Task::toString)
                 .toArray(String[]::new);
     }
 
     public int getLength() {
-        return this.taskCount;
+        return this.taskList.size();
     }
 
-    // TODO: Add exception on out-of-bounds access
     public Task getTask(int index) {
-        return this.taskList[index];
+        return this.taskList.get(index);
     }
 }
