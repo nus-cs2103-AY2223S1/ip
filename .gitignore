@@ -41,6 +41,6 @@ replay_pid*
 # IntelliJ systematic builds
 out/
 
-# Test cases
-/text-ui-test/ACTUAL.txt
+# Test suite temporary files
+text-ui-test/ACTUAL.TXT
 text-ui-test/EXPECTED-UNIX.TXT
