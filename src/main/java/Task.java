@@ -15,8 +15,12 @@ public class Task {
         return this.completed;
     }
 
-    public void Toggle() {
-        this.completed = !this.completed;
+    public void markAsDone() {
+        this.completed = true;
+    }
+
+    public void markAsNotDone() {
+        this.completed = false;
     }
 
     @Override

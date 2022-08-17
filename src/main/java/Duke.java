@@ -2,6 +2,9 @@ import java.util.Scanner;
 import static java.lang.System.exit;
 
 public class Duke {
+    public enum Command {
+        BYE, LIST, MARK, UNMARK, ADD
+    }
     public static void main(String[] args) {
 
         String cat = "     /\\_____/\\\n"
@@ -22,36 +25,66 @@ public class Duke {
 
         System.out.println(border + "Meow from\n" + cat + service + border);
 
-        /*
-        Scanner sc= new Scanner(System.in);
-        Recorder echo = new Recorder();
-        String input = sc.nextLine();
-        while(!input.equals("bye")){
-            System.out.println(border);
-            echo.echo(input);
-            System.out.println(border);
-            input = sc.nextLine();
-        }
-        */
-
-
         Scanner sc= new Scanner(System.in);
         ToDoList list = new ToDoList();
 
-        String input = sc.nextLine();
-        while(!input.equals("bye")){
-            System.out.println(border);
-            if (!input.equals("list")) {
-                list.addTask(input);
-            } else {
-                list.printList();
+        while (sc.hasNextLine()) {
+            String input = sc.nextLine();
+            String[] inputArray = input.split(" ", 2);
+            String cmd = inputArray[0];
+            String target = null;
+
+            if (inputArray.length == 2) {
+                target = inputArray[1];
             }
-            System.out.println(border);
-            input = sc.nextLine();
+
+            try {
+                System.out.println(border);
+                Command c = Command.valueOf(cmd.toUpperCase());
+                switch(c) {
+                    case BYE:
+                        System.out.println(border + goodbye + border);
+                        exit(0);
+                    case LIST:
+                        list.printList();
+                        break;
+                    case ADD:
+                        if (target == null) {
+                            throw new IllegalArgumentException();
+                        }
+                        list.addTask(target);
+                        break;
+                    case MARK:
+                        if (target == null) {
+                            throw new IllegalArgumentException();
+                        }
+                        int position = Integer.parseInt(target);
+                        list.mark(position);
+                        break;
+                    case UNMARK:
+                        if (target == null) {
+                            throw new IllegalArgumentException();
+                        }
+                        position = Integer.parseInt(target);
+                        list.unMark(position);
+                        break;
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println("Nyat a valid instruction! Rub my belly instead!\n"
+                                    + "    'bye' to exit.\n"
+                                    + "    'list' for overview\n"
+                                    + "    'add ABC' to add task ABC\n"
+                                    + "    'mark x' to mark task x as complete\n"
+                                    + "    'unmark x' to mark task x as incomplete\n"
+                                    + "    NYAAAAAA!\n");
+            } finally {
+                System.out.println(border);
+            }
         }
 
-        System.out.println(border + goodbye + border);
-        exit(0);
+
+
 
     }
+
 }
