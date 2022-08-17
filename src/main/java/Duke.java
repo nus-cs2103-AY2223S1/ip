@@ -54,6 +54,10 @@ public class Duke {
 //        Level_4
         map.put(Action.EVENT, command -> event(command.getParameters().get(0), command.getParameters().get(1)));
         map.put(Action.DEADLINE, command -> deadline(command.getParameters().get(0), command.getParameters().get(1)));
+//       Level_5
+//        No Actions is added.
+//        Level_6
+        map.put(Action.DELETE, command -> delete(Integer.parseInt(command.getParameters().get(0))));
     }
 
     private void initialize() {
@@ -153,5 +157,16 @@ public class Duke {
 
     public void handle(DukeException dukeException) {
         this.mp.printMessage(dukeException.getMessage());
+    }
+
+    public void delete(int idTask) {
+        if (idTask > this.tasks.size() || idTask <= 0) {
+            throw new DukeException.TaskNotFoundException(idTask);
+        }
+        String successMsg = "Noted. I've removed this task:";
+        Task task = this.tasks.remove(idTask - 1);
+        successMsg = successMsg + "\n" + task + "\n" +
+                "Now you have " + tasks.size() + " tasks in the list.";
+        mp.printMessage(successMsg );
     }
 }

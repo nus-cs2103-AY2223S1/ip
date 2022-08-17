@@ -26,7 +26,7 @@ public class DukeException extends RuntimeException {
     public static class TaskNotFoundException extends DukeException {
         public TaskNotFoundException(int idTask) {
             super("Task No.: " + String.valueOf(idTask) + " is not found in the task list. \n" +
-                    "Try command [list] to show the tasks you may choose from");
+                    "Try command [list] to show the tasks you may choose from.");
         }
     }
 }

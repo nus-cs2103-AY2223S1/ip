@@ -12,7 +12,11 @@ public enum Action {
 //    Level_3
     MARK, UNMARK,
 //    Level_4
-    TODO, EVENT, DEADLINE;
+    TODO, EVENT, DEADLINE,
+//    Level_5
+//    No new actions is added
+//    Level_6
+    DELETE;
 
     private static HashMap<Action, String> actionFormatMap = new HashMap<>();
     static {
@@ -32,6 +36,10 @@ public enum Action {
         map.put(Action.TODO, "todo [Name]");
         map.put(Action.EVENT, "event [Event Name] /at [Event Time]");
         map.put(Action.DEADLINE, "deadline [Deadline Name] /by [Deadline Time]");
+//        Level_5
+//        No Action is added.
+//        Level_6
+        map.put(Action.DELETE, "delete [ID of Task]");
     }
 
     private static HashMap<String, Action> stringActionMap = new HashMap<>();
@@ -52,6 +60,10 @@ public enum Action {
         map.put("todo", Action.TODO);
         map.put("event", Action.EVENT);
         map.put("deadline", Action.DEADLINE);
+//        Level_5
+//        No Action is added.
+//        Level_6
+        map.put("delete", Action.DELETE);
     }
 
     public static String getString(Action action) {

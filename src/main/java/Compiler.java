@@ -76,7 +76,7 @@ public class Compiler {
                 String START_OF_EVENT_TIME_SYMBOL = " /at ";
                 if (!s.contains(START_OF_EVENT_TIME_SYMBOL)) {
                     throw new DukeException.InvalidArgumentException(Action.EVENT, "Keyword: [" +
-                            START_OF_EVENT_TIME_SYMBOL + " ] is not found.");
+                            START_OF_EVENT_TIME_SYMBOL + " ] or [Time] is not found.");
                 }
                 indexOfName = Action.getString(Action.EVENT).length();
                 indexOfTime = getFirstIndexOfStr1InStr2(START_OF_EVENT_TIME_SYMBOL, s);
@@ -98,7 +98,7 @@ public class Compiler {
 
                 if (!s.contains(START_OF_DEADLINE_TIME_SYMBOL)) {
                     throw new DukeException.InvalidArgumentException(Action.DEADLINE, "Keyword: [" +
-                            START_OF_DEADLINE_TIME_SYMBOL + " ] is not found.");
+                            START_OF_DEADLINE_TIME_SYMBOL + " ] or [Time] is not found.");
                 }
 
                 indexOfName = Action.getString(Action.DEADLINE).length();
@@ -117,6 +117,14 @@ public class Compiler {
                 }
 
                 return new Command(Action.DEADLINE, arg1, arg2);
+            case DELETE:
+                arg1 = s.substring(Action.getString(Action.DELETE).length()).trim();
+                if (arg1.equals("")) {
+                    throw new DukeException.NoArgumentException(Action.DELETE);
+                } else if (!isInt(arg1)) {
+                    throw new DukeException.InvalidArgumentException(Action.DELETE, "The argument should be an integer.");
+                }
+                return new Command(Action.DELETE, arg1);
             case DONOTHING:
                 return new Command(Action.DONOTHING);
             default:
