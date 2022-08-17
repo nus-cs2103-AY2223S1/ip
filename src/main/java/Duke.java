@@ -48,9 +48,32 @@ public class Duke {
                 System.out.println(tasks.get(index));
             }
 
+            else if (userInput.startsWith("todo ")) {
+                String toDoName = userInput.substring(5).strip();
+                tasks.add(new ToDo(toDoName));
+                System.out.printf("Duke: I have added the to-do %s.\n", toDoName);
+            }
+
+            // e.g. userInput is "event supernova @ friday night"
+            else if (userInput.startsWith("event ")) {
+                // TODO: Ensure that the string contains a "@" and a time range is specified.
+                String eventName = userInput.substring(6).split("@ ")[0].strip();
+                String eventTimeRange = userInput.split("@ ")[1].strip();
+                tasks.add(new Event(eventName, eventTimeRange));
+                System.out.printf("Duke: I have added the event %s.\n", eventName);
+            }
+
+            else if (userInput.startsWith("deadline ")) {
+                // TODO: Ensure that the string contains a "@" and a due date is specified.
+                String deadlineName = userInput.substring(9).split("@ ")[0].strip();
+                String deadlineDueDate = userInput.split("@ ")[1].strip();
+                tasks.add(new Deadline(deadlineName, deadlineDueDate));
+
+                System.out.printf("Duke: I have added the deadline %s.\n", deadlineName);
+            }
+
             else {
-                tasks.add(new Task(userInput));
-                System.out.println("Duke: I have added " + userInput);
+                System.out.println("Duke: I don't understand!");
             }
         }
     }
