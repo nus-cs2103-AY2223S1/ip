@@ -4,10 +4,8 @@ import java.util.Scanner;
 public class Duke {
 
     ArrayList<Task> tasks = new ArrayList<>(100);
-
-    public Duke() {
-
-    }
+    final String BORDER = "    ____________________________________________________________";
+    final String INDENT = "     ";
 
     public void run() {
         welcome();
@@ -15,18 +13,22 @@ public class Duke {
         bye();
     }
 
+    public void msg(String content) {
+        System.out.println(BORDER);
+        System.out.print(content);
+        System.out.println(BORDER);
+        System.out.println();
+    }
+
     public void welcome() {
+        String content;
         String logo = "      ____        _        \n"
                 + "     |  _ \\ _   _| | _____ \n"
                 + "     | | | | | | | |/ / _ \\\n"
                 + "     | |_| | |_| |   <  __/\n"
                 + "     |____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("    ____________________________________________________________");
-        System.out.println(logo);
-        System.out.println("     Hello! I'm Duke");
-        System.out.println("     What can I do for you?");
-        System.out.println("    ____________________________________________________________");
-        System.out.println();
+        content = logo + "\n" + INDENT + "Hello! I'm Duke\n" + INDENT + "What can I do for you?\n";
+        msg(content);
     }
 
     public void command() {
@@ -36,9 +38,9 @@ public class Duke {
             if (cmd.equals("list")) {
                 list();
             } else if (cmd.split(" ")[0].equals("mark")) {
-                mark(Integer.parseInt(cmd.split(" ")[1]) - 1);
+                mark(cmd);
             } else if (cmd.split(" ")[0].equals("unmark")) {
-                unmark(Integer.parseInt(cmd.split(" ")[1]) - 1);
+                unmark(cmd);
             } else {
                 addTask(cmd);
             }
@@ -49,32 +51,46 @@ public class Duke {
 
     public void addTask(String cmd) {
         String type = cmd.split(" ")[0];
+        boolean added = false;
+        int sizePrev = tasks.size();
         switch (type) {
             case "todo":
                 addTodo(cmd);
+                added = sizePrev != tasks.size();
                 break;
 
             case "deadline":
                 addDeadline(cmd);
+                added = sizePrev != tasks.size();
                 break;
 
             case "event":
                 addEvent(cmd);
+                added = sizePrev != tasks.size();
                 break;
+
+            default:
+                msg(INDENT + "☹ OOPS!!! I'm sorry, but I don't know what that means :-(\n");
         }
-        Task task = tasks.get(tasks.size() - 1);
-        System.out.println("    ____________________________________________________________");
-        System.out.println("     Got it. I've added this task:");
-        System.out.println("       " + task);
-        System.out.println("     Now you have " + tasks.size() + " tasks in the list.");
-        System.out.println("    ____________________________________________________________");
-        System.out.println();
+        if (added) {
+            String content;
+            Task task = tasks.get(tasks.size() - 1);
+            content = INDENT + "Got it. I've added this task:\n";
+            content += INDENT + "  " + task + "\n";
+            content += INDENT + "Now you have " + tasks.size() + " tasks in the list.\n";
+            msg(content);
+        }
     }
 
-    public void addTodo(String cmd) {
-        String desc = cmd.split(" ", 2)[1];
-        Todo todo = new Todo(desc);
-        tasks.add(tasks.size(), todo);
+    public void addTodo(String cmd) throws DukeException {
+        try {
+            String desc = cmd.split(" ", 2)[1];
+            Todo todo = new Todo(desc);
+            tasks.add(tasks.size(), todo);
+        } catch (Exception e) {
+            msg(INDENT + "☹ OOPS!!! The description of a todo cannot be empty.\n");
+//            throw new DukeException("");
+        }
     }
 
     public void addDeadline(String cmd) {
@@ -94,40 +110,47 @@ public class Duke {
     }
 
     public void list() {
-        System.out.println("    ____________________________________________________________");
-        System.out.println("     Here are the tasks in your list: ");
+        String content;
+        content = INDENT + "Here are the tasks in your list:\n";
         for (int i = 0; i < tasks.size(); i++) {
             Task task = tasks.get(i);
-            System.out.println("     " + (i + 1) + "." + task);
+            content += INDENT + (i + 1) + "." + task + "\n";
         }
-        System.out.println("    ____________________________________________________________");
-        System.out.println();
+        msg(content);
     }
 
-    public void mark(int index) {
-        Task curr = tasks.get(index);
-        curr.markAsDone();
-        System.out.println("    ____________________________________________________________");
-        System.out.println("     Nice! I've marked this task as done:");
-        System.out.println("       " + curr);
-        System.out.println("    ____________________________________________________________");
-        System.out.println();
+    public void mark(String cmd) throws DukeException {
+        try {
+            int index = Integer.parseInt(cmd.split(" ")[1]) - 1;
+            Task curr = tasks.get(index);
+            if (curr.getStatusIcon().equals(" ")) {
+                curr.markAsDone();
+                msg(INDENT + "Nice! I've marked this task as done:\n" + INDENT + "  " + curr + "\n");
+            } else {
+                msg(INDENT + "This task was already done.\n" + INDENT + "  " + curr + "\n");
+            }
+        } catch (Exception e) {
+            msg(INDENT + "☹ OOPS!!! This mark command is invalid. \n");
+        }
     }
 
-    public void unmark(int index) {
-        Task curr = tasks.get(index);
-        curr.unmarkTask();
-        System.out.println("    ____________________________________________________________");
-        System.out.println("     OK, I've marked this task as not done yet:");
-        System.out.println("       " + curr);
-        System.out.println("    ____________________________________________________________");
-        System.out.println();
+    public void unmark(String cmd) {
+        try {
+            int index = Integer.parseInt(cmd.split(" ")[1]) - 1;
+            Task curr = tasks.get(index);
+            if (curr.getStatusIcon().equals("X")) {
+                curr.unmarkTask();
+                msg(INDENT + "OK, I've marked this task as not done yet:\n" + INDENT + "  " + curr + "\n");
+            } else {
+                msg(INDENT + "This task has not been done in the first place.\n" + INDENT + "  " + curr + "\n");
+            }
+        } catch (Exception e) {
+            msg(INDENT + "☹ OOPS!!! This unmark command is invalid. \n");
+        }
     }
 
     public void bye() {
-        System.out.println("    ____________________________________________________________");
-        System.out.println("     Bye. Hope to see you again soon!" );
-        System.out.println("    ____________________________________________________________");
+        msg(INDENT + "Bye. Hope to see you again soon!\n");
     }
 
     public static void main(String[] args) {
