@@ -35,32 +35,69 @@ public class Duke {
         while (!cmd.equals("bye")) {
             if (cmd.equals("list")) {
                 list();
-            } else if (cmd.split(" ", 2)[0].equals("mark")) {
-                mark(Integer.parseInt(cmd.split(" ", 2)[1]) - 1);
-            } else if (cmd.split(" ", 2)[0].equals("unmark")) {
-                unmark(Integer.parseInt(cmd.split(" ", 2)[1]) - 1);
+            } else if (cmd.split(" ")[0].equals("mark")) {
+                mark(Integer.parseInt(cmd.split(" ")[1]) - 1);
+            } else if (cmd.split(" ")[0].equals("unmark")) {
+                unmark(Integer.parseInt(cmd.split(" ")[1]) - 1);
             } else {
-                store(cmd);
+                addTask(cmd);
             }
             cmd = sc.nextLine();
         }
     }
 
-    public void store(String cmd) {
-        Task task = new Task(cmd);
-        tasks.add(tasks.size(), task);
+    public void addTask(String cmd) {
+        String type = cmd.split(" ")[0];
+        switch (type) {
+            case "todo":
+                addTodo(cmd);
+                break;
+
+            case "deadline":
+                addDeadline(cmd);
+                break;
+
+            case "event":
+                addEvent(cmd);
+                break;
+        }
+        Task task = tasks.get(tasks.size() - 1);
         System.out.println("    ____________________________________________________________");
-        System.out.println("     added: " + task.getDescription());
+        System.out.println("     Got it. I've added this task:");
+        System.out.println("       " + task);
+        System.out.println("     Now you have " + tasks.size() + " tasks in the list.");
         System.out.println("    ____________________________________________________________");
         System.out.println();
     }
 
+    public void addTodo(String cmd) {
+        String desc = cmd.split(" ", 2)[1];
+        Todo todo = new Todo(desc);
+        tasks.add(tasks.size(), todo);
+    }
+
+    public void addDeadline(String cmd) {
+        String[] div = cmd.split("/");
+        String desc = div[0].split(" ", 2)[1];
+        String by = div[1].split(" ", 2)[1];
+        Deadline deadline = new Deadline(desc, by);
+        tasks.add(tasks.size(), deadline);
+    }
+
+    public void addEvent(String cmd) {
+        String[] div = cmd.split("/");
+        String desc = div[0].split(" ", 2)[1];
+        String at = div[1].split(" ", 2)[1];
+        Event event = new Event(desc, at);
+        tasks.add(tasks.size(), event);
+    }
+
     public void list() {
         System.out.println("    ____________________________________________________________");
-        System.out.println("Here are the tasks in your list: ");
+        System.out.println("     Here are the tasks in your list: ");
         for (int i = 0; i < tasks.size(); i++) {
             Task task = tasks.get(i);
-            System.out.println("     " + (i + 1) + task);
+            System.out.println("     " + (i + 1) + "." + task);
         }
         System.out.println("    ____________________________________________________________");
         System.out.println();
