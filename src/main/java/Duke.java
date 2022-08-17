@@ -1,4 +1,5 @@
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -35,7 +36,8 @@ public class Duke {
 
     public static void toDo() throws DukeException {
         //String[] tasks = new String[100];
-        Task[] tasks = new Task[100];
+        //Task[] tasks = new Task[100];
+        ArrayList<Task> tasks = new ArrayList<>();
 
         int taskNum = 0;
 
@@ -57,13 +59,9 @@ public class Duke {
             }
 
             if (str2.length() > 4 && (str2.substring(0, 4)).equals("todo")) {
-                System.out.println("Got it. I've added this task:");
-                ToDos newToDo = new ToDos(str2.substring(5, str2.length()));
-                tasks[taskNum] = newToDo;
-                System.out.println(tasks[taskNum].toString());
+                addToDo(str2, tasks, taskNum);
                 taskNum++;
                 System.out.println("Now you have " + taskNum + " tasks in the list.");
-
                 str2 = sc.nextLine();
                 continue;
             }
@@ -73,18 +71,7 @@ public class Duke {
             }
 
             if (str2.length() > 8 && (str2.substring(0, 8)).equals("deadline")) {
-                System.out.println("Got it. I've added this task:");
-                int k = 9;
-                String desc = "";
-                while (str2.charAt(k) != '/') {
-                    desc += str2.charAt(k);
-                    k++;
-                }
-
-                String dl = str2.substring(k + 4, str2.length());
-                Deadlines newDeadline = new Deadlines(desc, dl);
-                tasks[taskNum] = newDeadline;
-                System.out.println(tasks[taskNum].toString());
+                addDeadline(str2, tasks, taskNum);
                 taskNum++;
                 System.out.println("Now you have " + taskNum + " tasks in the list.");
                 str2 = sc.nextLine();
@@ -92,20 +79,16 @@ public class Duke {
             }
 
             if (str2.length() > 5 && (str2.substring(0, 5)).equals("event")) {
-                System.out.println("Got it. I've added this task:");
-                int k = 6;
-                String desc = "";
-                while (str2.charAt(k) != '/') {
-                    desc += str2.charAt(k);
-                    k++;
-                }
-
-                String eventTime = str2.substring(k + 4, str2.length());
-                Events newEvent = new Events(desc, eventTime);
-                tasks[taskNum] = newEvent;
-                System.out.println(tasks[taskNum].toString());
+                addEvent(str2, tasks, taskNum);
                 taskNum++;
                 System.out.println("Now you have " + taskNum + " tasks in the list.");
+                str2 = sc.nextLine();
+                continue;
+            }
+
+            if (str2.length() > 7 && (str2.substring(0, 6)).equals("delete")) {
+                deleteTask(str2, tasks);
+                taskNum--;
                 str2 = sc.nextLine();
                 continue;
             }
@@ -121,16 +104,15 @@ public class Duke {
         System.out.println("Bye! See you soon!");
     }
 
-    public static void showList(int taskNo, Task[] arr1){
+    public static void showList(int taskNo, ArrayList<Task> arr1){
         System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < taskNo; i++) {
             int num = i + 1;
-            //System.out.println(num + ". " + "[" + arr1[i].getStatusIcon() + "] " + arr1[i].description);
-            System.out.println(num + ". " + arr1[i].toString());
+            System.out.println(num + ". " + arr1.get(i).toString());
         }
     }
 
-    public static void markDone(String task, Task[] arr1) {
+    public static void markDone(String task, ArrayList<Task> arr1) {
         int taskToMark = 0;
         System.out.println("Nice! I've marked this task as done:");
 
@@ -140,8 +122,59 @@ public class Duke {
         }
 
         taskToMark = Integer.parseInt(strTaskToMark);
-        arr1[taskToMark - 1].isDone = true;
-        System.out.println("[" + arr1[taskToMark - 1].getStatusIcon() + "] " + arr1[taskToMark - 1].description);
+        arr1.get(taskToMark - 1).isDone = true;
+        System.out.println("[" + arr1.get(taskToMark - 1).getStatusIcon() + "] " + arr1.get(taskToMark - 1).description);
     }
 
+    public static void addToDo(String str, ArrayList<Task> arr, int num) {
+        System.out.println("Got it. I've added this task:");
+        ToDos newToDo = new ToDos(str.substring(5, str.length()));
+        arr.add(num, newToDo);
+        System.out.println(arr.get(num).toString());
+    }
+
+    public static void addDeadline(String str, ArrayList<Task> arr, int num) {
+        System.out.println("Got it. I've added this task:");
+        int k = 9;
+        String desc = "";
+        while (str.charAt(k) != '/') {
+            desc += str.charAt(k);
+            k++;
+        }
+
+        String dl = str.substring(k + 4, str.length());
+        Deadlines newDeadline = new Deadlines(desc, dl);
+        arr.add(num, newDeadline);
+        System.out.println(arr.get(num).toString());
+    }
+
+    public static void addEvent(String str, ArrayList<Task> arr, int num) {
+        System.out.println("Got it. I've added this task:");
+        int k = 6;
+        String desc = "";
+        while (str.charAt(k) != '/') {
+            desc += str.charAt(k);
+            k++;
+        }
+
+        String eventTime = str.substring(k + 4, str.length());
+        Events newEvent = new Events(desc, eventTime);
+        arr.add(num, newEvent);
+        System.out.println(arr.get(num).toString());
+    }
+
+    public static void deleteTask(String str, ArrayList<Task> arr) {
+        int taskToDel = 0;
+        System.out.println("Noted. I've removed this task:");
+
+        String strTaskToDel = "";
+        for (int j = 7; j < str.length(); j++) {
+            strTaskToDel = strTaskToDel + str.charAt(j);
+        }
+
+        taskToDel = Integer.parseInt(strTaskToDel) - 1;
+        System.out.println(arr.get(taskToDel).toString());
+        arr.remove(taskToDel);
+        System.out.println("Now you have " + arr.size() + " tasks in the list.");
+    }
 }
