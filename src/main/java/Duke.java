@@ -3,7 +3,8 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Duke {
-    public static void main(String[] args) {
+
+    public static void main(String[] args) throws DukeException {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -58,6 +59,10 @@ public class Duke {
                     i++;
                 }
 
+                if (taskname.equals("")) {
+                    throw new DukeException("Name of task cannot be empty!");
+                }
+
                 if (str.equals("todo")) {
                     Task todo = new Todo(taskname.trim());
                     arrayList.add(todo);
@@ -66,6 +71,10 @@ public class Duke {
                     System.out.println("Now you have " + arrayList.size() + " task(s) in the list.");
 
                 } else if (str.equals("deadline")) {
+                    if (time.equals("")) {
+                        throw new DukeException("Date/Time cannot be empty!");
+                    }
+
                     Task deadline = new Deadline(taskname.trim(), time.trim());
                     arrayList.add(deadline);
                     System.out.println("Got it. I've added this task:");
@@ -73,6 +82,10 @@ public class Duke {
                     System.out.println("Now you have " + arrayList.size() + " task(s) in the list.");
 
                 } else {
+                    if (time.equals("")) {
+                        throw new DukeException("Date/Time cannot be empty!");
+                    }
+
                     Task event = new Event(taskname.trim(), time.trim());
                     arrayList.add(event);
                     System.out.println("Got it. I've added this task:");
@@ -80,7 +93,7 @@ public class Duke {
                     System.out.println("Now you have " + arrayList.size() + " task(s) in the list.");
                 }
             } else {
-                System.out.println("Please enter a valid input");
+                throw new DukeException("Please enter a valid input");
             }
 
             strArray = sc.nextLine().split(" ");
