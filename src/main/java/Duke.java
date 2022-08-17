@@ -6,7 +6,7 @@ public class Duke {
     private boolean isActive = true;
     private String emoji = "<_>";
     private Scanner reader = new Scanner(System.in);
-    private String[] todos = new String[100];
+    private Task[] todos = new Task[100];
     private int pointer = 0;
 
     public static void main(String[] args) {
@@ -33,6 +33,10 @@ public class Duke {
             bye();
         } else if (userInput.equals("list")) {
             listTasks();
+        } else if (userInput.startsWith("mark")) {
+            markTask(Integer.parseInt(userInput.substring(5)));
+        } else if (userInput.startsWith("unmark")) {
+            unmarkTask(Integer.parseInt(userInput.substring(7)));
         } else {
            addTask(userInput);
         }
@@ -42,7 +46,7 @@ public class Duke {
 
     private void addTask(String task) {
         System.out.println("\tlazily added: " + task + " " + emoji);
-        todos[pointer] = task;
+        todos[pointer] = new Task(task);
         pointer++;
     }
 
@@ -51,6 +55,18 @@ public class Duke {
         for (int i = 1; i <= pointer; i++) {
             System.out.println(i + ". " + todos[i - 1]);
         }
+    }
+
+    private void markTask(int index) {
+        todos[index - 1].changeState();
+        System.out.println("\tWellz, I've marked this task for YOU:");
+        System.out.println("\t\t" + todos[index - 1]);
+    }
+
+    private void unmarkTask(int index) {
+        todos[index - 1].changeState();
+        System.out.println("\t-_-, I've unmarked this task for YOU AGAIN:");
+        System.out.println("\t\t" + todos[index - 1]);
     }
 
     private void bye() {
