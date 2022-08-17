@@ -34,8 +34,7 @@ public class Duke {
                     if (i == task.size() - 1) {
                         isLastLine = true;
                     }
-                    say(i + 1 + ". [" + task.get(i).getStatusIcon() + "] "
-                            + task.get(i).getDescription(), isFirstLine, isLastLine);
+                    say(i + 1 + ". " + task.get(i).toString(), isFirstLine, isLastLine);
                 }
             }
             else if (userInput.startsWith("mark") && userInput.split(" ", 2).length != 1) {
@@ -44,8 +43,7 @@ public class Duke {
                 int index = Integer.parseInt(userInput.split(" ", 2)[1]) - 1;
                 task.get(index).setStatus(true);
                 say("Nice! I've marked this task as done:", true, false);
-                say("  [" + task.get(index).getStatusIcon() + "] "
-                        + task.get(index).getDescription(), false, true);
+                say(task.get(index).toString(), false, true);
             }
             else if (userInput.startsWith("unmark") && userInput.split(" ", 2).length != 1) {
                 // when user enters unmark and a number
@@ -53,8 +51,7 @@ public class Duke {
                 int index = Integer.parseInt(userInput.split(" ", 2)[1]) - 1;
                 task.get(index).setStatus(false);
                 say("OK, I've marked this task as not done yet:", true, false);
-                say("  [" + task.get(index).getStatusIcon() + "] "
-                        + task.get(index).getDescription(), false, true);
+                say(task.get(index).toString(), false, true);
             }
             else {
                 // add user input to the list
