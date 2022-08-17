@@ -13,31 +13,59 @@ public class ChatBot {
         controller.startGreeting();
 
         while (true) {
-            String userInput = controller.inputFromUser();
-            if (userInput.length() == 0) {
-                continue;
+            int command = controller.userCommand();
+            switch (command) {
+                case 1:
+                    System.out.println("PLease type in your ToDo task: ");
+                    String todo = controller.inputFromUser();
+                    Task todoTask = controller.addToList(todo, null, "todo");
+                    controller.display(todoTask.toString(), false, false, false);
+                    break;
+
+                case 2:
+                    System.out.println("PLease type in your Event: ");
+                    String event = controller.inputFromUser();
+                    System.out.println("PLease type in date: ");
+                    String eventTime = controller.inputFromUser();
+                    Task eventTask = controller.addToList(event, eventTime, "event");
+                    controller.display(eventTask.toString(), false, false, false);
+                    break;
+
+                case 3:
+                    System.out.println("PLease type in your Deadline task: ");
+                    String ddl = controller.inputFromUser();
+                    System.out.println("PLease type in deadline: ");
+                    String ddlTime = controller.inputFromUser();
+                    Task ddlTask = controller.addToList(ddl, ddlTime, "deadline");
+                    controller.display(ddlTask.toString(), false, false, false);
+                    break;
+
+                case 4:
+                    controller.display(null, true, false, false);
+                    break;
+
+                case 5:
+                    System.out.println("Please type in the task index that you want to mark: ");
+                    int taskIndexToMark = controller.userTask() - 1;
+                    controller.changeTaskStatus(taskIndexToMark, true);
+                    String replyMark = controller.getTask(taskIndexToMark).toString();
+                    controller.display(replyMark, false, true, false);
+                    break;
+
+                case 6:
+                    System.out.println("Please type in the task index that you want to unmark: ");
+                    int taskIndexToUnmark = controller.userTask() - 1;
+                    controller.changeTaskStatus(taskIndexToUnmark, false);
+                    String replyUnmark = controller.getTask(taskIndexToUnmark).toString();
+                    controller.display(replyUnmark, false, false, true);
+                    break;
+
+                case 7:
+                    controller.sayBye();
+                    return;
             }
-            boolean isList = controller.checkList(userInput);
-            boolean isBye = controller.checkBye(userInput);
-            boolean isMark = controller.checkMark(userInput);
-            boolean isUnmark = controller.checkUnmark(userInput);
-            if (!isBye && !isList && !isMark && !isUnmark) {
-                controller.addToList(userInput);
-            }
-            String reply = controller.replyToUser(userInput, isBye, isList, isMark, isUnmark);
-            if (isBye) {
-                controller.sayBye();
-                break;
-            } else if (isMark) {
-                int taskIndex = Integer.parseInt(reply) - 1;
-                controller.changeTaskStatus(taskIndex, true);
-                reply = controller.getTask(taskIndex).toString();
-            } else if (isUnmark) {
-                int taskIndex = Integer.parseInt(reply);
-                controller.changeTaskStatus(taskIndex, false);
-                reply = controller.getTask(taskIndex).toString();
-            }
-            controller.display(reply, isList, isMark, isUnmark);
+
+            controller.showCommandList();
         }
     }
 
