@@ -1,4 +1,4 @@
-public class Task {
+public abstract class Task {
     /**
      * Specifies a task to be done.
      */
@@ -6,7 +6,7 @@ public class Task {
     private String taskDescription;
     private boolean completedTask;
 
-    public Task(String taskDescription) {
+    protected Task(String taskDescription) {
         this.taskDescription = taskDescription;
         completedTask = false;
     }
