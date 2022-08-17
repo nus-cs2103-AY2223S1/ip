@@ -47,6 +47,7 @@ public class TaskList {
         this.indentMessage("You can only mark/unmark a task between 0 to " + this.tasks.size());
         this.drawLine();
     }
+    
     public void indentMessage(String msg) {
         Duke.indentMessage(msg);
     }
@@ -60,7 +61,7 @@ public class TaskList {
         this.tasks.add(task);
 
         this.drawLine();
-        this.indentMessage("Task succesfully added!");
+        this.indentMessage("Task successfully added!");
         this.indentMessage("  " + task);
         this.drawLine();
     }
