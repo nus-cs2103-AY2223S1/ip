@@ -11,16 +11,32 @@ public class Duke {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?");
-        String[] arr = new String[100];
+        Task[] arr = new Task[100];
         int count=0;
         String str = scanner.nextLine();
         while(!str.equals("bye")) {
             if(str.equals("list")){
+                System.out.println("Here are the tasks in your list");
                 for(int i=0;i<count;i++){
-                    System.out.println(i+1 +". "+arr[i]);
+                    System.out.println(i+1 +".["+arr[i].getStatusIcon()+"] "+ arr[i].description);
                 }
-            } else{
-                arr[count] = str;
+            }
+            else if(str.contains("unmark")){
+                String strnum = str.substring(7,8);
+                int num = Integer.valueOf(strnum);
+                arr[num-1].isDone = false;
+                System.out.println("OK, I've marked this task as not done yet:");
+                System.out.println("["+arr[num-1].getStatusIcon()+"] "+ arr[num-1].description);
+
+            }else if(str.contains("mark")){
+                String strnum = str.substring(5,6);
+                int num = Integer.valueOf(strnum);
+                arr[num-1].isDone = true;
+                System.out.println("Nice! I've marked this task as done:");
+                System.out.println("["+arr[num-1].getStatusIcon()+"] "+ arr[num-1].description);
+            }
+            else{
+                arr[count] = new Task(str);
                 count++;
                 System.out.println("added: "+str);
             }
