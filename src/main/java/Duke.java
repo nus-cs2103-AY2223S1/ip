@@ -7,7 +7,7 @@ public class Duke {
 
         bot.introduce();
         while (true) {
-            String input = sc.next();
+            String input = sc.nextLine();
             bot.answer(input);
             if (input.equals("bye")) {
                 break;
