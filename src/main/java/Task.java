@@ -16,11 +16,13 @@ public class Task {
         return this.getStatusIcon() + " " + this.description;
     }
 
-    public void markAsDone() {
+    public String markAsDone() {
         this.isDone = true;
+        return this.toString();
     }
 
-    public void markAsUndone() {
+    public String markAsUndone() {
         this.isDone = false;
+        return this.toString();
     }
 }

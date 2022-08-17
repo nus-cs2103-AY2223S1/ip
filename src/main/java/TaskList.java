@@ -1,0 +1,37 @@
+import java.util.ArrayList;
+
+public class TaskList {
+
+    protected ArrayList<Task> tasks;
+    public static final String DONE = "Nice! I've marked this task as done:\n";
+    public static final String UNDONE =  "OK, I've marked this task as not done yet:\n";
+
+
+    public TaskList() {
+        this.tasks = new ArrayList<>();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder allTasks = new StringBuilder();
+        for (int i = 1; i <= this.tasks.size(); i++) {
+            allTasks.append(i + ". " + this.tasks.get(i - 1));
+            if (i < this.tasks.size()) {
+                allTasks.append("\n");
+            }
+        }
+        return allTasks.toString();
+    }
+
+    public void addTask(String task) {
+        this.tasks.add(new Task(task));
+    }
+
+    public String markTask(int index) {
+        return DONE + this.tasks.get(index).markAsDone();
+    }
+
+    public String unmarkTask(int index) {
+        return UNDONE + this.tasks.get(index).markAsUndone();
+    }
+}
