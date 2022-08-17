@@ -1,27 +1,7 @@
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
 public class Duke {
-    private static final String LOGO = " ____        _        \n"
-            + "|  _ \\ _   _| | _____ \n"
-            + "| | | | | | | |/ / _ \\\n"
-            + "| |_| | |_| |   <  __/\n"
-            + "|____/ \\__,_|_|\\_\\___|\n";
-
-    private static final String GREETING = "Hello! I'm Duke\n"
-            + "What can I do for you?\n";
-
-    private static final List<Task> TASKS = new ArrayList<>();
-    // private static final File FILE = new File("data/duke.txt");
-
     private Storage storage;
     private TaskList taskList;
     private Ui ui;
@@ -38,18 +18,18 @@ public class Duke {
     }
 
     public void run() {
-        System.out.println(GREETING);
         boolean isExit = false;
+        this.ui.printGreeting();
         while (!isExit) {
             try {
-                String userInput = ui.read();
+                String userInput = this.ui.read();
                 Command command = Parser.parseInput(userInput);
                 command.execute(this.storage, this.taskList, this.ui);
                 isExit = command.getExit();
             } catch (DukeException | IndexOutOfBoundsException e) {
-                System.out.println(e.getMessage());
+                this.ui.printErrorMessage(e.getMessage());
             } catch (DateTimeParseException e) {
-                System.out.println("Please format date in YYYY-MM-DD");
+                this.ui.printErrorMessage("Please format date in YYYY-MM-DD.");
             }
         }
     }

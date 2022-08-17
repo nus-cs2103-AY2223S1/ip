@@ -1,11 +1,24 @@
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Ui {
+    private static final String LOGO = " ____        _        \n"
+            + "|  _ \\ _   _| | _____ \n"
+            + "| | | | | | | |/ / _ \\\n"
+            + "| |_| | |_| |   <  __/\n"
+            + "|____/ \\__,_|_|\\_\\___|\n";
+
+    private static final String GREETING = "Hello! I'm Duke\n"
+            + "What can I do for you?\n";
+
     private Scanner scanner;
 
     public Ui() {
         this.scanner = new Scanner(System.in);
+    }
+
+    public void printGreeting() {
+        System.out.println(LOGO);
+        System.out.println(GREETING);
     }
 
     public String read() {
@@ -17,8 +30,9 @@ public class Ui {
         scanner.close();
     }
 
-    public void print(String message) {
-        System.out.println(message);
+    public void printList(String list) {
+        System.out.println("Here are the tasks in your list:");
+        System.out.println(list);
     }
 
     public void printSizeOfList(int size) {
@@ -43,5 +57,9 @@ public class Ui {
     public void printAddTask(String task) {
         System.out.println("Got it. I've added this task:");
         System.out.println(task.toString());
+    }
+
+    public void printErrorMessage(String message) {
+        System.out.println(message);
     }
 }
