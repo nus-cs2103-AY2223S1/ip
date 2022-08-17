@@ -27,9 +27,7 @@ public class TaskModel {
     /**
      * @return a Collection of all the Tasks at the current time
      */
-    public Collection<Task> getAllTasks() {
+    public List<Task> getAllTasks() {
         return tasks;
     }
-
-
 }

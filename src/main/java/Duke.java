@@ -1,5 +1,9 @@
-import commands.List;
+import commands.AddCommand;
+import commands.Command;
+import commands.CommandResponse;
+import commands.ListCommand;
 import input.Input;
+import models.task.TaskModel;
 
 import java.util.Scanner;
 
@@ -17,8 +21,20 @@ public class Duke {
     }
 
     public static void main(String[] args) {
+        String logo = "\n" +
+                "     _   _    ___ __   __ ___  ___ \n" +
+                "  _ | | /_\\  | _ \\\\ \\ / /|_ _|/ __|\n" +
+                " | || |/ _ \\ |   / \\ V /  | | \\__ \\\n" +
+                "  \\__//_/ \\_\\|_|_\\  \\_/  |___||___/\n";
+
+        System.out.print(logo);
         output("Hello,I'm JARVIS!\nWhat can I do for you?");
         Scanner sc = new Scanner(System.in);
+
+        TaskModel taskModel = new TaskModel();
+
+        Command list = new ListCommand(taskModel);
+        Command add = new AddCommand(taskModel);
 
         while (true) {
             try {
@@ -27,24 +43,21 @@ public class Duke {
 
                 Input ir = Input.newInput(input);
 
+                Command toRun = add;
+
                 if (input.equals("bye")) {
                     output("Bye. See you again soon!");
                     break;
-                } else {
-                    output(input);
+                } else if (list.isCommand(ir.getCommandName())) {
+                    toRun = list;
                 }
+
+                CommandResponse res = toRun.run(ir);
+                output(res.getMessage());
 
             } catch (Exception err) {
                 output(err.getMessage());
             }
         }
-//        String logo = " ____        _        \n"
-//                + "|  _ \\ _   _| | _____ \n"
-//                + "| | | | | | | |/ / _ \\\n"
-//                + "| |_| | |_| |   <  __/\n"
-//                + "|____/ \\__,_|_|\\_\\___|\n";
-//        System.out.println("Hello from\n" + logo);
-
-
     }
 }

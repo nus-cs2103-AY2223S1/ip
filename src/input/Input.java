@@ -80,6 +80,10 @@ public class Input {
         }
     }
 
+    public String getCommandName() {
+        return commandName;
+    }
+
     /**
      * @return Number of tokens in the input string
      */
