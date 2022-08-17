@@ -1,9 +1,14 @@
-import java.util.List;
-import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Scanner;
 
+// This class is the main logic unit for Duke
 public class Duke {
-    private static ArrayList tasks = new ArrayList();
+
+    private static ArrayList<Task> tasks = new ArrayList<>();
+
+    /**
+     * Displays the Greeting message.
+     */
     private static void Greet() {
         String logo = " _______               \n"
                     + "|  _____|  _   _____   \n"
@@ -15,24 +20,73 @@ public class Duke {
         System.out.println("What can I help you with?");
     }
 
-    private static void TaskHandler() {
+    /**
+     * Handles Printing of the task list.
+     */
+    private static void printTaskList() {
+        for (int i = 1; i <= tasks.size(); i++) {
+            System.out.println(i + ". " + tasks.get(i - 1).toString());
+        }
+        System.out.println("");
+    }
+
+    /**
+     * Handles the logic of adding tasks.
+     *
+     * @param in input string for the task creation
+     */
+    private static void addTask(String in) {
+        Task task = new Task(in);
+        System.out.println("Added: " + task.getDescription() + "\n");
+        tasks.add(task);
+    }
+
+    private static void taskMarker(String markStatus, String[] inputArr) {
+        int taskNo = Integer.parseInt(inputArr[1]);
+        // Check for invalid inputs
+        if (inputArr.length > 2 || taskNo > tasks.size() || taskNo <= 0) {
+            System.out.println("invalid index");
+        } else {
+            Task currTask = tasks.get(taskNo - 1);
+            if (markStatus.equals("mark")) {
+                currTask.markDone();
+            } else {
+                currTask.markUndone();
+            }
+            System.out.println(currTask);
+        }
+    }
+
+    /**
+     * Handles the logic for the task manager.
+     */
+    private static void taskHandler() {
         Scanner sc = new Scanner(System.in);
         String in = sc.nextLine();
 
         while (true) {
+            // split() can throw PatternSyntaxException
+            // Splits the input to retrieve possible commands.
+            String[] inputArr = in.split(" ", 0);
+            String command = inputArr[0];
+
             // Break out of loop
             if (in.equals("bye")) {
                 break;
             }
+
             // List out current tasks in the list
             if (in.equals("list")) {
-                for (int i = 1; i <= tasks.size(); i++) {
-                    System.out.println(i + ". " + tasks.get(i - 1));
-                }
-                System.out.println("");
+                printTaskList();
+            } else if (command.equals("mark")) {
+                    System.out.println("gz");
+                    taskMarker(command, inputArr);
+            } else if (command.equals("unmark")) {
+                    System.out.println("rip");
+                    taskMarker(command, inputArr);
             } else {
-                System.out.println("Added: " + in + "\n");
-                tasks.add(in);
+                // Add Task to taskList
+                addTask(in);
             }
             in = sc.nextLine();
         }
@@ -41,6 +95,6 @@ public class Duke {
 
     public static void main(String[] args) {
         Greet();
-        TaskHandler();
+        taskHandler();
     }
 }
