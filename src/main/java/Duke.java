@@ -5,11 +5,18 @@ import java.util.Scanner;
 public class Duke {
     private static List<Task> tasks = new ArrayList<>();
 
+    /**
+     * Exits the app.
+     * @param input scanner object
+     */
     public static void endSession(Scanner input) {
         System.out.println("Bye! See you next time!");
         input.close();
     }
 
+    /**
+     * Prints out all the added tasks.
+     */
     public static void showTasks() {
         int id = 1;
         for (Task task: tasks) {
@@ -18,6 +25,10 @@ public class Duke {
         }
     }
 
+    /**
+     * Marks the task at the taskIndex in the list as done.
+     * @param taskIndex position of the task in the list (1-indexed)
+     */
     public static void markTaskAsDone(int taskIndex) {
         Task currTask = tasks.get(taskIndex - 1); // label starting from 1
         currTask.markAsDone();
@@ -25,6 +36,10 @@ public class Duke {
         System.out.println("  " + currTask.toString());
     }
 
+    /**
+     * Marks the task at the taskIndex in the list as not done.
+     * @param taskIndex position of the task in the list (1-indexed)
+     */
     public static void markTaskAsNotDone(int taskIndex) {
         Task currTask = tasks.get(taskIndex - 1); // label starting from 1
         currTask.markAsNotDone();
@@ -32,31 +47,47 @@ public class Duke {
         System.out.println("  " + currTask.toString());
     }
 
+    public static void printNumberOfTasks() {
+        if (tasks.size() == 1) {
+            System.out.println("Now you have " + tasks.size() + " task in the list.");
+        } else {
+            System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+        }
+    }
+
+    /**
+     * Creates a new Todo object and adds it to the tasks list.
+     * @param inputs array of input strings
+     */
     public static void addTodo(String[] inputs) {
         StringBuilder todoName = new StringBuilder();
         for (int i = 1; i < inputs.length; i++) {
-            todoName.append(inputs[i] + " ");
+            todoName.append(inputs[i]).append(" ");
         }
         Todo newTodo = new Todo(todoName.toString());
         tasks.add(newTodo);
         System.out.println("Got it. I've added this task:");
         System.out.println("  " + newTodo.toString());
-        System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+        printNumberOfTasks();
     }
 
+    /**
+     * Creates a new Deadline object and adds it to the tasks list.
+     * @param inputs array of input strings
+     */
     public static void addDeadline(String[] inputs) {
         StringBuilder deadlineName = new StringBuilder();
         StringBuilder endDateTime = new StringBuilder();
-        Boolean readDateTime = false;
+        boolean readDateTime = false;
         for (int i = 1; i < inputs.length - 1; i++) {
             if (inputs[i].equals("/by")) {
                 readDateTime = true;
                 continue;
             }
             if (!readDateTime) {
-                deadlineName.append(inputs[i] + " ");
+                deadlineName.append(inputs[i]).append(" ");
             } else {
-                endDateTime.append(inputs[i] + " ");
+                endDateTime.append(inputs[i]).append(" ");
             }
         }
         // To prevent space at the end of the string
@@ -66,22 +97,26 @@ public class Duke {
         tasks.add(newDeadline);
         System.out.println("Got it. I've added this task:");
         System.out.println("  " + newDeadline.toString());
-        System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+        printNumberOfTasks();
     }
 
+    /**
+     * Creates a new Event object and adds it to the tasks list.
+     * @param inputs array of input strings
+     */
     public static void addEvent(String[] inputs) {
         StringBuilder eventName = new StringBuilder();
         StringBuilder periodDateTime = new StringBuilder();
-        Boolean readDateTime = false;
+        boolean readDateTime = false;
         for (int i = 1; i < inputs.length - 1; i++) {
             if (inputs[i].equals("/at")) {
                 readDateTime = true;
                 continue;
             }
             if (!readDateTime) {
-                eventName.append(inputs[i] + " ");
+                eventName.append(inputs[i]).append(" ");
             } else {
-                periodDateTime.append(inputs[i] + " ");
+                periodDateTime.append(inputs[i]).append(" ");
             }
         }
         // To prevent space at the end of the string
@@ -91,34 +126,50 @@ public class Duke {
         tasks.add(newEvent);
         System.out.println("Got it. I've added this task:");
         System.out.println("  " + newEvent.toString());
-        System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+        printNumberOfTasks();
     }
 
+    /**
+     * Main function of the app.
+     *
+     * The first string consists of the command keyword. The possible keywords are defined
+     * as an Enum. If no keyword is detected, the app alerts the user.
+     *
+     * If a keyword is detected, an action corresponding to the keyword will be executed.
+     * The descriptions or additional data written after the keyword will be parsed,
+     * and the relevant actions will be executed.
+     *
+     * @param args
+     */
     public static void main(String[] args) {
-        System.out.println("Hello there! My name's Duck");
+        System.out.println("Hello there! My name's Duck...");
         System.out.println("Please type in a command...");
         Scanner input = new Scanner(System.in);
         while (true) {
             String inputLine = input.nextLine();
-            String[] inputArr = inputLine.split(" ");
+            String[] inputs = inputLine.split(" ");
+            String command = inputs[0];
 
-            if (inputLine.equals("bye")) {
+            if (inputLine.equals(Command.BYE.name().toLowerCase())) {
                 endSession(input);
                 return;
-            } else if (inputLine.equals("list")) {
+            } else if (inputLine.equals(Command.LIST.name().toLowerCase())) {
                 if (tasks.isEmpty()) System.out.println("You have no tasks...");
                 showTasks();
-            } else if (inputArr[0].equals("mark")) {
-                markTaskAsDone(Integer.parseInt(inputArr[1]));
-            } else if (inputArr[0].equals("unmark")) {
-                markTaskAsNotDone(Integer.parseInt(inputArr[1]));
-            } else if (inputArr[0].equals("todo")) {
-                addTodo(inputArr);
-            } else if (inputArr[0].equals("deadline")) {
-                addDeadline(inputArr);
-            } else if (inputArr[0].equals("event")) {
-                addEvent(inputArr);
+            } else if (command.equals(Command.MARK.name().toLowerCase())) {
+                // inputs[1] is the index number of the task to be marked
+                markTaskAsDone(Integer.parseInt(inputs[1]));
+            } else if (command.equals(Command.UNMARK.name().toLowerCase())) {
+                // inputs[1] is the index number of the task to be unmarked
+                markTaskAsNotDone(Integer.parseInt(inputs[1]));
+            } else if (command.equals(Command.TODO.name().toLowerCase())) {
+                addTodo(inputs);
+            } else if (command.equals(Command.DEADLINE.name().toLowerCase())) {
+                addDeadline(inputs);
+            } else if (command.equals(Command.EVENT.name().toLowerCase())) {
+                addEvent(inputs);
             } else {
+                // when none of the commands match
                 System.out.println("I don't get what you are saying...");
             }
         }
