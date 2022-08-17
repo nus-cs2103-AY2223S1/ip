@@ -11,42 +11,42 @@ public class Duke {
 
         Scanner sc = new Scanner(System.in);
         String input = "";
+        MarkableList list = new MarkableList();
 
         String welcomeMsg = "Hello I'm Duke!\n\t  What can I do for you?";
         Duke.printText(welcomeMsg);
 
-        String[] textList = new String[100];
-        int numOfItems = 0;
         while (input != "bye") {
             input = sc.nextLine();
             if (input.equalsIgnoreCase("bye")) {
                 break;
             } else if (input.equalsIgnoreCase("list")) {
-                Duke.printList(textList);
+                Duke.printText(list.toString());
+            } else if (input.matches("[Mm]ark \\d+")) {
+                int itemIndex = Integer.parseInt(input.replaceAll("[^0-9]", ""));
+                try {
+                    Duke.printText(list.markItem(itemIndex));
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    Duke.printText("Uhoh! The item doesn't exist");
+                }
+            } else if (input.matches("[Uu]nmark \\d+")) {
+                int itemIndex = Integer.parseInt(input.replaceAll("[^0-9]", ""));
+                try {
+                    Duke.printText(list.unmarkItem(itemIndex));
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    Duke.printText("Uhoh! The item doesn't exist");
+                }
             } else {
-                textList[numOfItems] = input;
-                numOfItems += 1;
-                Duke.printText("Added " + input);
+                try {
+                    Duke.printText(list.insertItem(input));
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    Duke.printText("Uhoh! The list is full.");
+                }
             }
         }
 
         String exitMsgs = "Good bye!\n\t  Hope to see you soon!";
         Duke.printText(exitMsgs);
-    }
-
-    /**
-     * Print the output in customised format.
-     * @param list The list to print
-     */ 
-    public static void printList(String[] list) {
-        System.out.println("\t\u2015\u2015\u2015");
-        for (int i = 0; i < list.length; i++) {
-            if (list[i] == null) {
-                break;
-            }
-            System.out.println(String.format("\t  %d.[ ] %s", i, list[i]));
-        }
-        System.out.println("\t\u2015\u2015\u2015");
     }
 
     /**
