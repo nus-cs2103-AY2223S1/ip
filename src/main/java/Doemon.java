@@ -28,6 +28,9 @@ public class Doemon {
      * A fixed-sized string array that stores user input.
      */
     private String[] tasks = new String[100];
+    /**
+     * An integer representing the index of the array that the next task will be stored.
+     */
     private int taskIndex = 0;
 
     public static void main(String[] args) {
@@ -46,12 +49,25 @@ public class Doemon {
 
         while (true) {
             String inputStr = sc.nextLine();
+            // Exit the chatbot
             if (inputStr.equals("bye")) {
                 System.out.println(output(exitStr));
                 break;
             }
-            this.tasks[this.taskIndex] = inputStr;
-            this.taskIndex++;
+            // List tasks
+            if (inputStr.equals("list")) {
+                int listNum = 1;
+                String listStr = "";
+                for (String task: tasks) {
+                    if (task == null) break;
+                    listStr += listNum++ + ". " + task + "\n\t";
+                }
+                listStr = listStr == "" ? "You have no tasks!" : listStr.trim();
+                System.out.println(output(listStr));
+                continue;
+            }
+            // Add item to list of tasks
+            this.tasks[this.taskIndex++] = inputStr;
             System.out.println(output("added: " + inputStr));
         }
     }
