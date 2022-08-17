@@ -1,0 +1,13 @@
+hello
+event
+todo watch tv
+event group meeting
+event group meeting /
+event group meeting /at monday 8pm
+list
+mark
+mark 1
+mark 3
+unmark 1
+list
+bye

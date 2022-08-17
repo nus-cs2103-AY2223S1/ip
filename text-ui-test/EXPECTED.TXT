@@ -5,3 +5,48 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
+Just a moment...
+Hello! I am Duke.
+Just ignore the symbol above. What can I do for you?
+-------------------
+☹ OOPS!!! I'm sorry, but I don't know what that means :-(
+-------------------
+☹ OOPS!!! The description of a task cannot be empty.
+-------------------
+Got it. I've added this task:
+ [T][ ] watch tv
+Now you have 1 tasks in the list.
+-------------------
+☹ OOPS!!! Please follow the format </at date>.
+-------------------
+Got it. I've added this task:
+ [E][ ] group meeting ()
+Now you have 2 tasks in the list.
+-------------------
+Got it. I've added this task:
+ [E][ ] group meeting (at monday 8pm)
+Now you have 3 tasks in the list.
+-------------------
+Here are the tasks in your list:
+1.[T][ ] watch tv
+2.[E][ ] group meeting ()
+3.[E][ ] group meeting (at monday 8pm)
+-------------------
+☹ OOPS!!! Please enter an index of a task
+-------------------
+Nice! I've marked this task as done:
+ [T][X] watch tv
+-------------------
+Nice! I've marked this task as done:
+ [E][X] group meeting (at monday 8pm)
+-------------------
+OK, I've marked this task as not done yet:
+ [T][ ] watch tv
+-------------------
+Here are the tasks in your list:
+1.[T][ ] watch tv
+2.[E][ ] group meeting ()
+3.[E][X] group meeting (at monday 8pm)
+-------------------
+Please don't leave me >_<
+See you soon!
