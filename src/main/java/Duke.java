@@ -50,7 +50,7 @@ public class Duke {
                 case "todo": {
                     Task newTask = new ToDo(s);
                     tasks.add(newTask);
-                    prettyPrint("this task, I've added: \n\t" + newTask + "\n\t" + "you have " + tasks.size() + " tasks left");
+                    prettyPrint("this task, I've added: \n\t\t" + newTask + "\n\t" + "you have " + tasks.size() + " tasks left");
                     break;
                 }
                 case "deadline": {
@@ -60,7 +60,7 @@ public class Duke {
 
                     Task newTask = new Deadline(description, by);
                     tasks.add(newTask);
-                    prettyPrint("this task, I've added: \n\t" + newTask + "\n\t" + "you have " + tasks.size() + " tasks left");
+                    prettyPrint("this task, I've added: \n\t\t" + newTask + "\n\t" + "you have " + tasks.size() + " tasks left");
                     break;
                 }
                 case "event": {
@@ -70,7 +70,7 @@ public class Duke {
 
                     Task newTask = new Event(description, at);
                     tasks.add(newTask);
-                    prettyPrint("this task, I've added: \n\t" + newTask + "\n\t" + "you have " + tasks.size() + " tasks left");
+                    prettyPrint("this task, I've added: \n\t\t" + newTask + "\n\t" + "you have " + tasks.size() + " tasks left");
                     break;
                 }
                 default:
