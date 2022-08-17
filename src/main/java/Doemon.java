@@ -60,7 +60,7 @@ public class Doemon {
             if (inputStr.equals("list")) {
                 int listNum = 1;
                 String listStr = "Here is what's on my bread:\n\t";
-                for (Task task: tasks) {
+                for (Task task : tasks) {
                     if (task == null) break;
                     listStr += listNum++ + "." + task.toString() + "\n\t";
                 }
@@ -91,23 +91,41 @@ public class Doemon {
                 }
             }
 
-            // Add item to list of tasks
-            if (inputArr[0].equals("todo")) {
-                this.tasks[this.taskIndex] = new Todo(inputStr.substring(5, inputStr.length()));
-            } else if (inputArr[0].equals("deadline")) {
-                String[] details = inputStr.substring(9, inputStr.length()).split(" /by ");
-                this.tasks[this.taskIndex] = new Deadline(details[0], details[1]);
-            } else if (inputArr[0].equals("event")) {
-                String[] details = inputStr.substring(6, inputStr.length()).split(" /at ");
-                this.tasks[this.taskIndex] = new Event(details[0], details[1]);
-            } else {
-                System.out.println(output("Please try again with a valid bread command..."));
-                continue;
+            try {
+                addTask(inputStr, inputArr);
+            } catch (EmptyTaskException ete) {
+                System.out.println(output(ete.toString()));
+            } catch (InvalidTaskException ite) {
+                System.out.println(output(ite.toString()));
+            } catch (MissingArgumentException mae) {
+                System.out.println(output(mae.toString()));
             }
-            System.out.println(output("Alright! I have recorded this task on my bread:\n\t  "
-                    + this.tasks[this.taskIndex++].toString()
-                    + "\n\tYou now have " + this.taskIndex + " task(s) recorded on my bread."));
         }
+    }
+
+    private void addTask(String inputStr, String[] inputArr) throws EmptyTaskException, InvalidTaskException,
+            MissingArgumentException {
+        // Add item to list of tasks
+        if (inputArr[0].equals("todo")) {
+            String detail = inputStr.substring(4).trim();
+            if (detail.trim().equals("")) throw new EmptyTaskException("todo");
+            this.tasks[this.taskIndex] = new Todo(detail);
+        } else if (inputArr[0].equals("deadline")) {
+            String[] details = inputStr.substring(8).trim().split(" /by ");
+            if (details[0].trim().equals("")) throw new EmptyTaskException("deadline");
+            if (details.length == 1) throw new MissingArgumentException("deadline", "/by");
+            this.tasks[this.taskIndex] = new Deadline(details[0], details[1]);
+        } else if (inputArr[0].equals("event")) {
+            String[] details = inputStr.substring(5).trim().split(" /at ");
+            if (details[0].trim().equals("")) throw new EmptyTaskException("event");
+            if (details.length == 1) throw new MissingArgumentException("event", "/at");
+            this.tasks[this.taskIndex] = new Event(details[0], details[1]);
+        } else {
+            throw new InvalidTaskException();
+        }
+        System.out.println(output("Alright! I have recorded this task on my bread:\n\t  "
+                + this.tasks[this.taskIndex++].toString()
+                + "\n\tYou now have " + this.taskIndex + " task(s) recorded on my bread."));
     }
 
     /**

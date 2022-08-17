@@ -13,6 +13,6 @@ public class Todo extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString();
+        return String.format("[T]%s", super.toString());
     }
 }

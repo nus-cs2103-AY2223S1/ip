@@ -14,11 +14,12 @@
 	You have no tasks!
 	____________________________________________________________
 	____________________________________________________________
-	Please try again with a valid bread command...
+	Oh my doe!! Sorry I don't recognise that command...
+	Please try again with a valid command
 	____________________________________________________________
 	____________________________________________________________
 	Alright! I have recorded this task on my bread:
-	  [D][ ] finish CS2103T Individual Project
+	  [T][ ] finish CS2103T Individual Project
 	You now have 1 task(s) recorded on my bread.
 	____________________________________________________________
 	____________________________________________________________
@@ -33,13 +34,13 @@
 	____________________________________________________________
 	____________________________________________________________
 	Here is what's on my bread:
-	1.[D][ ] finish CS2103T Individual Project
+	1.[T][ ] finish CS2103T Individual Project
 	2.[D][ ] CS2103T Individual Project (by: 18 Aug 2022, 2359hrs)
 	3.[E][ ] Go out and have fun! (at: Saturday or Sunday)
 	____________________________________________________________
 	____________________________________________________________
 	Yay! This task is now marked as done:
-	  [D][X] finish CS2103T Individual Project
+	  [T][X] finish CS2103T Individual Project
 	____________________________________________________________
 	____________________________________________________________
 	Yay! This task is now marked as done:
@@ -47,11 +48,36 @@
 	____________________________________________________________
 	____________________________________________________________
 	I guess you weren't done with that one:
-	  [D][ ] finish CS2103T Individual Project
+	  [T][ ] finish CS2103T Individual Project
 	____________________________________________________________
 	____________________________________________________________
 	Here is what's on my bread:
-	1.[D][ ] finish CS2103T Individual Project
+	1.[T][ ] finish CS2103T Individual Project
+	2.[D][ ] CS2103T Individual Project (by: 18 Aug 2022, 2359hrs)
+	3.[E][X] Go out and have fun! (at: Saturday or Sunday)
+	____________________________________________________________
+	____________________________________________________________
+	Oh my doe!! Sorry I don't recognise that command...
+	Please try again with a valid command
+	____________________________________________________________
+	____________________________________________________________
+	Oh my doe!! I can't put an empty todo on my bread...
+	____________________________________________________________
+	____________________________________________________________
+	Oh my doe!! I can't put an empty deadline on my bread...
+	____________________________________________________________
+	____________________________________________________________
+	Oh my doe!! I can't put an empty event on my bread...
+	____________________________________________________________
+	____________________________________________________________
+	Oh my doe!! Looks like you may be missing a date/time for this deadline...Remember to use the /by flag!
+	____________________________________________________________
+	____________________________________________________________
+	Oh my doe!! Looks like you may be missing a date/time for this event...Remember to use the /at flag!
+	____________________________________________________________
+	____________________________________________________________
+	Here is what's on my bread:
+	1.[T][ ] finish CS2103T Individual Project
 	2.[D][ ] CS2103T Individual Project (by: 18 Aug 2022, 2359hrs)
 	3.[E][X] Go out and have fun! (at: Saturday or Sunday)
 	____________________________________________________________
