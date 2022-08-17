@@ -141,6 +141,19 @@ public class Duke {
                         }
                         dk.unmarkTask(unmarkIndex);
                         break;
+                    case "delete":
+                        if (usrInputTokens.length < 2) {
+                            throw new DukeException(
+                                    "Oh no! Try doing 'delete <index>'!");
+                        }
+                        int deleteIndex = Integer.parseInt(
+                                usrInputTokens[1], 10) - 1;
+                        if (deleteIndex > dk.taskList.size() - 1 || deleteIndex < 0) {
+                            throw new DukeException(
+                                    "Oh no! There doesn't seem to be a task with this index.");
+                        }
+                        dk.deleteTask(deleteIndex);
+                        break;
                     case "todo":
                         if (usrInputTokens.length < 2) {
                             throw new DukeException(
