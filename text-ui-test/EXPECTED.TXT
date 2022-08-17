@@ -6,7 +6,7 @@ Command not found: stop fishing
 Command not found: spinning
 Task added:
 [T][ ] finish THIS
-There are 1 tasks in your list.
+There is 1 task in your list.
 Task added:
 [T][ ] complete THAT
 There are 2 tasks in your list.
@@ -18,9 +18,10 @@ Task added:
 [E][ ] practice (at: 3-6pm)
 There are 4 tasks in your list.
 Invalid event format.
+Task -23 does not exist.
 Marked this task as done:
 [T][X] complete THAT
-Task 5 does not exist.
+Task 21 does not exist.
 Listing your current tasks:
 1.[T][ ] finish THIS
 2.[T][X] complete THAT
@@ -28,7 +29,8 @@ Listing your current tasks:
 4.[E][ ] practice (at: 3-6pm)
 Marked this task as done:
 [E][X] practice (at: 3-6pm)
-Task 5 does not exist.
+Task -35 does not exist.
+Task 6 does not exist.
 Marked this task as undone:
 [T][ ] complete THAT
 Listing your current tasks:
@@ -36,3 +38,16 @@ Listing your current tasks:
 2.[T][ ] complete THAT
 3.[D][ ] find three (by: tomorrow)
 4.[E][X] practice (at: 3-6pm)
+Task successfully removed:
+[D][ ] find three (by: tomorrow)
+There are 3 tasks in your list.
+Listing your current tasks:
+1.[T][ ] finish THIS
+2.[T][ ] complete THAT
+3.[E][X] practice (at: 3-6pm)
+Task 31 does not exist.
+Listing your current tasks:
+1.[T][ ] finish THIS
+2.[T][ ] complete THAT
+3.[E][X] practice (at: 3-6pm)
+Task -8 does not exist.

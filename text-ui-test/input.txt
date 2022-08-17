@@ -7,10 +7,17 @@ deadline find three /by tomorrow
 deadline lose all /at noon
 event practice /at 3-6pm
 event gift all /by monday
+unmark -23
 mark 2
-mark 5
+mark 21
 list
 mark 4
-unmark 5
+mark -35
+unmark 6
 unmark 2
 list
+delete 3
+list
+delete 31
+list
+delete -8
