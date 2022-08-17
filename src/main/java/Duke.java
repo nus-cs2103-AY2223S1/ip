@@ -19,17 +19,17 @@ public class Duke {
     private static final String MARK_TASK_AS_UNDONE_MESSAGE = "OK, I've marked this task as not done yet:";
     private static final String TASK_LIST_STATUS_MESSAGE = "Now you have %s task(s) in the list.";
 
-    private static final String UNKNOWN_COMMAND_ERROR = "Hmm...I do not understand your command!";
-    private static final String MISSING_TASK_INDEX_ERROR = "Oops! You are missing a task number!\n" +
+    private static final String UNKNOWN_COMMAND_ERROR = "I do not understand your command!";
+    private static final String MISSING_TASK_INDEX_ERROR = "You are missing a task number!\n" +
             "Use the 'list' command to view the tasks and their number.";
-    private static final String NAN_TASK_INDEX_ERROR = "Oops! The task number you provided is not a number!";
-    private static final String TASK_INDEX_IS_INVALID_ERROR = "Oops! The task number you provided is not valid!\n" +
+    private static final String NAN_TASK_NUMBER_ERROR = "The task number you provided is not a number!";
+    private static final String TASK_NUMBER_IS_INVALID_ERROR = "The task number you provided is not valid!\n" +
             "Use the 'list' command to view the tasks and their number.";
-    private static final String INVALID_TODO_TASK_ERROR = "Oops! Use the 'todo' command together with a task " +
+    private static final String INVALID_TODO_TASK_ERROR = "Use the 'todo' command together with a task " +
             "description!\nFor example: 'todo borrow book'";
-    private static final String INVALID_DEADLINE_TASK_ERROR = "Oops! Use the 'deadline' command together with the " +
+    private static final String INVALID_DEADLINE_TASK_ERROR = "Use the 'deadline' command together with the " +
             "task description and deadline\nFor example: 'deadline return book /by Sunday'";
-    private static final String INVALID_EVENT_TASK_ERROR = "Oops! Use the 'event' command together with the " +
+    private static final String INVALID_EVENT_TASK_ERROR = "Use the 'event' command together with the " +
             "task description and date time\nFor example: 'event project meeting /at Mon 2-4pm'";
 
     private static final String LIST_COMMAND = "list";
@@ -98,88 +98,82 @@ public class Duke {
                 break;
             }
 
-            switch (command) {
-                case LIST_COMMAND: {
-                    DukePrinter.print(taskManager.toString());
-                    break;
+            try {
+                switch (command) {
+                    case LIST_COMMAND: {
+                        DukePrinter.print(taskManager.toString());
+                        break;
+                    }
+                    case MARK_COMMAND: {
+                        // Retrieve the task index (1-indexed) to mark the task as done
+                        if (arguments.length() == 0) {
+                            throw new DukeException(Duke.MISSING_TASK_INDEX_ERROR);
+                        }
+                        int taskNumber;
+                        try {
+                            taskNumber = Integer.parseInt(arguments);
+                        } catch (NumberFormatException e) {
+                            throw new DukeException(Duke.NAN_TASK_NUMBER_ERROR);
+                        }
+                        Task task = Duke.getTask(taskManager, taskNumber);
+                        if (task != null) {
+                            task.markAsDone();
+                            DukePrinter.print(String.format("%s\n\t%s", Duke.MARK_TASK_AS_DONE_MESSAGE, task));
+                        } else {
+                            throw new DukeException(Duke.TASK_NUMBER_IS_INVALID_ERROR);
+                        }
+                        break;
+                    }
+                    case UNMARK_COMMAND: {
+                        // Retrieve the task index (1-indexed) to mark the task as undone
+                        if (arguments.length() == 0) {
+                            throw new DukeException(Duke.MISSING_TASK_INDEX_ERROR);
+                        }
+                        int taskNumber;
+                        try {
+                            taskNumber = Integer.parseInt(arguments);
+                        } catch (NumberFormatException e) {
+                            throw new DukeException(Duke.NAN_TASK_NUMBER_ERROR);
+                        }
+                        Task task = Duke.getTask(taskManager, taskNumber);
+                        if (task != null) {
+                            task.markAsUndone();
+                            DukePrinter.print(String.format("%s\n\t%s", Duke.MARK_TASK_AS_UNDONE_MESSAGE, task));
+                        } else {
+                            throw new DukeException(Duke.TASK_NUMBER_IS_INVALID_ERROR);
+                        }
+                        break;
+                    }
+                    case TODO_COMMAND: {
+                        Matcher matcher = Duke.MATCH_TODO_TASK.matcher(arguments);
+                        if (!matcher.find()) {
+                            throw new DukeException(Duke.INVALID_TODO_TASK_ERROR);
+                        }
+                        Duke.addTask(taskManager, () -> new ToDo(arguments.strip()));
+                        break;
+                    }
+                    case DEADLINE_COMMAND: {
+                        Matcher matcher = Duke.MATCH_DEADLINE_TASK.matcher(arguments);
+                        if (!matcher.find()) {
+                            throw new DukeException(Duke.INVALID_DEADLINE_TASK_ERROR);
+                        }
+                        Duke.addTask(taskManager, () -> new Deadline(matcher.group(1).strip(), matcher.group(2).strip()));
+                        break;
+                    }
+                    case EVENT_COMMAND: {
+                        Matcher matcher = Duke.MATCH_EVENT_TASK.matcher(arguments);
+                        if (!matcher.find()) {
+                            throw new DukeException(Duke.INVALID_EVENT_TASK_ERROR);
+                        }
+                        Duke.addTask(taskManager, () -> new Deadline(matcher.group(1).strip(), matcher.group(2).strip()));
+                        break;
+                    }
+                    default: {
+                        throw new DukeException(Duke.UNKNOWN_COMMAND_ERROR);
+                    }
                 }
-                case MARK_COMMAND: {
-                    // Retrieve the task index (1-indexed) to mark the task as done
-                    if (arguments.length() == 0) {
-                        DukePrinter.print(Duke.MISSING_TASK_INDEX_ERROR);
-                        continue;
-                    }
-                    int taskNumber;
-                    try {
-                        taskNumber = Integer.parseInt(arguments);
-                    } catch (NumberFormatException e) {
-                        DukePrinter.print(Duke.NAN_TASK_INDEX_ERROR);
-                        continue;
-                    }
-                    Task task = Duke.getTask(taskManager, taskNumber);
-                    if (task != null) {
-                        task.markAsDone();
-                        DukePrinter.print(String.format("%s\n\t%s", Duke.MARK_TASK_AS_DONE_MESSAGE, task));
-                    } else {
-                        DukePrinter.print(Duke.TASK_INDEX_IS_INVALID_ERROR);
-                    }
-                    break;
-                }
-                case UNMARK_COMMAND: {
-                    // Retrieve the task index (1-indexed) to mark the task as undone
-                    if (arguments.length() == 0) {
-                        DukePrinter.print(Duke.MISSING_TASK_INDEX_ERROR);
-                        continue;
-                    }
-                    int taskNumber;
-                    try {
-                        taskNumber = Integer.parseInt(arguments);
-                    } catch (NumberFormatException e) {
-                        DukePrinter.print(Duke.NAN_TASK_INDEX_ERROR);
-                        continue;
-                    }
-                    Task task = Duke.getTask(taskManager, taskNumber);
-                    if (task != null) {
-                        task.markAsUndone();
-                        DukePrinter.print(String.format("%s\n\t%s", Duke.MARK_TASK_AS_UNDONE_MESSAGE, task));
-                    } else {
-                        DukePrinter.print(Duke.TASK_INDEX_IS_INVALID_ERROR);
-                    }
-                    break;
-                }
-                case TODO_COMMAND: {
-                    Matcher matcher = Duke.MATCH_TODO_TASK.matcher(arguments);
-                    if (!matcher.find()) {
-                        DukePrinter.print(Duke.INVALID_TODO_TASK_ERROR);
-                        continue;
-                    }
-                    Duke.addTask(taskManager, () -> new ToDo(arguments.strip()));
-                    break;
-                }
-                case DEADLINE_COMMAND: {
-                    Matcher matcher = Duke.MATCH_DEADLINE_TASK.matcher(arguments);
-                    if (!matcher.find()) {
-                        DukePrinter.print(Duke.INVALID_DEADLINE_TASK_ERROR);
-                        continue;
-                    }
-
-                    Duke.addTask(taskManager, () -> new Deadline(matcher.group(1).strip(), matcher.group(2).strip()));
-                    break;
-                }
-                case EVENT_COMMAND: {
-                    Matcher matcher = Duke.MATCH_EVENT_TASK.matcher(arguments);
-                    if (!matcher.find()) {
-                        DukePrinter.print(Duke.INVALID_EVENT_TASK_ERROR);
-                        continue;
-                    }
-
-                    Duke.addTask(taskManager, () -> new Deadline(matcher.group(1).strip(), matcher.group(2).strip()));
-                    break;
-                }
-                default: {
-                    DukePrinter.print(Duke.UNKNOWN_COMMAND_ERROR);
-                    break;
-                }
+            } catch (DukeException e) {
+                DukeErrorPrinter.print(e.getMessage());
             }
         }
 
