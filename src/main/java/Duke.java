@@ -1,5 +1,6 @@
 //only exceptions in example caught
 //without automatic ui testing
+//not using arraylist
 import java.util.Scanner;
 
 public class Duke {
@@ -80,7 +81,18 @@ public class Duke {
                     }
                     System.out.println(buffLine);
                     userReply = sc.nextLine();
-                } else {
+                } else if (userReply.startsWith("delete")) {
+                    System.out.println(buffLine + "\n    Noted. I've removed this task: ");
+                    taskList[Character.getNumericValue(userReply.charAt(7)) - 1].fullDesc();
+                    for (int i = userReply.charAt(7) - 1; i < indCount; i++) {
+                        taskList[i] = taskList[i + 1];
+                    }
+                    indCount--;
+                    System.out.println("    Now you have " + String.valueOf(indCount) +
+                            " tasks in this list." + "\n" + buffLine);
+                    userReply = sc.nextLine();
+                }
+                else {
                     throw new DukeException("");
                 }
             } catch (DukeException e) {
