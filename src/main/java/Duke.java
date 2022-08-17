@@ -49,12 +49,25 @@ public class Duke {
                                 unmarkedItem
                         ));
                         break;
+                    case "delete":
+                        index = Integer.parseInt(splitted[1]);
+                        String deletedItem = "  " + dukelist.deleteItem(index);
+                        String deleteText = "Noted. I've removed this task:";
+                        String endLine = String.format(
+                                "Now you have %d tasks in the list.",
+                                dukelist.getTaskCount());
+                        System.out.println(TextFormatter.formatLinesIntoParagraph(
+                                deleteText,
+                                deletedItem,
+                                endLine
+                        ));
+                        break;
                     case "todo":
                         Todo.validateInput(splitted);
                         String todo = splitted[1];
                         String taskItem = "  " + dukelist.addTodo(todo);
                         String startLine = "Got it. I've added this task:";
-                        String endLine = String.format(
+                        endLine = String.format(
                             "Now you have %d tasks in the list.",
                             dukelist.getTaskCount());
                         System.out.println(TextFormatter.formatLinesIntoParagraph(

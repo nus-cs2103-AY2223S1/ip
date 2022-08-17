@@ -43,6 +43,12 @@ public class TaskList {
         return taskItem;
     }
 
+    public Task deleteItem(int index) {
+        Task taskItem = this.list.get(index - 1);
+        this.list.remove(index - 1);
+        return taskItem;
+    }
+
     public int getTaskCount() {
         return this.list.size();
     }
