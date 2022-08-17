@@ -88,4 +88,14 @@ Tasks:
 5.[T][ ] borrow book
 6.[D][ ] return book (by: Sunday)
 7.[E][ ] project meeting (at: Mon 2-4pm)
+The following task will be removed:
+  [T][X] join sports club
+Total number of tasks: 6
+Tasks:
+1.[T][X] read book
+2.[D][ ] return book (by: June 6th)
+3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+4.[T][ ] borrow book
+5.[D][ ] return book (by: Sunday)
+6.[E][ ] project meeting (at: Mon 2-4pm)
 Bye! See you again soon!

@@ -74,6 +74,15 @@ public class Skyler {
                     tasks.add(newEvent);
 
                     printTask(newEvent, tasks.size());
+                } else if (description.startsWith("delete")) {
+                    int item = Integer.parseInt(description.substring(description.length() - 1));
+                    Task currTask = tasks.get(item - 1);
+                    System.out.println("The following task will be removed:");
+                    String show = String.format("  %s", currTask);
+                    System.out.println(show);
+                    tasks.remove(item - 1);
+                    String str = String.format("Total number of tasks: %d", tasks.size());
+                    System.out.println(str);
                 } else {
                     throw new TaskNotRecognisedException();
                 }
