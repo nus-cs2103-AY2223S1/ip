@@ -8,53 +8,78 @@ public class Duke {
     boolean inProcess = true;
 
     private String greet(String res) {
-        if (res.toLowerCase().equals("bye")) {
+        try {
+            if (res.toLowerCase().equals("bye")) {
 
-            inProcess = false;
-            return "Bye. Hope to see you again soon!";
+                inProcess = false;
+                return "Bye. Hope to see you again soon!";
 
-        } else if(res.toLowerCase().equals("list")) {
+            } else if (res.toLowerCase().equals("list")) {
 
-            String log = "Tasks that you have:";
-            for (int i = 0; i < taskList.size(); i++) {
-                log += String.format("\n %d. %s", i + 1, this.taskList.get(i));
+                String log = "Tasks that you have:";
+                for (int i = 0; i < taskList.size(); i++) {
+                    log += String.format("\n %d. %s", i + 1, this.taskList.get(i));
+                }
+                return log;
+
+            } else if (res.toLowerCase().startsWith("mark")) {
+                int min_length = "mark ".length();
+                if (res.length() <= min_length){
+                    throw new IncompleteParamException(res);
+                } else{
+                    int taskNumber = Integer.valueOf(res.substring("mark ".length()));
+                    if (taskNumber < 1 || taskNumber > this.taskList.size()) {
+                        throw new OutOfListException(res);
+                    } else {
+                        return this.handleMark(taskNumber);
+                    }
+                }
+            } else if (res.toLowerCase().startsWith("unmark")) {
+                int min_length = "unmark ".length();
+                if (res.length() <= min_length){
+                    throw new IncompleteParamException(res);
+                } else {
+                    int taskNumber = Integer.valueOf(res.substring("unmark ".length()));
+                    if (taskNumber < 1 || taskNumber > this.taskList.size()) {
+                        throw new OutOfListException(res);
+                    } else {
+                        return this.handleUnmark(taskNumber);
+                    }
+                }
+            } else if (res.toLowerCase().startsWith("todo")) {
+                int min_length = "todo ".length();
+                if (res.length() <= min_length){
+                    throw new IncompleteParamException(res);
+                } else {
+                    String taskdes = res.substring("todo ".length());
+                    return this.handleAdd(new ToDo(taskdes));
+                }
+
+            } else if (res.toLowerCase().startsWith("deadline")) {
+                int min_length = "deadline ".length();
+                int endPointer = res.indexOf('/');
+                if (res.length() <= endPointer + 3 || endPointer == -1){
+                    throw new IncompleteParamException(res);
+                } else {
+                    String taskdes = res.substring("deadline ".length(), endPointer);
+                    String by = res.substring(endPointer + 3);
+                    return this.handleAdd(new Deadline(taskdes, by));
+                }
+            } else if (res.toLowerCase().startsWith("event")) {
+                int min_length = "event ".length();
+                int endPointer = res.indexOf('/');
+                if (res.length() <= endPointer + 3 || endPointer == -1){
+                    throw new IncompleteParamException(res);
+                } else {
+                    String taskdes = res.substring("event ".length(), endPointer);
+                    String at = res.substring(endPointer + 3);
+                    return this.handleAdd(new Event(taskdes, at));
+                }
+            } else {
+                throw new InvalidInputException(res);
             }
-            return log;
-
-        } else if(res.toLowerCase().startsWith("mark")){
-
-            int taskNumber = Integer.valueOf(res.substring("mark ".length()));
-            return this.handleMark(taskNumber);
-
-        } else if(res.toLowerCase().startsWith("unmark")){
-
-            int taskNumber = Integer.valueOf(res.substring("unmark ".length()));
-            return this.handleUnmark(taskNumber);
-
-        } else if (res.toLowerCase().startsWith("todo")){
-
-            String taskdes = res.substring("todo ".length());
-            return this.handleAdd(new ToDo(taskdes));
-
-        } else if(res.toLowerCase().startsWith("deadline")){
-
-            int endPointer = res.indexOf('/');
-            String taskdes = res.substring("deadline ".length(),endPointer);
-            String by = res.substring(endPointer + 3);
-            return this.handleAdd(new Deadline(taskdes,by));
-
-        } else if(res.toLowerCase().startsWith("event")){
-
-            int endPointer = res.indexOf('/');
-            String taskdes = res.substring("event ".length(),endPointer);
-            String at = res.substring(endPointer + 3);
-            return this.handleAdd(new Event(taskdes,at));
-
-        } else {
-
-            this.taskList.add(new Task(res));
-            return String.format("added: %s",res);
-
+        } catch (DukeException e){
+            return e.toString();
         }
     }
 
