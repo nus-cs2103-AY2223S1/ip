@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -24,48 +25,59 @@ public class Duke {
      * Handles Printing of the task list.
      */
     private static void printTaskList() {
-        for (int i = 1; i <= tasks.size(); i++) {
-            System.out.println(i + ". " + tasks.get(i - 1).toString());
+        if (!tasks.isEmpty()) {
+            for (int i = 1; i <= tasks.size(); i++) {
+                System.out.println(i + ". " + tasks.get(i - 1).toString());
+            }
+            System.out.println("");
+        } else {
+            System.out.println("No tasks have been added!\n");
         }
-        System.out.println("");
     }
 
     /**
-     * Handles the logic of adding tasks.
-     *
-     * @param in input string for the task creation
+     * Handles the addition of tasks.
+     * @param type type of task added.
+     * @param description description of the task.
+     * @throws DukeException
      */
-    private static void addTask(String in, String type) {
+    private static void addTask(String type, String description) throws DukeException{
         Task task;
         if (type.equals("todo") || type.equals("deadline") || type.equals("event")) {
-
             if (type.equals("todo")) {
-                task = new ToDo(in);
+                task = new ToDo(description);
             } else if (type.equals("deadline")) {
-                task = new Deadline(in);
+                task = new Deadline(description);
             } else {
-                task = new Event(in);
+                task = new Event(description);
             }
             System.out.println("Added: " + task.toString() + "\n");
             tasks.add(task);
         } else {
-            System.out.println("Invalid Task");
+            throw new DukeException("Invalid Task, please prefix your task!\n");
         }
     }
 
+    /**
+     * Marks/Unmarks Tasks.
+     * @param markStatus input to mark/unmark a task.
+     * @param inputArr input of the user.
+     */
     private static void taskMarker(String markStatus, String[] inputArr) {
-        int taskNo = Integer.parseInt(inputArr[1]);
-        // Check for invalid inputs
-        if (inputArr.length > 2 || taskNo > tasks.size() || taskNo <= 0) {
-            System.out.println("invalid index");
-        } else {
+        try {
+            int taskNo = Integer.parseInt(inputArr[1]);
             Task currTask = tasks.get(taskNo - 1);
-            if (markStatus.equals("mark")) {
-                currTask.markDone();
-            } else {
-                currTask.markUndone();
-            }
-            System.out.println(currTask);
+                if (markStatus.equals("mark")) {
+                    currTask.markDone();
+
+                    System.out.println("Task successfully marked!");
+                } else {
+                    currTask.markUndone();
+                    System.out.println("Task successfully unmarked!");
+                }
+                System.out.println(currTask + "\n");
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            System.out.println("Invalid input, please input an available integer index!\n");
         }
     }
 
@@ -77,9 +89,8 @@ public class Duke {
         String in = sc.nextLine();
 
         while (true) {
-            // split() can throw PatternSyntaxException
             // Splits the input to retrieve possible commands.
-            String[] inputArr = in.split(" ", 0);
+            String[] inputArr = in.split(" ", 2);
             String command = inputArr[0];
 
             // Break out of loop
@@ -90,16 +101,16 @@ public class Duke {
             // List out current tasks in the list
             if (in.equals("list")) {
                 printTaskList();
-            } else if (command.equals("mark")) {
-                System.out.println("gz");
-                taskMarker(command, inputArr);
-            } else if (command.equals("unmark")) {
-                System.out.println("rip");
+            } else if (command.equals("mark") || (command.equals("unmark"))) {
                 taskMarker(command, inputArr);
             } else {
-                // Add Task to taskList
-                // invalid task scenario handled by addTask
-                addTask(in, command);
+                try {
+                    addTask(command, inputArr[1]);
+                } catch (DukeException e) {
+                    System.out.println(e);
+                } catch (IndexOutOfBoundsException p) {
+                    System.out.println("Please add a description to your task!\n");
+                }
             }
             in = sc.nextLine();
         }

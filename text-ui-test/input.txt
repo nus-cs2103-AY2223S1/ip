@@ -11,6 +11,10 @@ unmark 1
 unmark 2
 unmark 3
 unmark 4
+unmark a
+mark a
+mark
+unmark
 todo
 deadline
 event
