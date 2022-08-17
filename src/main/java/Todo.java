@@ -6,7 +6,7 @@ public class Todo extends Task {
      */
     public Todo(String task) {
         this.task = task;
-        System.out.println("added: " + this);
+        Task.taskCount++;
     }
 
     /**
