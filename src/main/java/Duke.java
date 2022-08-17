@@ -2,18 +2,13 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Duke {
-    private ArrayList<Task> history = new ArrayList<>();
-    private Scanner commandInput;
-    private boolean isClosed = false;
-
     private enum Commands {
         bye, list, help, mark, unmark, delete, todo, deadline, event, invalid;
     }
-
-    //The strings that Duke uses for greetings and formatting. Constants.
+    //The strings that Duke uses for greetings and formatting.
     private final static String lineBreak1
             = "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
-             + "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-";
+            + "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-";
     private final static String lineBreak2
             = "______________________________________________________"
             + "______________________________________________________";
@@ -26,6 +21,10 @@ public class Duke {
     private final static String greeting
             = "Hello! I'm Duke.\n"
             + "What can I do for you?";
+
+    private ArrayList<Task> history = new ArrayList<>();
+    private Scanner commandInput;
+    private boolean isClosed = false;
 
     private void goodbye() {
         System.out.println("Goodbye! See you next time!");
@@ -90,8 +89,7 @@ public class Duke {
     }
 
     private String taskItem(int i) {
-        int taskNum = i + 1;
-        return taskNum + ". " + history.get(i);
+        return (i + 1) + ". " + history.get(i);
     }
 
     private void deleteTask(String[] returnedArray) throws DukeException {
