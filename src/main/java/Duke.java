@@ -52,7 +52,7 @@ public class Duke {
 
                         ToDo newToDo = new ToDo(String.join(" ", userInputs));
                         userData.add(newToDo);
-                        System.out.format("Got it. I've added this task:\n  %s\nNow you have %s %s in the list.\n", newToDo, userData.size(), userData.size() > 1 ? "tasks" : "task");
+                        System.out.format("Got it. I've added this task:\n  %s\nNow you have %s %s in the list.\n", newToDo, userData.size(), userData.size() != 1 ? "tasks" : "task");
                         break;
                     }
                     case "deadline": {
@@ -70,7 +70,7 @@ public class Duke {
 
                         Deadline newDeadline = new Deadline(description, deadline);
                         userData.add(newDeadline);
-                        System.out.format("Got it. I've added this task:\n  %s\nNow you have %s %s in the list.\n", newDeadline, userData.size(), userData.size() > 1 ? "tasks" : "task");
+                        System.out.format("Got it. I've added this task:\n  %s\nNow you have %s %s in the list.\n", newDeadline, userData.size(), userData.size() != 1 ? "tasks" : "task");
                         break;
                     }
                     case "event": {
@@ -86,7 +86,13 @@ public class Duke {
 
                         Event newEvent = new Event(description, timeRange);
                         userData.add(newEvent);
-                        System.out.format("Got it. I've added this task:\n  %s\nNow you have %s %s in the list.\n", newEvent, userData.size(), userData.size() > 1 ? "tasks" : "task");
+                        System.out.format("Got it. I've added this task:\n  %s\nNow you have %s %s in the list.\n", newEvent, userData.size(), userData.size() != 1 ? "tasks" : "task");
+                        break;
+                    }
+                    case "delete": {
+                        Task toDelete = userData.get(Integer.valueOf(userInputs[1]) - 1);
+                        userData.remove(Integer.valueOf(userInputs[1])-1);
+                        System.out.format("Noted. I've removed this task:\n %s\nNow you have %s %s in the list.\n", toDelete, userData.size(), userData.size() != 1 ? "tasks" : "task");
                         break;
                     }
                     default: {
