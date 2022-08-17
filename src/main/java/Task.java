@@ -18,6 +18,8 @@ public class Task {
         return this.description;
     }
 
+    public boolean getStatus() { return this.isDone; };
+
     public void markasDone() {
         this.isDone = true;
     }
