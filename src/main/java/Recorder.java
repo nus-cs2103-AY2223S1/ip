@@ -5,11 +5,10 @@
  */
 public class Recorder {
     private String input;
-    private String addon = "Nya!";
-    private static final String border = "\n____________________________________________________________\n";
+    private String addOn = "Nya!";
 
     public void echo(String input) {
-        System.out.println(border + input + " " + addon + border);
+        System.out.println(input + " " + addOn);
     }
 
 }

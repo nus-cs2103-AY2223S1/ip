@@ -22,11 +22,31 @@ public class Duke {
 
         System.out.println(border + "Meow from\n" + cat + service + border);
 
+        /*
         Scanner sc= new Scanner(System.in);
-        Recorder Echo = new Recorder();
+        Recorder echo = new Recorder();
         String input = sc.nextLine();
-        while (!input.equals("bye")){
-            Echo.echo(input);
+        while(!input.equals("bye")){
+            System.out.println(border);
+            echo.echo(input);
+            System.out.println(border);
+            input = sc.nextLine();
+        }
+        */
+
+
+        Scanner sc= new Scanner(System.in);
+        ToDoList list = new ToDoList();
+
+        String input = sc.nextLine();
+        while(!input.equals("bye")){
+            System.out.println(border);
+            if (!input.equals("list")) {
+                list.addTask(input);
+            } else {
+                list.printList();
+            }
+            System.out.println(border);
             input = sc.nextLine();
         }
 
