@@ -34,20 +34,9 @@ public class CaCa {
      */
     public static void main(String[] args) {
         String line = "____________________________________________________________\n";
-
-        // ASCII text banner below created and adapted from
-        // https://manytools.org/hacker-tools/ascii-banner/
-        // with the following settings:
-        // Banner text: CaCa, Font: Big, Horizontal spacing: Normal, Vertical spacing: Normal.
-        String logo = "   _____       _____      \n"
-                + "  / ____|     / ____|     \n"
-                + " | |     __ _| |     __ _ \n"
-                + " | |    / _` | |    / _` |\n"
-                + " | |___| (_| | |___| (_| |\n"
-                + "  \\_____\\__,_|\\_____\\__,_|\n\n";
         String greeting = "Hello! I'm CaCa.\n"
                 + "What can I do for you?\n";
-        System.out.println(line + logo + greeting + line);
+        System.out.println(line + greeting + line);
 
         // Solution below on getting user input is
         // adapted from https://www.w3schools.com/java/java_user_input.asp
@@ -78,7 +67,7 @@ public class CaCa {
                         System.out.printf("%d.%s%n", i + 1, task);
 
                         if (i == tasks.size() - 1) {
-                            System.out.print(line);
+                            System.out.println(line);
                         }
                     }
                 }
@@ -119,7 +108,8 @@ public class CaCa {
                 tasks.add(taskToAdd);
                 System.out.println("Got it. I've added this task:");
                 System.out.println(taskToAdd);
-                System.out.printf("Now you have %d tasks in the list.\n%s", tasks.size(), line);
+                System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
+                System.out.println(line);
 
             } else {
                 System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(\n" + line);
