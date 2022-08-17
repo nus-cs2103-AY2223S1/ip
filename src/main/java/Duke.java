@@ -52,7 +52,7 @@ public class Duke {
                     break;
                 } else if (msgWords[i].equalsIgnoreCase("delete")) {
                     int index = Integer.parseInt(msgWords[2]) - 1;
-                    boolean removeMark = marked.get(index);
+                    String removeMark = marked.get(index) ? "[X] " : "[ ] ";
                     String removeItem = list.get(index);
                     String removeType = type.get(index);
                     marked.remove(index);
@@ -60,7 +60,7 @@ public class Duke {
                     type.remove(index);
                     System.out.println(line_divider);
                     System.out.println("I remove this ah:");
-                    System.out.println(removeType + removeMark + " " + removeItem);
+                    System.out.println(removeType + removeMark + removeItem);
                     System.out.println("Now " + list.size() + " tasks only");
                     System.out.println(line_divider);
                     break;
