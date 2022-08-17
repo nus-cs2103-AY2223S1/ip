@@ -6,7 +6,7 @@ public class Duke {
     private static final String INDENT = "     ";
 
     private static boolean isClosed = false;
-    private static String[] list = new String[100];
+    private static TaskList tasks = new TaskList();
     private static int counter = 0;
 
     public static void main(String[] args) {
@@ -19,7 +19,35 @@ public class Duke {
             } else if (command.equals("list")) {
                 printList();
             } else {
-                addToList(command);
+                if (command.startsWith("mark")) {
+                    String[] splitted = command.split("\\s+");
+                    Integer index;
+                    try {
+                        index = Integer.valueOf(splitted[1]);
+                        tasks.markAsDone(index);
+                    } catch (NumberFormatException err) {
+                        drawLine();
+                        indentMessage("You have entered an invalid input.");
+                        indentMessage("Please enter a number instead.");
+                        indentMessage("Example: mark 1");
+                        drawLine();
+                    }
+                } else if (command.startsWith("unmark")) {
+                    String[] splitted = command.split("\\s+");
+                    Integer index;
+                    try {
+                        index = Integer.valueOf(splitted[1]);
+                        tasks.markAsNotDone(index);
+                    } catch (NumberFormatException err) {
+                        drawLine();
+                        indentMessage("You have entered an invalid input.");
+                        indentMessage("Please enter a number instead.");
+                        indentMessage("Example: unmark 1");
+                        drawLine();
+                    }
+                } else {
+                    tasks.addToList(command);
+                }
             }
         }
     }
@@ -52,20 +80,7 @@ public class Duke {
         System.out.println(LINE);
     }
 
-    private static void printList() {
-        drawLine();
-        for (int i = 0; i < counter; i++) {
-            String msg = (i + 1) + ". " + list[i];
-            indentMessage(msg);
-        }
-        drawLine();
-    }
-
-    private static void addToList(String msg) {
-        list[counter] = msg;
-        counter++;
-        drawLine();
-        indentMessage("Added: " + msg);
-        drawLine();
+    public static void printList() {
+        tasks.showList();
     }
 }
