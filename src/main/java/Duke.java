@@ -12,7 +12,7 @@ public class Duke {
         //Scanner object to take in input from user
         Scanner input = new Scanner(System.in);
         //Welcome message
-        System.out.println("Hello! I'm Donovan\nWhat can I do for you?");
+        duke.hello();
         String text = input.next();
         while (!text.equals("bye")) {
             try {
@@ -45,11 +45,7 @@ public class Duke {
 
                     //Handle case when user wants to list tasks
                     case "list" :
-                        System.out.println("\tHere are the tasks in your list.");
-                        for (int i = 0; i < duke.lst.size(); i++) {
-                            Task task = duke.lst.get(i);
-                            System.out.printf("\t%d. %s\n", i+1, task.toString());
-                        }
+                        duke.listTasks();
                         break;
 
                     //Handle case when user wants to mark task
@@ -83,7 +79,23 @@ public class Duke {
             text = input.next();
         }
         //Goodbye message
+        duke.bye();
+    }
+
+    public void hello() {
+        System.out.println("Hello! I'm Donovan\nWhat can I do for you?");
+    }
+
+    public void bye() {
         System.out.println("\tBye! Hope to see you again soon!");
+    }
+
+    public void listTasks() {
+        System.out.println("\tHere are the tasks in your list.");
+        for (int i = 0; i < lst.size(); i++) {
+            Task task = lst.get(i);
+            System.out.printf("\t%d. %s\n", i+1, task.toString());
+        }
     }
 
     /**
