@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
@@ -7,12 +8,18 @@ public class Duke {
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        //System.out.println("Hello from\n" + logo);
+
+        ArrayList<String> allMessages = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
         greet();
         String next = sc.nextLine();
         while (!next.equals("bye")) {
-            echo(next);
+            if (!next.equals("list")) {
+                allMessages.add(next);
+                echo("added:" + next);
+            } else {
+                echo(allMessages);
+            }
             next = sc.nextLine();
         }
         exitMessage();
@@ -24,6 +31,15 @@ public class Duke {
 
     public static void exitMessage() {
         echo("Bye. Hope to see you again soon!");
+    }
+
+    public static void echo(ArrayList<String> ls) {
+        String line = "____________________________________________________________";
+        System.out.println("\t" + line);
+        for (int i = 0; i < ls.size(); i++) {
+            System.out.println("\t" + (i + 1) + ". " + ls.get(i));
+        }
+        System.out.println("\t" + line);
     }
 
     public static void echo(String message) {
