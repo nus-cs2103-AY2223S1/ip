@@ -1,7 +1,6 @@
 public abstract class Task {
     protected String task;
     protected boolean isComplete = false;
-    protected static int taskCount = 0;
 
     /**
      * A method used to validate a userCommand to for a specific task type
@@ -62,7 +61,6 @@ public abstract class Task {
         }
         System.out.println("\nGot it. I've added this task:");
         System.out.println(newTask);
-        System.out.println("Now you have " + Task.taskCount + " task(s) in the list.");
         return newTask;
     }
 

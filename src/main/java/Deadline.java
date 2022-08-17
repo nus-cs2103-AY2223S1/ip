@@ -10,7 +10,6 @@ public class Deadline extends Task {
     public Deadline(String task, String dueDate) {
         this.task = task;
         this.dueDate = dueDate;
-        Task.taskCount++;
     }
 
     /**

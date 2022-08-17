@@ -9,7 +9,6 @@ public class Event extends Task {
     public Event(String task, String eventTime) {
         this.task = task;
         this.eventTime = eventTime;
-        Task.taskCount++;
     }
 
     /**
