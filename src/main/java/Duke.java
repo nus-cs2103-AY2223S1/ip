@@ -6,7 +6,7 @@ public class Duke {
     public static void main(String[] args) {
         System.out.println("Hello! I'm Fungusta\n" + "Peter's personal chatbot\n");
         String instruction = sc.next();
-        while (instructionReader(instruction)) {
+        while (instructionReader(instruction) && sc.hasNextLine()) {
             instruction = sc.next();
         }
     }
