@@ -64,19 +64,19 @@ public class Duke {
         return event;
     }
 
-    public static void addTask(String input, int type) throws DukeException {
+    public static void addTask(String input, Commands type) throws DukeException {
         Task task = null;
         switch (type) {
             // To-do
-            case 0:
+            case TODO:
                 task = addTodo(input);
                 break;
             // Deadline
-            case 1:
+            case DEADLINE:
                 task = addDeadline(input);
                 break;
             // Event
-            case 2:
+            case EVENT:
                 task = addEvent(input);
                 break;
             default:
@@ -204,13 +204,13 @@ public class Duke {
                     }
                     break;
                 case "todo":
-                    addTask(secondWord, 0);
+                    addTask(secondWord, Commands.TODO);
                     break;
                 case "deadline":
-                    addTask(secondWord, 1);
+                    addTask(secondWord, Commands.DEADLINE);
                     break;
                 case "event":
-                    addTask(secondWord, 2);
+                    addTask(secondWord, Commands.EVENT);
                     break;
                 case "delete":
                     if (secondWord.length() == 0) {
