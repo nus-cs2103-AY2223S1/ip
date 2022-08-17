@@ -1,6 +1,7 @@
+import java.util.ArrayList;
+
 public class Task {
-    private static Task[] tasks = new Task[100];
-    private static int counter = 0;
+    private static ArrayList<Task> tasks = new ArrayList<Task>();
 
     private String description;
     private boolean done;
@@ -12,12 +13,16 @@ public class Task {
     }
 
     public static void addTask(Task task) {
-        Task.tasks[counter] = task;
-        Task.counter++;
+        Task.tasks.add(task);
+    }
+
+    public static void removeTask(int index) {
+        BotResponse.removeTaskLog(Task.tasks.get(index));
+        Task.tasks.remove(index);
     }
 
     public static int length() {
-        return counter;
+        return Task.tasks.size();
     }
 
     private String getStatus() {
@@ -29,14 +34,14 @@ public class Task {
     }
 
     public static void markDone(int index, boolean done) {
-        Task.tasks[index].done = done;
-        BotResponse.markLog(Task.tasks[index], done);
+        Task.tasks.get(index).done = done;
+        BotResponse.markLog(Task.tasks.get(index), done);
     }
 
     public static void printTasks() {
         BotResponse.separationLine();
-        for (int i = 0; i < counter; i++) {
-            System.out.println((i + 1) + "." + tasks[i]);
+        for (int i = 0; i < Task.tasks.size(); i++) {
+            System.out.println((i + 1) + "." + Task.tasks.get(i));
         }
         BotResponse.separationLine();
     }

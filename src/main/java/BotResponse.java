@@ -22,6 +22,14 @@ public class BotResponse {
         separationLine();
     }
 
+    public static void removeTaskLog(Task task) {
+        separationLine();
+        System.out.println("Ok, I've removed this task for you: \n"
+                + " " + task);
+        System.out.print("You now have " + (Task.length() - 1) + " tasks. \n");
+        separationLine();
+    }
+
     public static void markLog(Task task, boolean done) {
         separationLine();
         if (done) {

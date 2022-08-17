@@ -27,13 +27,11 @@ public class Duke {
             Task.printTasks();
 
         } else if (userResponse.startsWith("unmark")) {
-            int length = userResponse.length();
-            int index = userResponse.charAt(length - 1) - '0' - 1;
+            int index = Integer.parseInt(userResponse.substring(6).trim()) - 1;
             Task.markDone(index, false);
 
         } else if (userResponse.startsWith("mark")) {
-            int length = userResponse.length();
-            int index = userResponse.charAt(length - 1) - '0' - 1;
+            int index = Integer.parseInt(userResponse.substring(4).trim()) - 1;
             Task.markDone(index, true);
 
         } else if (userResponse.startsWith("todo")) {
@@ -49,7 +47,6 @@ public class Duke {
                 System.out.println(e.getMessage());
                 BotResponse.separationLine();
             }
-
 
         } else if (userResponse.startsWith("deadline")) {
             try {
@@ -67,11 +64,7 @@ public class Duke {
                 }
                 Deadline deadline = new Deadline(description, time);
                 BotResponse.addTaskLog(deadline);
-            } catch (InvalidDescriptionException e) {
-                BotResponse.separationLine();
-                System.out.println(e.getMessage());
-                BotResponse.separationLine();
-            } catch (InvalidTimeException e) {
+            } catch (InvalidDescriptionException | InvalidTimeException e) {
                 BotResponse.separationLine();
                 System.out.println(e.getMessage());
                 BotResponse.separationLine();
@@ -93,13 +86,15 @@ public class Duke {
                 }
                 Event event = new Event(description, time);
                 BotResponse.addTaskLog(event);
-            } catch (InvalidDescriptionException e) {
-                System.out.println(e.getMessage());
-                BotResponse.separationLine();
-            } catch (InvalidTimeException e) {
+            } catch (InvalidDescriptionException | InvalidTimeException e) {
                 System.out.println(e.getMessage());
                 BotResponse.separationLine();
             }
+
+        } else if (userResponse.startsWith("delete")) {
+            int index = Integer.parseInt(userResponse.substring(6).trim()) - 1;
+            Task.removeTask(index);
+
         } else {
             throw new InvalidInputException();
         }
