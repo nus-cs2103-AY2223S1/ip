@@ -11,6 +11,7 @@ public class Duke {
         System.out.println("Hello from\n" + logo);
         greeting();
         echo();
+
     }
 
     public static void greeting() {
@@ -30,7 +31,11 @@ public class Duke {
             str = sc.nextLine();
             uncap = str.toLowerCase();
         }
+        bye();
         sc.close();
+    }
+
+    public static void bye() {
         System.out.println("------------------------------\n");
         System.out.println("Bye. Hope to see you soon again!");
         System.out.println("------------------------------\n");
