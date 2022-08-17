@@ -6,7 +6,7 @@ public class Duke {
     private Scanner sc;
     private static String botName = "DIGITAL DADDY";
     private static String emoji = "\uD83E\uDD16";
-    private List<String> list = new ArrayList<>();
+    private List<Task> taskList = new ArrayList<>();
 
     Duke(Scanner sc) {
         this.sc = sc;
@@ -18,23 +18,23 @@ public class Duke {
         System.out.println(reply);
     }
 
-    private String listToString(List<String> list) {
-        if (list.isEmpty()) {
+    private String taskListToString(List<Task> taskList) {
+        if (taskList.isEmpty()) {
             return "You haven't added anything to your list!";
         }
 
-        String listString = "";
+        String taskListString = "";
 
-        for (int index = 1; index <= list.size(); index++) {
-            String listItem = list.get(index - 1);
-            String listItemString = index + ". " + listItem;
-            if (index != list.size()) {
+        for (int index = 1; index <= taskList.size(); index++) {
+            Task listItem = taskList.get(index - 1);
+            String listItemString = index + ". " + listItem.toString();
+            if (index != taskList.size()) {
                 listItemString += "\n";
             }
-            listString += listItemString;
+            taskListString += listItemString;
         }
 
-        return listString;
+        return taskListString;
     }
 
     public void start() {
@@ -48,7 +48,48 @@ public class Duke {
             }
 
             if (input.equals("list")) {
-                botReply(this.listToString(this.list));
+                botReply(this.taskListToString(this.taskList));
+                continue;
+            }
+
+            if (input.startsWith("mark ") || input.startsWith("unmark ")) {
+                String[] parts = input.split(" ");
+
+                // Input validation
+                if (parts.length != 2) {
+                    botReply("Wrong input format! mark/unmark <item number>\ne.g. 'mark 3'");
+                    continue;
+                }
+
+                int taskIndex;
+                Task pickedTask;
+                try {
+                    taskIndex = Integer.parseInt(parts[1]) - 1;
+                } catch (NumberFormatException e) {
+                    botReply("Please enter a valid task number! mark/unmark <item number>\ne.g. 'mark 3'");
+                    continue;
+                }
+                try {
+                    pickedTask = this.taskList.get(taskIndex);
+                } catch (IndexOutOfBoundsException e) {
+                    botReply("Task number doesn't exist!");
+                    continue;
+                }
+
+                String markOperation = parts[0];
+                String reply = "";
+
+                if (markOperation.equals("mark")) {
+                    pickedTask.markTask(true);
+                    reply += "Nice! I've marked this task as done:\n";
+                } else if (markOperation.equals("unmark")) {
+                    pickedTask.markTask(false);
+                    reply += "OK, I've marked this task as not done yet:\n";
+                }
+
+                reply += "\t" + pickedTask.toString();
+                botReply(reply);
+
                 continue;
             }
 
@@ -57,7 +98,8 @@ public class Duke {
     }
 
     private void addToList(String item) {
-        this.list.add(item);
+        Task newTask = new Task(item);
+        this.taskList.add(newTask);
         botReply("added: " + item);
     }
 
