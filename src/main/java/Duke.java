@@ -1,14 +1,8 @@
+import java.util.Scanner;
+import static java.lang.System.exit;
+
 public class Duke {
     public static void main(String[] args) {
-        /*
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        // Idea for logo: "Hello from the other side"
-        */
 
         String cat = "     /\\_____/\\\n"
                 + "    /  o   o  \\\n"
@@ -22,11 +16,22 @@ public class Duke {
                 + " / __/ _` | __/ __|\n"
                 + "| (_| (_| | |_\\__ \\\n"
                 + " \\___\\__,_|\\__|___/\n";
-        String border = "____________________________________________________________\n";
-        String service = "\nWhat can I do for mew?\n";
+        String border = "\n____________________________________________________________\n";
+        String service = "\nWhat can I do for mew?";
+        String goodbye = "Bye! See nya later!\n";
 
         System.out.println(border + "Meow from\n" + cat + service + border);
 
+        Scanner sc= new Scanner(System.in);
+        Recorder Echo = new Recorder();
+        String input = sc.nextLine();
+        while (!input.equals("bye")){
+            Echo.echo(input);
+            input = sc.nextLine();
+        }
+
+        System.out.println(border + goodbye + border);
+        exit(0);
 
     }
 }
