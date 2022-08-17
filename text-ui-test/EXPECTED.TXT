@@ -30,10 +30,10 @@ Anything else? I'm always here for you!
 7. Exit
 ********************************************************************************
 Please type in your Event:
-Please type in date:
+Please type in the time (D/M/Y H:M:S):
 ********************************************************************************
 Successfully added! You can see it in your task list as follows:
-[E][] CS2309S (at: September 18th)
+[E][] CS2309S (at: 18/09/2022 20:00:00)
 ********************************************************************************
 Anything else? I'm always here for you!
 1. Add a ToDo
@@ -45,10 +45,10 @@ Anything else? I'm always here for you!
 7. Exit
 ********************************************************************************
 Please type in your Deadline task:
-Please type in deadline:
+Please type in deadline (D/M/Y H:M:S):
 ********************************************************************************
 Successfully added! You can see it in your task list as follows:
-[D][] CS2109S (by: August 20th)
+[D][] CS2109S (by: 20/08/2022 23:59:00)
 ********************************************************************************
 Anything else? I'm always here for you!
 1. Add a ToDo
@@ -62,8 +62,8 @@ Anything else? I'm always here for you!
 ********************************************************************************
 Here are all your tasks:
 1. [T][] CS2109S
-2. [E][] CS2309S (at: September 18th)
-3. [D][] CS2109S (by: August 20th)
+2. [E][] CS2309S (at: 18/09/2022 20:00:00)
+3. [D][] CS2109S (by: 20/08/2022 23:59:00)
 ********************************************************************************
 Anything else? I'm always here for you!
 1. Add a ToDo
@@ -119,8 +119,8 @@ Anything else? I'm always here for you!
 ********************************************************************************
 Here are all your tasks:
 1. [T][] CS2109S
-2. [E][] CS2309S (at: September 18th)
-3. [D][] CS2109S (by: August 20th)
+2. [E][] CS2309S (at: 18/09/2022 20:00:00)
+3. [D][] CS2109S (by: 20/08/2022 23:59:00)
 4. [T][] MA2108
 ********************************************************************************
 Anything else? I'm always here for you!
@@ -135,7 +135,7 @@ Anything else? I'm always here for you!
 Please type in the task index that you want to mark:
 ********************************************************************************
 Successfully marked! You can see it in your task list as follows:
-[E][X] CS2309S (at: September 18th)
+[E][X] CS2309S (at: 18/09/2022 20:00:00)
 ********************************************************************************
 Anything else? I'm always here for you!
 1. Add a ToDo
@@ -149,7 +149,7 @@ Anything else? I'm always here for you!
 Please type in the task index that you want to mark:
 ********************************************************************************
 Successfully marked! You can see it in your task list as follows:
-[D][X] CS2109S (by: August 20th)
+[D][X] CS2109S (by: 20/08/2022 23:59:00)
 ********************************************************************************
 Anything else? I'm always here for you!
 1. Add a ToDo
@@ -177,8 +177,8 @@ Anything else? I'm always here for you!
 ********************************************************************************
 Here are all your tasks:
 1. [T][] CS2109S
-2. [E][X] CS2309S (at: September 18th)
-3. [D][X] CS2109S (by: August 20th)
+2. [E][X] CS2309S (at: 18/09/2022 20:00:00)
+3. [D][X] CS2109S (by: 20/08/2022 23:59:00)
 4. [T][] MA2108
 ********************************************************************************
 Anything else? I'm always here for you!

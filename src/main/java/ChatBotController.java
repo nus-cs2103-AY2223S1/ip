@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * This class is a logic controller for a chatbot
@@ -27,8 +29,12 @@ public class ChatBotController {
      * Get user's choice for command
      * @return user's input command
      */
-    public int userCommand() {
-        return Integer.parseInt(sc.nextLine());
+    public int userCommand() throws InvalidCommandException {
+        String command = sc.nextLine();
+        if (!checkCommand(command)) {
+            throw new InvalidCommandException("ERROR: The command you input is invalid!");
+        }
+        return Integer.parseInt(command);
     }
 
     /**
@@ -40,24 +46,39 @@ public class ChatBotController {
     }
 
     /**
-     * info to the user based on his input.
-     * @param userInput user's input string.
-     * @param isBye boolean value to show if the user asked for an exit command
-     * @param isList boolean value to show if the user asked for a list command
-     * @param isMark boolean value to show if the user asked for a mark command
-     * @param isUnmark boolean value to show if the user asked for an unmark command
-     * @return chatbot info
+     * Check the legitimacy of user's input for command
+     * @param s input command
+     * @return boolean value
      */
-    public String infoToUser(String userInput, boolean isBye, boolean isList, boolean isMark, boolean isUnmark) {
-        if (isBye) {
-            return goodbyeGreeting;
-        } else if (isList){
-            return listString;
-        } else if (isMark || isUnmark){
-            return userInput.split(" ")[1];
-        } else {
-            return userInput;
+    public boolean checkCommand(String s) {
+        for (int i = 1; i <= 8; ++i) {
+            if (s.strip().equals(Integer.toString(i))) {
+                return true;
+            }
         }
+        return false;
+    }
+
+    /**
+     * Check the legitimacy of user's input of a task
+     * @param s the task content
+     * @return boolean value
+     */
+    public boolean checkContent(String s) {
+        return !s.isBlank();
+    }
+
+    /**
+     * Check the legitimacy of user's input of time
+     * @param s time string
+     * @return boolean value
+     */
+    public boolean checkTime(String s) {
+        Pattern pattern1 = Pattern.compile("[0-9]+/[0-9]+/[0-9]+");
+        Pattern pattern2 = Pattern.compile("[0-9]+:[0-9]+:[0-9]+");
+        Matcher matcher1 = pattern1.matcher(s);
+        Matcher matcher2 = pattern2.matcher(s);
+        return matcher1.find() && matcher2.find();
     }
 
     /**
@@ -149,6 +170,10 @@ public class ChatBotController {
             System.out.println(info);
             System.out.println(splitLine);
         }
+    }
+
+    public void showSplitLine() {
+        System.out.println(splitLine);
     }
 
     /**
