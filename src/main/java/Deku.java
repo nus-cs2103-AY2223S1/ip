@@ -14,9 +14,9 @@ public class Deku {
     private void introduction() {
         String logo ="    ____  ________ ____  __\n" +
                 "   / __ \\/ ____/ //_/ / / /\n" +
-                "  / / / / __/ / ,< / / / / \n" +
-                " / /_/ / /___/ /| / /_/ /  \n" +
-                "/_____/_____/_/ |_\\____/   \n";
+                "  / / / / __/ / ,< / / / /\n" +
+                " / /_/ / /___/ /| / /_/ /\n" +
+                "/_____/_____/_/ |_\\____/\n";
         System.out.println(logo +
                 "\nHello I'm DEKU\nHow may I help you today?\n" +
                 SEPARATOR);
@@ -25,10 +25,10 @@ public class Deku {
     * Method to start the chat-bot
     */
     public void start() {
+        Scanner scanner = new Scanner(System.in);
         this.introduction();
         boolean active = true;
-        while (active) {
-            Scanner scanner = new Scanner(System.in);
+        while (active && scanner.hasNext()) {
             String userInput = scanner.nextLine();
             if (userInput.equals("bye")) {
                 active = false;
