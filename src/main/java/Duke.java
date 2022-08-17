@@ -50,63 +50,92 @@ public class Duke {
     }
 
     public void addTask(String cmd) {
-        String type = cmd.split(" ")[0];
-        boolean added = false;
-        int sizePrev = tasks.size();
-        switch (type) {
-            case "todo":
-                addTodo(cmd);
-                added = sizePrev != tasks.size();
-                break;
+        try {
+            String type = cmd.split(" ")[0];
+            boolean added = false;
+            int sizePrev = tasks.size();
+            switch (type) {
+                case "todo":
+                    addTodo(cmd);
+                    added = sizePrev != tasks.size();
+                    break;
 
-            case "deadline":
-                addDeadline(cmd);
-                added = sizePrev != tasks.size();
-                break;
+                case "deadline":
+                    addDeadline(cmd);
+                    added = sizePrev != tasks.size();
+                    break;
 
-            case "event":
-                addEvent(cmd);
-                added = sizePrev != tasks.size();
-                break;
+                case "event":
+                    addEvent(cmd);
+                    added = sizePrev != tasks.size();
+                    break;
 
-            default:
-                msg(INDENT + "☹ OOPS!!! I'm sorry, but I don't know what that means :-(\n");
-        }
-        if (added) {
-            String content;
-            Task task = tasks.get(tasks.size() - 1);
-            content = INDENT + "Got it. I've added this task:\n";
-            content += INDENT + "  " + task + "\n";
-            content += INDENT + "Now you have " + tasks.size() + " tasks in the list.\n";
-            msg(content);
+                default:
+                    throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+            }
+            if (added) {
+                String content;
+                Task task = tasks.get(tasks.size() - 1);
+                content = INDENT + "Got it. I've added this task:\n";
+                content += INDENT + "  " + task + "\n";
+                content += INDENT + "Now you have " + tasks.size() + " tasks in the list.\n";
+                msg(content);
+            }
+        } catch (DukeException e) {
+            throw new DukeException(INDENT + e.getMessage() + "\n");
         }
     }
 
     public void addTodo(String cmd) throws DukeException {
         try {
+            String[] wordArr = cmd.split(" ");
+            if (wordArr.length < 2) {
+                throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+            }
             String desc = cmd.split(" ", 2)[1];
             Todo todo = new Todo(desc);
             tasks.add(tasks.size(), todo);
-        } catch (Exception e) {
-            msg(INDENT + "☹ OOPS!!! The description of a todo cannot be empty.\n");
-//            throw new DukeException("");
+        } catch (DukeException e) {
+            msg(INDENT + e.getMessage() + "\n");
         }
     }
 
     public void addDeadline(String cmd) {
-        String[] div = cmd.split("/");
-        String desc = div[0].split(" ", 2)[1];
-        String by = div[1].split(" ", 2)[1];
-        Deadline deadline = new Deadline(desc, by);
-        tasks.add(tasks.size(), deadline);
+        try {
+            String[] wordArr = cmd.split(" ");
+            if (wordArr.length < 2) {
+                throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
+            }
+            if (!cmd.contains("/by")) {
+                throw new DukeException("☹ OOPS!!! The deadline is required. (/by)");
+            }
+            String[] div = cmd.split("/");
+            String desc = div[0].split(" ", 2)[1];
+            String by = div[1].split(" ", 2)[1];
+            Deadline deadline = new Deadline(desc, by);
+            tasks.add(tasks.size(), deadline);
+        } catch (DukeException e) {
+            msg(INDENT + e.getMessage() + "\n");
+        }
     }
 
     public void addEvent(String cmd) {
-        String[] div = cmd.split("/");
-        String desc = div[0].split(" ", 2)[1];
-        String at = div[1].split(" ", 2)[1];
-        Event event = new Event(desc, at);
-        tasks.add(tasks.size(), event);
+        try {
+            String[] wordArr = cmd.split(" ");
+            if (wordArr.length < 2) {
+                throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.");
+            }
+            if (!cmd.contains("/at")) {
+                throw new DukeException("☹ OOPS!!! Time of event required. (/at)");
+            }
+            String[] div = cmd.split("/");
+            String desc = div[0].split(" ", 2)[1];
+            String at = div[1].split(" ", 2)[1];
+            Event event = new Event(desc, at);
+            tasks.add(tasks.size(), event);
+        } catch (DukeException e) {
+            msg(INDENT + e.getMessage() + "\n");
+        }
     }
 
     public void list() {
@@ -121,7 +150,14 @@ public class Duke {
 
     public void mark(String cmd) throws DukeException {
         try {
+            String[] wordArr = cmd.split(" ");
+            if (wordArr.length < 2) {
+                throw new DukeException("☹ OOPS!!! This mark command is invalid.");
+            }
             int index = Integer.parseInt(cmd.split(" ")[1]) - 1;
+            if (index < 0 || index >= tasks.size()) {
+                throw new DukeException("☹ OOPS!!! The index is invalid.");
+            }
             Task curr = tasks.get(index);
             if (curr.getStatusIcon().equals(" ")) {
                 curr.markAsDone();
@@ -129,14 +165,21 @@ public class Duke {
             } else {
                 msg(INDENT + "This task was already done.\n" + INDENT + "  " + curr + "\n");
             }
-        } catch (Exception e) {
-            msg(INDENT + "☹ OOPS!!! This mark command is invalid. \n");
+        } catch (DukeException e) {
+            msg(INDENT + e.getMessage() + "\n");
         }
     }
 
     public void unmark(String cmd) {
         try {
+            String[] wordArr = cmd.split(" ");
+            if (wordArr.length < 2) {
+                throw new DukeException("☹ OOPS!!! This mark command is invalid.");
+            }
             int index = Integer.parseInt(cmd.split(" ")[1]) - 1;
+            if (index < 0 || index >= tasks.size()) {
+                throw new DukeException("☹ OOPS!!! The index is invalid.");
+            }
             Task curr = tasks.get(index);
             if (curr.getStatusIcon().equals("X")) {
                 curr.unmarkTask();
@@ -144,8 +187,8 @@ public class Duke {
             } else {
                 msg(INDENT + "This task has not been done in the first place.\n" + INDENT + "  " + curr + "\n");
             }
-        } catch (Exception e) {
-            msg(INDENT + "☹ OOPS!!! This unmark command is invalid. \n");
+        } catch (DukeException e) {
+            msg(INDENT + e.getMessage() + "\n");
         }
     }
 
