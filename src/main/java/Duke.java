@@ -23,37 +23,38 @@ public class Duke {
    * Parses a String[] for an "event", "deadline" or "todo" task.
    */
   private static String[] parseString(String action, String[] splitInput) {
+    String[] newSplitInput;
 
     if (action.equals("todo")) {
-      String[] newSplitInput = new String[2];
+      newSplitInput = new String[2];
       String taskDetails = "";
 
-      for (int i = 1; i < splitInput.length(); i++) {
+      for (int i = 1; i < splitInput.length; i++) {
         taskDetails += splitInput[i];
       }
 
       newSplitInput[1] = taskDetails;
 
     } else {
-      String dateDelimiter;
+      String dateDelimiter = "";
       if (action.equals("event")) {
         dateDelimiter = "/at";
       } else if (action.equals("deadline")) {
         dateDelimiter = "/by";
       }
 
-      String[] newSplitInput = new String[3];
+      newSplitInput = new String[3];
 
       // parse the splitInput String[]
       newSplitInput[0] = splitInput[0];
 
-      String taskDetails = ""
-      String date = ""
+      String taskDetails = "";
+      String date = "";
 
       boolean reachedDate = false;
-      for (int i = 1; i < splitInput.length(); i++) {
+      for (int i = 1; i < splitInput.length; i++) {
         String substring = splitInput[i];
-        if (substring.equals(dateDelimiter) {
+        if (substring.equals(dateDelimiter)) {
           reachedDate = true;
           continue;
         }
@@ -83,11 +84,11 @@ public class Duke {
     String[] splitInput = input.split(" ");
     String action = splitInput[0];
     if (action.equals("Bye")) {
-      Command command = new ByeCommand(splitInput);
+      Command command = new ByeCommand(splitInput, tasks);
       return command.performAction();
 
     } else if (action.equals("list")) {
-      Command command = new ListCommand(this.tasks);
+      Command command = new ListCommand(splitInput, tasks);
       return command.performAction();
 
     } else if (
@@ -95,19 +96,20 @@ public class Duke {
         action.equals("unmark")
         )
     {
-      Command command = new MarkCommand(splitInput);
+      Command command = new MarkCommand(splitInput, tasks);
       return command.performAction();
 
     } else if (
         action.equals("event") ||
         action.equals("deadline") ||
-        actions.equals("todo")
+        action.equals("todo")
         )
     {
       String[] newSplitInput = parseString(action, splitInput);
-      Command command = new TaskCommand(newSplitInput);
+      Command command = new TaskCommand(newSplitInput, tasks);
       return command.performAction();
     }
+    return true;
   }
 
   public static void main(String[] args) {
