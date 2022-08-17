@@ -87,20 +87,47 @@ public class Duke {
                     reply += "OK, I've marked this task as not done yet:\n";
                 }
 
-                reply += "\t" + pickedTask.toString();
+                reply += " " + pickedTask.toString();
                 botReply(reply);
 
                 continue;
             }
 
-            this.addToList(input);
+            if (input.startsWith("todo ")) {
+                String[] parts = input.split("todo ", 2);
+                String description = parts[1];
+
+                Task newTask = new Todo(description);
+                this.addToList(newTask);
+            }
+
+            if (input.startsWith("deadline ")) {
+                String[] parts = input.split("deadline ", 2);
+                String[] details = parts[1].split(" /by ", 2);
+                //todo: make sure user enters /by
+                String description = details[0];
+                String date = details[1];
+
+                Task newTask = new Deadline(description, date);
+                this.addToList(newTask);
+            }
+
+            if (input.startsWith("event ")) {
+                String[] parts = input.split("event ", 2);
+                String[] details = parts[1].split(" /at ", 2);
+                //todo: make sure user enters /at
+                String description = details[0];
+                String date = details[1];
+
+                Task newTask = new Event(description, date);
+                this.addToList(newTask);
+            }
         }
     }
 
-    private void addToList(String item) {
-        Task newTask = new Task(item);
+    private void addToList(Task newTask) {
         this.taskList.add(newTask);
-        botReply("added: " + item);
+        botReply("Got it. I've added this task:\n " + newTask + "\nNow you have " + this.taskList.size() + " tasks in the list.");
     }
 
     public static void main(String[] args) {
