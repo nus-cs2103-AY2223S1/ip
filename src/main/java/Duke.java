@@ -85,36 +85,6 @@ public class Duke {
         return al;
     }
 
-    public static void checklist(ArrayList<Task> at) {
-        Scanner sc = new Scanner(System.in);
-        String str = sc.nextLine();
-        String und = str.toLowerCase();
-        while (!und.equals("bye")) {
-            if (und.contains("mark")) {
-                int i = Integer.parseInt(String.valueOf(und.charAt(5)));
-                Task call = at.get(i - 1);
-                call.markAsDone();
-                System.out.println("-------------------------------\n");
-                System.out.println("\tNice! I have marked this task as done: ");
-                System.out.println("\t\t" + call.toString());
-                System.out.println("-------------------------------\n");
-            } else if (und.contains("unmark")) {
-                int i = Integer.parseInt(String.valueOf(und.charAt(7)));
-                Task call = at.get(i - 1);
-                call.markAsUndone();
-                System.out.println("-------------------------------\n");
-                System.out.println("\tOK, I've marked this task as not done yet: ");
-                System.out.println("\t\t" + call.toString());
-                System.out.println("-------------------------------\n");
-            } else if (und.equals("list")) {
-                listOut(at);
-            }
-            str = sc.nextLine();
-            und = str.toLowerCase();
-        }
-        sc.close();
-        bye();
-    }
     private static void listOut(ArrayList<Task> al) {
         int count = 1;
         System.out.println("-------------------------------\n");
