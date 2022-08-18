@@ -44,6 +44,10 @@ public class Duke {
      */
     public static void main(String[] args) {
 
+        // Create the commands for greeting and departure
+        Command greeting = new Command(CommandName.GREETINGS);
+        Command departure = new Command(CommandName.DEPARTURE);
+
         // Create an Array to store the Tasks the user has entered of size 100
         ArrayList<Task> taskArrayList = new ArrayList<>();
         String userCommand = "";
@@ -52,8 +56,8 @@ public class Duke {
         Scanner enterInput = new Scanner(System.in);
 
 
-        System.out.println("Hello! I'm Duke");
-        System.out.println("What can I do for you?");
+        // Greet user
+        greeting.printCommand();
 
         userCommand = enterInput.nextLine();
 
@@ -189,7 +193,9 @@ public class Duke {
                 userCommand = enterInput.nextLine();
             }
         }
-        System.out.println("Bye. Hope to see you again soon ^^!");
+
+        // User operations done
+        departure.printCommand();
     }
 
 
