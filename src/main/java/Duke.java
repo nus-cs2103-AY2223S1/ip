@@ -26,27 +26,38 @@ public class Duke {
             printTab(LINEBREAK);
             System.out.println();
         } else {
-            switch (comm) {
-                case "list":
-                    list();
-                    break;
-                case "mark":
-                    mark(arr);
-                    break;
-                case "unmark":
-                    unMark(arr);
-                    break;
-                case "todo":
-                    todo(arr);
-                    break;
-                case "deadline":
-                    deadline(arr);
-                    break;
-                case "event":
-                    event(arr);
-                    break;
-                default:
-                    add(s);
+            try {
+                switch (comm) {
+                    case "list":
+                        list();
+                        break;
+                    case "mark":
+                        mark(arr);
+                        break;
+                    case "unmark":
+                        unMark(arr);
+                        break;
+                    case "todo":
+                        todo(arr);
+                        break;
+                    case "deadline":
+                        deadline(arr);
+                        break;
+                    case "event":
+                        event(arr);
+                        break;
+                    default:
+//                        add(s);
+                        throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
+                }
+            } catch (DukeException e) {
+                printTab(LINEBREAK);
+                printTab(e.getMessage());
+                printTab(LINEBREAK);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                printTab(LINEBREAK);
+                printTab(e.getMessage());
+                printTab(LINEBREAK);
             }
             String newS = sc.nextLine();
             String[] newArr = newS.split(" ", 2);
@@ -105,7 +116,10 @@ public class Duke {
         printTab(LINEBREAK);
     }
 
-    public static void todo(String[] arr) {
+    public static void todo(String[] arr) throws ArrayIndexOutOfBoundsException {
+        if (arr.length == 1) {
+            throw new ArrayIndexOutOfBoundsException("OOPS!!! The description of a todo cannot be empty.");
+        }
         String s = arr[1];
         Todo t = new Todo(s);
         store[index] = t;
@@ -118,7 +132,10 @@ public class Duke {
         printTab(LINEBREAK);
     }
 
-    public static void deadline(String[] arr) {
+    public static void deadline(String[] arr) throws ArrayIndexOutOfBoundsException {
+        if (arr.length == 1) {
+            throw new ArrayIndexOutOfBoundsException("OOPS!!! The description of a deadline cannot be empty.");
+        }
         String[] temp = arr[1].split(" /");
         String s1 = temp[0];
         String s2 = temp[1].split(" ", 2)[1];
@@ -133,7 +150,10 @@ public class Duke {
         printTab(LINEBREAK);
     }
 
-    public static void event(String[] arr) {
+    public static void event(String[] arr) throws ArrayIndexOutOfBoundsException {
+        if (arr.length == 1) {
+            throw new ArrayIndexOutOfBoundsException("OOPS!!! The description of a event cannot be empty.");
+        }
         String[] temp = arr[1].split(" /");
         String s1 = temp[0];
         String s2 = temp[1].split(" ", 2)[1];
