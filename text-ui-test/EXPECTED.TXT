@@ -1,7 +1,92 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 	
+███████████████████████████████████
+█▄─▄▄─█▄─▄███─▄▄─█─▄▄─█▄─▄▄─█▄─█─▄█
+██─▄▄▄██─██▀█─██─█─██─██─▄▄▄██▄─▄██
+▀▄▄▄▀▀▀▄▄▄▄▄▀▄▄▄▄▀▄▄▄▄▀▄▄▄▀▀▀▀▄▄▄▀▀
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 	Hi, I'm Ploopy! Nice to meet you!
+	Whats up?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 	I've added this task to your list.
+	Here you go: 1. [T][ ] read book
+	You have 1 tasks in your list.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 	I've added this task to your list.
+	Here you go: 2. [E][ ] study (by tomorrow)
+	You have 2 tasks in your list.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 	I've added this task to your list.
+	Here you go: 3. [D][ ]  assignment (by sunday)
+	You have 3 tasks in your list.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 	I've added this task to your list.
+	Here you go: 4. [T][ ] watch movie
+	You have 4 tasks in your list.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 	I've added this task to your list.
+	Here you go: 5. [E][ ] movie night (saturday)
+	You have 5 tasks in your list.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 	Nice! You've completed this task. I'll mark it as done.
+	 2. [E][✓] study (by tomorrow)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 	Nice! You've completed this task. I'll mark it as done.
+	 3. [D][✓]  assignment (by sunday)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 	Alright this task has been marked as undone.
+	 2. [E][ ] study (by tomorrow)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 	Nice! You've completed this task. I'll mark it as done.
+	 4. [T][✓] watch movie
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 	
 
+ 	1. [T][ ] read book
+
+ 	2. [E][ ] study (by tomorrow)
+
+ 	3. [D][✓]  assignment (by sunday)
+
+ 	4. [T][✓] watch movie
+
+ 	5. [E][ ] movie night (saturday)
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 	Nice! You've completed this task. I'll mark it as done.
+	 5. [E][✓] movie night (saturday)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 	Alright this task has been marked as undone.
+	 5. [E][ ] movie night (saturday)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 	
+
+ 	1. [T][ ] read book
+
+ 	2. [E][ ] study (by tomorrow)
+
+ 	3. [D][✓]  assignment (by sunday)
+
+ 	4. [T][✓] watch movie
+
+ 	5. [E][ ] movie night (saturday)
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 	Okay then, see ya later :)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -1,0 +1,15 @@
+todo read book
+event study /by tomorrow
+deadline assignment /by sunday
+todo watch movie
+event movie night /saturday
+deadline finish code /today :(
+mark 2
+mark 3
+unmark 2
+mark 4
+list
+mark 5
+unmark 5
+list
+bye

@@ -74,8 +74,7 @@ public class Duke {
             } else if (input.toString().equals("list")) {
                 displayList();
             } else if (input.toString().matches("\\btodo\\s.*\\b")) {
-                System.out.println(input.substring(4, input.length()));
-                Task newTask = Task.createTask(input.substring(4, input.length()), null, "todo");
+                Task newTask = Task.createTask(input.substring(5, input.length()), null, "todo");
                 tasks.add(newTask);
                 addTaskMessage(newTask);
             } else if (input.toString().matches("\\bdeadline\\s.*\\b")) {
