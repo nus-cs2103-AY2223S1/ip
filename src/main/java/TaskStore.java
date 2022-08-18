@@ -1,3 +1,5 @@
+import exceptions.NoSuchTask;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,8 +18,12 @@ public class TaskStore {
      * @param index
      * @return The `index`-th task
      */
-    public Task getTask(int index) throws IndexOutOfBoundsException {
-        return this.store.get(index);
+    public Task getTask(int index) throws NoSuchTask {
+        try {
+            return this.store.get(index);
+        } catch (IndexOutOfBoundsException ex) {
+            throw new NoSuchTask(this.size());
+        }
     }
 
     public String addTask(Task task) {
@@ -37,7 +43,12 @@ public class TaskStore {
         }
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < this.store.size(); i++) {
-            Task task = this.getTask(i);
+            Task task = null;
+            try {
+                task = this.getTask(i);
+            } catch (NoSuchTask e) {
+                // This block will never be executed as we are looping within the size of store.
+            }
             sb.append(String.format("%d. %s", i + 1, task.toString()));
             if (i != this.size() - 1) sb.append("\n");
         }
