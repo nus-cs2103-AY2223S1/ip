@@ -23,7 +23,7 @@ public class Task {
 
     @Override
     public String toString() {
-        String checkbox = this.done ? "[✔] " : "[ ] ";
+        String checkbox = this.done ? "[X] " : "[ ] ";
         return checkbox + this.taskName;
     }
 }

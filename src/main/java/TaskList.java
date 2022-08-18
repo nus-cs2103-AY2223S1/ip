@@ -8,7 +8,7 @@ public class TaskList {
     }
 
     public void listTask() {
-        System.out.println("\nCurrent Taskings");
+        System.out.println("\nCurrent Tasking");
         for (int i = 1; i <= taskList.size(); i++) {
             System.out.println(i + ") " + taskList.get(i - 1));
         }
