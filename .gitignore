@@ -3,6 +3,11 @@
 /out/
 /*.iml
 
+# Binary files
+*.class
+*.jar
+*.exe
+
 # Gradle build files
 /.gradle/
 /build/
