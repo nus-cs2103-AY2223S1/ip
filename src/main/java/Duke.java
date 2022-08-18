@@ -19,12 +19,21 @@ public class Duke {
                 "\n____________________________________________________________\n");
     }
 
-    private String[] splitString(String s, String regex) {
+    private static String[] splitString(String s, String regex) {
         return s.split(regex, 2);
     }
 
+    private boolean checkCommandArgsLength(String[] command, int length) {
+        if (command.length != length) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     private void parseMessage(String message) {
-        String[] command = message.split(" ", 2);
+
+        String[] command = splitString(message, " ");
         String commandKey = command[0];
         switch (commandKey) {
             case "bye":
@@ -43,22 +52,18 @@ public class Duke {
                 this.unmarkDone(index2);
                 break;
             case "todo":
-                Task t = new Todo(command[1]);
-                this.addTask(t);
+                this.handleAddTask(command, "todo");
                 break;
             case "deadline":
-                String[] argsDeadline = splitString(command[1], DEADLINE_SPLIT);
-                Deadline d = new Deadline(argsDeadline[0], argsDeadline[1]);
-                this.addTask(d);
+                this.handleAddTask(command, "deadline");
                 break;
             case "event":
-                String[] argsEvent = splitString(command[1], EVENT_SPLIT);
-                Event e = new Event(argsEvent[0], argsEvent[1]);
-                this.addTask(e);
+                this.handleAddTask(command, "event");
                 break;
             default:
-                this.generateReply("Invalid command");
+                this.generateReply("OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
+
     }
 
     private void printList() {
@@ -74,7 +79,7 @@ public class Duke {
         this.list.add(t);
         generateReply("Got it. I've added this task:\n" +
                 t +
-                "\n Now you have " + this.countTask() + " tasks in the list");
+                "\nNow you have " + this.countTask() + " tasks in the list");
     }
 
     private Integer countTask() {
@@ -91,6 +96,51 @@ public class Duke {
         this.list.get(index - 1).unmarkDone();
         generateReply("OK, I've marked this task as not done yet:\n" +
                 this.list.get(index - 1));
+    }
+
+    public void handleAddTask(String[] commands, String type) {
+        Task task;
+        if (type.equals("todo")) {
+            if (checkCommandArgsLength(commands, 2)) {
+                if (commands[1].trim().length() != 0) {
+                    task = new Todo(commands[1]);
+                    this.addTask(task);
+                } else {
+                    generateReply("OOPS!!! The description of a todo cannot be empty.");
+                }
+            }
+            else {
+                generateReply("OOPS!!! The description of a todo cannot be empty.");
+            }
+        }
+        else if (type.equals("deadline")) {
+            if (checkCommandArgsLength(commands, 2)) {
+                String[] argsDeadline = splitString(commands[1], DEADLINE_SPLIT);
+                if (checkCommandArgsLength(argsDeadline, 2)) {
+                    task = new Deadline(argsDeadline[0], argsDeadline[1]);
+                    this.addTask(task);
+                }
+                else {
+                    generateReply("OOPS!!! Invalid deadline command.");
+                }
+            } else {
+                generateReply("OOPS!!! The description of a deadline cannot be empty.");
+            }
+        }
+        else {
+            if (checkCommandArgsLength(commands, 2)) {
+                String[] argsDeadline = splitString(commands[1], EVENT_SPLIT);
+                if (checkCommandArgsLength(argsDeadline, 2)) {
+                    task = new Event(argsDeadline[0], argsDeadline[1]);
+                    this.addTask(task);
+                }
+                else {
+                    generateReply("OOPS!!! Invalid event command.");
+                }
+            } else {
+                generateReply("OOPS!!! The description of a event cannot be empty.");
+            }
+        }
     }
 
     public static void main(String[] args) {
