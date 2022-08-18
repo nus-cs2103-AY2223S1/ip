@@ -1,0 +1,15 @@
+list
+todo something first
+list
+deadline something else /by tonight
+event another thing /at tmr 5pm
+list
+mark 1
+list
+unmark 1
+list
+delete 1
+list
+blah
+todo
+bye
