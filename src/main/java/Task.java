@@ -4,6 +4,7 @@ public abstract class Task {
     protected static int taskCounter = 0;
     protected String type;
     protected int taskNumber;
+
     private Task(String name) {
         this.name = name;
         this.done = false;
@@ -22,34 +23,44 @@ public abstract class Task {
         private final String dueDate;
         private Deadline(String name, String dueDate) {
             super(name);
-            this.dueDate = dueDate;
+            this.dueDate = "(" + dueDate + ")";
             this.type = "[D]";
         }
 
         @Override
         public String toString() {
             return super.toString() + this.dueDate;
-            //return "Event: " + this.name;
         }
     }
     private static class Event extends Task {
         private final String date;
         private Event(String name, String date) {
             super(name);
-            this.date = date;
+            this.date = "(" + date +")";
             this.type = "[E]";
         }
 
         @Override
         public String toString() {
             return super.toString() + this.date;
-            //return "Event: " + this.name;
         }
     }
 
     @Override
     public String toString() {
-        return taskNumber + type + getStatus() + " " + name;
+        return taskNumber + ". " + type + getStatus() + " " + name;
+    }
+
+    public static Task createTask(String name, String date, String task) {
+        switch (task) {
+            case "todo":
+                return new ToDo(name);
+            case "deadline":
+                return new Deadline(name, date);
+            case "event":
+                return new Event(name, date);
+        }
+        return null;
     }
 
     public void markDone() {
@@ -62,6 +73,10 @@ public abstract class Task {
 
     public String getStatus() {
         return done ? "[✓]" : "[ ]";
+    }
+
+    public int getTaskNumber() {
+        return taskNumber;
     }
 
 }
