@@ -15,10 +15,12 @@ public class Duke {
         System.out.println("Hello! I'm Duke\n What can I do for you?");
         System.out.println("___________________________________");
 
-        ArrayList<String> list = new ArrayList<>();
+        ArrayList<Task> list = new ArrayList<>();
 
         Scanner sc = new Scanner(System.in);
         String input = sc.nextLine();
+
+
 
         while (!input.equals("bye")) {
             if (input.equals("list")) {
@@ -28,10 +30,22 @@ public class Duke {
                 }
                 System.out.println("___________________________________");
                 input = sc.nextLine();
+
+            }
+
+            else if (input.equals("mark")) {
+                s
+                System.out.println("___________________________________");
+                System.out.println("Nice! I've marked this task done: " + "\n"
+                        + "[" + list.get(i+1)
+
+                );
+
             }
 
             else {
-                list.add(input);
+                Task task = new Task(input);
+                list.add(task);
                 System.out.println("___________________________________");
                 System.out.println("added: " + input);
                 System.out.println("___________________________________");
