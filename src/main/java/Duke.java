@@ -1,9 +1,10 @@
 import java.util.*;
 
+
 public class Duke {
     private static final String indentation = "    ";
     private static final String horizontalLine = "____________________________________________________________";
-    private static List<String> list = new ArrayList<>();
+    private static List<Task> list = new ArrayList<>();
     private static int listSize = 0;
 
     public static void main(String[] args) {
@@ -48,35 +49,34 @@ public class Duke {
 
     private static void addToList(String item){
         listSize++;
-        list.add(String.valueOf(listSize) + ". " + "[ ] " + item);
+        Task newTask = new Task(item, listSize);
+        list.add(newTask);
+        echo("added: " + newTask.toString());
     }
 
     private static void markAsDone(int number){
-        String item = list.get(number - 1);
-        item = item.split("]", 2)[1];
-        item = "[X]" + item;
+        Task item = list.get(number - 1);
+        item.mark();
         String itemMessage = "Nice! I've marked this task as done: \n"
-        + item;
+        + item.toString();
         encapsulateMessage(itemMessage);
-        item = String.valueOf(number) + ". " + item;
         list.set(number - 1, item);
     }
 
     private static void unmarkTask(int number) {
-        String item = list.get(number - 1);
-        item = item.split("]", 2)[1];
-        item = "[ ]" + item;
+        Task item = list.get(number - 1);
+        item.unmark();
         String itemMessage = "OK, I've marked this task as not done yet: \n"
-        + item;
+        + item.toString();
         encapsulateMessage(itemMessage);
-        item = String.valueOf(number) + ". " + item;
         list.set(number - 1, item);
+
     }
 
     private static void printList(){
         String itemString = "";
-        for (String item : list) {
-            itemString += item + "\n";
+        for (Task item : list) {
+            itemString += String.valueOf(item.index) + ". " + item.toString() + "\n";
         }
         encapsulateMessage(itemString);
     }
@@ -104,9 +104,7 @@ public class Duke {
                 unmarkTask(number);
             } else {
                 addToList(command);
-                echo("added: " + command);
             }
-            // echo(command);
 
             command = sc.nextLine();
 
