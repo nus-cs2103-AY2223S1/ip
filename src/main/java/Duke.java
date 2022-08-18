@@ -15,6 +15,19 @@ public class Duke {
         }
     }
 
+    static String validDelete(String input) {
+        if (!isNumeric(input.substring(7))) {
+            return "Pi-must be numbers behind-pi!";
+        } else if (Integer.parseInt(input.substring(7)) > tasks.size() || Integer.parseInt(input.substring(7)) <= 0) {
+            return "Pi-not within range-pi!";
+        } else {
+            int temp = Integer.parseInt(input.substring(7));
+            Task task = tasks.get(temp - 1);
+            tasks.remove(temp-1);
+            return "Pi-ka(Removed): " + task + '\n' +"Pikaaaaa: " + tasks.size() + (tasks.size() > 1 ? " tasks" : " task");
+        }
+    }
+
     static String validMark(String input) {
         if (!isNumeric(input.substring(5))) {
             return "Pi-must be numbers behind-pi!";
@@ -94,10 +107,9 @@ public class Duke {
                 tasks.add(newEvent);
                 tempStr = "Pikapi(added): " + newEvent + '\n';
                 tempStr += "Pikaaaaa: " + tasks.size() + (tasks.size() > 1 ? " tasks" : " task");
-            } //else if (input.startsWith("delete ")) {
-                //tempStr = validDelete(input);
-            //}
-        else {
+            } else if (input.startsWith("delete ")) {
+                tempStr = validDelete(input);
+            } else {
                 tempStr = "Pi?";
             }
             System.out.println(withFormat(tempStr));
