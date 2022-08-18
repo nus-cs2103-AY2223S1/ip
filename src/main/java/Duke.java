@@ -35,30 +35,40 @@ public class Duke {
             char charOfInt = userInput.charAt(userInput.length() - 1);
             // convert ASCII character of integer to int
             int taskNumber =  charOfInt - '0';
-            switch (firstWord) {
-                case "bye":
-                    Duke.exit();
-                    break;
-                case "unmark":
-                    Duke.unmarkTask(taskNumber);
-                    break;
-                case "mark":
-                    Duke.markTask(taskNumber);
-                    break;
-                case "list":
-                    Duke.displayList();
-                    break;
-                case "deadline":
-                    Duke.addTask(new Deadline(taskDescription, time));
-                    break;
-                case "todo":
-                    Duke.addTask(new ToDo(taskDescription));
-                    break;
-                case "event":
-                    Duke.addTask(new Event(taskDescription, time));
-                    break;
-                default:
-                    System.out.println(userInput);
+            try {
+                switch (firstWord) {
+                    case "bye":
+                        Duke.exit();
+                        break;
+                    case "unmark":
+                        Duke.unmarkTask(taskNumber);
+                        break;
+                    case "mark":
+                        Duke.markTask(taskNumber);
+                        break;
+                    case "list":
+                        Duke.displayList();
+                        break;
+                    case "deadline":
+                        Duke.addDeadline(taskDescription, time);
+                        break;
+                    case "todo":
+                        Duke.addTodo(taskDescription);
+                        break;
+                    case "event":
+                        Duke.addEvent(taskDescription, time);
+                        break;
+                    default:
+                        throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                }
+            } catch (DukeException e) {
+                Duke.lineFormat();
+                System.out.println("     " + e.toString());
+                Duke.lineFormat();
+            } catch (ArrayIndexOutOfBoundsException e) {
+                Duke.lineFormat();
+                System.out.println("     ☹ OOPS!!! Please key in a valid number");
+                Duke.lineFormat();
             }
         }
     }
@@ -81,6 +91,36 @@ public class Duke {
                 "       " + task.toString() + "\n" +
                 "     Now you have " + taskList.size() + " tasks in the list.");
         Duke.lineFormat();
+    }
+
+    public static void addTodo(String description) {
+        if (description.equals("")) {
+            throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+        }
+        Task task = new ToDo(description);
+        Duke.addTask(task);
+    }
+
+    public static void addEvent(String description, String at) {
+        if (description.equals("")) {
+            throw new DukeException("☹ OOPS!!! The description of a event cannot be empty.");
+        }
+        if (at.equals("")) {
+            throw new DukeException("☹ OOPS!!! The time of a event cannot be empty.");
+        }
+        Task task = new Event(description, at);
+        Duke.addTask(task);
+    }
+
+    public static void addDeadline(String description, String by) {
+        if (description.equals("")) {
+            throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
+        }
+        if (by.equals("")) {
+            throw new DukeException("☹ OOPS!!! The time of a deadline cannot be empty.");
+        }
+        Task task = new Event(description, by);
+        Duke.addTask(task);
     }
 
     public static void displayList() {
@@ -119,7 +159,7 @@ public class Duke {
     public static void exit() {
         Duke.terminate = true;
         Duke.lineFormat();
-        System.out.println("     Bye. Hope to see you again soon!\n");
+        System.out.println("     Bye. Hope to see you again soon!");
         Duke.lineFormat();
     }
 }
