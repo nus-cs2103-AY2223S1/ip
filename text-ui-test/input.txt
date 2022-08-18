@@ -14,4 +14,7 @@ deadline
 event
 list
 help me
+delete 2
+list
+delete 6
 bye

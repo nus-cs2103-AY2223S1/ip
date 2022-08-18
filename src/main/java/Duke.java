@@ -20,6 +20,27 @@ public class Duke {
         System.out.println("____________________________________________________________");
     }
 
+    private static void delete(int index) {
+        try {
+            Task toRemove = storage.get(index);
+            storage.remove(index);
+
+            System.out.println(
+                    "____________________________________________________________ \n"
+                            + "Noted. I've removed this task: \n"
+                            + toRemove.toString() + "\n"
+                            + "Now you have " + storage.size() + " tasks in the list. \n"
+                            + "____________________________________________________________");
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println(
+                    "____________________________________________________________ \n"
+                            + "☹ OOPS!!! That task doesn't exist. \n"
+                            + "____________________________________________________________");
+        }
+
+
+    }
+
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -33,15 +54,16 @@ public class Duke {
         String command = scan.nextLine();
 
         while (!command.equals("bye")) {
-            if (!command.equals("list") && !(command.startsWith("mark") || command.startsWith("unmark"))) {
+            // Create and store Tasks
+            if (!command.equals("list") && !(command.startsWith("mark") || command.startsWith("unmark"))
+                    && !command.startsWith("delete")) {
                 if (command.startsWith("todo")) {
                     try {
                         if (command.length() <= 5) {
                             throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
                         }
 
-                        Task newTask = new Todo(command.substring(5));
-                        storage.add(newTask);
+                        storage.add(new Todo(command.substring(5)));
                     } catch (DukeException e) {
                         System.out.println(
                                 "____________________________________________________________ \n"
@@ -96,9 +118,10 @@ public class Duke {
                 }
             }
 
+            // Commands
             if (command.equals("list")) {
                 list();
-            } else if (command.startsWith("mark ") || command.startsWith("unmark ")) {
+            } else if (command.startsWith("mark") || command.startsWith("unmark")) {
                 int index = Character.getNumericValue(command.charAt(command.length() - 1));
 
                 try {
@@ -109,6 +132,9 @@ public class Duke {
                                     + "☹ OOPS!!! That task doesn't exist. \n"
                                     + "____________________________________________________________");
                 }
+            } else if (command.startsWith("delete")) {
+                int index = Character.getNumericValue(command.charAt(command.length() - 1));
+                delete(index - 1);
             } else {
                 System.out.println(
                         "____________________________________________________________ \n"
