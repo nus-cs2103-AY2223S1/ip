@@ -1,5 +1,19 @@
-public class DukeException {
-    String msg;
+/**
+ * Represents a DukeException class
+ *
+ * @author Khor Jun Wei
+ * @version CS2103T AY22/23 Sem 1
+ */
+public class DukeException extends Exception {
+    /**
+     * Represents a message.
+     */
+    private String msg;
+
+    /**
+     * Constructor for DukeException.
+     * @param message message to determine the error
+     */
     DukeException(String message) {
         if (message.equals("todo")) {
             this.msg = "☹ OOPS!!! The description of a todo cannot be empty.";
@@ -23,6 +37,11 @@ public class DukeException {
             this.msg = "unknown error";
         }
     }
+
+    /**
+     * Represents the string format of the exception.
+     * @return string representing the exception
+     */
     @Override
     public String toString() {
         return msg;
