@@ -14,53 +14,105 @@ public class Duke {
                 System.out.println("##############################################");
                 System.out.println("Please enter some valid text");
                 System.out.println("##############################################");
-                userReply = userInput.nextLine().strip();
             } else if (userReply.toLowerCase().equals("list")) {
                 List();
-                userReply = userInput.nextLine().strip();
             } else if (userReply.toLowerCase().startsWith("mark")) {
                 try {
-                    int number = Integer.parseInt(userReply.split(" ")[1]);
+                    int number = Integer.parseInt(userReply.split(" ",2)[1]);
+                    if (number > botArray.size() || number <= 0) {
+                        throw new DukeException("Sorry! Please choose a valid item number in the list");
+                    }
                     Mark(number);
-                    userReply = userInput.nextLine().strip();
                 } catch (NumberFormatException e) {
                     System.out.println("##############################################");
                     System.out.println("Please enter a valid number");
                     System.out.println("##############################################");
-                    userReply = userInput.nextLine().strip();
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.println("##############################################");
+                    System.out.println("Please input a number after mark");
+                    System.out.println("##############################################");
+                } catch (DukeException e) {
+                    System.out.println("##############################################");
+                    System.out.println(e.toString());
+                    System.out.println("##############################################");
                 }
             } else if(userReply.toLowerCase().startsWith("unmark")) {
                 try {
-                    int number = Integer.parseInt(userReply.split(" ")[1]);
+                    int number = Integer.parseInt(userReply.split(" ", 2)[1]);
+                    if (number > botArray.size() || number <= 0) {
+                        throw new DukeException("Sorry! Please choose a valid item number in the list");
+                    }
                     UnMark(number);
-                    userReply = userInput.nextLine().strip();
                 } catch (NumberFormatException e) {
                     System.out.println("##############################################");
                     System.out.println("Please enter a valid number");
                     System.out.println("##############################################");
-                    userReply = userInput.nextLine().strip();
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.println("##############################################");
+                    System.out.println("Please input a number after unmark");
+                    System.out.println("##############################################");
+                } catch (DukeException e) {
+                    System.out.println("##############################################");
+                    System.out.println(e.toString());
+                    System.out.println("##############################################");
                 }
             } else if (userReply.toLowerCase().startsWith("todo")) {
-                String task = userReply.split(" ", 2)[1];
-                ToDo(task);
-                userReply = userInput.nextLine().strip();
+                try {
+                    String task = userReply.split(" ", 2)[1];
+                    ToDo(task);
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.println("##############################################");
+                    System.out.println("Sorry! Please include a description after todo");
+                    System.out.println("##############################################");
+                }
             } else if (userReply.toLowerCase().startsWith("deadline")) {
-                String[] taskWithDeadline = userReply.split(" ",2)[1]
-                        .split(" /by ",2);
-                String task = taskWithDeadline[0];
-                String by = taskWithDeadline[1];
-                Deadline(task, by);
-                userReply = userInput.nextLine().strip();
+                try {
+                    String[] taskWithDescription = userReply.split(" ",2);
+                    if (taskWithDescription.length < 2) {
+                        throw new DukeException("Sorry! Please include a " +
+                                "valid description after deadline");
+                    }
+                    String[] taskWithDeadline = taskWithDescription[1]
+                            .split(" /by ",2);
+                    if (taskWithDeadline.length < 2) {
+                        throw new DukeException("Sorry! Please include a valid " +
+                                "deadline after the description");
+                    }
+                    String task = taskWithDeadline[0];
+                    String by = taskWithDeadline[1];
+                    Deadline(task, by);
+                } catch (DukeException e) {
+                    System.out.println("##############################################");
+                    System.out.println(e.toString());
+                    System.out.println("##############################################");
+                }
             } else if (userReply.toLowerCase().startsWith("event")) {
-                String[] taskWithPeriod = userReply.split(" ",2)[1]
-                        .split(" /at ",2);
-                String task = taskWithPeriod[0];
-                String period = taskWithPeriod[1];
-                Event(task, period);
-                userReply = userInput.nextLine().strip();
+                try {
+                    String[] taskWithDescription = userReply.split(" ",2);
+                    if (taskWithDescription.length < 2) {
+                        throw new DukeException("Sorry! Please include a " +
+                                "valid description after event");
+                    }
+                    String[] taskWithPeriod = taskWithDescription[1]
+                            .split(" /at ",2);
+                    if (taskWithPeriod.length < 2) {
+                        throw new DukeException("Sorry! Please include a valid " +
+                                "time period after the description");
+                    }
+                    String task = taskWithPeriod[0];
+                    String period = taskWithPeriod[1];
+                    Event(task, period);
+                } catch (DukeException e) {
+                    System.out.println("##############################################");
+                    System.out.println(e.toString());
+                    System.out.println("##############################################");
+                }
             } else {
-                userReply = userInput.nextLine().strip();
+                System.out.println("##############################################");
+                System.out.println("Sorry! Please key in a valid command");
+                System.out.println("##############################################");
             }
+            userReply = userInput.nextLine().strip();
         }
         GoodBye();
     }
