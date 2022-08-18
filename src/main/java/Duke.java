@@ -23,11 +23,13 @@ public class Duke {
                 commands.close();
                 break;
             } else if (command.equals("list")) {
+                System.out.println(HORIZONTAL_LINE);
                 for (int i = 0; i < storedText.size(); i++) {
-                    System.out.println(storedText.get(i));
+                    System.out.println("  " + String.valueOf(i + 1) + ". " + storedText.get(i));
                 }
+                System.out.println(HORIZONTAL_LINE);
             } else {
-                System.out.println(HORIZONTAL_LINE + "\n" + command + "\n" + HORIZONTAL_LINE);
+                System.out.println(HORIZONTAL_LINE + "\n  added: " + command + "\n" + HORIZONTAL_LINE);
                 storedText.add(command);
             }
         }
