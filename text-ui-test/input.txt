@@ -9,3 +9,10 @@ unmark 2
 list
 blah
 todo
+event item4 \at COM3
+deadline item5 \by graduation
+mark 3
+delete 2
+delete 1
+list
+bye
