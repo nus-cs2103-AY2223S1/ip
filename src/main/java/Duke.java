@@ -83,6 +83,18 @@ public class Duke {
                 } else {
                     throw new DukeException("☹ OOPS!!! The description of a event cannot be empty.");
                 }
+            } else if (input.startsWith("delete")) {
+                if (input.length() > 7) {
+                    int taskNum = Integer.parseInt(input.substring(7));
+                    Task toDelete = arr.get(taskNum - 1);
+                    arr.remove(taskNum - 1);
+                    index --;
+                    System.out.println(line + "Noted. I've removed this task: \n" +
+                            toDelete.toString() + "\n" +
+                            "Now you have " + index + " tasks in the list. \n" + line);
+                } else {
+                    throw new DukeException("☹ OOPS!!! Please include the index of the task you'd like to delete!");
+                }
             }
             else {
 //                Task task = new Task(input);
