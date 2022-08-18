@@ -51,6 +51,20 @@ public class Duke {
                 command = scanner.next();
 
             }
+            else if (command.equals(delete)) {
+                command = scanner.next();
+                System.out.println("    ____________________________________________________________");
+                System.out.println("    Noted. I've removed this task:");
+                int i = Integer.parseInt(command) - 1;
+                Task t = taskList.get(i);
+                t.markAsUnDone();
+                System.out.println("    " + t.toString());
+                int num = taskList.size();
+                System.out.println("    Now you have " + num + " tasks in the list.");
+                System.out.println("    ____________________________________________________________");
+                command = scanner.next();
+
+            }
             else if (command.equals("todo")) {
                 command = scanner.nextLine();
                 System.out.println("    ____________________________________________________________");
