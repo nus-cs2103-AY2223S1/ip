@@ -27,6 +27,17 @@ Sure, I've marked task 3 as not done:
 1. (T) [ ] Test todo
 2. (D) [✔] Test deadline (by: Thu, Aug 18th 2359)
 3. (E) [ ] Test event (at: Fri, Aug 19th 4pm)
+Ok, I've deleted this task:
+(D) [✔] Test deadline (by: Thu, Aug 18th 2359)
+You have 2 task(s) left in your list.
+1. (T) [ ] Test todo
+2. (E) [ ] Test event (at: Fri, Aug 19th 4pm)
+Ok, I've deleted this task:
+(E) [ ] Test event (at: Fri, Aug 19th 4pm)
+You have 1 task(s) left in your list.
+Ok, I've deleted this task:
+(T) [ ] Test todo
+You have no more tasks left in your list!
 Sorry, you need to tell me which task to mark.
 Sorry, you need to tell me which task to unmark.
 Sorry, I will need a description for the to-do.
@@ -37,4 +48,5 @@ Sorry, I could not create the deadline 'No end time'.
 No end time was provided for this deadline.
 Sorry, I could not create the event 'No time'.
 No time was provided for this event.
+Sorry, you need to tell me which task to delete.
 Ok, see you next time!

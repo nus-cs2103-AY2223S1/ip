@@ -7,6 +7,10 @@ mark 3
 list
 unmark 3
 list
+delete 2
+list
+delete 2
+delete 1
 mark
 unmark
 todo
@@ -15,4 +19,5 @@ event
 randomness
 deadline No end time
 event No time
+delete
 bye

@@ -103,6 +103,23 @@ public class Duke {
                     }
                     break;
                 }
+                case "delete": {
+                    if (hasArgument) {
+                        int taskId = Integer.parseInt(argument) - 1;
+                        Task task = tasks.get(taskId);
+                        System.out.println("Ok, I've deleted this task:");
+                        System.out.println(task);
+                        tasks.remove(taskId);
+                        if (tasks.size() > 0) {
+                            System.out.printf("You have %d task(s) left in your list.%n", tasks.size());
+                        } else {
+                            System.out.println("You have no more tasks left in your list!");
+                        }
+                    } else {
+                        System.out.println("Sorry, you need to tell me which task to delete.");
+                    }
+                    break;
+                }
                 default: {
                     System.out.printf("Sorry, I don't understand what %s means. :/%n", command);
                     break;
