@@ -3,17 +3,18 @@ import java.util.Scanner;
 
 public class Sally {
     private static ArrayList<Task> list = new ArrayList<>();
+    private static Scanner sc;
 
     public static void main(String[] args) {
         border();
         System.out.println("Hello! I'm Sally");
         System.out.println("What can I do for you?");
         border();
+        sc = new Scanner(System.in);
         messaging();
     }
 
-    private static void messaging() {
-        Scanner sc = new Scanner(System.in);
+    public static void messaging() {
         String message = sc.nextLine();
 
         if (message.equals("bye")) {
