@@ -10,11 +10,17 @@ public abstract class Task {
         return (isComplete ? "X" : " "); // mark completed task with X
     }
 
-    public void markComplete() {
+    public void markComplete() throws MarkToggleException {
+        if (this.isComplete) {
+            throw new MarkToggleException();
+        }
         this.isComplete = true;
     }
 
-    public void markIncomplete() {
+    public void markIncomplete() throws MarkToggleException {
+        if (!this.isComplete) {
+            throw new MarkToggleException();
+        }
         this.isComplete = false;
     }
 
