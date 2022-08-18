@@ -1,8 +1,12 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Duke {
-    private Task[] tasks = new Task[100];
-    private int numTasks = 0;
+    //private Task[] tasks = new Task[100];
+    private ArrayList<Task> tasks = new ArrayList();
+    private int numTasks = tasks.size();
+
+    private int removed = 0;
 
     private Scanner receiver = new Scanner(System.in);
     private static Duke d = new Duke();
@@ -31,7 +35,6 @@ public class Duke {
                 + "| |    | |_| |   <  __/\n"
                 + "|_|    \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from puke\n" + logo);
-        return;
     }
 
     //Actually does what is needed to do
@@ -39,6 +42,7 @@ public class Duke {
         String a = sc.next();
         if (a.equals("bye")) {
             d.systemMessage(1,d, new Task(""));
+            d.tasks = new ArrayList<>();
             return;
         }
         if (a.equals("list")) {
@@ -77,6 +81,11 @@ public class Duke {
             d.addIncrement(newTask);
             d.systemMessage(2, d, newTask);
             puke(sc,d);
+        } else if (a.equals("delete")) {
+            int pos = Character.getNumericValue(s.charAt(1));
+            Task temp = d.tasks.get(pos - 1);
+            d.delete(pos - 1);
+            d.systemMessage(3, d, temp);
         } else {
             throw new DukeException("    ____________________________________________________________\n     " +
                     "OOPS!!! I'm sorry, but I dont't know what that means\n" +
@@ -129,9 +138,15 @@ public class Duke {
             System.out.println("    ____________________________________________________________");
             System.out.println("     Got it. I've added this task:");
             System.out.println("      " + t);
-            System.out.println("     Now you have " + d.numTasks + " tasks in the list.");
+            System.out.println("     Now you have " + (d.numTasks - d.removed) + " tasks in the list.");
             System.out.println("    ____________________________________________________________");
-        }  else {
+        }  else if (i == 3) {
+            System.out.println("    ____________________________________________________________");
+            System.out.println("     Noted. I've removed this task:");
+            System.out.println("     " + t);
+            System.out.println("     Now you have " + (d.numTasks - d.removed) + " tasks in the list.");
+            System.out.println("    ____________________________________________________________");
+        }else {
             return;
         }
 
@@ -142,11 +157,11 @@ public class Duke {
     private void listTasks() {
         System.out.println("    ____________________________________________________________");
         System.out.println("     Here are the tasks in your list:");
-        for(int i = 0; i < this.tasks.length ; i++) {
-            if (this.tasks[i] == null) {
+        for(int i = 0; i < this.tasks.size() ; i++) {
+            /*if (this.tasks[i] == null) {
                 break;
-            }
-            System.out.println("     " + (i+1) + "." + this.tasks[i]);
+            }*/
+            System.out.println("     " + (i+1) + "." + this.tasks.get(i));
         }
         System.out.println("    ____________________________________________________________");
         return;
@@ -156,14 +171,14 @@ public class Duke {
         if (s.equals("do")) {
             System.out.println("    ____________________________________________________________");
             System.out.println("     Nice! I've marked this task as done: ");
-            d.tasks[pos - 1].markAsDone();
-            System.out.println("       " + d.tasks[pos-1]);
+            d.tasks.get(pos - 1).markAsDone();
+            System.out.println("       " + d.tasks.get(pos-1));
             System.out.println("    ____________________________________________________________");
         } else if (s.equals("undo")) {
             System.out.println("    ____________________________________________________________");
             System.out.println("     OK, I've marked this task as not done yet: ");
-            d.tasks[pos - 1].markAsUndone();
-            System.out.println("       " + d.tasks[pos-1]);
+            d.tasks.get(pos - 1).markAsUndone();
+            System.out.println("       " + d.tasks.get(pos-1));
             System.out.println("    ____________________________________________________________");
         } else {
             return;
@@ -171,8 +186,13 @@ public class Duke {
     }
 
     private void addIncrement(Task t) {
-        this.tasks[numTasks] = t;
+        this.tasks.add(t);
         this.numTasks++;
+    }
+
+    private void delete(int index) {
+        this.tasks.remove(index);
+        d.removed++;
     }
 
     public static void startBot() {
