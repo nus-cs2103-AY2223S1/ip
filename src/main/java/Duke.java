@@ -17,6 +17,7 @@ public class Duke {
         final String listText = "list";
         final String check = "^check \\d+$";
         final String uncheck = "^uncheck \\d+$";
+        final String delete = "^delete \\d+$";
         final String todo = String.format("^todo %s", charSet);
         final String deadline = String.format("^deadline %s\\\\by %s", charSet, charSet);
         final String event = String.format("^event %s\\\\at %s", charSet, charSet);
@@ -43,6 +44,12 @@ public class Duke {
                         String[] info = input.split(" ", 2);
                         String taskIndex = info[1];
                         uncheckTask(Integer.parseInt(taskIndex));
+                        break;
+                    }
+                    if (input.matches(delete)) {
+                        String[] info = input.split(" ", 2);
+                        String taskIndex = info[1];
+                        deleteTask(Integer.parseInt(taskIndex));
                         break;
                     }
                     if (input.matches(todo)) {
@@ -90,6 +97,12 @@ public class Duke {
 
     private static void uncheckTask(int index) {
         taskList.uncheckTask(index);
+        taskList.listTask();
+        Prompt.lineDivider();
+    }
+
+    private static void deleteTask(int index) {
+        taskList.deleteTask(index);
         taskList.listTask();
         Prompt.lineDivider();
     }
