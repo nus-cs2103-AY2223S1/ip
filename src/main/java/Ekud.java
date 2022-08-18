@@ -29,22 +29,23 @@ public class Ekud {
         while (active) {
             String command = sc.nextLine();
             try {
+                String firstWord = command.split(" ")[0];
                 if (command.equals("bye")) {
                     this.sendMessage("Bye. Hope to see you again soon!");
                     active = false;
                 } else if (command.equals("list")) {
                     this.printTasks();
-                } else if (command.startsWith("mark")) {
+                } else if (firstWord.equals("mark")) {
                     this.markAsDone(command);
-                } else if (command.startsWith("unmark")) {
+                } else if (firstWord.equals("unmark")) {
                     this.markAsUndone(command);
-                } else if (command.startsWith("todo")) {
+                } else if (firstWord.equals("todo")) {
                     addTask(command, TaskType.TODO);
-                } else if (command.startsWith("deadline")) {
+                } else if (firstWord.equals("deadline")) {
                     addTask(command, TaskType.DEADLINE);
-                } else if (command.startsWith("event")) {
+                } else if (firstWord.equals("event")) {
                     addTask(command, TaskType.EVENT);
-                } else if (command.startsWith("delete")) {
+                } else if (firstWord.equals("delete")) {
                     this.deleteTask(command);
                 } else {
                     throw new EkudException("Invalid command.");
