@@ -1,8 +1,10 @@
 todo borrow book
-list
 deadline return book /by Sunday
 event project meeting /at Mon 2-4pm
 deadline do homework /by no idea :-p
+list
+delete 1
+mark 2
 blah
 mark one
 todo

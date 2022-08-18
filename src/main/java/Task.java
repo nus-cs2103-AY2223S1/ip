@@ -25,7 +25,7 @@ public class Task {
                             : "Nice! I've marked this task as done: \n")
                             + task);
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("Invalid task number");
+            System.out.println("Task index does not exist");
         }
     }
 
@@ -33,6 +33,18 @@ public class Task {
         System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < taskList.size(); i++) {
             System.out.println((i + 1) + "." + taskList.get(i));
+        }
+    }
+
+    public static void delete(int taskIndex) {
+        try {
+            Task task = taskList.remove(taskIndex - 1);
+            System.out.println(
+                    "Noted. I've removed this task:\n "
+                            + task 
+                            + "\nNow you have " + taskList.size() + " tasks in the list.");
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Task index not found");
         }
     }
 

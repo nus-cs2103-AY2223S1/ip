@@ -11,27 +11,23 @@ public class Duke {
             String[] input = ans.split(" ", 2);
             String command = input[0];
 
-            if (ans.equals("bye")) {
-                System.out.println("Goodbye...");
-                break;
-            } else if (ans.equals("list")) {
-                Task.printList();
-            } else if (command.equals("mark") || command.equals("unmark")){
-                try {
-                    if (input.length <= 1) {
-                        System.out.println("Task Index is missing");
-                        continue;
-                    }
-                    int taskIndex = Integer.parseInt(input[1]);
-                    Task.markAsDone(input[0], taskIndex);
-                } catch (NumberFormatException e) {
-                    // If mark or unmarked command is used but incorrect format,
-                    // we assume a new task is added
-                    System.out.println("Input task index");
-                }
-            } else {
-
-                switch(command) {
+            try {
+                switch (command) {
+                    case "bye":
+                        System.out.println("Goodbye...");
+                        return;
+                    case "list":
+                        Task.printList();
+                        break;
+                    case "mark":
+                    case "unmark":
+                        int taskToMark = Integer.parseInt(input[1]);
+                        Task.markAsDone(command, taskToMark);
+                        break;
+                    case "delete":
+                        int taskToDelete = Integer.parseInt(input[1]);
+                        Task.delete(taskToDelete);
+                        break;
                     case "todo":
                         new Todo(input[1]);
                         break;
@@ -44,10 +40,14 @@ public class Duke {
                         new Event(str2[0], str2[1]);
                         break;
                     default:
-                        System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-( ");
+                        System.out.println("Sorry, I don't quite understand what you mean...");
                 }
-            }
 
+            } catch (NumberFormatException e) {
+                System.out.println("Task Index must be an integer...");
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("The description of a " + command + " command cannot be empty...");
+            }
         }
         scanner.close();
     }
