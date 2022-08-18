@@ -5,6 +5,10 @@ public class Duke {
     private static ArrayList<Task> tasks = new ArrayList<>();
     private static final Scanner sc = new Scanner(System.in);
 
+    public enum Instructions {
+        bye, list, mark, unmark, todo, deadline, event, delete
+    }
+
     public static void main(String[] args) {
         System.out.println("Hello! I'm Fungusta\n" + "Peter's personal chatbot\n");
         String userInput = sc.nextLine();
@@ -16,45 +20,44 @@ public class Duke {
     public static boolean instructionReader(String userInput)  {
         try {
             if (!userInput.contains(" ")) {
-                switch (userInput) {
-                    case ("bye"):
+                switch (Instructions.valueOf(userInput)) {
+                    case bye:
                         System.out.println("Goodbye!");
+                        sc.close();
                         return false;
-                    case ("list"):
+                    case list:
                         listOut();
                         return true;
-                    case ("mark"):
-                    case ("unmark"):
+                    case mark:
+                    case unmark:
                         throw new DukeException(String.format("Choose which index to %s.", userInput));
-                    case ("todo"):
-                    case ("deadline"):
-                    case ("event"):
+                    case todo:
+                    case deadline:
+                    case event:
                         throw new DukeException(String.format("The description of a %s cannot be empty.", userInput));
-                    case ("delete"):
+                    case delete:
                         throw new DukeException("Choose which index to delete.");
-                    default:
-                        throw new DukeException("Sorry I do not understand what that means :(");
                 }
             }
             String[] input = userInput.split(" ", 2);
-            switch (input[0]) {
-                case ("delete"):
+            switch (Instructions.valueOf(input[0])) {
+                case delete:
                     delete(input[1]);
                     return true;
-                case ("mark"):
-                case ("unmark"):
+                case mark:
+                case unmark:
                     marking(input[0], input[1]);
                     return true;
-                case ("todo"):
-                case ("deadline"):
-                case ("event"):
+                case todo:
+                case deadline:
+                case event:
                     addList(input);
                     return true;
-                default:
-                    throw new DukeException("Sorry I do not understand what that means :(");
             }
         } catch (DukeException e) {
             System.out.println(e.getMessage() + "\n");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Sorry I do not understand what that means :(\n");
         }
         return true;
     }
@@ -76,15 +79,15 @@ public class Duke {
     public static void marking(String name, String num) throws DukeException {
         try {
             int index = Integer.parseInt(num);
-            switch (name) {
-                case ("mark"):
+            switch (Instructions.valueOf(name)) {
+                case mark:
                     if (!tasks.get(index - 1).getDone()) {
                         tasks.get(index - 1).markTask();
                         break;
                     } else {
                         throw new DukeException("Task is already marked.");
                     }
-                case ("unmark"):
+                case unmark:
                     if (tasks.get(index - 1).getDone()) {
                         tasks.get(index - 1).unmarkTask();
                         break;
@@ -101,11 +104,11 @@ public class Duke {
 
     public static void addList(String[] input) throws DukeException {
         Task newTask;
-        switch (input[0]) {
-            case ("todo"):
+        switch (Instructions.valueOf(input[0])) {
+            case todo:
                 newTask = new ToDos(input[1]);
                 break;
-            case ("deadline"):
+            case deadline:
                 if (input[1].contains(" /by ")) {
                     String[] tempOne = input[1].split(" /by ", 2);
                     newTask = new Deadlines(tempOne[0], tempOne[1]);
@@ -113,7 +116,7 @@ public class Duke {
                 } else {
                     throw new DukeException("Deadline does not have proper format.");
                 }
-            case ("event"):
+            case event:
                 if (input[1].contains(" /at ")) {
                     String[] tempTwo = input[1].split(" /at ", 2);
                     newTask = new Events(tempTwo[0], tempTwo[1]);
