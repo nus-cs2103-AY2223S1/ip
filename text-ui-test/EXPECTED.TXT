@@ -1,26 +1,50 @@
 Hello! I'm Duke
 What can I do for you?
-Here are the tasks in your list:
+( • ᴖ • ｡) Error encountered: Invalid input, please use only:
+todo, deadline, event with a task
+( • ᴖ • ｡) Error encountered: Invalid input, please use only:
+todo, deadline, event with a task
 Got it. I've added this task:
-[T][ ] task1
+[T][ ] 1
 Now you have 1 tasks in the list
+( • ᴖ • ｡) Error encountered: please input a time (/at for events and /by for deadlines)
 Got it. I've added this task:
-[D][ ] task2 (by Mon)
+[D][ ] 1 (by mon)
 Now you have 2 tasks in the list
+( • ᴖ • ｡) Error encountered: please input a time (/at for events and /by for deadlines)
 Got it. I've added this task:
-[E][ ] task3 (at Sun)
+[E][ ] 1 (at mon)
 Now you have 3 tasks in the list
 Here are the tasks in your list:
-1. [T][ ] task1
-2. [D][ ] task2 (by Mon)
-3. [E][ ] task3 (at Sun)
+1. [T][ ] 1
+2. [D][ ] 1 (by mon)
+3. [E][ ] 1 (at mon)
+( • ᴖ • ｡) Error encountered: Invalid input, please use only:
+todo, deadline, event with a task
 Nice! I've marked this task as done:
-[T][X] task1
-Nice! I've marked this task as done:
-[D][X] task2 (by Mon)
+[T][X] 1
+( • ᴖ • ｡) Error encountered: please input a valid task number
+( • ᴖ • ｡) Error encountered: please input a valid task number
+( • ᴖ • ｡) Error encountered: Invalid input, please use only:
+todo, deadline, event with a task
 Ok, I've marked this task as not done yet:
-[T][ ] task1
+[T][ ] 1
+( • ᴖ • ｡) Error encountered: please input a valid task number
+( • ᴖ • ｡) Error encountered: please input a valid task number
 Here are the tasks in your list:
-1. [T][ ] task1
-2. [D][X] task2 (by Mon)
-3. [E][ ] task3 (at Sun)
+1. [T][ ] 1
+2. [D][ ] 1 (by mon)
+3. [E][ ] 1 (at mon)
+( • ᴖ • ｡) Error encountered: Invalid input, please use only:
+todo, deadline, event with a task
+Noted, I've removed this task:
+[T][ ] 1
+Now you have 2 tasks in the list
+( • ᴖ • ｡) Error encountered: please input a valid task number
+( • ᴖ • ｡) Error encountered: please input a valid task number
+Here are the tasks in your list:
+1. [D][ ] 1 (by mon)
+2. [E][ ] 1 (at mon)
+( • ᴖ • ｡) Error encountered: Invalid input, please use only:
+todo, deadline, event with a task
+Bye. Hope to see you again soon!

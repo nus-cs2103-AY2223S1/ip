@@ -1,9 +1,25 @@
+hello
+todo
+todo 1
+deadline 1
+deadline 1 /by mon
+event 1
+event 1 /at mon
 list
-todo task1
-deadline task2 /by Mon
-event task3 /at Sun
-list
+mark
 mark 1
-mark 2
+mark 10
+mark xyz
+unmark
 unmark 1
+unmark 10
+unmark xyz
 list
+delete
+delete 1
+delete 10
+delete xyz
+list
+bye duke
+bye
+
