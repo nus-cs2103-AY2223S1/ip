@@ -39,19 +39,37 @@ public class Duke {
             } else if (userInput.equals("unmark") || userInput.equals("Unmark")) {
                 int taskNumber = Integer.parseInt(sc.next());
                 unmark(taskNumber);
-            } else {
-                addUserTasks(userInput);
+            } else if (userInput.equals("todo") || userInput.equals("Todo") ||
+                    userInput.equals("deadline") || userInput.equals("Deadline") ||
+                    userInput.equals("event") || userInput.equals("Event")) {
+                String taskType = userInput;
+                userInput = sc.nextLine();
+                Task t = addUserTasks(taskType, userInput);
                 System.out.println("\t______________________________________________________");
-                System.out.println("\t" + userInput);
+                System.out.println("\tGot it! I've added this task!");
+                System.out.println("\t\t" + t);
                 System.out.println("\t______________________________________________________\n");
+                System.out.println("You now have " + tasks.size() + " tasks in the list!");
+            } else {
+                System.out.println("'" + userInput + "'" + " not recognised!");
             }
             userInput = sc.next();
         }
     }
 
-    public static void addUserTasks(String userInput) {
-        Task t = new Task(userInput);
+    public static Task addUserTasks(String taskType, String userInput) {
+        Task t;
+        if (taskType.equals("todo") || taskType.equals("Todo")) {
+            t = new ToDo(userInput);
+        } else if (taskType.equals("deadline") || taskType.equals("Deadline")) {
+            String[] arr = userInput.split(" /by ", 2);
+            t = new Deadline(arr[0], arr[1]);
+        } else {
+            String[] arr = userInput.split(" /at ", 2);
+            t = new Event(arr[0], arr[1]);
+        }
         tasks.add(t);
+        return t;
     }
 
     public static void listUserTasks() {
@@ -60,7 +78,7 @@ public class Duke {
         } else {
             System.out.println("\tHere are the tasks in your list:");
             for (int i = 0; i < tasks.size(); i++) {
-                System.out.println("\t" + (i + 1) + ". [" + tasks.get(i).getStatusIcon() + "] " + tasks.get(i).getDescription());
+                System.out.println("\t" + (i + 1) + ". " + tasks.get(i));
             }
         }
     }
@@ -69,7 +87,7 @@ public class Duke {
         tasks.get(taskNumber - 1).markAsDone();
         System.out.println("\t______________________________________________________");
         System.out.println("\tAlright! Marked this task as done!");
-        System.out.println("\t\t[X] " + tasks.get(taskNumber - 1).getDescription());
+        System.out.println("\t\t" + tasks.get(taskNumber - 1));
         System.out.println("\t______________________________________________________\n");
     }
 
@@ -77,7 +95,7 @@ public class Duke {
         tasks.get(taskNumber - 1).markAsNotDone();
         System.out.println("\t______________________________________________________");
         System.out.println("\tOkay! Unmarked this task!");
-        System.out.println("\t\t[ ] " + tasks.get(taskNumber - 1).getDescription());
+        System.out.println("\t\t" + tasks.get(taskNumber - 1));
         System.out.println("\t______________________________________________________\n");
     }
 }
