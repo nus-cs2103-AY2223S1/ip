@@ -1,5 +1,5 @@
 
-public class Task {
+public abstract class Task {
 
     protected final String description;
     protected final boolean isDone;
@@ -15,15 +15,9 @@ public class Task {
         this.isDone = isDone;
     }
 
-
-    public Task markAsDone() {
-        return new Task(this.description, true);
-    }
-
-
-    public Task markAsUndone() {
-        return new Task(this.description, false);
-    }
+    public abstract Task markAsDone();
+    public abstract Task markAsUndone();
+    
 
 
     public String getStatusIcon() {

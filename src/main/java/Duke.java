@@ -7,6 +7,9 @@ public class Duke {
     private static final String COMMAND_LIST = "list";
     private static final String COMMAND_MARK_AS_DONE = "mark";
     private static final String COMMAND_MARK_AS_UNDONE = "unmark";
+    private static final String COMMAND_ADD_TODO = "todo";
+    private static final String COMMAND_ADD_DEADLINE = "deadline";
+    private static final String COMMAND_ADD_EVENT = "event";
 
 
     // Linked list to store the user's tasks
@@ -31,19 +34,23 @@ public class Duke {
     }
 
 
-    public void markTaskAsDoneOrUndone(String command, int taskNumber) {
+    public void markTaskAsDoneOrUndone(String[] commands) {
         
         String result = "";
 
+        // First token is the action
+        String action = commands[0];
+
+        // Task number is the second token
         // Task number is 1 index, so subtract 1 to make it 0 index
-        int indexNumber = taskNumber - 1;
+        int indexNumber = Integer.parseInt(commands[1]) - 1;
         
         // Get the task from the linked list
         Task t = this.storedTasks.get(indexNumber);
 
 
         // Mark the task as done or undone depending on the command
-        if (command.equals(COMMAND_MARK_AS_DONE)) {
+        if (action.equals(COMMAND_MARK_AS_DONE)) {
             t = t.markAsDone();
             result = "Nice! I've marked this task as done:\n";
         
@@ -62,12 +69,68 @@ public class Duke {
     }
 
 
-    public void addTask(String s) {
-        Task t = new Task(s);
+    public void addTask(String[] commands) {
+        // Create the correct type of task based on the first token
+        Task t = createTask(commands);
         this.storedTasks.add(t);
 
-        String result = String.format("added: %s\n", t);
+        String result = String.format("Got it. I've added this task:\n%s\nNow you have %d tasks in the list.\n",
+                                        t, storedTasks.size());
         System.out.println(result);
+    }
+
+
+    public Task createTask(String[] commands) {
+
+        final char TIME_DELIMITER = '/';
+        String description = "";
+        boolean isDeadline = false;
+
+        // The first token is used to identify which type of task to create
+        switch (commands[0]) {
+
+        case COMMAND_ADD_TODO:
+            // Second token onwards is the description
+            description = commands[1];
+            for (int i = 2; i < commands.length; i++) {
+                description = description.concat(String.format(" %s", commands[i]));
+            }
+
+            return new ToDo(description);
+        
+        
+        // Handle adding a Deadline task and an Event task the same way
+        case COMMAND_ADD_DEADLINE:
+            isDeadline = true;
+            // Fall through
+
+        case COMMAND_ADD_EVENT:
+            // Second token until /by is the description
+            description = commands[1];
+
+            int i = 0;
+            for (i = 2; i < commands.length; i++) {
+                if (commands[i].charAt(0) == TIME_DELIMITER) {
+                    // Stop adding tokens to the description
+                    break;
+                }
+                description = description.concat(String.format(" %s", commands[i]));
+            }
+
+            // Skip over the delimiter token
+            // The tokens after the delimiter are the date and time
+            i++;
+            String dateAndTime = commands[i];
+            for (i++; i < commands.length; i++) {
+                dateAndTime = dateAndTime.concat(String.format(" %s", commands[i]));
+            }
+        
+            return isDeadline ? new Deadline(description, dateAndTime) : new Event(description, dateAndTime);
+
+        
+        default:
+            return null;
+        }
     }
 
 
@@ -78,9 +141,10 @@ public class Duke {
 
     // Calls the relevant function based on the given command
     // Return true if need to exit program
-    public boolean executeCommand(String command, Scanner sc) {
+    public boolean executeCommand(String[] commands) {
 
-        switch (command) {
+        // The first token is used to identify which action to take
+        switch (commands[0]) {
 
         case COMMAND_LIST:
             listTasks();
@@ -91,7 +155,17 @@ public class Duke {
             // Fall through
 
         case COMMAND_MARK_AS_UNDONE:
-            markTaskAsDoneOrUndone(command, sc.nextInt());
+            markTaskAsDoneOrUndone(commands);
+            return false;
+
+        
+        // Handle adding all types of tasks in the same function
+        case COMMAND_ADD_TODO:
+            // Fall through
+        case COMMAND_ADD_DEADLINE:
+            // Fall through
+        case COMMAND_ADD_EVENT:
+            addTask(commands);
             return false;
 
         
@@ -100,9 +174,6 @@ public class Duke {
             return true;
             
         default:
-            // Get the rest of the line in case there are multiple words
-            command = command.concat(sc.nextLine());
-            addTask(command);
             return false;
         }
     }
@@ -126,14 +197,20 @@ public class Duke {
         while (true) {
 
             // User's command can be identified by the first token
-            String command = sc.next();
+            String[] commands = parseCommand(sc.nextLine());
 
             // If need to exit
-            if (executeCommand(command, sc)) {
+            if (executeCommand(commands)) {
                 sc.close();
                 return;
             }
         }
+    }
+
+
+    public String[] parseCommand(String command) {
+        // Split string around whitespaces
+        return command.split("\\s");
     }
 
 
