@@ -1,10 +1,20 @@
+import java.sql.SQLOutput;
+
 public class Duke {
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+        greetUser();
+        sayBye();
+    }
+
+    public static void greetUser() {
+        System.out.println("______________________________________________________");
+        System.out.println("Hey there! I'm Arias!");
+        System.out.println("How may I help you? :)");
+        System.out.println("______________________________________________________");
+    }
+
+    public static void sayBye() {
+        System.out.println("Nice seeing you! Bye!");
+        System.out.println("______________________________________________________");
     }
 }
