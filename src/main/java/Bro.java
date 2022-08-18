@@ -66,6 +66,13 @@ public class Bro {
             this.output1(sc);
         }
 
+        else if(str.startsWith("delete")){
+            int g = Integer.parseInt(str.substring(7));
+            System.out.println("I have removed this task.\n" + (list1.get(g-1)).toString());
+            list1.remove(g-1);
+            this.output1(sc);
+        }
+
         else{
             try {
                 checkEmptyInput(str);
