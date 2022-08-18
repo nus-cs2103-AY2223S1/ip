@@ -9,7 +9,7 @@ public class Event extends Task {
    * @param timeInterval time interval of Event
    */
   public Event(String description, String timeInterval) {
-    this.description = description;
+    super(description);
     this.timeInterval = timeInterval;
   }
 

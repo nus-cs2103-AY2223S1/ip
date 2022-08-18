@@ -1,9 +1,18 @@
 public abstract class Task {
   /** Description of Task */
-  protected String description;
+  private String description;
 
   /** Boolean representing whether Task is done or not */
-  protected boolean isDone = false;
+  private boolean isDone = false;
+
+  /**
+   * Constructor to create a new Task
+   * 
+   * @param description description of Task
+   */
+  protected Task(String description) {
+    this.description = description;
+  }
 
   /**
    * Factory method to create a Task
@@ -76,7 +85,7 @@ public abstract class Task {
         break;
       case event:
         if (textAfterCommand.indexOf("/at") == -1) {
-          throw new CheeseException("A deadline requires a /by flag.");
+          throw new CheeseException("An event requires a /at flag.");
         }
         String[] eventInputArray = textAfterCommand.split("/at", 2);
         if (eventInputArray[0].length() == 0 || eventInputArray[1].length() == 0) {

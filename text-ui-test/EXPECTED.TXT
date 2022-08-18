@@ -97,7 +97,7 @@ A deadline requires both a description and deadline.
 Sowwy, the description of a event cannot be empty.
 -----
 ~ -----
-A deadline requires a /by flag.
+An event requires a /at flag.
 -----
 ~ -----
 An event requires both a description and event time.

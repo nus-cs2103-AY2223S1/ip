@@ -9,7 +9,7 @@ public class Deadline extends Task {
    * @param deadline    deadline of Deadline
    */
   public Deadline(String description, String deadline) {
-    this.description = description;
+    super(description);
     this.deadline = deadline;
   }
 
