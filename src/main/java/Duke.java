@@ -12,6 +12,8 @@ public class Duke {
     private static final String DEADLINE = "deadline";
     private static final String EVENT = "event";
     private static final String BYE = "bye";
+    private static final String DELETE = "delete";
+
     private static List<Task> tasks = new ArrayList<>();
 
     public static void main(String[] args) {
@@ -66,7 +68,7 @@ public class Duke {
             } else if (command.equals(UNMARK)) {
                 if (arr.length <= 1) {
                     System.out.println("\t______________________________________________________");
-                    System.out.println("\tMissing task number to mark!");
+                    System.out.println("\tMissing task number to unmark!");
                     System.out.println("\t______________________________________________________\n");
                 } else {
                     try {
@@ -85,12 +87,28 @@ public class Duke {
                     System.out.println("\t______________________________________________________\n");
                 } else {
                     userInput = arr[1];
-                    Task t = addUserTasks(command, userInput);
+                    Task t = addTasks(command, userInput);
                     System.out.println("\t______________________________________________________");
                     System.out.println("\tGot it! I've added this task!");
                     System.out.println("\t\t" + t);
                     System.out.println("\tYou now have " + tasks.size() + " tasks in the list!");
                     System.out.println("\t______________________________________________________\n");
+                }
+
+            } else if (command.equals(DELETE)) {
+                if (arr.length <= 1) {
+                    System.out.println("\t______________________________________________________");
+                    System.out.println("\tMissing task number to delete!");
+                    System.out.println("\t______________________________________________________\n");
+                } else {
+                    try {
+                        int taskNumber = Integer.parseInt(arr[1]);
+                        delete(taskNumber);
+                    } catch (NumberFormatException e) {
+                        System.out.println("\t______________________________________________________");
+                        System.out.println("\tInput is not a valid task number " + e.getMessage());
+                        System.out.println("\t______________________________________________________\n");
+                    }
                 }
             } else {
                 System.out.println("\t______________________________________________________");
@@ -100,7 +118,7 @@ public class Duke {
         }
     }
 
-    public static Task addUserTasks(String taskType, String userInput) {
+    public static Task addTasks(String taskType, String userInput) {
         Task t;
         if (taskType.equals(TODO)) {
             t = new ToDo(userInput);
@@ -139,6 +157,16 @@ public class Duke {
         System.out.println("\t______________________________________________________");
         System.out.println("\tOkay! Unmarked this task!");
         System.out.println("\t\t" + tasks.get(taskNumber - 1));
+        System.out.println("\t______________________________________________________\n");
+    }
+
+    public static void delete(int taskNumber) {
+        Task t = tasks.get(taskNumber - 1);
+        tasks.remove(taskNumber - 1);
+        System.out.println("\t______________________________________________________");
+        System.out.println("\tAlright! I've deleted this task!");
+        System.out.println("\t\t" + t);
+        System.out.println("\tYou now have " + tasks.size() + " tasks in the list!");
         System.out.println("\t______________________________________________________\n");
     }
 }
