@@ -1,4 +1,3 @@
-import java.io.EOFException;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -11,6 +10,8 @@ public class Duke {
     private static final String COMMAND_ADD_TODO = "todo";
     private static final String COMMAND_ADD_DEADLINE = "deadline";
     private static final String COMMAND_ADD_EVENT = "event";
+    private static final String COMMAND_DELETE = "delete";
+
 
     private final char TIME_DELIMITER = '/';
 
@@ -213,6 +214,21 @@ public class Duke {
     }
 
 
+    public void deleteTask(String[] commands) {
+
+        // Task number is the second token
+        // Task number is 1 index, so subtract 1 to make it 0 index
+        int indexNumber = Integer.parseInt(commands[1]) - 1;
+        
+        // Remove the task from the linked list
+        Task t = storedTasks.remove(indexNumber);
+
+        String result = String.format("Noted. I've removed this task:\n%s\nNow you have %d tasks in the list.\n",
+                                        t, storedTasks.size());
+        System.out.println(result);
+    }
+
+
     public void exitDuke() {
         System.out.println("Bye. Hope to see you again soon!\n");
     }
@@ -247,6 +263,9 @@ public class Duke {
             addTask(commands);
             break;
 
+        case COMMAND_DELETE:
+            deleteTask(commands);
+            break;
         
         case COMMAND_EXIT:
             exitDuke();
