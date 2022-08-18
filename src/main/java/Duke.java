@@ -8,6 +8,8 @@ public class Duke {
         
         // Variables
         String spacing = "-----------------------------------------";
+        String[] tasks = new String[100];
+        int numTasks = 0;
 
         // Main code
         System.out.println(spacing);
@@ -15,15 +17,24 @@ public class Duke {
         System.out.println("What do you need help with?");
         System.out.println(spacing + "\n");
         while (true) {
+            // Say goodbye
             String word = br.readLine();
             if (word.equals("bye")) {
                 System.out.println(spacing);
                 System.out.println("Goobye, see you again!\n");
                 System.out.println(spacing + "\n");
                 break;
-            } else {
+            } else if (word.equals("list")) {
                 System.out.println(spacing);
-                System.out.println(word + "\n");
+                for (int i = 0; i < numTasks; i++) {
+                    System.out.println(Integer.toString(i+1) + ". " + tasks[i]);
+                }
+                System.out.println("\n" + spacing + "\n");
+            } else { // Read in tasks
+                tasks[numTasks] = word;
+                numTasks += 1;
+                System.out.println(spacing);
+                System.out.println("added: " + word + "\n");
                 System.out.println(spacing + "\n");
             }
         }
