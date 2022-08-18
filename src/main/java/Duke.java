@@ -28,8 +28,11 @@ public class Duke {
         Scanner scanner = new Scanner(System.in);
         while (!duke.getIsTerminated()) {
             try {
-                Command command = Compiler.parseCommand(scanner.nextLine());
-                duke.execute(command);
+                if (scanner.hasNext()) {
+                    String entry = scanner.nextLine();
+                    Command command = Compiler.parseCommand(entry);
+                    duke.execute(command);
+                }
             } catch (DukeException dukeException) {
                 duke.handle(dukeException);
             }
@@ -63,7 +66,7 @@ public class Duke {
     private void initialize() {
         this.tasks = new ArrayList<>();
         initializeActionConsumerMap();
-        this.mp = new MessagePrinter();
+        this.mp = new MessagePrinter(3, 100, '-');
     }
 
     public boolean getIsTerminated() {
