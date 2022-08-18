@@ -48,7 +48,29 @@ public class Duke {
 
     private static void addToList(String item){
         listSize++;
-        list.add(String.valueOf(listSize) + ". " + item);
+        list.add(String.valueOf(listSize) + ". " + "[ ] " + item);
+    }
+
+    private static void markAsDone(int number){
+        String item = list.get(number - 1);
+        item = item.split("]", 2)[1];
+        item = "[X]" + item;
+        String itemMessage = "Nice! I've marked this task as done: \n"
+        + item;
+        encapsulateMessage(itemMessage);
+        item = String.valueOf(number) + ". " + item;
+        list.set(number - 1, item);
+    }
+
+    private static void unmarkTask(int number) {
+        String item = list.get(number - 1);
+        item = item.split("]", 2)[1];
+        item = "[ ]" + item;
+        String itemMessage = "OK, I've marked this task as not done yet: \n"
+        + item;
+        encapsulateMessage(itemMessage);
+        item = String.valueOf(number) + ". " + item;
+        list.set(number - 1, item);
     }
 
     private static void printList(){
@@ -74,6 +96,12 @@ public class Duke {
             if (command.equals("list")){
                 printList();
 
+            } else if (command.split(" ")[0].toLowerCase().equals("mark")) {
+                int number = Integer.parseInt(command.split(" ")[1]);
+                markAsDone(number);
+            } else if (command.split(" ")[0].toLowerCase().equals("unmark")){
+                int number = Integer.parseInt(command.split(" ")[1]);
+                unmarkTask(number);
             } else {
                 addToList(command);
                 echo("added: " + command);
