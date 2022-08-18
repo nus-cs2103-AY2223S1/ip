@@ -48,6 +48,11 @@ public class Duke {
                 unmark(inputTaskIndex);
                 continue;
             }
+            if(userInput.split(" ", 2)[0].equals("delete")) {
+                int inputTaskIndex = Integer.parseInt(userInput.split(" ", 2)[1]) - 1;
+                deleteTask(inputTaskIndex);
+                continue;
+            }
 
             try{
                 userInputCheck(userInput);
@@ -111,6 +116,14 @@ public class Duke {
         Task t = new Task(userInput);
         storeList.add(t);
         System.out.println("added: " + t.description);
+    }
+
+    public static void deleteTask(int taskIndex) {
+        System.out.println("Noted. I've removed this task:");
+        System.out.println("\t" + storeList.get(taskIndex).toString());
+        storeList.remove(taskIndex);
+        System.out.println("Now you have " + storeList.size() + " tasks in the list.");
+
     }
 
     public static void list() {
