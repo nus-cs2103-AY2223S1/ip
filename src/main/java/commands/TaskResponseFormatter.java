@@ -16,4 +16,13 @@ public class TaskResponseFormatter {
         sb.append(String.format("You now have %d tasks to do.", res.taskCount));
         return sb.toString();
     }
+
+    public static String deletedTask(TaskResponse res) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Noted, I've removed this task:\n");
+        sb.append(OutputLogger.indent(res.task.toString()));
+        sb.append("\n");
+        sb.append(String.format("You now have %d tasks to do.", res.taskCount));
+        return sb.toString();
+    }
 }

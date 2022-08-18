@@ -58,6 +58,12 @@ public class TaskModel {
         return task;
     }
 
+    public TaskResponse deleteTask(Integer taskId) throws DukeException {
+        Task task = getTask(taskId);
+        tasks.remove(taskId - 1);
+        return new TaskResponse(task, tasks.size());
+    }
+
     /**
      * @return a List of all the Tasks at the current time
      */

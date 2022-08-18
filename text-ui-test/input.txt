@@ -1,3 +1,4 @@
+
 lol
 todo
 todo /d description of todo
@@ -22,5 +23,12 @@ unmark /id 10
 unmark /id 1
 mark /id 1
 mark /id 2
+list
+delete
+delete /id
+delete /id 3
+delete /id 2
+delete /id 1
+delete /id 1
 list
 bye
