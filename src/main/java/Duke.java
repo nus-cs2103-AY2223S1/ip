@@ -87,7 +87,19 @@ public class Duke {
                 ListObject newItem = new ToDo(todo, 0);
                 listOfItems.add(newItem);
                 System.out.println("'Tis a new sky for you to scale! Here! \n" + newItem.toString()
-                        + "\nYou now have " + todoCount + " tasks to do!"
+                        + "\nYou now have " + listOfItems.size() + " tasks to do!"
+                        + "\n***********************************************************************\n");
+            }
+
+            if(userMsg.contains("deadline ")){
+                deadlinesCount++;
+                String deadline1 = userMsg.replaceAll("deadline ", "");
+                String[] words = deadline1.split("/");
+                String deadline = words[1];
+                ListObject newItem = new Deadline(deadline, 0, deadline);
+                listOfItems.add(newItem);
+                System.out.println("Mark this on your calendar! \n" + newItem.toString()
+                        + "\nYou now have " + listOfItems.size() + " tasks to do!"
                         + "\n***********************************************************************\n");
             }
         }
