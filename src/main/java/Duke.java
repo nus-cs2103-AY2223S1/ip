@@ -69,11 +69,7 @@ public class Duke {
             d.systemMessage(2, d, newTask);
             puke(sc,d);
         } else {
-            Task newTask = new Task(s);
-            d.addIncrement(newTask);
-            System.out.println("    ____________________________________________________________");
-            System.out.println("     added: " + s);
-            System.out.println("    ____________________________________________________________");
+            System.out.println("I am unable to Process that at the moment");
             puke(sc, d);
         }
     }
