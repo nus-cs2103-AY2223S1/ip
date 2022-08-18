@@ -73,6 +73,10 @@ public class Interface {
         printLine();
     }
 
+    public static void delete(Task task) {
+        System.out.println("     Noted. I've removed this task:");
+    }
+
     /**
      * Helper func to: print a horizontal line.
      */
