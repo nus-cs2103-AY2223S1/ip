@@ -1,5 +1,8 @@
 public class Duke {
 
+    /**
+     * This method is a self-introduction for the Luke Bot.
+     */
     public static void selfIntro() {
         String logo = " _           _        \n"
                 + "| |    _   _| | _____ \n"
@@ -14,6 +17,7 @@ public class Duke {
 
     public static void main(String[] args) {
         selfIntro();
+
         ChatBox chat_feature = new ChatBox();
 
         chat_feature.Reply();
