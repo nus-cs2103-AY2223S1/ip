@@ -108,3 +108,22 @@ ____________________________________________________________
 OOPS!!! I'm sorry, but I don't know what that means :-(
 ____________________________________________________________
 
+____________________________________________________________
+
+Here are the tasks in your list:
+1. [T][X] read book
+2. [D][ ] return by (by: June 6th)
+3. [E][ ] project meeting (at: aug 6th 2-4pm)
+4. [T][X] join sports club
+5. [T][ ] borrow book
+6. [D][ ] return book (by: Sunday)
+7. [E][ ] project meeting (at: Mon 2-4pm)
+____________________________________________________________
+
+____________________________________________________________
+
+Deleted this task:
+[E][ ] project meeting (at: aug 6th 2-4pm)
+You have 6 tasks remaining.
+____________________________________________________________
+
