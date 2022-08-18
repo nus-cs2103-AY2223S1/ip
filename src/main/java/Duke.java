@@ -1,6 +1,10 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
+    public static List<String> tasks = new ArrayList<>();
+
     public static void printLine() {
         System.out.println("-".repeat(100));
     }
@@ -11,15 +15,25 @@ public class Duke {
         printLine();
     }
 
-    public static void repeat(String s) {
-        printLine();
-        System.out.println(s);
-        printLine();
-    }
-
     public static void printBye() {
         printLine();
         System.out.println("Bye. Hope to see you again soon!");
+        printLine();
+    }
+
+    public static void listAllItems() {
+        printLine();
+        for(int i = 0; i < tasks.size(); i++) {
+            int number = i + 1;
+            System.out.println(number + ". " + tasks.get(i));
+        }
+        printLine();
+    }
+
+    public static void addAnItem(String item) {
+        tasks.add(item);
+        printLine();
+        System.out.println("added: " + item);
         printLine();
     }
 
@@ -39,8 +53,11 @@ public class Duke {
                 case "bye":
                     printBye();
                     return;
+                case "list":
+                    listAllItems();
+                    break;
                 default:
-                    repeat(input);
+                    addAnItem(input);
                     break;
             }
         }
