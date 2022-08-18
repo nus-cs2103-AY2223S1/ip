@@ -57,9 +57,6 @@ public class Duke {
                         Duke.addDeadline(deadlineInfo);
                         break;
                     case "todo":
-                        if (firstSpaceIdx == -1) {
-                            throw new DukeException("The description of a todo cannot be empty.");
-                        }
                         String todoInfo = inputText.substring(firstSpaceIdx + 1);
                         Duke.addTodo(todoInfo);
                         break;
@@ -94,6 +91,8 @@ public class Duke {
      * Add a Deadline to the items list.
      *
      * @param input A String to be added to the list.
+     *
+     * @throws DukeException if either the desc or the by param is empty
      */
     public static void addDeadline(String input) throws DukeException {
         // Get description and date of deadline
@@ -125,8 +124,15 @@ public class Duke {
      * Add a To-do to the items list.
      *
      * @param input A String to be added to the list.
+     *
+     * @throws DukeException if the description is empty
      */
-    public static void addTodo(String input) {
+    public static void addTodo(String input) throws DukeException {
+        // Check if input is empty
+        if (input.length() == 0) {
+            throw new DukeException("The description of a todo cannot be empty.");
+        }
+
         // Instantiate task object
         Task newDeadline = new Todo(input);
 
