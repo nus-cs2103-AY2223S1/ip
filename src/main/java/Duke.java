@@ -198,7 +198,7 @@ public class Duke {
                                 "Sorry, I don't understand this!");
                 }
             } catch (DukeException e) {
-                prettyPrint(e.toString());
+                prettyPrint(e.getMessage());
             }
         }
         sc.close();
