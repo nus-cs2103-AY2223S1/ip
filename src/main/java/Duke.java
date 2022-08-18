@@ -15,9 +15,9 @@ public class Duke {
 
     private static final String MARK_REGEX = "mark [0-9]+";
     private static final String UNMARK_REGEX = "unmark [0-9]+";
-    private static final String TODO_REGEX = "todo [a-z[A-Z][0-9]_ :-]*";
-    private static final String DEADLINE_REGEX = "deadline [a-z[A-Z][0-9]_ ]* /by [a-z[A-Z][0-9]_ :-]*";
-    private static final String EVENT_REGEX = "event [a-z[A-Z][0-9]_ ]* /at [a-z[A-Z][0-9]_ :-]*";
+    private static final String TODO_REGEX = "todo[a-z[A-Z][0-9]_ :-]*";
+    private static final String DEADLINE_REGEX = "deadline[a-z[A-Z][0-9]_ ]* /by [a-z[A-Z][0-9]_ :-]*";
+    private static final String EVENT_REGEX = "event[a-z[A-Z][0-9]_ ]* /at [a-z[A-Z][0-9]_ :-]*";
 
 
     public static void main(String[] args) {
@@ -43,22 +43,34 @@ public class Duke {
                 int taskNumber = parseInt(temp);
                 Task.markAsNotDone(taskNumber - 1);
             } else if (Pattern.matches(TODO_REGEX, command)) {
-                String desc = command.substring(TODO.length()); // Ignore the word "todo"
-                Task.add(new ToDo(desc));
+                String desc = command.substring(TODO.length()).trim(); // Ignore the word "todo"
+                try {
+                    Task.add(new ToDo(desc));
+                } catch (DukeException e) {
+                    System.out.println(String.format("\t%s", e.getMessage()));
+                }
             } else if (Pattern.matches(DEADLINE_REGEX, command)) {
                 String temp = command.substring(DEADLINE.length());
                 String[] details = temp.split("/by");
                 details[0] = details[0].trim(); // description
                 details[1] = details[1].trim(); // deadline
-                Task.add(new Deadline(details[0], details[1]));
-            } else if (Pattern.matches(EVENT_REGEX, command)){
+                try {
+                    Task.add(new Deadline(details[0], details[1]));
+                } catch (DukeException e) {
+                    System.out.println(String.format("\t%s", e.getMessage()));
+                }
+            } else if (Pattern.matches(EVENT_REGEX, command)) {
                 String temp = command.substring(EVENT.length());
                 String[] details = temp.split("/at");
                 details[0] = details[0].trim(); // description
                 details[1] = details[1].trim(); // timing
-                Task.add(new Event(details[0], details[1]));
+                try {
+                    Task.add(new Event(details[0], details[1]));
+                } catch (Exception e) {
+                    System.out.println(String.format("\t%s", e.getMessage()));
+                }
             } else {
-                System.out.println("\tSorry! Command not recognized");
+                System.out.println("\tOOPS! I've no idea what you're talking about! :-(");
             }
             System.out.println("\t-------------------------------");
         }
