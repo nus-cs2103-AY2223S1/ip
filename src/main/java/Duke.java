@@ -58,9 +58,17 @@ public class Duke {
                     }
                     printMultiMsg(taskStrings);
                 } else if (command.equals("mark")) {
-                    Task task = tasks.get(Integer.parseInt(words[1]) - 1);
+                    Task task = tasks.get(Integer.parseInt(description) - 1);
                     task.markDone();
                     printMultiMsg(new String[]{"Nice! I've marked this task as done:", task.toString()});
+                } else if (command.equals("delete")) {
+                    Task task = tasks.get(Integer.parseInt(description) - 1);
+                    tasks.remove(task);
+                    printMultiMsg(new String[]{
+                            "Noted. I've removed this task:",
+                            "  " + task,
+                            "Now you have " + tasks.size() + " task" + (tasks.size() == 1 ? "" : "s") + " in the list."
+                    });
                 } else if (command.equals("todo")) {
                     if (description.length() == 0) throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
                     Task task = new ToDo(description, false);
