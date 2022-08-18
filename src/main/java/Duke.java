@@ -40,32 +40,47 @@ public class Duke {
         prettyPrint(String.format("added: %s", newTask.getDescription()));
     }
 
-    private static void createTask(String str, TASK type) {
-        Task newTask;
-        switch(type) {
-            case TODO:
-                newTask = new ToDo(str);
-                break;
-            case DEADLINE:
-                String[] strList = str.split(" /by ");
-                newTask = new Deadline(strList[0], strList[1]);
-                break;
-            case EVENT:
-                strList = str.split(" /at ");
-                newTask = new Event(strList[0], strList[1]);
-                break;
-            default:
-                newTask = new Task(str);
+    private static void createTask(String str, TASK type){
+        try {
+
+            Task newTask;
+            switch(type) {
+                case TODO:
+                    if (str.strip().equals("")) {
+                        throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+                    }
+                    newTask = new ToDo(str);
+                    break;
+                case DEADLINE:
+                    if (str.strip().equals("")) {
+                        throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
+                    }
+                    String[] strList = str.split(" /by ");
+                    newTask = new Deadline(strList[0], strList[1]);
+                    break;
+                case EVENT:
+                    if (str.strip().equals("")) {
+                        throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.");
+                    }
+                    strList = str.split(" /at ");
+                    newTask = new Event(strList[0], strList[1]);
+                    break;
+                default:
+                    newTask = new Task(str);
+            }
+            list.add(newTask);
+            String singulStr = "Now you have 1 task in the list";
+            if (list.size() == 1) {
+                prettyPrint(String.format("%s\n%s   %s\n%s %s",
+                        CREATETASKMESSAGE, TAB, newTask.toString(), TAB, singulStr));
+            } else {
+                prettyPrint(String.format("%s\n%s   %s\n%s Now you have %d tasks in the list.",
+                        CREATETASKMESSAGE, TAB, newTask.toString(), TAB, list.size()));
+            }
+        } catch (DukeException e) {
+            prettyPrint(e.toString());
         }
-        list.add(newTask);
-        String singulStr = "Now you have 1 task in the list";
-        if (list.size() == 1) {
-            prettyPrint(String.format("%s\n%s   %s\n%s %s",
-                    CREATETASKMESSAGE, TAB, newTask.toString(), TAB, singulStr));
-        } else {
-            prettyPrint(String.format("%s\n%s   %s\n%s Now you have %d tasks in the list.",
-                    CREATETASKMESSAGE, TAB, newTask.toString(), TAB, list.size()));
-        }
+
 
     }
 
@@ -142,37 +157,42 @@ public class Duke {
         prettyPrint(printable);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DukeException {
         Scanner sc = new Scanner(System.in);
         prettyPrint(WELCOMEMESSAGE);
         boolean canNext = true;
         while (canNext) {
-            String inputCmd = sc.next();
-            String inputRem = sc.nextLine();
-            switch (inputCmd) {
-                case (ENDCOMMAND):
-                    canNext = false;
-                    break;
-                case (PRINTCOMMAND):
-                    printAll();
-                    break;
-                case (MARKCOMMAND):
-                    mark(inputRem);
-                    break;
-                case (UNMARKCOMMAND):
-                    unmark(inputRem);
-                    break;
-                case (TODOCOMMAND):
-                    createTask(inputRem, TASK.TODO);
-                    break;
-                case (DEADLINECOMMAND):
-                    createTask(inputRem, TASK.DEADLINE);
-                    break;
-                case (EVENTCOMMAND):
-                    createTask(inputRem, TASK.EVENT);
-                    break;
-                default: createTask(inputCmd + inputRem);
+            try {
+                String inputCmd = sc.next();
+                String inputRem = sc.nextLine();
+                switch (inputCmd) {
+                    case (ENDCOMMAND):
+                        canNext = false;
+                        break;
+                    case (PRINTCOMMAND):
+                        printAll();
+                        break;
+                    case (MARKCOMMAND):
+                        mark(inputRem);
+                        break;
+                    case (UNMARKCOMMAND):
+                        unmark(inputRem);
+                        break;
+                    case (TODOCOMMAND):
+                        createTask(inputRem, TASK.TODO);
+                        break;
+                    case (DEADLINECOMMAND):
+                        createTask(inputRem, TASK.DEADLINE);
+                        break;
+                    case (EVENTCOMMAND):
+                        createTask(inputRem, TASK.EVENT);
+                        break;
+                    default: throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                }
+            } catch (DukeException e) {
+                prettyPrint(e.toString());
             }
+
         }
         prettyPrint(ENDMESSAGE);
     }
