@@ -1,10 +1,8 @@
 public class Task {
-    private final String description;
-    private final int index;
-    private boolean isDone;
+    protected final String description;
+    protected boolean isDone;
 
-    public Task(int index, String description) {
-        this.index = index;
+    public Task(String description) {
         this.description = description;
         this.isDone = false;
     }
@@ -21,8 +19,8 @@ public class Task {
         this.isDone = false;
     }
 
-    public String toStringWithIndex() {
-        return index + ".[" + this.getStatusIcon() + "] " + description;
+    public String toStringWithIndex(int index) {
+        return index + "." + this.toString();
     }
 
     @Override

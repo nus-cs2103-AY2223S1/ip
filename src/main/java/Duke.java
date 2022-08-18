@@ -1,56 +1,36 @@
 import java.util.*;
 
 public class Duke {
-
+    private static List<Task> list = new ArrayList<>(100);
     public static void main(String[] args) {
-        List<Task> list = new ArrayList<>(100);
-
         System.out.println(Duke.start());
         Scanner sc = new Scanner(System.in);
 
-        while (true) {
-            String command = sc.nextLine();
-            if (command.equals("list")) {
-                System.out.println(Duke.list(list.toArray(new Task[0])));
-            } else if (command.equals("bye")) {
+        while (sc.hasNext()) {
+            String input = sc.nextLine();
+            if (input.equals("list")) {
+                System.out.println(Duke.list());
+            } else if (input.equals("bye")) {
                 System.out.println(Duke.bye());
+                sc.close();
                 break;
+            } else if (input.startsWith("mark") && input.length() >= 6) {
+                System.out.print(Duke.mark(input));
+            } else if (input.startsWith("unmark") && input.length() >= 8) {
+                System.out.print(Duke.unmark(input));
             } else {
-                if (command.length() == 6) {
-                    if (command.substring(0, 4).equals("mark")) {
-                        int toMark = Character.getNumericValue(command.charAt(5));
-                        System.out.print(Duke.mark(list.get(toMark - 1)));
-                    }
-                } else if (command.length() == 8) {
-                    if (command.substring(0, 6).equals("unmark")) {
-                        int toMark = Character.getNumericValue(command.charAt(7));
-                        System.out.print(Duke.unmark(list.get(toMark - 1)));
-                    }
-                } else {
-                    list.add(new Task(list.size() + 1, command));
-                    System.out.println(Duke.replyFormat("added: " + command));
-                }
+                System.out.println(Duke.addTask(input));
             }
         }
     }
 
-    private static String replyFormat(String... messages) {
-        String line = "     ____________________________________________________________\n";
-        String indent = "     ";
-        StringBuilder res = new StringBuilder(line);
-        for (String message : messages) {
-            res.append(indent).append(message).append("\n");
+    private static String list() {
+        String[] lines = new String[list.size() + 1];
+        lines[0] = "Here are the tasks in your list: ";
+        for (int i = 1; i < list.size() + 1; i++) {
+            lines[i] = list.get(i - 1).toStringWithIndex(i);
         }
-        return res + line;
-    }
-
-    private static String list(Task... tasks) {
-        String[] messages = new String[tasks.length + 1];
-        messages[0] = "Here are the tasks in your list: ";
-        for (int i = 1; i < tasks.length + 1; i++) {
-            messages[i] = tasks[i - 1].toStringWithIndex();
-        }
-        return Duke.replyFormat(messages);
+        return Duke.replyFormat(lines);
     }
 
     private static String bye() {
@@ -61,14 +41,52 @@ public class Duke {
         return Duke.replyFormat("Oi! I'm Dook", "What's up?");
     }
 
-    private static String mark(Task task) {
+    private static String mark(String input) {
+        int toMark = Character.getNumericValue(input.charAt(5));
+        Task task = list.get(toMark - 1);
         task.mark();
-        return Duke.replyFormat("Nice! I've marked this task as done:", task.toString());
+        return Duke.replyFormat("Nice! I've marked this task as done:",
+                "  " + task.toString());
     }
 
-    private static String unmark(Task task) {
+    private static String unmark(String input) {
+        int toMark = Character.getNumericValue(input.charAt(7));
+        Task task = list.get(toMark - 1);
         task.unmark();
-        return Duke.replyFormat("OK, I've marked this task as not done yet:", task.toString());
+        return Duke.replyFormat("OK, I've marked this task as not done yet:",
+                "  " + task.toString());
+    }
+
+    private static String addTask(String input) {
+        Task task;
+        if (input.startsWith("todo")) {
+            task = new ToDo(input.substring(5));
+        } else {
+            int slash = input.indexOf('/');
+            String time = input.substring(slash + 4);
+            if (input.startsWith("event")) {
+                task = new Event(input.substring(6, slash - 1), time);
+            } else if (input.startsWith("deadline")) {
+                task = new Deadline(input.substring(9, slash - 1), time);
+            } else {
+                task = new Task(input);
+            }
+        }
+        list.add(task);
+        return Duke.replyFormat("Got it. I've added this task:",
+                "   " + task.toString(),
+                String.format("Now you have %d tasks in the list.", list.size()));
+    }
+
+    private static String replyFormat(String... lines) {
+        String separator = "     ____________________________________________________________\n";
+        String indent = "     ";
+        StringBuilder res = new StringBuilder(separator);
+        for (String line : lines) {
+            res.append(indent).append(line).append("\n");
+        }
+        res.append(separator);
+        return res.toString();
     }
 
 }
