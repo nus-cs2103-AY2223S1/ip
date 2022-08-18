@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -20,28 +19,51 @@ public class Duke {
         System.out.println(greeting);
         System.out.println(endLine);
 
-        ArrayList<String> list = new ArrayList<String>();
+        ArrayList<Task> list = new ArrayList<>();
         Scanner dukeSc = new Scanner(System.in);
 
         while (true) {
             String input = dukeSc.nextLine();
-
             System.out.println(startLine);
-            switch (input) {
-                case "bye":
-                    System.out.println(farewell);
-                    System.out.println(endLine);
-                    return;
-                case "list":
-                    for (int i = 0; i < list.size(); i++) {
-                        System.out.println(i+1 + ". " + list.get(i));
+
+            if (input.equalsIgnoreCase("bye")) {
+                System.out.println(farewell);
+                System.out.println(endLine);
+                return;
+            } else if (input.equalsIgnoreCase("list")) {
+                System.out.println("Here are the tasks in your list:");
+                for (int i = 0; i < list.size(); i++) {
+                    System.out.println(i+1 + ". " + list.get(i));
+                }
+                System.out.println(endLine);
+            } else if (input.startsWith("mark ") | input.startsWith("unmark ")) {
+                try {
+                    if (input.startsWith("mark ")) {
+                        // Parse substring starting from index 5
+                        int taskNum = Integer.parseInt(input.substring(5)) - 1;
+                        Task t = list.get(taskNum);
+                        t.markAsDone();
+                        System.out.println("Nice! I've marked this tasks as done:");
+                        System.out.println(t);
+                    } else {
+                        // Parse substring starting from index 7
+                        int taskNum = Integer.parseInt(input.substring(7)) - 1;
+                        Task t = list.get(taskNum);
+                        t.unmarkAsDone();
+                        System.out.println("OK, I've marked this task as not done yet:");
+                        System.out.println(t);
                     }
+                } catch (NumberFormatException | IndexOutOfBoundsException e) {
+                    int listSize = list.size();
+                    System.out.printf("Please enter a valid number from 1 to %d.%n", listSize);
+                } finally {
                     System.out.println(endLine);
-                    break;
-                default:
-                    list.add(input);
-                    System.out.println("added: " + input);
-                    System.out.println(endLine);
+                }
+            } else {
+                Task newTask = new Task(input);
+                list.add(newTask);
+                System.out.println("added: " + input);
+                System.out.println(endLine);
             }
         }
     }
