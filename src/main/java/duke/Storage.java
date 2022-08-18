@@ -55,6 +55,10 @@ public class Storage {
         }
 
         try {
+            if (taskList.getTaskList().size() == 0) {
+                Files.write(this.path, new byte[0]);
+                return taskList;
+            }
             StringBuilder sb = new StringBuilder();
             taskList.getTaskList().forEach((task) -> {
                 sb.append(StorageWriter.writeSingleTask(task) + "\n");

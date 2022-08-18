@@ -27,7 +27,7 @@ public class TaskList {
 
     private String getItemsLeft() {
         if (taskList.isEmpty()) {
-            return "List is empty";
+            return "List is empty, 0 items left !";
         } else {
             return String.format("Now you have %d tasks in the list", taskList.size());
         }
@@ -62,7 +62,7 @@ public class TaskList {
 
     public void listTasks() {
         if (taskList.isEmpty()) {
-            System.out.println("List is empty!");
+            System.out.println("List is empty, 0 items left !");
             return;
         }
         String toPrint = "";

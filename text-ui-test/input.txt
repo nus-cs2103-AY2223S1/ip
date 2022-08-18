@@ -3,31 +3,39 @@ cmd
 test
 todo
 todo eat
-deadline Eat Supper /by Monday
+deadline Eat Supper /by 24 Aug 2022 1945
 deadline Eat Supper by Monday
 deadline
-event Sleep /at Thurs 9-10pm
+event Sleep /at 12/12/2029 0111
 event Sleep at Thurs 9-10pm
 event
 list
 mark 3
 delete 3
 list
-deadline Project /by Today 4am
+deadline Project /by 20 Aug 2023 2359
 mark 1
 mark
 list
 mark 3
 list
 mark 2
-deadline Project /by Today 1800
+deadline Project /by 2300 12/12/2000
 list
 unmark 1
-deadline Eat Durians /by Sunday
+deaDline Eat Durians /by 0820 10-09-2002
+deadliNE Eat Choc /by 0912 01-09-2190
+Event eat Dinner /by 2359 12-09-2089
+ToDO iP
 unmark
 mark 4
 unmark 4
-delete 2
 list
-delete 3
+mark 1
 list
+mark 10
+mark 5
+mark 9
+unmark 2
+list
+bye
