@@ -44,6 +44,13 @@ public class Pluto {
                 Task t = missions.get(idx - 1);
                 t.markAsUndone();
             }
+            else if (command.startsWith("delete ")) {
+                int idx = Integer.parseInt(command.substring(7).strip());
+                System.out.println("\tNoted. I've removed this task:");
+                System.out.println(String.format("\t\t%s", missions.get(idx - 1).toString()));
+                missions.remove(idx - 1);
+                System.out.println(String.format("\tNow you have %d tasks in the list.", missions.size()));
+            }
             else if(command.equals("list")) {
                 System.out.println("\tHere are the tasks in your list:");
                 for (int i = 0; i < missions.size(); i++) {
