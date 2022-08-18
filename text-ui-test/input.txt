@@ -7,4 +7,5 @@ unmark 1
 list
 todo
 blah
+delete 1
 bye

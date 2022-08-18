@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -20,7 +19,6 @@ public class Duke {
         while (!isDone) {
             processUserCommand(myScanner);
         }
-
         myScanner.close();
     }
 
@@ -38,16 +36,18 @@ public class Duke {
             if (userCommand.equals("bye")) {
                 goodbye();
             } else if (userCommand.equals("list")) {
-                listUserCommands();
+                listTasks();
             } else if (userCommand.equals("mark")) {
                 getTask(userInput).markAsDone();
             } else if (userCommand.equals("unmark")) {
                 getTask(userInput).markAsNotDone();
+            } else if (userCommand.equals("delete")) {
+                deleteTask(userInput);
             } else {
                 validateTask(userCommand);
                 String taskDescription = getDescription(userInput);
                 Task task = createTask(userCommand, taskDescription);
-                addToList(task);
+                addTask(task);
             }
         } catch (DukeException de) {
             System.out.println(de);
@@ -59,17 +59,17 @@ public class Duke {
         System.out.println("Bye. Hope to see you again soon!");
     }
 
-    private static void listUserCommands() {
+    private static void listTasks() {
         System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < tasks.size(); i++) {
             System.out.printf("%d. %s\n", i + 1, tasks.get(i));
         }
     }
 
-    private static void addToList(Task task) {
+    private static void addTask(Task task) {
         tasks.add(task);
         System.out.printf("Got it. I've added this task:\n %s\n", task);
-        System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
+        sayTasks();
     }
 
     private static Task getTask(String[] userInput) throws DukeException {
@@ -105,6 +105,17 @@ public class Duke {
         }
 
         return userInput[1];
+    }
+
+    private static void deleteTask(String[] userInput) throws DukeException {
+        Task task = getTask(userInput);
+        tasks.remove(task);
+        System.out.printf("Noted. I've removed this task:\n %s\n", task);
+        sayTasks();
+    }
+
+    private static void sayTasks() {
+        System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
     }
 
 }

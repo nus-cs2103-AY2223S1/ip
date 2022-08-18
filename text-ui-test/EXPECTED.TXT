@@ -23,4 +23,7 @@ Here are the tasks in your list:
 3. [E][ ] book presentation (at: 2 days later 4pm)
 DukeException: ☹ OOPS!!! The description of todo cannot be empty.
 DukeException: ☹ OOPS!!! I'm sorry, but I don't know what that means.
+Noted. I've removed this task:
+ [T][ ] borrow book
+Now you have 2 tasks in the list.
 Bye. Hope to see you again soon!
