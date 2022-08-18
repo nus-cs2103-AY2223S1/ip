@@ -82,39 +82,56 @@ public class Duke {
 
             }
             else if(userMsg.contains("todo ")){
-                todoCount++;
                 String todo = userMsg.replaceAll("todo ", "");
-                ListObject newItem = new ToDo(todo, 0);
-                listOfItems.add(newItem);
-                System.out.println("'Tis a new sky for you to scale! Here! \n" + newItem.toString()
-                        + "\nYou now have " + listOfItems.size() + " tasks to do!"
-                        + "\n***********************************************************************");
+                if (todo.isEmpty()) {
+                    System.out.println("The folly of youth to want to do nothing! Write your task following 'todo'");
+                    System.out.println("***********************************************************************");
+                } else {
+                    todoCount++;
+                    ListObject newItem = new ToDo(todo, 0);
+                    listOfItems.add(newItem);
+                    System.out.println("'Tis a new sky for you to scale! Here! \n" + newItem.toString()
+                            + "\nYou now have " + listOfItems.size() + " tasks to do!"
+                            + "\n***********************************************************************");
+                }
             }
 
             else if(userMsg.contains("deadline ")){
-                deadlinesCount++;
                 String deadline1 = userMsg.replaceAll("deadline ", "");
                 String[] words = deadline1.split("/");
                 String task = words[0];
                 String deadline = words[1];
-                ListObject newItem = new Deadline(task, 0, deadline);
-                listOfItems.add(newItem);
-                System.out.println("Mark this on your calendar! \n" + newItem.toString()
-                        + "\nYou now have " + listOfItems.size() + " tasks to do!"
-                        + "\n***********************************************************************");
+                if(!task.isEmpty()) {
+                    deadlinesCount++;
+                    ListObject newItem = new Deadline(task, 0, deadline);
+                    listOfItems.add(newItem);
+                    System.out.println("Mark this on your calendar! \n" + newItem.toString()
+                            + "\nYou now have " + listOfItems.size() + " tasks to do!"
+                            + "\n***********************************************************************");
+                }
+                if(task.isEmpty()){
+                    System.out.println("The folly of youth to cheat Time! Write your task following 'deadline'");
+                    System.out.println("***********************************************************************");
+                }
             }
 
             else if(userMsg.contains("event ")){
-                eventsCount++;
                 String event1 = userMsg.replaceAll("event ", "");
                 String[] words = event1.split("/");
                 String task = words[0];
                 String event = words[1];
-                ListObject newItem = new Event(task, 0, event);
-                listOfItems.add(newItem);
-                System.out.println("Another moment to mark... \n" + newItem.toString()
-                        + "\nYou now have " + listOfItems.size() + " tasks to do!"
-                        + "\n***********************************************************************");
+                if(!task.isEmpty()) {
+                    eventsCount++;
+                    ListObject newItem = new Event(task, 0, event);
+                    listOfItems.add(newItem);
+                    System.out.println("Another moment to mark... \n" + newItem.toString()
+                            + "\nYou now have " + listOfItems.size() + " tasks to do!"
+                            + "\n***********************************************************************");
+                }
+                if(task.isEmpty()){
+                    System.out.println("Come Alive! Write an activity following 'event'");
+                    System.out.println("***********************************************************************");
+                }
             }
 
             else if(userMsg.equals(exitChat)){
@@ -124,10 +141,14 @@ public class Duke {
             }
 
             else {
+                if (userMsg.isEmpty()) {
+                    System.out.println("The folly of youth to speak with no words! Speak again, my friend!");
+                } else {
+                    System.out.print("Did you say..." + userMsg + "?\n");
+                    System.out.println("The shadow of my memory is long...State what you would ask clearly.");
+                    System.out.println("\n***********************************************************************");
 
-                System.out.print("Did you say..." + userMsg + "?\n");
-                System.out.println("The shadow of my memory is long...State what you would ask clearly.");
-                System.out.println("\n***********************************************************************");
+                }
             }
         }
     }
