@@ -6,7 +6,9 @@ public class Event extends Task {
         this.timing = timing;
     }
 
-    public static Event createEvent(String input) {
+    public static Event createEvent(String input) throws DukeException {
+        if (input.indexOf("/at ") == -1)
+            throw new DukeException("Please enter a valid event timing!");
         String eventDescription = input.split("/at ")[0];
         String event = input.split("/at ")[1];
         return new Event(eventDescription, event);

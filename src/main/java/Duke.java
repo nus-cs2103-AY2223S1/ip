@@ -34,25 +34,35 @@ public class Duke {
         while (hasNextInput) {
             System.out.print("--> ");
             String input = scanner.nextLine();
+            int taskIndex;
 
             try {
                 switch (input.split(" ")[0]) {
                     case "bye":
                         hasNextInput = false;
+                        scanner.close();
                         break;
                     case "list":
                         displayList();
                         break;
                     case "mark":
+                        taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
+                        if (taskIndex < 0 || taskIndex >= tasks.size())
+                            throw new DukeException("Please enter a valid task number!");
                         tasks.get(Integer.parseInt(input.split(" ")[1]) - 1).markAsDone();
                         break;
                     case "unmark":
+                        taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
+                        if (taskIndex < 0 || taskIndex >= tasks.size())
+                            throw new DukeException("Please enter a valid task number!");
                         tasks.get(Integer.parseInt(input.split(" ")[1]) - 1).markAsNotDone();
                         break;
                     default:
                         addTask(Task.createTask(input));
                         break;
                 }
+            } catch (NumberFormatException e) {
+                System.out.println("Please Enter a valid task number!");
             } catch (DukeException e) {
                 System.out.println(e.toString());
             }

@@ -8,15 +8,23 @@ public abstract class Task {
     }
 
     public static Task createTask(String input) throws DukeException {
-        switch (input.split(" ")[0]) {
+        String[] splitInput = input.split(" ", 2);
+
+        switch (splitInput[0]) {
             case "todo":
-                return Todo.createTodo(input.split(" ", 2)[1]);
+                if (splitInput.length == 1)
+                    throw new DukeException("Please enter the description when creating new task!");
+                return Todo.createTodo(splitInput[1]);
             case "deadline":
-                return Deadline.createDeadline(input.split(" ", 2)[1]);
+                if (splitInput.length == 1)
+                    throw new DukeException("Please enter the description when creating new task!");
+                return Deadline.createDeadline(splitInput[1]);
             case "event":
-                return Event.createEvent(input.split(" ", 2)[1]);
+                if (splitInput.length == 1)
+                    throw new DukeException("Please enter the description when creating new task!");
+                return Event.createEvent(splitInput[1]);
             default:
-                throw new DukeException("Please enter a valid command!");
+                throw new DukeException("I'm sorry but I don't know what that means.");
         }
     }
 
