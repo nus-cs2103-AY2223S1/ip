@@ -24,10 +24,22 @@ public class Duke {
                 this.generateReply("Bye. Hope to see you again soon!");
                 this.inNeed = false;
                 break;
+            case "list":
+                this.printList();
+                break;
             default:
                 this.list.add(message);
                 this.generateReply("added: " + message);
         }
+    }
+
+    private void printList() {
+        System.out.println("____________________________________________________________");
+        int count = 1;
+        for (String s: this.list) {
+            System.out.println(count++ + ". " + s);
+        }
+        System.out.println("____________________________________________________________");
     }
 
     public static void main(String[] args) {
