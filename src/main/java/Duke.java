@@ -1,6 +1,11 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Duke {
+
+    static ArrayList<Task> db = new ArrayList<>();
+    static Scanner sc = new Scanner(System.in);
+
     public static void welcome() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -14,13 +19,95 @@ public class Duke {
         System.out.println("Sayonara, Adios!");
     }
 
+    public static void list() {
+        System.out.println("Here are your list of tasks!");
+        db.forEach(task -> System.out.println((db.indexOf(task) + 1)
+                + ". "  + task.toString()));
+    }
+
+    public static void mark(String str) {
+        int index = Integer.parseInt(str.substring(5));
+        if (index <= db.size()) {
+            Task task = db.get(index - 1);
+            if (!task.isDone()) {
+                task.toggleDoneness();
+                System.out.println("Good job for doing this task!");
+                System.out.println(task);
+            } else {
+                System.out.println("This task has already been marked done.");
+                System.out.println(task);
+            }
+        } else {
+            System.out.println("Index too big, no such task exists.");
+        }
+    }
+
+    public static void unmark(String str) {
+        int index = Integer.parseInt(str.substring(7));
+        if (index <= db.size()) {
+            Task task = db.get(index - 1);
+            if (task.isDone()) {
+                task.toggleDoneness();
+                System.out.println("Task shall be marked as undone.");
+                System.out.println(task);
+            } else {
+                System.out.println("This task has already been marked undone.");
+                System.out.println(task);
+            }
+        } else {
+            System.out.println("Index too big, no such task exists.");
+        }
+    }
+
+    public static void addTodo(String str) throws DukeException {
+        String sub = str.substring(5).trim();
+        if (!sub.isEmpty()) {
+            db.add(new Todo(str.substring(5)));
+            System.out.println("Got it, I've added this task:");
+            System.out.println(db.get(db.size() - 1));
+            System.out.println("Now you have " + db.size() + " tasks in the list.");
+        } else {
+            throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+        }
+    }
+
+    public static void addDeadline(String str) throws DukeException {
+        String sub = str.substring(9).trim();
+        if (str.contains("/by")) {
+            String[] split = sub.split("/by");
+            System.out.println(split.length);
+            if (split.length < 2) {
+                throw new DukeException("Please specify the deadline.");
+            } else {
+                db.add(new Deadline(split[0], split[1]));
+                System.out.println("Got it, I've added this task:");
+                System.out.println(db.get(db.size() - 1));
+                System.out.println("Now you have " + db.size() + " tasks in the list.");
+            }
+        } else {
+            throw new DukeException("Please specify the deadline by using \"/by\".");
+        }
+    }
+
+    public static void addEvent(String str) throws DukeException {
+        String sub = str.substring(6).trim();
+        if (str.contains("/at")) {
+            String[] split = sub.split("/at");
+            db.add(new Event(split[0], split[1]));
+            System.out.println("Got it, I've added this task:");
+            System.out.println(db.get(db.size() - 1));
+            System.out.println("Now you have " + db.size() + " tasks in the list.");
+        } else {
+            throw new DukeException("Please specify the event date by using \"/at\"");
+        }
+    }
+
+    public static void deleteTask() {
+
+    }
+
     public static void main(String[] args) {
         Duke.welcome();
-        Scanner sc = new Scanner(System.in);
-        Task[] db = new Task[100];
-
-
-        int i = 0;
         while (true) {
             try {
                 String str = sc.nextLine();
@@ -29,84 +116,19 @@ public class Duke {
                     break;
                 }
                 if (str.equals("list")) {
-                    System.out.println("Here are your list of tasks!");
-                    for (int j = 0; j < i; j++) {
-                        int k = j + 1;
-                        System.out.println(k + ". " + db[j].toString());
-                    }
+                    Duke.list();
                 } else if (str.startsWith("mark ")) {
-                    int index = Integer.parseInt(str.substring(5));
-                    if (index <= i) {
-                        Task task = db[index - 1];
-                        if (!task.isDone()) {
-                            task.toggleDoneness();
-                            System.out.println("Good job for doing this task!");
-                            System.out.println(task);
-                        } else {
-                            System.out.println("This task has already been marked done.");
-                            System.out.println(task);
-                        }
-                    } else {
-                        System.out.println("Index too big, no such task exists.");
-                    }
-
+                    Duke.mark(str);
                 } else if (str.startsWith("unmark ")) {
-                    int index = Integer.parseInt(str.substring(7));
-                    if (index <= i) {
-                        Task task = db[index - 1];
-                        if (task.isDone()) {
-                            task.toggleDoneness();
-                            System.out.println("Task shall be marked as undone.");
-                            System.out.println(task);
-                        } else {
-                            System.out.println("This task has already been marked undone.");
-                            System.out.println(task);
-                        }
-                    } else {
-                        System.out.println("Index too big, no such task exists.");
-                    }
+                    Duke.unmark(str);
                 } else if (str.startsWith("todo ")) {
-                    String sub = str.substring(5).trim();
-                    if (!sub.isEmpty()) {
-                        db[i] = new Todo(str.substring(5));
-                        i++;
-                        System.out.println("Got it, I've added this task:");
-                        System.out.println(db[i - 1]);
-                        System.out.println("Now you have " + i + " tasks in the list.");
-                    } else {
-                        throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
-                    }
-                } else if (str.equals("todo")){
+                    Duke.addTodo(str);
+                } else if (str.equals("todo")) { // to avoid strings such as "todotodo"
                     throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
                 } else if (str.startsWith("deadline ")) {
-                    String sub = str.substring(9).trim();
-                    if (str.contains("/by")) {
-                        String[] split = sub.split("/by");
-                        System.out.println(split.length);
-                        if (split.length < 2) {
-                            throw new DukeException("Please specify the deadline.");
-                        } else {
-                            db[i] = new Deadline(split[0], split[1]);
-                            i++;
-                            System.out.println("Got it, I've added this task:");
-                            System.out.println(db[i - 1]);
-                            System.out.println("Now you have " + i + " tasks in the list.");
-                        }
-                    } else {
-                        throw new DukeException("Please specify the deadline by using \"/by\".");
-                    }
+                    Duke.addDeadline(str);
                 } else if (str.startsWith("event ")) {
-                    String sub = str.substring(6).trim();
-                    if (str.contains("/at")) {
-                        String[] split = sub.split("/at");
-                        db[i] = new Event(split[0], split[1]);
-                        i++;
-                        System.out.println("Got it, I've added this task:");
-                        System.out.println(db[i - 1]);
-                        System.out.println("Now you have " + i + " tasks in the list.");
-                    } else {
-                        throw new DukeException("Please specify the event date by using \"/at\"");
-                    }
+                    Duke.addEvent(str);
                 } else {
                     throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
