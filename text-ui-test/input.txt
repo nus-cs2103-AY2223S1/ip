@@ -4,4 +4,7 @@ mark 1
 mark 2
 event item 3 /at 4pm
 unmark 2
+list
+delete 2
+list
 bye

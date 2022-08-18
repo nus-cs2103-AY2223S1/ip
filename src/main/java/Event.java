@@ -1,5 +1,11 @@
+/**
+ * Encapsulates an event task stored by Apollo.
+ *
+ * @author Kartikeya
+ */
 public class Event extends DukeTask {
-  private String at;
+  // Time of event
+  private final String at;
 
   public Event(String description, String at) {
     super(description);

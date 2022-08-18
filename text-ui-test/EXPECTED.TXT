@@ -1,24 +1,36 @@
-| Welcome to APOLLO! |
+Welcome to Apollo!
 How can I help you today?
-
-----------------
-Item added: [T][ ] todo item 1
+-----------------------------------------------
+Item added: [T][ ] item 1
 Now you have 1 task in the list.
-----------------
-Item added: [D][ ] deadline item 2 (by: 3pm)
+-----------------------------------------------
+Item added: [D][ ] item 2 (by: 3pm)
 Now you have 2 tasks in the list.
-----------------
+-----------------------------------------------
 Good job! This task has been completed:
-[T][X] todo item 1
-----------------
+  [T][X] item 1
+-----------------------------------------------
 Good job! This task has been completed:
-[D][X] deadline item 2 (by: 3pm)
-----------------
-Item added: [E][ ] event item 3 (at: 4pm)
+  [D][X] item 2 (by: 3pm)
+-----------------------------------------------
+Item added: [E][ ] item 3 (at: 4pm)
 Now you have 3 tasks in the list.
-----------------
+-----------------------------------------------
 Whoops! This task is now yet to be completed:
-[D][ ] deadline item 2 (by: 3pm)
-----------------
+  [D][ ] item 2 (by: 3pm)
+-----------------------------------------------
+Your current tasks:
+  1. [T][X] item 1
+  2. [D][ ] item 2 (by: 3pm)
+  3. [E][ ] item 3 (at: 4pm)
+-----------------------------------------------
+Success! The following item has been deleted:
+[D][ ] item 2 (by: 3pm)
+Now you have 2 tasks in the list.
+-----------------------------------------------
+Your current tasks:
+  1. [T][X] item 1
+  2. [E][ ] item 3 (at: 4pm)
+-----------------------------------------------
 Goodbye, see you soon!
-----------------
+-----------------------------------------------
