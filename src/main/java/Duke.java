@@ -39,6 +39,13 @@ public class Duke {
                         unmarkTask(inputArray.get(1));
                         break;
                     }
+                    case "delete": {
+                        if (inputArray.size() != 2) {
+                            throw new DukeException("Input for delete not correct");
+                        }
+                        deleteTask(inputArray.get(1));
+                        break;
+                    }
                     case "todo": {
                         ToDo newTask = new ToDo(String.join(" ", inputArray.subList(1, inputArray.size())));
                         tasks.add(newTask);
@@ -101,7 +108,7 @@ public class Duke {
     }
 
     private static void printBye() {
-        System.out.println("Goodbye. Hope to see you again soon");
+        System.out.println("Goodbye. Hope to see you again soon!");
     }
 
     private static void printTasks() {
@@ -114,22 +121,38 @@ public class Duke {
     }
 
     private static void markTask(String input) throws Exception {
-        Task task = getTask(input);
+        int taskNum = Integer.parseInt(input) - 1;
+        Task task = getTask(taskNum);
         task.markIsDone();
     }
 
     private static void unmarkTask(String input) throws Exception {
-        Task task = getTask(input);
+        int taskNum = Integer.parseInt(input) - 1;
+        Task task = getTask(taskNum);
         task.unmarkIsDone();
     }
 
-    private static Task getTask(String input) throws Exception {
+    private static void deleteTask(String input) throws Exception {
+        int taskNum = Integer.parseInt(input) - 1;
+        Task task = getTask(taskNum);
+        try {
+            tasks.remove(taskNum);
+
+            System.out.println("\n  _______________");
+            System.out.println("  Removed: " + task);
+            System.out.println(String.format("  Now you have %d tasks in the list", tasks.size()));
+            System.out.println("  _______________\n");
+        } catch (Exception e) {
+            throw new DukeException(String.format("Task number %d not found", taskNum));
+        }
+    }
+
+    private static Task getTask(int taskNum) throws Exception {
         Task task;
 
         try {
-            int taskNum = Integer.parseInt(input) - 1;
             task = tasks.get(taskNum);
-        } catch (RuntimeException e) {
+        } catch (Exception e) {
             throw new DukeException("Task number is incorrectly provided");
         }
 
