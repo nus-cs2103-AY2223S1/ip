@@ -14,6 +14,9 @@ public class CheckList {
         tasks.add(task);
     }
 
+    public void deleteTask(int taskNum) {
+        tasks.remove(taskNum - 1);
+    }
     public String printList() {
         StringBuilder output = new StringBuilder();
         for (int i = 0; i < tasks.size(); ++i) {

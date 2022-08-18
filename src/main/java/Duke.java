@@ -48,6 +48,7 @@ public class Duke {
                     System.exit(0);
                     break;
                 case "mark":
+                    // Implement error for empty mark argument
                     int taskNum = Integer.parseInt(words.get(0));
                     if (taskNum > 0 && taskNum <= checklist.tasks.size()) {
                         checklist.tasks.get(taskNum - 1).markDone();
@@ -57,15 +58,16 @@ public class Duke {
                                 + SPACER);
                     } else if (checklist.tasks.size() == 0) {
                         throw new DukeException(SPACER + "\n"
-                                + "There's nothing in your list. T^T\n"
+                                + "There's nothing in your list to mark! T^T\n"
                                 + SPACER);
                     } else {
                         throw new DukeException(SPACER + "\n"
-                                + "Please enter a valid task number. T^T\n"
+                                + "Please enter a valid task number to mark. T^T\n"
                                 + SPACER);
                     }
                     break;
                 case "unmark":
+                    // Implement error for empty unmark argument
                     taskNum = Integer.parseInt(words.get(0));
                     if (taskNum > 0 && taskNum <= checklist.tasks.size()) {
                         checklist.tasks.get(taskNum - 1).markUndone();
@@ -75,11 +77,11 @@ public class Duke {
                                 + SPACER);
                     } else if (checklist.tasks.size() == 0) {
                         throw new DukeException(SPACER + "\n"
-                                + "There's nothing in your list. T^T\n"
+                                + "There's nothing in your list to unmark! T^T\n"
                                 + SPACER);
                     } else {
                         throw new DukeException(SPACER + "\n"
-                                + "Please enter a valid task number. T^T\n"
+                                + "Please enter a valid task number to unmark. T^T\n"
                                 + SPACER);
                     }
                     break;
@@ -125,6 +127,28 @@ public class Duke {
                         + "You have " + checklist.tasks.size()
                         + (checklist.tasks.size() == 1 ? " task! :D\n" : " tasks! :D\n")
                         + SPACER);
+                    break;
+                case "delete":
+                    // Implement error for "delete hello"
+                    taskNum = Integer.parseInt(words.get(0));
+                    if (taskNum > 0 && taskNum <= checklist.tasks.size()) {
+                        String deletedTask = checklist.tasks.get(taskNum - 1).toString();
+                        checklist.deleteTask(taskNum);
+                        System.out.println(SPACER + "\n"
+                                + "Boo~ Don't be a quitter! I've removed this task for you. =3=\n"
+                                + deletedTask + "\n"
+                                + "You have " + checklist.tasks.size()
+                                + (checklist.tasks.size() == 1 ? " task! :D\n" : " tasks! :D\n")
+                                + SPACER);
+                    } else if (checklist.tasks.size() == 0) {
+                        throw new DukeException(SPACER + "\n"
+                                + "There's nothing in your list to delete! T^T\n"
+                                + SPACER);
+                    } else {
+                        throw new DukeException(SPACER + "\n"
+                                + "Please enter a valid task number to delete. T^T\n"
+                                + SPACER);
+                    }
                     break;
                 default:
                     System.out.println(SPACER + "\n"
