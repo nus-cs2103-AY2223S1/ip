@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Duke {
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -11,5 +13,7 @@ public class Duke {
                 "     What can I do for you?\n" +
                 "____________________________________________________________\n";
         System.out.println(hello);
+
+        List<String> list = new ArrayList<String>();
     }
 }
