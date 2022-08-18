@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Hazell {
+    private static final String typeIcon = "B";
     public static void reply(String msg) {
         String DIVIDER = "\t____________________________________________________________";
         System.out.println(DIVIDER);
@@ -48,7 +49,7 @@ public class Hazell {
                 task.markAsUndone();
                 reply(String.format("OK, I've marked this task as not done yet:\n\t%s", task.toString()));
             } else {
-                taskList.add(new Task(userinput));
+                taskList.add(new ToDo(userinput));
                 reply(String.format("added: %s", userinput));
             }
         }
