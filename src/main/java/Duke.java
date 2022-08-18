@@ -35,33 +35,35 @@ public class Duke {
     private boolean callback(String command, String input) {
         input = input.strip();
         try {
-            switch (command) {
-                case "bye":
-                    goodbye();
-                    return false;
-                case "list":
-                    listHistory();
-                    break;
-                case "todo":
-                    addTodo(input);
-                    break;
-                case "event":
-                    addEvent(input);
-                    break;
-                case "deadline":
-                    addDeadline(input);
-                    break;
-                case "mark":
-                    setTaskCompletionStatus(input, true);
-                    break;
-                case "unmark":
-                    setTaskCompletionStatus(input, false);
-                    break;
-                case "delete":
-                    delete(input);
-                    break;
-                default:
-                    throw new DukeException("I'm sorry, but I don't know what that means :-(");
+            try {
+                switch (Commands.getCommand(command.toLowerCase())) {
+                    case BYE:
+                        goodbye();
+                        return false;
+                    case LIST:
+                        listHistory();
+                        break;
+                    case TODO:
+                        addTodo(input);
+                        break;
+                    case EVENT:
+                        addEvent(input);
+                        break;
+                    case DEADLINE:
+                        addDeadline(input);
+                        break;
+                    case MARK:
+                        setTaskCompletionStatus(input, true);
+                        break;
+                    case UNMARK:
+                        setTaskCompletionStatus(input, false);
+                        break;
+                    case DELETE:
+                        delete(input);
+                        break;
+                }
+            } catch (IllegalArgumentException e) {
+                throw new DukeException("I'm sorry, but I don't know what that means :-(");
             }
         } catch (DukeException e) {
             speak(e.getMessage());
@@ -137,16 +139,16 @@ public class Duke {
         Task task = tasks.get(task_id);
         task.setDone(completed);
         if (completed) {
-            speak("Nice! I've marked this task as done:\n%s", task);
+            speak("Nice! I've marked this task as done:\n  %s", task);
         } else {
-            speak("Ok, I've marked this task as not done yet:\n%s", task);
+            speak("Ok, I've marked this task as not done yet:\n  %s", task);
         }
     }
 
     /**
      * Handle the input for the delete command.
      *
-     * @param input     the input to be handled
+     * @param input the input to be handled
      * @throws DukeException if the input is invalid
      */
     private void delete(String input) throws DukeException {
@@ -175,7 +177,7 @@ public class Duke {
     }
 
     /**
-     * Speaks the specified text defined by it's format and arguments.
+     * Speaks the specified text defined by its format and arguments.
      *
      * @param format A format string
      * @param args   Arguments referenced by the format specifiers in the format string.
