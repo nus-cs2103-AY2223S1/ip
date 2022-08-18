@@ -12,6 +12,7 @@ public class Hazell {
         }
         System.out.println(DIVIDER);
     }
+
     public static void main(String[] args) {
         String logo = "  _    _               _ _ \n"
                 + " | |  | |             | | |\n"
@@ -27,10 +28,11 @@ public class Hazell {
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextLine()) {
             String userinput = scanner.nextLine().strip();
-            if (userinput.equals("bye")) {
+            Command command = Command.parse(userinput);
+            if (command.startsWith("bye")) {
                 reply("Bye. Hope to see you again soon!");
                 System.exit(0);
-            } else if (userinput.equals("list")) {
+            } else if (command.startsWith("list")) {
                 StringBuilder sb = new StringBuilder();
                 for (int i = 0; i < taskList.size(); i++) {
                     Task task = taskList.get(i);
@@ -38,32 +40,40 @@ public class Hazell {
                     if (i != taskList.size() - 1) sb.append("\n");
                 }
                 reply(sb.toString());
-            } else if (userinput.startsWith("mark ")) {
-                int index = Integer.parseInt(userinput.split(" ")[1]) - 1;
+            } else if (command.startsWith("mark")) {
+                int index = Integer.parseInt(command.getTrailingArgs().get(0)) - 1;
                 Task task = taskList.get(index);
                 task.markAsDone();
                 reply(String.format("Nice! I've marked this task as done:\n\t%s", task.toString()));
-            } else if (userinput.startsWith("unmark ")) {
-                int index = Integer.parseInt(userinput.split(" ")[1]) - 1;
+            } else if (command.startsWith("unmark")) {
+                int index = Integer.parseInt(command.getTrailingArgs().get(0)) - 1;
                 Task task = taskList.get(index);
                 task.markAsUndone();
                 reply(String.format("OK, I've marked this task as not done yet:\n\t%s", task.toString()));
-            } else if (userinput.startsWith("todo ")) {
-                String description = userinput.split(" ", 2)[1];
+            } else if (command.startsWith("todo")) {
+                String description = String.join(" ", command.getTrailingArgs());
                 taskList.add(new ToDo(description));
                 reply(String.format("Got it. I've added this task:\n\t%s\nNow you have %d tasks in the list.",
                         description, taskList.size()));
-            } else if (userinput.startsWith("deadline ")) {
-                String firstCommandOnwards = userinput.split(" ", 2)[1];
-                String description = firstCommandOnwards.split("/")[0].strip();
-                String time = firstCommandOnwards.split("/")[1].split(" ", 2)[1].strip();
+            } else if (command.startsWith("deadline")) {
+                String description = String.join(" ", command.getTrailingArgs());
+                String time;
+                try {
+                    time = command.getKwarg("by");
+                } catch (Command.KwargNotFoundException ex) {
+                    continue;
+                }
                 taskList.add(new Deadline(description, time));
                 reply(String.format("Got it. I've added this task:\n\t%s\nNow you have %d tasks in the list.",
                         description, taskList.size()));
-            } else if (userinput.startsWith("event ")) {
-                String firstCommandOnwards = userinput.split(" ", 2)[1];
-                String description = firstCommandOnwards.split("/")[0].strip();
-                String time = firstCommandOnwards.split("/")[1].split(" ", 2)[1].strip();
+            } else if (command.startsWith("event")) {
+                String description = String.join(" ", command.getTrailingArgs());
+                String time;
+                try {
+                    time = command.getKwarg("at");
+                } catch (Command.KwargNotFoundException ex) {
+                    continue;
+                }
                 taskList.add(new Event(description, time));
                 reply(String.format("Got it. I've added this task:\n\t%s\nNow you have %d tasks in the list.",
                         description, taskList.size()));
