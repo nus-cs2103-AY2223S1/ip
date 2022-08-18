@@ -68,6 +68,12 @@ public class Duke {
             return "[E]" + super.toString() + " (at: " + at + ")";
         }
     }
+
+    public static class DukeExceptions extends Exception {
+        public DukeExceptions(String message) {
+            super("oh nooo the " + message + "cannot be empty!");
+        }
+    }
     public static void main(String[] args) {
         String reply = "";
         String exit = "bye";
@@ -91,40 +97,69 @@ public class Duke {
                 Task temp;
                 switch (substr[0]) {
                     case "mark":
-                        index = Integer.parseInt(substr[1]) - 1;
-                        if(index < 0 || index >= todoList.size()) {
-                            System.out.println("thrs nth there :<");
-                            continue;
+                        try {
+                            index = Integer.parseInt(substr[1]) - 1;
+                            if(index < 0 || index >= todoList.size()) {
+                                System.out.println("thrs nth there :<");
+                                continue;
+                            }
+                            temp = todoList.get(index);
+                            temp.markAsDone();
+                            System.out.println("oke this is done now:\n" + temp);
+                        } catch (NumberFormatException e) {
+                            System.out.println("Invalid input");
                         }
-                        temp = todoList.get(index);
-                        temp.markAsDone();
-                        System.out.println("oke this is done now:\n" + temp);
                         break;
                     case "unmark":
-                        index = Integer.parseInt(substr[1]) - 1;
-                        if(index < 0 || index >= todoList.size()) {
-                            System.out.println("thrs nth there :<");
-                            continue;
+                        try {
+                            index = Integer.parseInt(substr[1]) - 1;
+                            if(index < 0 || index >= todoList.size()) {
+                                System.out.println("thrs nth there :<");
+                                continue;
+                            }
+                            temp = todoList.get(index);
+                            temp.markAsUndone();
+                            System.out.println("oke this is undone now:\n" + temp);
+                        } catch (NumberFormatException e) {
+                            System.out.println("Invalid input");
                         }
-                        temp = todoList.get(index);
-                        temp.markAsUndone();
-                        System.out.println("oke this is undone now:\n" + temp);
+
                         break;
                     case "todo":
+                        if(substr.length == 1) {
+                            System.out.println("The description cannot be empty!");
+                            break;
+                        }
                         temp = new Todo(substr[1]);
                         todoList.add(temp);
                         System.out.println("oke i added:\n" + temp.toString());
                         System.out.println("now u have " + todoList.size() + " task(s)!");
                         break;
                     case "deadline":
+                        if(substr.length == 1) {
+                            System.out.println("The description cannot be empty!");
+                            break;
+                        }
                         String[] dlDesc = substr[1].split(" /by ", 2);
+                        if(dlDesc.length < 2) {
+                            System.out.println("The deadline cannot be empty");
+                            break;
+                        }
                         temp = new Deadline(dlDesc[0], dlDesc[1]);
                         todoList.add(temp);
                         System.out.println("oke i added:\n" + temp.toString());
                         System.out.println("now u have " + todoList.size() + " task(s)!");
                         break;
                     case "event":
+                        if(substr.length == 1) {
+                            System.out.println("The description cannot be empty!");
+                            break;
+                        }
                         String[] eventDesc = substr[1].split(" /at ", 2);
+                        if(eventDesc.length < 2) {
+                            System.out.println("The date cannot be empty");
+                            break;
+                        }
                         temp = new Event(eventDesc[0], eventDesc[1]);
                         todoList.add(temp);
                         System.out.println("oke i added:\n" + temp.toString());
