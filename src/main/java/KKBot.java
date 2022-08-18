@@ -144,7 +144,7 @@ public class KKBot {
                 } catch (IndexOutOfBoundsException ioobe) {
                     System.out.println("You forgot to specify a task/deadline! Try again!");
                 }
-            // if user input has no keywords, then chatbot creates an arbitrary task and adds it to the list
+            // if user input has no keywords, then chatbot returns an error message
             } else {
                 System.out.println("Me no understood... try using the keywords!" + "\n" + divider);
             }
