@@ -1,6 +1,7 @@
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.ArrayList;
 
 public class Duke {
     public static void main(String[] args) {
@@ -13,8 +14,7 @@ public class Duke {
         System.out.println("How can I help?");
 
         Scanner sc = new Scanner(System.in);
-        Task[] tasks = new Task[100];
-        int eleCount = 0;
+        ArrayList<Task> taskList = new ArrayList<Task>();
 
         while (sc.hasNext()) {
             String command = sc.nextLine();
@@ -22,22 +22,22 @@ public class Duke {
 
             switch(commandBreakdown[0]) {
                 case "list":
-                    for (int i = 0; i < eleCount; i++) {
+                    for (int i = 0; i < taskList.size(); i++) {
                         //System.out.println((i+1) + ". [" + tasks[i].getStatusIcon() + "]" + tasks[i].toString());
-                        System.out.println(String.format("%d. %s", i+1, tasks[i].toString()));
+                        System.out.println(String.format("%d. %s", i+1, taskList.get(i).toString()));
                     }
                     break;
                 case "mark":
                     int taskNo = Integer.valueOf(commandBreakdown[1])-1;
-                    tasks[taskNo].markDone();
+                    taskList.get(taskNo).markDone();
                     System.out.println("Nice! I've marked this task as done:");
-                    System.out.println(String.format("%s", tasks[taskNo].toString()));
+                    System.out.println(String.format("%s", taskList.get(taskNo).toString()));
                     break;
                 case "unmark":
                     taskNo = Integer.valueOf(commandBreakdown[1])-1;
-                    tasks[taskNo].markUndone();
+                    taskList.get(taskNo).markUndone();
                     System.out.println("OK, I've marked this task as not done yet:");
-                    System.out.println(String.format("%s", tasks[taskNo].toString()));
+                    System.out.println(String.format("%s", taskList.get(taskNo).toString()));
                     break;
                 case "bye":
                     System.out.println("Bye. Hope to see you again soon!");
@@ -51,26 +51,32 @@ public class Duke {
                     for (int i = 1; i < commandBreakdown.length; i++) {
                         todoName = todoName + commandBreakdown[i] + " ";
                     }
-                    tasks[eleCount] = new ToDo(todoName);
-                    eleCount++;
+                    taskList.add(new ToDo(todoName));
                     System.out.println("added: " + todoName);
-                    System.out.println(String.format("Now you have %d tasks in the list", eleCount));
+                    System.out.println(String.format("Now you have %d tasks in the list", taskList.size()));
                     break;
                 case "deadline":
                     String[] deadlineSplit = command.split(" /by ");
                     Deadline deadline = new Deadline(deadlineSplit[0].substring(9, deadlineSplit[0].length()), deadlineSplit[1]);
-                    tasks[eleCount] = deadline;
-                    eleCount++;
+                    taskList.add(deadline);
                     System.out.println("added: " + deadline.toString());
-                    System.out.println(String.format("Now you have %d tasks in the list", eleCount));
+                    System.out.println(String.format("Now you have %d tasks in the list", taskList.size()));
                     break;
                 case "event":
                     String[] eventSplit = command.split(" /at ");
                     Event event = new Event(eventSplit[0].substring(6, eventSplit[0].length()), eventSplit[1]);
-                    tasks[eleCount] = event;
-                    eleCount++;
+                    taskList.add(event);
                     System.out.println("added: " + event.toString());
-                    System.out.println(String.format("Now you have %d tasks in the list", eleCount));
+                    System.out.println(String.format("Now you have %d tasks in the list", taskList.size()));
+                    break;
+                case "delete":
+                    int indToDelete = Integer.valueOf(commandBreakdown[1]) - 1;
+                    Task toDelete = taskList.get(indToDelete);
+
+                    taskList.remove(indToDelete);
+                    System.out.println("Noted. I've removed this task:");
+                    System.out.println(toDelete.toString());
+                    System.out.println(String.format("Now you have %d tasks in the list", taskList.size()));
                     break;
                 default:
                     System.out.println(new UnknownCommandException());
