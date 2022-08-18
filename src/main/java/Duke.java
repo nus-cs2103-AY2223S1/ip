@@ -115,6 +115,7 @@ public class Duke {
         System.out.println(LINE);
         System.out.println("Noted. I've removed this task:\n " + " " + t.toString() +
                 "\nNow you have " + taskArrayList.size() + " tasks in the list.");
+        System.out.println(LINE);
     }
 
     public static void end() {
