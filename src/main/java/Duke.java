@@ -16,11 +16,15 @@ public class Duke {
         int state = 0;
         while (state >= 0) {
             String m = sc.nextLine();
-            state = handleMessage(m);
+            try {
+                state = handleMessage(m);
+            } catch (DukeException e) {
+                printMessage(e.getMessage());
+            }
         }
     }
 
-    private static int handleMessage(String m) {
+    private static int handleMessage(String m) throws DukeException {
         if (m.equals("bye")) {
             // bye
             printMessage("Bye. Hope to see you again soon!");
@@ -44,30 +48,53 @@ public class Duke {
             t.undone();
             printMessage("OK, I've marked this task as not done yet:\n    " + t);
             return 3;
-        } else if (m.length() > 9 && m.startsWith("deadline")) {
+        } else if (m.startsWith("deadline")) {
             // deadline
+            if (m.length() <= 9) {
+                throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
+            }
             m = m.substring(9);
+            if (!m.contains(" /by ")) {
+                throw new DukeException("☹ OOPS!!! /by separator for deadline is missing.");
+            }
             String[] split = m.split(" /by ");
+            if (split.length < 2) {
+                throw new DukeException("☹ OOPS!!! Target time for deadline is missing.");
+            } else if (split.length > 2) {
+                throw new DukeException("☹ OOPS!!! Multiple usage of /by separator is not allowed.");
+            }
             Task t = new Deadline(split[0], split[1]);
             addTask(t);
             return 4;
-        } else if (m.length() > 6 && m.startsWith("event")) {
+        } else if (m.startsWith("event")) {
             // event
+            if (m.length() <= 6) {
+                throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.");
+            }
+            if (!m.contains(" /at ")) {
+                throw new DukeException("☹ OOPS!!! /at separator for event is missing.");
+            }
             m = m.substring(6);
             String[] split = m.split(" /at ");
+            if (split.length < 2) {
+                throw new DukeException("☹ OOPS!!! Duration for event is missing.");
+            } else if (split.length > 2) {
+                throw new DukeException("☹ OOPS!!! Multiple usage of /at separator is not allowed.");
+            }
             Task t = new Event(split[0], split[1]);
             addTask(t);
             return 5;
-        } else if (m.length() > 5 && m.startsWith("todo")) {
+        } else if (m.startsWith("todo")) {
             // to do
+            if (m.length() <= 5) {
+                throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+            }
             m = m.substring(5);
             Task t = new Todo(m);
             addTask(t);
             return 6;
         } else {
-            Task t = new Task(m);
-            addTask(t);
-            return 100;
+            throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
     }
 
