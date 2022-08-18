@@ -124,6 +124,22 @@ public class Duke {
                 }
                 continue;
             }
+            if (input.indexOf("delete") == 0) {
+                try {
+                    String substring = input.substring(7);
+                    //Since first task is of index 0 in ArrayList
+                    int taskIndex = Integer.parseInt(substring) - 1;
+                    Task task = taskList.remove(taskIndex);
+                    System.out.println("Okay! Deleted the specified task!\n" + task);
+                } catch (StringIndexOutOfBoundsException e) {
+                    System.out.println("Please indicate which task to mark!");
+                } catch (NumberFormatException e) {
+                    System.out.println("Please input a valid task index!");
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("Task with that index does not exist!");
+                }
+                continue;
+            }
             System.out.println("Unknown command! Please do something reasonable!");
         }
 
