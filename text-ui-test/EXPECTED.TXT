@@ -6,8 +6,8 @@ Greetings from Elp
 |  |____  | | | |
 |_______| |_| |_|
 What can I help you with?
-DukeException: Invalid Task, please prefix your task!
 
+No such available command, "invalid" please try again.
 Added: [T][ ] task 1
 
 Added: [D][ ] task 2  (by: xxx)
@@ -66,10 +66,11 @@ Please add a description to your task!
 
 Please add a description to your task!
 
-DukeException: Invalid Task, please prefix your task!
+1. [T][ ] task 1
+2. [D][ ] task 2  (by: xxx)
+3. [E][ ] task 3  (at: xxx)
 
-DukeException: Invalid Task, please prefix your task!
-
+No such available command, "test" please try again.
 Please add an index to delete a task!
 
 Invalid index, please input the index of an available task!

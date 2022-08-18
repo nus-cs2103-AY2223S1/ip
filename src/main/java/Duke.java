@@ -11,13 +11,13 @@ public class Duke {
      */
     private static void Greet() {
         String logo = " _______               \n"
-                    + "|  _____|  _   _____   \n"
-                    + "|  |____  | | |  __ |  \n"
-                    + "|   ____| | | |  ___|  \n"
-                    + "|  |____  | | | |      \n"
-                    + "|_______| |_| |_|";
+                + "|  _____|  _   _____   \n"
+                + "|  |____  | | |  __ |  \n"
+                + "|   ____| | | |  ___|  \n"
+                + "|  |____  | | | |      \n"
+                + "|_______| |_| |_|";
         System.out.println("Greetings from Elp\n" + logo);
-        System.out.println("What can I help you with?");
+        System.out.println("What can I help you with?\n");
     }
 
     /**
@@ -36,45 +36,42 @@ public class Duke {
 
     /**
      * Handles the addition of tasks.
-     * @param type type of task added.
+     *
+     * @param type        type of task added.
      * @param description description of the task.
-     * @throws DukeException
+     * @throws
      */
-    private static void addTask(String type, String description) throws DukeException{
+    private static void addTask(Command type, String description) throws DukeException {
         Task task;
-        if (type.equals("todo") || type.equals("deadline") || type.equals("event")) {
-            if (type.equals("todo")) {
-                task = new ToDo(description);
-            } else if (type.equals("deadline")) {
-                task = new Deadline(description);
-            } else {
-                task = new Event(description);
-            }
-            System.out.println("Added: " + task.toString() + "\n");
-            tasks.add(task);
+        if (type == Command.TODO) {
+            task = new ToDo(description);
+        } else if (type == Command.DEADLINE) {
+            task = new Deadline(description);
         } else {
-            throw new DukeException("Invalid Task, please prefix your task!\n");
+            task = new Event(description);
         }
+        System.out.println("Added: " + task.toString() + "\n");
+        tasks.add(task);
     }
 
     /**
      * Marks/Unmarks Tasks.
+     *
      * @param markStatus input to mark/unmark a task.
-     * @param inputArr input of the user.
+     * @param inputArr   input of the user.
      */
-    private static void taskMarker(String markStatus, String[] inputArr) {
+    private static void taskMarker(Command markStatus, String[] inputArr) {
         try {
             int taskNo = Integer.parseInt(inputArr[1]);
             Task currTask = tasks.get(taskNo - 1);
-                if (markStatus.equals("mark")) {
-                    currTask.markDone();
-
-                    System.out.println("Task successfully marked!");
-                } else {
-                    currTask.markUndone();
-                    System.out.println("Task successfully unmarked!");
-                }
-                System.out.println(currTask + "\n");
+            if (markStatus == Command.MARK) {
+                currTask.markDone();
+                System.out.println("Task successfully marked!");
+            } else {
+                currTask.markUndone();
+                System.out.println("Task successfully unmarked!");
+            }
+            System.out.println(currTask + "\n");
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             System.out.println("Invalid input, please input an available integer index!\n");
         }
@@ -82,6 +79,7 @@ public class Duke {
 
     /**
      * Deletes the task with the specified index.
+     *
      * @param inputIndex index to be deleted.
      */
     private static void deleteTask(String inputIndex) {
@@ -107,29 +105,42 @@ public class Duke {
         while (true) {
             // Splits the input to retrieve possible commands.
             String[] inputArr = in.split(" ", 2);
-            String command = inputArr[0];
+            String inputCommand = inputArr[0];
+            Command command = null;
+
+            try {
+                command = Command.getCommand(inputCommand);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
 
             // Break out of loop
-            if (in.equals("bye")) {
+            if (command == Command.BYE) {
                 break;
             }
 
             // List out current tasks in the list
-            if (in.equals("list")) {
+            if (command == Command.LIST) {
                 printTaskList();
-            } else if (command.equals("mark") || (command.equals("unmark"))) {
+            }
+
+            if (command == Command.MARK || command == Command.UNMARK) {
                 taskMarker(command, inputArr);
-            } else if (command.equals("delete")) {
-                try{
+            }
+
+            if (command == Command.DELETE) {
+                try {
                     deleteTask(inputArr[1]);
                 } catch (IndexOutOfBoundsException e) {
                     System.out.println("Please add an index to delete a task!\n");
                 }
-            } else {
+            }
+
+            if (command == Command.TODO || command == Command.DEADLINE || command == Command.EVENT) {
                 try {
                     addTask(command, inputArr[1]);
                 } catch (DukeException e) {
-                    System.out.println(e);
+                    System.out.println(e.getMessage());
                 } catch (IndexOutOfBoundsException p) {
                     System.out.println("Please add a description to your task!\n");
                 }
@@ -142,5 +153,43 @@ public class Duke {
     public static void main(String[] args) {
         Greet();
         taskHandler();
+    }
+
+    private enum Command {
+        TODO("todo"),
+        DEADLINE("deadline"),
+        EVENT("event"),
+        LIST("list"),
+        MARK("mark"),
+        UNMARK("unmark"),
+        DELETE("delete"),
+        BYE("bye");
+
+        private final String inputCommand;
+
+        /**
+         * Constructor for the command enum.
+         *
+         * @param command input command
+         */
+        Command(String command) {
+            this.inputCommand = command;
+        }
+
+        /**
+         * Returns the command if given a correct command.
+         *
+         * @param command Input command by user.
+         * @return Enum value corresponding to the input command.
+         * @throws IllegalArgumentException if invalid command is given.
+         */
+        public static Command getCommand(String command) throws IllegalArgumentException {
+            for (Command c : Command.values()) {
+                if (command.equals(c.inputCommand)) {
+                    return c;
+                }
+            }
+            throw new IllegalArgumentException("No such available command, " + "\"" + command + "\" please try again.");
+        }
     }
 }
