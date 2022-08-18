@@ -10,17 +10,25 @@ public class Duke {
     private static final String WELCOMEMESSAGE = String
             .format("Hello! I'm Duke\n%s What can I do for you?", TAB);
     private static final String ENDMESSAGE = "Bye. Hope to see you again soon!";
+    private static final String CREATETASKMESSAGE = "Got it. I've added this task:";
     private static final String MARKMESSAGE = "Nice! I've marked this task as done:";
     private static final String UNMARKMESSAGE = "OK, I've marked this task as not done yet:";
+    private static final String LISTMESSAGE = "Here are the tasks in your list:";
 
     // Commands
     private static final String ENDCOMMAND = "bye";
     private static final String PRINTCOMMAND = "list";
     private static final String MARKCOMMAND = "mark";
     private static final String UNMARKCOMMAND = "unmark";
+    private static final String TODOCOMMAND = "todo";
+    private static final String DEADLINECOMMAND = "deadline";
+    private static final String EVENTCOMMAND = "event";
 
     // Data structures
     private static final List<Task> list = new ArrayList<>();
+    private enum TASK {
+        TODO, DEADLINE, EVENT;
+    }
 
     /**
      * Adds param str to a List.
@@ -30,6 +38,35 @@ public class Duke {
         Task newTask = new Task(str);
         list.add(newTask);
         prettyPrint(String.format("added: %s", newTask.getDescription()));
+    }
+
+    private static void createTask(String str, TASK type) {
+        Task newTask;
+        switch(type) {
+            case TODO:
+                newTask = new ToDo(str);
+                break;
+            case DEADLINE:
+                String[] strList = str.split(" /by ");
+                newTask = new Deadline(strList[0], strList[1]);
+                break;
+            case EVENT:
+                strList = str.split(" /at ");
+                newTask = new Event(strList[0], strList[1]);
+                break;
+            default:
+                newTask = new Task(str);
+        }
+        list.add(newTask);
+        String singulStr = "Now you have 1 task in the list";
+        if (list.size() == 1) {
+            prettyPrint(String.format("%s\n%s   %s\n%s %s",
+                    CREATETASKMESSAGE, TAB, newTask.toString(), TAB, singulStr));
+        } else {
+            prettyPrint(String.format("%s\n%s   %s\n%s Now you have %d tasks in the list.",
+                    CREATETASKMESSAGE, TAB, newTask.toString(), TAB, list.size()));
+        }
+
     }
 
     /**
@@ -61,10 +98,11 @@ public class Duke {
      */
     private static void printAll() {
         List<String> printables = new ArrayList<>();
+        printables.add(LISTMESSAGE);
         for (int i = 0; i < list.size(); i++) {
             Task task = list.get(i);
             int index = i + 1;
-            printables.add(String.format("%d:%s", index, task.toString()));
+            printables.add(String.format("%d.%s", index, task.toString()));
         }
         prettyPrint(printables);
     }
@@ -123,6 +161,15 @@ public class Duke {
                     break;
                 case (UNMARKCOMMAND):
                     unmark(inputRem);
+                    break;
+                case (TODOCOMMAND):
+                    createTask(inputRem, TASK.TODO);
+                    break;
+                case (DEADLINECOMMAND):
+                    createTask(inputRem, TASK.DEADLINE);
+                    break;
+                case (EVENTCOMMAND):
+                    createTask(inputRem, TASK.EVENT);
                     break;
                 default: createTask(inputCmd + inputRem);
             }
