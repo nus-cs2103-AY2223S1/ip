@@ -1,2 +1,6 @@
-package PACKAGE_NAME;public class DukeEmptyDescriptionException {
+public class DukeEmptyDescriptionException extends DukeException {
+
+    public DukeEmptyDescriptionException(String message) {
+        super(message);
+    }
 }

@@ -20,16 +20,22 @@ public class Duke {
         System.out.println(logo + "\n" + ui.greet());
         boolean stillRunning = true;
         while (stillRunning) {
-            String input = ui.getInput();
-            if (input.equals("bye")) {
-            System.out.println(ui.bye());
-            stillRunning = false;
-            } else if (input.equals("list")) {
-                System.out.println(ui.list());
-            } else if (input.startsWith("mark") || input.startsWith("unmark")) {
-                System.out.println(ui.editTask(input));
-            } else if (input.startsWith("todo") || input.startsWith("event") || input.startsWith("deadline")){
-                System.out.println(ui.addTask(input));
+            try {
+                String input = ui.getInput();
+                if (input.equals("bye")) {
+                    System.out.println(ui.bye());
+                    stillRunning = false;
+                } else if (input.equals("list")) {
+                    System.out.println(ui.list());
+                } else if (input.startsWith("mark") || input.startsWith("unmark")) {
+                    System.out.println(ui.editTask(input));
+                } else if (input.startsWith("todo") || input.startsWith("event") || input.startsWith("deadline")){
+                    System.out.println(ui.addTask(input));
+                } else {
+                    throw new DukeInvalidInputException();
+                }
+            } catch (DukeException e) {
+                System.out.println(ui.getDukeErrorMessage(e));
             }
         }
     }

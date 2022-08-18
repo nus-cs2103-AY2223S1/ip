@@ -1,0 +1,23 @@
+todo read
+
+deadline return /by Sunday
+
+event meeting /at Mon 2-4pm
+
+deadline do home worl /by I have no idea :=-p
+
+list
+
+mark 2
+
+list
+
+mark 3
+
+list
+
+unmark 2
+
+list
+
+bye
