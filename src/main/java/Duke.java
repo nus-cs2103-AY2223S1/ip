@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Duke {
     private static ArrayList<Task> userInputHistory = new ArrayList<>();
-    enum CommandType {TODO, MARK, UNMARK, DEADLINE, EVENT, BYE, LIST};
+    enum CommandType {TODO, MARK, UNMARK, DEADLINE, EVENT, BYE, LIST, DELETE};
     private static void greetUser() {
         String logo = "_______     _\n" +
                 "|  ___|    | |\n" +
@@ -122,6 +122,18 @@ public class Duke {
     }
 
     /**
+     * Delete task at index n in userInputHistory
+     * @param n
+     */
+    private static void deleteTask(int n) {
+        userInputHistory.remove(n - 1);
+        System.out.printf("Task removed: \n%s\n");
+        System.out.printf("Total: %d\n", userInputHistory.size());
+        System.out.print("______\n");
+        System.out.print(">>");
+    }
+
+    /**
      * Filter userInput and call addEventToHistory
      * @param event
      */
@@ -208,6 +220,8 @@ public class Duke {
                 case DEADLINE:
                     handleDeadline(userInput);
                     break;
+                case DELETE:
+                    handleDelete(userInput);
                 default:
                     handleDeadline(userInput);
                     throw new DukeException("Enter a valid command (todo, event, deadline, list, mark, unmark, bye)\n>>");
