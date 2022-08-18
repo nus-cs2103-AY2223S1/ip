@@ -6,8 +6,7 @@ public class Duke {
     public static Task[] list = new Task[100];
     public static int count = 0;
 
-    public Duke() {
-    }
+    public Duke() {};
 
     public void greet() {
         System.out.println(
@@ -21,28 +20,64 @@ public class Duke {
     public void respond() {
         String input = sc.nextLine();
 
-        String[] arr = input.split(" ");
+        String[] arr = input.split(" ",2);
         String command = arr[0];
         if (command.equals("mark") || command.equals("unmark")) {
             int index = Integer.parseInt(arr[1]);
+            Task b = list[index-1];
             if (command.equals("mark")) {
-                list[index - 1].mark(index);
-            } else if (command.equals("unmark")) {
-                list[index - 1].unmark(index);
+                b.mark(b,index);
+            }
+
+            else if (command.equals("unmark")) {
+
+                b.unmark(b,index);
             }
             respond();
-        } else if (input.equals(("bye"))) {
+        }
+
+        else if (command.equals("todo")) {
+            list[count] = new Todo(arr[1]);
+            list[count++].print();
+            respond();
+        }
+
+        else if (command.equals("event")) {
+            String[] deets = arr[1].split("/at",2);
+            list[count] = new Event(deets[0],deets[1]);
+            list[count++].print();
+            respond();
+        }
+
+        else if (command.equals("deadline")) {
+            String[] deets = arr[1].split("/by",2);
+            list[count] = new Deadline(deets[0],deets[1]);
+            list[count++].print();
+            respond();
+        }
+
+
+
+        else if (input.equals(("bye"))) {
             bye();
-        } else if (input.equals("list")) {
+        }
+
+        else if (input.equals("list")) {
             list();
             respond();
-        } else {
+        }
+
+
+
+       /* else {
             System.out.println(
                     line + "\n" +
-                            "added: " + input + "\n" + line + "\n");
+                           "added: " + input + "\n" + line+ "\n");
             list[count++] = new Task(input);
             respond();
         }
+
+        */
 
     }
 
@@ -53,7 +88,8 @@ public class Duke {
 
         for (int i = 0, j = 1; i < count; i++, j++) {
 
-            System.out.println(j + ". " + list[i].getStatus() + list[i].getName());
+            System.out.print(j + ". ");
+            list[i].list();
         }
         System.out.println(
                 line + "\n"
@@ -69,7 +105,7 @@ public class Duke {
 
     }
 
-    public static void main(String[] args) {
+    public static void main (String[] args) {
         Duke duke = new Duke();
         duke.greet();
         duke.respond();
