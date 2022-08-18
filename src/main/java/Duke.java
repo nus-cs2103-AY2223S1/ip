@@ -1,3 +1,5 @@
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
@@ -11,18 +13,14 @@ public class Duke {
                 "    ____________________________________________________________";
     }
 
-    private static String craftList(String[] array, boolean[] bArray, int[] workTypeArray) {
-        int length = array.length;
-        String result = "";
+    private static String craftList(ArrayList<String> array, ArrayList<Boolean> bArray, ArrayList<Integer> workTypeArray) {
+        int length = array.size();
+        String result = "Here are the tasks in your list:";
         for (int x = 0; x < length; x++) {
-            if (array[x] == null) {
+            if (array.get(x) == null) {
                 break;
             } else {
-                if (x == 0) {
-                    result += (x + 1) + "." + workTypeBox(workTypeArray[x]) + checkBox(bArray[x]) + " " + array[x];
-                } else {
-                    result += "\n" + INDENTATION + (x + 1) + "." + workTypeBox(workTypeArray[x]) + checkBox(bArray[x]) + " " + array[x];
-                }
+                result += "\n" + INDENTATION + (x + 1) + "." + workTypeBox(workTypeArray.get(x)) + checkBox(bArray.get(x)) + " " + array.get(x);
             }
         }
         return result;
@@ -47,14 +45,16 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-
         Scanner scan = new Scanner(System.in);
         System.out.println(reply("Hello! I'm Duke\n" +
                 "     What can I do for you?"));
         boolean conversation = true;
-        String[] work = new String[100];
-        boolean[] workCompleted = new boolean[100];
-        int[] workType = new int[100];
+        ArrayList<String> work = new ArrayList<>(100);
+//        String[] work = new String[100];
+        ArrayList<Boolean> workCompleted = new ArrayList<>(100);
+//        boolean[] workCompleted = new boolean[100];
+        ArrayList<Integer> workType = new ArrayList<>(100);
+//        int[] workType = new int[100];
         int workCounter = 0;
         while (conversation) {
             String response = scan.nextLine();
@@ -63,47 +63,82 @@ public class Duke {
             if (splitResponse.length == 2 && (keyword.equals("mark") || keyword.equals("unmark"))) {
                 int number = Integer.parseInt(splitResponse[1]) - 1;
                 if (splitResponse[0].equals("mark")) {
-                    workCompleted[number] = true;
+                    workCompleted.set(number, true);
+//                    workCompleted[number] = true;
                     System.out.println(reply("Nice! I've marked this task as done:\n" +
-                            INDENTATION + EXTRA_INDENTATION + checkBox(true) + " " + work[number]));
+                            INDENTATION + EXTRA_INDENTATION + workTypeBox(workType.get(number)) + checkBox(true) + " " + work.get(number)));
                 } else {
-                    workCompleted[number] = false;
+                    workCompleted.set(number, false);
+//                    workCompleted[number] = false;
                     System.out.println(reply("OK, I've marked this task as not done yet:\n" +
-                            INDENTATION + EXTRA_INDENTATION + checkBox(false) + " " + work[number]));
+                            INDENTATION + EXTRA_INDENTATION + workTypeBox(workType.get(number))+ checkBox(false) + " " + work.get(number)));
                 }
-            } else if (splitResponse.length > 1 && keyword.equals("todo")) {
-                String todo = response.substring(5);
-                work[workCounter] = todo;
-                workType[workCounter] = 1;
-                workCounter++;
-                System.out.println(reply(craftTDEMessage(1, false, todo, workCounter)));
-            } else if (splitResponse.length > 1 && keyword.equals("deadline")) {
-                String[] newSplit = response.split(" /by ");
-                String todo = newSplit[0].substring(9);
-                String by = newSplit[1];
-                String newTodo = todo + " (by: " + by + ")";
-                work[workCounter] = newTodo;
-                workType[workCounter] = 2;
-                workCounter++;
-                System.out.println(reply(craftTDEMessage(2, false, newTodo, workCounter)));
-            } else if (splitResponse.length > 1 && keyword.equals("event")) {
-                String[] newSplit = response.split(" /at ");
-                String todo = newSplit[0].substring(6);
-                String at = newSplit[1];
-                String newTodo = todo + " (at: " + at + ")";
-                work[workCounter] = newTodo;
-                workType[workCounter] = 3;
-                workCounter++;
-                System.out.println(reply(craftTDEMessage(3, false, newTodo, workCounter)));
+            } else if (keyword.equals("delete")) {
+                int location = Integer.parseInt(splitResponse[1]) - 1;
+                int type = workType.get(location);
+                boolean completed = workCompleted.get(location);
+                String task = work.get(location);
+                workType.remove(location);
+                workCompleted.remove(location);
+                work.remove(location);
+                workCounter--;
+                System.out.println(reply("Noted. I've removed the task:\n" +
+                        INDENTATION + EXTRA_INDENTATION + workTypeBox(type) + checkBox(completed) + " " + task + "\n" +
+                        INDENTATION + "Now you have " + workCounter + " tasks in the list."));
+            } else if (keyword.equals("todo")) {
+                if (splitResponse.length == 1) {
+                    System.out.println(reply(new DukeException("todo").toString()));
+                } else {
+                    String todo = response.substring(5);
+                    work.add(todo);
+                    workType.add(1);
+                    workCompleted.add(false);
+                    workCounter++;
+                    System.out.println(reply(craftTDEMessage(1, false, todo, workCounter)));
+                }
+            } else if (keyword.equals("deadline")) {
+                if (splitResponse.length == 1) {
+                    System.out.println(reply(new DukeException("deadline").toString()));
+                } else {
+                    String[] newSplit = response.split(" /by ");
+                    if (newSplit.length == 1) {
+                        System.out.println(reply(new DukeException("deadline format").toString()));
+                    } else {
+                        String todo = newSplit[0].substring(9);
+                        String by = newSplit[1];
+                        String newTodo = todo + " (by: " + by + ")";
+                        work.add(newTodo);
+                        workType.add(2);
+                        workCompleted.add(false);
+                        workCounter++;
+                        System.out.println(reply(craftTDEMessage(2, false, newTodo, workCounter)));
+                    }
+                }
+            } else if (keyword.equals("event")) {
+                if (splitResponse.length == 1) {
+                    System.out.println(reply(new DukeException("event").toString()));
+                } else {
+                    String[] newSplit = response.split(" /at ");
+                    if (newSplit.length == 1) {
+                        System.out.println(reply(new DukeException("event format").toString()));
+                    } else {
+                        String todo = newSplit[0].substring(6);
+                        String at = newSplit[1];
+                        String newTodo = todo + " (at: " + at + ")";
+                        work.add(newTodo);
+                        workType.add(3);
+                        workCompleted.add(false);
+                        workCounter++;
+                        System.out.println(reply(craftTDEMessage(3, false, newTodo, workCounter)));
+                    }
+                }
             } else if (response.equals("bye")) {
                 System.out.println(reply("Bye. Hope to see you again soon!"));
                 conversation = false;
             } else if (response.equals("list")) {
                 System.out.println(reply(craftList(work, workCompleted, workType)));
             } else {
-                work[workCounter] = response;
-                workCounter++;
-                System.out.println(reply("added: " + response));
+                System.out.println(reply(new DukeException("unknown").toString()));
             }
         }
     }
