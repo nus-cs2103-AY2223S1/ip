@@ -38,9 +38,15 @@ public class Duke {
                     String keyword = split[0];
                     int index = Integer.parseInt(split[1]);
                     switch (keyword) {
-                        case "mark" : markDone(index);
-                        case "unmark" : markNotDone(index);
-                        case "delete" : delete(index);
+                        case "mark" :
+                            markDone(index);
+                            break;
+                        case "unmark" :
+                            markNotDone(index);
+                            break;
+                        case "delete" :
+                            delete(index);
+                            break;
                     }
                 }
                 else {
