@@ -64,14 +64,17 @@ public class Duke {
                     Task newTask = new TodoTask(inputSplit[1]);
                     tasks.add(newTask);
                     System.out.println(addTaskMessage + newTask);
+                    System.out.println(String.format("Now you have %d tasks in the list.", tasks.size()));
                 } else if (inputSplit[0].equals("deadline")) {
                     Task newTask = new DeadlineTask(inputSplit[1], inputSplit[2]);
                     tasks.add(newTask);
                     System.out.println(addTaskMessage + newTask);
+                    System.out.println(String.format("Now you have %d tasks in the list.", tasks.size()));
                 } else if (inputSplit[0].equals("event")) {
                     Task newTask = new EventTask(inputSplit[1], inputSplit[2]);
                     tasks.add(newTask);
                     System.out.println(addTaskMessage + newTask);
+                    System.out.println(String.format("Now you have %d tasks in the list.", tasks.size()));
                 } else {
                     throw new IllegalArgumentException();
                 }
