@@ -1,5 +1,8 @@
 todo borrow book
 mark 1
-unmark 1
+deadline watch lecture /by 9pm
 list
+mark 2
+unmark 1
+delete 1
 bye

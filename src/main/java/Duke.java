@@ -3,15 +3,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
-    private final Scanner sc;
+
     private String input;
-
+    private Scanner sc = new Scanner(System.in);
     private List<Task> tasks = new ArrayList<>();
-//    private int taskIndex = 0;
 
-    public Duke(Scanner sc) {
-        this.sc = sc;
-    }
 
     private void dukeReply(String message) {
         String lineBreak = "-------------------------------------------------";
@@ -23,7 +19,7 @@ public class Duke {
         dukeReply("Hello! I'm Ee Suan!\nWhat can I do for you?");
     }
 
-    public void start() throws DukeException {
+    private void start() {
         this.greet();
         input = sc.next();
         while (!input.equals("bye")) {
@@ -44,15 +40,11 @@ public class Duke {
                     }
                     case "todo": {
                         String next = sc.nextLine();
-                        if (next.equals("")) {
-                            throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
-                        } else {
                             input += next;
                             Task todo = createToDo();
                             addTask(todo);
                             echoTask(todo);
                             break;
-                        }
                     }
                     case "deadline": {
                         input += sc.nextLine();
@@ -74,12 +66,13 @@ public class Duke {
                         break;
                     }
                     default:
+
+                        input += sc.nextLine();
                         throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
             } catch (DukeException e) {
                 dukeReply(e.getMessage());
             }
-
             input = sc.next();
         }
 }
@@ -102,21 +95,42 @@ public class Duke {
         dukeReply(message);
     }
 
-    private void mark(int i) {
-        Task curTask = tasks.get(i - 1);
-        curTask.markAsDone();
-        dukeReply("Nice! I've marked this task as done: \n  " + curTask);
+    private void mark(int i) throws DukeException {
+        int size = tasks.size();
+        if (size == 0) {
+            throw new DukeException("☹ OOPS!!! You do not have any task right now.");
+        }
+        if (i <= 0 || i > size) {
+            throw new DukeException("☹ OOPS!!! Please enter a valid task number.");
+        } else {
+            Task curTask = tasks.get(i - 1);
+            curTask.markAsDone();
+            dukeReply("Nice! I've marked this task as done: \n  " + curTask);
+        }
     }
 
-    private void unmark(int i) {
-        Task curTask = tasks.get(i - 1);
-        curTask.markAsUndone();
-        dukeReply("OK, I've marked this task as not done yet: \n  " + curTask);
+    private void unmark(int i) throws DukeException {
+        int size = tasks.size();
+        if (size == 0) {
+            throw new DukeException("☹ OOPS!!! You do not have any task right now.");
+        }
+        if (i <= 0 || i > size) {
+            throw new DukeException("☹ OOPS!!! Please enter a valid task number.");
+        } else {
+            Task curTask = tasks.get(i - 1);
+            curTask.markAsUndone();
+            dukeReply("OK, I've marked this task as not done yet: \n  " + curTask);
+        }
     }
 
-    private Task createToDo() {
-        String description = input.substring(5);
-        return new ToDo(description);
+    private Task createToDo() throws DukeException {
+        try {
+            String description = input.substring(5);
+            return new ToDo(description);
+        }
+        catch (StringIndexOutOfBoundsException e) {
+            throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+        }
     }
 
     private Task createDeadline() {
@@ -139,7 +153,10 @@ public class Duke {
 
     private void delete(int i) throws DukeException {
         int size = tasks.size();
-        if (i < 0 || i > size) {
+        if (size == 0) {
+            throw new DukeException("☹ OOPS!!! You do not have any task right now.");
+        }
+        if (i <= 0 || i > size) {
             throw new DukeException("☹ OOPS!!! Please enter a valid task number.");
         } else {
             Task taskToDelete = tasks.remove(i - 1);
@@ -147,9 +164,9 @@ public class Duke {
         }
     }
 
-    public static void main(String[] args) throws DukeException {
-        Scanner sc = new Scanner(System.in);
-        Duke duke = new Duke(sc);
+    public static void main(String[] args) {
+
+        Duke duke = new Duke();
         duke.start();
         duke.exit();
 
