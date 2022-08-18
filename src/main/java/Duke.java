@@ -17,7 +17,7 @@ public class Duke {
         List<Task> tasks = new ArrayList<>();
 
         String intro = withFormat("Pika Pikachu! (I am Pikachu!)\nPi-ka-chu?(Do you need any help?)");
-        String byebye = withFormat("Pi?Pi-ka...(Alright...I will leave...)");
+        String byebye = "Pi-ka...";
         System.out.println(intro);
 
         boolean done = false;
@@ -25,34 +25,52 @@ public class Duke {
         //loop starts
         while (!done) {
             String input = sc.nextLine();
+            String tempStr = "";
 
             if (input.equals("bye")) { //bye
                 done = true;
-                System.out.println(byebye);
+                tempStr = byebye;
             } else if (input.equals("list")) { //list all items
-                int index = 1;
                 StringBuilder output = new StringBuilder();
                 output.append("PikaPika\n");
                 for (Task task: tasks) {
-                    output.append(index).append(".").append('[').append(task.getStatusIcon()).append("] ").append(task.description).append('\n');
-                    index ++;
+                    output.append(tasks.indexOf(task)+1).append('.').append(task).append('\n');
                 }
                 output.deleteCharAt(output.length() - 1);
-                System.out.println(withFormat(String.valueOf(output)));
+                tempStr = String.valueOf(output);
             } else if (input.startsWith("mark ") && isNumeric(input.substring(5)) && Integer.parseInt(input.substring(5)) <= tasks.size() && Integer.parseInt(input.substring(5)) >= 1) {
                 int temp = Integer.parseInt(input.substring(5));
                 Task task = tasks.get(temp - 1);
                 task.setDone(true);
-                System.out.println(withFormat("Pi-ka(Done): " + '[' + task.getStatusIcon() + "] " + task.description));
+                tempStr="Pi-ka(Done): " + '[' + task;
             } else if (input.startsWith("unmark ") && isNumeric(input.substring(7)) && Integer.parseInt(input.substring(7)) <= tasks.size() && Integer.parseInt(input.substring(7)) >= 1) {
                 int temp = Integer.parseInt(input.substring(7));
                 Task task = tasks.get(temp - 1);
                 task.setDone(false);
-                System.out.println(withFormat("Pipi-ka(Undone): " + '[' + task.getStatusIcon() + "] " + task.description));
-            } else { //add as tasks
-                tasks.add(new Task(input));
-                System.out.println(withFormat("Pikapi(added): " + input));
+                tempStr="Pipi-ka(Undone): " + task;
+            } else if (input.startsWith("todo ")){ //add as tasks
+                Todo newTODO = new Todo(input.substring(5));
+                tasks.add(newTODO);
+                tempStr = "Pikapi(added): " + newTODO + '\n';
+                tempStr += "Pikaaaaa: " + tasks.size() + (tasks.size() > 1 ? " tasks" : " task");
+            } else if (input.startsWith("deadline ") && input.contains(" /by ")) {
+                String temp1 = input.split(" ",2)[1];
+                String[] temp2 = temp1.split(" /by ",2);
+                Deadline newDDL = new Deadline(temp2[0],temp2[1]);
+                tasks.add(newDDL);
+                tempStr = "Pikapi(added): " + newDDL + '\n';
+                tempStr += "Pikaaaaa: " + tasks.size() + (tasks.size() > 1 ? " tasks" : " task");
+            } else if (input.startsWith("event ") && input.contains(" /at ")){
+                String temp1 = input.split(" ",2)[1];
+                String[] temp2 = temp1.split(" /at ",2);
+                Event newEvent = new Event(temp2[0],temp2[1]);
+                tasks.add(newEvent);
+                tempStr = "Pikapi(added): " + newEvent + '\n';
+                tempStr += "Pikaaaaa: " + tasks.size() + (tasks.size() > 1 ? " tasks" : " task");
+            } else {
+                tempStr = "Pi?";
             }
+            System.out.println(withFormat(tempStr));
         }
     }
 }
