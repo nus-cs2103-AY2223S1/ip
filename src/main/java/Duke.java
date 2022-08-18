@@ -68,6 +68,8 @@ public class Duke {
                 taskDone(Integer.parseInt(input.replaceAll("[^0-9]", "")));
             } else if (input.matches("\\bunmark\\s\\d+\\b")) {
                 taskUndone(Integer.parseInt(input.replaceAll("[^0-9]", "")));
+            } else if (input.matches("\\bdelete\\s\\d+\\b")) {
+                deleteTask(Integer.parseInt(input.replaceAll("[^0-9]", "")));
             } else {
                 addToList(input);
             }
@@ -81,14 +83,21 @@ public class Duke {
     private void taskDone(int num) {
         tasks.get(num-1).markAsDone();
         System.out.println(horLine + "\n\tNice! I've marked this task as done:\n" +
-                "\t[" + tasks.get(num-1).getStatusIcon() +"] " + tasks.get(num-1).taskName + "\n" + horLine);
+                "\t\t" + tasks.get(num-1).toString() + "\n" + horLine);
 
     }
 
     private void taskUndone(int num) {
         tasks.get(num-1).markAsUndone();
         System.out.println(horLine + "\n\tOK, I've marked this task as not done yet:\n" +
-                "\t[" + tasks.get(num-1).getStatusIcon() + "] " + tasks.get(num-1).taskName + "\n" + horLine);
+                "\t\t" + tasks.get(num-1).toString() +  "\n" + horLine);
+    }
+
+    private void deleteTask(int num) {
+        tasks.remove(num-1);
+        System.out.println(horLine + "\n\tNoted, I have removed this task: \n" +
+                "\t\t" + tasks.get(num-1).toString() + "\n" + "\tNow you have " +
+                tasks.size() + " tasks in the list." + "\n" + horLine);
     }
 
     private void viewList() {
