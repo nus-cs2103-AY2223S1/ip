@@ -67,16 +67,22 @@ public class Duke {
 
             if (str.contains("todo")) {
                 String task = sc.nextLine();
-                Todo todo = new Todo(task);
-                list[i] = todo;
-                i++;
-                System.out.println("I've added this task to the list:");
-                System.out.println("  " + todo.getTask());
-                System.out.println("You have a total of " + i + " tasks in the list.");
+                if (task.contains("")) {
+                    throw new DukeException("The description of a task cannot be empty!");
+                } else {
+                    Todo todo = new Todo(task);
+                    list[i] = todo;
+                    i++;
+                    System.out.println("I've added this task to the list:");
+                    System.out.println("  " + todo.getTask());
+                    System.out.println("You have a total of " + i + " tasks in the list.");
+                }
             } else if (str.contains("deadline")) {
                 String task = sc.nextLine();
-                if (!task.contains("/by")) {
-                    System.out.println("Invalid input for a deadline, try again!");
+                if (task.contains("")) {
+                    throw new DukeException("The description of a task cannot be empty!");
+                } else if (!task.contains("/by")) {
+                    throw new DukeException("Invalid input for a deadline!");
                 } else {
                     Deadline deadline = new Deadline(task);
                     list[i] = deadline;
@@ -87,8 +93,10 @@ public class Duke {
                 }
             } else if (str.contains("event")) {
                 String task = sc.nextLine();
-                if (!task.contains("/at")) {
-                    System.out.println("Invalid input for an event, try again!");
+                if (task.contains("")) {
+                    throw new DukeException("The description of a task cannot be empty!");
+                } else if (!task.contains("/at")) {
+                    throw new DukeException("Invalid input for an event!");
                 } else {
                     Event event = new Event(task);
                     list[i] = event;
@@ -98,7 +106,7 @@ public class Duke {
                     System.out.println("You have a total of " + i + " tasks in the list.");
                 }
             } else {
-                System.out.println("Invalid input, try again!");
+                throw new DukeException("Invalid input!");
             }
         }
 
