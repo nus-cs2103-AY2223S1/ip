@@ -16,6 +16,6 @@ public class Event extends Task {
      * @return A String with the task name and status.
      */
     public String toString() {
-        return String.format("[T]%s (by: %s)", super.toString(), time);
+        return String.format("[E]%s (by: %s)", super.toString(), time);
     }
 }

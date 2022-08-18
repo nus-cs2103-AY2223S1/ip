@@ -162,7 +162,7 @@ public class Duke {
                     "event <event name> /at <event time>"});
             return;
         }
-        todoList.add(new Deadline(eventName.toString(), eventTime.toString()));
+        todoList.add(new Event(eventName.toString(), eventTime.toString()));
         justAddedComment();
     }
 
