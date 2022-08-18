@@ -11,9 +11,18 @@ public class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
+    public void mark() {
+        this.isDone = true;
+    }
+
+    public void unMark() {
+        this.isDone = false;
+    }
+
     @Override
     public String toString() {
         String s = String.format("[%s] %s", this.getStatusIcon(), this.description);
         return s;
     }
+
 }

@@ -30,6 +30,12 @@ public class Duke {
                 case "list":
                     list();
                     break;
+                case "mark":
+                    mark(arr);
+                    break;
+                case "unmark":
+                    unMark(arr);
+                    break;
                 default:
                     add(s);
             }
@@ -63,12 +69,27 @@ public class Duke {
 
     public static void list() {
         printTab(LINEBREAK);
+        printTab("Here are the tasks in your list:");
         for (int i = 0; i < index; i++) {
             Task t = store[i];
             String temp = String.format("%d. %s", i + 1, t);
             printTab(temp);
         }
         printTab(LINEBREAK);
+    }
+
+    public static void mark(String[] arr) {
+        Task t = store[Integer.parseInt(arr[1]) - 1];
+        printTab("Nice! I've marked this task as done:");
+        t.mark();
+        printTab("  " + t);
+    }
+
+    public static void unMark(String[] arr) {
+        Task t = store[Integer.parseInt(arr[1]) - 1];
+        printTab("OK, I've marked this task as not done yet:");
+        t.unMark();
+        printTab("  " + t);
     }
 
 }
