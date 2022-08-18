@@ -1,10 +1,9 @@
 import java.util.Scanner;
-import java.util.Arrays;
 import java.util.ArrayList;
 
 public class Duke {
     private static final ArrayList<Task> store = new ArrayList<>();
-    private static final String[] commands = new String[] {"todo", "deadline", "event", "mark", "unmark", "delete", };
+    enum COMMANDS {todo, deadline, event, mark, unmark, delete, }
 
 
     public static void main(String[] args) {
@@ -13,7 +12,7 @@ public class Duke {
         while (true) {
             Scanner sc = new Scanner(System.in);
             String input = sc.nextLine();
-            if (Arrays.asList(commands).contains(input.split(" ")[0])) {
+            if (isCommand(input.split(" ")[0])) {
                 try {
                     parse(input);
                 } catch (DukeWrongArgumentException | DukeNoTaskException e) {
@@ -38,26 +37,34 @@ public class Duke {
         }
     }
 
+    private static boolean isCommand(String input) {
+        for (COMMANDS c : COMMANDS.values()) {
+            if (c.name().equals(input)) return true;
+        }
+        return false;
+    }
+
     private static void parse(String input) throws DukeWrongArgumentException, DukeNoTaskException {
-        String[] command = input.split(" ", 2);
+        String[] arr = input.split(" ", 2);
+        COMMANDS command = COMMANDS.valueOf(arr[0]);
         try {
-            switch (command[0]) {
-                case "mark": {
-                    int index = Integer.parseInt(command[1]) - 1;
+            switch (command) {
+                case mark: {
+                    int index = Integer.parseInt(arr[1]) - 1;
                     store.get(index).markAsDone();
                     System.out.println("\tnice! I've marked this task as done:");
                     System.out.println("\t\t" + store.get(index));
                     return;
                 }
-                case "unmark": {
-                    int index = Integer.parseInt(command[1]) - 1;
+                case unmark: {
+                    int index = Integer.parseInt(arr[1]) - 1;
                     store.get(index).markAsNotDone();
                     System.out.println("\tOk! I've marked this task as not done yet:");
                     System.out.println("\t\t" + store.get(index));
                     return;
                 }
-                case "delete": {
-                    int index = Integer.parseInt(command[1]) - 1;
+                case delete: {
+                    int index = Integer.parseInt(arr[1]) - 1;
                     Task remove = store.remove(index);
                     System.out.println("\tOk! I've deleted this task:");
                     System.out.println("\t\t" + remove);
@@ -66,33 +73,39 @@ public class Duke {
             }
         } catch (NullPointerException | NumberFormatException | IndexOutOfBoundsException e) {
             if (e instanceof IndexOutOfBoundsException) {
-                throw new DukeWrongArgumentException(command[1] + " is not a valid index", e);
+                throw new DukeWrongArgumentException(arr[1] + " is not a valid index", e);
             } else if (e instanceof NumberFormatException) {
-                throw new DukeWrongArgumentException("Unknown index '" + command[1] + "'", e);
+                throw new DukeWrongArgumentException("Unknown index '" + arr[1] + "'", e);
             }
         }
 
-        if (command[0].equals("todo")) {
-            try{
-                store.add(new ToDo((command[1])));
-            } catch (ArrayIndexOutOfBoundsException e) {
-                throw new DukeWrongArgumentException("The proper command is: todo [description]", e);
+        switch (command) {
+            case todo: {
+                try {
+                    store.add(new ToDo((arr[1])));
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    throw new DukeWrongArgumentException("The proper command is: todo [description]", e);
+                }
+                break;
             }
-        } else if (command[0].equals("deadline")) {
-            try {
-                String[] desc = command[1].split(" /by ");
-                store.add(new Deadline(desc[0], desc[1]));
-            } catch (ArrayIndexOutOfBoundsException e) {
-                throw new DukeWrongArgumentException("The proper command is: deadline [description] /by [date]", e);
+            case deadline: {
+                try {
+                    String[] desc = arr[1].split(" /by ");
+                    store.add(new Deadline(desc[0], desc[1]));
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    throw new DukeWrongArgumentException("The proper command is: deadline [description] /by [date]", e);
+                }
+                break;
             }
-        } else {
-            try {
-                String[] desc = command[1].split(" /at ");
-                store.add(new Event(desc[0], desc[1]));
-            } catch (ArrayIndexOutOfBoundsException e) {
-                throw new DukeWrongArgumentException("The proper command is: event [description] /at [date]", e);
+            case event: {
+                try {
+                    String[] desc = arr[1].split(" /at ");
+                    store.add(new Event(desc[0], desc[1]));
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    throw new DukeWrongArgumentException("The proper command is: event [description] /at [date]", e);
+                }
+                break;
             }
-
         }
         System.out.println("\tadded: " + store.get(store.size() - 1));
         System.out.println("You now have " + store.size() + " tasks in the list");
