@@ -23,8 +23,8 @@ Okay...noted.
 do homework...Huh? Hope you can remember it.
 Okay...noted.
 meet with friends...Huh? Hope you can remember it.
-That's a wrong format of creating a task.
-That's a wrong format of creating a task.
+Do I have to teach you again the format of creating a task?
+Do I have to teach you again the format of creating a task?
 Type 'mark + the index of the task' if that's what you want.
 What do you mean? This task is not done in the first place.
 Okay...task: play basketball  is marked as done.

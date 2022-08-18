@@ -64,12 +64,11 @@ public class Rabbit {
      * @param task the type of the task that is to be added
      * @param input the content (and the time) of the task the user inputs
      */
-    private static void addToList(TaskType task, String input) {
+    private static void addToList(TaskType task, String input) throws AddToListException {
         if (list.size() == 100) {
-            // warns the user when there are already 100 lines in
+            // throws an exception when there are already 100 lines in
             // the list when the user is trying to input a new line.
-            System.out.println("There are too many lines! Don't exceed 100 lines please.\n"
-                    + "Type 'list' to list out all the existing lines.");
+            throw new AddToListException(AddToListException.Type.FULL);
         }
 
         try {
@@ -97,11 +96,13 @@ public class Rabbit {
                     added = new Event(event.substring(0, j - 1), event.substring(j + 1, event.length()));
                     list.add(added);
                     break;
-
             }
             System.out.println("Okay...noted.\n" + added.getContent() + "...Huh? Hope you can remember it.");
         } catch (StringIndexOutOfBoundsException e) {
-            System.out.println("That's a wrong format of creating a task.");
+            // if the format is wrong, there will be a
+            // StringIndexOutOfBoundsException, catch it
+            // and throw an AddToListException
+            throw new AddToListException(AddToListException.Type.FORMAT);
         }
     }
 
@@ -124,28 +125,23 @@ public class Rabbit {
      *
      * @param input the user's input.
      */
-    private static void mark(String input) {
+    private static void mark(String input) throws MarkUnmarkException {
         try {
             Integer.parseInt(input.substring(5));
         } catch (NumberFormatException ex) {
             // if input is mark + a non-integer,
-            // reminds the user of the correct format
-            System.out.println("Type 'mark + the index of the task' "
-                    + "if that's what you want.");
-            return;
+            // throws an exception due to incorrect format
+            throw new MarkUnmarkException(MarkUnmarkException.Type.MARKFORMAT);
         }
 
         int i = Integer.parseInt(input.substring(5));
 
         if (i > list.size() || i <= 0) {
-            System.out.println("Hey, be careful.\n"
-                    + "The index must be between 1 and the size of the list, alright?");
-            return;
+            throw new MarkUnmarkException(MarkUnmarkException.Type.INDEX);
         }
 
         if (list.get(i - 1).isDone()) {
-            System.out.println("What do you mean? This task is already marked as done.");
-            return;
+            throw new MarkUnmarkException(MarkUnmarkException.Type.MARKREPEAT);
         }
 
         System.out.println("Okay...task: " + list.get(i - 1).getContent() + " is marked as done.");
@@ -157,27 +153,22 @@ public class Rabbit {
      *
      * @param input the user's input.
      */
-    private static void unmark(String input) {
+    private static void unmark(String input) throws MarkUnmarkException {
         try {
             Integer.parseInt(input.substring(7));
         } catch (NumberFormatException ex) {
-            // if input is mark + a non-integer,
-            // reminds the user of the correct format
-            System.out.println("Type 'unmark + the index of the task' "
-                    + "if that's what you want.");
-            return;
+            // if input is unmark + a non-integer,
+            // throws an exception due to incorrect format
+            throw new MarkUnmarkException(MarkUnmarkException.Type.UNMARKFORMAT);
         }
 
         int i = Integer.parseInt(input.substring(7));
         if (i > list.size() || i <= 0) {
-            System.out.println("Hey, be careful.\n"
-                    + "The index must be between 1 and the size of the list, alright?");
-            return;
+            throw new MarkUnmarkException(MarkUnmarkException.Type.INDEX);
         }
 
         if (!list.get(i - 1).isDone()) {
-            System.out.println("What do you mean? This task is not done in the first place.");
-            return;
+            throw new MarkUnmarkException(MarkUnmarkException.Type.UNMARKREPEAT);
         }
 
         System.out.println("Okay...task: " + list.get(i - 1).getContent() + " is unmarked.");
@@ -230,29 +221,36 @@ public class Rabbit {
                 sc.close();
                 break;
             }
+            // the function that the input is calling
             String function = input.substring(0, scanFunction(input));
-            switch(function) {
-                case "list":
-                    list();
-                    continue;
-                case "mark ":
-                    mark(input);
-                    continue;
-                case "unmark ":
-                    unmark(input);
-                    continue;
-                case "todo ":
-                    addToList(TaskType.TODO, input);
-                    continue;
-                case "deadline ":
-                    addToList(TaskType.DEADLINE, input);
-                    continue;
-                case "event ":
-                    addToList(TaskType.EVENT, input);
-                    continue;
-                default:
-                    // the user keyed in an invalid input
-                    System.out.println("Ummm...what is that? I don't get it.");
+            try {
+                switch (function) {
+                    case "list":
+                        list();
+                        continue;
+                    case "mark ":
+                        mark(input);
+                        continue;
+                    case "unmark ":
+                        unmark(input);
+                        continue;
+                    case "todo ":
+                        addToList(TaskType.TODO, input);
+                        continue;
+                    case "deadline ":
+                        addToList(TaskType.DEADLINE, input);
+                        continue;
+                    case "event ":
+                        addToList(TaskType.EVENT, input);
+                        continue;
+                    default:
+                        // the user keyed in an invalid input
+                        System.out.println("Ummm...what is that? I don't get it.");
+                }
+            } catch (MarkUnmarkException e) {
+                System.out.println(e.toString());
+            } catch (AddToListException e) {
+                System.out.println(e.toString());
             }
         }
     }
