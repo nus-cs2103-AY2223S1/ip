@@ -5,11 +5,6 @@ import java.util.InputMismatchException;
 public class Duke {
     static String exitWord = "bye";
     static String hLine = "\t____________________________________________";
-    static String logo = " ____        _        \n"
-            + "|  _ \\ _   _| | _____ \n"
-            + "| | | | | | | |/ / _ \\\n"
-            + "| |_| | |_| |    <  /\n"
-            + "|____/ \\,_|_|\\_\\___|\n";
 
     Scanner myScanner = new Scanner(System.in);
     ToDoList toDoList;
@@ -29,17 +24,40 @@ public class Duke {
                     toDoList.listTasks();
                     System.out.println(hLine);
                 }
+                else if (command.matches("^todo \\S.*")) {
+                    String name = command.substring(command.indexOf(" ") + 1);
+
+                    System.out.println(hLine);
+                    addToDo(name);
+                    System.out.printf("\tNow you have %d tasks in the list.\n", toDoList.getSize());
+                    System.out.println(hLine);
+                }
+                else if (command.matches("^deadline \\S.*") && command.contains("/by")) {
+                    String details = command.substring(command.indexOf(" ") + 1);
+                    String name = details.split("/by ")[0];
+                    String deadline = details.split("/by ")[1];
+
+                    System.out.println(hLine);
+                    addDeadline(name, deadline);
+                    System.out.printf("\tNow you have %d tasks in the list.\n", toDoList.getSize());
+                    System.out.println(hLine);
+                }
+                else if(command.matches("^event \\S.*") && command.contains("/at")) {
+                    String details = command.substring(command.indexOf(" ") + 1);
+                    String name = details.split("/at ")[0];
+                    String time = details.split("/at ")[1];
+
+                    System.out.println(hLine);
+                    addEvent(name, time);
+                    System.out.printf("\tNow you have %d tasks in the list.\n", toDoList.getSize());
+                    System.out.println(hLine);
+                }
                 else if (command.matches("mark [0-9]+") || command.matches("unmark [0-9]+")) {
                     String[] splitComm = command.split(" ");
                     String action = splitComm[0];
                     int index = Integer.parseInt(splitComm[1]) - 1;
 
                     changeMark(index, action);
-                }
-                else if (!command.equals("")) {
-                    System.out.println(hLine);
-                    toDoList.addTask(new Task(command));
-                    System.out.println(hLine);
                 }
 
                 command = myScanner.nextLine();
@@ -76,6 +94,32 @@ public class Duke {
             toDoList.incomplete(index);
             System.out.println(hLine);
         }
+    }
+
+    /* Creates a ToDos instance and adds it to ToDoList
+     *
+     * @param name
+     */
+    private void addToDo(String name) {
+        toDoList.addTask(new ToDos(name));
+    }
+
+    /* Creates a Deadline instance and adds it to ToDoList
+     *
+     * @param name
+     * @param deadline
+     */
+    private void addDeadline(String name, String deadline) {
+        toDoList.addTask(new Deadline(name, deadline));
+    }
+
+    /* Creates an Event instance and adds it to ToDoList
+     *
+     * @param name
+     * @param time
+     */
+    private void addEvent(String name, String time) {
+        toDoList.addTask(new Event(name, time));
     }
 
     // Prints generic greet message

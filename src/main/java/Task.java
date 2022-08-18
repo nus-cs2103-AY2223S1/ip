@@ -16,7 +16,7 @@ public class Task {
             message = "\tGood Job on completing the task! I've marked this task as done:";
         }
         System.out.println(message);
-        System.out.println("\t   " + listFormat());
+        System.out.println("\t   " + toString());
     }
 
     // Sets status of task at index to be false
@@ -29,19 +29,15 @@ public class Task {
             message = "\tOK, I've marked this task as not done yet:";
         }
         System.out.println(message);
-        System.out.println("\t   " + listFormat());
+        System.out.println("\t   " + toString());
     }
 
     /* Returns name of task and its status to be used when list is called
      * @return Returns String of name of task formatted with status showing
      */
-    public String listFormat() {
-        String mark = status ? "X" : " ";
-        return String.format("[%s] %s", mark, name);
-    }
-
     @Override
     public String toString() {
-        return name;
+        String mark = status ? "X" : " ";
+        return String.format("[%s] %s", mark, name);
     }
 }

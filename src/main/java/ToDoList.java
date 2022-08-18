@@ -47,8 +47,13 @@ public class ToDoList {
         System.out.println("\tHere are the tasks in your list:");
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i) != null){
-                System.out.printf("\t%d. %s\n", i + 1, list.get(i).listFormat());
+                System.out.printf("\t%d. %s\n", i + 1, list.get(i));
             }
         }
+    }
+
+    // Returns size of current list
+    public int getSize() {
+        return list.size();
     }
 }
