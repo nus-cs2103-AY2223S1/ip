@@ -18,6 +18,10 @@ public class Duke {
     private static int taskCount = 0;
     private static boolean isBye;
 
+    private enum Command {
+        BYE, LIST, MARK, UNMARK, DELETE, TODO, DEADLINE, EVENT;
+    }
+
     /**
      * Prints an indented horizontal line.
      */
@@ -40,17 +44,21 @@ public class Duke {
      * Executes the user command specified to Duke.
      *
      * @param input The command specified to Duke.
-     * @throws DukeException if input is not a valid Duke command.
      */
-    private static void execute(String input) throws DukeException {
-        if (input.equals("bye")) {
-            isBye = true;
-        } else if (input.equals("list")) {
-            displayList();
-        } else {
-            String[] strings = input.split(" ");
+    private static void execute(String input) {
+        String[] strings = input.split(" ");
+        Command cmd = Command.valueOf(strings[0].toUpperCase());
 
-            if (strings[0].equals("mark")) {
+        switch (cmd) {
+            case BYE:
+                isBye = true;
+                break;
+
+            case LIST:
+                displayList();
+                break;
+
+            case MARK:
                 try {
                     markTask(input);
                 } catch (IndexOutOfBoundsException e) {
@@ -58,7 +66,9 @@ public class Duke {
                 } catch (NumberFormatException | DukeException e) {
                     printError("Specify which task to mark with a single integer.");
                 }
-            } else if (strings[0].equals("unmark")) {
+                break;
+
+            case UNMARK:
                 try {
                     unmarkTask(input);
                 } catch (IndexOutOfBoundsException e) {
@@ -66,13 +76,17 @@ public class Duke {
                 } catch (NumberFormatException | DukeException e) {
                     printError("Specify which task to unmark with a single integer.");
                 }
-            } else if (strings[0].equals("todo")) {
+                break;
+
+            case TODO:
                 try {
                     addTodo(input);
                 } catch (StringIndexOutOfBoundsException e) {
                     printError("The description of a todo cannot be empty.");
                 }
-            } else if (strings[0].equals("deadline")) {
+                break;
+
+            case DEADLINE:
                 try {
                     addDeadline(input);
                 } catch (StringIndexOutOfBoundsException | DukeException e) {
@@ -80,7 +94,9 @@ public class Duke {
                 } catch (ArrayIndexOutOfBoundsException e) {
                     printError("Use /by to provide when a deadline must be completed.");
                 }
-            } else if (strings[0].equals("event")) {
+                break;
+
+            case EVENT:
                 try {
                     addEvent(input);
                 } catch (StringIndexOutOfBoundsException | DukeException e) {
@@ -88,7 +104,9 @@ public class Duke {
                 } catch (ArrayIndexOutOfBoundsException e) {
                     printError("Use /at to provide when an event occurs.");
                 }
-            } else if (strings[0].equals("delete")) {
+                break;
+
+            case DELETE:
                 try {
                     deleteTask(input);
                 } catch (IndexOutOfBoundsException e) {
@@ -96,9 +114,7 @@ public class Duke {
                 } catch (NumberFormatException | DukeException e) {
                     printError("Specify which task to delete with a single integer.");
                 }
-            } else {
-                throw new DukeException();
-            }
+                break;
         }
     }
 
@@ -264,7 +280,7 @@ public class Duke {
         while (!isBye) {
             try {
                 execute(sc.nextLine());
-            } catch (DukeException e) {
+            } catch (IllegalArgumentException e) {
                 printError("I'm sorry, but I don't know what that means :-(");
             }
         }
