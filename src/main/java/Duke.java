@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
@@ -12,8 +13,7 @@ public class Duke {
         System.out.println("How can I help you?");
 
         Scanner sc = new Scanner(System.in);
-        Task[] tasks = new Task[100];
-        int numTasks = 0;
+        ArrayList<Task> tasks = new ArrayList<>();
 
         while (true) {
             String input = sc.nextLine();
@@ -31,15 +31,15 @@ public class Duke {
             }
             switch (command) {
                 case "list": {
-                    for (int i = 0; i < numTasks; i++) {
-                        System.out.printf("%d. %s%n", i + 1, tasks[i]);
+                    for (int i = 0; i < tasks.size(); i++) {
+                        System.out.printf("%d. %s%n", i + 1, tasks.get(i));
                     }
                     break;
                 }
                 case "mark": {
                     if (hasArgument) {
                         int taskNum = Integer.parseInt(argument);
-                        Task task = tasks[taskNum - 1];
+                        Task task = tasks.get(taskNum - 1);
                         task.markAsDone();
                         System.out.printf("Well done! I've marked task %d as done:%n", taskNum);
                         System.out.println(task);
@@ -51,7 +51,7 @@ public class Duke {
                 case "unmark": {
                     if (hasArgument) {
                         int taskNum = Integer.parseInt(argument);
-                        Task task = tasks[taskNum - 1];
+                        Task task = tasks.get(taskNum - 1);
                         task.markAsUndone();
                         System.out.printf("Sure, I've marked task %d as not done:%n", taskNum);
                         System.out.println(task);
@@ -63,7 +63,7 @@ public class Duke {
                 case "todo": {
                     if (hasArgument) {
                         Todo todo = new Todo(argument);
-                        tasks[numTasks++] = todo;
+                        tasks.add(todo);
                         System.out.println("Got it, I've added this to-do:");
                         System.out.println(todo);
                     } else {
@@ -75,7 +75,7 @@ public class Duke {
                     if (hasArgument) {
                         try {
                             Deadline deadline = new Deadline(argument);
-                            tasks[numTasks++] = deadline;
+                            tasks.add(deadline);
                             System.out.println("Got it, I've added this deadline:");
                             System.out.println(deadline);
                         } catch (InvalidTaskFormatException e) {
@@ -91,7 +91,7 @@ public class Duke {
                     if (hasArgument) {
                         try {
                             Event event = new Event(argument);
-                            tasks[numTasks++] = event;
+                            tasks.add(event);
                             System.out.println("Got it, I've added this event:");
                             System.out.println(event);
                         } catch (InvalidTaskFormatException e) {
