@@ -3,6 +3,9 @@ public class Event extends Task{
     protected boolean isDone;
     protected String at;
 
+    /**
+     * Constructor for an Event object
+     */
     public Event(String description, String at) {
         super(description);
         this.at = at;
