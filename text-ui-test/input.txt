@@ -1,0 +1,13 @@
+list
+todo Duke
+deadline do Duke /by friday lecture
+list
+event CS2103T lecture /at friday 4-6
+list
+mark 1
+list
+mark 2
+list
+unmark 2
+list
+bye
