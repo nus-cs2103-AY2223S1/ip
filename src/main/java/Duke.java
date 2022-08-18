@@ -57,7 +57,7 @@ public class Duke {
                     System.out.println("    ____________________________________________________________\n");
                     input = sc.next();
                 } else {
-                    .
+                    
                 }
 
             }
