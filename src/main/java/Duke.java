@@ -73,6 +73,9 @@ public class Duke {
             case "event":
                 TryAddEvent(args);
                 break;
+            case "delete":
+                TryDelete(args);
+                break;
             default:
                 throw new DukeException("Command not recognised");
         }
@@ -182,7 +185,7 @@ public class Duke {
     public static void TryMark(boolean marked, String args) throws DukeException {
         int index;
         try {
-            index = Integer.parseInt(args);
+            index = Integer.parseInt(args.strip());
         } catch (NumberFormatException e) {
             throw new DukeException("Mark failed, invalid index");
         }
@@ -200,5 +203,24 @@ public class Duke {
             task.unmark();
             System.out.printf("Task marked as not done: %s\n", task);
         }
+    }
+
+    public static void TryDelete(String args) throws DukeException {
+        int index;
+        try {
+            index = Integer.parseInt(args.strip());
+        } catch (NumberFormatException e) {
+            throw new DukeException("Delete failed, invalid index");
+        }
+        index--;
+
+        if (index < 0 || index >= taskList.size()) {
+            throw new DukeException("Delete failed, index out of range");
+        }
+
+        Task task = taskList.get(index);
+        taskList.remove(index);
+        System.out.printf("Task deleted: %s\n", task);
+        System.out.printf("You now have %d task(s) in the list\n", taskList.size());
     }
 }
