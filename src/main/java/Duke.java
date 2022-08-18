@@ -1,11 +1,9 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
     // List to store text entered by the user and display them back to the user when requested
-    private static Task[] wordList = new Task[100];
-
-    //Parameter to keep track of the number of items in the list
-    private static int numOfItems = 0;
+    private static ArrayList<Task> wordList = new ArrayList<>();
 
     /**
      * Start the program
@@ -13,14 +11,6 @@ public class Duke {
     private static void greet() {
         System.out.println("Hello I am\n" + Constants.LOGO);
         System.out.println("May I help you?");
-    }
-
-    /**
-     * Repeat user input (except 'bye')
-     * @param input the message that user type
-     */
-    private static void echo(String input) {
-        System.out.println(Constants.ARROW + input);
     }
 
     /**
@@ -36,9 +26,18 @@ public class Duke {
      */
     private static void add(Task task) {
         System.out.println(Constants.ARROW + "Added task: " + task.toString());
-        Duke.wordList[numOfItems] = task;
-        numOfItems++;
-        System.out.println("Now you have " + Duke.numOfItems + " task(s) on your list.");
+        Duke.wordList.add(task);
+        System.out.println("Now you have " + wordList.size() + " task(s) on your list.");
+    }
+
+    /**
+     * Delete a task
+     * @param task text the user typed
+     */
+    private static void delete(Task task) {
+        System.out.println(Constants.ARROW + "Deleted task: " + task.toString());
+        Duke.wordList.remove(task);
+        System.out.println("Now you have " + wordList.size() + " task(s) on your list.");
     }
 
     /**
@@ -46,8 +45,8 @@ public class Duke {
      */
     private static void listItems() {
         System.out.println(Constants.LISTING_MESSAGE);
-        for (int i = 0; i < numOfItems; i++) {
-            System.out.println((i+1) + ") " + wordList[i].toString());
+        for (int i = 0; i < wordList.size(); i++) {
+            System.out.println((i+1) + ") " + wordList.get(i).toString());
         }
     }
 
@@ -69,11 +68,11 @@ public class Duke {
                     break;
                 case Constants.UNMARK:
                     index =  Integer.parseInt(userInput.split(" ")[1]);
-                    wordList[index-1].unmark();
+                    wordList.get(index-1).unmark();
                     break;
                 case Constants.MARK:
                     index =  Integer.parseInt(userInput.split(" ")[1]);
-                    wordList[index-1].markAsDone();
+                    wordList.get(index-1).markAsDone();
                     break;
                 case Constants.TODO:
                     try {
@@ -113,6 +112,10 @@ public class Duke {
                     } catch (ArrayIndexOutOfBoundsException e) {
                         new DukeException.EventWithoutAtException();
                     }
+                    break;
+                case Constants.DELETE:
+                    index =  Integer.parseInt(userInput.split(" ")[1]);
+                    Duke.delete(Duke.wordList.get(index-1));
                     break;
                 default:
                     new DukeException.InvalidInputException();

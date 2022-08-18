@@ -40,4 +40,7 @@ public class Constants {
 
     // Listing message
     public static final String LISTING_MESSAGE = "Here are the task(s) in your list: ";
+
+    // Keyword to delete a task
+    public static final String DELETE = "delete";
 }
