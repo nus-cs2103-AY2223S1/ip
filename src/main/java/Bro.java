@@ -67,8 +67,23 @@ public class Bro {
         }
 
         else{
-            System.out.println("invalid stmt");
+            try {
+                checkEmptyInput(str);
+            } catch (BroException e) {
+                System.out.println(e.getMessage());
+            }
             this.output1(sc);
+        }
+    }
+
+    public static void checkEmptyInput(String str) throws BroException{
+        String[] li = new String[]{"todo", "deadline", "event", "mark", "unmark"};
+        List<String> checkList = new ArrayList<>(Arrays.asList(li));
+        if(checkList.contains(str)){
+            throw new BroException("The description cannot be empty.");
+        }
+        else{
+            throw new BroException("I don't know what it means");
         }
     }
 }
