@@ -8,3 +8,4 @@ mark 3
 list
 unmark 2
 list
+bye

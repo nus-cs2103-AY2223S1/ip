@@ -1,12 +1,29 @@
 import java.util.*;
 public class Duke {
+
     public static void main(String[] args) {
-        initProgram();
+        Duke program = new Duke();
+        program.init();
+    }
+
+    /**
+     * List to store all tasks entered by the user.
+     */
+    private LinkedList<Task> lst;
+
+    /**
+     * Starts and ends the Duke program.
+     */
+    private void init() {
+        printIntro();
         program();
         exitProgram();
     }
 
-    public static void initProgram() {
+    /**
+     * Prints the hello introduction to Duke.
+     */
+    private void printIntro() {
         String logo = " _    _ ______ _      _      ____     ______ _____   ____  __  __    _____  _    _ _  ________ \n"
                 + "| |  | |  ____| |    | |    / __ \\   |  ____|  __ \\ / __ \\|  \\/  |  |  __ \\| |  | | |/ /  ____|\n"
                 + "| |__| | |__  | |    | |   | |  | |  | |__  | |__) | |  | | \\  / |  | |  | | |  | | ' /| |__   \n"
@@ -18,11 +35,15 @@ public class Duke {
         newLine();
     }
 
-    public static void program() {
+    /**
+     * Runs the chatbot, taking in inputs from the user.
+     */
+    private void program() {
         Scanner sc = new Scanner(System.in);
+        lst = new LinkedList<>();
         String input = null, cmd = null, postCmd = null;
         String postSplit[];
-        LinkedList<Task> lst = new LinkedList<>();
+
         do {
             input = sc.nextLine();
             newLine();
@@ -36,16 +57,16 @@ public class Duke {
                 case "bye":
                     break;
                 case "list":
-                    printList(lst);
+                    printList();
                     break;
                 case "todo":
-                    handleTodo(lst, postCmd);
+                    handleTodo(postCmd);
                     break;
                 case "deadline":
-                    handleDeadline(lst, postCmd);
+                    handleDeadline(postCmd);
                     break;
                 case "event":
-                    handleEvent(lst, postCmd);
+                    handleEvent(postCmd);
                     break;
                 case "mark":
                     lst.get(Integer.parseInt(postSplit[1]) - 1).setDone();
@@ -65,7 +86,11 @@ public class Duke {
         } while (!input.equals("bye"));
     }
 
-    public static void printCommands(String cmd) {
+    /**
+     * Prints a list of available commands to the user.
+     * @param cmd The invalid cmd that was entered by the user.
+     */
+    private void printCommands(String cmd) {
         String commands = "\ttodo - adds the task to the list\n" +
                 "\tdeadline - adds the task with a deadline, e.g. deadline x /by Sunday\n" +
                 "\tevent - adds the task that happens at a specific time, e.g. event x /at Mon 2-4pm\n" +
@@ -77,34 +102,52 @@ public class Duke {
         newLine();
     }
 
-    public static void handleTodo(List lst, String desc) {
+    /**
+     * Handles what to do with a "Todo" task.
+     * @param desc The description of the task.
+     */
+    private void handleTodo(String desc) {
         lst.add(new Todo(desc));
         System.out.println("  Added task todo: \n  " + lst.get(lst.size() - 1));
-        printListCount(lst);
+        printListCount();
         newLine();
     }
 
-    public static void handleDeadline(List lst, String desc) {
+    /**
+     * Handles what to do with a "Deadline" task.
+     * @param desc The description of the task.
+     */
+    private void handleDeadline(String desc) {
         String[] split = desc.split("/");
         lst.add(new Deadline(split[0], split[1].substring(3)));
         System.out.println("  Added the task with deadline: \n  " + lst.get(lst.size() - 1));
-        printListCount(lst);
+        printListCount();
         newLine();
     }
 
-    public static void handleEvent(List lst, String desc) {
+    /**
+     * Handles what to do with a "Event" task.
+     * @param desc The description of the task.
+     */
+    private void handleEvent(String desc) {
         String[] split = desc.split("/");
         lst.add(new Event(split[0], split[1].substring(3)));
         System.out.println("  Added the event task: \n  " + lst.get(lst.size() - 1));
-        printListCount(lst);
+        printListCount();
         newLine();
     }
 
-    public static void printListCount(List lst) {
+    /**
+     * Prints the number of current tasks, as well as how many are completed.
+     */
+    private  void printListCount() {
         System.out.println("  You have " + lst.size() + " tasks currently, " + Task.totalDone + " are completed");
     }
 
-    public static void printList(List lst) {
+    /**
+     * Prints a list of all the tasks.
+     */
+    private void printList() {
         if (lst.size() == 0) {
             System.out.println("  List is empty!");
         } else {
@@ -116,13 +159,18 @@ public class Duke {
         newLine();
     }
 
-
-    public static void exitProgram() {
+    /**
+     * Prints the exit program text.
+     */
+    private void exitProgram() {
         System.out.println("Bye:( Hope to see you again soon!");
         newLine();
     }
 
-    public static void newLine() {
+    /**
+     * Prints a new line.
+     */
+    private void newLine() {
         System.out.println("________________________________________________________________________" +
                 "_______________________");
     }
