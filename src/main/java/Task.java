@@ -5,8 +5,8 @@ public class Task {
     private static int counter = 0;
     private boolean done;
 
-    public Task(String t) {
-        task = t;
+    public Task(String task) {
+        this.task = task;
         counter ++;
         id = counter;
         done = false;
@@ -21,11 +21,7 @@ public class Task {
     }
 
     protected String getStatus() {
-        if(done) {
-            return "[X]";
-        } else {
-            return "[ ]";
-        }
+        return done ? "[X]" : "[ ]";
     }
 
     protected void toggleStatus() {
@@ -35,13 +31,18 @@ public class Task {
     protected void mark() {
         System.out.println("\tThis task has been marked as done -");
         toggleStatus();
-        System.out.println("\t\t" + getStatus() + " " + task);
+        System.out.println("\t\t" + this);
     }
 
     protected void unmark() {
         System.out.println("\tThis task has been marked as not done -");
         toggleStatus();
-        System.out.println("\t\t" + getStatus() + " " + task);
+        System.out.println("\t\t" + this);
+    }
+
+    @Override
+    public String toString() {
+        return getStatus() + " " + task;
     }
 
 }
