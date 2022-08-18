@@ -56,7 +56,7 @@ public class Duke {
                 System.out.println(list + line);
             } else if (input.startsWith("todo")){
                 if (input.length() > 5) {
-                    Todo todo = new Todo(input);
+                    Todo todo = new Todo(input.substring(5));
                     arr.add(todo);
                     index++;
                     System.out.println(todo.addString(index));
@@ -66,7 +66,7 @@ public class Duke {
             } else if (input.startsWith("deadline")){
                 if (input.length() > 9) {
                     String[] dead = input.split(" /by ");
-                    Deadlines deadlines = new Deadlines(dead[0], dead[1]);
+                    Deadlines deadlines = new Deadlines(dead[0].substring(9), dead[1]);
                     arr.add(deadlines);
                     index++;
                     System.out.println(deadlines.addString(index));
@@ -76,24 +76,12 @@ public class Duke {
             } else if (input.startsWith("event")){
                 if (input.length() > 6) {
                     String[] time = input.split(" /at ");
-                    Event event = new Event(time[0], time[1]);
+                    Event event = new Event(time[0].substring(6), time[1]);
                     arr.add(event);
                     index++;
                     System.out.println(event.addString(index));
                 } else {
                     throw new DukeException("☹ OOPS!!! The description of a event cannot be empty.");
-                }
-            } else if (input.startsWith("delete")) {
-                if (input.length() > 7) {
-                    int taskNum = Integer.parseInt(input.substring(7));
-                    Task toDelete = arr.get(taskNum - 1);
-                    arr.remove(taskNum - 1);
-                    index --;
-                    System.out.println(line + "Noted. I've removed this task: \n" +
-                            toDelete.toString() + "\n" +
-                            "Now you have " + index + " tasks in the list. \n" + line);
-                } else {
-                    throw new DukeException("☹ OOPS!!! Please include the index of the task you'd like to delete!");
                 }
             }
             else {
