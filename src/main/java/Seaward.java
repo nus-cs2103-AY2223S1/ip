@@ -15,16 +15,17 @@ public class Seaward {
         return welcome;
     }
 
-    public String readInputString(String s) {
-        if (s.equals("bye")) {
+    public String readInputString(String s) throws InvalidCommandException, InvalidDescriptionException {
+        String[] splitCommand = s.split(" ", 2);
+        String command = splitCommand[0];
+        if (command.equals("bye")) {
             return "Seaward out!";
-        } else if (s.equals("list")){
+        } else if (command.equals("list")){
             int numOfTasks = taskList.getNumOfTasks();
             String list = "";
             for (int i = 0; i < numOfTasks; i++) {
                 int index = i + 1;
                 String taskDescription = taskList.readTask(i);
-                String isDone = taskList.readStatus(i);
                 if (index == numOfTasks) {
                     list = list + index + "." + taskDescription;
                 } else {
@@ -32,43 +33,57 @@ public class Seaward {
                 }
             }
             return list;
-        } else if (s.startsWith("mark")) {
-            int index = Integer.parseInt(s.substring(5)) - 1;
+        } else if (command.equals("mark")) {
+            if (splitCommand.length == 1) {
+                throw new InvalidDescriptionException("Please add a number.");
+            }
+            int index = Integer.parseInt(splitCommand[1]) - 1;
             if (index + 1 > taskList.getNumOfTasks()) {
-                return "This task doesn't exist!";
+                throw new InvalidCommandException("Task does not exist.");
             }
             taskList.setCompleted(index);
             return "I have marked this task as done:\n" +
                     taskList.readTask(index);
-        } else if (s.startsWith("unmark")) {
-            int index = Integer.parseInt(s.substring(7)) - 1;
+        } else if (command.equals("unmark")) {
+            if (splitCommand.length == 1) {
+                throw new InvalidDescriptionException("Please add a number.");
+            }
+            int index = Integer.parseInt(splitCommand[1]) - 1;
             if (index + 1 > taskList.getNumOfTasks()) {
-                return "This task doesn't exist!";
+                throw new InvalidCommandException("Task does not exist.");
             }
             taskList.setNotCompleted(index);
             return "I have marked this task as undone:\n" +
                     taskList.readTask(index);
-        } else if (s.startsWith("todo")) {
-            taskList.addTodo(s.substring(5));
+        } else if (command.equals("todo")) {
+            if (splitCommand.length == 1) {
+                throw new InvalidDescriptionException("Please add a description.");
+            }
+            taskList.addTodo(splitCommand[1]);
             int numOfTasks = taskList.getNumOfTasks();
             return "Noted. I have added:\n" + taskList.readTask(numOfTasks - 1)
                     + "\n" + "Now you have "
                     + numOfTasks + " task(s) in your list.";
-        } else if (s.startsWith("deadline")) {
-            taskList.addDeadline(s.substring(9));
+        } else if (command.equals("deadline")) {
+            if (splitCommand.length == 1) {
+                throw new InvalidDescriptionException("Please add a description and deadline.");
+            }
+            taskList.addDeadline(splitCommand[1]);
             int numOfTasks = taskList.getNumOfTasks();
             return "Noted. I have added:\n" + taskList.readTask(numOfTasks - 1)
                     + "\n" + "Now you have "
                     + numOfTasks + " task(s) in your list.";
-        } else if (s.startsWith("event")) {
-            taskList.addEvent(s.substring(6));
+        } else if (command.equals("event")) {
+            if (splitCommand.length == 1) {
+                throw new InvalidDescriptionException("Please add a description and time/date.");
+            }
+            taskList.addEvent(splitCommand[1]);
             int numOfTasks = taskList.getNumOfTasks();
             return "Noted. I have added:\n" + taskList.readTask(numOfTasks - 1)
                     + "\n" + "Now you have "
                     + numOfTasks + " task(s) in your list.";
         } else {
-            taskList.addTask(s);
-            return "I have added: " + s + " into the task list.";
+            throw new InvalidCommandException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
     }
 }

@@ -11,10 +11,17 @@ public class Duke {
         Scanner input = new Scanner(System.in);
         while (true) {
             String s = input.nextLine();
-            System.out.println(seaward.readInputString(s));
-            if (s.equals("bye")) {
-                break;
+            try {
+                System.out.println(seaward.readInputString(s));
+                if (s.equals("bye")) {
+                    break;
+                }
+            } catch (InvalidDescriptionException e) {
+                System.out.println(e.getMessage());
+            } catch (InvalidCommandException e) {
+                System.out.println(e.getMessage());
             }
+
         }
         input.close();
     }
