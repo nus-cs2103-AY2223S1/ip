@@ -7,8 +7,7 @@ public class Duke {
     private static final String EXITCOMMAND = "bye";
     private static final String LINE = "\n========================================================";
     private static final String WELCOMEMESSAGE = "Hello, my name is Duke!\nHow can I help you today?";
-    private static final String EXITMESSAGE = LINE + "\nGoodbye! Looking forward to see you again soon!\n(●'◡'●)ノ"
-            + LINE;
+    private static final String EXITMESSAGE = LINE + "\nGoodbye! Looking forward to see you again soon!" + LINE;
 
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -75,7 +74,7 @@ public class Duke {
                     continue;
                 case "DEADLINE":
                     taskDesc = Arrays.copyOfRange(inputArray, 1, inputArray.length);
-                    taskDesc = String.join(" ", taskDesc).split("/..");
+                    taskDesc = String.join(" ", taskDesc).split("/by");
                     Deadline newDeadline = new Deadline(taskDesc[0], taskDesc[1]);
                     listOfInputs.add(newDeadline);
                     System.out.println(LINE + "\nGot it! I have added this task to your list:\n  " + newDeadline.toString()
@@ -84,7 +83,7 @@ public class Duke {
                     continue;
                 case "EVENT":
                     taskDesc = Arrays.copyOfRange(inputArray, 1, inputArray.length);
-                    taskDesc = String.join(" ", taskDesc).split("/..");
+                    taskDesc = String.join(" ", taskDesc).split("/at");
                     Event newEvent = new Event(taskDesc[0], taskDesc[1]);
                     listOfInputs.add(newEvent);
                     System.out.println(LINE + "\nGot it! I have added this task to your list:\n  " + newEvent.toString()
