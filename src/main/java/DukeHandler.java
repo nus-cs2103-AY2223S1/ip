@@ -18,12 +18,11 @@ public class DukeHandler {
         String[] temp = input.split(" ", 2);
         List<String> inputParts = new ArrayList<String>(Arrays.asList(temp));
         try {
+            if (inputParts.size() < 2) {
+                inputParts.add("");
+            }
             if (input.equals("list")) {
                 tasks.listTasks();
-            }
-
-            else if (inputParts.size() < 2) {
-                inputParts.add("");
             }
             else if (input.matches("mark +\\d+") || input.matches("unmark +\\d+")) {
                 if (inputParts.get(0).equals("mark")) {
@@ -32,7 +31,11 @@ public class DukeHandler {
                 if (inputParts.get(0).equals("unmark")) {
                     tasks.unmark(Integer.parseInt(inputParts.get(1)));
                 }
-            } else if (inputParts.get(0).equals("todo")) {
+            }
+            else if (input.matches("delete +\\d+")) {
+                tasks.delete(Integer.parseInt(inputParts.get(1)));
+            }
+            else if (inputParts.get(0).equals("todo")) {
                 tasks.addTask(new Todo(inputParts.get(1)));
             }
             else if (inputParts.get(0).equals("deadline")) {

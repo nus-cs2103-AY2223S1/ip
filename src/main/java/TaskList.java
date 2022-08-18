@@ -44,4 +44,12 @@ public class TaskList {
         temp.unmark();
         System.out.println("OK, I've marked this task as not done yet: \n" + temp.toString());
     }
+
+    public void delete(int index) {
+        Task temp = tasks.get(index-1);
+        tasks.remove(index-1);
+        System.out.println( "Noted. I've removed this task: \n" + temp.toString() +
+                "\nNow you have " + tasks.size()
+                + " tasks in the list");
+    }
 }
