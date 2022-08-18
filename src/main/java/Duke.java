@@ -242,6 +242,7 @@ public class Duke {
         }
     }
 
+    //delete method
     public static void removeTask(String userInput, ArrayList<Task> listOfActions, int currentAction)
             throws DukeException {
         try {
