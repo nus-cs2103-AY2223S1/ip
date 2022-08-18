@@ -2,6 +2,8 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Mia {
+    private static final TaskManager tasksManager = new TaskManager();
+
     public static void main(String[] args) {
         final String logo = "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━┓\n" +
                             "┃ You are talking to MIA... ┃\n" +
@@ -23,8 +25,14 @@ public class Mia {
             if (line.equals("bye")) {
                 printResponse("See you!", windowWidth);
                 break;
+            } else if (line.equals("list")) {
+                printResponse(tasksManager.toString(), windowWidth);
+                System.out.print("Enter a command: ");
+                continue;
             }
-            printResponse(line, windowWidth);
+            final Task newTask = new Task(line);
+            tasksManager.addTask(newTask);
+            printResponse(String.format("Added task \"%s\" to tasks list!", newTask), windowWidth);
             System.out.print("Enter a command: ");
         }
         sc.close();
