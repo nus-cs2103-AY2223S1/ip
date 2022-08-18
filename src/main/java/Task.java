@@ -19,10 +19,9 @@ public class Task {
         this.isDone = false;
     }
 
+    public void delete() {
 
-
-    public String toString() {
-        return " This is a task.";
     }
+
 
 }
