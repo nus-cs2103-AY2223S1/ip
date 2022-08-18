@@ -18,7 +18,11 @@ public class Duke {
         this.greet();
         while(!this.end) {
             command = sc.nextLine();
-            this.handler(command);
+            try {
+                this.handler(command);
+            } catch (DukeException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
@@ -37,7 +41,7 @@ public class Duke {
     }
 
     // handler method handles user input and outputs accordingly
-    private void handler(String input) {
+    private void handler(String input) throws DukeException {
         String[] args = input.split(" ", 2);
 
         switch(args[0]) {
@@ -47,19 +51,24 @@ public class Duke {
             case "todo":
             case "deadline":
             case "event":
-                // deadline and event breaks if no input is entered after each command
-                // tod0 creates an empty task if no input after command
-                listAdd(args[0], args[1]);
+                try {
+                    listAdd(args[0], args[1]);
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    throw new DukeMissingInputException(args[0]);
+                }
                 break;
             case "mark":
-                // breaks if no input is entered after mark, or input isn't int, or index out of range
-                listToggle(args[1]);
+                try {
+                    listToggle(args[1]);
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    throw new DukeMissingInputException(args[0]);
+                }
                 break;
             case "bye":
                 exit();
                 break;
             default:
-                confuse();
+                throw new DukeUnknownInputException(args[0]);
         }
     }
 
@@ -85,7 +94,9 @@ public class Duke {
         }
     }
 
-    private void listAdd(String type, String item) {
+    // atodo, deadline and event breaks if no input is entered after each command (1 for atodo, 2 for others)
+    // tod0 creates an empty task if no input after command (unresolved)
+    private void listAdd(String type, String item) throws DukeException {
         Task currTask;
         String[] args;
         switch(type) {
@@ -99,27 +110,44 @@ public class Duke {
                 break;
             case "deadline":
                 args = item.split("/by");
-                currTask = new Deadline(args[0], args[1]);
-                tasks.add(currTask);
-                System.out.println(DIVIDER + "OK, I've added this deadline:\n"
-                        + "  " + currTask + "\n"
-                        + "Number of tasks in list: " + tasks.size() + "\n"
-                        + DIVIDER);
+                try{
+                    currTask = new Deadline(args[0], args[1]);
+                    tasks.add(currTask);
+                    System.out.println(DIVIDER + "OK, I've added this deadline:\n"
+                            + "  " + currTask + "\n"
+                            + "Number of tasks in list: " + tasks.size() + "\n"
+                            + DIVIDER);
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    throw new DukeMissingInputException(type);
+                }
                 break;
             case "event":
                 args = item.split("/at");
-                currTask = new Event(args[0], args[1]);
-                tasks.add(currTask);
-                System.out.println(DIVIDER + "OK, I've added this event:\n"
-                        + "  " + currTask + "\n"
-                        + "Number of tasks in list: " + tasks.size() + "\n"
-                        + "\n" + DIVIDER);
+                try{
+                    currTask = new Event(args[0], args[1]);
+                    tasks.add(currTask);
+                    System.out.println(DIVIDER + "OK, I've added this event:\n"
+                            + "  " + currTask + "\n"
+                            + "Number of tasks in list: " + tasks.size() + "\n"
+                            + "\n" + DIVIDER);
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    throw new DukeMissingInputException(type);
+                }
                 break;
         }
     }
 
-    private void listToggle(String indexString) {
-        int index = Integer.parseInt(indexString);
+    // breaks if no input is entered after mark, or input isn't int, or index out of range
+    private void listToggle(String indexString) throws DukeException{
+        int index = 0;
+        try {
+            index = Integer.parseInt(indexString);
+        } catch (NumberFormatException e) {
+            throw new DukeWrongInputException("mark");
+        }
+        if (index >= tasks.size() || index < 0) {
+            throw new DukeListOOBException(index);
+        }
         Task currTask = tasks.get(index-1);
         if(currTask.completeToggle()) {
             System.out.println(DIVIDER + "Nice! I've marked this task as done:\n"
