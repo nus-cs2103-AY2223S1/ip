@@ -50,7 +50,9 @@ public class OutputLogger {
                 "  _ | | /_\\  | _ \\\\ \\ / /|_ _|/ __|\n" +
                 " | || |/ _ \\ |   / \\ V /  | | \\__ \\\n" +
                 "  \\__//_/ \\_\\|_|_\\  \\_/  |___||___/\n";
+
         System.out.print(logo);
+
         output(String.format("Hello,I'm %s!\nWhat can I do for you?", NAME));
     }
 

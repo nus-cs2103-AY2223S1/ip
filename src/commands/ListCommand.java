@@ -9,6 +9,10 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Command to list all current tasks
+ * Usage: list
+ */
 public class ListCommand extends Command {
     protected TaskModel taskModel;
 

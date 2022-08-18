@@ -10,6 +10,10 @@ import output.OutputLogger;
 
 import java.util.List;
 
+/**
+ * Command for adding a Todo task
+ * Usage: todo /d -description-
+ */
 public class TodoCommand extends Command {
     protected TaskModel taskModel;
     protected DescriptionArgument description;

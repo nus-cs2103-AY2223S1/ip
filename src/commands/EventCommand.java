@@ -10,6 +10,10 @@ import output.OutputLogger;
 
 import java.util.List;
 
+/**
+ * Command to add an Event task
+ * Usage: event /d -description- /at -date-
+ */
 public class EventCommand extends Command {
     protected TaskModel taskModel;
     protected DescriptionArgument description;

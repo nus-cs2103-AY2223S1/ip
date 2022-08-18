@@ -9,6 +9,11 @@ import output.OutputLogger;
 
 import java.util.List;
 
+/**
+ * Command to mark a task as done
+ * Usage: mark /id -task number-
+ * Task number according to number from list
+ */
 public class MarkCommand extends Command {
     TaskModel taskModel;
     TaskIdArgument taskId;

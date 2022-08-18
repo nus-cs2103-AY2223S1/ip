@@ -9,6 +9,10 @@ import output.OutputLogger;
 
 import java.util.List;
 
+/**
+ * Command for unmarking a task
+ * Usage: unmark /id -task number-
+ */
 public class UnmarkCommand extends Command {
     protected TaskModel taskModel;
     protected TaskIdArgument taskId;

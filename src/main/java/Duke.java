@@ -1,6 +1,5 @@
 import commands.*;
 import input.Input;
-import models.task.TaskModel;
 import output.OutputLogger;
 
 import java.util.Scanner;

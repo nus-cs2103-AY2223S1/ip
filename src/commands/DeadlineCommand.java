@@ -10,6 +10,10 @@ import output.OutputLogger;
 
 import java.util.List;
 
+/**
+ * Command to add a Deadline task
+ * usage: deadline /d -description- /by -date-
+ */
 public class DeadlineCommand extends Command {
     protected TaskModel taskModel;
     protected DescriptionArgument description;
