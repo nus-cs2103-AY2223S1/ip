@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -13,7 +14,7 @@ public class Duke {
                 "/__.-'|_|--|_|\n");
 
         String line = "Dino:\n";
-        Task[] ls = new Task[100];
+        ArrayList<Task> ls = new ArrayList<>(100);
 
         System.out.println(line
                 + "\tHello! I'm Dino\n"
@@ -34,34 +35,34 @@ public class Duke {
                     break;
                 case "list":
                     for (int i = 0; i < Task.lsSize(); i++) {
-                        System.out.println("\t" + (i + 1) + ". " + ls[i].toString());
+                        System.out.println("\t" + (i + 1) + ". " + ls.get(i).toString());
                     }
                     break;
                 case "mark":
                     try {
-                        index = Integer.parseInt(str[1]);
+                        index = Integer.parseInt(str[1]) - 1;
                     } catch (Exception e) {
                         throw new DukeException("Oops! You did not choose which task to mark!");
                     }
 
-                    if (index > Task.lsSize()) {
+                    if (index > Task.lsSize() || index < 0) {
                         throw new DukeException("Oops! Invalid task!");
                     }
-                    myTask = ls[index - 1];
+                    myTask = ls.get(index);
                     myTask.markAsDone();
                     System.out.println("\tHooray! You have completed this task:\n\t" + myTask);
                     break;
                 case "unmark":
                     try {
-                        index = Integer.parseInt(str[1]);
+                        index = Integer.parseInt(str[1]) - 1;
                     } catch (Exception e) {
                         throw new DukeException("Oops! You did not choose which task to mark!");
                     }
 
-                    if (index > Task.lsSize()) {
+                    if (index > Task.lsSize() || index < 0) {
                         throw new DukeException("Oops! Invalid task!");
                     }
-                    myTask = ls[index - 1];
+                    myTask = ls.get(index);
                     myTask.markAsUndone();
                     System.out.println("\tOh no! You have more things to complete:\n\t" + myTask);
                     break;
@@ -79,7 +80,7 @@ public class Duke {
                         throw new DukeException("Oops! When is the deadline?");
                     }
 
-                    ls[Task.lsSize() - 1] = myTask;
+                    ls.add(myTask);
                     System.out.println("\tadded: " + myTask);
                     System.out.println("\tYou have " + Task.lsSize() + " task" + (Task.lsSize() > 1 ? "s!" : "!"));
                     break;
@@ -90,7 +91,7 @@ public class Duke {
                         throw new DukeException("Oops! The description of a todo cannot be empty!");
                     }
 
-                    ls[Task.lsSize() - 1] = myTask;
+                    ls.add(myTask);
                     System.out.println("\tadded: " + myTask);
                     System.out.println("\tYou have " + Task.lsSize() + " task" + (Task.lsSize() > 1 ? "s!" : "!"));
                     break;
@@ -108,9 +109,23 @@ public class Duke {
                         throw new DukeException("Oops! When is the event?");
                     }
 
-                    ls[Task.lsSize() - 1] = myTask;
+                    ls.add(myTask);
                     System.out.println("\tadded: " + myTask);
                     System.out.println("\tYou have " + Task.lsSize() + " task" + (Task.lsSize() > 1 ? "s!" : "!"));
+                    break;
+                case "delete":
+                    try {
+                        index = Integer.parseInt(str[1]) - 1;
+                    } catch (Exception e) {
+                        throw new DukeException("Oops! You did not choose which task to delete!");
+                    }
+
+                    if (index > Task.lsSize() || index < 0) {
+                        throw new DukeException("Oops! Invalid task!");
+                    }
+
+                    ls.get(index).remove();
+                    ls.remove(index);
                     break;
                 default:
                     throw new DukeException("Oops! I don't know what that means.");

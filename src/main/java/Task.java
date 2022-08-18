@@ -23,6 +23,12 @@ public class Task {
 
     public static int lsSize() { return num; }
 
+    public void remove() {
+        System.out.println("\tRemoving " + this + "...");
+        num--;
+        System.out.println("\tYou have " + num + " task" + (num > 1 ? "s!" : "!"));
+    }
+
     public String toString() {
         return "[" + this.getStatusIcon() + "] " + description;
     }
