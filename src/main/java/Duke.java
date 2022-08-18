@@ -8,7 +8,7 @@ public class Duke {
 
     private static void addTask(String taskType, String input) throws DukeException {
 
-        switch(taskType){
+        switch (taskType) {
             case "todo":
                 String[] removeTaskType = input.split("todo ");
                 String description = String.join("", removeTaskType);
@@ -43,11 +43,11 @@ public class Duke {
                 System.out.println("  " + event);
                 break;
 
-            }
+        }
 
-            // edge case of 1 task
-            String numTask = String.format("Now you have %s tasks in the list.", list.size());
-            System.out.println(numTask);
+        // edge case of 1 task
+        String numTask = String.format("Now you have %s tasks in the list.", list.size());
+        System.out.println(numTask);
 
     }
 
@@ -69,9 +69,9 @@ public class Duke {
         task.unmark();
     }
 
-    private static void deleteTask(int num){
+    private static void deleteTask(int num) {
         System.out.println("Noted. I've removed this task:");
-        System.out.println(list.get(num - 1));
+        System.out.println("  " + list.get(num - 1));
         list.remove(num - 1);
         String numTask = String.format("Now you have %s tasks in the list.", list.size());
         System.out.println(numTask);
@@ -83,7 +83,7 @@ public class Duke {
         }
     }
 
-    public static void main(String[] args) throws DukeException{
+    public static void main(String[] args) throws DukeException {
         String intro = "Hello! I'm Duke\nWhat can I do for you?";
         System.out.println("____________________________________________________");
         System.out.println(intro);
@@ -92,54 +92,58 @@ public class Duke {
         Scanner scanner = new Scanner(System.in);
 
 
-        while (!scanner.hasNext("bye")) {
-            String input = scanner.nextLine();
-            String[] inputArr = input.split(" ");
-            System.out.println("____________________________________________________");
-            if (inputArr[0].equals("list")) {
-                printList();
-            } else if (inputArr[0].equals("mark")) {
-                int taskNum = Integer.parseInt(inputArr[1]);
-                try {
-                    markTask(taskNum);
-                } catch (IndexOutOfBoundsException e) {
-                    System.out.println("Task does not exist!");
-                }
-                String output = String.format("Nice! I've marked this task as done:\n%s", list.get(taskNum - 1));
-                System.out.println(output);
-            } else if (inputArr[0].equals("unmark")) {
-                int taskNum = Integer.parseInt(inputArr[1]);
-                try {
-                    unmarkTask(taskNum);
-                } catch (IndexOutOfBoundsException e) {
-                    System.out.println("Task does not exist!");
-                }
-                String output = String.format("OK, I've marked this task as not done yet:\n%s", list.get(taskNum - 1));
-                System.out.println(output);
-            } else if (inputArr[0].equals("delete")) {
-                int taskNum = Integer.parseInt(inputArr[1]);
-                deleteTask(taskNum);
-            } else if (inputArr[0].equals("todo") || inputArr[0].equals("deadline") || inputArr[0].equals("event")){
-                try {
-                    addTask(inputArr[0], input);
-                } catch (IndexOutOfBoundsException | DukeException e) {
-                    String output = String.format("Oops!! The description of a %s cannot be empty", inputArr[0]);
+        try {
+            while (scanner.hasNextLine()) {
+                String input = scanner.nextLine();
+                String[] inputArr = input.split(" ");
+                System.out.println("____________________________________________________");
+                if (inputArr[0].equals("list")) {
+                    printList();
+                } else if (inputArr[0].equals("mark")) {
+                    int taskNum = Integer.parseInt(inputArr[1]);
+                    try {
+                        markTask(taskNum);
+                    } catch (IndexOutOfBoundsException e) {
+                        System.out.println("Task does not exist!");
+                    }
+                    String output = String.format("Nice! I've marked this task as done:\n%s", list.get(taskNum - 1));
                     System.out.println(output);
-                }
-            } else {
-                try {
-                    validate(input, inputArr[0]);
-                } catch (DukeException e) {
-                    System.out.println("Oh no!! I'm sorry, but I don't know what that means :(");
+                } else if (inputArr[0].equals("unmark")) {
+                    int taskNum = Integer.parseInt(inputArr[1]);
+                    try {
+                        unmarkTask(taskNum);
+                    } catch (IndexOutOfBoundsException e) {
+                        System.out.println("Task does not exist!");
+                    }
+                    String output = String.format("OK, I've marked this task as not done yet:\n%s", list.get(taskNum - 1));
+                    System.out.println(output);
+                } else if (inputArr[0].equals("delete")) {
+                    int taskNum = Integer.parseInt(inputArr[1]);
+                    deleteTask(taskNum);
+                } else if (inputArr[0].equals("todo") || inputArr[0].equals("deadline") || inputArr[0].equals("event")) {
+                    try {
+                        addTask(inputArr[0], input);
+                    } catch (IndexOutOfBoundsException | DukeException e) {
+                        String output = String.format("Oops!! The description of a %s cannot be empty", inputArr[0]);
+                        System.out.println(output);
+                    }
+                } else if (inputArr[0].equals("bye")) {
+                    System.out.println("Bye. Hope to see you again soon!");
+                    System.out.println("____________________________________________________");
+                    scanner.close();
+                } else {
+                    try {
+                        validate(input, inputArr[0]);
+                    } catch (DukeException e) {
+                        System.out.println("Oh no!! I'm sorry, but I don't know what that means :(");
+                    }
                 }
             }
-
-            System.out.println("____________________________________________________");
+        } catch (IllegalStateException e) {
+            // just catching error
         }
-
-        System.out.println("____________________________________________________");
-        System.out.println("Bye. Hope to see you again soon!");
-        System.out.println("____________________________________________________");
-        scanner.close();
     }
+
+
 }
+
