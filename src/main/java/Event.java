@@ -7,8 +7,14 @@
 public class Event extends Task {
     protected String time;
 
-    public Event(String description, String time) {
+    public Event(String description, String time) throws DukeException{
         super(description);
+        if (description.equals("")) {
+            throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.");
+        }
+        if (time.equals("")) {
+            throw new DukeException("☹ OOPS!!! The time of an event cannot be empty.");
+        }
         this.time = time;
     }
 
