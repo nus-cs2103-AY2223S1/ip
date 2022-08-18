@@ -3,6 +3,10 @@ import java.util.Scanner;
 
 public class Duke {
 
+    static int todoCount = 0;
+    static int deadlinesCount = 0;
+    static int eventsCount = 0;
+
 
     /**
      * Method to print Duke's self-introduction and to customise its personality.
@@ -77,10 +81,14 @@ public class Duke {
                 System.out.println("\n***********************************************************************\n");
 
             }
-            if(!userMsg.equals(showList)&&!userMsg.contains(markAsDone) && !userMsg.contains(markAsNotDone)){
-                ListObject newItem = new ListObject(userMsg, 0);
+            if(userMsg.contains("todo ")){
+                todoCount++;
+                String todo = userMsg.replaceAll("todo ", "");
+                ListObject newItem = new ToDo(todo, 0);
                 listOfItems.add(newItem);
-                System.out.println("added: " + newItem.getTask() + "\n***********************************************************************\n");
+                System.out.println("'Tis a new sky for you to scale! Here! \n" + newItem.toString()
+                        + "\nYou now have " + todoCount + " tasks to do!"
+                        + "\n***********************************************************************\n");
             }
         }
     }

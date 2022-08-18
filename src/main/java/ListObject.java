@@ -1,11 +1,11 @@
 /**
- * Class to store list items with taks and status of completion
+ * Class to store list items with task and status of completion
  */
 public class ListObject{
     private String task;
     private int status;
 
-    ListObject(String task, int status){
+    public ListObject(String task, int status){
         this.task = task;
         this.status = status;
     }
