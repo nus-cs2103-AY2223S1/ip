@@ -31,6 +31,26 @@ public class Duke {
                 taskList.get(ind).mark();
                 System.out.println("Nice! I've marked this task as done:\n" + "  " + taskList.get(ind).toString());
             }
+            else if (userIn.contains("todo")) {
+                String[] des = userIn.split(" ", 2);
+                Task toAdd = new Todos(des[1]);
+                taskList.add(toAdd);
+                addStatement(toAdd.toString(), taskList.size());
+            }
+            else if (userIn.contains("deadline")) {
+                String[] overall = userIn.split(" ", 2);
+                String[] descriptdate = overall[1].split("/by", 2);
+                Task toAdd = new Deadlines(descriptdate[0], descriptdate[1]);
+                taskList.add(toAdd);
+                addStatement(toAdd.toString(), taskList.size());
+            }
+            else if (userIn.contains("event")) {
+                String[] overall = userIn.split(" ", 2);
+                String[] descriptdate = overall[1].split("/at", 2);
+                Task toAdd = new Events(descriptdate[0], descriptdate[1]);
+                taskList.add(toAdd);
+                addStatement(toAdd.toString(), taskList.size());
+            }
             else {
                 taskList.add(new Task(userIn));
                 System.out.println("added: " + userIn);  // Output user input
@@ -50,5 +70,9 @@ public class Duke {
         System.out.println(" /\\_/\\");
         System.out.println("/ o o \\");
         System.out.println("/    ^\\");
+    }
+
+    public static void addStatement(String res, int len) {
+        System.out.println("Got it. I've added this task:\n" + "  " + res + "\nNow you have " + len + " tasks in the list.");
     }
 }
