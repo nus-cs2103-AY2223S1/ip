@@ -21,11 +21,9 @@ public class Task {
         this.isDone = false;
     }
 
-    public static int lsSize() {
-        return num;
-    }
+    public static int lsSize() { return num; }
 
-    public String myTask() {
+    public String toString() {
         return "[" + this.getStatusIcon() + "] " + description;
     }
 }
