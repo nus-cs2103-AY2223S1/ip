@@ -11,4 +11,5 @@ delete 5
 delete 3
 delete 2
 delete x
+list
 bye
