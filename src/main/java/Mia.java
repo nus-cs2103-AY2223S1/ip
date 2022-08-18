@@ -30,18 +30,24 @@ public class Mia {
                 System.out.print("Enter a command: ");
                 continue;
             } else if (line.startsWith("mark ")) {
-                if (tasksManager.checkTask(Integer.parseInt(line.substring(5)))) {
+                final int number = Integer.parseInt(line.substring(5));
+                if (tasksManager.checkTask(number)) {
                     printResponse(new Span("Task has been marked as done!"), windowWidth);
                 } else {
-                    printResponse(new Span("Task is already done!"), windowWidth);
+                    printResponse(new Span(String.format(
+                            "Task not modified! Either the task is already done, or you specified an invalid task number %d.",
+                            number)), windowWidth);
                 }
                 System.out.print("Enter a command: ");
                 continue;
             } else if (line.startsWith("unmark ")) {
-                if (tasksManager.uncheckTask(Integer.parseInt(line.substring(7)))) {
+                final int number = Integer.parseInt(line.substring(7));
+                if (tasksManager.uncheckTask(number)) {
                     printResponse(new Span("Task has been marked as not done!"), windowWidth);
                 } else {
-                    printResponse(new Span("Task is still not done!"), windowWidth);
+                    printResponse(new Span(String.format(
+                            "Task not modified! Either the task is still not done, or you specified an invalid task number %d.",
+                            number)), windowWidth);
                 }
                 System.out.print("Enter a command: ");
                 continue;
@@ -52,19 +58,26 @@ public class Mia {
                 continue;
             } else if (line.startsWith("deadline ")) {
                 final String[] data = line.substring(9).split("/by", 2);
-                final Task deadline = new Deadline(data[0], data[1]);
-                tasksManager.addTask(deadline);
-                printResponse(new Span(String.format("Added \"%s\" (task with deadline) to tasks list!", deadline.getTitle())), windowWidth);
+                if (data.length == 2) {
+                    final Task deadline = new Deadline(data[0], data[1]);
+                    tasksManager.addTask(deadline);
+                    printResponse(new Span(String.format("Added \"%s\" (task with deadline) to tasks list!", deadline.getTitle())), windowWidth);
+                } else {
+                    printResponse(new Span("Incorrect format of deadline command!"), windowWidth);
+                }
                 continue;
             } else if (line.startsWith("event ")) {
                 final String[] data = line.substring(6).split("/at", 2);
-                final Task event = new Event(data[0], data[1]);
-                tasksManager.addTask(event);
-                printResponse(new Span(String.format("Added new event \"%s\" to tasks list!", event.getTitle())), windowWidth);
+                if (data.length == 2) {
+                    final Task event = new Event(data[0], data[1]);
+                    tasksManager.addTask(event);
+                    printResponse(new Span(String.format("Added new event \"%s\" to tasks list!", event.getTitle())), windowWidth);
+                } else {
+                    printResponse(new Span("Incorrect format of event command!"), windowWidth);
+                }
                 continue;
             }
-            // Echo command
-            printResponse(new Span(line), windowWidth);
+            printResponse(new Span("Sorry boss, I don't know what you are trying to say 😟"), windowWidth);
             System.out.print("Enter a command: ");
         }
         sc.close();

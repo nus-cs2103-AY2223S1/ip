@@ -22,6 +22,9 @@ public class TaskManager {
      * @return true if the task is modified, false otherwise
      */
     public boolean checkTask(int number) {
+        if (number > tasks.size()) {
+            return false;
+        }
         return tasks.get(number - 1).setCompleted(true);
     }
 
@@ -31,6 +34,9 @@ public class TaskManager {
      * @return true if the task is modified, false otherwise
      */
     public boolean uncheckTask(int number) {
+        if (number > tasks.size()) {
+            return false;
+        }
         return tasks.get(number - 1).setCompleted(false);
     }
 
