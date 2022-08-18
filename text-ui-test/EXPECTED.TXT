@@ -1,7 +1,74 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+__________________________________________________
+Hola Amigo! My name is
+ _           _
+| |    _   _| | _____
+| |   | | | | |/ / _ \
+| |___| |_| |   <  __/
+|_____|\__,_|_|\_\___|
 
+How may I assist you today?
+__________________________________________________
+__________________________________________________
+Got it. I have added this task:
+  [T][ ] read a book
+Now you have 1 task in the list.
+__________________________________________________
+__________________________________________________
+Got it. I have added this task:
+  [D][ ] finish homework (by: Wednesday)
+Now you have 2 tasks in the list.
+__________________________________________________
+__________________________________________________
+Got it. I have added this task:
+  [E][ ] attend IU concert (at: Sunday 2-4pm)
+Now you have 3 tasks in the list.
+__________________________________________________
+__________________________________________________
+Here are the tasks in your to-do list:
+1. [T][ ] read a book
+2. [D][ ] finish homework (by: Wednesday)
+3. [E][ ] attend IU concert (at: Sunday 2-4pm)
+__________________________________________________
+__________________________________________________
+Good Job! I have marked this task as done:
+  [T][X] read a book
+__________________________________________________
+__________________________________________________
+Here are the tasks in your to-do list:
+1. [T][X] read a book
+2. [D][ ] finish homework (by: Wednesday)
+3. [E][ ] attend IU concert (at: Sunday 2-4pm)
+__________________________________________________
+__________________________________________________
+Good Job! I have marked this task as done:
+  [D][X] finish homework (by: Wednesday)
+__________________________________________________
+__________________________________________________
+Here are the tasks in your to-do list:
+1. [T][X] read a book
+2. [D][X] finish homework (by: Wednesday)
+3. [E][ ] attend IU concert (at: Sunday 2-4pm)
+__________________________________________________
+__________________________________________________
+Good Job! I have marked this task as done:
+  [E][X] attend IU concert (at: Sunday 2-4pm)
+__________________________________________________
+__________________________________________________
+Here are the tasks in your to-do list:
+1. [T][X] read a book
+2. [D][X] finish homework (by: Wednesday)
+3. [E][X] attend IU concert (at: Sunday 2-4pm)
+__________________________________________________
+__________________________________________________
+Alright! I have marked this task as not done yet:
+  [T][ ] read a book
+__________________________________________________
+__________________________________________________
+Here are the tasks in your to-do list:
+1. [T][ ] read a book
+2. [D][X] finish homework (by: Wednesday)
+3. [E][X] attend IU concert (at: Sunday 2-4pm)
+__________________________________________________
+__________________________________________________
+Adios Amigo! See you soon!
+__________________________________________________
