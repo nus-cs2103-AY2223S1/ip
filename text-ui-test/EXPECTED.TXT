@@ -4,28 +4,38 @@
 ||            What can I do for you?            ||
 ||                                              ||
 ##################################################
+> There is no tasks here. Feel free to add some tasks.
+> Error: There is no tasks here. Feel free to add a task.
+> Error: There is no tasks here. Feel free to add a task.
 > Got it. I've added this task:
 [T][ ] borrow book
 Now you have 1 tasks in the list.
+> > 1.[T][X] borrow book
+> > 1.[T][ ] borrow book
+> Error: Error: The number of task to be marked must be less than or equal to 1.
+> Error: The description of todo must not be empty.
 > Got it. I've added this task:
 [D][ ] return book (by: Sunday)
 Now you have 2 tasks in the list.
+> > 1.[T][ ] borrow book
+2.[D][X] return book (by: Sunday)
+> > 1.[T][ ] borrow book
+2.[D][ ] return book (by: Sunday)
+> Error: Error: The number of task to be marked must be less than or equal to 2.
+> Error: The description of deadline must not be empty.
+> Error: The deadline (use /by) of task must be set. If you wish to create a task without deadline, try using todo command.
 > Got it. I've added this task:
 [E][ ] project meeting (at: Mon 2-4pm)
 Now you have 3 tasks in the list.
 > > 1.[T][ ] borrow book
-2.[D][X] return book (by: Sunday)
-3.[E][ ] project meeting (at: Mon 2-4pm)
-> > > 1.[T][ ] borrow book
-2.[D][X] return book (by: Sunday)
-3.[E][X] project meeting (at: Mon 2-4pm)
-> > 1.[T][X] borrow book
-2.[D][X] return book (by: Sunday)
-3.[E][X] project meeting (at: Mon 2-4pm)
-> > 1.[T][X] borrow book
 2.[D][ ] return book (by: Sunday)
 3.[E][X] project meeting (at: Mon 2-4pm)
-> Got it. I've added this task:
-[E][ ] project meeting (at: Mon 2-4pm)
-Now you have 4 tasks in the list.
+> Error: The number of task to be unmarked must be less than or equal to 3.
+> > 1.[T][ ] borrow book
+2.[D][ ] return book (by: Sunday)
+3.[E][ ] project meeting (at: Mon 2-4pm)
+> Error: The description of event must not be empty.
+> Error: The datetime (use /at) of event must be set. If you wish to create a task without date or time, try using todo command.
+> Error: The number of task to be marked must be greater than 0.
+> Error: The number of task to be marked must be greater than 0.
 > Bye. Hope to see you again!
