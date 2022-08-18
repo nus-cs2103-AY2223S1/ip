@@ -24,7 +24,7 @@ public class Pony {
                 System.out.println("Here are the tasks in your list:");
                 for (int i = 0; i < this.tasks.size(); i++) {
                     int sn = i + 1;
-                    System.out.println(sn + ". " + this.tasks.get(i).viewTask());
+                    System.out.println(sn + ". " + this.tasks.get(i).toString());
                 }
                 run();
             }
@@ -35,7 +35,7 @@ public class Pony {
             Task target = this.tasks.get(taskIndex - 1);
             target.markAsDone();
             System.out.println("Nice! I've marked this task as done:");
-            System.out.println(target.viewTask());
+            System.out.println(target.toString());
             run();
         } else if (command.equals("unmark")) {
             System.out.println("Which task are you not done with?");
@@ -44,14 +44,40 @@ public class Pony {
             Task target = this.tasks.get(taskIndex - 1);
             target.markAsNotDone();
             System.out.println("OK, I've marked this task as not done yet: ");
-            System.out.println(target.viewTask());
+            System.out.println(target.toString());
             run();
         } else if (command.equals("bye")) {
             System.out.println(this.exit);
-        } else {
-            Task newTask = new Task(command);
+        } else if (command.equals("todo")){
+            System.out.println("What's the new Todo?");
+            String description = sc.nextLine();
+            Task newTask = new ToDo(description);
             this.tasks.add(newTask);
-            System.out.println("added: " + newTask.description);
+            System.out.println("Got it. I've added this task: " + newTask.toString());
+            System.out.println("Now you have " + this.tasks.size() + " tasks in the list.");
+            run();
+        } else if (command.equals("deadline")){
+            System.out.println("What's the new task?");
+            String description = sc.nextLine();
+            System.out.println("When is it due?");
+            String time = sc.nextLine();
+            Task newTask = new Deadline(description, time);
+            this.tasks.add(newTask);
+            System.out.println("Got it. I've added this task: " + newTask.toString());
+            System.out.println("Now you have " + this.tasks.size() + " tasks in the list.");
+            run();
+        } else if (command.equals("event")){
+            System.out.println("What's the new event?");
+            String description = sc.nextLine();
+            System.out.println("When is it?");
+            String time = sc.nextLine();
+            Task newTask = new Event(description, time);
+            this.tasks.add(newTask);
+            System.out.println("Got it. I've added this task: " + newTask.toString());
+            System.out.println("Now you have " + this.tasks.size() + " tasks in the list.");
+            run();
+        } else {
+            System.out.println("error");
             run();
         }
     }
