@@ -17,14 +17,16 @@ public class Task {
 
     @Override
     public String toString() {
-        return this.description;
+        return "[" + getStatusIcon() + "] " + this.description;
     }
 
-    public String getStatusIcon() {
+    private String getStatusIcon() {
         return (this.isDone ? "X" : " "); // mark done task with X
     }
 
     public boolean taskDone() {
         return this.isDone;
     }
+
 }
+
