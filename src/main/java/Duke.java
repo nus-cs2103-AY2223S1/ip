@@ -28,26 +28,45 @@ public class Duke {
      * @param index Current index pointer of last element in array
      */
     private static void checkTask(String input, Task[] list, int[] index) {
-        String[] substrings = input.split(" ", 2);
-        String command = substrings[0];
+        String[] cmdAndDesc = input.split(" ", 2);
+        String command = cmdAndDesc[0];
 
         switch (command) {
             case "mark":
-                int indexToMark = Integer.parseInt(substrings[1]) - 1;
+                int indexToMark = Integer.parseInt(cmdAndDesc[1]) - 1;
                 list[indexToMark].markAsDone();
                 System.out.println("Nice! I've marked this task as done:\n" +
                         String.format("%s", list[indexToMark]));
                 break;
             case "unmark":
-                int indexToUnmark = Integer.parseInt(substrings[1]) - 1;
+                int indexToUnmark = Integer.parseInt(cmdAndDesc[1]) - 1;
                 list[indexToUnmark].markAsUndone();
                 System.out.println("Ok! I've marked this task as not done yet:\n" +
                         String.format("%s", list[indexToUnmark]));
                 break;
-            default:
-                System.out.println("added: " + input);
-                list[index[0]] = new Task(input);
+            case "deadline" :
+                String[] descAndDue = cmdAndDesc[1].split("/by ");
+                taskAddition();
+                list[index[0]] = new Deadline(descAndDue[0], descAndDue[1]);
+                System.out.println(String.format("\t%s", list[index[0]]));
                 index[0]++;
+                listStatus(index[0]);
+                break;
+            case "event" :
+                String[] descAndDuration = cmdAndDesc[1].split("/at ");
+                taskAddition();
+                list[index[0]] = new Event(descAndDuration[0], descAndDuration[1]);
+                System.out.println(String.format("\t%s", list[index[0]]));
+                index[0]++;
+                listStatus(index[0]);
+                break;
+            case "todo" :
+                taskAddition();
+                list[index[0]] = new ToDo(cmdAndDesc[1]);
+                System.out.println(String.format("\t%s", list[index[0]]));
+                index[0]++;
+                listStatus(index[0]);
+            default:
         }
     }
 
@@ -57,8 +76,18 @@ public class Duke {
      * @param count Total number of tasks
      */
     private static void taskDisplay(Task[] list, int count) {
+        System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < count; i++) {
             System.out.println(String.format("%d. %s", i + 1, list[i]));
         }
+    }
+
+    private static void taskAddition() {
+        System.out.println("Got it. I've added this task:");
+    }
+
+    private static void listStatus(int count) {
+        System.out.println(String.format("Now you have %d tasks in the list.",
+                count));
     }
 }
