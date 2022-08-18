@@ -1,31 +1,6 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
-class Task {
-    private String task;
-    private int done = 0;
-
-    public Task(String task) {
-        this.task = task;
-    }
-
-    public void doTask() {
-        this.done = 1;
-    }
-
-    public void undoTask() {
-        this.done = 0;
-    }
-
-    public int getStat() {
-        return done;
-    }
-
-    public String getTask() {
-        return task;
-    }
-}
-
 public class Duke {
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -47,8 +22,7 @@ public class Duke {
             System.out.println("    ____________________________________________________________");
             if (input.equals("list")) {
                 for (int i = 0; i < store.size(); i++) {
-                    String status = store.get(i).getStat() == 0 ? "[ ]" : "[X]";
-                    System.out.println("     " + (i + 1) + "." +  status + " " + store.get(i).getTask());
+                    System.out.println("     " + (i + 1) + ".[" +  store.get(i).getStatusIcon() + "] " + store.get(i).getTask());
                 }
                 System.out.println("    ____________________________________________________________\n");
                 input = sc.next();
