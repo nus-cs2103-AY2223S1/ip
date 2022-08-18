@@ -28,15 +28,43 @@ public class UwuChat {
     }
 
     public void addTask(String userCmd) {
-        userToDoArray.add(new Task(userCmd));
+        Task task = null;
 
-        String addToList = "\n\too new task! ^^" +
-                            "\n\t\tadded:\t" + userCmd;
-        chatify(addToList);
+        if (userCmd.startsWith("todo")) {
+            task = new ToDos(userCmd);
+            userToDoArray.add(task);
+        }
+
+        if (userCmd.startsWith("deadline")) {
+            int deadlineStart = userCmd.indexOf("/by");
+            int userCmdLen = userCmd.length();
+            String description = userCmd.substring(8, deadlineStart);
+            String by = userCmd.substring(deadlineStart + 3, userCmdLen);
+
+            task = new Deadline(description, by);
+            userToDoArray.add(task);
+        }
+
+        if (userCmd.startsWith("event")) {
+            int eventStart = userCmd.indexOf("/at");
+            int userCmdLen = userCmd.length();
+            String description = userCmd.substring(8, eventStart);
+            String at = userCmd.substring(eventStart + 3, userCmdLen);
+
+            task = new Event(description, at);
+            userToDoArray.add(task);
+        }
+
+        if (task != null) {
+            String addToList = "\n\too new task! ^^" +
+                    "\n\t\tadded:\t" + task.toString() +
+                    "\n\tyou have " + String.valueOf(userToDoArray.size()) + " tasks <:" +
+                    "\n\tがんばってね！";
+            chatify(addToList);
+        }
     }
-
     public void listTasks() {
-        chatify(listify());
+        chatify("\n\there are your tasks~ you've got this!" + listify());
     }
 
     private String listify() {

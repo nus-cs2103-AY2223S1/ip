@@ -1,9 +1,12 @@
 public class Task {
+    protected String taskType;
     protected String description;
     protected boolean isDone;
 
-    public Task(String description) {
-        this.description = description;
+    public Task(String task) {
+        String[] temp = task.split(" ", 2);
+        this.taskType = temp[0];
+        this.description = temp[1];
         this.isDone = false;
     }
 

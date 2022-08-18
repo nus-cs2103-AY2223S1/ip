@@ -21,8 +21,12 @@ public class UwuBot {
                 chat.listTasks();
             } else if (userCommand.startsWith("mark") || userCommand.startsWith("unmark")) {
                 chat.markTasks(userCommand);
-            } else {
+            } else if (userCommand.startsWith("todo") ||
+                       userCommand.startsWith("deadline") ||
+                       userCommand.startsWith("event")){
                 chat.addTask(userCommand);
+            } else {
+                //do nothing
             }
         }
     }
