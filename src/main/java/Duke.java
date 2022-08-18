@@ -68,9 +68,29 @@ public class Duke {
                 System.out.println(
                         HORIZONTAL_LINE + "\n  Got it. I've added this task:\n  " + deadline + "\n  Now you have "
                                 + String.valueOf(storedTasks.size()) + " tasks in the list.\n" + HORIZONTAL_LINE);
-            } else {
-                System.out.println(HORIZONTAL_LINE + "\n  added: " + command + "\n" + HORIZONTAL_LINE);
-                storedTasks.add(new Task(command));
+            } else if (command.split(" ").length > 3 && command.split(" ")[0].equals("event")) {
+                ArrayList<String> commandDelimited = new ArrayList<String>(Arrays.asList(command.split(" ")));
+                int posOfAt = commandDelimited.indexOf("/at");
+                String description = "";
+                String specificTime = "";
+                for (int i = 1; i < commandDelimited.size(); i++) {
+                    if (i < posOfAt) {
+                        description += commandDelimited.get(i);
+                        if (i != posOfAt - 1) {
+                            description += " ";
+                        }
+                    } else if (i > posOfAt) {
+                        specificTime += commandDelimited.get(i);
+                        if (i != commandDelimited.size() - 1) {
+                            specificTime += " ";
+                        }
+                    }
+                }
+                Task event = new Events(description, specificTime);
+                storedTasks.add(event);
+                System.out.println(
+                        HORIZONTAL_LINE + "\n  Got it. I've added this task:\n  " + event + "\n  Now you have "
+                                + String.valueOf(storedTasks.size()) + " tasks in the list.\n" + HORIZONTAL_LINE);
             }
         }
     }
