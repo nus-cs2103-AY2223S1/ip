@@ -10,7 +10,6 @@ Hello from
 	Hello I'm Duke, what can I do for you?
 --------------------------------------
 
-DEBUG: todo read book
 ------------------------------
 
 	Got it. I've added this task: 
@@ -18,7 +17,6 @@ DEBUG: todo read book
 	Now you have 1 task(s) in the list.
 ------------------------------
 
-DEBUG: deadline return book /by 6th June
 ------------------------------
 
 	Got it. I've added this task: 
@@ -26,7 +24,6 @@ DEBUG: deadline return book /by 6th June
 	Now you have 2 task(s) in the list.
 ------------------------------
 
-DEBUG: event project meeting /at Aug 6th 2-4pm
 ------------------------------
 
 	Got it. I've added this task: 
@@ -34,7 +31,6 @@ DEBUG: event project meeting /at Aug 6th 2-4pm
 	Now you have 3 task(s) in the list.
 ------------------------------
 
-DEBUG: todo join sports club
 ------------------------------
 
 	Got it. I've added this task: 
@@ -42,7 +38,6 @@ DEBUG: todo join sports club
 	Now you have 4 task(s) in the list.
 ------------------------------
 
-DEBUG: todo borrow book
 ------------------------------
 
 	Got it. I've added this task: 
@@ -50,7 +45,6 @@ DEBUG: todo borrow book
 	Now you have 5 task(s) in the list.
 ------------------------------
 
-DEBUG: list
 -------------------------------
 
 	Here are the tasks in your list: 
@@ -61,28 +55,24 @@ DEBUG: list
 		5. [T][ ] borrow book
 -------------------------------
 
-DEBUG: mark 1
 -------------------------------
 
 	Nice! I have marked this task as done: 
 		[T][X] read book
 -------------------------------
 
-DEBUG: mark 2
 -------------------------------
 
 	Nice! I have marked this task as done: 
 		[D][X] return book (by: 6th June)
 -------------------------------
 
-DEBUG: mark 4
 -------------------------------
 
 	Nice! I have marked this task as done: 
 		[T][X] join sports club
 -------------------------------
 
-DEBUG: list
 -------------------------------
 
 	Here are the tasks in your list: 
@@ -93,7 +83,6 @@ DEBUG: list
 		5. [T][ ] borrow book
 -------------------------------
 
-DEBUG: delete 3
 ------------------------------
 
 	Noted. I've removed this task:
@@ -101,7 +90,6 @@ DEBUG: delete 3
 	Now you have 4 task(s) in the list.
 ------------------------------
 
-DEBUG: list
 -------------------------------
 
 	Here are the tasks in your list: 
@@ -111,7 +99,6 @@ DEBUG: list
 		4. [T][ ] borrow book
 -------------------------------
 
-DEBUG: todo project
 ------------------------------
 
 	Got it. I've added this task: 
@@ -119,32 +106,8 @@ DEBUG: todo project
 	Now you have 5 task(s) in the list.
 ------------------------------
 
-DEBUG: list
--------------------------------
+------------------------------
 
-	Here are the tasks in your list: 
-		1. [T][X] read book
-		2. [D][X] return book (by: 6th June)
-		3. [T][X] join sports club
-		4. [T][ ] borrow book
-		5. [T][ ] project
--------------------------------
-
-DEBUG: bye\x0D
---------------------------------------
-
-☹ OOPS!!! I'm sorry, but I don't know what that means :-(
---------------------------------------
-
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
---------------------------------------
-
-	Hello I'm Duke, what can I do for you?
---------------------------------------
+	Bye. Hope to see you soon again!
+------------------------------
 

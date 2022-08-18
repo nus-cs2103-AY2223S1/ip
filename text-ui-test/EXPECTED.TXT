@@ -5,3 +5,108 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
+--------------------------------------
+
+	Hello I'm Duke, what can I do for you?
+--------------------------------------
+
+------------------------------
+
+	Got it. I've added this task: 
+		[T][ ] read book
+	Now you have 1 task(s) in the list.
+------------------------------
+
+------------------------------
+
+	Got it. I've added this task: 
+		[D][ ] return book (by: 6th June)
+	Now you have 2 task(s) in the list.
+------------------------------
+
+------------------------------
+
+	Got it. I've added this task: 
+		[E][ ] project meeting (at: Aug 6th 2-4pm)
+	Now you have 3 task(s) in the list.
+------------------------------
+
+------------------------------
+
+	Got it. I've added this task: 
+		[T][ ] join sports club
+	Now you have 4 task(s) in the list.
+------------------------------
+
+------------------------------
+
+	Got it. I've added this task: 
+		[T][ ] borrow book
+	Now you have 5 task(s) in the list.
+------------------------------
+
+-------------------------------
+
+	Here are the tasks in your list: 
+		1. [T][ ] read book
+		2. [D][ ] return book (by: 6th June)
+		3. [E][ ] project meeting (at: Aug 6th 2-4pm)
+		4. [T][ ] join sports club
+		5. [T][ ] borrow book
+-------------------------------
+
+-------------------------------
+
+	Nice! I have marked this task as done: 
+		[T][X] read book
+-------------------------------
+
+-------------------------------
+
+	Nice! I have marked this task as done: 
+		[D][X] return book (by: 6th June)
+-------------------------------
+
+-------------------------------
+
+	Nice! I have marked this task as done: 
+		[T][X] join sports club
+-------------------------------
+
+-------------------------------
+
+	Here are the tasks in your list: 
+		1. [T][X] read book
+		2. [D][X] return book (by: 6th June)
+		3. [E][ ] project meeting (at: Aug 6th 2-4pm)
+		4. [T][X] join sports club
+		5. [T][ ] borrow book
+-------------------------------
+
+------------------------------
+
+	Noted. I've removed this task:
+		[E][ ] project meeting (at: Aug 6th 2-4pm)
+	Now you have 4 task(s) in the list.
+------------------------------
+
+-------------------------------
+
+	Here are the tasks in your list: 
+		1. [T][X] read book
+		2. [D][X] return book (by: 6th June)
+		3. [T][X] join sports club
+		4. [T][ ] borrow book
+-------------------------------
+
+------------------------------
+
+	Got it. I've added this task: 
+		[T][ ] project
+	Now you have 5 task(s) in the list.
+------------------------------
+
+------------------------------
+
+	Bye. Hope to see you soon again!
+------------------------------

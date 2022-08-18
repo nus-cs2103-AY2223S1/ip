@@ -11,5 +11,4 @@ list
 delete 3
 list
 todo project
-list
-bye\
+bye
