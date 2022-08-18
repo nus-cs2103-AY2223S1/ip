@@ -11,6 +11,14 @@ public class TaskList extends ArrayList<Task> {
         return null;
     }
 
+    @Override
+    public Task remove(int entry) {
+        if (this.inRange(entry)) {
+            return super.remove(entry - 1);
+        }
+        return null;
+    }
+
     public boolean inRange(int entry) {
         return entry > 0 && entry <= this.size();
     }

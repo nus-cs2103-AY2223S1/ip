@@ -1,5 +1,5 @@
 public enum Case {
     BYE, LIST,
-    MARK, UNMARK,
+    MARK, UNMARK, DELETE,
     TODO, DEADLINE, EVENT
 }

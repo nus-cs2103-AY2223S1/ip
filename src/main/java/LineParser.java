@@ -17,8 +17,16 @@ public class LineParser {
             ArrayList<String> parsed = new ArrayList<>();
 
             String firstWord = sc.next();
-            if ((firstWord.equals("mark") || firstWord.equals("unmark")) && sc.hasNextInt()) {
-                Case cs = firstWord.equals("mark") ? Case.MARK : Case.UNMARK;
+            if ((firstWord.equals("mark") || firstWord.equals("unmark") || firstWord.equals("delete"))
+                    && sc.hasNextInt()) {
+                Case cs;
+                if (firstWord.equals("mark")) {
+                    cs = Case.MARK;
+                } else if (firstWord.equals("unmark")) {
+                    cs = Case.UNMARK;
+                } else {
+                    cs = Case.DELETE;
+                }
                 parsed.add(sc.next());
                 if (!sc.hasNext()) {
                     return Pair.of(cs, parsed);

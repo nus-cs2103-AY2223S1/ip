@@ -9,4 +9,9 @@ deadline
 event invalid input
 event
 list
+delete 1
+delete 2
+delete 3
+list
+delete 1
 bye

@@ -53,6 +53,18 @@ public class ChatBot {
                           + "\t" + "Now you have " + this.taskList.size() + " tasks in the list." + "\n");
     }
 
+    private void handleDeleteTask(ArrayList<String> parsedLine) throws InvalidInputException {
+        int entry = Integer.parseInt(parsedLine.get(0));
+        if (this.taskList.inRange(entry)) {
+            Task removed = this.taskList.remove(entry);
+            this.displayMessage("\t" + "Noted. I've removed this task:" + "\n\t\t"
+                              + "\t" + removed + "\n"
+                              + "\t" + "Now you have " + this.taskList.size() + " tasks left in the list." + "\n");
+        } else {
+            throw new InvalidInputException();
+        }
+    }
+
     private void handleList() {
         this.displayMessage("\t" + "Here are the tasks in your list:" + "\n" + this.taskList);
     }
@@ -107,6 +119,9 @@ public class ChatBot {
                         break;
                     case UNMARK:
                         this.handleUnmark(parsedLine);
+                        break;
+                    case DELETE:
+                        this.handleDeleteTask(parsedLine);
                         break;
                     case TODO: case DEADLINE: case EVENT:
                         this.handleAddTask(cs, parsedLine);
