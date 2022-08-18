@@ -1,3 +1,2 @@
-todo return book
-deadline return book /by Sunday
+todo running
 bye
