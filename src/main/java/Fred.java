@@ -23,16 +23,12 @@ public class Fred {
             if (input.equals("bye")) {
                 System.out.println("Fred: Bye. Hope to see you again soon!");
                 break;
-            }
-
-            switch (input) {
-                case "list":
-                    Fred.list(storage);
-                    break;
-                default:
-                    Task newTask = new Task(input);
-                    storage.add(newTask);
-                    System.out.println("Fred: added \"" + input + "\"");
+            } else if (input.equals("list")) {
+                Fred.list(storage);
+            } else {
+                Task newTask = new Task(input);
+                storage.add(newTask);
+                System.out.println("Fred: added \"" + input + "\"");
             }
         }
 
