@@ -1,9 +1,10 @@
 import java.util.Scanner;
 
 public class Duke {
-    private static final String HORIZONTAL_LINE = "  _______________________";
 
     public static void main(String[] args) {
+        final String HORIZONTAL_LINE = "  ____________________________________________________________";
+
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
