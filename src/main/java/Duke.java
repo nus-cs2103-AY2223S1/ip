@@ -8,6 +8,7 @@ public class Duke {
     private static final String markText = "Nice! I've marked this task as done: \n";
     private static final String unmarkText = "OK, I've marked this task as not done yet: \n";
     private static final String addTask = "Got it. I've added this task: \n";
+    private static final String deleteTask = "Noted. I've removed this task: \n";
 
     private static ArrayList<Task> userTasks = new ArrayList<>();
 
@@ -25,9 +26,14 @@ public class Duke {
         wrapText(content);
     }
 
-    private static void appendArray(String inputString) {
-        userTasks.add(new Task(inputString));
+    private static void wrapDelete(String content) {
+        content = deleteTask + content;
+        content += "\nNow you have " + userTasks.size() + " tasks in the list.";
+        wrapText(content);
     }
+//    private static void appendArray(String inputString) {
+//        userTasks.add(new Task(inputString));
+//    }
 
     private static void appendToDo(String inputString) {
         userTasks.add(new ToDo(inputString));
@@ -40,6 +46,13 @@ public class Duke {
     private static void appendEvent(String taskDescription, String dateTime) {
         dateTime = dateTime.replace("at ","");
         userTasks.add(new Event(taskDescription, dateTime));
+    }
+
+    private static String removeTask(String number) {
+        int index = Integer.parseInt(number) - 1;
+        Task deletedTask = userTasks.remove(index);
+        String taskMessage = deletedTask.returnDescription();
+        return taskMessage;
     }
     private static String generateList() {
         String listInString = listMessage;
@@ -106,6 +119,9 @@ public class Duke {
                     String[] eventDescription = inputString.split("/");
                     appendEvent(eventDescription[0], eventDescription[1]);
                     taskWrapper();
+                } else if (input.equals("delete")) {
+                    String taskMessage = removeTask(inputs[1]);
+                    wrapDelete(taskMessage);
                 } else {
 //                    appendArray(inputString);
 //                    wrapText("added: " + inputString);
