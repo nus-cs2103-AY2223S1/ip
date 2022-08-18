@@ -1,3 +1,5 @@
+import exceptions.KwargNotFound;
+
 import java.util.*;
 
 public class Command {
@@ -15,14 +17,6 @@ public class Command {
 
     private List<String> args = new ArrayList<>();
     private Map<String, String> kwargs = new HashMap<>();
-
-    public static class KwargNotFoundException extends Exception {
-        private String key;
-
-        KwargNotFoundException(String key) {
-            this.key = key;
-        }
-    }
 
     private Command(List<String> args, Map<String, String> kwargs) {
         this.args = args;
@@ -64,9 +58,9 @@ public class Command {
         return this.args.subList(1, this.args.size());
     }
 
-    public String getKwarg(String key) throws KwargNotFoundException {
+    public String getKwarg(String key) throws KwargNotFound {
         String value = this.kwargs.get(key);
-        if (value == null) throw new KwargNotFoundException(key);
+        if (value == null) throw new KwargNotFound(this.args.get(0), key);
         return value;
     }
 

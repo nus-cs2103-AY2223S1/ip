@@ -1,4 +1,5 @@
 import exceptions.HazellException;
+import exceptions.KwargNotFound;
 import exceptions.UnknownCommand;
 
 import java.util.Scanner;
@@ -64,25 +65,12 @@ public class Hazell {
                     reply(response);
                 } else if (command.startsWith("deadline")) {
                     String description = String.join(" ", command.getTrailingArgs());
-                    String time;
-                    try {
-                        time = command.getKwarg("by");
-                    } catch (Command.KwargNotFoundException ex) {
-                        reply("To create a deadline, please specify a \"/by\" option.");
-                        continue;
-                    }
+                    String time = command.getKwarg("by");
                     String response = taskStore.addTask(new Deadline(description, time));
                     reply(response);
                 } else if (command.startsWith("event")) {
                     String description = String.join(" ", command.getTrailingArgs());
-                    String time;
-                    try {
-                        time = command.getKwarg("at");
-                    } catch (Command.KwargNotFoundException ex) {
-                        reply("To create an event, please specify an \"/at\" option.");
-                        continue;
-                    }
-
+                    String time = command.getKwarg("at");
                     String response = taskStore.addTask(new Event(description, time));
                     reply(response);
                 } else {
