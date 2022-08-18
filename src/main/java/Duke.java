@@ -124,15 +124,11 @@ public class Duke {
     /**
      * Delete task at index n in userInputHistory
      * @param n index to be deleted
-     * @throws DukeException to indicate invalid index input
      */
-    private static void deleteTask(int n) throws DukeException{
-        int historyLen = userInputHistory.size();
-        if (historyLen <= n || n <= 0) {
-            throw new DukeException("Index invalid for delete");
-        }
+    private static void deleteTask(int n)   {
+        Task taskToModify = userInputHistory.get(n - 1);
         userInputHistory.remove(n - 1);
-        System.out.printf("Task removed: \n%s\n");
+        System.out.printf("Task removed: \n%s\n", taskToModify);
         System.out.printf("Total: %d\n", userInputHistory.size());
         System.out.print("______\n");
         System.out.print(">>");
@@ -227,6 +223,7 @@ public class Duke {
                     break;
                 case DELETE:
                     deleteTask(getTaskNumber(userInput));
+                    break;
                 default:
                     handleDeadline(userInput);
                     throw new DukeException("Enter a valid command (todo, event, deadline, list, mark, unmark, bye)\n>>");
