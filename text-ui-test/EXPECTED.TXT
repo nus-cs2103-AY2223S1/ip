@@ -5,3 +5,27 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
+----------------------
+Hello! I'm Duke
+What can i do for you?
+----------------------
+----------------------
+added: [T][ ] read book
+Now you have 1 tasks in the list
+----------------------
+----------------------
+added: [D][ ] return book (by: June 6th)
+Now you have 2 tasks in the list
+----------------------
+----------------------
+added: [E][ ] meeting (at: tuesday 2-4pm)
+Now you have 3 tasks in the list
+----------------------
+----------------------
+1.[T][ ] read book
+2.[D][ ] return book (by: June 6th)
+3.[E][ ] meeting (at: tuesday 2-4pm)
+----------------------
+----------------------
+Bye, hope to see you again!
+----------------------
