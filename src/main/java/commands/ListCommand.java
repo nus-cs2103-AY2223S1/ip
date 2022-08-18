@@ -1,11 +1,10 @@
 package commands;
 
 import input.Input;
-import models.task.Task;
-import models.task.TaskModel;
+import task.Task;
+import task.TaskModel;
 import output.OutputLogger;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 

@@ -1,6 +1,6 @@
 package commands;
 
-import models.task.TaskResponse;
+import task.TaskResponse;
 import output.OutputLogger;
 
 /**

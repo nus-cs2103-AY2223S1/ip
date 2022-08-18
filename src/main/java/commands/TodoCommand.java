@@ -3,9 +3,8 @@ package commands;
 import arguments.Argument;
 import arguments.DescriptionArgument;
 import input.Input;
-import models.task.Task;
-import models.task.TaskModel;
-import models.task.TaskResponse;
+import task.TaskModel;
+import task.TaskResponse;
 import output.OutputLogger;
 
 import java.util.List;

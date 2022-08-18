@@ -1,10 +1,6 @@
 package commands;
 
-import arguments.Argument;
 import input.Input;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Represents a Command that the user can input. Acts as a controller to interface with state and return a response to the user.

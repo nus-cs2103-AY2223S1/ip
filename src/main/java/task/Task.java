@@ -1,4 +1,4 @@
-package models.task;
+package task;
 
 /**
  * Data class to represent a Task and output a user-friendly String representation

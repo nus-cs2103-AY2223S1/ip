@@ -3,8 +3,8 @@ package commands;
 import arguments.Argument;
 import arguments.TaskIdArgument;
 import input.Input;
-import models.task.Task;
-import models.task.TaskModel;
+import task.Task;
+import task.TaskModel;
 import output.OutputLogger;
 
 import java.util.List;

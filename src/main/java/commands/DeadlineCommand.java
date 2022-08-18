@@ -4,8 +4,8 @@ import arguments.Argument;
 import arguments.ByArgument;
 import arguments.DescriptionArgument;
 import input.Input;
-import models.task.TaskModel;
-import models.task.TaskResponse;
+import task.TaskModel;
+import task.TaskResponse;
 import output.OutputLogger;
 
 import java.util.List;

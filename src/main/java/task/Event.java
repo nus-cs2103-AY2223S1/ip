@@ -1,4 +1,4 @@
-package models.task;
+package task;
 
 public class Event extends Task {
     String at;

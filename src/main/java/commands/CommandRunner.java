@@ -1,7 +1,7 @@
 package commands;
 
 import input.Input;
-import models.task.TaskModel;
+import task.TaskModel;
 
 import java.util.HashMap;
 import java.util.Map;
