@@ -38,4 +38,10 @@ Now you have 3 tasks in your list.
 1. [D][X] Complete Week 2 Tasks (by: Thursday 2359)
 2. [T][ ] Gym
 3. [E][ ] CS2103T Lecture  (at: Friday 1600-1800)
+--> 🙁 OOPS! Please enter a valid task number!
+--> Please Enter a valid task number!
+--> 🙁 OOPS! Please enter the description when creating new task!
+--> 🙁 OOPS! Please enter a valid deadline!
+--> 🙁 OOPS! Please enter a valid event timing!
+--> 🙁 OOPS! I'm sorry but I don't know what that means.
 --> Goodbye! See you soon!

@@ -9,4 +9,10 @@ list
 unmark 3
 unmark 2
 list
+unmark 100
+unmark task
+todo
+deadline task with no deadline
+event task with no timing
+hello
 bye
