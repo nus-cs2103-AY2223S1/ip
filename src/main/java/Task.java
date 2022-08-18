@@ -3,7 +3,7 @@ public class Task {
     protected boolean isDone;
 
     /**
-     * Constructor for Task.
+     * Constructor for Task class.
      * @param description description of task
      */
     public Task(String description) {
