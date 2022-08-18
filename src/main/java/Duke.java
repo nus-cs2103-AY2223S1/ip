@@ -10,19 +10,50 @@ public class Duke {
     private static final String WELCOMEMESSAGE = String
             .format("Hello! I'm Duke\n%s What can I do for you?", TAB);
     private static final String ENDMESSAGE = "Bye. Hope to see you again soon!";
+    private static final String MARKMESSAGE = "Nice! I've marked this task as done:";
+    private static final String UNMARKMESSAGE = "OK, I've marked this task as not done yet:";
 
     // Commands
     private static final String ENDCOMMAND = "bye";
     private static final String PRINTCOMMAND = "list";
+    private static final String MARKCOMMAND = "mark";
+    private static final String UNMARKCOMMAND = "unmark";
 
-    private static final List<String> list = new ArrayList<>();
+    // Data structures
+    private static final List<Task> list = new ArrayList<>();
+
     /**
      * Adds param str to a List.
      * @param str
      */
-    private static void store(String str) {
-        list.add(str);
-        prettyPrint(String.format("added: %s", str));
+    private static void createTask(String str) {
+        Task newTask = new Task(str);
+        list.add(newTask);
+        prettyPrint(String.format("added: %s", newTask.getDescription()));
+    }
+
+    /**
+     * Marks a task at index as done
+     */
+    private static void mark(String index) {
+        index = index.strip();
+        int i = Integer.parseInt(index);
+        i--;
+        Task task = list.get(i);
+        task.markAsDone();
+        prettyPrint(String.format("%s\n%s   %s", MARKMESSAGE, TAB, task.toString()));
+    }
+
+    /**
+     * Marks a task at index as not done
+     */
+    private static void unmark(String index) {
+        index = index.strip();
+        int i = Integer.parseInt(index);
+        i--;
+        Task task = list.get(i);
+        task.markAsUndone();
+        prettyPrint(String.format("%s\n%s   %s", MARKMESSAGE, TAB, task.toString()));
     }
 
     /**
@@ -31,38 +62,42 @@ public class Duke {
     private static void printAll() {
         List<String> printables = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
-            String item = list.get(i);
+            Task task = list.get(i);
             int index = i + 1;
-            printables.add(String.format("%d: %s", index, item));
+            printables.add(String.format("%d:%s", index, task.toString()));
         }
         prettyPrint(printables);
     }
 
+    /**
+     * Printing empty list
+     */
     private static void prettyPrint() {
         prettyPrint("");
     }
 
+    /**
+     * Printing when everything has already been formatted into a single entry
+     * @param printable
+     */
     private static void prettyPrint(String printable) {
         String out = String.format("%s\n%s %s\n%s", LINE, TAB, printable, LINE);
         System.out.println(out);
     }
 
+    /**
+     * Printing when items are still in a List.
+     * @param printables
+     */
     private static void prettyPrint(List<String> printables) {
-        if (printables.size() == 0) {
-            prettyPrint();
-            return;
-        }
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < printables.size(); i++) {
             String s = printables.get(i);
             if (i == 0) {
-                sb.append(String.format("%s\n", s));
-            }
-            else if (i == printables.size() - 1) {
-                sb.append(String.format("%s %s", TAB, s));
+                sb.append(s);
             }
             else {
-                sb.append(String.format("%s %s\n", TAB, s));
+                sb.append(String.format("\n%s %s", TAB, s));
             }
         }
         String printable = sb.toString();
@@ -72,16 +107,25 @@ public class Duke {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         prettyPrint(WELCOMEMESSAGE);
-        while (true) {
-            String input = sc.nextLine();
-            if (input.equals(ENDCOMMAND)) {
-                break;
+        boolean canNext = true;
+        while (canNext) {
+            String inputCmd = sc.next();
+            String inputRem = sc.nextLine();
+            switch (inputCmd) {
+                case (ENDCOMMAND):
+                    canNext = false;
+                    break;
+                case (PRINTCOMMAND):
+                    printAll();
+                    break;
+                case (MARKCOMMAND):
+                    mark(inputRem);
+                    break;
+                case (UNMARKCOMMAND):
+                    unmark(inputRem);
+                    break;
+                default: createTask(inputCmd + inputRem);
             }
-            if (input.equals(PRINTCOMMAND)) {
-                printAll();
-                continue;
-            }
-            store(input);
         }
         prettyPrint(ENDMESSAGE);
     }
