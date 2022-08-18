@@ -11,15 +11,15 @@ public class Duke {
         System.out.println("Hello from\n" + logo);
         System.out.println("What can I do for you ?");
         Scanner help = new Scanner(System.in);
+
         class Task {
             protected String description;
             protected boolean isDone;
-            protected int num;
 
             public Task(String description) {
                 this.description = description;
                 this.isDone = false;
-                this.num = num;
+
             }
 
             public String toString() {
