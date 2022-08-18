@@ -33,7 +33,7 @@ public class Duke {
      */
     private static String addition(String msg) {
         return "_______________________________________________________" +
-                "\n" + "Nice, I have added  this task to your list:\n " + msg + "\n" +
+                "\n" + "Nice, I have added this task to your list:\n " + msg + "\n" +
                 "Great, now you have " + inputs.size() + " tasks in the list.\n" +
                 "_______________________________________________________";
     }
@@ -45,7 +45,7 @@ public class Duke {
      */
     private static String remove(String msg) {
         return "_______________________________________________________" +
-                "\n" + "OK, I have deleted  this task from your list:\n " + msg + "\n" +
+                "\n" + "OK, I have deleted this task from your list:\n " + msg + "\n" +
                 "Great, now you have " + inputs.size() + " tasks in the list.\n" +
                 "_______________________________________________________";
     }
