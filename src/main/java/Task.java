@@ -50,7 +50,14 @@ abstract class Task {
         description = text;
     }
 
-    public void changeMark(boolean arg) {
+    public void changeMark(boolean arg) throws DukeException {
+        if(isDone == arg) {
+            if (arg == true) {
+                throw DukeException.taskAlreadyMarked;
+            } else {
+                throw DukeException.taskAlreadyUnmarked;
+            }
+        }
         isDone = arg;
     }
 
@@ -58,13 +65,19 @@ abstract class Task {
         return new ToDo(argument);
     }
 
-    public static Task Deadline(String argument) {
+    public static Task Deadline(String argument) throws DukeException {
         String arr[] = argument.split("/by ", 2);
+        if(arr.length < 2) {
+            throw DukeException.invalidArgument;
+        }
         return new Deadline(arr[0], arr[1]);
     }
 
-    public static Task Event(String argument) {
+    public static Task Event(String argument) throws DukeException {
         String arr[] = argument.split("/at ", 2);
+        if(arr.length < 2) {
+            throw DukeException.invalidArgument;
+        }
         return new Event(arr[0], arr[1]);
     }
 

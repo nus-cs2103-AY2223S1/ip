@@ -14,15 +14,19 @@ public class Duke {
 
         while(true) {
             String input = IOhelper.read();
-            if(input.equals("bye")) {
+            if (input.equals("bye")) {
                 IOhelper.print("Bye. Hope to see you again soon!");
                 break;
             }
-            this.inputDecode(input);
+            try {
+                this.inputDecode(input);
+            } catch (DukeException e){
+                IOhelper.print(e.getMessage());
+            }
         }
     }
 
-    public void inputDecode(String input) {
+    public void inputDecode(String input) throws DukeException{
         String arr[] = input.split(" ", 2);
         String command = arr[0];
 
@@ -30,7 +34,9 @@ public class Duke {
             this.list();
             return;
         }
-
+        if(arr.length < 2) {
+            throw DukeException.invalidCommand;
+        }
         String argument = arr[1];
         switch(command) {
             case "todo":
@@ -48,6 +54,8 @@ public class Duke {
             case "unmark":
                 this.unmark(argument);
                 break;
+            default:
+                throw DukeException.invalidCommand;
         }
     }
 
@@ -58,14 +66,14 @@ public class Duke {
         IOhelper.print("Now you have " + listOfTasks.size() + " tasks in the list.");
     }
 
-    public void deadline(String argument) {
+    public void deadline(String argument) throws DukeException {
         Task item = Task.Deadline(argument);
         listOfTasks.add(item);
         IOhelper.print("added: " + item);
         IOhelper.print("Now you have " + listOfTasks.size() + " tasks in the list.");
     }
 
-    public void event(String argument) {
+    public void event(String argument) throws DukeException {
         Task item = Task.Event(argument);
         listOfTasks.add(item);
         IOhelper.print("added: " + item);
@@ -78,17 +86,31 @@ public class Duke {
         }
     }
 
-    public void mark(String argument) {
-        int id = Integer.parseInt(argument);
-        listOfTasks.get(id - 1).changeMark(true);
-        IOhelper.print("Nice! I've marked this task as done:\n" +
-                listOfTasks.get(id - 1));
+    public void mark(String argument) throws DukeException{
+        try {
+            int id = Integer.parseInt(argument);
+            if(listOfTasks.size() < id) {
+              throw DukeException.idTooBig;
+            }
+            listOfTasks.get(id - 1).changeMark(true);
+            IOhelper.print("Nice! I've marked this task as done:\n" +
+                    listOfTasks.get(id - 1));
+        } catch (NumberFormatException e){
+            throw DukeException.invalidArgument;
+        }
     }
 
-    public void unmark(String argument) {
-        int id = Integer.parseInt(argument);
-        listOfTasks.get(id - 1).changeMark(false);
-        IOhelper.print("OK, I've marked this task as not done yet:\n" +
-                listOfTasks.get(id - 1));
+    public void unmark(String argument) throws DukeException{
+        try {
+            int id = Integer.parseInt(argument);
+            if(listOfTasks.size() < id) {
+                throw DukeException.idTooBig;
+            }
+            listOfTasks.get(id - 1).changeMark(false);
+            IOhelper.print("OK, I've marked this task as not done yet:\n" +
+                    listOfTasks.get(id - 1));
+        } catch (NumberFormatException e){
+            throw DukeException.invalidArgument;
+        }
     }
 }
