@@ -51,7 +51,7 @@ public class Duke {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         // Greeting
         Duke.greet();
 
@@ -59,7 +59,7 @@ public class Duke {
         Scanner scanner = new Scanner(System.in);
         String userInput = scanner.nextLine();
 
-        // Echoing
+        // Processing
         while (!userInput.equals(Constants.EXIT)) {
             String typeOfTask = userInput.split(" ")[0];
             int index;
@@ -76,15 +76,46 @@ public class Duke {
                     wordList[index-1].markAsDone();
                     break;
                 case Constants.TODO:
-                    Duke.add(new ToDo(userInput.substring(5)));
+                    try {
+                        // Error when to-do followed by a blank space
+                        userInput.substring(6);
+                        // Error when just to-do
+                        Duke.add(new ToDo(userInput.substring(5)));
+                    } catch (StringIndexOutOfBoundsException e) {
+                        new DukeException.EmptyTodoException();
+                        break;
+                    }
                     break;
                 case Constants.DEADLINE:
-                    String[] deadline = userInput.substring(9).split(" /by ");
-                    Duke.add(new Deadline(deadline[0], deadline[1]));
+                    try {
+                        // Error when to-do followed by a blank space
+                        userInput.substring(10);
+                        // Error when just to-do
+                        String[] deadline = userInput.substring(9).split(" /by ");
+                        Duke.add(new Deadline(deadline[0], deadline[1]));
+                    } catch (StringIndexOutOfBoundsException e) {
+                        new DukeException.EmptyDeadlineException();
+                        break;
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        new DukeException.DeadlineWithoutByException();
+                    }
                     break;
                 case Constants.EVENT:
-                    String[] event = userInput.substring(6).split(" /at ");
-                    Duke.add(new Event(event[0], event[1]));
+                    try {
+                        // Error when to-do followed by a blank space
+                        userInput.substring(7);
+                        // Error when just to-do
+                        String[] event = userInput.substring(6).split(" /at ");
+                        Duke.add(new Event(event[0], event[1]));
+                    } catch (StringIndexOutOfBoundsException e) {
+                        new DukeException.EmptyEventException();
+                        break;
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        new DukeException.EventWithoutAtException();
+                    }
+                    break;
+                default:
+                    new DukeException.InvalidInputException();
                     break;
             }
             userInput = scanner.nextLine();
