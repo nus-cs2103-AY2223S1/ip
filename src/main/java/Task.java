@@ -1,4 +1,4 @@
-public class Task {
+public abstract class Task {
     private String title;
     private boolean done;
 
@@ -17,6 +17,6 @@ public class Task {
 
     @Override
     public String toString() {
-        return title;
+        return "[" + (done ? "X" : " ") + "] " + title;
     }
 }
