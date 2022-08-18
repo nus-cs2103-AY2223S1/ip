@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-export DUKE_TEST=1
+
 # create bin directory if it doesn't exist
 if [ ! -d "../bin" ]
 then
@@ -27,7 +27,7 @@ cp EXPECTED.TXT EXPECTED-UNIX.TXT
 dos2unix ACTUAL.TXT EXPECTED-UNIX.TXT
 
 # compare the output to the expected output
-diff ACTUAL.TXT EXPECTED.TXT
+diff -b ACTUAL.TXT EXPECTED-UNIX.TXT
 if [ $? -eq 0 ]
 then
     echo "Test result: PASSED"

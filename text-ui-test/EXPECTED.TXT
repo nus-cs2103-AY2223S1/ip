@@ -1,3 +1,8 @@
+
+     _   _    ___ __   __ ___  ___
+  _ | | /_\  | _ \\ \ / /|_ _|/ __|
+ | || |/ _ \ |   / \ V /  | | \__ \
+  \__//_/ \_\|_|_\  \_/  |___||___/
 	____________________________________________________________
 	JARVIS:
 	Hello,I'm JARVIS!
@@ -5,7 +10,136 @@
 	____________________________________________________________
 >> 	____________________________________________________________
 	JARVIS:
-	No tasks added.
+	The following issue occurred with your command:
+		This command needs a non-empty description.
+	____________________________________________________________
+>> 	____________________________________________________________
+	JARVIS:
+	Sure! I've added this task:
+		[T] [ ] description of todo
+	You now have 1 tasks to do.
+	____________________________________________________________
+>> 	____________________________________________________________
+	JARVIS:
+	The following issues occurred with your command:
+	1. This command needs a non-empty description.
+	2. This command needs a non-empty by argument.
+
+	____________________________________________________________
+>> 	____________________________________________________________
+	JARVIS:
+	The following issues occurred with your command:
+	1. The description should not be empty!
+	2. This command needs a non-empty by argument.
+
+	____________________________________________________________
+>> 	____________________________________________________________
+	JARVIS:
+	The following issue occurred with your command:
+		This command needs a non-empty by argument.
+	____________________________________________________________
+>> 	____________________________________________________________
+	JARVIS:
+	The following issue occurred with your command:
+		The by date should not be empty!
+	____________________________________________________________
+>> 	____________________________________________________________
+	JARVIS:
+	Sure! I've added this task:
+		[D] [ ] description of deadline (by: deadline date)
+	You now have 2 tasks to do.
+	____________________________________________________________
+>> 	____________________________________________________________
+	JARVIS:
+	The following issues occurred with your command:
+	1. This command needs a non-empty description.
+	2. This command needs an at date
+
+	____________________________________________________________
+>> 	____________________________________________________________
+	JARVIS:
+	The following issues occurred with your command:
+	1. The description should not be empty!
+	2. This command needs an at date
+
+	____________________________________________________________
+>> 	____________________________________________________________
+	JARVIS:
+	The following issue occurred with your command:
+		This command needs an at date
+	____________________________________________________________
+>> 	____________________________________________________________
+	JARVIS:
+	The following issue occurred with your command:
+		The at date should not be empty!
+	____________________________________________________________
+>> 	____________________________________________________________
+	JARVIS:
+	Sure! I've added this task:
+		[E] [ ] description of event (at: event time)
+	You now have 3 tasks to do.
+	____________________________________________________________
+>> 	____________________________________________________________
+	JARVIS:
+	1. [T] [ ] description of todo
+	2. [D] [ ] description of deadline (by: deadline date)
+	3. [E] [ ] description of event (at: event time)
+
+	____________________________________________________________
+>> 	____________________________________________________________
+	JARVIS:
+	The following issue occurred with your command:
+		This command needs a task number e.g 1
+	____________________________________________________________
+>> 	____________________________________________________________
+	JARVIS:
+	The following issue occurred with your command:
+		Task number should be an integer e.g 1 :)
+	____________________________________________________________
+>> 	____________________________________________________________
+	JARVIS:
+	Task number 10 does not exist :(
+	____________________________________________________________
+>> 	____________________________________________________________
+	JARVIS:
+	Nice! I've marked this task as done:
+	[T] [X] description of todo
+	____________________________________________________________
+>> 	____________________________________________________________
+	JARVIS:
+	The following issue occurred with your command:
+		This command needs a task number e.g 1
+	____________________________________________________________
+>> 	____________________________________________________________
+	JARVIS:
+	The following issue occurred with your command:
+		Task number should be an integer e.g 1 :)
+	____________________________________________________________
+>> 	____________________________________________________________
+	JARVIS:
+	Task number 10 does not exist :(
+	____________________________________________________________
+>> 	____________________________________________________________
+	JARVIS:
+	Alright, I've marked this task as not done yet:
+	[T] [ ] description of todo
+	____________________________________________________________
+>> 	____________________________________________________________
+	JARVIS:
+	Nice! I've marked this task as done:
+	[T] [X] description of todo
+	____________________________________________________________
+>> 	____________________________________________________________
+	JARVIS:
+	Nice! I've marked this task as done:
+	[D] [X] description of deadline (by: deadline date)
+	____________________________________________________________
+>> 	____________________________________________________________
+	JARVIS:
+	1. [T] [X] description of todo
+	2. [D] [X] description of deadline (by: deadline date)
+	3. [E] [ ] description of event (at: event time)
+
 	____________________________________________________________
 >> 	____________________________________________________________
 	JARVIS:

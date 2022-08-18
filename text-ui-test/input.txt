@@ -1,2 +1,25 @@
+todo
+todo /d description of todo
+deadline
+deadline /d
+deadline /d non-empty
+deadline /d non-empty /by
+deadline /d description of deadline /by deadline date
+event
+event /d
+event /d non-empty
+event /d non-empty /at
+event /d description of event /at event time
+list
+mark
+mark /id
+mark /id 10
+mark /id 1
+unmark
+unmark /id
+unmark /id 10
+unmark /id 1
+mark /id 1
+mark /id 2
 list
 bye
