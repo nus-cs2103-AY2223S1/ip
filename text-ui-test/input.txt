@@ -15,4 +15,9 @@ event /at Sunday 4-6pm
 deadline finish assignment
 event party
 list
+delete 1
+list
+delete 2
+list
+delete 3
 bye

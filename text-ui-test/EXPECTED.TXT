@@ -44,5 +44,20 @@ Please precede your date/time with a '/by' for a deadline and an '/at' for an ev
 2.[D][ ] return book (by: Sunday)
 3.[E][X] project meeting (at: Mon 2-4pm)
 -------------------------------------------
+Alrighty! I have deleted the following task:
+[T][ ] borrow book
+We now have 2 tasks left.
+-------------------------------------------
+1.[D][ ] return book (by: Sunday)
+2.[E][X] project meeting (at: Mon 2-4pm)
+-------------------------------------------
+Alrighty! I have deleted the following task:
+[E][X] project meeting (at: Mon 2-4pm)
+We now have 1 tasks left.
+-------------------------------------------
+1.[D][ ] return book (by: Sunday)
+-------------------------------------------
+Invalid command. Please try again.
+-------------------------------------------
 See you later alligator!
 -------------------------------------------
