@@ -1,7 +1,47 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
+	Hello I am Pluto.
+	What can I do for you?
+	OOPS!!! I'm sorry, but I don't know what that means :-(
+	Got it. I've added this task:
+		[31m[T][ ] complete CS2103T deadline[0m
+	Now you have 1 tasks in the list.
+	Got it. I've added this task:
+		[31m[D][ ] complete CS2103T project (by: friday)[0m
+	Now you have 2 tasks in the list.
+	Got it. I've added this task:
+		[31m[T][ ] complete CS2100 lectures[0m
+	Now you have 3 tasks in the list.
+	Here are the tasks in your list:
+		1. [31m[T][ ] complete CS2103T deadline[0m
+		2. [31m[D][ ] complete CS2103T project (by: friday)[0m
+		3. [31m[T][ ] complete CS2100 lectures[0m
+	Got it. I've added this task:
+		[31m[E][ ] attend Welcome Tea (at: 20th August)[0m
+	Now you have 4 tasks in the list.
+	Nice! I've marked this task as done:
+	[32m[T][X] complete CS2103T deadline[0m
+	Here are the tasks in your list:
+		1. [32m[T][X] complete CS2103T deadline[0m
+		2. [31m[D][ ] complete CS2103T project (by: friday)[0m
+		3. [31m[T][ ] complete CS2100 lectures[0m
+		4. [31m[E][ ] attend Welcome Tea (at: 20th August)[0m
+	OK, I've marked this task as not done yet:
+	[31m[T][ ] complete CS2103T deadline[0m
+	Nice! I've marked this task as done:
+	[32m[T][X] complete CS2100 lectures[0m
+	Here are the tasks in your list:
+		1. [31m[T][ ] complete CS2103T deadline[0m
+		2. [31m[D][ ] complete CS2103T project (by: friday)[0m
+		3. [32m[T][X] complete CS2100 lectures[0m
+		4. [31m[E][ ] attend Welcome Tea (at: 20th August)[0m
+	Got it. I've added this task:
+		[31m[E][ ] attend Career Fair (at: 25th August)[0m
+	Now you have 5 tasks in the list.
+	Nice! I've marked this task as done:
+	[32m[D][X] complete CS2103T project (by: friday)[0m
+	Here are the tasks in your list:
+		1. [31m[T][ ] complete CS2103T deadline[0m
+		2. [32m[D][X] complete CS2103T project (by: friday)[0m
+		3. [32m[T][X] complete CS2100 lectures[0m
+		4. [31m[E][ ] attend Welcome Tea (at: 20th August)[0m
+		5. [31m[E][ ] attend Career Fair (at: 25th August)[0m
+Bye. Hope to see you again soon!
