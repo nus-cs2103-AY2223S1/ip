@@ -109,7 +109,7 @@ public class Duke {
     public static void main(String[] args) throws DukeException {
         ArrayList<Task> lst = new ArrayList<>();
         boolean isDone = false;
-        System.out.println("Hello! I'm Justin, your personal helper.");
+        System.out.println("Hello! I'm Justin, your personal assistant");
         System.out.println("What can I do for you?");
         Scanner sc = new Scanner(System.in);
         while (!isDone) {
