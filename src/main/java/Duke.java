@@ -72,11 +72,22 @@ public class Duke {
                 }
                 taskList.updateTask(Integer.parseInt(commandGenerator.getCommandAction()) - 1, command);
                 break;
+            case "todo":
+                taskList.addTask(new Todos(commandGenerator.getCommandAction()));
+                break;
+            case "deadline":
+                taskList.addTask(new Deadline(commandGenerator.getCommandAction().split(" /by ")[0],
+                        commandGenerator.getCommandAction().split(" /by ")[1]));
+                break;
+            case "event":
+                taskList.addTask(new Event(commandGenerator.getCommandAction().split(" /at ")[0],
+                        commandGenerator.getCommandAction().split(" /at ")[1]));
+                break;
             case "bye":
                 run = false;
                 break;
             default:
-                taskList.addTask(commandGenerator.getText());
+                taskList.addTask(new Task(commandGenerator.getText()));
         }
     }
 

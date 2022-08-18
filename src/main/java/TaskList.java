@@ -21,11 +21,11 @@ public class TaskList {
      *
      * @param task task to be added to tasks
      */
-    public void addTask(String task) {
-        IOHelper.print(task);
-        Task t = new Task(task);
-        tasks.add(t);
+    public void addTask(Task task) {
+        IOHelper.print("Got it. I've added this task:");
+        tasks.add(task);
         IOHelper.print("added: " + task);
+        IOHelper.print(String.format("Now you have %d tasks in the list", tasks.size()));
     }
 
     /**
