@@ -30,12 +30,6 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
         System.out.println("Hello! I'm Duke\n" +
                            "What can I do for you?\n");
         Scanner s = new Scanner(System.in);
@@ -52,13 +46,53 @@ public class Duke {
                         System.out.println(i + 1 + "." + tasks.get(i));
                     }
                 }
-            } else if (input.startsWith("mark")) {
+            } else if (input.startsWith("mark ")) {
                 markTask(input, true);
-            } else if (input.startsWith("unmark")) {
+            } else if (input.startsWith("unmark ")) {
                 markTask(input, false);
+            } else if (input.startsWith("todo ")) {
+                String[] splitInput = input.split("todo ");
+                if (splitInput.length < 2) {
+                    System.out.println("Please add a description for the todo");
+                    continue;
+                }
+                String desc = splitInput[1];
+                Todo todo = new Todo(desc);
+                tasks.add(todo);
+                System.out.printf("Got it. I've added this task:\n  %s\n", todo.toString());
+                System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
+            } else if (input.startsWith("deadline ")) {
+                String[] splitInput = input.split("deadline ");
+                if (splitInput.length < 2) {
+                    System.out.println("Please add a description and date for the deadline");
+                    continue;
+                }
+                splitInput = splitInput[1].split(" /by ");
+                if (splitInput.length < 2) {
+                    System.out.println("Please add a description and date for the deadline");
+                    continue;
+                }
+                Deadline deadline = new Deadline(splitInput[0], splitInput[1]);
+                tasks.add(deadline);
+                System.out.printf("Got it. I've added this task:\n  %s\n", deadline.toString());
+                System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
+            } else if (input.startsWith("event ")) {
+                String[] splitInput = input.split("event ");
+                if (splitInput.length < 2) {
+                    System.out.println("Please add a description and date for the event");
+                    continue;
+                }
+                splitInput = splitInput[1].split(" /at ");
+                if (splitInput.length < 2) {
+                    System.out.println("Please add a description and date for the event");
+                    continue;
+                }
+                Event event = new Event(splitInput[0], splitInput[1]);
+                tasks.add(event);
+                System.out.printf("Got it. I've added this task:\n  %s\n", event.toString());
+                System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
             } else {
-                tasks.add(new Task(input));
-                System.out.println("added: " + input);
+                System.out.println("Sorry, I don't understand");
             }
         }
     }
