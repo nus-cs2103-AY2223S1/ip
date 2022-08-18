@@ -19,5 +19,8 @@ public class Duke {
             }
             System.out.println(input);
         }
+
+        // Close scanner
+        scanner.close();
     }
 }
