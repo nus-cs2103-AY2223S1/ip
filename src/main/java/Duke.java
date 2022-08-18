@@ -124,7 +124,7 @@ public class Duke {
                 }
                 continue;
             }
-
+            System.out.println("Unknown command! Please do something reasonable!");
         }
 
     }
