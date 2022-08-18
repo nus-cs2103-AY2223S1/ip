@@ -1,15 +1,35 @@
 blah
 list
+todo
 todo read book
+deadline
+deadline revision
+deadline /by Sun
+deadline  /by Mon
+deadline revision /by
 deadline return book /by June 6th
 hello
+event
+event meeting
+event /at Fri 1-3pm
+event  /at Fri 1-3pm
+event meeting /at
 event project meeting /at Aug 6th 2-4pm
 todo join sports club
 list
+mark -1
+mark 0
+mark 5
 mark 2
 mark 1
 mark 4
+unmark 0
+unmark -1
+unmark 5
+list
+unmark 3
 unmark 2
+list
 todo borrow book
 list
 deadline return book /by Sunday

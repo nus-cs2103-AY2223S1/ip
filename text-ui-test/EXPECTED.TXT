@@ -12,9 +12,39 @@ There is no task in your list!
 ____________________________________________________________
 
 ____________________________________________________________
+OOPS!!! The description of todo cannot be empty.
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
 Got it. I've added this task:
 [T][ ] read book
 Now you have 1 tasks in the list.
+____________________________________________________________
+
+____________________________________________________________
+OOPS!!! The description of deadline cannot be empty.
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+OOPS!!! Details missing! A deadline must have both description and date/time.
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+OOPS!!! Details missing! A deadline must have both description and date/time.
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+OOPS!!! I do not accept blank details. A deadline must have both description and date/time.
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+OOPS!!! Details missing! A deadline must have both description and date/time.
+Please try again!
 ____________________________________________________________
 
 ____________________________________________________________
@@ -25,6 +55,31 @@ ____________________________________________________________
 
 ____________________________________________________________
 OOPS!!! I'm sorry, but I don't know what that means :-(
+____________________________________________________________
+
+____________________________________________________________
+OOPS!!! The description of event cannot be empty.
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+OOPS!!! Details missing! An event must have both description and specific start & end time.
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+OOPS!!! Details missing! An event must have both description and specific start & end time.
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+OOPS!!! I do not accept blank details. An event must have both description and specific start & end time.
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+OOPS!!! Details missing! An event must have both description and specific start & end time.
+Please try again!
 ____________________________________________________________
 
 ____________________________________________________________
@@ -48,6 +103,21 @@ Here are the tasks in your list:
 ____________________________________________________________
 
 ____________________________________________________________
+OOPS!!! You have entered an invalid task index. It should be between 1 and 4.
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+OOPS!!! You have entered an invalid task index. It should be between 1 and 4.
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+OOPS!!! You have entered an invalid task index. It should be between 1 and 4.
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
 Nice! I've marked this task as done:
 [D][X] return book (by: June 6th)
 ____________________________________________________________
@@ -63,8 +133,44 @@ Nice! I've marked this task as done:
 ____________________________________________________________
 
 ____________________________________________________________
+OOPS!!! You have entered an invalid task index. It should be between 1 and 4.
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+OOPS!!! You have entered an invalid task index. It should be between 1 and 4.
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+OOPS!!! You have entered an invalid task index. It should be between 1 and 4.
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+Here are the tasks in your list:
+1.[T][X] read book
+2.[D][X] return book (by: June 6th)
+3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+4.[T][X] join sports club
+____________________________________________________________
+
+____________________________________________________________
+OK, I've marked this task as not done yet:
+[E][ ] project meeting (at: Aug 6th 2-4pm)
+____________________________________________________________
+
+____________________________________________________________
 OK, I've marked this task as not done yet:
 [D][ ] return book (by: June 6th)
+____________________________________________________________
+
+____________________________________________________________
+Here are the tasks in your list:
+1.[T][X] read book
+2.[D][ ] return book (by: June 6th)
+3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+4.[T][X] join sports club
 ____________________________________________________________
 
 ____________________________________________________________

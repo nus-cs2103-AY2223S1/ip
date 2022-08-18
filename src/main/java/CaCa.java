@@ -52,67 +52,114 @@ public class CaCa {
 
             System.out.print(line);
 
-            if (command[0].equals("bye")) {
-                System.out.println("Bye. Hope to see you again soon!\n" + line);
-                break;
+            try {
+                if (command[0].isBlank()) {
+                    throw new EmptyInputException("OOPS!!! You have entered an empty input.");
 
-            } else if (command[0].equals("list")) {
-                if (tasks.isEmpty()) {
-                    // No task in the tasks list.
-                    System.out.println("There is no task in your list!\n" + line);
-                } else {
-                    System.out.println("Here are the tasks in your list:");
-                    for (int i = 0; i < tasks.size(); i++) {
-                        Task task = tasks.get(i);
-                        System.out.printf("%d.%s%n", i + 1, task);
+                } else if (command[0].equals("bye")) {
+                    System.out.println("Bye. Hope to see you again soon!\n" + line);
+                    break;
 
-                        if (i == tasks.size() - 1) {
-                            System.out.println(line);
+                } else if (command[0].equals("list")) {
+                    if (tasks.isEmpty()) {
+                        // No task in the tasks list.
+                        System.out.println("There is no task in your list!\n" + line);
+                    } else {
+                        System.out.println("Here are the tasks in your list:");
+                        for (int i = 0; i < tasks.size(); i++) {
+                            Task task = tasks.get(i);
+                            System.out.printf("%d.%s%n", i + 1, task);
+
+                            if (i == tasks.size() - 1) {
+                                System.out.println(line);
+                            }
                         }
                     }
-                }
 
-            } else if (command[0].equals("mark") || command[0].equals("unmark")) {
-                // taskIndex entered by user is 1 larger than its array index.
-                int taskIndex = Integer.parseInt(command[1]);
-                Task taskToMark = tasks.get(taskIndex - 1);
+                } else if (command[0].equals("mark") || command[0].equals("unmark")) {
+                    // taskIndex entered by user is 1 larger than its array index.
+                    int taskIndex = Integer.parseInt(command[1]);
+                    if (taskIndex <= 0 || taskIndex > tasks.size()) {
+                        String message = String.format("OOPS!!! You have entered an invalid task index. " +
+                                        "It should be between 1 and %d.", tasks.size());
+                        throw new InvalidTaskIndex(message);
+                    }
+                    Task taskToMark = tasks.get(taskIndex - 1);
 
-                if (command[0].equals("mark")) {
-                    taskToMark.markAsDone();
-                    System.out.println("Nice! I've marked this task as done:");
+                    if (command[0].equals("mark")) {
+                        taskToMark.markAsDone();
+                        System.out.println("Nice! I've marked this task as done:");
+                    } else {
+                        taskToMark.markAsUndone();
+                        System.out.println("OK, I've marked this task as not done yet:");
+                    }
+
+                    System.out.println(taskToMark + "\n" + line);
+
+                } else if (command[0].equals("todo") || command[0].equals("deadline") || command[0].equals("event")) {
+                    Task taskToAdd = null;
+
+                    // Checks whether description is empty or contains only white spaces.
+                    if (command.length == 1 || command[1].isBlank()) {
+                        String message = String.format("OOPS!!! The description of %s cannot be empty.", command[0]);
+                        throw new EmptyInputException(message);
+
+                    } else if (command[0].equals("todo")) {
+                        String description = command[1];
+                        taskToAdd = new Todo(description);
+
+                    } else if (command[0].equals("deadline")) {
+                        String[] detailedCommand = command[1].split(" /by ", 2);
+                        if (detailedCommand.length == 1) {
+                            String message = "OOPS!!! Details missing! "
+                                    + "A deadline must have both description and date/time.";
+                            throw new MissingDetailException(message);
+                        } else {
+                            if (detailedCommand[0].isBlank() || detailedCommand[1].isBlank()) {
+                                String message = "OOPS!!! I do not accept blank details. "
+                                        + "A deadline must have both description and date/time.";
+                                throw new MissingDetailException(message);
+                            } else {
+                                String description = detailedCommand[0];
+                                String by = detailedCommand[1];
+                                taskToAdd = new Deadline(description, by);
+                            }
+                        }
+
+                    } else { // event
+                        String[] detailedCommand = command[1].split(" /at ", 2);
+                        if (detailedCommand.length == 1) {
+                            String message = "OOPS!!! Details missing! "
+                                    + "An event must have both description and specific start & end time.";
+                            throw new MissingDetailException(message);
+                        } else {
+                            if (detailedCommand[0].isBlank() || detailedCommand[1].isBlank()) {
+                                String message = "OOPS!!! I do not accept blank details. "
+                                        + "An event must have both description and specific start & end time.";
+                                throw new MissingDetailException(message);
+                            } else {
+                                String description = detailedCommand[0];
+                                String at = detailedCommand[1];
+                                taskToAdd = new Event(description, at);
+                            }
+                        }
+                    }
+
+                    tasks.add(taskToAdd);
+                    System.out.println("Got it. I've added this task:");
+                    System.out.println(taskToAdd);
+                    System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
+                    System.out.println(line);
+
                 } else {
-                    taskToMark.markAsUndone();
-                    System.out.println("OK, I've marked this task as not done yet:");
+                    // Invalid input.
+                    System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(\n" + line);
+
                 }
-
-                System.out.println(taskToMark + "\n" + line);
-
-            } else if (command[0].equals("todo") || command[0].equals("deadline") || command[0].equals("event")) {
-                Task taskToAdd = null;
-
-                if (command[0].equals("todo")) {
-                    String description = command[1];
-                    taskToAdd = new Todo(description);
-                } else if (command[0].equals("deadline")) {
-                    String[] detailedCommand = command[1].split(" /by ", 2);
-                    String description = detailedCommand[0];
-                    String by = detailedCommand[1];
-                    taskToAdd = new Deadline(description, by);
-                } else {
-                    String[] detailedCommand = command[1].split(" /at ", 2);
-                    String description = detailedCommand[0];
-                    String at = detailedCommand[1];
-                    taskToAdd = new Event(description, at);
-                }
-
-                tasks.add(taskToAdd);
-                System.out.println("Got it. I've added this task:");
-                System.out.println(taskToAdd);
-                System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
+            } catch (CaCaException e) {
+                System.out.println(e.getMessage());
+                System.out.println("Please try again!");
                 System.out.println(line);
-
-            } else {
-                System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(\n" + line);
             }
         }
     }
