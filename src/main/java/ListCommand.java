@@ -15,6 +15,9 @@ public class ListCommand extends Command {
                 output.append("\n");
             }
         }
+        if (tasks.size() == 0) {
+            return "You do not have any tasks.";
+        }
         return output.toString();
     }
 }

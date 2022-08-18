@@ -1,8 +1,6 @@
 import java.util.List;
 
 public class MarkCommand extends Command {
-    private static final String INDEX_OUT_OF_BOUNDS_MESSAGE = "Sorry! The task index is out of bounds. " +
-            "Please try again with a valid index.";
     public MarkCommand(String command) {
         super(command);
     }
@@ -11,7 +9,7 @@ public class MarkCommand extends Command {
     public String execute(List<Task> tasks) throws JarvisException {
         int taskIndex = super.getTaskIndex();
         if (taskIndex < 0 || taskIndex >= tasks.size()) {
-            return INDEX_OUT_OF_BOUNDS_MESSAGE;
+            throw new JarvisException("No task found. Please enter a valid task number.");
         }
         if (getKeyCommand().equals("mark")) {
             tasks.get(taskIndex).setIsDone(true);

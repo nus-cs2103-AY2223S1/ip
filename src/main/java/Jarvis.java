@@ -25,6 +25,8 @@ public class Jarvis {
             case "mark":
             case "unmark":
                 return new MarkCommand(command);
+            case "delete":
+                return new DeleteCommand(command);
             case "todo":
             case "deadline":
             case "event":
