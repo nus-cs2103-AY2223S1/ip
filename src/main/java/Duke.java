@@ -31,7 +31,7 @@ public class Duke {
                 System.out.println("OK, I've marked this task as not done yet:");
                 System.out.println(t);
             } else if (input.startsWith("todo")){
-                Task t = new Task(input.substring(5));
+                Task t = new ToDo(input.substring(5));
                 list.add(t);
                 System.out.println("Got it. I've added this task:");
                 System.out.println(t);
