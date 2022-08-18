@@ -39,13 +39,16 @@ public class Duke {
             if (input.equals("bye")) {
                 exit();
                 break;
+
             } else if (input.equals("list")) {
                 System.out.println(LINE + "Here are the tasks in your list: ");
                 listTasks(list);
                 System.out.println(LINE);
+
             } else if (input.contains("unmark")) {
                 char taskNumber = input.charAt(7);
                 int number = Character.getNumericValue(taskNumber);
+
                 if (number <= 0 || number > count) {
                     System.out.println("Sorry, I can't mark this as undone if it does not exist :(");
                 } else {
@@ -54,9 +57,11 @@ public class Duke {
                     task.markAsUndone();
                     System.out.println(task.toString() + "\n" + LINE);
                 }
+
             } else if (input.contains("mark")) {
                 char taskNumber = input.charAt(5);
                 int number = Character.getNumericValue(taskNumber);
+
                 if (number <= 0 || number > count) {
                     System.out.println("Sorry, I can't mark this as done if it does not exist :(");
                 } else {
@@ -65,10 +70,40 @@ public class Duke {
                     task.markAsDone();
                     System.out.println(task.toString() + "\n" + LINE);
                 }
-            } else {
-                list.add(count, new Task(input));
+
+            } else if (input.contains("todo")) {
+                ToDo todo = new ToDo(input.substring(5)); // get the task
+                list.add(count, todo);
                 count++;
-                System.out.println(LINE + "added: " + input + "\n" + LINE);
+                System.out.println(LINE + "Got it. I've added this task:\n" + todo.toString());
+                System.out.println("Now you have " + count + " tasks in this list.\n" + LINE);
+
+            } else if (input.contains("deadline")) {
+                String[] deadline = input.split("deadline ", 2);
+                String taskBy = deadline[1];
+                String[] task = taskBy.split("/by", 2); // Split task into its description and deadline
+                Deadline d = new Deadline(task[0], task[1]);
+                list.add(d);
+                count++;
+                System.out.println(LINE + "Got it. I've added this task:\n" + d.toString());
+                System.out.println("Now you have " + count + " tasks in this list.\n" + LINE);
+
+            } else if (input.contains("event")) {
+                String[] event = input.split("event ", 2);
+                String taskAt = event[1];
+                String[] task = taskAt.split("/at", 2);// Split task into its description and timeline
+                Event e = new Event(task[0], task[1]);
+                list.add(e);
+                count++;
+                System.out.println(LINE + "Got it. I've added this task:\n" + e.toString());
+                System.out.println("Now you have " + count + " tasks in this list.\n" + LINE);
+
+            } else {
+                ToDo t = new ToDo(input);
+                list.add(count, t);
+                count++;
+                System.out.println(LINE + "Got it. I've added this task:\n" + t.toString());
+                System.out.println("Now you have " + count + " tasks in this list.\n" + LINE);
             }
         }
     }
