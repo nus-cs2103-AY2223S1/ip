@@ -57,20 +57,12 @@ public class Duke {
                 "  " + task.toString());
     }
 
-    private static String addTask(String input) {
+    private static String addTask(String input) throws DukeException {
         Task task;
-        if (input.startsWith("todo")) {
-            task = new ToDo(input.substring(5));
-        } else {
-            int slash = input.indexOf('/');
-            String time = input.substring(slash + 4);
-            if (input.startsWith("event")) {
-                task = new Event(input.substring(6, slash - 1), time);
-            } else if (input.startsWith("deadline")) {
-                task = new Deadline(input.substring(9, slash - 1), time);
-            } else {
-                task = new Task(input);
-            }
+        try {
+            task = Task.createTask(input);
+        } catch (DukeException e) {
+            return Duke.replyFormat(e.toString());
         }
         list.add(task);
         return Duke.replyFormat("Got it. I've added this task:",
@@ -78,7 +70,7 @@ public class Duke {
                 String.format("Now you have %d tasks in the list.", list.size()));
     }
 
-    private static String replyFormat(String... lines) {
+    public static String replyFormat(String... lines) {
         String separator = "     ____________________________________________________________\n";
         String indent = "     ";
         StringBuilder res = new StringBuilder(separator);
