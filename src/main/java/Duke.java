@@ -1,4 +1,7 @@
 import main.java.Task;
+import main.java.ToDo;
+import main.java.Deadline;
+import main.java.Event;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -44,6 +47,38 @@ public class Duke {
                         "[ ] " + t + "\n" +
                         line + "\n");
             }
+            else if (answer.startsWith("todo")) { // Task 4: todo
+                String toDoAction = answer.substring(5);
+                ToDo t = new ToDo(toDoAction);
+                ls.add(t);
+                System.out.println(line + "\n" +
+                        "Got it. I've added this task: " + "\n" +
+                        t + "\n" +
+                        "Now you have " + ls.size() + " tasks in the list." + "\n" +
+                        line + "\n");
+            }
+            else if (answer.startsWith("deadline")) { // Task 4: deadline
+                String deadlineAction = answer.substring(9, answer.indexOf("/") - 1);
+                String by = answer.substring(answer.indexOf("/") + 1);
+                Deadline d = new Deadline(deadlineAction, by);
+                ls.add(d);
+                System.out.println(line + "\n" +
+                        "Got it. I've added this task: " + "\n" +
+                        d + "\n" +
+                        "Now you have " + ls.size() + " tasks in the list." + "\n" +
+                        line + "\n");
+            }
+            else if (answer.startsWith("event")) { // Task 4: event
+                String eventAction = answer.substring(6, answer.indexOf("/") - 1);
+                String at = answer.substring(answer.indexOf("/") + 1);
+                Event e = new Event(eventAction, at);
+                ls.add(e);
+                System.out.println(line + "\n" +
+                        "Got it. I've added this task: " + "\n" +
+                        e + "\n" +
+                        "Now you have " + ls.size() + " tasks in the list." + "\n" +
+                        line + "\n");
+            }
             else { // for normal actions
                 System.out.println(line + "\n" + "added: " + answer + "\n" +
                         line + "\n");
@@ -57,7 +92,7 @@ public class Duke {
         System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < ls.size(); i++) {
             Task t = (Task) ls.get(i);
-            System.out.println((i + 1) + ". [" + t.getStatusIcon() + "] " + t);
+            System.out.println((i + 1) + "." + t);
         }
     }
 

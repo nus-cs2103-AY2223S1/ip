@@ -23,7 +23,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return this.action;
+        return "[" + this.getStatusIcon() + "] " + this.action;
     }
 
 }
