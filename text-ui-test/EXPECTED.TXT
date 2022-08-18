@@ -48,5 +48,13 @@ Here are the tasks in your list:
 2.[E][ ] group meeting ()
 3.[E][X] group meeting (at monday 8pm)
 -------------------
+☹ OOPS!!! The description of a task cannot be empty.
+-------------------
+☹ OOPS!!! Please follow the format </by date>.
+-------------------
+Got it. I've added this task:
+ [D][ ] submit this (by Friday)
+Now you have 4 tasks in the list.
+-------------------
 Please don't leave me >_<
 See you soon!
