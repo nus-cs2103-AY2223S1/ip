@@ -6,28 +6,44 @@ public class Duke {
     private static final String DIVIDER = "\t___________________________\n";
     private static List<Task> tasksList = new ArrayList<Task>(100);
 
-    public static void print(String input, String keyword) {
+    enum Keyword {
+        BYE,
+        LIST,
+        ADD,
+        UNKNOWN,
+        EMPTY
+    }
+
+    public static void print(String input, Keyword keyword) {
         System.out.println(DIVIDER);
 
-        if (keyword.equals("bye")) {
-            System.out.printf("\tBye. Hope to see you again soon!\n");
-        } else if (keyword.equals("add")) {
-            System.out.printf("\tGot it. I've added this task:\n");
-            Task currTask = tasksList.get(tasksList.size() - 1);
-            System.out.printf("\t    %s\n", currTask);
-            System.out.printf("\tNow you have %d tasks in the list.\n", tasksList.size());
-        } else if (keyword.equals("contained")) {
-            System.out.printf("\t%s is already added\n", input);
-        } else if (keyword.equals("list")) {
-            System.out.printf("\tHere are the tasks in your list:\n");
-            for (int i = 0; i < tasksList.size(); i++) {
-                Task currTask = tasksList.get(i);
-                System.out.printf("\t%d.%s\n", i + 1, currTask);
-            }
-        } else if (keyword.equals("unknown")) {
-            System.out.printf("\t☹ OOPS!!! I'm sorry, but I don't know what that means :-(\n");
-        } else if (keyword.equals("empty")) {
-            System.out.printf("\t☹ OOPS!!! The description of a %s cannot be empty.\n", input);
+        switch (keyword) {
+            case BYE:
+                System.out.printf("\tBye. Hope to see you again soon!\n");
+                break;
+
+            case ADD:
+                System.out.printf("\tGot it. I've added this task:\n");
+                Task currTask = tasksList.get(tasksList.size() - 1);
+                System.out.printf("\t    %s\n", currTask);
+                System.out.printf("\tNow you have %d tasks in the list.\n", tasksList.size());
+                break;
+
+            case LIST:
+                System.out.printf("\tHere are the tasks in your list:\n");
+                for (int i = 0; i < tasksList.size(); i++) {
+                    currTask = tasksList.get(i);
+                    System.out.printf("\t%d.%s\n", i + 1, currTask);
+                }
+                break;
+
+            case UNKNOWN:
+                System.out.printf("\t☹ OOPS!!! I'm sorry, but I don't know what that means :-(\n");
+                break;
+
+            case EMPTY:
+                System.out.printf("\t☹ OOPS!!! The description of a %s cannot be empty.\n", input);
+                break;
         }
         System.out.println(DIVIDER);
     }
@@ -77,9 +93,9 @@ public class Duke {
                 String input = sc.next();
 
                 if (input.equals("list")) {
-                    print(input, "list");
+                    print(input, Keyword.LIST);
                 } else if (input.equals("bye")) {
-                    print(input, "bye");
+                    print(input, Keyword.BYE);
                     break;
                 } else if (input.equals("mark")) {
                     // get the index
@@ -89,7 +105,7 @@ public class Duke {
                             print("mark", index - 1);
                         } else {
                             // list out of bound
-                            print(input, "unknown");
+                            print(input, Keyword.UNKNOWN);
                         }
                     } else {
                         // invalid
@@ -104,7 +120,7 @@ public class Duke {
                             print("unmark", index - 1);
                         } else {
                             // list out of bound
-                            print(input, "unknown");
+                            print(input, Keyword.UNKNOWN);
                         }
                     } else {
                         // ☹ OOPS!!! The description of a unmark cannot be empty.
@@ -131,7 +147,7 @@ public class Duke {
 
                         Task newTask = new Todo(input);
                         tasksList.add(newTask);
-                        print(input, "add");
+                        print(input, Keyword.ADD);
                     }
 
                 } else if (input.equals("deadline")) {
@@ -148,7 +164,7 @@ public class Duke {
 
                             Task newTask = new Deadline(input, by);
                             tasksList.add(newTask);
-                            print(input, "add");
+                            print(input, Keyword.ADD);
                         } else {
                             throw new DukeException("unknown");
                         }
@@ -168,7 +184,7 @@ public class Duke {
 
                             Task newTask = new Event(input, at);
                             tasksList.add(newTask);
-                            print(input, "add");
+                            print(input, Keyword.ADD);
                         } else {
                             throw new DukeException("unknown");
                         }
@@ -178,19 +194,19 @@ public class Duke {
                 }
             } catch (DukeException ex) {
                 if (ex.getMessage().equals("unknown")) {
-                    print("", "unknown");
+                    print("", Keyword.UNKNOWN);
                 } else if (ex.getMessage().equals("event empty")) {
-                    print("event", "empty");
+                    print("event", Keyword.EMPTY);
                 } else if (ex.getMessage().equals("deadline empty")) {
-                    print("deadline", "empty");
+                    print("deadline", Keyword.EMPTY);
                 } else if (ex.getMessage().equals("todo empty")) {
-                    print("todo", "empty");
+                    print("todo", Keyword.EMPTY);
                 } else if (ex.getMessage().equals("mark empty")) {
-                    print("mark", "empty");
+                    print("mark", Keyword.EMPTY);
                 } else if (ex.getMessage().equals("unmark empty")) {
-                    print("unmark", "empty");
+                    print("unmark", Keyword.EMPTY);
                 } else if (ex.getMessage().equals("delete empty")) {
-                    print("delete", "empty");
+                    print("delete", Keyword.EMPTY);
                 }
             }
         }
