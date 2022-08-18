@@ -15,3 +15,8 @@ bin/
 
 /text-ui-test/ACTUAL.txt
 text-ui-test/EXPECTED-UNIX.TXT
+src/out/production/Individual Project/Duke.class
+src/.idea/misc.xml
+src/.idea/modules.xml
+src/.idea/vcs.xml
+src/.idea/workspace.xml

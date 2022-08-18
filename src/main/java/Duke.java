@@ -1,3 +1,5 @@
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
@@ -15,11 +17,32 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println(logo + LINE + "\n" + WELCOMEMESSAGE + LINE);
 
+        // ArrayList to store user inputs
+        List<String> listOfInputs = new ArrayList<>();
+
         // Echo user input
         Scanner sc = new Scanner(System.in);
         String input = sc.nextLine();
         while (!input.equalsIgnoreCase("bye")) { // Stops loop if command is 'bye'
-            System.out.println(LINE + "\n" + input + LINE);
+            // Check if user input is 'list'
+            if (input.equalsIgnoreCase("list")) { // List all inputs typed so far
+                if (listOfInputs.size() == 0) { // List is empty
+                    System.out.println(LINE + "\nYour list is empty! Why not add something to it first?" + LINE);
+                    input = sc.nextLine();
+                    continue;
+                } else {
+                    System.out.println(LINE);
+                    for (int i = 0; i < listOfInputs.size(); i++) {
+                        System.out.println((i + 1) + ". " + listOfInputs.get(i));
+                    }
+                    System.out.println(LINE);
+                }
+                input = sc.nextLine();
+                continue;
+            }
+
+            listOfInputs.add(input);
+            System.out.println(LINE + "\nYou have added: " + input + LINE);
             input = sc.nextLine();
         }
         System.out.println(EXITMESSAGE);
