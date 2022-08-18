@@ -1,61 +1,17 @@
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Duke {
-
-    private static class OutputFormatter {
-        private static final String HORIZONTAL_BAR = "-------------------------";
-
-        public static String formatOutput(String output) {
-            return HORIZONTAL_BAR + '\n' + output + '\n' + HORIZONTAL_BAR + '\n' + '\n';
-        }
-    }
-
-    private interface Actionable {
-        public void takeAction();
-    }
-
-    private static class Task {
-
-        private String taskTitle;
-
-        Task(String taskTitle) {
-            this.taskTitle = taskTitle;
-        }
-    }
-
-     private static class CommandParser {
-
-        private Map<String, CommandType> commandTypeMap;
-
-        CommandParser() {
-            commandTypeMap = new HashMap<>();
-            CommandType[] commandTypes = CommandType.class.getEnumConstants();
-            for (CommandType type: commandTypes) {
-                commandTypeMap.put(type.getCommandString(), type);
-            }
-        }
-
-        Actionable parse(String commandString) {
-            return new Command(CommandType.EXIT) {
-                @Override
-                public void takeAction() {
-
-                }
-            };
-        }
-    }
 
     private static final String GREETING_MESSAGE = "Hi there! I' am Duke, your personal time manager."
             + "\nWhat can I help you?";
     private static final String EXIT_OUTPUT_STRING = "Bye! See you next time!";
     private static final String EXIT_COMMAND_STRING = "bye";
+    private static final String DISPLAY_LIST_COMMAND_STRING = "list";
 
 
     private CommandParser commandParser;
-    private List<Task> taskList;
+    List<Task> taskList;
 
     Duke() {
         this.commandParser = new CommandParser();
@@ -71,17 +27,51 @@ public class Duke {
         System.out.println(GREETING_MESSAGE);
     }
 
+    private String getListInfo() {
+        int len = taskList.size();
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < len; i++) {
+            stringBuilder
+                    .append(i)
+                    .append(". ")
+                    .append(taskList.get(i))
+                    .append('\n');
+        }
+        return stringBuilder.toString();
+    }
+
+    private String getOutputForNewTask(String taskTitle) {
+        taskList.add(new Task(taskTitle));
+        return "added: " + taskTitle;
+    }
+
     private void standBy() {
         Scanner scanner = new Scanner(System.in);
-        while (true) {
+        boolean quited = false;
+        String output;
+
+        while (!quited) {
             String nextLine = scanner.nextLine();
-            Actionable = commandParser.parse(nextLine);
-            if (EXIT_COMMAND_STRING.equals(nextLine)) {
-                System.out.println(OutputFormatter.formatOutput(EXIT_OUTPUT_STRING));
-                break;
-            } else {
-                System.out.println(OutputFormatter.formatOutput(nextLine));
+            if (nextLine.isEmpty()) {
+                continue;
             }
+
+            switch (nextLine) {
+            case (EXIT_COMMAND_STRING):
+                output = EXIT_OUTPUT_STRING;
+                quited = true;
+                break;
+
+            case (DISPLAY_LIST_COMMAND_STRING):
+                output = getListInfo();
+                break;
+
+            default:
+                output = getOutputForNewTask(nextLine);
+                break;
+            }
+
+            System.out.println(OutputFormatter.formatOutput(output));
         }
     }
 }
