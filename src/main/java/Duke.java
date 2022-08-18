@@ -1,8 +1,9 @@
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
-    static HashSet<String> vocabList = new HashSet<String>();
+    // static HashSet<Task> vocabList = new HashSet<Task>();
+    static ArrayList<Task> vocabList = new ArrayList<Task>();
 
     public static void echo(String msg) {
         String lineBlock = "     -----------------------------------------";
@@ -11,14 +12,14 @@ public class Duke {
         System.out.println(lineBlock);
     }
 
-    static void list(HashSet<String> vocabList) {
+    static void list(ArrayList<Task> vocabList) {
         String lineBlock = "     -----------------------------------------";
-        int count = 1;
+        String listMessage = "     Here are the tasks in your list:";
 
-        System.out.println(String.format("%s\n",lineBlock));
-        for (String text : vocabList) {
-            System.out.println(String.format("     %d. %s\n", count, text));
-            count++;
+        System.out.println(String.format("%s\n%s",lineBlock, listMessage));
+
+        for (Task nextTask : vocabList) {
+            System.out.println(nextTask.toString());
         }
         System.out.println(lineBlock);
     }
@@ -48,16 +49,37 @@ public class Duke {
                     list(vocabList);
                 }
 
-                else if (!vocabList.contains(nextString)) {
-                    vocabList.add(nextString);
-                    
-                    printText = String.format("added: %s", nextString);
-                    echo(printText);
+                else if (nextString.startsWith("mark ") ||
+                nextString.startsWith("unmark ")) {
+                    String[] arr = nextString.split(" ");
+                    int taskNumber = Integer.parseInt(arr[1]) - 1;
+                    boolean mark = nextString.startsWith("mark ");
+
+                    try {
+                        vocabList.get(taskNumber).toggleComplete(mark ? true : false);
+                        String message = mark ? "Nice! I've marked this task as done:" : 
+                            "OK, I've marked this task as not done yet:";
+                        echo(message);
+                    } catch (Exception e) {
+                        echo(nextString);
+                    }
                 }
 
                 else {
-                    echo(nextString);
+                    Task newTask = new Task(nextString);
+
+                    if (!vocabList.contains(newTask)) {
+                        vocabList.add(newTask);
+                        
+                        printText = String.format("added: %s", nextString);
+                        echo(printText);
+                    }
+    
+                    else {
+                        echo(nextString);
+                    }
                 }
+                
             }
         }
     }
