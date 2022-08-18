@@ -23,7 +23,7 @@ public class TaskStore {
     public String addTask(Task task) {
         this.store.add(task);
         return String.format("Got it. I've added this task:\n\t%s\nNow you have %d tasks in the list.",
-                task.getDescription(), this.store.size());
+                task.toString(), this.store.size());
     }
 
     /**
