@@ -20,7 +20,7 @@ public class Hazell {
                 + " |_|  |_|\\__,_/___\\___|_|_|\n";
         System.out.println(logo);
 
-        List<String> store = new ArrayList<>();
+        List<Task> taskList = new ArrayList<>();
 
         reply("Hello, I am Hazell!\nWhat can I do for you?");
         Scanner scanner = new Scanner(System.in);
@@ -31,14 +31,14 @@ public class Hazell {
                 System.exit(0);
             } else if (userinput.equals("list")) {
                 StringBuilder sb = new StringBuilder();
-                for (int i = 0; i < store.size(); i++) {
-                    String item = store.get(i);
-                    sb.append(String.format("%d. %s", i + 1, item));
-                    if (i != store.size() - 1) sb.append("\n");
+                for (int i = 0; i < taskList.size(); i++) {
+                    Task task = taskList.get(i);
+                    sb.append(String.format("%d. %s", i + 1, task.toString()));
+                    if (i != taskList.size() - 1) sb.append("\n");
                 }
                 reply(sb.toString());
             } else {
-                store.add(userinput);
+                taskList.add(new Task(userinput));
                 reply(String.format("added: %s", userinput));
             }
         }
