@@ -5,7 +5,7 @@ public class Duke {
 
     private static final String line = "____________________________________________________________\n";
 
-    private static ArrayList<String> tasks = new ArrayList<>();
+    private static ArrayList<Task> tasks = new ArrayList<>();
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -25,18 +25,61 @@ public class Duke {
         do {
             text = scanner.nextLine();
 
+            String[] command = text.split(" ");
+
             System.out.println(line);
-            switch (text) {
-                case "bye":
+            switch (command[0]) {
+                case "bye": {
                     System.out.println("Bye. Hope to see you again soon!");
                     break;
-                case "list":
+                }
+                case "list": {
                     for (int i = 0; i < tasks.size(); i++) {
                         System.out.println((i + 1) + ". " + tasks.get(i));
                     }
                     break;
+                }
+                case "mark": {
+                    if (command.length != 2) {
+                        System.out.println("Usage: 'mark n'");
+                        break;
+                    }
+
+                    // Get index to mark as complete
+                    int idx = Integer.parseInt(command[1]);
+
+                    if (idx <= 0 || idx > tasks.size()) {
+                        System.out.println("Invalid task number, please check your task number again.");
+                        break;
+                    }
+
+                    Task task = tasks.get(idx - 1);
+                    task.markAsDone();
+                    System.out.println("Marked '" + task.getDescription() + "' as done.");
+                    break;
+                }
+
+                case "unmark": {
+                    if (command.length != 2) {
+                        System.out.println("Usage: 'unmark n'");
+                        break;
+                    }
+
+                    // Get index to unmark
+                    int idx = Integer.parseInt(command[1]);
+
+                    if (idx <= 0 || idx > tasks.size()) {
+                        System.out.println("Invalid task number, please check your task number again.");
+                        break;
+                    }
+
+                    Task task = tasks.get(idx - 1);
+                    task.unmark();
+                    System.out.println("Unmarked '" + task.getDescription() + "'.");
+                    break;
+                }
                 default:
-                    tasks.add(text);
+                    tasks.add(new Task(text));
                     System.out.println("added: " + text);
                     break;
             }
@@ -44,3 +87,4 @@ public class Duke {
         } while (!text.equals("bye"));
     }
 }
+
