@@ -82,7 +82,7 @@ public class Duke {
                         // Get the task and mark it as done or not done depending on the user
                         int taskNumber = Integer.parseInt(words[1]);
                         // Check if the user enters a number out of range
-                        if (taskNumber < 0 || taskNumber >= taskArrayList.size()) {
+                        if (taskNumber < 0 || taskNumber > taskArrayList.size()) {
                             throw new DukeException("Number out of range!");
                         }
                         else {
@@ -105,7 +105,7 @@ public class Duke {
                         // Delete the task
                         // Check if the user enters a number out of range
                         int taskNumber = Integer.parseInt(words[1]);
-                        if (taskNumber < 0 || taskNumber >= taskArrayList.size()) {
+                        if (taskNumber < 0 || taskNumber > taskArrayList.size()) {
                             throw new DukeException("Number out of range!");
                         }
                         else {
