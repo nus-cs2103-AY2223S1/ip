@@ -7,7 +7,7 @@ public final class Constants {
 
     }
     public static final String indent = "     ";
-    public static final String WELCOME_MESSAGE = "Hello! I'm Duke\nWhat can I do for you?";
+    public static final String WELCOME_MESSAGE = indent + "Hello! I'm Duke\n" + indent + "What can I do for you?";
     public static final String INDENTED_DOTTED_LINE = indent + "____________________________________________________________";
 
 }

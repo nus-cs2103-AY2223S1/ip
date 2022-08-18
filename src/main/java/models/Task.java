@@ -3,7 +3,7 @@ package models;
 /**
  * Task class with parameters of description and isDone state
  */
-public class Task {
+public abstract class Task {
     protected String description;
     protected boolean isDone;
 
@@ -33,6 +33,9 @@ public class Task {
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
     }
+
+    public abstract String getSymbol();
+    public abstract String getDescription();
 
     @Override
     public String toString() {

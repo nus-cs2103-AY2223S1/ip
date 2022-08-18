@@ -39,7 +39,7 @@ public class Duke {
                 t.markAsDone();
                 System.out.println(Constants.INDENTED_DOTTED_LINE);
                 System.out.println(Constants.indent + "Nice! I've marked this task as done");
-                System.out.println(Constants.indent + t);
+                System.out.println(Constants.indent+ Constants.indent + t);
                 System.out.println(Constants.INDENTED_DOTTED_LINE);
             } else if (input.startsWith("unmark")) {
                 int index = Integer.parseInt(input.replaceAll("[\\D]", ""));
@@ -52,10 +52,15 @@ public class Duke {
             } else if (input.startsWith("todo")) {
                 Task t = new Todo(input);
                 history.add(t);
+                System.out.println(Constants.INDENTED_DOTTED_LINE);
                 System.out.println(Constants.indent + "Got it. I've added this task:");
-                System.out.println(Constants.indent + t);
+                System.out.println(Constants.indent + Constants.indent + t);
                 System.out.println(Constants.indent + "Now you have " + history.size() + " tasks in the list.");
+                System.out.println(Constants.INDENTED_DOTTED_LINE);
             } else if (input.startsWith("deadline")) {
+                if(!input.contains("/by")) {
+                    throw new DukeException("please use /by to indicate date for deadline");
+                }
                 String deadline = input.substring(input.lastIndexOf("/by") + 4);
                 Pattern pattern = Pattern.compile("deadline(.*?)/by");
                 Matcher matcher = pattern.matcher(input);
@@ -65,7 +70,6 @@ public class Duke {
                 }
                 Task t = new Deadline(description, deadline);
                 history.add(t);
-                System.out.println();
                 System.out.println(Constants.INDENTED_DOTTED_LINE);
                 System.out.println(Constants.indent + "Got it. I've added this task:");
                 System.out.println(Constants.indent + Constants.indent + t);
@@ -86,6 +90,17 @@ public class Duke {
                 System.out.println(Constants.indent + Constants.indent + t);
                 System.out.println(Constants.indent + "Now you have " + history.size() + " tasks in the list.");
                 System.out.println(Constants.INDENTED_DOTTED_LINE);
+            } else if (input.startsWith("delete")){
+                int index = Integer.parseInt(input.replaceAll("[\\D]", ""));
+                Task t = history.get(index - 1);
+                System.out.println(Constants.INDENTED_DOTTED_LINE);
+
+                System.out.println(Constants.indent +"Noted. I've removed this task:");
+                System.out.println(Constants.indent + Constants.indent + t);
+                history.remove(t);
+                System.out.println(Constants.indent +"Now you have " + history.size() + " tasks in the list.");
+                System.out.println(Constants.INDENTED_DOTTED_LINE);
+
             } else {
                 throw new DukeException("Invalid command! Please try again");
             }

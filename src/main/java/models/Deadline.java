@@ -11,6 +11,14 @@ public class Deadline extends Task {
     }
 
     @Override
+    public String getSymbol() {
+        return "T";
+    }
+    @Override
+    public String getDescription() {
+        return this.description;
+    }
+    @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + by + ")";
     }
