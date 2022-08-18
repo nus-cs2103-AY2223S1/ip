@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Duke {
     public static void main(String[] args) {
@@ -10,8 +11,7 @@ public class Duke {
         System.out.println(logo + "Hello! I'm Yale\nWhat can I do for you?");
         Scanner in = new Scanner(System.in);
 
-        Task[] toDoList = new Task[100];
-        int count = 0;
+        ArrayList<Task> toDoList = new ArrayList<Task>();
 
         while (true) {
             String input = in.nextLine();
@@ -19,26 +19,34 @@ public class Duke {
                 System.out.println("Bye. Hope to see you again soon!\n");
                 break;
             } else if (input.equals("list")) {
-                if (count == 0) {
-                    System.out.println("There is no item in list yet");
-                } else {
-                    System.out.println("Here are the tasks in your list:");
-                    for (int i = 0; i < count; i++) {
-                        System.out.printf("%d.%s\n", i + 1, toDoList[i]);
-                    }
+
+                System.out.println("Here are the tasks in your list:");
+                int i = 1;
+                for (Task task : toDoList) {
+                    System.out.printf("%d.%s\n", i, task);
+                    i++;
                 }
+
             } else if (input.contains("unmark")) {
                 String[] splitStr = input.trim().split("\\s+");
-                int markItem = Integer.parseInt(splitStr[splitStr.length - 1]) - 1;
-                toDoList[markItem].unmark();
+                int unMarkItem = Integer.parseInt(splitStr[splitStr.length - 1]) - 1;
+                toDoList.get(unMarkItem).unmark();
                 System.out.println("OK, I've marked this task as not done yet:");
-                System.out.println(toDoList[markItem]);
+                System.out.println(toDoList.get(unMarkItem));
             } else if (input.contains("mark")) {
                 String[] splitStr = input.trim().split("\\s+");
                 int markItem = Integer.parseInt(splitStr[splitStr.length - 1]) - 1;
-                toDoList[markItem].markAsDone();
+                toDoList.get(markItem).markAsDone();
                 System.out.println("Nice! I've marked this task as done:");
-                System.out.println(toDoList[markItem]);
+                System.out.println(toDoList.get(markItem));
+            } else if (input.contains("delete")) {
+                String[] splitStr = input.trim().split("\\s+");
+                int deleteItem = Integer.parseInt(splitStr[splitStr.length - 1]) - 1;
+                Task deletedTask = toDoList.remove(deleteItem);
+                String message = "Noted. I've removed this task:\n  "
+                        + deletedTask
+                        + String.format("\nNow you have %s tasks in the list.", toDoList.size());
+                System.out.println(message);
             } else {
                 Boolean addTask = true;
                 Task newTask = null;
@@ -67,12 +75,11 @@ public class Duke {
                 }
 
                 if (addTask) {
-                    toDoList[count] = newTask;
-                    count++;
+                    toDoList.add(newTask);
                     String message = "\t" + "_".repeat(20) + "\n"
                             + String.format("\tGot it. I've added this task:\n\t  %s\n", newTask)
-                            + String.format("\tNow you have %s tasks in the list\n", count)
-                            + "\t" + "_".repeat(20) + "\n";
+                            + String.format("\tNow you have %s tasks in the list\n", toDoList.size())
+                            + "\t" + "_".repeat(20);
                     System.out.println(message);
                 }
             }
