@@ -22,7 +22,7 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        List<String> tasks = new ArrayList<>();
+        List<Task> tasks = new ArrayList<>();
 
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -38,25 +38,23 @@ public class Duke {
 
             if (input.length() < 1) continue;
 
-            String firstWord;
-            int firstWordIdx = input.indexOf(' ');
-            if (firstWordIdx > -1) {
-                firstWord = input.substring(0, firstWordIdx);
-            } else {
-                firstWord = input;
-            }
+            String[] words = input.split(" ");
 
-            if (firstWord.equals("bye")) {
+            if (words[0].equals("bye")) {
                 printMsg("Bye. Hope to see you again soon!");
                 break;
-            } else if (firstWord.equals("list")) {
+            } else if (words[0].equals("list")) {
                 String[] taskStrings = new String[tasks.size()];
                 for (int i = 0; i < tasks.size(); i++) {
-                    taskStrings[i] = (i+1) + ". " + tasks.get(i);
+                    taskStrings[i] = (i+1) + ". [" + (tasks.get(i).isDone() ? "X" : " ") + "] " + tasks.get(i);
                 }
                 printMultiMsg(taskStrings);
+            } else if (words[0].equals("mark")) {
+                Task task = tasks.get(Integer.parseInt(words[1]) - 1);
+                task.markDone();
+                printMultiMsg(new String[]{"Nice! I've marked this task as done:", "[X] " + task});
             } else {
-                tasks.add(input);
+                tasks.add(new Task(input, false));
                 printMsg("added: " + input);
             }
         }
