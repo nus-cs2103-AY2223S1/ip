@@ -37,7 +37,7 @@ public class Duke {
     /**
      * Prints a multiline reply with the appropriate style.
      *
-     * @param message An array of Strings containing the
+     * @param message An array of Strings containing the messages for each line.
      */
     public static void reply(String[] message) {
         for (int i = 0; i < message.length; ++i) {
@@ -67,6 +67,103 @@ public class Duke {
             toReply[i + 1] = String.format("%d. %s", i + 1, todoList.get(i));
         }
         reply(toReply);
+    }
+
+    public static void justAddedComment() {
+        reply(new String[] {"Successfully added the following task",
+                        todoList.get(todoList.size() - 1).toString(),
+                        String.format("You now have %d tasks in the list.", todoList.size())});
+    }
+
+    /**
+     * Append a Todo to the todoList.
+     *
+     * @param arguments The command arguments.
+     */
+    public static void todo(String[] arguments) {
+        StringBuilder todoName = new StringBuilder();
+        for (int i = 1; i < arguments.length; ++i) {
+            if (todoName.length() != 0) {
+                todoName.append(' ');
+            }
+            todoName.append(arguments[i]);
+        }
+        if (todoName.length() == 0) {
+            reply("Please include a name");
+            return;
+        }
+        todoList.add(new Todo(todoName.toString()));
+        justAddedComment();
+    }
+
+    /**
+     * Append a Deadline to the todoList.
+     *
+     * @param arguments The command arguments.
+     */
+    public static void deadline(String[] arguments) {
+        StringBuilder deadlineName = new StringBuilder();
+        StringBuilder deadlineDeadline = new StringBuilder();
+        boolean byFlagRead = false;
+        for (int i = 1; i < arguments.length; ++i) {
+            if (arguments[i].equals("/by") && !byFlagRead) {
+                byFlagRead = true;
+                continue;
+            }
+            if (byFlagRead) {
+                if (deadlineDeadline.length() != 0) {
+                    deadlineDeadline.append(' ');
+                }
+                deadlineDeadline.append(arguments[i]);
+            } else {
+                if (deadlineName.length() != 0) {
+                    deadlineName.append(' ');
+                }
+                deadlineName.append(arguments[i]);
+            }
+        }
+        if (deadlineName.length() == 0 || deadlineDeadline.length() == 0) {
+            reply(new String[]{"Format the command as follows:",
+                    "deadline <deadline name> /by <deadline>"});
+            return;
+        }
+        todoList.add(new Deadline(deadlineName.toString(), deadlineDeadline.toString()));
+        justAddedComment();
+    }
+
+    /**
+     * Append a Event to the todoList.
+     *
+     * @param arguments The command arguments.
+     */
+    public static void event(String[] arguments) {
+        StringBuilder eventName = new StringBuilder();
+        StringBuilder eventTime = new StringBuilder();
+        boolean atFlagRead = false;
+        for (int i = 1; i < arguments.length; ++i) {
+            if (arguments[i].equals("/at") && !atFlagRead) {
+                atFlagRead = true;
+                continue;
+            }
+            if (atFlagRead) {
+                if (eventTime.length() != 0) {
+                    eventTime.append(' ');
+                }
+                eventTime.append(arguments[i]);
+            } else {
+                if (eventName.length() != 0) {
+                    eventName.append(' ');
+                }
+                eventName.append(arguments[i]);
+            }
+        }
+        if (eventName.length() == 0 || eventTime.length() == 0) {
+            reply(new String[]{"Format the command as follows:",
+                    "event <event name> /at <event time>"});
+            return;
+        }
+        todoList.add(new Deadline(eventName.toString(), eventTime.toString()));
+        justAddedComment();
     }
 
     /**
@@ -129,6 +226,13 @@ public class Duke {
         }
     }
 
+    /**
+     * Lists the list of commands.
+     */
+    public static void mismatch() {
+        reply("list of commands: list, mark, unmark, todo, deadline, event");
+    }
+
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -156,8 +260,19 @@ public class Duke {
                 unmark(arguments);
                 continue;
             }
-            todoList.add(new Task(line));
-            reply(String.format("added: %s", line));
+            if (arguments[0].equals("todo")) {
+                todo(arguments);
+                continue;
+            }
+            if (arguments[0].equals("deadline")) {
+                deadline(arguments);
+                continue;
+            }
+            if (arguments[0].equals("event")) {
+                event(arguments);
+                continue;
+            }
+            mismatch();
         }
     }
 }
