@@ -22,6 +22,7 @@ public class Task {
         this.isDone = false;
     }
 
+    @Override
     public String toString() {
         return String.format("[%s] %s", this.getStatusIcon(), this.description);
     }
@@ -37,7 +38,7 @@ public class Task {
     }
 
     public static int count() {
-        return tasks.size();
+        return tasks.size() - 1; // since we always have one dummy Task to make it 1-indexed
     }
 
     public static Task get(int taskNumber) {
@@ -45,7 +46,7 @@ public class Task {
     }
 
     public static void markAsDone(int taskNumber) {
-        if (taskNumber < 1 || taskNumber >= Task.count()) {
+        if (taskNumber < 1 || taskNumber > Task.count()) {
             System.out.println("\tInvalid Task Number!");
         } else {
             Task.get(taskNumber).markAsDone();
@@ -55,7 +56,7 @@ public class Task {
     }
 
     public static void markAsNotDone(int taskNumber) {
-        if (taskNumber < 1 || taskNumber >= Task.count()) {
+        if (taskNumber < 1 || taskNumber > Task.count()) {
             System.out.println("\tInvalid Task Number!");
         } else {
             Task.get(taskNumber).markAsNotDone();
