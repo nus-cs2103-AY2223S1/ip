@@ -20,6 +20,7 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
         Command command = new Command(sc.nextLine());
         String keyword = command.getKeyword();
+        String content = command.getContent();
         List<Task> userList = new ArrayList<Task>();
         int id = 0;
         while (!keyword.equals("bye")) {
@@ -36,31 +37,37 @@ public class Duke {
                     userList.set(index, userList.get(index).undoTask());
                 }
             } else {
-                id++;
-                if (command.getKeyword().equals("todo")) {
-                    Task newTask = new Todo(command.getContent(), id, 'T');
-                    userList.add(newTask);
-                    addTaskConfirmation(newTask, id);
-                } else if (command.getKeyword().equals("deadline")) {
-                    Task newTask = new Deadline(command.getContent(), id, 'D');
-                    userList.add(newTask);
-                    addTaskConfirmation(newTask, id);
-                } else if (command.getKeyword().equals("event")) {
-                    Task newTask = new Event(command.getContent(), id, 'E');
-                    userList.add(newTask);
-                    addTaskConfirmation(newTask, id);
+                try {
+                    if (command.hasValidKeywork() && command.hasValidTaskDesc()) {
+                        id++;
+                        if (keyword.equals("todo")) {
+                            Task newTask = new Todo(content, id, 'T');
+                            userList.add(newTask);
+                            addTaskConfirmation(newTask, id);
+                        } else if (keyword.equals("deadline")) {
+                            Task newTask = new Deadline(content, id, 'D');
+                            userList.add(newTask);
+                            addTaskConfirmation(newTask, id);
+                        } else if (keyword.equals("event")) {
+                            Task newTask = new Event(content, id, 'E');
+                            userList.add(newTask);
+                            addTaskConfirmation(newTask, id);
+                        }
+                    }
+                } catch (DukeException ex){
+                    System.out.println(ex);
                 }
-                System.out.printf("\tadded: %s\n", command.getContent());
             }
             command = new Command(sc.nextLine());
             keyword = command.getKeyword();
+            content = command.getContent();
         }
     }
 
     private static void addTaskConfirmation(Task task, int id) {
         System.out.println("Got it. I've added this task:");
-        System.out.printf("\t%s\n", task.taskStatus());
-        System.out.printf("Now you have %d tasks in the list.", id);
+        System.out.println(task.taskStatus());
+        System.out.printf("Now you have %d tasks in the list.\n", id);
     }
 
     private static void outro(){
