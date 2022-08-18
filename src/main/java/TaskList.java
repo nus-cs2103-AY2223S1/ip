@@ -26,13 +26,17 @@ public class TaskList {
 
     /**
      * Mark a task in the list as done
-     * @param index
+     * @param index index of the task to be marked as done
      */
     public void mark(int index) {
         Task temp = tasks.get(index-1);
         temp.mark();
         System.out.println("Nice! I've marked this task as done: \n" + temp.print());
     }
+    /**
+     * Mark a task in the list as not done
+     * @param index index of the task to be unmarked
+     */
     public void unmark(int index) {
         Task temp = tasks.get(index-1);
         temp.unmark();
