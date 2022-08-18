@@ -5,3 +5,111 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
+> What can I do for you?
+> Please include a name
+> Format the command as follows:
+  event <event name> /at <event time>
+> Format the command as follows:
+  deadline <deadline name> /by <deadline>
+> You have no tasks in your list.
+> You don't have any tasks to mark!
+> You don't have any tasks to unmark!
+> Please include a name
+> Successfully added the following task
+  [T][ ] a b c
+  You now have 1 tasks in the list.
+> Format the command as follows:
+  deadline <deadline name> /by <deadline>
+> Format the command as follows:
+  deadline <deadline name> /by <deadline>
+> Format the command as follows:
+  deadline <deadline name> /by <deadline>
+> Successfully added the following task
+  [D][ ] b z    (by: c d)
+  You now have 2 tasks in the list.
+> Format the command as follows:
+  deadline <deadline name> /by <deadline>
+> Here are the tasks in your list.
+  1. [T][ ] a b c
+  2. [D][ ] b z    (by: c d)
+> Format the command as follows:
+  event <event name> /at <event time>
+> Format the command as follows:
+  event <event name> /at <event time>
+> Format the command as follows:
+  event <event name> /at <event time>
+> Successfully added the following task
+  [E][ ] b z    (at: c d)
+  You now have 3 tasks in the list.
+> Format the command as follows:
+  event <event name> /at <event time>
+> Successfully added the following task
+  [T][ ] d e f
+  You now have 4 tasks in the list.
+> Here are the tasks in your list.
+  1. [T][ ] a b c
+  2. [D][ ] b z    (by: c d)
+  3. [E][ ] b z    (at: c d)
+  4. [T][ ] d e f
+> Invalid argument! (Please enter an integer between 1 and 4)
+> Ok, I'm marking this as done
+  [T][X] a b c
+> Ok, I'm marking this as done
+  [E][X] b z    (at: c d)
+> Invalid argument! (Please enter an integer between 1 and 4)
+> Successfully added the following task
+  [E][ ] gio (at: 798 hiouh)
+  You now have 5 tasks in the list.
+> Ok, I'm marking this as done
+  [T][X] d e f
+> Here are the tasks in your list.
+  1. [T][X] a b c
+  2. [D][ ] b z    (by: c d)
+  3. [E][X] b z    (at: c d)
+  4. [T][X] d e f
+  5. [E][ ] gio (at: 798 hiouh)
+> Ok, I'm marking this as not done
+  [E][ ] b z    (at: c d)
+> Ok, I'm marking this as not done
+  [D][ ] b z    (by: c d)
+> Here are the tasks in your list.
+  1. [T][X] a b c
+  2. [D][ ] b z    (by: c d)
+  3. [E][ ] b z    (at: c d)
+  4. [T][X] d e f
+  5. [E][ ] gio (at: 798 hiouh)
+> Ok, I'm marking this as not done
+  [E][ ] b z    (at: c d)
+> Here are the tasks in your list.
+  1. [T][X] a b c
+  2. [D][ ] b z    (by: c d)
+  3. [E][ ] b z    (at: c d)
+  4. [T][X] d e f
+  5. [E][ ] gio (at: 798 hiouh)
+> Invalid argument! (Please enter an integer between 1 and 5)
+> Invalid argument! (Please enter an integer between 1 and 5)
+> list of commands: list, mark, unmark, todo, deadline, event, delete
+> list of commands: list, mark, unmark, todo, deadline, event, delete
+> Invalid argument! (Please enter an integer between 1 and 5)
+> Please enter the item ID you wish to delete
+> Ok, I'm deleting this
+  [D][ ] b z    (by: c d)
+> Ok, I'm deleting this
+  [T][X] d e f
+> Invalid argument! (Please enter an integer between 1 and 3)
+> Here are the tasks in your list.
+  1. [T][X] a b c
+  2. [E][ ] b z    (at: c d)
+  3. [E][ ] gio (at: 798 hiouh)
+> Ok, I'm deleting this
+  [E][ ] gio (at: 798 hiouh)
+> Invalid argument! (Please enter an integer between 1 and 2)
+> Ok, I'm deleting this
+  [T][X] a b c
+> Invalid argument! (Please enter an integer between 1 and 1)
+> Ok, I'm deleting this
+  [E][ ] b z    (at: c d)
+> You don't have any tasks to delete!
+> You don't have any tasks to delete!
+> You don't have any tasks to delete!
+> You have no tasks in your list.
