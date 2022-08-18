@@ -5,3 +5,40 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
+Hello I'm Duke
+What can I do for you
+You: Got it. I've added this task:
+[T] [ ] do dishes
+Now you have 1 tasks in the list
+You: Got it. I've added this task:
+[D] [ ] read book (by: tomorrow)
+Now you have 2 tasks in the list
+You: Got it. I've added this task:
+[E] [ ] buy stuff (at: next week)
+Now you have 3 tasks in the list
+You: Got it. I've added this task:
+[D] [ ] go for a run (by: 4th september)
+Now you have 4 tasks in the list
+You: 1. [T] [ ] do dishes
+2. [D] [ ] read book (by: tomorrow)
+3. [E] [ ] buy stuff (at: next week)
+4. [D] [ ] go for a run (by: 4th september)
+You: Nice! I've marked this task as done:
+[E] [X] buy stuff (at: next week)
+You: Nice! I've marked this task as done:
+[D] [X] read book (by: tomorrow)
+You: 1. [T] [ ] do dishes
+2. [D] [X] read book (by: tomorrow)
+3. [E] [X] buy stuff (at: next week)
+4. [D] [ ] go for a run (by: 4th september)
+You: OK, I've marked this task as not done yet:
+[D] [ ] read book (by: tomorrow)
+You: Nice! I've marked this task as done:
+[T] [X] do dishes
+You: OK, I've marked this task as not done yet:
+[E] [ ] buy stuff (at: next week)
+You: 1. [T] [X] do dishes
+2. [D] [ ] read book (by: tomorrow)
+3. [E] [ ] buy stuff (at: next week)
+4. [D] [ ] go for a run (by: 4th september)
+You: Duke: Bye. hope to see you again soon!
