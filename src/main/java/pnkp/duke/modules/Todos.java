@@ -25,7 +25,7 @@ public class Todos {
         say(List.of(
             "Got it. I've added this task:",
             newTask.toString(),
-            format("Now you have %d tasks in the list.", todos.size())
+            format("Now you have %d %s in the list.", todos.size(), todos.size() == 1 ? "task" : "tasks")
         ));
     }
 

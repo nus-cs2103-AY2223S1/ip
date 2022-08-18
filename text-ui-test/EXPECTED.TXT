@@ -10,7 +10,7 @@
 ─────
 💬 Got it. I've added this task:
    [T][ ]  borrow book
-   Now you have 1 tasks in the list.
+   Now you have 1 task in the list.
 ─────
 💬 Deadlines are added like this: deadline return book /by Sunday
 ─────
