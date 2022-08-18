@@ -89,6 +89,14 @@ public class Duke {
                         e + "\n" +
                         "Now you have " + ls.size() + " tasks in the list." + "\n" +
                         line + "\n");
+            } else if (answer.startsWith("delete")) { // Level 6: delete
+                int idx = Integer.parseInt(answer.substring(7)) - 1;
+                Task t = ls.get(idx);
+                ls.remove(idx);
+                System.out.println(line + "\n" + "Noted. I've removed this task:" + "\n" +
+                        t + "\n" +
+                        "Now you have " + ls.size() + " tasks in the list.\n" +
+                        line + "\n");
             }
             else { // for normal actions
                 System.out.println(line + "\n" + "added: " + answer + "\n" +
