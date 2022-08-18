@@ -32,6 +32,11 @@ public abstract class Command {
                     throw new DukeException("You forgot to add the description!");
                 }
                 return new EventCommand(splitMessage[1], tasks);
+            case "delete":
+                if (splitMessage.length < 2) {
+                    throw new DukeException("You forgot to tell me the task number!");
+                }
+                return new DeleteCommand(splitMessage[1], tasks);
             default:
                 throw new DukeException("Sorry, there is no such command!");
         }
@@ -164,6 +169,26 @@ public abstract class Command {
                 throw new DukeException("You forgot to add the time!");
             }
             Reply.printMessage(this.tasks.addTask(new Event(splitMessage[0], splitMessage[1])));
+            return false;
+        }
+    }
+
+    private static class DeleteCommand extends Command {
+        protected String content;
+        protected TaskList tasks;
+
+        public DeleteCommand(String content, TaskList tasks) {
+            this.content = content;
+            this.tasks = tasks;
+        }
+
+        @Override
+        public boolean run() throws DukeException {
+            try {
+                Reply.printMessage(this.tasks.deleteTask(Integer.parseInt(this.content) - 1));
+            } catch (NumberFormatException e) {
+                throw new DukeException("Task number need to be an integer!");
+            }
             return false;
         }
     }

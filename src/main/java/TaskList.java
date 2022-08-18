@@ -6,6 +6,7 @@ public class TaskList {
     public static final String DONE = "Nice! I've marked this task as done:\n";
     public static final String UNDONE =  "OK, I've marked this task as not done yet:\n";
     public static final String ADD = "Got it. I've added this task:\n";
+    public static final String DELETE = "Noted. I've removed this task:\n";
     public static final String NUMBER_START = "Now you have ";
     public static final String NUMBER_END = " tasks in the list.";
 
@@ -29,6 +30,14 @@ public class TaskList {
     public String addTask(Task task) {
         this.tasks.add(task);
         return ADD + task.toString() + "\n" + NUMBER_START + this.tasks.size() + NUMBER_END;
+    }
+
+    public String deleteTask(int index) throws DukeException {
+        if (index < 0 || index >= this.tasks.size()) {
+            throw new DukeException("There is no such task number!");
+        }
+        Task task = this.tasks.remove(index);
+        return DELETE + task.toString() + "\n" + NUMBER_START + this.tasks.size() + NUMBER_END;
     }
 
     public String markTask(int index) throws DukeException {

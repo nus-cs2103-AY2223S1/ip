@@ -9,6 +9,7 @@ list
 unmark 1
 unmark 2
 unmark 3
+delete 3
 list
 todo
 deadline
@@ -21,5 +22,8 @@ mark mark
 unmark
 unmark 0
 unmark unmark
+delete
+delete 0
+delete delete
 fly
 bye

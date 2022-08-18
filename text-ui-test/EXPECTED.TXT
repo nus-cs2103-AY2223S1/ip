@@ -66,10 +66,15 @@ OK, I've marked this task as not done yet:
 _________________________
 
 _________________________
+Noted. I've removed this task:
+[E][ ] project meeting (at: Aug 6th 2-4pm)
+Now you have 2 tasks in the list.
+_________________________
+
+_________________________
 Here are the tasks in your list:
 1. [T][ ] borrow book
 2. [D][ ] return book (by: June 6th)
-3. [E][ ] project meeting (at: Aug 6th 2-4pm)
 _________________________
 
 _________________________
@@ -90,6 +95,18 @@ _________________________
 
 _________________________
  ☹ OOPS!!! You forgot to add the time!
+_________________________
+
+_________________________
+ ☹ OOPS!!! You forgot to tell me the task number!
+_________________________
+
+_________________________
+ ☹ OOPS!!! There is no such task number!
+_________________________
+
+_________________________
+ ☹ OOPS!!! Task number need to be an integer!
 _________________________
 
 _________________________
