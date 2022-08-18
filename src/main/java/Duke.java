@@ -1,10 +1,11 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class Duke {
 
-    List<String> inputList;
+    List<Task> taskList;
 
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -19,7 +20,7 @@ public class Duke {
     }
 
     public Duke() {
-        inputList = new ArrayList<>();
+        taskList = new ArrayList<>();
     }
 
     public void start() {
@@ -32,15 +33,27 @@ public class Duke {
     }
 
     public void loop(Scanner sc) {
-        String s = sc.nextLine();
+        String s = sc.nextLine().trim();
 
         if ("bye".equals(s)) {
             System.out.println("Bye. Hope to see you again soon!");
             return;
         } else if ("list".equals(s)) {
             System.out.print(inputListToString());
+        } else if (Pattern.matches("mark \\d+", s)) {
+            int index = Integer.parseInt(s.split("\\s+")[1]) - 1;
+            Task taskToMark = taskList.get(index);
+            taskToMark.mark();
+            System.out.println("Nice! I've marked this task as done:");
+            System.out.println(taskToMark);
+        } else if (Pattern.matches("unmark \\d+", s)) {
+            int index = Integer.parseInt(s.split("\\s+")[1]) - 1;
+            Task taskToUnmark = taskList.get(index);
+            taskToUnmark.unmark();
+            System.out.println("OK, I've marked this task as not done yet:");
+            System.out.println(taskToUnmark);
         } else {
-            inputList.add(s);
+            taskList.add(new Task(s));
             System.out.println("Added: " + s);
         }
 
@@ -50,10 +63,10 @@ public class Duke {
     private String inputListToString() {
         StringBuilder sb = new StringBuilder();
         int i = 1;
-        for (String s : inputList) {
+        for (Task t : taskList) {
             sb.append(i);
             sb.append(". ");
-            sb.append(s);
+            sb.append(t);
             sb.append("\n");
             ++i;
         }
