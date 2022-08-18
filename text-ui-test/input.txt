@@ -33,4 +33,10 @@ list
 deadline do homework /by no idea :-p
 list
 random command
+delete -1
+list
+delete 7290
+list
+delete 2
+list
 bye

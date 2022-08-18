@@ -136,6 +136,27 @@ public class Duke {
                         System.out.println(task);
                         break;
 
+                    case "delete":
+                        //No Index Given
+                        if (splitted.length < 2) {
+                            throw new DukeException("No Index Given");
+                        }
+                        //the index should be the "2nd word"
+                        index = Integer.parseInt(splitted[1]);
+                        //Index out of bounds
+                        if (index > taskList.size() || index < 1) {
+                            throw new DukeException("Index Is Not Valid");
+                        }
+                        //get the selected task
+                        task = taskList.get(index - 1);
+                        //remove the task
+                        taskList.remove(task);
+                        //print the response to the user
+                        System.out.println("Noted. I have removed this task:");
+                        System.out.println(task);
+                        System.out.println("Now you have " + taskList.size() + " tasks in the list.");
+                        break;
+
                     case "bye":
                         System.out.println("Bye. Hope to see you again soon!");
                         shouldContinue = false;
@@ -144,6 +165,7 @@ public class Duke {
                     case "list":
                         printTaskList(taskList);
                         break;
+
 
                     default:
                         throw new DukeException("Command Not Found!");

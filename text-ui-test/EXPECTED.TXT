@@ -77,4 +77,23 @@ Here are the tasks in your list:
 3. [E][ ] project meeting (at: Mon 2-4pm)
 4. [D][ ] do homework (by: no idea :-p)
 OOPS!!! Command Not Found!
+OOPS!!! Index Is Not Valid
+Here are the tasks in your list:
+1. [T][ ] borrow book
+2. [D][ ] return book (by: Sunday)
+3. [E][ ] project meeting (at: Mon 2-4pm)
+4. [D][ ] do homework (by: no idea :-p)
+OOPS!!! Index Is Not Valid
+Here are the tasks in your list:
+1. [T][ ] borrow book
+2. [D][ ] return book (by: Sunday)
+3. [E][ ] project meeting (at: Mon 2-4pm)
+4. [D][ ] do homework (by: no idea :-p)
+Noted. I have removed this task:
+[D][ ] return book (by: Sunday)
+Now you have 3 tasks in the list.
+Here are the tasks in your list:
+1. [T][ ] borrow book
+2. [E][ ] project meeting (at: Mon 2-4pm)
+3. [D][ ] do homework (by: no idea :-p)
 Bye. Hope to see you again soon!
