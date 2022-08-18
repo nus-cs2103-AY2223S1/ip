@@ -36,9 +36,18 @@ public class Duke {
         System.out.println("Got it. I've added this task: \n" + lst.get(lst.size()-1) + "\nNow you have " + lst.size() + " tasks in the list.");
     }
 
-    public static void deleteTask(ArrayList<Task> lst, String input) {
+    public static void deleteTask(ArrayList<Task> lst, String input) throws DukeException {
         String[] words = input.split(" ",2);
+
+        if (words.length==1) {
+            throw new DukeException("Please specify task to delete");
+        }
+
         int index = Integer.parseInt(words[1]) - 1;
+
+        if (index > lst.size() - 1) {
+            throw new DukeException("There is no such task");
+        }
         Task t = lst.get(index);
         lst.remove(index);
         System.out.println("Noted. I've removed this task: \n" + t + "\nNow you have " + lst.size() + " tasks in the list.");
