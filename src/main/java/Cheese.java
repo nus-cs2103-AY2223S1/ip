@@ -2,7 +2,10 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Cheese {
+  /** Constant to represent border during conversation */
   public static final String BORDER = "-----";
+
+  /** Array list to store list of tasks */
   public static ArrayList<Task> list = new ArrayList<Task>();
 
   public static void main(String[] args) {
@@ -10,12 +13,14 @@ public class Cheese {
     Cheese.chat();
   }
 
+  /** Greets user */
   private static void greet() {
     String greeting = new String("Woof! I'm Cheese, your puppy assistant.\n"
         + "What can I do for you?");
     System.out.println(greeting);
   }
 
+  /** Chats with user */
   private static void chat() {
     Scanner scanner = new Scanner(System.in);
     String userInput;
@@ -65,6 +70,12 @@ public class Cheese {
     }
   }
 
+  /**
+   * Checks if given command is valid
+   * 
+   * @param command given command from the user
+   * @throws CheeseException if given command is invalid
+   */
   private static void validateCommand(String command) throws CheeseException {
     for (Command cmd : Command.values()) {
       if (cmd.name().equals(command)) {
@@ -74,12 +85,27 @@ public class Cheese {
     throw new CheeseException();
   }
 
+  /**
+   * Checks if given command has no arguments
+   * 
+   * @param inputArray array containing user input after splitting by space
+   * @throws CheeseException if given command contains extra arguments
+   */
   private static void validateOneWordCommand(String[] inputArray) throws CheeseException {
     if (inputArray.length != 1) {
       throw new CheeseException();
     }
   }
 
+  /**
+   * Gets task from list
+   * 
+   * @param inputArray array containing user input after splitting by space
+   * @return specified task from list
+   * @throws CheeseException       if given item number is empty or item number is
+   *                               not in range
+   * @throws NumberFormatException if given item number is not in integer format
+   */
   private static Task getTaskFromList(String[] inputArray) throws CheeseException, NumberFormatException {
     if (inputArray.length == 1 || inputArray[1].length() == 0) {
       throw new CheeseException("Sowwy, the item number cannot be empty.");
@@ -91,6 +117,11 @@ public class Cheese {
     return Cheese.list.get(itemIdx);
   }
 
+  /**
+   * Deletes given task from list
+   * 
+   * @param taskToDelete given task to delete
+   */
   private static void deleteTask(Task taskToDelete) {
     Cheese.list.remove(taskToDelete);
     System.out.println("Gotcha! I'll forget about this task!");
@@ -98,6 +129,11 @@ public class Cheese {
     System.out.println("You have " + Cheese.list.size() + " task(s) remaining.");
   }
 
+  /**
+   * Adds given task to list
+   * 
+   * @param task given task to add
+   */
   private static void addTask(Task task) {
     Cheese.list.add(task);
     System.out.println("Gotcha! I have a paw-fect memory!");
@@ -105,6 +141,7 @@ public class Cheese {
     System.out.println("You have " + Cheese.list.size() + " task(s) in the list.");
   }
 
+  /** Prints list */
   private static void printList() {
     for (int i = 1; i <= Cheese.list.size(); i++) {
       System.out.println(i + ". " + Cheese.list.get(i - 1));

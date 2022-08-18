@@ -1,7 +1,17 @@
 public abstract class Task {
+  /** Description of Task */
   protected String description;
+
+  /** Boolean representing whether Task is done or not */
   protected boolean isDone = false;
 
+  /**
+   * Factory method to create a Task
+   * 
+   * @param inputArray array containing user input after splitting by space
+   * @return created Task
+   * @throws CheeseException if given command is invalid
+   */
   public static Task createTask(String[] inputArray) throws CheeseException {
     String command = inputArray[0];
 
@@ -22,18 +32,29 @@ public abstract class Task {
     }
   }
 
+  /** Marks this task as done */
   public void markAsDone() {
     this.isDone = true;
     System.out.println("Paw-some! Another task done!");
     System.out.println("  " + this);
   }
 
+  /** Marks this task as not done */
   public void markAsNotDone() {
     this.isDone = false;
     System.out.println("Okay, I've marked this task as not done yet.");
     System.out.println("  " + this);
   }
 
+  /**
+   * Checks if given command is valid
+   * 
+   * @param inputArray array containing user input after splitting with space
+   * @throws CheeseException if given command has no description or deadline
+   *                         command has not /by flag or deadline command has no
+   *                         description/deadline or event command has no /at flag
+   *                         or event command has no description/event time
+   */
   private static void validateCreateTask(String[] inputArray) throws CheeseException {
     String command = inputArray[0];
 
@@ -65,6 +86,11 @@ public abstract class Task {
     }
   }
 
+  /**
+   * Returns string representation of Task
+   * 
+   * @return string representation of Task
+   */
   @Override
   public String toString() {
     String checkbox = this.isDone ? "[X] " : "[ ] ";
