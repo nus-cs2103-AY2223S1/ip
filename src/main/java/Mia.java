@@ -45,10 +45,26 @@ public class Mia {
                 }
                 System.out.print("Enter a command: ");
                 continue;
+            } else if (line.startsWith("todo ")) {
+                final Task todo = new Todo(line.substring(5));
+                tasksManager.addTask(todo);
+                printResponse(new Span(String.format("Added todo \"%s\" to tasks list!", todo.getTitle())), windowWidth);
+                continue;
+            } else if (line.startsWith("deadline ")) {
+                final String[] data = line.substring(9).split("/by", 2);
+                final Task deadline = new Deadline(data[0], data[1]);
+                tasksManager.addTask(deadline);
+                printResponse(new Span(String.format("Added \"%s\" (task with deadline) to tasks list!", deadline.getTitle())), windowWidth);
+                continue;
+            } else if (line.startsWith("event ")) {
+                final String[] data = line.substring(6).split("/at", 2);
+                final Task event = new Event(data[0], data[1]);
+                tasksManager.addTask(event);
+                printResponse(new Span(String.format("Added new event \"%s\" to tasks list!", event.getTitle())), windowWidth);
+                continue;
             }
-            final Task newTask = new Task(line);
-            tasksManager.addTask(newTask);
-            printResponse(new Span(String.format("Added task \"%s\" to tasks list!", newTask.getTitle())), windowWidth);
+            // Echo command
+            printResponse(new Span(line), windowWidth);
             System.out.print("Enter a command: ");
         }
         sc.close();
