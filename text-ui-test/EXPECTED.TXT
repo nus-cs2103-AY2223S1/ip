@@ -11,10 +11,10 @@ _____________________________________________________________
 [E] [ ] project meeting  (at:  Mon 2-4pm)
 Now you have 3 task(s) in the list.
 _____________________________________________________________
-Nice! I've marked this task as done:
+Nice! I've marked this task as done: 
 [T] [X] borrow book
 _____________________________________________________________
-Nice! I've marked this task as done:
+Nice! I've marked this task as done: 
 [D] [X] return book  (by:  Sunday)
 _____________________________________________________________
 OK, I've marked this task as not done yet
