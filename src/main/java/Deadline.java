@@ -1,20 +1,27 @@
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Deadline extends Task {
     private String deadline;
-
-    public Deadline(Scanner options) throws MissingOptions, NoSuchElementException {
-        super(options.next().substring(1));
+    
+    public Deadline(Scanner options) throws NoDescription, NoDeadline {
         if (options.hasNext()) {
-            this.deadline = options.next();
+            options.useDelimiter(" /by ");
+            String description = options.next().substring(1);
+            if (options.hasNext()) {
+                String deadline = options.next();
+                super.describe(description);
+                super.unmark();
+                this.deadline = deadline;
+            } else {
+                throw new NoDeadline();
+            }
         } else {
-            throw new MissingOptions("no deadline set");
+            throw new NoDescription();
         }
     }
-    
+
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + deadline + ")";
+        return "[D]" + super.toString() + " (Deadline: " + deadline + ")";
     }
 }

@@ -1,20 +1,28 @@
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Event extends Task {
-    private String period;
-
-	public Event(Scanner options) throws MissingOptions, NoSuchElementException {
-        super(options.next().substring(1));
-        if (options.hasNext()) {
-            this.period = options.next();
-        } else {
-            throw new MissingOptions("no deadline set");
-        }
-	}
     
+    private String period;
+    
+    public Event(Scanner options) throws NoDescription, NoPeriod {
+        if (options.hasNext()) {
+            options.useDelimiter(" /at ");
+            String description = options.next().substring(1);
+            if (options.hasNext()) {
+                String period = options.next();
+                super.describe(description);
+                super.unmark();
+                this.period = period;
+            } else {
+                throw new NoPeriod();
+            }
+        } else {
+            throw new NoDescription();
+        }
+    }
+
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + period + ")";
+        return "[E]" + super.toString() + " (At: " + period + ")";
     }
 }
