@@ -6,8 +6,6 @@ public class Duke {
 
     public static void responseRepeater() {
         String response = input.nextLine();
-        //Task[] taskStore = new Task[100];
-        //int counter = 0;
         ArrayList<Task> taskStore = new ArrayList<>();
 
         while (!response.equals("bye")) {
