@@ -19,5 +19,5 @@ public class Constants {
 
     public static final String invalid = "OOPS!!! I'm sorry, but I don't know what that means :-(";
 
-    public static final String invalidInput = "Something is missing form your input";
+    public static final String invalidInput = "Something is missing from your input or format is wrong";
 }

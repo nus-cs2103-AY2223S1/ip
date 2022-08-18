@@ -1,13 +1,15 @@
-public class Deadline extends Task {
-    private String date;
+import java.time.LocalDate;
 
-    public Deadline(String msg, String date) {
+public class Deadline extends Task {
+    private LocalDate date;
+
+    public Deadline(String msg, LocalDate date) {
         super(msg);
         this.date = date;
     }
 
     @Override
     public String toString() {
-        return String.format("%s%s (by: %s)", "[D]", super.toString(), this.date);
+        return String.format("%s%s (by: %s)", "[D]", super.toString(), this.date.toString());
     }
 }
