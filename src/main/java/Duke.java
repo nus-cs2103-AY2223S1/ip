@@ -15,59 +15,68 @@ public class Duke {
 
 
         while (!input.equals("bye")) {
+            try {
+                if (input.startsWith("mark")) {
+                    dummyString = input.substring(5); //get number of task
+                    counter = Integer.parseInt(dummyString);//convert to int
+                    tasks[counter].mark();
+                    System.out.println("Nice! I've marked this task as done:\n" +
+                            "[" + tasks[counter].getStatusIcon() + "] " + tasks[counter].getDescription());
 
-            if (input.startsWith("mark")) {
-                dummyString = input.substring(5); //get number of task
-                counter = Integer.parseInt(dummyString);//convert to int
-                tasks[counter].mark();
-                System.out.println("Nice! I've marked this task as done:\n" +
-                        "[" + tasks[counter].getStatusIcon() + "] " + tasks[counter].getDescription());
+                } else if (input.startsWith("unmark")) {
+                    dummyString = input.substring(7); //get number of task
+                    counter = Integer.parseInt(dummyString);//convert to int
+                    tasks[counter].unmark();
+                    System.out.println("OK, I've marked this task as not done yet:\n" +
+                            "[" + tasks[counter].getStatusIcon() + "] " + tasks[counter].getDescription());
 
-            } else if (input.startsWith("unmark")) {
-                dummyString = input.substring(7); //get number of task
-                counter = Integer.parseInt(dummyString);//convert to int
-                tasks[counter].unmark();
-                System.out.println("OK, I've marked this task as not done yet:\n" +
-                        "[" + tasks[counter].getStatusIcon() + "] " + tasks[counter].getDescription());
+                } else if (input.equals("list")) {
+                    System.out.println("Here are the tasks in your list:");
+                    for (int i = 1; i < number; i++) { //iterate through all tasks
+                        System.out.println(String.valueOf(i) + "." + tasks[i].toString());
+                    }
+                } else if (input.startsWith("todo")) {
+                    if (input.equals("todo")) {
+                        throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+                    }
+                    start = 5;
+                    tasks[number] = new Todo(input.substring(start));
+                    System.out.println("Got it. I've added this task:");
+                    System.out.println(tasks[number].toString());
+                    System.out.println("Now you have " + String.valueOf(number) + " tasks in the list.");
+                    number += 1;
 
-            } else if (input.equals("list")) {
-                System.out.println("Here are the tasks in your list:");
-                for (int i = 1; i < number; i++) { //iterate through all tasks
-                    System.out.println(String.valueOf(i) + "." + tasks[i].toString());
+                } else if (input.startsWith("deadline")) {
+                    if (input.equals("deadline")) {
+                        throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
+                    }
+                    counter = input.indexOf("/");
+                    start = 9;
+                    end = counter - 1;
+                    tasks[number] = new Deadline(input.substring(start, end), input.substring(counter + 4));
+                    System.out.println("Got it. I've added this task:");
+                    System.out.println(tasks[number].toString());
+                    System.out.println("Now you have " + String.valueOf(number) + " tasks in the list.");
+                    number += 1;
+
+                } else if (input.startsWith("event")) {
+                    if (input.equals("event")) {
+                        throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.");
+                    }
+                    counter = input.indexOf("/");
+                    start = 6;
+                    end = counter - 1;
+                    tasks[number] = new Event(input.substring(start, end), input.substring(counter + 4));
+                    System.out.println("Got it. I've added this task:");
+                    System.out.println(tasks[number].toString());
+                    System.out.println("Now you have " + String.valueOf(number) + " tasks in the list.");
+                    number += 1;
+
+                } else { //random input
+                    throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
-            } else if (input.startsWith("todo")) {
-                start = 5;
-                tasks[number] = new Todo(input.substring(start));
-                System.out.println("Got it. I've added this task:");
-                System.out.println(tasks[number].toString());
-                System.out.println("Now you have " + String.valueOf(number) + " tasks in the list.");
-                number += 1;
-
-            } else if (input.startsWith("deadline")) {
-                counter = input.indexOf("/");
-                start = 9;
-                end = counter - 1;
-                tasks[number] = new Deadline(input.substring(start, end), input.substring(counter + 4));
-                System.out.println("Got it. I've added this task:");
-                System.out.println(tasks[number].toString());
-                System.out.println("Now you have " + String.valueOf(number) + " tasks in the list.");
-                number += 1;
-
-            } else if (input.startsWith("event")) {
-                counter = input.indexOf("/");
-                start = 6;
-                end = counter - 1;
-                tasks[number] = new Event(input.substring(start, end), input.substring(counter + 4));
-                System.out.println("Got it. I've added this task:");
-                System.out.println(tasks[number].toString());
-                System.out.println("Now you have " + String.valueOf(number) + " tasks in the list.");
-                number += 1;
-
-            } else { //adding a task
-
-                tasks[number] = new Task(input);
-                number += 1;
-                System.out.println("added: " + input);  // Output user input
+            } catch (DukeException e){
+                    System.out.println(e.toString().substring(15));
             }
             input = myObj.nextLine(); // Read next user input
         }
