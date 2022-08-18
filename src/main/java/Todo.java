@@ -4,8 +4,11 @@ public class Todo extends Task {
      * The constructor, does not have a "by" time
      * @param description the description of the task to do
      */
-    public Todo(String description) {
+    public Todo(String description) throws DukeException {
         super(description);
+        if (description.equals("")) {
+            throw new DukeException("The description of a todo cannot be empty.");
+        }
     }
 
     /**
