@@ -1,4 +1,4 @@
-   --------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
     Hello from
      ____        _        
     |  _ \ _   _| | _____ 
@@ -8,4 +8,404 @@
     
     Hello! I'm Duke 
     What can I do for you?
-   --------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    ☹ OOPS!!!  I'm sorry that your entry does not compile, please check with following information:
+    I don't know what [hi] means :-(
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Got it. I've added this task:
+    [T][ ] finish homework this night
+    Now you have 1 tasks in the list.
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Here are the tasks in your list:
+    1. [T][ ] finish homework this night
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    ☹ OOPS!!!  I'm sorry that your entry does not compile, please check with following information:
+    I don't know what [add] means :-(
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Got it. I've added this task:
+    [D][ ] CS2103T Week 2 Project Submition Hard deadline (by: tonight 2359)
+    Now you have 2 tasks in the list.
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    ☹ OOPS!!!  I'm sorry that your entry does not compile, please check with following information:
+    The description of a [deadline] is incorrect.
+    Keyword: [ /by  ] or [Time] is not found.
+    The format of [deadline] should be 'deadline [Deadline Name] /by [Deadline Time]'
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    ☹ OOPS!!!  I'm sorry that your entry does not compile, please check with following information:
+    The description of a [deadline] is incorrect.
+    Keyword: [ /by  ] or [Time] is not found.
+    The format of [deadline] should be 'deadline [Deadline Name] /by [Deadline Time]'
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    ☹ OOPS!!!  I'm sorry that your entry does not compile, please check with following information:
+    I don't know what [deadlineCS2103T] means :-(
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    ☹ OOPS!!!  I'm sorry that your entry does not compile, please check with following information:
+    The description of a [deadline] is incorrect.
+    Keyword: [ /by  ] or [Time] is not found.
+    The format of [deadline] should be 'deadline [Deadline Name] /by [Deadline Time]'
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    ☹ OOPS!!!  I'm sorry that your entry does not compile, please check with following information:
+    The description of a [deadline] is incorrect.
+    Keyword: [ /by  ] or [Time] is not found.
+    The format of [deadline] should be 'deadline [Deadline Name] /by [Deadline Time]'
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    ☹ OOPS!!!  I'm sorry that your entry does not compile, please check with following information:
+    The description of a [deadline] is incorrect.
+    Deadline [Name] is not found.
+    The format of [deadline] should be 'deadline [Deadline Name] /by [Deadline Time]'
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    ☹ OOPS!!!  I'm sorry that your entry does not compile, please check with following information:
+    The description of a [deadline] is incorrect.
+    Deadline [Name] is not found.
+    The format of [deadline] should be 'deadline [Deadline Name] /by [Deadline Time]'
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Here are the tasks in your list:
+    1. [T][ ] finish homework this night
+    2. [D][ ] CS2103T Week 2 Project Submition Hard deadline (by: tonight 2359)
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    ☹ OOPS!!!  I'm sorry that your entry does not compile, please check with following information:
+    The description of a [mark] is incorrect.
+    The argument should be an integer.
+    The format of [mark] should be 'mark [ID of task]'
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    ☹ OOPS!!!  I'm sorry that your entry does not compile, please check with following information:
+    The description of a [mark] is incorrect.
+    The argument should be an integer.
+    The format of [mark] should be 'mark [ID of task]'
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    ☹ OOPS!!!  I'm sorry that your entry does not compile, please check with following information:
+    The description of a [mark] is incorrect.
+    The argument should be an integer.
+    The format of [mark] should be 'mark [ID of task]'
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    ☹ OOPS!!!  I'm sorry that your entry does not compile, please check with following information:
+    The description of a [mark] is incorrect.
+    The argument should be an integer.
+    The format of [mark] should be 'mark [ID of task]'
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Nice! I've marked this task as done:
+    [T][X] finish homework this night
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Here are the tasks in your list:
+    1. [T][X] finish homework this night
+    2. [D][ ] CS2103T Week 2 Project Submition Hard deadline (by: tonight 2359)
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    ☹ OOPS!!!  I'm sorry that your entry does not compile, please check with following information:
+    I don't know what [Event] means :-(
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    ☹ OOPS!!!  I'm sorry that your entry does not compile, please check with following information:
+    The description of a [event] is incorrect.
+    Keyword: [ /at  ] or [Time] is not found.
+    The format of [event] should be 'event [Event Name] /at [Event Time]'
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Got it. I've added this task:
+    [E][ ] CS2109S Lecture (at: I3-AUD)
+    Now you have 3 tasks in the list.
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Here are the tasks in your list:
+    1. [T][X] finish homework this night
+    2. [D][ ] CS2103T Week 2 Project Submition Hard deadline (by: tonight 2359)
+    3. [E][ ] CS2109S Lecture (at: I3-AUD)
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    ☹ OOPS!!!  I'm sorry that your entry does not compile, please check with following information:
+    I don't know what [[E][] means :-(
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Got it. I've added this task:
+    [E][ ] CS2109S Lecture (at: I3-AUD)
+    Now you have 4 tasks in the list.
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Got it. I've added this task:
+    [E][ ] CS2109S Lecture (at: I3-AUD)
+    Now you have 5 tasks in the list.
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Got it. I've added this task:
+    [E][ ] CS2109S Lecture (at: I3-AUD)
+    Now you have 6 tasks in the list.
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Got it. I've added this task:
+    [E][ ] CS2109S Lecture (at: I3-AUD)
+    Now you have 7 tasks in the list.
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Got it. I've added this task:
+    [E][ ] CS2109S Lecture (at: I3-AUD)
+    Now you have 8 tasks in the list.
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Got it. I've added this task:
+    [E][ ] CS2109S Lecture (at: I3-AUD)
+    Now you have 9 tasks in the list.
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Got it. I've added this task:
+    [E][ ] CS2109S Lecture (at: I3-AUD)
+    Now you have 10 tasks in the list.
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Got it. I've added this task:
+    [E][ ] CS2109S Lecture (at: I3-AUD)
+    Now you have 11 tasks in the list.
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Here are the tasks in your list:
+    1. [T][X] finish homework this night
+    2. [D][ ] CS2103T Week 2 Project Submition Hard deadline (by: tonight 2359)
+    3. [E][ ] CS2109S Lecture (at: I3-AUD)
+    4. [E][ ] CS2109S Lecture (at: I3-AUD)
+    5. [E][ ] CS2109S Lecture (at: I3-AUD)
+    6. [E][ ] CS2109S Lecture (at: I3-AUD)
+    7. [E][ ] CS2109S Lecture (at: I3-AUD)
+    8. [E][ ] CS2109S Lecture (at: I3-AUD)
+    9. [E][ ] CS2109S Lecture (at: I3-AUD)
+    10. [E][ ] CS2109S Lecture (at: I3-AUD)
+    11. [E][ ] CS2109S Lecture (at: I3-AUD)
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Noted. I've removed this task:
+    [E][ ] CS2109S Lecture (at: I3-AUD)
+    Now you have 10 tasks in the list.
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Noted. I've removed this task:
+    [E][ ] CS2109S Lecture (at: I3-AUD)
+    Now you have 9 tasks in the list.
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Noted. I've removed this task:
+    [E][ ] CS2109S Lecture (at: I3-AUD)
+    Now you have 8 tasks in the list.
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Noted. I've removed this task:
+    [E][ ] CS2109S Lecture (at: I3-AUD)
+    Now you have 7 tasks in the list.
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Here are the tasks in your list:
+    1. [T][X] finish homework this night
+    2. [D][ ] CS2103T Week 2 Project Submition Hard deadline (by: tonight 2359)
+    3. [E][ ] CS2109S Lecture (at: I3-AUD)
+    4. [E][ ] CS2109S Lecture (at: I3-AUD)
+    5. [E][ ] CS2109S Lecture (at: I3-AUD)
+    6. [E][ ] CS2109S Lecture (at: I3-AUD)
+    7. [E][ ] CS2109S Lecture (at: I3-AUD)
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Noted. I've removed this task:
+    [E][ ] CS2109S Lecture (at: I3-AUD)
+    Now you have 6 tasks in the list.
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Noted. I've removed this task:
+    [E][ ] CS2109S Lecture (at: I3-AUD)
+    Now you have 5 tasks in the list.
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Noted. I've removed this task:
+    [E][ ] CS2109S Lecture (at: I3-AUD)
+    Now you have 4 tasks in the list.
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    ☹ OOPS!!!  I'm sorry that an error occurs when executing your command, please check with following information:
+    Task No.: 100 is not found in the task list. 
+    Try command [list] to show the tasks you may choose from.
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    ☹ OOPS!!!  I'm sorry that an error occurs when executing your command, please check with following information:
+    Task No.: 8 is not found in the task list. 
+    Try command [list] to show the tasks you may choose from.
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    ☹ OOPS!!!  I'm sorry that an error occurs when executing your command, please check with following information:
+    Task No.: 5 is not found in the task list. 
+    Try command [list] to show the tasks you may choose from.
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Here are the tasks in your list:
+    1. [T][X] finish homework this night
+    2. [D][ ] CS2103T Week 2 Project Submition Hard deadline (by: tonight 2359)
+    3. [E][ ] CS2109S Lecture (at: I3-AUD)
+    4. [E][ ] CS2109S Lecture (at: I3-AUD)
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Noted. I've removed this task:
+    [E][ ] CS2109S Lecture (at: I3-AUD)
+    Now you have 3 tasks in the list.
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Noted. I've removed this task:
+    [E][ ] CS2109S Lecture (at: I3-AUD)
+    Now you have 2 tasks in the list.
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Here are the tasks in your list:
+    1. [T][X] finish homework this night
+    2. [D][ ] CS2103T Week 2 Project Submition Hard deadline (by: tonight 2359)
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Got it. I've added this task:
+    [E][ ] CS2109S Lecture (at: I3-AUD)
+    Now you have 3 tasks in the list.
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Got it. I've added this task:
+    [E][ ] CS2109S Lecture (at: I4-AUD)
+    Now you have 4 tasks in the list.
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Got it. I've added this task:
+    [E][ ] CS2109S Lecture (at: I5-AUD)
+    Now you have 5 tasks in the list.
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Here are the tasks in your list:
+    1. [T][X] finish homework this night
+    2. [D][ ] CS2103T Week 2 Project Submition Hard deadline (by: tonight 2359)
+    3. [E][ ] CS2109S Lecture (at: I3-AUD)
+    4. [E][ ] CS2109S Lecture (at: I4-AUD)
+    5. [E][ ] CS2109S Lecture (at: I5-AUD)
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Nice! I've marked this task as done:
+    [E][X] CS2109S Lecture (at: I5-AUD)
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Here are the tasks in your list:
+    1. [T][X] finish homework this night
+    2. [D][ ] CS2103T Week 2 Project Submition Hard deadline (by: tonight 2359)
+    3. [E][ ] CS2109S Lecture (at: I3-AUD)
+    4. [E][ ] CS2109S Lecture (at: I4-AUD)
+    5. [E][X] CS2109S Lecture (at: I5-AUD)
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Nice! I've marked this task as done:
+    [E][X] CS2109S Lecture (at: I3-AUD)
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Here are the tasks in your list:
+    1. [T][X] finish homework this night
+    2. [D][ ] CS2103T Week 2 Project Submition Hard deadline (by: tonight 2359)
+    3. [E][X] CS2109S Lecture (at: I3-AUD)
+    4. [E][ ] CS2109S Lecture (at: I4-AUD)
+    5. [E][X] CS2109S Lecture (at: I5-AUD)
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Noted. I've removed this task:
+    [E][ ] CS2109S Lecture (at: I4-AUD)
+    Now you have 4 tasks in the list.
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Here are the tasks in your list:
+    1. [T][X] finish homework this night
+    2. [D][ ] CS2103T Week 2 Project Submition Hard deadline (by: tonight 2359)
+    3. [E][X] CS2109S Lecture (at: I3-AUD)
+    4. [E][X] CS2109S Lecture (at: I5-AUD)
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Noted. I've removed this task:
+    [D][ ] CS2103T Week 2 Project Submition Hard deadline (by: tonight 2359)
+    Now you have 3 tasks in the list.
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Here are the tasks in your list:
+    1. [T][X] finish homework this night
+    2. [E][X] CS2109S Lecture (at: I3-AUD)
+    3. [E][X] CS2109S Lecture (at: I5-AUD)
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Noted. I've removed this task:
+    [T][X] finish homework this night
+    Now you have 2 tasks in the list.
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Here are the tasks in your list:
+    1. [E][X] CS2109S Lecture (at: I3-AUD)
+    2. [E][X] CS2109S Lecture (at: I5-AUD)
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Noted. I've removed this task:
+    [E][X] CS2109S Lecture (at: I3-AUD)
+    Now you have 1 tasks in the list.
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Noted. I've removed this task:
+    [E][X] CS2109S Lecture (at: I5-AUD)
+    Now you have 0 tasks in the list.
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Currently no tasks in the list.
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    ☹ OOPS!!!  I'm sorry that your entry does not compile, please check with following information:
+    The description of a [todo] cannot be empty.
+    The format of [todo] should be 'todo [Name]'
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    ☹ OOPS!!!  I'm sorry that your entry does not compile, please check with following information:
+    The description of a [deadline] is incorrect.
+    Keyword: [ /by  ] or [Time] is not found.
+    The format of [deadline] should be 'deadline [Deadline Name] /by [Deadline Time]'
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    ☹ OOPS!!!  I'm sorry that your entry does not compile, please check with following information:
+    The description of a [event] is incorrect.
+    Keyword: [ /at  ] or [Time] is not found.
+    The format of [event] should be 'event [Event Name] /at [Event Time]'
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Hello from
+     ____        _        
+    |  _ \ _   _| | _____ 
+    | | | | | | | |/ / _ \
+    | |_| | |_| |   <  __/
+    |____/ \__,_|_|\_\___|
+    
+    Hello! I'm Duke 
+    What can I do for you?
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    ☹ OOPS!!!  I'm sorry that your entry does not compile, please check with following information:
+    The description of a [mark] cannot be empty.
+    The format of [mark] should be 'mark [ID of task]'
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    ☹ OOPS!!!  I'm sorry that your entry does not compile, please check with following information:
+    The description of a [unmark] cannot be empty.
+    The format of [unmark] should be 'unmark [ID of task]'
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    ☹ OOPS!!!  I'm sorry that your entry does not compile, please check with following information:
+    The description of a [delete] cannot be empty.
+    The format of [delete] should be 'delete [ID of Task]'
+   ----------------------------------------------------------------------------------------------------
+   ----------------------------------------------------------------------------------------------------
+    Bye. Hope to see you again soon!
+   ----------------------------------------------------------------------------------------------------

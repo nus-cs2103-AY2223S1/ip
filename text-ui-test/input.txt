@@ -1,1 +1,74 @@
+hi
+todo finish homework this night
+list
+add
+deadline CS2103T Week 2 Project Submition Hard deadline /by tonight 2359
+deadline CS2103T Week 2 Project Submition Hard deadline /bytonight 2359
+deadline CS2103T Week 2 Project Submition Hard deadline/by tonight 2359
+deadlineCS2103T Week 2 Project Submition Hard deadline /by tonight 2359
+deadline CS2103T Week 2 Project Submition Hard deadline /by 
+deadline C/by tonight 2359
+deadline /by tonight 2359
+deadline     /by tonight 2359
+list
+mark 2.2
+mark 222222222222222222222222222222222222222222222222222222222
+mark 1.1
+mark 1+1
+mark 1
+list
+Event CS2109S Lecture at I3-AUD
+event CS2109S Lecture at I3-AUD
+event CS2109S Lecture /at I3-AUD
+list
+    [E][ ] CS2109S Lecture (at: I3-AUD)
+event CS2109S Lecture /at I3-AUD
+event CS2109S Lecture /at I3-AUD
+event CS2109S Lecture /at I3-AUD
+event CS2109S Lecture /at I3-AUD
+event CS2109S Lecture /at I3-AUD
+event CS2109S Lecture /at I3-AUD
+event CS2109S Lecture /at I3-AUD
+event CS2109S Lecture /at I3-AUD
+list
+delete 3
+delete 3
+delete 3
+delete 3
+list
+delete 3
+delete 3
+delete 3
+delete 100
+delete 8
+delete 5
+list
+delete 3
+delete 3
+list
+event CS2109S Lecture /at I3-AUD
+event CS2109S Lecture /at I4-AUD
+event CS2109S Lecture /at I5-AUD
+list
+mark 5
+list
+mark 3
+list
+delete 4
+list
+delete 2
+list
+delete 1
+list
+delete 1
+delete 1
+list
+todo
+deadline
+event
 greet
+mark
+unmark
+
+delete
+bye
