@@ -5,7 +5,8 @@ public enum Action {
     Deadline("deadline"),
     Event("event"),
     Mark("mark"),
-    Unmark("unmark");
+    Unmark("unmark"),
+    Delete("delete");
 
     public final String label;
     private Action(String label) {
@@ -20,6 +21,6 @@ public enum Action {
         }
 
         throw new InvalidCommandException(
-               "Could not determine the command. Valid commands include: todo, deadline, event, mark, unmark");
+               "Could not determine the command. Valid commands include: todo, deadline, event, mark, unmark, delete");
     }
 }
