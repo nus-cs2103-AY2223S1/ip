@@ -14,6 +14,9 @@ public class calendar_entry {
 
     public int mark_as_completed(){
         if (this.is_completed){
+            //I know this is not what exactly http status code 208 means
+            //but it is the closest one that I can think of
+            //to represent the idea "It was already done. Not what u expected but it's alright"
             return 208;
         }
         this.is_completed=true;
@@ -22,8 +25,6 @@ public class calendar_entry {
 
     public int mark_as_incomplete(){
         if (!this.is_completed){
-            //I know this is not what exactly http status code 208 means
-            //but it is the closest one that I can think of
             return 208;
         }
         this.is_completed=false;

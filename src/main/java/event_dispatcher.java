@@ -1,3 +1,5 @@
+import jdk.jshell.spi.ExecutionControl;
+
 import java.security.InvalidParameterException;
 import java.util.Locale;
 
@@ -31,7 +33,8 @@ public class event_dispatcher {
     private int mark_as_done_undone(String input){
         String[] args=input.toLowerCase().split(" ");
         if (args.length!=2){
-            return 400;
+            throw new InvalidParameterException("Sorry, which entry do you want me to mark/unmark?");
+            //return 400;
         }
         if (args[0].equals("mark")){
             int status=this.table.mark_as_done(Integer.parseInt(args[1]));
@@ -50,7 +53,8 @@ public class event_dispatcher {
             return status;
         }
         else{
-            return 500;
+            throw new RuntimeException("Sorry, there seems to be some difficulties processing your command, could you check the syntax and try again later?");
+            //return 500;
         }
     }
 
@@ -66,7 +70,8 @@ public class event_dispatcher {
         }
         else if (args[0].equals("deadline") && args.length>=4){
             if (input.indexOf("/by")==-1){
-                return 500;
+                throw new InvalidParameterException("Sorry, what is the exact time of the deadline?\nCheck the help message for information on command syntax");
+                //return 500;
             }
             input=input.substring(9);
             String time=input.substring(input.indexOf("/by")+4);
@@ -80,7 +85,8 @@ public class event_dispatcher {
         }
         else if (args[0].equals("event") && args.length>=4){
             if (input.indexOf("/at")==-1 || input.indexOf(" - ")==-1){
-                return 500;
+                throw new InvalidParameterException("Sorry, what is the exact time of the event?\nCheck the help message for information on command syntax");
+                //return 500;
             }
             input=input.substring(6);
             String time=input.substring(input.indexOf("/at")+4);
@@ -92,7 +98,8 @@ public class event_dispatcher {
             }
             return status;
         }
-        return 500;
+        throw new InvalidParameterException("Sorry, I don't seem to understand you");
+        //return 500;
     }
 
     /**
@@ -100,12 +107,13 @@ public class event_dispatcher {
      * @param input the array of string that contains the command and parameters
      * @return status code (adapted from http, with exceptions such as status 0 represents exit)
      */
-    public int dispatch_command(String input){
+    public int dispatch_command(String input) throws Exception{
         if (input==null){
             throw new InvalidParameterException("command string array is not expected to be null, internal error");
         }
         if (input.length()==0){
-            return 400; //Bad request
+            throw new IllegalArgumentException("Sorry, command length cannot be zero");
+            //return 400; //Bad request
         }
         if (input.toLowerCase().equals("exit") || input.toLowerCase().equals("bye")){
             return 0; //NOT http status code, exit
@@ -124,8 +132,8 @@ public class event_dispatcher {
         if (splited_input[0].equals("todo") || splited_input[0].equals("event") || splited_input[0].equals("deadline")){
             return add_entry_to_calendar(input);
         }
-
-        return 500; //not implemented
+        throw new IllegalArgumentException("Sorry, I don't seem to understand you");
+        //return 500; //not implemented
     }
 
     /**
@@ -138,10 +146,15 @@ public class event_dispatcher {
     public int start_working(){
         ui.cout(ui.get_greeting());
         while (true){
-            int status=this.dispatch_command(ui.get_command());
-            ui.print_status_msg(status);
-            if (status==0){
-                break;
+            try {
+                int status=this.dispatch_command(ui.get_command());
+                ui.print_status_msg(status);
+                if (status==0){
+                    break;
+                }
+            }
+            catch (Throwable e){
+                ui.cout(IO_handler.generate_section(e.getMessage()+"\n"));
             }
         }
         return 0;

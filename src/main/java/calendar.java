@@ -18,14 +18,16 @@ public class calendar {
 
     public int mark_as_done(int index){
         if (index>this.cache.size()){
-            return 417;
+            throw new IndexOutOfBoundsException("Es tut mir leid. There is no event "+index+" in the current calendar\n");
+            //return 417;
         }
         return this.get_entry(index).mark_as_completed();
     }
 
     public int mark_as_undone(int index){
         if (index>this.cache.size()){
-            return 417;
+            throw new IndexOutOfBoundsException("Es tut mir leid. There is no event "+index+" in the current calendar\n");
+            //return 417;
         }
         return this.get_entry(index).mark_as_incomplete();
     }

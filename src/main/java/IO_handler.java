@@ -86,6 +86,7 @@ public class IO_handler {
         return input;
     }
 
+    @Deprecated
     public void print_status_msg(int status_code){
         if (status_code==400 || status_code==500){
             cout(generate_section("Sorry, I don't seem to understand you.\nMaybe there is a syntax error or the command is unsupported?\n"));
