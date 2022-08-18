@@ -13,34 +13,79 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
 
         while (!isDone) {
-            String command = sc.nextLine();
-
-            if (command.equals("bye")) {
-                bye();
-            } else if (command.equals("list")) {
-                displayList();
-            } else if (command.startsWith("mark")) {
-                String[] splitCommand = command.split("\\s+",2);
-                String markItem = splitCommand[1];
-                int itemNumber = Integer.parseInt(markItem);
-                mark(itemNumber);
-            } else if (command.startsWith("unmark")) {
-                String[] splitCommand = command.split("\\s+",2);
-                String unmarkItem = splitCommand[1];
-                int itemNumber = Integer.parseInt(unmarkItem);
-                unmark(itemNumber);
-            } else if (command.startsWith("todo")) {
-                String[] splitCommand = command.split("\\s+",2);
-                String desc = splitCommand[1];
-                addTodo(desc);
-            } else if (command.startsWith("deadline")) {
-                String[] splitCommand = command.split("\\s+",2);
-                String desc = splitCommand[1];
-                addDeadline(desc);
-            } else if (command.startsWith("event")) {
-                String[] splitCommand = command.split("\\s+",2);
-                String desc = splitCommand[1];
-                addEvent(desc);
+            try {
+                String command = sc.nextLine();
+                if (command.equals("bye")) {
+                    bye();
+                } else if (command.equals("list")) {
+                    displayList();
+                } else if (command.startsWith("mark")) {
+                    String[] splitCommand = command.split("\\s+",2);
+                    if (!splitCommand[0].equals("mark")) {
+                        throw new DukeInvalidCommandException(splitCommand[0]);
+                    }
+                    if (splitCommand.length < 2) {
+                        throw new DukeEmptyDescriptionException("mark");
+                    }
+                    try {
+                        String markItem = splitCommand[1];
+                        int itemNumber = Integer.parseInt(markItem);
+                        mark(itemNumber);
+                    } catch (NumberFormatException nfe) {
+                        throw new DukeNumberFormatException();
+                    }
+                } else if (command.startsWith("unmark")) {
+                    String[] splitCommand = command.split("\\s+",2);
+                    if (!splitCommand[0].equals("unmark")) {
+                        throw new DukeInvalidCommandException(splitCommand[0]);
+                    }
+                    if (splitCommand.length < 2) {
+                        throw new DukeEmptyDescriptionException("unmark");
+                    }
+                    try {
+                        String unmarkItem = splitCommand[1];
+                        int itemNumber = Integer.parseInt(unmarkItem);
+                        unmark(itemNumber);
+                    } catch (NumberFormatException nfe) {
+                        throw new DukeNumberFormatException();
+                    }
+                } else if (command.startsWith("todo")) {
+                    String[] splitCommand = command.split("\\s+",2);
+                    if (!splitCommand[0].equals("todo")) {
+                        throw new DukeInvalidCommandException(splitCommand[0]);
+                    }
+                    if (splitCommand.length < 2) {
+                        throw new DukeEmptyDescriptionException("todo");
+                    }
+                    String desc = splitCommand[1];
+                    addTodo(desc);
+                } else if (command.startsWith("deadline")) {
+                    String[] splitCommand = command.split("\\s+",2);
+                    if (!splitCommand[0].equals("deadline")) {
+                        throw new DukeInvalidCommandException(splitCommand[0]);
+                    }
+                    if (splitCommand.length < 2) {
+                        throw new DukeEmptyDescriptionException("deadline");
+                    }
+                    String desc = splitCommand[1];
+                    addDeadline(desc);
+                } else if (command.startsWith("event")) {
+                    String[] splitCommand = command.split("\\s+",2);
+                    if (!splitCommand[0].equals("event")) {
+                        throw new DukeInvalidCommandException(splitCommand[0]);
+                    }
+                    if (splitCommand.length < 2) {
+                        throw new DukeEmptyDescriptionException("event");
+                    }
+                    String desc = splitCommand[1];
+                    addEvent(desc);
+                } else {
+                    throw new DukeInvalidCommandException(command);
+                }
+            } catch (DukeException de) {
+                displayLine();
+                System.out.println(INDENTATION + de.getMessage());
+                displayLine();
             }
         }
     }
@@ -89,7 +134,11 @@ public class Duke {
         displayLine();
     }
 
-    private static void mark(int itemNumber) {
+    private static void mark(int itemNumber) throws DukeException {
+        int listLen = taskList.size();
+        if (itemNumber < 1 || itemNumber > listLen) {
+            throw new DukeOutOfBoundsException(1, listLen);
+        }
         int index = itemNumber - 1;
         Task markedTask = taskList.get(index);
         markedTask.markAsDone();
@@ -100,7 +149,11 @@ public class Duke {
         displayLine();
     }
 
-    private static void unmark(int itemNumber) {
+    private static void unmark(int itemNumber) throws DukeException {
+        int listLen = taskList.size();
+        if (itemNumber < 1 || itemNumber > listLen) {
+            throw new DukeOutOfBoundsException(1, listLen);
+        }
         int index = itemNumber - 1;
         Task unmarkedTask = taskList.get(index);
         unmarkedTask.unmarkAsDone();
@@ -125,8 +178,11 @@ public class Duke {
         displayAddTask(todo);
     }
 
-    private static void addDeadline(String description) {
+    private static void addDeadline(String description) throws DukeException {
         String[] splitDescription = description.split(" /by ", 2);
+        if (splitDescription[0].equals(description)) {
+            throw new DukeMissingSpecifierException("deadline", " /by ");
+        }
         String instruction = splitDescription[0];
         String by = splitDescription[1];
         Deadline deadline = new Deadline(instruction, by);
@@ -134,8 +190,11 @@ public class Duke {
         displayAddTask(deadline);
     }
 
-    private static void addEvent(String description) {
+    private static void addEvent(String description) throws DukeException {
         String[] splitDescription = description.split(" /at ", 2);
+        if (splitDescription[0].equals(description)) {
+            throw new DukeMissingSpecifierException("event", " /at ");
+        }
         String instruction = splitDescription[0];
         String at = splitDescription[1];
         Event event = new Event(instruction, at);
