@@ -55,7 +55,7 @@ public class TaskList {
     }
 
     public void addToDo(String desc) throws DukeException {
-        if (desc.isBlank()) {
+        if (desc == null || desc.isBlank()) {
             throw new EmptyCommandException("todo");
         }
         ToDo newTask = new ToDo(desc);
