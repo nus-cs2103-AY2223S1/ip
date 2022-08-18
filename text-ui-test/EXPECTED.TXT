@@ -1,7 +1,31 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
+Hello! Duke here, how can I help you?
+I've added this task to the list:
+  [T][ ] read book
+You have a total of 1 tasks in the list.
+I've added this task to the list:
+  [D][ ] return book (by: June 6th)
+You have a total of 2 tasks in the list.
+I've added this task to the list:
+  [E][ ] project meeting (at: Aug 6th 2-4pm)
+You have a total of 3 tasks in the list.
+I've added this task to the list:
+  [T][ ] join sports club
+You have a total of 4 tasks in the list.
+Good job! Task 1 has been completed:
+  [T][X] read book
+Good job! Task 4 has been completed:
+  [T][X] join sports club
+I've added this task to the list:
+  [T][ ] borrow book
+You have a total of 5 tasks in the list.
+Here are the tasks in your list:
+1. [T][X] read book
+2. [D][ ] return book (by: June 6th)
+3. [E][ ] project meeting (at: Aug 6th 2-4pm)
+4. [T][X] join sports club
+5. [T][ ] borrow book
+I've added this task to the list:
+  [D][ ] do homework (by: no idea :P)
+You have a total of 6 tasks in the list.
+Thanks for having me!
+Have a nice day ahead!
