@@ -1,3 +1,4 @@
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Duke {
@@ -15,15 +16,16 @@ public class Duke {
 
         while(!quit) {
 
-            input = sc.next();
+            input = sc.nextLine();
 
             if(input.equals("bye")) {
 
                 quit = true;
                 chatBot.bye();
-
+            } else if (input.equals("list")) {
+                chatBot.printTasks();
             } else {
-                chatBot.echo(input);
+                chatBot.addTask(input);
             }
         }
     }
