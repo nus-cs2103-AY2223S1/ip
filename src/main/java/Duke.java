@@ -34,7 +34,7 @@ public class Duke {
                 Task t = new Task(input.substring(5));
                 list.add(t);
                 System.out.println("Got it. I've added this task:");
-                System.out.println("[T]" + t);
+                System.out.println(t);
                 System.out.println("Now you have " + list.size() + " tasks in the list.");
             } else if (input.startsWith("deadline")){
                 String curr = input.substring(9, input.indexOf("/"));
