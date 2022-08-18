@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Duke {
@@ -53,11 +54,18 @@ public class Duke {
                }
            }
            else if (str.split(" ")[0].equals("mark") ) {
-               lst[Integer.parseInt(str.split(" ")[1]) - 1].mark();
+               Task current = lst[Integer.parseInt(str.split(" ")[1]) - 1];
+               System.out.println("Nice I have marked this as done:");
+               current.mark();
+               System.out.println(current.getStatusIcon() + " " + current.description);
 
            }
            else if (str.split(" ")[0].equals("unmark") ) {
-               lst[Integer.parseInt(str.split(" ")[1]) - 1].unmark();
+               Task current = lst[Integer.parseInt(str.split(" ")[1]) - 1];
+               System.out.println("Ok I have marked this as still to be done:");
+               current.unmark();
+               System.out.println(current.getStatusIcon() + " " + current.description);
+
 
            }
            else {
