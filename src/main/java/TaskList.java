@@ -26,6 +26,10 @@ public class TaskList {
         tasks.add(task);
     }
 
+    public Task removeTask(int indx) {
+        return tasks.remove(indx);
+    }
+
     @Override
     public String toString() {
         String output = "";

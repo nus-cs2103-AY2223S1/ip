@@ -9,11 +9,13 @@ public enum Messages {
     ADD_DEADLINE("Added deadline: "),
     MARK_DONE("Nice! I've marked this task as done:"),
     MARK_UNDONE(":( Stop Procrastinating! I've marked it as undone."),
+    DELETE("Wow! Good job, I have removed the following task: "),
     ERROR_INVALID_COMMAND("Beep-Boop, I don't understand you :<"),
     ERROR_TODO(">:| OOPS!!! The description of a todo cannot be empty."),
+    ERROR_INVALID_INDEX(">:| OOPS!!! There is no task with this index."),
     ERROR_MISSING_PARAMETERS(">:| OOPS!!! There are missing parameters.");
 
-    public String message;
+    private String message;
 
     Messages(String message) {
         this.message = message;
