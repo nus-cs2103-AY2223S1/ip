@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
@@ -73,7 +74,7 @@ public class Duke {
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        Task[] list = new Task[500];
+        ArrayList<Task> list = new ArrayList<>();
         int count = 0;
         String marked = "[X]";
         String unmarked = "[ ]";
@@ -87,19 +88,19 @@ public class Duke {
 
         while (!item.equals("bye")) {
             if (item.equals("list")) {
-                for(int i = 0; i < list.length; i++){
-                    if (list[i] == null) {
+                for(int i = 0; i < list.size(); i++){
+                    if (list.get(i) == null) {
                         break;
                     }
-                    System.out.println(Integer.toString(i + 1) + ". " + list[i].getTask());
+                    System.out.println(Integer.toString(i + 1) + ". " + list.get(i).getTask());
                 }
             }
             else if(item.length() == 6 &&  item.substring(0,4).equals("mark")) {
                 try {
                     int index = Integer.parseInt(item.substring(5)) - 1;
-                    list[index].setDone();
+                    list.get(index).setDone();
                     System.out.println("Nice! I've marked this task as done:");
-                    System.out.println(list[index].getTask());
+                    System.out.println(list.get(index).getTask());
                 } catch (NullPointerException e){
                     System.out.println("Oops! Looks like the task number is incorrect :(");
                 }
@@ -107,9 +108,9 @@ public class Duke {
             else if(item.length() == 8 &&  item.substring(0,6).equals("unmark")) {
                 try {
                 int index = Integer.parseInt(item.substring(7)) - 1;
-                list[index].setNotDone();
+                list.get(index).setNotDone();
                 System.out.println("OK, I've marked this task as not done yet:");
-                System.out.println(list[index].getTask());
+                System.out.println(list.get(index).getTask());
                 } catch (NullPointerException e){
                     System.out.println("Oops! Looks like the task number is incorrect :(");
                 }
@@ -123,11 +124,11 @@ public class Duke {
                             break;
                         }
                     }
-                    list[count] = new Deadline(item.substring(9, slash - 1), item.substring(slash + 4));
+                    list.add(new Deadline(item.substring(9, slash - 1), item.substring(slash + 4)));
                     System.out.println("Got it. I've added this task:");
-                    System.out.println(list[count].getTask());
-                    System.out.println("Now you have " + Integer.toString(count + 1) + " tasks in the list");
+                    System.out.println(list.get(list.size() -1).getTask());
                     count = count + 1;
+                    System.out.println("Now you have " + Integer.toString(count) + " tasks in the list");
                 } catch (IndexOutOfBoundsException e) {
                     System.out.println("☹ OOPS!!! The description of a deadline has to be in the format" +
                             " deadline <task> /by <date and time>");
@@ -142,11 +143,11 @@ public class Duke {
                             break;
                         }
                     }
-                    list[count] = new Event(item.substring(6, slash - 1), item.substring(slash + 4));
+                    list.add(new Event(item.substring(6, slash - 1), item.substring(slash + 4)));
                     System.out.println("Got it. I've added this task:");
-                    System.out.println(list[count].getTask());
-                    System.out.println("Now you have " + Integer.toString(count + 1) + " tasks in the list");
+                    System.out.println(list.get(list.size() - 1).getTask());
                     count = count + 1;
+                    System.out.println("Now you have " + Integer.toString(count) + " tasks in the list");
                 } catch (IndexOutOfBoundsException e) {
                     System.out.println("☹ OOPS!!! The description of a event has to be in the format event" +
                             " <task> /at <date and time>");
@@ -154,13 +155,26 @@ public class Duke {
             }
             else if(item.length() >= 4 &&  item.substring(0,4).equals("todo")) {
                 try {
-                    list[count] = new Todo(item.substring(5));
+                    list.add(new Todo(item.substring(5)));
                     System.out.println("Got it. I've added this task:");
-                    System.out.println(list[count].getTask());
-                    System.out.println("Now you have " + Integer.toString(count + 1) + " tasks in the list");
+                    System.out.println(list.get(list.size() - 1).getTask());
                     count = count + 1;
+                    System.out.println("Now you have " + Integer.toString(count) + " tasks in the list");
                 } catch (IndexOutOfBoundsException e) {
                     System.out.println("☹ OOPS!!! The description of a todo cannot be empty.");
+                }
+            }
+            else if(item.length() >= 6 &&  item.substring(0,6).equals("delete")) {
+                try {
+                    int index = Integer.parseInt(item.substring(7)) - 1;
+                    String text = list.get(index).getTask();
+                    list.remove(index);
+                    System.out.println("Noted. I've removed this task:");
+                    System.out.println(text);
+                    count = count - 1;
+                    System.out.println("Now you have " + Integer.toString(count) + " tasks in the list");
+                } catch (IndexOutOfBoundsException e){
+                    System.out.println("Oops! Looks like the task number is incorrect :(");
                 }
             }
             else{
