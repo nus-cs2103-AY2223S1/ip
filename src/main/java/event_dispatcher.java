@@ -58,6 +58,17 @@ public class event_dispatcher {
         }
     }
 
+    private int delete(String input){
+        String[] args=input.toLowerCase().split(" ");
+        if (args.length!=2){
+            throw new InvalidParameterException("Sorry, which entry do you want me to delete?");
+            //return 400;
+        }
+        ui.cout(IO_handler.generate_section("Jawohl, I have removed the following entry from your calendar:\n     " +
+                this.table.delete_entry(Integer.parseInt(args[1]))+"\n"));
+        return 200;
+    }
+
     private int add_entry_to_calendar(String input){
         String[] args=input.toLowerCase().split(" ");
         if (args[0].equals("todo") && args.length>=2){
@@ -131,6 +142,9 @@ public class event_dispatcher {
         }
         if (splited_input[0].equals("todo") || splited_input[0].equals("event") || splited_input[0].equals("deadline")){
             return add_entry_to_calendar(input);
+        }
+        if (splited_input[0].equals("delete")){
+            return delete(input);
         }
         throw new IllegalArgumentException("Sorry, I don't seem to understand you");
         //return 500; //not implemented

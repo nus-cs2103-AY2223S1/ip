@@ -16,6 +16,13 @@ public class calendar {
         return cache.get(index-1);
     }
 
+    public calendar_entry delete_entry(int index){
+        if (index>this.cache.size()){
+            throw new IndexOutOfBoundsException("Es tut mir leid. There is no event "+index+" in the current calendar\n");
+        }
+        return this.cache.remove(index-1);
+    }
+
     public int mark_as_done(int index){
         if (index>this.cache.size()){
             throw new IndexOutOfBoundsException("Es tut mir leid. There is no event "+index+" in the current calendar\n");
