@@ -1,7 +1,7 @@
 public class Seaward {
 
     private final static String welcome = "Hello! I'm Seaward,\n" +
-            "your friendly neighbourhood chatbot. \n" +
+            "your friendly neighbourhood chatbot.\n" +
             "Type something and I will reply!";
     private static TaskList taskList;
 
