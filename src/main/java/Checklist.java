@@ -37,12 +37,18 @@ class Checklist {
         System.out.println("Now you have " + taskList.size() + " tasks in the list.");
     }
 
-
     void todo(String task) {
         Todo todo = new Todo(taskList.size() + 1, task);
         taskList.add(todo);
         System.out.println("Got it. I've added this task: ");
         System.out.println(todo.toString());
+        System.out.println("Now you have " + taskList.size() + " tasks in the list.");
+    }
+
+    void delete(int id) {
+        Task toRemove = taskList.remove(id - 1);
+        System.out.println("Noted. I've removed this task: ");
+        System.out.println(toRemove);
         System.out.println("Now you have " + taskList.size() + " tasks in the list.");
     }
 

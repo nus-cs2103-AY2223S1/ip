@@ -30,6 +30,9 @@ class InputParser {
                 String date = input.substring(input.indexOf("/") + 4);
                 tasks.event(name, date);
             }
+        } else if (input.startsWith("delete")) {
+                int id = Integer.parseInt(input.substring(input.indexOf(" ") + 1));
+                tasks.delete(id);
         } else {
             throw new IllegalCommandException();
         }
