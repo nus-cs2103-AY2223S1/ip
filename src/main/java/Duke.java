@@ -2,7 +2,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.StringJoiner;
 import java.util.stream.IntStream;
 
 class Duke {
@@ -43,16 +42,15 @@ class Duke {
 
   public static void main(String[] args) {
     taskList = new ArrayList<>();
-    BufferedReader reader;
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     String input = "";
 
     Duke.greet();
 
     while (!input.equals("bye")) {
       try {
-        reader = new BufferedReader(new InputStreamReader(System.in));
         input = reader.readLine();
-        if (input.equals("bye")) {
+        if (input == null || input.equals("bye")) {
           reader.close();
           break;
         }
@@ -81,8 +79,9 @@ class Duke {
             break;
           case "todo": {
             String withoutPrefix = inputArray[1];
-            taskList.add(new Todo(withoutPrefix));
-            Duke.printMessage(wrapMessage(input));
+            Todo todo = new Todo(withoutPrefix);
+            taskList.add(todo);
+            Duke.printMessage(wrapMessage(todo.toString()));
           }
             break;
           case "deadline": {
