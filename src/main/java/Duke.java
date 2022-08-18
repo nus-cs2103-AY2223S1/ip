@@ -46,6 +46,7 @@ public class Duke {
         String showList = "list";
         String markAsDone = "mark ";
         String markAsNotDone = "unmark ";
+        String exitChat = "bye";
 
         while(true){
             Scanner readinput = new Scanner(System.in);
@@ -61,7 +62,7 @@ public class Duke {
                 System.out.println("\n***********************************************************************\n");
             }
 
-            if(userMsg.contains(markAsDone) && !userMsg.contains(markAsNotDone)){
+            else if(userMsg.contains(markAsDone) && !userMsg.contains(markAsNotDone)){
                 String taskNo = userMsg.replaceAll("\\D+", "");
                 int taskNoAsInt = Integer.parseInt(taskNo)-1;
                 ListObject currItem = listOfItems.get(taskNoAsInt);
@@ -71,7 +72,7 @@ public class Duke {
                 System.out.println("\n***********************************************************************\n");
 
             }
-            if(userMsg.contains(markAsNotDone)){
+            else if(userMsg.contains(markAsNotDone)){
 
                 String taskNo = userMsg.replaceAll("\\D+", "");
                 int taskNoAsInt = Integer.parseInt(taskNo)-1;
@@ -81,7 +82,7 @@ public class Duke {
                 System.out.println("\n***********************************************************************\n");
 
             }
-            if(userMsg.contains("todo ")){
+            else if(userMsg.contains("todo ")){
                 todoCount++;
                 String todo = userMsg.replaceAll("todo ", "");
                 ListObject newItem = new ToDo(todo, 0);
@@ -91,7 +92,7 @@ public class Duke {
                         + "\n***********************************************************************\n");
             }
 
-            if(userMsg.contains("deadline ")){
+            else if(userMsg.contains("deadline ")){
                 deadlinesCount++;
                 String deadline1 = userMsg.replaceAll("deadline ", "");
                 String[] words = deadline1.split("/");
@@ -104,7 +105,7 @@ public class Duke {
                         + "\n***********************************************************************\n");
             }
 
-            if(userMsg.contains("event ")){
+            else if(userMsg.contains("event ")){
                 eventsCount++;
                 String event1 = userMsg.replaceAll("event ", "");
                 String[] words = event1.split("/");
@@ -115,6 +116,18 @@ public class Duke {
                 System.out.println("Another moment to mark... \n" + newItem.toString()
                         + "\nYou now have " + listOfItems.size() + " tasks to do!"
                         + "\n***********************************************************************\n");
+            }
+
+            else if(userMsg.equals(exitChat)){
+                System.out.println("Ah! And so we part here today.\n We may yet meet again...Farewell, my friend!");
+                System.out.println("\n***********************************************************************\n");
+                break;
+            }
+
+            else {
+                System.out.print("Did you say..." + userMsg + "?\n");
+                System.out.println("The shadow of my memory is long...State what you would ask clearly.");
+                System.out.println("\n***********************************************************************\n");
             }
         }
     }
