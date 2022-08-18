@@ -1,5 +1,4 @@
 import java.util.*;
-import java.lang.Enum;
 
 public class Duke {
 
@@ -17,12 +16,16 @@ public class Duke {
         String response = sc.nextLine();
 
         while (!response.equals("bye")) {
+            String[] arr = response.split(" ");
             try {
-                check(response);
-                list.execute(response);
-                response = sc.nextLine();
-            } catch (DukeException de) {
-                System.out.print(de.getMessage() + "\n");
+                Instruction instruct = Instruction.valueOf(arr[0].toUpperCase(Locale.ROOT));
+                list.execute(instruct, response);
+            } catch (IllegalArgumentException e) {
+                DukeException de = new InvalidInstruction();
+                System.out.println(de.getMessage());
+            } catch (DukeException e) {
+                System.out.println(e.getMessage());
+            } finally {
                 response = sc.nextLine();
             }
         }
@@ -30,28 +33,6 @@ public class Duke {
         System.out.print("Awww see you soon!!");
         sc.close();
     }
-
-        public static void check(String response) throws DukeException {
-            if (response.equals("list")) {
-            } else {
-                String[] arr = response.split(" ");
-                switch (arr[0]) {
-                    case "mark":
-                    case "unmark":
-                    case "deadline":
-                    case "todo":
-                    case "event":
-                    case "delete":
-                        if (arr.length == 1) {
-                            throw new EmptyDescription(arr[0]);
-                        } else {
-                            break;
-                        }
-                    default:
-                        throw new InvalidInstruction();
-                }
-            }
-        }
 
 }
 

@@ -8,43 +8,45 @@ public class ToDoList {
         this.list = new ArrayList<>();
     }
 
-    public void execute(String response) throws InvalidIndex {
-        if (response.equals("list")) {
+    public void execute(Instruction instruct, String response) throws InvalidIndex, EmptyDescription {
+        if (instruct == Instruction.LIST) {
             list();
         } else {
             String[] str = response.split(" ");
-            String instruction = str[0];
+            if (str.length == 1) {
+                throw new EmptyDescription(instruct.name());
+            }
             String description = response.substring(str[0].length() + 1);
-            switch (instruction) {
-                case "mark": {
+            switch (instruct) {
+                case MARK: {
                     Integer index1 = Integer.valueOf(description);
                     //should handle non-int
                     mark(index1);
                     break;
                 }
-                case "unmark": {
+                case UNMARK: {
                     Integer index = Integer.valueOf(description);
                     unMark(index);
                     break;
                 }
-                case "deadline": {
+                case DEADLINE: {
                     String[] substrings = description.split(" /by ");
                     Deadlines d = new Deadlines(substrings[0], substrings[1]);
                     addTask(d);
                     break;
                 }
-                case "event": {
+                case EVENT: {
                     String[] substrings = description.split(" /at ");
                     Events e = new Events(substrings[0], substrings[1]);
                     addTask(e);
                     break;
                 }
-                case "todo": {
+                case TODO: {
                     ToDos t = new ToDos(description);
                     addTask(t);
                     break;
                 }
-                case "delete": {
+                case DELETE: {
                     Integer index = Integer.valueOf(description);
                     delete(index);
                     break;
