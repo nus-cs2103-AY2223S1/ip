@@ -29,7 +29,9 @@ public class Duke {
         System.out.println(logo);
         System.out.println("Hello! I'm Duke.\nWhat can I do for you?");
 
-        while (true) {
+        while (scanner.hasNextLine()) {
+            //strip() to allow for any (unintentional) whitespaces before or after
+            //also, whitespaces after the last valid char in a description/time input will be truncated.
             String response = scanner.nextLine().strip();
             //bye command
             if (response.equals("bye")) {
@@ -47,6 +49,7 @@ public class Duke {
                     if (response.length() < 6) {
                         throw new MissingTaskNumberException();
                     }
+                    //will not allow if format "mark<space>int" is not followed
                     int query = Integer.parseInt(response.substring(5)) - 1;
                     if (query > tasks.size() - 1 || query < 0) {
                         throw new InvalidTaskNumberException();
@@ -68,6 +71,7 @@ public class Duke {
                     if (response.length() < 8) {
                         throw new MissingTaskNumberException();
                     }
+                    //will not allow if format "mark<space>int" is not followed
                     int query = Integer.parseInt(response.substring(7)) - 1;
                     if (query > tasks.size() - 1 || query < 0) {
                         throw new InvalidTaskNumberException();
@@ -89,6 +93,7 @@ public class Duke {
                     if (response.length() < 8) {
                         throw new MissingTaskNumberException();
                     }
+                    //will not allow if format "mark<space>int" is not followed
                     int query = Integer.parseInt(response.substring(7)) - 1;
                     if (query > tasks.size() - 1 || query < 0) {
                         throw new InvalidTaskNumberException();
@@ -112,6 +117,8 @@ public class Duke {
                 //todo command
                 if (response.equals("todo") || response.startsWith("todo ")) {
                     try {
+                        //because of strip() called on response earlier,
+                        //todo command with whitespaces followed are not valid descriptions.
                         if (response.length() < 6) {
                             throw new MissingDescriptionException();
                         }
@@ -141,6 +148,7 @@ public class Duke {
                         }
                         String description = subresponse.substring(0, tokenpos);
                         String time = subresponse.substring(tokenpos + 5);
+                        //to ensure whitespaces alone as a description or time is not allowed
                         if (description.strip().length() == 0) {
                             throw new MissingDescriptionException();
                         }
@@ -178,6 +186,7 @@ public class Duke {
                         }
                         String description = subresponse.substring(0, tokenpos);
                         String time = subresponse.substring(tokenpos + 5);
+                        //to ensure whitespaces alone as a description or time is not allowed
                         if (description.strip().length() == 0) {
                             throw new MissingDescriptionException();
                         }
