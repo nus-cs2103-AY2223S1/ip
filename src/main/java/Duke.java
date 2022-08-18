@@ -2,15 +2,28 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * A basic CLI application for managing tasks.
+ */
 public class Duke {
-
+    /**
+     * Enum for task type.
+     */
     public enum TaskType {
         EVENT, DEADLINE, TODO
     }
-    private static List<Task> items = new ArrayList<>();
-    // private static int id;
 
-    public static void main(String[] args) throws DukeException {
+    /**
+     * ArrayList for storing the different tasks entered
+     * by the user.
+     */
+    private static List<Task> items = new ArrayList<>();
+
+    /**
+     * Main method for starting the program.
+     * @param args Optional command line arguments
+     */
+    public static void main(String[] args) {
         String introduction = "Hello! I'm Duke\n" + "\tWhat can I do for you?";
         Duke.echo(introduction);
 
@@ -30,6 +43,12 @@ public class Duke {
         }
     }
 
+    /**
+     * Decision tree for Duke to process, store and echo text input from the user.
+     * @param s The entire string entered by the user, line-by-line.
+     * @param arr An array of strings (words) obtained from splitting the above string.
+     * @throws DukeException A custom exception for handling errors unique to Duke.
+     */
     private static void decide(String s, String[] arr) throws DukeException {
         if (arr.length == 0) {
             return;
@@ -126,6 +145,10 @@ public class Duke {
         }
     }
 
+    /**
+     * Utility function for Duke to print responses to the user.
+     * @param s The string to be formatted and indented within the enclosing border.
+     */
     private static void echo(String s) {
         System.out.println("\t_________________________________________________");
         System.out.println("\t" + s);
@@ -133,6 +156,12 @@ public class Duke {
         System.out.println();
     }
 
+    /**
+     * Utility function with logic for adding tasks to the user's task list.
+     * @param description The description of the task to be added.
+     * @param type The type of task to be added.
+     * @param remarks The remarks to be added for events or deadlines.
+     */
     private static void add(String description, TaskType type, String remarks) {
         String s = "Got it. I've added this task:\n\t";
         switch (type) {
@@ -159,6 +188,9 @@ public class Duke {
         Duke.echo(s);
     }
 
+    /**
+     * Utility function for retrieving and printing the tasks in the user's task list.
+     */
     private static void list() {
         if (items.size() == 0) {
             Duke.echo("no items stored");
@@ -172,6 +204,10 @@ public class Duke {
         }
     }
 
+    /**
+     * Utility function for deleting an item in the user's task list.
+     * @param index The position of the task to be deleted in the ArrayList.
+     */
     private static void delete(int index) {
         items.remove(index);
     }
