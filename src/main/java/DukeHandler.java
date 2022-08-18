@@ -21,10 +21,11 @@ public class DukeHandler {
             if (input.equals("list")) {
                 tasks.listTasks();
             }
+
             else if (inputParts.size() < 2) {
                 inputParts.add("");
             }
-            if (input.matches("mark +\\d+") || input.matches("unmark +\\d+")) {
+            else if (input.matches("mark +\\d+") || input.matches("unmark +\\d+")) {
                 if (inputParts.get(0).equals("mark")) {
                     tasks.mark(Integer.parseInt(inputParts.get(1)));
                 }
