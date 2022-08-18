@@ -1,9 +1,9 @@
 import java.util.Scanner;
 public class Duke {
     private static class Task {
-        private boolean completed;
-        private String name;
-        private int count;
+        protected boolean completed;
+        protected String name;
+        protected int count;
 
         public Task(String name, int count) {
             this.name = name;
@@ -31,7 +31,83 @@ public class Duke {
             String comp = this.completed
                     ? "[X]"
                     : "[ ]";
-            return String.format(comp + " " + name);
+            return comp + " " + name;
+        }
+    }
+
+    private static class Todo extends Task {
+        private static final String type = "[T]";
+
+        public Todo(String name, int count) {
+            super(name, count);
+        }
+
+        @Override
+        public String toString() {
+            String comp = this.completed
+                    ? "[X]"
+                    : "[ ]";
+            return String.format("%d." + type + comp + " " + name, count);
+        }
+
+        @Override
+        public String toStr() {
+            String comp = this.completed
+                    ? "[X]"
+                    : "[ ]";
+            return type + comp + " " + name;
+        }
+    }
+
+    private static class Deadline extends Task {
+        private static final String type = "[D]";
+        private String date;
+
+        public Deadline(String name, int count, String date) {
+            super(name, count);
+            this.date = "(by: " + date + ")";
+        }
+
+        @Override
+        public String toString() {
+            String comp = this.completed
+                    ? "[X]"
+                    : "[ ]";
+            return String.format("%d." + type + comp + " " + name + date, count);
+        }
+
+        @Override
+        public String toStr() {
+            String comp = this.completed
+                    ? "[X]"
+                    : "[ ]";
+            return type + comp + " " + name + date;
+        }
+    }
+
+    private static class Event extends Task {
+        private static final String type = "[E]";
+        private String time;
+
+        public Event(String name, int count, String time) {
+            super(name, count);
+            this.time = "(at: " + time + ")";
+        }
+
+        @Override
+        public String toString() {
+            String comp = this.completed
+                    ? "[X]"
+                    : "[ ]";
+            return String.format("%d." + type + comp + " " + name + time, count);
+        }
+
+        @Override
+        public String toStr() {
+            String comp = this.completed
+                    ? "[X]"
+                    : "[ ]";
+            return type + comp + " " + name + time;
         }
     }
 
@@ -62,15 +138,44 @@ public class Duke {
                 }
             } else if (item.startsWith("mark")) {
                 String str = item.replace("mark ", "");
-                Integer index = Integer.valueOf(str);
+                int index = Integer.valueOf(str);
                 arr[index - 1].mark();
                 System.out.println("Nice! I've marked this task as done:\n" + arr[index - 1].toStr());
             } else if (item.startsWith("unmark")) {
                 String str = item.replace("unmark ", "");
-                Integer index = Integer.valueOf(str);
+                int index = Integer.valueOf(str);
                 arr[index - 1].unmark();
                 System.out.println("OK, I've marked this task as not done yet:\n" + arr[index - 1].toStr());
-            } else {
+            } else if (item.startsWith("todo")) {
+                arr[count] = new Todo(item, count+1);
+                count++;
+                System.out.println(String.format("Got it. I've added this task:\n" +
+                        "\t%s\n" +
+                        "Now you have %d tasks in the list.",
+                        arr[count - 1].toStr(),
+                        count));
+            } else if (item.startsWith("deadline")) {
+                String[] input = item.split("/by ");
+                String name = input[0].replace("deadline ", "");
+                arr[count] = new Deadline(name, count + 1, input[1]);
+                count++;
+                System.out.println(String.format("Got it. I've added this task:\n" +
+                                "\t%s\n" +
+                                "Now you have %d tasks in the list.",
+                        arr[count - 1].toStr(),
+                        count));
+            } else if (item.startsWith("event")) {
+                String[] input = item.split("/at ");
+                String name = input[0].replace("event ", "");
+                arr[count] = new Event(name, count + 1, input[1]);
+                count++;
+                System.out.println(String.format("Got it. I've added this task:\n" +
+                                "\t%s\n" +
+                                "Now you have %d tasks in the list.",
+                        arr[count - 1].toStr(),
+                        count));
+            }
+            else {
                 arr[count] = new Task(item, count+1);
                 count++;
                 System.out.println("Added: " + item);
