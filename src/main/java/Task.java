@@ -11,9 +11,9 @@ public class Task {
         return (isDone ? "X" : " ");
     }
 
-    public String getDescription() {
-        return this.description;
-    }
+//    public String getDescription() {
+//        return this.description;
+//    }
 
     public void mark() {
         this.isDone = true;
@@ -21,5 +21,10 @@ public class Task {
 
     public void unmark() {
         this.isDone = false;
+    }
+    // e.g: [ ] do homework
+    @Override
+    public String toString() {
+        return "[" + this.getStatusIcon() + "] " + this.description;
     }
 }
