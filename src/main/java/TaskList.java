@@ -11,7 +11,7 @@ public class TaskList {
     public void listTasks() {
         for (Task task : tasks) {
             int index = tasks.indexOf(task) + 1;
-            System.out.println(index + ". " + task.print());
+            System.out.println(index + ". " + task.toString());
         }
     }
 
@@ -31,7 +31,7 @@ public class TaskList {
     public void mark(int index) {
         Task temp = tasks.get(index-1);
         temp.mark();
-        System.out.println("Nice! I've marked this task as done: \n" + temp.print());
+        System.out.println("Nice! I've marked this task as done: \n" + temp.toString());
     }
     /**
      * Mark a task in the list as not done
@@ -40,6 +40,6 @@ public class TaskList {
     public void unmark(int index) {
         Task temp = tasks.get(index-1);
         temp.unmark();
-        System.out.println(" OK, I've marked this task as not done yet: \n" + temp.print());
+        System.out.println(" OK, I've marked this task as not done yet: \n" + temp.toString());
     }
 }

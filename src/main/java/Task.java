@@ -17,7 +17,7 @@ public class Task {
     public String getDone() {
         return (done==true? "[X] " : "[ ] ");
     }
-    public String print() {
+    public String toString() {
         return (this.getDone() + this.getDescription());
     }
 }
