@@ -25,8 +25,9 @@ public class Pixel {
             System.out.println("Bye. Hope to see you again soon!");
 
         } else if (userInput.startsWith("todo ", 0)) {
-            String temp = userInput.substring(5, userInput.length());
-            Task newToDo = new ToDo(userInput, temp); // Stores user input
+            int indexOfSlash = userInput.indexOf("/");
+            String temp = userInput.substring(indexOfSlash + 1, userInput.length());
+            Task newToDo = new ToDo(userInput.substring(5, indexOfSlash), temp); // Stores user input
             inputTasks[count] = newToDo;
             count += 1;
             System.out.println("Got it. I've added this task:");
@@ -35,8 +36,9 @@ public class Pixel {
             run();
 
         } else if (userInput.startsWith("deadline ", 0)) {
-            String temp = userInput.substring(9, userInput.length());
-            Task newDeadline = new Deadline(userInput, temp); // Stores user input
+            int indexOfSlash = userInput.indexOf("/");
+            String temp = userInput.substring(indexOfSlash + 1, userInput.length());
+            Task newDeadline = new Deadline(userInput.substring(9, indexOfSlash), temp); // Stores user input
             inputTasks[count] = newDeadline;
             count += 1;
             System.out.println("Got it. I've added this task:");
@@ -45,8 +47,9 @@ public class Pixel {
             run();
 
         } else if (userInput.startsWith("event ", 0)) {
-            String temp = userInput.substring(9, userInput.length());
-            Task newEvent = new Event(userInput, temp); // Stores user input
+            int indexOfSlash = userInput.indexOf("/");
+            String temp = userInput.substring(indexOfSlash + 1, userInput.length());
+            Task newEvent = new Event(userInput.substring(6, indexOfSlash), temp); // Stores user input
             inputTasks[count] = newEvent;
             count += 1;
             System.out.println("Got it. I've added this task:");
