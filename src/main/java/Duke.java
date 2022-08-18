@@ -34,7 +34,7 @@ public class Duke {
         } else if (command.split(" ").length > 1 && command.split(" ")[0].equals("todo")) {
             ArrayList<String> commandDelimited = new ArrayList<String>(Arrays.asList(command.split(" ")));
             if (commandDelimited.size() == 1) {
-                throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+                throw new DukeException("The description of a todo cannot be empty.");
             }
             StringBuilder description = new StringBuilder();
             for (int i = 1; i < commandDelimited.size(); i++) {
@@ -95,7 +95,7 @@ public class Duke {
                     HORIZONTAL_LINE + "\n  Got it. I've added this task:\n  " + event + "\n  Now you have "
                             + String.valueOf(storedTasks.size()) + " tasks in the list.\n" + HORIZONTAL_LINE);
         } else {
-            throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+            throw new DukeException("I'm sorry, but I don't know what that means :-(");
         }
     }
 
