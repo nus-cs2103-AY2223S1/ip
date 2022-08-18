@@ -5,10 +5,15 @@ public class Duke {
         protected String name;
         protected int count;
 
-        public Task(String name, int count) {
-            this.name = name;
-            this.count = count;
-            this.completed = false;
+        public Task(String name, int count) throws MissingDescriptionException {
+            if (name.equals("") || name.equals(" ")) {
+                throw new MissingDescriptionException();
+            } else {
+                this.name = name;
+                this.count = count;
+                this.completed = false;
+            }
+
         }
 
         public void mark() {
@@ -24,21 +29,21 @@ public class Duke {
             String comp = this.completed
                     ? "[X]"
                     : "[ ]";
-            return String.format("%d." + comp + " " + name, count);
+            return String.format("%d." + comp + name, count);
         }
 
         public String toStr() {
             String comp = this.completed
                     ? "[X]"
                     : "[ ]";
-            return comp + " " + name;
+            return comp + name;
         }
     }
 
     private static class Todo extends Task {
         private static final String type = "[T]";
 
-        public Todo(String name, int count) {
+        public Todo(String name, int count) throws MissingDescriptionException {
             super(name, count);
         }
 
@@ -47,7 +52,7 @@ public class Duke {
             String comp = this.completed
                     ? "[X]"
                     : "[ ]";
-            return String.format("%d." + type + comp + " " + name, count);
+            return String.format("%d." + type + comp + name, count);
         }
 
         @Override
@@ -55,7 +60,7 @@ public class Duke {
             String comp = this.completed
                     ? "[X]"
                     : "[ ]";
-            return type + comp + " " + name;
+            return type + comp + name;
         }
     }
 
@@ -63,7 +68,7 @@ public class Duke {
         private static final String type = "[D]";
         private String date;
 
-        public Deadline(String name, int count, String date) {
+        public Deadline(String name, int count, String date) throws MissingDescriptionException {
             super(name, count);
             this.date = "(by: " + date + ")";
         }
@@ -73,7 +78,7 @@ public class Duke {
             String comp = this.completed
                     ? "[X]"
                     : "[ ]";
-            return String.format("%d." + type + comp + " " + name + date, count);
+            return String.format("%d." + type + comp + name + date, count);
         }
 
         @Override
@@ -81,7 +86,7 @@ public class Duke {
             String comp = this.completed
                     ? "[X]"
                     : "[ ]";
-            return type + comp + " " + name + date;
+            return type + comp + name + date;
         }
     }
 
@@ -89,7 +94,7 @@ public class Duke {
         private static final String type = "[E]";
         private String time;
 
-        public Event(String name, int count, String time) {
+        public Event(String name, int count, String time) throws MissingDescriptionException {
             super(name, count);
             this.time = "(at: " + time + ")";
         }
@@ -99,7 +104,7 @@ public class Duke {
             String comp = this.completed
                     ? "[X]"
                     : "[ ]";
-            return String.format("%d." + type + comp + " " + name + time, count);
+            return String.format("%d." + type + comp + name + time, count);
         }
 
         @Override
@@ -107,7 +112,7 @@ public class Duke {
             String comp = this.completed
                     ? "[X]"
                     : "[ ]";
-            return type + comp + " " + name + time;
+            return type + comp + name + time;
         }
     }
 
@@ -147,39 +152,54 @@ public class Duke {
                 arr[index - 1].unmark();
                 System.out.println("OK, I've marked this task as not done yet:\n" + arr[index - 1].toStr());
             } else if (item.startsWith("todo")) {
-                String str = item.replace("todo ", "");
-                arr[count] = new Todo(str, count+1);
-                count++;
-                System.out.println(String.format("Got it. I've added this task:\n" +
-                        "%s\n" +
-                        "Now you have %d tasks in the list.",
-                        arr[count - 1].toStr(),
-                        count));
+                try {
+                    String str = item.replace("todo", "");
+                    arr[count] = new Todo(str, count+1);
+                    count++;
+                    System.out.println(String.format("Got it. I've added this task:\n" +
+                                    "%s\n" +
+                                    "Now you have %d tasks in the list.",
+                            arr[count - 1].toStr(),
+                            count));
+                } catch (MissingDescriptionException err) {
+                    System.out.println("OOPS!!! The description of a todo cannot be empty.");
+                }
             } else if (item.startsWith("deadline")) {
-                String[] input = item.split("/by ");
-                String name = input[0].replace("deadline ", "");
-                arr[count] = new Deadline(name, count + 1, input[1]);
-                count++;
-                System.out.println(String.format("Got it. I've added this task:\n" +
-                                "%s\n" +
-                                "Now you have %d tasks in the list.",
-                        arr[count - 1].toStr(),
-                        count));
+                try{
+                    String[] input = item.split("/by ");
+                    String name = input[0].replace("deadline", "");
+                    arr[count] = new Deadline(name, count + 1, input[1]);
+                    count++;
+                    System.out.println(String.format("Got it. I've added this task:\n" +
+                                    "%s\n" +
+                                    "Now you have %d tasks in the list.",
+                            arr[count - 1].toStr(),
+                            count));
+                } catch (MissingDescriptionException err) {
+                    System.out.println("OOPS!!! The description of a deadline cannot be empty.");
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.println("OOPS!!! The end date of a deadline cannot be empty.");
+                }
             } else if (item.startsWith("event")) {
-                String[] input = item.split("/at ");
-                String name = input[0].replace("event ", "");
-                arr[count] = new Event(name, count + 1, input[1]);
-                count++;
-                System.out.println(String.format("Got it. I've added this task:\n" +
-                                "%s\n" +
-                                "Now you have %d tasks in the list.",
-                        arr[count - 1].toStr(),
-                        count));
+                try{
+                    String[] input = item.split("/at ");
+                    String name = input[0].replace("event", "");
+                    arr[count] = new Event(name, count + 1, input[1]);
+                    count++;
+                    System.out.println(String.format("Got it. I've added this task:\n" +
+                                    "%s\n" +
+                                    "Now you have %d tasks in the list.",
+                            arr[count - 1].toStr(),
+                            count));
+                } catch (MissingDescriptionException err) {
+                    System.out.println("OOPS!!! The description of an event cannot be empty.");
+                } catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println("OOPS!!! The time of an event cannot be empty.");
+            }
             }
             else {
-                arr[count] = new Task(item, count+1);
-                count++;
-                System.out.println("Added: " + item);
+                UnknownInputException err = new UnknownInputException();
+                System.out.println(err.toString());
             }
         }
 
