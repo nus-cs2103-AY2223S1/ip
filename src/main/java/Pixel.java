@@ -107,7 +107,7 @@ public class Pixel {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         // System.out.println("Hello from\n" + logo);
-        System.out.println("Hello from\n");
+        // System.out.println("Hello from\n");
         System.out.println("Hello! I'm Pixel \r\nWhat can I do for you?");
         Pixel test = new Pixel();
         test.run();

@@ -9,6 +9,6 @@ public class ToDo extends Task {
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + due + ")";
+        return "[T]" + super.toString() + " (by: " + due + ")";
     }
 }

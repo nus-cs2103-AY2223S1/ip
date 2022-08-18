@@ -9,6 +9,6 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + due + ")";
+        return "[E]" + super.toString() + " (by: " + due + ")";
     }
 }
