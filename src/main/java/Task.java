@@ -5,7 +5,7 @@ package main.java;
  * It supports toggling of task status.
  *
  * @author Totsuka Tomofumi
- * @version Level-3
+ * @version Level-4, Level-5
  */
 public class Task {
     /**
@@ -20,6 +20,7 @@ public class Task {
      * Description of task.
      */
     private String description;
+
     /**
      * Status of task.
      */
