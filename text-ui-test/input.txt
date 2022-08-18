@@ -1,0 +1,19 @@
+event project meeting /at 1pm
+todo do laundry
+list
+mark 2
+list
+deadline CS2103 /by 2359 Thursday
+deadline PHS3122 /by Friday morning
+list
+mark 3
+event meet with prof /at 2pm
+list
+unmark 3
+list
+mark 1
+mark 2
+mark 3
+unmark 2
+list
+bye
