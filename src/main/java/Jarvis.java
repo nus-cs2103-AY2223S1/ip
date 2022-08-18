@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Jarvis {
-    private static final String GREET_MESSAGE = "Hello! I am Jarvis! \n" + "What can I do for you?";
+    private static final String GREET_MESSAGE = "Hello! I am Jarvis! What can I do for you?";
 
     private static void printMessage(String message) {
         System.out.println(">> " + message);
