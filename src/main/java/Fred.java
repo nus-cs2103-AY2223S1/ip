@@ -5,7 +5,7 @@ public class Fred {
     public static void list(ArrayList<Task> arrayList) {
         int counter = 1;
         for (Task t : arrayList) {
-            System.out.println("Fred: " + counter++ + ".[" + t.getStatusIcon() + "] " + t.getName());
+            System.out.println("Fred: " + counter++ + "." + t.toString());
         }
     }
 
