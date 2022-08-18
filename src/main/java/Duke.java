@@ -41,9 +41,30 @@ public class Duke {
                     System.out.println("Bye. Hope to see you again soon!\n");
                     break;
 
+                } else if (text.startsWith("delete")) {
+                    try {
+                        if (text.equalsIgnoreCase("delete") || text.equalsIgnoreCase("delete ")) {
+                            System.out.println("Please provide a task number to delete");
+                        } else {
+                            int deletable = Integer.parseInt(text.replace("delete ", "")) - 1;
+                            if (deletable < storage.size() && deletable >= 0) {
+                                Task deleted = storage.get(deletable);
+                                storage.remove(deletable);
+                                System.out.println("Noted. I have removed this task:\n" +
+                                        deleted.toString() +
+                                        "\nNow you have " + storage.size() + " tasks in the list");
+                            } else {
+                                System.out.println("The task you want to delete does not exist.");
+                            }
+                        }
+                    } catch (NumberFormatException error) {
+                        System.out.println("Invalid command please add a space between delete and the list item you would like to interact with. \n" +
+                                "Additionally ensure you have entered a number after delete.");
+                    }
+
                 } else if (text.startsWith("todo")) {
                     if (text.equalsIgnoreCase("todo") || text.equalsIgnoreCase("todo ")) {
-                       throw new DukeException.DukeToDoException("Please provide a description for your todo task.");
+                        throw new DukeException.DukeToDoException("Please provide a description for your todo task.");
                     } else {
                         if (text.replace("todo ", "").startsWith(" ")) {
                             throw new DukeException.DukeToDoException("Please provide a description for your todo task.");
@@ -94,7 +115,7 @@ public class Duke {
                         }
                     } catch (NumberFormatException error) {
                         System.out.println("Invalid command please add a space between mark and the list item you would like to interact with. \n" +
-                                "additionally ensure you have entered a number after mark.");
+                                "Additionally ensure you have entered a number after mark.");
                     }
 
                 } else if (text.startsWith("unmark")) {
@@ -117,7 +138,7 @@ public class Duke {
                         }
                     } catch (NumberFormatException error) {
                         System.out.println("Invalid command please add a space between unmark and the list item you would like to interact with. \n" +
-                                "additionally ensure you have entered a number after unmark.");
+                                "Additionally ensure you have entered a number after unmark.");
                     }
 
                 } else if (text.startsWith("help")) {
@@ -140,6 +161,7 @@ public class Duke {
             }
 
         } catch (DukeException.DukeCommandException error) {
+            System.out.println(error.getMessage());
             System.out.println("Please provide a proper command. Formats are as follows: \n\n" +
                     "Main commands : \n\n" +
                     "Todo : adds a todo task to the task list :-> todo <description of the task> \n" +
@@ -153,8 +175,7 @@ public class Duke {
                     "Bye : closes Duke :-> bye\n\n" +
                     "Please enter one of the above to continue.");
             list();
-        }
-        catch (DukeException.DukeToDoException error){
+        } catch (DukeException.DukeToDoException error) {
             System.out.println(error.getMessage());
             list();
         }
