@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
@@ -7,21 +8,39 @@ public class Duke {
         main_task();
     }
 
+    private static final ArrayList<String> task = new ArrayList<>();
+
     private static void main_task() {
-        String terminating_text = "bye";
-        String blank = "               ";
+        final String terminating_text = "bye";
+        final String list_text = "list";
         while (true) {
             Scanner scanner = new Scanner(System.in);
             String input = scanner.nextLine();
-            if (input.equals(terminating_text)) {
-                end_prompt();
-                break;
+            switch (input) {
+                case terminating_text:
+                    end_prompt();
+                    break;
+                case list_text:
+                    list_tasks();
+                    break;
+                default:
+                    default_case(input);
             }
-
-            System.out.println(blank + input);
-            line_divider();
         }
+    }
 
+    static void default_case(String input) {
+        task.add(input);
+        String text = "               added: ";
+        System.out.println(text + input);
+        line_divider();
+    }
+
+    private static void list_tasks() {
+        for (int i = 1; i <= task.size(); i++) {
+            System.out.println(i + ") " + task.get(i - 1));
+        }
+        line_divider();
     }
 
     private static void start_prompt() {
