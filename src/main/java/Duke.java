@@ -33,8 +33,14 @@ public class Duke {
 
         String argument = arr[1];
         switch(command) {
-            case "add":
-                this.add(argument);
+            case "todo":
+                todo(argument);
+                break;
+            case "deadline":
+                deadline(argument);
+                break;
+            case "event":
+                event(argument);
                 break;
             case "mark":
                 this.mark(argument);
@@ -45,9 +51,25 @@ public class Duke {
         }
     }
 
-    public void add(String argument) {
-        listOfTasks.add(new Task(argument));
-        IOhelper.print("added: " + argument);
+    public void todo(String argument) {
+        Task item = Task.ToDo(argument);
+        listOfTasks.add(item);
+        IOhelper.print("added: " + item);
+        IOhelper.print("Now you have " + listOfTasks.size() + " tasks in the list.");
+    }
+
+    public void deadline(String argument) {
+        Task item = Task.Deadline(argument);
+        listOfTasks.add(item);
+        IOhelper.print("added: " + item);
+        IOhelper.print("Now you have " + listOfTasks.size() + " tasks in the list.");
+    }
+
+    public void event(String argument) {
+        Task item = Task.Event(argument);
+        listOfTasks.add(item);
+        IOhelper.print("added: " + item);
+        IOhelper.print("Now you have " + listOfTasks.size() + " tasks in the list.");
     }
 
     public void list() {
