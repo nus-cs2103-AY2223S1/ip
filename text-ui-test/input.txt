@@ -1,0 +1,11 @@
+todo read book
+todo play game
+deadline homework1 /by tomorrow
+event project meetup /at Utown Sunday 10am
+mark 3
+list
+deadline homework2 /by next week
+mark 2
+unmark 2
+list
+bye
