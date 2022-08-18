@@ -40,14 +40,12 @@ public class Duke {
      * @param input - the input string to be parsed
      */
     public static void ParseInput(String input) {
-        if (input == "") {
-            System.out.println("Invalid Input");
-            return;
-        }
-
-        String[] words = input.toLowerCase().split(" ");
+        String[] words = input.toLowerCase().split(" ", 2);
         String command = words[0];
-        List<String> args = ParseArgs(words);
+        String args = "";
+        if (words.length > 1) {
+            args = words[1];
+        }
 
         switch (command) {
             case "bye":
@@ -62,23 +60,18 @@ public class Duke {
             case "unmark":
                 TryMark(false, args);
                 break;
+            case "todo":
+                TryAddToDo(args);
+                break;
+            case "deadline":
+                TryAddDeadline(args);
+                break;
+            case "event":
+                TryAddEvent(args);
+                break;
             default:
-                AddToList(input);
+                System.out.println("Command not recognised");
         }
-    }
-
-    /**
-     * Parses an array of words into a list of arguments, omitting the first word as the command
-     *
-     * @param words - the array of string to parse
-     * @return a list of strings that represent the arguments
-     */
-    public static List<String> ParseArgs(String[] words) {
-        List<String> args = new ArrayList<>();
-        for (int i = 1; i < words.length; i++) {
-            args.add(words[i]);
-        }
-        return args;
     }
 
     /**
@@ -91,13 +84,57 @@ public class Duke {
     }
 
     /**
-     * Creates a task from the given string and adds it to the list, which is displayed when DisplayList is called
+     * Adds a task to the list which is displayed when DisplayList is called
      *
-     * @param text - the text to add to the list
+     * @param task - the task to add to the list
      */
-    public static void AddToList(String text) {
-        taskList.add(new Task(text, false));
-        System.out.printf("added: %s\n", text);
+    public static void AddToList(Task task) {
+        taskList.add(task);
+        System.out.printf("Task added: %s\n", task);
+        System.out.printf("You now have %d task(s) in the list\n", taskList.size());
+    }
+
+    /**
+     * Creates a ToDo task from the given argument string
+     *
+     * @param args - the argument string to be parsed
+     */
+    public static void TryAddToDo(String args) {
+        AddToList(new ToDo(args, false));
+    }
+
+    /**
+     * Creates a Deadline task from the given argument string
+     *
+     * @param args - the argument string to be parsed
+     */
+    public static void TryAddDeadline(String args) {
+        String[] argsArr = args.split(" /by ", 2);
+        if (argsArr.length < 2) {
+            System.out.println("Failed to create deadline: Invalid number of arguments");
+            return;
+        }
+
+        String name = argsArr[0].strip();
+        String date = argsArr[1].strip();
+        AddToList(new Deadline(name, false, date));
+    }
+
+    /**
+     * Creates an Event task from the given argument string
+     *
+     * @param args - the argument string to be parsed
+     */
+    public static void TryAddEvent(String args) {
+        String[] argsArr = args.split(" /at ", 2);
+        if (argsArr.length < 2) {
+            System.out.println("Failed to create event: Invalid number of arguments");
+            return;
+        }
+
+        String name = argsArr[0].strip();
+        String date = argsArr[1].strip();
+        AddToList(new Event(name, false, date));
     }
 
     /**
@@ -107,6 +144,8 @@ public class Duke {
         for (int i = 0; i < taskList.size(); i++) {
             System.out.printf("%d. %s\n", i + 1, taskList.get(i));
         }
+
+        System.out.printf("You have %d task(s) in your list\n", taskList.size());
     }
 
     /**
@@ -115,16 +154,10 @@ public class Duke {
      * @param marked - if true, attempt to mark the task, otherwise attempt to unmark
      * @param args - a list of string inputs, the first of which will be parsed as the task index to mark/unmark
      */
-    public static void TryMark(boolean marked, List<String> args) {
-        if (args.size() == 0) {
-            System.out.println("Mark failed, no index given");
-            return;
-        }
-
-        String indexString = args.get(0);
+    public static void TryMark(boolean marked, String args) {
         int index;
         try {
-            index = Integer.parseInt(indexString);
+            index = Integer.parseInt(args);
         } catch (NumberFormatException e) {
             System.out.println("Mark failed, invalid index");
             return;
@@ -138,12 +171,11 @@ public class Duke {
 
         Task task = taskList.get(index);
         if (marked) {
-            System.out.println("Task marked as done");
             task.mark();
+            System.out.printf("Task marked as done: %s\n", task);
         } else {
-            System.out.println("Task marked as not done");
             task.unmark();
+            System.out.printf("Task marked as not done: %s\n", task);
         }
-        System.out.println(task);
     }
 }
