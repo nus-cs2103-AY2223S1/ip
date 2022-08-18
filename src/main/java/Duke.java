@@ -34,19 +34,27 @@ public class Duke {
             String messageList = generateList();
             printMessage("Here are the tasks in your list:\n    " + messageList);
             return 1;
-        } else if (m.length() > 5 && m.startsWith("mark")) {
+        } else if (m.startsWith("mark")) {
             // mark task
-            int id = Integer.parseInt(m.substring(5));
-            Task t = Duke.taskList.get(id - 1);
-            t.done();
-            printMessage("Nice! I've marked this task as done:\n    " + t);
+            try {
+                int id = Integer.parseInt(m.substring(5));
+                Task t = Duke.taskList.get(id - 1);
+                t.done();
+                printMessage("Nice! I've marked this task as done:\n    " + t);
+            } catch (NumberFormatException e) {
+                throw new DukeException("☹ OOPS!!! Number is required for marking");
+            }
             return 2;
-        } else if (m.length() > 7 && m.startsWith("unmark")) {
+        } else if (m.startsWith("unmark")) {
             // unmark task
-            int id = Integer.parseInt(m.substring(7));
-            Task t = Duke.taskList.get(id - 1);
-            t.undone();
-            printMessage("OK, I've marked this task as not done yet:\n    " + t);
+            try {
+                int id = Integer.parseInt(m.substring(7));
+                Task t = Duke.taskList.get(id - 1);
+                t.undone();
+                printMessage("OK, I've marked this task as not done yet:\n    " + t);
+            } catch (NumberFormatException e) {
+                throw new DukeException("☹ OOPS!!! Number is required for unmarking");
+            }
             return 3;
         } else if (m.startsWith("deadline")) {
             // deadline
@@ -93,6 +101,15 @@ public class Duke {
             Task t = new Todo(m);
             addTask(t);
             return 6;
+        } else if (m.startsWith("delete")) {
+            // delete task
+            try {
+                int id = Integer.parseInt(m.substring(7));
+                deleteTask(id - 1);
+            } catch (NumberFormatException e) {
+                throw new DukeException("☹ OOPS!!! Number is required for deletion");
+            }
+            return 7;
         } else {
             throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
@@ -120,6 +137,15 @@ public class Duke {
     private static void addTask(Task t) {
         Duke.taskList.add(t);
         printMessage("Got it. I've added this task:\n      " +
+                t +
+                "\n    Now you have " +
+                Duke.taskList.size() +
+                " tasks in the list.");
+    }
+
+    private static void deleteTask(int id) {
+        Task t = Duke.taskList.remove(id);
+        printMessage("Noted. I've removed this task:\n      " +
                 t +
                 "\n    Now you have " +
                 Duke.taskList.size() +
