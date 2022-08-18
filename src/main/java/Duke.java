@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Duke {
     private boolean inNeed = true;
-    private ArrayList<String> list = new ArrayList<>(100);
+    private ArrayList<Task> list = new ArrayList<>(100);
 
     private void greet() {
         generateReply("Hello! I'm Sheep\n" +
@@ -27,19 +27,40 @@ public class Duke {
             case "list":
                 this.printList();
                 break;
+            case "mark":
+                int index1 = Integer.parseInt(command[1]);
+                this.markDone(index1);
+                break;
+            case "unmark":
+                int index2 = Integer.parseInt(command[1]);
+                this.unmarkDone(index2);
+                break;
             default:
-                this.list.add(message);
-                this.generateReply("added: " + message);
+                Task t = new Task(message);
+                this.list.add(t);
+                this.generateReply("added: " + t);
         }
     }
 
     private void printList() {
         System.out.println("____________________________________________________________");
         int count = 1;
-        for (String s: this.list) {
-            System.out.println(count++ + ". " + s);
+        for (Task t: this.list) {
+            System.out.println(count++ + ". " + t);
         }
         System.out.println("____________________________________________________________");
+    }
+
+    private void markDone(int index) {
+        this.list.get(index - 1).markDone();
+        generateReply("Nice! I've marked this task as done:\n" +
+                this.list.get(index - 1));
+    }
+
+    private void unmarkDone(int index) {
+        this.list.get(index - 1).unmarkDone();
+        generateReply("OK, I've marked this task as not done yet:\n" +
+                this.list.get(index - 1));
     }
 
     public static void main(String[] args) {
