@@ -13,13 +13,13 @@ public class DukeTask {
 
   public String markAsDone() {
     isDone = true;
-    return "Good job! This task has been completed:\n"
+    return "\033[0;32mGood job!\033[0m This task has been completed:\n"
         + this;
   }
 
   public String markAsNotDone() {
     isDone = false;
-    return "Whoops! This task is now yet to be completed:\n"
+    return "\033[0;33mWhoops!\033[0m This task is now yet to be completed:\n"
         + this;
   }
 

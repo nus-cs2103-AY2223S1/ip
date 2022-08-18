@@ -44,6 +44,13 @@ public class DukeList {
     }
   }
 
+  public String deleteItem(int i) {
+    DukeTask item = items.get(i - 1);
+    items.remove(i - 1);
+    return "\033[0;32mSuccess!\033[0m The following item has been deleted:\n"
+        + item + listCount();
+  }
+
   public String mark(int i) {
     return items.get(i - 1).markAsDone();
   }
@@ -59,9 +66,9 @@ public class DukeList {
 
   @Override
   public String toString() {
-    StringBuilder output = new StringBuilder("Your current tasks:\n");
+    StringBuilder output = new StringBuilder("Your current tasks:");
     for (int i = 0; i < items.size(); i++) {
-      output.append((i + 1) + ". " + items.get(i) + "\n");
+      output.append("\n" + (i + 1) + ". " + items.get(i));
     }
     return output.toString();
   }
