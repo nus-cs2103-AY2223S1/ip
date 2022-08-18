@@ -113,7 +113,7 @@ public class Duke {
 
     public static void generateMessage(String message) {
         System.out.println("____________________________________________________________");
-        System.out.println("Duke \uD83D\uDE0E says: ");
+        System.out.println("Duke says: ");
         System.out.println(message);
         System.out.println("____________________________________________________________");
     }

@@ -6,7 +6,7 @@ public class InvalidTaskNumberException extends DukeException {
 
     @Override
     public String toString() {
-        return "☹ OOPS!!! Please input a valid task number!";
+        return "OOPS!!! Please input a valid task number!";
     }
 
 }

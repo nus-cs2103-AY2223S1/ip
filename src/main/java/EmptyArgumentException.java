@@ -6,7 +6,7 @@ public class EmptyArgumentException extends DukeException {
 
     @Override
     public String toString() {
-        return " ☹ OOPS!!! The description of a " + super.toString() +" cannot be empty.";
+        return "OOPS!!! The description of a " + super.toString() +" cannot be empty.";
     }
 
 
