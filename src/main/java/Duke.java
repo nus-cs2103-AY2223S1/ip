@@ -12,6 +12,11 @@ public class Duke {
     private LinkedList<Task> lst;
 
     /**
+     * Set to store all known commands.
+     */
+    private Set<String> commandList = Set.of("bye", "list", "mark", "unmark", "todo", "deadline", "event", "delete");
+
+    /**
      * Starts and ends the Duke program.
      */
     private void init() {
@@ -50,17 +55,8 @@ public class Duke {
             postSplit = input.split(" ");
             cmd = postSplit[0];
             try {
-                switch(cmd) {
-                    case "bye":
-                    case "list":
-                    case "mark":
-                    case "unmark":
-                    case "todo":
-                    case "deadline":
-                    case "event":
-                        break;
-                    default:
-                        throw new UnknownCommandException(cmd);
+                if (!commandList.contains(cmd)) {
+                    throw new UnknownCommandException(cmd);
                 }
                 postCmd = cmd.length() != input.length() ? input.substring(cmd.length() + 1) : "";
             } catch (UnknownCommandException e) {
@@ -87,7 +83,8 @@ public class Duke {
                         break;
                     case "mark":
                     case "unmark":
-                        handleMarkUnmark(cmd, postCmd);
+                    case "delete":
+                        handleMarkUnmarkDelete(cmd, postCmd);
                         break;
                 }
             } catch (EmptyTaskException ete) {
@@ -99,7 +96,9 @@ public class Duke {
             } catch (InvalidTaskNumberException itne) {
                 System.out.println(itne);
             } finally {
-                newLine();
+                if (!cmd.equals("bye")) {
+                    newLine();
+                }
             }
 
         } while (!input.equals("bye"));
@@ -111,7 +110,7 @@ public class Duke {
      * @param postCmd The rest of the input string after the command.
      * @throws InvalidTaskNumberException if the followup text after the command is not a valid integer.
      */
-    private void handleMarkUnmark(String cmd, String postCmd) throws InvalidTaskNumberException {
+    private void handleMarkUnmarkDelete(String cmd, String postCmd) throws InvalidTaskNumberException {
         if (postCmd.equals("") || !isInteger(postCmd) || (Integer.parseInt(postCmd) - 1) < 0 ||
                 (Integer.parseInt(postCmd) - 1) >= this.lst.size()) {
             throw new InvalidTaskNumberException("mark", postCmd);
@@ -121,18 +120,24 @@ public class Duke {
         if (cmd.equals("mark")) {
             change = this.lst.get(index).setDone();
             if (change) {
-                System.out.println("  Nice! Task " + (index + 1) + " done!\n    " + this.lst.get(index));
+                System.out.println("  Nice! Task " + (index + 1) + " done!\n\t" + this.lst.get(index));
             } else {
-                System.out.println("  Task " + (index + 1) + " is already done!\n    " + this.lst.get(index));
+                System.out.println("  Task " + (index + 1) + " is already done!\n\t" + this.lst.get(index));
             }
         }
         if (cmd.equals("unmark")) {
             change = this.lst.get(index).setUnDone();
             if (change) {
-                System.out.println("  Ok! Task " + (index + 1) + " marked as not done!\n    " + this.lst.get(index));
+                System.out.println("  Ok! Task " + (index + 1) + " marked as not done!\n\t" + this.lst.get(index));
             } else {
-                System.out.println("  Task " + (index + 1) + " is already not done!\n    " + this.lst.get(index));
+                System.out.println("  Task " + (index + 1) + " is already not done!\n\t" + this.lst.get(index));
             }
+        }
+        if (cmd.equals("delete")) {
+            Task removed = this.lst.get(index);
+            removed.setUnDone();
+            this.lst.remove(index);
+            System.out.println("  Oki! The following task is removed:)\n\t" + removed);
         }
         printListCount();
     }
@@ -162,7 +167,7 @@ public class Duke {
         }
 
         this.lst.add(new Todo(desc));
-        System.out.println("  Added task todo: \n    " + this.lst.get(this.lst.size() - 1));
+        System.out.println("  Added task todo: \n\t" + this.lst.get(this.lst.size() - 1));
         printListCount();
     }
 
@@ -187,7 +192,7 @@ public class Duke {
         }
 
         this.lst.add(new Deadline(split[0].trim(), split[1]));
-        System.out.println("  Added the task with deadline: \n    " + this.lst.get(this.lst.size() - 1));
+        System.out.println("  Added the task with deadline: \n\t" + this.lst.get(this.lst.size() - 1));
         printListCount();
     }
 
@@ -212,7 +217,7 @@ public class Duke {
         }
 
         this.lst.add(new Event(split[0].trim(), split[1]));
-        System.out.println("  Added the event task: \n    " + this.lst.get(this.lst.size() - 1));
+        System.out.println("  Added the event task: \n\t" + this.lst.get(this.lst.size() - 1));
         printListCount();
     }
 
@@ -230,11 +235,13 @@ public class Duke {
         if (this.lst.size() == 0) {
             System.out.println("  List is empty!");
         } else {
-            System.out.println("  List of tasks: \n");
+            System.out.println("  List of tasks:");
+            for (int i = 1; i <= this.lst.size(); i++) {
+                System.out.println("\t" + i + ": " + this.lst.get(i - 1));
+            }
+            printListCount();
         }
-        for (int i = 1; i <= this.lst.size(); i++) {
-            System.out.println("  " + i + ": " + this.lst.get(i - 1));
-        }
+
     }
 
     /**
