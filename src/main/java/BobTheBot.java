@@ -12,6 +12,30 @@ public class BobTheBot {
         while (!command.toLowerCase().equals("bye")) {
             if (command.toLowerCase().equals("list")) {
                 System.out.println(list.toString());
+            } else if (command.startsWith("mark")) {
+                try {
+                    int index = Integer.parseInt(command.replace("mark ", ""));
+                    list.markItemDone(index);
+                } catch (NumberFormatException e) {
+                    list.add(command);
+                    System.out.println(
+                            "   --------------------------------------------------------------------------------\n" +
+                                    "     added: " + command + "\n" +
+                                    "   --------------------------------------------------------------------------------"
+                    );
+                }
+            } else if (command.startsWith("unmark")) {
+                try {
+                    int index = Integer.parseInt(command.replace("unmark ", ""));
+                    list.markItemUndone(index);
+                } catch (NumberFormatException e) {
+                    list.add(command);
+                    System.out.println(
+                            "   --------------------------------------------------------------------------------\n" +
+                                    "     added: " + command + "\n" +
+                                    "   --------------------------------------------------------------------------------"
+                    );
+                }
             } else {
                 list.add(command);
                 System.out.println(
