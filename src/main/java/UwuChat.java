@@ -70,14 +70,22 @@ public class UwuChat {
                     "\n\t\tadded:\t" + task.toString() +
                     "\n\tyou have " + String.valueOf(userToDoArray.size()) + " task(s) <:";
             chatify(addToList);
+        } else {
+            throw new NullTaskException("Null Task Exception.");
         }
     }
+
     public void listTasks() {
         chatify("\n\there are your tasks~ you've got this!" + listify());
     }
 
     private String listify() {
         int count = userToDoArray.size();
+
+        if (count == 0) {
+            return "\n\n\tyou currently have no tasks, feed me <:";
+        }
+
         String userToDoStr = "";
 
         for (int i = 0; i<count; i++) {
@@ -89,10 +97,14 @@ public class UwuChat {
         return userToDoStr;
     }
 
-    public void markTasks(String userCommand) {
+    public void markTasks(String userCommand) throws UwuException {
         if (userCommand.startsWith("mark")) {
             userCommand = userCommand.replaceAll("[^0-9]", "");
             int index = Integer.parseInt(userCommand) - 1;
+
+            if (index >= userToDoArray.size()) {
+                throw new NullTaskException("No Such Task to be Marked.");
+            }
 
             Task task = userToDoArray.get(index);
             task.markAsDone();
@@ -103,12 +115,31 @@ public class UwuChat {
             userCommand = userCommand.replaceAll("[^0-9]", "");
             int index = Integer.parseInt(userCommand) - 1;
 
+            if (index >= userToDoArray.size()) {
+                throw new NullTaskException("No Such Task to be Unmarked.");
+            }
+
             Task task = userToDoArray.get(index);
             task.unmark();
 
             String unmarked = "\n\tkeep going~";
             chatify(unmarked + "\n\t\t" + task.toString());
         }
+    }
+
+    public void deleteTask(String userCommand) throws UwuException {
+        userCommand = userCommand.replaceAll("[^0-9]", "");
+        int index = Integer.parseInt(userCommand) - 1;
+
+        if (index >= userToDoArray.size()) {
+            throw new NullTaskException("No Such Task to be Deleted.");
+        }
+
+        Task task = userToDoArray.remove(index);
+
+        chatify("\n\tremoving this task from your list...\n\t\t" +
+                task.toString() +
+                "\n\ttask removed~! now you have " + String.valueOf(userToDoArray.size()) + " task(s) <:");
     }
 
     public void unknownCommand() {
@@ -124,4 +155,7 @@ public class UwuChat {
         chatify("\n\tplease enter the correct format for your task uwu");
     }
 
+    public void nullTask() {
+        chatify("\n\t no such task found uwu");
+    }
 }

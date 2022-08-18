@@ -27,6 +27,8 @@ public class UwuBot {
                         userCommand.startsWith("deadline") ||
                         userCommand.startsWith("event")) {
                     chat.addTask(userCommand);
+                } else if (userCommand.startsWith("delete")) {
+                    chat.deleteTask(userCommand);
                 } else {
                     throw new UnknownCommandException("Unknown User Command.");
                 }
@@ -36,6 +38,8 @@ public class UwuBot {
                 chat.emptyInput();
             } catch (IncorrectFormatException incorrectFormatException) {
                 chat.incorrectFormat();
+            } catch (NullTaskException nullTaskException) {
+                chat.nullTask();
             }
         }
     }
