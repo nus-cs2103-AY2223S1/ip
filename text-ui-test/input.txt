@@ -1,0 +1,23 @@
+todo borrow book
+deadline return book /by Sunday
+event project meeting /at Mon 2-4pm
+todo cs2103t assignment
+deadline cs2109s ps0 /by the coming Sun 2359
+list
+mark 3
+mark 4
+list
+unmark 3
+list
+mark
+help
+mark apple
+mark 123
+deadline sleep
+event sleep
+todo
+delete 123
+delete
+delete 2
+list
+bye

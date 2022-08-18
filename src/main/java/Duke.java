@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -11,7 +10,6 @@ public class Duke {
         DEADLINE,
         EVENT
     }
-    private static final String[] WORK_TYPE = new String[] {" ", "T", "D", "E"};
     private static String reply(String message) {
         return "    ____________________________________________________________\n" +
                 INDENTATION + message + "\n" +
@@ -20,7 +18,7 @@ public class Duke {
 
     private static String craftList(ArrayList<String> array, ArrayList<Boolean> bArray, ArrayList<Work_type> workTypeArray) {
         int length = array.size();
-        String result = "Here are the tasks in your list:";
+        String result = "Here are the task(s) in your list:";
         for (int x = 0; x < length; x++) {
             if (array.get(x) == null) {
                 break;
@@ -34,7 +32,7 @@ public class Duke {
     private static String craftTDEMessage(Work_type work_type, boolean bool, String todo, int work_number) {
         return "Got it. I've added this task:\n" +
                 INDENTATION + EXTRA_INDENTATION + workTypeBox(work_type) + checkBox(bool) +  " " + todo + "\n" +
-                INDENTATION + "Now you have " + work_number + " tasks in the list.";
+                INDENTATION + "Now you have " + work_number + (work_number < 2 ? " task" : " tasks") + " in the list.";
     }
 
     private static String checkBox(boolean bool) {
@@ -61,42 +59,50 @@ public class Duke {
                 "     What can I do for you?"));
         boolean conversation = true;
         ArrayList<String> work = new ArrayList<>(100);
-//        String[] work = new String[100];
         ArrayList<Boolean> workCompleted = new ArrayList<>(100);
-//        boolean[] workCompleted = new boolean[100];
-//        ArrayList<Integer> workType = new ArrayList<>(100);
         ArrayList<Work_type> workType = new ArrayList<>(100);
-//        int[] workType = new int[100];
         int workCounter = 0;
         while (conversation) {
             String response = scan.nextLine();
             String[] splitResponse = response.split(" ");
             String keyword = splitResponse[0];
             if (splitResponse.length == 2 && (keyword.equals("mark") || keyword.equals("unmark"))) {
-                int number = Integer.parseInt(splitResponse[1]) - 1;
-                if (splitResponse[0].equals("mark")) {
-                    workCompleted.set(number, true);
+                try {
+                    int number = Integer.parseInt(splitResponse[1]) - 1;
+                    if (splitResponse[0].equals("mark")) {
+                        workCompleted.set(number, true);
 //                    workCompleted[number] = true;
-                    System.out.println(reply("Nice! I've marked this task as done:\n" +
-                            INDENTATION + EXTRA_INDENTATION + workTypeBox(workType.get(number)) + checkBox(true) + " " + work.get(number)));
-                } else {
-                    workCompleted.set(number, false);
+                        System.out.println(reply("Nice! I've marked this task as done:\n" +
+                                INDENTATION + EXTRA_INDENTATION + workTypeBox(workType.get(number)) + checkBox(true) + " " + work.get(number)));
+                    } else {
+                        workCompleted.set(number, false);
 //                    workCompleted[number] = false;
-                    System.out.println(reply("OK, I've marked this task as not done yet:\n" +
-                            INDENTATION + EXTRA_INDENTATION + workTypeBox(workType.get(number))+ checkBox(false) + " " + work.get(number)));
+                        System.out.println(reply("OK, I've marked this task as not done yet:\n" +
+                                INDENTATION + EXTRA_INDENTATION + workTypeBox(workType.get(number))+ checkBox(false) + " " + work.get(number)));
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println(reply(new DukeException("non integer input when marking").toString()));
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println(reply(new DukeException("index out of bounds").toString()));
                 }
-            } else if (keyword.equals("delete")) {
-                int location = Integer.parseInt(splitResponse[1]) - 1;
-                Work_type type = workType.get(location);
-                boolean completed = workCompleted.get(location);
-                String task = work.get(location);
-                workType.remove(location);
-                workCompleted.remove(location);
-                work.remove(location);
-                workCounter--;
-                System.out.println(reply("Noted. I've removed the task:\n" +
-                        INDENTATION + EXTRA_INDENTATION + workTypeBox(type) + checkBox(completed) + " " + task + "\n" +
-                        INDENTATION + "Now you have " + workCounter + " tasks in the list."));
+            } else if (splitResponse.length == 2 && keyword.equals("delete")) {
+                try {
+                    int location = Integer.parseInt(splitResponse[1]) - 1;
+                    Work_type type = workType.get(location);
+                    boolean completed = workCompleted.get(location);
+                    String task = work.get(location);
+                    workType.remove(location);
+                    workCompleted.remove(location);
+                    work.remove(location);
+                    workCounter--;
+                    System.out.println(reply("Noted. I've removed the task:\n" +
+                            INDENTATION + EXTRA_INDENTATION + workTypeBox(type) + checkBox(completed) + " " + task + "\n" +
+                            INDENTATION + "Now you have " + workCounter + (workCounter < 2 ? " task" : " tasks") + " in the list."));
+                } catch (NumberFormatException e) {
+                    System.out.println(reply(new DukeException("non integer input when deleting").toString()));
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println(reply(new DukeException("index out of bounds").toString()));
+                }
             } else if (keyword.equals("todo")) {
                 if (splitResponse.length == 1) {
                     System.out.println(reply(new DukeException("todo").toString()));

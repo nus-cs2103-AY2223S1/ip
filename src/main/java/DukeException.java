@@ -13,6 +13,12 @@ public class DukeException {
             this.msg = "☹ OOPS!!! The formatting of the event message is wrong.";
         } else if (message.equals("unknown")) {
             this.msg = "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
+        } else if (message.equals("non integer input when marking")) {
+            this.msg = "☹ OOPS!!! You did not give an integer for the task number :-(";
+        } else if (message.equals("non integer input when deleting")) {
+            this.msg = "☹ OOPS!!! You did not give an integer for the task number :-(";
+        } else if (message.equals("index out of bounds")) {
+            this.msg = "☹ OOPS!!! The index number is out of bounds :-(";
         } else {
             this.msg = "unknown error";
         }
