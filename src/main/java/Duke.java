@@ -1,10 +1,30 @@
+import java.util.Scanner;
+
 public class Duke {
+
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello I'm\n" + logo);
+
+        Scanner sc = new Scanner(System.in);
+
+        ChatBot chatBot = new ChatBot("duke");
+
+        chatBot.greet();
+
+        boolean quit = false;
+        String input;
+
+        while(!quit) {
+
+            input = sc.next();
+
+            if(input.equals("bye")) {
+
+                quit = true;
+                chatBot.bye();
+
+            } else {
+                chatBot.echo(input);
+            }
+        }
     }
 }
