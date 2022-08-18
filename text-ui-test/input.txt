@@ -10,4 +10,7 @@ dumb command here
 mark this
 mark
 mark 6
+event
+deadline something
+event dumdum
 bye

@@ -1,3 +1,4 @@
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Duke {
@@ -13,28 +14,52 @@ public class Duke {
                 System.out.println("See you next time...");
                 break;
             } else {
-                Scanner words = new Scanner(lastLine);
+                Scanner options = new Scanner(lastLine);
                 if (lastLine.equals("list")) {
                     taskList.show();
                 } else {
-                    String cmd = words.next();
+                    String cmd = options.next();
                     switch (cmd) {
                         case "mark":
-                            taskList.mark(words);
+                            try {
+                                taskList.mark(options);
+                            } catch (MissingOptions | InvalidIndex e) {
+                                System.out.println(e);
+                            }
                             break;
                         case "unmark":
-                            taskList.unmark(words);
+                            try {
+                                taskList.unmark(options);
+                            } catch (MissingOptions | InvalidIndex e) {
+                                System.out.println(e);
+                            }
                             break;
                         case "todo":
-                            taskList.add(new ToDo(words.nextLine().substring(1)));
+                            try {
+                                taskList.add(new ToDo(options));
+                            } catch (MissingOptions e) {
+                                System.out.println(e);
+                            }
                             break;
                         case "deadline":
-                            words.useDelimiter(" /by ");
-                            taskList.add(new Deadline(words.next().substring(1), words.next()));
+                            options.useDelimiter(" /by ");
+                            try {
+                                taskList.add(new Deadline(options));
+                            } catch (MissingOptions e) {
+                                System.out.println(e);
+                            } catch (NoSuchElementException e) {
+                                System.out.println("No event description specified!");
+                            }
                             break;
                         case "event": 
-                            words.useDelimiter(" /at ");
-                            taskList.add(new Event(words.next().substring(1), words.next()));
+                            options.useDelimiter(" /at ");
+                            try {
+                                taskList.add(new Event(options));
+                            } catch (MissingOptions e) {
+                                System.out.println(e);
+                            } catch (NoSuchElementException e) {
+                                System.out.println("No event description specified!");
+                            }
                             break;
                         default: // Junk input.
                             System.out.println("Sorry, I don't know what that means!");

@@ -1,7 +1,9 @@
+import java.util.Scanner;
+
 public class ToDo extends Task {
 
-	public ToDo(String description) {
-		super(description);
+	public ToDo(Scanner options) throws MissingOptions {
+        super(options);
 	}
 
     @Override

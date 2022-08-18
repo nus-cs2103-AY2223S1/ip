@@ -15,4 +15,7 @@ My name is [insert name here], how can I help?
 3. [E][ ] golf with friends (at: 9th august 2-4pm)
 ---
 Sorry, I don't know what that means!
+The command "mark" is missing or has invalid options. (E.g. index, date, description)
+The command "mark" is missing or has invalid options. (E.g. index, date, description)
+There is no task at index 6
 See you next time...

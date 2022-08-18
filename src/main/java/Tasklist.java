@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Tasklist {
@@ -9,34 +8,34 @@ public class Tasklist {
         tasks = new ArrayList<Task>();
     }
 
-    void mark(Scanner words) {
-        try {
-            int i = words.nextInt() - 1;
-            tasks.get(i).mark();
-        } catch (NoSuchElementException e) {
-            System.out.println("Please specify which task to mark!");
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("There is no task with that index!");
+    void mark(Scanner words) throws MissingOptions, InvalidIndex {
+        if (words.hasNextInt()) {
+            int i = words.nextInt();
+            if (i <= tasks.size() && i >= 1) {
+                tasks.get(i - 1).mark();
+            } else {
+                throw new InvalidIndex(i);
+            }
+        } else {
+            throw new MissingOptions("mark");
         }
     }
 
-    void unmark(Scanner words) {
-        try {
-            int i = words.nextInt() - 1;
-            tasks.get(i).unmark();
-        } catch (NoSuchElementException e) {
-            System.out.println("Please specify which task to unmark!");
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("There is no task with that index!");
+    void unmark(Scanner words) throws MissingOptions, InvalidIndex {
+        if (words.hasNextInt()) {
+            int i = words.nextInt();
+            if (i <= tasks.size() && i >= 1) {
+                tasks.get(i - 1).unmark();
+            } else {
+                throw new InvalidIndex(i);
+            }
+        } else {
+            throw new MissingOptions("unmark");
         }
     }
 
     void add(Task task) {
-        try {
-            tasks.add(task);
-        } catch (Exception e) {
-            //TODO: handle exception
-        }
+        tasks.add(task);
     }
 
     void show() {

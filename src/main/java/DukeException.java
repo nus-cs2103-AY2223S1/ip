@@ -1,12 +1,9 @@
 public class DukeException extends Exception {
-    private String userInput;
 
-    public DukeException(String userInput) {
-        this.userInput = userInput;
+    public DukeException() {
     }
 
-    @Override
-    public String toString() {
-        return "Invalid input: " + "\"" + userInput + "\"";
-    }
+    // @Override
+    // public String toString() {
+    // }
 }
