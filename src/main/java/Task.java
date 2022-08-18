@@ -5,15 +5,15 @@ public abstract class Task {
   public static Task createTask(String[] inputArray) throws CheeseException {
     String command = inputArray[0];
 
-    switch (command) {
-      case "todo":
+    switch (Command.valueOf(command)) {
+      case todo:
         Task.validateCreateTask(inputArray);
         return new Todo(inputArray[1]);
-      case "deadline":
+      case deadline:
         Task.validateCreateTask(inputArray);
         String[] deadlineInputArray = inputArray[1].split("/by", 2);
         return new Deadline(deadlineInputArray[0].trim(), deadlineInputArray[1].trim());
-      case "event":
+      case event:
         Task.validateCreateTask(inputArray);
         String[] eventInputArray = inputArray[1].split("/at", 2);
         return new Event(eventInputArray[0].trim(), eventInputArray[1].trim());
@@ -43,8 +43,8 @@ public abstract class Task {
 
     String textAfterCommand = inputArray[1];
 
-    switch (command) {
-      case "deadline":
+    switch (Command.valueOf(command)) {
+      case deadline:
         if (textAfterCommand.indexOf("/by") == -1) {
           throw new CheeseException("A deadline requires a /by flag.");
         }
@@ -53,7 +53,7 @@ public abstract class Task {
           throw new CheeseException("A deadline requires both a description and deadline.");
         }
         break;
-      case "event":
+      case event:
         if (textAfterCommand.indexOf("/at") == -1) {
           throw new CheeseException("A deadline requires a /by flag.");
         }

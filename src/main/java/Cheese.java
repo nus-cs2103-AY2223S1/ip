@@ -30,25 +30,26 @@ public class Cheese {
       String command = inputArray[0];
 
       try {
-        switch (command) {
-          case "bye":
+        Cheese.validateCommand(command);
+        switch (Command.valueOf(command)) {
+          case bye:
             Cheese.validateOneWordCommand(inputArray);
             System.out.println("Going so soon? :') Bye");
             scanner.close();
             return;
-          case "list":
+          case list:
             Cheese.validateOneWordCommand(inputArray);
             Cheese.printList();
             break;
-          case "mark":
+          case mark:
             Task taskToMark = Cheese.getTaskFromList(inputArray);
             taskToMark.markAsDone();
             break;
-          case "unmark":
+          case unmark:
             Task taskToUnmark = Cheese.getTaskFromList(inputArray);
             taskToUnmark.markAsNotDone();
             break;
-          case "delete":
+          case delete:
             Task taskToDelete = Cheese.getTaskFromList(inputArray);
             Cheese.deleteTask(taskToDelete);
             break;
@@ -62,6 +63,15 @@ public class Cheese {
         System.out.println(e.getMessage());
       }
     }
+  }
+
+  private static void validateCommand(String command) throws CheeseException {
+    for (Command cmd : Command.values()) {
+      if (cmd.name().equals(command)) {
+        return;
+      }
+    }
+    throw new CheeseException();
   }
 
   private static void validateOneWordCommand(String[] inputArray) throws CheeseException {
