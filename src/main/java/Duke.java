@@ -3,6 +3,40 @@ import java.util.Scanner;
 
 public class Duke {
 
+    public static class ListObject{
+        private String task;
+        private int status;
+
+        public ListObject(String task, int status){
+            this.task = task;
+            this.status = status;
+        }
+
+        public String getTask(){
+            return this.task;
+        }
+
+        public int getStatus(){
+            return this.status;
+        }
+
+        public String showStatusIndicator(){
+            if(this.status==1){
+                return "[X] ";
+            } else {
+                return "[ ] ";
+            }
+        }
+
+        public void switchStatus(){
+            if(this.status==1){
+                this.status=0;
+            } else {
+                this.status=1;
+            }
+        }
+    }
+
     /**
      * Method to print Duke's self-introduction and to customise its personality.
      */
@@ -33,34 +67,36 @@ public class Duke {
     }
 
     /**
-     * Method to add user input to existing list and display list in reponse to "list" command
+     * Method to add user input to existing list and display list in response to "list" command and mark items as complete
      */
-    public static void addAndList(){
+    public static void makeList(){
 
-        ArrayList<String> listOfItems = new ArrayList<>();
+        ArrayList<ListObject> listOfItems = new ArrayList<>();
         String showList = "list";
 
         while(true){
             Scanner readinput = new Scanner(System.in);
             String userMsg = readinput.nextLine();
             if(!userMsg.equals(showList)) {
-                listOfItems.add(userMsg);
-                System.out.println("added: " + userMsg + "\n***********************************************************************\n");
+                ListObject newItem = new ListObject(userMsg, 0);
+                listOfItems.add(newItem);
+                System.out.println("added: " + newItem.getTask() + "\n***********************************************************************\n");
             } else {
                 for(int i = 0; i < listOfItems.size(); i++){
                     int numb = i+1;
-                    System.out.println(numb + ". " + listOfItems.get(i));
+                    System.out.println(numb + ". " + listOfItems.get(i).getTask());
                 }
                 System.out.println("\n***********************************************************************\n");
             }
         }
     }
 
+
     /**
      * Main method run to converse with Duke Aemon of Old.
      */
     public static void main(String[] args) {
         introduceDuke();
-        addAndList();
+        makeList();
     }
 }
