@@ -25,9 +25,22 @@ public class Duke {
         toDoList.add(t);
         System.out.println(start + "added:\n" + "     " + t);
         if (toDoList.size() == 1) {
-            System.out.println("  You now have 1 task in the list. Type list to see it!");
+            System.out.println("  you now have 1 task in the list. type list to see it!");
         } else {
-            System.out.println("  Now you have " + toDoList.size() + " tasks in the list. Type list to view them.");
+            System.out.println("  now you have " + toDoList.size() + " tasks in the list. type list to view them.");
+        }
+    }
+
+    public static void deleteFromList(int i) {
+        Task t = toDoList.remove(i);
+        System.out.println(start + "okay! i have deleted the following task from your list:");
+        System.out.println("     " + t);
+        if (toDoList.size() == 0) {
+            System.out.println("  your list is now empty. time to add some more!");
+        } else if (toDoList.size() == 1) {
+            System.out.println("  you now have 1 task remaining in the list. type list to see it!");
+        } else {
+            System.out.println("  now you have " + toDoList.size() + " tasks in the list. type list to view them.");
         }
     }
 
@@ -111,6 +124,20 @@ public class Duke {
                         System.out.println(
                                 sadFace + "for events, please tell me the name of the event, when it starts and when it ends."
                         );
+                    }
+                    break;
+                case "delete":
+                    try {
+                        if (toDoList.size() == 0) {
+                            System.out.println(
+                                    start + "hmm, you do not have any tasks in your list to delete. add some now!"
+                            );
+                            break;
+                        }
+                        deleteFromList(Integer.parseInt(arr[1]) - 1);
+
+                    } catch (NumberFormatException | IndexOutOfBoundsException e) {
+                        System.out.println(sadFace + "please enter a valid integer from 1 - " + toDoList.size());
                     }
                     break;
                 default:
