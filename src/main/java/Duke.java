@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Duke {
     public static void main(String[] args) {
@@ -14,34 +16,63 @@ public class Duke {
         Task[] tasks = new Task[100];
         int eleCount = 0;
 
-        String command = sc.nextLine();
-
-
-        while (!command.equals("bye")) {
+        while (sc.hasNext()) {
+            String command = sc.nextLine();
             String[] commandBreakdown = command.split(" ");
-            if (command.equals("list")) {
-                for (int i = 0; i < eleCount; i++) {
-                    System.out.println((i+1) + ". " + tasks[i].toString());
-                }
-            } else if (commandBreakdown[0].equals("mark")) {
-                int taskNo = Integer.valueOf(commandBreakdown[1])-1;
-                tasks[taskNo].markDone();
-                System.out.println("Nice! I've marked this task as done:");
-                System.out.println(tasks[taskNo]);
-            } else if (commandBreakdown[0].equals("unmark")) {
-                int taskNo = Integer.valueOf(commandBreakdown[1])-1;
-                tasks[taskNo].markUndone();
-                System.out.println("OK, I've marked this task as not done yet:");
-                System.out.println(tasks[taskNo]);
-            } else {
-                tasks[eleCount] = new Task(command);
-                eleCount++;
-                System.out.println("added: " + command);
+
+            switch(commandBreakdown[0]) {
+                case "list":
+                    for (int i = 0; i < eleCount; i++) {
+                        //System.out.println((i+1) + ". [" + tasks[i].getStatusIcon() + "]" + tasks[i].toString());
+                        System.out.println(String.format("%d. %s", i+1, tasks[i].toString()));
+                    }
+                    break;
+                case "mark":
+                    int taskNo = Integer.valueOf(commandBreakdown[1])-1;
+                    tasks[taskNo].markDone();
+                    System.out.println("Nice! I've marked this task as done:");
+                    System.out.println(String.format("%s", tasks[taskNo].toString()));
+                    break;
+                case "unmark":
+                    taskNo = Integer.valueOf(commandBreakdown[1])-1;
+                    tasks[taskNo].markUndone();
+                    System.out.println("OK, I've marked this task as not done yet:");
+                    System.out.println(String.format("%s", tasks[taskNo].toString()));
+                    break;
+                case "bye":
+                    System.out.println("Bye. Hope to see you again soon!");
+                    return;
+                case "todo":
+                    String todoName = "";
+                    for (int i = 1; i < commandBreakdown.length; i++) {
+                        todoName = todoName + commandBreakdown[i] + " ";
+                    }
+                    tasks[eleCount] = new ToDo(todoName);
+                    eleCount++;
+                    System.out.println("added: " + todoName);
+                    System.out.println(String.format("Now you have %d tasks in the list", eleCount));
+                    break;
+                case "deadline":
+                    String[] deadlineSplit = command.split(" /by ");
+                    Deadline deadline = new Deadline(deadlineSplit[0].substring(9, deadlineSplit[0].length()), deadlineSplit[1]);
+                    tasks[eleCount] = deadline;
+                    eleCount++;
+                    System.out.println("added: " + deadline.toString());
+                    System.out.println(String.format("Now you have %d tasks in the list", eleCount));
+                    break;
+                case "event":
+                    String[] eventSplit = command.split(" /at ");
+                    Event event = new Event(eventSplit[0].substring(6, eventSplit[0].length()), eventSplit[1]);
+                    tasks[eleCount] = event;
+                    eleCount++;
+                    System.out.println("added: " + event.toString());
+                    System.out.println(String.format("Now you have %d tasks in the list", eleCount));
+                    break;
+                default:
+                    System.out.println("Unrecognised command");
             }
-            command = sc.nextLine();
 
         }
 
-        System.out.println("Bye. Hope to see you again soon!");
     }
 }

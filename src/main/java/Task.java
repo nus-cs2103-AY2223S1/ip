@@ -1,4 +1,4 @@
-public class Task {
+abstract public class Task {
     private String name;
     private boolean done;
 
@@ -16,11 +16,11 @@ public class Task {
     }
 
     public String toString() {
-        if (this.done) {
-            return "[x] " + name;
-        } else {
-            return "[ ] " + name;
-        }
+        return "[" + this.getStatusIcon() +"] " + this.name;
+    }
+
+    public String getStatusIcon() {
+        return (this.done ? "X" : " ");
     }
 
 }
