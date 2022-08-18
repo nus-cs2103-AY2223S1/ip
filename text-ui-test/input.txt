@@ -1,0 +1,11 @@
+todo laundry
+deadline assignment /by Monday 7pm
+mark 1
+event homework /at Friday 10pm
+mark 3
+list
+todo dishes
+mark 2
+unmark 3
+list
+bye
