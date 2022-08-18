@@ -46,6 +46,7 @@ public class Duke {
         String showList = "list";
         String markAsDone = "mark ";
         String markAsNotDone = "unmark ";
+        String removeCmd = "delete ";
         String exitChat = "bye";
         Scanner readinput = new Scanner(System.in);
         while(true){
@@ -79,6 +80,15 @@ public class Duke {
                 currItem.switchStatus();
                 System.out.println("Hmm....I have marked this incomplete:\n" + currItem.toString());
                 System.out.println("\n***********************************************************************");
+
+            }
+            else if(userMsg.contains("delete ")){
+                String taskNo = userMsg.replaceAll("\\D+", "");
+                int taskNoAsInt = Integer.parseInt(taskNo)-1;
+                ListObject currItem = listOfItems.get(taskNoAsInt);
+                listOfItems.remove(taskNoAsInt);
+                System.out.println("And so it must be. We leave behind what we can not hold on to.\nI have removed this from your list:\n"+currItem.toString());
+                System.out.println("You have only " + listOfItems.size() + " tasks remaining");
 
             }
             else if(userMsg.contains("todo ")){
