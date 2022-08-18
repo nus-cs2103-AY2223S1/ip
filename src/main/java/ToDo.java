@@ -1,5 +1,5 @@
 public class ToDo extends Task {
-    public ToDo(String desc) {
+    public ToDo(String desc) throws EmptyDescException {
         super(desc);
     }
 

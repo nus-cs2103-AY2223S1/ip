@@ -37,47 +37,53 @@ public class Duke {
                         + taskLst[index - 1].toString());
 
             } else if (act.contains("todo")) {
-                act = act.replace("todo ", "");
-                ToDo temp = new ToDo(act);
-                taskLst[qty] = temp;
-                qty++;
-                System.out.println("Got it. I've added this task:\n"
-                        + temp.toString() + "\n"
-                        + "Now you have " + qty + " in the list.");
+                act = act.replace("todo", "");
+                try {
+                    ToDo temp = new ToDo(act);
+                    taskLst[qty] = temp;
+                    qty++;
+                    System.out.println("Got it. I've added this task:\n"
+                            + temp.toString() + "\n"
+                            + "Now you have " + qty + " in the list.");
+                } catch (EmptyDescException ede) {
+                    System.out.println(ede.toString());
+                }
 
             } else if (act.contains("deadline")) {
-                act = act.replace("deadline ", "");
-                int slash = act.lastIndexOf("/");
-                Deadline temp = new Deadline(act.substring(0, slash - 1), act.substring(slash + 4));
-                taskLst[qty] = temp;
-                qty++;
-                System.out.println("Got it. I've added this task:\n"
-                        + temp.toString() + "\n"
-                        + "Now you have " + qty + " in the list.");
+                act = act.replace("deadline", "");
+                try {
+                    int slash = act.lastIndexOf("/");
+                    Deadline temp = new Deadline(act.substring(0, slash - 1), act.substring(slash + 4));
+                    taskLst[qty] = temp;
+                    qty++;
+                    System.out.println("Got it. I've added this task:\n"
+                            + temp.toString() + "\n"
+                            + "Now you have " + qty + " in the list.");
+                } catch (EmptyDescException ede) {
+                    System.out.println(ede.toString());
+                }
 
             } else if (act.contains("event")) {
-                act = act.replace("event ", "");
-                int slash = act.lastIndexOf("/");
-                Event temp = new Event(act.substring(0, slash - 1), act.substring(slash + 4));
-                taskLst[qty] = temp;
-                qty++;
-                System.out.println("Got it. I've added this task:\n"
-                        + temp.toString() + "\n"
-                        + "Now you have " + qty + " in the list.");
+                act = act.replace("event", "");
+                try {
+                    int slash = act.lastIndexOf("/");
+                    Event temp = new Event(act.substring(0, slash - 1), act.substring(slash + 4));
+                    taskLst[qty] = temp;
+                    qty++;
+                    System.out.println("Got it. I've added this task:\n"
+                            + temp.toString() + "\n"
+                            + "Now you have " + qty + " in the list.");
+                } catch (EmptyDescException ede) {
+                    System.out.println(ede.toString());
+                }
 
             } else if (act.equals("bye")) {
                 System.out.println("Goodbye, hope to see you again soon!");
                 break;
 
             } else {
-                qty++;
-                for (int i = 0; i < 100; i++) {
-                    if (taskLst[i] == null) {
-                        taskLst[i] = new Task(act);
-                        break;
-                    }
-                }
-                System.out.println("added: " + act);
+                UnknownInputException uie = new UnknownInputException("?");
+                System.out.println(uie.toString());
             }
         }
     }

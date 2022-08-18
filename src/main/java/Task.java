@@ -2,7 +2,10 @@ public class Task {
     protected String desc;
     protected boolean isDone;
 
-    public Task(String desc) {
+    public Task(String desc) throws EmptyDescException {
+        if (desc.equals("")) {
+            throw new EmptyDescException("task");
+        }
         this.desc = desc;
         this.isDone = false;
     }
