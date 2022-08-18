@@ -4,6 +4,7 @@
 public class CommandGenerator {
     private String command;
     private String commandAction;
+    private String text;
 
     /**
      * Constructor.
@@ -13,10 +14,10 @@ public class CommandGenerator {
      * @param text
      */
     public CommandGenerator(String text) {
-        text = text.strip();
-        command = text.split(" ",2)[0];
-        if (text.split(" ",2).length > 1) {
-            commandAction = text.split(" ",2)[1];
+        this.text = text.strip();
+        command = this.text.split(" ",2)[0];
+        if (this.text.split(" ",2).length > 1) {
+            commandAction = this.text.split(" ",2)[1];
         }
     }
 
@@ -34,6 +35,14 @@ public class CommandGenerator {
      */
     public String getCommandAction() {
         return commandAction;
+    }
+
+    /**
+     * Retrieve text
+     * @return text
+     */
+    public String getText() {
+        return text;
     }
 
     /**

@@ -21,26 +21,11 @@ public class TaskList {
      *
      * @param task task to be added to tasks
      */
-    private void addTask(Task task) {
-        tasks.add(task);
-    }
-
-    /**
-     * Displays the newly added task to tasks.
-     */
-    private void addTaskMessage() {
-        IOHelper.print("added: " + tasks.get(tasks.size()-1));
-    }
-
-    /**
-     * Combine both addTask and addTaskMessage into one process
-     *
-     * @param text new task to be added
-     */
-    public void addTaskProcess(String text) {
-        Task task = new Task(text);
-        addTask(task);
-        addTaskMessage();
+    public void addTask(String task) {
+        IOHelper.print(task);
+        Task t = new Task(task);
+        tasks.add(t);
+        IOHelper.print("added: " + task);
     }
 
     /**

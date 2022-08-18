@@ -57,26 +57,26 @@ public class Duke {
     /**
      * Handles the different command and given each command,
      * evoke the respective TaskList methods
-     * @param command given by user in console
-     * @param commandAction given by user in console, maybe null
+     * @param commandGenerator given by user in console
      */
-    public void handleCommand(String command, String commandAction) {
+    public void handleCommand(CommandGenerator commandGenerator) {
+        String command = commandGenerator.getCommand();
         switch (command) {
             case "list":
                 taskList.printAllTasks();
                 break;
             case "mark":
             case "unmark":
-                if (!CommandGenerator.isInteger(commandAction)) {
+                if (!CommandGenerator.isInteger(commandGenerator.getCommandAction())) {
                     break;
                 }
-                taskList.updateTask(Integer.parseInt(commandAction) - 1, command);
+                taskList.updateTask(Integer.parseInt(commandGenerator.getCommandAction()) - 1, command);
                 break;
             case "bye":
                 run = false;
                 break;
             default:
-                taskList.addTaskProcess(command);
+                taskList.addTask(commandGenerator.getText());
         }
     }
 
@@ -85,7 +85,7 @@ public class Duke {
         while (isRunning()) {
             io.scan();
             commandGenerator = new CommandGenerator(io.getText());
-            handleCommand(commandGenerator.getCommand(), commandGenerator.getCommandAction());
+            handleCommand(commandGenerator);
         }
         printExitMessage();
     }
