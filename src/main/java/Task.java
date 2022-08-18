@@ -16,7 +16,7 @@ public abstract class Task {
       case "event":
         Task.validateCreateTask(inputArray);
         String[] eventInputArray = inputArray[1].split("/at", 2);
-        return new Deadline(eventInputArray[0].trim(), eventInputArray[1].trim());
+        return new Event(eventInputArray[0].trim(), eventInputArray[1].trim());
       default:
         throw new CheeseException();
     }
