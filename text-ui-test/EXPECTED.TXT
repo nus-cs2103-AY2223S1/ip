@@ -21,4 +21,6 @@ Here are the tasks in your list:
 1. [T][ ] borrow book
 2. [D][ ] finish reading book (by: tomorrow)
 3. [E][ ] book presentation (at: 2 days later 4pm)
+DukeException: ☹ OOPS!!! The description of todo cannot be empty.
+DukeException: ☹ OOPS!!! I'm sorry, but I don't know what that means.
 Bye. Hope to see you again soon!

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -19,6 +20,8 @@ public class Duke {
         while (!isDone) {
             processUserCommand(myScanner);
         }
+
+        myScanner.close();
     }
 
     private static void greet() {
@@ -27,25 +30,32 @@ public class Duke {
     }
 
     private static void processUserCommand(Scanner myScanner) {
-        String userCommand = myScanner.nextLine();
+        // split into ["userCommand", "details"]
+        String[] userInput = myScanner.nextLine().split(" ", 2);
+        String userCommand = userInput[0].toLowerCase();
 
-        if (userCommand.equalsIgnoreCase("bye")) {
-            sayGoodbye();
-            isDone = true;
-        } else if (userCommand.equalsIgnoreCase("list")) {
-            listUserCommands();
-        } else if (userCommand.toLowerCase().startsWith("mark")) {
-            getTask(userCommand).markAsDone();
-        } else if (userCommand.toLowerCase().startsWith("unmark")) {
-            getTask(userCommand).markAsNotDone();
-        } else {
-            String[] taskDetails = userCommand.split(" ", 2);
-            Task task = createTask(taskDetails[0], taskDetails[1]);
-            addToList(task);
+        try {
+            if (userCommand.equals("bye")) {
+                goodbye();
+            } else if (userCommand.equals("list")) {
+                listUserCommands();
+            } else if (userCommand.equals("mark")) {
+                getTask(userInput).markAsDone();
+            } else if (userCommand.equals("unmark")) {
+                getTask(userInput).markAsNotDone();
+            } else {
+                validateTask(userCommand);
+                String taskDescription = getDescription(userInput);
+                Task task = createTask(userCommand, taskDescription);
+                addToList(task);
+            }
+        } catch (DukeException de) {
+            System.out.println(de);
         }
     }
 
-    private static void sayGoodbye() {
+    private static void goodbye() {
+        isDone = true;
         System.out.println("Bye. Hope to see you again soon!");
     }
 
@@ -62,11 +72,12 @@ public class Duke {
         System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
     }
 
-    private static Task getTask(String userCommand) {
-        return tasks.get(Integer.parseInt(userCommand.split(" ")[1]) - 1);
+    private static Task getTask(String[] userInput) throws DukeException {
+        return tasks.get(Integer.parseInt(getDescription(userInput)) - 1);
     }
 
     private static Task createTask(String taskName, String taskDescription) {
+
         String[] temp = taskDescription.split(" /");
 
         switch (stringTaskNamesHashMap.get(taskName)) {
@@ -79,6 +90,21 @@ public class Duke {
             default:
                 return null;
         }
+    }
+
+    private static void validateTask(String userCommand) throws DukeException {
+        if (!stringTaskNamesHashMap.containsKey(userCommand)) {
+            throw new DukeException("I'm sorry, but I don't know what that means.");
+        }
+    }
+
+    private static String getDescription(String[] userInput) throws DukeException {
+        if (userInput.length < 2) {
+            throw new DukeException(
+                String.format("The description of %s cannot be empty.", userInput[0]));
+        }
+
+        return userInput[1];
     }
 
 }
