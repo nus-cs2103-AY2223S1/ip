@@ -9,26 +9,27 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
 
-        String[] storage = new String[100];
+        Storage myStorage = new Storage();
         String HORIZONTAL_LINE = "----------------------";
-        int ticker = 0;
 
         Scanner sc = new Scanner(System.in);
         System.out.println("Hello! I'm Duke \n What can I do for you?");
         String userInput = sc.nextLine();
+        String[] userInputS = userInput.split(" ");
 
-        while (!userInput.equals("bye")) {
-            if (userInput.equals("list")) {
-                for (int i = 0; i < ticker; i++) {
-                    System.out.println((i + 1) + ":" + storage[i]);
-                }
+        while (!userInputS[0].equals("bye")) {
+            if (userInputS[0].equals("list")) {
+                myStorage.printStorage();
+            } else if (userInputS[0].equals("mark")) {
+                myStorage.markDone(Integer.parseInt(userInputS[1]));
+                System.out.println(HORIZONTAL_LINE);
             } else {
-                storage[ticker] = userInput;
-                ticker++;
-                System.out.println("added:" + userInput);
+                Task newInput = new Task(userInput);
+                myStorage.addTask(newInput);
                 System.out.println(HORIZONTAL_LINE);
             }
             userInput = sc.nextLine();
+            userInputS = userInput.split(" ");
         }
         System.out.println("Bye. Hope to see you again soon!");
     }
