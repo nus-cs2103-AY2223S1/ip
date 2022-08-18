@@ -1,16 +1,6 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class Duke {
-    static int counter = 0;
-
-    /**
-     * Initialises counter back to 0.
-     */
-    public static void initialiseCounter() {
-        counter = 0;
-    }
-
-
     /**
      * Prints the starting message.
      */
@@ -27,33 +17,76 @@ public class Duke {
     }
 
 
-    public static void printList(Task[] arr) {
+    /**
+     * Prints the task list.
+     *
+     * @param tasks The task list
+     */
+    public static void printList(ArrayList<Task> tasks) {
         System.out.println("Here are the tasks in your list:");
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] != null) {
-                System.out.println(i + ". " + arr[i]);
-            }
+        for (int i = 1; i <= tasks.size(); i++) {
+            System.out.println(i + ". " + tasks.get(i - 1));
         }
     }
 
 
-    public static void markTaskAsDone(Task[] arr, int index) {
-        if (arr[index] != null) {
-            Task currTask = arr[index];
+    /**
+     * Marks the specified task as done.
+     *
+     * @param tasks The task list
+     * @param index The index of the task to be mark done
+     */
+    public static void markTaskAsDone(ArrayList<Task> tasks, int index) throws DukeException {
+        if (1 <= index && index <= tasks.size()) {
+            Task currTask = tasks.get(index - 1);
             currTask.markAsDone();
+        } else {
+            throw new DukeException("Input a valid task index!");
         }
     }
 
 
-    public static void unmarkTask(Task[] arr, int index) {
-        if (arr[index] != null) {
-            Task currTask = arr[index];
+    /**
+     * Unmarks the specified task as not done.
+     *
+     * @param tasks The task list
+     * @param index The index of the task to be unmarked
+     */
+    public static void unmarkTask(ArrayList<Task> tasks, int index) throws DukeException {
+        if (1 <= index && index <= tasks.size()) {
+            Task currTask = tasks.get(index - 1);
             currTask.markUndone();
+        } else {
+            throw new DukeException("Input a valid task index!");
         }
     }
 
 
-    public static void createNewTask(String firstWord, String[] strArray, Task[] inputArray) throws DukeException {
+    /**
+     * Deletes the specified task.
+     *
+     * @param tasks The task list
+     * @param index The index of the task to be deleted
+     */
+    public static void deleteTask(ArrayList<Task> tasks, int index) throws DukeException {
+        if (1 <= index && index <= tasks.size()) {
+            System.out.println("Noted. I've removed this task:\n  " + tasks.get(index - 1));
+            tasks.remove(index - 1);
+            System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+        } else {
+            throw new DukeException("Input a valid task index!");
+        }
+    }
+
+
+    /**
+     * Creates a new task and adds it to the task list.
+     *
+     * @param firstWord the first word typed in by the user
+     * @param strArray the array of strings of the words typed in by the user
+     * @param tasks The task list
+     */
+    public static void createNewTask(String firstWord, String[] strArray, ArrayList<Task> tasks) throws DukeException {
         if (firstWord.equals("todo")) {
             // throw exception if no word after to-do
             if (strArray.length < 2) {
@@ -64,10 +97,9 @@ public class Duke {
             for (int i = 1; i < strArray.length; i++) {
                 todoStr.append(" ").append(strArray[i]);
             }
-            counter++;
-            inputArray[counter] = new Todo(todoStr.toString());
-            System.out.println("Got it. I've added this task:\n  " + inputArray[counter] +
-                    "\nNow you have " + counter + " tasks in the list.");
+            tasks.add(new Todo(todoStr.toString()));
+            System.out.println("Got it. I've added this task:\n  " + tasks.get(tasks.size() - 1) +
+                    "\nNow you have " + tasks.size() + " tasks in the list.");
 
         } else if (firstWord.equals("deadline")) {
             // throw exception if no word after deadline
@@ -106,10 +138,9 @@ public class Duke {
                     break;
                 }
             }
-            counter++;
-            inputArray[counter] = new Deadline(deadlineStr.toString(), deadline.toString());
-            System.out.println("Got it. I've added this task:\n  " + inputArray[counter] +
-                    "\nNow you have " + counter + " tasks in the list.");
+            tasks.add(new Deadline(deadlineStr.toString(), deadline.toString()));
+            System.out.println("Got it. I've added this task:\n  " + tasks.get(tasks.size() - 1) +
+                    "\nNow you have " + tasks.size() + " tasks in the list.");
 
         } else if (firstWord.equals("event")) {
             // throw exception if no word after event
@@ -148,24 +179,23 @@ public class Duke {
                     break;
                 }
             }
-            counter++;
-            inputArray[counter] = new Event(eventStr.toString(), eventTime.toString());
-            System.out.println("Got it. I've added this task:\n  " + inputArray[counter] +
-                    "\nNow you have " + counter + " tasks in the list.");
+            tasks.add(new Event(eventStr.toString(), eventTime.toString()));
+            System.out.println("Got it. I've added this task:\n  " + tasks.get(tasks.size() - 1) +
+                    "\nNow you have " + tasks.size() + " tasks in the list.");
 
         }
     }
 
 
-    public static void main(String[] args) throws DukeException {
-        // initialise counter
-        initialiseCounter();
-
+    /**
+     * The main function.
+     */
+    public static void main(String[] args) {
         // print out starting message
         sayGreeting();
 
         // initialise variables
-        Task[] inputArray = new Task[100];
+        ArrayList<Task> taskList = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
 
         while (true) {
@@ -182,29 +212,34 @@ public class Duke {
 
                 } else if (firstWord.equals("list")) {
                     // list out the current list
-                    printList(inputArray);
+                    printList(taskList);
 
                 } else if (firstWord.equals("mark")) {
                     // to mark an element as done
                     int index = Integer.parseInt(arrOfInput[1]);
-                    markTaskAsDone(inputArray, index);
+                    markTaskAsDone(taskList, index);
 
                 } else if (firstWord.equals("unmark")) {
                     // to mark an element as undone
                     int index = Integer.parseInt(arrOfInput[1]);
-                    unmarkTask(inputArray, index);
+                    unmarkTask(taskList, index);
 
                 } else if (firstWord.equals("todo")) {
                     // adding the to-do to the list
-                    createNewTask(firstWord, arrOfInput, inputArray);
+                    createNewTask(firstWord, arrOfInput, taskList);
 
                 } else if (firstWord.equals("deadline")) {
                     // adding the deadline to the list
-                    createNewTask(firstWord, arrOfInput, inputArray);
+                    createNewTask(firstWord, arrOfInput, taskList);
 
                 } else if (firstWord.equals("event")) {
                     // adding the event to the list
-                    createNewTask(firstWord, arrOfInput, inputArray);
+                    createNewTask(firstWord, arrOfInput, taskList);
+
+                } else if (firstWord.equals("delete")) {
+                    // deleting a task
+                    int index = Integer.parseInt(arrOfInput[1]);
+                    deleteTask(taskList, index);
 
                 } else {
                     throw new DukeException("I'm sorry, but I don't know what that means :-(");
