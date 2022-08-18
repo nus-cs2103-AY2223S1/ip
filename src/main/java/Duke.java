@@ -42,13 +42,16 @@ public class Duke {
                 alive = false;
                 return "Goodbye!";
             case "todo":
+                if (params == "") return "Todo description can't be empty.";
                 tasks.add(new Todo(params));
                 return "Added new todo: " + tasks.get(tasks.size() - 1);
             case "deadline":
+                if (params == "") return "Deadline description can't be empty.";
                 String[] splitDeadline = splitOnFirst(params, " /by ");
                 tasks.add(new Deadline(splitDeadline[0], splitDeadline[1]));
                 return "Added new deadline: " + tasks.get(tasks.size() - 1);
             case "event":
+                if (params == "") return "Event description can't be empty.";
                 String[] splitEvent = splitOnFirst(params, " /at ");
                 tasks.add(new Event(splitEvent[0], splitEvent[1]));
                 return "Added new event: " + tasks.get(tasks.size() - 1);
