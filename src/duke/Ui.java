@@ -38,8 +38,8 @@ public class Ui {
         System.out.println(echo);
     }
 
-    public void addSuccess(Task task) {
-        System.out.println("Added: " + task.toString());
+    public void addSuccess(Task task, String numOfTask) {
+        System.out.println("Added: " + task.toString() +"\n" + numOfTask);
     }
 
     public void showList(TaskList taskList) {
