@@ -4,15 +4,36 @@ import java.util.Scanner;
 
 public class Duke {
     //ArrayList to store tasks
-    private List<Task> lst = new ArrayList<>();
+    private List<Task> lst;
+    //Scanner object to take in input from user
+    private Scanner input;
 
-    public static void main(String[] args) throws DukeException {
+    public Duke() {
+        this.lst = new ArrayList<>();
+        this.input = new Scanner(System.in);
+    }
+
+    public static void main(String[] args) {
         //Create a Duke object
         Duke duke = new Duke();
-        //Scanner object to take in input from user
-        Scanner input = new Scanner(System.in);
         //Welcome message
         duke.hello();
+        //Run bot
+        duke.run();
+        //Goodbye message
+        duke.bye();
+    }
+
+    private void hello() {
+        System.out.println("Hello! I'm Donovan\nWhat can I do for you?");
+    }
+
+    private void bye() {
+        System.out.println("\tBye! Hope to see you again soon!");
+    }
+
+    private void run() {
+        input = new Scanner(System.in);
         String text = input.next();
         while (!text.equals("bye")) {
             try {
@@ -20,7 +41,7 @@ public class Duke {
                     //Handle case when task aTodo
                     case "todo" :
                         String tDescription = input.nextLine();
-                        duke.printTodo(tDescription);
+                        printTodo(tDescription);
                         break;
 
                     //Handle case when task is a deadline
@@ -28,7 +49,7 @@ public class Duke {
                         String str = input.nextLine();
                         String dDescription = str.substring(0, str.indexOf('/') - 1);
                         String dBy = str.substring(str.indexOf('/') + 4);
-                        duke.printDeadline(dDescription, dBy);
+                        printDeadline(dDescription, dBy);
                         break;
                     }
 
@@ -37,20 +58,20 @@ public class Duke {
                         String str = input.nextLine();
                         String eDescription = str.substring(0, str.indexOf('/') - 1);
                         String eAt = str.substring(str.indexOf('/') + 4);
-                        duke.printEvent(eDescription, eAt);
+                        printEvent(eDescription, eAt);
                         break;
                     }
 
                     //Handle case when user wants to list tasks
                     case "list" :
-                        duke.listTasks();
+                        listTasks();
                         break;
 
                     //Handle case when user wants to mark task
                     case "mark": {
                         //-1 to get index in 0 indexing
                         int index = input.nextInt() - 1;
-                        duke.markTask(index);
+                        markTask(index);
                         break;
                     }
 
@@ -58,7 +79,7 @@ public class Duke {
                     case "unmark": {
                         //-1 to get index in 0 indexing
                         int index = input.nextInt() - 1;
-                        duke.unmarkTask(index);
+                        unmarkTask(index);
                         break;
                     }
 
@@ -66,7 +87,7 @@ public class Duke {
                     case "delete": {
                         //-1 to get in 0 indexing
                         int index = input.nextInt() - 1;
-                        duke.deleteTask(index);
+                        deleteTask(index);
                         break;
                     }
 
@@ -81,19 +102,9 @@ public class Duke {
             }
             text = input.next();
         }
-        //Goodbye message
-        duke.bye();
     }
 
-    public void hello() {
-        System.out.println("Hello! I'm Donovan\nWhat can I do for you?");
-    }
-
-    public void bye() {
-        System.out.println("\tBye! Hope to see you again soon!");
-    }
-
-    public void listTasks() {
+    private void listTasks() {
         System.out.println("\tHere are the tasks in your list.");
         for (int i = 0; i < lst.size(); i++) {
             Task task = lst.get(i);
@@ -105,7 +116,7 @@ public class Duke {
      * @param tDescription A String of the description for the task
      * @throws DukeException
      */
-    public void printTodo(String tDescription) throws DukeException {
+    private void printTodo(String tDescription) throws DukeException {
         if (tDescription.equals("")) {
             throw new DukeException("OOPS! The description of a todo cannot be empty.");
         } else {
@@ -122,7 +133,7 @@ public class Duke {
      * @param dDescription A String of the description for the task
      * @param dBy A String representing the deadline for the task
      */
-    public void printDeadline(String dDescription, String dBy) {
+    private void printDeadline(String dDescription, String dBy) {
         Task deadline = new Deadline(dDescription, dBy);
         lst.add(deadline);
         int size2 = lst.size();
@@ -135,7 +146,7 @@ public class Duke {
      * @param eDescription A String of the description for the task
      * @param eAt A String representing the day for the task
      */
-    public void printEvent(String eDescription, String eAt) {
+    private void printEvent(String eDescription, String eAt) {
         Task event = new Event(eDescription, eAt);
         lst.add(event);
         int size3 = lst.size();
@@ -148,7 +159,7 @@ public class Duke {
      * @param index An int representing the index of task to be marked
      * @throws DukeException
      */
-    public void markTask(int index) throws DukeException {
+    private void markTask(int index) throws DukeException {
         int size = lst.size();
         if (index >= size || index < 0) {
             throw new DukeException("OOPS! The index of the task does not exists.");
@@ -164,7 +175,7 @@ public class Duke {
      * @param index An int representing the index of task to be unmarked
      * @throws DukeException
      */
-    public void unmarkTask(int index) throws DukeException {
+    private void unmarkTask(int index) throws DukeException {
         int size = lst.size();
         if (index >= size || index < 0) {
             throw new DukeException("OOPS! The index of the task does not exists.");
@@ -180,7 +191,7 @@ public class Duke {
      * @param index An int representing the index of task to be deleted
      * @throws DukeException
      */
-    public void deleteTask(int index) throws DukeException {
+    private void deleteTask(int index) throws DukeException {
         int size = lst.size();
         if (index >= size || index < 0) {
             throw new DukeException("OOPS! The index of the task does not exists.");
