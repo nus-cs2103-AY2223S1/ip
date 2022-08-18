@@ -18,7 +18,6 @@ public class Fred {
         System.out.println("Fred: What can I do for you?");
 
         while (true) {
-            System.out.print("Player: ");
             input = scanner.nextLine();
 
             if (input.equals("bye")) {

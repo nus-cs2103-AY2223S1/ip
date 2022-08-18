@@ -1,7 +1,21 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
+Fred: Hello! I'm Fred!
+Fred: What can I do for you?
+Fred: Got it. I've added this task:
+Fred: [T][ ] borrow book
+Fred: Now you have 1 tasks in your list.
+Fred: Got it. I've added this task:
+Fred: [D][ ] return book (by: June 6th)
+Fred: Now you have 2 tasks in your list.
+Fred: Got it. I've added this task:
+Fred: [E][ ] project meeting (at: Aug 6th 2-4pm)
+Fred: Now you have 3 tasks in your list.
+Fred: Nice! I've marked this task as done:
+Fred: [T][X] borrow book
+Fred: Here are the tasks in your list:
+Fred: 1.[T][X] borrow book
+Fred: 2.[D][ ] return book (by: June 6th)
+Fred: 3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+Fred: Got it. I've added this task:
+Fred: [T][ ] join sports club
+Fred: Now you have 4 tasks in your list.
+Fred: Bye. Hope to see you again soon!
