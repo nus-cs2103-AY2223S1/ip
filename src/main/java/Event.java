@@ -2,7 +2,7 @@ public class Event extends Task {
 
     private String at;
 
-    public Event(String name, boolean isDone, String at) {
+    public Event(String name, boolean isDone, String at) throws DukeException {
         super(name, isDone);
         this.at = at;
     }

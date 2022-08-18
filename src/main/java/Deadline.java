@@ -2,7 +2,7 @@ public class Deadline extends Task {
 
     private String by;
 
-    public Deadline(String name, boolean isDone, String by) {
+    public Deadline(String name, boolean isDone, String by) throws DukeException {
         super(name, isDone);
         this.by = by;
     }
