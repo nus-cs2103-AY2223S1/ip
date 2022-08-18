@@ -8,5 +8,10 @@ list
 mark 3
 list
 unmark 1
+unmark t
+todo
+deadline
+event
 list
+help me
 bye

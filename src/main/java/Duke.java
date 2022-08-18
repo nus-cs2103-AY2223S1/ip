@@ -33,17 +33,66 @@ public class Duke {
         String command = scan.nextLine();
 
         while (!command.equals("bye")) {
-            if (!command.equals("list") && !(command.startsWith("mark ") || command.startsWith("unmark "))) {
-                if (command.startsWith("todo ")) {
-                    storage.add(new Todo(command.substring(5)));
-                } else if (command.startsWith("deadline ")) {
-                    String[] temp = command.substring(9).split("/by ");
-                    storage.add(new Deadline(temp[0], temp[1]));
-                } else if (command.startsWith("event ")) {
-                    String[] temp = command.substring(6).split("/at ");
-                    storage.add(new Event(temp[0], temp[1]));
+            if (!command.equals("list") && !(command.startsWith("mark") || command.startsWith("unmark"))) {
+                if (command.startsWith("todo")) {
+                    try {
+                        if (command.length() <= 5) {
+                            throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+                        }
+
+                        Task newTask = new Todo(command.substring(5));
+                        storage.add(newTask);
+                    } catch (DukeException e) {
+                        System.out.println(
+                                "____________________________________________________________ \n"
+                                        + "☹ OOPS!!! The description of a todo cannot be empty. \n"
+                                        + "____________________________________________________________");
+
+                        command = scan.nextLine();
+                        continue;
+                    }
+                } else if (command.startsWith("deadline")) {
+                    try {
+                        if (command.length() <= 9) {
+                            throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
+                        }
+
+                        String[] temp = command.substring(9).split("/by ");
+                        storage.add(new Deadline(temp[0], temp[1]));
+                    } catch (IndexOutOfBoundsException | DukeException e) {
+                        System.out.println(
+                                "____________________________________________________________ \n"
+                                        + "☹ OOPS!!! The description of a deadline cannot be empty. \n"
+                                        + "____________________________________________________________");
+
+                        command = scan.nextLine();
+                        continue;
+                    }
+                } else if (command.startsWith("event")) {
+                    try {
+                        if (command.length() <= 6) {
+                            throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.");
+                        }
+
+                        String[] temp = command.substring(6).split("/at ");
+                        storage.add(new Event(temp[0], temp[1]));
+                    } catch (IndexOutOfBoundsException | DukeException e) {
+                        System.out.println(
+                                "____________________________________________________________ \n"
+                                        + "☹ OOPS!!! The description of an event cannot be empty. \n"
+                                        + "____________________________________________________________");
+
+                        command = scan.nextLine();
+                        continue;
+                    }
                 } else {
-                    storage.add(new Task(command));
+                    System.out.println(
+                            "____________________________________________________________ \n"
+                                    + "☹ OOPS!!! I'm sorry, but I don't know what that means :-( \n"
+                                    + "____________________________________________________________");
+
+                    command = scan.nextLine();
+                    continue;
                 }
             }
 
@@ -52,8 +101,14 @@ public class Duke {
             } else if (command.startsWith("mark ") || command.startsWith("unmark ")) {
                 int index = Character.getNumericValue(command.charAt(command.length() - 1));
 
-                // Check whether this task exists.
-                storage.get(index - 1).toggleDone(command);
+                try {
+                    storage.get(index - 1).toggleDone(command);
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println(
+                            "____________________________________________________________ \n"
+                                    + "☹ OOPS!!! That task doesn't exist. \n"
+                                    + "____________________________________________________________");
+                }
             } else {
                 System.out.println(
                         "____________________________________________________________ \n"
