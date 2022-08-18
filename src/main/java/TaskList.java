@@ -11,12 +11,18 @@ public class TaskList {
                 task, tasks.size());
     }
 
-    public String markdone(int index) {
-        return tasks.get(index - 1).markdone();
+    public String remove(int index) throws IndexOutOfBoundsException {
+        Task task = tasks.remove(index - 1);
+        return String.format("Noted. I've removed this task:\n  %s\nNow you have %d tasks in the list.",
+                task, tasks.size());
     }
 
-    public String unmarkdone(int index) {
-        return tasks.get(index - 1).unmarkdone();
+    public Task get(int index) throws ArrayIndexOutOfBoundsException {
+        return tasks.get(index);
+    }
+
+    public int size() {
+        return tasks.size();
     }
 
     @Override

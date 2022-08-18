@@ -2,9 +2,9 @@ public class Events extends Task {
 
     private String time;
 
-    public Events(String[] input) {
-        super(input[0]);
-        this.time = input[1];
+    public Events(String task, String time) {
+        super(task);
+        this.time = time;
 
     }
 
