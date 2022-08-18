@@ -1,6 +1,6 @@
 import java.util.*;
 public class Duke {
-    public static void run(Task[] lst, int count) {
+    public static void run(Task[] lst, int count) throws DukeException {
         Scanner sc = new Scanner(System.in);
         String choice = sc.nextLine();
         Scanner sc2 = new Scanner(choice);
@@ -16,52 +16,78 @@ public class Duke {
                 System.out.println(curr + ". " + lst[i].toString());
             }
         } else if (call.equals("mark")) {
-            int pos = sc2.nextInt() - 1;
-            lst[pos].mark();
-            System.out.println("Nice! I've marked this task as done:");
-            System.out.println(lst[pos].toString());
+            try {
+                int pos = sc2.nextInt() - 1;
+                lst[pos].mark();
+                System.out.println("Nice! I've marked this task as done:");
+                System.out.println(lst[pos].toString());
+            } catch (ArrayIndexOutOfBoundsException e) {
+                throw new DukeException("OOPS! Please enter a valid number!");
+            } catch (Exception e) {
+                throw new DukeException("OOPS! Please enter a number that you want to mark!");
+            }
         } else if (call.equals("unmark")) {
-            int pos = sc2.nextInt() - 1;
-            lst[pos].unmark();
-            System.out.println("OK, I've marked this task as not done yet:");
-            System.out.println(lst[pos].toString());
+            try {
+                int pos = sc2.nextInt() - 1;
+                lst[pos].unmark();
+                System.out.println("OK, I've marked this task as not done yet:");
+                System.out.println(lst[pos].toString());
+            } catch (ArrayIndexOutOfBoundsException e) {
+                throw new DukeException("OOPS! Please enter a valid number!");
+            } catch (Exception e) {
+                throw new DukeException("OOPS! Please enter a number that you want to unmark!");
+            }
         } else if (call.equals("todo")) {
-            String description = sc2.nextLine();
-            ToDo todo = new ToDo(description);
-            lst[count++] = todo;
-            System.out.println("Got it. I've added this task:");
-            System.out.println("\t" + todo.toString());
-            System.out.println("Now you have " + count + " tasks in the list.");
+            if (sc2.hasNext()) {
+                String description = sc2.nextLine();
+                ToDo todo = new ToDo(description);
+                lst[count++] = todo;
+                System.out.println("Got it. I've added this task:");
+                System.out.println("\t" + todo.toString());
+                System.out.println("Now you have " + count + " tasks in the list.");
+            } else {
+                throw new DukeException("OOPS! The description of the todo should not be empty!");
+            }
         } else if (call.equals("deadline")) {
-            String description = "";
-            while (!sc2.hasNext("/by")) {
-                String next = sc2.next();
-                description += next + " ";
+            try {
+                String description = "";
+                while (!sc2.hasNext("/by")) {
+                    String next = sc2.next();
+                    description += next + " ";
+                }
+                sc2.next();
+                String date = sc2.nextLine();
+                Deadline deadline = new Deadline(description, date);
+                lst[count++] = deadline;
+                System.out.println("Got it. I've added this task: ");
+                System.out.println("\t" + deadline.toString());
+                System.out.println("Now you have " + count + " tasks in the list.");
+            } catch (Exception e) {
+                throw new DukeException("OOPS!! Please enter a valid message!");
             }
-            String skip = sc2.next();
-            String date = sc2.nextLine();
-            Deadline deadline = new Deadline(description, date);
-            lst[count++] = deadline;
-            System.out.println("Got it. I've added this task: ");
-            System.out.println("\t" + deadline.toString());
-            System.out.println("Now you have " + count + " tasks in the list.");
         } else if (call.equals("event")) {
-            String description = "";
-            while (!sc2.hasNext("/at")) {
-                String next = sc2.next();
-                description += next + " ";
+            try {
+                String description = "";
+                while (!sc2.hasNext("/at")) {
+                    String next = sc2.next();
+                    description += next + " ";
+                }
+                sc2.next();
+                String date = sc2.nextLine();
+                Event event = new Event(description, date);
+                lst[count++] = event;
+                System.out.println("Got it. I've added this task: ");
+                System.out.println("\t" + event.toString());
+                System.out.println("Now you have " + count + " tasks in the list.");
+            } catch (Exception e) {
+                throw new DukeException("OOPS! Please enter a valid message!");
             }
-            String skip = sc2.next();
-            String date = sc2.nextLine();
-            Event event = new Event(description, date);
-            lst[count++] = event;
-            System.out.println("Got it. I've added this task: ");
-            System.out.println("\t" + event.toString());
-            System.out.println("Now you have " + count + " tasks in the list.");
+        } else {
+            throw new DukeException("OOPS! I'm sorry, but I don't know what that means...");
         }
         run(lst, count);
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DukeException{
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
