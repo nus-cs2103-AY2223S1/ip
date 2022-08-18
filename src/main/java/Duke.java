@@ -17,19 +17,48 @@ public class Duke {
         Scanner in = new Scanner(System.in);
         while (!terminate) {
             String userInput = in.nextLine();
+            // retrieve first word
+            int indexOfFirstSpace = userInput.indexOf(" ");
+            int indexOfFirstSlash = userInput.indexOf("/");
+            String firstWord = userInput;
+            String taskDescription = "";
+            String time = "";
+            if (indexOfFirstSpace != - 1) {
+                firstWord = userInput.substring(0, indexOfFirstSpace);
+                taskDescription = userInput.substring(indexOfFirstSpace + 1);
+            }
+            if (indexOfFirstSlash != -1) {
+                taskDescription = userInput.substring(indexOfFirstSpace + 1, indexOfFirstSlash - 1);
+                time = userInput.substring(indexOfFirstSlash + 1);
+            }
+            // retrieve int for numbered operations
             char charOfInt = userInput.charAt(userInput.length() - 1);
             // convert ASCII character of integer to int
             int taskNumber =  charOfInt - '0';
-            if (userInput.equals("bye")) {
-                Duke.exit();
-            } else if (userInput.contains("unmark")) {
-                Duke.unmarkTask(taskNumber);
-            } else if (userInput.contains("mark")) {
-                Duke.markTask(taskNumber);
-            } else if (userInput.equals("list")) {
-                Duke.displayList();
-            } else {
-                Duke.addTask(userInput);
+            switch (firstWord) {
+                case "bye":
+                    Duke.exit();
+                    break;
+                case "unmark":
+                    Duke.unmarkTask(taskNumber);
+                    break;
+                case "mark":
+                    Duke.markTask(taskNumber);
+                    break;
+                case "list":
+                    Duke.displayList();
+                    break;
+                case "deadline":
+                    Duke.addTask(new Deadline(taskDescription, time));
+                    break;
+                case "todo":
+                    Duke.addTask(new ToDo(taskDescription));
+                    break;
+                case "event":
+                    Duke.addTask(new Event(taskDescription, time));
+                    break;
+                default:
+                    System.out.println(userInput);
             }
         }
     }
@@ -45,12 +74,13 @@ public class Duke {
         Duke.lineFormat();
     }
 
-    public static void addTask(String userInput) {
+    public static void addTask(Task task) {
+        taskList.add(task);
         Duke.lineFormat();
-        System.out.println("     added: " + userInput);
+        System.out.println("     Got it. I've added this task: \n" +
+                "       " + task.toString() + "\n" +
+                "     Now you have " + taskList.size() + " tasks in the list.");
         Duke.lineFormat();
-        Task addedTask = new Task(userInput);
-        taskList.add(addedTask);
     }
 
     public static void displayList() {
@@ -58,11 +88,9 @@ public class Duke {
         System.out.println("     Here are the tasks in your list: ");
         for (int i = 1; i <= taskList.size(); i++) {
             Task currentTask = taskList.get(i - 1);
-            String indicator = currentTask.getStatusIcon();
-            String taskDescription = currentTask.getTaskDescription();
+            String taskDescription = currentTask.toString();
             System.out.println("     " +
-                    String.valueOf(i) + ".[" +
-                    indicator + "] " +
+                    String.valueOf(i) + "." +
                     taskDescription);
         }
         Duke.lineFormat();
@@ -70,22 +98,22 @@ public class Duke {
 
     public static void markTask(int i) {
         Task currentTask = taskList.get(i - 1);
-        String taskDescription = currentTask.getTaskDescription();
+        currentTask.setTaskStatus(true);
+        String taskDescription = currentTask.toString();
         Duke.lineFormat();
         System.out.println("     Nice! I've marked this task as done: \n" +
-                "       [X] " + taskDescription);
+                "       " + taskDescription);
         Duke.lineFormat();
-        currentTask.setTaskStatus(true);
     }
 
     public static void unmarkTask(int i) {
         Task currentTask = taskList.get(i - 1);
-        String taskDescription = currentTask.getTaskDescription();
+        currentTask.setTaskStatus(false);
+        String taskDescription = currentTask.toString();
         Duke.lineFormat();
         System.out.println("     OK, I've marked this task as not done yet: \n" +
-                "       [ ] " + taskDescription);
+                "       " + taskDescription);
         Duke.lineFormat();
-        currentTask.setTaskStatus(false);
     }
 
     public static void exit() {
