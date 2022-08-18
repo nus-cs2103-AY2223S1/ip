@@ -7,11 +7,11 @@ public class ToDoList {
     public ToDoList() {}
 
     /* Method for adding items to the list */
-    public void addTask(String command) throws DukeException {
+    public void addTask(String command) throws BobException {
         if (command.startsWith("todo")) {
             command = command.replace("todo", "");
             if (command.length() == 0) {
-                throw new DukeException(
+                throw new BobException(
                         "\n   --------------------------------------------------------------------------------\n" +
                                 "     The description of deadline cannot be empty!\n" +
                                 "     You can't possibly just do nothing... Right? Right? Guys I'm RIGHT right?\n" +
@@ -33,7 +33,7 @@ public class ToDoList {
             try {
                 command = command.replace("deadline ", "");
                 if (command.length() == 0) {
-                    throw new DukeException(
+                    throw new BobException(
                             "\n   --------------------------------------------------------------------------------\n" +
                                     "     The description of deadline cannot be empty!\n" +
                                     "     You need to finish your tasks eventually... Right? Right?\n" +
@@ -53,7 +53,7 @@ public class ToDoList {
                     );
                 }
             } catch (ArrayIndexOutOfBoundsException e) {
-                throw new DukeException(
+                throw new BobException(
                         "\n   --------------------------------------------------------------------------------\n" +
                         "       Set a deadline for your task!\n" +
                                 "   --------------------------------------------------------------------------------"
@@ -63,7 +63,7 @@ public class ToDoList {
             try {
                 command = command.replace("event ", "");
                 if (command.length() == 0) {
-                    throw new DukeException(
+                    throw new BobException(
                             "   --------------------------------------------------------------------------------\n" +
                                     "     The description of event cannot be empty!\n" +
                                     "     It's impossible to go for something that does not exist...\n" +
@@ -83,14 +83,14 @@ public class ToDoList {
                     );
                 }
             } catch (ArrayIndexOutOfBoundsException e) {
-                throw new DukeException(
+                throw new BobException(
                     "\n   --------------------------------------------------------------------------------\n" +
                             "       Please set a date for your event!\n" +
                             "   --------------------------------------------------------------------------------"
                 );
             }
         } else {
-            throw new DukeException(
+            throw new BobException(
                     "\n   --------------------------------------------------------------------------------\n" +
                             "     Deepest apologies, I am a mere automated bot.\n" +
                             "     Please stick to input that starts with 'todo', 'deadline' or 'event'! \n" +
