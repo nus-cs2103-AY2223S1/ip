@@ -107,6 +107,17 @@ public class Duke {
                         DukePrinter.echo(e.getMessage());
                     }
                     break;
+                case "delete":
+                    cmd = sc.nextLine().trim(); // get index number.
+                    try {
+                        task = taskItems.remove(Integer.parseInt(cmd) - 1);
+                        DukePrinter.delete(task.toString(), taskItems.size());
+                    } catch (NumberFormatException e) {
+                        DukePrinter.echo("☹ OOPS!!! You did not enter a number.");
+                    } catch (IndexOutOfBoundsException e) {
+                        DukePrinter.echo("☹ OOPS!!! No such record exists.");
+                    }
+                    break;
                 default:
                     sc.nextLine(); // flush text after invalid command.
                     DukePrinter.echo("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");

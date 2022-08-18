@@ -12,4 +12,19 @@ mark 4
 list
 todo
 blah
+delete 3
+list list
+list -1
+mark mark
+mark -1
+unmark unmark
+unmark -1
+deadline
+deadline /by when the world ends
+deadline land on the moon /by
+deadline /by
+event /at singapore
+event dance party /at
+event /at
+delete -1
 bye

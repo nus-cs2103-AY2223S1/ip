@@ -102,4 +102,17 @@ public class DukePrinter {
         print("Now you have " + size + " tasks in the list.");
         print_line();
     }
+
+    /**
+     * Prints a delete message.
+     * @param taskItem string representation of a TaskItem.
+     * @param size size of the list.
+     */
+    public static void delete(String taskItem, int size) {
+        print_line();
+        print("Got it. I've added this task:");
+        print("  " + taskItem);
+        print("Now you have " + size + " tasks in the list.");
+        print_line();
+    }
 }
