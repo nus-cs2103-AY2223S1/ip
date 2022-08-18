@@ -1,5 +1,25 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+
+class DontKnowException extends Exception {
+
+    @Override
+    public String toString() {
+        return "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
+    }
+}
+
+class DescriptionEmptyException extends Exception {
+    private String content;
+    DescriptionEmptyException(String content) {
+        this.content = content;
+    }
+    @Override
+    public String toString() {
+        return "☹ OOPS!!! The description of a " + content + " cannot be empty.";
+    }
+}
+
 class Task {
     public boolean isDone = false;
     private String content;
@@ -17,6 +37,7 @@ class Task {
         return "[" + (isDone? 'X': ' ') + "]" + content;
     }
 }
+
 class Todo extends Task {
     Todo(String content) {
         super(content);
@@ -26,6 +47,7 @@ class Todo extends Task {
         return "[T]" + super.toString();
     }
 }
+
 class Deadline extends Task {
     String date;
     Deadline(String content, String date) {
@@ -37,6 +59,7 @@ class Deadline extends Task {
         return "[D]" + super.toString() + "(" + date.substring(0,2) + ":" + date.substring(2) + ")";
     }
 }
+
 class Event extends Task {
     String date;
     Event(String content, String date) {
@@ -48,6 +71,7 @@ class Event extends Task {
         return "[E]" + super.toString() + "(" + date.substring(0,2) + ":" + date.substring(2) + ")";
     }
 }
+
 class Yilia {
     private static ArrayList<Task> abilities = new ArrayList();
 
@@ -93,46 +117,69 @@ class Yilia {
         }
     }
 
-    public static void addTodo(String text) {
+    public static void addTodo(String text) throws DescriptionEmptyException {
+        if (text.strip().isEmpty()) {
+            throw new DescriptionEmptyException("todo");
+        }
         Todo todo = new Todo(text);
         abilities.add(todo);
         echo(todo);
     }
 
-    public static void addDeadline(String text) {
+    public static void addDeadline(String text) throws DescriptionEmptyException {
+        if (text.strip().isEmpty()) {
+            throw new DescriptionEmptyException("todo");
+        }
         String info[] = text.split("/");
+        if (info.length == 1 || info[1].strip().isEmpty()) {
+            throw new DescriptionEmptyException("todo");
+        }
         Deadline deadline = new Deadline(info[0], info[1]);
         abilities.add(deadline);
         echo(deadline);
     }
 
-    public static void addEvent(String text) {
+    public static void addEvent(String text) throws DescriptionEmptyException {
+        if (text.strip().isEmpty()) {
+            throw new DescriptionEmptyException("todo");
+        }
         String info[] = text.split("/");
+        if (info.length == 1 || info[1].strip().isEmpty()) {
+            throw new DescriptionEmptyException("todo");
+        }
         Event event = new Event(info[0], info[1]);
         abilities.add(event);
         echo(event);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DontKnowException {
         greet();
         Scanner scanner = new Scanner(System.in);
         do {
-            String message = scanner.next();
-            if (message.equals("bye")) {
-                exit();
-                return;
-            } else if (message.equals("list")) {
-                showList();
-            } else if (message.contains("unmark")) {
-                unmark(scanner.nextInt());
-            } else if (message.contains("mark")) {
-                mark(scanner.nextInt());
-            } else if (message.contains("deadline")) {
-                addDeadline(scanner.nextLine());
-            } else if (message.contains("event")) {
-                addEvent(scanner.nextLine());
-            } else if (message.contains("todo")) {
-                addTodo(scanner.nextLine());
+            try {
+                String message = scanner.next();
+                if (message.equals("bye")) {
+                    exit();
+                    return;
+                } else if (message.equals("list")) {
+                    showList();
+                } else if (message.contains("unmark")) {
+                    unmark(scanner.nextInt());
+                } else if (message.contains("mark")) {
+                    mark(scanner.nextInt());
+                } else if (message.contains("deadline")) {
+                    addDeadline(scanner.nextLine());
+                } else if (message.contains("event")) {
+                    addEvent(scanner.nextLine());
+                } else if (message.contains("todo")) {
+                    addTodo(scanner.nextLine());
+                } else {
+                    throw new DontKnowException();
+                }
+            } catch (DescriptionEmptyException e) {
+                System.out.println(e);
+            } catch (DontKnowException e) {
+                System.out.println(e);
             }
         } while (scanner.hasNext());
     }
