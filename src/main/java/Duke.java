@@ -12,13 +12,25 @@ public class Duke {
         System.out.println("Hello from\n" + logo);
         greeting();
 
+        logicRun();
+
+        farewell();
+
+    }
+
+    public static void greeting() {
+        String greet = "Hello! I'm Duke \n"
+                + "What can I do for you? \n";
+        System.out.println(greet);
+    }
+
+    public static void logicRun() {
         Scanner scanner = new Scanner(System.in);
         String userInput = "";
 
-
-
         while(!userInput.equals("bye")) {
             userInput = scanner.nextLine();
+
             if(userInput.equals("list")) {
                 list();
                 continue;
@@ -36,35 +48,60 @@ public class Duke {
                 unmark(inputTaskIndex);
                 continue;
             }
-            if(userInput.split(" ", 2)[0].equals("todo")) {
-                String taskInput = userInput.split(" ", 2)[1];
-                todo(taskInput);
+
+            try{
+                userInputCheck(userInput);
+
+                if(userInput.split(" ", 2)[0].equals("todo")) {
+                    String taskInput = userInput.split(" ", 2)[1];
+                    todo(taskInput);
+                    continue;
+                }
+                if(userInput.split(" ", 2)[0].equals("deadline")) {
+                    String taskInput = userInput.split(" ", 2)[1].split("/", 2)[0];
+                    String by = userInput.split("/", 2)[1].split(" ", 2)[1];
+                    deadline(taskInput, by);
+                    continue;
+                }
+                if(userInput.split(" ", 2)[0].equals("event")) {
+                    String taskInput = userInput.split(" ", 2)[1].split("/", 2)[0];
+                    String duration = userInput.split("/", 2)[1].split(" ", 2)[1];
+                    event(taskInput, duration);
+                    continue;
+                }
+
+            }
+            catch (DukeException err) {
+                System.out.println(err.getMessage());
                 continue;
             }
-            if(userInput.split(" ", 2)[0].equals("deadline")) {
-                String taskInput = userInput.split(" ", 2)[1].split("/", 2)[0];
-                String by = userInput.split("/", 2)[1].split(" ", 2)[1];
-                deadline(taskInput, by);
-                continue;
-            }
-            if(userInput.split(" ", 2)[0].equals("event")) {
-                String taskInput = userInput.split(" ", 2)[1].split("/", 2)[0];
-                String duration = userInput.split("/", 2)[1].split(" ", 2)[1];
-                event(taskInput, duration);
-                continue;
-            }
+//            if(userInput.split(" ", 2)[0].equals("todo")) {
+//                try {
+//                    userInputCheck(userInput);
+//                    String taskInput = userInput.split(" ", 2)[1];
+//                    todo(taskInput);
+//                }
+//                catch (DukeException err) {
+//                    System.out.println(err.getMessage());
+//                }
+//                continue;
+//            }
+//            if(userInput.split(" ", 2)[0].equals("deadline")) {
+//                String taskInput = userInput.split(" ", 2)[1].split("/", 2)[0];
+//                String by = userInput.split("/", 2)[1].split(" ", 2)[1];
+//                deadline(taskInput, by);
+//                continue;
+//            }
+//            if(userInput.split(" ", 2)[0].equals("event")) {
+//                String taskInput = userInput.split(" ", 2)[1].split("/", 2)[0];
+//                String duration = userInput.split("/", 2)[1].split(" ", 2)[1];
+//                event(taskInput, duration);
+//                continue;
+//            }
             addTask(userInput);
         }
-
-        farewell();
-
     }
 
-    public static void greeting() {
-        String greet = "Hello! I'm Duke \n"
-                + "What can I do for you? \n";
-        System.out.println(greet);
-    }
 
     public static void echo(String userInput) {
         System.out.println(userInput);
@@ -92,8 +129,11 @@ public class Duke {
         storeList.get(taskIndex).markAsNotDone();
     }
 
-    public static void todo(String userInput) {
+    public static void todo(String userInput) throws DukeException {
         Todo t = new Todo(userInput);
+        if (userInput.isEmpty()) {
+            throw new DukeException("\t☹ OOPS!!! The description of a todo cannot be empty.");
+        }
         storeList.add(t);
         System.out.println("Got it. I've added this task:");
         System.out.println("\t" + t.toString());
@@ -115,6 +155,19 @@ public class Duke {
         System.out.println("Got it. I've added this task:");
         System.out.println("\t" + e.toString());
         System.out.println("Now you have " + storeList.size() + " tasks in the list.");
+    }
+
+    public static void userInputCheck(String userInput) throws DukeException {
+        String firstCommand = userInput.split(" ", 2)[0];
+        if(!firstCommand.equals("todo") && !firstCommand.equals("deadline") && !firstCommand.equals("event")) {
+            throw new DukeException("\t ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+        }
+        if(userInput.split(" ", 2).length == 1) {
+            throw new DukeException("\t ☹ OOPS!!! The description of a " + firstCommand + " cannot be empty.");
+        }
+        if((firstCommand.equals("deadline") || firstCommand.equals("event")) && userInput.split("/", 2).length == 1) {
+            throw new DukeException("\t ☹ OOPS!!! The time due or needed cannot be empty.");
+        }
     }
 
     public static void farewell() {
