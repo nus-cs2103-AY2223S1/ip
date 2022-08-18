@@ -1,13 +1,7 @@
 import java.util.Scanner;
 
 public class Duke {
-    public static void main(String[] args) {
-//        String logo = " ____        _        \n"
-//                + "|  _ \\ _   _| | _____ \n"
-//                + "| | | | | | | |/ / _ \\\n"
-//                + "| |_| | |_| |   <  __/\n"
-//                + "|____/ \\__,_|_|\\_\\___|\n";
-//        System.out.println("Hello from\n" + logo);
+    public static void DukeTask() throws DukeException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?");
@@ -15,7 +9,7 @@ public class Duke {
         int count=0;
         String str;
 
-       do{
+        do{
             str = scanner.next(); //This will check for the action word
             if(str.equals("bye")){
                 break;
@@ -23,22 +17,25 @@ public class Duke {
                 System.out.println("Got it. I've added this task: ");
                 String description = "";
                 String dateline="";
-               while(scanner.hasNext()){
-                   String temp = scanner.next();
-                   if(temp.equals("/by")){
-                       break;
-                   }
-                   description = description + temp +" ";
-               }
-               dateline = scanner.nextLine();
-               Task task = new Deadline(description, dateline);
-               arr[count]= task;
-               count++;
-               System.out.println(task.toString());
-               System.out.println("Now you have "+ count + " tasks in the list.");
+                while(scanner.hasNext()){
+                    String temp = scanner.next();
+                    if(temp.equals("/by")){
+                        break;
+                    }
+                    description = description + temp +" ";
+                }
+                dateline = scanner.nextLine();
+                Task task = new Deadline(description, dateline);
+                arr[count]= task;
+                count++;
+                System.out.println(task.toString());
+                System.out.println("Now you have "+ count + " tasks in the list.");
             } else if(str.equals("todo")){
-                System.out.println("Got it. I've added this task: ");
                 String todoDes = scanner.nextLine();
+                if(todoDes.equals("")){
+                    throw new DukeException("OOPS!!! The description of a todo cannot be empty ");
+                }
+                System.out.println("Got it. I've added this task: ");
                 Task task = new ToDo(todoDes);
                 arr[count] = task;
                 count++;
@@ -62,7 +59,7 @@ public class Duke {
                 System.out.println(task.toString());
                 System.out.println("Now you have "+ count + " tasks in the list.");
             }
-             else if(str.equals("list")){
+            else if(str.equals("list")){
                 System.out.println("Here are the tasks in your list");
                 for(int i=0;i<count;i++){
                     System.out.println(i+1 +"."+arr[i].toString());
@@ -85,10 +82,11 @@ public class Duke {
                 scanner.nextLine();
             }
             else{
-                String remain = scanner.nextLine();
-                arr[count] = new Task(str + remain);
-                count++;
-                System.out.println("added: "+str + remain);
+//                String remain = scanner.nextLine();
+//                arr[count] = new Task(str + remain);
+//                count++;
+//                System.out.println("added: "+str + remain);
+                throw new DukeException(":( OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
 
         }  while(!str.equals("bye"));
@@ -96,6 +94,22 @@ public class Duke {
         if (str.equals("bye")) {
             System.out.println("Bye. Hope to see you again soon!");
         }
+
+    }
+
+    public static void main(String[] args)  {
+          try {
+              DukeTask();
+          }catch(DukeException e) {
+              System.out.println(e.getMessage());
+          }
+//        String logo = " ____        _        \n"
+//                + "|  _ \\ _   _| | _____ \n"
+//                + "| | | | | | | |/ / _ \\\n"
+//                + "| |_| | |_| |   <  __/\n"
+//                + "|____/ \\__,_|_|\\_\\___|\n";
+//        System.out.println("Hello from\n" + logo);
+
 
     }
 }
