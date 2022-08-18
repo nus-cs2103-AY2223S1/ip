@@ -43,11 +43,32 @@ public class Bro {
             return output1();
         }
 
-        else{
-            Task t = new Task(str);
+        else if(str.startsWith("todo ")){
+            Task t = new Todo(str.substring(5));
             t.markAsNotDone();
             list1.add(t);
-            System.out.println("added: " + str);
+            System.out.println(t.toString());
+            return output1();
+        }
+
+        else if(str.startsWith("deadline ")){
+            Task t = new Deadline(str.substring(9, str.indexOf("/")), str.substring(str.indexOf("/") + 1));
+            t.markAsNotDone();
+            list1.add(t);
+            System.out.println(t.toString());
+            return output1();
+        }
+
+        else if(str.startsWith("event ")){
+            Task t = new Event(str.substring(6, str.indexOf("/")), str.substring(str.indexOf("/") + 1));
+            t.markAsNotDone();
+            list1.add(t);
+            System.out.println(t.toString());
+            return output1();
+        }
+
+        else{
+            System.out.println("invalid stmt");
             return output1();
         }
         return str;
