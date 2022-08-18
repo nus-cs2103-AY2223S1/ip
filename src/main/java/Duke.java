@@ -33,7 +33,8 @@ public class Duke {
         int size = this.taskList.size();
         String taskString = size > 1 ? "tasks" : "task";
         String msgBegin = "Got it. I've added this task:\n";
-        String msgEnd = "\nNow you have " + size + " " + taskString + " in this list.";
+        String msgEnd = "\nNow you have " + size + " " + taskString
+                + " in this list.";
         String msg = msgBegin + "  " + task + msgEnd;
         prettyPrint(msg);
     }
@@ -46,14 +47,16 @@ public class Duke {
     public void deleteTask(int index) throws DukeException {
         if (index > this.taskList.size() - 1 || index < 0) {
             throw new DukeException(
-                    "Oh no! There doesn't seem to be a task with this index.");
+                    "Oh no! There doesn't seem to be a task with this"
+                            + " index.");
         }
         String task = this.taskList.getTaskToString(index);
         this.taskList.deleteTask(index);
         int size = this.taskList.size();
         String taskString = size > 1 ? "tasks" : "task";
         String msgBegin = "Noted. I've removed this task:\n";
-        String msgEnd = "\nNow you have " + size + " " + taskString + " in this list.";
+        String msgEnd = "\nNow you have " + size + " " + taskString
+                + " in this list.";
         String msg = msgBegin + " " + task + msgEnd;
         prettyPrint(msg);
     }
@@ -67,7 +70,8 @@ public class Duke {
     public void markTask(int index) throws DukeException {
         if (index > this.taskList.size() - 1 || index < 0) {
             throw new DukeException(
-                    "Oh no! There doesn't seem to be a task with this index.");
+                    "Oh no! There doesn't seem to be a task with this"
+                            + " index.");
         }
         this.taskList.markTask(index);
         String msgBegin = "Nice! I've marked this task as done: \n ";
@@ -84,7 +88,8 @@ public class Duke {
     public void unmarkTask(int index) throws DukeException {
         if (index > this.taskList.size() - 1 || index < 0) {
             throw new DukeException(
-                    "Oh no! There doesn't seem to be a task with this index.");
+                    "Oh no! There doesn't seem to be a task with this "
+                            + "index.");
         }
         this.taskList.unmarkTask(index);
         String msgBegin = "OK, I've marked this task as not done yet: \n ";
@@ -97,7 +102,8 @@ public class Duke {
      */
     public void viewAllTask() {
         if (this.taskList.size() <= 0) {
-            String msg = "You currently have no task in your list! Great job for completing all your tasks :-)";
+            String msg = "You currently have no task in your list! Great "
+                    + "job for completing all your tasks :-)";
             prettyPrint(msg);
         } else {
             String msgBegin = "Here are the tasks in your list:\n";
@@ -115,14 +121,16 @@ public class Duke {
     private static void prettyPrint(String msg) {
         // Horizontal lines have 4 spaces as indentation
         System.out.println(
-                "    ____________________________________________________________");
+                "    _____________________________________________________"
+                        + "_______");
         String[] msgTokens = msg.split("\n");
         for (String token : msgTokens) {
             // Message has 5 spaces as indentation
             System.out.println("     " + token);
         }
         System.out.println(
-                "    ____________________________________________________________\n");
+                "    _____________________________________________________"
+                        + "_______\n");
     }
 
     /**
@@ -134,7 +142,8 @@ public class Duke {
      * @throws DukeException If the provided arguments are invalid for the
      *                       command.
      */
-    public void runCommand(Command cmd, String[] argTokens) throws DukeException {
+    public void runCommand(Command cmd, String[] argTokens)
+            throws DukeException {
         int argCount = argTokens.length;
 
         switch (cmd) {
@@ -183,12 +192,14 @@ public class Duke {
             case DEADLINE:
                 if (argCount < 2) {
                     throw new DukeException(
-                            "Oh no! The description of a deadline cannot be empty.");
+                            "Oh no! The description of a deadline cannot"
+                                    + " be empty.");
                 }
                 String[] deadlineTokens = argTokens[1].split("/by");
                 if (deadlineTokens.length < 2) {
                     throw new DukeException(
-                            "Oh no! Try doing 'deadline <description> /by <date>'!");
+                            "Oh no! Try doing 'deadline <description> /by "
+                                    + "<date>'!");
                 }
                 String deadlineTitle = deadlineTokens[0].trim();
                 String by = deadlineTokens[1].trim();
@@ -198,12 +209,14 @@ public class Duke {
             case EVENT:
                 if (argCount < 2) {
                     throw new DukeException(
-                            "Oh no! The description of an event cannot be empty.");
+                            "Oh no! The description of an event cannot be"
+                                    + " empty.");
                 }
                 String[] eventTokens = argTokens[1].split("/at");
                 if (eventTokens.length < 2) {
                     throw new DukeException(
-                            "Oh no! Try doing 'event <description> /at <date>'!");
+                            "Oh no! Try doing 'event <description> /at"
+                                    + " <date>'!");
                 }
                 String eventTitle = eventTokens[0].trim();
                 String at = eventTokens[1].trim();
