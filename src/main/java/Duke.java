@@ -227,10 +227,39 @@ public class Duke {
     }
 
     /**
+     * Deletes a task.
+     *
+     * @param arguments The command arguments.
+     */
+    public static void delete(String[] arguments) {
+        if (todoList.isEmpty()) {
+            reply("You don't have any tasks to delete!");
+            return;
+        }
+        int i;
+        try {
+            i = Integer.parseInt(arguments[1]) - 1;
+        } catch (IndexOutOfBoundsException e) {
+            reply("Please enter the item ID you wish to delete");
+            return;
+        } catch (NumberFormatException e) {
+            reply(String.format("Invalid argument! (Please enter an integer between 1 and %d)", todoList.size()));
+            return;
+        }
+        try {
+            reply(new String[]{"Ok, I'm deleting this",
+                    todoList.get(i).toString()});
+            todoList.remove(i);
+        } catch (IndexOutOfBoundsException e) {
+            reply(String.format("Invalid argument! (Please enter an integer between 1 and %d)", todoList.size()));
+        }
+    }
+
+    /**
      * Lists the list of commands.
      */
     public static void mismatch() {
-        reply("list of commands: list, mark, unmark, todo, deadline, event");
+        reply("list of commands: list, mark, unmark, todo, deadline, event, delete");
     }
 
     public static void main(String[] args) {
@@ -270,6 +299,10 @@ public class Duke {
             }
             if (arguments[0].equals("event")) {
                 event(arguments);
+                continue;
+            }
+            if (arguments[0].equals("delete")) {
+                delete(arguments);
                 continue;
             }
             mismatch();
