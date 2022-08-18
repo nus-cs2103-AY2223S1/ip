@@ -33,7 +33,6 @@ public class Duke {
     }
 
     private void run() {
-        input = new Scanner(System.in);
         String text = input.next();
         while (!text.equals("bye")) {
             try {
