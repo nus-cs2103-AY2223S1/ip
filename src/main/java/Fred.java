@@ -10,14 +10,18 @@ public class Fred {
         while (true) {
             System.out.print("Player: ");
             input = scanner.next();
+
             if (input.equals("bye")) {
+                System.out.println("Fred: Bye. Hope to see you again soon!");
                 break;
-            } else {
-                System.out.println("Fred: " + input);
+            }
+
+            switch (input) {
+                default:
+                    System.out.println("Fred: " + input);
             }
         }
 
         scanner.close();
-        System.out.println("Fred: Bye. Hope to see you again soon!");
     }
 }
