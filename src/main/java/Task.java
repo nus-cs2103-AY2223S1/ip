@@ -1,6 +1,11 @@
-public class Task {
-    private String description;
+abstract public class Task {
+    protected String description;
     private boolean isDone;
+
+    public Task(){
+        this.description = null;
+        this.isDone = false;
+    };
 
     public Task(String description) {
         this.description = description;
@@ -13,6 +18,14 @@ public class Task {
 
     public void markAsNotDone() {
         this.isDone = false;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public boolean getIsDone() {
+        return this.isDone;
     }
 
     @Override

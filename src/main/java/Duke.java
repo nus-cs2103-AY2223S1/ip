@@ -51,7 +51,7 @@ public class Duke {
                 this.printList();
                 continue;
             }
-
+            //logic to mark tasks with error handling
             if (input.indexOf("mark") == 0) {
                 try {
                     String substring = input.substring(5);
@@ -69,7 +69,7 @@ public class Duke {
                 }
                 continue;
             }
-
+            //logic to unmark tasks with error handling
             if (input.indexOf("unmark") == 0) {
                 try {
                     String substring = input.substring(7);
@@ -87,9 +87,44 @@ public class Duke {
                 }
                 continue;
             }
-            Task task = new Task(input);
-            System.out.println(COLON + input);
-            this.taskList.add(task);
+            //logic to create ToDos
+            if (input.indexOf("todo") == 0) {
+                try {
+                    ToDos todo = new ToDos(input);
+                    System.out.println("Okay! created ToDo!\n" + todo);
+                    this.taskList.add(todo);
+                } catch (MissingDescriptionException e) {
+                    System.out.println("Please indicate what the task is!");
+                }
+                continue;
+            }
+            //logic to create Deadlines
+            if (input.indexOf("deadline") == 0) {
+                try {
+                    Deadlines deadline = new Deadlines(input);
+                    System.out.println("Okay! created ToDo!\n" + deadline);
+                    this.taskList.add(deadline);
+                } catch (MissingDescriptionException e) {
+                    System.out.println("Please indicate what the task is!");
+                } catch (MissingDeadlineException e) {
+                    System.out.println("Please specify the deadline!");
+                }
+                continue;
+            }
+            //logic to create Events
+            if (input.indexOf("event") == 0) {
+                try {
+                    Events event = new Events(input);
+                    System.out.println("Okay! created ToDo!\n" + event);
+                    this.taskList.add(event);
+                } catch (MissingDescriptionException e) {
+                    System.out.println("Please indicate what the task is!");
+                } catch (MissingTimingException e) {
+                    System.out.println("Please specify the timeline!");
+                }
+                continue;
+            }
+
         }
 
     }
