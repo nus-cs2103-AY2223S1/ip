@@ -26,10 +26,31 @@ public class TaskStore {
         }
     }
 
+    private String getSummary() {
+        return String.format("Now you have %d tasks in the list.", this.store.size());
+    }
+
     public String addTask(Task task) {
         this.store.add(task);
-        return String.format("Got it. I've added this task:\n\t%s\nNow you have %d tasks in the list.",
-                task.toString(), this.store.size());
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format("Got it. I've added this task:\n\t%s", task.toString()));
+        sb.append("\n");
+        sb.append(this.getSummary());
+        return sb.toString();
+    }
+
+    public String deleteTask(int index) throws NoSuchTask {
+        Task task;
+        try {
+            task = this.store.remove(index);
+        } catch (IndexOutOfBoundsException ex) {
+            throw new NoSuchTask(this.size());
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format("Noted. I've removed this task:\n\t%s", task.toString()));
+        sb.append("\n");
+        sb.append(this.getSummary());
+        return sb.toString();
     }
 
     /**

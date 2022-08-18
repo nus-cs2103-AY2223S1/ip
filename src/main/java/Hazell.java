@@ -1,5 +1,4 @@
 import exceptions.HazellException;
-import exceptions.KwargNotFound;
 import exceptions.UnknownCommand;
 
 import java.util.Scanner;
@@ -60,6 +59,10 @@ public class Hazell {
                     String description = String.join(" ", command.getTrailingArgs());
                     String time = command.getKwarg("at");
                     String response = taskStore.addTask(new Event(description, time));
+                    reply(response);
+                } else if (command.startsWith("delete")) {
+                    int index = Integer.parseInt(command.getTrailingArgs().get(0)) - 1;
+                    String response = taskStore.deleteTask(index);
                     reply(response);
                 } else {
                     throw new UnknownCommand();
