@@ -44,6 +44,35 @@ public class Duke {
                 System.out.println(String.format("  %s %s", t.getStatusIcon(), t.getDescription()));
             }
 
+            else if ("todo".equals(line.split(" ")[0])) {
+                String task = line.substring(5);
+                ToDo t = new ToDo(task);
+                l.add(t);
+                System.out.println("Got it. I've added this task:");
+                System.out.println(String.format("  %s %s", t.getStatusIcon(), t.getDescription()));
+                System.out.println(String.format("Now you have %d tasks in the list.", l.size()));
+            }
+
+            else if ("deadline".equals(line.split(" ")[0])) {
+                String task = line.substring(9).split("/")[0];
+                String end = line.split("/")[1];
+                Deadline t = new Deadline(task, end);
+                l.add(t);
+                System.out.println("Got it. I've added this task:");
+                System.out.println(String.format("  %s %s", t.getStatusIcon(), t.getDescription()));
+                System.out.println(String.format("Now you have %d tasks in the list.", l.size()));
+            }
+
+            else if ("event".equals(line.split(" ")[0])) {
+                String task = line.substring(6).split("/")[0];
+                String time = line.split("/")[1];
+                Event t = new Event(task, time);
+                l.add(t);
+                System.out.println("Got it. I've added this task:");
+                System.out.println(String.format("  %s %s", t.getStatusIcon(), t.getDescription()));
+                System.out.println(String.format("Now you have %d tasks in the list.", l.size()));
+            }
+
             else {
                 System.out.println(String.format("added: %s", line));
                 l.add(new Task(line));
