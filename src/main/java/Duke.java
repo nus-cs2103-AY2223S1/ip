@@ -6,16 +6,10 @@ public class Duke {
     public static void main(String[] args) {
         ArrayList<Task> tasksToDo = new ArrayList<>();
         int i = 0;
-//        String logo = " ____        _        \n"
-//                + "|  _ \\ _   _| | _____ \n"
-//                + "| | | | | | | |/ / _ \\\n"
-//                + "| |_| | |_| |   <  __/\n"
-//                + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hi I'm Duke, What can I do for you?");
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
-        while (!input.equals("bye"))
-        {
+        while (!input.equals("bye")) {
             String[] strs = input.split(" ");
             if (input.equals("list")) {
                 System.out.println("Here are the tasks in your list:");
@@ -38,7 +32,7 @@ public class Duke {
                 tasksToDo.remove(index);
                 i--;
                 System.out.println("Noted. I've removed this task:\n" + task.toString() +
-                                    "\nNow you have " + i + " tasks in the list.");
+                        "\nNow you have " + i + " tasks in the list.");
             } else {
                 try {
                     String[] details;
@@ -55,7 +49,7 @@ public class Duke {
                             tasksToDo.add(new Event(details[0], details[1]));
                             i++;
                             System.out.println("Got it! I've added this task:\n" + tasksToDo.get(i - 1).toString()
-                                                + "\nNow you've got " + i + " tasks in the list!");
+                                    + "\nNow you've got " + i + " tasks in the list!");
                             break;
                         case "todo":
                             tasksToDo.add(new Todo(input.split(" ", 2)[1]));
@@ -66,9 +60,7 @@ public class Duke {
                         default:
                             System.out.println("OOPS!!! I don't understand what that means!");
                     }
-                }
-                catch(ArrayIndexOutOfBoundsException e)
-                {
+                } catch (ArrayIndexOutOfBoundsException e) {
                     System.out.println("OOPS!!! The description of a " + strs[0] + " cannot be empty");
                 }
             }
