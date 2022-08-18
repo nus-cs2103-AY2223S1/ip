@@ -70,6 +70,15 @@ public class Duke {
         System.out.println(INDENTATION + INDENTATION + taskToMark.toString());
     }
 
+    public void delete(int taskIndex) {
+        Task taskToDelete = this.taskList.getTask(taskIndex);
+        System.out.println(INDENTATION + "Noted. I've removed this task:");
+        System.out.println(INDENTATION + INDENTATION + taskToDelete.toString());
+        this.taskList.removeFromTaskList(taskIndex);
+        int numTasks = this.taskList.getSize();
+        System.out.println(INDENTATION + "Now you have " + String.valueOf(numTasks) + " tasks in the list.");
+    }
+
     /**
      * Main function to run Duke
      */
@@ -96,16 +105,22 @@ public class Duke {
                         throw new DukeException(INDENTATION + "☹ OOPS!!! The mark command should be used as shown. " +
                                 "eg. mark {num of task in list to be marked as done}");
                     }
-                    int num = Integer.parseInt(input[1]);
-                    this.mark(num - 1);
+                    int num = Integer.parseInt(input[1]) - 1;
+                    if (num < 0 || num >= this.taskList.getSize()) {
+                        throw new DukeException(INDENTATION + "☹ OOPS!!! You chose a task that does not exist.");
+                    }
+                    this.mark(num);
                 } else if (command.equals("unmark")) {
                     if (input.length != 2) {
                         throw new DukeException(INDENTATION +
                                 "☹ OOPS!!! The unmark command should be used as shown. " +
                                 "eg. mark {num of task in list to be unmarked as incomplete}");
                     }
-                    int num = Integer.parseInt(input[1]);
-                    this.unmark(num - 1);
+                    int num = Integer.parseInt(input[1]) - 1;
+                    if (num < 0 || num >= this.taskList.getSize()) {
+                        throw new DukeException(INDENTATION + "☹ OOPS!!! You chose a task that does not exist.");
+                    }
+                    this.unmark(num);
                 } else if (command.equals("todo")) {
                     if (input.length == 1) {
                         throw new DukeException(INDENTATION +
@@ -149,7 +164,19 @@ public class Duke {
                     String[] at = Arrays.copyOfRange(input, atIndex + 1, input.length);
                     Task event = new Event(String.join(" ", taskDescription), String.join(" ", at));
                     this.add(event);
-                } else {
+                } else if (command.equals("delete")) {
+                    if (input.length != 2) {
+                        throw new DukeException(INDENTATION +
+                                "☹ OOPS!!! The delete command should be used as shown. " +
+                                "eg. delete {num of task in list to be deleted.}");
+                    }
+                    int num = Integer.parseInt(input[1]) - 1;
+                    if (num < 0 || num >= this.taskList.getSize()) {
+                        throw new DukeException(INDENTATION + "☹ OOPS!!! You chose a task that does not exist.");
+                    }
+                    this.delete(num);
+                }
+                else {
                     throw new DukeException(INDENTATION + "☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
             } catch (DukeException e) {

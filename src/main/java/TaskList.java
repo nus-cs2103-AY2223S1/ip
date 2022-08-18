@@ -4,18 +4,26 @@ public class TaskList {
     private ArrayList<Task> taskList;
 
     /**
-     * Constructor for TaskList, which stores text entered by user in Duke
+     * Constructor for TaskList, which stores task entered by user in Duke
      */
     public TaskList() {
         this.taskList = new ArrayList<Task>();
     }
 
     /**
-     * Function to add text to taskList
+     * Function to add task to taskList
      * @param task task to be added to taskList
      */
     public void addToTaskList(Task task) {
         this.taskList.add(task);
+    }
+
+    /**
+     * Function to remove task from taskList
+     * @param taskIndex index of task to be removed
+     */
+    public void removeFromTaskList(int taskIndex) {
+        this.taskList.remove(taskIndex);
     }
 
     /**
