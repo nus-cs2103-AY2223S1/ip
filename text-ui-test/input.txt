@@ -32,6 +32,14 @@ unmark 2
 list
 todo borrow book
 list
+delete 0
+delete -1
+delete 6
+delete 3
+list
 deadline return book /by Sunday
 event project meeting /at Mon 2-4pm
+todo exercise
+mark 7
+delete 7
 bye

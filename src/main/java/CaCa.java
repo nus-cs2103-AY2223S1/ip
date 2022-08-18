@@ -16,8 +16,9 @@ import java.util.List;
  *     - Events (tasks that start and end at a specific time): event taskDescription /at dateTime
  *     e.g. event project meeting /at Mon 2-4pm
  * - List task (displays a list of all tasks stored): list
- * - Mark task (marks task as done with a "X"): mark taskNumber. e.g. mark 2
- * - Unmark task (marks task as not done and removes "X"): unmark taskNumber. e.g. unmark 2
+ * - Mark task (marks task as done with a "X"): mark taskIndex. e.g. mark 2
+ * - Unmark task (marks task as not done and removes "X"): unmark taskIndex. e.g. unmark 2
+ * - Delete task (deletes task from list): delete taskIndex. e.g. delete 3
  */
 public class CaCa {
 
@@ -25,6 +26,17 @@ public class CaCa {
      * A class-level array to store all user inputs.
      */
     private static List<Task> tasks = new ArrayList<>();
+
+    /**
+     * A class-level method to check if task index is valid.
+     */
+    private static void isValid(int taskIndex) throws InvalidTaskIndex {
+        if (taskIndex <= 0 || taskIndex > tasks.size()) {
+            String message = String.format("OOPS!!! You have entered an invalid task index. " +
+                    "It should be between 1 and %d.", tasks.size());
+            throw new InvalidTaskIndex(message);
+        }
+    }
 
     /**
      * The main chatbot program greets user, reads and stores user input,
@@ -79,11 +91,7 @@ public class CaCa {
                 } else if (command[0].equals("mark") || command[0].equals("unmark")) {
                     // taskIndex entered by user is 1 larger than its array index.
                     int taskIndex = Integer.parseInt(command[1]);
-                    if (taskIndex <= 0 || taskIndex > tasks.size()) {
-                        String message = String.format("OOPS!!! You have entered an invalid task index. " +
-                                        "It should be between 1 and %d.", tasks.size());
-                        throw new InvalidTaskIndex(message);
-                    }
+                    isValid(taskIndex);
                     Task taskToMark = tasks.get(taskIndex - 1);
 
                     if (command[0].equals("mark")) {
@@ -95,6 +103,15 @@ public class CaCa {
                     }
 
                     System.out.println(taskToMark + "\n" + line);
+
+                } else if (command[0].equals("delete")) {
+                    int taskIndex = Integer.parseInt(command[1]);
+                    isValid(taskIndex);
+                    Task taskToMark = tasks.get(taskIndex - 1);
+                    tasks.remove(taskToMark);
+                    System.out.println("Noted. I've removed this task:\n" + taskToMark);
+                    System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
+                    System.out.println(line);
 
                 } else if (command[0].equals("todo") || command[0].equals("deadline") || command[0].equals("event")) {
                     Task taskToAdd = null;
