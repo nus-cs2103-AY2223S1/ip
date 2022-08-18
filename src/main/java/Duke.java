@@ -10,10 +10,11 @@ public class Duke {
     private static final String WELCOMEMESSAGE = String
             .format("Hello! I'm Duke\n%s What can I do for you?", TAB);
     private static final String ENDMESSAGE = "Bye. Hope to see you again soon!";
-    private static final String CREATETASKMESSAGE = "Got it. I've added this task:";
+    private static final String CREATEMESSAGE = "Got it. I've added this task:";
     private static final String MARKMESSAGE = "Nice! I've marked this task as done:";
     private static final String UNMARKMESSAGE = "OK, I've marked this task as not done yet:";
     private static final String LISTMESSAGE = "Here are the tasks in your list:";
+    private static final String DELETEMESSAGE = "Noted. I've removed this task:";
 
     // Commands
     private static final String ENDCOMMAND = "bye";
@@ -23,6 +24,7 @@ public class Duke {
     private static final String TODOCOMMAND = "todo";
     private static final String DEADLINECOMMAND = "deadline";
     private static final String EVENTCOMMAND = "event";
+    private static final String DELETECOMMAND = "delete";
 
     // Data structures
     private static final List<Task> list = new ArrayList<>();
@@ -72,22 +74,20 @@ public class Duke {
             String singulStr = "Now you have 1 task in the list";
             if (list.size() == 1) {
                 prettyPrint(String.format("%s\n%s   %s\n%s %s",
-                        CREATETASKMESSAGE, TAB, newTask.toString(), TAB, singulStr));
+                        CREATEMESSAGE, TAB, newTask.toString(), TAB, singulStr));
             } else {
                 prettyPrint(String.format("%s\n%s   %s\n%s Now you have %d tasks in the list.",
-                        CREATETASKMESSAGE, TAB, newTask.toString(), TAB, list.size()));
+                        CREATEMESSAGE, TAB, newTask.toString(), TAB, list.size()));
             }
         } catch (DukeException e) {
             prettyPrint(e.toString());
         }
-
-
     }
 
     /**
      * Marks a task at index as done
      */
-    private static void mark(String index) {
+    private static void markTask(String index) {
         index = index.strip();
         int i = Integer.parseInt(index);
         i--;
@@ -99,13 +99,28 @@ public class Duke {
     /**
      * Marks a task at index as not done
      */
-    private static void unmark(String index) {
+    private static void unmarkTask(String index) {
         index = index.strip();
         int i = Integer.parseInt(index);
         i--;
         Task task = list.get(i);
         task.markAsUndone();
-        prettyPrint(String.format("%s\n%s   %s", MARKMESSAGE, TAB, task.toString()));
+        prettyPrint(String.format("%s\n%s   %s", UNMARKMESSAGE, TAB, task.toString()));
+    }
+
+    private static void deleteTask(String index) {
+        index = index.strip();
+        int i = Integer.parseInt(index);
+        i--;
+        Task task = list.remove(i);
+        String singulStr = "Now you have 1 task in the list";
+        if (list.size() == 1) {
+            prettyPrint(String.format("%s\n%s   %s\n%s %s",
+                    DELETEMESSAGE, TAB, task.toString(), TAB, singulStr));
+        } else {
+            prettyPrint(String.format("%s\n%s   %s\n%s Now you have %d tasks in the list.",
+                    DELETEMESSAGE, TAB, task.toString(), TAB, list.size()));
+        }
     }
 
     /**
@@ -173,10 +188,10 @@ public class Duke {
                         printAll();
                         break;
                     case (MARKCOMMAND):
-                        mark(inputRem);
+                        markTask(inputRem);
                         break;
                     case (UNMARKCOMMAND):
-                        unmark(inputRem);
+                        unmarkTask(inputRem);
                         break;
                     case (TODOCOMMAND):
                         createTask(inputRem, TASK.TODO);
@@ -186,6 +201,9 @@ public class Duke {
                         break;
                     case (EVENTCOMMAND):
                         createTask(inputRem, TASK.EVENT);
+                        break;
+                    case (DELETECOMMAND):
+                        deleteTask(inputRem);
                         break;
                     default: throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
