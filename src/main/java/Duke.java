@@ -58,7 +58,7 @@ public class Duke {
                 Task newTask = null;
                 if (command.startsWith("todo")) {
                     if (command.equals("todo")) {
-                        System.out.println("    ☹ OOPS!!! The description of a todo cannot be empty.");
+                        System.out.println("    OOPS!!! The description of a todo cannot be empty.");
                         continue;
                     }
                     command = command.replace("todo ", "");
@@ -83,7 +83,7 @@ public class Duke {
                     }
                     newTask = new Event(commands[0], commands[1]);
                 } else {
-                    System.out.println("    ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                    System.out.println("    OOPS!!! I'm sorry, but I don't know what that means :-(");
                     continue;
                 }
                 tasks.add(taskCount++, newTask);
