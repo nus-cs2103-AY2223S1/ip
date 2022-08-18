@@ -37,7 +37,7 @@ public class Task {
 
     public static void add(Task task) {
         tasks.add(task);
-        System.out.println(String.format("\tGotcha. I've added this task: "));
+        System.out.println(String.format("\tGotcha. I have added this task:"));
         System.out.println("\t\t" + task); // exploiting polymorphism
         System.out.println(String.format("\tNow you have %d task%s in the list",
                 Task.count(), Task.count() > 1 ? "s" : ""));
