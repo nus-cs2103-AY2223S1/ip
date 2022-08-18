@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Duke {
     private static final String startUpMessage  = "Hello! I'm Duke\n"
@@ -56,10 +58,16 @@ public class Duke {
                 } catch (NumberFormatException e) {
                     System.out.println(invalidInputMessage);
                 }
+            } else if (inputSplit[0].equals("todo")) {
+
+            } else if (inputSplit[0].equals("deadline")) {
+
+            } else if (inputSplit[0].equals("event")) {
+
             } else {
                 Task newTask = new Task(userInput);
                 tasks.add(newTask);
-                System.out.println("added: " + newTask.toString());
+                System.out.println("added: " + newTask);
             }
             userInput = sc.nextLine();
         }
@@ -83,6 +91,17 @@ public class Duke {
     static String[] inputSplit(String input) {
         if (input.contains("mark") || input.contains("unmark")) {
             String[] result = input.split(" ");
+            return result;
+        } else if (input.contains("todo")) {
+            String[] result = new String[2];
+            result[0] = "todo";
+            result[1] = input.substring(4);
+            return result;
+        } else if (input.contains("deadline") || input.contains("event")) {
+            String[] result = new String[3];
+            result[0] = input.contains("deadline") ? "deadline" : "event";
+            result[1] = input.substring(input.contains("deadline") ? 8 : 5, input.lastIndexOf('/'));
+            result[2] = input.substring(input.lastIndexOf("/") + 1);
             return result;
         } else {
             return new String[] {input};
