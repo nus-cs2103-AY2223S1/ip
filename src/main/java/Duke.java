@@ -2,53 +2,51 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
+    private static ArrayList<Task> allTasks = new ArrayList<>();
+
+    public enum RequestType {
+        MARK, UNMARK, TODO, EVENT, DEADLINE, DELETE, LIST
+    }
+
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-
-        ArrayList<Task> allMessages = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
         greet();
-        String next = sc.nextLine();
-        while (!next.equals("bye")) {
-            if (next.equals("list")) {
-                echo(allMessages);
-            } else if (isMarkUnMark(next, allMessages.size())) {
-                printMarkUnMark(next, allMessages);
-            } else if (isDelete(next, allMessages.size())) {
-                String[] splited = next.split(" ");
-                echoDelete(allMessages.get(Integer.valueOf(splited[1]) - 1), allMessages.size() - 1);
-                allMessages.remove(Integer.valueOf(splited[1]) - 1);
-            } else {
-                try {
-                    String[] words = next.split(" ", 2);
-                    String type = words[0];
-                    Task item;
-
-                    if (type.equals("todo")) {
-                        checkToDo(words);
-                        item = new ToDo(words[1]);
-                    } else if (type.equals("deadline")) {
-                        checkDeadline(words);
-                        String[] splitted = words[1].split("/by ", 2);
-                        item = new Deadline(splitted[0], splitted[1]);
-                    } else if (type.equals("event")) {
-                        checkEvent(words);
-                        String[] splitted = words[1].split("/at ", 2);
-                        item = new Event(splitted[0], splitted[1]);
-                    } else {
-                        throw new InvalidInputException();
-                    }
-                    allMessages.add(item);
-                    echoTask(item, allMessages.size());
-                } catch (DukeException e) {
-                    System.out.println(e.getMessage());
+        String request = sc.nextLine();
+        while (!request.equals("bye")) {
+            try {
+                RequestType rqType = checkRequest(request);
+                switch (rqType) {
+                    case LIST:
+                        listTasks(allTasks);
+                        break;
+                    case MARK:
+                        markTask(request);
+                        break;
+                    case UNMARK:
+                        unMarkTask(request);
+                        break;
+                    case DELETE:
+                        deleteTask(request);
+                        break;
+                    case TODO:
+                        todoTask(request);
+                        break;
+                    case DEADLINE:
+                        deadlineTask(request);
+                        break;
+                    case EVENT:
+                        eventTask(request);
+                        break;
                 }
+            } catch (DukeException e) {
+                System.out.println(e.getMessage());
             }
-            next = sc.nextLine();
+            request = sc.nextLine();
         }
         exitMessage();
         sc.close();
@@ -62,7 +60,14 @@ public class Duke {
         echo("Bye. Hope to see you again soon!");
     }
 
-    public static void echo(ArrayList<Task> ls) {
+    public static void echo(String message) {
+        String line = "____________________________________________________________";
+        System.out.println("\t" + line);
+        System.out.println("\t" + message);
+        System.out.println("\t" + line);
+    }
+
+    public static void listTasks(ArrayList<Task> ls) {
         String line = "____________________________________________________________";
         System.out.println("\t" + line);
         System.out.println("\tHere are the tasks in your list:");
@@ -72,87 +77,91 @@ public class Duke {
         System.out.println("\t" + line);
     }
 
-    public static void echo(String message) {
-        String line = "____________________________________________________________";
-        System.out.println("\t" + line);
-        System.out.println("\t" + message);
-        System.out.println("\t" + line);
-    }
-
-    public static void echoTask(Task toAdd, int size) {
+    public static void addTask(Task toAdd) {
+        allTasks.add(toAdd);
         String mess = "Got it. I've added this task:\n\t\t" + toAdd +
-                "\n\tNow you have " + size + " tasks in the list.";
+                "\n\tNow you have " + allTasks.size() + " tasks in the list.";
         echo(mess);
     }
 
-    public static void echoDelete(Task item, int size) {
-        String mess = "Noted. I've removed this task:\n\t\t" + item +
-                "\n\tNow you have " + size + " tasks in the list.";
-        echo(mess);
-    }
-
-    public static boolean isMarkUnMark(String phrase, int listLength) {
-        String[] splited = phrase.split(" ");
-        if (splited.length != 2 || !splited[1].matches("\\d+")) {
-            return false;
+    public static void deleteTask(String request) throws DukeException {
+        Integer index = Integer.parseInt(request.substring(7));
+        if (index < 1 || index > allTasks.size()) {
+            throw new InvalidIndexException();
         } else {
-            return (splited[0].equals("mark") || splited[0].equals("unmark"))
-                    && Integer.valueOf(splited[1]) <= listLength
-                    && Integer.valueOf(splited[1]) > 0;
-        }
-    }
-
-    public static boolean isDelete(String phrase, int listLength) {
-        String[] splited = phrase.split(" ");
-        if (splited.length != 2 || !splited[1].matches("\\d+")) {
-            return false;
-        } else {
-            return (splited[0].equals("delete"))
-                    && Integer.valueOf(splited[1]) <= listLength
-                    && Integer.valueOf(splited[1]) > 0;
-        }
-    }
-
-    public static void printMarkUnMark(String next, ArrayList<Task> allMessages) {
-        String[] splited = next.split(" ");
-        int index = Integer.valueOf(splited[1]) - 1;
-        if (splited[0].equals("mark")) {
-            allMessages.get(index).markDone();
-            String mess = "Nice! I've marked this task as done:\n\t\t" + allMessages.get(index);
-            echo(mess);
-        }
-        if (splited[0].equals("unmark")) {
-            allMessages.get(index).unMark();
-            String mess = "OK, I've marked this task as not done yet:\n\t\t" + allMessages.get(index);
+            Task item = allTasks.remove(index - 1);
+            String mess = "Noted. I've removed this task:\n\t\t" + item +
+                    "\n\tNow you have " + allTasks.size() + " tasks in the list.";
             echo(mess);
         }
     }
 
-    public static void checkToDo(String[] words) throws DukeException {
-        if (words.length < 2 || words[1].trim().equals("")) {
+    public static void markTask(String request) throws DukeException {
+        Integer index = Integer.parseInt(request.substring(5));
+        if (index < 1 || index > allTasks.size()) {
+            throw new InvalidIndexException();
+        } else {
+            allTasks.get(index - 1).markDone();
+            String mess = "Nice! I've marked this task as done:\n\t\t" + allTasks.get(index - 1);
+            echo(mess);
+        }
+    }
+
+    public static void unMarkTask(String request) throws DukeException {
+        Integer index = Integer.parseInt(request.substring(7));
+        if (index < 1 || index > allTasks.size()) {
+            throw new InvalidIndexException();
+        } else {
+            allTasks.get(index - 1).unMark();
+            String mess = "OK, I've marked this task as not done yet:\n\t\t" + allTasks.get(index - 1);
+            echo(mess);
+        }
+    }
+
+    public static void todoTask(String request) throws DukeException {
+        String[] rq = request.split(" ", 2);
+        if (rq.length < 2 || rq[1].trim().equals("")) {
             throw new InvalidToDoException();
+        } else {
+            addTask(new ToDo(rq[1]));
         }
     }
 
-    public static void checkDeadline(String[] words) throws DukeException {
-        if (words.length < 2 || !words[1].contains("/by")) {
+    public static void deadlineTask(String request) throws DukeException {
+        if (request.matches("(?i)^deadline\\s.+\\s\\/(by)\\s.+")) {
+            String[] deadline = request.substring(9).split("\\/(by)\\s", 2);
+            addTask(new Deadline(deadline[0], deadline[1]));
+        } else {
             throw new InvalidDeadlineException();
-        } else {
-            String[] splitted = words[1].split("/by");
-            if (splitted[0].trim().equals("")) throw new InvalidDeadlineException("description");
-            if (splitted.length < 2 || splitted[1].trim().equals(""))
-                throw new InvalidDeadlineException("date");
         }
     }
 
-    public static void checkEvent(String[] words) throws DukeException {
-        if (words.length < 2 || !words[1].contains("/at")) {
-            throw new InvalidEventException();
+    public static void eventTask(String request) throws DukeException {
+        if (request.matches("(?i)^event\\s.+\\s\\/(at)\\s.+")) {
+            String[] event = request.substring(6).split("\\/(at)\\s", 2);
+            addTask(new Event(event[0], event[1]));
         } else {
-            String[] splitted = words[1].split("/at");
-            if (splitted[0].trim().equals("")) throw new InvalidEventException("description");
-            if (splitted.length < 2 || splitted[1].trim().equals(""))
-                throw new InvalidEventException("time");
+            throw new InvalidEventException();
+        }
+    }
+
+    public static RequestType checkRequest(String request) throws DukeException{
+        if (request.equals("list")) {
+            return RequestType.LIST;
+        } else if (request.matches("mark \\d+")) {
+            return RequestType.MARK;
+        } else if (request.matches("unmark \\d+")) {
+            return RequestType.UNMARK;
+        } else if (request.matches("delete \\d+")) {
+            return RequestType.DELETE;
+        } else if (request.matches("(?i)^(todo)(.*)")) {
+            return RequestType.TODO;
+        } else if (request.matches("(?i)^(deadline)(.*)")) {
+            return RequestType.DEADLINE;
+        } else if (request.matches("(?i)^(event)(.*)")) {
+            return RequestType.EVENT;
+        } else {
+            throw new InvalidInputException();
         }
     }
 }
