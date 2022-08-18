@@ -6,7 +6,7 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public String execute(List<Task> tasks) {
+    public String execute(List<Task> tasks) throws JarvisException {
         Task task;
         switch(super.getKeyCommand()) {
             case "todo":
@@ -25,7 +25,7 @@ public class AddCommand extends Command {
                 return String.format("Got it. I've added this task:\n\t%s\nNow you have %d tasks in the list.",
                         task, tasks.size());
             default:
-                return "Invalid command.";
+                throw new JarvisException("Unrecognised. Please enter a valid command.");
         }
     }
 }

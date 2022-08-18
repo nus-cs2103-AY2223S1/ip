@@ -13,7 +13,7 @@ public class Jarvis {
         Jarvis.printMessage(GREET_MESSAGE);
     }
 
-    private static Command parseUserCommand(Scanner sc) {
+    private static Command parseUserCommand(Scanner sc) throws JarvisException {
         System.out.print("<< ");
         String command = sc.nextLine();
         String[] arguments = command.trim().split(" ");
@@ -29,11 +29,12 @@ public class Jarvis {
             case "deadline":
             case "event":
                 return new AddCommand(command);
+            default:
+                throw new JarvisException("Unrecognised. Please enter a valid command.");
         }
-        return null;
     }
 
-    private static void run() {
+    public static void run() {
         Jarvis.greet();
 
         Scanner sc = new Scanner(System.in);
@@ -41,24 +42,19 @@ public class Jarvis {
         boolean terminated = false;
 
         while (!terminated) {
-            Command command = Jarvis.parseUserCommand(sc);
+            try {
+                Command command = Jarvis.parseUserCommand(sc);
+                String keyCommand = command.getKeyCommand();
 
-            if (command == null) {
-                Jarvis.printMessage("Invalid command.");
-                continue;
+                if (keyCommand.equals("bye")) {
+                    terminated = true;
+                }
+
+                Jarvis.printMessage(command.execute(tasks));
+            } catch (JarvisException e) {
+                Jarvis.printMessage(e.getMessage());
             }
 
-            String keyCommand = command.getKeyCommand();
-
-            if (keyCommand.equals("bye")) {
-                terminated = true;
-            }
-
-            Jarvis.printMessage(command.execute(tasks));
         }
-    }
-
-    public static void main(String[] args) {
-        Jarvis.run();
     }
 }

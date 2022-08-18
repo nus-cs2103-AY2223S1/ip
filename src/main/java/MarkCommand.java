@@ -8,7 +8,7 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public String execute(List<Task> tasks) {
+    public String execute(List<Task> tasks) throws JarvisException {
         int taskIndex = super.getTaskIndex();
         if (taskIndex < 0 || taskIndex >= tasks.size()) {
             return INDEX_OUT_OF_BOUNDS_MESSAGE;

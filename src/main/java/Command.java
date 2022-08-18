@@ -25,28 +25,28 @@ public abstract class Command {
         return this.keyCommand;
     }
 
-    String getDescription() {
+    String getDescription() throws JarvisException {
         if (arguments.isEmpty()) {
-            return null;
+            throw new JarvisException("Invalid. Please provide a description.");
         }
         return splitArguments()[0];
     }
 
-    String getDate() {
+    String getDate() throws JarvisException {
         String[] split = splitArguments();
         if (split.length == 1 || split[1].length() == 0) {
-            return null;
+            throw new JarvisException("Invalid. Please provide a date.");
         }
         return split[1];
     }
 
-    int getTaskIndex() {
+    int getTaskIndex() throws JarvisException {
         if (arguments.isPresent()) {
             return Integer.parseInt(arguments.get()) - 1;
         } else {
-            return -1;
+            throw new JarvisException("No task found. Please enter a valid task number.");
         }
     }
 
-    public abstract String execute(List<Task> tasks);
+    public abstract String execute(List<Task> tasks) throws JarvisException;
 }
