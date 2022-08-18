@@ -1,17 +1,12 @@
 import java.util.*;
 
-public class Duke {
+/**
+ * A task-keeping chatbot with a command line interface.
+ *
+ * @author Conrad
+ */
 
-    public enum Command {
-        BYE,
-        LIST,
-        MARK,
-        UNMARK,
-        TODO,
-        DEADLINE,
-        EVENT,
-        DELETE
-    }
+public class Duke {
     public static void main(String[] args) {
 
         String dukeGreeting = "Hello! I'm Duke\nWhat can I do for you?";
