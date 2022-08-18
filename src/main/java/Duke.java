@@ -1,4 +1,5 @@
 import commands.*;
+import exceptions.DukeException;
 import input.Input;
 import output.OutputLogger;
 
@@ -20,13 +21,15 @@ public class Duke {
 
                 CommandResponse res = cmdRunner.run(ir);
                 OutputLogger.output(res.getMessage());
-
+                
                 if (res.isExit()) {
                     break;
                 }
 
-            } catch (Exception err) {
+            } catch (DukeException err) {
                 OutputLogger.output(err.getMessage());
+            } catch (Exception err) {
+                OutputLogger.output("An unrecognised issue has occured:\n" + err.getMessage());
             }
         }
     }

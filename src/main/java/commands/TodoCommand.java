@@ -2,6 +2,7 @@ package commands;
 
 import arguments.Argument;
 import arguments.DescriptionArgument;
+import exceptions.DukeException;
 import input.Input;
 import task.TaskModel;
 import task.TaskResponse;
@@ -25,7 +26,7 @@ public class TodoCommand extends Command {
     }
 
     @Override
-    public CommandResponse run(Input input) {
+    public CommandResponse run(Input input) throws DukeException {
         description = new DescriptionArgument(input);
         List<String> errs = Argument.validateArguments(description);
 

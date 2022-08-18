@@ -3,6 +3,7 @@ package commands;
 import arguments.Argument;
 import arguments.ByArgument;
 import arguments.DescriptionArgument;
+import exceptions.DukeException;
 import input.Input;
 import task.TaskModel;
 import task.TaskResponse;
@@ -26,7 +27,7 @@ public class DeadlineCommand extends Command {
     }
 
     @Override
-    public CommandResponse run(Input input) {
+    public CommandResponse run(Input input) throws DukeException {
         description = new DescriptionArgument(input);
         by = new ByArgument(input);
 

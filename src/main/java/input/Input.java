@@ -1,5 +1,7 @@
 package input;
 
+import exceptions.DukeException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,19 +29,19 @@ public class Input {
     protected Map<String,String> parameters; // store arguments without arg_start
     protected String[] tokens;
 
-    private Input(String input) throws IllegalArgumentException {
+    private Input(String input) throws DukeException {
         // remove trailing space
         this.inputString = input.trim();
 
         if (this.inputString.length() == 0) {
-            throw new IllegalArgumentException("Input should not be empty!");
+            throw new DukeException("Input should not be empty!");
         }
 
         String[] tokens = this.inputString.split(DELIMITER);
         this.tokens = tokens;
 
         if (tokens[0].startsWith(ARG_START)) {
-            throw new IllegalArgumentException(String.format("Commands do not start with %s :)", ARG_START));
+            throw new DukeException(String.format("Commands do not start with %s :)", ARG_START));
         }
 
         this.commandName = tokens[0];
@@ -97,11 +99,11 @@ public class Input {
     /**
      * @param index Integer for token index
      * @return String token at index provided
-     * @throws IllegalArgumentException - if index is not a valid 0-index into tokens
+     * @throws DukeException - if index is not a valid 0-index into tokens
      */
-    public String getTokenAtIndex(int index) throws IllegalArgumentException {
+    public String getTokenAtIndex(int index) throws DukeException {
         if (index < 0 || index > tokens.length - 1) {
-            throw new IllegalArgumentException("Invalid token index");
+            throw new DukeException("Invalid token index");
         }
 
         return tokens[index];
@@ -125,11 +127,11 @@ public class Input {
     /** Returns parameter corresponding to an argument name if it exists
      * @param argument Argument to get parameter of
      * @return Parameter corresponding to the argument
-     * @throws IllegalArgumentException - if the specified argument was not provided
+     * @throws DukeException - if the specified argument was not provided
      */
-    public String getParameter(String argument) throws IllegalArgumentException {
+    public String getParameter(String argument) throws DukeException {
         if (!hasArgument(argument)) {
-            throw new IllegalArgumentException(String.format("Argument %s was not provided", argument));
+            throw new DukeException(String.format("Argument %s was not provided", argument));
         }
 
         return parameters.get(argument);
@@ -138,9 +140,9 @@ public class Input {
     /** Factory method to return new instance of Input
      * @param input String input to process
      * @return Input instance representing intermediate representation of the input string
-     * @throws IllegalArgumentException
+     * @throws DukeException
      */
-    public static Input newInput(String input) throws IllegalArgumentException {
+    public static Input newInput(String input) throws DukeException {
         return new Input(input);
     }
 

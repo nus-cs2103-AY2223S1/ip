@@ -1,5 +1,6 @@
 package arguments;
 
+import exceptions.DukeException;
 import input.Input;
 
 import java.util.ArrayList;
@@ -19,13 +20,13 @@ public abstract class Argument<T> {
     }
 
     /** This method should process the input and set value for this argument, or throw exception if input is invalid
-     * @throws IllegalArgumentException - if input does not contain what this argument needs
+     * @throws exceptions.DukeException - if input does not contain what this argument needs
      */
-    public abstract void validate() throws IllegalArgumentException;
+    public abstract void validate() throws DukeException;
 
     // get must be abstract because how a particular Argument extracts a value may be different e.g parseInt vs
     // parsing a datetime string, etc.
-    public T getParameter() throws IllegalArgumentException {
+    public T getParameter() throws DukeException {
         validate();
         return value;
     }
@@ -40,7 +41,7 @@ public abstract class Argument<T> {
         for (Argument arg: args) {
             try {
                 arg.validate();
-            } catch (IllegalArgumentException ex) {
+            } catch (DukeException ex) {
                 msgs.add(ex.getMessage());
             }
         }

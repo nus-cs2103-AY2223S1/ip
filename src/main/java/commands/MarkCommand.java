@@ -2,6 +2,7 @@ package commands;
 
 import arguments.Argument;
 import arguments.TaskIdArgument;
+import exceptions.DukeException;
 import input.Input;
 import task.Task;
 import task.TaskModel;
@@ -24,7 +25,7 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public CommandResponse run(Input input) {
+    public CommandResponse run(Input input) throws DukeException {
         taskId = new TaskIdArgument(input);
         List<String> errs = Argument.validateArguments(taskId);
 

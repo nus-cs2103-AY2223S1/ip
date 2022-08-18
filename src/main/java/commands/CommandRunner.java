@@ -1,5 +1,6 @@
 package commands;
 
+import exceptions.DukeException;
 import input.Input;
 import task.TaskModel;
 
@@ -36,10 +37,10 @@ public class CommandRunner {
         }
     }
 
-    public CommandResponse run(Input input) throws IllegalArgumentException {
+    public CommandResponse run(Input input) throws DukeException {
         String cmdInput = input.getCommandName();
         if (!commandMap.containsKey(cmdInput)) {
-            throw new IllegalArgumentException(String.format("Oh no! I do not recognise the command '%s'.", cmdInput));
+            throw new DukeException(String.format("Oh no! I do not recognise the command '%s'.", cmdInput));
         }
 
         return commandMap.get(cmdInput).run(input);

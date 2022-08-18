@@ -1,5 +1,6 @@
 package arguments;
 
+import exceptions.DukeException;
 import input.Input;
 
 /**
@@ -16,7 +17,7 @@ public class StringArgument extends Argument<String> {
     }
 
     @Override
-    public void validate() throws IllegalArgumentException {
+    public void validate() throws DukeException {
         if (super.value != null) return;
 
         try {
@@ -26,10 +27,10 @@ public class StringArgument extends Argument<String> {
             if (text.trim().equals("")) {
                 throw new EmptyArgumentException(emptyMessage);
             }
-        } catch (IllegalArgumentException ex) {
-            throw new IllegalArgumentException(missingMessage);
+        } catch (DukeException ex) {
+            throw new DukeException(missingMessage);
         } catch (EmptyArgumentException e) {
-            throw new IllegalArgumentException(e.getMessage());
+            throw new DukeException(e.getMessage());
         }
     }
 }

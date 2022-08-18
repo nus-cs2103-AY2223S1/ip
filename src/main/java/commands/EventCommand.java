@@ -3,6 +3,7 @@ package commands;
 import arguments.Argument;
 import arguments.AtArgument;
 import arguments.DescriptionArgument;
+import exceptions.DukeException;
 import input.Input;
 import task.TaskModel;
 import task.TaskResponse;
@@ -25,7 +26,7 @@ public class EventCommand extends Command {
     }
 
     @Override
-    public CommandResponse run(Input input) {
+    public CommandResponse run(Input input) throws DukeException {
         description = new DescriptionArgument(input);
         at = new AtArgument(input);
         List<String> errs = Argument.validateArguments(description, at);

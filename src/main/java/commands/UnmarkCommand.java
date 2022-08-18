@@ -2,6 +2,7 @@ package commands;
 
 import arguments.Argument;
 import arguments.TaskIdArgument;
+import exceptions.DukeException;
 import input.Input;
 import task.Task;
 import task.TaskModel;
@@ -37,7 +38,7 @@ public class UnmarkCommand extends Command {
             Integer id = taskId.getParameter();
             Task markedTask = taskModel.unmarkTask(id);
             return new CommandResponse(String.format("Alright, I've marked this task as not done yet:%n%s", markedTask.toString()));
-        } catch (IllegalArgumentException ex) {
+        } catch (IllegalArgumentException | DukeException ex) {
             return new CommandResponse(ex.getMessage());
         }
     }

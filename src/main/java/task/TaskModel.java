@@ -1,5 +1,7 @@
 package task;
 
+import exceptions.DukeException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,23 +37,23 @@ public class TaskModel {
     }
 
     // taskId from 1-length
-    public Task markTask(Integer taskId) throws IllegalArgumentException {
+    public Task markTask(Integer taskId) throws DukeException {
         try {
             Task task = tasks.get(taskId - 1);
             task.markAsDone();
             return task;
         } catch (IndexOutOfBoundsException ex) {
-            throw new IllegalArgumentException(String.format("Task number %d does not exist :(", taskId));
+            throw new DukeException(String.format("Task number %d does not exist :(", taskId));
         }
     }
 
-    public Task unmarkTask(Integer taskId) throws IllegalArgumentException {
+    public Task unmarkTask(Integer taskId) throws DukeException {
         try {
             Task task = tasks.get(taskId - 1);
             task.unmark();
             return task;
         } catch (IndexOutOfBoundsException ex) {
-            throw new IllegalArgumentException(String.format("Task number %d does not exist :(", taskId));
+            throw new DukeException(String.format("Task number %d does not exist :(", taskId));
         }
     }
 
