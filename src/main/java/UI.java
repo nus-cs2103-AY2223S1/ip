@@ -97,6 +97,19 @@ public class UI {
         return "";
     }
 
+    public String deleteTask(String str) throws DukeInvalidDeletionException {
+        int targetId = Integer.parseInt(str.substring(7));
+        if (taskList.isEmpty()) {
+            throw new DukeInvalidDeletionException("OOPS!!! Can't delete tasks from an empty task list :P");
+        } else if (targetId > taskList.size() || targetId <= 0) {
+            throw new DukeInvalidDeletionException("Can't delete as there is no such task! D:" );
+        }
+        String removed = taskList.get(targetId - 1).toString();
+        taskList.remove(targetId - 1);
+        return "Noted. I've removed this task:\n" + removed + "\n"
+                + "Now you have " + taskList.size() + " tasks in the list.";
+    }
+
     public String getDukeErrorMessage(DukeException e) {
         return e.getMessage();
     }

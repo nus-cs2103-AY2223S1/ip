@@ -31,7 +31,9 @@ public class Duke {
                     System.out.println(ui.editTask(input));
                 } else if (input.startsWith("todo") || input.startsWith("event") || input.startsWith("deadline")){
                     System.out.println(ui.addTask(input));
-                } else {
+                } else if (input.startsWith("delete")) {
+                    System.out.println(ui.deleteTask(input));
+                }else {
                     throw new DukeInvalidInputException();
                 }
             } catch (DukeException e) {
