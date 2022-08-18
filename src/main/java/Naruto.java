@@ -1,8 +1,6 @@
 public class Naruto {
     private final Item[] storedItems;
     private int counter;
-    public String invalidArg = "    That's an invalid argument Dattebayo!";
-
 
     public Naruto() {
         this.storedItems = new Item[100];
