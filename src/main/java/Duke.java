@@ -1,15 +1,16 @@
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Duke {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DukeException {
         System.out.println("Hello! I'm Duke\n" + "What can I do for you?");
         Scanner sc = new Scanner(System.in);
         Task[] taskArray = new Task[100];
         int taskCount = 0;
 
-
         while (true) {
+
             String str = sc.nextLine();
             Scanner sc2 = new Scanner(str);
             String first = sc2.next();
@@ -36,18 +37,21 @@ public class Duke {
                 System.out.printf("OK, I've marked this task as not done yet: \n" +
                         "  [ ] %s\n", taskArray[taskNo].description);
 
-            } else { //tasks
+            } else if (first.equals("todo")) {
 
-                if (first.equals("todo")) {
-                    ToDo todo = new ToDo(sc2.nextLine());
+                try {
+                    Task todo = new Task(sc2.nextLine());
                     taskArray[taskCount] = todo;
                     taskCount++;
                     System.out.printf("Got it. I've added this task:\n" +
                             " %s\n" +
                             "Now you have %d tasks in the list.\n", todo.toString(), taskCount);
+
+                } catch (NoSuchElementException e) {
+                    System.out.println("OOPS!!! The description of a todo cannot be empty.");
                 }
 
-                if (first.equals("deadline")) {
+            } else if (first.equals("deadline")) {
                     String description = "";
                     while (!sc2.hasNext("/by")) {
                         description += sc2.next();
@@ -60,8 +64,7 @@ public class Duke {
                     System.out.printf("Got it. I've added this task:\n" +
                             "  %s\n" +
                             "Now you have %d tasks in the list.\n", deadline.toString(), taskCount);
-                }
-                if (first.equals("event")) {
+            } else if (first.equals("event")) {
                     String description = "";
                     while (!sc2.hasNext("/at")) {
                         description += sc2.next() + " ";
@@ -75,7 +78,8 @@ public class Duke {
                             "  %s\n" +
                             "Now you have %d tasks in the list.\n", event.toString(), taskCount);
 
-                }
+            } else {
+                System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
         }
     }
