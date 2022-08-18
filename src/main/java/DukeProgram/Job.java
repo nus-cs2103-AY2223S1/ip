@@ -1,4 +1,4 @@
-import java.util.Objects;
+package DukeProgram;
 
 public class Job {
     public enum JobState {

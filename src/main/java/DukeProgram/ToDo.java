@@ -1,4 +1,6 @@
-public class ToDo extends Job{
+package DukeProgram;
+
+public class ToDo extends Job {
     public ToDo(String name) {
         super(name);
     }
