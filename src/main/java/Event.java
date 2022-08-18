@@ -61,6 +61,15 @@ public class Event extends Task {
     }
 
     /**
+     * Gets the string representation of an Event.
+     *
+     * @return String representation of an Event.
+     */
+    public String getFileFormat() {
+        return String.format("E | %s | %s", super.getFileFormat(), this.date);
+    }
+
+    /**
      * Gets the string representation of an event.
      *
      * @return String representation of an event

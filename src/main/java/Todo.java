@@ -46,6 +46,15 @@ public class Todo extends Task {
     }
 
     /**
+     * Gets the string representation of a Todo.
+     *
+     * @return String representation of a Todo.
+     */
+    public String getFileFormat() {
+        return String.format("T | %s", super.getFileFormat());
+    }
+
+    /**
      * Gets the string representation of a todo.
      *
      * @return String representation of a todo.

@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -63,6 +64,24 @@ public class Duke {
         }
 
         return tasks;
+    }
+
+    /**
+     * Save tasks to file.
+     *
+     * @param tasks The tasks to be saved to the file.
+     */
+    private static void saveTasks(ArrayList<Task> tasks) throws IOException {
+        Path filePath = Paths.get("data/tasks");
+        File file = new File(filePath.toUri());
+        FileWriter fw = new FileWriter(file);
+
+        for (Task task : tasks) {
+            String line = task.getFileFormat();
+            fw.write(line + "\n");
+        }
+
+        fw.close();
     }
 
     private static void list(ArrayList<Task> tasks) {
@@ -208,26 +227,32 @@ public class Duke {
                         break;
                     case "mark": {
                         Duke.mark(tasks, split);
+                        saveTasks(tasks);
                         break;
                     }
                     case "unmark": {
                         Duke.unmark(tasks, split);
+                        saveTasks(tasks);
                         break;
                     }
                     case "delete": {
                         Duke.delete(tasks, split);
+                        saveTasks(tasks);
                         break;
                     }
                     case "todo": {
                         Duke.todo(tasks, split);
+                        saveTasks(tasks);
                         break;
                     }
                     case "deadline": {
                         Duke.deadline(tasks, split);
+                        saveTasks(tasks);
                         break;
                     }
                     case "event": {
                         Duke.event(tasks, split);
+                        saveTasks(tasks);
                         break;
                     }
                     default:
@@ -235,7 +260,7 @@ public class Duke {
                 }
 
                 System.out.println(horizontalLine);
-            } catch (DukeException e) {
+            } catch (DukeException | IOException e) {
                 System.out.println(indentation + e.getMessage());
                 System.out.println(horizontalLine);
             } catch (NumberFormatException e) {

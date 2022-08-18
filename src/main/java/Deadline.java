@@ -61,6 +61,15 @@ public class Deadline extends Task {
     }
 
     /**
+     * Gets the string representation of a Deadline.
+     *
+     * @return String representation of a Deadline.
+     */
+    public String getFileFormat() {
+        return String.format("D | %s | %s", super.getFileFormat(), this.deadline);
+    }
+
+    /**
      * Gets the string representation of a deadline.
      *
      * @return String representation of a deadline.
