@@ -20,25 +20,55 @@ public class Duke {
                 run = false;
             } else if (input.equals("list")) {
                 System.out.println("Here are the tasks in your list: ");
-                for ( int i = 0; i < items.size(); i++) {
-                    System.out.println(i+1 + ".["+ items.get(i).getStatusIcon()+"] " + items.get(i).getDescription());
+                for (int i = 0; i < items.size(); i++) {
+                    System.out.println(i + 1 + "." + items.get(i));
                 }
             } else if (segments[0].equals("mark")) {
                 int index = Integer.parseInt(segments[1]);
                 Task t = items.get(index - 1);
                 t.markAsDone();
                 System.out.println("Good! I've marked this task as done: ");
-                System.out.println("[" + t.getStatusIcon() + "] " + t.getDescription());
+                System.out.println(t);
             } else if (segments[0].equals("unmark")) {
                 int index = Integer.parseInt(segments[1]);
                 Task t = items.get(index - 1);
                 t.markAsNotDone();
                 System.out.println("ok, I've marked this task as not done yet:  ");
-                System.out.println("[" + t.getStatusIcon() + "] " + t.getDescription());
-            } else {
-                Task t = new Task(input);
+                System.out.println(t);
+            } else if (segments[0].equals("todo")) {
+                input = input.replace("todo","");
+                Task t = new Todo(input);
                 items.add(t);
-                System.out.print("added: " + input);
+                System.out.println("Got it. I've added this task:");
+                System.out.println(t);
+                System.out.println("Now you have " + Task.numTask + " tasks in the list.");
+            } else if (segments[0].equals("deadline")) {
+                input = input.replace("deadline","");
+                String[] parts = input.split("/");
+                String by = parts[1].replace("by ","");
+                Task t = new Deadline(parts[0],by);
+                items.add(t);
+                System.out.println("Got it. I've added this task:");
+                System.out.println(t);
+                System.out.println("Now you have " + Task.numTask + " tasks in the list.");
+            } else if (segments[0].equals("deadline")) {
+                input = input.replace("deadline","");
+                String[] parts = input.split("/");
+                String by = parts[1].replace("by ","");
+                Task t = new Deadline(parts[0],by);
+                items.add(t);
+                System.out.println("Got it. I've added this task:");
+                System.out.println(t);
+                System.out.println("Now you have " + Task.numTask + " tasks in the list.");
+            } else if (segments[0].equals("event")) {
+                input = input.replace("event","");
+                String[] parts = input.split("/");
+                String by = parts[1].replace("at ","");
+                Task t = new Event(parts[0],by);
+                items.add(t);
+                System.out.println("Got it. I've added this task:");
+                System.out.println(t);
+                System.out.println("Now you have " + Task.numTask + " tasks in the list.");
             }
         }
     }
