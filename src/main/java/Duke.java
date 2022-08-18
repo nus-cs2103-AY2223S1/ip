@@ -94,6 +94,13 @@ public class Duke {
                                 + "\nNow you have " + listOfInputs.size() + " tasks in the list." + LINE);
                         input = sc.nextLine();
                         continue;
+                    case "DELETE":
+                        Task removedTask = listOfInputs.get(Integer.parseInt(inputArray[1]) - 1);
+                        listOfInputs.remove(Integer.parseInt(inputArray[1]) - 1);
+                        System.out.println(LINE + "\nOkay, I have removed this task from the list:\n  " + removedTask
+                                + "\nNow you have " + listOfInputs.size() + " tasks in the list." + LINE);
+                        input = sc.nextLine();
+                        continue;
                 }
                 throw new DukeException("I'm sorry, but I don't know what that means" + LINE);
             } catch (DukeException err) {
