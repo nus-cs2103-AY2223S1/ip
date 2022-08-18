@@ -35,8 +35,8 @@ class Duke {
         "_______________________________________________________");
   }
 
-  public static String wrapMessage(String str) {
-    return String.format("Got it. I've added this task:\n\t\t" + str + "\n\tNow you have " + taskList.size()
+  public static String wrapMessage(String str, String taskDescription) {
+    return String.format(str + "\n\t\t" + taskDescription + "\n\tNow you have " + taskList.size()
         + " tasks in the list.");
   }
 
@@ -85,7 +85,7 @@ class Duke {
             String withoutPrefix = inputArray[1];
             Todo todo = new Todo(withoutPrefix);
             taskList.add(todo);
-            Duke.printMessage(wrapMessage(todo.toString()));
+            Duke.printMessage(wrapMessage("Got it. I've added this task:", todo.toString()));
           }
             break;
           case "deadline": {
@@ -93,7 +93,7 @@ class Duke {
             String[] strArray = withoutPrefix.split("/");
             Deadline deadline = new Deadline(strArray[0].strip(), strArray[1].split(" ", 2)[1]);
             taskList.add(deadline);
-            Duke.printMessage(wrapMessage(deadline.toString()));
+            Duke.printMessage(wrapMessage("Got it. I've added this task:", deadline.toString()));
           }
             break;
           case "event": {
@@ -101,7 +101,15 @@ class Duke {
             String[] strArray = withoutPrefix.split("/");
             Event event = new Event(strArray[0].strip(), strArray[1].split(" ", 2)[1]);
             taskList.add(event);
-            Duke.printMessage(wrapMessage(event.toString()));
+            Duke.printMessage(wrapMessage("Got it. I've added this task:", event.toString()));
+          }
+            break;
+          case "delete": {
+            String withoutPrefix = inputArray[1];
+            int index = Integer.parseInt(withoutPrefix);
+            Task task = taskList.get(index - 1);
+            taskList.remove(index - 1);
+            Duke.printMessage(wrapMessage("Noted. I've removed this task:", task.toString()));
           }
             break;
           default:
