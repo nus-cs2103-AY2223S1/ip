@@ -1,31 +1,75 @@
 MumBot: Hi dear! You are precious <3
 
+You: Hunbun, ERROR!!! Your input is not recognised :(. It has to start with a command (todo, deadline, event, mark, unmark, list, Bye)
+
+You: Sweetie, here is the list of tasks that you have <3
+
 You: Hey sweetie, I've added: 'sweep room' to your lists of tasks~
 
-You: This task has been successfully marked as done!
+You: Hunbun, ERROR!!! There isn't a task with that index !!!
 
 You: Sweetie, here is the list of tasks that you have <3
-1. [T][X] sweep room
+1. [T][ ] sweep room
 
-You: Honeypie, this task has already been marked as done!
+You: Hunbun, ERROR!!! There isn't a task with that index !!!
 
 You: Sweetie, here is the list of tasks that you have <3
-1. [T][X] sweep room
+1. [T][ ] sweep room
 
-You: This task has been successfully marked as not done yet!
+You: Hunbun, ERROR!!! There isn't a task with that index !!!
 
 You: Sweetie, here is the list of tasks that you have <3
 1. [T][ ] sweep room
 
 You: Hey sweetie, I've added: 'eat fruits' to your lists of tasks~
 
-You: This task has been successfully marked as done!
+You: Hunbun, ERROR!!! There isn't a task with that index !!!
 
 You: Hey sweetie, I've added: 'breakfast w friends' to your lists of tasks~
 
 You: Sweetie, here is the list of tasks that you have <3
 1. [T][ ] sweep room
-2. [D][X] eat fruits (by: tonight !)
+2. [D][ ] eat fruits (by: tonight !)
 3. [E][ ] breakfast w friends (at: my home~)
+
+You: Hunbun, ERROR!!! Your formatting for the mark command is wrong...sigh
+In future, please do: mark <index of task>
+You can do it peepaw!
+
+You: Hunbun, ERROR!!! There isn't a task with that index !!!
+
+You: Hunbun, ERROR!!! Your formatting for the mark command is wrong...sigh
+In future, please do: mark <index of task>
+You can do it peepaw!
+
+You: Hunbun, ERROR!!! </3 your formatting for the list command is wrong - please just type list!
+
+You: Hunbun, ERROR!!! Your deadline command does not follow proper formatting!
+A deadline command should follow this convention:
+deadline <task description>  /by  <date description> <3
+
+You: Hunbun, ERROR!!! Your deadline command does not follow proper formatting!
+A deadline command should follow this convention:
+deadline <task description>  /by  <date description> <3
+
+You: Hunbun, ERROR!!! Your event command does not follow proper formatting!
+A event command should follow this convention:
+event <task description>  /at  <date description> <3
+
+You: Hunbun, ERROR!!! Your event command does not follow proper formatting!
+A event command should follow this convention:
+event <task description>  /at  <date description> <3
+
+You: Hunbun, ERROR!!! Your deadline command does not follow proper formatting!
+A deadline command should follow this convention:
+deadline <task description>  /by  <date description> <3
+
+You: Hunbun, ERROR!!! Your event command does not follow proper formatting!
+A event command should follow this convention:
+event <task description>  /at  <date description> <3
+
+You: Hunbun, ERROR!!! Your deadline command does not follow proper formatting!
+A deadline command should follow this convention:
+deadline <task description>  /by  <date description> <3
 
 You: MumBot: Goodbyeeee sweetheart <3

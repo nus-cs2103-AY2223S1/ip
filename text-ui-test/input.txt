@@ -1,3 +1,5 @@
+Hi
+list
 todo sweep room
 mark 1
 list
@@ -9,4 +11,15 @@ deadline eat fruits /by tonight !
 mark 2
 event breakfast w friends /at my home~
 list
+mark
+mark 200
+mark 1 abc
+list hello
+deadline
+deadline eat eggs
+event
+event eat eggs
+deadline eat chicken /by
+event eat duck /at
+deadline sleep /by next year /by tomorrow
 Bye
