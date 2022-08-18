@@ -23,7 +23,13 @@ public class UwuChat {
         chatify(farewellWords);
     }
 
-    public void addTask(String userCmd) {
+    public void addTask(String userCmd) throws UwuException {
+        if (userCmd.replaceFirst("todo", "").isBlank() ||
+            userCmd.replaceFirst("deadline", "").isBlank() ||
+            userCmd.replaceFirst("event", "").isBlank()) {
+            throw new EmptyInputException("No task given.");
+        }
+
         Task task = null;
 
         if (userCmd.startsWith("todo")) {
@@ -32,7 +38,11 @@ public class UwuChat {
         }
 
         if (userCmd.startsWith("deadline")) {
-            int deadlineStart = userCmd.indexOf("/by");
+            if (!userCmd.contains("/by ")) {
+                throw new IncorrectFormatException("Incorrect Format given for deadline task.");
+            }
+
+            int deadlineStart = userCmd.indexOf("/by ");
             int userCmdLen = userCmd.length();
             String description = userCmd.substring(8, deadlineStart);
             String by = userCmd.substring(deadlineStart + 3, userCmdLen);
@@ -42,6 +52,10 @@ public class UwuChat {
         }
 
         if (userCmd.startsWith("event")) {
+            if (!userCmd.contains("/at ")) {
+                throw new IncorrectFormatException("Incorrect Format given for event task.");
+            }
+
             int eventStart = userCmd.indexOf("/at");
             int userCmdLen = userCmd.length();
             String description = userCmd.substring(8, eventStart);
@@ -96,4 +110,18 @@ public class UwuChat {
             chatify(unmarked + "\n\t\t" + task.toString());
         }
     }
+
+    public void unknownCommand() {
+        chatify("\n\tsorry >< i don't know what that means TT");
+    }
+
+    public void emptyInput() {
+        chatify("\n\tlooks like there isn't a task for me to add uwu" +
+                "\n\tfeed me a task to get started~");
+    }
+
+    public void incorrectFormat() {
+        chatify("\n\tplease enter the correct format for your task uwu");
+    }
+
 }
