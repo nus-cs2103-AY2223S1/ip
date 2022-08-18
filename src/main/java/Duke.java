@@ -122,7 +122,6 @@ public class Duke {
                         System.out.println(String.format("Now you have %d task in the list\n", todo.size()));
 
                     default:
-
                 }
             } catch (NoSuchCommandException err) {
                 System.out.println(err);
