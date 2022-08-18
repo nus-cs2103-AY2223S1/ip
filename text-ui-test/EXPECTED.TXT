@@ -41,29 +41,106 @@ Number of tasks in list: 3
 
 -------------------------------------
 Nice! I've marked this task as done:
-[T][X]test1
+  [T][X]test1
 -------------------------------------
 
 -------------------------------------
 Nice! I've marked this task as done:
-[E][X]test3 at: 0800
+  [D][X]test2 by: 2359
+-------------------------------------
+
+-------------------------------------
+Nice! I've marked this task as done:
+  [E][X]test3 at: 0800
 -------------------------------------
 
 -------------------------------------
 1. [T][X]test1
-2. [D][ ]test2 by: 2359
+2. [D][X]test2 by: 2359
 3. [E][X]test3 at: 0800
+-------------------------------------
+
+-------------------------------------
+OK, I've removed this task:
+  [T][X]test1
+Number of tasks in list: 2
+-------------------------------------
+
+-------------------------------------
+OK, I've removed this task:
+  [E][X]test3 at: 0800
+Number of tasks in list: 1
+-------------------------------------
+
+-------------------------------------
+1. [D][X]test2 by: 2359
 -------------------------------------
 
 -------------------------------------
 OK, I've marked this task as not done yet:
-[T][ ]test1
+  [D][ ]test2 by: 2359
 -------------------------------------
 
 -------------------------------------
-1. [T][ ]test1
-2. [D][ ]test2 by: 2359
-3. [E][X]test3 at: 0800
+1. [D][ ]test2 by: 2359
+-------------------------------------
+
+-------------------------------------
+OK, I've removed this task:
+  [D][ ]test2 by: 2359
+Number of tasks in list: 0
+-------------------------------------
+
+-------------------------------------
+List is empty
+-------------------------------------
+
+-------------------------------------
+The additional argument for todo cannot be empty.
+-------------------------------------
+
+-------------------------------------
+The additional argument for deadline cannot be empty.
+-------------------------------------
+
+-------------------------------------
+The additional argument for deadline cannot be empty.
+-------------------------------------
+
+-------------------------------------
+The additional argument for event cannot be empty.
+-------------------------------------
+
+-------------------------------------
+The additional argument for event cannot be empty.
+-------------------------------------
+
+-------------------------------------
+The additional argument for mark cannot be empty.
+-------------------------------------
+
+-------------------------------------
+The list does not contain an entry of index -1.
+-------------------------------------
+
+-------------------------------------
+The additional argument for mark is of the wrong data type.
+-------------------------------------
+
+-------------------------------------
+The additional argument for delete cannot be empty.
+-------------------------------------
+
+-------------------------------------
+The list does not contain an entry of index -1.
+-------------------------------------
+
+-------------------------------------
+The additional argument for delete is of the wrong data type.
+-------------------------------------
+
+-------------------------------------
+I'm sorry, I don't understand the command funky :(
 -------------------------------------
 
 -------------------------------------

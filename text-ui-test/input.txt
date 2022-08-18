@@ -4,9 +4,27 @@ deadline test2 /by 2359
 event test3 /at 0800
 list
 mark 1
+mark 2
 mark 3
+list
+delete 1
+delete 2
 list
 mark 1
 list
+delete 1
+list
+todo
+deadline
+deadline test4
+event 
+event test5
+mark
+mark -1
+mark test
+delete
+delete -1
+delete test
+funky
 bye
 
