@@ -2,120 +2,19 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
-    private static abstract class Task {
-        protected String description;
-        protected boolean isDone;
 
-        public Task(String description) {
-            this.description = description;
-            this.isDone = false;
-        }
-
-        public String getStatusIcon() {
-            return (this.isDone ? "[X]" : "[ ]");
-        }
-
-        @Override
-        public String toString() {
-            return this.getStatusIcon() + " " + description;
-        }
-
-        public void setDone() {
-            this.isDone = true;
-        }
-        public void setNotDone() {
-            this.isDone = false;
-        }
-    }
-
-    private static class Deadline extends Task {
-        protected String deadline;
-
-        public Deadline(String description, String deadline) {
-            super(description);
-            this.deadline = deadline;
-        }
-
-        @Override
-        public String toString() {
-            return "[D]" + super.toString() + "(by:" + deadline + ")";
-        }
-
-    }
-
-    private static class ToDo extends Task {
-        public ToDo(String description) {
-            super(description);
-        }
-
-        @Override
-        public String toString() {
-            return "[T]" + super.toString();
-        }
-    }
-
-    private static class Event extends Task {
-        protected String time;
-
-        public Event(String description, String time) {
-            super(description);
-            this.time = time;
-        }
-
-        @Override
-        public String toString() {
-            return "[E]" + super.toString() + "(at:" + time + ")";
-        }
-    }
-
-    private static class IllegalIndexException extends Exception {
-
-        public IllegalIndexException(String message) {
-            super(message);
-        }
-
-        @Override
-        public String toString() {
-            return getMessage();
-        }
-
-
-    }
-
-    private static class EmptyDescriptionException extends Exception {
-        public EmptyDescriptionException(String message) {
-           super(message);
-        }
-
-        @Override
-        public String toString() {
-            return getMessage();
-        }
-    }
-
-    private static class InvalidTaskException extends Exception {
-        public InvalidTaskException(String message) {
-            super(message);
-        }
-
-        @Override
-        public String toString() {
-            return getMessage();
-        }
-    }
-
-    //  initialise task list and counter
+    //  initialise task list
     private static ArrayList<Task> list = new ArrayList<>(100);
 
     // Methods Start
-    public static void addTask(Task task) {
+    private static void addTask(Task task) {
         list.add(task);
         System.out.println("Got it. I've added this task:");
         System.out.println(task.toString());
         System.out.println(String.format("Now you have %s task(s) in the list", list.size()));
     }
 
-    public static void deleteTask(int index) {
+    private static void deleteTask(int index) {
         System.out.println("Noted, I've removed this task:");
         System.out.println(list.get(index).toString());
         list.remove(index);
@@ -123,18 +22,18 @@ public class Duke {
 
     }
 
-    public static void sayBye() {
+    private static void sayBye() {
         System.out.println("Bye. Hope to see you again soon!");
     }
 
-    public static void list() {
+    private static void list() {
         System.out.println("Here are the tasks in your list:");
         for (int x = 0; x < list.size(); x++) {
             System.out.println(String.format("%s.%s", x+1, list.get(x).toString()));
         }
     }
 
-    public static void mark (int index) throws IllegalIndexException {
+    private static void mark (int index) throws IllegalIndexException {
         //  error checking
         if (index < 0 || list.get(index) == null) {
             throw new IllegalIndexException("Index invalid!");
@@ -157,80 +56,77 @@ public class Duke {
     }
 
     // Methods End
-
-
     public static void main(String[] args) {
         //  Opening statements
         System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?");
-
         // initialise scanner
         Scanner sc = new Scanner(System.in);
-
         //  program start
         while (true) {
-            //  User Input
-            String str = sc.nextLine();
-            //  Bye
-            if (str.equals("bye")) {
-                sayBye();
-                break;
-            }
-            //  List
-            if (str.equals("list")) {
-                list();
-                continue;
-            }
-            //  Marking
-            if ((str.length() >= 6) && (str.substring(0, 4).equals("mark"))) {
-                try {
+            try {
+                //  User Input
+                String str = sc.nextLine();
+                //  Bye
+                if (str.equals("bye")) {
+                    sayBye();
+                    break;
+                }
+                //  List
+                if (str.equals("list")) {
+                    list();
+                    continue;
+                }
+                //  Marking
+                if ((str.length() >= 4) && (str.substring(0, 4).equals("mark"))) {
+                    //  error checking
+                    if (str.length() == 4 || str.substring(5).equals("")) {
+                        throw new IllegalIndexException("OOPS!!! The index of a mark cannot be empty.");
+                    }
                     String remainder = str.substring(5);
                     int index = Integer.valueOf(remainder) - 1;
                     mark(index);
                     continue;
-                } catch (IllegalIndexException e) {
-                    System.out.println(e);
-                    continue;
                 }
-            }
-            //  Unmarking
-            if ((str.length() >= 8) && (str.substring(0, 6).equals("unmark"))) {
-                try {
+                //  Unmarking
+                if ((str.length() >= 6) && (str.substring(0, 6).equals("unmark"))) {
+                    //  error checking
+                    if (str.length() == 6 || str.substring(7).equals("")) {
+                        throw new IllegalIndexException("OOPS!!! The index of an unmark cannot be empty.");
+                    }
                     String remainder = str.substring(7);
                     int index = Integer.valueOf(remainder) - 1;
                     unmark(index);
                     continue;
-                } catch (IllegalIndexException e) {
-                    System.out.println(e);
-                    continue;
                 }
-            }
-            //  Add Todo Task
-            if (str.length() >= 4 && str.substring(0, 4).equals("todo")) {
-                try {
-                    String remainder = str.substring(5);
-                    if (remainder.equals("")) {
+                //  Add Todo Task
+                if (str.length() >= 4 && str.substring(0, 4).equals("todo")) {
+                    //  error checking
+                    if (str.length() == 4 || str.substring(5).equals("")) {
                         throw new EmptyDescriptionException("OOPS!!! The description of a todo cannot be empty.");
                     }
-                    addTask(new ToDo(remainder));
-                    continue;
-                } catch (EmptyDescriptionException e) {
-                    System.out.println(e);
+                    addTask(new ToDo(str.substring(5)));
                     continue;
                 }
-            }
             //  Add Deadline Task
             if (str.length() >= 8 && str.substring(0, 8).equals("deadline")) {
-                    String remainder = str.substring(9);
-                    String[] arr = remainder.split("/by");
-                    String description = arr[0];
-                    String deadline = arr[1];
-                    addTask(new Deadline(description, deadline));
-                    continue;
+                //  error checking
+                if (str.length() == 8 || str.substring(9).equals("")) {
+                    throw new EmptyDescriptionException("OOPS!!! The description of a deadline cannot be empty.");
+                }
+                String remainder = str.substring(9);
+                String[] arr = remainder.split("/by");
+                String description = arr[0];
+                String deadline = arr[1];
+                addTask(new Deadline(description, deadline));
+                continue;
             }
-
             //  Add Event Task
             if (str.length() >= 5 && str.substring(0, 5).equals("event")) {
+                // error checking
+                if (str.length() == 5 || str.substring(6).equals("0")) {
+                    throw new EmptyDescriptionException("OOPS!!! The description of a event cannot be empty.");
+                }
                 String remainder = str.substring(6);
                 String[] arr = remainder.split("/at");
                 String description = arr[0];
@@ -238,20 +134,27 @@ public class Duke {
                 addTask(new Event(description, time));
                 continue;
             }
-
             //  Delete Tasks
-            if (str.length() >= 6 && str.substring(0,6).equals("delete")) {
+            if (str.length() >= 6 && str.substring(0, 6).equals("delete")) {
                 String remainder = str.substring(7);
                 int index = Integer.valueOf(remainder) - 1;
                 deleteTask(index);
                 continue;
             }
-
-            try {
-                throw new InvalidTaskException("OOPS!!! I'm sorry, but I don't know what that means :-(");
+            //  if loop reaches here, raise error
+            throw new InvalidTaskException("OOPS!!! I'm sorry, but I don't know what that means :-(");
             } catch (InvalidTaskException e) {
                 System.out.println(e);
+                continue;
+            } catch (IllegalIndexException e) {
+                System.out.println(e);
+                continue;
+            } catch (EmptyDescriptionException e) {
+                System.out.println(e);
+                continue;
             }
         }
     }
 }
+
+
