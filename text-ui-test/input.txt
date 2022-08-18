@@ -1,1 +1,28 @@
-todo homework
+todo Wash laundry
+deadline CS2103T project /by tomorrow!
+event fight someone /at 27 July 1800 - 2000
+list
+mark 1
+mark 2
+list
+mark 3
+delete 1
+list
+idfjiaeiejri
+mark
+mark 
+delete
+delete d
+deadline 
+deadline
+todo
+todo 
+event 
+event
+deadline /by
+event /at
+deadline adsfad
+event adfadf
+event /at 25 July 1000 - 1200
+event Drink water /at
+bye

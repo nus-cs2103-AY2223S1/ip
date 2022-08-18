@@ -9,9 +9,136 @@ What can I do for you?
 ------------------------------
 : 
 Got it. I've added this task:
-[T] [ ] homework
-Now you have 1 task(s) in the list.
+[T] [ ] Wash laundry
 ------------------------------
 
 ------------------------------
 : 
+Got it. I've added this task:
+[D] [ ] CS2103T project (by: tomorrow!)
+------------------------------
+
+------------------------------
+: 
+Got it. I've added this task:
+[E] [ ] fight someone (at: 27 July 1800 - 2000)
+------------------------------
+
+------------------------------
+: 
+1. [T] [ ] Wash laundry
+2. [D] [ ] CS2103T project (by: tomorrow!)
+3. [E] [ ] fight someone (at: 27 July 1800 - 2000)
+------------------------------
+
+------------------------------
+: Nice! I've marked this task as done:
+[T] [X] Wash laundry
+------------------------------
+
+------------------------------
+: Nice! I've marked this task as done:
+[D] [X] CS2103T project (by: tomorrow!)
+------------------------------
+
+------------------------------
+: 
+1. [T] [X] Wash laundry
+2. [D] [X] CS2103T project (by: tomorrow!)
+3. [E] [ ] fight someone (at: 27 July 1800 - 2000)
+------------------------------
+
+------------------------------
+: Nice! I've marked this task as done:
+[E] [X] fight someone (at: 27 July 1800 - 2000)
+------------------------------
+
+------------------------------
+: Noted. I've removed this task:
+[T] [X] Wash laundry
+------------------------------
+
+------------------------------
+: 
+1. [D] [X] CS2103T project (by: tomorrow!)
+2. [E] [X] fight someone (at: 27 July 1800 - 2000)
+------------------------------
+
+------------------------------
+: No enum constant Commands.idfjiaeiejri
+------------------------------
+
+------------------------------
+: Index 1 out of bounds for length 1
+------------------------------
+
+------------------------------
+: Index 1 out of bounds for length 1
+------------------------------
+
+------------------------------
+: Index 1 out of bounds for length 1
+------------------------------
+
+------------------------------
+: Error: Cannot cast a non-integer into an integer
+------------------------------
+
+------------------------------
+: ☹ OOPS!!! The description of a DEADLINE cannot be empty.
+------------------------------
+
+------------------------------
+: ☹ OOPS!!! The description of a DEADLINE cannot be empty.
+------------------------------
+
+------------------------------
+: ☹ OOPS!!! The description of a TODO cannot be empty.
+------------------------------
+
+------------------------------
+: ☹ OOPS!!! The description of a TODO cannot be empty.
+------------------------------
+
+------------------------------
+: ☹ OOPS!!! The description of a EVENT cannot be empty.
+------------------------------
+
+------------------------------
+: ☹ OOPS!!! The description of a EVENT cannot be empty.
+------------------------------
+
+------------------------------
+: 
+Got it. I've added this task:
+[D] [ ]  (by: )
+------------------------------
+
+------------------------------
+: 
+Got it. I've added this task:
+[E] [ ]  (at: )
+------------------------------
+
+------------------------------
+: ☹ OOPS!!! The description of a DEADLINE must contain a '/by'
+------------------------------
+
+------------------------------
+: ☹ OOPS!!! The description of a EVENT must contain a '/at'
+------------------------------
+
+------------------------------
+: 
+Got it. I've added this task:
+[E] [ ]  (at: 25 July 1000 - 1200)
+------------------------------
+
+------------------------------
+: 
+Got it. I've added this task:
+[E] [ ] Drink water (at: )
+------------------------------
+
+------------------------------
+:  Bye. Hope to see you again soon!
