@@ -83,7 +83,6 @@ public class Duke {
 
         Scanner scan = new Scanner(System.in);
         System.out.println("Hello I'm Duke\nWhat can I do for you");
-        System.out.print("You: ");
         String item = scan.nextLine();
 
         while (!item.equals("bye")) {
@@ -180,9 +179,8 @@ public class Duke {
             else{
                 System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
-            System.out.print("You: ");
             item = scan.nextLine();
         }
-        System.out.println("Duke: Bye. hope to see you again soon!");
+        System.out.println("Bye. hope to see you again soon!");
     }
 }
