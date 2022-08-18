@@ -7,12 +7,8 @@ public class Event extends Task {
         this.by = by;
     }
 
-    public String getTypeIcon() {
-        return "E";
-    }
-
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + by + ")";
+        return "[E]" + super.toString() + " (at:" + by + ")";
     }
 }
