@@ -73,7 +73,6 @@ public class Duke {
             String at = eventAt[1].trim();
             Duke.add(event, "event", at);
         }  else {
-            // Duke.add(s, "task", "");
             throw new DukeException("Error. I'm sorry, but I don't know what that means.");
         }
     }
