@@ -46,14 +46,21 @@ public class CaCa {
      */
     public static void main(String[] args) {
         String line = "____________________________________________________________\n";
+
+        // ASCII text banner below created and adapted from
+        // https://manytools.org/hacker-tools/ascii-banner/
+        // with the following settings:
+        // Banner text: CaCa, Font: Big, Horizontal spacing: Normal, Vertical spacing: Normal.
         String logo = "   _____       _____      \n"
                 + "  / ____|     / ____|     \n"
                 + " | |     __ _| |     __ _ \n"
                 + " | |    / _` | |    / _` |\n"
                 + " | |___| (_| | |___| (_| |\n"
                 + "  \\_____\\__,_|\\_____\\__,_|\n\n";
+
         String greeting = "Hello! I'm CaCa.\n"
                 + "What can I do for you?\n";
+
         System.out.println(line + logo + greeting + line);
 
         // Solution below on getting user input is
