@@ -16,8 +16,16 @@ public class Duke {
 
         List<String> list = new ArrayList<String>();
 
-        String todolist = "____________________________________________________________\n" +
+        String strlst = "____________________________________________________________\n" +
                 "     Here are the tasks in your list:";
+
+        System.out.println(strlst);
+
+
+        String todolist = "____________________________________________________________\n" +
+                "     Got it. I've added this task:";
         System.out.println(todolist);
+
+
     }
 }
