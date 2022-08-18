@@ -1,5 +1,7 @@
 package pnkp.duke.modules.todos;
 
+import pnkp.duke.MessagefulException;
+
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -21,13 +23,16 @@ public class Event extends Task{
     //@@author parnikkapore-reused
     // Adapted from https://stackoverflow.com/questions/54593569/#54593895
     private final static Pattern chatPattern = Pattern.compile("(?<name>.*) /at (?<timeRange>.*)");
-    public static Event fromChat(Scanner sc) throws IllegalArgumentException {
+    public static Event fromChat(Scanner sc) throws MessagefulException {
         String rest = sc.hasNextLine() ? sc.nextLine() : "";
         Matcher match = chatPattern.matcher(rest);
         if (match.matches()) {
             return new Event(match.group("name"), match.group("timeRange"));
         } else {
-            throw new IllegalArgumentException();
+            throw new MessagefulException(
+                    "Event syntax no match",
+                    "Events are added like this: event project meeting /at Mon 2-4pm"
+            );
         }
     }
 

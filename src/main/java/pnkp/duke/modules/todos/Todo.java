@@ -1,5 +1,7 @@
 package pnkp.duke.modules.todos;
 
+import pnkp.duke.MessagefulException;
+
 import java.util.Scanner;
 
 import static java.lang.String.format;
@@ -13,9 +15,9 @@ public class Todo extends Task{
         super(name, done);
     }
 
-    public static Todo fromChat(Scanner sc) throws IllegalArgumentException {
+    public static Todo fromChat(Scanner sc) throws MessagefulException {
         if (!sc.hasNextLine()) {
-            throw new IllegalArgumentException("Missing name");
+            throw new MessagefulException("Missing name", "Please give your todo a name.");
         }
 
         return new Todo(sc.nextLine());

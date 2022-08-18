@@ -7,6 +7,7 @@ import java.util.Scanner;
 import static java.lang.String.format;
 import static pnkp.duke.IOFormat.say;
 
+import pnkp.duke.MessagefulException;
 import pnkp.duke.modules.todos.Deadline;
 import pnkp.duke.modules.todos.Event;
 import pnkp.duke.modules.todos.Task;
@@ -32,8 +33,8 @@ public class Todos {
         final Task task;
         try {
             task = Todo.fromChat(rest);
-        } catch(IllegalArgumentException e) {
-            say("Please give your todo a name.");
+        } catch(MessagefulException e) {
+            say(e.message());
             return;
         }
 
@@ -44,8 +45,8 @@ public class Todos {
         final Task task;
         try {
             task = Deadline.fromChat(rest);
-        } catch(IllegalArgumentException e) {
-            say("Deadlines are added like this: deadline return book /by Sunday");
+        } catch(MessagefulException e) {
+            say(e.message());
             return;
         }
 
@@ -56,8 +57,8 @@ public class Todos {
         final Task task;
         try {
             task = Event.fromChat(rest);
-        } catch(IllegalArgumentException e) {
-            say("Events are added like this: event project meeting /at Mon 2-4pm");
+        } catch(MessagefulException e) {
+            say(e.message());
             return;
         }
 
