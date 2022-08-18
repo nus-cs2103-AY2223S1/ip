@@ -28,6 +28,15 @@ public class Duke {
                     + taskList.get(taskNo) + LINE);
         }
 
+        else if (input.equals("delete")) {
+            Integer taskNo = Integer.parseInt(command.split(" ")[1]) - 1;
+            System.out.println(LINE + "Noted. I've removed this task:\n" + taskList.get(taskNo));
+            int i = taskNo;
+            taskList.remove(i);
+            System.out.println("\nNow you have " + String.valueOf(taskList.size()) + " tasks in the list." + LINE);
+
+        }
+
         else if (input.equals("todo")) {
 
             StringBuilder description = new StringBuilder();
@@ -62,6 +71,7 @@ public class Duke {
             System.out.println(LINE + "Got it. I've added this task:\n" + event + "\nNow you have " +
                     String.valueOf(taskList.size()) + " tasks in the list." + LINE);
         }
+
         else {
             throw new DukeException("I'm sorry, but I don't know what that means :-(");
         }
@@ -76,7 +86,7 @@ public class Duke {
         while (true) {
             String temp = command.nextLine();
             try {
-                if (command.equals("bye")) {
+                if (temp.equals("bye")) {
                     System.out.println(LINE + "Bye. Hope to see you again!" + LINE);
                     command.close();
                     break;
