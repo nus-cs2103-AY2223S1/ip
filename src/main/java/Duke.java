@@ -1,8 +1,10 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
+    public static ArrayList<String> inputArray = new ArrayList<>();
+    public static int inputCount = 1;
     public static void main(String[] args) {
-
 
 
         String logo = " ____        _        \n"
@@ -26,15 +28,26 @@ public class Duke {
         Scanner scan = new Scanner( System.in );
         inData = scan.nextLine();
 
+
         switch (inData) {
             case("bye"):
                 System.out.println("____________________________________________________________");
                 System.out.println("Bye. Hope to see you again soon!");
                 System.out.println("____________________________________________________________");
                 break;
+            case("list"):
+                System.out.println("____________________________________________________________");
+                for(String s : inputArray) {
+                    System.out.println(s);
+                }
+                System.out.println("____________________________________________________________");
+                getInput();
+                break;
             default:
                 System.out.println("____________________________________________________________");
-                System.out.println(inData);
+                inputArray.add(inputCount + ". " + inData);
+                inputCount++;
+                System.out.println("added: " + inData);
                 System.out.println("____________________________________________________________");
                 getInput();
         }
