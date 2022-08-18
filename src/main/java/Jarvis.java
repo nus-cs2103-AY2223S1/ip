@@ -20,9 +20,15 @@ public class Jarvis {
         switch(arguments[0]) {
             case "bye":
                 return new ByeCommand(command);
+            case "list":
+                return new ListCommand(command);
             case "mark":
             case "unmark":
                 return new MarkCommand(command);
+            case "todo":
+            case "deadline":
+            case "event":
+                return new AddCommand(command);
         }
         return null;
     }

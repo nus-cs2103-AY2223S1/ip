@@ -25,6 +25,21 @@ public abstract class Command {
         return this.keyCommand;
     }
 
+    String getDescription() {
+        if (arguments.isEmpty()) {
+            return null;
+        }
+        return splitArguments()[0];
+    }
+
+    String getDate() {
+        String[] split = splitArguments();
+        if (split.length == 1 || split[1].length() == 0) {
+            return null;
+        }
+        return split[1];
+    }
+
     int getTaskIndex() {
         if (arguments.isPresent()) {
             return Integer.parseInt(arguments.get()) - 1;
