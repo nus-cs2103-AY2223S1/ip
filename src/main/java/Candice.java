@@ -97,7 +97,7 @@ public class Candice {
             }
         }
 
-        System.out.println("Error: incorrect format");
+        System.out.println("Write properly leh. Your format is wrong");
     }
 
     public static void main(String[] args) {
