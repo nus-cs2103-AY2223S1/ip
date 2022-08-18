@@ -10,10 +10,9 @@ public class Duke {
         if (splitInput.length < 2) {
             throw new DukeException("Please specify the number of the task");
         }
-        Task task;
         try {
             int taskIdx = Integer.parseInt(splitInput[1]);
-            task = tasks.get(taskIdx - 1);
+            Task task = tasks.get(taskIdx - 1);
             if (done) {
                 task.mark();
             } else {
@@ -28,11 +27,27 @@ public class Duke {
         }
     }
 
+    private static void deleteTask(String input) throws DukeException {
+        String[] splitInput = input.split("delete ");
+        if (splitInput.length < 2) {
+            throw new DukeException("Please specify the number of the task to delete");
+        }
+        try {
+            int taskIdx = Integer.parseInt(splitInput[1]);
+            Task task = tasks.remove(taskIdx - 1);
+            System.out.printf("Noted. I've removed this task:\n  %s\n", task.toString());
+            System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
+        } catch (Exception e) {
+            throw new DukeException("That is not a valid task number!");
+        }
+    }
+
     private static void printTasks() {
         if (tasks.size() == 0) {
-            System.out.println("No tasks to show");
+            System.out.println("You currently have no tasks. ");
         } else {
             for (int i = 0; i < tasks.size(); i++) {
+                System.out.println("Here are the tasks in your list:");
                 System.out.println(i + 1 + "." + tasks.get(i));
             }
         }
@@ -54,6 +69,8 @@ public class Duke {
                     markTask(input, true);
                 } else if (input.startsWith("unmark ")) {
                     markTask(input, false);
+                } else if (input.startsWith("delete ")) {
+                    deleteTask(input);
                 } else if (input.startsWith("todo ")) {
                     String[] splitInput = input.split("todo ");
                     if (splitInput.length < 2) {
