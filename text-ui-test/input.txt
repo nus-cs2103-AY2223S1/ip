@@ -1,8 +1,17 @@
-todo hi
-event hi2 /at 5pm
+nonsense
+todo return book
+mark 2
+todo
+event something
+event meeting /at 5pm
 list
 mark 1
 list
 unmark 1
+list
+deadline other thing
+deadline homework /by Friday 2359
+list
+mark 3
 list
 bye

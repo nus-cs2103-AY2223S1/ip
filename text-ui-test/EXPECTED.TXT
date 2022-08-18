@@ -1,31 +1,61 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Hello! This is Duke! What can I do for you today?
+:D Hello! This is Duke! What can I do for you today?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:( Sorry I don't understand the command: "nonsense"
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Got it. I've added this task:
-[T][ ] hi
+[T][ ] return book
 Now you have 1 tasks in your list.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:( Oops! Please enter a valid task number!
+You currently have 1 tasks.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:( Oops! The description of a todo cannot be empty!
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:( Oops! That's not the right way to set an event!
+Please use this format: "event <description> /at <time>"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Got it. I've added this task:
-[E][ ] hi2 (at: 5pm)
+[E][ ] meeting (at: 5pm)
 Now you have 2 tasks in your list.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Here are the tasks in your list:
-1.[T][ ] hi
-2.[E][ ] hi2 (at: 5pm)
+1.[T][ ] return book
+2.[E][ ] meeting (at: 5pm)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Nice! I've marked this task as done:
-[T][X] hi
+[T][X] return book
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Here are the tasks in your list:
-1.[T][X] hi
-2.[E][ ] hi2 (at: 5pm)
+1.[T][X] return book
+2.[E][ ] meeting (at: 5pm)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Okie, I've marked this task as not done yet:
-[T][ ] hi
+[T][ ] return book
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Here are the tasks in your list:
-1.[T][ ] hi
-2.[E][ ] hi2 (at: 5pm)
+1.[T][ ] return book
+2.[E][ ] meeting (at: 5pm)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Bye. Hope to see you again soon!
+:( Oops! That's not the right way to set a deadline!
+Please use this format: "deadline <description> /by <time>"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Got it. I've added this task:
+[D][ ] homework (by: Friday 2359)
+Now you have 3 tasks in your list.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Here are the tasks in your list:
+1.[T][ ] return book
+2.[E][ ] meeting (at: 5pm)
+3.[D][ ] homework (by: Friday 2359)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Nice! I've marked this task as done:
+[D][X] homework (by: Friday 2359)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Here are the tasks in your list:
+1.[T][ ] return book
+2.[E][ ] meeting (at: 5pm)
+3.[D][X] homework (by: Friday 2359)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:) Bye. Hope to see you again soon!
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
