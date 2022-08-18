@@ -16,7 +16,7 @@ public class Duke {
             protected boolean isDone;
             protected int num;
 
-            public Task(String description,int num) {
+            public Task(String description) {
                 this.description = description;
                 this.isDone = false;
                 this.num = num;
@@ -42,8 +42,8 @@ public class Duke {
         }
         class Deadline extends Task {
             protected String by;
-            public Deadline(String description,int num,String by) {
-                super(description,num);
+            public Deadline(String description,String by) {
+                super(description);
                 this.by = by;
             }
 
@@ -55,8 +55,8 @@ public class Duke {
         }
         class ToDos extends Task {
 
-            public ToDos(String description,int num) {
-                super(description,num);
+            public ToDos(String description) {
+                super(description);
             }
 
             @Override
@@ -68,8 +68,8 @@ public class Duke {
 
         class Events extends Task {
             protected String at;
-            public Events(String description,int num,String at) {
-                super(description,num);
+            public Events(String description,String at) {
+                super(description);
                 this.at = at;
             }
 
@@ -143,7 +143,7 @@ public class Duke {
                    }
                    System.out.println("Got it.I've added this task");
                    String currD = str.substring(str.indexOf("deadline") + 8, str.indexOf("/by"));
-                   lst.set(i,new Deadline(currD, i + 1, str.substring(str.indexOf("/by") + 3)));
+                   lst.set(i,new Deadline(currD, str.substring(str.indexOf("/by") + 3)));
                    System.out.println(lst.get(i));
                    i++;
                    System.out.println("Now you have" + " " + i + " " + "tasks in list");
@@ -153,7 +153,7 @@ public class Duke {
                    }
                    System.out.println("Got it.I've added this task");
                    String currE = str.substring(str.indexOf("event") + 5, str.indexOf("/at"));
-                   lst.set(i, new Events(currE, i + 1, str.substring(str.indexOf("/at") + 3)));
+                   lst.set(i, new Events(currE, str.substring(str.indexOf("/at") + 3)));
                    System.out.println(lst.get(i));
                    i++;
                    System.out.println("Now you have" + " " + i + " " + "tasks in list");
@@ -164,7 +164,7 @@ public class Duke {
                    }
                    System.out.println("Got it.I've added this task");
                    String currT = str.substring(str.indexOf("todo") + 4);
-                   lst.set(i, new ToDos(currT, i + 1));
+                   lst.set(i, new ToDos(currT));
                    System.out.println(lst.get(i));
                    i++;
                    System.out.println("Now you have" + " " + i + " " + "tasks in list");
