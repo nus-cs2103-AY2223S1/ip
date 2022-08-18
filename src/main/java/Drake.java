@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -18,9 +19,17 @@ public class Drake {
 
         sc = new Scanner(System.in);
         String command = sc.nextLine();
+        ArrayList<String> list = new ArrayList<>();
         while (!Objects.equals(command, "bye")) {
             System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
-            System.out.println(command);
+            if (command.equals("list")) {
+                int i = 1;
+                for (String item : list)
+                    System.out.println(i++ + ". " + item);
+            } else {
+                System.out.println("added: " + command);
+                list.add(command);
+            }
             System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
             command = sc.nextLine();
         }
