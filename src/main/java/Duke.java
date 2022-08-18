@@ -1,10 +1,10 @@
-import com.sun.security.jgss.GSSUtil;
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
-    private static Task[] items = new Task[100];
-    private static int id;
+    private static List<Task> items = new ArrayList<>();
+    // private static int id;
 
     public static void main(String[] args) throws DukeException {
         String introduction = "Hello! I'm Duke\n" + "\tWhat can I do for you?";
@@ -33,8 +33,8 @@ public class Duke {
             int i;
             try {
                 i = Integer.parseInt(arr[1]) - 1;
-                if (i >= 0 && i < id) {
-                    Task t = items[i];
+                if (i >= 0 && i < items.size()) {
+                    Task t = items.get(i);
                     t.markAsDone();
                     Duke.echo("Nice! I've marked this task as done:\n" +
                             "\t  " + t);
@@ -46,8 +46,8 @@ public class Duke {
             int i;
             try {
                 i = Integer.parseInt(arr[1]) - 1;
-                if (i >= 0 && i < id) {
-                    Task t = items[i];
+                if (i >= 0 && i < items.size()) {
+                    Task t = items.get(i);
                     t.markAsUndone();
                     Duke.echo("OK! I've marked this task as not done yet:\n" +
                             "\t  " + t);
@@ -89,33 +89,34 @@ public class Duke {
         switch (type) {
             case "todo":
                 Todo t = new Todo(description);
-                Duke.items[id] = t;
+                Duke.items.add(t);
                 s = s + "  " + t;
                 break;
             case "deadline":
                 Deadline d = new Deadline(description, remarks);
-                Duke.items[id] = d;
+                Duke.items.add(d);
                 s = s + "  " + d;
                 break;
             case "event":
                 Event e = new Event(description, remarks);
-                Duke.items[id] = e;
+                Duke.items.add(e);
                 s = s + "  " + e;
                 break;
             default:
                 break;
         }
-        s = s + "\n\tNow you have " + (++id) + (id == 1 ? " task" : " tasks") + " in the list.";
+        int size = items.size();
+        s = s + "\n\tNow you have " + (size) + (size == 1 ? " task" : " tasks") + " in the list.";
         Duke.echo(s);
     }
 
     private static void list() {
-        if (id == 0) {
+        if (items.size() == 0) {
             Duke.echo("no items stored");
         } else {
             String s = "Here are the tasks in your list:\n";
-            for (int i = 0; i < id; i++) {
-                Task t = items[i];
+            for (int i = 0; i < items.size(); i++) {
+                Task t = items.get(i);
                 s = s + "\t" + (i + 1) + "." + t + "\n";
             }
             Duke.echo(s.trim());
