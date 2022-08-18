@@ -1,10 +1,13 @@
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
 public class Duke {
     private static final String greetMessage = "Hello! I'm Duke \nWhat can I do for you?";
     private static final String byeMessage = "Bye. Hope to see you again soon!";
-    private static String[] userTexts = new String[100];
-    private static int index = 0;
+    private static final String listMessage = "Here are the tasks in your list: \n";
+    private static final String markText = "Nice! I've marked this task as done: \n";
+    private static final String unmarkText = "OK, I've marked this task as not done yet: \n";
+    private static ArrayList<Task> userTasks = new ArrayList<>();
     private static void wrapText(String content) {
         System.out.println("-".repeat(57));
         System.out.println(content);
@@ -12,14 +15,14 @@ public class Duke {
     }
 
     private static void appendArray(String inputString) {
-        userTexts[index] = inputString;
-        index++;
+        userTasks.add(new Task(inputString));
     }
 
     private static String generateList() {
-        String listInString = "";
+        String listInString = listMessage;
+        int index = userTasks.size();
         for (int i = 0; i < index; i++) {
-            listInString += String.valueOf(i) + ". " + userTexts[i];
+            listInString += String.valueOf(i + 1) + ". " + userTasks.get(i).returnDescription();
             if(i != index - 1) {
                 listInString += "\n";
             }
@@ -27,6 +30,23 @@ public class Duke {
         return listInString;
     }
 
+    private static String generateMark(String taskNumber) {
+        int index = Integer.parseInt(taskNumber) - 1;
+        String markInText = markText;
+        Task currentTask = userTasks.get(index);
+        currentTask.markTask();
+        markInText += currentTask.returnDescription();
+        return markInText;
+    }
+
+    private static String generateUnmark(String taskNumber) {
+        int index = Integer.parseInt(taskNumber) - 1;
+        String unmarkInText = unmarkText;
+        Task currentTask = userTasks.get(index);
+        currentTask.unmarkTask();
+        unmarkInText += currentTask.returnDescription();
+        return unmarkInText;
+    }
     private static void handleUserInputs(Scanner scanner) {
         while(scanner.hasNext()) {
             String inputString = scanner.nextLine();
@@ -37,7 +57,12 @@ public class Duke {
                 break;
             } else if (input.equals("list")) {
                 wrapText(generateList());
-            } else {
+            } else if (input.equals("mark")) {
+                wrapText(generateMark(inputs[1]));
+            } else if (input.equals("unmark")) {
+                wrapText(generateUnmark(inputs[1]));
+            }
+            else {
                 appendArray(inputString);
                 wrapText("added: " + inputString);
             }
