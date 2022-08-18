@@ -79,7 +79,7 @@ public class DukeList {
     try {
       DukeTask item = items.get(i - 1);
       items.remove(i - 1);
-      return "Success! The following item has been deleted:\n"
+      return "Success! The following item has been deleted:\n "
           + item + listCount();
     } catch (IndexOutOfBoundsException e) {
       throw new DukeException("This item does not exist.");
@@ -128,6 +128,7 @@ public class DukeList {
 
   /**
    * Returns string signifying the items stored in the list.
+   *
    * @return String signifying stored items
    */
   @Override

@@ -19,13 +19,25 @@ Now you have 3 tasks in the list.
 Whoops! This task is now yet to be completed:
   [D][ ] item 2 (by: 3pm)
 -----------------------------------------------
+Hang on! This item does not exist.
+-----------------------------------------------
+Hang on! This item does not exist.
+-----------------------------------------------
+Hang on! Please recheck your number input, including trailing spaces.
+-----------------------------------------------
+Hang on! "hellothere" is not a recognised command.
+-----------------------------------------------
+Hang on! An incorrect deadline description was entered.
+-----------------------------------------------
+Hang on! An incorrect event description was entered.
+-----------------------------------------------
 Your current tasks:
   1. [T][X] item 1
   2. [D][ ] item 2 (by: 3pm)
   3. [E][ ] item 3 (at: 4pm)
 -----------------------------------------------
 Success! The following item has been deleted:
-[D][ ] item 2 (by: 3pm)
+ [D][ ] item 2 (by: 3pm)
 Now you have 2 tasks in the list.
 -----------------------------------------------
 Your current tasks:

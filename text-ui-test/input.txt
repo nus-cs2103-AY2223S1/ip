@@ -4,6 +4,12 @@ mark 1
 mark 2
 event item 3 /at 4pm
 unmark 2
+mark 7
+delete 8
+mark      23
+hellothere
+deadline item 4
+event item 5
 list
 delete 2
 list

@@ -8,10 +8,7 @@ import java.util.Scanner;
  */
 public class Duke {
     private final Scanner s;
-    private static final String intro =
-        "Welcome to Apollo!\n" +
-            "How can I help you today?";
-    public static final String divider =
+    private final String divider =
         "\n-----------------------------------------------";
 
     // Stores all the items given to the chatbot
@@ -25,7 +22,9 @@ public class Duke {
     /**
      * Initialises the chatbot.
      */
-    void start() {
+    public void start() {
+        String intro = "Welcome to Apollo!\n" +
+            "How can I help you today?";
         System.out.println(intro + divider);
         run();
     }
@@ -34,7 +33,7 @@ public class Duke {
      * Runs Apollo. Waits for input lines and
      * processes them accordingly.
      */
-    void run() {
+    private void run() {
         try {
             checkInput(s.nextLine());
         } catch (DukeException e) {
@@ -49,7 +48,7 @@ public class Duke {
      * @param inputString String given to Apollo
      * @throws DukeException Indicates incorrect inputs
      */
-    void checkInput(String inputString) throws DukeException {
+    private void checkInput(String inputString) throws DukeException {
         String[] input = inputString.split(" ");
         String output = "";
         try {
