@@ -1,7 +1,17 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
+Hello! I'm Duke
+What can I do for you?
+It appears you have no tasks right now,
+would you like to add some?
+Got it. I've added this task:
+[T][ ]  test this machine
+Now you have 1 tasks in the list.
+Got it. I've added this task:
+[D][ ]  finish implementing these functions  (by: 18th August 23 59)
+Now you have 2 tasks in the list.
+Got it. I've added this task:
+[E][ ]  CS2103T lecture  (at: 19th August 16 00)
+Now you have 3 tasks in the list.
+1. [T][ ]  test this machine
+2. [D][ ]  finish implementing these functions  (by: 18th August 23 59)
+3. [E][ ]  CS2103T lecture  (at: 19th August 16 00)
+Bye. Hope to see you again soon!
