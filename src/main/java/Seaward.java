@@ -23,13 +23,33 @@ public class Seaward {
             String list = "";
             for (int i = 0; i < numOfTasks; i++) {
                 int index = i + 1;
+                String taskDescription = taskList.readTask(i);
+                String isDone = taskList.readStatus(i);
                 if (index == numOfTasks) {
-                    list = list + index + ". " + taskList.readTask(i);
+                    list = list + index + ". [" + isDone +
+                            "] " + taskDescription;
                 } else {
-                    list = list + index + ". " + taskList.readTask(i) + "\n";
+                    list = list + index + ". [" + isDone +
+                            "] " + taskDescription + "\n";
                 }
             }
             return list;
+        } else if (s.startsWith("mark")) {
+            int index = Integer.parseInt(s.substring(5)) - 1;
+            if (index + 1 > taskList.getNumOfTasks()) {
+                return "This task doesn't exist!";
+            }
+            taskList.setCompleted(index);
+            return "I have marked this task as done:\n" +
+                    "[X] " + taskList.readTask(index);
+        } else if (s.startsWith("unmark")) {
+            int index = Integer.parseInt(s.substring(7)) - 1;
+            if (index + 1 > taskList.getNumOfTasks()) {
+                return "This task doesn't exist!";
+            }
+            taskList.setNotCompleted(index);
+            return "I have marked this task as undone:\n" +
+                    "[ ] " + taskList.readTask(index);
         } else {
             taskList.addTask(s);
             return "I have added: " + s + " into the task list.";
