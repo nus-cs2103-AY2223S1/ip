@@ -56,7 +56,7 @@ public class Duke {
                     addTask = false;
                 }
 
-                if (addTask = true) {
+                if (addTask) {
                     toDoList[count] = newTask;
                     count++;
                     String message = "\t" + "_".repeat(20) + "\n"
