@@ -17,4 +17,6 @@ Here are the tasks in your list:
 1.  [T] [X] borrow book
 2.  [D] [X] return book (by: Sunday)
 3.  [E] [ ] project meeting (at: Mon 2-4pm)
+Noted. I've removed this task:
+  [D] [X] return book (by: Sunday)
 Bye. Hope to see you again soon!

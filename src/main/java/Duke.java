@@ -53,6 +53,15 @@ public class Duke {
                 list.add(new Event(item[0], item[1]));
                 System.out.println("Got it. I've added this task:\n" + list.get(list.size() -1));
                 System.out.println("Now you have " + list.size() + " tasks in the list.");
+            } else if (input.startsWith("delete")) {
+                String[] info = input.split("delete ");
+                if (info.length <= 1) {
+                    throw new DukeException("OOPS!! The item to be deleted has to be specified.");
+                }
+                int target = Integer.valueOf(info[1]) - 1;
+                Task toRemove = list.get(target);
+                list.remove(target);
+                System.out.println("Noted. I've removed this task:\n" + toRemove);
             } else {
                 throw new DukeException("OOPS!! I'm sorry, but I don't know what that means :-(");
             }
