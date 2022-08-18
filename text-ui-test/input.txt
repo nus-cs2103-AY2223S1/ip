@@ -5,15 +5,15 @@ list
 mark 1
 todo return notebook
 list
-mark 3
-unmark 3
-mark 3
+unmark 1
 list
 wee
 todo
 deadline
 event
-mark
+mark 10
+delete 9
+delete 1
 deadline read book
 list
 bye

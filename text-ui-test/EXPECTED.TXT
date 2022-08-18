@@ -5,19 +5,19 @@
 <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
 
 <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
-Got it. I've added this task:
++ Added this todo:
 [T][ ] borrow book
 Now you have 1 tasks in the list
 <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
 
 <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
-Got it. I've added this task:
++ Added this deadline:
 [D][ ] return book (by: idk)
 Now you have 2 tasks in the list
 <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
 
 <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
-Got it. I've added this task:
++ Added this event:
 [E][ ] Mary's birthday party (at: Sunday 7-9pm)
 Now you have 3 tasks in the list
 <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
@@ -30,12 +30,12 @@ Here are the tasks in your list:
 <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
 
 <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
-Yay! You've completed a task!
+[X] You've completed a task!
 [T][X] borrow book
 <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
 
 <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
-Got it. I've added this task:
++ Added this todo:
 [T][ ] return notebook
 Now you have 4 tasks in the list
 <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
@@ -49,61 +49,60 @@ Here are the tasks in your list:
 <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
 
 <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
-Yay! You've completed a task!
-[E][X] Mary's birthday party (at: Sunday 7-9pm)
-<><><><><><><><><><><><><><><><><><><><><><><><><><><><>
-
-<><><><><><><><><><><><><><><><><><><><><><><><><><><><>
-OK, I've marked this task as not done yet:
-[E][ ] Mary's birthday party (at: Sunday 7-9pm)
-<><><><><><><><><><><><><><><><><><><><><><><><><><><><>
-
-<><><><><><><><><><><><><><><><><><><><><><><><><><><><>
-Yay! You've completed a task!
-[E][X] Mary's birthday party (at: Sunday 7-9pm)
+[ ] I've marked this task as not done yet:
+[T][ ] borrow book
 <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
 
 <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
 Here are the tasks in your list: 
-1. [T][X] borrow book
+1. [T][ ] borrow book
 2. [D][ ] return book (by: idk)
-3. [E][X] Mary's birthday party (at: Sunday 7-9pm)
+3. [E][ ] Mary's birthday party (at: Sunday 7-9pm)
 4. [T][ ] return notebook
 <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
 
 <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
-☹ OOPS!!! I'm sorry, but I don't know what that means :-(
+(´･_･`) I don't know what that means
 <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
 
 <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
-☹ OOPS!!! The description of a todo cannot be empty.
+The description of a todo cannot be empty. （ﾟДﾟ ）
 <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
 
 <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
-☹ OOPS!!! The description of a deadline cannot be empty.
+The description of a deadline cannot be empty. （ﾟДﾟ ）
 <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
 
 <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
-☹ OOPS!!! The description of a event cannot be empty.
+The description of a event cannot be empty. （ﾟДﾟ ）
 <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
 
 <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
-☹ OOPS!!! The value of mark cannot be empty.
+There is no 10 index in the list. （ﾟДﾟ ）
 <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
 
 <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
-☹ OOPS!!! The date of deadline cannot be empty.
+There is no 9 index in the list. （ﾟДﾟ ）
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+ - Removed this task:
+[T][ ] borrow book
+Now you have 3 tasks in the list
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+The date of deadline cannot be empty. （ﾟДﾟ ）
 <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
 
 <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
 Here are the tasks in your list: 
-1. [T][X] borrow book
-2. [D][ ] return book (by: idk)
-3. [E][X] Mary's birthday party (at: Sunday 7-9pm)
-4. [T][ ] return notebook
+1. [D][ ] return book (by: idk)
+2. [E][ ] Mary's birthday party (at: Sunday 7-9pm)
+3. [T][ ] return notebook
 <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
 
 <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
-Gone so soon? :( Bye
+Gone so soon? Bye (._.)
 <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
 
