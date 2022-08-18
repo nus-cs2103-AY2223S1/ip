@@ -1,7 +1,8 @@
+import java.awt.desktop.SystemEventListener;
 import java.util.*;
 public class Duke {
 
-    private static List<String> todoList;
+    private static List<Task> todoList;
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -21,8 +22,15 @@ public class Duke {
                 case "list":
                     displayList();
                     break;
+                case "mark":
+                    mark(Integer.parseInt(words[1]));
+                    break;
+                case "unmark":
+                    unmark(Integer.parseInt(words[1]));
+                    break;
+
                 default:
-                    addtoList(input);
+                    addToList(input);
 
             }
         }
@@ -38,10 +46,19 @@ public class Duke {
 
     }
 
-    private static void addtoList(String input) {
+    private static void addToList(String input) {
         System.out.println("added: " + input);
-        todoList.add(input);
+        todoList.add(new Task(input));
     }
 
+    private static void mark(int index) {
+        todoList.get(index - 1).markAsDone();
+        System.out.println("Marked as done: \n" + todoList.get(index - 1));
+    }
+
+    private static void unmark(int index) {
+        todoList.get(index - 1).markAsNotDone();
+        System.out.println("Marked as not done: \n" + todoList.get(index - 1));
+    }
 
 }
