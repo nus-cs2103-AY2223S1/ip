@@ -8,6 +8,22 @@ public class Duke {
     }
 
     /**
+     * Print Duke's greeting message.
+     */
+    public void sayGreetings() {
+        String greetingMsg = "Hello! I'm Duke \nWhat can I do for you?";
+        prettyPrint(greetingMsg);
+    }
+
+    /**
+     * Print Duke's good bye message.
+     */
+    public void sayGoodBye() {
+        String goodByeMsg = "Bye. Hope to see you again soon!";
+        prettyPrint(goodByeMsg);
+    }
+
+    /**
      * Adds a new task to the task list and prints a confirmation message.
      * 
      * @param task Task to be added.
@@ -110,13 +126,11 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        String greetingMsg = "Hello! I'm Duke \nWhat can I do for you?";
-        String goodByeMsg = "Bye. Hope to see you again soon!";
 
         Duke dk = new Duke();
         Scanner sc = new Scanner(System.in);
-        prettyPrint(greetingMsg);
 
+        dk.sayGreetings();
         while (true) {
             String usrInput = sc.nextLine();
             String[] usrInputTokens = usrInput.split(" ", 2);
@@ -208,6 +222,6 @@ public class Duke {
             }
         }
         sc.close();
-        prettyPrint(goodByeMsg);
+        dk.sayGreetings();
     }
 }
