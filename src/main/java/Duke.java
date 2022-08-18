@@ -1,8 +1,6 @@
 import java.util.Scanner;
 
 public class Duke {
-
-
     public static void welcome() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -12,10 +10,9 @@ public class Duke {
         System.out.println("Hello from\n" + logo);
     }
 
-    public static void goodbye() {
+    public static void bye() {
         System.out.println("Sayonara, Adios!");
     }
-
 
     public static void main(String[] args) {
         Duke.welcome();
@@ -25,9 +22,10 @@ public class Duke {
 
         int i = 0;
         while (true) {
-            String str = sc.nextLine();
+            try {
+                String str = sc.nextLine();
                 if (str.equals("bye")) {
-                    Duke.goodbye();
+                    Duke.bye();
                     break;
                 }
                 if (str.equals("list")) {
@@ -68,34 +66,57 @@ public class Duke {
                         System.out.println("Index too big, no such task exists.");
                     }
                 } else if (str.startsWith("todo ")) {
-                    db[i] = new Todo(str.substring(5));
-                    System.out.println("added: " + str);
-                    i++;
-                    System.out.println("Got it, I've added this task:");
-                    System.out.println(db[i - 1]);
-                    System.out.println("Now you have " + i + " tasks in the list.");
+                    String sub = str.substring(5).trim();
+                    if (!sub.isEmpty()) {
+                        db[i] = new Todo(str.substring(5));
+                        i++;
+                        System.out.println("Got it, I've added this task:");
+                        System.out.println(db[i - 1]);
+                        System.out.println("Now you have " + i + " tasks in the list.");
+                    } else {
+                        throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+                    }
+                } else if (str.equals("todo")){
+                    throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
                 } else if (str.startsWith("deadline ")) {
-                    String[] split = str.split("/by");
-                    db[i] = new Deadline(split[0].substring(9), split[1]);
-                    i++;
-                    System.out.println("Got it, I've added this task:");
-                    System.out.println(db[i - 1]);
-                    System.out.println("Now you have " + i + " tasks in the list.");
+                    String sub = str.substring(9).trim();
+                    if (str.contains("/by")) {
+                        String[] split = sub.split("/by");
+                        System.out.println(split.length);
+                        if (split.length < 2) {
+                            throw new DukeException("Please specify the deadline.");
+                        } else {
+                            db[i] = new Deadline(split[0], split[1]);
+                            i++;
+                            System.out.println("Got it, I've added this task:");
+                            System.out.println(db[i - 1]);
+                            System.out.println("Now you have " + i + " tasks in the list.");
+                        }
+                    } else {
+                        throw new DukeException("Please specify the deadline by using \"/by\".");
+                    }
                 } else if (str.startsWith("event ")) {
-                    String[] split = str.split("/at");
-                    db[i] = new Event(split[0].substring(6), split[1]);
-                    i++;
-                    System.out.println("Got it, I've added this task:");
-                    System.out.println(db[i - 1]);
-                    System.out.println("Now you have " + i + " tasks in the list.");
+                    String sub = str.substring(6).trim();
+                    if (str.contains("/at")) {
+                        String[] split = sub.split("/at");
+                        db[i] = new Event(split[0], split[1]);
+                        i++;
+                        System.out.println("Got it, I've added this task:");
+                        System.out.println(db[i - 1]);
+                        System.out.println("Now you have " + i + " tasks in the list.");
+                    } else {
+                        throw new DukeException("Please specify the event date by using \"/at\"");
+                    }
                 } else {
-                    db[i] = new Task(str);
-                    i++;
-                    System.out.println("Got it, I've added this task:");
-                    System.out.println(db[i - 1]);
-                    System.out.println("Now you have " + i + " tasks in the list.");
+                    throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
+            } catch (DukeException e) {
+                System.out.println(e.getMessage());
+
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid index input, please try again.");
             }
         }
     }
+}
 
