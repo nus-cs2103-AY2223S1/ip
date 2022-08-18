@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Duke {
+public class Ted {
 
     private static final String GREETING =
             "##################################################\n" +
@@ -94,7 +94,7 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        Duke bot = new Duke();
+        Ted bot = new Ted();
         bot.run();
     }
 }
