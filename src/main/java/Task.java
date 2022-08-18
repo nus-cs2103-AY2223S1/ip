@@ -13,25 +13,14 @@ public class Task {
      */
     String taskName;
 
-    /**
-     * task ID.
-     */
-    int index;
 
     /**
      * Constructor to initialize class.
      *
-     * @param name taskname
-     * @param value task ID
+     * @param name task name
      */
-    public Task(String name, int value) {
+    public Task(String name) {
         taskName = name;
-        index = value;
-
-        System.out.printf(
-                "    ____________________________________________________________\n" +
-                "     added: %s\n" +
-                "    ____________________________________________________________\n", taskName);
     }
 
     /**
@@ -44,7 +33,7 @@ public class Task {
                 "    ____________________________________________________________\n" +
                 "     Nice! I've marked task %s as done:\n" +
                 "     " + this.toString() + "\n" +
-                "    ____________________________________________________________\n", index);
+                "    ____________________________________________________________\n", taskName);
     }
 
     /**
@@ -56,7 +45,17 @@ public class Task {
                 "    ____________________________________________________________\n" +
                 "     Ok, I've marked task %s as not done yet:\n" +
                 "     " + this.toString() + "\n" +
-                "    ____________________________________________________________\n", index);
+                "    ____________________________________________________________\n", taskName);
+    }
+
+    /**
+     * Printed message when object is created.
+     */
+    public void addMessage(){
+        System.out.printf(
+                "    ____________________________________________________________\n" +
+                "     added: %s\n" +
+                "    ____________________________________________________________\n", taskName);
     }
 
     /**
@@ -68,6 +67,6 @@ public class Task {
         if (completed) {
             marked = "[X]";
         }
-        return index + ". " + marked + " " + taskName;
+        return marked + " " + taskName;
     }
 }

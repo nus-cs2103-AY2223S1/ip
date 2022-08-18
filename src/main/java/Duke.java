@@ -1,5 +1,6 @@
 import java.util.Objects;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 
 /**
@@ -14,12 +15,7 @@ public class Duke {
     /**
      * Array used to store user inputs as a Task Object.
      */
-    static Task[] taskArray = new Task[100];
-
-    /**
-     * Counter to keep track of the number of items in the list
-     */
-    static int count = 0;
+    public static ArrayList<Task> taskArray = new ArrayList<>();
 
     /**
      * Main method initializes welcome message, and then calls taskList method.
@@ -52,8 +48,9 @@ public class Duke {
     public static void readList() {
         System.out.println("    ____________________________________________________________\n");
 
-        for (int i = 1; i <= count; i++){
-            System.out.println(taskArray[i - 1].toString());
+        for (int i = 1; i <= taskArray.size(); i++){
+            String index = String.format("%d.", i);
+            System.out.println(index + taskArray.get(i - 1).toString());
         }
 
         System.out.println("    ____________________________________________________________\n");
@@ -81,12 +78,8 @@ public class Duke {
                  } catch (NumberFormatException e) {
                      System.out.println("Invalid task! Please input a number!");
                  }
-
-
             } else {
-                 Task newTask = new Task(input, count + 1);
-                 taskArray[count] = newTask;
-                 count++;
+                createTask(input);
             }
             input = userInput.nextLine();
         }
@@ -103,12 +96,57 @@ public class Duke {
      * @param index to indicate which task to apply action to
      */
     public static void markTasks(String action, int index) {
-        if (index > count || index < 1) {
+        if (index > taskArray.size() || index < 1) {
             System.out.println("Invalid task ID!");
         } else if (Objects.equals(action, "mark")){
-            taskArray[index - 1].mark();
+            taskArray.get(index - 1).mark();
         } else {
-            taskArray[index - 1].unMark();
+            taskArray.get(index - 1).unMark();
         }
      }
+
+    /**
+     * createTask handles task of child type ToDo, Deadlines and Events.
+     *
+     * @param input user input.
+     * @throws ArrayIndexOutOfBoundsException used to handle invalid inputs.
+     */
+    public static void createTask(String input) throws ArrayIndexOutOfBoundsException {
+
+        String[] commands = input.split("/", 2);
+        String[] inputArr = commands[0].split(" ", 2);
+
+        if (Objects.equals(inputArr[0], "todo")) {
+            ToDo newToDo = new ToDo(inputArr[1]);
+            taskArray.add(newToDo);
+        } else {
+            if (Objects.equals(inputArr[0], "deadline") || Objects.equals(inputArr[0], "event")) {
+                try {
+                    String[] date = commands[1].split(" ", 2);
+                    System.out.println(date[1]);
+
+                    if (Objects.equals(inputArr[0], "deadline")) {
+                        if (Objects.equals(date[0].toLowerCase(), "by")) {
+                            Deadlines newDeadline= new Deadlines(inputArr[1], date[1]);
+                            taskArray.add(newDeadline);
+                        } else {
+                            System.out.println("Include '/by' followed by a date after!");
+                        }
+                    } else {
+                        if (Objects.equals(date[0].toLowerCase(), "at")) {
+                            Events newEvent = new Events(inputArr[1], date[1]);
+                            taskArray.add(newEvent);
+                        } else {
+                            System.out.println("Include '/at' followed by a date after!");
+                        }
+                    }
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.println("deadline/event requires date as a third parameter after /by or /at respectively!");
+                }
+            } else {
+                System.out.println("Indicate todo/deadline/event before a task");
+            }
+        }
+
+    }
 }
