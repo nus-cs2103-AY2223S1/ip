@@ -6,18 +6,7 @@ public class Mark extends Task {
     }
 
     @Override
-    public boolean AddToList() {
-        return false;
-    }
-
-    @Override
-    public String getStatusIcon() {
-        this.isDone = true;
-        return "X";
-    }
-
-    @Override
     public String toString() {
-        return "Nice! I've marked this task as done:\n" + "[X] " + this.command.substring(5);
+        return "Nice! I've marked this task as done:\n" + this.command.substring(2, 5) + "[X] " + this.command.substring(9);
     }
 }

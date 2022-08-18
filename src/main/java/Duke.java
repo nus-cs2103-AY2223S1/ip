@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Duke {
-    int num = 0; // Number of tasks that are created.
+    int num = 1;
     HashMap<Integer, String> map = new HashMap<>();
 
     public static void main(String[] args) {
@@ -35,18 +35,15 @@ public class Duke {
     public void PrintCommand(String command) {
         if (command.equals("list")) {
             String list = "";
-            for (int k = 1; k <= num; k++) {
+            for (int k = 1; k < map.size() + 1; k++) {
                 list += map.get(k) + "\n";
             }
             System.out.println(list);
         }
         else {
-            Task task = Task.of(command, map);
-            if (task.AddToList()) {
-                num++;
-                map.put(num, num + "." + task.toString());
-            }
+            Task task = Task.of(command, map, num);
             System.out.println(task.toString());
+            num++;
         }
     }
 
