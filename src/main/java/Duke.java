@@ -56,45 +56,52 @@ public class Duke {
         // Limit the words to 2
         String[] inputs = command.split(" ", 2);
 
-        switch (inputs[0]) {
-            // List out all tasks
-            case ("list"): {
-                listCommand();
-                break;
+        try {
+            switch (inputs[0]) {
+                // List out all tasks
+                case ("list"): {
+                    listCommand(inputs);
+                    break;
+                }
+                // Add todo task
+                case ("todo"): {
+                    addTodoCommand(inputs);
+                    break;
+                }
+                // Add deadline task
+                case ("deadline"): {
+                    addDeadlineCommand(inputs);
+                    break;
+                }
+                // Add event task
+                case ("event"): {
+                    addEventCommand(inputs);
+                    break;
+                }
+                // Mark the task as done
+                case ("mark"): {
+                    markTaskCommand(inputs);
+                    break;
+                }
+                // Mark the task as undone
+                case ("unmark"): {
+                    unmarkTaskCommand(inputs);
+                    break;
+                }
+                default: {
+                    throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(.\n");
+                }
             }
-            // Add todo task
-            case ("todo"): {
-                addTodoCommand(inputs[1]);
-                break;
-            }
-            // Add deadline task
-            case ("deadline"): {
-                addDeadlineCommand(inputs[1]);
-                break;
-            }
-            // Add event task
-            case ("event"): {
-                addEventCommand(inputs[1]);
-                break;
-            }
-            // Mark the task as done
-            case ("mark"): {
-                markTaskCommand(inputs[1]);
-                break;
-            }
-            // Mark the task as undone
-            case ("unmark"): {
-                unmarkTaskCommand(inputs[1]);
-                break;
-            }
-            default: {
-                printTextWithDivider("Sorry, I don't understand this command.\n" +
-                        "Please enter again!\n");
-            }
+        } catch (DukeException e) {
+            printTextWithDivider(e.getMessage());
         }
     }
 
-    private static void listCommand() {
+    private static void listCommand(String[] inputs) throws DukeException {
+        if (inputs.length == 2) {
+            throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(.\n");
+        }
+
         StringBuilder str = new StringBuilder();
         str.append("Here are the tasks in your list:\n");
         for (int i = 0; i < taskList.size(); i++) {
@@ -104,42 +111,75 @@ public class Duke {
         printTextWithDivider(str.toString());
     }
 
-    private static void addTodoCommand(String description) {
-        addTask(new Todo(description));
+    private static void addTodoCommand(String[] inputs) throws DukeException {
+        if (inputs.length == 1 || inputs[1].equals("")) {
+            throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.\n");
+        }
+        addTask(new Todo(inputs[1]));
     }
 
-    private static void addDeadlineCommand(String description) {
-        String[] deadlineInputs = description.split("/by", 2);
+    private static void addDeadlineCommand(String[] inputs) throws DukeException {
+        if (inputs.length == 1 || inputs[1].equals("")) {
+            throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.\n");
+        }
+
+        String[] deadlineInputs = inputs[1].split("/by", 2);
+
+        if (deadlineInputs.length == 1 || deadlineInputs[1].equals("")) {
+            throw new DukeException("☹ OOPS!!! The date of a deadline cannot be empty.\n");
+        }
         addTask(new Deadline(deadlineInputs[0], deadlineInputs[1]));
     }
 
-    private static void addEventCommand(String description) {
-        String[] eventInputs = description.split("/at", 2);
+    private static void addEventCommand(String[] inputs) throws DukeException {
+        if (inputs.length == 1 || inputs[1].equals("")) {
+            throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.\n");
+        }
+
+        String[] eventInputs = inputs[1].split("/at", 2);
+
+        if (eventInputs.length == 1 || eventInputs[1].equals("")) {
+            throw new DukeException("☹ OOPS!!! The date and time of an event cannot be empty.\n");
+        }
         addTask(new Event(eventInputs[0], eventInputs[1]));
     }
 
-    private static void markTaskCommand(String taskIndexStr) {
-        // Tasks are stored as 0-index but display as 1-index
-        // Minus 1 to get the correct task in the taskList
-        int taskIndex = Integer.parseInt(taskIndexStr) - 1;
-        Task task = taskList.get(taskIndex);
-        task.markAsDone();
+    private static void markTaskCommand(String[] inputs) throws DukeException {
+        if (inputs.length == 1 || inputs[1].equals("")) {
+            throw new DukeException("☹ OOPS!!! The task index cannot be empty.\n");
+        }
+        try {
+            // Tasks are stored as 0-index but display as 1-index
+            // Minus 1 to get the correct task in the taskList
+            int taskIndex = Integer.parseInt(inputs[1]) - 1;
+            Task task = taskList.get(taskIndex);
+            task.markAsDone();
 
-        String str = "Nice! I've marked this as done:\n" +
-                task + "\n";
-        printTextWithDivider(str);
+            String str = "Nice! I've marked this as done:\n" +
+                    task + "\n";
+            printTextWithDivider(str);
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            throw new DukeException("☹ OOPS!!! The task index specified is not valid.\n");
+        }
     }
 
-    private static void unmarkTaskCommand(String taskIndexStr) {
-        // Tasks are stored as 0-index but display as 1-index
-        // Minus 1 to get the correct task in the taskList
-        int taskIndex = Integer.parseInt(taskIndexStr) - 1;
-        Task task = taskList.get(taskIndex);
-        task.maskUndone();
+    private static void unmarkTaskCommand(String[] inputs) {
+        if (inputs.length == 1 || inputs[1].equals("")) {
+            throw new DukeException("☹ OOPS!!! The task index cannot be empty.\n");
+        }
+        try {
+            // Tasks are stored as 0-index but display as 1-index
+            // Minus 1 to get the correct task in the taskList
+            int taskIndex = Integer.parseInt(inputs[1]) - 1;
+            Task task = taskList.get(taskIndex);
+            task.maskUndone();
 
-        String str = "Ok, I've marked this task as not done yet:\n" +
-                task + "\n";
-        printTextWithDivider(str);
+            String str = "Ok, I've marked this task as not done yet:\n" +
+                    task + "\n";
+            printTextWithDivider(str);
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            throw new DukeException("☹ OOPS!!! The task index specified is not valid.\n");
+        }
     }
 
     private static void addTask(Task task) {
