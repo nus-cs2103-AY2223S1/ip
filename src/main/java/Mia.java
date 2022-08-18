@@ -11,7 +11,7 @@ public class Mia {
         System.out.println(logo);
 
         final int windowWidth = 50;
-        printResponse("Hello there!", windowWidth);
+        printResponse(new Span("Hello there!"), windowWidth);
         final Scanner sc = new Scanner(System.in);
 
         System.out.print("Enter a command: ");
@@ -20,34 +20,34 @@ public class Mia {
 
             // Replaces the entered command (previous line) with a bubble
             System.out.print("\u001B[1A\u001B[K");
-            printCommand(line);
+            printCommand(new Span(line));
 
             if (line.equals("bye")) {
-                printResponse("See you!", windowWidth);
+                printResponse(new Span("See you!"), windowWidth);
                 break;
             } else if (line.equals("list")) {
-                printResponse(tasksManager.toString(), windowWidth);
+                printResponse(new Span(tasksManager.toString()), windowWidth);
                 System.out.print("Enter a command: ");
                 continue;
             }
             final Task newTask = new Task(line);
             tasksManager.addTask(newTask);
-            printResponse(String.format("Added task \"%s\" to tasks list!", newTask), windowWidth);
+            printResponse(new Span(String.format("Added task \"%s\" to tasks list!", newTask)), windowWidth);
             System.out.print("Enter a command: ");
         }
         sc.close();
     }
 
-    private static String[] breakLines(String data) {
+    private static Text[] breakLines(Text data) {
         // Break strings at the next word after line length hits 30 characters
         return data.lines()
                 .flatMap((s) -> Arrays.stream(s.split("(?<=\\G\\b?.{30,}\\s)")))
-                .map(String::strip)
-                .toArray(String[]::new);
+                .map(Text::strip)
+                .toArray(Text[]::new);
     }
 
-    private static void printResponse(String response, int windowWidth) {
-        final String[] lines = breakLines(response);
+    private static void printResponse(Text response, int windowWidth) {
+        final Text[] lines = breakLines(response);
         int maxLength = 3; // prevents negative count
         for (int i = 0; i < lines.length; i++) {
             if (maxLength < lines[i].length()) {
@@ -69,8 +69,8 @@ public class Mia {
         System.out.printf(sb.toString());
     }
 
-    private static void printCommand(String command) {
-        final String[] lines = breakLines(command);
+    private static void printCommand(Text command) {
+        final Text[] lines = breakLines(command);
         int maxLength = 3; // prevents negative count
         for (int i = 0; i < lines.length; i++) {
             if (maxLength < lines[i].length()) {
