@@ -1,8 +1,12 @@
-todo borrow book
+todo Read book
+deadline Read Chapter 1 /by Fri 18 Aug
+event CS2103T Lecture /at Fri 18 Aug 4:00PM to 6:00PM
 list
-deadline return book /by Sunday
-event project meeting /at Mon 2-4pm
-asdf
-mark 2
-unmark 2
+mark 1
+mark 3
+list
+unmark 1
+mark -100
+mark 0
+unknownuselesscommand
 bye
