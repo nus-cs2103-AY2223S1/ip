@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Duke {
     private static Scanner sc = new Scanner(System.in);
-    private static ArrayList<String> textList = new ArrayList<>();
+    private static ArrayList<Task> taskList = new ArrayList<>();
 
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -28,10 +28,22 @@ public class Duke {
             String messageList = generateList();
             printMessage(messageList);
             return 1;
+        } else if (m.length() > 5 && m.startsWith("mark")) {
+            int id = Integer.parseInt(m.substring(5));
+            Task t = Duke.taskList.get(id - 1);
+            t.done();
+            printMessage("Nice! I've marked this task as done:\n    " + t);
+            return 2;
+        } else if (m.length() > 7 && m.startsWith("unmark")) {
+            int id = Integer.parseInt(m.substring(7));
+            Task t = Duke.taskList.get(id - 1);
+            t.undone();
+            printMessage("OK, I've marked this task as not done yet:\n    " + t);
+            return 3;
         } else {
             storeMessage(m);
             printMessage("added: " + m);
-            return 2;
+            return 100;
         }
     }
 
@@ -43,17 +55,17 @@ public class Duke {
     }
 
     private static void storeMessage(String m) {
-        Duke.textList.add(m);
+        Duke.taskList.add(new Task(m));
     }
 
     private static String generateList() {
-        if (Duke.textList.size() == 0) {
+        if (Duke.taskList.size() == 0) {
             return "";
         }
         String out = "";
         int count = 1;
-        for (String s: Duke.textList) {
-            out += "\n    " + count++ + ". " + s;
+        for (Task t: Duke.taskList) {
+            out += "\n    " + count++ + ". " + t;
         }
         return out.substring(5);
     }
