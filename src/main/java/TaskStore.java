@@ -16,7 +16,7 @@ public class TaskStore {
      * @param index
      * @return The `index`-th task
      */
-    public Task getTask(int index) {
+    public Task getTask(int index) throws IndexOutOfBoundsException {
         return this.store.get(index);
     }
 
@@ -32,6 +32,9 @@ public class TaskStore {
      */
     @Override
     public String toString() {
+        if (this.size() == 0) {
+            return "You have no tasks, please create one!";
+        }
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < this.store.size(); i++) {
             Task task = this.getTask(i);

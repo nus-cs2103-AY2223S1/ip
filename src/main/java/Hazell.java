@@ -33,12 +33,24 @@ public class Hazell {
                 reply(taskStore.toString());
             } else if (command.startsWith("mark")) {
                 int index = Integer.parseInt(command.getTrailingArgs().get(0)) - 1;
-                Task task = taskStore.getTask(index);
+                Task task;
+                try {
+                    task = taskStore.getTask(index);
+                } catch (IndexOutOfBoundsException ex) {
+                    reply(String.format("There's no such task! Please choose a task from 1 to %d", taskStore.size()));
+                    continue;
+                }
                 task.markAsDone();
                 reply(String.format("Nice! I've marked this task as done:\n\t%s", task.toString()));
             } else if (command.startsWith("unmark")) {
                 int index = Integer.parseInt(command.getTrailingArgs().get(0)) - 1;
-                Task task = taskStore.getTask(index);
+                Task task;
+                try {
+                    task = taskStore.getTask(index);
+                } catch (IndexOutOfBoundsException ex) {
+                    reply(String.format("There's no such task! Please choose a task from 1 to %d", taskStore.size()));
+                    continue;
+                }
                 task.markAsUndone();
                 reply(String.format("OK, I've marked this task as not done yet:\n\t%s", task.toString()));
             } else if (command.startsWith("todo")) {
@@ -51,6 +63,7 @@ public class Hazell {
                 try {
                     time = command.getKwarg("by");
                 } catch (Command.KwargNotFoundException ex) {
+                    reply("To create a deadline, please specify a \"/by\" option.");
                     continue;
                 }
                 String response = taskStore.addTask(new Deadline(description, time));
@@ -61,6 +74,7 @@ public class Hazell {
                 try {
                     time = command.getKwarg("at");
                 } catch (Command.KwargNotFoundException ex) {
+                    reply("To create an event, please specify an \"/at\" option.");
                     continue;
                 }
 
