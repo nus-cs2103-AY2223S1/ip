@@ -35,7 +35,7 @@ public class TaskList {
         IOHelper.print(LIST_MESSAGE);
         for (int i = 0; i < tasks.size(); i++) {
             Task task = tasks.get(i);
-            IOHelper.print(String.format("%d.[%s] %s", i + 1, task.getStatusIcon(), task));
+            IOHelper.print(String.format("%d. %s", i + 1, task.toString()));
         }
     }
 
@@ -55,7 +55,7 @@ public class TaskList {
             task.unmark();
             IOHelper.print(UNMARKED_MESSAGE);
         }
-        IOHelper.print(String.format("[%s] %s", task.getStatusIcon(), task));
+        IOHelper.print(task.toString());
     }
 
     /**
