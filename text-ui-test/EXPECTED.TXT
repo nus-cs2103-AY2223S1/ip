@@ -1,7 +1,25 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
+Hello! I'm THE BRO
+What can I do for you?
+[D][ ]CS2103T  (by:  thursday)
+[E][ ]party in sentosa  (at:  7-9pm friday)
+1.[D][ ]CS2103T  (by:  thursday)
+2.[E][ ]party in sentosa  (at:  7-9pm friday)
+I have marked this task
+[D][X]CS2103T  (by:  thursday)
+[T][ ]eat dinner
+1.[D][X]CS2103T  (by:  thursday)
+2.[E][ ]party in sentosa  (at:  7-9pm friday)
+3.[T][ ]eat dinner
+I have marked this task
+[E][X]party in sentosa  (at:  7-9pm friday)
+1.[D][X]CS2103T  (by:  thursday)
+2.[E][X]party in sentosa  (at:  7-9pm friday)
+3.[T][ ]eat dinner
+[T][ ]go for walking
+I have unmarked this task
+[D][ ]CS2103T  (by:  thursday)
+1.[D][ ]CS2103T  (by:  thursday)
+2.[E][X]party in sentosa  (at:  7-9pm friday)
+3.[T][ ]eat dinner
+4.[T][ ]go for walking
+Bye. See you later broo!

@@ -1,0 +1,12 @@
+deadline CS2103T /by thursday
+event party in sentosa /at 7-9pm friday
+list
+mark 1
+todo eat dinner
+list
+mark 2
+list
+todo go for walking
+unmark 1
+list
+bye
