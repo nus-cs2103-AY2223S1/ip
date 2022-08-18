@@ -1,6 +1,21 @@
 public class Task {
-    public String taskName;
+    protected String taskName;
+    protected boolean isDone;
     public Task(String taskName) {
         this.taskName = taskName;
+        this.isDone = false;
     }
+
+    public String getStatusIcon() {
+        return (isDone ? "X" : " ");
+    }
+
+    public void markAsDone() {
+        isDone = true;
+    }
+
+    public void markAsUndone() {
+        isDone = false;
+    }
+
 }
