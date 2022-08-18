@@ -25,9 +25,13 @@ public class Duke {
     }
 
     protected void listTasks() {
-        System.out.println("Here are the tasks in your list:");
-        for (int i = 0; i < taskList.size(); i++) {
-            System.out.println(i + 1 + ". " + taskList.get(i));
+        if (taskList.isEmpty()) {
+            System.out.println("You have no tasks at the moment!");
+        } else {
+            System.out.println("Here are the tasks in your list:");
+            for (int i = 0; i < taskList.size(); i++) {
+                System.out.println(i + 1 + ". " + taskList.get(i));
+            }
         }
     }
 
@@ -36,7 +40,7 @@ public class Duke {
             throw new DukeEmptyCommandException("mark");
         }
 
-        if (taskList.size() == 0) {
+        if (taskList.isEmpty()) {
             throw new DukeIndexErrorException();
         }
 
@@ -55,7 +59,7 @@ public class Duke {
             throw new DukeEmptyCommandException("unmark");
         }
 
-        if (taskList.size() == 0) {
+        if (taskList.isEmpty()) {
             throw new DukeIndexErrorException();
         }
 
@@ -64,6 +68,28 @@ public class Duke {
             Task t = taskList.get(taskNum);
             t.markAsUndone();
             System.out.println("OK, I've marked this task as not done yet:\n" + t);
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            throw new DukeIndexErrorException(taskList.size());
+        }
+    }
+
+    protected void delete(String[] fullCommand) throws DukeException {
+        if (fullCommand.length < 2 || fullCommand[1].equals("")) {
+            throw new DukeEmptyCommandException("delete");
+        }
+
+        if (taskList.isEmpty()) {
+            throw new DukeIndexErrorException();
+        }
+
+        try {
+            int taskNum = Integer.parseInt(fullCommand[1]) - 1;
+            Task t = taskList.remove(taskNum);
+            System.out.println(String.format("Noted. I've removed this task:\n" +
+                            "\t%s\n" +
+                            "Now you have %d tasks in the list.",
+                    t, taskList.size())
+            );
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             throw new DukeIndexErrorException(taskList.size());
         }
@@ -144,6 +170,9 @@ public class Duke {
                     // Mark task as undone
                     case "unmark":
                         this.unmark(fullCommand);
+                        break;
+                    case "delete":
+                        this.delete(fullCommand);
                         break;
                     case "todo":
                         this.newTodo(fullCommand);
