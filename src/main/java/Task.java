@@ -1,22 +1,19 @@
 public class Task {
     protected String description;
     protected boolean isDone;
+    protected String type;
 
     public Task(String desc) {
         this.description = desc;
         this.isDone = false;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public String getStatus() {
-        if (isDone) {
-            return "X";
-        } else {
-            return " ";
+    public String getTask() {
+        String mark = " ";
+        if (this.isDone) {
+            mark = "X";
         }
+        return "[" + type + "][" + mark + "]" + this.description;
     }
 
     public void markAsDone() {
