@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Duke {
     //private Task[] tasks = new Task[100];
-    private ArrayList<Task> tasks = new ArrayList();
+    private ArrayList<Task> tasks = new ArrayList<>();
     private int numTasks = tasks.size();
 
     private int removed = 0;
