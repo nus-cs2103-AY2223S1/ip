@@ -125,13 +125,13 @@ public class Duke {
     }
 
     private static void greet() {
-        String greetingMessage = makeIndent("Hello! I'm Duke\n") +
-                makeIndent("What can I do for you?");
+        String greetingMessage = makeIndent("Hi, how are you doing?! I'm JRH2000\n") +
+                makeIndent("How can I help you?");
         printMessage(greetingMessage);
     }
 
     private static void bye() {
-        String byeMessage = makeIndent("Bye. Hope to see you again soon!");
+        String byeMessage = makeIndent("Sigh...abandoned again. See you again next time :(");
         printMessage(byeMessage);
         exitProgram();
     }
@@ -162,7 +162,7 @@ public class Duke {
         Task markedTask = taskList.get(index);
         markedTask.markAsDone();
         displayLine();
-        String markMessage = makeIndent("Nice! I've marked this task as done:");
+        String markMessage = makeIndent("Alright then! This task is marked as done:");
         System.out.println(markMessage);
         System.out.println(makeIndent(markedTask.toString()));
         displayLine();
@@ -177,7 +177,7 @@ public class Duke {
         Task unmarkedTask = taskList.get(index);
         unmarkedTask.unmarkAsDone();
         displayLine();
-        String unmarkMessage = makeIndent("OK, I've marked this task as not done yet:");
+        String unmarkMessage = makeIndent("Oh OK, this task is now marked as not done yet:");
         System.out.println(unmarkMessage);
         System.out.println(makeIndent(unmarkedTask.toString()));
         displayLine();
@@ -191,7 +191,7 @@ public class Duke {
         int index = itemNumber - 1;
         Task deleteTask = taskList.get(index);
         displayLine();
-        String deleteMessage = makeIndent("Noted. I've removed this task:");
+        String deleteMessage = makeIndent("Fine. I've removed this task:");
         System.out.println(deleteMessage);
         System.out.println(makeIndent(deleteTask.toString()));
         displayLine();
@@ -200,7 +200,7 @@ public class Duke {
 
     private static void displayAddTask(Task taskAdded) {
         displayLine();
-        System.out.println(makeIndent("Got it. I've added this task:"));
+        System.out.println(makeIndent("Sure thing! I've added this task:"));
         System.out.println(makeIndent(taskAdded.toString()));
         System.out.println(makeIndent("Now you have " + taskList.size() + " tasks in the list."));
         displayLine();

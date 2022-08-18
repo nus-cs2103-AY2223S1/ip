@@ -1,22 +1,22 @@
     ____________________________________________________________
-     Hello! I'm Duke
-     What can I do for you?
+     Hi, how are you doing?! I'm JRH2000
+     How can I help you?
     ____________________________________________________________
     ____________________________________________________________
      Here are the tasks in your list:
     ____________________________________________________________
     ____________________________________________________________
-     Got it. I've added this task:
+     Sure thing! I've added this task:
      [E][ ] go to class (at: Friday 2-6 pm)
      Now you have 1 tasks in the list.
     ____________________________________________________________
     ____________________________________________________________
-     Got it. I've added this task:
+     Sure thing! I've added this task:
      [D][ ] finish homework (by: tonight)
      Now you have 2 tasks in the list.
     ____________________________________________________________
     ____________________________________________________________
-     Got it. I've added this task:
+     Sure thing! I've added this task:
      [T][ ] have a good night's sleep
      Now you have 3 tasks in the list.
     ____________________________________________________________
@@ -39,13 +39,13 @@
      Uh oh!!! ☹Your input is out of bounds. Please try a number between 1 and 3.
     ____________________________________________________________
     ____________________________________________________________
-     Nice! I've marked this task as done:
+     Alright then! This task is marked as done:
      [D][X] finish homework (by: tonight)
     ____________________________________________________________
     ____________________________________________________________
-     Noted. I've removed this task:
+     Fine. I've removed this task:
      [T][ ] have a good night's sleep
     ____________________________________________________________
     ____________________________________________________________
-     Bye. Hope to see you again soon!
+     Sigh...abandoned again. See you again next time :(
     ____________________________________________________________
