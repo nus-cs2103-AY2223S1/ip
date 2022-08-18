@@ -12,9 +12,18 @@ mark 1
 list
 unmark 1
 list
-mark 0
+mark
 mark 100
+mark an apple
+unmark
 unmark -1
-unmark 1000 apples
+unmark 1 dog
+delete
+delete 100
+delete an apple
+delete 1
+list
+delete 2
+list
 blah
 bye

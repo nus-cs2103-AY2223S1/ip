@@ -52,27 +52,19 @@ public class Duke {
 
             if (strings[0].equals("mark")) {
                 try {
-                    if (strings.length > 2) {
-                        printError("Only a single positive integer should follow mark.");
-                    } else {
-                        markTask(Integer.parseInt(strings[1]));
-                    }
-                } catch (IndexOutOfBoundsException | NumberFormatException e) {
-                    printError("Specify which task to mark with a positive integer.");
-                } catch (NullPointerException | DukeException e) {
+                    markTask(input);
+                } catch (IndexOutOfBoundsException e) {
                     printError("The specified task does not exist.");
+                } catch (NumberFormatException | DukeException e) {
+                    printError("Specify which task to mark with a single integer.");
                 }
             } else if (strings[0].equals("unmark")) {
                 try {
-                    if (strings.length > 2) {
-                        printError("Only a single positive integer should follow unmark.");
-                    } else {
-                        unmarkTask(Integer.parseInt(strings[1]));
-                    }
-                } catch (IndexOutOfBoundsException | NumberFormatException e) {
-                    printError("Specify which task to unmark with a positive integer.");
-                } catch (NullPointerException | DukeException e) {
+                    unmarkTask(input);
+                } catch (IndexOutOfBoundsException e) {
                     printError("The specified task does not exist.");
+                } catch (NumberFormatException | DukeException e) {
+                    printError("Specify which task to unmark with a single integer.");
                 }
             } else if (strings[0].equals("todo")) {
                 try {
@@ -96,6 +88,14 @@ public class Duke {
                 } catch (ArrayIndexOutOfBoundsException e) {
                     printError("Use /at to provide when an event occurs.");
                 }
+            } else if (strings[0].equals("delete")) {
+                try {
+                    deleteTask(input);
+                } catch (IndexOutOfBoundsException e) {
+                    printError("The specified task does not exist.");
+                } catch (NumberFormatException | DukeException e) {
+                    printError("Specify which task to delete with a single integer.");
+                }
             } else {
                 throw new DukeException();
             }
@@ -117,15 +117,19 @@ public class Duke {
     /**
      * Marks a task as done.
      *
-     * @param n The number index of the task as displayed in the list.
+     * @param input The command specified to Duke.
+     * @throws DukeException when the input is just "mark".
      */
-    private static void markTask(int n) throws DukeException {
-        if (n > taskCount) {
+    private static void markTask(String input) throws DukeException {
+        if (input.length() == 4) {
             throw new DukeException();
         }
 
+        input = input.substring(5);
+        int n = Integer.parseInt(input);
         Task specifiedTask = tasks.get(n - 1);
         specifiedTask.markAsDone();
+
         printLine();
         System.out.println(INDENTATION + "Nice! I've marked this task as done:\n"
                 + INDENTATION + "  " + specifiedTask);
@@ -135,15 +139,19 @@ public class Duke {
     /**
      * Marks a task as not done.
      *
-     * @param n The number index of the task as displayed in the list.
+     * @param input The command specified to Duke.
+     * @throws DukeException when the input is just "unmark".
      */
-    private static void unmarkTask(int n) throws DukeException {
-        if (n > taskCount) {
+    private static void unmarkTask(String input) throws DukeException {
+        if (input.length() == 6) {
             throw new DukeException();
         }
 
+        input = input.substring(7);
+        int n = Integer.parseInt(input);
         Task specifiedTask = tasks.get(n - 1);
         specifiedTask.unmarkAsDone();
+
         printLine();
         System.out.println(INDENTATION + "OK, I've marked this task as not done yet:\n"
                 + INDENTATION + "  " + specifiedTask);
@@ -214,10 +222,28 @@ public class Duke {
     /**
      * Delete a specified task.
      *
-     * @param n The number index of the task as displayed in the list.
+     * @param input The command specified to Duke.
+     * @throws DukeException when the command is just "delete".
      */
-    private static void deleteTask(int n) {
-        System.out.println("To be implemented");
+    private static void deleteTask(String input) throws DukeException {
+        if (input.length() == 6) {
+            throw new DukeException();
+        }
+
+        input = input.substring(7);
+        int n = Integer.parseInt(input);
+        Task specifiedTask = tasks.remove(n - 1);
+        taskCount--;
+
+        printLine();
+        System.out.println(INDENTATION + "Noted. I've removed this task:\n"
+                + INDENTATION + "  " + specifiedTask);
+        if (taskCount == 1) {
+            System.out.println(INDENTATION + "Now you have 1 task in your list.");
+        } else {
+            System.out.println(INDENTATION + "Now you have " + taskCount + " tasks in your list.");
+        }
+        printLine();
     }
 
     /**

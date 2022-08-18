@@ -65,16 +65,50 @@
     3.[E][ ] project meeting (at: Aug 6th 2-4pm)
     ____________________________________________________________
     ____________________________________________________________
-    ☹ OOPS!!! Specify which task to mark with a positive integer.
+    ☹ OOPS!!! Specify which task to mark with a single integer.
     ____________________________________________________________
     ____________________________________________________________
     ☹ OOPS!!! The specified task does not exist.
     ____________________________________________________________
     ____________________________________________________________
-    ☹ OOPS!!! Specify which task to unmark with a positive integer.
+    ☹ OOPS!!! Specify which task to mark with a single integer.
     ____________________________________________________________
     ____________________________________________________________
-    ☹ OOPS!!! Only a single positive integer should follow unmark.
+    ☹ OOPS!!! Specify which task to unmark with a single integer.
+    ____________________________________________________________
+    ____________________________________________________________
+    ☹ OOPS!!! The specified task does not exist.
+    ____________________________________________________________
+    ____________________________________________________________
+    ☹ OOPS!!! Specify which task to unmark with a single integer.
+    ____________________________________________________________
+    ____________________________________________________________
+    ☹ OOPS!!! Specify which task to delete with a single integer.
+    ____________________________________________________________
+    ____________________________________________________________
+    ☹ OOPS!!! The specified task does not exist.
+    ____________________________________________________________
+    ____________________________________________________________
+    ☹ OOPS!!! Specify which task to delete with a single integer.
+    ____________________________________________________________
+    ____________________________________________________________
+    Noted. I've removed this task:
+      [T][ ] read book
+    Now you have 2 tasks in your list.
+    ____________________________________________________________
+    ____________________________________________________________
+    Here are the tasks in your list:
+    1.[D][ ] return book (by: June 6th)
+    2.[E][ ] project meeting (at: Aug 6th 2-4pm)
+    ____________________________________________________________
+    ____________________________________________________________
+    Noted. I've removed this task:
+      [E][ ] project meeting (at: Aug 6th 2-4pm)
+    Now you have 1 task in your list.
+    ____________________________________________________________
+    ____________________________________________________________
+    Here are the tasks in your list:
+    1.[D][ ] return book (by: June 6th)
     ____________________________________________________________
     ____________________________________________________________
     ☹ OOPS!!! I'm sorry, but I don't know what that means :-(
