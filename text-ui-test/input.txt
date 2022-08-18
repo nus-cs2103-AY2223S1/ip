@@ -2,4 +2,5 @@ todo task
 deadline task /by date
 event task /at date
 list
+delete 1
 bye

@@ -2,11 +2,11 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Duke {
-    private static String sep = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
+    private static String sep = "\n✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨\n";
     private static Scanner sc;
 
     public static void bye() {
-        System.out.println(sep + "\nbyebye see you again :D\n" + sep);
+        System.out.println("\n . ❍  ❃ ☆  ✶ ❅  🌙 Goodbye from Luna 🌙  ❅ ✶  ☆ ❃  ❍  .\n");
         sc.close();
     }
 
@@ -29,9 +29,9 @@ public class Duke {
 
     public static void print(Task task) {
         if (Task.tasks.size() == 1) {
-            System.out.println(sep + "\nLuna has added:\n" + task.toString() + "\nThere is currently " + Task.tasks.size() + " task in your list :)\n" + sep);
+            System.out.println(sep + "\nLuna has added:\n" + task.toString() + "\nThere is currently " + Task.tasks.size() + " task in your list 🌻\n" + sep);
         } else {
-            System.out.println(sep + "\nLuna has added:\n" + task.toString() + "\nThere are currently " + Task.tasks.size() + " tasks in your list :)\n" + sep);
+            System.out.println(sep + "\nLuna has added:\n" + task.toString() + "\nThere are currently " + Task.tasks.size() + " tasks in your list 🌻\n" + sep);
         }
     }
 
@@ -47,29 +47,29 @@ public class Duke {
                     unmark(cmd);
                 } else if (cmd.startsWith("todo")) {
                     if (cmd.length() <= 5) {
-                        throw new DukeException("Please enter a task to do :)");
+                        throw new DukeException("Please enter a task to do 🌷");
                     }
                     Task curr = new Todo(cmd.substring(5));
-                    print(curr);
+//                    print(curr);
                 } else if (cmd.startsWith("deadline")) {
                     if (cmd.length() <= 9) {
-                        throw new DukeException("Please enter a task and deadline :)");
+                        throw new DukeException("Please enter a task and deadline 🌷");
                     }
                     String[] cmds = cmd.split(" /by ");
                     Task curr = new Deadline(cmds[0], cmds[1]);
-                    print(curr);
+//                    print(curr);
                 } else if (cmd.startsWith("event")) {
                     if (cmd.length() <= 6) {
-                        throw new DukeException("Please enter an event and date :)");
+                        throw new DukeException("Please enter an event and date 🌷");
                     }
                     String[] cmds = cmd.split(" /at ");
                     Task curr = new Event(cmds[0], cmds[1]);
-                    print(curr);
+//                    print(curr);
                 } else if (cmd.startsWith("delete")) {
                     delete(cmd);
                 }
                 else if (!cmd.equals("bye")) {
-                    throw new DukeException("I'm not sure what that means..:( Please try again!");
+                    throw new DukeException("I'm not sure what that means 🥀");
                 }
             } catch (DukeException e) {
                 System.out.println(e);
@@ -87,7 +87,7 @@ public class Duke {
                 + "   | |   | | | |  __ \\ /     |\n"
                 + "   | |__ | |_| | |  | |    | |   \n"
                 + "   |____| \\__,_|_|  |_|\\__/|_|   \n";
-        System.out.println(sep + "\nHello. \n   This is \n" + logo + "\n   How may I assist you today?\n" + sep);
+        System.out.println(sep + "\nHello. ⛅️\n   This is \n" + logo + "\n   How may I assist you today?\n" + sep);
         sc = new Scanner(System.in);
         Task.tasks = new ArrayList<Task>();
         handleCommands(sc);
