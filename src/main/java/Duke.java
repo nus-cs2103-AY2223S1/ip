@@ -52,7 +52,7 @@ public class Duke {
                     tasks[numOfTasks] = newEvent;
                     numOfTasks++;
                 }
-                System.out.println("Got it. I've added this task: \n" + "  " + tasks[numOfTasks - 1].toString());
+                System.out.println("Got it. I've added this task:\n" + "  " + tasks[numOfTasks - 1].toString());
                 String taskTense = numOfTasks == 1 ? " task" : " tasks";
                 System.out.println("Now you have " + numOfTasks + taskTense + " in the list.");
             }
