@@ -14,7 +14,24 @@ public class Ted {
 
     ArrayList<Task> tasks = new ArrayList<Task>();
 
-    private void list(String arg) {
+    /**
+     * Helper to add task to tasks
+     * @param task task to be added
+     */
+    private void addTask(Task task) {
+        this.tasks.add(task);
+        System.out.printf("Got it. I've added this task:\n" +
+                        "%s\n" +
+                        "Now you have %d tasks in the list.\n",
+                task.toString(),
+                tasks.size()
+        );
+    }
+
+    /**
+     * List of handlers for different command
+     */
+    private void handleListCommand(String arg) {
         if (this.tasks.size() == 0) {
             System.out.println("There is no tasks here. Feel free to add some tasks.");
             return;
@@ -25,17 +42,7 @@ public class Ted {
         }
     }
 
-    private void addTask(Task task) {
-        this.tasks.add(task);
-        System.out.printf("Got it. I've added this task:\n" +
-                "%s\n" +
-                "Now you have %d tasks in the list.\n",
-                task.toString(),
-                tasks.size()
-        );
-    }
-
-    private void mark(String arg) throws InvalidInputException {
+    private void handleMarkCommand(String arg) throws InvalidInputException {
         try {
             int index = Integer.parseInt(arg);
 
@@ -57,7 +64,7 @@ public class Ted {
         }
     }
 
-    private void unmark(String arg) throws InvalidInputException {
+    private void handleUnmarkCommand(String arg) throws InvalidInputException {
         try {
             int index = Integer.parseInt(arg);
 
@@ -79,7 +86,7 @@ public class Ted {
         }
     }
 
-    private void todo(String arg) throws InvalidInputException {
+    private void handleToDoCommand(String arg) throws InvalidInputException {
         if (arg.isEmpty()) {
             throw new InvalidInputException("The description of todo must not be empty.");
         }
@@ -87,7 +94,7 @@ public class Ted {
         this.addTask(new ToDo(arg));
     }
 
-    private void deadline(String arg) throws InvalidInputException {
+    private void handleDeadlineCommand(String arg) throws InvalidInputException {
         if (arg.isEmpty()) {
             throw new InvalidInputException("The description of deadline must not be empty.");
         }
@@ -103,7 +110,7 @@ public class Ted {
         this.addTask(new Deadline(description, by));
     }
 
-    private void event(String arg) throws InvalidInputException {
+    private void handleEventCommand(String arg) throws InvalidInputException {
         if (arg.isEmpty()) {
             throw new InvalidInputException("The description of event must not be empty.");
         }
@@ -119,7 +126,7 @@ public class Ted {
         this.addTask(new Event(description, at));
     }
 
-    private void delete(String arg) throws InvalidInputException {
+    private void handleDeleteCommand(String arg) throws InvalidInputException {
         try {
             int index = Integer.parseInt(arg);
 
@@ -148,7 +155,7 @@ public class Ted {
         }
     }
 
-    private void run() {
+    private void startup() {
         System.out.println(GREETING);
 
         Scanner scanner = new Scanner(System.in);
@@ -164,19 +171,19 @@ public class Ted {
                     System.out.println("Bye. Hope to see you again!");
                     break;
                 } else if (command.equals("list")) {
-                    this.list(argument);
+                    this.handleListCommand(argument);
                 } else if (command.equals("mark")) {
-                    this.mark(argument);
+                    this.handleMarkCommand(argument);
                 }  else if (command.equals("unmark")) {
-                    this.unmark(argument);
+                    this.handleUnmarkCommand(argument);
                 } else if (command.equals("todo")) {
-                    this.todo(argument);
+                    this.handleToDoCommand(argument);
                 } else if (command.equals("deadline")) {
-                    this.deadline(argument);
+                    this.handleDeadlineCommand(argument);
                 } else if (command.equals("event")) {
-                    this.event(argument);
+                    this.handleEventCommand(argument);
                 } else if (command.equals("delete")) {
-                    this.delete(argument);
+                    this.handleDeleteCommand(argument);
                 } else {
                     System.out.println("I'm sorry. I don't understand what that means.");
                 }
@@ -192,6 +199,6 @@ public class Ted {
 
     public static void main(String[] args) {
         Ted bot = new Ted();
-        bot.run();
+        bot.startup();
     }
 }
