@@ -3,6 +3,8 @@ import java.util.*;
 public class Duke {
     private static final String indentation = "    ";
     private static final String horizontalLine = "____________________________________________________________";
+    private static List<String> list = new ArrayList<>();
+    private static int listSize = 0;
 
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -44,6 +46,19 @@ public class Duke {
         encapsulateMessage(bye);
     }
 
+    private static void addToList(String item){
+        listSize++;
+        list.add(String.valueOf(listSize) + ". " + item);
+    }
+
+    private static void printList(){
+        String itemString = "";
+        for (String item : list) {
+            itemString += item + "\n";
+        }
+        encapsulateMessage(itemString);
+    }
+
 
     /*
      * The main Command Handling function for the bot.
@@ -56,8 +71,17 @@ public class Duke {
         String command = sc.nextLine();
         
         while (!command.toLowerCase().equals("bye")) {
-            echo(command);
+            if (command.equals("list")){
+                printList();
+
+            } else {
+                addToList(command);
+                echo("added: " + command);
+            }
+            // echo(command);
+
             command = sc.nextLine();
+
         }
 
         // Loop has been exited, meaning bye has been inputted
