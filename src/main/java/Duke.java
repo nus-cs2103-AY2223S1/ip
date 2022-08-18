@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Duke {
 
-    private enum TaskType {
+    public enum TaskType {
         EVENT, DEADLINE, TODO
     }
     private static List<Task> items = new ArrayList<>();
