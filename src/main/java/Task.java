@@ -1,12 +1,13 @@
 public class Task {
-    private String description;
-    private boolean done = false;
+    protected String description;
+    protected boolean done = false;
 
     public Task(String command) {
         this.description = command;
     }
 
-    public String getDescription() {
+    @Override
+    public String toString() {
         if (done) {
             return "[X] " + this.description;
         } else {
