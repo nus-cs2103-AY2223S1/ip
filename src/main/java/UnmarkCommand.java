@@ -6,8 +6,12 @@ public class UnmarkCommand extends Command {
     }
 
     @Override
-    public void execute(Storage storage, TaskList taskList, Ui ui) throws DukeException {
-        ui.printUnmarkTask(taskList.unmarkTask(index - 1));
-        storage.saveLocalData(taskList.stringify());
+    public void execute(Storage storage, TaskList taskList, Ui ui) {
+        try {
+            ui.printUnmarkTask(taskList.unmarkTask(index - 1));
+            storage.saveLocalData(taskList.stringify());
+        } catch (DukeException e) {
+            ui.printErrorMessage(e.getMessage());
+        }
     }
 }
