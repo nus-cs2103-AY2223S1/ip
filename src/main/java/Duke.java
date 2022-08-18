@@ -2,12 +2,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
+
   private static String LOGO =
-      " ____        _        \n"
-          + "|  _ \\ _   _| | _____ \n"
-          + "| | | | | | | |/ / _ \\\n"
-          + "| |_| | |_| |   <  __/\n"
-          + "|____/ \\__,_|_|\\_\\___|\n";
+    " ____        _        \n" +
+    "|  _ \\ _   _| | _____ \n" +
+    "| | | | | | | |/ / _ \\\n" +
+    "| |_| | |_| |   <  __/\n" +
+    "|____/ \\__,_|_|\\_\\___|\n";
   private static ArrayList<Task> allTasks = new ArrayList<>();
 
   private static void greet() {

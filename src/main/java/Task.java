@@ -1,4 +1,5 @@
 public abstract class Task {
+
   protected String task;
   protected boolean isComplete = false;
 
@@ -9,19 +10,28 @@ public abstract class Task {
    * @param taskType the task type either Todo, Deadline or Event
    * @throws DukeException
    */
-  private static void validateTaskCreation(String userCommand, TaskType taskType)
-      throws DukeException {
+  private static void validateTaskCreation(
+    String userCommand,
+    TaskType taskType
+  )
+    throws DukeException {
     String[] cmdArray = userCommand.split(" ", 2);
     if (cmdArray.length <= 1 || cmdArray[1].length() == 0) {
-      throw new DukeException("☹ OOPS!!! The description of a " + taskType + " cannot be empty.");
+      throw new DukeException(
+        "☹ OOPS!!! The description of a " + taskType + " cannot be empty."
+      );
     }
 
     if (taskType == TaskType.DEADLINE && cmdArray[1].indexOf("/by") < 0) {
-      throw new DukeException("☹ OOPS!!! The description of a DEADLINE must contain a '/by'");
+      throw new DukeException(
+        "☹ OOPS!!! The description of a DEADLINE must contain a '/by'"
+      );
     }
 
     if (taskType == TaskType.EVENT && cmdArray[1].indexOf("/at") < 0) {
-      throw new DukeException("☹ OOPS!!! The description of a EVENT must contain a '/at'");
+      throw new DukeException(
+        "☹ OOPS!!! The description of a EVENT must contain a '/at'"
+      );
     }
   }
 

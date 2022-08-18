@@ -1,4 +1,5 @@
 public class Todo extends Task {
+
   /**
    * Constructor to create a new Deadline
    *
