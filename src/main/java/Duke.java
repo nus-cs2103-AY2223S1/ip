@@ -9,29 +9,18 @@ public class Duke {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
-        String[] tasks = new String[100];
+        Task[] tasks = new Task[100];
         int taskIndex = 0;
         String indent = "    ";
-        System.out.println(indent);
-        for (int i = 0; i< 20; i++) {
-            System.out.print("-");
-        }
-        System.out.println();
+        String line = "-------------------------------------------------";
+        System.out.println(line);
         System.out.println(indent + "Hello! I'm Duke");
-        System.out.println();
         System.out.println(indent + "What can I do for you?");
-        System.out.println(indent);
-        for (int i = 0; i< 20; i++) {
-            System.out.print("-");
-        }
-        System.out.println();
+        System.out.println(line);
         Scanner sc = new Scanner(System.in);
         while (sc.hasNextLine()) {
             String input = sc.nextLine();
-            for (int i = 0; i< 20; i++) {
-                System.out.print("-");
-            }
-            System.out.println();
+            System.out.println(line);
             if (input.equals("bye")) {
                 System.out.println(indent + "Bye. Hope to see you again soon!");
             } else if (input.equals("list")) {
@@ -39,14 +28,22 @@ public class Duke {
                     int taskNum = j + 1;
                     System.out.println(indent + taskNum + ". " + tasks[j]);
                 }
+            } else if (input.startsWith("mark")){
+                Task task = tasks[Integer.valueOf(input.substring(5)) - 1];
+                task.mark();
+                System.out.println(indent + "Nice! I've marked this task as done:");
+                System.out.println("      " + task);
+            } else if (input.startsWith("unmark")) {
+                Task task = tasks[Integer.valueOf(input.substring(7)) - 1];
+                task.unmark();
+                System.out.println(indent + "Ok, I've marked this task as not done yet:");
+                System.out.println("      " + task);
             } else {
                 System.out.println(indent + "added: " + input);
-                tasks[taskIndex] = input;
+                tasks[taskIndex] = new Task(input);
                 taskIndex += 1;
             }
-            for (int i = 0; i< 20; i++) {
-                System.out.print("-");
-            }
+            System.out.print(line);
             System.out.println();
             if (input.equals("bye")) {
                 System.exit(0);
