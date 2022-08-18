@@ -1,16 +1,23 @@
 import java.util.*;
-
 public class Duke {
-    public static void main(String[] args) {
-//        String logo = " ____        _        \n"
-//                + "|  _ \\ _   _| | _____ \n"
-//                + "| | | | | | | |/ / _ \\\n"
-//                + "| |_| | |_| |   <  __/\n"
-//                + "|____/ \\__,_|_|\\_\\___|\n";
-//        System.out.println("Hello from\n" + logo);
+    private String[] toDoList = new String[100];
+    private int index = 0;
 
-        String startMsg = "Hello!!! My name is Wanya! \n WWaku WWaku! \n How can I help you? \n";
-        String closeMsg = "I am so sad that you have to go :( Bye bye :(";
+    private void addTask(String task) {
+        toDoList[index++] = task;
+        System.out.println("You have added: " + task);
+    }
+
+    private void showTasks() {
+        for (int i = 1; i <= index; i++) {
+            System.out.println(i + ". " + toDoList[i - 1]);
+        }
+    }
+
+    public static void main(String[] args) {
+        Duke duke = new Duke();
+        String startMsg = "Hello!!! My name is Wanya! \nWWaku WWaku! \nHow can I help you? \n";
+        String closeMsg = "I am so sad that you have to go :( bye bye :(";
         Scanner sc = new Scanner(System.in);
         System.out.println(startMsg);
 
@@ -19,9 +26,12 @@ public class Duke {
             if (commandInput.equals("bye")) {
                 System.out.println(closeMsg);
                 break;
+            } else if (commandInput.equals("list")) {
+                duke.showTasks();
             } else {
-                System.out.println(commandInput);
+                duke.addTask(commandInput);
             }
         }
     }
 }
+
