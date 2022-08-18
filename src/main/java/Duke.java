@@ -99,7 +99,7 @@ public class Duke {
                 }
             } catch (DukeException de) {
                 displayLine();
-                System.out.println(INDENTATION + de.getMessage());
+                System.out.println(makeIndent(de.getMessage()));
                 displayLine();
             }
         }
@@ -120,14 +120,18 @@ public class Duke {
         displayLine();
     }
 
+    private static String makeIndent(String message) {
+        return INDENTATION + message;
+    }
+
     private static void greet() {
-        String greetingMessage = INDENTATION + "Hello! I'm Duke\n" +
-                INDENTATION + "What can I do for you?\n";
+        String greetingMessage = makeIndent("Hello! I'm Duke\n") +
+                makeIndent("What can I do for you?\n");
         printMessage(greetingMessage);
     }
 
     private static void bye() {
-        String byeMessage = INDENTATION + "Bye. Hope to see you again soon!\n";
+        String byeMessage = makeIndent("Bye. Hope to see you again soon!\n");
         printMessage(byeMessage);
         exitProgram();
     }
@@ -138,12 +142,12 @@ public class Duke {
 
     private static void displayList() {
         displayLine();
-        String listMessage = INDENTATION + "Here are the tasks in your list:";
+        String listMessage = makeIndent("Here are the tasks in your list:");
         System.out.println(listMessage);
         int len = taskList.size();
         for (int i = 0; i < len; i++) {
             int orderList = i + 1;
-            String message = INDENTATION + orderList + ". " + taskList.get(i).toString();
+            String message = makeIndent(orderList + ". " + taskList.get(i).toString());
             System.out.println(message);
         }
         displayLine();
@@ -158,9 +162,9 @@ public class Duke {
         Task markedTask = taskList.get(index);
         markedTask.markAsDone();
         displayLine();
-        String markMessage = INDENTATION + "Nice! I've marked this task as done:";
+        String markMessage = makeIndent("Nice! I've marked this task as done:");
         System.out.println(markMessage);
-        System.out.println(INDENTATION + markedTask.toString());
+        System.out.println(makeIndent(markedTask.toString()));
         displayLine();
     }
 
@@ -173,9 +177,9 @@ public class Duke {
         Task unmarkedTask = taskList.get(index);
         unmarkedTask.unmarkAsDone();
         displayLine();
-        String unmarkMessage = INDENTATION + "OK, I've marked this task as not done yet:";
+        String unmarkMessage = makeIndent("OK, I've marked this task as not done yet:");
         System.out.println(unmarkMessage);
-        System.out.println(INDENTATION + unmarkedTask.toString());
+        System.out.println(makeIndent(unmarkedTask.toString()));
         displayLine();
     }
 
@@ -187,18 +191,18 @@ public class Duke {
         int index = itemNumber - 1;
         Task deleteTask = taskList.get(index);
         displayLine();
-        String deleteMessage = INDENTATION + "Noted. I've removed this task:";
+        String deleteMessage = makeIndent("Noted. I've removed this task:");
         System.out.println(deleteMessage);
-        System.out.println(INDENTATION + deleteTask.toString());
+        System.out.println(makeIndent(deleteTask.toString()));
         displayLine();
         taskList.remove(index);
     }
 
     private static void displayAddTask(Task taskAdded) {
         displayLine();
-        System.out.println(INDENTATION + "Got it. I've added this task:");
-        System.out.println(INDENTATION + taskAdded.toString());
-        System.out.println(INDENTATION + "Now you have " + taskList.size() + " tasks in the list.");
+        System.out.println(makeIndent("Got it. I've added this task:"));
+        System.out.println(makeIndent(taskAdded.toString()));
+        System.out.println(makeIndent("Now you have " + taskList.size() + " tasks in the list."));
         displayLine();
     }
 
