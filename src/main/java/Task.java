@@ -18,6 +18,10 @@ public class Task {
         this.taskType = taskType;
     }
 
+    protected Task updateId(int id) {
+        return new Task(this.desc, id, this.completed, this.taskType);
+    }
+
     protected Task performTask() {
         System.out.println("Nice! I've marked this task as done");
         Task performedTask = new Task(this.desc, this.id,'X', this.taskType);

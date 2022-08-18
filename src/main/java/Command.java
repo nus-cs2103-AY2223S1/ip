@@ -3,13 +3,13 @@ public class Command {
     private final String content;
 
     enum Keyword {
-        bye, list, mark, unmark, todo, deadline, event
+        bye, list, mark, unmark, todo, deadline, event, delete
     }
 
     enum TaskKeyword {
         todo, deadline, event
     }
-    
+
     public Command(String command) {
         this.keyword = getCommandKey(command);
         this.content = getCommandContent(command);
@@ -64,17 +64,13 @@ public class Command {
         }
         return false;
     }
-    protected boolean hasValidTaskDesc() throws DukeException {
-        if (checkTaskKeyword(this.keyword) && !this.content.isBlank()) {
-            return true;
-        } else {
+    protected void hasValidTaskDesc() throws DukeException {
+        if (!checkTaskKeyword(this.keyword) || this.content.isBlank()) {
             throw new DukeException(String.format("The description of a %s cannot be empty", keyword));
         }
     }
-    protected boolean hasValidKeywork() throws DukeException {
-        if (checkKeyword(this.keyword) && !this.keyword.isBlank()) {
-            return true;
-        } else {
+    protected void hasValidKeyword() throws DukeException {
+        if (!checkKeyword(this.keyword) || this.keyword.isBlank()) {
             throw new DukeException("I'm sorry, but I don't know what that means :-(");
         }
     }

@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.ArrayList;
-import java.util.stream.Stream;
 
 public class Duke {
 
@@ -36,23 +36,33 @@ public class Duke {
                 if (index <= id) {
                     userList.set(index, userList.get(index).undoTask());
                 }
+            } else if (keyword.equals("delete")){
+                int index = command.getContentId() - 1;
+                if (index <= id) {
+                    Task deletedTask = userList.remove(index);
+                    id--;
+                    for (int i = 0; i < id; i++) {
+                        userList.set(i, userList.get(i).updateId(i + 1));
+                    }
+                    deleteTaskConfirmation(deletedTask, id);
+                }
             } else {
                 try {
-                    if (command.hasValidKeywork() && command.hasValidTaskDesc()) {
-                        id++;
-                        if (keyword.equals("todo")) {
-                            Task newTask = new Todo(content, id, 'T');
-                            userList.add(newTask);
-                            addTaskConfirmation(newTask, id);
-                        } else if (keyword.equals("deadline")) {
-                            Task newTask = new Deadline(content, id, 'D');
-                            userList.add(newTask);
-                            addTaskConfirmation(newTask, id);
-                        } else if (keyword.equals("event")) {
-                            Task newTask = new Event(content, id, 'E');
-                            userList.add(newTask);
-                            addTaskConfirmation(newTask, id);
-                        }
+                    command.hasValidKeyword();
+                    command.hasValidTaskDesc();
+                    id++;
+                    if (keyword.equals("todo")) {
+                        Task newTask = new Todo(content, id, 'T');
+                        userList.add(newTask);
+                        addTaskConfirmation(newTask, id);
+                    } else if (keyword.equals("deadline")) {
+                        Task newTask = new Deadline(content, id, 'D');
+                        userList.add(newTask);
+                        addTaskConfirmation(newTask, id);
+                    } else if (keyword.equals("event")) {
+                        Task newTask = new Event(content, id, 'E');
+                        userList.add(newTask);
+                        addTaskConfirmation(newTask, id);
                     }
                 } catch (DukeException ex){
                     System.out.println(ex);
@@ -66,6 +76,12 @@ public class Duke {
 
     private static void addTaskConfirmation(Task task, int id) {
         System.out.println("Got it. I've added this task:");
+        System.out.println(task.taskStatus());
+        System.out.printf("Now you have %d tasks in the list.\n", id);
+    }
+
+    private static void deleteTaskConfirmation(Task task, int id) {
+        System.out.println("Noted. I've removed this task:");
         System.out.println(task.taskStatus());
         System.out.printf("Now you have %d tasks in the list.\n", id);
     }
