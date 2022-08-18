@@ -11,6 +11,7 @@ public class ListCommand extends Command {
 
   @Override
   public boolean performAction() {
+    System.out.println("Sweetie, here is the list of tasks that you have <3");
     for (int i = 0; i < this.tasks.size(); i++) {
       System.out.println((i + 1) + ". " + this.tasks.get(i));
     }
