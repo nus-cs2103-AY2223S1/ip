@@ -4,27 +4,49 @@ public class Duke {
 
     private static final TaskList tasks = new TaskList();
 
-    public static void main(String[] args) {
-//        String logo = " ____        _        \n"
-//                + "|  _ \\ _   _| | _____ \n"
-//                + "| | | | | | | |/ / _ \\\n"
-//                + "| |_| | |_| |   <  __/\n"
-//                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello! I'm Dave! What can I do for you?");
+    private static final Scanner scanner = new Scanner(System.in);
 
-        Scanner scanner = new Scanner(System.in);
-        boolean run = true;
-        while (run) {
-            String input = scanner.nextLine();
-            if (input.equals("bye")) {
+    private static boolean running = true;
+
+    public static void inputHandling(String input) {
+        String[] splitInput = input.split(" ", 2);
+        String command = splitInput[0];
+        switch (command) {
+            case "bye":
                 System.out.println("Bye. Hope to see you again soon!");
-                run = false;
-            } else if (input.equals("list")) {
+                running = false;
+                break;
+            case "list":
                 System.out.println(tasks);
-            } else {
-                Task newtask = new Task(input);
-                System.out.println(tasks.add(newtask));
-            }
+                break;
+            case "mark":
+                System.out.println(tasks.markdone(Integer.parseInt(splitInput[1])));
+                break;
+            case "unmark":
+                System.out.println(tasks.unmarkdone(Integer.parseInt(splitInput[1])));
+                break;
+            case "todo":
+                System.out.println(tasks.add(new ToDo(splitInput[1])));
+                break;
+            case "deadline":
+                System.out.println(tasks.add(new Deadlines(splitInput[1].split("/by "))));
+                break;
+            case "event":
+                System.out.println(tasks.add(new Events(splitInput[1].split("/at "))));
+                break;
+        }
+    }
+
+    public static void main(String[] args) {
+        String logo = " ____                 \n"
+                + "|  _ \\ _____ _   ____ \n"
+                + "| | | |  _  | |/ / _ \\\n"
+                + "| |_| | |_| |   <  __/\n"
+                + "|____/ \\__,_|__/ \\___|\n";
+        System.out.println("Hello, I'm\n" + logo + "\nWhat can I do for you?\n");
+
+        while (running) {
+            inputHandling(scanner.nextLine());
         }
     }
 }
