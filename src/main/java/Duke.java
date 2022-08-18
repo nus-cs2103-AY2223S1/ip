@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Duke {
     // List to store text entered by the user and display them back to the user when requested
-    private static ArrayList<Task> wordList = new ArrayList<>();
+    private static final ArrayList<Task> wordList = new ArrayList<>();
 
     /**
      * Start the program
@@ -67,12 +67,36 @@ public class Duke {
                     Duke.listItems();
                     break;
                 case Constants.UNMARK:
-                    index =  Integer.parseInt(userInput.split(" ")[1]);
-                    wordList.get(index-1).unmark();
+                    try {
+                        userInput.substring(8);
+                        index = Integer.parseInt(userInput.split(" ")[1]);
+                        wordList.get(index - 1).unmark();
+                    } catch (StringIndexOutOfBoundsException e) {
+                        new DukeException.EmptyMarkingException();
+                        break;
+                    } catch (NumberFormatException e) {
+                        new DukeException.EmptyMarkingException();
+                        break;
+                    } catch (IndexOutOfBoundsException e) {
+                        new DukeException.EmptyMarkingException();
+                        break;
+                    }
                     break;
                 case Constants.MARK:
-                    index =  Integer.parseInt(userInput.split(" ")[1]);
-                    wordList.get(index-1).markAsDone();
+                    try {
+                        userInput.substring(6);
+                        index = Integer.parseInt(userInput.split(" ")[1]);
+                        wordList.get(index - 1).markAsDone();
+                    } catch (StringIndexOutOfBoundsException e) {
+                        new DukeException.EmptyMarkingException();
+                        break;
+                    } catch (NumberFormatException e) {
+                        new DukeException.EmptyMarkingException();
+                        break;
+                    } catch (IndexOutOfBoundsException e) {
+                        new DukeException.EmptyMarkingException();
+                        break;
+                    }
                     break;
                 case Constants.TODO:
                     try {
@@ -87,9 +111,9 @@ public class Duke {
                     break;
                 case Constants.DEADLINE:
                     try {
-                        // Error when to-do followed by a blank space
+                        // Error when deadline followed by a blank space
                         userInput.substring(10);
-                        // Error when just to-do
+                        // Error when just deadline
                         String[] deadline = userInput.substring(9).split(" /by ");
                         Duke.add(new Deadline(deadline[0], deadline[1]));
                     } catch (StringIndexOutOfBoundsException e) {
@@ -101,9 +125,9 @@ public class Duke {
                     break;
                 case Constants.EVENT:
                     try {
-                        // Error when to-do followed by a blank space
+                        // Error when event followed by a blank space
                         userInput.substring(7);
-                        // Error when just to-do
+                        // Error when just event
                         String[] event = userInput.substring(6).split(" /at ");
                         Duke.add(new Event(event[0], event[1]));
                     } catch (StringIndexOutOfBoundsException e) {
@@ -114,8 +138,20 @@ public class Duke {
                     }
                     break;
                 case Constants.DELETE:
-                    index =  Integer.parseInt(userInput.split(" ")[1]);
-                    Duke.delete(Duke.wordList.get(index-1));
+                    try {
+                        userInput.substring(8);
+                        index =  Integer.parseInt(userInput.split(" ")[1]);
+                        Duke.delete(Duke.wordList.get(index-1));
+                    } catch (StringIndexOutOfBoundsException e) {
+                        new DukeException.EmptyDeleteException();
+                        break;
+                    } catch (NumberFormatException e) {
+                        new DukeException.EmptyDeleteException();
+                        break;
+                    } catch (IndexOutOfBoundsException e) {
+                        new DukeException.EmptyDeleteException();
+                        break;
+                    }
                     break;
                 default:
                     new DukeException.InvalidInputException();

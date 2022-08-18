@@ -38,4 +38,16 @@ public class DukeException {
             super("☹ OOPS!!! An event must have a /at " );
         }
     }
+
+    public static class EmptyMarkingException extends DukeException {
+        public EmptyMarkingException() {
+            super("☹ OOPS!!! Mark/Unmark must follow by a index of selected item.");
+        }
+    }
+
+    public static class EmptyDeleteException extends DukeException {
+        public EmptyDeleteException() {
+            super("☹ OOPS!!! Delete must follow by a index of selected item.");
+        }
+    }
 }
