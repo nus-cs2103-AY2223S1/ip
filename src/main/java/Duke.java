@@ -7,17 +7,40 @@ public class Duke {
     private static final String listMessage = "Here are the tasks in your list: \n";
     private static final String markText = "Nice! I've marked this task as done: \n";
     private static final String unmarkText = "OK, I've marked this task as not done yet: \n";
+    private static final String addTask = "Got it. I've added this task: \n";
+
     private static ArrayList<Task> userTasks = new ArrayList<>();
+
     private static void wrapText(String content) {
         System.out.println("-".repeat(57));
         System.out.println(content);
         System.out.println("-".repeat(57));
     }
 
+    private static void taskWrapper() {
+        int length = userTasks.size();
+        String content = userTasks.get(length - 1).returnDescription();
+        content = addTask + content;
+        content += "\nNow you have " + length + " tasks in the list.";
+        wrapText(content);
+    }
+
     private static void appendArray(String inputString) {
         userTasks.add(new Task(inputString));
     }
 
+    private static void appendToDo(String inputString) {
+        userTasks.add(new ToDo(inputString));
+    }
+
+    private static void appendDeadline(String taskDescription, String date) {
+        date = date.replace("by ","");
+        userTasks.add(new Deadline(taskDescription, date));
+    }
+    private static void appendEvent(String taskDescription, String dateTime) {
+        dateTime = dateTime.replace("at ","");
+        userTasks.add(new Event(taskDescription, dateTime));
+    }
     private static String generateList() {
         String listInString = listMessage;
         int index = userTasks.size();
@@ -61,8 +84,18 @@ public class Duke {
                 wrapText(generateMark(inputs[1]));
             } else if (input.equals("unmark")) {
                 wrapText(generateUnmark(inputs[1]));
-            }
-            else {
+            } else if (input.equals("todo")) {
+                appendToDo(inputString);
+                taskWrapper();
+            } else if (input.equals("deadline")) {
+                String[] deadlineDescription = inputString.split("/");
+                appendDeadline(deadlineDescription[0], deadlineDescription[1]);
+                taskWrapper();
+            } else if (input.equals("event")) {
+                String[] eventDescription = inputString.split("/");
+                appendEvent(eventDescription[0], eventDescription[1]);
+                taskWrapper();
+            } else {
                 appendArray(inputString);
                 wrapText("added: " + inputString);
             }
