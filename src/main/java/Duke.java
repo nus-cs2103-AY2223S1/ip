@@ -2,7 +2,7 @@ import java.util.*;
 import java.lang.*;
 
 public class Duke {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DukeException {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -39,11 +39,15 @@ public class Duke {
                 System.out.println(indent + "Ok, I've marked this task as not done yet:");
                 System.out.println("      " + task);
             } else if (input.startsWith("todo")) {
-                tasks[taskIndex] = new Todo(input);
-                System.out.println(indent + "Got it. I've added this task:");
-                System.out.println("      " + tasks[taskIndex]);
-                taskIndex += 1;
-                System.out.println(indent + "Now you have " +  taskIndex + " tasks in the list");
+                if (!input.equals("todo")) {
+                    tasks[taskIndex] = new Todo(input);
+                    System.out.println(indent + "Got it. I've added this task:");
+                    System.out.println("      " + tasks[taskIndex]);
+                    taskIndex += 1;
+                    System.out.println(indent + "Now you have " + taskIndex + " tasks in the list");
+                } else {
+                     throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+                }
             } else if (input.startsWith("event")) {
                 String event = input.substring(0, input.indexOf("/"));
                 String time = input.substring(input.indexOf("/") + 1);
@@ -60,6 +64,8 @@ public class Duke {
                 System.out.println("      " + tasks[taskIndex]);
                 taskIndex += 1;
                 System.out.println(indent + "Now you have " + taskIndex + " tasks in the list");
+            } else {
+                throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
             System.out.print(line);
             System.out.println();
