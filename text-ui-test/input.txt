@@ -1,0 +1,10 @@
+todo
+deadline
+event
+todo return book
+deadline ip /by 5pm
+mark 1
+list
+delete 1
+list
+bye
