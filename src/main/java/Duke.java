@@ -3,6 +3,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
+    /*
+    * A method that takes in a string input and performs actions based on the string input
+    * */
     public static void DukeTask() throws DukeException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Hello! I'm Duke");
@@ -94,10 +97,6 @@ public class Duke {
                 scanner.nextLine();
             }
             else{
-//                String remain = scanner.nextLine();
-//                arr[count] = new Task(str + remain);
-//                count++;
-//                System.out.println("added: "+str + remain);
                 throw new DukeException(":( OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
 
@@ -115,13 +114,5 @@ public class Duke {
           }catch(DukeException e) {
               System.out.println(e.getMessage());
           }
-//        String logo = " ____        _        \n"
-//                + "|  _ \\ _   _| | _____ \n"
-//                + "| | | | | | | |/ / _ \\\n"
-//                + "| |_| | |_| |   <  __/\n"
-//                + "|____/ \\__,_|_|\\_\\___|\n";
-//        System.out.println("Hello from\n" + logo);
-
-
     }
 }
