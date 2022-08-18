@@ -57,7 +57,10 @@ public class Duke {
             } else {
                 Task newTask = null;
                 if (command.startsWith("todo")) {
-                    //if command.equals()
+                    if (command.equals("todo")) {
+                        System.out.println("    ☹ OOPS!!! The description of a todo cannot be empty.");
+                        continue;
+                    }
                     command = command.replace("todo ", "");
                     newTask = new ToDo(command);
 
