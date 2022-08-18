@@ -8,7 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Duke {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DukeException {
         System.out.println(Constants.INDENTED_DOTTED_LINE);
         System.out.println(Constants.WELCOME_MESSAGE);
         System.out.println(Constants.INDENTED_DOTTED_LINE);
@@ -87,11 +87,7 @@ public class Duke {
                 System.out.println(Constants.indent + "Now you have " + history.size() + " tasks in the list.");
                 System.out.println(Constants.INDENTED_DOTTED_LINE);
             } else {
-                Task t = new Task(input);
-                history.add(t);
-                System.out.println(Constants.INDENTED_DOTTED_LINE);
-                System.out.println(Constants.indent + "added: " + input);
-                System.out.println(Constants.INDENTED_DOTTED_LINE);
+                throw new DukeException("Invalid command! Please try again");
             }
         }
     }
