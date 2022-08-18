@@ -1,7 +1,102 @@
 Hello! I'm Botson
-What can I help you with?
+What can I help you with? :-)
 --------------------------
 OOPS!!! I'm sorry, but I don't know what that means :-(
 --------------------------
 OOPS!!! I'm sorry, but I don't know what that means :-(
+--------------------------
+Here are the tasks in your list
+--------------------------
+--------------------------
+I've added to the list:
+[T][ ] borrow book
+Now you have 1 tasks in the list.
+--------------------------
+Here are the tasks in your list
+1. [T][ ] borrow book
+--------------------------
+--------------------------
+I've added to the list:
+[D][ ] return book (by: Sunday)
+Now you have 2 tasks in the list.
+--------------------------
+Here are the tasks in your list
+1. [T][ ] borrow book
+2. [D][ ] return book (by: Sunday)
+--------------------------
+--------------------------
+I've added to the list:
+[E][ ] project meeting (at: Mon 2-4pm)
+Now you have 3 tasks in the list.
+--------------------------
+Here are the tasks in your list
+1. [T][ ] borrow book
+2. [D][ ] return book (by: Sunday)
+3. [E][ ] project meeting (at: Mon 2-4pm)
+--------------------------
+OOPS!!! Error: No Such Task
+--------------------------
+Nice! I've marked this task as done:
+[D][X] return book (by: Sunday)
+--------------------------
+Here are the tasks in your list
+1. [T][ ] borrow book
+2. [D][X] return book (by: Sunday)
+3. [E][ ] project meeting (at: Mon 2-4pm)
+--------------------------
+OK, I've marked this task as not done yet:
+[D][ ] return book (by: Sunday)
+--------------------------
+Here are the tasks in your list
+1. [T][ ] borrow book
+2. [D][ ] return book (by: Sunday)
+3. [E][ ] project meeting (at: Mon 2-4pm)
+--------------------------
+--------------------------
+I've added to the list:
+[D][ ] do homework (by: no idea :-p)
+Now you have 4 tasks in the list.
+--------------------------
+Here are the tasks in your list
+1. [T][ ] borrow book
+2. [D][ ] return book (by: Sunday)
+3. [E][ ] project meeting (at: Mon 2-4pm)
+4. [D][ ] do homework (by: no idea :-p)
+--------------------------
+OOPS!!! Error: No Such Task
+--------------------------
+Noted. I've removed this task:
+[D][ ] do homework (by: no idea :-p)
+Now you have 3 tasks in the list.
+--------------------------
+Here are the tasks in your list
+1. [T][ ] borrow book
+2. [D][ ] return book (by: Sunday)
+3. [E][ ] project meeting (at: Mon 2-4pm)
+--------------------------
+Noted. I've removed this task:
+[T][ ] borrow book
+Now you have 2 tasks in the list.
+--------------------------
+Here are the tasks in your list
+1. [D][ ] return book (by: Sunday)
+2. [E][ ] project meeting (at: Mon 2-4pm)
+--------------------------
+OOPS!!! I'm sorry, but I don't know what that means :-(
+--------------------------
+OOPS!!! I'm sorry, but I don't know what that means :-(
+--------------------------
+Here are the tasks in your list
+1. [D][ ] return book (by: Sunday)
+2. [E][ ] project meeting (at: Mon 2-4pm)
+--------------------------
+Nice! I've marked this task as done:
+[D][X] return book (by: Sunday)
+--------------------------
+Nice! I've marked this task as done:
+[E][X] project meeting (at: Mon 2-4pm)
+--------------------------
+Here are the tasks in your list
+1. [D][X] return book (by: Sunday)
+2. [E][X] project meeting (at: Mon 2-4pm)
 --------------------------

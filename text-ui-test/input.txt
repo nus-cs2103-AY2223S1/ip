@@ -1,2 +1,27 @@
 hi
 test
+list
+todo borrow book
+list
+deadline return book /by Sunday
+list
+event project meeting /at Mon 2-4pm
+list
+mark
+mark2
+list
+unmark2
+list
+deadline do homework /by no idea :-p
+list
+delete5
+delete4
+list
+delete1
+list
+todo
+blah
+list
+mark1
+mark2
+list
