@@ -7,53 +7,72 @@ import java.util.List;
 public class Duke {
     static ArrayList<Task> tasks = new ArrayList<>();
 
+    private enum Command {
+        BYE,
+        LIST,
+        MARK,
+        UNMARK,
+        DELETE,
+        TODO,
+        EVENT,
+        DEADLINE,
+        UNKNOWN
+    }
+
     public static void main(String[] args) throws Exception {
-        printGreeting();
         Scanner input = new Scanner(System.in);
+
+        printGreeting();
+
         while (true) {
             String inputText = input.nextLine();
 
             List<String> inputArray = Arrays.asList(inputText.split(" "));
 
-            String keyword = inputArray.get(0);
-
+            Command keyword = Command.UNKNOWN;
             try {
+                try {
+                    keyword = Command.valueOf(inputArray.get(0).toUpperCase());
+                } catch (Exception e) {
+                    throw new DukeException("You did not provide a valid command");
+                }
+
                 switch (keyword) {
-                    case "bye":
+                    case BYE:
                         printBye();
                         return;
-                    case "list":
+                    case LIST:
                         printTasks();
                         break;
-                    case "mark": {
+                    case MARK: {
                         if (inputArray.size() != 2) {
                             throw new DukeException("Input for mark not correct");
                         }
                         markTask(inputArray.get(1));
                         break;
                     }
-                    case "unmark": {
+                    case UNMARK: {
                         if (inputArray.size() != 2) {
                             throw new DukeException("Input for unmark not correct");
                         }
                         unmarkTask(inputArray.get(1));
                         break;
                     }
-                    case "delete": {
+                    case DELETE: {
                         if (inputArray.size() != 2) {
                             throw new DukeException("Input for delete not correct");
                         }
                         deleteTask(inputArray.get(1));
                         break;
                     }
-                    case "todo": {
+                    case TODO: {
                         ToDo newTask = new ToDo(String.join(" ", inputArray.subList(1, inputArray.size())));
                         tasks.add(newTask);
 
                         printAddTask(newTask);
                         break;
                     }
-                    case "event": {
+                    case EVENT: {
                         String command = String.join(" ", inputArray.subList(1, inputArray.size()));
                         String[] commandArray = command.split(" /at ");
 
@@ -67,7 +86,7 @@ public class Duke {
                         printAddTask(newTask);
                         break;
                     }
-                    case "deadline": {
+                    case DEADLINE: {
                         String command = String.join(" ", inputArray.subList(1, inputArray.size()));
                         String[] commandArray = command.split(" /by ");
 
