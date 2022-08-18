@@ -100,6 +100,11 @@ public class Duke {
      * @param args - the argument string to be parsed
      */
     public static void TryAddToDo(String args) {
+        if (args == "") {
+            System.out.println("Failed to create todo: No task name given");
+            return;
+        }
+
         AddToList(new ToDo(args, false));
     }
 
@@ -117,6 +122,17 @@ public class Duke {
 
         String name = argsArr[0].strip();
         String date = argsArr[1].strip();
+
+        if (name == "") {
+            System.out.println("Failed to create deadline: No task name given");
+            return;
+        }
+
+        if (date == "") {
+            System.out.println("Failed to create deadline: No date given");
+            return;
+        }
+
         AddToList(new Deadline(name, false, date));
     }
 
@@ -134,6 +150,17 @@ public class Duke {
 
         String name = argsArr[0].strip();
         String date = argsArr[1].strip();
+
+        if (name == "") {
+            System.out.println("Failed to create event: No task name given");
+            return;
+        }
+
+        if (date == "") {
+            System.out.println("Failed to create event: No date given");
+            return;
+        }
+
         AddToList(new Event(name, false, date));
     }
 
