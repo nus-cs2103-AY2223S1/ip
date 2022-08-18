@@ -11,19 +11,29 @@ public class Duke {
 
          */
 
+        String[] arr = new String[100];
+        int count = 0;
         System.out.println("Hello! I'm Duke\nWhat can I do for you?");
 
         Scanner sc = new Scanner(System.in);
 
         while (true) {
-            String cmd = sc.nextLine();
-            if (cmd.equals("bye")) {
+            String item = sc.nextLine();
+            if (item.equals("bye")) {
                 break;
+            } else if (item.equals("list")) {
+                for (int i =0; i < count; i++) {
+                    String str = String.format("%d. " + arr[i], i+1);
+                    System.out.println(str);
+                }
             } else {
-                System.out.println(cmd);
+                arr[count] = item;
+                count++;
+                System.out.println("Added: " + item);
             }
         }
 
         System.out.println("Bye. Hope to see you again soon!");
+
     }
 }
