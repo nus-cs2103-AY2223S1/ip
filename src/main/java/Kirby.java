@@ -1,11 +1,19 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 /**
- * The Kirby class implements the main method of the chatbot
+ * The Kirby class implements the main method of the bot
  * with all the relevant commands.
  * @author Sheryl-Lynn Tan (G11)
  */
 public class Kirby {
+    /**
+     * This enum illustrates the three types of tasks.
+     */
+    enum TaskType {
+        TODO,
+        EVENT,
+        DEADLINE
+    }
     /**
      * Static variable to store the number of tasks in the bag.
      */
@@ -79,7 +87,7 @@ public class Kirby {
         }
             Task currTask = Tasks.get(taskIndex - 1);
             currTask.setCompleted();
-            System.out.println("Awesome :D I've marked " + currTask.toString() + " completed!");
+            System.out.println("Awesome :D I've marked " + currTask + " completed!");
     }
 
     /**
@@ -98,7 +106,7 @@ public class Kirby {
         }
         Task currTask = Tasks.get(taskIndex - 1);
         currTask.setIncomplete();
-        System.out.println("Okay, I've marked " + currTask.toString() + " pending!");
+        System.out.println("Okay, I've marked " + currTask + " pending!");
     }
 
     /**
@@ -114,7 +122,7 @@ public class Kirby {
         String taskName = inputString.substring(inputString.indexOf(' ') + 1);
         Todo todo = new Todo(taskName);
         Tasks.add(todo);
-        System.out.println("Added into your bag of fabulous tasks: " + todo.toString());
+        System.out.println("Added into your bag of fabulous tasks: " + todo);
         addTaskCount();
         printTaskCount();
     }
@@ -133,7 +141,7 @@ public class Kirby {
         String by = inputString.substring(inputString.indexOf("/by") + 4);
         Deadline deadline = new Deadline(taskName, by);
         Tasks.add(deadline);
-        System.out.println("Added into your bag of fabulous tasks: " + deadline.toString());
+        System.out.println("Added into your bag of fabulous tasks: " + deadline);
         addTaskCount();
         printTaskCount();
     }
@@ -152,7 +160,7 @@ public class Kirby {
         String at = inputString.substring(inputString.indexOf("/at") + 4);
         Event event = new Event(taskName, at);
         Tasks.add(event);
-        System.out.println("Added into your bag of fabulous tasks: " + event.toString());
+        System.out.println("Added into your bag of fabulous tasks: " + event);
         addTaskCount();
         printTaskCount();
     }
@@ -196,10 +204,55 @@ public class Kirby {
         Scanner scanner = new Scanner(System.in);
         // Keep taking in input
         while (scanner.hasNextLine()) {
+                TaskType taskType = null;
                 String inputString = scanner.nextLine();
                 try {
+                    // Add task
+                    if (inputString.split(" ")[0].equals("todo")) {
+                        taskType = TaskType.TODO;
+                    }
+
+                    else if (inputString.split(" ")[0].equals("deadline")) {
+                        taskType = TaskType.DEADLINE;
+                    }
+
+                    else if (inputString.split(" ")[0].equals("event")) {
+                        taskType = TaskType.EVENT;
+                    }
+
+                    if (taskType != null) {
+                        switch (taskType) {
+                            case TODO:
+                                try {
+                                    toDo(inputString, Tasks);
+                                    break;
+                                } catch (KirbyMissingArgumentException e) {
+                                    System.out.println(e.getMessage());
+                                    break;
+                                }
+
+                            case DEADLINE:
+                                try {
+                                    deadline(inputString, Tasks);
+                                    break;
+                                } catch (KirbyMissingArgumentException e) {
+                                    System.out.println(e.getMessage());
+                                    break;
+                                }
+
+                            case EVENT:
+                                try {
+                                    event(inputString, Tasks);
+                                    break;
+                                } catch (KirbyMissingArgumentException e) {
+                                    System.out.println(e.getMessage());
+                                    break;
+                                }
+                        }
+                    }
+
                     // Bye
-                    if (inputString.equals("bye")) {
+                    else if (inputString.equals("bye")) {
                         goodbye();
                         break;
                     }
@@ -222,33 +275,6 @@ public class Kirby {
                     else if (inputString.split(" ")[0].equals("unmark")) {
                         try {
                             unmark(inputString, Tasks);
-                        } catch (KirbyMissingArgumentException e) {
-                            System.out.println(e.getMessage());
-                        }
-                    }
-
-                    // Add task
-                    else if (inputString.split(" ")[0].equals("todo")) {
-                        try {
-                            toDo(inputString, Tasks);
-                        } catch (KirbyMissingArgumentException e) {
-                            System.out.println(e.getMessage());
-                        }
-                    }
-
-                    // Deadline
-                    else if (inputString.split(" ")[0].equals("deadline")) {
-                        try {
-                            deadline(inputString, Tasks);
-                        } catch (KirbyMissingArgumentException e) {
-                            System.out.println(e.getMessage());
-                        }
-                    }
-
-                    // Event
-                    else if (inputString.split(" ")[0].equals("event")) {
-                        try {
-                            event(inputString, Tasks);
                         } catch (KirbyMissingArgumentException e) {
                             System.out.println(e.getMessage());
                         }
