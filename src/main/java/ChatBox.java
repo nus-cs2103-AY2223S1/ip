@@ -1,5 +1,8 @@
 import java.util.Scanner;
-
+/**
+ * A class ChatBox to simulate the chat features of the "Duke" by interacting
+ * with the user-inputs and responding accordingly.
+ */
 public class ChatBox {
     //An array of Tasks to store all the instances of Task
     private Task[] tasks_memory = new Task[100];
@@ -20,6 +23,11 @@ public class ChatBox {
         String ListTasks = "list";
         String Marking = "mark";
         String Unmarking = "unmark";
+
+        //The Strings representing the 3 types of Tasks
+        String TODO = "todo";
+        String DEADLINE = "deadline";
+        String EVENT = "event";
 
         while (true) {
             //An instance of Scanner to keep track of the user's input
@@ -58,7 +66,7 @@ public class ChatBox {
                 tasks_memory[task_num - 1].markTaskDone();
                 System.out.println("__________________________________________________");
                 System.out.println("Good Job! I have marked this task as done:");
-                System.out.println("    " + tasks_memory[task_num - 1].toString());
+                System.out.println("  " + tasks_memory[task_num - 1].toString());
                 System.out.println("__________________________________________________");
                 continue;
             }
@@ -69,16 +77,54 @@ public class ChatBox {
                 tasks_memory[task_num - 1].markTaskUndone();
                 System.out.println("__________________________________________________");
                 System.out.println("Alright! I have marked this task as not done yet:");
-                System.out.println("    " + tasks_memory[task_num - 1].toString());
+                System.out.println("  " + tasks_memory[task_num - 1].toString());
                 System.out.println("__________________________________________________");
                 continue;
             }
 
-            //Adding a new task to the list of task and displaying task added
+            //To store the string representation of the categorised task
+            String task_description = "";
+
+            //To keep track of whether the user-input categorised the task into the 3 categories
+            boolean specified_task = false;
+
+            if (FirstText.equals(TODO)) { //If it is a todo task
+                specified_task = true;
+                tasks_memory[array_index] = new Todo(array[1]);
+                task_description = "  " + tasks_memory[array_index].toString();
+            } else if (FirstText.equals(DEADLINE)) { //If it is a deadline task
+                specified_task = true;
+                String task_info = array[1];
+                String[] info_arr = task_info.split(" /by ", 2);
+                tasks_memory[array_index] = new Deadline(info_arr[0], info_arr[1]);
+                task_description = "  " + tasks_memory[array_index].toString();
+            } else if (FirstText.equals(EVENT)) { //If it is an event task
+                specified_task = true;
+                String task_info = array[1];
+                String[] info_arr = task_info.split(" /at ", 2);
+                tasks_memory[array_index] = new Event(info_arr[0], info_arr[1]);
+                task_description = "  " + tasks_memory[array_index].toString();
+            }
+
+            //Printing the output on display
             System.out.println("__________________________________________________");
-            System.out.println("added: " + UserInput);
+            if (specified_task) { //If the task is categorised (3 categories), we will print accordingly
+                System.out.println("Got it. I have added this task:");
+                System.out.println(task_description);
+            } else { //Still supports the old way of adding tasks without categories
+                //Adding a new task to the list of task and displaying task added & old printing output
+                System.out.println("added: " + UserInput);
+                tasks_memory[array_index] = new Task(UserInput);
+            }
+
+            if (array_index == 0) { //For a single task
+                System.out.println("Now you have " + (array_index + 1) + " task in the list.");
+            } else { //For multiple tasks
+                System.out.println("Now you have " + (array_index + 1) + " tasks in the list.");
+            }
+
             System.out.println("__________________________________________________");
-            tasks_memory[array_index] = new Task(UserInput);
+
             array_index++;
         }
 

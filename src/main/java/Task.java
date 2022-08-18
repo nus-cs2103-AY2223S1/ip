@@ -1,3 +1,8 @@
+/**
+ * This class is used to simulate the individual task entered by the
+ * user and encapsulates the task description as well as task status
+ * within its fields.
+ */
 public class Task {
     //To encapsulate the information regarding the task
     protected String description;
