@@ -12,20 +12,22 @@ public class TaskList {
         System.out.println("Got it. I've added this task:\n  " + task + "\nNow you have " + tasks.size() + " tasks in the list.");
     }
 
-    public boolean markTaskAsDone(int index) {
-        return this.tasks.get(index).markAsDone();
+    public void markTaskAsDone(int index) {
+        tasks.get(index).markAsDone();
+        System.out.println("Nice! I've marked this task as done:");
+        System.out.println("  " + tasks.get(index));
     }
 
-    public boolean markTaskAsUndone(int index) {
-        return this.tasks.get(index).markAsUndone();
+    public void markTaskAsUndone(int index) {
+        tasks.get(index).markAsUndone();
+        System.out.println("OK, I've marked this task as not done yet:");
+        System.out.println("  " + tasks.get(index));
     }
 
-    public String getTask(int index) {
-        return tasks.get(index).toString();
-    }
-
-    public int size() {
-        return tasks.size();
+    public void delete(int index) {
+        Task task = tasks.get(index);
+        tasks.remove(index);
+        System.out.println("Noted. I've removed this task:\n  " + task + "\nNow you have " + tasks.size() + " tasks in the list.");
     }
 
     public void list() {

@@ -38,19 +38,23 @@ public class Duke {
             try {
                 int index = Integer.parseInt(input.substring(5)) - 1;
                 taskList.markTaskAsDone(index);
-                System.out.println("Nice! I've marked this task as done:");
-                System.out.println("  " + taskList.getTask(index));
+
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException("OOPS!!! You cannot mark a non-existent task as done.");
             }
-        } else if(input.matches("^unmark [0-9]$")) {
+        } else if(input.matches("^unmark [0-9]*$")) {
             try {
                 int index = Integer.parseInt(input.substring(7)) - 1;
                 taskList.markTaskAsUndone(index);
-                System.out.println("OK, I've marked this task as not done yet:");
-                System.out.println("  " + taskList.getTask(index));
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException("OOPS!!! You cannot mark a non-existent task as undone.");
+            }
+        } else if(input.matches("^delete [0-9]*$")) {
+            try {
+                int index = Integer.parseInt(input.substring(7)) - 1;
+                taskList.delete(index);
+            } catch (IndexOutOfBoundsException e) {
+                throw new DukeException("OOPS!!! You cannot delete a non-existent task.");
             }
         } else {
             throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :(");
