@@ -1,7 +1,8 @@
 blablabla
 list
+delete 1
 mark 1
-todo play basketball 
+todo play basketball
 deadline do homework /9am 
 event meet with friends /3pm 
 event 
@@ -9,7 +10,10 @@ event do homework
 mark a
 unmark 1
 mark 1
+mark 2
 mark 1
 unmark 1
-List
+list
+delete 1
+list
 bye

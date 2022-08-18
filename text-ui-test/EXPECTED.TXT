@@ -11,14 +11,16 @@ You can input stuff that you want me to write on this grandma-aged notebook.
 2. Type 'list' then I'll show all the existing lines to you.
 3. Type 'mark + the index of an existing task' to marks it as done. Like 'mark 1'.
 4. Type 'unmark + the index of an existing task' to unmark a task.
+5. Type 'delete + the index of an existing task' to delete it.
 -----------------------------------------------------------------------------
 Actually why not just do me a favour? Type 'bye' in the console and free both of us.
 Ummm...what is that? I don't get it.
 There is no task in the list.
+You can't delete a task that's not in the list.
 Hey, be careful.
 The index must be between 1 and the size of the list, alright?
 Okay...noted.
-play basketball ...Huh? Hope you can remember it.
+play basketball...Huh? Hope you can remember it.
 Okay...noted.
 do homework...Huh? Hope you can remember it.
 Okay...noted.
@@ -27,8 +29,14 @@ Do I have to teach you again the format of creating a task?
 Do I have to teach you again the format of creating a task?
 Type 'mark + the index of the task' if that's what you want.
 What do you mean? This task is not done in the first place.
-Okay...task: play basketball  is marked as done.
+Okay...task: play basketball is marked as done.
+Okay...task: do homework is marked as done.
 What do you mean? This task is already marked as done.
-Okay...task: play basketball  is unmarked.
-Ummm...what is that? I don't get it.
+Okay...task: play basketball is unmarked.
+1. [T][ ] play basketball
+2. [D][X] do homework by 9am 
+3. [E][ ] meet with friends at 3pm 
+Okay...task: play basketball is deleted.
+1. [D][X] do homework by 9am 
+2. [E][ ] meet with friends at 3pm 
 Thanks a lot. I'm gonna have some carrot tea later. See you...

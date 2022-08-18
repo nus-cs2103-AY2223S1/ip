@@ -21,6 +21,7 @@ public class Rabbit {
             + "2. Type 'list' then I'll show all the existing lines to you.\n"
             + "3. Type 'mark + the index of an existing task' to marks it as done. Like 'mark 1'.\n"
             + "4. Type 'unmark + the index of an existing task' to unmark a task.\n"
+            + "5. Type 'delete + the index of an existing task' to delete it.\n"
             + "-----------------------------------------------------------------------------\n"
             + "Actually why not just do me a favour? Type 'bye' in the console and free both of us.";
 
@@ -29,32 +30,6 @@ public class Rabbit {
     private static ArrayList<Task> list = new ArrayList<>();
     private enum TaskType {
         TODO, DEADLINE, EVENT;
-    }
-
-    /**
-     * a function that continues to take in a line from the user
-     * and makes Rabbit output the same line unless the line
-     * is 'bye', in which case the program terminates as Rabbit goes
-     * back to enjoy her carrot tea.
-     */
-    private static void repeat() {
-        Scanner sc = new Scanner(System.in);
-
-        while (true) {
-            // user's input
-            String input = sc.nextLine();
-
-            if (input.equals("bye")) {
-                // terminates the program
-                break;
-            }
-
-            // Rabbit repeats what the user types in
-            System.out.println(input);
-        }
-
-        // when the user types 'bye' the program is terminated
-        System.out.println(bye);
     }
 
     /**
@@ -210,6 +185,26 @@ public class Rabbit {
         }
         return -1;
     }
+
+    private static void delete(String input) throws DeleteException{
+        try {
+            Integer.parseInt(input.substring(7));
+        } catch (NumberFormatException ex) {
+            // if input is delete + a non-integer,
+            // throws an exception due to incorrect format
+            throw new DeleteException(DeleteException.Type.FORMAT);
+        }
+
+        int i = Integer.parseInt(input.substring(7));
+        if (i > list.size() || i <= 0) {
+            // the index is not within the bound of the list
+            throw new DeleteException(DeleteException.Type.INDEX);
+        }
+
+        System.out.println("Okay...task: " + list.get(i - 1).getContent() + " is deleted.");
+        list.remove(i - 1);
+    }
+
     public static void main(String[] args) {
         System.out.println(greet);
         Scanner sc = new Scanner(System.in);
@@ -243,6 +238,9 @@ public class Rabbit {
                     case "event ":
                         addToList(TaskType.EVENT, input);
                         continue;
+                    case "delete ":
+                        delete(input);
+                        continue;
                     default:
                         // the user keyed in an invalid input
                         System.out.println("Ummm...what is that? I don't get it.");
@@ -250,6 +248,8 @@ public class Rabbit {
             } catch (MarkUnmarkException e) {
                 System.out.println(e.toString());
             } catch (AddToListException e) {
+                System.out.println(e.toString());
+            } catch (DeleteException e) {
                 System.out.println(e.toString());
             }
         }
