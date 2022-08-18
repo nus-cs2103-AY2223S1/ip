@@ -26,6 +26,11 @@ public class Duke {
                 if (command.length() >= 4 && "mark".equals(command.substring(0,4)) && !command.matches(".*[0-9]")){
                     throw new DukeException("☹ OOPS!!! There is no task index to mark.");
                 }
+
+                if (command.length() >= 6 && "delete".equals(command.substring(0,6)) && !command.matches(".*[0-9]")){
+                    throw new DukeException("☹ OOPS!!! There is no task index to delete.");
+                }
+
                 if (command.length() >= 6 && "unmark".equals(command.substring(0,6)) && !command.matches(".*[0-9]")) {
                     throw new DukeException("☹ OOPS!!! There is no task index to unmark.");
                 }
@@ -91,6 +96,24 @@ public class Duke {
                 t.markAsUndone();
                 System.out.println("OK, I've marked this task as not done yet:");
                 System.out.println(String.format("  %s %s", t.getStatusIcon(), t.getDescription()));
+            }
+
+            else if ("delete".equals(line.split(" ")[0])) {
+                int number = Integer.parseInt(line.substring(7));
+                // throw exception if index out of task list length
+                try {
+                    if (number > l.size() || number < 1) {
+                        throw new DukeException("☹ OOPS!!! There is no such task in the list.");
+                    }
+                } catch (DukeException ex) {
+                    System.out.println(ex.getMessage());
+                    System.out.println("____________________________________________________________");
+                    continue;
+                }
+                Task t = l.remove(number - 1);
+                System.out.println("Noted. I've removed this task:");
+                System.out.println(String.format("  %s %s", t.getStatusIcon(), t.getDescription()));
+                System.out.println(String.format("Now you have %d tasks in the list.", l.size()));
             }
 
             else if ("todo".equals(line.split(" ")[0])) {
