@@ -49,14 +49,16 @@ public class Duke {
      * Tries to store a Todo with the given specifications and notifies user of outcome
      * @param words The words of the command entered, first is always "todo"
      */
-    private static void addTodo(String[] words) {
+    private static void addTodo(String[] words) throws IllegalArgumentException {
+        if (words.length == 1) {
+            throw new IllegalArgumentException("☹ OOPS!!! Description can't be empty");
+        }
         StringBuilder descBuilder = new StringBuilder();
         int currIndex = 1;
         while (currIndex < words.length) {
             descBuilder.append(words[currIndex++]).append(" ");
         }
         descBuilder.deleteCharAt(descBuilder.length()-1);
-
         addTask(new Todo(descBuilder.toString()));
     }
 
@@ -64,11 +66,25 @@ public class Duke {
      * Tries to store a Deadline with the given specifications and notifies user of outcome
      * @param words The words of the command entered, first is always "deadline"
      */
-    private static void addDeadline(String[] words) {
+    private static void addDeadline(String[] words) throws IllegalArgumentException {
         StringBuilder descBuilder = new StringBuilder();
         int currIndex = 1;
+        boolean emptyDesc = true;
         while (currIndex < words.length && !words[currIndex].equals("/by")) {
-            descBuilder.append(words[currIndex++]).append(" ");
+            if (words[currIndex].isEmpty()) {
+                descBuilder.append(" ");
+            } else {
+                descBuilder.append(words[currIndex]).append(" ");
+                emptyDesc = false;
+            }
+            ++currIndex;
+        }
+        if (currIndex == words.length) {
+            throw new IllegalArgumentException("☹ OOPS!!! /by flag not found");
+        } else if (emptyDesc) {
+            throw new IllegalArgumentException("☹ OOPS!!! Description can't be empty");
+        } else if (currIndex == words.length - 1) {
+            throw new IllegalArgumentException("☹ OOPS!!! Date/time for /by flag can't be empty");
         }
         descBuilder.deleteCharAt(descBuilder.length()-1);
 
@@ -86,11 +102,25 @@ public class Duke {
      * Tries to store an Event with the given specifications and notifies user of outcome
      * @param words The words of the command entered, first is always "event"
      */
-    private static void addEvent(String[] words) {
+    private static void addEvent(String[] words) throws IllegalArgumentException {
         StringBuilder descBuilder = new StringBuilder();
         int currIndex = 1;
+        boolean emptyDesc = true;
         while (currIndex < words.length && !words[currIndex].equals("/at")) {
-            descBuilder.append(words[currIndex++]).append(" ");
+            if (words[currIndex].isEmpty()) {
+                descBuilder.append(" ");
+            } else {
+                descBuilder.append(words[currIndex]).append(" ");
+                emptyDesc = false;
+            }
+            ++currIndex;
+        }
+        if (currIndex == words.length) {
+            throw new IllegalArgumentException("☹ OOPS!!! /at flag not found");
+        } else if (emptyDesc) {
+            throw new IllegalArgumentException("☹ OOPS!!! Description can't be empty");
+        } else if (currIndex == words.length - 1) {
+            throw new IllegalArgumentException("☹ OOPS!!! Date/time for /at flag can't be empty");
         }
         descBuilder.deleteCharAt(descBuilder.length()-1);
 
@@ -108,11 +138,24 @@ public class Duke {
      * Tries to mark the specified task as done and notifies user of outcome
      * @param words The words of the command entered, first is always "mark"
      */
-    private static void markTaskAsDone(String[] words) {
-        int taskNumber = Integer.parseInt(words[1]);
-        Task task = tasks.get(taskNumber - 1);
+    private static void markTaskAsDone(String[] words) throws IllegalArgumentException {
+        if (tasks.size() == 0) {
+            throw new IllegalArgumentException("☹ OOPS!!! No tasks stored for me to do that");
+        }
+
+        Task task;
+        try {
+            int taskNumber = (words.length == 1) ? 0 : Integer.parseInt(words[1]);
+            if (taskNumber <= 0 || taskNumber > tasks.size()) {
+                throw new IllegalArgumentException();
+            }
+            task = tasks.get(taskNumber - 1);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("☹ OOPS!!! The task number must be from 1 to " + tasks.size());
+        }
+
         task.markAsDone();
-        sayLines(new String[] {
+        sayLines(new String[]{
                 "Nice! I've marked this task as done:",
                 "  " + task
         });
@@ -123,10 +166,23 @@ public class Duke {
      * @param words The words of the command entered, first is always "unmark"
      */
     private static void markTaskAsNotDone(String[] words) {
-        int taskNumber = Integer.parseInt(words[1]);
-        Task task = tasks.get(taskNumber - 1);
+        if (tasks.size() == 0) {
+            throw new IllegalArgumentException("☹ OOPS!!! No tasks stored for me to do that");
+        }
+
+        Task task;
+        try {
+            int taskNumber = (words.length == 1) ? 0 : Integer.parseInt(words[1]);
+            if (taskNumber <= 0 || taskNumber > tasks.size()) {
+                throw new IllegalArgumentException();
+            }
+            task = tasks.get(taskNumber - 1);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("☹ OOPS!!! The task number must be from 1 to " + tasks.size());
+        }
+
         task.markAsNotDone();
-        sayLines(new String[] {
+        sayLines(new String[]{
                 "OK, I've marked this task as not done yet:",
                 "  " + task
         });
@@ -160,20 +216,24 @@ public class Duke {
         String[] words = Arrays.stream(inputScanner.nextLine().strip().split(" ")).toArray(String[]::new);
         while (!(words.length == 1 && words[0].equals("bye"))) {
             if (words.length > 0) {
-                if (words.length == 1 && words[0].equals("list")) {
-                    listTasks(); //could put words.length == 1 cases all here
-                } else if (words[0].equals("todo")) {
-                    addTodo(words);
-                } else if (words[0].equals("deadline")) {
-                    addDeadline(words);
-                } else if (words[0].equals("event")) {
-                    addEvent(words);
-                } else if (words[0].equals("mark")) {
-                    markTaskAsDone(words);
-                } else if (words[0].equals("unmark")) {
-                    markTaskAsNotDone(words);
-                } else {
-                    sayLines(new String[]{"I'm sorry but I don't know what that means"});
+                try {
+                    if (words.length == 1 && words[0].equals("list")) {
+                        listTasks(); //could put words.length == 1 cases all here
+                    } else if (words[0].equals("todo")) {
+                        addTodo(words);
+                    } else if (words[0].equals("deadline")) {
+                        addDeadline(words);
+                    } else if (words[0].equals("event")) {
+                        addEvent(words);
+                    } else if (words[0].equals("mark")) {
+                        markTaskAsDone(words);
+                    } else if (words[0].equals("unmark")) {
+                        markTaskAsNotDone(words);
+                    } else {
+                        sayLines(new String[]{"I'm sorry but I don't know what that means"});
+                    }
+                } catch (IllegalArgumentException e) {
+                    sayLines(new String[]{e.getMessage()});
                 }
             }
             words = Arrays.stream(inputScanner.nextLine().strip().split(" ")).toArray(String[]::new);
