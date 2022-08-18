@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Duke {
     private static final String TAB = "    ";
-    private static final String LINEBREAK = "______________________________";
+    private static final String LINEBREAK = "___________________________________";
     private static Scanner sc = new Scanner(System.in);
     private static Task[] store = new Task[100];
     private static int index = 0;
@@ -35,6 +35,15 @@ public class Duke {
                     break;
                 case "unmark":
                     unMark(arr);
+                    break;
+                case "todo":
+                    todo(arr);
+                    break;
+                case "deadline":
+                    deadline(arr);
+                    break;
+                case "event":
+                    event(arr);
                     break;
                 default:
                     add(s);
@@ -92,4 +101,46 @@ public class Duke {
         printTab("  " + t);
     }
 
+    public static void todo(String[] arr) {
+        String s = arr[1];
+        Todo t = new Todo(s);
+        store[index] = t;
+        index++;
+        printTab(LINEBREAK);
+        printTab("Got it. I've added this task:");
+        printTab("  " + t);
+        String temp = String.format("Now you have %d tasks in the list.", index);
+        printTab(temp);
+        printTab(LINEBREAK);
+    }
+
+    public static void deadline(String[] arr) {
+        String[] temp = arr[1].split(" /");
+        String s1 = temp[0];
+        String s2 = temp[1].split(" ", 2)[1];
+        Deadline t = new Deadline(s1, s2);
+        store[index] = t;
+        index++;
+        printTab(LINEBREAK);
+        printTab("Got it. I've added this task:");
+        printTab("  " + t);
+        String temp1 = String.format("Now you have %d tasks in the list.", index);
+        printTab(temp1);
+        printTab(LINEBREAK);
+    }
+
+    public static void event(String[] arr) {
+        String[] temp = arr[1].split(" /");
+        String s1 = temp[0];
+        String s2 = temp[1].split(" ", 2)[1];
+        Event t = new Event(s1, s2);
+        store[index] = t;
+        index++;
+        printTab(LINEBREAK);
+        printTab("Got it. I've added this task:");
+        printTab("  " + t);
+        String temp1 = String.format("Now you have %d tasks in the list.", index);
+        printTab(temp1);
+        printTab(LINEBREAK);
+    }
 }
