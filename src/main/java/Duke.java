@@ -3,7 +3,10 @@ import java.util.Scanner;
 
 public class Duke {
     private boolean inNeed = true;
-    private ArrayList<Task> list = new ArrayList<>(100);
+    private final ArrayList<Task> list = new ArrayList<>(100);
+
+    private final static String DEADLINE_SPLIT = " /by ";
+    private final static String EVENT_SPLIT = " /at ";
 
     private void greet() {
         generateReply("Hello! I'm Sheep\n" +
@@ -14,6 +17,10 @@ public class Duke {
         System.out.println("____________________________________________________________\n" +
                 reply +
                 "\n____________________________________________________________\n");
+    }
+
+    private String[] splitString(String s, String regex) {
+        return s.split(regex, 2);
     }
 
     private void parseMessage(String message) {
@@ -35,10 +42,22 @@ public class Duke {
                 int index2 = Integer.parseInt(command[1]);
                 this.unmarkDone(index2);
                 break;
+            case "todo":
+                Task t = new Todo(command[1]);
+                this.addTask(t);
+                break;
+            case "deadline":
+                String[] argsDeadline = splitString(command[1], DEADLINE_SPLIT);
+                Deadline d = new Deadline(argsDeadline[0], argsDeadline[1]);
+                this.addTask(d);
+                break;
+            case "event":
+                String[] argsEvent = splitString(command[1], EVENT_SPLIT);
+                Event e = new Event(argsEvent[0], argsEvent[1]);
+                this.addTask(e);
+                break;
             default:
-                Task t = new Task(message);
-                this.list.add(t);
-                this.generateReply("added: " + t);
+                this.generateReply("Invalid command");
         }
     }
 
@@ -49,6 +68,17 @@ public class Duke {
             System.out.println(count++ + ". " + t);
         }
         System.out.println("____________________________________________________________");
+    }
+
+    private void addTask(Task t) {
+        this.list.add(t);
+        generateReply("Got it. I've added this task:\n" +
+                t +
+                "\n Now you have " + this.countTask() + " tasks in the list");
+    }
+
+    private Integer countTask() {
+        return this.list.size();
     }
 
     private void markDone(int index) {
