@@ -1,11 +1,14 @@
 import java.util.Scanner;
 import static java.lang.Integer.parseInt;
+import java.time.*;
+import java.time.format.*;
 
 public class Duke {
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         TaskList lst = new TaskList();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM uuuu");
         System.out.println(Constants.initMsg);
         while (true) {
             String input = scan.nextLine();
@@ -36,15 +39,15 @@ public class Duke {
                         break;
                     case "deadline":
                         checkInputError(parse);
-                        String[] parse2 = parse[1].split("/by");
+                        String[] parse2 = parse[1].split("/by ");
                         checkInputError(parse2);
-                        lst.addTask(new Deadline(parse2[0], parse2[1]));
+                        lst.addTask(new Deadline(parse2[0], LocalDate.parse(parse2[1], formatter)));
                         break;
                     case "event":
                         checkInputError(parse);
-                        String[] parse3 = parse[1].split("/at");
+                        String[] parse3 = parse[1].split("/at ");
                         checkInputError(parse3);
-                        lst.addTask(new Event(parse3[0], parse3[1]));
+                        lst.addTask(new Event(parse3[0], LocalDate.parse(parse3[1], formatter)));
                         break;
                     default:
                         throw new DukeException(Constants.invalid);
