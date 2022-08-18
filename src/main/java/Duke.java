@@ -27,7 +27,11 @@ public class Duke {
      * 
      * @param index Index of the task as printed by viewAllTask.
      */
-    public void deleteTask(int index) {
+    public void deleteTask(int index) throws DukeException {
+        if (index > this.taskList.size() - 1 || index < 0) {
+            throw new DukeException(
+                    "Oh no! There doesn't seem to be a task with this index.");
+        }
         String task = this.taskList.getTaskToString(index);
         this.taskList.deleteTask(index);
         int size = this.taskList.size();
@@ -44,7 +48,11 @@ public class Duke {
      * 
      * @param index Index of the task as printed by viewAllTask.
      */
-    public void markTask(int index) {
+    public void markTask(int index) throws DukeException {
+        if (index > this.taskList.size() - 1 || index < 0) {
+            throw new DukeException(
+                    "Oh no! There doesn't seem to be a task with this index.");
+        }
         this.taskList.markTask(index);
         String msgBegin = "Nice! I've marked this task as done: \n ";
         String msg = msgBegin + this.taskList.getTaskToString(index).toString();
@@ -57,7 +65,11 @@ public class Duke {
      * 
      * @param index Index of the task as printed by viewAllTask.
      */
-    public void unmarkTask(int index) {
+    public void unmarkTask(int index) throws DukeException {
+        if (index > this.taskList.size() - 1 || index < 0) {
+            throw new DukeException(
+                    "Oh no! There doesn't seem to be a task with this index.");
+        }
         this.taskList.unmarkTask(index);
         String msgBegin = "OK, I've marked this task as not done yet: \n ";
         String msg = msgBegin + this.taskList.getTaskToString(index).toString();
@@ -122,10 +134,6 @@ public class Duke {
                         // whereas actual implementation is 0-indexed.
                         int markIndex = Integer.parseInt(
                                 usrInputTokens[1], 10) - 1;
-                        if (markIndex > dk.taskList.size() - 1 || markIndex < 0) {
-                            throw new DukeException(
-                                    "Oh no! There doesn't seem to be a task with this index.");
-                        }
                         dk.markTask(markIndex);
                         break;
                     case "unmark":
@@ -135,10 +143,7 @@ public class Duke {
                         }
                         int unmarkIndex = Integer.parseInt(
                                 usrInputTokens[1], 10) - 1;
-                        if (unmarkIndex > dk.taskList.size() - 1 || unmarkIndex < 0) {
-                            throw new DukeException(
-                                    "Oh no! There doesn't seem to be a task with this index.");
-                        }
+
                         dk.unmarkTask(unmarkIndex);
                         break;
                     case "delete":
@@ -148,10 +153,6 @@ public class Duke {
                         }
                         int deleteIndex = Integer.parseInt(
                                 usrInputTokens[1], 10) - 1;
-                        if (deleteIndex > dk.taskList.size() - 1 || deleteIndex < 0) {
-                            throw new DukeException(
-                                    "Oh no! There doesn't seem to be a task with this index.");
-                        }
                         dk.deleteTask(deleteIndex);
                         break;
                     case "todo":
