@@ -40,7 +40,15 @@ public class Duke {
                 System.out.println(HORIZONTAL_LINE + "\n  OK, I've marked this task as not done yet:\n"
                         + storedTasks.get(taskNumber) + "\n" + HORIZONTAL_LINE);
             } else if (command.split(" ").length > 1 && command.split(" ")[0].equals("todo")) {
-                Task todo = new Todos(command);
+                ArrayList<String> commandDelimited = new ArrayList<String>(Arrays.asList(command.split(" ")));
+                StringBuilder description = new StringBuilder();
+                for (int i = 1; i < commandDelimited.size(); i++) {
+                    description.append(commandDelimited.get(i));
+                    if (i != commandDelimited.size() - 1) {
+                        description.append(" ");
+                    }
+                }
+                Task todo = new Todos(description.toString());
                 storedTasks.add(todo);
                 System.out.println(
                         HORIZONTAL_LINE + "\n  Got it. I've added this task:\n  " + todo + "\n  Now you have "
