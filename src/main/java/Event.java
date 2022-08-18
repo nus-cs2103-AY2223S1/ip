@@ -1,13 +1,25 @@
-public class Deadline extends Task {
-    private final String deadline;
+public class Event extends Task {
+    private final String timing;
 
-    public Deadline(String input, String deadline) {
-        super(input);
-        this.deadline = deadline;
+    public Event(String input, String timing) {
+        super(input, "");
+        this.timing = timing;
     }
 
-    public Deadline(String input, boolean done, String deadline) {
-        super(input, done);
-        this.deadline = deadline;
+    public Event(String input, boolean done, String timing) {
+        super(input, done, "");
+        this.timing = timing;
+    }
+    @Override
+    public String getTiming(){
+        return this.timing;
+    }
+
+    public Event markDone() {
+        return new Event(this.getVal(), true, this.timing);
+    }
+
+    public Event markUndone() {
+        return new Event(this.getVal(), false, this.timing);
     }
 }
