@@ -26,6 +26,8 @@ public class RemoveTaskCommand implements Command {
             return this.tasks.remove(this.index);
         } catch (IndexOutOfBoundsException e) {
             throw new DaveException(String.format("( ; ω ; ) Oh nyo!!! Please tell me which task to mark between 1 and %d!", tasks.size()));
+        } catch (DaveNoTasksException de) {
+            throw de;
         }
     }
 

@@ -1,4 +1,4 @@
-public class DaveException extends Exception{
+public class DaveException extends Exception {
 
     private String error;
 

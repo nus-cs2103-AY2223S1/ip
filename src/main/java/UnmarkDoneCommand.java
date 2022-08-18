@@ -15,6 +15,8 @@ public class UnmarkDoneCommand implements Command {
             this.task = tasks.get(index - 1);
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
             throw new DaveException(String.format("( ; ω ; ) Oh nyo!!! Please tell me which task to unmark between 1 and %d!", tasks.size()));
+        } catch (DaveNoTasksException de) {
+            throw de;
         }
     }
 

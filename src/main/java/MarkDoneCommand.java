@@ -15,6 +15,8 @@ public class MarkDoneCommand implements Command{
             this.task = tasks.get(index - 1);
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
             throw new DaveException(String.format("( ; ω ; ) Oh nyo!!! Please give me a valid task to mark between 1 and %d!", tasks.size()));
+        } catch (DaveNoTasksException de) {
+            throw de;
         }
     }
 
