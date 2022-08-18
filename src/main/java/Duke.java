@@ -126,12 +126,12 @@ public class Duke {
 
     private static void greet() {
         String greetingMessage = makeIndent("Hello! I'm Duke\n") +
-                makeIndent("What can I do for you?\n");
+                makeIndent("What can I do for you?");
         printMessage(greetingMessage);
     }
 
     private static void bye() {
-        String byeMessage = makeIndent("Bye. Hope to see you again soon!\n");
+        String byeMessage = makeIndent("Bye. Hope to see you again soon!");
         printMessage(byeMessage);
         exitProgram();
     }
