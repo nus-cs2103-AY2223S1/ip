@@ -11,24 +11,37 @@ public class Duke {
         System.out.println("Hello from\n" + logo);
         System.out.println("Hello from\n" + logo);*/
         ArrayList<String> strList = new ArrayList<>();
+        Task[] tasks = new Task[100];
+        int numOfTasks = 0;
         Scanner sc = new Scanner(System.in);
         String line = "---------------------------------------------------";
         System.out.println(line);
         System.out.println("Hello! I'm Duke\n" +
                 "     What can I do for you?");
         System.out.println(line);
-
+        String uncheckedBox = "[ ]";
         String input = sc.nextLine();
         while(!input.equals("bye")) {
             System.out.println(line);
             if (input.equals("list")) {
-                int counter = 1;
-                for (String s : strList) {
-                    System.out.println(counter + ". " + s);
-                    counter++;
+                System.out.println("Here are the tasks in your list:");
+                for (int i = 0; i < numOfTasks; i++) {
+                    System.out.println((i+1) + ". " + tasks[i].toString());
                 }
+            } else if (input.startsWith("mark")) {
+                int index = Integer.parseInt(input.substring(input.lastIndexOf(" ") + 1)) - 1;
+                tasks[index].markAsDone();
+                System.out.println("Nice! I've marked this task as done:");
+                System.out.println(tasks[index]);
+            } else if (input.startsWith("unmark")) {
+                int index = Integer.parseInt(input.substring(input.lastIndexOf(" ") + 1)) - 1;
+                tasks[index].markAsUndone();
+                System.out.println("OK, I've marked this task as not done yet:");
+                System.out.println(tasks[index]);
             } else {
-                strList.add(input);
+                Task newTask = new Task(input);
+                tasks[numOfTasks] = newTask;
+                numOfTasks++;
                 System.out.println("added: " + input);
             }
             System.out.println(line);
@@ -38,6 +51,5 @@ public class Duke {
         System.out.println(line);
         System.out.println("Bye. Hope to see you again soon!");
         System.out.println(line);
-
     }
 }
