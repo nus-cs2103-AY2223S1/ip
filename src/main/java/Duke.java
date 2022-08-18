@@ -3,19 +3,19 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Duke {
-    private static final String HORIZONTAL_LINE = "    ____________________________________________________________\n";
+    private static final String HORIZONTAL_LINE = "____________________________________________________________\n";
     private static final String LOGO =
-              "      ____        _        \n"
-            + "     |  _ \\ _   _| | _____ \n"
-            + "     | | | | | | | |/ / _ \\\n"
-            + "     | |_| | |_| |   <  __/\n"
-            + "     |____/ \\__,_|_|\\_\\___|\n";
+              " ____        _        \n"
+            + "|  _ \\ _   _| | _____ \n"
+            + "| | | | | | | |/ / _ \\\n"
+            + "| |_| | |_| |   <  __/\n"
+            + "|____/ \\__,_|_|\\_\\___|\n";
     private final Scanner sc;
     private TaskList taskList;
     private enum Commands {
         TODO, DEADLINE, EVENT, LIST, BYE, MARK, UNMARK, DELETE
     }
-    private HashMap<String, Commands> commandMap = new HashMap<>(Map.of(
+    private final HashMap<String, Commands> commandMap = new HashMap<>(Map.of(
             "todo", Commands.TODO,
             "deadline", Commands.DEADLINE,
             "event", Commands.EVENT,
@@ -29,15 +29,22 @@ public class Duke {
     public Duke() {
         this.sc = new Scanner(System.in);
         this.taskList = new TaskList();
-        // reply(LOGO + "\n     Hello! I'm Duke\n     What can I do for you?");
-        reply("     Hello! I'm Duke\n     What can I do for you?");
+        reply(LOGO + "Hello! I'm Duke\nWhat can I do for you?\n");
     }
 
     public void reply(String msg) {
-        String response = HORIZONTAL_LINE
-                + msg + "\n"
-                + HORIZONTAL_LINE;
-        System.out.println(response);
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("    ");
+        stringBuilder.append(HORIZONTAL_LINE);
+        String[] response = msg.split("\n");
+        for (String line : response) {
+            stringBuilder.append("     ");
+            stringBuilder.append(line);
+            stringBuilder.append("\n");
+        }
+        stringBuilder.append("    ");
+        stringBuilder.append(HORIZONTAL_LINE);
+        System.out.println(stringBuilder);
     }
 
     public String add(Commands type) {
@@ -48,21 +55,21 @@ public class Duke {
                 case TODO:
                     String input = sc.nextLine();
                     if (input.isBlank()) {
-                        throw new DukeException("     Something went wrong! Could not read TODO.");
+                        throw new DukeException("Something went wrong! Could not read TODO.");
                     }
                     msg = this.taskList.addTask(new ToDo(input));
                     break;
                 case DEADLINE:
                     arguments = sc.nextLine().split("/by");
                     if (arguments.length < 2 || arguments[0].isBlank() || arguments[1].isBlank()) {
-                        throw new DukeException("     Something went wrong! Could not read DEADLINE.");
+                        throw new DukeException("Something went wrong! Could not read DEADLINE.");
                     }
                     msg = this.taskList.addTask(new Deadline(arguments[0], arguments[1]));
                     break;
                 case EVENT:
                     arguments = sc.nextLine().split("/at");
                     if (arguments.length < 2 || arguments[0].isBlank() || arguments[1].isBlank()) {
-                        throw new DukeException("     Something went wrong! Could not read EVENT.");
+                        throw new DukeException("Something went wrong! Could not read EVENT.");
                     }
                     msg = this.taskList.addTask(new Event(arguments[0], arguments[1]));
                     break;
@@ -80,7 +87,7 @@ public class Duke {
                 String input = sc.next();
                 if (!commandMap.containsKey(input)) {
                     sc.nextLine(); // Move scanner to next line
-                    throw new DukeException("     I'm sorry, but I don't understand that.");
+                    throw new DukeException("I'm sorry, but I don't understand that.");
                 }
                 Commands type = commandMap.get(input);
                 switch (type) {
@@ -93,12 +100,12 @@ public class Duke {
                         reply(this.taskList.toString());
                         break;
                     case MARK:
-                        stringBuilder.append("     Nice! I've marked this task as done:\n     ");
+                        stringBuilder.append("Nice! I've marked this task as done:\n");
                         stringBuilder.append(this.taskList.markDone(sc.nextInt() - 1));
                         reply(stringBuilder.toString());
                         break;
                     case UNMARK:
-                        stringBuilder.append("     OK, I've marked this task as not done yet:\n     ");
+                        stringBuilder.append("OK, I've marked this task as not done yet:\n");
                         stringBuilder.append(this.taskList.unmarkDone(sc.nextInt() - 1));
                         reply(stringBuilder.toString());
                         break;
@@ -106,7 +113,7 @@ public class Duke {
                         reply(this.taskList.removeTask(sc.nextInt() - 1));
                         break;
                     case BYE:
-                        reply("     Bye. Hope to see you again soon!");
+                        reply("Bye. Hope to see you again soon!");
                         sc.close();
                         break;
                 }
