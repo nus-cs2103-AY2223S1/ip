@@ -29,7 +29,7 @@ public class Duke {
             } catch (DukeException err) {
                 OutputLogger.output(err.getMessage());
             } catch (Exception err) {
-                OutputLogger.output("An unrecognised issue has occured:\n" + err.getMessage());
+                OutputLogger.output("An unrecognised issue has occurred:\n" + err.getMessage());
             }
         }
     }

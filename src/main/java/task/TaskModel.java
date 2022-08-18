@@ -36,25 +36,26 @@ public class TaskModel {
         return new TaskResponse(event, tasks.size());
     }
 
-    // taskId from 1-length
-    public Task markTask(Integer taskId) throws DukeException {
+    private Task getTask(Integer taskId) throws DukeException {
         try {
             Task task = tasks.get(taskId - 1);
-            task.markAsDone();
             return task;
         } catch (IndexOutOfBoundsException ex) {
             throw new DukeException(String.format("Task number %d does not exist :(", taskId));
         }
     }
 
+    // taskId from 1-length
+    public Task markTask(Integer taskId) throws DukeException {
+        Task task = getTask(taskId);
+        task.markAsDone();
+        return task;
+    }
+
     public Task unmarkTask(Integer taskId) throws DukeException {
-        try {
-            Task task = tasks.get(taskId - 1);
-            task.unmark();
-            return task;
-        } catch (IndexOutOfBoundsException ex) {
-            throw new DukeException(String.format("Task number %d does not exist :(", taskId));
-        }
+        Task task = getTask(taskId);
+        task.unmark();
+        return task;
     }
 
     /**
