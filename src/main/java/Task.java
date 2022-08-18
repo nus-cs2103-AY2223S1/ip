@@ -1,10 +1,12 @@
 public class Task {
     protected String description;
     protected boolean isDone;
+    protected char type;
 
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+        type = 'T';
     }
 
     public String getStatusIcon() {
@@ -13,7 +15,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return "[" + this.getStatusIcon() + "] " + this.description;
+        return "[" + type + "][" + getStatusIcon() + "]" + description;
     }
 
     public void markAsDone() {
