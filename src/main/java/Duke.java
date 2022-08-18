@@ -1,31 +1,45 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Duke {
+    private static final String LINE = "\n----------------------------------------------------------------\n";
     public static void main(String[] args) {
-        String[] arr = new String[100];
-        int i = 0;
-        String line = "\n----------------------------------------------------------------\n";
-        System.out.println(line + "Hello! I'm Duke\n" + "What can I do for you?" + line + "\n");
-
-
+        ArrayList<Task> taskList = new ArrayList<Task>(100);
+        System.out.println(LINE + "Hello! I'm Duke\n" + "What can I do for you?" + LINE + "\n");
+        Scanner command = new Scanner(System.in);
         while (true) {
-            Scanner myObj = new Scanner(System.in);
-            String input = myObj.nextLine();
+            String temp = command.nextLine();
+            String input = temp.split(" ")[0];
 
             if (input.equals("bye")) {
-                System.out.println(line + "Bye. Hope to see you again!" + line);
+                System.out.println(LINE + "Bye. Hope to see you again!" + LINE);
+                command.close();
                 break;
             }
             else if (input.equals("list")) {
-                for (int j = 1; j < i + 1; j++) {
-                    System.out.println("" + j + ". " + arr[j - 1]);
+                System.out.println("Here are the tasks in your list:\n");
+                for (int j = 0; j < taskList.size(); j++) {
+                    System.out.println("" + String.valueOf(j + 1) + ". " + taskList.get(j));
                 }
             }
 
+            else if (input.equals("mark")) {
+                Integer taskNo = Integer.parseInt(temp.split(" ")[1]) - 1;
+                taskList.get(taskNo).markAsDone();
+                System.out.println(LINE+ "Nice! I've marked this task as done:\n"
+                        + taskList.get(taskNo) + LINE);
+            }
+
+            else if (input.equals("unmark")) {
+                Integer taskNo = Integer.parseInt(temp.split(" ")[1]) - 1;
+                taskList.get(taskNo).markAsUndone();
+                System.out.println(LINE + "OK, I've marked this task as not done yet:\n"
+                        + taskList.get(taskNo) + LINE);
+            }
+
             else {
-                arr[i] = input;
-                System.out.println(line + "added: " + input + line);
-                i++;
+                System.out.println(LINE + "added: " + temp + LINE);
+                taskList.add(new Task(input));
             }
 
         }
