@@ -41,6 +41,10 @@ public class Duke {
                 } else if (input.startsWith("event ")) {
                     String[] event = input.replace("event ", "").split(" /at ");
                     addEvent(event[0], event[1]);
+                } else if (input.startsWith("delete ")) {
+                    int taskNum = Integer.parseInt(input.replace("delete ", ""));
+                    validateDelete(taskNum);
+                    deleteTask(taskNum);
                 } else {
                     throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
@@ -78,6 +82,22 @@ public class Duke {
         if(taskNum < 1 || taskNum > tasks.size()) {
             throw new DukeException("OOPS!!! The index of the task is not in the list.");
         }
+    }
+
+    public void validateDelete(int taskNum) throws DukeException {
+        if(taskNum < 1 || taskNum > tasks.size()) {
+            throw new DukeException("OOPS!!! The index of the task to delete is not in the list.");
+        }
+    }
+
+    public void deleteTask(int taskNum) {
+        Task toDelete = tasks.get(taskNum - 1);
+        tasks.remove(taskNum - 1);
+        linePrint();
+        System.out.println("\tNoted. I've removed this task:\n\t" +
+                toDelete.toString() +
+                "\n\tNow you have " + tasks.size() + " tasks in the list.");
+        linePrint();
     }
 
     public void addDeadline(String description, String by) {
