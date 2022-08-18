@@ -35,7 +35,7 @@ public class Duke {
 
     public void printTask(Task task) {
         System.out.println("You have added: \n" + task);
-        System.out.println("Now you have " + count + " tasks in your list.");
+        System.out.println("Now you have " + count + " tasks in your list. \n");
     }
 
     public void showTasks() {
@@ -43,6 +43,7 @@ public class Duke {
             Task task = taskList.get(i - 1);
             System.out.println(i + "." + task);
         }
+        System.out.println("");
     }
 
     public static void main(String[] args) {
