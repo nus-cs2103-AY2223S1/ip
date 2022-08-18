@@ -47,9 +47,8 @@ public class Duke {
         String markAsDone = "mark ";
         String markAsNotDone = "unmark ";
         String exitChat = "bye";
-
+        Scanner readinput = new Scanner(System.in);
         while(true){
-            Scanner readinput = new Scanner(System.in);
             String userMsg = readinput.nextLine();
 
             if(userMsg.equals(showList)){
@@ -59,7 +58,7 @@ public class Duke {
                     ListObject currItem = listOfItems.get(i);
                     System.out.println(numb + "." + currItem.toString());
                 }
-                System.out.println("\n***********************************************************************\n");
+                System.out.println("\n***********************************************************************");
             }
 
             else if(userMsg.contains(markAsDone) && !userMsg.contains(markAsNotDone)){
@@ -69,7 +68,7 @@ public class Duke {
                 currItem.switchStatus();
                 System.out.println("Very well! One less burden to bear! I have marked this complete:\n" + currItem.toString());
 
-                System.out.println("\n***********************************************************************\n");
+                System.out.println("\n***********************************************************************");
 
             }
             else if(userMsg.contains(markAsNotDone)){
@@ -79,7 +78,7 @@ public class Duke {
                 ListObject currItem = listOfItems.get(taskNoAsInt);
                 currItem.switchStatus();
                 System.out.println("Hmm....I have marked this incomplete:\n" + currItem.toString());
-                System.out.println("\n***********************************************************************\n");
+                System.out.println("\n***********************************************************************");
 
             }
             else if(userMsg.contains("todo ")){
@@ -89,7 +88,7 @@ public class Duke {
                 listOfItems.add(newItem);
                 System.out.println("'Tis a new sky for you to scale! Here! \n" + newItem.toString()
                         + "\nYou now have " + listOfItems.size() + " tasks to do!"
-                        + "\n***********************************************************************\n");
+                        + "\n***********************************************************************");
             }
 
             else if(userMsg.contains("deadline ")){
@@ -102,7 +101,7 @@ public class Duke {
                 listOfItems.add(newItem);
                 System.out.println("Mark this on your calendar! \n" + newItem.toString()
                         + "\nYou now have " + listOfItems.size() + " tasks to do!"
-                        + "\n***********************************************************************\n");
+                        + "\n***********************************************************************");
             }
 
             else if(userMsg.contains("event ")){
@@ -115,19 +114,20 @@ public class Duke {
                 listOfItems.add(newItem);
                 System.out.println("Another moment to mark... \n" + newItem.toString()
                         + "\nYou now have " + listOfItems.size() + " tasks to do!"
-                        + "\n***********************************************************************\n");
+                        + "\n***********************************************************************");
             }
 
             else if(userMsg.equals(exitChat)){
                 System.out.println("Ah! And so we part here today.\n We may yet meet again...Farewell, my friend!");
-                System.out.println("\n***********************************************************************\n");
+                System.out.println("\n***********************************************************************");
                 break;
             }
 
             else {
+
                 System.out.print("Did you say..." + userMsg + "?\n");
                 System.out.println("The shadow of my memory is long...State what you would ask clearly.");
-                System.out.println("\n***********************************************************************\n");
+                System.out.println("\n***********************************************************************");
             }
         }
     }
