@@ -1,5 +1,7 @@
 /**
  * Tasks are added by the user for KKBot to store and keep track of.
+ *
+ * @author AkkFiros
  */
 public class Task {
     protected String description;
@@ -53,5 +55,14 @@ public class Task {
         isDone = false;
         System.out.println("Trynna cheat the system are we? Well, no you, task marked as incomplete:\n"
                 + getStatusIcon() + " " + getDescription());
+    }
+
+    /**
+     * toString method for a task when KKBot is listing out stored tasks
+     * @return string representation of a task stored.
+     */
+    @Override
+    public String toString() {
+        return getStatusIcon() + " " + description;
     }
 }

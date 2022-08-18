@@ -3,10 +3,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * KKBot is a chatbot.
- * It currently functions like a to-do list.
- * It stores tasks and displays these stored tasks to users when asked.
- * It also allows users to set and check the completion of input tasks.
+ * KKBot is a chatbot that helps keep track of your to-do list!
+ * It currently supports the following commands:
+ *     1) bye: exits the chatbot
+ *     2) list: lists out all tasks stored
+ *     3) mark x: marks the x-th item in your list as complete
+ *     4) unmark x: marks the x-th item in your list as incomplete
+ *     5) abcdef: adds in a miscellaneous task abcdef to the list
+ *     6) todo ijk: adds in a todo task ijk to the list
+ *     7) deadline rst /by date-time: adds in a deadline task due by date-time
+ *     8) event xyz /at date-time: adds in an event task occurring at date-time
+ *
+ * @author AkkFiros
  */
 public class KKBot {
     // create a class level array to store all user-input tasks
@@ -53,12 +61,13 @@ public class KKBot {
                         String index = String.valueOf(i + 1);
                         //if last task in list, add a divider after
                         if (i == tasks.size() - 1) {
-                            System.out.println(index + ". " + completionIcon + " " + description + "\n" + divider);
+                            System.out.println(index + ". " + task.toString() + "\n" + divider);
                         } else {
-                            System.out.println(index + ". " + completionIcon + " " + description + "\n");
+                            System.out.println(index + ". " + task.toString() + "\n");
                         }
                     }
                 }
+            // if user input is mark, chatbot retrieves the specified task and marks it as complete
             } else if (input.startsWith("mark") || input.startsWith("Mark") || input.startsWith("MARK")) {
                 String inputNumber = input.substring(5);
                 try {
@@ -76,6 +85,7 @@ public class KKBot {
                 } catch (IndexOutOfBoundsException ioobe) {
                     System.out.println("Hmm... that task doesn't exist. Please input another task number!");
                 }
+            // if user input is unmark, chatbot retrieves the specified task and marks it as incomplete
             } else if (input.startsWith("unmark") || input.startsWith("Unmark") || input.startsWith("UNMARK")) {
                 String inputNumber = input.substring(7);
                 try {
@@ -93,6 +103,48 @@ public class KKBot {
                 } catch (IndexOutOfBoundsException ioobe) {
                     System.out.println("Hmm... that task doesn't exist. Please input another task number!");
                 }
+            // if user input is todo, chatbot creates and adds in a new todo task to the list
+            } else if (input.startsWith("todo") || input.startsWith("Todo") || input.startsWith("TODO")) {
+                try {
+                    String description = input.substring(5);
+                    ToDo newToDo = new ToDo(description);
+                    tasks.add(newToDo);
+                    System.out.println("I've added something to do to your list:\n" + "    " + newToDo.toString()
+                            + "\n" + "Now you have " + tasks.size() + " tasks in the list!\n" + divider);
+                } catch (IndexOutOfBoundsException ioobe) {
+                    System.out.println("You forgot to specify a task! Try again!");
+                }
+            // if user input is deadline, chatbot creates and adds in a new deadline task to the list
+            // it also sources out the deadline from the user input and jots it down in the list as well
+            } else if (input.startsWith("deadline") || input.startsWith("Deadline") || input.startsWith("DEADLINE")) {
+                try {
+                    int separator = input.indexOf(" /by ");
+                    String description = input.substring(9, separator).trim();
+                    String by = input.substring(separator + 5);
+                    Deadline newDeadline = new Deadline(description, by);
+                    tasks.add(newDeadline);
+                    System.out.println("You've got a new deadline added to your list:\n" + "    "
+                            + newDeadline.toString() + "\n" + "Now you have " + tasks.size()
+                            + " tasks in the list!\n" + divider);
+                } catch (IndexOutOfBoundsException ioobe) {
+                    System.out.println("You forgot to specify a task/deadline! Try again!");
+                }
+            // if user input is event, chatbot creates and adds in a new event to the list
+            // it also sources out the event time from the user input and jots it down in the list as well
+            } else if (input.startsWith("event") || input.startsWith("Event") || input.startsWith("EVENT")) {
+                try {
+                    int separator = input.indexOf(" /at ");
+                    String description = input.substring(6, separator).trim();
+                    String at = input.substring(separator + 5);
+                    Event newEvent = new Event(description, at);
+                    tasks.add(newEvent);
+                    System.out.println("A new event is lined up and added to your list:\n"
+                            + "    " + newEvent.toString() + "\n" + "Now you have "
+                            + tasks.size() + " tasks in the list!\n" + divider);
+                } catch (IndexOutOfBoundsException ioobe) {
+                    System.out.println("You forgot to specify a task/deadline! Try again!");
+                }
+            // if user input has no keywords, then chatbot creates an arbitrary task and adds it to the list
             } else {
                 Task newTask = new Task(input);
                 tasks.add(newTask);
