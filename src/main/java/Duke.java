@@ -34,15 +34,22 @@ public class Duke {
                 }
                 System.out.println(divider);
             } else if (input.contains("mark")) {
-                int taskIndex = Integer.parseInt(input.substring(input.length() - 1)) - 1;
-                if (input.contains("unmark")) {
-                    taskList.get(taskIndex).unmarkAsDone();
-                    System.out.println(divider + indent + "Okay, I've marked this task as not done yet:");
-                    System.out.println(indent + indent + taskList.get(taskIndex) + "\n" + divider);
-                } else {
-                    taskList.get(taskIndex).markAsDone();
-                    System.out.println(divider + indent + "Nice! I've marked this as done:");
-                    System.out.println(indent + indent + taskList.get(taskIndex) + "\n" + divider);
+                try {
+                    int taskIndex = Integer.parseInt(input.substring(input.length() - 1)) - 1;
+                    if (input.contains("unmark")) {
+                        taskList.get(taskIndex).unmarkAsDone();
+                        System.out.println(divider + indent + "Okay, I've marked this task as not done yet:");
+                        System.out.println(indent + indent + taskList.get(taskIndex) + "\n" + divider);
+                    } else {
+                        taskList.get(taskIndex).markAsDone();
+                        System.out.println(divider + indent + "Nice! I've marked this as done:");
+                        System.out.println(indent + indent + taskList.get(taskIndex) + "\n" + divider);
+                    }
+                } catch (StringIndexOutOfBoundsException exception) {
+                    System.out.println(divider + indent + "Wait, which task are you referring to?\n"
+                            + divider);
+                } catch (Exception exception) {
+                    System.out.println(divider + indent + "Error: " + exception + "\n" + divider);
                 }
             } else if (input.contains("delete")) {
                 try {
