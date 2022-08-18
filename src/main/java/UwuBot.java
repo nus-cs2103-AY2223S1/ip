@@ -2,16 +2,15 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UwuBot {
-    private static Scanner scanner = new Scanner(System.in);
     private static UwuChat chat = new UwuChat();
 
     public static ArrayList<Task> userToDoArray = new ArrayList<Task>();
 
     public static void main(String[] args) {
-
+        Scanner scanner = new Scanner(System.in);
         chat.greetingUsers();
 
-        while(true) {
+        while(scanner.hasNextLine()) {
             String userCommand = scanner.nextLine();
 
             if (userCommand.equals("bye")) {

@@ -9,20 +9,16 @@ public class UwuChat {
     }
 
     public void greetingUsers() {
-        String greetings = "\n\tこんにちわ! " +
-                           "\n\t hello" +
-                           "\n\t私はううです <:" +
-                           "\n\t i am oo woo" +
-                           "\n\tよろしくお願します！" +
-                           "\n\t how can i be of service today?";
+        String greetings = "\n\thellu!" +
+                           "\n\ti am oo woo <:" +
+                           "\n\thow can i be of service today?";
 
         chatify(greetings);
     }
 
     public void leavingChat() {
         String farewellWords = "\n\tgood work today!" +
-                                "\n\thope to see you again soon~" +
-                                "\n\tじゃ、しつれいします~";
+                                "\n\thope to see you again soon~";
 
         chatify(farewellWords);
     }
@@ -58,8 +54,7 @@ public class UwuChat {
         if (task != null) {
             String addToList = "\n\too new task! ^^" +
                     "\n\t\tadded:\t" + task.toString() +
-                    "\n\tyou have " + String.valueOf(userToDoArray.size()) + " tasks <:" +
-                    "\n\tがんばってね！";
+                    "\n\tyou have " + String.valueOf(userToDoArray.size()) + " task(s) <:";
             chatify(addToList);
         }
     }
@@ -97,7 +92,7 @@ public class UwuChat {
             Task task = userToDoArray.get(index);
             task.unmark();
 
-            String unmarked = "\n\talmost done! keep going~";
+            String unmarked = "\n\tkeep going~";
             chatify(unmarked + "\n\t\t" + task.toString());
         }
     }
