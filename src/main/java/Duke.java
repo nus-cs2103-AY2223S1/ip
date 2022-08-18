@@ -170,10 +170,6 @@ public class Duke {
         addTaskToHistory(description);
     }
 
-    private static void handleDelete(String task) throws DukeException{
-
-    }
-
     /**
      * Return enum command type used
      * @param userInput
@@ -230,7 +226,7 @@ public class Duke {
                     handleDeadline(userInput);
                     break;
                 case DELETE:
-                    handleDelete(userInput);
+                    deleteTask(getTaskNumber(userInput));
                 default:
                     handleDeadline(userInput);
                     throw new DukeException("Enter a valid command (todo, event, deadline, list, mark, unmark, bye)\n>>");
