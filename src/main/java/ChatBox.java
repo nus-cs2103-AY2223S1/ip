@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -5,10 +6,9 @@ import java.util.Scanner;
  * with the user-inputs and responding accordingly.
  */
 public class ChatBox {
-    //An array of Tasks to store all the instances of Task
-    private Task[] tasks_memory = new Task[100];
-    //To keep track of the number of Task objects added into the tasks_memory array
-    private int array_index = 0;
+
+    //Use Java ArrayList collection to store all the instances of Task
+    private ArrayList<Task> task_list = new ArrayList<>();
 
     public ChatBox() {
     }
@@ -24,6 +24,7 @@ public class ChatBox {
         String ListTasks = "list";
         String Marking = "mark";
         String Unmarking = "unmark";
+        String Delete = "delete";
 
         //The Strings representing the 3 types of Tasks
         String TODO = "todo";
@@ -47,13 +48,6 @@ public class ChatBox {
                     throw new DukeException(error_msg);
                 }
 
-                if (array_index >= 100) {
-                    String error_msg = "__________________________________________________\n" +
-                            "OOPS!!! The number of tasks has exceeded the 100 count! Please increase size!\n" +
-                            "__________________________________________________";
-                    throw new ArrayIndexOutOfBoundsException(error_msg);
-                }
-
                 //To obtain the first word in the user-input, used to check for keyword "mark"
                 // and "unmark" later on
                 String[] array = UserInput.split(" ", 2);
@@ -71,9 +65,45 @@ public class ChatBox {
                 if (UserInput.equals(ListTasks)) {
                     System.out.println("__________________________________________________");
                     System.out.println("Here are the tasks in your to-do list:");
-                    for (int i = 0; i < array_index; i++) {
-                        System.out.printf("%d. " + tasks_memory[i].toString() + "\n", i + 1);
+                    for (int i = 0; i < task_list.size(); i++) {
+                        System.out.printf("%d. " + task_list.get(i).toString() + "\n", i + 1);
                     }
+                    System.out.println("__________________________________________________");
+                    continue;
+                }
+
+                //To delete a task when the user-input starts with "delete"
+                if (FirstText.equals(Delete)) {
+                    //Exception: Throw an error when user tries to delete from an empty list
+                    if (task_list.isEmpty()) {
+                        String error_msg = "__________________________________________________\n" +
+                                "OOPS!!! There are no task left to be deleted!\n" +
+                                "__________________________________________________";
+                        throw new DukeException(error_msg);
+                    }
+
+                    //Exception: Throw an error when the second half after "delete" keyword is blank
+                    if (array.length == 1) {
+                        String error_msg = "__________________________________________________\n" +
+                                "OOPS!!! The task number for deleting must be specified!\n" +
+                                "__________________________________________________";
+                        throw new DukeException(error_msg);
+                    }
+
+                    int task_num = Integer.parseInt(array[1]);
+                    //Exception: Throw an error when the second half after "delete" keyword is greater than task_list
+                    if (task_num > task_list.size() || task_num < 1) {
+                        String error_msg = "__________________________________________________\n" +
+                                "OOPS!!! There is no such task number!\n" +
+                                "__________________________________________________";
+                        throw new DukeException(error_msg);
+                    }
+
+                    System.out.println("__________________________________________________");
+                    System.out.println("Noted. I have removed this task:");
+                    System.out.println("  " + task_list.get(task_num - 1).toString());
+                    task_list.remove(task_num - 1);
+                    System.out.println("Now you have " + task_list.size() + " tasks in the list.");
                     System.out.println("__________________________________________________");
                     continue;
                 }
@@ -87,11 +117,20 @@ public class ChatBox {
                                 "__________________________________________________";
                         throw new DukeException(error_msg);
                     }
+
                     int task_num = Integer.parseInt(array[1]);
-                    tasks_memory[task_num - 1].markTaskDone();
+                    //Exception: Throw an error when the second half after "mark" keyword is greater than task_list
+                    if (task_num > task_list.size() || task_num < 1) {
+                        String error_msg = "__________________________________________________\n" +
+                                "OOPS!!! There is no such task number!\n" +
+                                "__________________________________________________";
+                        throw new DukeException(error_msg);
+                    }
+
+                    task_list.get(task_num - 1).markTaskDone();
                     System.out.println("__________________________________________________");
                     System.out.println("Good Job! I have marked this task as done:");
-                    System.out.println("  " + tasks_memory[task_num - 1].toString());
+                    System.out.println("  " + task_list.get(task_num - 1).toString());
                     System.out.println("__________________________________________________");
                     continue;
                 }
@@ -105,11 +144,20 @@ public class ChatBox {
                                 "__________________________________________________";
                         throw new DukeException(error_msg);
                     }
+
                     int task_num = Integer.parseInt(array[1]);
-                    tasks_memory[task_num - 1].markTaskUndone();
+                    //Exception: Throw an error when the second half after "unmark" keyword is greater than task_list
+                    if (task_num > task_list.size() || task_num < 1) {
+                        String error_msg = "__________________________________________________\n" +
+                                "OOPS!!! There is no such task number!\n" +
+                                "__________________________________________________";
+                        throw new DukeException(error_msg);
+                    }
+
+                    task_list.get(task_num - 1).markTaskUndone();
                     System.out.println("__________________________________________________");
                     System.out.println("Alright! I have marked this task as not done yet:");
-                    System.out.println("  " + tasks_memory[task_num - 1].toString());
+                    System.out.println("  " + task_list.get(task_num - 1).toString());
                     System.out.println("__________________________________________________");
                     continue;
                 }
@@ -125,8 +173,8 @@ public class ChatBox {
                                 "__________________________________________________";
                         throw new DukeException(error_msg);
                     }
-                    tasks_memory[array_index] = new Todo(array[1]);
-                    task_description = "  " + tasks_memory[array_index].toString();
+                    task_list.add(new Todo(array[1]));
+                    task_description = "  " + task_list.get(task_list.size() - 1).toString();
                 } else if (FirstText.equals(DEADLINE)) { //If it is a deadline task
                     //Exception: Throw an error when the second half after "deadline" keyword is blank
                     if (array.length == 1) {
@@ -137,8 +185,8 @@ public class ChatBox {
                     }
                     String task_info = array[1];
                     String[] info_arr = task_info.split(" /by ", 2);
-                    tasks_memory[array_index] = new Deadline(info_arr[0], info_arr[1]);
-                    task_description = "  " + tasks_memory[array_index].toString();
+                    task_list.add(new Deadline(info_arr[0], info_arr[1]));
+                    task_description = "  " + task_list.get(task_list.size() - 1).toString();
                 } else if (FirstText.equals(EVENT)) { //If it is an event task
                     //Exception: Throw an error when the second half after "event" keyword is blank
                     if (array.length == 1) {
@@ -149,8 +197,8 @@ public class ChatBox {
                     }
                     String task_info = array[1];
                     String[] info_arr = task_info.split(" /at ", 2);
-                    tasks_memory[array_index] = new Event(info_arr[0], info_arr[1]);
-                    task_description = "  " + tasks_memory[array_index].toString();
+                    task_list.add(new Event(info_arr[0], info_arr[1]));
+                    task_description = "  " + task_list.get(task_list.size() - 1).toString();
                 } else { //Removed the previous method of adding task without specifying type
                     //Exception: When the user-input does not specify within the 3 different tasks mentioned above
                     String error_msg = "__________________________________________________\n" +
@@ -164,13 +212,12 @@ public class ChatBox {
                 System.out.println("Got it. I have added this task:");
                 System.out.println(task_description);
 
-                if (array_index == 0) { //For a single task
-                    System.out.println("Now you have " + (array_index + 1) + " task in the list.");
+                if (task_list.size() == 1) { //For a single task
+                    System.out.println("Now you have 1 task in the list.");
                 } else { //For multiple tasks
-                    System.out.println("Now you have " + (array_index + 1) + " tasks in the list.");
+                    System.out.println("Now you have " + task_list.size() + " tasks in the list.");
                 }
                 System.out.println("__________________________________________________");
-                array_index++;
 
                 } catch (DukeException | ArrayIndexOutOfBoundsException e) {
                     System.out.println(e.getMessage());
