@@ -1,93 +1,10 @@
 import java.util.Scanner;
 
 public class Duke {
-    private final Item[] storedItems;
-    private int counter;
-    public String invalidArg = "    That's an invalid argument Dattebayo!";
-    private final String done = "[X]";
-    private final String unDone = "[ ]";
-
-
-    protected static class Item {
-        private boolean done = false;
-        private final String item;
-
-        protected Item(String item) {
-            this.item = item;
-        }
-
-        protected String getItem() {
-            return this.item;
-        }
-
-        protected boolean isDone() {
-            return this.done;
-        }
-
-        protected void setDone() {
-            this.done = true;
-        }
-
-        protected void setUnDone() {
-            this.done = false;
-        }
-    }
-
-    public Duke() {
-        this.storedItems = new Item[100];
-        this.counter = 0;
-    }
-
-    public String addItem(String item) {
-        this.storedItems[this.counter] = new Item(item);
-        this.counter++;
-        return "    Alright! I've added '" + item + "' to our list Dattebayo!";
-    }
-
-    public String getList() {
-        if (counter <= 0) {
-            return "    The list is currently empty Dattebayo!";
-        }
-
-        StringBuilder list = new StringBuilder("    Here's the list you asked for Dattebayo:");
-        for (int count = 0; count < counter; count++){
-            String isDone = storedItems[count].isDone() ? this.done : this.unDone;
-            list.append("\n").append("    ").append(count + 1).append(". ")
-                    .append(isDone).append(" ").append(storedItems[count].getItem());
-        }
-        return list.toString();
-    }
-
-    public String markItem(int item) {
-        if (item >= this.counter || item < 0) {
-            return this.invalidArg;
-        }
-        this.storedItems[item].setDone();
-        return "Alright! I've marked this task as done Dattebayo: \n  "
-                + this.done + " " + this.storedItems[item].getItem();
-    }
-
-    public String unMarkItem(int item) {
-        if (item >= this.counter || item < 0) {
-            return this.invalidArg;
-        }
-        this.storedItems[item].setUnDone();
-        return "Alright! I've marked this task as not done yet Dattebayo: \n  "
-                + this.unDone + " " + this.storedItems[item].getItem();
-    }
-
-    public String bye() {
-        return "    Looks like this is the end for now, till we meet again! Ja Ne!";
-    }
-
-    public static int string2Int(String input) throws NumberFormatException {
-        return Integer.parseInt(input);
-    }
-
     public static void main(String[] args) {
         System.out.println("Hello! I'm Naruto and one day I will be Hokage! \nWhat can i do for you?");
         Scanner scanner = new Scanner(System.in);
-        Duke naruto = new Duke();
+        Naruto naruto = new Naruto();
         String lineBreak = "━".repeat(20);
 
         boolean breakLoop = false;
@@ -100,21 +17,57 @@ public class Duke {
                     System.out.println(naruto.getList());
                     break;
 
+                case "todo":
+                    try {
+                        System.out.println(naruto.addToDo(input[1].trim()));
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        System.out.println("Whoops! todo needs a description of the task Dattebayo!\n'todo <Task>'");
+                    }
+                    break;
+
+                case "deadline":
+                    try {
+                        String[] splitInput = input[1].split("/by", 2);
+                        System.out.println(naruto.addDeadline(splitInput[0].trim(), splitInput[1].trim()));
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        System.out.println("Whoops! deadline needs a description of the task and due date Dattebayo!" +
+                                "\n'deadline <Task> /by <Due By>'");
+                    }
+                    break;
+
+                case "event":
+                    try {
+                        String[] splitInput = input[1].split("/at", 2);
+                        System.out.println(naruto.addEvent(splitInput[0].trim(), splitInput[1].trim()));
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        System.out.println("Whoops! event needs a description of the task and time Dattebayo!" +
+                                "\n'event <Task> /by <Time>'");
+                    }
+                    break;
+
                 case "mark":
                     try {
-                        int item = Duke.string2Int(input[1]);
+                        int item = Naruto.string2Int(input[1]);
                         System.out.println(naruto.markItem(item - 1));
                     } catch(NumberFormatException e) {
-                        System.out.println(naruto.invalidArg);
+                        System.out.println("Whoops! it seems you your index is not an integer Dattebayo!" +
+                                "\n'mark <Index>'");
+                    } catch(ArrayIndexOutOfBoundsException e) {
+                        System.out.println("Whoops! mark needs the index of the item Dattebayo!" +
+                                "\n'mark <Index>'");
                     }
                     break;
 
                 case "unmark":
                     try {
-                        int item = Duke.string2Int(input[1]);
+                        int item = Naruto.string2Int(input[1]);
                         System.out.println(naruto.unMarkItem(item - 1));
                     } catch(NumberFormatException e) {
-                        System.out.println(naruto.invalidArg);
+                        System.out.println("Whoops! it seems you your index is not an integer Dattebayo!" +
+                                "\n'mark <Index>'");
+                    } catch(ArrayIndexOutOfBoundsException e) {
+                        System.out.println("Whoops! unmark needs the index of the item Dattebayo!" +
+                                "\n'unmark <Index>'");
                     }
                     break;
 
@@ -124,7 +77,8 @@ public class Duke {
                     break;
 
                 default:
-                    System.out.println(naruto.addItem(rawInput));
+                    System.out.println("Sorry I don't understand what that means Dattebayo, " +
+                            "use help to view the available commands.");
             }
             System.out.println(lineBreak);
         }
