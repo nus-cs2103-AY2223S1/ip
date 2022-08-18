@@ -7,27 +7,22 @@ public class Duke {
     public static void addTask(Task task) {
         TaskList.add(task);
         int total = TaskList.size();
-        String printLine = "____________________________________________________________\n" +
-                "Got it. I've added this task:\n" + "  " + task.toString() + "\n" + "Now you have " + total
-                + " tasks in the list.\n" + "____________________________________________________________\n";
+        String printLine = "Got it. I've added this task:\n" + "  " + task.toString() + "\n" + "Now you have " + total
+                + " tasks in the list.\n";
         System.out.println(printLine);
     }
 
     public static void mark(int number) {
         Task task =  TaskList.get(number - 1);
         task.setCompleted();
-        String taskCompletion = "____________________________________________________________\n" +
-                "Nice! I've marked this task as done:\n" + "  " + task.toString() + "\n" +
-                "____________________________________________________________\n";
+        String taskCompletion = "Nice! I've marked this task as done:\n" + "  " + task.toString() + "\n";
         System.out.println(taskCompletion);
     }
 
     public static void unmark(int number) {
         Task task =  TaskList.get(number - 1);
         task.setUncompleted();
-        String taskUnCompletion = "____________________________________________________________\n" +
-                "Ok, I've marked this task as not done yet:\n" + "  " + task.toString() + "\n" +
-                "____________________________________________________________\n";
+        String taskUnCompletion = "Ok, I've marked this task as not done yet:\n" + "  " + task.toString() + "\n";
         System.out.println(taskUnCompletion);
     }
 
@@ -35,57 +30,46 @@ public class Duke {
         Task task = TaskList.get(number - 1);
         TaskList.remove(number - 1);
         int total = TaskList.size();
-        String message = "____________________________________________________________\n" +
-                "Noted. I've removed this task:\n" + " " + task.toString() + "\n" + "Now you have " + total
-                + " tasks in the list.\n" + "____________________________________________________________\n";
+        String message = "Noted. I've removed this task:\n" + " " + task.toString() + "\n" + "Now you have " + total
+                + " tasks in the list.\n";
         System.out.println(message);
     }
 
     public static void echo(String command) throws DukeException {
-        if (command.toUpperCase().equals("BYE")) {
-            String bye = "____________________________________________________________\n" +
-                    "Bye. Hope to see you again soon!\n" +
-                    "____________________________________________________________\n";
+        if (command.trim().equals("bye")) {
+            String bye = "Bye. Hope to see you again soon!\n";
             System.out.println(bye);
-        } else if (command.toUpperCase().equals("LIST")) {
+        } else if (command.trim().equals("list")) {
             String newList = "Here are the tasks in your list:\n";
             int count = 1;
             for (Task item: TaskList) {
                 newList += (count + "." + item.toString() + "\n");
                 count++;
             }
-            String updatedList = "____________________________________________________________\n" + newList +
-                    "____________________________________________________________\n";
-            System.out.println(updatedList);
+            System.out.println(newList);
 
         } else {
-            String [] commandArr = command.split(" ");
-
-            if (commandArr[0].equals("todo")) {
-                    if (commandArr.length == 1) {
-                        throw new DukeException("____________________________________________________________\n" +
-                                "☹ OOPS!!! The description of a todo cannot be empty.\n" +
-                                "____________________________________________________________");
-                    } else {
+            if (command.startsWith("todo")) {
+                    try {
                         ToDo toDo = new ToDo(command.substring(5));
                         addTask(toDo);
+                    } catch (StringIndexOutOfBoundsException e){
+                    throw new DukeException("OOPS!!! The description of a todo cannot be empty.\n");
                     }
-            } else if (commandArr[0].equals("deadline")) {
+            } else if (command.trim().startsWith("deadline")) {
                 int end = command.indexOf('/');
                 String name = command.substring(9, end );
                 String date = command.substring(end + 4);
                 Deadline deadline = new Deadline(name,date);
                 addTask(deadline);
-            } else if (commandArr[0].equals("event")) {
+            } else if (command.trim().startsWith("event")) {
                 int end = command.indexOf('/');
                 String name = command.substring(6, end );
                 String time = command.substring(end + 4);
                 Event event = new Event(name,time);
                 addTask(event);
             } else {
-                throw new DukeException("____________________________________________________________\n" +
-                        "☹ OOPS!!! I'm sorry, but I don't know what that means :-(\n" +
-                        "____________________________________________________________");
+                throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(\n");
             }
         }
     }
@@ -99,34 +83,36 @@ public class Duke {
                 "How may I assist you?\n" +
                 "____________________________________________________________\n";
         System.out.println(logo);
-
         Scanner myScanner = new Scanner(System.in);
 
         while (true) {
             try {
                 System.out.println("Please enter your command:");
                 String command = myScanner.nextLine();
-                String[] commandArr = command.split(" ");
-                if (commandArr[0].equals("mark")) {
-                    int number = Integer.parseInt(commandArr[1]);
+                if (command.trim().startsWith("mark")) {
+                    int number = Integer.parseInt(command.substring(5));
                     mark(number);
-
-                } else if (commandArr[0].equals("unmark")) {
-                    int number = Integer.parseInt(commandArr[1]);
+                } else if (command.trim().startsWith("unmark")) {
+                    int number = Integer.parseInt(command.substring(7));
                     unmark(number);
-                } else if (commandArr[0].equals("delete")) {
-                    int number = Integer.parseInt(commandArr[1]);
+                } else if (command.trim().startsWith("delete")) {
+                    int number = Integer.parseInt(command.substring(7));
                     delete(number);
                 } else {
                     echo(command);
-                    if (command.toUpperCase().equals("BYE")) {
+                    if (command.startsWith("bye")) {
                         break;
                     }
-
                 }
             }
             catch (DukeException e) {
                 System.out.println(e.toString());
+            }
+            catch (NumberFormatException e) {
+                System.out.println("Invalid input :( ");
+            }
+            catch (IndexOutOfBoundsException e) {
+                System.out.println("Invalid command");
             }
 
         }
