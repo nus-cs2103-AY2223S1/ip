@@ -1,14 +1,12 @@
-public class Deadline extends Task{
-    private static final String TAG = "[D]";
-    private final String DEADLINE;
+public class Deadline extends Task {
+    protected final String TAG = "[D]";
+    protected String due;
 
-    public Deadline(String description, String deadline) {
-        super(description);
-        this.DEADLINE = deadline;
+    public Deadline(String descriptor, String due) {
+        super(descriptor);
+        this.due = due;
     }
-
     @Override
     public String toString() {
-        return TAG + super.toString() + "(by: " + this.DEADLINE + ")";
-    }
+        return TAG + super.toString() + "(by: " + this.due + ")";
 }

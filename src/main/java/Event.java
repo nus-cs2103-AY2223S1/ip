@@ -1,14 +1,13 @@
 public class Event extends Task {
-    private static final String TAG = "[E]";
-    private final String RUNTIME;
+    protected final String TAG = "[E]";
+    protected String duration;
 
-    public Event(String description, String runtime) {
-        super(description);
-        this.RUNTIME = runtime;
+    public Event(String descriptor, String duration) {
+        super(descriptor);
+        this.duration = duration;
     }
-
     @Override
     public String toString() {
-        return TAG + super.toString() + "(at: " + this.RUNTIME + ")";
+        return TAG + super.toString() + "(at: " + this.duration + ")";
     }
 }
