@@ -46,9 +46,15 @@ public class CaCa {
      */
     public static void main(String[] args) {
         String line = "____________________________________________________________\n";
+        String logo = "   _____       _____      \n"
+                + "  / ____|     / ____|     \n"
+                + " | |     __ _| |     __ _ \n"
+                + " | |    / _` | |    / _` |\n"
+                + " | |___| (_| | |___| (_| |\n"
+                + "  \\_____\\__,_|\\_____\\__,_|\n\n";
         String greeting = "Hello! I'm CaCa.\n"
                 + "What can I do for you?\n";
-        System.out.println(line + greeting + line);
+        System.out.println(line + logo + greeting + line);
 
         // Solution below on getting user input is
         // adapted from https://www.w3schools.com/java/java_user_input.asp
