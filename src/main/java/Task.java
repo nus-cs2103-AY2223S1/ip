@@ -21,6 +21,10 @@ public class Task {
         return taskCounter;
     }
 
+    public static void reduceCount() {
+        taskCounter--;
+    }
+
     public String getTaskName() {
         return this.taskName;
     }

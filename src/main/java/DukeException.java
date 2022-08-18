@@ -12,4 +12,6 @@ public class DukeException {
     public static String MarkIndexEmptyException() {
         return "Please input the index to mark as completed!";
     }
+
+
 }

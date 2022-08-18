@@ -1,10 +1,12 @@
-import java.security.spec.ECField;
+
+import java.util.ArrayList;
 import java.util.Scanner;
+
+
 
 public class Duke {
 
-    private static Task[] tasks = new Task[100];
-
+    private static ArrayList<Task> tasks = new ArrayList<>();
 
     private static boolean inputChecker(String[] arr) {
         if (arr.length  < 2) {
@@ -19,9 +21,9 @@ public class Duke {
     private static void mark(String[] arr) {
         int i = Integer.parseInt(arr[1]);
         if (i  <= Task.getCount()) {
-            tasks[i - 1].complete();
+            tasks.get(i - 1).complete();
             System.out.println("Nice! I have marked this task as done: ");
-            System.out.println(tasks[i - 1]);
+            System.out.println(tasks.get(i - 1));
         } else {
             System.out.println("Index does not exist");
         }
@@ -31,9 +33,9 @@ public class Duke {
     private static void unmark(String[] arr) {
         int i = Integer.parseInt(arr[1]);
         if (i <= Task.getCount()) {
-            tasks[i - 1].incomplete();
+            tasks.get(i - 1).incomplete();
             System.out.println("OK, I have marked this task as not done yet: ");
-            System.out.println(tasks[i - 1]);
+            System.out.println(tasks.get(i - 1));
         } else {
             System.out.println("Index does not exist");
         }
@@ -45,18 +47,18 @@ public class Duke {
             return;
         }
         for (int i = 0; i < Task.getCount(); i++) {
-            if (tasks[i] == null) {
+            if (tasks.get(i) == null) {
                 break;
             }
             else {
-                System.out.println((i+1) + ". " + tasks[i].toString());
+                System.out.println((i+1) + ". " + tasks.get(i).toString());
             }
         }
     }
 
     private static void todo(String input) {
         Todo curr = new Todo(input);
-        tasks[Task.getCount() - 1] = curr;
+        tasks.add(curr);
         System.out.println("Got it. I've added this task: ");
         System.out.println(curr);
         System.out.println("Now you have " + Task.getCount() + " tasks in the list.");
@@ -65,7 +67,7 @@ public class Duke {
     private static void deadline (String input) {
         String arr[] = input.split("/by", 2);
         Deadline curr = new Deadline(arr[0], arr[1]);
-        tasks[Task.getCount() - 1] = curr;
+        tasks.add(curr);
         System.out.println("Got it. I've added this task: ");
         System.out.println(curr);
         System.out.println("Now you have " + Task.getCount() + " tasks in the list.");
@@ -74,12 +76,20 @@ public class Duke {
     private static void event(String input) {
         String arr[] = input.split("/at", 2);
         Event curr = new Event(arr[0], arr[1]);
-        tasks[Task.getCount() - 1] = curr;
+        tasks.add(curr);
         System.out.println("Got it. I've added this task: ");
         System.out.println(curr);
         System.out.println("Now you have " + Task.getCount() + " tasks in the list.");
     }
 
+    private static void delete (String input) {
+        int i = Integer.parseInt(input);
+        Task removed = tasks.remove(i - 1);
+        Task.reduceCount();
+        System.out.println("Noted. I have removed this task:");
+        System.out.println(removed);
+        System.out.println("Now you have " + Task.getCount() + " tasks in the list.");
+    }
     public static void main(String[] args) {
         System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?");
@@ -136,6 +146,14 @@ public class Duke {
                 } else {
                     event(arr[1]);
                 }
+            }
+            else if (arr[0].equals("delete")) {
+                if (!inputChecker(arr)) {
+                    System.out.println("Index not found in the list!");
+                } else {
+                    delete(arr[1]);
+                }
+
             }
 
             else {
