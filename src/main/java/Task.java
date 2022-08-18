@@ -23,6 +23,12 @@ public class Task {
         this.isDone = false;
     }
 
+    /**
+     * Override the toString() method in the Object class. "[X]" is added in front of the task name if it is marked
+     * as done, and "[ ]" is added in front otherwise.
+     *
+     * @return String representation of a task.
+     */
     @Override
     public String toString() {
         if (this.isDone) {

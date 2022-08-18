@@ -18,7 +18,13 @@ public class UI {
         return initGreeting;
     }
 
+    /**
+     * Returns the current task list if it is not empty, prints an alternative message if otherwise.
+     *
+     * @return String which content depends on whether the current task list is empty
+     */
     public String list() {
+
         if (this.taskList.isEmpty()) {
             return "No tasks as of now :)";
         } else {
@@ -32,10 +38,22 @@ public class UI {
         }
     }
 
+    /**
+     * Returns a farewell message before Duke closes.
+     *
+     * @return String containing the farewell message
+     */
     public String bye() {
         return "Bye. Hope to see you again soon!";
     }
 
+    /**
+     * Adds the given task to the current task list.
+     *
+     * @param str String input specifying the type of task and its description.
+     * @return String telling the user what task was added and the number of current tasks.
+     * @throws DukeEmptyDescriptionException if the description of the given is empty.
+     */
     public String addTask(String str) throws DukeEmptyDescriptionException {
         if (str.startsWith("todo")) {
             if (str.length() == 4 || str.length() == 5) {
@@ -66,6 +84,13 @@ public class UI {
         }
     }
 
+    /**
+     * Marks the task with the given ID in the current task list as done.
+     *
+     * @param id the ID of the target task in the current task list.
+     * @return String confirming the marking of the specified task.
+     * @throws DukeMarkException if the task has already been marked as done.
+     */
     public String markTask(int id) throws DukeMarkException {
         Task curr = taskList.get(id - 1);
         if (curr.getIsDone()) {
@@ -76,6 +101,13 @@ public class UI {
                 + curr.toString();
     }
 
+    /**
+     * Un-marks the task with the given ID in the current task list as done.
+     *
+     * @param id the ID of the target task in the current task list.
+     * @return String confirming the un-marking of the specified task.
+     * @throws DukeMarkException if the task has not been marked as done (already un-marked).
+     */
     public String unmarkTask(int id) throws DukeMarkException {
         Task curr = taskList.get(id - 1);
         if (!curr.getIsDone()) {
@@ -86,6 +118,13 @@ public class UI {
                 + curr.toString();
     }
 
+    /**
+     * Marks or un-marks the specified task depending on the command given by the user.
+     *
+     * @param str the command/input given by the user
+     * @return String confirming the marking or un-marking of the specified task.
+     * @throws DukeMarkException if the task has not been marked as done (already un-marked).
+     */
     public String editTask(String str) throws DukeMarkException {
         if (str.startsWith("mark")) {
             int taskId = Integer.parseInt(str.substring(5));
@@ -97,6 +136,14 @@ public class UI {
         return "";
     }
 
+    /**
+     * Deletes the task, specified in the user input, from the current task list.
+     *
+     * @param str the command/input given by the user
+     * @return String confirming the deletion of the specified task.
+     * @throws DukeInvalidDeletionException if the current task list is already empty, or if the specified task does
+     * not exist.
+     */
     public String deleteTask(String str) throws DukeInvalidDeletionException {
         int targetId = Integer.parseInt(str.substring(7));
         if (taskList.isEmpty()) {
@@ -114,6 +161,11 @@ public class UI {
         return e.getMessage();
     }
 
+    /**
+     * Returns the user's input using the Scanner sc.
+     *
+     * @return String sentence of user input.
+     */
     public String getInput() {
         return sc.nextLine();
     }

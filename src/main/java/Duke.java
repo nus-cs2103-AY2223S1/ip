@@ -8,14 +8,26 @@ public class Duke {
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
 
+    /**
+     * Public constructor of Duke.
+     */
     public Duke() {
         this.ui = new UI();
     }
 
+    /**
+     * Invoke run for Duke chatbot programme.
+     *
+     * @param args argument.
+     */
     public static void main(String[] args) {
         new Duke().run();
     }
 
+    /**
+     * Run Duke programme depending on the different inputs/commands
+     * given by user.
+     */
     public void run() {
         System.out.println(logo + "\n" + ui.greet());
         boolean stillRunning = true;
