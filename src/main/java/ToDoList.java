@@ -22,7 +22,7 @@ public class ToDoList {
                 list.add(todo);
 
                 System.out.println(
-                        "\n   --------------------------------------------------------------------------------\n" +
+                        "   --------------------------------------------------------------------------------\n" +
                                 "     Got it. I've added this task: \n" +
                                 "       " + todo.toString() + "\n" +
                                 "     You now have " + list.size() + " tasks in the list.\n" +
@@ -30,47 +30,63 @@ public class ToDoList {
                 );
             }
         } else if (command.startsWith("deadline")) {
-            command = command.replace("deadline ", "");
-            if (command.length() == 0) {
+            try {
+                command = command.replace("deadline ", "");
+                if (command.length() == 0) {
+                    throw new DukeException(
+                            "\n   --------------------------------------------------------------------------------\n" +
+                                    "     The description of deadline cannot be empty!\n" +
+                                    "     You need to finish your tasks eventually... Right? Right?\n" +
+                                    "   --------------------------------------------------------------------------------"
+                    );
+                } else {
+                    String[] deadline = command.split(" /by ");
+                    Task task = new Deadline(deadline[0], deadline[1]);
+                    list.add(task);
+
+                    System.out.println(
+                            "   --------------------------------------------------------------------------------\n" +
+                                    "     Got it. I've added this task: \n" +
+                                    "       " + task.toString() + "\n" +
+                                    "     You now have " + list.size() + " tasks in the list.\n" +
+                                    "   --------------------------------------------------------------------------------"
+                    );
+                }
+            } catch (ArrayIndexOutOfBoundsException e) {
                 throw new DukeException(
                         "\n   --------------------------------------------------------------------------------\n" +
-                                "     The description of deadline cannot be empty!\n" +
-                                "     You need to finish your tasks eventually... Right? Right?\n" +
-                                "   --------------------------------------------------------------------------------"
-                );
-            } else {
-                String[] deadline = command.split(" /by ");
-                Task task = new Deadline(deadline[0], deadline[1]);
-                list.add(task);
-
-                System.out.println(
-                        "   --------------------------------------------------------------------------------\n" +
-                                "     Got it. I've added this task: \n" +
-                                "       " + task.toString() + "\n" +
-                                "     You now have " + list.size() + " tasks in the list.\n" +
+                        "       Set a deadline for your task!\n" +
                                 "   --------------------------------------------------------------------------------"
                 );
             }
         } else if (command.startsWith("event")) {
-            command = command.replace("event ", "");
-            if (command.length() == 0) {
-                throw new DukeException(
-                        "   --------------------------------------------------------------------------------\n" +
-                                "     The description of event cannot be empty!\n" +
-                                "     It's impossible to go for something that does not exist...\n" +
-                                "   --------------------------------------------------------------------------------"
-                );
-            } else {
-                String[] event = command.split(" /at ");
-                Task task = new Event(event[0], event[1]);
-                list.add(task);
+            try {
+                command = command.replace("event ", "");
+                if (command.length() == 0) {
+                    throw new DukeException(
+                            "   --------------------------------------------------------------------------------\n" +
+                                    "     The description of event cannot be empty!\n" +
+                                    "     It's impossible to go for something that does not exist...\n" +
+                                    "   --------------------------------------------------------------------------------"
+                    );
+                } else {
+                    String[] event = command.split(" /at ");
+                    Task task = new Event(event[0], event[1]);
+                    list.add(task);
 
-                System.out.println(
-                        "   --------------------------------------------------------------------------------\n" +
-                                "     Got it. I've added this task: \n" +
-                                "       " + task.toString() + "\n" +
-                                "     You now have " + list.size() + " tasks in the list.\n" +
-                                "   --------------------------------------------------------------------------------"
+                    System.out.println(
+                            "   --------------------------------------------------------------------------------\n" +
+                                    "     Got it. I've added this task: \n" +
+                                    "       " + task.toString() + "\n" +
+                                    "     You now have " + list.size() + " tasks in the list.\n" +
+                                    "   --------------------------------------------------------------------------------"
+                    );
+                }
+            } catch (ArrayIndexOutOfBoundsException e) {
+                throw new DukeException(
+                    "\n   --------------------------------------------------------------------------------\n" +
+                            "       Please set a date for your event!\n" +
+                            "   --------------------------------------------------------------------------------"
                 );
             }
         } else {
@@ -81,6 +97,18 @@ public class ToDoList {
                             "   --------------------------------------------------------------------------------"
             );
         }
+    }
+
+    /* Method for deleting a specific event */
+    public void deleteTask(int index) {
+        System.out.println(
+                "   --------------------------------------------------------------------------------\n" +
+                        "     Got it. I've removed this task: \n" +
+                        "       " + this.list.get(index).toString() + "\n" +
+                        "     You now have " + (list.size() - 1) + " tasks in the list.\n" +
+                        "   --------------------------------------------------------------------------------"
+        );
+        this.list.remove(index - 1);
     }
 
     /* Method to mark a certain item in the list as done */

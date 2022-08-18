@@ -27,6 +27,18 @@ public class BobTheBot {
                 } catch (NumberFormatException e) {
                     list.addTask(command);
                 }
+            } else if (command.startsWith("delete")) {
+                try {
+                    int index = Integer.parseInt(command.replace("delete ", ""));
+                    list.deleteTask(index);
+                } catch (NumberFormatException e) {
+                    throw new DukeException(
+                            "\n   --------------------------------------------------------------------------------\n" +
+                                    "     Please enter the index of the item you would like to delete!\n" +
+                                    "     Eg. delete 2 (where 2 is the index of the item you would like to delete)\n" +
+                                    "   --------------------------------------------------------------------------------"
+                    );
+                }
             } else {
                 list.addTask(command);
             }
