@@ -14,27 +14,8 @@ public class main {
             task = new Task(sc.nextLine(), "");
             //System.out.println(task.getVal());
             if(task.getVal().equals("list")) {
-                StringBuilder s = new StringBuilder();
                 for(int i = 0; i < curr; i++) {
-                    s = new StringBuilder();
-                    if(arr.get(i) instanceof ToDo) {
-                        s.append("[T] ");
-                    }
-                    else if(arr.get(i) instanceof  Deadline) {
-                        s.append("[D] ");
-                    }
-                    else {
-                        s.append("[E] ");
-                    }
-                    if(arr.get(i).getDone()) {
-                        //System.out.println(String.format("%s. [X] %s", i + 1, arr[i].getVal()));
-                        s.append(" [X]");
-                    }
-                    else {
-                        //System.out.println(String.format("%s. [ ] %s", i + 1, arr[i].getVal()));
-                        s.append(" [ ]");
-                    }
-                    System.out.println(String.format("%s. %s %s %s", i + 1, s, arr.get(i).getVal(), arr.get(i).getTiming()));
+                    System.out.println(arr.get(i));
                 }
                 //System.out.println(input); level 1
             }
@@ -44,7 +25,7 @@ public class main {
                     int index = Integer.parseInt(at[1]);
                     arr.set(index - 1, arr.get(index - 1).markDone());
                     System.out.println("Nice! I've marked this task as done:");
-                    System.out.println(String.format("[X] %s", arr.get(index - 1).getVal()));
+                    System.out.println(String.format("%s", arr.get(index - 1)));
                 } catch (Exception e) {
                     System.out.println("☹ OOPS!!! The description of a mark cannot be empty.");
                 }
@@ -56,25 +37,28 @@ public class main {
 
                 arr.set(index - 1, arr.get(index - 1).markUndone());
                 System.out.println("OK, I've marked this task as not done yet:");
-                System.out.println(String.format("[ ] %s", arr.get(index-1).getVal()));
+                System.out.println(String.format("%s", arr.get(index-1)));
                 } catch (Exception e) {
                     System.out.println("☹ OOPS!!! The description of a unmark cannot be empty.");
                 }
             }
             else if(task.getVal().indexOf("delete") == 0) {
                 String[] at = task.getVal().split(" ");
-                try {
+                //try {
                     int index = Integer.parseInt(at[1]);
-                    Task del = arr.get(index-1);
-                    arr.set(index - 1, arr.get(index));
+                    index--;
+                    Task del = arr.get(index);
+                    for(int i = index; i < curr; i++) {
+                        arr.set(i, arr.get(i+1));
+                    }
                     curr--;
                     System.out.println("Noted. I've removed this task:");
                     System.out.println(del);
                     System.out.println(String.format("Now you have %s tasks in the list.", curr));
 
-                } catch (Exception e) {
-                    System.out.println("☹ OOPS!!! The description of a delete cannot be empty.");
-                }
+                //} //catch (Exception e) {
+                    //System.out.println("☹ OOPS!!! The description of a delete cannot be empty.");
+                //}
             }
             else if(task.getVal().indexOf("todo") == 0) {
                 try {
@@ -82,7 +66,7 @@ public class main {
                     task = new ToDo(todo);
                     arr.add(curr++, task);
                     System.out.println("Got it. I've added this task:");
-                    System.out.println(String.format("[T][ ] %s", task.getVal()));
+                    System.out.println(task);
                     System.out.println(String.format("Now you have %s tasks in the list.", curr));
                 }
                  catch (Exception e) {
@@ -96,7 +80,7 @@ public class main {
                     task = new Deadline(at[0], at[1]);
                     arr.add(curr++, task);
                     System.out.println("Got it. I've added this task:");
-                    System.out.println(String.format("[D][ ] %s (%s)", task.getVal(), task.getTiming()));
+                    System.out.println(task);
                     System.out.println(String.format("Now you have %s tasks in the list.", curr));
                 }
                 catch (Exception e) {
@@ -110,14 +94,14 @@ public class main {
                     task = new Deadline(at[0], at[1]);
                     arr.add(curr++, task);
                     System.out.println("Got it. I've added this task:");
-                    System.out.println(String.format("[E][ ] %s (%s)", task.getVal(), task.getTiming()));
+                    System.out.println(task);
                     System.out.println(String.format("Now you have %s tasks in the list.", curr));
                 }
                 catch (Exception e) {
-                        System.out.println("☹ OOPS!!! The description of a ecvent cannot be empty.");
+                        System.out.println("☹ OOPS!!! The description of a event cannot be empty.");
                     }
             }
-            else {
+            else if (!task.getVal().equals("bye")) {
                 System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                 //arr[curr++] = task;
             }

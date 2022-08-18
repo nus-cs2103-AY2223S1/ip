@@ -37,4 +37,8 @@ public class Task {
     public int compareTo(Task other){
         return 1;
     }*/
+    @Override
+    public String toString(){
+        return "";
+    }
 }
