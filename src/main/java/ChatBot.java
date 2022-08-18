@@ -1,3 +1,8 @@
+import DataStructures.Pair;
+import Exceptions.*;
+import Task.*;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ChatBot {
@@ -26,56 +31,51 @@ public class ChatBot {
         this.displayMessage(message);
     }
 
-    private void handleAddTask(String taskType, Scanner parser) {
-        Task task = null;
-        if (taskType.equals("todo")) {
-            task = new ToDo(" " + parser.next());
-        } else if (taskType.equals("deadline")) {
-            parser.useDelimiter("/by");
-            String description = parser.next();
-            if (parser.hasNext()) {
-                task = new Deadline(description, parser.next());
-            } else {
-                this.handleUnexpected();
-            }
-        } else if (taskType.equals("event")) {
-            parser.useDelimiter("/at");
-            String description = parser.next();
-            if (parser.hasNext()) {
-                task = new Event(description, parser.next());
-            } else {
-                this.handleUnexpected();
-            }
-        } else {
-            this.handleUnexpected();
+    private void handleAddTask(Case cs, ArrayList<String> parsedLine) {
+        Task task;
+
+        switch (cs) {
+            case TODO:
+                task = new ToDo(parsedLine.get(0));
+                break;
+            case DEADLINE:
+                task = new Deadline(parsedLine.get(0), parsedLine.get(1));
+                break;
+            case EVENT:
+                task = new Event(parsedLine.get(0), parsedLine.get(1));
+                break;
+            default:
+                throw new InvalidCaseException();
         }
 
-        if (task != null) {
-            this.taskList.add(task);
-            this.displayMessage("\t" + "Got it. I've added this task:" + "\n\t\t" + task + "\n"
-                    + "\t" + "Now you have " + this.taskList.size() + " tasks in the list." + "\n");
-        }
+        this.taskList.add(task);
+        this.displayMessage("\t" + "Got it. I've added this task:" + "\n\t\t" + task + "\n"
+                          + "\t" + "Now you have " + this.taskList.size() + " tasks in the list." + "\n");
     }
 
     private void handleList() {
         this.displayMessage("\t" + "Here are the tasks in your list:" + "\n" + this.taskList);
     }
 
-    private void handleMark(Scanner parser) {
-        int entry = parser.nextInt();
-        if (!parser.hasNext() && this.taskList.inRange(entry)) {
+    private void handleMark(ArrayList<String> parsedLine) throws InvalidInputException {
+        int entry = Integer.parseInt(parsedLine.get(0));
+        if (this.taskList.inRange(entry)) {
             Task task = this.taskList.get(entry);
             this.taskList.markTask(entry);
             this.displayMessage("\t" + "Great! I've marked this task." + "\n\t\t" + task + "\n");
+        } else {
+            throw new InvalidInputException();
         }
     }
 
-    private void handleUnmark(Scanner parser) {
-        int entry = parser.nextInt();
-        if (!parser.hasNext() && this.taskList.inRange(entry)) {
+    private void handleUnmark(ArrayList<String> parsedLine) throws InvalidInputException {
+        int entry = Integer.parseInt(parsedLine.get(0));
+        if (this.taskList.inRange(entry)) {
             Task task = this.taskList.get(entry);
             this.taskList.unmarkTask(entry);
             this.displayMessage("\t" + "Ok, I've unmarked this task." + "\n\t\t" + task + "\n");
+        } else {
+            throw new InvalidInputException();
         }
     }
 
@@ -86,33 +86,35 @@ public class ChatBot {
     public void start() {
         this.handleGreet();
 
-        String line;
         Scanner input = new Scanner(System.in);
 
         while(true) {
-            line = input.nextLine();
-            if (line.equals("bye")) {
-                this.handleBye();
-                break;
-            } else if (line.equals("list")) {
-                this.handleList();
-                continue;
-            }
+            try {
+                Pair<Case, ArrayList<String>> parsed = LineParser.parse(input.nextLine());
+                Case cs = parsed.left();
+                ArrayList<String> parsedLine = parsed.right();
 
-            Scanner parser = new Scanner(line);
-            String check = parser.next();
-
-            if (check.equals("mark") && parser.hasNextInt()) {
-                this.handleMark(parser);
-            } else if (check.equals("unmark") && parser.hasNextInt()) {
-                this.handleUnmark(parser);
-            } else if ((check.equals("todo") || check.equals("deadline")
-                    || check.equals("event")) && parser.hasNext()) {
-                this.handleAddTask(check, parser);
-            } else {
+                switch (cs) {
+                    case BYE:
+                        this.handleBye();
+                        input.close();
+                        return;
+                    case LIST:
+                        this.handleList();
+                        break;
+                    case MARK:
+                        this.handleMark(parsedLine);
+                        break;
+                    case UNMARK:
+                        this.handleUnmark(parsedLine);
+                        break;
+                    case TODO: case DEADLINE: case EVENT:
+                        this.handleAddTask(cs, parsedLine);
+                        break;
+                }
+            } catch (InvalidInputException e) {
                 this.handleUnexpected();
             }
         }
-        input.close();
     }
 }
