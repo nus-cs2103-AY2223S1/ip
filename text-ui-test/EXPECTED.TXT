@@ -7,7 +7,6 @@ What can I do for you?
 - list
 - check (index)
 - uncheck (index)
-- delete (index)
 - bye
 -------------------------------------------------------------
                Successfully Added: Read book

@@ -21,16 +21,6 @@ public class TaskList {
         System.out.println(text + task.getTaskName());
     }
 
-    public void deleteTask(int index) {
-        if (validateIndex(index)) {
-            Task task = (Task) taskList.remove(index - 1);
-            String text = "               Successfully deleted: ";
-            System.out.println(text + task.getTaskName());
-        } else {
-            validateIndexMessage();
-        }
-    }
-
     public void checkTask(int index) {
         if (validateIndex(index)) {
             Task task = (Task) taskList.get(index - 1);
