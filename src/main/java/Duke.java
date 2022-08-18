@@ -1,124 +1,67 @@
-import java.util.Locale;
 import java.util.Scanner;
-import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import tasks.*;
+import exceptions.*;
+
 
 public class Duke {
 
-    public static void printList(ArrayList<Task> items) {
-        System.out.println("Here are the tasks in your list:");
-        for (int i = 0; i < items.size(); i++) {
-            int j = i + 1;
-            Task item = items.get(i);
-            System.out.println(j + "." + item.toString());
-        }
-    }
+    private static final TaskList taskList = new TaskList();
 
-    public static void markDone(ArrayList<Task> items, int index) throws DukeException {
-        if (index < 0 || index > items.size() - 1) {
-            throw new OutOfRangeException();
-        } else {
-            items.get(index).markAsDone();
-            System.out.println("Nice! I've marked this task as done:");
-            System.out.println(items.get(index).toString());
-        }
-    }
+    public void handle(String command) {
+        String action;
+        String desc;
+        String time;
 
-    public static void deleteTask(ArrayList<Task> items, int index) throws DukeException {
-        if (index < 0 || index > items.size() - 1) {
-            throw new OutOfRangeException();
-        } else {
-            System.out.println("Noted. I've removed this task:");
-            System.out.println(items.get(index).toString());
-            items.remove(index);
-            System.out.printf("Now you have %d tasks in the list.\n", items.size());
-        }
-    }
+        try {
+            Pattern pattern = Pattern.compile("^([a-zA-Z]+)(?: ([^/]*))?(?: /([a-zA-Z]+))?(?: ([^/]*))?$");
+            Matcher matcher = pattern.matcher(command);
+            matcher.find();
+            action = matcher.group(1);
+            desc = matcher.group(2);
+            time = matcher.group(4);
 
-    public static void addToDo(ArrayList<Task> items, String command) throws DukeException {
-        if (command.substring(4).trim().isEmpty()) {
-            throw new EmptyCommandException("todo");
+            switch (action) {
+                case "list":
+                    taskList.printList();
+                    break;
+                case "todo":
+                    taskList.addToDo(desc);
+                    break;
+                case "event":
+                    taskList.addEvent(desc, time);
+                    break;
+                case "deadline":
+                    taskList.addDeadline(desc, time);
+                    break;
+                case "delete":
+                    taskList.delete(desc);
+                    break;
+                case "done":
+                    taskList.markDone(desc);
+                    break;
+                default:
+                    throw new InvalidCommandException();
+            }
+        } catch (DukeException e) {
+            System.out.println(e);
         }
-        ToDo newTask = new ToDo(command.substring(5));
-        items.add(newTask);
-        System.out.println("Got it. I've added this task:");
-        System.out.println(newTask.toString());
-        System.out.printf("Now you have %d tasks in the list.\n", items.size());
-    }
-
-    public static void addDeadline(ArrayList<Task> items, String command) throws DukeException {
-        if (command.substring(8).trim().isEmpty()) {
-            throw new EmptyCommandException("deadline");
-        }
-        if (!command.substring(9).contains("/by")) {
-            throw new NoTimeException("deadline");
-        }
-        String desc = command.substring(9).split("/by")[0];
-        String by = command.substring(9).split("/by")[1];
-        Deadline newTask = new Deadline(desc, by);
-        items.add(newTask);
-        System.out.println("Got it. I've added this task:");
-        System.out.println(newTask.toString());
-        System.out.printf("Now you have %d tasks in the list.\n", items.size());
-    }
-
-    public static void addEvent(ArrayList<Task> items, String command) throws DukeException {
-        if (command.substring(5).trim().isEmpty()) {
-            throw new EmptyCommandException("event");
-        }
-        if (!command.substring(6).contains("/at")) {
-            throw new NoTimeException("event");
-        }
-        String desc = command.substring(6).split("/at")[0];
-        String at = command.substring(6).split("/at")[1];
-        Event newTask = new Event(desc, at);
-        items.add(newTask);
-        System.out.println("Got it. I've added this task:");
-        System.out.println(newTask.toString());
-        System.out.printf("Now you have %d tasks in the list.\n", items.size());
     }
 
     public static void main(String[] args) {
 
+        Duke duke = new Duke();
         System.out.println("Hello! I'm Duke\nWhat can I do for you?");
         Scanner sc = new Scanner(System.in);
-
         String command = sc.nextLine();
-        ArrayList<Task> items = new ArrayList<>();
 
-        while (!command.toLowerCase().equals("bye")) {
-            try {
-                if (command.toLowerCase().equals("list")) {
-                    printList(items);
-                } else if (command.split(" ")[0].toLowerCase().equals("done")) {
-                    if (command.split(" ").length == 1) {
-                        throw new NoIndexException();
-                    }
-                    int index = Integer.parseInt(command.split(" ")[1]) - 1;
-                    markDone(items, index);
-                } else if (command.split(" ")[0].toLowerCase().equals("delete")) {
-                    if (command.split(" ").length == 1) {
-                        throw new NoIndexException();
-                    }
-                    int index = Integer.parseInt(command.split(" ")[1]) - 1;
-                    deleteTask(items, index);
-                } else {
-                    String taskType = command.split(" ")[0].toLowerCase();
-                    if (taskType.equals("deadline")) {
-                        addDeadline(items, command);
-                    } else if (taskType.equals("event")) {
-                        addEvent(items, command);
-                    } else if (taskType.equals("todo")) {
-                        addToDo(items, command);
-                    } else {
-                        throw new InvalidCommandException();
-                    }
-                }
-            } catch (DukeException e) {
-                System.out.println(e.toString());
-            } finally {
-                command = sc.nextLine();
-            }
+        while (!command.equalsIgnoreCase("bye")) {
+            duke.handle(command);
+            command = sc.nextLine();
         }
+
         System.out.println("Bye. Hope to see you again soon!");
     }
 }

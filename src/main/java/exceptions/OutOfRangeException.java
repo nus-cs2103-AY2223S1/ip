@@ -1,3 +1,5 @@
+package exceptions;
+
 public class OutOfRangeException extends DukeException{
 
     @Override

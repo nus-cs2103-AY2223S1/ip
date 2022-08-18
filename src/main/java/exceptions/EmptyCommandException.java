@@ -1,7 +1,9 @@
+package exceptions;
+
 public class EmptyCommandException extends DukeException{
     String type;
 
-    EmptyCommandException(String type) {
+    public EmptyCommandException(String type) {
         this.type = type;
     }
 

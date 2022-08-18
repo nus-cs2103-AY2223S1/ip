@@ -1,7 +1,9 @@
+package exceptions;
+
 public class NoTimeException extends DukeException{
     String type;
 
-    NoTimeException(String type) {
+    public NoTimeException(String type) {
         this.type = type;
     }
 
