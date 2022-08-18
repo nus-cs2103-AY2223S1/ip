@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.*;
 
 public class Duke {
     public static void main(String[] args) {
@@ -8,6 +9,8 @@ public class Duke {
         System.out.println("____________________________________________________________");
 
         Scanner input = new Scanner(System.in);
+        List<String> l = new ArrayList<String>();
+
         while (true) {
             String line = input.nextLine();
             System.out.println("____________________________________________________________");
@@ -16,7 +19,17 @@ public class Duke {
                 System.out.println("____________________________________________________________");
                 break;
             }
-            System.out.println(line);
+            if ("list".equals(line)) {
+                int count = 1;
+                for (String s : l) {
+                    System.out.println(String.format("%d. %s", count, s));
+                    count += 1;
+                }
+            }
+            else {
+                System.out.println(String.format("added: %s", line));
+                l.add(line);
+            }
             System.out.println("____________________________________________________________");
         }
     }
