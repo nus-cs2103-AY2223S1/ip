@@ -6,5 +6,3 @@ Hello from
 |____/ \__,_|_|\_\___|
 
 What can I do for you ?
-
-
