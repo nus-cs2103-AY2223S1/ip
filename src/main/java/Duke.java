@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Duke {
 
-    public static void main(String[] args) {
+    private static void tracker() throws DukeException {
         final String HORIZONTAL_LINE = "  ____________________________________________________________";
         ArrayList<Task> storedTasks = new ArrayList<Task>(100);
 
@@ -91,7 +91,18 @@ public class Duke {
                 System.out.println(
                         HORIZONTAL_LINE + "\n  Got it. I've added this task:\n  " + event + "\n  Now you have "
                                 + String.valueOf(storedTasks.size()) + " tasks in the list.\n" + HORIZONTAL_LINE);
+            } else {
+                commands.close();
+                throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
+        }
+    }
+
+    public static void main(String[] args) {
+        try {
+            tracker();
+        } catch (DukeException e) {
+            System.out.println(e);
         }
     }
 }
