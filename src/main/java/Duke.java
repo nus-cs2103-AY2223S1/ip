@@ -33,6 +33,21 @@ public class Duke {
         Duke.FormatPrint(res + t.toString());
     }
 
+    private static ArrayList<Task> remove(int index, ArrayList<Task> arr) {
+        ArrayList<Task> newArr = new ArrayList<>();
+        if(index < 0 || index > arr.size()) {
+            return arr;
+        }
+        for(int i = 0; i < arr.size(); i++) {
+            if(i == index) {
+                i++;
+            }
+            newArr.add(arr.get(i));
+        }
+
+        return newArr;
+    }
+
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -89,6 +104,15 @@ public class Duke {
                                     Duke.TaskStateChangePrint(curr, false);
                                 }
                                 break;
+
+                            case "delete":
+                                index = Integer.parseInt(temp[1]) - 1;
+                                curr = stored_items.get(index);
+                                stored_items = Duke.remove(index, stored_items);
+                                Duke.FormatPrint("Noted. I've removed this task:\n" + curr.toString()
+                                        + "Now you have " + String.valueOf(stored_items.size()) + " tasks in the list.");
+                                break;
+
 
                             case "deadline":
                                 pack = temp[1].split("/", 2);
