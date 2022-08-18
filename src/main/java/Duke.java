@@ -41,6 +41,10 @@ public class Duke {
                         + storedTasks.get(taskNumber) + "\n" + HORIZONTAL_LINE);
             } else if (command.split(" ").length > 1 && command.split(" ")[0].equals("todo")) {
                 ArrayList<String> commandDelimited = new ArrayList<String>(Arrays.asList(command.split(" ")));
+                if (commandDelimited.size() == 1) {
+                    commands.close();
+                    throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+                }
                 StringBuilder description = new StringBuilder();
                 for (int i = 1; i < commandDelimited.size(); i++) {
                     description.append(commandDelimited.get(i));
