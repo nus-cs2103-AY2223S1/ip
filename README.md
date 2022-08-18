@@ -1,24 +1,35 @@
-# Duke project template
+# Rem Personal Assistant
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+Inspired by Rem from Re:Zero, below are instructions on how to use your personal assistant "Rem".
+You can use Rem to add tasks to your personal checklist.
 
-## Setting up in Intellij
+## Starting page
 
-Prerequisites: JDK 11, update Intellij to the most recent version.
+```
+___  ___  __ __ 
+| . \| __>|  \  \
+|   /| _> |     |
+|_\_\|___>|_|_|_|
 
-1. Open Intellij (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project first)
-1. Open the project into Intellij as follows:
-   1. Click `Open`.
-   1. Select the project directory, and click `OK`.
-   1. If there are any further prompts, accept the defaults.
-1. Configure the project to use **JDK 11** (not other versions) as explained in [here](https://www.jetbrains.com/help/idea/sdk.html#set-up-jdk).<br>
-   In the same dialog, set the **Project language level** field to the `SDK default` option.
-3. After that, locate the `src/main/java/Duke.java` file, right-click it, and choose `Run Duke.main()` (if the code editor is showing compile errors, try restarting the IDE). If the setup is correct, you should see something like the below as the output:
-   ```
-   Hello from
-    ____        _        
-   |  _ \ _   _| | _____ 
-   | | | | | | | |/ / _ \
-   | |_| | |_| |   <  __/
-   |____/ \__,_|_|\_\___|
-   ```
+こんにちは (Konnichiwa)! Rem だよ! (I'm Rem!) :>
+今日は何ができますか? (What can I do for you today?)
+----------------------------------------------------
+>> (Your input goes here)
+  ```
+
+## Command words
+
+Below are the keywords to start your command with.
+
+1. Type "list" to see your task checklist.
+2. Marking/Unmarking your checklist.
+   1. mark (task number)
+   2. unmark (task number)
+3. Adding tasks:
+   1. todo (name of task)
+   2. deadline (name of task) /by (date/time)
+   3. event (name of task) /at (date/place)
+4. Removing tasks:
+   1. delete (task number)
+5. To stop Rem and quit the program:
+   1. bye
