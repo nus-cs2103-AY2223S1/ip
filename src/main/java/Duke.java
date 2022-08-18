@@ -5,7 +5,19 @@ import java.util.stream.Collectors;
 
 public class Duke {
     private static boolean alive;
-    private static List<String> tasks;
+    private static List<Task> tasks;
+
+    private static int checkTask(String id) {
+        try {
+            int task = Integer.parseInt(id);
+            if (task > tasks.size() || task <= 0) {
+                return -1;
+            }
+            return task;
+        } catch (NumberFormatException e) {
+            return -2;
+        }
+    }
 
     private static String handle(String command, String params) {
         switch (command) {
@@ -16,11 +28,21 @@ public class Duke {
                     out += (i + 1) + ". " + tasks.get(i);
                 }
                 return out;
+            case "mark":
+                int markedTask = checkTask(params);
+                if (markedTask < 0) return "Invalid task number!";
+                tasks.get(markedTask - 1).done = true;
+                return "OK, this task is done:\n" + tasks.get(markedTask - 1);
+            case "unmark":
+                int unmarkedTask = checkTask(params);
+                if (unmarkedTask < 0) return "Invalid task number!";
+                tasks.get(unmarkedTask - 1).done = false;
+                return "OK, this task is undone:\n" + tasks.get(unmarkedTask - 1);
             case "bye":
                 alive = false;
                 return "Goodbye!";
             default:
-                tasks.add(command + " " + params);
+                tasks.add(new Task(command + " " + params));
                 return "added: " + command + " " + params;
         }
     }
