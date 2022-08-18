@@ -76,8 +76,19 @@ public class Pony {
             System.out.println("Got it. I've added this task: " + newTask.toString());
             System.out.println("Now you have " + this.tasks.size() + " tasks in the list.");
             run();
+        } else if (command.equals("delete")) {
+            System.out.println("Which task do you want to delete");
+            int taskIndex = sc.nextInt();
+            sc.nextLine();
+            Task target = tasks.get(taskIndex - 1);
+            System.out.println("Noted. I've removed this task: ");
+            System.out.println(target.toString());
+            tasks.remove(taskIndex - 1);
+            System.out.println("Now you have " + this.tasks.size() + " tasks in the list.");
+            run();
         } else {
             System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(");
+            run();
         }
     }
 
