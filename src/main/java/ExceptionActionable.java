@@ -1,2 +1,2 @@
-package PACKAGE_NAME;public interface ExceptionActionable {
+public interface ExceptionActionable extends Actionable {
 }

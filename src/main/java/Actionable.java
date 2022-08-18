@@ -1,2 +1,3 @@
-package PACKAGE_NAME;public interface Actionable {
+public interface Actionable {
+    public void takeAction();
 }

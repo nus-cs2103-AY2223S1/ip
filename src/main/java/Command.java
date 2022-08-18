@@ -1,2 +1,8 @@
-package PACKAGE_NAME;public interface CommandActionable {
+public abstract class Command implements Actionable {
+
+    CommandType commandType;
+
+    Command(CommandType commandType) {
+        this.commandType = commandType;
+    }
 }
