@@ -16,10 +16,14 @@ public class Duke {
                     break;
                 } else if (input.equals("list")) {
                     int length = list.size();
-                    System.out.println("Here are the tasks in your list:");
-                    for (int i = 0; i < length; i++) {
-                        Task currentTask = list.get(i);
-                        System.out.println((i + 1) + "." + currentTask);
+                    if (length == 0) {
+                        System.out.println("You have no tasks!");
+                    } else {
+                        System.out.println("Here are the tasks in your list:");
+                        for (int i = 0; i < length; i++) {
+                            Task currentTask = list.get(i);
+                            System.out.println((i + 1) + "." + currentTask);
+                        }
                     }
                 } else if (input.startsWith("mark")) {
                     Task t = list.get(Integer.parseInt(input.substring(5)) - 1);
@@ -59,6 +63,11 @@ public class Duke {
                     list.add(e);
                     System.out.println("Got it. I've added this task:");
                     System.out.println(e);
+                    System.out.println("Now you have " + list.size() + " tasks in the list.");
+                } else if (input.startsWith("delete")) {
+                    Task t = list.remove(Integer.parseInt(input.substring(7)) - 1);
+                    System.out.println("Noted. I've removed this task:");
+                    System.out.println(t);
                     System.out.println("Now you have " + list.size() + " tasks in the list.");
                 } else {
                     throw new DukeException("I'm sorry, but I don't know what that means :-(");
