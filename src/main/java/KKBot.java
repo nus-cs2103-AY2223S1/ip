@@ -4,15 +4,15 @@ import java.util.List;
 
 /**
  * KKBot is a chatbot that helps keep track of your to-do list!
- * It currently supports the following commands:
+ * It currently supports the following keywords:
  *     1) bye: exits the chatbot
  *     2) list: lists out all tasks stored
  *     3) mark x: marks the x-th item in your list as complete
  *     4) unmark x: marks the x-th item in your list as incomplete
- *     5) abcdef: adds in a miscellaneous task abcdef to the list
- *     6) todo ijk: adds in a todo task ijk to the list
- *     7) deadline rst /by date-time: adds in a deadline task due by date-time
- *     8) event xyz /at date-time: adds in an event task occurring at date-time
+ *     5) todo ijk: adds in a todo task ijk to the list
+ *     6) deadline rst /by date-time: adds in a deadline task due by date-time
+ *     7) event xyz /at date-time: adds in an event task occurring at date-time
+ * If no keywords are used, KKBot returns an error message.
  *
  * @author AkkFiros
  */
@@ -146,9 +146,7 @@ public class KKBot {
                 }
             // if user input has no keywords, then chatbot creates an arbitrary task and adds it to the list
             } else {
-                Task newTask = new Task(input);
-                tasks.add(newTask);
-                System.out.println("added: " + input + "\n" + divider);
+                System.out.println("Me no understood... try using the keywords!" + "\n" + divider);
             }
         }
     }
