@@ -7,9 +7,19 @@ public class Prompt {
                 + "    |  |     |  |     /  .  \\  |  |  /  _____  \\  |  |\\   |\n"
                 + "    |__|     |__|    /__/ \\__\\ |__| /__/     \\__\\ |__| \\__|\n";
         System.out.println("Hi from\n" + logo);
-        System.out.println("What can I do for you?");
-        System.out.println("(Task name) / list / check (index) / uncheck (index) / bye");
+        listValidInstructions();
         lineDivider();
+    }
+
+    public static void listValidInstructions() {
+        System.out.println("What can I do for you?");
+        System.out.println("• todo (task name)");
+        System.out.println("• deadline (task name) \\by (date)");
+        System.out.println("• event (task name) \\at (date)");
+        System.out.println("• list");
+        System.out.println("• check (index)");
+        System.out.println("• uncheck (index)");
+        System.out.println("• bye");
     }
 
     public static void endPrompt() {
@@ -20,6 +30,10 @@ public class Prompt {
                 + "|  |__| | |  `--'  | |  `--'  | |  '--'  |   |  |_)  |     |  |     |  |____\n"
                 + " \\______|  \\______/   \\______/  |_______/    |______/      |__|     |_______|\n";
         System.out.println(goodbye_text);
+    }
+
+    public static void invalidInstruction() {
+        System.out.println("Please give me a valid instruction");
     }
 
     public static void lineDivider() {
