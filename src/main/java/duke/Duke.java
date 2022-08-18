@@ -1,13 +1,12 @@
+package duke;
+
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
-import java.util.Date;
 import java.util.Scanner;
 
 public class Duke {
-    private static String GREETING = "Hello! I'm Duke\nWhat can I do for you?";
+    private static String GREETING = "Hello! I'm duke.Duke\nWhat can I do for you?";
     private static String EXIT_MSG = "Bye. Hope to see you again soon!";
     private static String NO_TASK_NAME = "No task name defined, please try again";
     private static String NO_INDEX_SPECIFIED = "No index specified, try again";

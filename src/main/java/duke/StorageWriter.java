@@ -1,3 +1,5 @@
+package duke;
+
 public class StorageWriter {
     static String writeSingleTask(Task task) {
         int done = task.isDone ? 1 : 0;

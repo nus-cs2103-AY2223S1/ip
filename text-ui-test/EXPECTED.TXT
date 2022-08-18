@@ -1,22 +1,22 @@
-Hello! I'm Duke
+Hello! I'm duke.Duke
 What can I do for you?
-☹ OOPS!!! DukeException: ☹ OOPS!!! I'm sorry, but I don't know what that means :-(
-☹ OOPS!!! DukeException: ☹ OOPS!!! I'm sorry, but I don't know what that means :-(
-☹ OOPS!!! DukeException: ☹ OOPS!!! I'm sorry, but I don't know what that means :-(
-☹ OOPS!!! DukeException: No index specified, try again
+☹ OOPS!!! duke.DukeException: ☹ OOPS!!! I'm sorry, but I don't know what that means :-(
+☹ OOPS!!! duke.DukeException: ☹ OOPS!!! I'm sorry, but I don't know what that means :-(
+☹ OOPS!!! duke.DukeException: ☹ OOPS!!! I'm sorry, but I don't know what that means :-(
+☹ OOPS!!! duke.DukeException: No index specified, try again
 Got it. I've added this task:
   [T][ ] eat
 Now you have 1 tasks in the list
 Got it. I've added this task:
   [D][ ] Eat Supper (by: Monday)
 Now you have 2 tasks in the list
-☹ OOPS!!! DukeException: Please follow the format <taskname> /by <datetime>
-☹ OOPS!!! DukeException: Please follow the format <taskname> /by <datetime>
+☹ OOPS!!! duke.DukeException: Please follow the format <taskname> /by <datetime>
+☹ OOPS!!! duke.DukeException: Please follow the format <taskname> /by <datetime>
 Got it. I've added this task:
   [E][ ] Sleep (at: Thurs 9-10pm)
 Now you have 3 tasks in the list
-☹ OOPS!!! DukeException: Please follow the format <taskname> /at <date and time>
-☹ OOPS!!! DukeException: Please follow the format <taskname> /at <date and time>
+☹ OOPS!!! duke.DukeException: Please follow the format <taskname> /at <date and time>
+☹ OOPS!!! duke.DukeException: Please follow the format <taskname> /at <date and time>
 
 1. [T][ ] eat
 2. [D][ ] Eat Supper (by: Monday)
@@ -26,7 +26,7 @@ Got it. I've added this task:
 Now you have 4 tasks in the list
 Nice ! I've marked this task as done:
 [T][X] eat
-☹ OOPS!!! DukeException: No index specified, try again
+☹ OOPS!!! duke.DukeException: No index specified, try again
 
 1. [T][X] eat
 2. [D][ ] Eat Supper (by: Monday)
@@ -48,7 +48,7 @@ Nice ! I've marked this task as done:
 4. [D][ ] Project (by: Today 4am)
 OK, I've marked this text as not done yet:
 [T][ ] eat
-☹ OOPS!!! DukeException: No index specified, try again
+☹ OOPS!!! duke.DukeException: No index specified, try again
 
 1. [T][ ] eat
 2. [D][X] Eat Supper (by: Monday)

@@ -1,3 +1,5 @@
+package duke;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -15,7 +17,7 @@ public class StorageHandler {
     StorageHandler(String filePath) throws InvalidStorageFilePathException, IOException {
         this.path = Paths.get(System.getProperty("user.dir"), filePath);
         if (!validPath(filePath)) {
-            throw new InvalidStorageFilePathException("Storage file needs to end with .txt, please try again.");
+            throw new InvalidStorageFilePathException("duke.Storage file needs to end with .txt, please try again.");
         }
         if (!Files.exists(path) || !Files.isRegularFile(path)) {
             // Create a new file
