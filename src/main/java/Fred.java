@@ -3,8 +3,9 @@ import java.util.Scanner;
 
 public class Fred {
     public static void list(ArrayList<Task> arrayList) {
+        int counter = 1;
         for (Task t : arrayList) {
-            System.out.println("Fred: " + (arrayList.indexOf(t) + 1) + ". " + t.getName());
+            System.out.println("Fred: " + counter++ + ". " + t.getName());
         }
     }
 
