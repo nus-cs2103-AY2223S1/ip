@@ -1,0 +1,14 @@
+todo individual project
+deadline individual project /by Tomorrow
+event CS2103T lecture /at Friday 4-6pm
+mark 1
+mark 3
+mark 2
+list
+unmark 3
+unmark 1
+unmark 2
+list
+mark 1
+list
+bye
