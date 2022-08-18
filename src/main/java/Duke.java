@@ -3,7 +3,7 @@ import java.util.*;
 public class Duke {
 
     private enum Command {
-        BYE, LIST, MARK, UNMARK, DELETE, TODO, DEADLINE, EVENT
+        BYE, LIST, MARK, UNMARK, DELETE, TODO, DEADLINE, EVENT, INVALID
     }
 
     private static ArrayList<Task> addedTask = new ArrayList<>(100);
@@ -62,7 +62,7 @@ public class Duke {
         try {
             return Command.valueOf(command.toUpperCase());
         } catch (IllegalArgumentException e) {
-            throw new CommandNotFoundException(command);
+            return Command.INVALID;
         }
     }
 
