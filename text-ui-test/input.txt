@@ -1,0 +1,7 @@
+todo item 1
+deadline item 2 /by 3pm
+mark 1
+mark 2
+event item 3 /at 4pm
+unmark 2
+bye

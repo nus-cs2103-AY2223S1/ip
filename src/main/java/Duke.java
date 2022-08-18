@@ -3,11 +3,9 @@ import java.util.Scanner;
 public class Duke {
     private final Scanner s;
     private static final String intro =
-        "┌────────────────────┐\n" +
-            "│ Welcome to APOLLO! │\n" +
-            "└────────────────────┘\n" +
+            "| Welcome to APOLLO! |\n" +
             "How can I help you today?";
-    public static final String divider = "\n──────────────────";
+    public static final String divider = "\n----------------";
     private final DukeList itemList;
 
     public Duke() {

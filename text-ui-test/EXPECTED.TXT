@@ -1,7 +1,24 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+| Welcome to APOLLO! |
+How can I help you today?
 
+----------------
+Item added: [T][ ] todo item 1
+Now you have 1 task in the list.
+----------------
+Item added: [D][ ] deadline item 2 (by: 3pm)
+Now you have 2 tasks in the list.
+----------------
+Good job! This task has been completed:
+[T][X] todo item 1
+----------------
+Good job! This task has been completed:
+[D][X] deadline item 2 (by: 3pm)
+----------------
+Item added: [E][ ] event item 3 (at: 4pm)
+Now you have 3 tasks in the list.
+----------------
+Whoops! This task is now yet to be completed:
+[D][ ] deadline item 2 (by: 3pm)
+----------------
+Goodbye, see you soon!
+----------------
