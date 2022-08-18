@@ -9,52 +9,67 @@ public class Duke {
         System.out.println("What can I do for you?");
         while (true) {
             String userIn = myObj.nextLine();  // Read user input
-            if (userIn.equals("bye")) {
-                byeStatement();
-                break;
-            }
-            else if (userIn.equals("list")) {
-                for (int i = 1; i <= taskList.size(); i++) {
-                    System.out.println(i+". " + taskList.get(i - 1).toString());
-                }
-            }
-            else if (userIn.contains("unmark")) {
-                String[] inArr = userIn.split(" ", 2);
-                int ind = Integer.parseInt(inArr[1]) - 1;
-                taskList.get(ind).unmark();
-                System.out.println("OK, I've marked this task as not done yet:\n" + "  " + taskList.get(ind).toString());
+            try {
+                if (userIn.equals("bye")) {
+                    byeStatement();
+                    break;
+                } else if (userIn.equals("list")) {
+                    if (taskList.size() == 0) {
+                        System.out.println("You have no tasks at the moment!");
+                    }
+                    for (int i = 1; i <= taskList.size(); i++) {
+                        System.out.println(i + ". " + taskList.get(i - 1).toString());
+                    }
+                } else if (userIn.contains("unmark")) {
+                    String[] inArr = userIn.split(" ", 2);
+                    int ind = Integer.parseInt(inArr[1]) - 1;
+                    taskList.get(ind).unmark();
+                    System.out.println("OK, I've marked this task as not done yet:\n" + "  " + taskList.get(ind).toString());
 
+                } else if (userIn.contains("mark")) {
+                    String[] inArr = userIn.split(" ", 2);
+                    int ind = Integer.parseInt(inArr[1]) - 1;
+                    taskList.get(ind).mark();
+                    System.out.println("Nice! I've marked this task as done:\n" + "  " + taskList.get(ind).toString());
+                } else if (userIn.contains("todo")) {
+                    try {
+                        String[] des = userIn.split(" ", 2);
+                        Task toAdd = new Todos(des[1]);
+                        taskList.add(toAdd);
+                        addStatement(toAdd.toString(), taskList.size());
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        throw new NoDescriptionException("todo");
+                    }
+                } else if (userIn.contains("deadline")) {
+                    try {
+                        String[] overall = userIn.split(" ", 2);
+                        String[] descriptdate = overall[1].split("/by", 2);
+                        Task toAdd = new Deadlines(descriptdate[0], descriptdate[1]);
+                        taskList.add(toAdd);
+                        addStatement(toAdd.toString(), taskList.size());
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        throw new NoDescriptionException("deadline");
+                    }
+                } else if (userIn.contains("event")) {
+                    try {
+                        String[] overall = userIn.split(" ", 2);
+                        String[] descriptdate = overall[1].split("/at", 2);
+                        Task toAdd = new Events(descriptdate[0], descriptdate[1]);
+                        taskList.add(toAdd);
+                        addStatement(toAdd.toString(), taskList.size());
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        throw new NoDescriptionException("todo");
+                    }
+                } else {
+                    throw new NoSuchCommandException();
+                }
+            } catch (NoDescriptionException e) {
+                System.err.print(e);
+            } catch (NoSuchCommandException e) {
+                System.err.print(e);
             }
-            else if (userIn.contains("mark")) {
-                String[] inArr = userIn.split(" ", 2);
-                int ind = Integer.parseInt(inArr[1]) - 1;
-                taskList.get(ind).mark();
-                System.out.println("Nice! I've marked this task as done:\n" + "  " + taskList.get(ind).toString());
-            }
-            else if (userIn.contains("todo")) {
-                String[] des = userIn.split(" ", 2);
-                Task toAdd = new Todos(des[1]);
-                taskList.add(toAdd);
-                addStatement(toAdd.toString(), taskList.size());
-            }
-            else if (userIn.contains("deadline")) {
-                String[] overall = userIn.split(" ", 2);
-                String[] descriptdate = overall[1].split("/by", 2);
-                Task toAdd = new Deadlines(descriptdate[0], descriptdate[1]);
-                taskList.add(toAdd);
-                addStatement(toAdd.toString(), taskList.size());
-            }
-            else if (userIn.contains("event")) {
-                String[] overall = userIn.split(" ", 2);
-                String[] descriptdate = overall[1].split("/at", 2);
-                Task toAdd = new Events(descriptdate[0], descriptdate[1]);
-                taskList.add(toAdd);
-                addStatement(toAdd.toString(), taskList.size());
-            }
-            else {
-                taskList.add(new Task(userIn));
-                System.out.println("added: " + userIn);  // Output user input
-            }
+
+
         }
 
     }
