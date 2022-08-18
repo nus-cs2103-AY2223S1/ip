@@ -2,9 +2,9 @@ import java.util.Scanner;
 
 public class Pixel {
 
-    Scanner myScanner = new Scanner(System.in);  // Create a Scanner object
+    private Scanner myScanner = new Scanner(System.in);  // Create a Scanner object
 
-    void run() {
+    private void run() {
         String userInput = myScanner.nextLine();  // Read user input
 
         if (userInput.equals("bye")) {
