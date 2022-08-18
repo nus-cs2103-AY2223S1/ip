@@ -14,7 +14,7 @@ public class Duke {
     private static final String MARK_UNDONE_COMMAND_STRING = "unmark";
     private static final String MARK_UNDONE_OUTPUT_STRING = "Sure, I have marked this as not done yet";
     private static final String MARK_UNDONE_ERROR_STRING = "Oops! Do check the index range, and the format should be \"unmark <index>\"";
-
+    private static final String GENERAL_ERROR_STRING = "Sorry, I don't understand that!";
 
     private CommandParser commandParser;
     List<Task> taskList;
@@ -46,28 +46,17 @@ public class Duke {
         return stringBuilder.toString();
     }
 
-    private String addNewTask(String taskTitle) {
-        taskList.add(new Task(taskTitle));
-        return "added: " + taskTitle;
-    }
-
-    private int getIndexOfFirstWhiteSpace(String input) {
-        int indexOfFirstWhiteSpace = 0;
-        for (; indexOfFirstWhiteSpace < input.length(); indexOfFirstWhiteSpace++) {
-            if (input.charAt(indexOfFirstWhiteSpace) == ' ') {
-                break;
-            }
+    private String addNewTask(String input) {
+        Task newTask = Task.valueOf(input);
+        if (newTask == null) {
+            return GENERAL_ERROR_STRING;
         }
-        return indexOfFirstWhiteSpace;
-    }
-
-    private String getFirstWord(String input) {
-        int indexOfFirstWhiteSpace = getIndexOfFirstWhiteSpace(input);
-        return input.substring(0, indexOfFirstWhiteSpace);
+        taskList.add(newTask);
+        return "added: " + newTask.toString();
     }
 
     private int getTaskIndexForMarking(String input) {
-        int indexOfFirstWhiteSpace = getIndexOfFirstWhiteSpace(input);
+        int indexOfFirstWhiteSpace = CommandParser.getIndexOfFirstWhiteSpace(input);
         String tailSubString = input.substring(indexOfFirstWhiteSpace, input.length());
         tailSubString = tailSubString.replace(" ", "");
         if (tailSubString.isEmpty()) {
@@ -120,7 +109,7 @@ public class Duke {
 
             boolean commandFetched = true;
 
-            String firstWord = getFirstWord(nextLine);
+            String firstWord = CommandParser.getFirstWord(nextLine);
             switch (firstWord) {
             case (MARK_DONE_COMMAND_STRING):
                 int index = getTaskIndexForMarking(nextLine);

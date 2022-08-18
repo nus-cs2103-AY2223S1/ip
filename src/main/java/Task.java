@@ -1,14 +1,21 @@
-public class Task {
-    private String taskTitle;
-    private boolean done;
+public abstract class Task {
 
-    private Task(String taskTitle, boolean done) {
-        this.taskTitle = taskTitle;
-        this.done = done;
+    public static Task valueOf(String input) {
+
     }
 
-    Task(String taskTitle) {
-        this(taskTitle, false);
+    protected String taskTitle;
+    protected boolean done;
+    protected TaskType taskType;
+
+    protected Task(String taskTitle, TaskType taskType) {
+        this(taskTitle, false, taskType);
+    }
+
+    protected Task(String taskTitle, boolean done, TaskType taskType) {
+        this.taskTitle = taskTitle;
+        this.done = done;
+        this.taskType = taskType;
     }
 
     void markDone() {
