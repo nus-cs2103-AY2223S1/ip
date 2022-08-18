@@ -3,16 +3,10 @@ import java.util.Scanner;
 
 public class Duke {
     public static void main(String[] args) {
-
-        try {
-            startChat();
-        } catch (DukeException e) {
-            System.out.println(e.getMessage());
-        }
-
+        startChat();
     }
 
-    public static void startChat() throws DukeException {
+    public static void startChat() {
         String horizontalLine = "______________________________________\n";
         String firstText = horizontalLine
                 + "hi... I'm Karen\n"
