@@ -4,7 +4,7 @@ package main.java;
  * Event encapsulates an event with a date/time period.
  *
  * @author Totsuka Tomofumi
- * @version Level-4, Level-5
+ * @version Level-6
  */
 public class Event extends Task {
     /**

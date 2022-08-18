@@ -1,24 +1,24 @@
 package main.java;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 /**
  * Duke, a Personal Assistant Chatbot that helps a person to keep track of various things.
  *
  * @author Totsuka Tomofumi
- * @version Level-4, Level-5
+ * @version Level-6
  */
 public class Duke {
     /**
      * Duke initialises with his personal logo and a welcome message before prompting for standard input
-     * from the command line. 3 types of taasks are remembered by Duke and a list can be retrieved
+     * from the command line. 3 types of tasks can be remembered or deleted by Duke and a list can be retrieved
      * if the user types "list". Tasks can be marked or unmarked done. If the user types "bye",
      * Duke terminates with a goodbye message.
      * @param args Command line arguments
      */
     public static void main(String[] args) {
         //assume no more than 100 tasks
-        Task[] tasks = new Task[100];
-        int index = 0;
+        ArrayList<Task> tasks = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -39,9 +39,6 @@ public class Duke {
                 int order = 1;
                 System.out.println("Here are the tasks in your list:");
                 for (Task task : tasks) {
-                    if (task == null) {
-                        break;
-                    }
                     System.out.println(order++ + "." + task.toString());
                 }
             //mark command
@@ -51,18 +48,19 @@ public class Duke {
                         throw new MissingTaskNumberException();
                     }
                     int query = Integer.parseInt(response.substring(5)) - 1;
-                    if (tasks[query] == null) {
+                    if (query > tasks.size() - 1 || query < 0) {
                         throw new InvalidTaskNumberException();
                     }
-                    tasks[query].mark();
+                    tasks.get(query).mark();
                     System.out.println("Nice! I've marked this task as done:");
-                    System.out.println(tasks[query].toString());
+                    System.out.println(tasks.get(query).toString());
                 } catch (NumberFormatException e) {
                     System.out.println(" ☹ OOPS!!! The task number you have inputted is invalid.");
                 } catch (MissingTaskNumberException e) {
                     System.out.println(" ☹ OOPS!!! You did not input a task number.");
                 } catch (InvalidTaskNumberException e) {
-                    System.out.println(" ☹ OOPS!!! The task with the task number you have inputted does not exist.");
+                    System.out.println(" ☹ OOPS!!! The task with the task number you have inputted does not exist" +
+                            " or is invalid.");
                 }
             //unmark command
             } else if (response.equals("unmark") || response.startsWith("unmark ")) {
@@ -71,18 +69,41 @@ public class Duke {
                         throw new MissingTaskNumberException();
                     }
                     int query = Integer.parseInt(response.substring(7)) - 1;
-                    if (tasks[query] == null) {
+                    if (query > tasks.size() - 1 || query < 0) {
                         throw new InvalidTaskNumberException();
                     }
-                    tasks[query].unmark();
+                    tasks.get(query).unmark();
                     System.out.println("OK, I've marked this task as not done yet:");
-                    System.out.println(tasks[query].toString());
+                    System.out.println(tasks.get(query).toString());
                 } catch (NumberFormatException e) {
                     System.out.println(" ☹ OOPS!!! The task number you have inputted is invalid.");
                 } catch (MissingTaskNumberException e) {
                     System.out.println(" ☹ OOPS!!! You did not input a task number.");
                 } catch (InvalidTaskNumberException e) {
-                    System.out.println(" ☹ OOPS!!! The task with the task number you have inputted does not exist.");
+                    System.out.println(" ☹ OOPS!!! The task with the task number you have inputted does not exist" +
+                            " or is invalid.");
+                }
+            //delete command
+            } else if (response.equals("delete") || response.startsWith("delete ")) {
+                try {
+                    if (response.length() < 8) {
+                        throw new MissingTaskNumberException();
+                    }
+                    int query = Integer.parseInt(response.substring(7)) - 1;
+                    if (query > tasks.size() - 1 || query < 0) {
+                        throw new InvalidTaskNumberException();
+                    }
+                    System.out.println("Noted. I've removed this task:");
+                    System.out.println(tasks.get(query).toString());
+                    tasks.remove(query);
+                    System.out.println(String.format("Now you have %d tasks in the list.", tasks.size()));
+                } catch (NumberFormatException e) {
+                    System.out.println(" ☹ OOPS!!! The task number you have inputted is invalid.");
+                } catch (MissingTaskNumberException e) {
+                    System.out.println(" ☹ OOPS!!! You did not input a task number.");
+                } catch (InvalidTaskNumberException e) {
+                    System.out.println(" ☹ OOPS!!! The task with the task number you have inputted does not exist" +
+                            " or is invalid.");
                 }
             //add task commands
             } else {
@@ -95,7 +116,7 @@ public class Duke {
                             throw new MissingDescriptionException();
                         }
                         String description = response.substring(5);
-                        tasks[index] = new ToDo(description);
+                        tasks.add(new ToDo(description));
                         success = true;
                     } catch (MissingDescriptionException e) {
                         System.out.println(" ☹ OOPS!!! The description of a todo cannot be empty.");
@@ -126,7 +147,7 @@ public class Duke {
                         if (time.length() == 0) {
                             throw new MissingTimeException();
                         }
-                        tasks[index] = new Deadline(description, time);
+                        tasks.add(new Deadline(description, time));
                         success = true;
                     } catch (MissingTokenException e) {
                         System.out.println(" ☹ OOPS!!! You are mising the \"/by\" token.");
@@ -163,7 +184,7 @@ public class Duke {
                         if (time.length() == 0) {
                             throw new MissingTimeException();
                         }
-                        tasks[index] = new Event(description, time);
+                        tasks.add(new Event(description, time));
                         success = true;
                     } catch (MissingTokenException e) {
                         System.out.println(" ☹ OOPS!!! You are mising the \"/at\" token.");
@@ -178,10 +199,10 @@ public class Duke {
                 }
                 if (success) {
                     System.out.println("Got it. I've added this task:");
-                    System.out.println(tasks[index++].toString());
-                    System.out.println(String.format("Now you have %d tasks in the list.", index));
+                    System.out.println(tasks.get(tasks.size() - 1).toString());
+                    System.out.println(String.format("Now you have %d tasks in the list.", tasks.size()));
                 } else {
-                    System.out.println(" ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                    System.out.println(" ☹ OOPS!!! I'm sorry, but I don't know what that means. :-(");
                 }
             }
         }

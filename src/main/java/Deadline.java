@@ -4,7 +4,7 @@ package main.java;
  * Deadline encapsulates a task with a deadline date/time.
  *
  * @author Totsuka Tomofumi
- * @version Level-4, Level-5
+ * @version Level-6
  */
 public class Deadline extends Task {
     /**
