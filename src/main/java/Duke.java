@@ -6,8 +6,11 @@ public class Duke {
     private static Task[] tasks = new Task[100];
 
 
-    private boolean inputChecker(String[] arr) {
+    private static boolean inputChecker(String[] arr) {
         if (arr.length  < 2) {
+            return false;
+        }
+        if (arr[1].isBlank()) {
             return false;
         }
         return true;
@@ -37,6 +40,10 @@ public class Duke {
     }
 
     private static void list() {
+        if (Task.getCount() == 0) {
+            System.out.println("You currently have no tasks remaining! Create a task now!");
+            return;
+        }
         for (int i = 0; i < Task.getCount(); i++) {
             if (tasks[i] == null) {
                 break;
@@ -91,21 +98,44 @@ public class Duke {
             }
 
             else if (arr[0].equals("mark")){
-                mark(arr);
+                if (!inputChecker(arr)) {
+                    System.out.println(DukeException.MarkIndexEmptyException());
+                } else {
+                    mark(arr);
+                }
+
             }
             else if (arr[0].equals("unmark")) {
-                unmark(arr);
+                if (!inputChecker(arr)) {
+                    System.out.println(DukeException.UnmarkIndexEmptyException());
+                } else {
+                    unmark(arr);
+                }
             }
 
             else if (arr[0].equals("todo")) {
-                todo(arr[1]);
+                if (!inputChecker(arr)) {
+                    System.out.println(DukeException.EmptyTaskException());
+                } else {
+                    todo(arr[1]);
+                }
+
             }
 
             else if (arr[0].equals("deadline")) {
-                deadline(arr[1]);
+                if (!inputChecker(arr)) {
+                    System.out.println(DukeException.EmptyTaskException());
+                } else {
+                    deadline(arr[1]);
+                }
+
             }
             else if (arr[0].equals("event")) {
-                event(arr[1]);
+                if (!inputChecker(arr)) {
+                    System.out.println(DukeException.EmptyTaskException());
+                } else {
+                    event(arr[1]);
+                }
             }
 
             else {
