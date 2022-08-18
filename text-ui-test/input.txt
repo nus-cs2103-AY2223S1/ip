@@ -1,0 +1,12 @@
+deadline Complete Week 2 Tasks /by Thursday 2359
+todo Gym
+list
+event CS2103T Lecture /at Friday 1600-1800
+list
+mark 1
+mark 3
+list
+unmark 3
+unmark 2
+list
+bye
