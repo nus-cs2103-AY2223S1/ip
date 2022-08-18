@@ -36,7 +36,6 @@ public class Compiler {
         s = s.trim();
         String[] words = s.split(" ");
         Action action = Action.getAction(words[0]);
-        String strAction = Action.getString(action);
         switch (action) {
             case GREET:
                 return new Command(Action.GREET);
