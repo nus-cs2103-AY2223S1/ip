@@ -5,6 +5,6 @@ public class InputException extends DukeException{
 
     @Override
     public String toString() {
-        return super.toString() + "Invalid input, please use only:\ntodo, deadline, event";
+        return super.toString() + "Invalid input, please use only:\ntodo, deadline, event with a task";
     }
 }
