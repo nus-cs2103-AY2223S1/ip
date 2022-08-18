@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 public class Duke {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DukeException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Hello! I'm Duke\nWhat can I do for you?");
         String input = "";
@@ -22,20 +22,39 @@ public class Duke {
                 int target = Integer.valueOf(input.split(" ")[1]) - 1;
                 System.out.println(list.get(target).unmark());
             } else if (input.startsWith("todo")) {
-                list.add(new ToDo(input.split("todo ")[1]));
+                String[] info = input.split("todo ");
+                if (info.length <= 1) {
+                    throw new DukeException("OOPS!! The description of a todo cannot be empty.");
+                }
+                list.add(new ToDo(info[1]));
                 System.out.println("Got it. I've added this task:\n" + list.get(list.size() -1));
                 System.out.println("Now you have " + list.size() + " tasks in the list.");
             } else if (input.startsWith("deadline")) {
-                list.add(new Deadline(input.split("deadline ")[1].split(" /by")[0], input.split("/by ")[1]));
+                String[] info = input.split("deadline ");
+                if (info.length <= 1) {
+                    throw new DukeException("OOPS!! The description of a deadline cannot be empty.");
+                }
+                String[] item = info[1].split(" /by ");
+                if (item.length <= 1) {
+                    throw new DukeException("OOPS!! A deadline has to be set!");
+                }
+                list.add(new Deadline(item[0], item[1]));
                 System.out.println("Got it. I've added this task:\n" + list.get(list.size() -1));
                 System.out.println("Now you have " + list.size() + " tasks in the list.");
             } else if (input.startsWith("event")) {
-                list.add(new Event(input.split("event ")[1].split(" /at")[0], input.split("/at ")[1]));
+                String[] info = input.split("event ");
+                if (info.length <= 1) {
+                    throw new DukeException("OOPS!! The description of a event cannot be empty.");
+                }
+                String[] item = info[1].split(" /at ");
+                if (item.length <= 1) {
+                    throw new DukeException("OOPS!! The timing of the event has to be set!");
+                }
+                list.add(new Event(item[0], item[1]));
                 System.out.println("Got it. I've added this task:\n" + list.get(list.size() -1));
                 System.out.println("Now you have " + list.size() + " tasks in the list.");
             } else {
-                list.add(new Task(input));
-                System.out.println("added: " + input);
+                throw new DukeException("OOPS!! I'm sorry, but I don't know what that means :-(");
             }
         }
         System.out.println("Bye. Hope to see you again soon!");
