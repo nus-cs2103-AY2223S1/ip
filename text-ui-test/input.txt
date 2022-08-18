@@ -4,9 +4,13 @@ event project meeting /at Aug 6th 2-4pm
 todo join sports club
 todo borrow book
 mark 1
+mark 2
 mark 4
-deadline return book /by Sunday
-event project meeting /at Mon 2-4pm
+unmark 4
 list
+todo
+deadline
+event
+blah
 bye
 

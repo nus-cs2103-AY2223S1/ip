@@ -4,9 +4,9 @@ public class Task {
     static int numTask;
 
     public Task(String description) {
-        this.description = description;
-        this.isDone = false;
-        numTask++;
+            this.description = description;
+            this.isDone = false;
+            numTask++;
     }
 
     public String getStatusIcon() {
@@ -21,8 +21,8 @@ public class Task {
         this.isDone = false; //unmark
     }
 
-    public String getDescription() {
-        return this.description;
+    public void removeTask() {
+        numTask--;
     }
 
     public String toString() {
