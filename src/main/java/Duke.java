@@ -13,10 +13,10 @@ public class Duke {
     }
 
     public static void startChat() throws DukeException {
-        String horizontalLine = "______________________________________ \n";
+        String horizontalLine = "______________________________________\n";
         String firstText = horizontalLine
-                + "hi... I'm Karen \n"
-                + "What do you want this time? \n"
+                + "hi... I'm Karen\n"
+                + "What do you want this time?\n"
                 + horizontalLine;
         System.out.println(firstText);
 
@@ -29,7 +29,7 @@ public class Duke {
                 String echoText = sc.nextLine();
                 //terminate chat
                 if (echoText.equals("bye")) {
-                    System.out.println(horizontalLine + "K finally, good riddance! \n" + horizontalLine);
+                    System.out.println(horizontalLine + "K finally, good riddance!\n" + horizontalLine);
                     break;
                     //view list of items
                 } else if (echoText.equals("list")) {
@@ -47,7 +47,7 @@ public class Duke {
                     //mark an item as done
                 } else if (echoText.split(" ")[0].equals("mark")) {
                     int markValue = Integer.parseInt(echoText.split(" ")[1]);
-                    if (markValue > list.size()) {
+                    if (markValue > list.size() || markValue <= 0) {
                         throw new DukeException(horizontalLine + "The mark value does not exist dummy!\n" + horizontalLine);
                     }
                     Task item = list.get(markValue - 1);
@@ -57,7 +57,7 @@ public class Duke {
                     //mark an item as not done
                 } else if (echoText.split(" ")[0].equals("unmark")) {
                     int markValue = Integer.parseInt(echoText.split(" ")[1]);
-                    if (markValue > list.size()) {
+                    if (markValue > list.size() || markValue <= 0) {
                         throw new DukeException(horizontalLine + "The unmark value does not exist dummy!\n" + horizontalLine);
                     }
                     Task item = list.get(markValue - 1);
@@ -78,16 +78,16 @@ public class Duke {
                     list.add(t);
                     System.out.println(horizontalLine + "Fine, I'll add this task:");
                     System.out.println("\t" + t.toString());
-                    System.out.println("Now you have " + list.size() + " tasks in the list... \n" + horizontalLine );
+                    System.out.println("Now you have " + list.size() + " tasks in the list...\n" + horizontalLine );
                     // add a deadline item
                 } else if (echoText.split(" ")[0].equals("deadline")) {
                     int firstSpaceIndex = echoText.indexOf(" ");
                     if (firstSpaceIndex == -1) {
-                        throw new DukeException(horizontalLine + "Description of a deadline cannot be empty dummy! \n" + horizontalLine);
+                        throw new DukeException(horizontalLine + "Description of a deadline cannot be empty dummy!\n" + horizontalLine);
                     }
                     int byIndex = echoText.indexOf("/by");
                     if (byIndex == -1) {
-                        throw new DukeException(horizontalLine + "A deadline must have a by clause dummy! \n" + horizontalLine);
+                        throw new DukeException(horizontalLine + "A deadline must have a by clause dummy!\n" + horizontalLine);
                     }
                     String desc = echoText.substring(firstSpaceIndex + 1, byIndex);
                     //4 because 3 of "/by" and 1 for the additional space
@@ -96,16 +96,16 @@ public class Duke {
                     list.add(d);
                     System.out.println(horizontalLine + "Fine, I'll add this task:");
                     System.out.println("\t" + d.toString());
-                    System.out.println("Now you have " + list.size() + " tasks in the list... \n" + horizontalLine );
+                    System.out.println("Now you have " + list.size() + " tasks in the list...\n" + horizontalLine );
                     //add an event item
                 } else if (echoText.split(" ")[0].equals("event")) {
                     int firstSpaceIndex = echoText.indexOf(" ");
                     if (firstSpaceIndex == -1) {
-                        throw new DukeException(horizontalLine + "Description of an event cannot be empty dummy! \n" + horizontalLine);
+                        throw new DukeException(horizontalLine + "Description of an event cannot be empty dummy!\n" + horizontalLine);
                     }
                     int atIndex = echoText.indexOf("/at");
                     if (atIndex == -1) {
-                        throw new DukeException(horizontalLine + "An event must have a at clause dummy! \n" + horizontalLine);
+                        throw new DukeException(horizontalLine + "An event must have a at clause dummy!\n" + horizontalLine);
                     }
                     String desc = echoText.substring(firstSpaceIndex + 1, atIndex);
                     String at = echoText.substring(atIndex + 4);
@@ -113,19 +113,19 @@ public class Duke {
                     list.add(e);
                     System.out.println(horizontalLine + "Fine, I'll add this task:");
                     System.out.println("\t" + e.toString());
-                    System.out.println("Now you have " + list.size() + " tasks in the list... \n" + horizontalLine );
+                    System.out.println("Now you have " + list.size() + " tasks in the list...\n" + horizontalLine );
                     //delete a task from the list
                 } else if (echoText.split(" ")[0].equals("delete")) {
                     int delValue = Integer.parseInt(echoText.split(" ")[1]);
-                    if (delValue > list.size()) {
+                    if (delValue > list.size() || delValue <= 0) {
                         throw new DukeException(horizontalLine + "The delete value does not exist dummy!\n" + horizontalLine);
                     }
                     Task item = list.get(delValue - 1);
-                    System.out.println(horizontalLine + "Ughh I'll remove this task: \n \t" + item.toString());
+                    System.out.println(horizontalLine + "Ughh I'll remove this task:\n\t" + item.toString());
                     list.remove(delValue - 1);
-                    System.out.println("Now you have " + list.size() + " tasks in the list... \n" + horizontalLine );
+                    System.out.println("Now you have " + list.size() + " tasks in the list...\n" + horizontalLine );
                 } else {
-                    System.out.println(horizontalLine + "What are you saying??? Try again" + "\n" + horizontalLine);
+                    System.out.println(horizontalLine + "What are you saying??? Try again\n" + horizontalLine);
                 }
             } catch (DukeException e) {
                 System.out.println(e.getMessage());
