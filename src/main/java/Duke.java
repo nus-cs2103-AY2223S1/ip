@@ -1,9 +1,17 @@
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Duke {
+    private static final String LIST = "list";
+    private static final String MARK = "mark";
+    private static final String UNMARK = "unmark";
+    private static final String TODO = "todo";
+    private static final String DEADLINE = "deadline";
+    private static final String EVENT = "event";
+    private static final String BYE = "bye";
     private static List<Task> tasks = new ArrayList<>();
 
     public static void main(String[] args) {
@@ -27,41 +35,76 @@ public class Duke {
 
     public static void askUser() {
         Scanner sc = new Scanner(System.in);
-        String userInput = sc.next();
-        while (!userInput.equals("bye") && !userInput.equals("Bye")) {
-            if (userInput.equals("list") || userInput.equals("List")) {
-                System.out.println("\t______________________________________________________");
-                listUserTasks();
-                System.out.println("\t______________________________________________________\n");
-            } else if (userInput.equals("mark") || userInput.equals("Mark")) {
-                int taskNumber = Integer.parseInt(sc.next());
-                mark(taskNumber);
-            } else if (userInput.equals("unmark") || userInput.equals("Unmark")) {
-                int taskNumber = Integer.parseInt(sc.next());
-                unmark(taskNumber);
-            } else if (userInput.equals("todo") || userInput.equals("Todo") ||
-                    userInput.equals("deadline") || userInput.equals("Deadline") ||
-                    userInput.equals("event") || userInput.equals("Event")) {
-                String taskType = userInput;
-                userInput = sc.nextLine();
-                Task t = addUserTasks(taskType, userInput);
-                System.out.println("\t______________________________________________________");
-                System.out.println("\tGot it! I've added this task!");
-                System.out.println("\t\t" + t);
-                System.out.println("\t______________________________________________________\n");
-                System.out.println("You now have " + tasks.size() + " tasks in the list!");
-            } else {
-                System.out.println("'" + userInput + "'" + " not recognised!");
+        while (true) {
+            String userInput = sc.nextLine();
+            String[] arr = userInput.split(" ", 2);
+
+            if (arr.length == 0) {
+                continue;
             }
-            userInput = sc.next();
+
+            String command = arr[0].toLowerCase();
+            if (command.equals(LIST)) {
+                System.out.println("\t______________________________________________________");
+                listTasks();
+                System.out.println("\t______________________________________________________\n");
+            } else if (command.equals(MARK)) {
+                if (arr.length <= 1) {
+                    System.out.println("\t______________________________________________________");
+                    System.out.println("\tMissing task number to mark!");
+                    System.out.println("\t______________________________________________________\n");
+                } else {
+                    try {
+                        int taskNumber = Integer.parseInt(arr[1]);
+                        mark(taskNumber);
+                    } catch (NumberFormatException e) {
+                        System.out.println("\t______________________________________________________");
+                        System.out.println("\tInput is not a valid task number " + e.getMessage());
+                        System.out.println("\t______________________________________________________\n");
+                    }
+                }
+            } else if (command.equals(UNMARK)) {
+                if (arr.length <= 1) {
+                    System.out.println("\t______________________________________________________");
+                    System.out.println("\tMissing task number to mark!");
+                    System.out.println("\t______________________________________________________\n");
+                } else {
+                    try {
+                        int taskNumber = Integer.parseInt(arr[1]);
+                        unmark(taskNumber);
+                    } catch (NumberFormatException e) {
+                        System.out.println("\t______________________________________________________");
+                        System.out.println("\tInput is not a valid task number " + e.getMessage());
+                        System.out.println("\t______________________________________________________\n");
+                    }
+                }
+            } else if (command.equals(TODO) || command.equals(DEADLINE) || command.equals(EVENT)) {
+                if (arr.length <= 1) {
+                    System.out.println("\t______________________________________________________");
+                    System.out.println("\tMissing description after given command!");
+                    System.out.println("\t______________________________________________________\n");
+                } else {
+                    userInput = arr[1];
+                    Task t = addUserTasks(command, userInput);
+                    System.out.println("\t______________________________________________________");
+                    System.out.println("\tGot it! I've added this task!");
+                    System.out.println("\t\t" + t);
+                    System.out.println("\tYou now have " + tasks.size() + " tasks in the list!");
+                    System.out.println("\t______________________________________________________\n");
+                }
+            } else {
+                System.out.println("\t______________________________________________________");
+                System.out.println("\t'" + userInput + "'" + " not recognised!");
+                System.out.println("\t______________________________________________________\n");
+            }
         }
     }
 
     public static Task addUserTasks(String taskType, String userInput) {
         Task t;
-        if (taskType.equals("todo") || taskType.equals("Todo")) {
+        if (taskType.equals(TODO)) {
             t = new ToDo(userInput);
-        } else if (taskType.equals("deadline") || taskType.equals("Deadline")) {
+        } else if (taskType.equals(DEADLINE)) {
             String[] arr = userInput.split(" /by ", 2);
             t = new Deadline(arr[0], arr[1]);
         } else {
@@ -72,7 +115,7 @@ public class Duke {
         return t;
     }
 
-    public static void listUserTasks() {
+    public static void listTasks() {
         if (tasks.size() == 0) {
             System.out.println("\tYou do not have any tasks!");
         } else {
