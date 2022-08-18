@@ -4,37 +4,55 @@ import java.util.*;
 
 public class Duke {
 
-
-
-
     public static void main(String[] args) {
-
-        ArrayList<String> todoList = new ArrayList<String>();
-
+        //start dialog
         start();
         Scanner scanner = new Scanner(System.in);
-        String command = scanner.nextLine();
+        String command = scanner.next();
+
+        ArrayList<Task> todoList = new ArrayList<Task>();
 
         while (true) {
+            //bye dialog
             if (command.equals("bye")) {
                 bye();
                 break;
             }
+            //show the todoList
             else if (command.equals("list")) {
                 System.out.println("    ____________________________________________________________");
-                for (int i = 1; i <= todoList.size(); i++) {
-                    System.out.println("    " + i + ". " + todoList.get(i-1));
+                System.out.println("    Here are the tasks in your list:");
+                for (int i = 0; i < todoList.size(); i++) {
+                    System.out.println("    " + (i+1) + ". [" + todoList.get(i).getStatusIcon() + "] " + todoList.get(i).getDescription());
                 }
                 System.out.println("    ____________________________________________________________");
-                command = scanner.nextLine();
+                command = scanner.next();
+            }
+            else if (command.equals("mark")) {
+                command = scanner.next();
+                System.out.println("    ____________________________________________________________");
+                System.out.println("    Nice! I've marked this task as done:");
+                System.out.println("    " + "[X] " + todoList.get(Integer.parseInt(command)-1).getDescription());
+                System.out.println("    ____________________________________________________________");
+                command = scanner.next();
+            }
+            else if (command.equals("unmark")) {
+                command = scanner.next();
+                System.out.println("    ____________________________________________________________");
+                System.out.println("   OK, I've marked this task as not done yet:");
+                System.out.println("    " + "[ ] " + todoList.get(Integer.parseInt(command)-1).getDescription());
+                System.out.println("    ____________________________________________________________");
+                command = scanner.next();
+
             }
             else {
                 System.out.println("    ____________________________________________________________\n" +
                         "     added: " +
                         command +
                         "\n    ____________________________________________________________");
-                todoList.add(command);
-                command = scanner.nextLine();
+                Task t = new Task(command);
+                todoList.add(t);
+                command = scanner.next();
             }
         }
 
