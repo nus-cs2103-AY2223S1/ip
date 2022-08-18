@@ -2,8 +2,10 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Duke {
-    public static char triangle = '\u25B8';
-    public static String start = triangle + " ";
+    private static char triangle = '\u25B8';
+    private static String start = triangle + " ";
+    private static char sad = '\u2639';
+    private static String sadFace = sad + " ";
     public static ArrayList<Task> toDoList = new ArrayList<>(100);
 
     public static void printList() {
@@ -36,7 +38,7 @@ public class Duke {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
-        System.out.println(start + "Hi, I'm Duke!\n  What would you like to do today?");
+        System.out.println(start + "hi, i'm Duke!\n  what would you like to do today?");
 
         Scanner sc = new Scanner(System.in);
         while (true) {
@@ -44,7 +46,7 @@ public class Duke {
             String input = sc.nextLine();
             String[] arr = input.split(" ", 2);
             if (arr[0].equals("bye")) {
-                System.out.println(start + "Bye! I hope to see you again soon!");
+                System.out.println(start + "bye! i hope to see you again soon! :)");
                 break;
             }
 
@@ -56,7 +58,7 @@ public class Duke {
                     try {
                         if (toDoList.size() == 0) {
                             System.out.println(
-                                    start + "Hmm, you do not have any tasks in your list to be marked. Add some now!"
+                                    start + "hmm, you do not have any tasks in your list to be marked. add some now!"
                             );
                             break;
                         }
@@ -65,13 +67,13 @@ public class Duke {
                         System.out.println(start + "good job! this task has been marked as done:");
                         System.out.println("     " + doneTask);
                     } catch (NumberFormatException | IndexOutOfBoundsException e) {
-                        System.out.println(start + "please enter a valid integer from 1 - " + toDoList.size());
+                        System.out.println(sadFace + "please enter a valid integer from 1 - " + toDoList.size());
                     }
                     break;
                 case "unmark":
                     try {
                         if (toDoList.size() == 0) {
-                            System.out.println(start + "Hmm, you do not have any tasks in your list. Add some now!");
+                            System.out.println(start + "hmm, you do not have any tasks in your list. add some now!");
                             break;
                         }
                         Task undoneTask = toDoList.get(Integer.parseInt(arr[1]) - 1);
@@ -79,14 +81,14 @@ public class Duke {
                         System.out.println(start + "ok, i've marked this task as not done yet:");
                         System.out.println("     " + undoneTask);
                     } catch (NumberFormatException | IndexOutOfBoundsException e) {
-                        System.out.println(start + "please enter a valid integer from 1 - " + toDoList.size());
+                        System.out.println(sadFace + "please enter a valid integer from 1 - " + toDoList.size());
                     }
                     break;
                 case "todo":
                     try {
                         addToList(new ToDo(arr[1]));
                     } catch (IndexOutOfBoundsException e) {
-                        System.out.println(start + "Please tell me the name of the ToDo task.");
+                        System.out.println(sadFace + "please tell me the name of the todo task.");
                     }
                     break;
                 case "deadline":
@@ -95,8 +97,8 @@ public class Duke {
                         addToList(new Deadline(dl[0], dl[1]));
                     } catch (IndexOutOfBoundsException e) {
                         System.out.println(
-                                start + "For tasks with deadlines, please tell me the name of the task, followed " +
-                                        "by '/by', and then the date/time it needs to be completed by."
+                                sadFace + "for tasks with deadlines, please tell me the name of the task, followed " +
+                                        "by '/by',\n  and then the date/time it needs to be completed by."
                         );
                     }
                     break;
@@ -107,13 +109,12 @@ public class Duke {
                         addToList(new Event(e[0], timeInfo[0], timeInfo[1]));
                     } catch (IndexOutOfBoundsException e) {
                         System.out.println(
-                                start + "For events, please tell me the name of the event, when it starts and when it ends."
+                                sadFace + "for events, please tell me the name of the event, when it starts and when it ends."
                         );
                     }
                     break;
                 default:
-                    toDoList.add(new Task(input));
-                    System.out.println(start + "added: " + input);
+                    System.out.println(sadFace + "sorry, i don't know what that means :(");
             }
         }
     }
