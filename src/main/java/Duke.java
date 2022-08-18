@@ -31,6 +31,9 @@ public class Duke {
             Duke.list();
         } else if (arr[0].equals("mark")) {
             int i;
+            if (arr.length <= 1) {
+                throw new DukeException("Error. Please enter an argument after \"mark\".");
+            }
             try {
                 i = Integer.parseInt(arr[1]) - 1;
                 if (i >= 0 && i < items.size()) {
@@ -44,6 +47,9 @@ public class Duke {
             }
         } else if (arr[0].equals("unmark")) {
             int i;
+            if (arr.length <= 1) {
+                throw new DukeException("Error. Please enter an argument after \"unmark\".");
+            }
             try {
                 i = Integer.parseInt(arr[1]) - 1;
                 if (i >= 0 && i < items.size()) {
@@ -54,7 +60,23 @@ public class Duke {
                 }
             } catch (NumberFormatException e) {
                 Duke.echo("Please enter an integer id after \"ummark\"");
-
+            }
+        } else if (arr[0].equals("delete")) {
+            int i;
+            try {
+                if (arr.length <= 1) {
+                    throw new DukeException("Error. Please enter an argument after \"delete\".");
+                }
+                i = Integer.parseInt(arr[1]) - 1;
+                if (i >= 0 && i < items.size()) {
+                    Task t = items.get(i);
+                    Duke.delete(i);
+                    Duke.echo("Noted. I've removed this task:\n" +
+                            "\t  " + t + "\n\tNow you have " + (items.size())
+                            + (items.size() == 1 ? " task" : " tasks") + " in the list.");
+                }
+            } catch (NumberFormatException e) {
+                Duke.echo("Please enter an integer id after \"delete\"");
             }
         } else if (arr[0].equals("todo")) {
             if (arr.length == 1) {
@@ -129,5 +151,9 @@ public class Duke {
             }
             Duke.echo(s.trim());
         }
+    }
+
+    private static void delete(int index) {
+        items.remove(index);
     }
 }
