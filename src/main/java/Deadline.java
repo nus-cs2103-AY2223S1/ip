@@ -12,6 +12,7 @@ public class Deadline extends Task {
                 super.describe(description);
                 super.unmark();
                 this.deadline = deadline;
+                System.out.println("CREATED DEADLINE: " + description + " DUE ON: " + deadline);
             } else {
                 throw new NoDeadline();
             }

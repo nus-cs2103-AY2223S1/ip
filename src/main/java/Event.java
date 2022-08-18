@@ -13,6 +13,7 @@ public class Event extends Task {
                 super.describe(description);
                 super.unmark();
                 this.period = period;
+                System.out.println("CREATED EVENT: " + description + " AT: " + period);
             } else {
                 throw new NoPeriod();
             }

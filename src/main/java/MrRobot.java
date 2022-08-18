@@ -10,6 +10,8 @@ public class MrRobot {
     }
 
     public static void main(String[] args) {
+        // Greet
+        System.out.println("HELLO HUMAN. TELL ME WHAT'S ON YOUR MIND?");
         while(true) {
             /**** Parse Input ****/ 
             // Step 1: Get first token - to check if it is a valid command.
@@ -111,27 +113,30 @@ public class MrRobot {
 
     private static void show() {
         int i = 1;
-        System.out.println("=== TASK LIST ===");
+        System.out.println("===== TASK LIST =====");
         for (Task task : list) {
             System.out.println(i + ". " + task);
             i++;
         }
-        System.out.println("=================");
+        System.out.println("=====================");
     }
 
     private static void mark(int index) throws NoTaskFound {
         if (index < 1 || index > list.size()) throw new NoTaskFound();
         list.get(index - 1).mark();
+        System.out.println("MARKED TASK AT INDEX " + index + " AS DONE.");
     }
 
     private static void unmark(int index) throws NoTaskFound {
         if (index < 1 || index > list.size()) throw new NoTaskFound();
         list.get(index - 1).unmark();
+        System.out.println("MARKED TASK AT INDEX " + index + " AS NOT DONE.");
     }
 
     private static void delete(int index) throws NoTaskFound {
         if (index < 1 || index > list.size()) throw new NoTaskFound();
         list.remove(index - 1);
+        System.out.println("REMOVED TASK AT INDEX " + index);
     }
 
 }

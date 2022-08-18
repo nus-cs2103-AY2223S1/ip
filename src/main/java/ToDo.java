@@ -7,6 +7,7 @@ public class ToDo extends Task {
             String description = options.nextLine().substring(1);
             super.describe(description);
             super.unmark();
+            System.out.println("CREATED TASK: " + description);
         } else {
             throw new NoDescription();
         }
