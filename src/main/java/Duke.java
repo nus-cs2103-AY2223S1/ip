@@ -3,13 +3,6 @@ import java.util.*;
 public class Duke {
     public static void main(String[] args) {
         Scanner sc= new Scanner(System.in);
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-
 
         System.out.println("----------------------\nHello! I'm HelperBot\nWhat can I do for you?\n----------------------\n");
         String userInput = sc.nextLine();
@@ -23,7 +16,7 @@ public class Duke {
                 output = output + String.format("%d", i + 1) + "." + listOfActions[i] + "\n";
             }
             if (userInput.equals("list")) {
-                System.out.println("----------------------\n" + output + "----------------------");
+                System.out.println("----------------------\n" + output + "----------------------\n");
             }
 
             else if (userInput.length() > 4) {
@@ -38,9 +31,6 @@ public class Duke {
                 else if (userInput.length() == 6) {
                     if (userInput.substring(0, 4).equals("mark")) {
                         mark(userInput, listOfActions);
-                    } else {
-                        createNewTask(userInput, listOfActions, currentAction);
-                        currentAction++;
                     }
                 }
 
@@ -65,24 +55,25 @@ public class Duke {
                 else if (userInput.length() == 8) {
                     if (userInput.substring(0, 6).equals("unmark")) {
                         unMark(userInput, listOfActions);
-                    } else {
-                        createNewTask(userInput, listOfActions, currentAction);
-                        currentAction++;
                     }
                 }
 
                 //If user wants to add to list
-                else {
+                /*else {
                     createNewTask(userInput, listOfActions, currentAction);
                     currentAction++;
                 }
 
+                 */
+
             }
 
-            else {
+            /*else {
                 createNewTask(userInput, listOfActions, currentAction);
                 currentAction++;
             }
+
+             */
             userInput = sc.nextLine();
         }
         bye();
@@ -95,7 +86,7 @@ public class Duke {
     public static void mark(String userInput, Task[] listOfActions) {
         int position = Character.getNumericValue(userInput.charAt(5)) - 1;
         listOfActions[position].mark();
-        System.out.println("----------------------\n" + "One more mission ;)\n" +
+        System.out.println("----------------------\n" + "Congrats on completing :)\n" +
                 listOfActions[position] + "\n----------------------\n");
     }
 
@@ -103,16 +94,18 @@ public class Duke {
     public static void unMark(String userInput, Task[] listOfActions) {
         int position = Character.getNumericValue(userInput.charAt(7)) - 1;
         listOfActions[position].unMark();
-        System.out.println("----------------------\n" + "Congrats on completing :)\n" +
+        System.out.println("----------------------\n" + "One more mission ;)\n" +
                 listOfActions[position] + "\n----------------------\n");
     }
 
     //create new task method
-    public static void createNewTask(String userInput, Task[] listOfActions, int currentAction) {
+    /*public static void createNewTask(String userInput, Task[] listOfActions, int currentAction) {
         Task newTask = new Task(userInput.strip());
         listOfActions[currentAction] = newTask;
         System.out.println("----------------------\nadded: " + userInput + "\n----------------------\n");
     }
+
+     */
 
     //td method
     public static void toDo(String userInput, Task[] listOfActions, int currentAction) {
