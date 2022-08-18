@@ -15,14 +15,19 @@ public class DukeList {
     DukeTask newTask;
     switch (newItem[0]) {
       case "todo": {
-        newTask = new ToDo(s);
-        items.add(newTask);
-        return "Item added: " + newTask + listCount();
+        try {
+          newTask = new ToDo(s.split("todo ")[1]);
+          items.add(newTask);
+          return "Item added: " + newTask + listCount();
+        } catch (IndexOutOfBoundsException e) {
+          throw new DukeException("A todo task's description cannot be empty.");
+        }
       }
       case "deadline": {
         String[] deadlineSplit = s.split(" /by ");
         try {
-          newTask = new Deadline(deadlineSplit[0], deadlineSplit[1]);
+          newTask = new Deadline(deadlineSplit[0].split("deadline ")[1],
+              deadlineSplit[1]);
         } catch (IndexOutOfBoundsException e) {
           throw new DukeException("An incorrect deadline description was entered.");
         }
@@ -32,8 +37,8 @@ public class DukeList {
       case "event": {
         String[] deadlineSplit = s.split(" /at ");
         try {
-          newTask = new Event(deadlineSplit[0], deadlineSplit[1]);
-        } catch (IndexOutOfBoundsException e) {
+          newTask = new Event(deadlineSplit[0].split("event ")[1], deadlineSplit[1]);
+        } catch (IndexOutOfBoundsException e) {t
           throw new DukeException("An incorrect event description was entered.");
         }
         items.add(newTask);
