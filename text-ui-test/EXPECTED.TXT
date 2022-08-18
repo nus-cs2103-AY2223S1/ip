@@ -45,4 +45,8 @@ Noted. I've removed this task:
 Now you have 0 tasks in the list.
 -----------------------------------
 -----------------------------------
+dukeExceptions.UnknownCommandException: OOPS!!! Sorry, I do not know what that means!
+-----------------------------------
+dukeExceptions.MissingDescriptionException: OOPS!!! The description of a todo cannot be empty.
+-----------------------------------
 Bye. Hope to see you again soon!
