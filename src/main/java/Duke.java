@@ -84,7 +84,8 @@ public class Duke {
             } else {
                 for(int i = 0; i < listOfItems.size(); i++){
                     int numb = i+1;
-                    System.out.println(numb + ". " + listOfItems.get(i).getTask());
+                    ListObject currItem = listOfItems.get(i);
+                    System.out.println(numb + "." + currItem.showStatusIndicator() + currItem.getTask());
                 }
                 System.out.println("\n***********************************************************************\n");
             }
