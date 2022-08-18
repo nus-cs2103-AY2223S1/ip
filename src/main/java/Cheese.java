@@ -41,12 +41,16 @@ public class Cheese {
             Cheese.printList();
             break;
           case "mark":
-            Task taskToMark = Cheese.selectTask(inputArray);
+            Task taskToMark = Cheese.getTaskFromList(inputArray);
             taskToMark.markAsDone();
             break;
           case "unmark":
-            Task taskToUnmark = Cheese.selectTask(inputArray);
+            Task taskToUnmark = Cheese.getTaskFromList(inputArray);
             taskToUnmark.markAsNotDone();
+            break;
+          case "delete":
+            Task taskToDelete = Cheese.getTaskFromList(inputArray);
+            Cheese.deleteTask(taskToDelete);
             break;
           default:
             Task task = Task.createTask(inputArray);
@@ -66,7 +70,7 @@ public class Cheese {
     }
   }
 
-  private static Task selectTask(String[] inputArray) throws CheeseException, NumberFormatException {
+  private static Task getTaskFromList(String[] inputArray) throws CheeseException, NumberFormatException {
     if (inputArray.length == 1 || inputArray[1].length() == 0) {
       throw new CheeseException("Sowwy, the item number cannot be empty.");
     }
@@ -75,6 +79,13 @@ public class Cheese {
       throw new CheeseException("Item number is not in list range.");
     }
     return Cheese.list.get(itemIdx);
+  }
+
+  private static void deleteTask(Task taskToDelete) {
+    Cheese.list.remove(taskToDelete);
+    System.out.println("Gotcha! I'll forget about this task!");
+    System.out.println("  " + taskToDelete);
+    System.out.println("You have " + Cheese.list.size() + " task(s) remaining.");
   }
 
   private static void addTask(Task task) {
