@@ -10,7 +10,7 @@ public class DukeCommandMap {
         commandMap.put("todo", new AddTodoCommand());
         commandMap.put("deadline", new AddDeadlineCommand());
         commandMap.put("event", new AddEventCommand());
-        commandMap.put("delete", new AddTodoCommand());
+        commandMap.put("delete", new DeleteTaskCommand());
     }
 
     public DukeCommand getCommand(String keyword) throws DukeException {
