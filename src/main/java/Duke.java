@@ -104,7 +104,7 @@ public class Duke {
             } catch (IllegalArgumentException e) {
                 System.out.println("🙁 OOPS! I'm sorry but I don't know what that means.");
             } catch (DukeException e) {
-                System.out.println(e.toString());
+                System.out.println(e.getMessage());
             }
         }
 

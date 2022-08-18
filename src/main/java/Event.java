@@ -22,7 +22,7 @@ public class Event extends Task {
      */
     public static Event createEvent(String input) throws DukeException {
         if (input.indexOf("/at ") == -1)
-            throw new DukeException("Please enter a valid event timing!");
+            throw new DukeException("Please enter a valid event timing using the /at flag.");
         String eventDescription = input.split("/at ")[0];
         String event = input.split("/at ")[1];
         return new Event(eventDescription, event);

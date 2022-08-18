@@ -43,7 +43,7 @@ Now you have 3 tasks in your list.
 --> Please Enter a valid task number!
 --> 🙁 OOPS! Please enter the description when creating new task!
 --> 🙁 OOPS! Please enter a valid task number!
---> 🙁 OOPS! Please enter a valid deadline!
---> 🙁 OOPS! Please enter a valid event timing!
+--> 🙁 OOPS! Please enter a valid deadline using the /by flag.
+--> 🙁 OOPS! Please enter a valid event timing using the /at flag.
 --> 🙁 OOPS! I'm sorry but I don't know what that means.
 --> Goodbye! See you soon!

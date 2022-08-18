@@ -22,7 +22,7 @@ public class Deadline extends Task {
      */
     public static Deadline createDeadline(String input) throws DukeException {
         if (input.indexOf("/by ") == -1)
-            throw new DukeException("Please enter a valid deadline using '/by'!");
+            throw new DukeException("Please enter a valid deadline using the /by flag.");
         String deadlineDescription = input.split("/by ")[0];
         String deadline = input.split("/by ")[1];
         return new Deadline(deadlineDescription, deadline);
