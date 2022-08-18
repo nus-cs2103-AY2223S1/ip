@@ -1,10 +1,10 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
 import java.util.List;
+import java.util.Scanner;
 
 public class Duke {
+    // Could refactor this out into a TaskList class
     static ArrayList<Task> tasks = new ArrayList<>();
 
     private enum Command {
@@ -16,7 +16,6 @@ public class Duke {
         TODO,
         EVENT,
         DEADLINE,
-        UNKNOWN
     }
 
     public static void main(String[] args) throws Exception {
@@ -29,7 +28,7 @@ public class Duke {
 
             List<String> inputArray = Arrays.asList(inputText.split(" "));
 
-            Command keyword = Command.UNKNOWN;
+            Command keyword;
             try {
                 try {
                     keyword = Command.valueOf(inputArray.get(0).toUpperCase());
@@ -132,7 +131,7 @@ public class Duke {
 
     private static void printTasks() {
         System.out.println("Your tasks:");
-        for (Task task: tasks) {
+        for (Task task : tasks) {
             int taskIndex = tasks.indexOf(task) + 1;
             String taskString = String.format("%d. %s", taskIndex, task);
             System.out.println(taskString);
