@@ -6,6 +6,11 @@ public class Duke {
 
     private static final String INDENTATION = "     ";
     private static final String EXTRA_INDENTATION = "  ";
+    enum Work_type {
+        TODO,
+        DEADLINE,
+        EVENT
+    }
     private static final String[] WORK_TYPE = new String[] {" ", "T", "D", "E"};
     private static String reply(String message) {
         return "    ____________________________________________________________\n" +
@@ -13,7 +18,7 @@ public class Duke {
                 "    ____________________________________________________________";
     }
 
-    private static String craftList(ArrayList<String> array, ArrayList<Boolean> bArray, ArrayList<Integer> workTypeArray) {
+    private static String craftList(ArrayList<String> array, ArrayList<Boolean> bArray, ArrayList<Work_type> workTypeArray) {
         int length = array.size();
         String result = "Here are the tasks in your list:";
         for (int x = 0; x < length; x++) {
@@ -26,7 +31,7 @@ public class Duke {
         return result;
     }
 
-    private static String craftTDEMessage(int work_type, boolean bool, String todo, int work_number) {
+    private static String craftTDEMessage(Work_type work_type, boolean bool, String todo, int work_number) {
         return "Got it. I've added this task:\n" +
                 INDENTATION + EXTRA_INDENTATION + workTypeBox(work_type) + checkBox(bool) +  " " + todo + "\n" +
                 INDENTATION + "Now you have " + work_number + " tasks in the list.";
@@ -40,8 +45,14 @@ public class Duke {
         }
     }
 
-    private static String workTypeBox(int number) {
-        return "[" + WORK_TYPE[number] + "]";
+    private static String workTypeBox(Work_type type) {
+        if (type == Work_type.TODO) {
+            return "[T]";
+        } else if (type == Work_type.DEADLINE) {
+            return "[D]";
+        } else { // Has to be Work_type.EVENT
+            return "[E]";
+        }
     }
 
     public static void main(String[] args) {
@@ -53,7 +64,8 @@ public class Duke {
 //        String[] work = new String[100];
         ArrayList<Boolean> workCompleted = new ArrayList<>(100);
 //        boolean[] workCompleted = new boolean[100];
-        ArrayList<Integer> workType = new ArrayList<>(100);
+//        ArrayList<Integer> workType = new ArrayList<>(100);
+        ArrayList<Work_type> workType = new ArrayList<>(100);
 //        int[] workType = new int[100];
         int workCounter = 0;
         while (conversation) {
@@ -75,7 +87,7 @@ public class Duke {
                 }
             } else if (keyword.equals("delete")) {
                 int location = Integer.parseInt(splitResponse[1]) - 1;
-                int type = workType.get(location);
+                Work_type type = workType.get(location);
                 boolean completed = workCompleted.get(location);
                 String task = work.get(location);
                 workType.remove(location);
@@ -91,10 +103,10 @@ public class Duke {
                 } else {
                     String todo = response.substring(5);
                     work.add(todo);
-                    workType.add(1);
+                    workType.add(Work_type.TODO);
                     workCompleted.add(false);
                     workCounter++;
-                    System.out.println(reply(craftTDEMessage(1, false, todo, workCounter)));
+                    System.out.println(reply(craftTDEMessage(Work_type.TODO, false, todo, workCounter)));
                 }
             } else if (keyword.equals("deadline")) {
                 if (splitResponse.length == 1) {
@@ -108,10 +120,10 @@ public class Duke {
                         String by = newSplit[1];
                         String newTodo = todo + " (by: " + by + ")";
                         work.add(newTodo);
-                        workType.add(2);
+                        workType.add(Work_type.DEADLINE);
                         workCompleted.add(false);
                         workCounter++;
-                        System.out.println(reply(craftTDEMessage(2, false, newTodo, workCounter)));
+                        System.out.println(reply(craftTDEMessage(Work_type.DEADLINE, false, newTodo, workCounter)));
                     }
                 }
             } else if (keyword.equals("event")) {
@@ -126,10 +138,10 @@ public class Duke {
                         String at = newSplit[1];
                         String newTodo = todo + " (at: " + at + ")";
                         work.add(newTodo);
-                        workType.add(3);
+                        workType.add(Work_type.EVENT);
                         workCompleted.add(false);
                         workCounter++;
-                        System.out.println(reply(craftTDEMessage(3, false, newTodo, workCounter)));
+                        System.out.println(reply(craftTDEMessage(Work_type.EVENT, false, newTodo, workCounter)));
                     }
                 }
             } else if (response.equals("bye")) {
