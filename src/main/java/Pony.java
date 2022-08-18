@@ -77,8 +77,7 @@ public class Pony {
             System.out.println("Now you have " + this.tasks.size() + " tasks in the list.");
             run();
         } else {
-            System.out.println("error");
-            run();
+            System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
     }
 
