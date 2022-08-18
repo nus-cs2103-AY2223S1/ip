@@ -1,7 +1,9 @@
+import exceptions.TaskDescriptionEmpty;
+
 public class ToDo extends Task {
     private static final String typeIcon = "T";
 
-    public ToDo(String description) {
+    public ToDo(String description) throws TaskDescriptionEmpty {
         super(description);
     }
 

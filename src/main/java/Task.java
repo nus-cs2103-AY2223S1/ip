@@ -1,8 +1,11 @@
+import exceptions.TaskDescriptionEmpty;
+
 public abstract class Task {
     private String description;
     private boolean isDone;
 
-    public Task(String description) {
+    public Task(String description) throws TaskDescriptionEmpty {
+        if (description.equals("")) throw new TaskDescriptionEmpty();
         this.description = description;
         this.isDone = false;
     }

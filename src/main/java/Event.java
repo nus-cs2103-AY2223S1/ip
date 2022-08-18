@@ -1,8 +1,10 @@
+import exceptions.TaskDescriptionEmpty;
+
 public class Event extends Task {
     private static final String typeIcon = "E";
     private String time;
 
-    public Event(String description, String time) {
+    public Event(String description, String time) throws TaskDescriptionEmpty {
         super(description);
         this.time = time;
     }
