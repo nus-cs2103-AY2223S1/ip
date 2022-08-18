@@ -40,12 +40,12 @@ public class Hazell {
             } else if (userinput.startsWith("mark ")) {
                 int index = Integer.parseInt(userinput.split(" ")[1]) - 1;
                 Task task = taskList.get(index);
-                task.markDone();
+                task.markAsDone();
                 reply(String.format("Nice! I've marked this task as done:\n\t%s", task.toString()));
             } else if (userinput.startsWith("unmark ")) {
                 int index = Integer.parseInt(userinput.split(" ")[1]) - 1;
                 Task task = taskList.get(index);
-                task.markUndone();
+                task.markAsUndone();
                 reply(String.format("OK, I've marked this task as not done yet:\n\t%s", task.toString()));
             } else {
                 taskList.add(new Task(userinput));

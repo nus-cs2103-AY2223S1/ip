@@ -1,22 +1,26 @@
 public class Task {
-    private String name;
-    private boolean done;
+    private String description;
+    private boolean isDone;
 
-    public Task(String name) {
-        this.name = name;
-        this.done = false;
+    public Task(String description) {
+        this.description = description;
+        this.isDone = false;
     }
 
-    public void markDone() {
-        this.done = true;
+    public String getStatusIcon() {
+        return this.isDone ? "X" : " "; // mark done task with X
     }
 
-    public void markUndone() {
-        this.done = false;
+    public void markAsDone() {
+        this.isDone = true;
+    }
+
+    public void markAsUndone() {
+        this.isDone = false;
     }
 
     @Override
     public String toString() {
-        return String.format("[%s] %s", done ? "X" : " ", name);
+        return String.format("[%s] %s", this.getStatusIcon(), description);
     }
 }
