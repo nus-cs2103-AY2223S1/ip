@@ -1,3 +1,4 @@
+import java.io.EOFException;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -10,6 +11,8 @@ public class Duke {
     private static final String COMMAND_ADD_TODO = "todo";
     private static final String COMMAND_ADD_DEADLINE = "deadline";
     private static final String COMMAND_ADD_EVENT = "event";
+
+    private final char TIME_DELIMITER = '/';
 
 
     // Linked list to store the user's tasks
@@ -71,7 +74,19 @@ public class Duke {
 
     public void addTask(String[] commands) {
         // Create the correct type of task based on the first token
-        Task t = createTask(commands);
+
+        Task t = null;
+
+        try {
+            t = createTask(commands);
+
+        } catch (Exception e) {
+            // Cannot create task due to invalid commands
+            String result = String.format("OOPS!!! Invalid syntax for a %s task\n", e.getMessage());
+            System.out.println(result);
+            return;
+        }
+
         this.storedTasks.add(t);
 
         String result = String.format("Got it. I've added this task:\n%s\nNow you have %d tasks in the list.\n",
@@ -80,9 +95,9 @@ public class Duke {
     }
 
 
-    public Task createTask(String[] commands) {
+    public Task createTask(String[] commands) throws Exception {
 
-        final char TIME_DELIMITER = '/';
+        
         String description = "";
         boolean isDeadline = false;
 
@@ -90,6 +105,11 @@ public class Duke {
         switch (commands[0]) {
 
         case COMMAND_ADD_TODO:
+            // Check if the given commands are valid
+            if (!isValidToDoCommand(commands)) {
+                throw new Exception("todo");
+            }
+
             // Second token onwards is the description
             description = commands[1];
             for (int i = 2; i < commands.length; i++) {
@@ -105,7 +125,13 @@ public class Duke {
             // Fall through
 
         case COMMAND_ADD_EVENT:
-            // Second token until /by is the description
+
+            // Check if the given commands are valid
+            if (!isValidEventCommand(commands)) {
+                throw new Exception("deadline/event");
+            }
+
+            // Second token until /at is the description
             description = commands[1];
 
             int i = 0;
@@ -134,6 +160,59 @@ public class Duke {
     }
 
 
+    public boolean isValidEventCommand(String[] commands) {
+        /*  Format of Deadline task: deadline description /by dateAndTime
+            Format of Event task: event description /at dateAndTime
+
+            Need to check for 2 things:
+            
+            1. There is at least 1 token before /at, i.e. /at is the 3rd token or further
+            2. There is at least 1 token after /at which represents the dateAndTime,
+               i.e. delimiter must not be the last item
+        */
+
+        int delimiterIndex = -1;
+
+
+        try {
+            delimiterIndex = findDelimiter(commands);
+            
+        } catch (Exception e) {
+            // Cannot find delimiter, i.e. delimiter doesn't exist
+            return false;
+        }
+        
+        // Check 1: /at is the 3rd token or further
+        if (delimiterIndex < 3) {
+            return false;
+        }
+
+        // Check 2: at least 1 token after /at, i.e. delimiter must not be the last item
+        return delimiterIndex < commands.length - 1;
+    }
+
+
+    // Return the index of the first delimiter in the commands array
+    public int findDelimiter(String[] commands) throws Exception {
+        for (int i = 0; i < commands.length; i++) {
+            if (commands[i].charAt(0) == TIME_DELIMITER) {
+                return i;
+            }
+        }
+
+        throw new Exception();
+    }
+
+
+    public boolean isValidToDoCommand(String[] commands) {
+        // Format of ToDo task: todo description
+
+        // Therefore, second token onwards is the description
+        // So check if there is a second token
+        return commands.length >= 2;
+    }
+
+
     public void exitDuke() {
         System.out.println("Bye. Hope to see you again soon!\n");
     }
@@ -148,15 +227,15 @@ public class Duke {
 
         case COMMAND_LIST:
             listTasks();
-            return false;
+            break;
 
+        
         // Handle marking a task as done and undone in the same function
         case COMMAND_MARK_AS_DONE:
             // Fall through
-
         case COMMAND_MARK_AS_UNDONE:
             markTaskAsDoneOrUndone(commands);
-            return false;
+            break;
 
         
         // Handle adding all types of tasks in the same function
@@ -166,16 +245,25 @@ public class Duke {
             // Fall through
         case COMMAND_ADD_EVENT:
             addTask(commands);
-            return false;
+            break;
 
         
         case COMMAND_EXIT:
             exitDuke();
             return true;
-            
+        
+        // Command is invalid
         default:
-            return false;
+            handleInvalidCommand();
         }
+
+        // Don't exit the program
+        return false;
+    }
+
+
+    private void handleInvalidCommand() {
+        System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(\n");
     }
 
 
