@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
@@ -5,7 +7,7 @@ public class Duke {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?");
-        Task[] arr = new Task[100];
+        List<Task> lst = new ArrayList<>();
         int count=0;
         String str;
 
@@ -26,7 +28,7 @@ public class Duke {
                 }
                 dateline = scanner.nextLine();
                 Task task = new Deadline(description, dateline);
-                arr[count]= task;
+                lst.add(task);
                 count++;
                 System.out.println(task.toString());
                 System.out.println("Now you have "+ count + " tasks in the list.");
@@ -37,7 +39,7 @@ public class Duke {
                 }
                 System.out.println("Got it. I've added this task: ");
                 Task task = new ToDo(todoDes);
-                arr[count] = task;
+                lst.add(task);
                 count++;
                 System.out.println(task.toString());
                 System.out.println("Now you have "+ count + " tasks in the list.");
@@ -54,7 +56,7 @@ public class Duke {
                 }
                 time = scanner.nextLine();
                 Task task = new Event(description, time);
-                arr[count]= task;
+                lst.add(task);
                 count++;
                 System.out.println(task.toString());
                 System.out.println("Now you have "+ count + " tasks in the list.");
@@ -62,23 +64,23 @@ public class Duke {
             else if(str.equals("list")){
                 System.out.println("Here are the tasks in your list");
                 for(int i=0;i<count;i++){
-                    System.out.println(i+1 +"."+arr[i].toString());
+                    System.out.println(i+1 +"."+lst.get(i));
                 }
                 scanner.nextLine();
             }
             else if(str.equals("unmark")){
                 String strnum = scanner.next();
                 int num = Integer.valueOf(strnum);
-                arr[num-1].isDone = false;
+                lst.get(num-1).isDone = false;
                 System.out.println("OK, I've marked this task as not done yet:");
-                System.out.println(arr[num-1].toString());
+                System.out.println(lst.get(num-1).toString());
                 scanner.nextLine();
             }else if(str.equals("mark")){
                 String strnum = scanner.next();
                 int num = Integer.valueOf(strnum);
-                arr[num-1].isDone = true;
+                lst.get(num-1).isDone = true;
                 System.out.println("Nice! I've marked this task as done:");
-                System.out.println(arr[num-1].toString());
+                System.out.println(lst.get(num-1).toString());
                 scanner.nextLine();
             }
             else{
