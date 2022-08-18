@@ -3,21 +3,20 @@ import java.util.ArrayList;
 
 public class Bro {
 
-    ArrayList<Task> list1 = new ArrayList<Task>();
+    ArrayList<Task> list1 = new ArrayList<>();
 
     public static void main(String[] args) {
         System.out.println("Hello! I'm THE BRO\n" + "What can I do for you?");
         Bro d = new Bro();
-        d.output1();
+        Scanner sc= new Scanner(System.in);
+        d.output1(sc);
 
     }
-    public String output1(){
-        Scanner sc= new Scanner(System.in);
+    public void output1(Scanner sc){
         String str= sc.nextLine();
 
         if(str.equals("bye")){
             System.out.println("Bye. See you later broo!");
-            System.exit(0);
         }
 
         else if(str.equals("list")){
@@ -26,21 +25,21 @@ public class Bro {
                 System.out.println(count + "." + x.toString());
                 count++;
             }
-            return output1();
+            this.output1(sc);
         }
 
         else if(str.startsWith("mark ")){
             int k = Integer.parseInt(str.substring(5));
             list1.get(k - 1).markAsDone();
             System.out.println("I have marked this task\n" + (list1.get(k-1)).toString());
-            return output1();
+            this.output1(sc);
         }
 
         else if(str.startsWith("unmark ")){
             int k = Integer.parseInt(str.substring(7));
             list1.get(k - 1).markAsNotDone();
             System.out.println("I have unmarked this task\n" + (list1.get(k-1)).toString());
-            return output1();
+            this.output1(sc);
         }
 
         else if(str.startsWith("todo ")){
@@ -48,7 +47,7 @@ public class Bro {
             t.markAsNotDone();
             list1.add(t);
             System.out.println(t.toString());
-            return output1();
+            this.output1(sc);
         }
 
         else if(str.startsWith("deadline ")){
@@ -56,7 +55,7 @@ public class Bro {
             t.markAsNotDone();
             list1.add(t);
             System.out.println(t.toString());
-            return output1();
+            this.output1(sc);
         }
 
         else if(str.startsWith("event ")){
@@ -64,13 +63,12 @@ public class Bro {
             t.markAsNotDone();
             list1.add(t);
             System.out.println(t.toString());
-            return output1();
+            this.output1(sc);
         }
 
         else{
             System.out.println("invalid stmt");
-            return output1();
+            this.output1(sc);
         }
-        return str;
     }
 }
