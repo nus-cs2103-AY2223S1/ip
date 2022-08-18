@@ -1,4 +1,4 @@
-public class Task {
+public abstract class Task {
 
     // Variables of a Task
     protected String description;

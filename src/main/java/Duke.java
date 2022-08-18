@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public abstract class Duke {
+public class Duke {
 
     /**
      * This method checks if a string typed can be a number or not
@@ -48,12 +48,6 @@ public abstract class Duke {
         // Creates a scanner to accept input
         Scanner enterInput = new Scanner(System.in);
 
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println(logo);
 
         System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?");
@@ -95,6 +89,7 @@ public abstract class Duke {
                     if (words[0].equals("todo")) {
                         // If user is trying to add a to-do, save the description
                         String description = joinString(words, 1);
+                        description = description.substring(0, description.length() - 1);
                         Todo newTodo = new Todo(description);
                         taskArray[count] = newTodo;
                         outputString = newTodo.toString();
