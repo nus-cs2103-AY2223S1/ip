@@ -1,6 +1,4 @@
 import java.util.Scanner;
-import java.util.Set;
-import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -14,15 +12,17 @@ public class Duke {
         if (keyword.equals("bye")) {
             System.out.printf("\tBye. Hope to see you again soon!\n");
         } else if (keyword.equals("add")) {
-            System.out.printf("\tadded: %s\n", input);
+            System.out.printf("\tGot it. I've added this task:\n");
+            Task currTask = tasksList.get(tasksList.size() - 1);
+            System.out.printf("\t    %s\n", currTask);
+            System.out.printf("\tNow you have %d tasks in the list.\n", tasksList.size());
         } else if (keyword.equals("contained")) {
             System.out.printf("\t%s is already added\n", input);
         } else if (keyword.equals("list")) {
+            System.out.printf("\tHere are the tasks in your list:\n");
             for (int i = 0; i < tasksList.size(); i++) {
                 Task currTask = tasksList.get(i);
-                String statusIcon = currTask.getStatusIcon();
-                String description = currTask.getDescription();
-                System.out.printf("\t%d.[%s] %s\n", i + 1, statusIcon, description);
+                System.out.printf("\t%d.%s\n", i + 1, currTask);
             }
         } else if (keyword.equals("invalid")) {
             System.out.printf("\t☹ OOPS!!! I'm sorry, but I don't know what that means :-(\n");
@@ -37,17 +37,13 @@ public class Duke {
 
         if (keyword.equals("mark")) {
             currentTask.mark();
-            String statusIcon = currentTask.getStatusIcon();
-            String description = currentTask.getDescription();
             System.out.printf("\tNice! I've marked this task as done:\n");
-            System.out.printf("\t    [%s] %s\n", statusIcon, description);
+            System.out.printf("\t    %s\n", currentTask);
 
         } else if (keyword.equals("unmark")) {
             currentTask.unMark();
-            String statusIcon = currentTask.getStatusIcon();
-            String description = currentTask.getDescription();
             System.out.printf("\tOK, I've marked this task as not done yet:\n");
-            System.out.printf("\t    [%s] %s\n", statusIcon, description);
+            System.out.printf("\t    %s\n", currentTask);
         }
         System.out.println(DIVIDER);
     }
@@ -96,14 +92,50 @@ public class Duke {
                 } else {
                     print(input, "invalid");
                 }
-            } else {
+            } else if (input.equals("todo")) {
                 if (sc.hasNextLine()) {
-                    input += sc.nextLine();
+                    input = sc.nextLine();
                 }
-
-                Task newTask = new Task(input);
+                input = input.substring(1);
+                Task newTask = new Todo(input);
                 tasksList.add(newTask);
                 print(input, "add");
+            } else if (input.equals("deadline")) {
+                if (sc.hasNextLine()) {
+                    input = sc.nextLine();
+                }
+
+                int index = input.lastIndexOf("/by");
+
+                if (index > -1) {
+                    String by = input.substring(index + 4, input.length());
+                    input = input.substring(1, index - 1);
+
+                    Task newTask = new Deadline(input, by);
+                    tasksList.add(newTask);
+                    print(input, "add");
+                } else {
+                    print(input, "invalid");
+                }
+            } else if (input.equals("event")) {
+                if (sc.hasNextLine()) {
+                    input = sc.nextLine();
+                }
+
+                int index = input.lastIndexOf("/at");
+
+                if (index > -1) {
+                    String at = input.substring(index + 4, input.length());
+                    input = input.substring(1, index - 1);
+
+                    Task newTask = new Event(input, at);
+                    tasksList.add(newTask);
+                    print(input, "add");
+                } else {
+                    print(input, "invalid");
+                }
+            } else {
+                print(input, "invalid");
             }
         }
         sc.close();

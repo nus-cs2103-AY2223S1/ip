@@ -1,10 +1,12 @@
 public class Task {
     protected String description;
     protected boolean isDone;
+    protected String icon;
 
-    public Task(String description) {
+    public Task(String description, String icon) {
         this.description = description;
         this.isDone = false;
+        this.icon = icon;
     }
 
     public String getStatusIcon() {
@@ -45,5 +47,9 @@ public class Task {
     @Override
     public String toString() {
         return this.description;
+    }
+
+    public String getIcon() {
+        return this.icon;
     }
 }
