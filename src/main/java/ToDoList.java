@@ -17,9 +17,9 @@ public class ToDoList {
             String description = response.substring(str[0].length() + 1);
             switch (instruction) {
                 case "mark": {
-                    Integer index = Integer.valueOf(description);
+                    Integer index1 = Integer.valueOf(description);
                     //should handle non-int
-                    mark(index);
+                    mark(index1);
                     break;
                 }
                 case "unmark": {
@@ -42,6 +42,11 @@ public class ToDoList {
                 case "todo": {
                     ToDos t = new ToDos(description);
                     addTask(t);
+                    break;
+                }
+                case "delete": {
+                    Integer index = Integer.valueOf(description);
+                    delete(index);
                     break;
                 }
             }
@@ -82,5 +87,16 @@ public class ToDoList {
         Task t = list.get(i - 1);
         t.markUndone();
         System.out.println("OK, I've marked this task as not done yet:\n" + t);
+    }
+
+    public void delete(int i) throws InvalidIndex {
+        if (i > numOfTasks) {
+            throw new InvalidIndex();
+        }
+        Task t = list.get(i - 1);
+        this.list.remove(i - 1);
+        this.numOfTasks -= 1;
+        System.out.println("Alright! I've removed this task:\n" + t);
+        System.out.format("Now you have %d tasks in the list.\n", this.numOfTasks);
     }
 }

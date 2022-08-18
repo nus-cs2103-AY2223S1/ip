@@ -41,6 +41,7 @@ public class Duke {
                     case "deadline":
                     case "todo":
                     case "event":
+                    case "delete":
                         if (arr.length == 1) {
                             throw new EmptyDescription(arr[0]);
                         } else {
