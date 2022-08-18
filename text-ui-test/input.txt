@@ -5,3 +5,4 @@ event project meeting /at Aug 6th 2-4pm
 mark 1
 unmark 1
 list
+bye

@@ -58,9 +58,21 @@ public class Duke {
                         taskList.add(toAdd);
                         addStatement(toAdd.toString(), taskList.size());
                     } catch (ArrayIndexOutOfBoundsException e) {
-                        throw new NoDescriptionException("todo");
+                        throw new NoDescriptionException("event");
                     }
-                } else {
+                } else if (userIn.contains("delete")) {
+                    try {
+                        String[] inArr = userIn.split(" ", 2);
+                        int ind = Integer.parseInt(inArr[1]) - 1;
+                        String temp = taskList.get(ind).toString();
+                        taskList.remove(ind);
+                        System.out.println("Okay! The task: \n" + temp + "\nhas been deleted forever.\n" +
+                                "You have " + taskList.size() + " task" + ((taskList.size()!=1)?"s ":" ") + "left!");
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        throw new NoDescriptionException("delete");
+                    }
+                }
+                else {
                     throw new NoSuchCommandException();
                 }
             } catch (NoDescriptionException e) {
