@@ -57,10 +57,9 @@ public abstract class Task {
                 return new ToDo(name);
             case "deadline":
                 return new Deadline(name, date);
-            case "event":
+            default:
                 return new Event(name, date);
         }
-        return null;
     }
 
     public void markDone() {

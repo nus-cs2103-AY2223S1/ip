@@ -1,21 +1,13 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 public class Duke {
-    private static final String topWindow = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n \t";
-    private static final String bottomWindow = "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
+    protected static final String topWindow = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\t";
+    protected static final String bottomWindow = "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
     private static final String greeting = "Hi, I'm Ploopy! Nice to meet you!\n\tWhats up?";
     private static final String farewell = "Okay then, see ya later :)";
     private static final String completedTask = "Nice! You've completed this task. I'll mark it as done.";
     private static final String incompleteTask = "Alright this task has been marked as undone.";
     private static final String addedTask = "I've added this task to your list.\n\tHere you go: ";
-
-//    private enum COMMAND {
-//        list,
-//        bye,
-//        todo,
-//        deadline,
-//        event
-//    }
 
     public static final String textArt = "\n" +
             "███████████████████████████████████\n" +
@@ -32,7 +24,7 @@ public class Duke {
         command();
     }
 
-    private static void messageFormatter(String input) {
+    protected static void messageFormatter(String input) {
         System.out.println(topWindow + input + bottomWindow);
     }
 
@@ -61,44 +53,62 @@ public class Duke {
         messageFormatter(message);
     }
 
+    private static boolean isEmptyCommand(String command, int size) {
+        // this method removes the whitespace of a command and checks if its length = size
+        // true means empty command
+        return command.trim().length() == size;
+    }
+
     private static void command() {
         Scanner scanner = new Scanner(System.in);
         StringBuilder input = new StringBuilder(scanner.nextLine());
-        int end;
 
         while(!input.toString().equals("bye")) {
+        try {
             if (input.toString().matches("\\bmark\\s\\d+\\b")) {
+
                 markTask(input.charAt(5) - 48);
             } else if (input.toString().matches("\\bunmark\\s\\d+\\b")) {
                 unmarkTask(input.charAt(7) - 48);
             } else if (input.toString().equals("list")) {
                 displayList();
-            } else if (input.toString().matches("\\btodo\\s.*\\b")) {
-                Task newTask = Task.createTask(input.substring(5, input.length()), null, "todo");
-                tasks.add(newTask);
-                addTaskMessage(newTask);
-            } else if (input.toString().matches("\\bdeadline\\s.*\\b")) {
-                end = input.indexOf("/");
-                String name = input.substring(8, end);
-                String date = input.substring(input.lastIndexOf("/") + 1);
-                Task newTask = Task.createTask(name, date, "deadline");
-                tasks.add(newTask);
-                addTaskMessage(newTask);
-            } else if (input.toString().matches("\\bevent\\s.*\\b")) {
-                end = input.indexOf("/");
-                String name = input.substring(6, end);
-                String date = input.substring(input.lastIndexOf("/") + 1);
-                Task newTask = Task.createTask(name, date, "event");
-                tasks.add(newTask);
-                addTaskMessage(newTask);
+            } else if (input.length() > 3 && input.substring(0, 4).equals("todo")) {
+                if (!isEmptyCommand(input.toString(), "todo".length())) {
+                    Task newTask = Task.createTask(input.substring(5, input.length()), null, "todo");
+                    tasks.add(newTask);
+                    addTaskMessage(newTask);
+                } else throw DukeException.ExceptionCreator("BlankCommand", "todo");
+            } else if (input.length() > 7 && input.substring(0, 8).equals("deadline"))  {
+                if (!isEmptyCommand(input.toString(), "deadline".length())) {
+                    int end = input.indexOf("/");
+                    String name = input.substring(8, end);
+                    String date = input.substring(input.lastIndexOf("/") + 1);
+                    Task newTask = Task.createTask(name, date, "deadline");
+                    tasks.add(newTask);
+                    addTaskMessage(newTask);
+                } else throw DukeException.ExceptionCreator("BlankCommand", "deadline");
+            } else if (input.length() > 4 && input.substring(0, 5).equals("event"))  {
+                if (!isEmptyCommand(input.toString(), "event".length())) {
+                    int end = input.indexOf("/");
+                    String name = input.substring(6, end);
+                    String date = input.substring(input.lastIndexOf("/") + 1);
+                    Task newTask = Task.createTask(name, date, "event");
+                    tasks.add(newTask);
+                    addTaskMessage(newTask);
+                } else throw DukeException.ExceptionCreator("BlankCommand", "event");
+            } else {
+                throw DukeException.ExceptionCreator("InvalidCommand", null);
             }
 
+        } catch (DukeException e) {
+            System.out.println(e.getMessage());
+        }
             input.replace(0, input.length(), scanner.nextLine()); //replacing content
         }
         messageFormatter(farewell);
     }
     
     public static void main(String[] args) {
-        start();
+      start();
     }
 }

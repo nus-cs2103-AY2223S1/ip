@@ -1,5 +1,5 @@
 todo read book
-event study /by tomorrow
+event study /at tomorrow
 deadline assignment /by sunday
 todo watch movie
 event movie night /saturday
