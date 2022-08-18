@@ -19,4 +19,10 @@ public class Task {
         this.isDone = false;
     }
 
+
+
+    public String toString() {
+        return " This is a task.";
+    }
+
 }
