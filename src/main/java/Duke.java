@@ -103,6 +103,19 @@ public class Duke {
                         + "\nYou now have " + listOfItems.size() + " tasks to do!"
                         + "\n***********************************************************************\n");
             }
+
+            if(userMsg.contains("event ")){
+                eventsCount++;
+                String event1 = userMsg.replaceAll("event ", "");
+                String[] words = event1.split("/");
+                String task = words[0];
+                String event = words[1];
+                ListObject newItem = new Event(task, 0, event);
+                listOfItems.add(newItem);
+                System.out.println("Another moment to mark... \n" + newItem.toString()
+                        + "\nYou now have " + listOfItems.size() + " tasks to do!"
+                        + "\n***********************************************************************\n");
+            }
         }
     }
 
