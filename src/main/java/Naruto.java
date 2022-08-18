@@ -1,17 +1,16 @@
+import java.util.ArrayList;
+
 public class Naruto {
-    private final Item[] storedItems;
-    private int counter;
+    private final ArrayList<Item> storedItems;
 
     public Naruto() {
-        this.storedItems = new Item[100];
-        this.counter = -1;
+        this.storedItems = new ArrayList<>(100);
     }
 
     private String addItem(Item item) {
-        this.counter++;
-        this.storedItems[this.counter] = item;
+        this.storedItems.add(item);
         return "    Alright! I've added it to our list:\n      " + item.toString()
-                + "\n    Now we have " + (this.counter + 1) + " tasks in our list Dattebayo!";
+                + "\n    Now we have " + this.storedItems.size() + " tasks in our list Dattebayo!";
     }
 
     public String addToDo(String item) {
@@ -30,32 +29,44 @@ public class Naruto {
     }
 
     public String getList() {
-        if (counter < 0) {
+        if (this.storedItems.isEmpty()) {
             return "    The list is currently empty Dattebayo!";
         }
         StringBuilder list = new StringBuilder("    Here's the list you asked for Dattebayo:");
-        for (int count = 0; count <= counter; count++){
-            list.append("\n").append("    ").append(count + 1).append(".").append(storedItems[count].toString());
+        for (int count = 0; count < this.storedItems.size(); count++){
+            list.append("\n").append("    ").append(count + 1).append(".").append(storedItems.get(count).toString());
         }
         return list.toString();
     }
 
-    public String markItem(int item) {
-        if (item > this.counter || item < 0) {
-            return "Whoops it appears you entered an invalid index, there are " + (this.counter + 1)
+    public String markItem(int index) {
+        if (index >= this.storedItems.size() || index < 0) {
+            return "Whoops it appears you entered an invalid index, there are " + this.storedItems.size()
                     + " items in the list Dattebayo!";
         }
-        this.storedItems[item].setDone();
-        return "    Alright! I've marked this task as done Dattebayo:\n  " + this.storedItems[item].toString();
+        this.storedItems.get(index).setDone();
+        return "    Alright! I've marked this task as done Dattebayo:\n  " + this.storedItems.get(index).toString();
     }
 
-    public String unMarkItem(int item) {
-        if (item > this.counter || item < 0) {
-            return "Whoops it appears you entered an invalid index, there are " + (this.counter + 1)
+    public String unMarkItem(int index) {
+        if (index >= this.storedItems.size() || index < 0) {
+            return "Whoops it appears you entered an invalid index, there are " + this.storedItems.size()
                     + " items in the list Dattebayo!";
         }
-        this.storedItems[item].setUnDone();
-        return "    Alright! I've marked this task as not done yet Dattebayo: \n  " + this.storedItems[item].toString();
+        this.storedItems.get(index).setUnDone();
+        return "    Alright! I've marked this task as not done yet Dattebayo: \n  "
+                + this.storedItems.get(index).toString();
+    }
+
+    public String deleteItem(int index) {
+        if (index >= this.storedItems.size() || index < 0) {
+            return "Whoops it appears you entered an invalid index, there are " + this.storedItems.size()
+                    + " items in the list Dattebayo!";
+        }
+        Item item = this.storedItems.get(index);
+        this.storedItems.remove(index);
+        return "    Alright! I've removed this task Dattebayo: \n  " + item.toString()
+                + "\n    Now we have " + this.storedItems.size() + " tasks in our list Dattebayo!";
     }
 
     public String bye() {

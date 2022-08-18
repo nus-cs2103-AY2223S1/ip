@@ -4,3 +4,7 @@ event CS2103 Lecture /at tomorrow 4pm
 list
 mark 1
 unmark 1
+delete 2
+list
+todo ST2334
+list

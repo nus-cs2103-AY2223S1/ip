@@ -29,4 +29,25 @@ What can i do for you?
     Alright! I've marked this task as not done yet Dattebayo:
   [T][ ] CS2100
 --------------------
+--------------------
+    Alright! I've removed this task Dattebayo:
+  [D][ ] CS2103 Ass (by: tonight)
+    Now we have 2 tasks in our list Dattebayo!
+--------------------
+--------------------
+    Here's the list you asked for Dattebayo:
+    1.[T][ ] CS2100
+    2.[E][ ] CS2103 Lecture (at: tomorrow 4pm)
+--------------------
+--------------------
+    Alright! I've added it to our list:
+      [T][ ] ST2334
+    Now we have 3 tasks in our list Dattebayo!
+--------------------
+--------------------
+    Here's the list you asked for Dattebayo:
+    1.[T][ ] CS2100
+    2.[E][ ] CS2103 Lecture (at: tomorrow 4pm)
+    3.[T][ ] ST2334
+--------------------
 
