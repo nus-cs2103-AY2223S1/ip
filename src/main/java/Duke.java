@@ -9,9 +9,12 @@
 //    }
 //}
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
+
+    public static ArrayList<String> tasks = new ArrayList<>();
 
     private Scanner sc = new Scanner(System.in);
 
@@ -28,12 +31,27 @@ public class Duke {
             String input = sc.nextLine();
             if (input.equals("bye")) {
                 exitBot = true;
+            } else if (input.equals("list")) {
+                listTasks();
             } else {
-                echoInput(input);
+                addTask(input);
             }
         }
 
         exitMessage();
+    }
+
+    public void addTask(String input) {
+        tasks.add(input);
+        printMessage("added: " + input);
+    }
+
+    public void listTasks() {
+        linePrint();
+        for (int i = 0; i < tasks.size(); i++) {
+            System.out.println("\t" + (i + 1) + ". " + tasks.get(i));
+        }
+        linePrint();
     }
 
     public void greetingMessage() {
