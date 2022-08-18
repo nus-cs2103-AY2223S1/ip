@@ -46,10 +46,32 @@ public class Duke {
                 markedTask.markAsDone();
                 String taskStatus = String.format("Nice! I've marked this task as done:\n%s", markedTask);
                 echo(taskStatus);
-            } else {
-                echo(command);
-                Task newTask = new Task(command);
+            } else if (command.contains("todo")) {
+                String todoTask = command.replace("todo ", "");
+                Task newTask = new Todo(todoTask);
                 tasklist.add(newTask);
+                String taskStatus = String.format("Got it. I've added this task:\n" +
+                        "%s\n" +
+                        "Now you have %d tasks in the list.", newTask, tasklist.size());
+                echo(taskStatus);
+            } else if (command.contains("deadline")) {
+                String deadlineTask = command.replace("deadline", "");
+                String[] parts = deadlineTask.split(" /");
+                Task newTask = new Deadline(parts[0], parts[1]);
+                tasklist.add(newTask);
+                String taskStatus = String.format("Got it. I've added this task:\n" +
+                        "%s\n" +
+                        "Now you have %d tasks in the list.", newTask, tasklist.size());
+                echo(taskStatus);
+            } else if (command.contains("event")) {
+                String deadlineTask = command.replace("event", "");
+                String[] parts = deadlineTask.split(" /");
+                Task newTask = new Event(parts[0], parts[1]);
+                tasklist.add(newTask);
+                String taskStatus = String.format("Got it. I've added this task:\n" +
+                        "%s\n" +
+                        "Now you have %d tasks in the list.", newTask, tasklist.size());
+                echo(taskStatus);
             }
         }
 
