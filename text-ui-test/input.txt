@@ -8,5 +8,8 @@ list
 unmark 1
 mark -100
 mark 0
+delete 1
+delete 0
+list
 unknownuselesscommand
 bye
