@@ -1,10 +1,9 @@
     Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
+     ____        _        
+    |  _ \ _   _| | _____ 
+    | | | | | | | |/ / _ \
+    | |_| | |_| |   <  __/
+    |____/ \__,_|_|\_\___|
     ____________________________________________________________
     Hello! I'm Duke
     What can I do for you?
@@ -15,22 +14,21 @@
     Now you have 1 task in your list.
     ____________________________________________________________
     ____________________________________________________________
+    ☹ OOPS!!! The description of a todo cannot be empty.
+    ____________________________________________________________
+    ____________________________________________________________
     Got it. I've added this task:
       [D][ ] return book (by: June 6th)
     Now you have 2 tasks in your list.
     ____________________________________________________________
     ____________________________________________________________
-    Nice! I've marked this task as done:
-      [D][X] return book (by: June 6th)
+    ☹ OOPS!!! The description of a deadline cannot be empty.
     ____________________________________________________________
     ____________________________________________________________
-    OK, I've marked this task as not done yet:
-      [D][ ] return book (by: June 6th)
+    ☹ OOPS!!! Use /by to provide when a deadline must be completed.
     ____________________________________________________________
     ____________________________________________________________
-    Here are the tasks in your list:
-    1.[T][ ] read book
-    2.[D][ ] return book (by: June 6th)
+    ☹ OOPS!!! The description of a deadline cannot be empty.
     ____________________________________________________________
     ____________________________________________________________
     Got it. I've added this task:
@@ -38,59 +36,48 @@
     Now you have 3 tasks in your list.
     ____________________________________________________________
     ____________________________________________________________
-    Got it. I've added this task:
-      [T][ ] join sports club
-    Now you have 4 tasks in your list.
+    ☹ OOPS!!! The description of an event cannot be empty.
+    ____________________________________________________________
+    ____________________________________________________________
+    ☹ OOPS!!! Use /at to provide when an event occurs.
+    ____________________________________________________________
+    ____________________________________________________________
+    ☹ OOPS!!! The description of an event cannot be empty.
     ____________________________________________________________
     ____________________________________________________________
     Nice! I've marked this task as done:
       [T][X] read book
     ____________________________________________________________
     ____________________________________________________________
-    Nice! I've marked this task as done:
-      [T][X] join sports club
-    ____________________________________________________________
-    ____________________________________________________________
-    Got it. I've added this task:
-      [T][ ] borrow book
-    Now you have 5 tasks in your list.
-    ____________________________________________________________
-    ____________________________________________________________
     Here are the tasks in your list:
     1.[T][X] read book
     2.[D][ ] return book (by: June 6th)
     3.[E][ ] project meeting (at: Aug 6th 2-4pm)
-    4.[T][X] join sports club
-    5.[T][ ] borrow book
     ____________________________________________________________
     ____________________________________________________________
-    Got it. I've added this task:
-      [D][ ] return book (by: Sunday)
-    Now you have 6 tasks in your list.
-    ____________________________________________________________
-    ____________________________________________________________
-    Got it. I've added this task:
-      [E][ ] project meeting (at: Mon 2-4pm)
-    Now you have 7 tasks in your list.
-    ____________________________________________________________
-    ____________________________________________________________
-    Got it. I've added this task:
-      [D][ ] do homework (by: no idea :-p)
-    Now you have 8 tasks in your list.
+    OK, I've marked this task as not done yet:
+      [T][ ] read book
     ____________________________________________________________
     ____________________________________________________________
     Here are the tasks in your list:
-    1.[T][X] read book
+    1.[T][ ] read book
     2.[D][ ] return book (by: June 6th)
     3.[E][ ] project meeting (at: Aug 6th 2-4pm)
-    4.[T][X] join sports club
-    5.[T][ ] borrow book
-    6.[D][ ] return book (by: Sunday)
-    7.[E][ ] project meeting (at: Mon 2-4pm)
-    8.[D][ ] do homework (by: no idea :-p)
     ____________________________________________________________
     ____________________________________________________________
-    test
+    ☹ OOPS!!! Specify which task to mark with a positive integer.
+    ____________________________________________________________
+    ____________________________________________________________
+    ☹ OOPS!!! The specified task does not exist.
+    ____________________________________________________________
+    ____________________________________________________________
+    ☹ OOPS!!! Specify which task to unmark with a positive integer.
+    ____________________________________________________________
+    ____________________________________________________________
+    ☹ OOPS!!! The specified task does not exist.
+    ____________________________________________________________
+    ____________________________________________________________
+    ☹ OOPS!!! I'm sorry, but I don't know what that means :-(
     ____________________________________________________________
     ____________________________________________________________
     Bye. Hope to see you again soon!
