@@ -1,6 +1,3 @@
-package main.java;
-import main.java.Exceptions.EmptyListException;
-import main.java.Exceptions.InvalidCommandException;
 
 import java.util.Scanner;
 

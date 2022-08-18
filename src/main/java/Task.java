@@ -1,4 +1,3 @@
-package main.java;
 
 public class Task {
         protected String description;

@@ -1,4 +1,3 @@
-package main.java.Exceptions;
 
 public class EmptyListException extends Exception{
     public EmptyListException(String message) {

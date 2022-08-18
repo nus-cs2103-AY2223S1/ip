@@ -1,7 +1,85 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+Greetings Human! I am BetaGo, your personal robot assistant!
+How may I assist you today?
+
+You currently have no tasks in your list!
+
+Got it. I've added this Todo task:
+[T][ ] borrow book
+Now you have 1 tasks in the list.
+
+Got it. I've added this Todo task:
+[T][ ] return book
+Now you have 2 tasks in the list.
+
+Please indicate a valid description for your Todo task!
+
+Here are the tasks in your list:
+1. [T][ ] borrow book
+2. [T][ ] return book
+
+Got it. I've added this Deadline task:
+[D][ ] return book (by: wednesday 10pm)
+Now you have 3 tasks in the list.
+
+Please indicate a valid description and due date for your Deadline task!
+
+Please indicate a valid description and due date for your Deadline task!
+
+Here are the tasks in your list:
+1. [T][ ] borrow book
+2. [T][ ] return book
+3. [D][ ] return book (by: wednesday 10pm)
+
+Got it. I've added this Event task:
+[E][ ] book fair (at: nus)
+Now you have 4 tasks in the list.
+
+Please indicate a valid description and location for your Event task!
+
+Please indicate a valid description and location for your Event task!
+
+Here are the tasks in your list:
+1. [T][ ] borrow book
+2. [T][ ] return book
+3. [D][ ] return book (by: wednesday 10pm)
+4. [E][ ] book fair (at: nus)
+
+Nice! I've marked this task as done:
+[T][X] return book
+
+Nice! I've marked this task as done:
+[D][X] return book (by: wednesday 10pm)
+
+Here are the tasks in your list:
+1. [T][ ] borrow book
+2. [T][X] return book
+3. [D][X] return book (by: wednesday 10pm)
+4. [E][ ] book fair (at: nus)
+
+Nice! I've marked this task as not done yet:
+[T][ ] return book
+
+Here are the tasks in your list:
+1. [T][ ] borrow book
+2. [T][ ] return book
+3. [D][X] return book (by: wednesday 10pm)
+4. [E][ ] book fair (at: nus)
+
+Please indicate a valid task number!
+
+Please indicate a valid task number!
+
+Please indicate a valid task number!
+
+Please indicate a valid task number!
+
+Here are the tasks in your list:
+1. [T][ ] borrow book
+2. [T][ ] return book
+3. [D][X] return book (by: wednesday 10pm)
+4. [E][ ] book fair (at: nus)
+
+Apologies Human. I do not understand that command.
+
+Goodbye Human. Till next time.
 

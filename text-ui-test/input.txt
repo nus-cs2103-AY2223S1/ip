@@ -1,0 +1,25 @@
+list
+todo borrow book
+todo return book
+todo
+list
+deadline return book /by wednesday 10pm
+deadline do homework
+deadline
+list
+event book fair /at nus
+event second book fair
+event
+list
+mark 2
+mark 3
+list
+unmark 2
+list
+mark 123
+mark aipsoda
+unmark 123
+unmark asdioad
+list
+blahblah
+bye
