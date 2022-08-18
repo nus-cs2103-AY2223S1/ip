@@ -3,4 +3,9 @@ event project meeting /at Mon 2-4pm
 deadline do homework /by no idea :-p
 deadline return book /by Sunday
 todo your mom
+mark 1
+mark 2
+delete 3
+unmark 1
+mark 4
 Bye
