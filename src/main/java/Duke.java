@@ -147,6 +147,8 @@ public class Duke {
      * Add a Deadline to the items list.
      *
      * @param input A String to be added to the list.
+     *
+     * @throws DukeException if description or date is empty
      */
     public static void addEvent(String input) throws DukeException {
         // Get description and date of event
@@ -204,8 +206,15 @@ public class Duke {
      * Marks a task at a certain index as done.
      *
      * @param index the index of the task to be marked as done
+     *
+     * @throws DukeException when an invalid index is provided
      */
-    public static void mark(int index) {
+    public static void mark(int index) throws DukeException {
+        // Check if the index is within the bounds of the list
+        if (index < 0 || index >= Duke.inputs.size()) {
+            throw new DukeException("Invalid index");
+        }
+
         // Get the task to be marked
         Task selectedTask = Duke.inputs.get(index - 1);
 
@@ -221,8 +230,15 @@ public class Duke {
      * Marks a task at a certain index as done.
      *
      * @param index the index of the task to be marked as done
+     *
+     * @throws DukeException when an invalid index is provided
      */
-    public static void unmark(int index) {
+    public static void unmark(int index) throws DukeException {
+        // Check if the index is within the bounds of the list
+        if (index < 0 || index >= Duke.inputs.size()) {
+            throw new DukeException("Invalid index");
+        }
+
         // Get the task to be marked
         Task selectedTask = Duke.inputs.get(index - 1);
 
@@ -234,7 +250,13 @@ public class Duke {
                            selectedTask);
     }
 
-    public static void delete(int index) {
+
+    public static void delete(int index) throws DukeException {
+        // Check if the index is within the bounds of the list
+        if (index < 0 || index >= Duke.inputs.size()) {
+            throw new DukeException("Invalid index");
+        }
+        
         // Remove task from list and get removed task
         Task removedTask = Duke.inputs.remove(index - 1);
 
