@@ -95,8 +95,9 @@ public class Duke {
                 deadlinesCount++;
                 String deadline1 = userMsg.replaceAll("deadline ", "");
                 String[] words = deadline1.split("/");
+                String task = words[0];
                 String deadline = words[1];
-                ListObject newItem = new Deadline(deadline, 0, deadline);
+                ListObject newItem = new Deadline(task, 0, deadline);
                 listOfItems.add(newItem);
                 System.out.println("Mark this on your calendar! \n" + newItem.toString()
                         + "\nYou now have " + listOfItems.size() + " tasks to do!"
