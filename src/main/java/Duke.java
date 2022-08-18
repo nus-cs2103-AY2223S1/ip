@@ -2,15 +2,12 @@ import java.util.Scanner;
 
 public class Duke {
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello! I'm\n" + logo + "What can I do for you?");
+        hello();
 
         Scanner sc = new Scanner(System.in);
         DukeControl dc = new DukeControl();
+
+        System.out.print("\n");
         String input = sc.nextLine();
 
         while(!input.equals("bye")) {
@@ -23,8 +20,15 @@ public class Duke {
             input = sc.nextLine();
         }
 
-        System.out.println("Bye. Hope to see you again soon!");
-
+        bye();
         sc.close();
+    }
+
+    public static void hello() {
+        System.out.println("Hello! I'm aRC! (°▽°)/\nWhat can I do for you?");
+    }
+
+    public static void bye() {
+        System.out.println("Bye. Hope to see you again soon! ʘ ͜ʖ ʘ");
     }
 }

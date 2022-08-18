@@ -36,9 +36,9 @@ public class DukeControl {
         if (commandArgs.length != 0) {
             throw new InvalidArgumentException();
         } else {
-            System.out.println("Here are the tasks in your list:");
+            System.out.println("Listing the tasks in your list...");
             for (int i = 0; i < this.arrayList.size(); i++) {
-                System.out.println(String.format("%d. %s", i + 1, this.arrayList.get(i).print()));
+                System.out.println(String.format("\t%d. %s", i + 1, this.arrayList.get(i).print()));
             }
         }
     }
@@ -122,14 +122,14 @@ public class DukeControl {
     public void addTask(Task newTask) {
         this.arrayList.add(newTask);
         System.out.println(String.format(
-                "Got it. I've added this task:\n\t%s\nNow you have %d tasks in the list.",
-                newTask.print(), this.arrayList.size()));
+                "Got it. I've added this task:\n\t%s\nNow you have %d task%s in the list.",
+                newTask.print(), this.arrayList.size(), this.arrayList.size() == 1 ? "" : "s"));
     }
 
     public void deleteTask(int index) {
         Task deletedTask = this.arrayList.remove(index);
         System.out.println(String.format(
-                "Noted. I've removed this task:\n\t%s\nNow you have %d tasks in the list.",
-                deletedTask.print(), this.arrayList.size()));
+                "Noted. I've removed this task:\n\t%s\nNow you have %d task%s in the list.",
+                deletedTask.print(), this.arrayList.size(), this.arrayList.size() == 1 ? "" : "s"));
     }
 }
