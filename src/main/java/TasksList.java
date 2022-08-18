@@ -143,7 +143,6 @@ public class TasksList {
             throw new DukeException("Duke: Please specify the task to unmark by its integer id:\n" +
                     "mark <id>");
         }
-
     }
 
     /**
@@ -169,7 +168,6 @@ public class TasksList {
             String line = String.format("Duke: Now you have %d task%s in the list.",
                     len - 1, len - 1 != 1 ? "s" : "");
             System.out.println(line);
-
         } catch (NumberFormatException e) {
             throw new DukeException("Duke: Please specify the task to delete by its integer id:\n" +
                     "mark <id>");
