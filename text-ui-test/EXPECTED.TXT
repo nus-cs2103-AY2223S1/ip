@@ -1,21 +1,42 @@
-My name is [insert name here], how can I help?
----
-1. [T][ ] drink water
-2. [D][ ] update expenses (by: tomorrow)
-3. [E][ ] golf with friends (at: 9th august 2-4pm)
----
----
-1. [T][ ] drink water
-2. [D][X] update expenses (by: tomorrow)
-3. [E][ ] golf with friends (at: 9th august 2-4pm)
----
----
-1. [T][ ] drink water
-2. [D][ ] update expenses (by: tomorrow)
-3. [E][ ] golf with friends (at: 9th august 2-4pm)
----
-Sorry, I don't know what that means!
-The command "mark" is missing or has invalid options. (E.g. index, date, description)
-The command "mark" is missing or has invalid options. (E.g. index, date, description)
-There is no task at index 6
-See you next time...
+=== TASK LIST ===
+1. [T][ ] take a dip
+2. [T][ ] and do a flip
+3. [D][ ] conquer the world (Deadline: 2025 (hopefully))
+4. [E][ ] dinner with mom (At: 4pm later)
+=================
+=== TASK LIST ===
+1. [T][X] take a dip
+2. [T][X] and do a flip
+3. [D][ ] conquer the world (Deadline: 2025 (hopefully))
+4. [E][ ] dinner with mom (At: 4pm later)
+=================
+=== TASK LIST ===
+1. [T][X] take a dip
+2. [T][ ] and do a flip
+3. [D][ ] conquer the world (Deadline: 2025 (hopefully))
+4. [E][ ] dinner with mom (At: 4pm later)
+=================
+=== TASK LIST ===
+1. [T][X] take a dip
+2. [T][ ] and do a flip
+3. [D][ ] conquer the world (Deadline: 2025 (hopefully))
+=================
+PLEASE ADD DESCRIPTION TO YOUR TASK
+PLEASE ADD DESCRIPTION TO YOUR TASK
+ADD DEADLINE BY APPENDING TASK WITH "/by [date]"
+PLEASE ADD DESCRIPTION TO YOUR TASK
+ADD PEROID BY APPENDING TASK WITH "/at [date]"
+There is no task at index 4
+PLEASE ENTER VALID TASK INDEX NUMBER.
+PLEASE ENTER VALID TASK INDEX NUMBER.
+There is no task at index 4
+PLEASE ENTER VALID TASK INDEX NUMBER.
+PLEASE ENTER VALID TASK INDEX NUMBER.
+PLEASE ENTER VALID TASK INDEX NUMBER.
+PLEASE ENTER VALID TASK INDEX NUMBER.
+this IS NOT A VALID COMMAND. YOU DUMMY!
+is IS NOT A VALID COMMAND. YOU DUMMY!
+a IS NOT A VALID COMMAND. YOU DUMMY!
+random IS NOT A VALID COMMAND. YOU DUMMY!
+line IS NOT A VALID COMMAND. YOU DUMMY!
+FAREWELL HUMAN.

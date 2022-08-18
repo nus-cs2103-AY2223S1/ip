@@ -1,16 +1,27 @@
-todo drink water
-deadline update expenses /by tomorrow
-event golf with friends /at 9th august 2-4pm
+todo take a dip
+todo and do a flip
+deadline conquer the world /by 2025 (hopefully)
+event dinner with mom /at 4pm later
 list
+mark 1
 mark 2
 list
 unmark 2
 list
-dumb command here
-mark this
-mark
-mark 6
-event
-deadline something
-event dumdum
+delete 4
+list
+todo 
+deadline 
+deadline thingy but idk when
+event 
+event when is the meeting again?
+mark 4
+mark blahblah
+mark 
+unmark 4
+unmark blahblah
+unmark 
+delete
+delete something
+this is a random line
 bye
