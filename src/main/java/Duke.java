@@ -4,6 +4,9 @@ public class Duke {
     private Task[] tasks = new Task[100];
     private int numTasks = 0;
 
+    private Scanner receiver = new Scanner(System.in);
+    private static Duke d = new Duke();
+
     public Duke() {
         this.numTasks = 0;
     }
@@ -32,20 +35,20 @@ public class Duke {
     }
 
     //Actually does what is needed to do
-    public static void puke(Scanner sc, Duke d) {
+    public static void puke(Scanner sc, Duke d) throws DukeException {
         String a = sc.next();
-        String s = sc.nextLine();
-        String desc = d.getMessage(s);
-        String date = d.getDate(s);
-
-        //String action = d.doWhat(s);
-        if (a.equals("bye")){
+        if (a.equals("bye")) {
             d.systemMessage(1,d, new Task(""));
             return;
-        } else if (a.equals("list")) {
+        }
+        if (a.equals("list")) {
             d.listTasks();
-            puke(sc, d);
-        } else if (a.equals("mark")) {
+            puke(sc,d);
+        }
+        String s = sc.nextLine();
+
+        //String action = d.doWhat(s);
+        if (a.equals("mark")) {
             int pos = Character.getNumericValue(s.charAt(1));
             d.taskManager("do", pos, d);
             puke(sc,d);
@@ -54,27 +57,34 @@ public class Duke {
             d.taskManager("undo", pos, d);
             puke(sc,d);
         } else if (a.equals("todo")) {
+            String desc = d.getMessage(s, "ToDo");
+            String date = d.getDate(s);
             Task newTask = new ToDo(desc);
             d.addIncrement(newTask);
             d.systemMessage(2, d, newTask);
             puke(sc,d);
         } else if (a.equals("deadline")) {
+            String desc = d.getMessage(s, "Deadline");
+            String date = d.getDate(s);
             Task newTask = new Deadline(desc, date);
             d.addIncrement(newTask);
             d.systemMessage(2, d, newTask);
             puke(sc,d);
         } else if (a.equals("event")) {
+            String desc = d.getMessage(s, "Event");
+            String date = d.getDate(s);
             Task newTask = new Event(desc, date);
             d.addIncrement(newTask);
             d.systemMessage(2, d, newTask);
             puke(sc,d);
         } else {
-            System.out.println("I am unable to Process that at the moment");
-            puke(sc, d);
+            //System.out.println("I am unable to Process that at the moment");
+            //puke(sc, d);
+            throw new DukeException("OOPS!!! I'm sorry, but I dont't know what that means");
         }
     }
 
-    private static String getMessage(String s) {
+    private static String getMessage(String s, String type) throws DukeException{
         String result = "";
         for (int i = 0 ; i < s.length(); i++) {
             if (i == 0) {
@@ -84,6 +94,10 @@ public class Duke {
                 break;
             }
             result += s.charAt(i);
+        }
+
+        if (result.length() == 0) {
+            throw new DukeException("OOPS!!! The Description of a " + type + " cannot be empty.");
         }
         return result;
     }
@@ -159,15 +173,19 @@ public class Duke {
         this.numTasks++;
     }
 
+    public static void startBot() {
+        try {
+            puke(Duke.d.receiver, d);
+        } catch (DukeException e) {
+            System.out.println(e);
+        } finally {
+            startBot();
+        }
+    }
+
     public static void main(String[] args) {
-        Scanner receiver = new Scanner(System.in);
-
-        Duke d = new Duke();
-
         intro();
-        puke(receiver, d);
-
-        receiver.close();
-
+        Duke.startBot();
+        Duke.d.receiver.close();
     }
 }
