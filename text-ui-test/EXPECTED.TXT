@@ -3,23 +3,48 @@
      What can I do for you?
     ____________________________________________________________
     ____________________________________________________________
-     Got it. I've added this task:
-     [T][ ] read book
-     Now you have 1 tasks in the list.
-    ____________________________________________________________
-    ____________________________________________________________
-     Nice! I've marked this task as done:
-     [T][X] read book
+     Here are the tasks in your list:
     ____________________________________________________________
     ____________________________________________________________
      Got it. I've added this task:
      [E][ ] go to class (at: Friday 2-6 pm)
+     Now you have 1 tasks in the list.
+    ____________________________________________________________
+    ____________________________________________________________
+     Got it. I've added this task:
+     [D][ ] finish homework (by: tonight)
      Now you have 2 tasks in the list.
     ____________________________________________________________
     ____________________________________________________________
+     Got it. I've added this task:
+     [T][ ] have a good night's sleep
+     Now you have 3 tasks in the list.
+    ____________________________________________________________
+    ____________________________________________________________
      Here are the tasks in your list:
-     1. [T][X] read book
-     2. [E][ ] go to class (at: Friday 2-6 pm)
+     1. [E][ ] go to class (at: Friday 2-6 pm)
+     2. [D][ ] finish homework (by: tonight)
+     3. [T][ ] have a good night's sleep
+    ____________________________________________________________
+    ____________________________________________________________
+     Uh oh!!! ☹Please add a description for the command event.
+    ____________________________________________________________
+    ____________________________________________________________
+     Uh oh!!! ☹Command something not found. Please try again.
+    ____________________________________________________________
+    ____________________________________________________________
+     Uh oh!!! ☹You have entered an invalid number format. Please try again.
+    ____________________________________________________________
+    ____________________________________________________________
+     Uh oh!!! ☹Your input is out of bounds. Please try a number between 1 and 3.
+    ____________________________________________________________
+    ____________________________________________________________
+     Nice! I've marked this task as done:
+     [D][X] finish homework (by: tonight)
+    ____________________________________________________________
+    ____________________________________________________________
+     Noted. I've removed this task:
+     [T][ ] have a good night's sleep
     ____________________________________________________________
     ____________________________________________________________
      Bye. Hope to see you again soon!
