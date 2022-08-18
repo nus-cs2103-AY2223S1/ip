@@ -1,1 +1,17 @@
 list
+help
+todo bungee jumping
+todo read the great gatsby
+a random command
+deadline submit project /by Thursday
+event project meeting /at Mon 2pm
+mark 1
+mark 1
+markew
+mark 2
+mark2
+unmark 1
+unmark 2
+mark 20
+list
+bye
