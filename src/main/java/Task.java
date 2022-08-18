@@ -4,10 +4,19 @@ public class Task {
     Task(String name) {
         this.name = name;
     }
+    /*
+     * sets a task to be done
+     *
+     */
     public void done() {
         this.done = true;
     }
 
+    /*
+     * sets a task to be not done
+     *
+     * @param input
+     */
     public void unDone() {
         this.done = false;
     }

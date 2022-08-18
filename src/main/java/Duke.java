@@ -41,24 +41,45 @@ public class Duke {
         }
     }
 
+    /*
+     * Reports the number of items in the list
+     *
+     */
     private void reportNum() {
         System.out.println("Now you have " + index + " in the list.");
     }
 
+    /*
+     * Sends a greeting to the user
+     *
+     */
     private void Greet() {
         System.out.println("Hello! I'm BotChat123 \nWhat can I do for you?");
     }
 
+    /*
+     * Terminates the conversation with the user
+     *
+     */
     private void Bye(){
         System.out.println("Bye. Please chat with me again!");
     }
 
+    /*
+     * Reports all the items that are in the list
+     *
+     */
     private void List(){
         for (int i = 0; i < index; i++) {
             System.out.println(i + 1 + ": " + inputArray.get(i));
         }
     }
 
+    /*
+     * Adds a todo to the list
+     *
+     * @param input
+     */
     private void addTodo(String input) {
         try {
             if (input.length() > 5) {
@@ -73,6 +94,11 @@ public class Duke {
         }
     }
 
+    /*
+     * Adds an event to the list
+     *
+     * @param input
+     */
     private void addEvents(String input) {
         try {
             if (input.length() > 6) {
@@ -88,6 +114,11 @@ public class Duke {
         }
     }
 
+    /*
+     * Adds a deadline to the list
+     *
+     * @param input
+     */
     private void addDeadlines(String input) {
         try {
             if (input.length() > 9) {
@@ -103,6 +134,11 @@ public class Duke {
         }
     }
 
+    /*
+     * Marks a task in the list as done
+     *
+     * @param input
+     */
     private void markTask(String input) throws NullPointerException, ArrayIndexOutOfBoundsException,
             NumberFormatException {
         int markIndex = Integer.parseInt(input.substring(5));
@@ -111,6 +147,11 @@ public class Duke {
         inputArray.get(markIndex -1).done();
     }
 
+    /*
+     * Marks a task in the list as not done
+     *
+     * @param input
+     */
     private void unmarkTask(String input) throws NullPointerException, ArrayIndexOutOfBoundsException,
             NumberFormatException {
         int markIndex = Integer.parseInt(input.substring(7));
@@ -119,6 +160,11 @@ public class Duke {
         inputArray.get(markIndex - 1).unDone();
     }
 
+    /*
+     * Deletes a task that is in the list
+     *
+     * @param input
+     */
     private void deleteTask(String input) throws NullPointerException, ArrayIndexOutOfBoundsException , NumberFormatException {
         int markIndex = Integer.parseInt(input.substring(7));
         System.out.println("Swee! Task removed: " + inputArray.get(markIndex - 1));
