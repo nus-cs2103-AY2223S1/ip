@@ -152,33 +152,45 @@ public class Duke {
                 break;
             case MARK:
                 if (argCount < 2) {
-                    throw new DukeException(
-                            "Oh no! Try doing 'mark <index>'!");
+                    throw new DukeException("Oh no! Try doing 'mark <index>'!");
                 }
                 // markIndex - 1 because viewAllTasks is 1-indexed
                 // whereas actual implementation is 0-indexed.
-                int markIndex = Integer.parseInt(
-                        argTokens[1], 10) - 1;
-                this.markTask(markIndex);
+                try {
+                    int markIndex = Integer.parseInt(
+                            argTokens[1], 10) - 1;
+                    this.markTask(markIndex);
+                } catch (NumberFormatException e) {
+                    throw new DukeException("Oh no! Try doing 'mark <index>'!");
+                }
                 break;
             case UNMARK:
                 if (argCount < 2) {
                     throw new DukeException(
                             "Oh no! Try doing 'unmark <index>'!");
                 }
-                int unmarkIndex = Integer.parseInt(
-                        argTokens[1], 10) - 1;
+                try {
+                    int unmarkIndex = Integer.parseInt(
+                            argTokens[1], 10) - 1;
 
-                this.unmarkTask(unmarkIndex);
+                    this.unmarkTask(unmarkIndex);
+                } catch (NumberFormatException e) {
+                    throw new DukeException("Oh no! Try doing 'unmark <index>'!");
+                }
                 break;
             case DELETE:
                 if (argCount < 2) {
                     throw new DukeException(
                             "Oh no! Try doing 'delete <index>'!");
                 }
-                int deleteIndex = Integer.parseInt(
-                        argTokens[1], 10) - 1;
-                this.deleteTask(deleteIndex);
+                try {
+                    int deleteIndex = Integer.parseInt(
+                            argTokens[1], 10) - 1;
+                    this.deleteTask(deleteIndex);
+                } catch (NumberFormatException e) {
+                    throw new DukeException(
+                            "Oh no! Try doing 'delete <index>'!");
+                }
                 break;
             case TODO:
                 if (argCount < 2) {
