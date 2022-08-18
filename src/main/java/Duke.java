@@ -1,9 +1,8 @@
-import java.sql.SQLOutput;
 import java.util.Scanner;
+import java.util.ArrayList;
 public class Duke {
 
-    private static final Task[] tasks = new Task[100];
-    private static int pointer = 0;
+    private static final ArrayList<Task> tasks = new ArrayList<>();
     public static void main(String[] args) throws DukeException {
         String logo = "\n" +
         "   ██▓    ▄▄▄       ███▄ ▄███▓▓█████▄  ▄▄▄\n" +
@@ -34,8 +33,8 @@ public class Duke {
                 break;
             case "list":
                 System.out.println("\t Here are the tasks in your list:");
-                for (int i = 0; i < pointer; i++) {
-                    System.out.println("\t " + (i + 1) + "." + tasks[i].toString());
+                for (int i = 0; i < tasks.size(); i++) {
+                    System.out.println("\t " + (i + 1) + "." + tasks.get(i).toString());
                 }
                 System.out.println("\t____________________________________________");
                 greeting();
@@ -43,11 +42,11 @@ public class Duke {
             case "mark": {
                 int num = scn.nextInt();
                 try {
-                    tasks[num - 1].markAsDone();
+                    tasks.get(num - 1).markAsDone();
                     System.out.println("\t I've marked this task as done:");
-                    System.out.println("\t   " + tasks[num - 1].toString());
+                    System.out.println("\t   " + tasks.get(num - 1).toString());
                 } catch (IndexOutOfBoundsException e) {
-                    System.out.println(new DukeException("The index is invalid!").getMessage());
+                    System.out.println(new DukeException("The index you entered is invalid!").getMessage());
                 }
                 System.out.println("\t____________________________________________");
                 greeting();
@@ -56,11 +55,11 @@ public class Duke {
             case "unmark": {
                 int num = scn.nextInt();
                 try {
-                    tasks[num - 1].markAsNotDone();
+                    tasks.get(num - 1).markAsNotDone();
                     System.out.println("\t I've marked this task as not done yet:");
-                    System.out.println("\t   " + tasks[num - 1].toString());
+                    System.out.println("\t   " + tasks.get(num - 1).toString());
                 } catch (IndexOutOfBoundsException e) {
-                    System.out.println(new DukeException("The index is invalid!").getMessage());
+                    System.out.println(new DukeException("The index you entered is invalid!").getMessage());
                 }
                 System.out.println("\t____________________________________________");
                 greeting();
@@ -72,11 +71,11 @@ public class Duke {
                     System.out.println(new DukeException("The description of a todo cannot be empty.").getMessage());
                 }
                 else {
-                    tasks[pointer] = new Todo(description);
+                    Todo newTodo = new Todo(description);
+                    tasks.add(newTodo);
                     System.out.println("\t Got it. I've added this task:");
-                    System.out.println("\t   " + tasks[pointer].toString());
-                    pointer++;
-                    System.out.println("\t Now you have " + pointer + " tasks in the list.");
+                    System.out.println("\t   " + newTodo.toString());
+                    System.out.println("\t Now you have " + tasks.size() + " tasks in the list.");
                 }
                 System.out.println("\t____________________________________________");
                 greeting();
@@ -88,11 +87,11 @@ public class Duke {
                 }
                 else {
                     String[] strArray = str.split("/at");
-                    tasks[pointer] = new Event(strArray[0], strArray[1]);
+                    Event newEvent = new Event(strArray[0], strArray[1]);
+                    tasks.add(newEvent);
                     System.out.println("\t Got it. I've added this task:");
-                    System.out.println("\t   " + tasks[pointer].toString());
-                    pointer++;
-                    System.out.println("\t Now you have " + pointer + " tasks in the list.");
+                    System.out.println("\t   " + newEvent.toString());
+                    System.out.println("\t Now you have " + tasks.size() + " tasks in the list.");
                 }
                 System.out.println("\t____________________________________________");
                 greeting();
@@ -105,11 +104,26 @@ public class Duke {
                 }
                 else {
                     String[] strArray = str.split("/by");
-                    tasks[pointer] = new Deadline(strArray[0], strArray[1]);
+                    Deadline newDeadline = new Deadline(strArray[0], strArray[1]);
+                    tasks.add(newDeadline);
                     System.out.println("\t Got it. I've added this task:");
-                    System.out.println("\t   " + tasks[pointer].toString());
-                    pointer++;
-                    System.out.println("\t Now you have " + pointer + " tasks in the list.");
+                    System.out.println("\t   " + newDeadline.toString());
+                    System.out.println("\t Now you have " + tasks.size() + " tasks in the list.");
+                }
+                System.out.println("\t____________________________________________");
+                greeting();
+                break;
+            }
+            case "delete": {
+                int num = scn.nextInt();
+                try {
+                    Task toBeRemoved = tasks.get(num - 1);
+                    tasks.remove(num - 1);
+                    System.out.println("\t Noted. I've removed this task:");
+                    System.out.println("\t   " + toBeRemoved.toString());
+                    System.out.println("\t Now you have " + tasks.size() + " tasks in the list.");
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println(new DukeException("The index you entered is invalid!").getMessage());
                 }
                 System.out.println("\t____________________________________________");
                 greeting();
