@@ -1,0 +1,6 @@
+todo CS2100
+deadline CS2103 Ass /by tonight
+event CS2103 Lecture /at tomorrow 4pm
+list
+mark 1
+unmark 1

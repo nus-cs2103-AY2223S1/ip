@@ -5,7 +5,7 @@ public class Duke {
         System.out.println("Hello! I'm Naruto and one day I will be Hokage! \nWhat can i do for you?");
         Scanner scanner = new Scanner(System.in);
         Naruto naruto = new Naruto();
-        String lineBreak = "━".repeat(20);
+        String lineBreak = "-".repeat(20);
 
         boolean breakLoop = false;
         while (!breakLoop) {
