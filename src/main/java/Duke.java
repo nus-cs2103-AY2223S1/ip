@@ -45,6 +45,9 @@ public class Duke {
                     case "event":
                         event(arr);
                         break;
+                    case "delete":
+                        delete(arr);
+                        break;
                     default:
 //                        add(s);
                         throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
@@ -160,6 +163,16 @@ public class Duke {
         printTab("  " + t);
         String temp1 = String.format("Now you have %d tasks in the list.", store.size());
         printTab(temp1);
+        printTab(LINEBREAK);
+    }
+
+    public static void delete(String[] arr) {
+        Task t = store.remove(Integer.parseInt(arr[1]) - 1);
+        printTab(LINEBREAK);
+        printTab("Noted. I've removed this task:");
+        printTab("  " + t);
+        String temp = String.format("Now you have %d tasks in the list.", store.size());
+        printTab(temp);
         printTab(LINEBREAK);
     }
 }
