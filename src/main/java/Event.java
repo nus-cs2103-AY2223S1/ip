@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Event extends Task {
     private LocalDate at;
@@ -8,11 +9,13 @@ public class Event extends Task {
         this.at = at;
     }
 
+    public Event(String description, boolean isDone, LocalDate at) {
+        super(description, isDone);
+        this.at = at;
+    }
+
     private String printDate() {
-        return String.format("%s %d %d",
-                this.at.getMonth().toString().substring(0, 3),
-                this.at.getDayOfMonth(),
-                this.at.getYear());
+        return DateTimeFormatter.ofPattern("MMM dd yyyy").format(at);
     }
 
     @Override

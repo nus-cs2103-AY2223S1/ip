@@ -9,67 +9,60 @@ public class TaskList {
         this.tasks = new ArrayList<>();
     }
 
-    public TaskList(List<String> data) throws DukeException {
-        this.tasks = new ArrayList<>();
-        for (String entry : data) {
-            this.tasks.add(Task.parse(entry));
-        }
+    public TaskList(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+
+    public List<Task> getTasks() {
+        return this.tasks;
     }
 
     public int size() {
         return this.tasks.size();
     }
 
-    public List<String> stringify() {
-        List<String> list = new ArrayList<>();
-        for (Task task : this.tasks) {
-            list.add(task.stringify());
-        }
-        return list;
-    }
-
-    public String markTask(int index) throws DukeException {
+    public Task markTask(int index) throws DukeException {
         if (index < 0 || index >= this.size()) {
             throw new DukeException("Task number does not exist.");
         }
         Task task = this.tasks.get(index);
         task.mark();
-        return task.toString();
+        return task;
     }
 
-    public String unmarkTask(int index) throws DukeException {
+    public Task unmarkTask(int index) throws DukeException {
         if (index < 0 || index >= this.size()) {
             throw new DukeException("Task number does not exist.");
         }
         Task task = this.tasks.get(index);
         task.unmark();
-        return task.toString();
+        return task;
     }
 
-    public String deleteTask(int index) throws DukeException {
+    public Task deleteTask(int index) throws DukeException {
         if (index < 0 || index >= this.size()) {
             throw new DukeException("Task number does not exist.");
         }
         Task task = this.tasks.remove(index);
-        return task.toString();
+        return task;
     }
 
-    public String addToDo(String description) {
+    public ToDo addToDo(String description) {
         ToDo todo = new ToDo(description);
         this.addToTasks(todo);
-        return todo.toString();
+        return todo;
     }
 
-    public String addDeadline(String description, LocalDate by) {
+    public Deadline addDeadline(String description, LocalDate by) {
         Deadline deadline = new Deadline(description, by);
         this.addToTasks(deadline);
-        return deadline.toString();
+        return deadline;
     }
 
-    public String addEvent(String description, LocalDate at) {
+    public Event addEvent(String description, LocalDate at) {
         Event event = new Event(description, at);
         this.addToTasks(event);
-        return event.toString();
+        return event;
     }
 
     @Override

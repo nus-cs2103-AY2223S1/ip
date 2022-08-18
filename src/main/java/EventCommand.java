@@ -13,6 +13,6 @@ public class EventCommand extends Command {
     public void execute(Storage storage, TaskList taskList, Ui ui) {
         ui.printAddTask(taskList.addEvent(this.description, this.at));
         ui.printSizeOfList(taskList.size());
-        storage.saveLocalData(taskList.stringify());
+        storage.save(taskList.getTasks());
     }
 }

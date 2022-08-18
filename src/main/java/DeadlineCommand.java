@@ -13,6 +13,6 @@ public class DeadlineCommand extends Command {
     public void execute(Storage storage, TaskList taskList, Ui ui) {
         ui.printAddTask(taskList.addDeadline(this.description, this.by));
         ui.printSizeOfList(taskList.size());
-        storage.saveLocalData(taskList.stringify());
+        storage.save(taskList.getTasks());
     }
 }

@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
     private LocalDate by;
@@ -8,11 +9,13 @@ public class Deadline extends Task {
         this.by = by;
     }
 
+    public Deadline(String description, boolean isDone, LocalDate by) {
+        super(description, isDone);
+        this.by = by;
+    }
+
     private String printDate() {
-        return String.format("%s %d %d",
-                this.by.getMonth().toString().substring(0, 3),
-                this.by.getDayOfMonth(),
-                this.by.getYear());
+        return DateTimeFormatter.ofPattern("MMM dd yyyy").format(by);
     }
 
     @Override

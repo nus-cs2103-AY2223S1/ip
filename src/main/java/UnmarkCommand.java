@@ -9,7 +9,7 @@ public class UnmarkCommand extends Command {
     public void execute(Storage storage, TaskList taskList, Ui ui) {
         try {
             ui.printUnmarkTask(taskList.unmarkTask(index - 1));
-            storage.saveLocalData(taskList.stringify());
+            storage.save(taskList.getTasks());
         } catch (DukeException e) {
             ui.printErrorMessage(e.getMessage());
         }

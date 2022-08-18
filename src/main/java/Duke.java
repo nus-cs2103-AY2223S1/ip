@@ -7,7 +7,7 @@ public class Duke {
         try {
             this.ui = new Ui();
             this.storage = new Storage(filePath);
-            this.taskList = new TaskList(this.storage.loadLocalData());
+            this.taskList = new TaskList(this.storage.load());
         } catch (DukeException e) {
             this.ui.printErrorMessage(e.getMessage());
             this.taskList = new TaskList();
@@ -22,7 +22,7 @@ public class Duke {
                 String userInput = this.ui.read();
                 Command command = Parser.parseInput(userInput);
                 command.execute(this.storage, this.taskList, this.ui);
-                isExit = command.getExit();
+                isExit = command.isExit();
             } catch (DukeException e) {
                 this.ui.printErrorMessage(e.getMessage());
             }

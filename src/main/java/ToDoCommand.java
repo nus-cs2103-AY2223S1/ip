@@ -9,6 +9,6 @@ public class ToDoCommand extends Command {
     public void execute(Storage storage, TaskList taskList, Ui ui) {
         ui.printAddTask(taskList.addToDo(this.description));
         ui.printSizeOfList(taskList.size());
-        storage.saveLocalData(taskList.stringify());
+        storage.save(taskList.getTasks());
     }
 }

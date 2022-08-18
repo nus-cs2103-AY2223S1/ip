@@ -39,26 +39,22 @@ public class Ui {
         System.out.println(String.format("Now you have %d tasks in the list.", size));
     }
 
-    public void printTask(String task) {
-        System.out.println(task);
-    }
-
-    public void printMarkTask(String task) {
+    public void printMarkTask(Task task) {
         System.out.println("Nice! I've marked this task as done:");
         printTask(task);
     }
 
-    public void printUnmarkTask(String task) {
+    public void printUnmarkTask(Task task) {
         System.out.println("OK, I've marked this task as not done yet:");
         printTask(task);
     }
 
-    public void printDeleteTask(String task) {
+    public void printDeleteTask(Task task) {
         System.out.println("Noted. I've removed this task:");
         printTask(task);
     }
 
-    public void printAddTask(String task) {
+    public void printAddTask(Task task) {
         System.out.println("Got it. I've added this task:");
         printTask(task);
     }
@@ -67,7 +63,7 @@ public class Ui {
         System.out.println(message);
     }
 
-    public void showLoadingError() {
-        System.out.println("Unable to load saved file.");
+    private void printTask(Task task) {
+        System.out.println(task);
     }
 }
