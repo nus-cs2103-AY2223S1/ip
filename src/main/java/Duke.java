@@ -49,6 +49,21 @@ public class Duke {
                     } catch (NumberFormatException nfe) {
                         throw new DukeNumberFormatException();
                     }
+                } else if (command.startsWith("delete")) {
+                    String[] splitCommand = command.split("\\s+",2);
+                    if (!splitCommand[0].equals("delete")) {
+                        throw new DukeInvalidCommandException(splitCommand[0]);
+                    }
+                    if (splitCommand.length < 2) {
+                        throw new DukeEmptyDescriptionException("delete");
+                    }
+                    try {
+                        String deleteItem = splitCommand[1];
+                        int itemNumber = Integer.parseInt(deleteItem);
+                        delete(itemNumber);
+                    } catch (NumberFormatException nfe) {
+                        throw new DukeNumberFormatException();
+                    }
                 } else if (command.startsWith("todo")) {
                     String[] splitCommand = command.split("\\s+",2);
                     if (!splitCommand[0].equals("todo")) {
@@ -162,6 +177,21 @@ public class Duke {
         System.out.println(unmarkMessage);
         System.out.println(INDENTATION + unmarkedTask.toString());
         displayLine();
+    }
+
+    private static void delete(int itemNumber) throws DukeException {
+        int listLen = taskList.size();
+        if (itemNumber < 1 || itemNumber > listLen) {
+            throw new DukeOutOfBoundsException(1, listLen);
+        }
+        int index = itemNumber - 1;
+        Task deleteTask = taskList.get(index);
+        displayLine();
+        String deleteMessage = INDENTATION + "Noted. I've removed this task:";
+        System.out.println(deleteMessage);
+        System.out.println(INDENTATION + deleteTask.toString());
+        displayLine();
+        taskList.remove(index);
     }
 
     private static void displayAddTask(Task taskAdded) {
