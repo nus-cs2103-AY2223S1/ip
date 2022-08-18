@@ -73,10 +73,15 @@ public class Duke {
                 }
                 case "deadline": {
                     if (hasArgument) {
-                        Deadline deadline = new Deadline(argument);
-                        tasks[numTasks++] = deadline;
-                        System.out.println("Got it, I've added this deadline:");
-                        System.out.println(deadline);
+                        try {
+                            Deadline deadline = new Deadline(argument);
+                            tasks[numTasks++] = deadline;
+                            System.out.println("Got it, I've added this deadline:");
+                            System.out.println(deadline);
+                        } catch (InvalidTaskFormatException e) {
+                            System.out.printf("Sorry, I could not create the deadline '%s'.%n", argument);
+                            System.out.println(e.getMessage());
+                        }
                     } else {
                         System.out.println("Sorry, I will need a description for the deadline.");
                     }
@@ -84,10 +89,15 @@ public class Duke {
                 }
                 case "event": {
                     if (hasArgument) {
-                        Event event = new Event(argument);
-                        tasks[numTasks++] = event;
-                        System.out.println("Got it, I've added this event:");
-                        System.out.println(event);
+                        try {
+                            Event event = new Event(argument);
+                            tasks[numTasks++] = event;
+                            System.out.println("Got it, I've added this event:");
+                            System.out.println(event);
+                        } catch (InvalidTaskFormatException e) {
+                            System.out.printf("Sorry, I could not create the event '%s'.%n", argument);
+                            System.out.println(e.getMessage());
+                        }
                     } else {
                         System.out.println("Sorry, I will need a description for the event.");
                     }

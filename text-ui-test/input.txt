@@ -13,4 +13,6 @@ todo
 deadline
 event
 randomness
+deadline No end time
+event No time
 bye

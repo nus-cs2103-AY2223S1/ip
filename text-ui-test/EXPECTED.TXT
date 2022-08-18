@@ -33,4 +33,8 @@ Sorry, I will need a description for the to-do.
 Sorry, I will need a description for the deadline.
 Sorry, I will need a description for the event.
 Sorry, I don't understand what randomness means. :/
+Sorry, I could not create the deadline 'No end time'.
+No end time was provided for this deadline.
+Sorry, I could not create the event 'No time'.
+No time was provided for this event.
 Ok, see you next time!

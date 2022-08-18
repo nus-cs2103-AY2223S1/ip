@@ -3,17 +3,21 @@ public class Deadline extends Task {
 
     private final String endTime;
 
-    public Deadline(String userInput) {
+    public Deadline(String userInput) throws InvalidTaskFormatException {
         super(extractDescription(userInput));
         this.endTime = extractEndTime(userInput);
     }
 
     private static String extractDescription(String userInput) {
-        return userInput.split(END_TIME_SEPARATOR)[0];
+        return userInput.split(END_TIME_SEPARATOR, 2)[0];
     }
 
-    private static String extractEndTime(String userInput) {
-        return userInput.split(END_TIME_SEPARATOR)[1];
+    private static String extractEndTime(String userInput) throws InvalidTaskFormatException {
+        String[] splitUserInput = userInput.split(END_TIME_SEPARATOR, 2);
+        if (splitUserInput.length < 2) {
+            throw new InvalidTaskFormatException("No end time was provided for this deadline.");
+        }
+        return splitUserInput[1];
     }
 
     @Override
