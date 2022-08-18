@@ -16,10 +16,14 @@ public class Duke {
     void run() {
         System.out.println(intro);
         System.out.println(divider);
-        checkInput(s.nextLine());
+        try {
+            checkInput(s.nextLine());
+        } catch (DukeException e) {
+            System.out.println(divider + "\n" + e.getMessage());
+        }
     }
 
-    void checkInput(String inputString) {
+    void checkInput(String inputString) throws DukeException {
         String[] input = inputString.split(" ");
         String output = "";
         if (input[0].equals("bye")) {
