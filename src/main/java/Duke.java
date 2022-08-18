@@ -9,7 +9,11 @@ public class Duke {
     private static final String EXIT_COMMAND_STRING = "bye";
     private static final String DISPLAY_LIST_COMMAND_STRING = "list";
     private static final String MARK_DONE_COMMAND_STRING = "mark";
+    private static final String MARK_DONE_OUTPUT_STRING = "Good to hear that! I have marked this as done: ";
+    private static final String MARK_DONE_ERROR_STRING = "Oops! Do check the index range, and the format should be \"mark <index>\"";
     private static final String MARK_UNDONE_COMMAND_STRING = "unmark";
+    private static final String MARK_UNDONE_OUTPUT_STRING = "Sure, I have marked this as not done yet";
+    private static final String MARK_UNDONE_ERROR_STRING = "Oops! Do check the index range, and the format should be \"unmark <index>\"";
 
 
     private CommandParser commandParser;
@@ -42,7 +46,7 @@ public class Duke {
         return stringBuilder.toString();
     }
 
-    private String getOutputForNewTask(String taskTitle) {
+    private String addNewTask(String taskTitle) {
         taskList.add(new Task(taskTitle));
         return "added: " + taskTitle;
     }
@@ -79,26 +83,34 @@ public class Duke {
         return taskIndex;
     }
 
-    private void markTaskDone(int index) {
+    private String markTaskDone(int index) {
         if (index < 0 || index >= taskList.size()) {
-            System.out.println(); // error message
+            return MARK_DONE_ERROR_STRING; // error message
         } else {
-            taskList.get(index).markDone();
+            Task targetTask = taskList.get(index);
+            targetTask.markDone();
+            return MARK_DONE_OUTPUT_STRING
+                    + "\n    "
+                    + targetTask;
         }
     }
 
-    private void markTaskUndone(int index) {
+    private String markTaskUndone(int index) {
         if (index < 0 || index >= taskList.size()) {
-            System.out.println(); // error message
+            return MARK_UNDONE_ERROR_STRING; // error message
         } else {
-            taskList.get(index).markUndone();
+            Task targetTask = taskList.get(index);
+            targetTask.markUndone();
+            return MARK_UNDONE_OUTPUT_STRING
+                    + "\n    "
+                    + targetTask;
         }
     }
 
     private void standBy() {
         Scanner scanner = new Scanner(System.in);
         boolean quited = false;
-        String output;
+        String output = "";
 
         while (!quited) {
             String nextLine = scanner.nextLine();
@@ -106,37 +118,41 @@ public class Duke {
                 continue;
             }
 
-            boolean commandFetched = false;
+            boolean commandFetched = true;
 
             String firstWord = getFirstWord(nextLine);
             switch (firstWord) {
             case (MARK_DONE_COMMAND_STRING):
                 int index = getTaskIndexForMarking(nextLine);
-                markTaskDone(index);
+                output = markTaskDone(index);
                 break;
 
             case (MARK_UNDONE_COMMAND_STRING):
                 index = getTaskIndexForMarking(nextLine);
-                markTaskUndone(index);
+                output = markTaskUndone(index);
                 break;
 
             default:
+                commandFetched = false;
                 break;
             }
 
-            switch (nextLine) {
-            case (EXIT_COMMAND_STRING):
-                output = EXIT_OUTPUT_STRING;
-                quited = true;
-                break;
+            if (!commandFetched) {
+                switch (nextLine) {
+                case (EXIT_COMMAND_STRING):
+                    output = EXIT_OUTPUT_STRING;
+                    quited = true;
+                    break;
 
-            case (DISPLAY_LIST_COMMAND_STRING):
-                output = getListInfo();
-                break;
+                case (DISPLAY_LIST_COMMAND_STRING):
+                    output = getListInfo();
+                    break;
 
-            default:
-                output = getOutputForNewTask(nextLine);
-                break;
+                default:
+                    output = addNewTask(nextLine);
+                    commandFetched = false;
+                    break;
+                }
             }
 
             System.out.println(OutputFormatter.formatOutput(output));

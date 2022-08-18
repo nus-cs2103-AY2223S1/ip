@@ -18,4 +18,13 @@ public class Task {
     void markUndone() {
         done = true;
     }
+
+    @Override
+    public String toString() {
+        return "["
+                + (done ? "X" : " ")
+                + "]"
+                + " "
+                + taskTitle;
+    }
 }
