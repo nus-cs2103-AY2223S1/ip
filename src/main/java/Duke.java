@@ -22,8 +22,13 @@ public class Duke {
                 this.num = num;
             }
 
+            public String toString() {
+                return this.getStatusIcon() + this.description;
+
+            }
+
             public String getStatusIcon() {
-                return (isDone ? "[X] " : "[ ] "); // mark done task with X
+                return (isDone ? "[X]" : "[ ]"); // mark done task with X
             }
 
             public void mark() {
@@ -35,6 +40,45 @@ public class Duke {
             }
 
         }
+        class Deadline extends Task {
+            protected String by;
+            public Deadline(String description,int num,String by) {
+                super(description,num);
+                this.by = by;
+            }
+
+            @Override
+            public String toString() {
+                return "[D]" + super.toString() + " (by: " + by + ")";
+            }
+
+        }
+        class ToDos extends Task {
+
+            public ToDos(String description,int num) {
+                super(description,num);
+            }
+
+            @Override
+            public String toString() {
+                return "[T]" + super.toString();
+            }
+
+        }
+
+        class Events extends Task {
+            protected String at;
+            public Events(String description,int num,String at) {
+                super(description,num);
+                this.at = at;
+            }
+
+            @Override
+            public String toString() {
+                return "[E]" + super.toString() + " (at: " + at + ")";
+            }
+
+        }
 
         Task[] lst = new Task[100];
         int i = 0;
@@ -42,6 +86,8 @@ public class Duke {
 
         while(true) {
            String str = help.nextLine();
+            String first = str.split(" ")[0];
+
            if (str.equals("bye")) {
                System.out.println("Bye see you again buddy !");
                break;
@@ -50,29 +96,54 @@ public class Duke {
                System.out.println("This is your tasks in your list: \n");
                for (Task item : lst) {
                    if (item != null)
-                       System.out.println(item.num + "." + item.getStatusIcon() + item.description);
+                       System.out.println(item.num + "." + item);
                }
            }
-           else if (str.split(" ")[0].equals("mark") ) {
+
+
+           else if (first.equals("mark") ) {
                Task current = lst[Integer.parseInt(str.split(" ")[1]) - 1];
                System.out.println("Nice I have marked this as done:");
                current.mark();
-               System.out.println(current.getStatusIcon() + " " + current.description);
+               System.out.println( " " + current);
 
            }
-           else if (str.split(" ")[0].equals("unmark") ) {
+           else if (str.split(" ")[1].equals("unmark") ) {
                Task current = lst[Integer.parseInt(str.split(" ")[1]) - 1];
                System.out.println("Ok I have marked this as still to be done:");
                current.unmark();
-               System.out.println(current.getStatusIcon() + " " + current.description);
-
+               System.out.println(" " + current);
 
            }
-           else {
-               lst[i] = new Task(str,i+1);
-               i++;
-               System.out.println("added: " + str);
 
+           else {
+               if (first.equals("deadline")) {
+                   System.out.println("Got it.I've added this task");
+                   String currD = str.substring(str.indexOf("deadline") + 8, str.indexOf("/by"));
+                   lst[i] = new Deadline(currD, i + 1, str.substring(str.indexOf("/by") + 3));
+                   System.out.println(lst[i]);
+                   i++;
+                   System.out.println("Now you have" + " " + i + " " + "tasks in list");
+               } else if (first.equals("event")) {
+                   System.out.println("Got it.I've added this task");
+                   String currE = str.substring(str.indexOf("event") + 5, str.indexOf("/at"));
+                   lst[i] = new Events(currE, i + 1, str.substring(str.indexOf("/at") + 3));
+                   System.out.println(lst[i]);
+                   i++;
+                   System.out.println("Now you have" + " " + i + " " + "tasks in list");
+               }
+               else if (first.equals("todo")) {
+                   System.out.println("Got it.I've added this task");
+                   String currT = str.substring(str.indexOf("todo") + 4);
+                   lst[i] = new ToDos(currT, i + 1);
+                   System.out.println(lst[i]);
+                   i++;
+                   System.out.println("Now you have" + " " + i + " " + "tasks in list");
+               } else {
+                   lst[i] = new Task(str, i + 1);
+                   i++;
+                   System.out.println("added: " + str);
+               }
            }
 
        }
