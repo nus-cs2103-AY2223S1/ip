@@ -57,6 +57,14 @@ public class Duke {
                     throw new DukeMissingInputException(args[0]);
                 }
                 break;
+            case "delete":
+                try {
+                    listDelete(args[1]);
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    throw new DukeMissingInputException(args[0]);
+                }
+                break;
+            // mark is implemented as a toggle. note this.
             case "mark":
                 try {
                     listToggle(args[1]);
@@ -78,10 +86,6 @@ public class Duke {
         System.out.println(DIVIDER + "Bye. Hope to see you again soon!\n" + DIVIDER);
     }
 
-    private static void confuse() {
-        System.out.println(DIVIDER + "I'm sorry, I don't understand :(\n" + DIVIDER);
-    }
-
     private void list() {
         if (tasks.isEmpty()) {
             System.out.println(DIVIDER + "List is empty\n" + DIVIDER);
@@ -95,7 +99,7 @@ public class Duke {
     }
 
     // atodo, deadline and event breaks if no input is entered after each command (1 for atodo, 2 for others)
-    // tod0 creates an empty task if no input after command (unresolved)
+    // atodo creates an empty task if no input after command (unresolved)
     private void listAdd(String type, String item) throws DukeException {
         Task currTask;
         String[] args;
@@ -138,23 +142,41 @@ public class Duke {
     }
 
     // breaks if no input is entered after mark, or input isn't int, or index out of range
+    private void listDelete(String indexString) throws DukeException {
+        int index = 0;
+        try {
+            index = Integer.parseInt(indexString) - 1;
+        } catch (NumberFormatException e) {
+            throw new DukeWrongInputException("delete");
+        }
+        if (index >= tasks.size() || index < 0) {
+            throw new DukeListOOBException(index + 1);
+        }
+        Task currTask = tasks.remove(index);
+        System.out.println(DIVIDER + "OK, I've removed this task:\n"
+                    + "  " + currTask + "\n"
+                    + "Number of tasks in list: " + tasks.size() + "\n"
+                    + DIVIDER);
+    }
+
+    // breaks if no input is entered after mark, or input isn't int, or index out of range
     private void listToggle(String indexString) throws DukeException{
         int index = 0;
         try {
-            index = Integer.parseInt(indexString);
+            index = Integer.parseInt(indexString) - 1;
         } catch (NumberFormatException e) {
             throw new DukeWrongInputException("mark");
         }
         if (index >= tasks.size() || index < 0) {
-            throw new DukeListOOBException(index);
+            throw new DukeListOOBException(index + 1);
         }
-        Task currTask = tasks.get(index-1);
+        Task currTask = tasks.get(index);
         if(currTask.completeToggle()) {
             System.out.println(DIVIDER + "Nice! I've marked this task as done:\n"
-                    + currTask + "\n" + DIVIDER);
+                    + "  " + currTask + "\n" + DIVIDER);
         } else {
             System.out.println(DIVIDER + "OK, I've marked this task as not done yet:\n"
-                    + currTask + "\n" + DIVIDER);
+                    + "  " + currTask + "\n" + DIVIDER);
         }
     }
 
