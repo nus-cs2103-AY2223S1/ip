@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BobTheBot {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DukeException {
         ToDoList list = new ToDoList();
         System.out.println("Hello! I am Bob the Bot, your friendly task manager! \n" +
                            "What can I help you with?");
