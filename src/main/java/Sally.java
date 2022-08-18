@@ -6,7 +6,7 @@ public class Sally {
 
     public static void main(String[] args) {
         border();
-        System.out.println("Hello! I'm Sally \uD83D\uDE04");
+        System.out.println("Hello! I'm Sally");
         System.out.println("What can I do for you?");
         border();
         messaging();
@@ -81,15 +81,27 @@ public class Sally {
                 list.add(new ToDo(description));
             }
             //Deadlines
-            else if (message.startsWith("deadline ") && message.contains(" /by ")) {
-                String description = message.substring(9, message.indexOf("/by") - 1);
-                String by = message.substring(message.indexOf("/by") + 4);
+            else if (message.startsWith("deadline ")) {
+                String description, by;
+                if (message.contains(" /by ")) {
+                    description = message.substring(9, message.indexOf("/by") - 1);
+                    by = message.substring(message.indexOf("/by") + 4);
+                } else {
+                    description = message.substring(9);
+                    by = "-";
+                }
                 list.add(new Deadline(description, by));
             }
             //Events
             else if (message.startsWith("event ") && message.contains( "/at ")) {
-                String description = message.substring(6, message.indexOf("/at") - 1);
-                String at = message.substring(message.indexOf("/at") + 4);
+                String description, at;
+                if (message.contains("/at ")) {
+                    description = message.substring(6, message.indexOf("/at") - 1);
+                    at = message.substring(message.indexOf("/at") + 4);
+                } else {
+                    description = message.substring(6);
+                    at = "-";
+                }
                 list.add(new Event(description, at));
             }
 
