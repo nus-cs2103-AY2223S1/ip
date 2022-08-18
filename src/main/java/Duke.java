@@ -37,11 +37,29 @@ public class Duke {
                 System.out.println("     [ ] " + store.get(taskNo - 1).getTask());
                 input = sc.next();
             } else {
-                Task curr = new Task(input + sc.nextLine());
-                store.add(curr);
-                System.out.println("    " + " added: " + curr.getTask());
-                System.out.println("    ____________________________________________________________\n");
-                input = sc.next();
+                if (input.equals("todo")) {
+                    Task curr = new Todo(input + sc.nextLine());
+                    store.add(curr);
+                    System.out.println("    " + " added: " + curr);
+                    System.out.println("    ____________________________________________________________\n");
+                    input = sc.next();
+                } else if (input.equals("deadline")) {
+                    String task = sc.next();
+                    while (!sc.hasNext("/by")) {
+                        task += " " + sc.next();
+                    }
+                    sc.next();
+                    Task curr = new Deadline(task, sc.nextLine());
+                    store.add(curr);
+                    System.out.println("     Got it. I've added this task:");
+                    System.out.println("        [" + curr.);
+                    System.out.println("     Now you have 6 tasks in the list.");
+                    System.out.println("    ____________________________________________________________\n");
+                    input = sc.next();
+                } else {
+
+                }
+
             }
         }
         System.out.println("    ____________________________________________________________");
