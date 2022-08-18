@@ -19,11 +19,11 @@ public class Duke {
 
     /**
      * Marks the task as completed via the index of the task on the
-     * arraylist. The method throws an ArrayIndexOutOfBoundsException if the
+     * arraylist. The method throws a DukeException if the
      * task is found to be non-existent.
      * @param parts
      * @param inputList
-     * @throws ArrayIndexOutOfBoundsException
+     * @throws DukeException thrown if there is no such task.
      */
     public static void markTask(String[] parts, ArrayList<Task> inputList) throws DukeException {
         if (parts.length == 1) {
@@ -37,6 +37,13 @@ public class Duke {
         }
     }
 
+    /**
+     * Removes the task from the arraylist. The method throws a DukeException if the
+     * task is found to be non-existent.
+     * @param parts
+     * @param inputList
+     * @throws DukeException thrown if there is no such task.
+     */
      public static void deleteTask(String[] parts, ArrayList<Task> inputList) throws DukeException {
         if (parts.length == 1) {
             throw new DukeException("Please specify the index of the task (i.e. delete 2).");
