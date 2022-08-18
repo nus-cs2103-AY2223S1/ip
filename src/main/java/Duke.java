@@ -19,12 +19,8 @@ public class Duke {
                 switch (text) {
                     //Handle case when task aTodo
                     case "todo" :
-                        try {
-                            String tDescription = input.nextLine();
-                            duke.printTodo(tDescription);
-                        } catch (DukeException dE) {
-                            System.out.println("Caught Exception is " + dE);
-                        }
+                        String tDescription = input.nextLine();
+                        duke.printTodo(tDescription);
                         break;
 
                     //Handle case when task is a deadline
@@ -54,12 +50,7 @@ public class Duke {
                     case "mark": {
                         //-1 to get index in 0 indexing
                         int index = input.nextInt() - 1;
-                        try {
-                            duke.markTask(index);
-                        } catch (DukeException dE) {
-                            System.out.println("Caught Exception is " + dE);
-                        }
-
+                        duke.markTask(index);
                         break;
                     }
 
@@ -67,11 +58,7 @@ public class Duke {
                     case "unmark": {
                         //-1 to get index in 0 indexing
                         int index = input.nextInt() - 1;
-                        try {
-                            duke.unmarkTask(index);
-                        } catch (DukeException dE) {
-                            System.out.println("Caught Exception is " + dE);
-                        }
+                        duke.unmarkTask(index);
                         break;
                     }
 
@@ -79,20 +66,18 @@ public class Duke {
                     case "delete": {
                         //-1 to get in 0 indexing
                         int index = input.nextInt() - 1;
-                        try {
-                            duke.deleteTask(index);
-                        } catch (DukeException dE) {
-                            System.out.println("Caught Exception is " + dE);
-                        }
+                        duke.deleteTask(index);
                         break;
                     }
 
                     //Default case: Not any of the tasks(aTodo, Deadline, Event) and hence, throws an Exception
                     default:
+                        //To handle any extra words the user keyed in
+                        input.nextLine();
                         throw new DukeException("OOPS! I'm sorry, but I don't know what that means :-(");
                 }
             } catch (DukeException dE) {
-                System.out.println("Caught Exception is " + dE);
+                System.out.println(dE);
             }
             text = input.next();
         }
