@@ -19,6 +19,23 @@ public class Duke {
         System.out.println("Now you have " + tasks.size() + " tasks in your list.");
     }
 
+    public static void removeTask(int taskIndex) throws DukeException {
+        if (taskIndex < 0 || taskIndex >= tasks.size())
+            throw new DukeException("Please enter a valid task number!");
+        Task task = tasks.remove(taskIndex);
+        System.out.println("Noted. I've removed this task:");
+        System.out.println("\t" + task);
+    }
+
+    public static void changeTaskStatus(int taskIndex, boolean isDone) throws DukeException {
+        if (taskIndex < 0 || taskIndex >= tasks.size())
+            throw new DukeException("Please enter a valid task number!");
+        if (isDone)
+            tasks.get(taskIndex).markAsDone();
+        else
+            tasks.get(taskIndex).markAsNotDone();
+    }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         boolean hasNextInput = true;
@@ -47,15 +64,15 @@ public class Duke {
                         break;
                     case "mark":
                         taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
-                        if (taskIndex < 0 || taskIndex >= tasks.size())
-                            throw new DukeException("Please enter a valid task number!");
-                        tasks.get(Integer.parseInt(input.split(" ")[1]) - 1).markAsDone();
+                        changeTaskStatus(taskIndex, true);
                         break;
                     case "unmark":
                         taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
-                        if (taskIndex < 0 || taskIndex >= tasks.size())
-                            throw new DukeException("Please enter a valid task number!");
-                        tasks.get(Integer.parseInt(input.split(" ")[1]) - 1).markAsNotDone();
+                        changeTaskStatus(taskIndex, false);
+                        break;
+                    case "delete":
+                        taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
+                        removeTask(taskIndex);
                         break;
                     default:
                         addTask(Task.createTask(input));
