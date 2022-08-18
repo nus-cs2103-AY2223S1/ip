@@ -2,3 +2,71 @@ OMG HII! I am Floren! What can I do for you?
 
 Your list is empty. Try adding what you wanna do!
 
+Got it! I've added this task:
+[D][ ] submit cs2103t (by: tonight)
+You have 1 tasks in the list.
+
+Got it! I've added this task:
+[E][ ] ambassador meeting (at: 9 pm)
+You have 2 tasks in the list.
+
+Got it! I've added this task:
+[T][ ] read book
+You have 3 tasks in the list.
+
+Got it! I've added this task:
+[T][ ] watch lecture
+You have 4 tasks in the list.
+
+I blah don't blah know blah ... blah ... zzz
+
+1. [D][ ] submit cs2103t (by: tonight)
+
+2. [E][ ] ambassador meeting (at: 9 pm)
+
+3. [T][ ] read book
+
+4. [T][ ] watch lecture
+
+Congrats on completing this task!
+[D][X] submit cs2103t (by: tonight)
+
+Got it. I've unmarked this task for you ;)
+[E][ ] ambassador meeting (at: 9 pm)
+
+Congrats on completing this task!
+[T][X] read book
+
+Yay, successfully removed this unwanted task :P
+[T][X] read book
+Remaining 3 tasks in the list.
+
+Need more details for your deadline!
+
+Need more details for your todo!
+
+Need more details for your event!
+
+Need more details for your mark!
+
+Need more details for your delete!
+
+1. [D][X] submit cs2103t (by: tonight)
+
+2. [E][ ] ambassador meeting (at: 9 pm)
+
+3. [T][ ] watch lecture
+
+You do not have that task. Try seeing your task list instead!
+
+You do not have that task. Try seeing your task list instead!
+
+You do not have that task. Try seeing your task list instead!
+
+1. [D][X] submit cs2103t (by: tonight)
+
+2. [E][ ] ambassador meeting (at: 9 pm)
+
+3. [T][ ] watch lecture
+
+Hiks. I'm sad, but see you again!!

@@ -1,5 +1,4 @@
 list
-todo make bed
 deadline submit cs2103t /by tonight
 event ambassador meeting /at 9 pm
 todo read book

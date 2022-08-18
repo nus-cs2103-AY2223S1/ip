@@ -105,7 +105,6 @@ public class Duke {
                     System.out.println(invalidTask.getMessage());
                 }
             }
-        sc = new Scanner(System.in);
         command = sc.nextLine();
     }
 
