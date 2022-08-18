@@ -1,11 +1,13 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
-    //    private static String LINE_BREAK = "-------------------------------------------------";
     private final Scanner sc;
     private String input;
-    private Task[] tasks = new Task[100];
-    private int taskIndex = 0;
+
+    private List<Task> tasks = new ArrayList<>();
+//    private int taskIndex = 0;
 
     public Duke(Scanner sc) {
         this.sc = sc;
@@ -66,6 +68,11 @@ public class Duke {
                         echoTask(event);
                         break;
                     }
+                    case "delete": {
+                        int index = sc.nextInt();
+                        delete(index);
+                        break;
+                    }
                     default:
                         throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
@@ -78,34 +85,31 @@ public class Duke {
 }
 
     private void exit() {
-        System.out.println("Bye. Hope to see you again soon!");
+        dukeReply("Bye. Hope to see you again soon!");
     }
 
-//    private void echo() {
-//        System.out.println(LINE_BREAK + "\n\t added: " + input + "\n" + LINE_BREAK);
-//    }
-
     private void echoTask(Task task) {
-        dukeReply("Got it. I've added this task: \n  " + task + "\nNow you have " + taskIndex + " task(s) in the list.");
+        int size = tasks.size();
+        dukeReply("Got it. I've added this task: \n  " + task + "\nNow you have " + size + " task(s) in the list.");
     }
 
     private void printList() {
         String message = "Here are the tasks in your list:";
-        for (int i = 0; i < taskIndex; i++) {
-            Task curTask = tasks[i];
+        for (int i = 0; i < tasks.size(); i++) {
+            Task curTask = tasks.get(i);
             message +="\n" + (i + 1) + ". " + curTask;
         }
         dukeReply(message);
     }
 
     private void mark(int i) {
-        Task curTask = tasks[i - 1];
+        Task curTask = tasks.get(i - 1);
         curTask.markAsDone();
         dukeReply("Nice! I've marked this task as done: \n  " + curTask);
     }
 
     private void unmark(int i) {
-        Task curTask = tasks[i - 1];
+        Task curTask = tasks.get(i - 1);
         curTask.markAsUndone();
         dukeReply("OK, I've marked this task as not done yet: \n  " + curTask);
     }
@@ -130,8 +134,17 @@ public class Duke {
     }
 
     private void addTask(Task task) {
-        tasks[taskIndex] = task;
-        taskIndex++;
+        tasks.add(task);
+    }
+
+    private void delete(int i) throws DukeException {
+        int size = tasks.size();
+        if (i < 0 || i > size) {
+            throw new DukeException("☹ OOPS!!! Please enter a valid task number.");
+        } else {
+            Task taskToDelete = tasks.remove(i - 1);
+            dukeReply("Noted. I've removed this task:\n  " + taskToDelete +"\nNow you have " + tasks.size() + " task(s) in the list." );
+        }
     }
 
     public static void main(String[] args) throws DukeException {
