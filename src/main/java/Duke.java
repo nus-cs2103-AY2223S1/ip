@@ -3,6 +3,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
+
+    private enum TaskType {
+        EVENT, DEADLINE, TODO
+    }
     private static List<Task> items = new ArrayList<>();
     // private static int id;
 
@@ -41,6 +45,8 @@ public class Duke {
                     t.markAsDone();
                     Duke.echo("Nice! I've marked this task as done:\n" +
                             "\t  " + t);
+                } else {
+                    Duke.echo("Please enter an integer within range.");
                 }
             } catch (NumberFormatException e) {
                 Duke.echo("Please enter an integer id after \"mark\"");
@@ -57,6 +63,8 @@ public class Duke {
                     t.markAsUndone();
                     Duke.echo("OK! I've marked this task as not done yet:\n" +
                             "\t  " + t);
+                } else {
+                    Duke.echo("Please enter an integer within range.");
                 }
             } catch (NumberFormatException e) {
                 Duke.echo("Please enter an integer id after \"ummark\"");
@@ -74,6 +82,8 @@ public class Duke {
                     Duke.echo("Noted. I've removed this task:\n" +
                             "\t  " + t + "\n\tNow you have " + (items.size())
                             + (items.size() == 1 ? " task" : " tasks") + " in the list.");
+                } else {
+                    Duke.echo("Please enter an integer within range.");
                 }
             } catch (NumberFormatException e) {
                 Duke.echo("Please enter an integer id after \"delete\"");
@@ -83,7 +93,7 @@ public class Duke {
                 throw new DukeException("Error. The description of a todo cannot be empty.");
             }
             String todo = s.substring(4).trim();
-            Duke.add(todo, "todo", "");
+            Duke.add(todo, TaskType.TODO, "");
         } else if (arr[0].equals("deadline")) {
             String[] deadlineBy = s.substring(8).trim().split("/by");
             if (deadlineBy.length <= 1) {
@@ -92,7 +102,7 @@ public class Duke {
             }
             String deadline = deadlineBy[0].trim();
             String by = deadlineBy[1].trim();
-            Duke.add(deadline, "deadline", by);
+            Duke.add(deadline, TaskType.DEADLINE, by);
         } else if (arr[0].equals("event")) {
             String[] eventAt = s.substring(5).trim().split("/at");
             if (eventAt.length <= 1) {
@@ -101,7 +111,7 @@ public class Duke {
             }
             String event = eventAt[0].trim();
             String at = eventAt[1].trim();
-            Duke.add(event, "event", at);
+            Duke.add(event, TaskType.EVENT, at);
         }  else {
             throw new DukeException("Error. Sorry, but I don't know what that means.");
         }
@@ -114,20 +124,20 @@ public class Duke {
         System.out.println();
     }
 
-    private static void add(String description, String type, String remarks) {
+    private static void add(String description, TaskType type, String remarks) {
         String s = "Got it. I've added this task:\n\t";
         switch (type) {
-            case "todo":
+            case TODO:
                 Todo t = new Todo(description);
                 Duke.items.add(t);
                 s = s + "  " + t;
                 break;
-            case "deadline":
+            case DEADLINE:
                 Deadline d = new Deadline(description, remarks);
                 Duke.items.add(d);
                 s = s + "  " + d;
                 break;
-            case "event":
+            case EVENT:
                 Event e = new Event(description, remarks);
                 Duke.items.add(e);
                 s = s + "  " + e;
