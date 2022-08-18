@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -20,6 +21,7 @@ public class Duke {
        task.toggleStatus();
     }
 
+
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -36,6 +38,10 @@ public class Duke {
             String input = scanner.nextLine();
             String arr[] = input.split(" ");
             String command = arr[0];
+            String description;
+            int startIndex;
+            String deadline;
+            Task task;
             switch (command) {
                 case "Bye":
                     System.out.println("Bye. Hope to see you again soon");
@@ -55,9 +61,25 @@ public class Duke {
                     System.out.println("Sadge u are not done :( \n" + todo.get(indexToUnmark).formatTask());
 
                     break;
+                case "todo":
+                    description = String.join(" ", Arrays.copyOfRange(arr, 1, arr.length - 1));
+                    task = new Task(description);
+                    todo.add(task);
+                    System.out.println(String.format("Got it. I'hv added this task: \n   %s", task.formatTask()));
+                    break;
+
+                case "deadline":
+                case "event":
+                    startIndex = Arrays.asList(arr).indexOf(command.equals("deadline") ? "/by" : "/at");
+                    description = String.join(" ", Arrays.copyOfRange(arr, 1, startIndex - 1));
+                    deadline = String.join(" ", Arrays.copyOfRange(arr, startIndex + 1, arr.length));
+                    task = command.equals("deadline") ? new Deadline(description, deadline) : new Event(description, deadline);
+                    todo.add(task);
+                    System.out.println(String.format("Got it. I'hv added this task: \n   %s", task.formatTask()));
+                    break;
+
                 default:
-                    todo.add(new Task(command));
-                    System.out.println("added: " + command);
+                    System.out.println(String.format("Now you have %d task in the list", todo.size()));
             }
         }
 
