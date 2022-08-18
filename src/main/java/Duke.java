@@ -2,6 +2,8 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Duke {
+    protected static ArrayList<Task> list = new ArrayList<>();
+
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -19,7 +21,6 @@ public class Duke {
         System.out.println(greeting);
         System.out.println(endLine);
 
-        ArrayList<Task> list = new ArrayList<>();
         Scanner dukeSc = new Scanner(System.in);
 
         while (true) {
@@ -36,7 +37,7 @@ public class Duke {
                     System.out.println(i+1 + ". " + list.get(i));
                 }
                 System.out.println(endLine);
-            } else if (input.startsWith("mark ") | input.startsWith("unmark ")) {
+            } else if (input.startsWith("mark ") || input.startsWith("unmark ")) {
                 try {
                     if (input.startsWith("mark ")) {
                         // Parse substring starting from index 5
@@ -59,10 +60,29 @@ public class Duke {
                 } finally {
                     System.out.println(endLine);
                 }
+            } else if (input.startsWith("todo ") || input.startsWith("deadline ") || input.startsWith("event ")) {
+                try {
+                    Task newTask = null;
+                    if (input.startsWith("todo ")) {
+                        newTask = new Todo(input.substring(5));
+                    } else if (input.startsWith("deadline ")) {
+                        String[] deadlineInputs = input.substring(9).split(" /by ", 2);
+                        newTask = new Deadline(deadlineInputs[0], deadlineInputs[1]);
+                    } else if (input.startsWith("event ")) {
+                        String[] eventInputs = input.substring(6).split(" /at ", 2);
+                        newTask = new Event(eventInputs[0], eventInputs[1]);
+                    }
+                    list.add(newTask);
+                    System.out.println("Got it. I've added this task:");
+                    System.out.println(newTask);
+                    System.out.printf("Now you have %d task(s) in the list.%n", list.size());
+                } catch ( Exception e) {
+                    System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(");
+                } finally {
+                    System.out.println(endLine);
+                }
             } else {
-                Task newTask = new Task(input);
-                list.add(newTask);
-                System.out.println("added: " + input);
+                System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(");
                 System.out.println(endLine);
             }
         }
