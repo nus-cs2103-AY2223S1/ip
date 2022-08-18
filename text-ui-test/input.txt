@@ -1,0 +1,9 @@
+todo plant tree
+deadline send homework /by 30th Feb 6pm
+event party /at 18th Aug 9pm
+list
+mark 1
+mark 2
+unmark 1
+list
+bye

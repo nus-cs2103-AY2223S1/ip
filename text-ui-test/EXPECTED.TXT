@@ -5,3 +5,22 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
+added: [T][ ] plant tree
+Now you have 1 tasks in the list.
+added: [D][ ] send homework (by: 30th Feb 6pm)
+Now you have 2 tasks in the list.
+added: [E][ ] party (at: 18th Aug 9pm)
+Now you have 3 tasks in the list.
+1. [T][ ] plant tree
+2. [D][ ] send homework (by: 30th Feb 6pm)
+3. [E][ ] party (at: 18th Aug 9pm)
+Nice! I've marked this task as done:
+[T][X] plant tree
+Nice! I've marked this task as done:
+[D][X] send homework (by: 30th Feb 6pm)
+OK, I've marked this task as not done yet:
+[T][ ] plant tree
+1. [T][ ] plant tree
+2. [D][X] send homework (by: 30th Feb 6pm)
+3. [E][ ] party (at: 18th Aug 9pm)
+Bye. Hope to see you again soon!
