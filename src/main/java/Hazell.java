@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Hazell {
@@ -17,6 +19,9 @@ public class Hazell {
                 + " | |  | | (_| |/ /  __/ | |\n"
                 + " |_|  |_|\\__,_/___\\___|_|_|\n";
         System.out.println(logo);
+
+        List<String> store = new ArrayList<>();
+
         reply("Hello, I am Hazell!\nWhat can I do for you?");
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextLine()) {
@@ -24,8 +29,17 @@ public class Hazell {
             if (userinput.equals("bye")) {
                 reply("Bye. Hope to see you again soon!");
                 System.exit(0);
+            } else if (userinput.equals("list")) {
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < store.size(); i++) {
+                    String item = store.get(i);
+                    sb.append(String.format("%d. %s", i + 1, item));
+                    if (i != store.size() - 1) sb.append("\n");
+                }
+                reply(sb.toString());
             } else {
-                reply(userinput);
+                store.add(userinput);
+                reply(String.format("added: %s", userinput));
             }
         }
     }
