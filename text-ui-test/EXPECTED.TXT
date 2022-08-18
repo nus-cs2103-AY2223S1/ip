@@ -1,7 +1,74 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+Hello! I'm Duke
+What can I do for you?
+Got it. I've added this task:
+	[T][ ] read book
 
+Got it. I've added this task:
+	[T][ ] borrow book
+
+Got it. I've added this task:
+	[T][ ] return book
+
+Invalid command given.
+Could not determine the command. Valid commands include: todo, deadline, event, mark, unmark, delete
+Here are the tasks in your list:
+1. [T][ ] read book
+2. [T][ ] borrow book
+3. [T][ ] return book
+Got it. I've added this task:
+	[D][ ] return book (by: Sunday)
+
+Got it. I've added this task:
+	[E][ ] project meeting (at: Mon 2-4pm)
+
+Here are the tasks in your list:
+1. [T][ ] read book
+2. [T][ ] borrow book
+3. [T][ ] return book
+4. [D][ ] return book (by: Sunday)
+5. [E][ ] project meeting (at: Mon 2-4pm)
+Invalid command given.
+Cannot create a task with an empty title!
+Invalid command given.
+Could not parse deadline. To create a deadline, please use the format in this example: deadline return book /by Sunday
+Invalid command given.
+Could not parse event. To create an event, please use the format in this example: event project meeting /at Mon 2-4pm
+Invalid command given.
+Command should be followed by a number. For example: mark 2, unmark 3, delete 4.
+Invalid command given.
+Command should be followed by a number. For example: mark 2, unmark 3, delete 4.
+Noted. I've removed this task:
+	[T][ ] read book
+
+Here are the tasks in your list:
+1. [T][ ] borrow book
+2. [T][ ] return book
+3. [D][ ] return book (by: Sunday)
+4. [E][ ] project meeting (at: Mon 2-4pm)
+Invalid command given.
+No task found. You only have 4 tasks but you referenced a task at index 100
+Invalid command given.
+Command should be followed by a number. For example: mark 2, unmark 3, delete 4.
+Invalid command given.
+Command should be followed by a number. For example: mark 2, unmark 3, delete 4.
+Nice! I've marked this task as done:
+	[T][X] return book
+Here are the tasks in your list:
+1. [T][ ] borrow book
+2. [T][X] return book
+3. [D][ ] return book (by: Sunday)
+4. [E][ ] project meeting (at: Mon 2-4pm)
+Invalid command given.
+No task found. You only have 4 tasks but you referenced a task at index 100
+Invalid command given.
+Command should be followed by a number. For example: mark 2, unmark 3, delete 4.
+OK, I've marked this task as not done yet:
+	[T][ ] return book
+Here are the tasks in your list:
+1. [T][ ] borrow book
+2. [T][ ] return book
+3. [D][ ] return book (by: Sunday)
+4. [E][ ] project meeting (at: Mon 2-4pm)
+Invalid command given.
+Could not determine the command. Valid commands include: todo, deadline, event, mark, unmark, delete
+Bye. Hope to see you again soon!
