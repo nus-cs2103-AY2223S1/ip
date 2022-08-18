@@ -18,7 +18,11 @@ public class Duke {
                 List();
             } else if (userReply.toLowerCase().startsWith("mark")) {
                 try {
-                    int number = Integer.parseInt(userReply.split(" ",2)[1]);
+                    String[] markedTask = userReply.split(" ",2);
+                    if (markedTask.length < 2) {
+                        throw new DukeException("Please input a number after mark");
+                    }
+                    int number = Integer.parseInt(markedTask[1]);
                     if (number > botArray.size() || number <= 0) {
                         throw new DukeException("Sorry! Please choose a valid item number in the list");
                     }
@@ -27,16 +31,16 @@ public class Duke {
                     System.out.println("##############################################");
                     System.out.println("Please enter a valid number");
                     System.out.println("##############################################");
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    System.out.println("##############################################");
-                    System.out.println("Please input a number after mark");
-                    System.out.println("##############################################");
                 } catch (DukeException e) {
                     System.out.println(e.toString());
                 }
             } else if(userReply.toLowerCase().startsWith("unmark")) {
                 try {
-                    int number = Integer.parseInt(userReply.split(" ", 2)[1]);
+                    String[] unMarkedTask = userReply.split(" ",2);
+                    if (unMarkedTask.length < 2) {
+                        throw new DukeException("Please input a number after unmark");
+                    }
+                    int number = Integer.parseInt(unMarkedTask[1]);
                     if (number > botArray.size() || number <= 0) {
                         throw new DukeException("Sorry! Please choose a valid item number in the list");
                     }
@@ -44,10 +48,6 @@ public class Duke {
                 } catch (NumberFormatException e) {
                     System.out.println("##############################################");
                     System.out.println("Please enter a valid number");
-                    System.out.println("##############################################");
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    System.out.println("##############################################");
-                    System.out.println("Please input a number after unmark");
                     System.out.println("##############################################");
                 } catch (DukeException e) {
                     System.out.println(e.toString());
@@ -99,6 +99,24 @@ public class Duke {
                 } catch (DukeException e) {
                     System.out.println(e.toString());
                 }
+            } else if (userReply.toLowerCase().startsWith("delete")) {
+              try {
+                  String[] taskDeleted = userReply.split(" ", 2);
+                  if (taskDeleted.length < 2) {
+                      throw new DukeException("Sorry! Please include a number after delete");
+                  }
+                  int number = Integer.parseInt(taskDeleted[1]);
+                  if (number > botArray.size() || number <= 0) {
+                      throw new DukeException("Sorry! Please select a valid item number in the list");
+                  }
+                  Delete(number);
+              } catch (DukeException e) {
+                  System.out.println(e.toString());
+              } catch (NumberFormatException e) {
+                  System.out.println("##############################################");
+                  System.out.println("Please enter a valid number");
+                  System.out.println("##############################################");
+              }
             } else {
                 System.out.println("##############################################");
                 System.out.println("Sorry! Please key in a valid command");
@@ -174,6 +192,16 @@ public class Duke {
         Event event = new Event(task, at);
         System.out.println("\t\t\t" + event.toString());
         botArray.add(event);
+        String numOfTasks = String.format("You currently have %d tasks in the list",botArray.size());
+        System.out.println(numOfTasks);
+        System.out.println("##############################################");
+    }
+
+    private static void Delete(int num) {
+        System.out.println("##############################################");
+        System.out.println("Noted! This task has been successfully removed!");
+        System.out.println("\t\t\t" + botArray.get(num - 1));
+        botArray.remove(num - 1);
         String numOfTasks = String.format("You currently have %d tasks in the list",botArray.size());
         System.out.println(numOfTasks);
         System.out.println("##############################################");
