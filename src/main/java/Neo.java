@@ -10,7 +10,7 @@ public class Neo {
         System.out.println("What can I do for you?");
 
         while (true) {
-            System.out.println("Please enter items you want to add to the list and enter bye to exit");
+            System.out.println("Please enter items you want to add to the list");
             System.out.println("");
             Scanner sc = new Scanner(System.in);
             System.out.print("Enter Your task: ");
@@ -19,8 +19,15 @@ public class Neo {
             if (userText.equals("bye") || userText.equals("Bye")) {
                 System.out.println("Exiting chatbot! Hope to see you again");
                 break;
+            }
+            if (userText.equals("list") || userText.equals("List")) {
+                for (int i = 0; i < arrayList.size(); i++) {
+                    int j=i+1;
+                    System.out.println(j + ". " + arrayList.get(i));
+                }
             } else {
-                System.out.println(userText);
+                arrayList.add(userText);
+                System.out.println("Added: " + userText);
             }
         }
     }
