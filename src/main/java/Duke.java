@@ -39,21 +39,21 @@ public class Duke {
                     list.remove(number);
                     size -= 1;
                     System.out.println("Now you have " + size + " tasks in the list");
-                } else if (in.contains("unmark")) {
+                } else if (in.startsWith("unmark")) {
                     char n = in.charAt(7);
                     int number = Character.getNumericValue(n) - 1;
                     Task t = list.get(number);
                     t.markAsUndone();
                     System.out.println("OK, I've marked this task as not done yet:");
                     System.out.println(t.toString());
-                } else if (in.contains("mark")) {
+                } else if (in.startsWith("mark")) {
                     char n = in.charAt(5);
                     int number = Character.getNumericValue(n) - 1;
                     Task t = list.get(number);
                     t.markAsDone();
                     System.out.println("Nice! I've marked this task as done:");
                     System.out.println(t.toString());
-                } else if (in.contains("deadline")) {
+                } else if (in.startsWith("deadline")) {
                     String deadLine = in.replaceFirst("deadline", "");
                     if (deadLine.trim().isEmpty()) {
                         throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
@@ -68,7 +68,7 @@ public class Duke {
                         System.out.println("  " + d.toString());
                         System.out.println("Now you have " + size + " tasks in the list");
                     }
-                } else if (in.contains("event")) {
+                } else if (in.startsWith("event")) {
                     String event = in.replaceFirst("event", "");
                     if (event.trim().isEmpty()) {
                         throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.");
