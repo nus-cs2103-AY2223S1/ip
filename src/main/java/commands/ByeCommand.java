@@ -9,6 +9,7 @@ public class ByeCommand extends Command {
     super(commandArgs, tasks);
   }
 
+  @Override
   public boolean performAction() {
     System.out.println("MumBot: Goodbyeeee sweetheart <3");
     return false;
