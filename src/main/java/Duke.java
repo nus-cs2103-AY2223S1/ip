@@ -12,28 +12,37 @@ public class Duke {
     private static final String ASK_MESSAGE = "What can I do for you?";
     private static final String EXIT_MESSAGE = "Bye. Hope to see you again soon!";
 
-    private ArrayList<Task> tasks;
+    private TaskList taskList;
+    private CommandGenerator commandGenerator;
+    private IOHelper io;
+    private boolean run;
 
     /**
      * Constructor with task initialised as ArrayList
      */
     public Duke() {
-        tasks = new ArrayList<>();
+        taskList = new TaskList();
+        io = new IOHelper();
+        run = true;
+    }
+
+    public boolean isRunning() {
+        return run;
     }
 
     /**
      * Print both introduce and ask messages.
      */
     public void printGreetMessage() {
-        Console.log(INTRODUCE_MESSAGE);
-        Console.log(ASK_MESSAGE);
+        IOHelper.print(INTRODUCE_MESSAGE);
+        IOHelper.print(ASK_MESSAGE);
     }
 
     /**
      * Print exit message.
      */
     public void printExitMessage() {
-        Console.log(EXIT_MESSAGE);
+        IOHelper.print(EXIT_MESSAGE);
     }
 
     /**
@@ -42,46 +51,49 @@ public class Duke {
      * @param message Message entered by the user to be echoed
      */
     public void echoMessage(String message) {
-        Console.log(message);
+        IOHelper.print(message);
     }
 
     /**
-     * Add the new task to tasks.
-     * if tasks is full, it returns nothing
-     *
-     * @param task task to be added to tasks
+     * Handles the different command and given each command,
+     * evoke the respective TaskList methods
+     * @param command given by user in console
+     * @param commandAction given by user in console, maybe null
      */
-    private void addTask(Task task) {
-        tasks.add(task);
-    }
-
-    /**
-     * Displays the newly added task to tasks.
-     */
-    private void addTaskMessage() {
-        Console.log("added: " + tasks.get(tasks.size()-1));
-    }
-
-    /**
-     * Combines both addTask and addTaskMessage into one process
-     *
-     * @param text new task to be added
-     */
-    public void addTaskProcess(String text) {
-        Task task = new Task(text);
-        addTask(task);
-        addTaskMessage();
-    }
-
-    /**
-     * Displays all task stored in tasks.
-     */
-    public void printAllTasks() {
-        for (int i = 0; i < tasks.size(); i++) {
-            Console.log(String.format("%d. %s", i + 1, tasks.get(i)));
+    public void handleCommand(String command, String commandAction) {
+        switch (command) {
+            case "list":
+                taskList.printAllTasks();
+                break;
+            case "mark":
+            case "unmark":
+                if (!CommandGenerator.isInteger(commandAction)) {
+                    break;
+                }
+                taskList.updateTask(Integer.parseInt(commandAction) - 1, command);
+                break;
+            case "bye":
+                run = false;
+                break;
+            default:
+                taskList.addTaskProcess(command);
         }
     }
 
+    public void run() {
+        printGreetMessage();
+        while (isRunning()) {
+            io.scan();
+            commandGenerator = new CommandGenerator(io.getText());
+            handleCommand(commandGenerator.getCommand(), commandGenerator.getCommandAction());
+        }
+        printExitMessage();
+    }
+
+    public static void main(String[] args) {
+        Duke duke = new Duke();
+        duke.run();
+    }
 }
 
 
