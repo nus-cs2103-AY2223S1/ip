@@ -7,4 +7,6 @@ mark 4
 todo borrow book
 list
 deadline do homework /by no idea :P
+delete 6
+list
 bye

@@ -1,4 +1,3 @@
-Hello! Duke here, how can I help you?
 I've added this task to the list:
   [T][ ] read book
 You have a total of 1 tasks in the list.
@@ -27,5 +26,14 @@ Here are the tasks in your list:
 I've added this task to the list:
   [D][ ] do homework (by: no idea :P)
 You have a total of 6 tasks in the list.
+Got it! Task 6 has been deleted from the list:
+  [D][ ] do homework (by: no idea :P)
+You have a total of 5 tasks in the list.
+Here are the tasks in your list:
+1. [T][X] read book
+2. [D][ ] return book (by: June 6th)
+3. [E][ ] project meeting (at: Aug 6th 2-4pm)
+4. [T][X] join sports club
+5. [T][ ] borrow book
 Thanks for having me!
 Have a nice day ahead!

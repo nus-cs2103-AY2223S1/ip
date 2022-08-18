@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class Duke {
@@ -10,7 +11,8 @@ public class Duke {
 //                + "|____/ \\__,_|_|\\_\\___|\n";
 //        System.out.println("Hello from\n" + logo);
 
-        Task[] list = new Task[100];
+//        Task[] list = new Task[100];
+        ArrayList<Task> list = new ArrayList<>();
         int i = 0;
         boolean loop = true;
         System.out.println("Hello! Duke here, how can I help you?");
@@ -24,8 +26,8 @@ public class Duke {
 
             if (sc.hasNext("list")) {
                 System.out.println("Here are the tasks in your list:");
-                for (int j = 0; list[j] != null; j++) {
-                    System.out.println(j+1 + ". " + list[j].getTask());
+                for (int j = 0; j < list.size(); j++) {
+                    System.out.println(j+1 + ". " + list.get(j).getTask());
                 }
                 sc.nextLine();
                 continue;
@@ -36,10 +38,10 @@ public class Duke {
                 if (sc.hasNextInt()) {
                     int input = sc.nextInt();
                     try {
-                        list[input - 1].markAsDone();
+                        list.get(input - 1).markAsDone();
                         System.out.println("Good job! Task " + input + " has been completed:");
-                        System.out.println("  " + list[input - 1].getTask());
-                    } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
+                        System.out.println("  " + list.get(input - 1).getTask());
+                    } catch (IndexOutOfBoundsException | NullPointerException e) {
                         System.out.println("You've given me an invalid task to mark!");
                     }
                 }
@@ -52,11 +54,30 @@ public class Duke {
                 if (sc.hasNextInt()) {
                     int input = sc.nextInt();
                     try {
-                        list[input - 1].markAsUndone();
+                        list.get(input - 1).markAsUndone();
                         System.out.println("Got it! Task " + input + " has not yet been completed:");
-                        System.out.println("  " + list[input - 1].getTask());
-                    } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
+                        System.out.println("  " + list.get(input - 1).getTask());
+                    } catch (IndexOutOfBoundsException | NullPointerException e) {
                         System.out.println("You've given me an invalid task to unmark!");
+                    }
+                }
+                sc.nextLine();
+                continue;
+            }
+
+            if (sc.hasNext("delete")) {
+                sc.next();
+                if (sc.hasNextInt()) {
+                    int input = sc.nextInt();
+                    try {
+                        Task removedTask = list.get(input - 1);
+                        list.remove(input - 1);
+                        i--;
+                        System.out.println("Got it! Task " + input + " has been deleted from the list:");
+                        System.out.println("  " + removedTask.getTask());
+                        System.out.println("You have a total of " + i + " tasks in the list.");
+                    } catch (IndexOutOfBoundsException | NullPointerException e) {
+                        System.out.println("You've given me an invalid task to delete!");
                     }
                 }
                 sc.nextLine();
@@ -67,11 +88,11 @@ public class Duke {
 
             if (str.contains("todo")) {
                 String task = sc.nextLine();
-                if (task.contains("")) {
+                if (task.equals("")) {
                     throw new DukeException("The description of a task cannot be empty!");
                 } else {
                     Todo todo = new Todo(task);
-                    list[i] = todo;
+                    list.add(todo);
                     i++;
                     System.out.println("I've added this task to the list:");
                     System.out.println("  " + todo.getTask());
@@ -79,13 +100,13 @@ public class Duke {
                 }
             } else if (str.contains("deadline")) {
                 String task = sc.nextLine();
-                if (task.contains("")) {
+                if (task.equals("")) {
                     throw new DukeException("The description of a task cannot be empty!");
                 } else if (!task.contains("/by")) {
                     throw new DukeException("Invalid input for a deadline!");
                 } else {
                     Deadline deadline = new Deadline(task);
-                    list[i] = deadline;
+                    list.add(deadline);
                     i++;
                     System.out.println("I've added this task to the list:");
                     System.out.println("  " + deadline.getTask());
@@ -93,13 +114,13 @@ public class Duke {
                 }
             } else if (str.contains("event")) {
                 String task = sc.nextLine();
-                if (task.contains("")) {
+                if (task.equals("")) {
                     throw new DukeException("The description of a task cannot be empty!");
                 } else if (!task.contains("/at")) {
                     throw new DukeException("Invalid input for an event!");
                 } else {
                     Event event = new Event(task);
-                    list[i] = event;
+                    list.add(event);
                     i++;
                     System.out.println("I've added this task to the list:");
                     System.out.println("  " + event.getTask());
