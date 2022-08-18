@@ -26,11 +26,9 @@ public class Seaward {
                 String taskDescription = taskList.readTask(i);
                 String isDone = taskList.readStatus(i);
                 if (index == numOfTasks) {
-                    list = list + index + ". [" + isDone +
-                            "] " + taskDescription;
+                    list = list + index + "." + taskDescription;
                 } else {
-                    list = list + index + ". [" + isDone +
-                            "] " + taskDescription + "\n";
+                    list = list + index + "." + taskDescription + "\n";
                 }
             }
             return list;
@@ -41,7 +39,7 @@ public class Seaward {
             }
             taskList.setCompleted(index);
             return "I have marked this task as done:\n" +
-                    "[X] " + taskList.readTask(index);
+                    taskList.readTask(index);
         } else if (s.startsWith("unmark")) {
             int index = Integer.parseInt(s.substring(7)) - 1;
             if (index + 1 > taskList.getNumOfTasks()) {
@@ -49,7 +47,25 @@ public class Seaward {
             }
             taskList.setNotCompleted(index);
             return "I have marked this task as undone:\n" +
-                    "[ ] " + taskList.readTask(index);
+                    taskList.readTask(index);
+        } else if (s.startsWith("todo")) {
+            taskList.addTodo(s.substring(5));
+            int numOfTasks = taskList.getNumOfTasks();
+            return "Noted. I have added:\n" + taskList.readTask(numOfTasks - 1)
+                    + "\n" + "Now you have "
+                    + numOfTasks + " task(s) in your list.";
+        } else if (s.startsWith("deadline")) {
+            taskList.addDeadline(s.substring(9));
+            int numOfTasks = taskList.getNumOfTasks();
+            return "Noted. I have added:\n" + taskList.readTask(numOfTasks - 1)
+                    + "\n" + "Now you have "
+                    + numOfTasks + " task(s) in your list.";
+        } else if (s.startsWith("event")) {
+            taskList.addEvent(s.substring(6));
+            int numOfTasks = taskList.getNumOfTasks();
+            return "Noted. I have added:\n" + taskList.readTask(numOfTasks - 1)
+                    + "\n" + "Now you have "
+                    + numOfTasks + " task(s) in your list.";
         } else {
             taskList.addTask(s);
             return "I have added: " + s + " into the task list.";
