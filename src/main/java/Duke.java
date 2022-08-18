@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Duke {
 
@@ -43,6 +44,29 @@ public class Duke {
                 storedTasks.add(todo);
                 System.out.println(
                         HORIZONTAL_LINE + "\n  Got it. I've added this task:\n  " + todo + "\n  Now you have "
+                                + String.valueOf(storedTasks.size()) + " tasks in the list.\n" + HORIZONTAL_LINE);
+            } else if (command.split(" ").length > 3 && command.split(" ")[0].equals("deadline")) {
+                ArrayList<String> commandDelimited = new ArrayList<String>(Arrays.asList(command.split(" ")));
+                int posOfBy = commandDelimited.indexOf("/by");
+                String description = "";
+                String dateTime = "";
+                for (int i = 1; i < commandDelimited.size(); i++) {
+                    if (i < posOfBy) {
+                        description += commandDelimited.get(i);
+                        if (i != posOfBy - 1) {
+                            description += " ";
+                        }
+                    } else if (i > posOfBy) {
+                        dateTime += commandDelimited.get(i);
+                        if (i != commandDelimited.size() - 1) {
+                            dateTime += " ";
+                        }
+                    }
+                }
+                Task deadline = new Deadlines(description, dateTime);
+                storedTasks.add(deadline);
+                System.out.println(
+                        HORIZONTAL_LINE + "\n  Got it. I've added this task:\n  " + deadline + "\n  Now you have "
                                 + String.valueOf(storedTasks.size()) + " tasks in the list.\n" + HORIZONTAL_LINE);
             } else {
                 System.out.println(HORIZONTAL_LINE + "\n  added: " + command + "\n" + HORIZONTAL_LINE);
