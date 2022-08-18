@@ -65,17 +65,17 @@ public class Duke {
                 }
                 // Add todo task
                 case ("todo"): {
-                    addTodoCommand(inputs);
+                    addTaskCommand(TaskType.TODO, inputs);
                     break;
                 }
                 // Add deadline task
                 case ("deadline"): {
-                    addDeadlineCommand(inputs);
+                    addTaskCommand(TaskType.DEADLINE, inputs);
                     break;
                 }
                 // Add event task
                 case ("event"): {
-                    addEventCommand(inputs);
+                    addTaskCommand(TaskType.EVENT, inputs);
                     break;
                 }
                 // Mark task as done
@@ -116,37 +116,47 @@ public class Duke {
         printTextWithDivider(str.toString());
     }
 
-    private static void addTodoCommand(String[] inputs) throws DukeException {
+    private static void addTaskCommand(TaskType taskType, String[] inputs) {
         if (inputs.length == 1 || inputs[1].equals("")) {
-            throw new DukeException("OOPS!!! The description of a todo cannot be empty.\n");
-        }
-        addTask(new Todo(inputs[1]));
-    }
-
-    private static void addDeadlineCommand(String[] inputs) throws DukeException {
-        if (inputs.length == 1 || inputs[1].equals("")) {
-            throw new DukeException("OOPS!!! The description of a deadline cannot be empty.\n");
+            throw new DukeException("OOPS!!! The description of " + taskType.getTaskType() + " cannot be empty.\n");
         }
 
-        String[] deadlineInputs = inputs[1].split("/by", 2);
+        Task task;
+        switch (taskType) {
+            case TODO: {
+                task = new Todo(inputs[1]);
+                break;
+            }
+            case DEADLINE: {
+                String[] deadlineInputs = inputs[1].split("/by", 2);
 
-        if (deadlineInputs.length == 1 || deadlineInputs[1].equals("")) {
-            throw new DukeException("OOPS!!! The date of a deadline cannot be empty.\n");
+                if (deadlineInputs.length == 1 || deadlineInputs[1].equals("")) {
+                    throw new DukeException("OOPS!!! The date of a deadline cannot be empty.\n");
+                }
+                task = new Deadline(deadlineInputs[0], deadlineInputs[1]);
+                break;
+            }
+            case EVENT: {
+                String[] eventInputs = inputs[1].split("/at", 2);
+
+                if (eventInputs.length == 1 || eventInputs[1].equals("")) {
+                    throw new DukeException("OOPS!!! The date and time of an event cannot be empty.\n");
+                }
+                task = new Event(eventInputs[0], eventInputs[1]);
+                break;
+            }
+            default: {
+                throw new DukeException("OOPS!!! Invalid task type.\n");
+            }
         }
-        addTask(new Deadline(deadlineInputs[0], deadlineInputs[1]));
-    }
 
-    private static void addEventCommand(String[] inputs) throws DukeException {
-        if (inputs.length == 1 || inputs[1].equals("")) {
-            throw new DukeException("OOPS!!! The description of an event cannot be empty.\n");
-        }
+        taskList.add(task);
 
-        String[] eventInputs = inputs[1].split("/at", 2);
+        String addTaskMessage =  "Got it. I've added this task:\n" +
+                "  " + task + "\n" +
+                "Now you have " + taskList.size() + " task(s) in the list.\n";
 
-        if (eventInputs.length == 1 || eventInputs[1].equals("")) {
-            throw new DukeException("OOPS!!! The date and time of an event cannot be empty.\n");
-        }
-        addTask(new Event(eventInputs[0], eventInputs[1]));
+        printTextWithDivider(addTaskMessage);
     }
 
     private static void markTaskCommand(String[] inputs) throws DukeException {
@@ -205,15 +215,5 @@ public class Duke {
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             throw new DukeException("OOPS!!! The task index specified is not valid.\n");
         }
-    }
-
-    private static void addTask(Task task) {
-        taskList.add(task);
-
-        String addTaskMessage =  "Got it. I've added this task:\n" +
-                "  " + task + "\n" +
-                "Now you have " + taskList.size() + " task(s) in the list.\n";
-
-        printTextWithDivider(addTaskMessage);
     }
 }
