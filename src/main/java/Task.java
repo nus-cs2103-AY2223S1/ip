@@ -1,16 +1,18 @@
-public class Task {
+public abstract class Task {
 
     private boolean isDone;
     private String description;
+    private String taskIcon;
 
-    public Task(String description) {
+    public Task(String description, String taskIcon) {
         this.description = description;
         this.isDone = false;
+        this.taskIcon = taskIcon;
     }
 
     @Override
     public String toString() {
-        return String.format("[%s] %s", this.getStatusIcon(), this.description);
+        return String.format("[%s][%s] %s", this.taskIcon, this.getStatusIcon(), this.description);
     }
 
     private String getStatusIcon() {
