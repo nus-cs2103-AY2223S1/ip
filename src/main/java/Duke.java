@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.util.regex.Pattern;
 
 public class Duke {
 
@@ -10,6 +9,7 @@ public class Duke {
         String welcomeMsg = "Hi there! Baymax at your service.";
         System.out.println(welcomeMsg);
         String input = sc.nextLine();
+
         while(true) {
             if(input.equalsIgnoreCase("bye")) {
                 break;
@@ -17,6 +17,29 @@ public class Duke {
 
             if(input.equalsIgnoreCase("list")) {
                 taskList.list();
+                input = sc.nextLine();
+                continue;
+            }
+
+            if(input.startsWith("todo ")) {
+                ToDo todo = new ToDo(input.substring(5));
+                taskList.add(todo);
+                input = sc.nextLine();
+                continue;
+            }
+
+            if(input.startsWith("deadline ")) {
+                String[] str = input.substring(9).split(" /by ");
+                Deadline deadline = new Deadline(str[0], str[1]);
+                taskList.add(deadline);
+                input = sc.nextLine();
+                continue;
+            }
+
+            if(input.startsWith("event ")) {
+                String[] str = input.substring(6).split(" /at ");
+                Event event = new Event(str[0], str[1]);
+                taskList.add(event);
                 input = sc.nextLine();
                 continue;
             }
@@ -38,7 +61,6 @@ public class Duke {
                 input = sc.nextLine();
                 continue;
             }
-            taskList.add(new Task(input));
             input = sc.nextLine();
         }
         System.out.println("Goodbye!");
