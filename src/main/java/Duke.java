@@ -69,6 +69,7 @@ public class Duke {
                     String temp[] = str.split(" ", 2);
                     int index;
                     Task curr;
+                    String pack[];
                     switch (temp[0]) {
                         case "mark":
                             index = Integer.parseInt(temp[1]) - 1;
@@ -86,10 +87,31 @@ public class Duke {
                                 curr.isDone = false;
                                 Duke.TaskStateChangePrint(curr, false);
                             }
+                            break;
+
+                        case "deadline":
+                            pack = temp[1].split("/", 2);
+                            curr = new Deadline(pack[0].trim(), pack[1].substring(3));
+                            stored_items.add(curr);
+                            Duke.FormatPrint("Got it. I've added this task:\n" + curr.toString());
+                            break;
+
+                        case "todo":
+                            curr = new Todo(temp[1]);
+                            stored_items.add(curr);
+                            Duke.FormatPrint("Got it. I've added this task:\n" + curr.toString());
+                            break;
+
+                        case "event":
+                            pack = temp[1].split("/", 2);
+                            curr = new Event(pack[0].trim(), pack[1].substring(3));
+                            stored_items.add(curr);
+                            Duke.FormatPrint("Got it. I've added this task:\n" + curr.toString());
+                            break;
 
                         default:
                             stored_items.add(new Task(str));
-                            Duke.FormatPrint(" added: " + str);
+                            Duke.FormatPrint("Got it. I've added this task:\n" + str);
                     }
                 }
 //                Duke.FormatPrint(str);
