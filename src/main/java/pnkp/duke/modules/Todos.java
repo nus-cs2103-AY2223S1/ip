@@ -29,6 +29,22 @@ public class Todos {
         ));
     }
 
+    private int readTodoID(Scanner rest, String missingNumberPrompt) throws MessagefulException {
+        if (!rest.hasNextInt()) {
+            throw new MessagefulException("Missing task number", missingNumberPrompt);
+        }
+
+        int taskID = rest.nextInt() - 1;
+        if (taskID < 0 || taskID >= todos.size()) {
+            throw new MessagefulException(
+                    "Task number out of bounds",
+                    "Hmm... a task with that number doesn't seem to exist. " +
+                        "You can see a list of all tasks by saying \"list\".");
+        }
+
+        return taskID;
+    }
+
     public void cmdAddTodo(Scanner rest) {
         final Task task;
         try {
@@ -75,49 +91,39 @@ public class Todos {
     }
 
     public void cmdMark(Scanner rest) {
-        if (!rest.hasNextInt()) {
-            say("Please give me a task number to mark!");
+        final int taskID;
+        try {
+            taskID = readTodoID(rest, "Please give me a task number to mark!");
+        } catch (MessagefulException e) {
+            say(e.message());
             return;
         }
 
-        int taskID = rest.nextInt() - 1;
-        if (taskID < 0 || taskID >= todos.size()) {
-            say("Hmm... a task with that number doesn't seem to exist. " +
-                    "You can see a list of all tasks by saying \"list\".");
-            return;
-        }
         todos.get(taskID).setDone(true);
         say(List.of("Nice! I've marked this task as done:",
                     todos.get(taskID).toString()));
     }
 
     public void cmdUnmark(Scanner rest) {
-        if (!rest.hasNextInt()) {
-            say("Please give me a task number to unmark!");
+        final int taskID;
+        try {
+            taskID = readTodoID(rest, "Please give me a task number to unmark!");
+        } catch (MessagefulException e) {
+            say(e.message());
             return;
         }
 
-        int taskID = rest.nextInt() - 1;
-        if (taskID < 0 || taskID >= todos.size()) {
-            say("Hmm... a task with that number doesn't seem to exist. " +
-                    "You can see a list of all tasks by saying \"list\".");
-            return;
-        }
         todos.get(taskID).setDone(false);
         say(List.of("Alright, I've marked this task as not done yet:",
                 todos.get(taskID).toString()));
     }
 
     public void cmdDelete(Scanner rest) {
-        if (!rest.hasNextInt()) {
-            say("Please give me a task number to delete!");
-            return;
-        }
-
-        int taskID = rest.nextInt() - 1;
-        if (taskID < 0 || taskID >= todos.size()) {
-            say("Hmm... a task with that number doesn't seem to exist. " +
-                    "You can see a list of all tasks by saying \"list\".");
+        final int taskID;
+        try {
+            taskID = readTodoID(rest, "Please give me a task number to delete!");
+        } catch (MessagefulException e) {
+            say(e.message());
             return;
         }
 
