@@ -61,6 +61,21 @@ public class main {
                     System.out.println("☹ OOPS!!! The description of a unmark cannot be empty.");
                 }
             }
+            else if(task.getVal().indexOf("delete") == 0) {
+                String[] at = task.getVal().split(" ");
+                try {
+                    int index = Integer.parseInt(at[1]);
+                    Task del = arr[index-1];
+                    arr[index - 1] = arr[index];
+                    curr--;
+                    System.out.println("Noted. I've removed this task:");
+                    System.out.println(del);
+                    System.out.println(String.format("Now you have %s tasks in the list.", curr));
+
+                } catch (Exception e) {
+                    System.out.println("☹ OOPS!!! The description of a delete cannot be empty.");
+                }
+            }
             else if(task.getVal().indexOf("todo") == 0) {
                 try {
                     String todo = task.getVal().substring(5);

@@ -23,4 +23,13 @@ public class Deadline extends Task {
     public String getTiming(){
         return this.deadline;
     }
+    @Override
+    public String toString() {
+        if(this.getDone()) {
+            return (String.format("[D][X] %s (%s)", this.getVal(), this.getTiming()));
+        }
+        else {
+            return (String.format("[D][ ] %s (%s)", this.getVal(), this.getTiming()));
+        }
+    }
 }

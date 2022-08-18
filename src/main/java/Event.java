@@ -22,4 +22,14 @@ public class Event extends Task {
     public Event markUndone() {
         return new Event(this.getVal(), false, this.timing);
     }
+
+    @Override
+    public String toString() {
+        if(this.getDone()) {
+            return (String.format("[E][X] %s (%s)", this.getVal(), this.getTiming()));
+        }
+        else {
+            return String.format("[E][ ] %s (%s)", this.getVal(), this.getTiming());
+        }
+    }
 }
