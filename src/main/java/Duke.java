@@ -5,6 +5,9 @@ public class Duke {
 
     private static ArrayList<Task> tasks = new ArrayList<>();
 
+    /**
+     * Display all stored tasks
+     */
     public static void displayList() {
         System.out.println("Here are the tasks in your list.");
         for (int i = 0; i < tasks.size(); i++) {
@@ -12,6 +15,11 @@ public class Duke {
         }
     }
 
+    /**
+     * Add task to tasks list
+     * 
+     * @param task Task to be stored in tasks list
+     */
     public static void addTask(Task task) {
         tasks.add(task);
         System.out.println("Gotcha! I've added this task:");
@@ -19,6 +27,12 @@ public class Duke {
         System.out.println("Now you have " + tasks.size() + " tasks in your list.");
     }
 
+    /**
+     * Removes specified task from tasks list
+     * 
+     * @param taskIndex Index of task to be removed
+     * @throws DukeException if given index is out of bounds
+     */
     public static void removeTask(int taskIndex) throws DukeException {
         if (taskIndex < 0 || taskIndex >= tasks.size())
             throw new DukeException("Please enter a valid task number!");
@@ -27,6 +41,13 @@ public class Duke {
         System.out.println("\t" + task);
     }
 
+    /**
+     * Changes the completed status of specified task
+     * 
+     * @param taskIndex Index of task to be changed
+     * @param isDone    true if task is completed, false otherwise
+     * @throws DukeException if given index is out of bounds
+     */
     public static void changeTaskStatus(int taskIndex, boolean isDone) throws DukeException {
         if (taskIndex < 0 || taskIndex >= tasks.size())
             throw new DukeException("Please enter a valid task number!");

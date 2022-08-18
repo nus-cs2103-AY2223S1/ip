@@ -2,16 +2,35 @@ public abstract class Task {
     private String description;
     private boolean isDone;
 
+    /**
+     * Constructor to create new Task
+     * 
+     * @param description Task Description
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;
     }
 
+    /**
+     * Checks if the input string contains a description
+     * 
+     * @param splitInput String split by " " and limited to 2
+     * @throws DukeException if no description is present
+     */
     public static void checkDescription(String[] splitInput) throws DukeException {
         if (splitInput.length == 1)
             throw new DukeException("Please enter the description when creating new task!");
     }
 
+    /**
+     * Factory method to create new Task
+     * 
+     * @param input String containing task type, description and deadline/timing if
+     *              needed
+     * @return new Task
+     * @throws DukeException if invalid task type or wrong parameters
+     */
     public static Task createTask(String input) throws DukeException {
         String[] splitInput = input.split(" ", 2);
 
