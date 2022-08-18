@@ -11,10 +11,10 @@ $$ |  $$ |$$ |      $$ |  $$ |$$ |\$$$ |
 $$ |  $$ |$$$$$$$$\ $$ |  $$ |$$ | \$$ |
 \__|  \__|\________|\__|  \__|\__|  \__|
 
-How may i be of service?
+How may I be of service?
 _______________________________________
 Alright, I have added the following task to the list!
-[T][ ] borrow book
+  [T][ ] borrow book
 You currently have 1 task.
 _______________________________________
 _______________________________________
@@ -23,17 +23,17 @@ Here are the tasks you have added:
 _______________________________________
 _______________________________________
 Alright, I have added the following task to the list!
-[D][ ] return book (by: Sunday)
+  [D][ ] return book (by: Sunday)
 You currently have 2 tasks.
 _______________________________________
 _______________________________________
 Alright, I have added the following task to the list!
-[E][ ] project meeting (at: Mon 2-4pm)
+  [E][ ] project meeting (at: Mon 2-4pm)
 You currently have 3 tasks.
 _______________________________________
 _______________________________________
 Alright, I have added the following task to the list!
-[D][ ] do homework (by: no idea :-p)
+  [D][ ] do homework (by: no idea :-p)
 You currently have 4 tasks.
 _______________________________________
 _______________________________________
@@ -43,14 +43,22 @@ Here are the tasks you have added:
 3. [E][ ] project meeting (at: Mon 2-4pm)
 4. [D][ ] do homework (by: no idea :-p)
 _______________________________________
+_______________________________________
 Yay! I have marked this task as done!
-[T][X] borrow book
+  [T][X] borrow book
+_______________________________________
+_______________________________________
 Yay! I have marked this task as done!
-[D][X] return book (by: Sunday)
+  [D][X] return book (by: Sunday)
+_______________________________________
+_______________________________________
 Yay! I have marked this task as done!
-[E][X] project meeting (at: Mon 2-4pm)
+  [E][X] project meeting (at: Mon 2-4pm)
+_______________________________________
+_______________________________________
 Yay! I have marked this task as done!
-[D][X] do homework (by: no idea :-p)
+  [D][X] do homework (by: no idea :-p)
+_______________________________________
 _______________________________________
 Here are the tasks you have added:
 1. [T][X] borrow book
@@ -58,20 +66,43 @@ Here are the tasks you have added:
 3. [E][X] project meeting (at: Mon 2-4pm)
 4. [D][X] do homework (by: no idea :-p)
 _______________________________________
+_______________________________________
 Got it, I have marked this task as undone.
-[T][ ] borrow book
+  [T][ ] borrow book
+_______________________________________
+_______________________________________
 Got it, I have marked this task as undone.
-[D][ ] return book (by: Sunday)
+  [D][ ] return book (by: Sunday)
+_______________________________________
+_______________________________________
 Got it, I have marked this task as undone.
-[E][ ] project meeting (at: Mon 2-4pm)
+  [E][ ] project meeting (at: Mon 2-4pm)
+_______________________________________
+_______________________________________
 Got it, I have marked this task as undone.
-[D][ ] do homework (by: no idea :-p)
+  [D][ ] do homework (by: no idea :-p)
+_______________________________________
 _______________________________________
 Here are the tasks you have added:
 1. [T][ ] borrow book
 2. [D][ ] return book (by: Sunday)
 3. [E][ ] project meeting (at: Mon 2-4pm)
 4. [D][ ] do homework (by: no idea :-p)
+_______________________________________
+_______________________________________
+Alright, I have removed the following task from the list!
+  [T][ ] borrow book
+You currently have 3 tasks.
+_______________________________________
+_______________________________________
+Alright, I have removed the following task from the list!
+  [E][ ] project meeting (at: Mon 2-4pm)
+You currently have 2 tasks.
+_______________________________________
+_______________________________________
+Here are the tasks you have added:
+1. [D][ ] return book (by: Sunday)
+2. [D][ ] do homework (by: no idea :-p)
 _______________________________________
 _______________________________________
 Goodbye! See you soon!
