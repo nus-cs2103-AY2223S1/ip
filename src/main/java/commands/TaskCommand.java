@@ -2,6 +2,7 @@ package commands;
 
 import java.util.ArrayList;
 import tasks.*;
+import exceptions.DukeException;
 
 public class TaskCommand extends Command {
   
@@ -11,6 +12,7 @@ public class TaskCommand extends Command {
 
   @Override
   public boolean performAction() {
+
     if (this.commandArgs[0].equals("todo")) {
       tasks.add(new Todo(this.commandArgs[1]));
 
@@ -19,7 +21,7 @@ public class TaskCommand extends Command {
 
     } else if (this.commandArgs[0].equals("event")) {
       tasks.add(new Event(this.commandArgs[1], this.commandArgs[2]));
-    } // TODO: else throw error
+    }
   System.out.println("Hey sweetie, I've added: '" + this.commandArgs[1] + "' to your lists of tasks~\n");
   return true;
   }

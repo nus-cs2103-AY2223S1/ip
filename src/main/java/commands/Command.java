@@ -2,6 +2,7 @@ package commands;
 
 import tasks.Task;
 import java.util.ArrayList;
+import exceptions.DukeException;
 
 public abstract class Command {
 
