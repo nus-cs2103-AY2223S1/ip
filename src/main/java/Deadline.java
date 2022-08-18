@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Deadline extends Task {
 
     private String name;
@@ -35,11 +37,17 @@ public class Deadline extends Task {
         System.out.println(
                 Duke.line + "\n" +
                         "Nice! I've marked this task as done:" + "\n" +
-                        "[X] " + Duke.list[index-1].getName() + "(by: " + this.deadline + ")" + "\n" + Duke.line
+                        "[X] " + Duke.list.get(index-1).getName() + "(by: " + this.deadline + ")" + "\n" + Duke.line
         );
         t.setStatus("[X]");
     }
 
+    public void delete(Task b, int index, ArrayList<Task> list) {
+        list.remove(index);
+        System.out.println(Duke.line + "\n" + "Noted. I've removed this task:" + "\n" + b.getType()+ b.getStatus()+" " +b.getName()
+        + " (by: " + this.deadline + ")");
+        System.out.println("Now you have " + Duke.count+ " tasks in the list." + "\n" + Duke.line);
+    };
     public void unmark(Task t, int index) {
         System.out.println(
                 Duke.line + "\n" +
@@ -47,5 +55,22 @@ public class Deadline extends Task {
                         "[ ] " + t.getName() + "(by: " + this.deadline + ")" + "\n" + Duke.line
         );
         t.setStatus("[ ]");
+    }
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String getStatus() {
+        return status;
+    }
+
+    @Override
+    public String getType() {
+        return type;
+    }
+
+    public String getDeadline() {
+        return deadline;
     }
 }

@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Event extends Task {
 
     private String name;
@@ -35,10 +37,17 @@ public class Event extends Task {
         System.out.println(
                 Duke.line + "\n" +
                         "Nice! I've marked this task as done:" + "\n" +
-                        "[X] " + Duke.list[index-1].getName() + "(at: " + this.time + ")" + "\n" + Duke.line
+                        "[X] " + t.getName() + "(at: " + this.time + ")" + "\n" + Duke.line
         );
         t.setStatus("[X]");
     }
+
+    public void delete(Task b, int index, ArrayList<Task> list) {
+        list.remove(index);
+        System.out.println(Duke.line + "\n" + "Noted. I've removed this task:" + "\n" + b.getType()+b.getStatus()+" " +b.getName()
+                + " (at: " + this.time + ")");
+        System.out.println("Now you have " + Duke.count+ " tasks in the list." + "\n" + Duke.line);
+    };
 
     public void unmark(Task t, int index) {
         System.out.println(
@@ -47,5 +56,18 @@ public class Event extends Task {
                         "[ ] " + t.getName() +  "(at: " + this.time + ")" + "\n" + Duke.line
         );
         t.setStatus("[ ]");
+    }
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String getStatus() {
+        return status;
+    }
+
+    @Override
+    public String getType() {
+        return type;
     }
 }

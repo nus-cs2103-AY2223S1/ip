@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Todo extends Task {
 
     private String name;
@@ -33,6 +36,16 @@ public class Todo extends Task {
         return name;
     }
 
+    @Override
+    public String getStatus() {
+        return status;
+    }
+
+    @Override
+    public String getType() {
+        return type;
+    }
+
     public void setStatus(String status) {
         this.status = status;
     }
@@ -51,4 +64,11 @@ public class Todo extends Task {
     public void list() {
         System.out.println(this.type + this.status + " " + this.name  );
     }
+
+    public void delete(Task b, int index, ArrayList<Task> list) {
+        list.remove(index);
+        System.out.println(Duke.line + "\n" + "Noted. I've removed this task:"  + "\n" + b.getType() + b.getStatus()+" " +b.getName());
+        System.out.println("Now you have " + Duke.count+ " tasks in the list." + "\n" + Duke.line);
+    };
+
 }

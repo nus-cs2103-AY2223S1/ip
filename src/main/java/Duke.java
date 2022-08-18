@@ -1,10 +1,11 @@
 import java.nio.InvalidMarkException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
     public static final String line = "____________________________________________________________";
     public Scanner sc = new Scanner(System.in);
-    public static Task[] list = new Task[100];
+    public static ArrayList<Task> list = new ArrayList<>();
     public static int count = 0;
 
     public Duke() {};
@@ -29,7 +30,7 @@ public class Duke {
                     throw new MarkException(command);
                 }
                 int index = Integer.parseInt(arr[1]);
-                Task b = list[index - 1];
+                Task b = list.get(index-1);
                 if (command.equals("mark")) {
                     b.mark(b, index);
                 } else if (command.equals("unmark")) {
@@ -40,6 +41,16 @@ public class Duke {
 
             }
 
+            else if (command.equals("delete")) {
+                if (arr.length == 1) {
+                    throw new MarkException(command);
+                }
+                Task b = list.get(Integer.parseInt(arr[1]) - 1);
+                count--;
+                b.delete(b,Integer.parseInt(arr[1]) - 1, list);
+                respond();
+            }
+
             else if (command.equals("todo") || command.equals("deadline") || command.equals("event")) {
                 if (arr.length == 1) {
                     throw new EmptyCommandException(command);
@@ -48,20 +59,20 @@ public class Duke {
 
                 if (command.equals("todo")) {
 
-                    list[count] = new Todo(arr[1]);
-                    list[count++].print();
+                    list.add(new Todo(arr[1]));
+                    list.get(count++).print();
                     respond();
                 }
                 else if (command.equals("event")) {
                     String[] deets = arr[1].split("/at", 2);
-                    list[count] = new Event(deets[0], deets[1]);
-                    list[count++].print();
+                    list.add(new Event(deets[0], deets[1]));
+                    list.get(count++).print();
                     respond();
                 }
                 else if (command.equals("deadline")) {
                     String[] deets = arr[1].split("/by", 2);
-                    list[count] = new Deadline(deets[0], deets[1]);
-                    list[count++].print();
+                    list.add(new Deadline(deets[0], deets[1]));
+                    list.get(count++).print();
                     respond();
                 }
             }
@@ -105,7 +116,7 @@ public class Duke {
         for (int i = 0, j = 1; i < count; i++, j++) {
 
             System.out.print(j + ". ");
-            list[i].list();
+            list.get(i).list();
         }
         System.out.println(
                 line + "\n"

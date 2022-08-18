@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Task {
@@ -27,7 +28,7 @@ public class Task {
         System.out.println(
                 Duke.line + "\n" +
                         "Nice! I've marked this task as done:" + "\n" +
-                        "[X] " + Duke.list[index-1].getName() + "\n" + Duke.line
+                        "[X] " + Duke.list.get(index-1).getName() + "\n" + Duke.line
         );
         t.status = "[X]";
     }
@@ -63,13 +64,15 @@ public class Task {
 
         for (int i = 0, j = 1; i < Duke.count; i++, j++) {
 
-            System.out.println(j + ". " + Duke.list[i].status + Duke.list[i].name );
+            System.out.println(j + ". " + Duke.list.get(i).status + Duke.list.get(i).name );
         }
         System.out.println(
                 Duke.line + "\n"
         );
 
     }
+
+    public void delete(Task b, int index, ArrayList<Task> list) {};
 
     public void list() {};
 }
