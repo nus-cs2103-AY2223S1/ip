@@ -25,81 +25,131 @@ public class Duke {
         boolean shouldContinue = true;
 
         while(shouldContinue) {
-            String input = scanner.nextLine();
-            //split the input by whitespace
-            String[] splitted = input.split("\\s");
-            //command is first word of the input
-            String command = splitted[0];
-            int index;
-            Task task;
+            try {
+                String input = scanner.nextLine();
+                //split the input by whitespace
+                String[] splitted = input.split("\\s", 2);
+                //command is first word of the input
+                String command = splitted[0];
+                int index;
+                Task task;
 
-            switch(command) {
-                case "todo":
-                    //get the task by splitting input
-                    String taskString = input.split("\\s", 2)[1];
-                    task = new ToDo(taskString);
-                    taskList.add(task);
-                    printTaskAdded(task, taskList.size());
-                    break;
+                switch (command) {
+                    case "todo":
+                        //No Description Given
+                        if (splitted.length < 2) {
+                            throw new DukeException("The description of a todo cannot be empty.");
+                        }
+                        String taskString = splitted[1];
+                        task = new ToDo(taskString);
+                        taskList.add(task);
+                        printTaskAdded(task, taskList.size());
+                        break;
 
-                case "deadline":
-                    //some regex to parse the strings correctly
-                    //0th index: task, 1st index: deadline
-                    String[] splittedDeadline = input.split("\\s", 2)
-                            [1].split("\\s/by\\s", 2);
-                    String deadlineTask = splittedDeadline[0];
-                    String deadlineDate = splittedDeadline[1];
+                    case "deadline":
+                        //No Description Given
+                        if (splitted.length < 2) {
+                            throw new DukeException("The description of a deadline cannot be empty.");
+                        }
+                        //some regex to parse the strings correctly
+                        //0th index: task, 1st index: deadline
+                        String[] splittedDeadline = splitted[1].split("\\s/by\\s", 2);
+                        String deadlineTask = splittedDeadline[0];
+                        //No Description Given
+                        if (deadlineTask.equals("") || deadlineTask.startsWith("/by")) {
+                            throw new DukeException("The description of a deadline cannot be empty.");
+                        }
 
-                    task = new Deadline(deadlineTask, deadlineDate);
-                    taskList.add(task);
-                    printTaskAdded(task, taskList.size());
-                    break;
+                        //No Deadline Given
+                        if (splittedDeadline.length == 1) {
+                            throw new DukeException("please specify a deadline");
+                        }
 
-                case "event":
-                    //some regex to parse the strings correctly
-                    //0th index: event, 1st index: date
-                    String[] splittedEvent = input.split("\\s", 2)
-                            [1].split("\\s/at\\s", 2);
-                    String eventString = splittedEvent[0];
-                    String eventDate = splittedEvent[1];
+                        String deadlineDate = splittedDeadline[1];
 
-                    task = new Event(eventString, eventDate);
-                    taskList.add(task);
-                    printTaskAdded(task, taskList.size());
-                    break;
+                        task = new Deadline(deadlineTask, deadlineDate);
+                        taskList.add(task);
+                        printTaskAdded(task, taskList.size());
+                        break;
 
-                case "mark":
-                    //the index should be the "2nd word"
-                    index = Integer.parseInt(splitted[1]);
-                    //get the selected task
-                    task = taskList.get(index - 1);
-                    task.markAsDone();
-                    System.out.println("Nice! I've marked this task as done:");
-                    System.out.println(task);
-                    break;
+                    case "event":
+                        //No Description Given
+                        if (splitted.length < 2) {
+                            throw new DukeException("The description of an event cannot be empty.");
+                        }
+                        //some regex to parse the strings correctly
+                        //0th index: event, 1st index: date
+                        String[] splittedEvent = input.split("\\s", 2)
+                                [1].split("\\s/at\\s", 2);
+                        String eventString = splittedEvent[0];
 
-                case "unmark":
-                    //the index should be the "2nd word"
-                    index = Integer.parseInt(splitted[1]);
-                    //get the selected task
-                    task = taskList.get(index - 1);
-                    task.markAsUndone();
-                    System.out.println("OK, I've marked this task as not done yet:");
-                    System.out.println(task);
-                    break;
+                        //No Description Given
+                        if (eventString.equals("") || eventString.startsWith("/at")) {
+                            throw new DukeException("The description of an event cannot be empty.");
+                        }
 
-                case "bye":
-                    System.out.println("Bye. Hope to see you again soon!");
-                    shouldContinue = false;
-                    break;
+                        //No Deadline Given
+                        if (splittedEvent.length == 1) {
+                            throw new DukeException("please specify a date");
+                        }
 
-                case "list":
-                    printTaskList(taskList);
-                    break;
+                        String eventDate = splittedEvent[1];
 
-                default:
-                   System.out.println("Error: Not A Valid Command!!!");
-                    break;
+                        task = new Event(eventString, eventDate);
+                        taskList.add(task);
+                        printTaskAdded(task, taskList.size());
+                        break;
+
+                    case "mark":
+                        // No index given
+                        if (splitted.length < 2) {
+                            throw new DukeException("No Index Given");
+                        }
+                        //the index should be the "2nd word"
+                        index = Integer.parseInt(splitted[1]);
+                        //Index out of bounds
+                        if (index > taskList.size() || index < 1) {
+                            throw new DukeException("Index Is Not Valid");
+                        }
+                        //get the selected task
+                        task = taskList.get(index - 1);
+                        task.markAsDone();
+                        System.out.println("Nice! I've marked this task as done:");
+                        System.out.println(task);
+                        break;
+
+                    case "unmark":
+                        //No Index Given
+                        if (splitted.length < 2) {
+                            throw new DukeException("No Index Given");
+                        }
+                        //the index should be the "2nd word"
+                        index = Integer.parseInt(splitted[1]);
+                        //Index out of bounds
+                        if (index > taskList.size() || index < 1) {
+                            throw new DukeException("Index Is Not Valid");
+                        }
+                        //get the selected task
+                        task = taskList.get(index - 1);
+                        task.markAsUndone();
+                        System.out.println("OK, I've marked this task as not done yet:");
+                        System.out.println(task);
+                        break;
+
+                    case "bye":
+                        System.out.println("Bye. Hope to see you again soon!");
+                        shouldContinue = false;
+                        break;
+
+                    case "list":
+                        printTaskList(taskList);
+                        break;
+
+                    default:
+                        throw new DukeException("Command Not Found!");
+                }
+            } catch (DukeException e) {
+                System.out.println(e.getMessage());
             }
         }
 

@@ -1,6 +1,19 @@
 Hello from Botto
 What can I do for you?
-Error: Not A Valid Command!!!
+OOPS!!! Command Not Found!
+OOPS!!! The description of a todo cannot be empty.
+OOPS!!! The description of a deadline cannot be empty.
+OOPS!!! The description of a deadline cannot be empty.
+OOPS!!! please specify a deadline
+OOPS!!! The description of a deadline cannot be empty.
+OOPS!!! The description of an event cannot be empty.
+OOPS!!! The description of an event cannot be empty.
+OOPS!!! please specify a date
+OOPS!!! The description of an event cannot be empty.
+OOPS!!! Index Is Not Valid
+OOPS!!! Index Is Not Valid
+OOPS!!! Index Is Not Valid
+OOPS!!! Index Is Not Valid
 Got it. I've added this task:
 [T][ ] borrow book
 Now you have 1 tasks in the list.
@@ -63,5 +76,5 @@ Here are the tasks in your list:
 2. [D][ ] return book (by: Sunday)
 3. [E][ ] project meeting (at: Mon 2-4pm)
 4. [D][ ] do homework (by: no idea :-p)
-Error: Not A Valid Command!!!
+OOPS!!! Command Not Found!
 Bye. Hope to see you again soon!

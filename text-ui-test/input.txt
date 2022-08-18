@@ -1,4 +1,17 @@
 random
+todo
+deadline
+deadline /by
+deadline  /by
+deadline  /by Thursday
+event
+event /at
+event  /at
+event  /at IDK
+mark 69
+mark -1
+unmark 420
+unmark -69
 todo borrow book
 list
 deadline return book /by Sunday
