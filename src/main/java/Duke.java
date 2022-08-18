@@ -42,11 +42,31 @@ public class Duke {
                     System.out.println(indent + indent + taskList.get(taskIndex) + "\n" + divider);
                 }
             } else {
-                Task newTask = new Task(input);
-                boolean response = taskList.add(newTask);
+                boolean response = false;
+                if (input.contains("event")) {
+                    int indexOfDateTime = input.indexOf("/at");
+                    String dateTime = input.substring(indexOfDateTime + 4);
+                    String eventDescription = input.substring(6, indexOfDateTime - 1);
+                    Event newTask = new Event(dateTime, eventDescription);
+                    response = taskList.add(newTask);
+
+                } else if (input.contains("todo")) {
+                    String toDoDescription = input.substring(5);
+                    ToDo newToDo = new ToDo(toDoDescription);
+                    response = taskList.add(newToDo);
+                } else { // input contains "deadline"
+                    int indexOfDateTime = input.indexOf("/by");
+                    String dateTime = input.substring(indexOfDateTime + 4);
+                    String deadlineDescription = input.substring(9, indexOfDateTime - 1);
+                    Deadline newDeadline = new Deadline(dateTime, deadlineDescription);
+                    response = taskList.add(newDeadline);
+                }
                 if (response) {
-                    System.out.println(divider + indent + "new task added! "
-                                        + newTask.getDescription() + "\n" + divider);
+                    int numberOfTasks = taskList.size();
+                    Task newTask = taskList.get(numberOfTasks - 1);
+                    System.out.println(divider + indent + "Got it. I've added this task:");
+                    System.out.println(indent + indent + newTask.toString());
+                    System.out.println(indent + "Now you have " + numberOfTasks + " tasks in your list.\n" + divider);
                 }
             }
         }
