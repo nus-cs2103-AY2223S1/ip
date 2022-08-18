@@ -40,7 +40,7 @@ public class Duke {
      */
     private void program() {
         Scanner sc = new Scanner(System.in);
-        lst = new LinkedList<>();
+        this.lst = new LinkedList<>();
         String input = null, cmd = null, postCmd = null;
         String postSplit[];
 
@@ -49,114 +49,192 @@ public class Duke {
             newLine();
             postSplit = input.split(" ");
             cmd = postSplit[0];
-            if (cmd.length() != input.length()) {
-                postCmd = input.substring(cmd.length() + 1);
+            try {
+                switch(cmd) {
+                    case "bye":
+                    case "list":
+                    case "mark":
+                    case "unmark":
+                    case "todo":
+                    case "deadline":
+                    case "event":
+                        break;
+                    default:
+                        throw new UnknownCommandException(cmd);
+                }
+                postCmd = cmd.length() != input.length() ? input.substring(cmd.length() + 1) : "";
+            } catch (UnknownCommandException e) {
+                System.out.println(e);
+                newLine();
+                continue;
             }
 
-            switch(cmd) {
-                case "bye":
-                    break;
-                case "list":
-                    printList();
-                    break;
-                case "todo":
-                    handleTodo(postCmd);
-                    break;
-                case "deadline":
-                    handleDeadline(postCmd);
-                    break;
-                case "event":
-                    handleEvent(postCmd);
-                    break;
-                case "mark":
-                    lst.get(Integer.parseInt(postSplit[1]) - 1).setDone();
-                    System.out.println("  Nice! Task " + postSplit[1] + " done!\n  "
-                            + lst.get(Integer.parseInt(postSplit[1]) - 1));
-                    newLine();
-                    break;
-                case "unmark":
-                    lst.get(Integer.parseInt(postSplit[1]) - 1).setUnDone();
-                    System.out.println("  Ok! Task " + postSplit[1] + " marked as not done!\n  "
-                            + lst.get(Integer.parseInt(postSplit[1]) - 1));
-                    newLine();
-                    break;
-                default:
-                    printCommands(cmd);
+            try {
+                switch(cmd) {
+                    case "bye":
+                        break;
+                    case "list":
+                        printList();
+                        break;
+                    case "todo":
+                        handleTodo(postCmd);
+                        break;
+                    case "deadline":
+                        handleDeadline(postCmd);
+                        break;
+                    case "event":
+                        handleEvent(postCmd);
+                        break;
+                    case "mark":
+                    case "unmark":
+                        handleMarkUnmark(cmd, postCmd);
+                        break;
+                }
+            } catch (EmptyTaskException ete) {
+                System.out.println(ete);
+            } catch (InvalidArgumentException iae) {
+                System.out.println(iae);
+            } catch (EmptyDurationException ede) {
+                System.out.println(ede);
+            } catch (InvalidTaskNumberException itne) {
+                System.out.println(itne);
+            } finally {
+                newLine();
             }
+
         } while (!input.equals("bye"));
     }
 
     /**
-     * Prints a list of available commands to the user.
-     * @param cmd The invalid cmd that was entered by the user.
+     * Handles the marking of a Task to be done or undone.
+     * @param cmd The command entered by the user.
+     * @param postCmd The rest of the input string after the command.
+     * @throws InvalidTaskNumberException if the followup text after the command is not a valid integer.
      */
-    private void printCommands(String cmd) {
-        String commands = "\ttodo - adds the task to the list\n" +
-                "\tdeadline - adds the task with a deadline, e.g. deadline x /by Sunday\n" +
-                "\tevent - adds the task that happens at a specific time, e.g. event x /at Mon 2-4pm\n" +
-                "\tmark - marks task number x as completed, e.g. mark x\n" +
-                "\tunmark - marks task number x as uncompleted, e.g. unmark x" +
-                "\tlist - lists out all your current tasks\n" +
-                "\tbye - exits the program:(\n";
-        System.out.println("  " + cmd + " is not a valid command. Here are the list of commands:\n\n" + commands);
-        newLine();
+    private void handleMarkUnmark(String cmd, String postCmd) throws InvalidTaskNumberException {
+        if (postCmd.equals("") || !isInteger(postCmd) || (Integer.parseInt(postCmd) - 1) < 0 ||
+                (Integer.parseInt(postCmd) - 1) >= this.lst.size()) {
+            throw new InvalidTaskNumberException("mark", postCmd);
+        }
+        int index = Integer.parseInt(postCmd) - 1;
+        boolean change;
+        if (cmd.equals("mark")) {
+            change = this.lst.get(index).setDone();
+            if (change) {
+                System.out.println("  Nice! Task " + (index + 1) + " done!\n    " + this.lst.get(index));
+            } else {
+                System.out.println("  Task " + (index + 1) + " is already done!\n    " + this.lst.get(index));
+            }
+        }
+        if (cmd.equals("unmark")) {
+            change = this.lst.get(index).setUnDone();
+            if (change) {
+                System.out.println("  Ok! Task " + (index + 1) + " marked as not done!\n    " + this.lst.get(index));
+            } else {
+                System.out.println("  Task " + (index + 1) + " is already not done!\n    " + this.lst.get(index));
+            }
+        }
+        printListCount();
+    }
+
+    /**
+     * Checks if the text after mark/unmark/delete is an integer.
+     * @param input The text to be checked.
+     * @return The boolean representing if the text is an integer.
+     */
+    private boolean isInteger(String input) {
+        try {
+            Integer.parseInt(input);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     /**
      * Handles what to do with a "Todo" task.
      * @param desc The description of the task.
+     * @throws EmptyTaskException if the followup text after the command is empty.
      */
-    private void handleTodo(String desc) {
-        lst.add(new Todo(desc));
-        System.out.println("  Added task todo: \n  " + lst.get(lst.size() - 1));
+    private void handleTodo(String desc) throws EmptyTaskException {
+        if (desc.trim().equals("")) {
+            throw new EmptyTaskException("todo");
+        }
+
+        this.lst.add(new Todo(desc));
+        System.out.println("  Added task todo: \n    " + this.lst.get(this.lst.size() - 1));
         printListCount();
-        newLine();
     }
 
     /**
      * Handles what to do with a "Deadline" task.
      * @param desc The description of the task.
+     * @throws EmptyTaskException if the followup text after the command is empty.
+     * @throws InvalidArgumentException if the followup text after the command and description is not "/by".
+     * @throws EmptyDurationException if the followup text after "/by" is empty.
      */
-    private void handleDeadline(String desc) {
-        String[] split = desc.split("/");
-        lst.add(new Deadline(split[0], split[1].substring(3)));
-        System.out.println("  Added the task with deadline: \n  " + lst.get(lst.size() - 1));
+    private void handleDeadline(String desc) throws EmptyTaskException, InvalidArgumentException,
+            EmptyDurationException {
+        String[] split = desc.split("/by ");
+        if (desc.trim().equals("") || split.length == 0 || split[0].equals("")) {
+            throw new EmptyTaskException("deadline");
+        }
+        if (split[0].equals(desc)) {
+            throw new InvalidArgumentException("deadline", "/by");
+        }
+        if (split.length == 1) {
+            throw new EmptyDurationException("deadline", "/by");
+        }
+
+        this.lst.add(new Deadline(split[0].trim(), split[1]));
+        System.out.println("  Added the task with deadline: \n    " + this.lst.get(this.lst.size() - 1));
         printListCount();
-        newLine();
     }
 
     /**
      * Handles what to do with a "Event" task.
      * @param desc The description of the task.
+     * @throws EmptyTaskException if the followup text after the command is empty.
+     * @throws InvalidArgumentException if the followup text after the command and description is not "/at".
+     * @throws EmptyDurationException if the followup text after "/at" is empty.
      */
-    private void handleEvent(String desc) {
-        String[] split = desc.split("/");
-        lst.add(new Event(split[0], split[1].substring(3)));
-        System.out.println("  Added the event task: \n  " + lst.get(lst.size() - 1));
+    private void handleEvent(String desc) throws EmptyTaskException, InvalidArgumentException,
+            EmptyDurationException {
+        String[] split = desc.split("/at ");
+        if (desc.trim().equals("") || split.length == 0 || split[0].equals("")) {
+            throw new EmptyTaskException("event");
+        }
+        if (split[0].equals(desc)) {
+            throw new InvalidArgumentException("event", "/at");
+        }
+        if (split.length == 1) {
+            throw new EmptyDurationException("event", "/at");
+        }
+
+        this.lst.add(new Event(split[0].trim(), split[1]));
+        System.out.println("  Added the event task: \n    " + this.lst.get(this.lst.size() - 1));
         printListCount();
-        newLine();
     }
 
     /**
      * Prints the number of current tasks, as well as how many are completed.
      */
     private  void printListCount() {
-        System.out.println("  You have " + lst.size() + " tasks currently, " + Task.totalDone + " are completed");
+        System.out.println("  You have " + this.lst.size() + " tasks currently, " + Task.totalDone + " are completed");
     }
 
     /**
      * Prints a list of all the tasks.
      */
     private void printList() {
-        if (lst.size() == 0) {
+        if (this.lst.size() == 0) {
             System.out.println("  List is empty!");
         } else {
             System.out.println("  List of tasks: \n");
         }
-        for (int i = 1; i <= lst.size(); i++) {
-            System.out.println("  " + i + ": " + lst.get(i - 1));
+        for (int i = 1; i <= this.lst.size(); i++) {
+            System.out.println("  " + i + ": " + this.lst.get(i - 1));
         }
-        newLine();
     }
 
     /**

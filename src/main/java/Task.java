@@ -33,22 +33,28 @@ public class Task {
 
     /**
      * Sets the Task to be done.
+     * @return true if the task has changed state.
      */
-    public void setDone() {
+    public boolean setDone() {
         if (!this.isDone) {
             Task.totalDone++;
+            this.isDone = true;
+            return true;
         }
-        this.isDone = true;
+        return false;
     }
 
     /**
      * Sets the Task to be undone.
+     * @return true if the task has changed state.
      */
-    public void setUnDone() {
+    public boolean setUnDone() {
         if (this.isDone) {
             Task.totalDone--;
+            this.isDone = false;
+            return true;
         }
-        this.isDone = false;
+        return false;
     }
 
     @Override
