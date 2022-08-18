@@ -80,9 +80,14 @@ public class Duke {
      * Prints an overview of all added tasks and their status.
      */
     public void viewAllTask() {
-        String msgBegin = "Here are the tasks in your list:\n";
-        String msg = msgBegin + this.taskList.toString();
-        prettyPrint(msg);
+        if (this.taskList.size() <= 0) {
+            String msg = "You currently have no task in your list! Great job for completing all your tasks :-)";
+            prettyPrint(msg);
+        } else {
+            String msgBegin = "Here are the tasks in your list:\n";
+            String msg = msgBegin + this.taskList.toString();
+            prettyPrint(msg);
+        }
     }
 
     /**
