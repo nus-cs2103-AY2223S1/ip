@@ -1,0 +1,6 @@
+todo make bed
+event concert /at tomorrow
+deadline cs2103t submission /by friday 2pm
+list
+BAD_COMMAND
+bye

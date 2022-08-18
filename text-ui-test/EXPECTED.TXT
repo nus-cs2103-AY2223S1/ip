@@ -5,3 +5,27 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
+
+  _______________
+  Added: [T] [ ] make bed
+  Now you have 1 tasks in the list
+  _______________
+
+
+  _______________
+  Added: [E] [ ] concert (at: tomorrow)
+  Now you have 2 tasks in the list
+  _______________
+
+
+  _______________
+  Added: [D] [ ] cs2103t submission (by: friday 2pm)
+  Now you have 3 tasks in the list
+  _______________
+
+Your tasks:
+1. [T] [ ] make bed
+2. [E] [ ] concert (at: tomorrow)
+3. [D] [ ] cs2103t submission (by: friday 2pm)
+You did not provide a valid command
+Goodbye. Hope to see you again soon
