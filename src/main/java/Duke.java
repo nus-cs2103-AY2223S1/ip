@@ -24,7 +24,6 @@ public class Duke {
 
             else if (first.equals("mark")) {
                 char c = input.charAt(5);
-                System.out.println(c);
                 int index = Integer.parseInt(String.valueOf(c));
                 Task t = lst[index-1];
                 t.markAsDone();
