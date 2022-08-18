@@ -46,11 +46,49 @@ public class Duke {
         if (tasks.size() == 0) {
             System.out.println("You currently have no tasks. ");
         } else {
+            System.out.println("Here are the tasks in your list:");
             for (int i = 0; i < tasks.size(); i++) {
-                System.out.println("Here are the tasks in your list:");
                 System.out.println(i + 1 + "." + tasks.get(i));
             }
         }
+    }
+
+    enum TaskType {
+        TODO("todo "),
+        DEADLINE("deadline "),
+        EVENT("event ");
+
+        public final String string;
+
+        TaskType(String string) {
+            this.string = string;
+        }
+    }
+
+    private static void addTask(String input, TaskType type) throws DukeException {
+        String[] splitInput = input.split(type.string);
+        String errorMessage = type == TaskType.TODO
+                ? "Please add a description for the %s"
+                : "Please add a description and date for the %s";
+        if (splitInput.length < 2) {
+            throw new DukeException(String.format(errorMessage, type.string));
+        }
+        Task task;
+        if (type == TaskType.TODO) {
+            String desc = splitInput[1];
+            task = new Todo(desc);
+        } else {
+            splitInput = splitInput[1].split(type == TaskType.DEADLINE ? " /by " : " /at ");
+            if (splitInput.length < 2) {
+                throw new DukeException(String.format(errorMessage, type.string));
+            }
+            task = type == TaskType.DEADLINE
+                    ? new Deadline(splitInput[0], splitInput[1])
+                    : new Event(splitInput[0], splitInput[1]);
+        }
+        tasks.add(task);
+        System.out.printf("Got it. I've added this task:\n  %s\n", task.toString());
+        System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
     }
 
     public static void main(String[] args) {
@@ -72,41 +110,11 @@ public class Duke {
                 } else if (input.startsWith("delete ")) {
                     deleteTask(input);
                 } else if (input.startsWith("todo ")) {
-                    String[] splitInput = input.split("todo ");
-                    if (splitInput.length < 2) {
-                        throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
-                    }
-                    String desc = splitInput[1];
-                    Todo todo = new Todo(desc);
-                    tasks.add(todo);
-                    System.out.printf("Got it. I've added this task:\n  %s\n", todo.toString());
-                    System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
+                    addTask(input, TaskType.TODO);
                 } else if (input.startsWith("deadline ")) {
-                    String[] splitInput = input.split("deadline ");
-                    if (splitInput.length < 2) {
-                        throw new DukeException("Please add a description and date for the deadline");
-                    }
-                    splitInput = splitInput[1].split(" /by ");
-                    if (splitInput.length < 2) {
-                        throw new DukeException("Please add a description and date for the deadline");
-                    }
-                    Deadline deadline = new Deadline(splitInput[0], splitInput[1]);
-                    tasks.add(deadline);
-                    System.out.printf("Got it. I've added this task:\n  %s\n", deadline.toString());
-                    System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
+                    addTask(input, TaskType.DEADLINE);
                 } else if (input.startsWith("event ")) {
-                    String[] splitInput = input.split("event ");
-                    if (splitInput.length < 2) {
-                        throw new DukeException("Please add a description and date for the event");
-                    }
-                    splitInput = splitInput[1].split(" /at ");
-                    if (splitInput.length < 2) {
-                        throw new DukeException("Please add a description and date for the event");
-                    }
-                    Event event = new Event(splitInput[0], splitInput[1]);
-                    tasks.add(event);
-                    System.out.printf("Got it. I've added this task:\n  %s\n", event.toString());
-                    System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
+                    addTask(input, TaskType.EVENT);
                 } else {
                     throw new DukeException("what");
                 }
