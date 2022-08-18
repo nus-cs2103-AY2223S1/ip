@@ -16,5 +16,9 @@ public class Task {
     public void setIsDone(Boolean done){
         isDone = done;
     }
-
+    @Override
+    public String toString() {
+        return "[" + getIsDone() + "] " + description;
+    }
 }
+
