@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Duke {
+public abstract class Duke {
 
     /**
      * This method checks if a string typed can be a number or not
@@ -17,6 +17,23 @@ public class Duke {
             return false;
         }
         return true;
+    }
+
+    /**
+     * This method joins the individual string elements in an array from a start position
+     * @param stringArray the array of strings
+     * @param start the starting position
+     * @return the string representing the elements joined from the starting position to the end
+     */
+    public static String joinString(String[] stringArray, int start) {
+        StringBuilder outputString = new StringBuilder();
+        for (int i = start; i < stringArray.length; i++) {
+            String toAdd = stringArray[i] + " ";
+            outputString.append(toAdd);
+        }
+
+        return outputString.toString();
+
     }
 
     public static void main(String[] args) {
@@ -72,10 +89,42 @@ public class Duke {
                         System.out.println(currentTask.toString());
                     }
                 } else {
-                    // If first word is not marked or unmarked or user only typed one word, user is trying to add a task
-                    taskArray[count] = new Task(userCommand);
+                    // User is trying to add a new to-do / deadline / event
+                    // Create a string to be outputted
+                    String outputString = "";
+                    if (words[0].equals("todo")) {
+                        // If user is trying to add a to-do, save the description
+                        String description = joinString(words, 1);
+                        Todo newTodo = new Todo(description);
+                        taskArray[count] = newTodo;
+                        outputString = newTodo.toString();
+                    } else if (words[0].equals("deadline")) {
+                        // If user is trying to add a deadline, save the description and the 'by' date
+                        String remainingDescription = joinString(words, 1);
+                        String[] remainingWords = remainingDescription.split(" /by ");
+                        String description = remainingWords[0];
+                        String by = remainingWords[1];
+                        // Cut down a white spacing at the end
+                        by = by.substring(0, by.length() - 1);
+                        Deadline newDeadline = new Deadline(description, by);
+                        taskArray[count] = newDeadline;
+                        outputString = newDeadline.toString();
+                    } else {
+                        // If user is trying to add an event, save the description and the 'at' date
+                        String remainingDescription = joinString(words, 1);
+                        String[] remainingWords = remainingDescription.split(" /at ");
+                        String description = remainingWords[0];
+                        // Cut down a white spacing at the end
+                        String at = remainingWords[1];
+                        at = at.substring(0, at.length() - 1);
+                        Event newEvent = new Event(description, at);
+                        taskArray[count] = newEvent;
+                        outputString = newEvent.toString();
+                    }
                     count += 1;
-                    System.out.println("added:" + userCommand);
+                    System.out.println("Got it. I 've added this task:");
+                    System.out.println(outputString);
+                    System.out.println("Now you have " + String.valueOf(count) + " tasks in the list.");
                 }
 
             }
