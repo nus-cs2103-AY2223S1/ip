@@ -31,28 +31,46 @@ public class Duke {
 
 
         while (!input.equals("bye")) {
-            if (input.equals("list")) {
-                printArrAsNumberedList(taskArr);
-            } else if (input.startsWith("mark")){
-                taskArr.get(Integer.parseInt(input.substring(5))).mark();
-            } else if (input.startsWith("unmark")){
-                taskArr.get(Integer.parseInt(input.substring(7))).unmark();
-            } else {
-                // this is under the so called task creation
-                if (input.startsWith("event")) {
-                    String[] inputArr = input.split("/");
-                    taskArr.add(new Event(inputArr[0], inputArr[1].substring(3)));
-                } else if (input.startsWith("todo")){
-                    taskArr.add(new ToDo(input));
-                } else if (input.startsWith("deadline")){
-                    String[] inputArr = input.split("/");
-                    taskArr.add(new Deadline(inputArr[0], inputArr[1].substring(3)));
+            try {
+                if (input.equals("list")) {
+                    printArrAsNumberedList(taskArr);
+                } else if (input.startsWith("mark")) {
+                    taskArr.get(Integer.parseInt(input.substring(5)) - 1).mark();
+                } else if (input.startsWith("unmark")) {
+                    taskArr.get(Integer.parseInt(input.substring(7)) - 1).unmark();
                 } else {
-                    System.out.println("Eh this input doesn't seem right, try again");
-//                    taskArr.add(new Task(input));
+                    // this is under task creation
+                    if (input.startsWith("event")) {
+                        String[] inputArr = input.split("/");
+                        taskArr.add(new Event(inputArr[0], inputArr[1].substring(3)));
+                        echo(taskArr.get(taskArr.size() - 1).toString());
+                    } else if (input.startsWith("todo")) {
+
+                        if (input.substring(4).equals("")){
+                            throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+                        } else {
+                            taskArr.add(new ToDo(input));
+                            echo(taskArr.get(taskArr.size() - 1).toString());
+                        }
+                    } else if (input.startsWith("deadline")) {
+                        String[] inputArr = input.split("/");
+                        taskArr.add(new Deadline(inputArr[0], inputArr[1].substring(3)));
+                        echo(taskArr.get(taskArr.size() - 1).toString());
+                    } else if (input.startsWith("delete")) {
+                        int index = Integer.parseInt(input.substring(7)) - 1;
+                        System.out.printf("Noted. I've removed this task:\n%s\nNow you have %s tasks in the list.\n",
+                                taskArr.get(index).toString(), (taskArr.size() - 1));
+                        taskArr.remove(index);
+                    } else {
+                        throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                    }
+//                    echo(taskArr.get(taskArr.size() - 1).toString());
                 }
-                echo(taskArr.get(taskArr.size() - 1).toString());
+
+            } catch (DukeException e) {
+                System.out.println(e.getMessage());
             }
+
             input = sc.nextLine();
         }
         System.out.println("Bye. Hope to see you again soon!\n");
