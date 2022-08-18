@@ -29,7 +29,7 @@ public class Doris {
             String command = sc.nextLine();
 
             if(command.equals("bye")) {
-                System.out.println("Bye you annoying sia don't want talk to you");
+                System.out.println("Bye you annoying sia don't want talk to you anymore");
                 return;
             } else if (command.equals("list")) {
                 System.out.println("Eh faster go:");
