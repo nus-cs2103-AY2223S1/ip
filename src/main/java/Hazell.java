@@ -34,7 +34,7 @@ public class Hazell {
                     reply("Bye. Hope to see you again soon!");
                     System.exit(0);
                 } else if (command.startsWith("list")) {
-                    reply(taskStore.toString());
+                    reply(String.format("Here are the tasks in your list:\n%s", taskStore.toString()));
                 } else if (command.startsWith("mark")) {
                     int index = Integer.parseInt(command.getTrailingArgs().get(0)) - 1;
                     Task task = taskStore.getTask(index);
