@@ -54,6 +54,9 @@ public class Duke {
             case "unmark":
                 this.unmark(argument);
                 break;
+            case "delete":
+                this.delete(argument);
+                break;
             default:
                 throw DukeException.invalidCommand;
         }
@@ -109,6 +112,22 @@ public class Duke {
             listOfTasks.get(id - 1).changeMark(false);
             IOhelper.print("OK, I've marked this task as not done yet:\n" +
                     listOfTasks.get(id - 1));
+        } catch (NumberFormatException e){
+            throw DukeException.invalidArgument;
+        }
+    }
+
+    public void delete(String argument) throws DukeException{
+        try {
+            int id = Integer.parseInt(argument);
+            if(listOfTasks.size() < id) {
+                throw DukeException.idTooBig;
+            }
+            Task deletedTask = listOfTasks.get(id - 1);
+            listOfTasks.remove(id - 1);
+            IOhelper.print("Noted. I've removed this task:\n" +
+                    deletedTask);
+            IOhelper.print("Now you have " + listOfTasks.size() + " tasks in the list.");
         } catch (NumberFormatException e){
             throw DukeException.invalidArgument;
         }
