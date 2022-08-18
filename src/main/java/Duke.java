@@ -24,6 +24,9 @@ public class Duke {
             } else if (input.equals("list")) {
                 System.out.print(divider);
                 System.out.print(indent + "Here are the tasks in your list:\n");
+                if (taskList.size() == 0) {
+                    System.out.println(indent + "[No tasks available]");
+                }
                 for (int index = 0; index < taskList.size(); ++index) {
                     System.out.print(indent);
                     System.out.print(index + 1);
@@ -44,22 +47,44 @@ public class Duke {
             } else {
                 boolean response = false;
                 if (input.contains("event")) {
-                    int indexOfDateTime = input.indexOf("/at");
-                    String dateTime = input.substring(indexOfDateTime + 4);
-                    String eventDescription = input.substring(6, indexOfDateTime - 1);
-                    Event newTask = new Event(dateTime, eventDescription);
-                    response = taskList.add(newTask);
-
+                    try {
+                        int indexOfDateTime = input.indexOf("/at");
+                        String dateTime = input.substring(indexOfDateTime + 4);
+                        String eventDescription = input.substring(6, indexOfDateTime - 1);
+                        Event newTask = new Event(dateTime, eventDescription);
+                        response = taskList.add(newTask);
+                    } catch (StringIndexOutOfBoundsException exception) {
+                        System.out.println(divider + indent + "Warning: The description and time " +
+                                "cannot be empty.\n" + divider);
+                    } catch (Exception exception) {
+                        System.out.println(divider + indent + "Error: " + exception + "\n" + divider);
+                    }
                 } else if (input.contains("todo")) {
-                    String toDoDescription = input.substring(5);
-                    ToDo newToDo = new ToDo(toDoDescription);
-                    response = taskList.add(newToDo);
-                } else { // input contains "deadline"
-                    int indexOfDateTime = input.indexOf("/by");
-                    String dateTime = input.substring(indexOfDateTime + 4);
-                    String deadlineDescription = input.substring(9, indexOfDateTime - 1);
-                    Deadline newDeadline = new Deadline(dateTime, deadlineDescription);
-                    response = taskList.add(newDeadline);
+                    try {
+                        String toDoDescription = input.substring(5);
+                        ToDo newToDo = new ToDo(toDoDescription);
+                        response = taskList.add(newToDo);
+                    } catch (StringIndexOutOfBoundsException exception) {
+                        System.out.println(divider + indent + "Warning: The description cannot be empty.\n"
+                            + divider);
+                    } catch (Exception exception) {
+                        System.out.println(divider + indent + "Error: " + exception + "\n" + divider);
+                    }
+                } else if (input.contains("deadline")) {
+                    try {
+                        int indexOfDateTime = input.indexOf("/by");
+                        String dateTime = input.substring(indexOfDateTime + 4);
+                        String deadlineDescription = input.substring(9, indexOfDateTime - 1);
+                        Deadline newDeadline = new Deadline(dateTime, deadlineDescription);
+                        response = taskList.add(newDeadline);
+                    } catch (StringIndexOutOfBoundsException exception) {
+                        System.out.println(divider + indent + "Warning: The description and time" +
+                                " cannot be empty.\n" + divider);
+                    } catch (Exception exception) {
+                        System.out.println(divider + indent + "Error: " + exception + "\n" + divider);
+                    }
+                } else {
+                    System.out.println(divider + indent + "Oops, sorry! I don't know what that means :(\n" + divider);
                 }
                 if (response) {
                     int numberOfTasks = taskList.size();
