@@ -46,6 +46,11 @@ public class Duke {
             currentTask.unMark();
             System.out.printf("\tOK, I've marked this task as not done yet:\n");
             System.out.printf("\t    %s\n", currentTask);
+        } else if (keyword.equals("delete")) {
+            tasksList.remove(index);
+            System.out.printf("\tNoted. I've removed this task:\n");
+            System.out.printf("\t    %s\n", currentTask);
+            System.out.printf("\tNow you have %d tasks in the list.\n", tasksList.size());
         }
         System.out.println(DIVIDER);
     }
@@ -105,6 +110,17 @@ public class Duke {
                         // ☹ OOPS!!! The description of a unmark cannot be empty.
                         throw new DukeException("unmark empty");
                     }
+                } else if (input.equals("delete")) {
+                    // get the index
+                    if (sc.hasNextInt()) {
+                        int index = sc.nextInt();
+                        print("delete", index - 1);
+                    } else {
+                        // invalid
+                        // ☹ OOPS!!! The description of a mark cannot be empty.
+                        throw new DukeException("delete empty");
+                    }
+
                 } else if (input.equals("todo")) {
                     if (sc.hasNextLine()) {
                         input = sc.nextLine();
@@ -173,6 +189,8 @@ public class Duke {
                     print("mark", "empty");
                 } else if (ex.getMessage().equals("unmark empty")) {
                     print("unmark", "empty");
+                } else if (ex.getMessage().equals("delete empty")) {
+                    print("delete", "empty");
                 }
             }
         }
