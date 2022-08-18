@@ -115,55 +115,55 @@ public class Duke {
             }
 
             switch (cmd) {
-                case "mark": {
-                    int taskIndex = Integer.parseInt(str[1]) - 1;
-                    if (taskIndex < 0 || taskIndex >= tasks.size()) {
-                        throw new InputIndexOutOfBoundsException("tried to mark task " + str[1]);
-                    }
-                    markTask(taskIndex);
-                    break;
+            case "mark": {
+                int taskIndex = Integer.parseInt(str[1]) - 1;
+                if (taskIndex < 0 || taskIndex >= tasks.size()) {
+                    throw new InputIndexOutOfBoundsException("tried to mark task " + str[1]);
                 }
-                case "unmark": {
-                    int taskIndex = Integer.parseInt(str[1]) - 1;
-                    if (taskIndex < 0 || taskIndex >= tasks.size()) {
-                        throw new InputIndexOutOfBoundsException("tried to unmark task " + str[1]);
-                    }
-                    unmarkTask(taskIndex);
-                    break;
+                markTask(taskIndex);
+                break;
+            }
+            case "unmark": {
+                int taskIndex = Integer.parseInt(str[1]) - 1;
+                if (taskIndex < 0 || taskIndex >= tasks.size()) {
+                    throw new InputIndexOutOfBoundsException("tried to unmark task " + str[1]);
                 }
-                case "delete": {
-                    int taskIndex = Integer.parseInt(str[1]) - 1;
-                    if (taskIndex < 0 || taskIndex >= tasks.size()) {
-                        throw new InputIndexOutOfBoundsException("tried to delete task " + str[1]);
-                    }
-                    removeTask(taskIndex);
-                    break;
+                unmarkTask(taskIndex);
+                break;
+            }
+            case "delete": {
+                int taskIndex = Integer.parseInt(str[1]) - 1;
+                if (taskIndex < 0 || taskIndex >= tasks.size()) {
+                    throw new InputIndexOutOfBoundsException("tried to delete task " + str[1]);
                 }
-                case "todo":
-                    addTodo(str[1]);
-                    break;
-                case "deadline": {
-                    String[] str2 = str[1].split(" /by ");
-                    if (str2.length == 1) {
-                        throw new MissingDukeInputException(cmd);
-                    }
-                    String description = str2[0];
-                    String date = str2[1];
-                    addDeadline(description, date);
-                    break;
+                removeTask(taskIndex);
+                break;
+            }
+            case "todo":
+                addTodo(str[1]);
+                break;
+            case "deadline": {
+                String[] str2 = str[1].split(" /by ");
+                if (str2.length == 1) {
+                    throw new MissingDukeInputException(cmd);
                 }
-                case "event": {
-                    String[] str2 = str[1].split(" /at ");
-                    if (str2.length == 1) {
-                        throw new MissingDukeInputException(cmd);
-                    }
-                    String description = str2[0];
-                    String date = str2[1];
-                    addEvent(description, date);
-                    break;
+                String description = str2[0];
+                String date = str2[1];
+                addDeadline(description, date);
+                break;
+            }
+            case "event": {
+                String[] str2 = str[1].split(" /at ");
+                if (str2.length == 1) {
+                    throw new MissingDukeInputException(cmd);
                 }
-                default:
-                    throw new InvalidDukeInputException();
+                String description = str2[0];
+                String date = str2[1];
+                addEvent(description, date);
+                break;
+            }
+            default:
+                throw new InvalidDukeInputException();
             }
         } catch (InvalidDukeInputException e) {
             printMessage("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
