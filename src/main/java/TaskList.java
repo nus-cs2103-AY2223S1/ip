@@ -44,16 +44,18 @@ public class TaskList {
     }
 
     private void validateIndexMessage() {
+        String message;
         switch (taskList.size()) {
             case 0:
-                System.out.println("Please add a task first!");
+                message = "Please add a task first!";
                 break;
             case 1:
-                System.out.println("Please choose the index 1");
+                message = "Please choose the index 1";
                 break;
             default:
-                System.out.println("Please choose an index between 1 and " + taskList.size());
+                message = "Please choose an index between 1 and " + taskList.size();
                 break;
         }
+        new InvalidIndexException(message);
     }
 }

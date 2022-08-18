@@ -71,8 +71,8 @@ public class Duke {
                         addTask(new TaskEvent(taskName, taskAt));
                         break;
                     }
-                    defaultCase();
-                    break;
+                    new InvalidInstructionException();
+                    Prompt.lineDivider();
             }
         }
     }
@@ -97,12 +97,6 @@ public class Duke {
     private static <T extends Task> void addTask(T task) {
         taskList.addTask(task);
         taskList.listTask();
-        Prompt.lineDivider();
-    }
-
-    static void defaultCase() {
-        Prompt.invalidInstruction();
-        Prompt.listValidInstructions();
         Prompt.lineDivider();
     }
 }
