@@ -6,7 +6,7 @@ public class Duke {
 
         System.out.println("----------------------\nHello! I'm HelperBot\nWhat can I do for you?\n----------------------\n");
         String userInput = sc.nextLine();
-        Task[] listOfActions = new Task[100];
+        ArrayList<Task> listOfActions = new ArrayList<Task>(100);
         int currentAction = 0;
         int end = 0;
 
@@ -14,7 +14,7 @@ public class Duke {
             //If user wants to check the list
             String output = "";
             for (int i = 0; i < currentAction; i++) {
-                output = output + String.format("%d", i + 1) + "." + listOfActions[i] + "\n";
+                output = output + String.format("%d", i + 1) + "." + listOfActions.get(i) + "\n";
             }
 
             if (userInput.equals("bye")) {
@@ -67,7 +67,17 @@ public class Duke {
                                     System.out.println("----------------------\nI am sorry pls input again\n" +
                                             "----------------------\n");
                                 }
-                            } else {
+                            }
+
+                            //Delete
+
+                            else if (userInput.substring(0, 6).equals("delete")) {
+                                    System.out.println("----------------------\nI am sorry pls input again\n" +
+                                            "----------------------\n");
+                            }
+
+
+                            else {
                                 System.out.println("----------------------\nI am sorry pls input again\n" +
                                         "----------------------\n");
                             }
@@ -75,8 +85,19 @@ public class Duke {
 
                         else if (userInput.length() > 7) {
 
+
+                            if (userInput.substring(0, 6).equals("delete")) {
+                                try {
+                                    removeTask(userInput, listOfActions, currentAction);
+                                    currentAction--;
+                                } catch (DukeException e) {
+                                    System.out.println("----------------------\nI am sorry pls input again\n" +
+                                            "----------------------\n");
+                                }
+                            }
+
                             //deadline
-                            if (userInput.substring(0, 8).equals("deadline")) {
+                            else if (userInput.substring(0, 8).equals("deadline")) {
                                 try {
                                     deadLine(userInput, listOfActions, currentAction);
                                     currentAction++;
@@ -100,6 +121,11 @@ public class Duke {
                                     System.out.println("----------------------\nI am sorry pls input again\n" +
                                             "----------------------\n");
                                 }
+                            }
+
+                            else {
+                                System.out.println("----------------------\nI am sorry pls input again\n" +
+                                        "----------------------\n");
                             }
                         }
                         else {
@@ -138,31 +164,31 @@ public class Duke {
         System.out.println("Thank you and ATB :)");
     }
 
-    public static void mark(String userInput, Task[] listOfActions) throws DukeException{
+    public static void mark(String userInput, ArrayList<Task> listOfActions) throws DukeException{
         try {
             int position = Character.getNumericValue(userInput.charAt(5)) - 1;
-            listOfActions[position].mark();
+            listOfActions.get(position).mark();
             System.out.println("----------------------\n" + "Congrats on completing :)\n" +
-                    listOfActions[position] + "\n----------------------\n");
+                    listOfActions.get(position) + "\n----------------------\n");
         } catch (StringIndexOutOfBoundsException e) {
             throw new DukeException("");
         }
     }
 
     //Unmark method
-    public static void unMark(String userInput, Task[] listOfActions) throws DukeException{
+    public static void unMark(String userInput, ArrayList<Task> listOfActions) throws DukeException{
         try {
             int position = Character.getNumericValue(userInput.charAt(7)) - 1;
-            listOfActions[position].unMark();
+            listOfActions.get(position).unMark();
             System.out.println("----------------------\n" + "One more mission ;)\n" +
-                    listOfActions[position] + "\n----------------------\n");
+                    listOfActions.get(position) + "\n----------------------\n");
         } catch (StringIndexOutOfBoundsException e) {
             throw new DukeException("");
         }
     }
 
     //td method
-    public static void toDo(String userInput, Task[] listOfActions, int currentAction) throws DukeException{
+    public static void toDo(String userInput, ArrayList<Task> listOfActions, int currentAction) throws DukeException{
         try {
             //action
             if (userInput.length() < 5) {
@@ -170,9 +196,9 @@ public class Duke {
             }
             String action = userInput.substring(4);
             Todo td = new Todo(action.strip());
-            listOfActions[currentAction] = td;
+            listOfActions.add(td);
             System.out.println("----------------------\n" + "Ok Solid you got this work to do:\n" +
-                    listOfActions[currentAction] + String.format("\nYou have a total of %d work to do", currentAction + 1)
+                    listOfActions.get(currentAction) + String.format("\nYou have a total of %d work to do", currentAction + 1)
                     + "\n----------------------\n");
         } catch (StringIndexOutOfBoundsException e) {
             throw new DukeException("");
@@ -180,7 +206,7 @@ public class Duke {
     }
 
     //dedline method
-    public static void deadLine(String userInput, Task[] listOfActions, int currentAction) throws DukeException{
+    public static void deadLine(String userInput, ArrayList<Task> listOfActions, int currentAction) throws DukeException{
         try {
             //get action
             int index = userInput.indexOf("/");
@@ -188,9 +214,9 @@ public class Duke {
             //get deadline
             String dedline = userInput.substring(index + 3);
             Deadline ded = new Deadline(action.strip(), dedline.strip());
-            listOfActions[currentAction] = ded;
+            listOfActions.add(ded);
             System.out.println("----------------------\n" + "Ok Solid you got this work to do:\n" +
-                    listOfActions[currentAction] + String.format("\nYou have a total of %d work to do", currentAction + 1)
+                    listOfActions.get(currentAction) + String.format("\nYou have a total of %d work to do", currentAction + 1)
                     + "\n----------------------\n");
         } catch (StringIndexOutOfBoundsException e) {
             throw new DukeException("");
@@ -199,7 +225,7 @@ public class Duke {
 
 
     //event method
-    public static void event(String userInput, Task[] listOfActions, int currentAction) throws DukeException {
+    public static void event(String userInput, ArrayList<Task> listOfActions, int currentAction) throws DukeException {
         try {
             //get action
             int index = userInput.indexOf("/");
@@ -207,11 +233,25 @@ public class Duke {
             //get date
             String dedline = userInput.substring(index + 3);
             Event e = new Event(action.strip(), dedline.strip());
-            listOfActions[currentAction] = e;
+            listOfActions.add(e);
             System.out.println("----------------------\n" + "Ok Solid you got this work to do:\n" +
-                    listOfActions[currentAction] + String.format("\nYou have a total of %d work to do", currentAction + 1)
+                    listOfActions.get(currentAction) + String.format("\nYou have a total of %d work to do", currentAction + 1)
                     + "\n----------------------\n");
         } catch(StringIndexOutOfBoundsException e) {
+            throw new DukeException("");
+        }
+    }
+
+    public static void removeTask(String userInput, ArrayList<Task> listOfActions, int currentAction)
+            throws DukeException {
+        try {
+            int index = Character.getNumericValue(userInput.charAt(7)) - 1;
+            String removed = listOfActions.get(index).toString();
+            listOfActions.remove(index);
+            System.out.println("----------------------\n" + "Noted, The following task has been removed\n" +
+                    removed + String.format("\nYou have a total of %d work to do still", currentAction - 1) +
+                    "\n----------------------\n");
+        } catch (StringIndexOutOfBoundsException e) {
             throw new DukeException("");
         }
     }
