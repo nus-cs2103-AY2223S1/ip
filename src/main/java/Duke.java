@@ -76,19 +76,14 @@ public class Duke {
     }
     public static void main(String[] args) {
 
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
         System.out.println("What can I do for you?");
         ArrayList<Task> ls = new ArrayList<>();
         ArrayList<String> tested = new ArrayList<>();
+        Scanner sc = new Scanner(System.in);
+        String line = "";
         while (true) {
             try {
-                Scanner sc = new Scanner(System.in);
-                String line = sc.nextLine();
+                line = sc.nextLine();
 
                 if (line.equals("bye")) {
                     System.out.println("Bye. Hope to see you again soon!");
@@ -98,6 +93,7 @@ public class Duke {
                     for (int i = 0; i < ls.size(); i++) {
                         System.out.println(i + 1 + "." + " " + ls.get(i).toString());
                     }
+
                 } else if (line.contains("unmark")) {
                     if (line.equals("unmark")) {
                         throw new DukeException("☹ OOPS!!! The description of a unmark cannot be empty.");
@@ -115,6 +111,7 @@ public class Duke {
                         ls.get(num - 1).setStatus(true);
                         System.out.println("Nice! I've marked this task as done:");
                         System.out.println(ls.get(num - 1).toString());
+
                     }
                 } else if (line.contains("todo")) {
                     if (line.equals("todo")) {
@@ -125,6 +122,7 @@ public class Duke {
                         System.out.println("Got it. I've added this task:");
                         System.out.println(test.toString());
                         System.out.println("Now you have" + " " + ls.size() + " " + "tasks in the list.");
+
                     }
                 } else if (line.contains("deadline")) {
                     if (line.equals("deadline")) {
@@ -137,6 +135,7 @@ public class Duke {
                         System.out.println("Got it. I've added this task:");
                         System.out.println(test.toString());
                         System.out.println("Now you have" + " " + ls.size() + " " + "tasks in the list.");
+
                     }
                 } else if (line.contains("event")) {
                     if (line.equals("event")) {
@@ -150,6 +149,7 @@ public class Duke {
                         System.out.println("Got it. I've added this task:");
                         System.out.println(test.toString());
                         System.out.println("Now you have" + " " + ls.size() + " " + "tasks in the list.");
+
                     }
                 } else if (line.contains("delete")) {
                     if (line.equals("delete")) {
@@ -157,11 +157,11 @@ public class Duke {
 
                     } else {
                         int removal = Integer.parseInt(line.substring(7));
-
                         System.out.println("Noted. I've removed this task:");
                         System.out.println(ls.get(removal - 1).toString());
                         ls.remove(removal - 1);
                         System.out.println("Now you have" + " " + ls.size() + " " + "tasks in the list.");
+
                     }
                 } else {
                     throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-()");
