@@ -10,6 +10,7 @@ public class Duke {
     private static final String exitCmd = "bye";
     private static final String noTaskMessage   = "It appears you have no tasks right now,\n"
                                                 + "would you like to add some?";
+    private static final String addTaskMessage = "Got it. I've added this task:\n";
     private static final String taskMarkedMessage = "Nice! I've marked this task as done:\n";
     private static final String taskUnmarkedMessage = "OK, I've marked this task as not done yet:\n";
     private static final String alreadyMarkedMessage = "This task is already marked:\n";
@@ -23,51 +24,59 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
         String userInput = sc.nextLine();
         while (!userInput.equals(exitCmd)) {
-            String[] inputSplit = inputSplit(userInput);
-            if (userInput.equals("list")) {
-                System.out.println(printTasks());
-            } else if (inputSplit[0].equals("mark")) {
-                try {
-                    int taskNum = Integer.parseInt(inputSplit[1]);
-                    if (inputSplit.length > 2) {
-                        System.out.println(invalidInputMessage);
-                    } else if (taskNum > tasks.size()) {
-                        System.out.println(noSuchTaskMessage);
-                    } else {
+            try {
+                String[] inputSplit = inputSplit(userInput);
+                if (userInput.equals("list")) {
+                    System.out.println(printTasks());
+                } else if (inputSplit[0].equals("mark")) {
+                    try {
+                        int taskNum = Integer.parseInt(inputSplit[1]);
+                        if (inputSplit.length > 2) {
+                            System.out.println(invalidInputMessage);
+                        } else if (taskNum > tasks.size()) {
+                            System.out.println(noSuchTaskMessage);
+                        } else {
                             boolean valid = tasks.get(taskNum - 1).check();
                             System.out.println(
                                     (valid ? taskMarkedMessage : alreadyMarkedMessage)
                                             + tasks.get(taskNum - 1).toString());
                         }
-                } catch (NumberFormatException e) {
-                    System.out.println(invalidInputMessage);
-                }
-            } else if (inputSplit[0].equals("unmark")) {
-                try {
-                    int taskNum = Integer.parseInt(inputSplit[1]);
-                    if (inputSplit.length > 2) {
+                    } catch (NumberFormatException e) {
                         System.out.println(invalidInputMessage);
-                    } else if (taskNum > tasks.size()) {
-                        System.out.println(noSuchTaskMessage);
-                    } else {
-                        boolean valid = tasks.get(taskNum - 1).uncheck();
-                        System.out.println(
-                                (valid ? taskUnmarkedMessage : alreadyUnmarkedMessage)
-                                        + tasks.get(taskNum - 1).toString());
                     }
-                } catch (NumberFormatException e) {
-                    System.out.println(invalidInputMessage);
+                } else if (inputSplit[0].equals("unmark")) {
+                    try {
+                        int taskNum = Integer.parseInt(inputSplit[1]);
+                        if (inputSplit.length > 2) {
+                            System.out.println(invalidInputMessage);
+                        } else if (taskNum > tasks.size()) {
+                            System.out.println(noSuchTaskMessage);
+                        } else {
+                            boolean valid = tasks.get(taskNum - 1).uncheck();
+                            System.out.println(
+                                    (valid ? taskUnmarkedMessage : alreadyUnmarkedMessage)
+                                            + tasks.get(taskNum - 1).toString());
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println(invalidInputMessage);
+                    }
+                } else if (inputSplit[0].equals("todo")) {
+                    Task newTask = new TodoTask(inputSplit[1]);
+                    tasks.add(newTask);
+                    System.out.println(addTaskMessage + newTask);
+                } else if (inputSplit[0].equals("deadline")) {
+                    Task newTask = new DeadlineTask(inputSplit[1], inputSplit[2]);
+                    tasks.add(newTask);
+                    System.out.println(addTaskMessage + newTask);
+                } else if (inputSplit[0].equals("event")) {
+                    Task newTask = new EventTask(inputSplit[1], inputSplit[2]);
+                    tasks.add(newTask);
+                    System.out.println(addTaskMessage + newTask);
+                } else {
+                    throw new IllegalArgumentException();
                 }
-            } else if (inputSplit[0].equals("todo")) {
-
-            } else if (inputSplit[0].equals("deadline")) {
-
-            } else if (inputSplit[0].equals("event")) {
-
-            } else {
-                Task newTask = new Task(userInput);
-                tasks.add(newTask);
-                System.out.println("added: " + newTask);
+            } catch (IllegalArgumentException e) {
+                System.out.println(invalidInputMessage);
             }
             userInput = sc.nextLine();
         }
@@ -99,6 +108,9 @@ public class Duke {
             return result;
         } else if (input.contains("deadline") || input.contains("event")) {
             String[] result = new String[3];
+            if (input.lastIndexOf("/") == -1) {
+                throw new IllegalArgumentException();
+            }
             result[0] = input.contains("deadline") ? "deadline" : "event";
             result[1] = input.substring(input.contains("deadline") ? 8 : 5, input.lastIndexOf('/'));
             result[2] = input.substring(input.lastIndexOf("/") + 1);
