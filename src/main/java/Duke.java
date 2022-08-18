@@ -1,6 +1,16 @@
 import java.util.*;
 
 public class Duke {
+
+    enum Ability {
+        bye,
+        list,
+        mark,
+        unmark,
+        todo,
+        delete
+    }
+
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
