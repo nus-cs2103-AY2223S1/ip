@@ -1,12 +1,3 @@
-Duke is a chatbot
-Duke has a TaskList
-TaskList inherits from deadlinList which implements
-the markable interface and deletable interface
-TaskList has tasks
-{
-    ToDo inherits from tasks
-    Events inherits from ToDo
-    Deadlines inherits from Events
+ToDo {
+1. Add exception for trying to delete an incomplete task
 }
-Use Java Enum to store common phrases/messages
-(i.e similar to queue bot)

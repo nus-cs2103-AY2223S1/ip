@@ -4,10 +4,15 @@
  * @author Pei Cheng Yi A0229823Y
  */
 
-// for reading command line inputs
+// Reading command line inputs
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+
+import enums.*;
+import lists.*;
+import exceptions.*;
+import entities.*;
 
 public class Duke {
     /* Stores tasks from user */

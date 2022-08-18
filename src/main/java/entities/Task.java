@@ -1,3 +1,5 @@
+package entities;
+
 public class Task {
     private Boolean isComplete = false;
     private String description;

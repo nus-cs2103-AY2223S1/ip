@@ -1,3 +1,5 @@
+package entities;
+
 public class Event extends Todo {
     private String deadline;
 

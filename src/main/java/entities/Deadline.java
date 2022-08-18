@@ -1,3 +1,5 @@
+package entities;
+
 public class Deadline extends Event {
     public Deadline(String desc, String deadline) {
         super(desc, deadline);

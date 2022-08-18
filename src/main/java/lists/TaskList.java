@@ -1,4 +1,8 @@
+package lists;
+
 import java.util.ArrayList;
+
+import entities.Task;
 
 public class TaskList {
     private ArrayList<Task> tasks;

@@ -1,3 +1,5 @@
+package enums;
+
 import javax.swing.plaf.basic.BasicComboBoxUI.ComboBoxLayoutManager;
 
 /**
