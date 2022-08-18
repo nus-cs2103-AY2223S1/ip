@@ -2,7 +2,7 @@ public class Event extends Task {
   private String timeInterval;
 
   public Event(String description, String timeInterval) {
-    super(description);
+    this.description = description;
     this.timeInterval = timeInterval;
   }
 
