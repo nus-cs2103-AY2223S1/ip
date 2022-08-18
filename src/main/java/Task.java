@@ -1,11 +1,9 @@
 public class Task {
-    private String name;
-    private int num;
+    private String description;
     private boolean done;
 
-    public Task(String name, int num) {
-        this.name = name;
-        this.num = num;
+    public Task(String description) {
+        this.description = description;
     }
 
     public boolean isDone() {
@@ -22,10 +20,10 @@ public class Task {
 
     public String toString() {
         if (this.isDone()) {
-            return("\t " + this.num + ". [x] " + this.name);
+            return("[X]" + this.description);
         }
         else {
-            return("\t " + this.num + ". [ ] " + this.name);
+            return("[ ]" + this.description);
         }
     }
 }
