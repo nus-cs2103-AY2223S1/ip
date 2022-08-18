@@ -17,6 +17,30 @@ todo abc
 todo     xyz
 hahahaha
 todo finish this project
+mark 7
+delete 7
 list
+delete 7
+list
+delete 2
+delete 1
+list
+deadline    destroy megamind /by 12am midnight
+list
+mark 30
+unmark -3
+delete 17
+delete 0
+          event this /at idk
+deadline no time
+event no time
+mark 2
+mark 3
+mark 5
+unmark 1
+unmark 4
+list
+deadline empty by /by
+event empty at /at
 what do you do
 bye

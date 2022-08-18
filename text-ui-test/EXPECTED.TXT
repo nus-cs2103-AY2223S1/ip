@@ -29,7 +29,7 @@
     __________________________________________________
     __________________________________________________
     Nice! I've marked this task as done:
-    [D][X] return book (by: Sunday)
+      [D][X] return book (by: Sunday)
     __________________________________________________
     __________________________________________________
     Here are the tasks in your list:
@@ -41,7 +41,7 @@
     __________________________________________________
     __________________________________________________
     Nice! I've marked this task as done:
-    [D][X] return book (by: the time fire nation stops attacking)
+      [D][X] return book (by: the time fire nation stops attacking)
     __________________________________________________
     __________________________________________________
     Here are the tasks in your list:
@@ -53,11 +53,11 @@
     __________________________________________________
     __________________________________________________
     OK, I've marked this task as not done yet:
-    [E][ ] project meeting (at: Mon 2-4pm)
+      [E][ ] project meeting (at: Mon 2-4pm)
     __________________________________________________
     __________________________________________________
     OK, I've marked this task as not done yet:
-    [T][ ] borrow book
+      [T][ ] borrow book
     __________________________________________________
     __________________________________________________
     Here are the tasks in your list:
@@ -69,7 +69,7 @@
     __________________________________________________
     __________________________________________________
     Nice! I've marked this task as done:
-    [T][X] borrow book
+      [T][X] borrow book
     __________________________________________________
     __________________________________________________
     Here are the tasks in your list:
@@ -81,7 +81,7 @@
     __________________________________________________
     __________________________________________________
     OK, I've marked this task as not done yet:
-    [T][ ] borrow book
+      [T][ ] borrow book
     __________________________________________________
     __________________________________________________
     Got it. I've added this task:
@@ -102,6 +102,15 @@
     Now you have 8 tasks in the list.
     __________________________________________________
     __________________________________________________
+    Nice! I've marked this task as done:
+      [T][X] xyz
+    __________________________________________________
+    __________________________________________________
+    Noted. I've removed this task:
+      [T][X] xyz
+    Now you have 7 tasks in the list.
+    __________________________________________________
+    __________________________________________________
     Here are the tasks in your list:
     1.[T][ ] borrow book
     2.[D][X] return book (by: Sunday)
@@ -109,8 +118,109 @@
     4.[E][ ] project meeting (at: Mon 2-4pm)
     5.[T][ ] read book
     6.[T][ ] abc
-    7.[T][ ] xyz
-    8.[T][ ] finish this project
+    7.[T][ ] finish this project
+    __________________________________________________
+    __________________________________________________
+    Noted. I've removed this task:
+      [T][ ] finish this project
+    Now you have 6 tasks in the list.
+    __________________________________________________
+    __________________________________________________
+    Here are the tasks in your list:
+    1.[T][ ] borrow book
+    2.[D][X] return book (by: Sunday)
+    3.[D][X] return book (by: the time fire nation stops attacking)
+    4.[E][ ] project meeting (at: Mon 2-4pm)
+    5.[T][ ] read book
+    6.[T][ ] abc
+    __________________________________________________
+    __________________________________________________
+    Noted. I've removed this task:
+      [D][X] return book (by: Sunday)
+    Now you have 5 tasks in the list.
+    __________________________________________________
+    __________________________________________________
+    Noted. I've removed this task:
+      [T][ ] borrow book
+    Now you have 4 tasks in the list.
+    __________________________________________________
+    __________________________________________________
+    Here are the tasks in your list:
+    1.[D][X] return book (by: the time fire nation stops attacking)
+    2.[E][ ] project meeting (at: Mon 2-4pm)
+    3.[T][ ] read book
+    4.[T][ ] abc
+    __________________________________________________
+    __________________________________________________
+    Got it. I've added this task:
+      [D][ ] destroy megamind (by: 12am midnight)
+    Now you have 5 tasks in the list.
+    __________________________________________________
+    __________________________________________________
+    Here are the tasks in your list:
+    1.[D][X] return book (by: the time fire nation stops attacking)
+    2.[E][ ] project meeting (at: Mon 2-4pm)
+    3.[T][ ] read book
+    4.[T][ ] abc
+    5.[D][ ] destroy megamind (by: 12am midnight)
+    __________________________________________________
+    __________________________________________________
+    ☹ OOPS!!! Invalid task ID: 30
+    __________________________________________________
+    __________________________________________________
+    ☹ OOPS!!! Invalid task ID: -3
+    __________________________________________________
+    __________________________________________________
+    ☹ OOPS!!! Invalid task ID: 17
+    __________________________________________________
+    __________________________________________________
+    ☹ OOPS!!! Invalid task ID: 0
+    __________________________________________________
+    __________________________________________________
+    Got it. I've added this task:
+      [E][ ] this (at: idk)
+    Now you have 6 tasks in the list.
+    __________________________________________________
+    __________________________________________________
+    ☹ OOPS!!! You need to specify the due date of the deadline.
+    __________________________________________________
+    __________________________________________________
+    ☹ OOPS!!! You need to specify the time of the event.
+    __________________________________________________
+    __________________________________________________
+    Nice! I've marked this task as done:
+      [E][X] project meeting (at: Mon 2-4pm)
+    __________________________________________________
+    __________________________________________________
+    Nice! I've marked this task as done:
+      [T][X] read book
+    __________________________________________________
+    __________________________________________________
+    Nice! I've marked this task as done:
+      [D][X] destroy megamind (by: 12am midnight)
+    __________________________________________________
+    __________________________________________________
+    OK, I've marked this task as not done yet:
+      [D][ ] return book (by: the time fire nation stops attacking)
+    __________________________________________________
+    __________________________________________________
+    OK, I've marked this task as not done yet:
+      [T][ ] abc
+    __________________________________________________
+    __________________________________________________
+    Here are the tasks in your list:
+    1.[D][ ] return book (by: the time fire nation stops attacking)
+    2.[E][X] project meeting (at: Mon 2-4pm)
+    3.[T][X] read book
+    4.[T][ ] abc
+    5.[D][X] destroy megamind (by: 12am midnight)
+    6.[E][ ] this (at: idk)
+    __________________________________________________
+    __________________________________________________
+    ☹ OOPS!!! You need to specify the due date of the deadline.
+    __________________________________________________
+    __________________________________________________
+    ☹ OOPS!!! You need to specify the time of the event.
     __________________________________________________
     __________________________________________________
     ☹ OOPS!!! Sorry, I don't understand :(
