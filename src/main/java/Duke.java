@@ -23,51 +23,33 @@ public class Duke {
    * Parses a String[] for an "event", "deadline" or "todo" task.
    */
   private static String[] parseString(String action, String[] splitInput) {
-    String[] newSplitInput;
+    String[] newSplitInput = new String[3];
+    newSplitInput[0] = action;
+
+    String[] splitInputWithoutCommand = new String[splitInput.length - 1];
+    for (int i = 1; i < splitInput.length; i++) {
+      splitInputWithoutCommand[i - 1] = splitInput[i];
+    }
 
     if (action.equals("todo")) {
-      newSplitInput = new String[2];
-      String taskDetails = "";
 
-      for (int i = 1; i < splitInput.length; i++) {
-        taskDetails += splitInput[i];
-      }
+      String taskDetails = String.join(" ", splitInputWithoutCommand);
 
       newSplitInput[1] = taskDetails;
 
     } else {
       String dateDelimiter = "";
       if (action.equals("event")) {
-        dateDelimiter = "/at";
+        dateDelimiter = " /at ";
       } else if (action.equals("deadline")) {
-        dateDelimiter = "/by";
+        dateDelimiter = " /by ";
       }
 
-      newSplitInput = new String[3];
+      String input = String.join(" ", splitInputWithoutCommand);
+      String[] inputArr = input.split(dateDelimiter);
+      newSplitInput[1] = inputArr[0];
+      newSplitInput[2] = inputArr[1];
 
-      // parse the splitInput String[]
-      newSplitInput[0] = splitInput[0];
-
-      String taskDetails = "";
-      String date = "";
-
-      boolean reachedDate = false;
-      for (int i = 1; i < splitInput.length; i++) {
-        String substring = splitInput[i];
-        if (substring.equals(dateDelimiter)) {
-          reachedDate = true;
-          continue;
-        }
-
-        if (!reachedDate) {
-          taskDetails += splitInput[i];
-        } else {
-          date += splitInput[i];
-        }
-      }
-
-      newSplitInput[1] = taskDetails;
-      newSplitInput[2] = date;
     }
     return newSplitInput;
   }
@@ -108,6 +90,7 @@ public class Duke {
       String[] newSplitInput = parseString(action, splitInput);
       Command command = new TaskCommand(newSplitInput, tasks);
       return command.performAction();
+    } else {
     }
     return true;
   }
