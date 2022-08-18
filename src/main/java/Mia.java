@@ -29,10 +29,26 @@ public class Mia {
                 printResponse(new Span(tasksManager.toString()), windowWidth);
                 System.out.print("Enter a command: ");
                 continue;
+            } else if (line.startsWith("mark ")) {
+                if (tasksManager.checkTask(Integer.parseInt(line.substring(5)))) {
+                    printResponse(new Span("Task has been marked as done!"), windowWidth);
+                } else {
+                    printResponse(new Span("Task is already done!"), windowWidth);
+                }
+                System.out.print("Enter a command: ");
+                continue;
+            } else if (line.startsWith("unmark ")) {
+                if (tasksManager.uncheckTask(Integer.parseInt(line.substring(7)))) {
+                    printResponse(new Span("Task has been marked as not done!"), windowWidth);
+                } else {
+                    printResponse(new Span("Task is still not done!"), windowWidth);
+                }
+                System.out.print("Enter a command: ");
+                continue;
             }
             final Task newTask = new Task(line);
             tasksManager.addTask(newTask);
-            printResponse(new Span(String.format("Added task \"%s\" to tasks list!", newTask)), windowWidth);
+            printResponse(new Span(String.format("Added task \"%s\" to tasks list!", newTask.getTitle())), windowWidth);
             System.out.print("Enter a command: ");
         }
         sc.close();

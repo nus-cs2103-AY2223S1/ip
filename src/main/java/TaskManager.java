@@ -16,6 +16,24 @@ public class TaskManager {
         tasks.add(task);
     }
 
+    /**
+     * Marks a task as completed.
+     * @param number the task number
+     * @return true if the task is modified, false otherwise
+     */
+    public boolean checkTask(int number) {
+        return tasks.get(number - 1).setCompleted(true);
+    }
+
+    /**
+     * Marks a task as incomplete.
+     * @param number the task number
+     * @return true if the task is modified, false otherwise
+     */
+    public boolean uncheckTask(int number) {
+        return tasks.get(number - 1).setCompleted(false);
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Your Tasks:\n");
