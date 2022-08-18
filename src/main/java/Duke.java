@@ -9,65 +9,77 @@ public class Duke {
 
     public static void main(String[] args) throws Exception {
         printGreeting();
+        Scanner input = new Scanner(System.in);
         while (true) {
-            Scanner input = new Scanner(System.in);
             String inputText = input.nextLine();
 
             List<String> inputArray = Arrays.asList(inputText.split(" "));
 
             String keyword = inputArray.get(0);
 
-            switch(keyword) {
-                case "bye":
-                    printBye();
-                    return;
-                case "list":
-                    printTasks();
-                    break;
-                case "mark": {
-                    if (inputArray.size() != 2) {
-                        throw new Exception("Input for mark not correct");
+            try {
+                switch (keyword) {
+                    case "bye":
+                        printBye();
+                        return;
+                    case "list":
+                        printTasks();
+                        break;
+                    case "mark": {
+                        if (inputArray.size() != 2) {
+                            throw new DukeException("Input for mark not correct");
+                        }
+                        markTask(inputArray.get(1));
+                        break;
                     }
-                    markTask(inputArray.get(1));
-                    break;
-                }
-                case "unmark": {
-                    if (inputArray.size() != 2) {
-                        throw new Exception("Input for unmark not correct");
+                    case "unmark": {
+                        if (inputArray.size() != 2) {
+                            throw new DukeException("Input for unmark not correct");
+                        }
+                        unmarkTask(inputArray.get(1));
+                        break;
                     }
-                    unmarkTask(inputArray.get(1));
-                    break;
-                }
-                case "todo": {
-                    ToDo newTask = new ToDo(String.join(" ", inputArray.subList(1,inputArray.size())));
-                    tasks.add(newTask);
+                    case "todo": {
+                        ToDo newTask = new ToDo(String.join(" ", inputArray.subList(1, inputArray.size())));
+                        tasks.add(newTask);
 
-                    printAddTask(newTask);
-                    break;
-                }
-                case "event": {
-                    String command = String.join(" ", inputArray.subList(1,inputArray.size()));
-                    String[] commandArray = command.split(" /at ");
-                    //TODO: check command array is at least length 2
-                    Event newTask = new Event(commandArray[0], commandArray[1]);
-                    tasks.add(newTask);
+                        printAddTask(newTask);
+                        break;
+                    }
+                    case "event": {
+                        String command = String.join(" ", inputArray.subList(1, inputArray.size()));
+                        String[] commandArray = command.split(" /at ");
 
-                    printAddTask(newTask);
-                    break;
-                }
-                case "deadline": {
-                    String command = String.join(" ", inputArray.subList(1,inputArray.size()));
-                    String[] commandArray = command.split(" /by ");
+                        if (commandArray.length < 2) {
+                            throw new DukeException("An event must at least have a description and date!");
+                        }
 
-                    Deadline newTask = new Deadline(commandArray[0], commandArray[1]);
-                    tasks.add(newTask);
+                        Event newTask = new Event(commandArray[0], commandArray[1]);
+                        tasks.add(newTask);
 
-                    printAddTask(newTask);
-                    break;
+                        printAddTask(newTask);
+                        break;
+                    }
+                    case "deadline": {
+                        String command = String.join(" ", inputArray.subList(1, inputArray.size()));
+                        String[] commandArray = command.split(" /by ");
+
+                        if (commandArray.length < 2) {
+                            throw new DukeException("A deadline must at least have a description and date!");
+                        }
+
+                        Deadline newTask = new Deadline(commandArray[0], commandArray[1]);
+                        tasks.add(newTask);
+
+                        printAddTask(newTask);
+                        break;
+                    }
+                    default: {
+                        throw new DukeException("You did not provide a valid command");
+                    }
                 }
-                default: {
-                    System.out.println("You did not provide a valid command");
-                }
+            } catch (DukeException e) {
+                System.out.println(e);
             }
         }
     }
@@ -89,7 +101,7 @@ public class Duke {
     }
 
     private static void printBye() {
-        System.out.println("Goodbye. Hope to see you again soon 😈 \n");
+        System.out.println("Goodbye. Hope to see you again soon");
     }
 
     private static void printTasks() {
@@ -103,21 +115,11 @@ public class Duke {
 
     private static void markTask(String input) throws Exception {
         Task task = getTask(input);
-
-        if (task == null) {
-            throw new Exception();
-        }
-
         task.markIsDone();
     }
 
     private static void unmarkTask(String input) throws Exception {
         Task task = getTask(input);
-
-        if (task == null) {
-            throw new Exception();
-        }
-
         task.unmarkIsDone();
     }
 
@@ -128,8 +130,7 @@ public class Duke {
             int taskNum = Integer.parseInt(input) - 1;
             task = tasks.get(taskNum);
         } catch (RuntimeException e) {
-            System.out.println("Task number is incorrectly provided");
-            throw new Exception();
+            throw new DukeException("Task number is incorrectly provided");
         }
 
         return task;
