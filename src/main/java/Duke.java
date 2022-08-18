@@ -1,11 +1,14 @@
+import java.util.ArrayList;
+
 public class Duke {
-    public static void main(String[] args) {
+    private ArrayList<Task> listOfTasks = new ArrayList<>();
+
+    public void start(){
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
 
         IOhelper.print("Hello from\n" + logo);
 
@@ -15,8 +18,16 @@ public class Duke {
                 IOhelper.print("Bye. Hope to see you again soon!");
                 break;
             }
-            IOhelper.print(input);
+            if (input.equals("list")) {
+                int id = 0;
+                for(Task task : listOfTasks) {
+                    id++;
+                    IOhelper.print(id + ": " + task);
+                }
+                continue;
+            }
+            listOfTasks.add(new Task(input));
+            IOhelper.print("added: " + input);
         }
-
     }
 }
