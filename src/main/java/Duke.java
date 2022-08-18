@@ -39,6 +39,13 @@ public class Duke {
                 storedTasks.get(taskNumber).markAsUndone();
                 System.out.println(HORIZONTAL_LINE + "\n  OK, I've marked this task as not done yet:\n"
                         + storedTasks.get(taskNumber) + "\n" + HORIZONTAL_LINE);
+            } else if (command.split(" ").length == 2 && command.split(" ")[0].equals("delete")) {
+                int taskNumber = Integer.parseInt(command.split(" ")[1]) - 1;
+                System.out.println(HORIZONTAL_LINE + "\n  Noted. I've removed this task:\n    "
+                        + storedTasks.get(taskNumber));
+                storedTasks.remove(taskNumber);
+                System.out.println("  Now you have "
+                        + String.valueOf(storedTasks.size()) + " tasks in the list.\n" + HORIZONTAL_LINE);
             } else if (command.split(" ").length > 1 && command.split(" ")[0].equals("todo")) {
                 ArrayList<String> commandDelimited = new ArrayList<String>(Arrays.asList(command.split(" ")));
                 if (commandDelimited.size() == 1) {
