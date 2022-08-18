@@ -15,5 +15,9 @@ public class Duke {
         System.out.println(hello);
 
         List<String> list = new ArrayList<String>();
+
+        String todolist = "____________________________________________________________\n" +
+                "     Here are the tasks in your list:";
+        System.out.println(todolist);
     }
 }
