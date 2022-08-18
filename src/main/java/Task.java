@@ -25,7 +25,7 @@ public class Task {
     // method to return a string representation of a task
     @Override
     public String toString() {
-        String res =  "[" + getStatusIcon() + "] " + this.taskName;
+        String res = "[" + getStatusIcon() + "] " + this.taskName;
         return res;
     }
 }

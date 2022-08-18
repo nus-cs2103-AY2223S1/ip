@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BobTheBot {
@@ -17,32 +18,17 @@ public class BobTheBot {
                     int index = Integer.parseInt(command.replace("mark ", ""));
                     list.markItemDone(index);
                 } catch (NumberFormatException e) {
-                    list.add(command);
-                    System.out.println(
-                            "   --------------------------------------------------------------------------------\n" +
-                                    "     added: " + command + "\n" +
-                                    "   --------------------------------------------------------------------------------"
-                    );
+                    list.addTask(command);
                 }
             } else if (command.startsWith("unmark")) {
                 try {
                     int index = Integer.parseInt(command.replace("unmark ", ""));
                     list.markItemUndone(index);
                 } catch (NumberFormatException e) {
-                    list.add(command);
-                    System.out.println(
-                            "   --------------------------------------------------------------------------------\n" +
-                                    "     added: " + command + "\n" +
-                                    "   --------------------------------------------------------------------------------"
-                    );
+                    list.addTask(command);
                 }
             } else {
-                list.add(command);
-                System.out.println(
-                        "   --------------------------------------------------------------------------------\n" +
-                                "     added: " + command + "\n" +
-                                "   --------------------------------------------------------------------------------"
-                );
+                list.addTask(command);
             }
             command = scanner.nextLine();
         }
