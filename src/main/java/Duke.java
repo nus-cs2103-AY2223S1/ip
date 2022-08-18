@@ -21,9 +21,14 @@ public class Duke {
         }
     }
 
-    private void add(String arg) {
-        this.tasks.add(new Task(arg));
-        System.out.printf("Added: %s\n", arg);
+    private void addTask(Task task) {
+        this.tasks.add(task);
+        System.out.printf("Got it. I've added this task:\n" +
+                "%s\n" +
+                "Now you have %d tasks in the list.\n",
+                task.toString(),
+                tasks.size()
+        );
     }
 
     private void mark(String arg) {
@@ -34,6 +39,24 @@ public class Duke {
     private void unmark(String arg) {
         int index = Integer.parseInt(arg);
         this.tasks.get(index - 1).unmark();
+    }
+
+    private void todo(String arg) {
+        this.addTask(new ToDo(arg));
+    }
+
+    private void deadline(String arg) {
+        String[] inputs = arg.split(" /by ");
+        String description = inputs[0];
+        String by = inputs[1];
+        this.addTask(new Deadline(description, by));
+    }
+
+    private void event(String arg) {
+        String[] inputs = arg.split(" /at ");
+        String description = inputs[0];
+        String at = inputs[1];
+        this.addTask(new Event(description, at));
     }
 
     private void run() {
@@ -56,8 +79,12 @@ public class Duke {
                 this.mark(argument);
             }  else if (command.equals("unmark")) {
                 this.unmark(argument);
-            } else {
-                this.add(input);
+            } else if (command.equals("todo")) {
+                this.todo(argument);
+            } else if (command.equals("deadline")) {
+                this.deadline(argument);
+            } else if (command.equals("event")) {
+                this.event(argument);
             }
 
             System.out.print(INPUT_PREFIX);
