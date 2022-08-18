@@ -5,12 +5,12 @@ import java.util.Scanner;
 public class Alan {
     private Scanner input;
     private Formatter formatter;
-    private List<String> list;
+    private List<Task> taskList;
 
     public Alan() {
         this.input = new Scanner(System.in);
         this.formatter = new Formatter();
-        this.list = new ArrayList<>();
+        this.taskList = new ArrayList<>();
     }
 
     public static void main(String[] args) {
@@ -27,15 +27,33 @@ public class Alan {
     private void run() {
         System.out.println("How may i be of service?");
 
+        label:
         while (true) {
-            String command = input.nextLine();
-            if (command.equals("bye")) {
-                break;
-            } else if (command.equals("list")) {
-                System.out.println(formatter.list(list));
-            } else {
-                list.add(command);
-                System.out.println(formatter.added(command));
+            String userInput = input.nextLine();
+            String[] inputSplit = userInput.split(" ");
+            String command = inputSplit[0];
+            switch (command) {
+                case "bye":
+                    break label;
+                case "list":
+                    System.out.println(formatter.list(taskList));
+                    break;
+                case "mark": {
+                    Task selectedTask = taskList.get(Integer.parseInt(inputSplit[1]) - 1);
+                    selectedTask.markDone();
+                    System.out.println(formatter.markDone(selectedTask));
+                    break;
+                }
+                case "unmark": {
+                    Task selectedTask = taskList.get(Integer.parseInt(inputSplit[1]) - 1);
+                    selectedTask.markUndone();
+                    System.out.println(formatter.markUndone(selectedTask));
+                    break;
+                }
+                default:
+                    taskList.add(new Task(command));
+                    System.out.println(formatter.added(command));
+                    break;
             }
         }
 
