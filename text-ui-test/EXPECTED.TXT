@@ -21,64 +21,124 @@ List of tasks to be done:
 ===========================================
 
 Got it. I've added this task:
- [T][ ]  something
- Now you have 1 tasks in the list
+ [T][ ] something
+ Now you have 1 task in the list
+
+
 ===========================================
 
 ===========================================
 
 List of tasks to be done:
-1. [T][ ]  something
+1. [T][ ] something
 
 ===========================================
 
 ===========================================
 
 Got it. I've added this task:
- [T][ ]  get a drink
+ [T][ ] get a drink
  Now you have 2 tasks in the list
+
+
 ===========================================
 
 ===========================================
 
 Nice! I've marked this task as done:
- [T][X]  something
+ [T][X] something
 
 ===========================================
 
 ===========================================
 
 OK, I've marked this task as not done yet:
- [T][ ]  something
+ [T][ ] something
 
 ===========================================
 
 ===========================================
 
 OK, I've marked this task as not done yet:
- [T][ ]  get a drink
+ [T][ ] get a drink
 
 ===========================================
 
 ===========================================
 
 Got it. I've added this task:
- [D][ ]  complete level 1 (by: monday 2359)
+ [D][ ] complete level 1 (by: monday 2359)
  Now you have 3 tasks in the list
+
+
 ===========================================
 
 ===========================================
 
 List of tasks to be done:
-1. [T][ ]  something
-2. [T][ ]  get a drink
-3. [D][ ]  complete level 1 (by: monday 2359)
+1. [T][ ] something
+2. [T][ ] get a drink
+3. [D][ ] complete level 1 (by: monday 2359)
 
 ===========================================
 
 ===========================================
 
 Nice! I've marked this task as done:
- [D][X]  complete level 1 (by: monday 2359)
+ [D][X] complete level 1 (by: monday 2359)
 
 ===========================================
+
+===========================================
+
+Error. Task is not in the list
+
+===========================================
+
+===========================================
+
+Error. Task is not in the list
+
+===========================================
+
+===========================================
+
+List of tasks to be done:
+1. [T][ ] something
+2. [T][ ] get a drink
+3. [D][X] complete level 1 (by: monday 2359)
+
+===========================================
+
+===========================================
+
+Got it. I've added this task:
+ [D][ ] complete level 8 (by: 28 Aug 2022 23:59)
+ Now you have 4 tasks in the list
+
+
+===========================================
+
+===========================================
+
+Got it. I've added this task:
+ [D][ ] complete level 9 (by: 28 Aug 2022 23:59)
+ Now you have 5 tasks in the list
+
+
+===========================================
+
+===========================================
+
+Nice! I've marked this task as done:
+ [D][X] complete level 8 (by: 28 Aug 2022 23:59)
+
+===========================================
+
+===========================================
+
+Nice! I've marked this task as done:
+ [D][X] complete level 9 (by: 28 Aug 2022 23:59)
+
+===========================================
+

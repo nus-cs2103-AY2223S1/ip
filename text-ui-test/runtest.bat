@@ -19,4 +19,4 @@ java -Dfile.encoding=UTF-8 -classpath ..\bin Duke < input.txt > ACTUAL.TXT
 
 REM compare the output to the expected output
 SET PATH=%PATH%;c:\windows\system32
-FC ACTUAL.TXT EXPECTED.TXT
+FC /W ACTUAL.TXT EXPECTED.TXT

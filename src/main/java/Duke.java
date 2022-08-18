@@ -25,18 +25,18 @@ public class Duke {
     }
 
     private static void dukePrint(String str) {
-        System.out.println("===========================================");
+        System.out.println("===========================================\n");
         System.out.println(str);
-        System.out.println("===========================================");
+        System.out.println("===========================================\n");
     }
 
     private static void dukeStoreTask(String str, char type, String dateTime) {
         if (str.isEmpty()) {
-            dukePrint("Description cannot be empty");
+            dukePrint("Description cannot be empty\n");
             return;
         }
         if (dateTime != null && dateTime.isEmpty()) {
-            dukePrint("Date/Time cannot be empty");
+            dukePrint("Date/Time cannot be empty\n");
             return;
         }
         Task newTask;
@@ -55,7 +55,7 @@ public class Duke {
             }
         }
         dukeTasks.add(newTask);
-        dukePrint(String.format("Got it. I've added this task: \n %s\n %s",newTask.toString(), getNoOfTasks()));
+        dukePrint(String.format("Got it. I've added this task: \n %s\n %s\n",newTask.toString(), getNoOfTasks()));
     }
 
     private static String getNoOfTasks() {
@@ -80,7 +80,7 @@ public class Duke {
             String str = dukeTasks.get(i).toString();
             dukePrint(String.format("Nice! I've marked this task as done:\n %s\n", str));
         } else {
-            dukePrint("Error. Task is not in the list");
+            dukePrint("Error. Task is not in the list\n");
         }
     }
 
@@ -90,7 +90,7 @@ public class Duke {
             String str = dukeTasks.get(i).toString();
             dukePrint(String.format("OK, I've marked this task as not done yet:\n %s\n", str));
         } else {
-            dukePrint("Error. Task is not in the list");
+            dukePrint("Error. Task is not in the list\n");
         }
     }
 
@@ -100,7 +100,7 @@ public class Duke {
             String str = remove.toString();
             dukePrint(String.format("OK, I've remove this task:\n %s\n %s", str, getNoOfTasks()));
         } else {
-            dukePrint("Error. Task is not in the list");
+            dukePrint("Error. Task is not in the list\n");
         }
     }
 
@@ -117,7 +117,7 @@ public class Duke {
         }*/
 
         String str = sc.nextLine().replaceAll("( )+", " ");
-        System.out.println(String.format("The command is: %s",str));
+        //System.out.println(String.format("The command is: %s",str));
         String command = str.split(" ")[0];
         switch (command){
             case "exit":
@@ -150,7 +150,7 @@ public class Duke {
                     m.find();
                     dukeStoreTask(m.group(1).trim(), 'T', null);
                 } catch (IllegalStateException e) {
-                    dukePrint("Are you missing a description?");
+                    dukePrint("Are you missing a description?\n");
                 }
                 break;
             } case "deadline": {
@@ -161,7 +161,7 @@ public class Duke {
                     dukeStoreTask(m.group(1).trim(), 'D', m.group(2).trim());
 
                 } catch (IllegalStateException e) {
-                    dukePrint("Are you missing a /by ?");
+                    dukePrint("Are you missing a /by ?\n");
                 }
                 break;
             } case "event": {
@@ -171,11 +171,11 @@ public class Duke {
                     m.find();
                     dukeStoreTask(m.group(1).trim(), 'E', m.group(2).trim());
                 } catch (IllegalStateException e) {
-                    dukePrint("Are you missing a /at ?");
+                    dukePrint("Are you missing a /at ?\n");
                 }
                 break;
             } default: {
-                dukePrint("Invalid Command. Please try again");
+                dukePrint("Invalid Command. Please try again\n");
             }
         }
         getUserInput();
@@ -183,7 +183,7 @@ public class Duke {
     }
 
     private static void endService() {
-        dukePrint("Bye. Hope to see you again!");
+        dukePrint("Bye. Hope to see you again!\n");
         SaveManager.saveData(dukeTasks);
         sc.close();
         return;
