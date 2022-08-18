@@ -21,14 +21,17 @@ public class Duke {
      * Marks the task as completed via the index of the task on the
      * arraylist. The method throws an ArrayIndexOutOfBoundsException if the
      * task is found to be non-existent.
-     * @param index
+     * @param parts
      * @param inputList
      * @throws ArrayIndexOutOfBoundsException
      */
-    public static void markTask(int index, ArrayList<Task> inputList) throws ArrayIndexOutOfBoundsException {
-        if (index == 0 || index > inputList.size()) {
-            throw new ArrayIndexOutOfBoundsException();
+    public static void markTask(String[] parts, ArrayList<Task> inputList) throws DukeException {
+        if (parts.length == 1) {
+            throw new DukeException("Please specify the index of the task (i.e. mark 2).");
+        } else if (Integer.parseInt(parts[1]) == 0 || Integer.parseInt(parts[1]) > inputList.size()) {
+            throw new DukeException("There is no such task!");
         } else {
+            int index = Integer.parseInt(parts[1]);
             Task task = inputList.get(index - 1);
             System.out.println(task.markAsDone());
         }
@@ -48,6 +51,59 @@ public class Duke {
         System.out.println(output);
     }
 
+    /**
+     * Abstracts the creation of a todo object, with exception handling.
+     * @param input
+     * @return Todo object
+     * @throws DukeException thrown if there is no description.
+     */
+    public static Todo createTodo(String input) throws DukeException {
+        String[] taskType = input.split(" ", 2);
+        if (taskType.length == 1) {
+            throw new DukeException("The description of a todo cannot be empty.");
+        } else {
+            Todo todo = new Todo(taskType[1]);
+            return todo;
+        }
+    }
+
+    /**
+     * Abstracts the creation of a Deadline object, with exception handling.
+     * @param input
+     * @return Deadline object
+     * @throws DukeException thrown if there is no description or /by field.
+     */
+    public static Deadline createDeadline(String input) throws DukeException{
+        String[] taskType = input.split(" ", 2);
+        if (taskType.length == 1) {
+            throw new DukeException("The description of a deadline cannot be empty.");
+        } else if (taskType[1].split("/by ", 2).length == 1) {
+            throw new DukeException("The /by field cannot be empty.");
+        } else {
+            String[] taskBy = taskType[1].split("/by ", 2);
+            Deadline deadline = new Deadline(taskBy[0], taskBy[1]);
+            return deadline;
+        }
+    }
+
+    /**
+     * Abstracts the creation of a Event object, with exception handling.
+     * @param input
+     * @return Event object
+     * @throws DukeException thrown if there is no description or /at field
+     */
+    public static Event createEvent(String input) throws DukeException {
+        String[] taskType = input.split(" ", 2);
+        if (taskType.length == 1) {
+            throw new DukeException("The description of a event cannot be empty.");
+        } else if (taskType[1].split("/at ", 2).length == 1) {
+            throw new DukeException("The /at field cannot be empty.");
+        } else {
+            String[] taskBy = taskType[1].split("/at ", 2);
+            Event event = new Event(taskBy[0], taskBy[1]);
+            return event;
+        }
+    }
 
     public static void main(String[] args) {
         Scanner myObj = new Scanner(System.in);
@@ -62,26 +118,34 @@ public class Duke {
                 printList(inputList);
             } else if (parts[0].equals("mark")) {
                 try {
-                    int index = Integer.parseInt(parts[1]);
-                    markTask(index, inputList);
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    System.out.println("Sorry, there is no such Task!");
+                    markTask(parts, inputList);
+                } catch (DukeException e) {
+                    System.out.println(e.getMessage());
                 }
             } else if (parts[0].equals("todo")) {
-                String[] taskType = input.split(" ", 2);
-                Todo todo = new Todo(taskType[1]);
-                taskAdd(todo, inputList);
+                try {
+                    Task todo = createTodo(input);
+                    taskAdd(todo, inputList);
+                } catch (DukeException e) {
+                    System.out.println(e.getMessage());
+                }
             } else if (parts[0].equals("deadline")) {
-                String[] taskType = input.split(" ", 2);
-                String[] taskBy = taskType[1].split("/by ", 2);
-                Deadline deadline = new Deadline(taskBy[0], taskBy[1]);
-                taskAdd(deadline, inputList);
+                try {
+                    Deadline deadline = createDeadline(input);
+                    taskAdd(deadline, inputList);
+                } catch (DukeException e) {
+                    System.out.println(e.getMessage());
+                }
             } else if (parts[0].equals("event")) {
-                String[] taskType = input.split(" ", 2);
-                String[] taskBy = taskType[1].split("/at ", 2);
-                Event event = new Event(taskBy[0], taskBy[1]);
-                taskAdd(event, inputList);
-            } else { }
+                try {
+                    Event event = createEvent(input);
+                    taskAdd(event, inputList);
+                } catch (DukeException e) {
+                    System.out.println(e.getMessage());
+                }
+            } else {
+                System.out.println("I'm sorry, but I don't know what that means :(");
+            }
             input = myObj.nextLine();
             parts = input.split(" ");
         }
