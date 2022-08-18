@@ -41,9 +41,19 @@ public class Duke {
             case "bye":
                 alive = false;
                 return "Goodbye!";
+            case "todo":
+                tasks.add(new Todo(params));
+                return "Added new todo: " + tasks.get(tasks.size() - 1);
+            case "deadline":
+                String[] splitDeadline = splitOnFirst(params, " /by ");
+                tasks.add(new Deadline(splitDeadline[0], splitDeadline[1]));
+                return "Added new deadline: " + tasks.get(tasks.size() - 1);
+            case "event":
+                String[] splitEvent = splitOnFirst(params, " /at ");
+                tasks.add(new Event(splitEvent[0], splitEvent[1]));
+                return "Added new event: " + tasks.get(tasks.size() - 1);
             default:
-                tasks.add(new Task(command + " " + params));
-                return "added: " + command + " " + params;
+                return "I don't know what '" + command + "' is!";
         }
     }
 
@@ -51,6 +61,18 @@ public class Duke {
         System.out.println("    __________________________________________________");
         System.out.println("    " + response.replace("\n", "\n    "));
         System.out.println("    __________________________________________________");
+    }
+
+    private static String[] splitOnFirst(String str, String target) {
+        int split = str.indexOf(target);
+        if (split < 0) {
+            return new String[] {str, ""};
+        } else {
+            String[] out = new String[2];
+            out[0] = str.substring(0, split);
+            out[1] = str.substring(split + target.length());
+            return out;
+        }
     }
 
     public static void main(String[] args) {
@@ -64,15 +86,8 @@ public class Duke {
         while (alive) {
             String in, command, params;
             in = sc.nextLine();
-            int split = in.indexOf(" ");
-            if (split < 0) {
-                command = in;
-                params = "";
-            } else {
-                command = in.substring(0, split);
-                params = in.substring(split + 1);
-            }
-            printResponse(handle(command, params));
+            String[] splits = splitOnFirst(in, " ");
+            printResponse(handle(splits[0], splits[1]));
         }
     }
 }

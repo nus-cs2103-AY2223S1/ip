@@ -11,8 +11,16 @@ public class Task {
         return done ? "X" : " ";
     }
 
+    public String getTaskIcon() {
+        return " ";
+    }
+
+    public String getDetails() {
+        return details;
+    }
+
     @Override
     public String toString() {
-        return "[" + getStatusIcon() + "] " + details;
+        return "[" + getTaskIcon() + "][" + getStatusIcon() + "] " + getDetails();
     }
 }
