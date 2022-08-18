@@ -17,67 +17,74 @@ public class Duke {
         );
     }
 
-    public void respond() {
-        String input = sc.nextLine();
+    public void respond()  {
+        try {
+            String input = sc.nextLine();
 
-        String[] arr = input.split(" ",2);
-        String command = arr[0];
-        if (command.equals("mark") || command.equals("unmark")) {
-            int index = Integer.parseInt(arr[1]);
-            Task b = list[index-1];
-            if (command.equals("mark")) {
-                b.mark(b,index);
+            String[] arr = input.split(" ", 2);
+            String command = arr[0];
+            if (command.equals("mark") || command.equals("unmark")) {
+                int index = Integer.parseInt(arr[1]);
+                Task b = list[index - 1];
+                if (command.equals("mark")) {
+                    b.mark(b, index);
+                } else if (command.equals("unmark")) {
+
+                    b.unmark(b, index);
+                }
+                respond();
+
             }
 
-            else if (command.equals("unmark")) {
+            else if (command.equals("todo") || command.equals("deadline") || command.equals("event")) {
+                if (arr.length == 1) {
+                    throw new EmptyCommandException(command);
+                }
 
-                b.unmark(b,index);
+
+                if (command.equals("todo")) {
+
+                    list[count] = new Todo(arr[1]);
+                    list[count++].print();
+                    respond();
+                }
+                else if (command.equals("event")) {
+                    String[] deets = arr[1].split("/at", 2);
+                    list[count] = new Event(deets[0], deets[1]);
+                    list[count++].print();
+                    respond();
+                }
+                else if (command.equals("deadline")) {
+                    String[] deets = arr[1].split("/by", 2);
+                    list[count] = new Deadline(deets[0], deets[1]);
+                    list[count++].print();
+                    respond();
+                }
             }
+
+            else if (input.equals(("bye"))) {
+                bye();
+            }
+
+            else if (input.equals("list")) {
+                list();
+                respond();
+            }
+
+            else {
+                throw new InvalidCommandException(command);
+            }
+
+        }
+        catch (EmptyCommandException e){
+            System.out.println(e.getMessage());
             respond();
         }
 
-        else if (command.equals("todo")) {
-            list[count] = new Todo(arr[1]);
-            list[count++].print();
+        catch (InvalidCommandException e) {
+            System.out.println(e.getMessage());
             respond();
         }
-
-        else if (command.equals("event")) {
-            String[] deets = arr[1].split("/at",2);
-            list[count] = new Event(deets[0],deets[1]);
-            list[count++].print();
-            respond();
-        }
-
-        else if (command.equals("deadline")) {
-            String[] deets = arr[1].split("/by",2);
-            list[count] = new Deadline(deets[0],deets[1]);
-            list[count++].print();
-            respond();
-        }
-
-
-
-        else if (input.equals(("bye"))) {
-            bye();
-        }
-
-        else if (input.equals("list")) {
-            list();
-            respond();
-        }
-
-
-
-       /* else {
-            System.out.println(
-                    line + "\n" +
-                           "added: " + input + "\n" + line+ "\n");
-            list[count++] = new Task(input);
-            respond();
-        }
-
-        */
 
     }
 
