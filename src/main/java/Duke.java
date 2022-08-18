@@ -2,16 +2,16 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
+  private static String LOGO =
+      " ____        _        \n"
+          + "|  _ \\ _   _| | _____ \n"
+          + "| | | | | | | |/ / _ \\\n"
+          + "| |_| | |_| |   <  __/\n"
+          + "|____/ \\__,_|_|\\_\\___|\n";
   private static ArrayList<Task> allTasks = new ArrayList<>();
 
   private static void greet() {
-    String LOGO =
-        " ____        _        \n"
-            + "|  _ \\ _   _| | _____ \n"
-            + "| | | | | | | |/ / _ \\\n"
-            + "| |_| | |_| |   <  __/\n"
-            + "|____/ \\__,_|_|\\_\\___|\n";
-    System.out.println("Hello from\n" + LOGO);
+    System.out.println("Hello from\n" + Duke.LOGO);
     System.out.println("What can I do for you?");
   }
 
