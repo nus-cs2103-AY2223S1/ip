@@ -11,24 +11,37 @@ public class Duke {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
+        System.out.println("___________________________________");
         System.out.println("Hello! I'm Duke\n What can I do for you?");
+        System.out.println("___________________________________");
 
         ArrayList<String> list = new ArrayList<>();
 
         Scanner sc = new Scanner(System.in);
         String input = sc.nextLine();
 
+        while (!input.equals("bye")) {
+            if (input.equals("list")) {
+                System.out.println("___________________________________");
+                for (int i = 0; i < list.size(); i++) {
+                    System.out.println( (i+1) + "." + list.get(i));
+                }
+                System.out.println("___________________________________");
+                input = sc.nextLine();
+            }
 
-        if (input.equals("bye")) {
-            System.out.println("Bye. Hope to see you again soon!");
+            else {
+                list.add(input);
+                System.out.println("___________________________________");
+                System.out.println("added: " + input);
+                System.out.println("___________________________________");
+                input = sc.nextLine();
+            }
+
         }
 
-        else {
-            list.add(input);
-            input = sc.nextLine();
-        }
-
-
-
+        System.out.println("___________________________________");
+        System.out.println("Bye. Hope to see you again soon!");
+        System.out.println("___________________________________");
     }
 }
