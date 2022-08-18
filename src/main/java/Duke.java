@@ -94,6 +94,12 @@ public class Duke {
                 printLine();
                 getInput(scan);
                 break;
+            case("delete"):
+                printLine();
+                deleteTask(Integer.parseInt(input[1]) - 1);
+                printLine();
+                getInput(scan);
+                break;
             default:
                 throw new DukeException("I'm sorry, but I don't know what that means :-(");
         }
@@ -109,6 +115,14 @@ public class Duke {
         System.out.println("Got it. I've added this task:");
         inputCount++;
         System.out.println(taskToAdd.toString());
+        System.out.println("Now you have " + (inputCount - 1) + " tasks in the list.");
+    }
+
+    public static void deleteTask(int index) {
+        System.out.println("Noted. I've removed this task:");
+        System.out.println(inputTaskArray.get(index).toString());
+        inputTaskArray.remove(index);
+        inputCount--;
         System.out.println("Now you have " + (inputCount - 1) + " tasks in the list.");
     }
 

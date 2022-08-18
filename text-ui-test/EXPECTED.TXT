@@ -45,5 +45,16 @@ OK, I've marked this task as not done yet:
 [T][ ] borrow book
 ____________________________________________________________
 ____________________________________________________________
+Noted. I've removed this task:
+[T][ ] borrow book
+Now you have 2 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+Here are the tasks in your list:
+1.[D][ ] return book  (by:  Sunday)
+2.[E][ ] project meeting  (at:  Mon 2-4pm)
+Now you have 2 tasks in the list.
+____________________________________________________________
+____________________________________________________________
 Bye. Hope to see you again soon!
 ____________________________________________________________
