@@ -123,9 +123,14 @@ public class Duke {
 
     /**
      * Delete task at index n in userInputHistory
-     * @param n
+     * @param n index to be deleted
+     * @throws DukeException to indicate invalid index input
      */
-    private static void deleteTask(int n) {
+    private static void deleteTask(int n) throws DukeException{
+        int historyLen = userInputHistory.size();
+        if (historyLen <= n || n <= 0) {
+            throw new DukeException("Index invalid for delete");
+        }
         userInputHistory.remove(n - 1);
         System.out.printf("Task removed: \n%s\n");
         System.out.printf("Total: %d\n", userInputHistory.size());
@@ -163,6 +168,10 @@ public class Duke {
         String description;
         description = getDescription(task, "todo");
         addTaskToHistory(description);
+    }
+
+    private static void handleDelete(String task) throws DukeException{
+
     }
 
     /**
