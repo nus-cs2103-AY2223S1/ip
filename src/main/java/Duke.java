@@ -35,7 +35,13 @@ public class Duke {
         System.out.println(task.toString() + "\n" + LINE);
     }
 
-    public static void main(String[] args) throws DukeException {
+    public static void deleteTask(ArrayList<Task> taskList, int index) {
+        System.out.println(LINE + "Noted. I've removed this task:");
+        Task task = taskList.remove(index);
+        System.out.println(task.toString() + "\n" + "Now you have " + taskList.size() + " tasks in the list.\n" + LINE);
+    }
+
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int count = 0;
         ArrayList<Task> list = new ArrayList<>();
@@ -113,7 +119,18 @@ public class Duke {
                     count++;
                     System.out.println(LINE + "Got it. I've added this task:\n" + e.toString());
                     System.out.println("Now you have " + count + " tasks in this list.\n" + LINE);
+                } else if (input.contains("delete")) {
+                    String[] deletion = input.split("delete ", 2);
+                    char deletionIndex = input.charAt(7);
+                    int index = Character.getNumericValue(deletionIndex);
 
+                    if (index <= 0 || index > count) {
+                        throw new DukeException(LINE + "☹ OOPS!!! I can't remove this if it does not exist\n"
+                                + LINE);
+                    } else {
+                        deleteTask(list, index - 1);
+                        count--;
+                    }
                 } else {
                     throw new DukeException(LINE + "☹ OOPS!!! I'm sorry, but I don't know what that means :(\n"
                             + LINE);
