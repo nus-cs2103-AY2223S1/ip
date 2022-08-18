@@ -24,18 +24,34 @@ public class Duke {
         System.out.println("Hello! I'm Rio, the reality check you never asked for but really need.\n" +
                 "What can I help with today?\n");
         Scanner userScan = new Scanner(System.in);
-        String task = userScan.nextLine();
+        String input = userScan.nextLine();
+        String[] keyword = input.split(" ");
         while (true) {
-            if (task.contentEquals("bye")) {
+            if (input.contentEquals("bye")) {
                 System.out.println("Goodbye, see you soon for your next healthy reality check!");
                 break;
-            } else if (task.contentEquals("list")) {
+            } else if (input.contentEquals("list")) {
                 tasks.list();
-                task = userScan.nextLine();
+                input = userScan.nextLine();
+                keyword = input.split(" ");
+            } else if (keyword[0].contentEquals("mark")) {
+                String message = tasks.markTask(Integer.parseInt(keyword[1]));
+                System.out.println("Congratulations on smashing reality!");
+                System.out.println(message);
+                input = userScan.nextLine();
+                keyword = input.split(" ");
+            } else if (keyword[0].contentEquals("unmark")) {
+                String message = tasks.unmarkTask(Integer.parseInt(keyword[1]));
+                System.out.println("Oops reality is catching up... this is still undone: ");
+                System.out.println(message);
+                input = userScan.nextLine();
+                keyword = input.split(" ");
             } else {
+                Task task = new Task(input);
                 tasks.addTasks(task);
-                System.out.println("added: " + task);
-                task = userScan.nextLine();
+                System.out.println("added: " + input);
+                input = userScan.nextLine();
+                keyword = input.split(" ");
             }
         }
     }

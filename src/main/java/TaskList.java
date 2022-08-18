@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 
 public class TaskList {
-    private ArrayList<String> tasks;
+    private ArrayList<Task> tasks;
 
-    public ArrayList<? super String> addTasks(String task) {
+    public ArrayList<? super Task> addTasks(Task task) {
         tasks.add(task);
         return tasks;
     }
@@ -14,8 +14,20 @@ public class TaskList {
         }
         for (int i = 0; i < tasks.size(); i++) {
             int count = i + 1;
-            System.out.println(count + ". " + tasks.get(i));
+            System.out.println(count + ". " + tasks.get(i).toString());
         }
+    }
+
+    public String markTask(Integer n) {
+        Task taskMark = tasks.get(n.intValue() - 1);
+        taskMark.done();
+        return taskMark.toString();
+    }
+
+    public String unmarkTask(Integer n) {
+        Task taskMark = tasks.get(n.intValue() - 1);
+        taskMark.notDone();
+        return taskMark.toString();
     }
 
     public TaskList() {
