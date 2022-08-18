@@ -11,15 +11,16 @@ public class InvalidArgumentException extends DukeException {
     public String toString() {
         String message = "";
         switch (this.command) {
-            case deadline:
+            case DEADLINE:
                 message += "\nPlease add a /by to declare the time the deadline is meant to be set.";
                 break;
-            case event:
+            case EVENT:
                 message += "\nPlease add a/at to declare the time the event is at.";
                 break;
-            case mark:
-            case unmark:
-                message += "\nPlease input a integer within the range of the tasks:.";
+            case MARK:
+            case UNMARK:
+            case DELETE:
+                message += "\nPlease input a integer within the range of the tasks.";
                 break;
         }
         return "OOPS!!! The description of the " +  this.command + " command is invalid!" + message;

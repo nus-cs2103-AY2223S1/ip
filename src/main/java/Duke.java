@@ -81,7 +81,7 @@ public class Duke {
 
     public static ToDo handleToDo(String information) throws EmptyArgumentException {
         if (information.isEmpty()) {
-            throw new EmptyArgumentException(Commands.todo);
+            throw new EmptyArgumentException(Commands.TODO);
         }
         ToDo todo = new ToDo(information);
         return todo;
@@ -89,10 +89,10 @@ public class Duke {
 
     public static Deadline handleDeadline(String information) throws DukeException {
         if (information.isEmpty()) {
-            throw new EmptyArgumentException(Commands.deadline);
+            throw new EmptyArgumentException(Commands.DEADLINE);
         }
         if (!information.contains("/by")) {
-            throw new InvalidArgumentException(Commands.deadline);
+            throw new InvalidArgumentException(Commands.DEADLINE);
         }
         String[] stringArr = information.split(" /by ",2);
         Deadline deadline = new Deadline(stringArr[0], stringArr[1]);
@@ -101,10 +101,10 @@ public class Duke {
 
     public static Event handleEvent(String information) throws DukeException {
         if (information.isEmpty()) {
-            throw new EmptyArgumentException(Commands.event);
+            throw new EmptyArgumentException(Commands.EVENT);
         }
         if (!information.contains("/at")) {
-            throw new InvalidArgumentException(Commands.event);
+            throw new InvalidArgumentException(Commands.EVENT);
         }
         String[] stringArr = information.split(" /at ",2);
         Event event = new Event(stringArr[0], stringArr[1]);
@@ -130,10 +130,10 @@ public class Duke {
 
     public static void markTask(String information) throws DukeException {
         if (information.isEmpty()) {
-            throw new EmptyArgumentException(Commands.mark);
+            throw new EmptyArgumentException(Commands.MARK);
         }
         if (!information.chars().allMatch( Character :: isDigit )) {
-            throw new InvalidArgumentException(Commands.mark);
+            throw new InvalidArgumentException(Commands.MARK);
         }
         int index = Integer.parseInt(information) - 1;
         if (index < 0 || index >= storage.size()) {
@@ -146,10 +146,10 @@ public class Duke {
 
     public static void unmarkTask(String information) throws DukeException {
         if (information.isEmpty()) {
-            throw new EmptyArgumentException(Commands.mark);
+            throw new EmptyArgumentException(Commands.MARK);
         }
         if (!information.chars().allMatch( Character :: isDigit )) {
-            throw new InvalidArgumentException(Commands.mark);
+            throw new InvalidArgumentException(Commands.MARK);
         }
         int index = Integer.parseInt(information) - 1;
         if (index < 0 || index >= storage.size()) {
@@ -162,10 +162,10 @@ public class Duke {
 
     public static void deleteTask(String information) throws DukeException {
         if (information.isEmpty()) {
-            throw new EmptyArgumentException(Commands.delete);
+            throw new EmptyArgumentException(Commands.DELETE);
         }
         if (!information.chars().allMatch( Character :: isDigit )) {
-            throw new InvalidArgumentException(Commands.delete);
+            throw new InvalidArgumentException(Commands.DELETE);
         }
         int index = Integer.parseInt(information) - 1;
         if (index < 0 || index >= storage.size()) {

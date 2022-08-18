@@ -1,8 +1,8 @@
 public enum Commands {
-    todo,
-    deadline,
-    event,
-    mark,
-    unmark,
-    delete
+    TODO,
+    DEADLINE,
+    EVENT,
+    MARK,
+    UNMARK,
+    DELETE
 }
