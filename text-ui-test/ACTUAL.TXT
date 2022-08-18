@@ -4,4 +4,22 @@ What can I do for you?
 Got it. I've added this task:
   [T][ ]  borrow book
 Now you have 1 tasks in the list.
+Got it. I've added this task:
+  [T][ ]  study
+Now you have 2 tasks in the list.
+Got it. I've added this task:
+  [D][ ]  do science homework (by:  June 6th)
+Now you have 3 tasks in the list.
+Got it. I've added this task:
+  [E][ ]  party (at:  June 7th)
+Now you have 4 tasks in the list.
+Nice! I've marked this task as done:
+  [T][X]  borrow book
+Nice! I've marked this task as done:
+  [D][X]  do science homework (by:  June 6th)
+Here are the tasks in your list:
+1. [T][X]  borrow book
+2. [T][ ]  study
+3. [D][X]  do science homework (by:  June 6th)
+4. [E][ ]  party (at:  June 7th)
 Bye. Hope to see you again soon!

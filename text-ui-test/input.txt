@@ -1,2 +1,8 @@
 todo borrow book
+todo study
+deadline do science homework /by June 6th
+event party /at June 7th
+mark 1
+mark 3
+list
 bye
