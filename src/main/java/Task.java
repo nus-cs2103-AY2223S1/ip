@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Task {
     protected String description;
     protected boolean isDone;
-    private static ArrayList<Task> tasks = new ArrayList<>();
+    private static ArrayList<Task> tasks = new ArrayList<Task>();
 
     public Task(String description) {
         this.description = description;
@@ -11,7 +11,15 @@ public class Task {
     }
 
     public String getStatusIcon() {
-        return (isDone ? "X" : " "); // mark done task with X
+        return (isDone ? "[X]" : "[ ]"); // mark done task with X
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public boolean getIsDone() {
+        return isDone;
     }
 
     public void markAsDone() {
@@ -29,16 +37,20 @@ public class Task {
 
     public static void add(Task task) {
         tasks.add(task);
+        System.out.println(String.format("\tGotcha. I've added this task: "));
+        System.out.println("\t\t" + task); // exploiting polymorphism
+        System.out.println(String.format("\tNow you have %d task%s in the list",
+                Task.count(), Task.count() > 1 ? "s" : ""));
     }
 
     public static void listTasks() {
-        for (int i = 1; i < tasks.size(); i++) {
-            System.out.println(String.format("\t%d. %s", i, tasks.get(i)));
+        for (int i = 0; i < Task.count(); i++) {
+            System.out.println(String.format("\t%d. %s", i + 1, tasks.get(i)));
         }
     }
 
     public static int count() {
-        return tasks.size() - 1; // since we always have one dummy Task to make it 1-indexed
+        return tasks.size();
     }
 
     public static Task get(int taskNumber) {
@@ -46,22 +58,22 @@ public class Task {
     }
 
     public static void markAsDone(int taskNumber) {
-        if (taskNumber < 1 || taskNumber > Task.count()) {
+        if (taskNumber < 0 || taskNumber >= Task.count()) {
             System.out.println("\tInvalid Task Number!");
         } else {
             Task.get(taskNumber).markAsDone();
             System.out.println("\tAwesome! I have marked this task as done:");
-            System.out.println("\t\t"+Task.get(taskNumber));
+            System.out.println("\t\t" + Task.get(taskNumber));
         }
     }
 
     public static void markAsNotDone(int taskNumber) {
-        if (taskNumber < 1 || taskNumber > Task.count()) {
+        if (taskNumber < 0 || taskNumber >= Task.count()) {
             System.out.println("\tInvalid Task Number!");
         } else {
             Task.get(taskNumber).markAsNotDone();
             System.out.println("\tAwesome! I have unmarked this task to be not completed:");
-            System.out.println("\t\t"+Task.get(taskNumber));
+            System.out.println("\t\t" + Task.get(taskNumber));
         }
     }
 }
