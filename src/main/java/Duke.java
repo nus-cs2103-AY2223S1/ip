@@ -97,6 +97,10 @@ public class Duke {
                 Task temp;
                 switch (substr[0]) {
                     case "mark":
+                        if(substr.length == 1) {
+                            System.out.println("enter an index!");
+                            break;
+                        }
                         try {
                             index = Integer.parseInt(substr[1]) - 1;
                             if(index < 0 || index >= todoList.size()) {
@@ -111,6 +115,10 @@ public class Duke {
                         }
                         break;
                     case "unmark":
+                        if(substr.length == 1) {
+                            System.out.println("enter an index!");
+                            break;
+                        }
                         try {
                             index = Integer.parseInt(substr[1]) - 1;
                             if(index < 0 || index >= todoList.size()) {
@@ -124,6 +132,25 @@ public class Duke {
                             System.out.println("Invalid input");
                         }
 
+                        break;
+                    case "delete":
+                        if(substr.length == 1) {
+                            System.out.println("enter an index!");
+                            break;
+                        }
+                        try {
+                            index = Integer.parseInt(substr[1]) - 1;
+                            if(index < 0 || index >= todoList.size()) {
+                                System.out.println("thrs nth there :<");
+                                continue;
+                            }
+                            temp = todoList.get(index);
+                            todoList.remove(temp);
+                            System.out.println("oke this is deleted now:\n" + temp);
+                            System.out.println("now u have " + todoList.size() + " task(s)!");
+                        } catch (NumberFormatException e) {
+                            System.out.println("Invalid input");
+                        }
                         break;
                     case "todo":
                         if(substr.length == 1) {
