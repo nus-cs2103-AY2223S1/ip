@@ -2,17 +2,35 @@ import java.util.*;
 import java.util.ArrayList;
 
 public class Duke {
+    /**
+     * Counter field that shows how many tasks there are in a list
+     */
     public static int counter = 0;
+
+    /**
+     * Prints the message when a user types "bye"
+     */
     public static void byeMessage() {
         System.out.println("Bye. Hope to see you again soon!");
     }
 
-    public static void listMessage(ArrayList<Task> arr, int counter) {
+    /**
+     * Prints the list when user types "list"
+     *
+     * @param arr The arraylist containing all the tasks
+     */
+    public static void listMessage(ArrayList<Task> arr) {
         for (int i = 1; i < counter + 1; i++) {
             System.out.println((i) + ". " + arr.get(i - 1));
         }
     }
-    
+
+    /**
+     * Marks a task as completed
+     *
+     * @param str The users input
+     * @param arr The arraylist containing all the tasks
+     */
     public static void markMessage(String str, ArrayList<Task> arr) throws DukeException{
         char index = str.charAt(5);
         int number = Integer.parseInt(String.valueOf(index));
@@ -24,6 +42,12 @@ public class Duke {
         System.out.println("Nice! I've marked this task as done:\n  [X] " + t.description);
     }
 
+    /**
+     * Marks a task as incomplete
+     *
+     * @param str The users input
+     * @param arr The arraylist containing all the tasks
+     */
     public static void unmarkMessage(String str, ArrayList<Task> arr) throws DukeException {
         char index = str.charAt(7);
         int number = Integer.parseInt(String.valueOf(index));
@@ -35,6 +59,12 @@ public class Duke {
         System.out.println("OK, I've marked this task as not done yet:\n  [ ] " + t.description);
     }
 
+    /**
+     * Adds a Todo to the list
+     *
+     * @param str The users input
+     * @param arr The arraylist containing all the tasks
+     */
     public static void todoMessage(String str, ArrayList<Task> arr) throws DukeException{
         if(str.length() > 5) {
             String description = str.substring(5);
@@ -48,6 +78,12 @@ public class Duke {
         }
     }
 
+    /**
+     * Adds a Deadline to the list
+     *
+     * @param str The users input
+     * @param arr The arraylist containing all the tasks
+     */
     public static void deadlineMessage(String str, ArrayList<Task> arr) throws DukeException{
         if(str.length() > 9) {
             int sepPos = str.indexOf("/");
@@ -66,6 +102,13 @@ public class Duke {
             throw new DukeException("The description of a deadline cannot be empty.");
         }
     }
+
+    /**
+     * Adds a Event to the list
+     *
+     * @param str The users input
+     * @param arr The arraylist containing all the tasks
+     */
     public static void eventMessage(String str, ArrayList<Task> arr) throws DukeException {
         if (str.length() > 6) {
             int sepPos = str.indexOf("/");
@@ -85,6 +128,12 @@ public class Duke {
         }
     }
 
+    /**
+     * Deletes a task from the list
+     *
+     * @param str The users input
+     * @param arr The arraylist containing all the tasks
+     */
     public static void deleteMessage(String str, ArrayList<Task> arr) throws DukeException {
         if (str.length() > 7) {
             char index = str.charAt(7);
@@ -113,7 +162,7 @@ public class Duke {
                     byeMessage();
                     break;
                 } else if (first.equals("list")) {
-                    listMessage(lst, counter);
+                    listMessage(lst);
                 } else if (first.length() == 6 && first.substring(0, 4).equals("mark")) {
                     markMessage(first, lst);
                 } else if (first.length() == 8 && first.substring(0, 6).equals("unmark")) {
