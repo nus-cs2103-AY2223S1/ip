@@ -1,11 +1,65 @@
 list
-unmark 1
-mark -1
-todo borrow book
-list
-deadline return book /by Sunday
+
+todo this task
+
+event e /at sunday 12pm
+
+deadline assignment /by sat 2359
+
 mark 1
-event project meeting /at Mon 2-4pm
-list
+
 unmark 1
+
+mark -1
+
+mark 1
+
+mark 1
+
 list
+
+mark
+
+unmark
+
+mark 99
+
+list
+
+mark a
+
+unmark b
+
+todo borrow book
+
+list
+
+deadline return book /by Sunday
+
+mark 1
+
+event project meeting /at Mon 2-4pm
+
+list
+
+unmark 1
+
+list
+
+mark 1
+
+mark 2
+
+mark 9999
+
+mark 3
+
+mark 4
+
+list
+
+unmark 3
+
+unmark 2
+
+blah

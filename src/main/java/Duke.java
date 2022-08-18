@@ -1,10 +1,10 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class Duke {
-    private static final Task[] tasks = new Task[100];
-    private static int arrPointer = 0;
+    private static final ArrayList<Task> tasks = new ArrayList<>();
 
     public static void main(String[] args) throws IOException {
         InputStreamReader inputStreamReader = new InputStreamReader(System.in);
@@ -29,13 +29,31 @@ public class Duke {
                     if (userInputArr.length < 2) {
                         throw new DukeException("\tOOPS!!! Please specify a task to mark.");
                     }
-                    markItem(Integer.parseInt(userInputArr[1]));
+                    try {
+                        markItem(Integer.parseInt(userInputArr[1]));
+                    } catch (NumberFormatException e) {
+                        throw new DukeException("\tOOPS!!! Please specify a valid task number.");
+                    }
                     break;
                 case "unmark":
                     if (userInputArr.length < 2) {
                         throw new DukeException("\tOOPS!!! Please specify a task to unmark.");
                     }
-                    unmarkItem(Integer.parseInt(userInputArr[1]));
+                    try {
+                        unmarkItem(Integer.parseInt(userInputArr[1]));
+                    } catch (NumberFormatException e) {
+                        throw new DukeException("\tOOPS!!! Please specify a valid task number.");
+                    }
+                    break;
+                case "delete":
+                    if (userInputArr.length < 2) {
+                        throw new DukeException("\tOOPS!!! Please specify a task to delete.");
+                    }
+                    try {
+                        deleteTask(Integer.parseInt(userInputArr[1]));
+                    } catch (NumberFormatException e) {
+                        throw new DukeException("\tOOPS!!! Please specify a valid task number.");
+                    }
                     break;
                 case "todo":
                     if (userInputArr.length < 2) {
@@ -76,38 +94,47 @@ public class Duke {
 
     private static void listArrItems() {
         // Corner case with empty list
-        if (arrPointer == 0) {
+        if (tasks.size() == 0) {
             System.out.println("\t" + "list is empty");
             return;
         }
 
         // Usual Path
         System.out.println("\tHere are the tasks in your list:");
-        for (int i = 0; i < arrPointer; i++) {
-            System.out.println("\t" + (i + 1) + "." + tasks[i]);
+        for (int i = 0; i < tasks.size(); i++) {
+            System.out.println("\t" + (i + 1) + "." + tasks.get(i));
         }
     }
 
     private static void addToTasks(Task task) {
-        tasks[arrPointer++] = task;
+        tasks.add(task);
         System.out.println("\tGot it. I've added this task:\n" +
                 "\t\t"+ task + "\n" +
-                "\tNow you have " + arrPointer + " tasks in your list.");
+                "\tNow you have " + tasks.size() + " tasks in your list.");
+    }
+
+    private static void deleteTask(int index) throws DukeException {
+        if (index > tasks.size() || index < 1) {
+            throw new DukeException("\tOOPS!!! Please specify a valid task.");
+        }
+        System.out.println("\tNoted. I've removed this task:\n" +
+                "\t\t"+ tasks.remove(index - 1) + "\n" +
+                "\tNow you have " + tasks.size() + " tasks in your list.");
     }
 
     private static void markItem(int index) throws DukeException {
-        if (index > arrPointer || index < 1) {
+        if (index > tasks.size() || index < 1) {
             throw new DukeException("\tOOPS!!! Please specify a valid task.");
         }
-        tasks[index - 1].isDone = true;
-        System.out.println("\tNice! I've marked this task as done:\n\t\t" + tasks[index - 1]);
+        tasks.get(index - 1).isDone = true;
+        System.out.println("\tNice! I've marked this task as done:\n\t\t" + tasks.get(index - 1));
     }
 
     private static void unmarkItem(int index) throws DukeException {
-        if (index > arrPointer || index < 1) {
+        if (index > tasks.size() || index < 1) {
             throw new DukeException("\tOOPS!!! Please specify a valid task.");
         }
-        tasks[index - 1].isDone = false;
-        System.out.println("\tOK, I've marked this task as not done yet:\n\t\t" + tasks[index - 1]);
+        tasks.get(index - 1).isDone = false;
+        System.out.println("\tOK, I've marked this task as not done yet:\n\t\t" + tasks.get(index - 1));
     }
 }

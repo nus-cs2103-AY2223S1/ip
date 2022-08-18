@@ -1,28 +1,119 @@
 	Hello! I'm Duke
 	What can I do for you?
 	list is empty
-	I can't unmark this task. It's not in the list.
-	I can't mark this task. It's not in the list.
+	OOPS!!! I'm sorry, but I don't know what that means :-(
+	Got it. I've added this task:
+		[T][ ] this task
+	Now you have 1 tasks in your list.
+	OOPS!!! I'm sorry, but I don't know what that means :-(
+	Got it. I've added this task:
+		[E][ ] e (at: sunday 12pm)
+	Now you have 2 tasks in your list.
+	OOPS!!! I'm sorry, but I don't know what that means :-(
+	Got it. I've added this task:
+		[D][ ] assignment (by: sat 2359)
+	Now you have 3 tasks in your list.
+	OOPS!!! I'm sorry, but I don't know what that means :-(
+	Nice! I've marked this task as done:
+		[T][X] this task
+	OOPS!!! I'm sorry, but I don't know what that means :-(
+	OK, I've marked this task as not done yet:
+		[T][ ] this task
+	OOPS!!! I'm sorry, but I don't know what that means :-(
+	OOPS!!! Please specify a valid task.
+	OOPS!!! I'm sorry, but I don't know what that means :-(
+	Nice! I've marked this task as done:
+		[T][X] this task
+	OOPS!!! I'm sorry, but I don't know what that means :-(
+	Nice! I've marked this task as done:
+		[T][X] this task
+	OOPS!!! I'm sorry, but I don't know what that means :-(
+	Here are the tasks in your list:
+	1.[T][X] this task
+	2.[E][ ] e (at: sunday 12pm)
+	3.[D][ ] assignment (by: sat 2359)
+	OOPS!!! I'm sorry, but I don't know what that means :-(
+	OOPS!!! Please specify a task to mark.
+	OOPS!!! I'm sorry, but I don't know what that means :-(
+	OOPS!!! Please specify a task to unmark.
+	OOPS!!! I'm sorry, but I don't know what that means :-(
+	OOPS!!! Please specify a valid task.
+	OOPS!!! I'm sorry, but I don't know what that means :-(
+	Here are the tasks in your list:
+	1.[T][X] this task
+	2.[E][ ] e (at: sunday 12pm)
+	3.[D][ ] assignment (by: sat 2359)
+	OOPS!!! I'm sorry, but I don't know what that means :-(
+	OOPS!!! Please specify a valid task number.
+	OOPS!!! I'm sorry, but I don't know what that means :-(
+	OOPS!!! Please specify a valid task number.
+	OOPS!!! I'm sorry, but I don't know what that means :-(
 	Got it. I've added this task:
 		[T][ ] borrow book
-	Now you have 1 tasks in your list.
+	Now you have 4 tasks in your list.
+	OOPS!!! I'm sorry, but I don't know what that means :-(
 	Here are the tasks in your list:
-	1.[T][ ] borrow book
+	1.[T][X] this task
+	2.[E][ ] e (at: sunday 12pm)
+	3.[D][ ] assignment (by: sat 2359)
+	4.[T][ ] borrow book
+	OOPS!!! I'm sorry, but I don't know what that means :-(
 	Got it. I've added this task:
 		[D][ ] return book (by: Sunday)
-	Now you have 2 tasks in your list.
+	Now you have 5 tasks in your list.
+	OOPS!!! I'm sorry, but I don't know what that means :-(
 	Nice! I've marked this task as done:
-		[T][X] borrow book
+		[T][X] this task
+	OOPS!!! I'm sorry, but I don't know what that means :-(
 	Got it. I've added this task:
 		[E][ ] project meeting (at: Mon 2-4pm)
-	Now you have 3 tasks in your list.
+	Now you have 6 tasks in your list.
+	OOPS!!! I'm sorry, but I don't know what that means :-(
 	Here are the tasks in your list:
-	1.[T][X] borrow book
-	2.[D][ ] return book (by: Sunday)
-	3.[E][ ] project meeting (at: Mon 2-4pm)
+	1.[T][X] this task
+	2.[E][ ] e (at: sunday 12pm)
+	3.[D][ ] assignment (by: sat 2359)
+	4.[T][ ] borrow book
+	5.[D][ ] return book (by: Sunday)
+	6.[E][ ] project meeting (at: Mon 2-4pm)
+	OOPS!!! I'm sorry, but I don't know what that means :-(
 	OK, I've marked this task as not done yet:
-		[T][ ] borrow book
+		[T][ ] this task
+	OOPS!!! I'm sorry, but I don't know what that means :-(
 	Here are the tasks in your list:
-	1.[T][ ] borrow book
-	2.[D][ ] return book (by: Sunday)
-	3.[E][ ] project meeting (at: Mon 2-4pm)
+	1.[T][ ] this task
+	2.[E][ ] e (at: sunday 12pm)
+	3.[D][ ] assignment (by: sat 2359)
+	4.[T][ ] borrow book
+	5.[D][ ] return book (by: Sunday)
+	6.[E][ ] project meeting (at: Mon 2-4pm)
+	OOPS!!! I'm sorry, but I don't know what that means :-(
+	Nice! I've marked this task as done:
+		[T][X] this task
+	OOPS!!! I'm sorry, but I don't know what that means :-(
+	Nice! I've marked this task as done:
+		[E][X] e (at: sunday 12pm)
+	OOPS!!! I'm sorry, but I don't know what that means :-(
+	OOPS!!! Please specify a valid task.
+	OOPS!!! I'm sorry, but I don't know what that means :-(
+	Nice! I've marked this task as done:
+		[D][X] assignment (by: sat 2359)
+	OOPS!!! I'm sorry, but I don't know what that means :-(
+	Nice! I've marked this task as done:
+		[T][X] borrow book
+	OOPS!!! I'm sorry, but I don't know what that means :-(
+	Here are the tasks in your list:
+	1.[T][X] this task
+	2.[E][X] e (at: sunday 12pm)
+	3.[D][X] assignment (by: sat 2359)
+	4.[T][X] borrow book
+	5.[D][ ] return book (by: Sunday)
+	6.[E][ ] project meeting (at: Mon 2-4pm)
+	OOPS!!! I'm sorry, but I don't know what that means :-(
+	OK, I've marked this task as not done yet:
+		[D][ ] assignment (by: sat 2359)
+	OOPS!!! I'm sorry, but I don't know what that means :-(
+	OK, I've marked this task as not done yet:
+		[E][ ] e (at: sunday 12pm)
+	OOPS!!! I'm sorry, but I don't know what that means :-(
+	OOPS!!! I'm sorry, but I don't know what that means :-(
