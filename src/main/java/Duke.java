@@ -17,7 +17,7 @@ public class Duke {
         while (true) {
             String command = commands.nextLine();
             if (command.equals("bye")) {
-                System.out.println(HORIZONTAL_LINE + "\n Bye. Hope to see you again soon!\n  " + HORIZONTAL_LINE);
+                System.out.println(HORIZONTAL_LINE + "\n Bye. Hope to see you again soon!\n" + HORIZONTAL_LINE);
                 commands.close();
                 break;
             } else {
