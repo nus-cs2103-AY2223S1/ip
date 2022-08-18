@@ -4,8 +4,7 @@ public class Duke {
     private static final String TAB = "    ";
     private static final String LINEBREAK = "___________________________________";
     private static Scanner sc = new Scanner(System.in);
-    private static Task[] store = new Task[100];
-    private static int index = 0;
+    private static List<Task> store = new ArrayList<>();
 
     public static void main(String[] args) {
         greet();
@@ -81,8 +80,7 @@ public class Duke {
     }
 
     public static void add(String s) {
-        store[index] = new Task(s);
-        index++;
+        store.add(new Task(s));
         String temp = "added: " + s;
         echo(temp);
     }
@@ -90,8 +88,8 @@ public class Duke {
     public static void list() {
         printTab(LINEBREAK);
         printTab("Here are the tasks in your list:");
-        for (int i = 0; i < index; i++) {
-            Task t = store[i];
+        for (int i = 0; i < store.size(); i++) {
+            Task t = store.get(i);
             String temp = String.format("%d. %s", i + 1, t);
             printTab(temp);
         }
@@ -99,7 +97,7 @@ public class Duke {
     }
 
     public static void mark(String[] arr) {
-        Task t = store[Integer.parseInt(arr[1]) - 1];
+        Task t = store.get(Integer.parseInt(arr[1]) - 1);
         t.mark();
         printTab(LINEBREAK);
         printTab("Nice! I've marked this task as done:");
@@ -108,7 +106,7 @@ public class Duke {
     }
 
     public static void unMark(String[] arr) {
-        Task t = store[Integer.parseInt(arr[1]) - 1];
+        Task t = store.get(Integer.parseInt(arr[1]) - 1);
         t.unMark();
         printTab(LINEBREAK);
         printTab("OK, I've marked this task as not done yet:");
@@ -122,12 +120,11 @@ public class Duke {
         }
         String s = arr[1];
         Todo t = new Todo(s);
-        store[index] = t;
-        index++;
+        store.add(new Todo(s));
         printTab(LINEBREAK);
         printTab("Got it. I've added this task:");
         printTab("  " + t);
-        String temp = String.format("Now you have %d tasks in the list.", index);
+        String temp = String.format("Now you have %d tasks in the list.", store.size());
         printTab(temp);
         printTab(LINEBREAK);
     }
@@ -140,12 +137,11 @@ public class Duke {
         String s1 = temp[0];
         String s2 = temp[1].split(" ", 2)[1];
         Deadline t = new Deadline(s1, s2);
-        store[index] = t;
-        index++;
+        store.add(t);
         printTab(LINEBREAK);
         printTab("Got it. I've added this task:");
         printTab("  " + t);
-        String temp1 = String.format("Now you have %d tasks in the list.", index);
+        String temp1 = String.format("Now you have %d tasks in the list.", store.size());
         printTab(temp1);
         printTab(LINEBREAK);
     }
@@ -158,12 +154,11 @@ public class Duke {
         String s1 = temp[0];
         String s2 = temp[1].split(" ", 2)[1];
         Event t = new Event(s1, s2);
-        store[index] = t;
-        index++;
+        store.add(t);
         printTab(LINEBREAK);
         printTab("Got it. I've added this task:");
         printTab("  " + t);
-        String temp1 = String.format("Now you have %d tasks in the list.", index);
+        String temp1 = String.format("Now you have %d tasks in the list.", store.size());
         printTab(temp1);
         printTab(LINEBREAK);
     }
