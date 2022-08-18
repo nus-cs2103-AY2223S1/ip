@@ -78,14 +78,19 @@ public class Duke {
                     addEventCommand(inputs);
                     break;
                 }
-                // Mark the task as done
+                // Mark task as done
                 case ("mark"): {
                     markTaskCommand(inputs);
                     break;
                 }
-                // Mark the task as undone
+                // Mark task as undone
                 case ("unmark"): {
                     unmarkTaskCommand(inputs);
+                    break;
+                }
+                // Delete task
+                case ("delete"): {
+                    deleteTaskCommand(inputs);
                     break;
                 }
                 default: {
@@ -163,7 +168,7 @@ public class Duke {
         }
     }
 
-    private static void unmarkTaskCommand(String[] inputs) {
+    private static void unmarkTaskCommand(String[] inputs) throws DukeException {
         if (inputs.length == 1 || inputs[1].equals("")) {
             throw new DukeException("☹ OOPS!!! The task index cannot be empty.\n");
         }
@@ -176,6 +181,26 @@ public class Duke {
 
             String str = "Ok, I've marked this task as not done yet:\n" +
                     task + "\n";
+            printTextWithDivider(str);
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            throw new DukeException("☹ OOPS!!! The task index specified is not valid.\n");
+        }
+    }
+
+    private static void deleteTaskCommand(String[] inputs) throws DukeException {
+        if (inputs.length == 1 || inputs[1].equals("")) {
+            throw new DukeException("☹ OOPS!!! The task index cannot be empty.\n");
+        }
+        try {
+            // Tasks are stored as 0-index but display as 1-index
+            // Minus 1 to get the correct task in the taskList
+            int taskIndex = Integer.parseInt(inputs[1]) - 1;
+            Task task = taskList.get(taskIndex);
+            taskList.remove(task);
+
+            String str = "Noted. I've removed this task:\n" +
+                    "  " + task + "\n" +
+                    "Now you have " + taskList.size() + " task(s) in the list.\n";
             printTextWithDivider(str);
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             throw new DukeException("☹ OOPS!!! The task index specified is not valid.\n");
