@@ -107,6 +107,7 @@ public class Duke {
     /* Creates a ToDos instance and adds it to ToDoList
      *
      * @param command
+     * @throws Exception
      */
     private void addToDo(String command) throws Exception {
         if (!command.matches("todo \\S.*")) {
@@ -120,6 +121,7 @@ public class Duke {
     /* Creates a Deadline instance and adds it to ToDoList
      *
      * @param command
+     * @throws Exception
      */
     private void addDeadline(String command) throws Exception {
         if (!command.matches("deadline \\S.*")) {
@@ -138,6 +140,7 @@ public class Duke {
     /* Creates an Event instance and adds it to ToDoList
      *
      * @param command
+     * @throws Exception
      */
     private void addEvent(String command) throws Exception{
         if (!command.matches("event \\S.*")) {

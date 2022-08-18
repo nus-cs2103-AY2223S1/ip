@@ -10,10 +10,11 @@ public class ToDoList {
     /* Sets status of task at index to be complete
      *
      * @param index
+     * @throws IndexOutOfBoundsException
      */
     public void complete(int index) throws IndexOutOfBoundsException {
         if (index >= list.size()) {
-            throw new ArrayIndexOutOfBoundsException();
+            throw new IndexOutOfBoundsException();
         }
         list.get(index).mark();
     }
@@ -21,10 +22,11 @@ public class ToDoList {
     /* Sets status of task at index to be incomplete
      *
      * @param index
+     * @throws IndexOutOfBoundsException
      */
     public void incomplete(int index) throws IndexOutOfBoundsException {
         if (index >= list.size()) {
-            throw new ArrayIndexOutOfBoundsException();
+            throw new IndexOutOfBoundsException();
         }
         list.get(index).unmark();
     }
@@ -62,10 +64,11 @@ public class ToDoList {
     /* Deletes a Task
      *
      * @param index
+     * @Throws IndexOutOfBoundsException
      */
     public void delete(int index) throws IndexOutOfBoundsException {
         if (index >= list.size()) {
-            throw new ArrayIndexOutOfBoundsException();
+            throw new IndexOutOfBoundsException();
         }
         else {
             Task tempTask = list.get(index);
