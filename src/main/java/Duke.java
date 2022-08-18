@@ -3,39 +3,6 @@ import java.util.Scanner;
 
 public class Duke {
 
-    public static class ListObject{
-        private String task;
-        private int status;
-
-        public ListObject(String task, int status){
-            this.task = task;
-            this.status = status;
-        }
-
-        public String getTask(){
-            return this.task;
-        }
-
-        public int getStatus(){
-            return this.status;
-        }
-
-        public String showStatusIndicator(){
-            if(this.status==1){
-                return "[X] ";
-            } else {
-                return "[ ] ";
-            }
-        }
-
-        public void switchStatus(){
-            if(this.status==1){
-                this.status=0;
-            } else {
-                this.status=1;
-            }
-        }
-    }
 
     /**
      * Method to print Duke's self-introduction and to customise its personality.
@@ -85,17 +52,20 @@ public class Duke {
                 for(int i = 0; i < listOfItems.size(); i++){
                     int numb = i+1;
                     ListObject currItem = listOfItems.get(i);
-                    System.out.println(numb + "." + currItem.showStatusIndicator() + currItem.getTask());
+                    System.out.println(numb + "." + currItem.toString());
                 }
                 System.out.println("\n***********************************************************************\n");
             }
+
             if(userMsg.contains(markAsDone) && !userMsg.contains(markAsNotDone)){
                 String taskNo = userMsg.replaceAll("\\D+", "");
                 int taskNoAsInt = Integer.parseInt(taskNo)-1;
                 ListObject currItem = listOfItems.get(taskNoAsInt);
                 currItem.switchStatus();
-                System.out.println("Very well! One less burden to bear! I have marked this complete:\n");
-                System.out.println(currItem.showStatusIndicator()+ currItem.getTask());
+                System.out.println("Very well! One less burden to bear! I have marked this complete:\n" + currItem.toString());
+
+                System.out.println("\n***********************************************************************\n");
+
             }
             if(userMsg.contains(markAsNotDone)){
 
@@ -103,8 +73,8 @@ public class Duke {
                 int taskNoAsInt = Integer.parseInt(taskNo)-1;
                 ListObject currItem = listOfItems.get(taskNoAsInt);
                 currItem.switchStatus();
-                System.out.println("Hmm....I have marked this incomplete:\n");
-                System.out.println(currItem.showStatusIndicator()+ currItem.getTask());
+                System.out.println("Hmm....I have marked this incomplete:\n" + currItem.toString());
+                System.out.println("\n***********************************************************************\n");
 
             }
             if(!userMsg.equals(showList)&&!userMsg.contains(markAsDone) && !userMsg.contains(markAsNotDone)){
