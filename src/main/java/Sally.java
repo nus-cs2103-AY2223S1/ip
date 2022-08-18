@@ -34,7 +34,26 @@ public class Sally {
                     System.out.println(printList());
                 }
                 border();
-            } else if (message.contains("unmark")) {
+            }
+            // Delete
+            else if (message.startsWith("delete")) {
+                if (message.length() > 7 && message.substring(7).trim().chars().allMatch(Character::isDigit)) {
+                    int taskNum = Integer.parseInt(message.substring(7).trim()) - 1;
+                    if (0 <= taskNum && taskNum < list.size()) {
+                        String removed = list.get(taskNum).toString();
+                        list.remove(taskNum);
+                        border();
+                        System.out.println("This task has been removed from your to-do list:\n" + removed);
+                        border();
+                    } else {
+                        throw new SallyException.SallyTaskNotFoundException();
+                    }
+                } else {
+                    throw new SallyException.SallyTaskNotFoundException();
+                }
+            }
+            // Unmark
+            else if (message.contains("unmark")) {
                 int taskNum = Integer.parseInt(message.substring(7)) - 1; // -1 so that index is constant
                 if (taskNum >= 0 && taskNum < list.size()) {
                     Task task = list.get(taskNum);
