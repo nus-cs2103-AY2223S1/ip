@@ -28,8 +28,11 @@ public class Duke {
                 String line = input.nextLine();
 
                 String userInputs[] = line.split(" ");
-                COMMANDS mainCommand =  COMMANDS.valueOf(userInputs[0].toUpperCase());
+                if (!validCommandEnum(userInputs[0].toUpperCase())) {
+                    throw new UnknownCommandException();
+                }
 
+                COMMANDS mainCommand =  COMMANDS.valueOf(userInputs[0].toUpperCase());
                 switch (mainCommand) {
                     case BYE: {
                         System.out.println("Bye. Hope to see you again soon!");
@@ -104,15 +107,14 @@ public class Duke {
                         System.out.format("Noted. I've removed this task:\n %s\nNow you have %s %s in the list.\n", toDelete, userData.size(), userData.size() != 1 ? "tasks" : "task");
                         break;
                     }
-                    default: {
-                        throw new UnknownCommandException();
-                    }
                 }
                 System.out.println("-----------------------------------");
             } catch (UnknownCommandException err) {
                 System.out.println(err);
+                System.out.println("-----------------------------------");
             } catch (MissingDescriptionException err) {
                 System.out.println(err);
+                System.out.println("-----------------------------------");
             }
         }
     }
@@ -140,4 +142,12 @@ public class Duke {
         return res;
     }
 
+    public static boolean validCommandEnum(String str) {
+        for (COMMANDS cmd : COMMANDS.values()) {
+            if (str.equalsIgnoreCase(cmd.name())) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
