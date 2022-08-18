@@ -71,7 +71,7 @@ public class Duke {
                     return;
                 }
             }
-        } catch (NullPointerException | NumberFormatException | IndexOutOfBoundsException e) {
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
             if (e instanceof IndexOutOfBoundsException) {
                 throw new DukeWrongArgumentException(arr[1] + " is not a valid index", e);
             } else if (e instanceof NumberFormatException) {
