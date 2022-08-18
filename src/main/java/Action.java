@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public enum Action {
     Todo("todo"),
     Deadline("deadline"),
@@ -10,12 +12,14 @@ public enum Action {
         this.label = label;
     }
 
-    public static Action parseCommand(String command) {
+    public static Action parseCommand(String command) throws InvalidCommandException {
         for (Action action : values()) {
             if (command.startsWith(action.label)) {
                 return action;
             }
         }
-        return null;
+
+        throw new InvalidCommandException(
+               "Could not determine the command. Valid commands include: todo, deadline, event, mark, unmark");
     }
 }
