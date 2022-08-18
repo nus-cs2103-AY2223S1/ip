@@ -12,6 +12,7 @@ public class Parser {
     private static final List<String> PERMISSIBLE_TASKS = new ArrayList<>(
             Arrays.asList("todo", "event", "deadline"));
 
+    private static final String ENDING_MESSAGE = "That's all? Hope to see you again soon :)";
     /**
      * parseData takes in a user's command as a string
      * and makes sense of the command by calling TaskList's appropriate functionality
@@ -21,8 +22,13 @@ public class Parser {
     public static String parseData(String input, TaskList taskList) {
 
         //TODO: Update with a switch statement for parsing data
+
+        //Case 0: bye
+        if (input.startsWith("bye")) {
+            return Ui.displayMessage(ENDING_MESSAGE);
+
         //Case 1: Mark
-        if (input.startsWith("mark")) {
+        } else if (input.startsWith("mark")) {
             //split by space, then the second value
             int taskIndex = Integer.valueOf(input.split(" ", 0)[1]) - 1;
             return taskList.markTask(taskIndex);
@@ -54,15 +60,20 @@ public class Parser {
             try {
                 validateTask(input);
             } catch (InvalidCommandException ice) {
-                Ui.displayException(ice);
-                Ui.displayMessage("This was your invalid command: " + input);
+                String message = "";
+                message += Ui.displayException(ice) + '\n';
+                message += Ui.displayMessage("This was your invalid command: " + input) + "\n";
+                return message;
             } catch (EmptyTaskException ete) {
-                Ui.displayException(ete);
+                String message = "";
+                message += Ui.displayException(ete);
                 String[] tempArr = input.split(" ", 0);
                 if (tempArr[0].equals("todo")) {
-                    Ui.displayMessage("todo requires at least a task description");
+                    return message + "\n" +
+                            Ui.displayMessage("todo requires at least a task description");
                 } else {
-                    Ui.displayMessage("Event/Deadline requires both a task description and a date");
+                    return message + "\n" +
+                            Ui.displayMessage("Event/Deadline requires both a task description and a date");
                 }
             }
 
@@ -72,7 +83,7 @@ public class Parser {
     }
     /**
      * helper method for input validation whenever an add task command is given
-     * @param String input
+     * @param  input of type string
      * @throws InvalidCommandException if the command is not
      * in our list of permissible tasks
      * @throws EmptyTaskException if the correct command is given

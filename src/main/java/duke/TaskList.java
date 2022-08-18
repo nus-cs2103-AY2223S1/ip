@@ -38,13 +38,17 @@ public class TaskList {
      * @param taskIndex
      */
     public String markTask(int taskIndex) {
-        String display = "";
-        Task currentTask = taskList.get(taskIndex);
-        currentTask.setDone();
-        display += Ui.displayMessage(DONE_MESSAGE);
-        display += Ui.indentTaskDisplay(currentTask);
-        Storage.save(taskList);
-        return display;
+        try {
+            String display = "";
+            Task currentTask = taskList.get(taskIndex);
+            currentTask.setDone();
+            display += Ui.displayMessage(DONE_MESSAGE);
+            display += Ui.indentTaskDisplay(currentTask);
+            Storage.save(taskList);
+            return display;
+        } catch (IndexOutOfBoundsException e) {
+            return e + "\n" + Ui.outOfBoundsMessage(taskList.size(), taskIndex);
+        }
     }
 
     /**
@@ -54,13 +58,17 @@ public class TaskList {
      */
 
     public String unmarkTask(int taskIndex) {
-        String display = "";
-        Task currentTask = taskList.get(taskIndex);
-        currentTask.removeDone();
-        display += Ui.displayMessage(UNDONE_MESSAGE);
-        display += Ui.indentTaskDisplay(currentTask);
-        Storage.save(taskList);
-        return display;
+        try {
+            String display = "";
+            Task currentTask = taskList.get(taskIndex);
+            currentTask.removeDone();
+            display += Ui.displayMessage(UNDONE_MESSAGE);
+            display += Ui.indentTaskDisplay(currentTask);
+            Storage.save(taskList);
+            return display;
+        } catch (IndexOutOfBoundsException e) {
+            return e + "\n" + Ui.outOfBoundsMessage(taskList.size(), taskIndex);
+        }
     }
 
     /**
@@ -81,14 +89,19 @@ public class TaskList {
      */
 
     public String deleteTask(int taskIndex) {
-        String display = "";
-        Task deletedTask = taskList.get(taskIndex);
-        taskList.remove(taskIndex);
-        display += Ui.displayMessage(DELETE_HEADER);
-        display += Ui.indentTaskDisplay(deletedTask);
-        display += Ui.displayTasksLeft(taskList.size());
-        Storage.save(taskList);
-        return display;
+
+        try {
+            String display = "";
+            Task deletedTask = taskList.get(taskIndex);
+            taskList.remove(taskIndex);
+            display += Ui.displayMessage(DELETE_HEADER);
+            display += Ui.indentTaskDisplay(deletedTask);
+            display += Ui.displayTasksLeft(taskList.size());
+            Storage.save(taskList);
+            return display;
+        } catch (IndexOutOfBoundsException e) {
+            return e + "\n" + Ui.outOfBoundsMessage(taskList.size(), taskIndex);
+        }
     }
 
     /**

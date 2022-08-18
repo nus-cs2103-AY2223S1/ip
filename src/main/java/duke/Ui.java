@@ -14,12 +14,27 @@ public class Ui {
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
 
+   public static final String ENDING_MESSAGE = "That's all? Hope to see you again soon :)";
 
-    public static void welcomeMessage() {
+    public static String welcomeMessage() {
+        String message = "";
+        message += "Hello from\n" + logo;
         System.out.println("Hello from\n" + logo);
-
+        message += "Hello! I'm Duke \n"
+                + "What can I do for you?";
         System.out.println("Hello! I'm Duke \n"
                 + "What can I do for you?");
+        return message;
+    }
+
+    /**
+     * Used when index is out of bounds for add/delete
+     * @return formatted Out of bounds message string
+     */
+    public static String outOfBoundsMessage(int upperLimit, int index) {
+        return "Sorry, you tried to access task " + index +
+                " while you had " + upperLimit + " tasks in the list \n" +
+                "Please " + "access " + " the tasks in their appropriate range.";
     }
 
     /**

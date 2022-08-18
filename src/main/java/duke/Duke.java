@@ -2,6 +2,7 @@ package duke;
 
 import java.util.Scanner;
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -19,7 +20,7 @@ import javafx.scene.image.ImageView;
  * Main class of the program
  * Stores a taskList of tasks
  */
-public class Duke extends Application {
+public class Duke {
 
     private ScrollPane scrollPane;
     private VBox dialogContainer;
@@ -32,11 +33,12 @@ public class Duke extends Application {
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/ajitpai.png"));
 
     private static TaskList tasks;
-    private static final String ENDING_MESSAGE = "That's all? Hope to see you again soon :)";
 
 
 
-    @Override
+
+
+/*    @Override
     public void start(Stage stage) {
         //Initialization
         tasks = Storage.load();
@@ -69,16 +71,16 @@ public class Duke extends Application {
         dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
 
 
-    }
+    }*/
 
-    private Label getDialogLabel(String text) {
+/*    private Label getDialogLabel(String text) {
         Label textToAdd = new Label(text);
         textToAdd.setWrapText(true);
 
         return textToAdd;
-    }
+    }*/
 
-    private void styleControls(Stage stage, AnchorPane mainLayout) {
+/*    private void styleControls(Stage stage, AnchorPane mainLayout) {
         stage.setTitle("Duke");
         stage.setResizable(false);
         stage.setMinHeight(600.0);
@@ -106,14 +108,18 @@ public class Duke extends Application {
 
         AnchorPane.setLeftAnchor(userInput , 1.0);
         AnchorPane.setBottomAnchor(userInput, 1.0);
-    }
+
+        //Display Welcome Message
+        Label welcomeLabel = new Label(Ui.welcomeMessage());
+        dialogContainer.getChildren().add(
+                new DialogueBox(welcomeLabel,new ImageView(user))
+        );
+    }*/
 
     private void handleUserInput() {
-        Label userText = new Label(userInput.getText());
-        Label dukeText = new Label(getResponse(userInput.getText()));
         dialogContainer.getChildren().addAll(
-                new DialogueBox(userText, new ImageView(user)),
-                new DialogueBox(dukeText, new ImageView(duke))
+                DialogueBox.getUserDialog(userInput.getText(), user),
+                DialogueBox.getDukeDialog(getResponse(userInput.getText()), duke)
         );
         userInput.clear();
     }
@@ -124,7 +130,7 @@ public class Duke extends Application {
      * @param input
      * @return
      */
-    private String getResponse(String input) {
+    String getResponse(String input) {
         return Parser.parseData(input, tasks);
     }
     public Duke() {
@@ -137,6 +143,7 @@ public class Duke extends Application {
     }
 
     /**
+     * DEPRECATED
      * Displays the welcome message.
      * Initializes the scanner to scan for inputs
      * Lets the parser parse the correct input
@@ -150,7 +157,7 @@ public class Duke extends Application {
             input = sc.nextLine();
             //how does the user end this//
             if (input.equals("bye")) {
-                Ui.displayMessage(ENDING_MESSAGE);
+                Ui.displayMessage(Ui.ENDING_MESSAGE);
                 break;
             }
             //if not, parser can parse data
