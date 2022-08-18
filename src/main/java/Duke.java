@@ -1,8 +1,11 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
 
-    private static String line = "____________________________________________________________\n";
+    private static final String line = "____________________________________________________________\n";
+
+    private static ArrayList<String> tasks = new ArrayList<>();
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -27,8 +30,14 @@ public class Duke {
                 case "bye":
                     System.out.println("Bye. Hope to see you again soon!");
                     break;
+                case "list":
+                    for (int i = 0; i < tasks.size(); i++) {
+                        System.out.println((i + 1) + ". " + tasks.get(i));
+                    }
+                    break;
                 default:
-                    System.out.println(text);
+                    tasks.add(text);
+                    System.out.println("added: " + text);
                     break;
             }
             System.out.println(line);
