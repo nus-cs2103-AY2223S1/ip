@@ -5,3 +5,61 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
+    ____________________________________________________________
+     Hello! I'm Duke
+     I can store a to-do list for you!
+     Enter 'list' to display current contents and 'bye' to end the program.
+     Start entering your tasks!
+    ____________________________________________________________
+    ____________________________________________________________
+     Got it. I've added this task:
+     [T][ ] eat
+     Now you have 1 tasks in the list.
+    ____________________________________________________________
+tomorrow
+    ____________________________________________________________
+     Got it. I've added this task:
+     [D][ ] 2103 assignment  (by: tomorrow)
+     Now you have 2 tasks in the list.
+    ____________________________________________________________
+saturday
+    ____________________________________________________________
+     Got it. I've added this task:
+     [E][ ] birthday  (at: saturday)
+     Now you have 3 tasks in the list.
+    ____________________________________________________________
+OOPS! please include a name for your task!
+OOPS! please include a name for your task!
+now
+Include '/by' followed by a date after!
+tomorrow
+Include '/at' followed by a date after!
+now
+    ____________________________________________________________
+     Got it. I've added this task:
+     [D][ ]  (by: now)
+     Now you have 4 tasks in the list.
+    ____________________________________________________________
+deadline/event requires date as a third parameter after /by or /at respectively!
+deadline/event requires date as a third parameter after /by or /at respectively!
+    ____________________________________________________________
+     Nice! I've marked task eat as done:
+     [T][X] eat
+    ____________________________________________________________
+    ____________________________________________________________
+     Nice! I've marked task eat as done:
+     [T][X] eat
+    ____________________________________________________________
+    ____________________________________________________________
+     Ok, I've marked task eat as not done yet:
+     [T][ ] eat
+    ____________________________________________________________
+    ____________________________________________________________
+     Ok, I've marked task eat as not done yet:
+     [T][ ] eat
+    ____________________________________________________________
+Invalid task ID!
+    ____________________________________________________________
+     Bye. Hope to see you again soon!
+    ____________________________________________________________
+
