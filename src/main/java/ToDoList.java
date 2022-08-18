@@ -58,4 +58,20 @@ public class ToDoList {
     public int getSize() {
         return list.size();
     }
+
+    /* Deletes a Task
+     *
+     * @param index
+     */
+    public void delete(int index) throws IndexOutOfBoundsException {
+        if (index >= list.size()) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
+        else {
+            Task tempTask = list.get(index);
+            list.remove(index);
+            System.out.println("\tNoted. I've removed this task:");
+            System.out.println("\t  " + tempTask);
+        }
+    }
 }

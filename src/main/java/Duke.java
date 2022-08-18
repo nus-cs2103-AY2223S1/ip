@@ -43,6 +43,10 @@ public class Duke {
                 }
                 else if (command.matches("mark [0-9]+") || command.matches("unmark [0-9]+")) {
                     changeMark(command);
+                }
+                else if (command.matches("delete [0-9]+")) {
+                    deleteTask(command);
+                    System.out.printf("\tNow you have %d tasks in the list.\n", toDoList.getSize());
                 } else if (command != ""){
                     System.out.println(hLine);
                     throw new Exception("I am sorry, I do not comprehend such commands. Please Try again...");
