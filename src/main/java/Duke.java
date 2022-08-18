@@ -126,7 +126,6 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-
         Duke dk = new Duke();
         Scanner sc = new Scanner(System.in);
 
@@ -134,17 +133,17 @@ public class Duke {
         while (true) {
             String usrInput = sc.nextLine();
             String[] usrInputTokens = usrInput.split(" ", 2);
-            String usrCommand = usrInputTokens[0];
+            Command usrCommand = Command.getIfPresent(usrInputTokens[0]);
 
-            if (usrCommand.equals("bye")) {
+            if (usrCommand.equals(Command.BYE)) {
                 break;
             }
             try {
                 switch (usrCommand) {
-                    case "list":
+                    case LIST:
                         dk.viewAllTask();
                         break;
-                    case "mark":
+                    case MARK:
                         if (usrInputTokens.length < 2) {
                             throw new DukeException(
                                     "Oh no! Try doing 'mark <index>'!");
@@ -155,7 +154,7 @@ public class Duke {
                                 usrInputTokens[1], 10) - 1;
                         dk.markTask(markIndex);
                         break;
-                    case "unmark":
+                    case UNMARK:
                         if (usrInputTokens.length < 2) {
                             throw new DukeException(
                                     "Oh no! Try doing 'unmark <index>'!");
@@ -165,7 +164,7 @@ public class Duke {
 
                         dk.unmarkTask(unmarkIndex);
                         break;
-                    case "delete":
+                    case DELETE:
                         if (usrInputTokens.length < 2) {
                             throw new DukeException(
                                     "Oh no! Try doing 'delete <index>'!");
@@ -174,7 +173,7 @@ public class Duke {
                                 usrInputTokens[1], 10) - 1;
                         dk.deleteTask(deleteIndex);
                         break;
-                    case "todo":
+                    case TODO:
                         if (usrInputTokens.length < 2) {
                             throw new DukeException(
                                     "Oh no! The description of a todo cannot be empty.");
@@ -183,7 +182,7 @@ public class Duke {
                         Todo newTodo = new Todo(todoTitle, false);
                         dk.addTask(newTodo);
                         break;
-                    case "deadline":
+                    case DEADLINE:
                         if (usrInputTokens.length < 2) {
                             throw new DukeException(
                                     "Oh no! The description of a deadline cannot be empty.");
@@ -198,7 +197,7 @@ public class Duke {
                         Deadline newDeadline = new Deadline(deadlineTitle, false, by);
                         dk.addTask(newDeadline);
                         break;
-                    case "event":
+                    case EVENT:
                         if (usrInputTokens.length < 2) {
                             throw new DukeException(
                                     "Oh no! The description of an event cannot be empty.");
@@ -213,6 +212,9 @@ public class Duke {
                         Event newEvent = new Event(eventTitle, false, at);
                         dk.addTask(newEvent);
                         break;
+                    case INVALID:
+                        throw new DukeException(
+                                "Sorry, I don't understand this!");
                     default:
                         throw new DukeException(
                                 "Sorry, I don't understand this!");
@@ -222,6 +224,6 @@ public class Duke {
             }
         }
         sc.close();
-        dk.sayGreetings();
+        dk.sayGoodBye();
     }
 }

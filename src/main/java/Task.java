@@ -20,6 +20,8 @@ public abstract class Task {
     }
 
     public void setNotDone() {
+        // This method is preferred over a toggle method as it is clearer on
+        // its effects.
         this.done = false;
     }
 }
