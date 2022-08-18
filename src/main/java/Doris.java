@@ -28,7 +28,7 @@ public class Doris {
         while (true) {
             String command = sc.nextLine();
             try {
-                if(command.equals("bye")) {
+                if (command.equals("bye")) {
                     System.out.println("Bye you annoying sia don't want talk to you anymore");
                     return;
                 } else if (command.equals("list")) {
@@ -61,9 +61,6 @@ public class Doris {
                         throw new DorisException("Oi don't anyhow type must enter a task to do leh");
                     }
                     String[] commands = command.split(" /by ");
-                    if (commands.length > 2) {
-                        throw new DorisException("Oi can don't talk too much");
-                    }
                     Deadline deadline = new Deadline(commands[0], commands[1]);
                     list.add(deadline);
                     System.out.println("Eh this one due soon stop wasting time go do now:");
@@ -74,13 +71,16 @@ public class Doris {
                         throw new DorisException("Oi don't anyhow type must enter a task to do leh");
                     }
                     String[] commands = command.split(" /at ");
-                    if (commands.length > 2) {
-                        throw new DorisException("Oi can don't talk too much");
-                    }
                     Event event = new Event(commands[0], commands[1]);
                     list.add(event);
                     System.out.println("Oi remember to attend this ah:");
                     System.out.println(event);
+                    System.out.println("You have " + list.size() + " tasks leh better hurry up");
+                } else if (command.startsWith("delete")) {
+                    int deleteNum = Integer.parseInt(command.substring(command.length() - 1)) - 1;
+                    System.out.println("Eh you don't want do this just say la:");
+                    System.out.println(list.get(deleteNum));
+                    list.remove(deleteNum);
                     System.out.println("You have " + list.size() + " tasks leh better hurry up");
                 } else {
                     throw new DorisException("Eh what are you talking can speak properly or not");
