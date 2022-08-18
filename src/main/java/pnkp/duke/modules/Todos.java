@@ -81,7 +81,11 @@ public class Todos {
         }
 
         int taskID = rest.nextInt() - 1;
-        // if IndexOOB then say("OOB") return end
+        if (taskID < 0 || taskID >= todos.size()) {
+            say("Hmm... a task with that number doesn't seem to exist. " +
+                    "You can see a list of all tasks by saying \"list\".");
+            return;
+        }
         todos.get(taskID).setDone(true);
         say(List.of("Nice! I've marked this task as done:",
                     todos.get(taskID).toString()));
@@ -94,7 +98,11 @@ public class Todos {
         }
 
         int taskID = rest.nextInt() - 1;
-        // if IndexOOB then say("OOB") return end
+        if (taskID < 0 || taskID >= todos.size()) {
+            say("Hmm... a task with that number doesn't seem to exist. " +
+                    "You can see a list of all tasks by saying \"list\".");
+            return;
+        }
         todos.get(taskID).setDone(false);
         say(List.of("Alright, I've marked this task as not done yet:",
                 todos.get(taskID).toString()));

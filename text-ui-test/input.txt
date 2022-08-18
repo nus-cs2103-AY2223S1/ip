@@ -9,9 +9,16 @@ deadline do homework /by no idea :-p
 event project meeting
 event project meeting /at Mon 2-4pm
 list
+mark 
 mark 1
-mark 3
+mark 4
 list
+unmark
 unmark 1
+list
+mark 0
+mark 55
+unmark 0
+unmark 55
 list
 bye
