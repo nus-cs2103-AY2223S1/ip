@@ -14,12 +14,12 @@ How may I assist you today?
 
 	____________________________________________
 	 Got it. I've added this task:
-	   [T][ ] borrow book
+	   [T][ ] read book
 	 Now you have 1 tasks in the list.
 	____________________________________________
 	____________________________________________
 	 Here are the tasks in your list:
-	 1.[T][ ] borrow book
+	 1.[T][ ] read book
 	____________________________________________
 	____________________________________________
 	 Got it. I've added this task:
@@ -33,7 +33,7 @@ How may I assist you today?
 	____________________________________________
 	____________________________________________
 	 Here are the tasks in your list:
-	 1.[T][ ] borrow book
+	 1.[T][ ] read book
 	 2.[D][ ] return book  (by: Sunday)
 	 3.[D][ ] project meeting  (at: Mon 2-4pm)
 	____________________________________________
@@ -46,24 +46,27 @@ How may I assist you today?
 	   [D][X] project meeting  (at: Mon 2-4pm)
 	____________________________________________
 	____________________________________________
+	 Noted. I've removed this task:
+	   [D][X] project meeting  (at: Mon 2-4pm)
+	 Now you have 2 tasks in the list.
+	____________________________________________
+	____________________________________________
 	 Here are the tasks in your list:
-	 1.[T][ ] borrow book
+	 1.[T][ ] read book
 	 2.[D][X] return book  (by: Sunday)
-	 3.[D][X] project meeting  (at: Mon 2-4pm)
 	____________________________________________
 	____________________________________________
-	 I've marked this task as not done yet:
-	   [D][ ] project meeting  (at: Mon 2-4pm)
+	 ☹ OOPS!!!
+	 The index you entered is invalid!
 	____________________________________________
 	____________________________________________
 	 I've marked this task as done:
-	   [T][X] borrow book
+	   [T][X] read book
 	____________________________________________
 	____________________________________________
 	 Here are the tasks in your list:
-	 1.[T][X] borrow book
+	 1.[T][X] read book
 	 2.[D][X] return book  (by: Sunday)
-	 3.[D][ ] project meeting  (at: Mon 2-4pm)
 	____________________________________________
 	____________________________________________
 	 It's a great time talking with you.
