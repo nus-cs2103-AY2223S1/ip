@@ -67,7 +67,7 @@ public class Duke {
     }
 
     private static Task createTask(String taskName, String taskDescription) {
-        String[] temp = taskDescription.split("/");
+        String[] temp = taskDescription.split(" /");
 
         switch (stringTaskNamesHashMap.get(taskName)) {
             case TODO:

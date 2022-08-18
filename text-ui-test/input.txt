@@ -1,0 +1,8 @@
+todo borrow book
+deadline finish reading book /by tomorrow
+event book presentation /at 2 days later 4pm
+mark 1
+list
+unmark 1
+list
+bye
