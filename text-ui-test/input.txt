@@ -10,6 +10,7 @@ mark -100
 mark 0
 delete 1
 delete 0
+delete 13q9e-4ikww
 list
 unknownuselesscommand
 bye
