@@ -148,11 +148,21 @@ public class Duke {
      *
      * @param input A String to be added to the list.
      */
-    public static void addEvent(String input) {
+    public static void addEvent(String input) throws DukeException {
         // Get description and date of event
         int slashIdx = input.indexOf("/at");
+
+        // If there is no /at, throw an error
+        if (slashIdx == -1 || slashIdx > input.length() - 5) {
+            throw new DukeException("Please set a date!");
+        }
+
         String desc = input.substring(0, slashIdx);
         String at = input.substring((slashIdx + 4));
+
+        if (desc.length() == 0) {
+            throw new DukeException("The description of an event cannot be empty.");
+        }
 
         // Instantiate task object
         Task newDeadline = new Event(desc, at);
