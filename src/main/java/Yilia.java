@@ -1,6 +1,12 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
+enum Type {
+    TODO,
+    DEADLINE,
+    EVENT
+}
+
 class DontKnowException extends Exception {
 
     @Override
@@ -10,13 +16,13 @@ class DontKnowException extends Exception {
 }
 
 class DescriptionEmptyException extends Exception {
-    private String content;
-    DescriptionEmptyException(String content) {
-        this.content = content;
+    private Type type;
+    DescriptionEmptyException(Type content) {
+        this.type = content;
     }
     @Override
     public String toString() {
-        return "☹ OOPS!!! The description of a " + content + " cannot be empty.";
+        return "☹ OOPS!!! The description of a " + type.toString().toLowerCase() + " cannot be empty.";
     }
 }
 
@@ -117,39 +123,29 @@ class Yilia {
         }
     }
 
-    public static void addTodo(String text) throws DescriptionEmptyException {
+    public static void addTask(String text, Type type) throws DescriptionEmptyException {
         if (text.strip().isEmpty()) {
-            throw new DescriptionEmptyException("todo");
+            throw new DescriptionEmptyException(type);
         }
-        Todo todo = new Todo(text);
-        abilities.add(todo);
-        echo(todo);
-    }
-
-    public static void addDeadline(String text) throws DescriptionEmptyException {
-        if (text.strip().isEmpty()) {
-            throw new DescriptionEmptyException("todo");
+        if (type.equals(Type.TODO)) {
+            Todo todo = new Todo(text);
+            abilities.add(todo);
+            echo(todo);
+            return;
         }
         String info[] = text.split("/");
         if (info.length == 1 || info[1].strip().isEmpty()) {
-            throw new DescriptionEmptyException("todo");
+            throw new DescriptionEmptyException(type);
         }
-        Deadline deadline = new Deadline(info[0], info[1]);
-        abilities.add(deadline);
-        echo(deadline);
-    }
-
-    public static void addEvent(String text) throws DescriptionEmptyException {
-        if (text.strip().isEmpty()) {
-            throw new DescriptionEmptyException("todo");
+        if (type.equals(Type.DEADLINE)) {
+            Deadline deadline = new Deadline(info[0], info[1]);
+            abilities.add(deadline);
+            echo(deadline);
+        } else if (type.equals(Type.EVENT)) {
+            Event event = new Event(info[0], info[1]);
+            abilities.add(event);
+            echo(event);
         }
-        String info[] = text.split("/");
-        if (info.length == 1 || info[1].strip().isEmpty()) {
-            throw new DescriptionEmptyException("todo");
-        }
-        Event event = new Event(info[0], info[1]);
-        abilities.add(event);
-        echo(event);
     }
 
     public static void delete(int index) {
@@ -173,11 +169,11 @@ class Yilia {
                 } else if (message.contains("mark")) {
                     mark(scanner.nextInt());
                 } else if (message.contains("deadline")) {
-                    addDeadline(scanner.nextLine());
+                    addTask(scanner.nextLine(), Type.DEADLINE);
                 } else if (message.contains("event")) {
-                    addEvent(scanner.nextLine());
+                    addTask(scanner.nextLine(), Type.EVENT);
                 } else if (message.contains("todo")) {
-                    addTodo(scanner.nextLine());
+                    addTask(scanner.nextLine(), Type.TODO);
                 } else if (message.contains("delete")) {
                     delete(scanner.nextInt());
                 } else {
