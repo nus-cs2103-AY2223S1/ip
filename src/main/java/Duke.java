@@ -4,30 +4,57 @@ import java.util.Collections;
 
 /**
  *  Duke Class
- *  The main class
+ *  The class which stores inputs and interacts with user
  *
  * @author Kang Qiao
  */
 
 public class Duke {
-
+    /**
+     * Stores all the tasks given by the user
+     */
     private static ArrayList<Task> inputs = new ArrayList<Task>();
 
-
-
+    /**
+     *Reply with the input of the user
+     *
+     * @return A string of the copied reply.
+     */
     private static String answer(String msg) {
         return "_______________________________________________________" +
                 "\n" + msg + "\n" +
                 "_______________________________________________________";
     }
-//add tasks
+
+    /**
+     *Sends a message indicating the input task that has been added to a list.
+     *
+     * @return A string indicating the task has been added.
+     */
     private static String addition(String msg) {
         return "_______________________________________________________" +
                 "\n" + "Nice, I have added  this task to your list:\n " + msg + "\n" +
                 "Great, now you have " + inputs.size() + " tasks in the list.\n" +
                 "_______________________________________________________";
     }
-//to list down all the tasks
+
+    /**
+     *Sends a message indicating the input task that has been removed to a list.
+     *
+     * @return A string indicating that the task has been removed.
+     */
+    private static String remove(String msg) {
+        return "_______________________________________________________" +
+                "\n" + "OK, I have deleted  this task from your list:\n " + msg + "\n" +
+                "Great, now you have " + inputs.size() + " tasks in the list.\n" +
+                "_______________________________________________________";
+    }
+
+    /**
+     *Combines all the input by the user into a list of inputs
+     *
+     * @return A string of the list of inputs
+     */
     private static String all() {
         String userInputs = "";
         for (int i = 0; i < inputs.size(); i++)
@@ -41,7 +68,12 @@ public class Duke {
 
         return userInputs;
     }
-//set this task as done
+
+    /**
+     *Mark the specified task as done
+     *
+     * @return A string of the marked task
+     */
     private static String markDone(String str) {
         return "_______________________________________________________" + "\n" +
                 "Nice! I've marked this task as done:" +
@@ -49,6 +81,11 @@ public class Duke {
                 "\n" + "_______________________________________________________";
     }
 
+    /**
+     *Mark the specified task as not done
+     *
+     * @return A string of the unmarked task
+     */
     private static String markUndone(String str) {
         return "_______________________________________________________" + "\n" +
                 "Wow! I've marked this task as not done yet:" +
@@ -56,6 +93,9 @@ public class Duke {
                 "\n" + "_______________________________________________________";
     }
 
+    /**
+     *The Main function for interaction between the user and DUKE
+     */
     public static void main(String[] args) throws DukeException {
 
         String logo = " ____        _        \n"
@@ -67,10 +107,6 @@ public class Duke {
         System.out.println("Hello I'm\n" + logo + "What can I do for you?\n");
         Scanner sc = new Scanner(System.in);
         String str = sc.nextLine();
-
-
-
-
 
         while(!str.equals("bye"))
         {
@@ -122,7 +158,7 @@ public class Duke {
                       inputs.add(taskDeadline);
                       System.out.println(addition(taskDeadline.toString()));
                   } catch (ArrayIndexOutOfBoundsException e) {
-                      throw new DukeException(("OOPS!!! The description of a Deadline cannot be empty."));
+                      throw new DukeException(("OOPS!!! The description of a Deadline cannot be empty/incomplete."));
                   }
 
                 }
@@ -137,8 +173,17 @@ public class Duke {
                       inputs.add(taskEvent);
                       System.out.println(addition(taskEvent.toString()));
                   } catch (ArrayIndexOutOfBoundsException e) {
-                      throw new DukeException(("OOPS!!! The description of an Event cannot be empty."));
+                      throw new DukeException(("OOPS!!! The description of an Event cannot be empty/incomplete."));
                   }
+
+                }
+                else if(instruction.equals("delete"))
+                {
+                    str = str.split(" ", 2)[1];
+                    int index = Integer.valueOf(str) - 1;
+                    Task content = inputs.get(index);
+                    inputs.remove(content);
+                    System.out.println(remove(content.toString()));
 
                 }
                 else
