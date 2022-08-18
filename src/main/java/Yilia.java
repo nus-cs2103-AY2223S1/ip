@@ -152,6 +152,11 @@ class Yilia {
         echo(event);
     }
 
+    public static void delete(int index) {
+        Task task = abilities.remove(index - 1);
+        System.out.println("Noted. I've removed this task:\n  " + task + "\nNow you have " + abilities.size() + " tasks in the list.");
+    }
+
     public static void main(String[] args) throws DontKnowException {
         greet();
         Scanner scanner = new Scanner(System.in);
@@ -173,6 +178,8 @@ class Yilia {
                     addEvent(scanner.nextLine());
                 } else if (message.contains("todo")) {
                     addTodo(scanner.nextLine());
+                } else if (message.contains("delete")) {
+                    delete(scanner.nextInt());
                 } else {
                     throw new DontKnowException();
                 }
