@@ -62,7 +62,7 @@ public class Duke {
                         Duke.removeTask(taskNumber, taskDescription);
                         break;
                     default:
-                        throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                        throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
             } catch (DukeException e) {
                 Duke.lineFormat();
@@ -70,7 +70,7 @@ public class Duke {
                 Duke.lineFormat();
             } catch (IndexOutOfBoundsException e) {
                 Duke.lineFormat();
-                System.out.println("     ☹ OOPS!!! Please enter a valid task number.");
+                System.out.println("     OOPS!!! Please enter a valid task number.");
                 Duke.lineFormat();
             }
         }
@@ -90,7 +90,7 @@ public class Duke {
     public static void addTask(Task task) {
         taskList.add(task);
         Duke.lineFormat();
-        System.out.println("     Got it. I've added this task: \n" +
+        System.out.println("     Got it. I've added this task:\n" +
                 "       " + task.toString() + "\n" +
                 "     Now you have " + taskList.size() + " tasks in the list.");
         Duke.lineFormat();
@@ -98,10 +98,10 @@ public class Duke {
 
     public static void removeTask(int taskNumber, String description) {
         if (description.equals("")) {
-            throw new DukeException("☹ OOPS!!! The task number for delete cannot be empty.");
+            throw new DukeException("OOPS!!! The task number for delete cannot be empty.");
         }
         Task removedTask = taskList.remove(taskNumber - 1);
-        System.out.println("     Noted. I've removed this task: \n" +
+        System.out.println("     Noted. I've removed this task:\n" +
                 "       " + removedTask.toString() + "\n" +
                 "     Now you have " + taskList.size() + " tasks in the list.");
         Duke.lineFormat();
@@ -109,7 +109,7 @@ public class Duke {
 
     public static void addTodo(String description) {
         if (description.equals("")) {
-            throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+            throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
         }
         Task task = new ToDo(description);
         Duke.addTask(task);
@@ -117,10 +117,10 @@ public class Duke {
 
     public static void addEvent(String description, String at) {
         if (description.equals("")) {
-            throw new DukeException("☹ OOPS!!! The description of a event cannot be empty.");
+            throw new DukeException("OOPS!!! The description of a event cannot be empty.");
         }
         if (at.equals("")) {
-            throw new DukeException("☹ OOPS!!! The time of a event cannot be empty.");
+            throw new DukeException("OOPS!!! The time of a event cannot be empty.");
         }
         Task task = new Event(description, at);
         Duke.addTask(task);
@@ -128,10 +128,10 @@ public class Duke {
 
     public static void addDeadline(String description, String by) {
         if (description.equals("")) {
-            throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
+            throw new DukeException("OOPS!!! The description of a deadline cannot be empty.");
         }
         if (by.equals("")) {
-            throw new DukeException("☹ OOPS!!! The time of a deadline cannot be empty.");
+            throw new DukeException("OOPS!!! The time of a deadline cannot be empty.");
         }
         Task task = new Event(description, by);
         Duke.addTask(task);
@@ -139,7 +139,7 @@ public class Duke {
 
     public static void displayList() {
         Duke.lineFormat();
-        System.out.println("     Here are the tasks in your list: ");
+        System.out.println("     Here are the tasks in your list:");
         for (int i = 1; i <= taskList.size(); i++) {
             Task currentTask = taskList.get(i - 1);
             String taskDescription = currentTask.toString();
@@ -152,26 +152,26 @@ public class Duke {
 
     public static void markTask(int taskNumber, String description) {
         if (description.equals("")) {
-            throw new DukeException("☹ OOPS!!! The task number for mark cannot be empty.");
+            throw new DukeException("OOPS!!! The task number for mark cannot be empty.");
         }
         Task currentTask = taskList.get(taskNumber - 1);
         currentTask.setTaskStatus(true);
         String taskDescription = currentTask.toString();
         Duke.lineFormat();
-        System.out.println("     Nice! I've marked this task as done: \n" +
+        System.out.println("     Nice! I've marked this task as done:\n" +
                 "       " + taskDescription);
         Duke.lineFormat();
     }
 
     public static void unmarkTask(int taskNumber, String description) {
         if (description.equals("")) {
-            throw new DukeException("☹ OOPS!!! The task number for unmark cannot be empty.");
+            throw new DukeException("OOPS!!! The task number for unmark cannot be empty.");
         }
         Task currentTask = taskList.get(taskNumber - 1);
         currentTask.setTaskStatus(false);
         String taskDescription = currentTask.toString();
         Duke.lineFormat();
-        System.out.println("     OK, I've marked this task as not done yet: \n" +
+        System.out.println("     OK, I've marked this task as not done yet:\n" +
                 "       " + taskDescription);
         Duke.lineFormat();
     }
