@@ -1,4 +1,4 @@
-public class Task {
+public abstract class Task {
     private final String description;
     private boolean isDone;
 
@@ -21,6 +21,10 @@ public class Task {
 
     public void unmark() {
         this.isDone = false;
+    }
+
+    public String getAddMessage(int numberTasks) {
+        return "Got it. I've added this task:\n" + this + "\nNow you have " + numberTasks + " tasks in the list";
     }
 
     public String toString() {

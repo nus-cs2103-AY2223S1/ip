@@ -21,11 +21,12 @@ public class Duke {
         System.out.println("Hello from\n" + logo);
 
         String text = "";
+        String[] command;
 
         do {
             text = scanner.nextLine();
 
-            String[] command = text.split(" ");
+            command = text.split(" ");
 
             System.out.println(line);
             switch (command[0]) {
@@ -33,12 +34,60 @@ public class Duke {
                     System.out.println("Bye. Hope to see you again soon!");
                     break;
                 }
+
+                case "todo": {
+                    if (command.length < 2) {
+                        System.out.println("Invalid todo command. Example: todo borrow book");
+                        break;
+                    }
+                    Task task = new Todo(text.substring(5));
+                    tasks.add(task);
+                    System.out.println(task.getAddMessage(tasks.size()));
+                    break;
+                }
+
+                case "deadline": {
+                    int idx = text.indexOf("/by");
+
+                    if (command.length < 4 || idx < 0 || idx == 9) {
+                        System.out.println("Invalid deadline command. Example: deadline return book /by Sunday");
+                        break;
+                    }
+
+                    String description = text.substring(9, idx - 1);
+                    String by = text.substring(idx + 4);
+
+                    Task task = new Deadline(description, by);
+                    tasks.add(task);
+                    System.out.println(task.getAddMessage(tasks.size()));
+                    break;
+                }
+
+                case "event": {
+                    int idx = text.indexOf("/at");
+
+                    if (command.length < 4 || idx < 0 || idx == 6) {
+                        System.out.println("Invalid deadline command. Example: event project meeting /at Mon 2-4pm");
+                        break;
+                    }
+
+                    String description = text.substring(6, idx - 1);
+                    String by = text.substring(idx + 4);
+
+                    Task task = new Event(description, by);
+                    tasks.add(task);
+                    System.out.println(task.getAddMessage(tasks.size()));
+                    break;
+                }
+
                 case "list": {
+                    System.out.println("Here are the tasks in your list:");
                     for (int i = 0; i < tasks.size(); i++) {
                         System.out.println((i + 1) + ". " + tasks.get(i));
                     }
                     break;
                 }
+
                 case "mark": {
                     if (command.length != 2) {
                         System.out.println("Usage: 'mark n'");
@@ -78,13 +127,13 @@ public class Duke {
                     System.out.println("Unmarked '" + task.getDescription() + "'.");
                     break;
                 }
+
                 default:
-                    tasks.add(new Task(text));
-                    System.out.println("added: " + text);
+                    System.out.println(" ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                     break;
             }
             System.out.println(line);
-        } while (!text.equals("bye"));
+        } while (!command[0].equals("bye"));
     }
 }
 
