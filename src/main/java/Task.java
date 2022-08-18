@@ -7,6 +7,19 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    public static Task createTask(String input) throws DukeException {
+        switch (input.split(" ")[0]) {
+            case "todo":
+                return Todo.createTodo(input.split(" ", 2)[1]);
+            case "deadline":
+                return Deadline.createDeadline(input.split(" ", 2)[1]);
+            case "event":
+                return Event.createEvent(input.split(" ", 2)[1]);
+            default:
+                throw new DukeException("Please enter a valid command!");
+        }
+    }
+
     public String getStatusIcon() {
         return this.isDone ? "X" : " ";
     }

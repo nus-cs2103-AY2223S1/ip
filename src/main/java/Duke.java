@@ -35,37 +35,26 @@ public class Duke {
             System.out.print("--> ");
             String input = scanner.nextLine();
 
-            switch (input.split(" ")[0]) {
-                case "bye":
-                    hasNextInput = false;
-                    break;
-                case "list":
-                    displayList();
-                    break;
-                case "mark":
-                    tasks.get(Integer.parseInt(input.split(" ")[1]) - 1).markAsDone();
-                    break;
-                case "unmark":
-                    tasks.get(Integer.parseInt(input.split(" ")[1]) - 1).markAsNotDone();
-                    break;
-                case "todo":
-                    Task newTodo = new Todo(input.substring(5));
-                    addTask(newTodo);
-                    break;
-                case "deadline":
-                    String deadlineDescription = input.substring(9).split("/by ")[0];
-                    String deadline = input.substring(9).split("/by ")[1];
-                    Task newDeadline = new Deadline(deadlineDescription, deadline);
-                    addTask(newDeadline);
-                    break;
-                case "event":
-                    String eventDescription = input.substring(6).split("/at ")[0];
-                    String timing = input.substring(6).split("/at ")[1];
-                    Task newEvent = new Event(eventDescription, timing);
-                    addTask(newEvent);
-                    break;
-                default:
-                    System.out.println("Please enter a valid command.");
+            try {
+                switch (input.split(" ")[0]) {
+                    case "bye":
+                        hasNextInput = false;
+                        break;
+                    case "list":
+                        displayList();
+                        break;
+                    case "mark":
+                        tasks.get(Integer.parseInt(input.split(" ")[1]) - 1).markAsDone();
+                        break;
+                    case "unmark":
+                        tasks.get(Integer.parseInt(input.split(" ")[1]) - 1).markAsNotDone();
+                        break;
+                    default:
+                        addTask(Task.createTask(input));
+                        break;
+                }
+            } catch (DukeException e) {
+                System.out.println(e.toString());
             }
         }
 
