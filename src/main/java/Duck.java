@@ -3,6 +3,13 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class Duck {
+    /**
+     * main function for running the Duck bot
+     * Works by parsing through the user input and splitting it at first by whitespace
+     * This allows the bot to read the command and go down the appropriate case
+     * It also allows the program to keep track of the arguments the user gives
+     * It also handles possible invalid inputs given by the user
+     * **/
     public static void main(String[] args) {
         System.out.println("Hello! Got any grapes?");
         Scanner scanner = new Scanner(System.in);
@@ -10,7 +17,7 @@ public class Duck {
         ArrayList<Todo> list = new ArrayList<>();
         while (!word.equals("bye")) {
             word = scanner.nextLine();
-            if (word.toUpperCase() == "BYE") break;
+            if (word.toUpperCase().equals("BYE")) break;
             if (word.toUpperCase().equals("LIST")) {
                 for (int i = 0; i < list.size(); i++) {
                     System.out.println(i+1 + ". " + list.get(i));
@@ -21,7 +28,7 @@ public class Duck {
                     String[] arr = word.split(" ", 2);
                     String command = arr[0];
                     String arguments = arr[1];
-
+                    try {
                     switch (command.toUpperCase()) {
                         case "TODO":
                             Todo newTodo = new Todo(arguments);
@@ -57,6 +64,13 @@ public class Duck {
                         default:
                             System.out.println("Quack!?! What does that even mean!?!?!");
                             break;
+                    }
+                    }
+                    catch (NumberFormatException n) {
+                        System.out.println("Invalid Arguments! Dummy!");
+                    }
+                    catch (IndexOutOfBoundsException i) {
+                        System.out.println("Item does not exist!! Quack!");
                     }
                 } catch (ArrayIndexOutOfBoundsException a) {
                     if (word.toUpperCase().contains("TODO") ||
