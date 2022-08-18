@@ -119,6 +119,35 @@ public class Ted {
         this.addTask(new Event(description, at));
     }
 
+    private void delete(String arg) throws InvalidInputException {
+        try {
+            int index = Integer.parseInt(arg);
+
+            if (this.tasks.size() == 0) {
+                throw new InvalidInputException("There is no tasks here. Feel free to add a task.");
+            }
+
+            if (index <= 0) {
+                throw new InvalidInputException("The number of task to be deleted must be greater than 0.");
+            }
+
+            if (index > this.tasks.size()) {
+                throw new InvalidInputException(String.format("The number of task to be deleted must be less than or equal to %d.", this.tasks.size()));
+            }
+
+            System.out.printf("Noted. I've removed this task:\n" +
+                    "%s\n" +
+                    "Now you have %d tasks in the list.\n",
+                    this.tasks.get(index - 1),
+                    this.tasks.size() - 1
+            );
+
+            this.tasks.remove(index - 1);
+        } catch (NumberFormatException e) {
+            throw new InvalidInputException("The number of task to be deleted passed must be a number.");
+        }
+    }
+
     private void run() {
         System.out.println(GREETING);
 
@@ -146,6 +175,8 @@ public class Ted {
                     this.deadline(argument);
                 } else if (command.equals("event")) {
                     this.event(argument);
+                } else if (command.equals("delete")) {
+                    this.delete(argument);
                 } else {
                     System.out.println("I'm sorry. I don't understand what that means.");
                 }
