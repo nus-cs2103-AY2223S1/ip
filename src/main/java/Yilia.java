@@ -115,8 +115,8 @@ class Yilia {
 
     public static void main(String[] args) {
         greet();
-        while (true) {
-            Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
+        do {
             String message = scanner.next();
             if (message.equals("bye")) {
                 exit();
@@ -134,6 +134,6 @@ class Yilia {
             } else if (message.contains("todo")) {
                 addTodo(scanner.nextLine());
             }
-        }
+        } while (scanner.hasNext());
     }
 }
