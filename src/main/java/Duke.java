@@ -15,7 +15,7 @@ public class Duke {
             if (isCommand(input.split(" ")[0])) {
                 try {
                     parse(input);
-                } catch (DukeWrongArgumentException | DukeNoTaskException e) {
+                } catch (DukeWrongArgumentException e) {
                     System.out.println(e.getMessage());
                     System.out.println("Pls try again");
                 }
@@ -44,7 +44,7 @@ public class Duke {
         return false;
     }
 
-    private static void parse(String input) throws DukeWrongArgumentException, DukeNoTaskException {
+    private static void parse(String input) throws DukeWrongArgumentException {
         String[] arr = input.split(" ", 2);
         COMMANDS command = COMMANDS.valueOf(arr[0]);
         try {
@@ -74,7 +74,7 @@ public class Duke {
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             if (e instanceof IndexOutOfBoundsException) {
                 throw new DukeWrongArgumentException(arr[1] + " is not a valid index", e);
-            } else if (e instanceof NumberFormatException) {
+            } else {
                 throw new DukeWrongArgumentException("Unknown index '" + arr[1] + "'", e);
             }
         }
