@@ -1,24 +1,30 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/*
-Duke IP for CS2103T by Yuvaraj Kumaresan AY2022/23
+/**
+ * Duke IP for CS2103T AY 2022/2023
+ *
+ * @author Yuvaraj Kumaresan
  */
 public class Duke {
 
     public static ArrayList<Task> storage = new ArrayList<Task>();
     public static String divider = "----------------------------------------------------------------------------------------------------------------";
-    /*
-    Method list
-    Description: Asks for user input using the scanner utility,
-                 Adds input to memory if input is todo <description>, deadline <description> /by <time> or event <description> /at <time>,
-                 if input is bye exit message is displayed and program exits,
-                 if input is list program lists out the stored inputs,
-                 if input is mark <number> program marks the task as complete and displays it,
-                 if input is unmark <number> program marks the task as incomplete and displays it.
-                 if input is delete <number> program deletes the task from the list.
-     */
 
+    /**
+     * Method list
+     *
+     * @throws DukeException
+     *
+     * Description: Asks for user input using the scanner utility,
+     *              Adds input to memory if input is todo <description>, deadline <description> /by <time> or event <description> /at <time>,
+     *              if input is bye exit message is displayed and program exits,
+     *              if input is list program lists out the stored inputs,
+     *              if input is mark <number> program marks the task as complete and displays it,
+     *              if input is unmark <number> program marks the task as incomplete and displays it.
+     *              if input is delete <number> program deletes the task from the list.
+     *
+     */
     public static void list() throws DukeException {
 
         Scanner input = new Scanner(System.in);
@@ -227,6 +233,12 @@ public class Duke {
         }
     }
 
+    /**
+     * Method Main.
+     *
+     * @param args
+     * @throws DukeException
+     */
     public static void main(String[] args) throws DukeException {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"

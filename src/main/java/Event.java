@@ -1,17 +1,31 @@
-// Event a child class of Task has the same functionality
-// but adds on with an at field which allows users to set an event timing.
-
+/**
+ * Child class Event
+ *
+ * Event a child class of Task has the same functionality
+ * but adds on with an at field which allows users to set an event timing.
+ *
+ * @author Yuvaraj Kumaresan
+ */
 public class Event extends Task {
 
     protected String at;
 
-    // Constructor
+    /**
+     * Constructor
+     *
+     * @param description String describing the event task.
+     * @param at          String providing the timeframe for the event task.
+     */
     public Event(String description, String at) {
         super(description);
         this.at = at;
     }
 
-    // toString method to change the display for different types of tasks on the console
+    /**
+     * Method toString()
+     *
+     * @return String representation of the event object.
+     */
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + at + ")";

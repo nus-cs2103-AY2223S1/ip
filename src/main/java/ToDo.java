@@ -1,13 +1,26 @@
-// ToDo class a child class of the task and has similar functionality.
-
+/**
+ * Child class ToDo
+ *
+ * ToDo class a child class of the task and has similar functionality.
+ *
+ * @author Yuvaraj Kumaresan
+ */
 public class ToDo extends Task {
 
-    // Constructor
+    /**
+     * Constructor
+     *
+     * @param description String describing the todo task.
+     */
     public ToDo(String description) {
         super(description);
     }
 
-    // toString method to change the display for different types of tasks on the console
+    /**
+     * Method toString()
+     *
+     * @return String representation of the todo object.
+     */
     @Override
     public String toString() {
         return "[T]" + super.toString();
