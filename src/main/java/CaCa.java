@@ -23,6 +23,11 @@ import java.util.List;
 public class CaCa {
 
     /**
+     * A horizontal line to be displayed as separator for each activity with CaCa.
+     */
+    private static String line = "____________________________________________________________\n";
+
+    /**
      * A class-level array to store all user inputs.
      */
     private static List<Task> tasks = new ArrayList<>();
@@ -30,7 +35,7 @@ public class CaCa {
     /**
      * A class-level method to check if task index is valid.
      */
-    private static void isValid(int taskIndex) throws InvalidTaskIndex {
+    public static void isValid(int taskIndex) throws InvalidTaskIndex {
         if (taskIndex <= 0 || taskIndex > tasks.size()) {
             String message = String.format("OOPS!!! You have entered an invalid task index. " +
                     "It should be between 1 and %d.", tasks.size());
@@ -39,14 +44,9 @@ public class CaCa {
     }
 
     /**
-     * The main chatbot program greets user, reads and stores user input,
-     * allows user to update task status as done or undone, displays all tasks
-     * with status when user inputs list and exits when user inputs bye.
-     * @param args Command line arguments
+     * Prints message to greet the user.
      */
-    public static void main(String[] args) {
-        String line = "____________________________________________________________\n";
-
+    public static void greeting() {
         // ASCII text banner below created and adapted from
         // https://manytools.org/hacker-tools/ascii-banner/
         // with the following settings:
@@ -62,6 +62,69 @@ public class CaCa {
                 + "What can I do for you?\n";
 
         System.out.println(line + logo + greeting + line);
+    }
+
+    /**
+     * Prints message to say bye to the user.
+     */
+    public static void bye() {
+        System.out.println("Bye. Hope to see you again soon!\n" + line);
+    }
+
+    /**
+     * Displays a list of all the tasks stored in CaCa.
+     */
+    public static void listTasks() {
+        if (tasks.isEmpty()) {
+            // No task in the tasks list.
+            System.out.println("There is no task in your list!\n" + line);
+        } else {
+            System.out.println("Here are the tasks in your list:");
+            for (int i = 0; i < tasks.size(); i++) {
+                Task task = tasks.get(i);
+                System.out.printf("%d.%s%n", i + 1, task);
+
+                if (i == tasks.size() - 1) {
+                    System.out.println(line);
+                }
+            }
+        }
+    }
+
+    /**
+     * Marks a task as done as instructed by user.
+     * @param command User command with type of task and task description.
+     * @throws InvalidTaskIndex Indicates that the task index is invalid, i.e. out of range.
+     */
+    public static void markTask(String[] command) throws InvalidTaskIndex {
+        // taskIndex entered by user is 1 larger than its array index.
+        int taskIndex = Integer.parseInt(command[1]);
+        isValid(taskIndex);
+        Task taskToMark = tasks.get(taskIndex - 1);
+        taskToMark.markAsDone();
+        System.out.println("Nice! I've marked this task as done:");
+        System.out.println(taskToMark + "\n" + line);
+    }
+
+    public static void unmarkTask(String[] command) throws InvalidTaskIndex {
+        // taskIndex entered by user is 1 larger than its array index.
+        int taskIndex = Integer.parseInt(command[1]);
+        isValid(taskIndex);
+        Task taskToUnmark = tasks.get(taskIndex - 1);
+        taskToUnmark.markAsUndone();
+        System.out.println("OK, I've marked this task as not done yet:");
+        System.out.println(taskToUnmark + "\n" + line);
+    }
+
+    /**
+     * The main chatbot program greets user, reads and stores user input,
+     * allows user to update task status as done or undone, displays all tasks
+     * with status when user inputs list and exits when user inputs bye.
+     * @param args Command line arguments
+     */
+    public static void main(String[] args) {
+
+        greeting();
 
         // Solution below on getting user input is
         // adapted from https://www.w3schools.com/java/java_user_input.asp
@@ -72,7 +135,7 @@ public class CaCa {
             String input = sc.nextLine();
 
             // Detect user command, where 1st element is the type of task to be done,
-            // 2nd element is the task description (with or without date/time).
+            // 2nd element is the task description with or without date/time.
             String[] command = input.split(" ", 2);
 
             System.out.print(line);
@@ -82,40 +145,17 @@ public class CaCa {
                     throw new EmptyInputException("OOPS!!! You have entered an empty input.");
 
                 } else if (command[0].equals("bye")) {
-                    System.out.println("Bye. Hope to see you again soon!\n" + line);
+                    bye();
                     break;
 
                 } else if (command[0].equals("list")) {
-                    if (tasks.isEmpty()) {
-                        // No task in the tasks list.
-                        System.out.println("There is no task in your list!\n" + line);
-                    } else {
-                        System.out.println("Here are the tasks in your list:");
-                        for (int i = 0; i < tasks.size(); i++) {
-                            Task task = tasks.get(i);
-                            System.out.printf("%d.%s%n", i + 1, task);
+                    listTasks();
 
-                            if (i == tasks.size() - 1) {
-                                System.out.println(line);
-                            }
-                        }
-                    }
+                } else if (command[0].equals("mark")) {
+                    markTask(command);
 
-                } else if (command[0].equals("mark") || command[0].equals("unmark")) {
-                    // taskIndex entered by user is 1 larger than its array index.
-                    int taskIndex = Integer.parseInt(command[1]);
-                    isValid(taskIndex);
-                    Task taskToMark = tasks.get(taskIndex - 1);
-
-                    if (command[0].equals("mark")) {
-                        taskToMark.markAsDone();
-                        System.out.println("Nice! I've marked this task as done:");
-                    } else {
-                        taskToMark.markAsUndone();
-                        System.out.println("OK, I've marked this task as not done yet:");
-                    }
-
-                    System.out.println(taskToMark + "\n" + line);
+                } else if (command[0].equals("unmark")) {
+                    unmarkTask(command);
 
                 } else if (command[0].equals("delete")) {
                     int taskIndex = Integer.parseInt(command[1]);
