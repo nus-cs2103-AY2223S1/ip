@@ -95,54 +95,76 @@ public class Duke {
                 }
             }
             else if(item.length() == 6 &&  item.substring(0,4).equals("mark")) {
-                int index = Integer.parseInt(item.substring(5)) - 1;
-                list[index].setDone();
-                System.out.println("Nice! I've marked this task as done:");
-                System.out.println(list[index].getTask());
+                try {
+                    int index = Integer.parseInt(item.substring(5)) - 1;
+                    list[index].setDone();
+                    System.out.println("Nice! I've marked this task as done:");
+                    System.out.println(list[index].getTask());
+                } catch (NullPointerException e){
+                    System.out.println("Oops! Looks like the task number is incorrect :(");
+                }
             }
             else if(item.length() == 8 &&  item.substring(0,6).equals("unmark")) {
+                try {
                 int index = Integer.parseInt(item.substring(7)) - 1;
                 list[index].setNotDone();
                 System.out.println("OK, I've marked this task as not done yet:");
                 System.out.println(list[index].getTask());
-            }
-            else if(item.length() > 8 &&  item.substring(0,8).equals("deadline")) {
-                int slash = 0;
-                for(int i = 0;  i < item.length(); i++) {
-                    if (item.charAt(i) == '/') {
-                        slash = i;
-                        break;
-                    }
+                } catch (NullPointerException e){
+                    System.out.println("Oops! Looks like the task number is incorrect :(");
                 }
-                list[count] = new Deadline(item.substring(9, slash - 1), item.substring(slash + 4));
-                System.out.println("Got it. I've added this task:");
-                System.out.println(list[count].getTask());
-                System.out.println("Now you have " + Integer.toString(count + 1) + " tasks in the list");
-                count = count + 1;
             }
-            else if(item.length() > 5 &&  item.substring(0,5).equals("event")){
-                int slash = 0;
-                for(int i = 0;  i < item.length(); i++) {
-                    if (item.charAt(i) == '/') {
-                        slash = i;
-                        break;
+            else if(item.length() >= 8 &&  item.substring(0,8).equals("deadline")) {
+                try {
+                    int slash = 0;
+                    for (int i = 0; i < item.length(); i++) {
+                        if (item.charAt(i) == '/') {
+                            slash = i;
+                            break;
+                        }
                     }
+                    list[count] = new Deadline(item.substring(9, slash - 1), item.substring(slash + 4));
+                    System.out.println("Got it. I've added this task:");
+                    System.out.println(list[count].getTask());
+                    System.out.println("Now you have " + Integer.toString(count + 1) + " tasks in the list");
+                    count = count + 1;
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("☹ OOPS!!! The description of a deadline has to be in the format" +
+                            " deadline <task> /by <date and time>");
                 }
-                list[count] = new Event(item.substring(6, slash - 1), item.substring(slash + 4));
-                System.out.println("Got it. I've added this task:");
-                System.out.println(list[count].getTask());
-                System.out.println("Now you have " + Integer.toString(count + 1) + " tasks in the list");
-                count = count + 1;
             }
-            else if(item.length() > 4 &&  item.substring(0,4).equals("todo")) {
-                list[count] = new Todo(item.substring(5));
-                System.out.println("Got it. I've added this task:");
-                System.out.println(list[count].getTask());
-                System.out.println("Now you have " + Integer.toString(count + 1) + " tasks in the list");
-                count = count + 1;
+            else if(item.length() >= 5 &&  item.substring(0,5).equals("event")) {
+                try {
+                    int slash = 0;
+                    for (int i = 0; i < item.length(); i++) {
+                        if (item.charAt(i) == '/') {
+                            slash = i;
+                            break;
+                        }
+                    }
+                    list[count] = new Event(item.substring(6, slash - 1), item.substring(slash + 4));
+                    System.out.println("Got it. I've added this task:");
+                    System.out.println(list[count].getTask());
+                    System.out.println("Now you have " + Integer.toString(count + 1) + " tasks in the list");
+                    count = count + 1;
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("☹ OOPS!!! The description of a event has to be in the format event" +
+                            " <task> /at <date and time>");
+                }
+            }
+            else if(item.length() >= 4 &&  item.substring(0,4).equals("todo")) {
+                try {
+                    list[count] = new Todo(item.substring(5));
+                    System.out.println("Got it. I've added this task:");
+                    System.out.println(list[count].getTask());
+                    System.out.println("Now you have " + Integer.toString(count + 1) + " tasks in the list");
+                    count = count + 1;
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("☹ OOPS!!! The description of a todo cannot be empty.");
+                }
             }
             else{
-                System.out.println("Invalid syntax");
+                System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
             System.out.print("You: ");
             item = scan.nextLine();
