@@ -40,6 +40,22 @@ public class DukeList {
         return "OK, I've marked this task as not done yet:\n" + t;
     }
 
+    public String delete(int index) throws DukeException {
+        int listIndex = index - 1;
+        if (listIndex < 0 || listIndex > listItems.size() - 1) {
+            throw new DukeException("Invalid task to delete.");
+        }
+
+        Task t = listItems.get(listIndex);
+        listItems.remove(listIndex);
+        return "Noted. I've removed this task:\n"
+                + t
+                + "\nNow you have "
+                + listItems.size()
+                + (listItems.size() == 1 ? " task" : " tasks")
+                + " in the list.";
+    }
+
     @Override
     public String toString() {
         StringBuilder listItemsStrBuilder = new StringBuilder();

@@ -5,6 +5,7 @@ public class Duke {
     private static final String LIST_KEYWORD = "list";
     private static final String MARK_KEYWORD = "mark";
     private static final String UNMARK_KEYWORD = "unmark";
+    private static final String DELETE_KEYWORD = "delete";
     private static final String TODO_KEYWORD = "todo";
     private static final String DEADLINE_KEYWORD = "deadline";
     private static final String EVENT_KEYWORD = "event";
@@ -40,6 +41,9 @@ public class Duke {
                 case UNMARK_KEYWORD:
                     // Mark task as undone
                     new UnmarkResponse(list, data).run();
+                    break;
+                case DELETE_KEYWORD:
+                    new DeleteResponse(list, data).run();
                     break;
                 case TODO_KEYWORD:
                     // Add task as to do
