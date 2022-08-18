@@ -1,12 +1,16 @@
+import java.lang.StringBuilder;
+
 public class Task {
-    public String name;
-    static public Integer totalNumber = 0;
-    public Integer index;
+    protected String name;
+    static protected Integer totalNumber = 0;
+    protected Integer index;
+    protected boolean isDone;
 
     public Task(String name) {
         this.name = name;
         totalNumber++;
         this.index = totalNumber;
+        this.isDone = false;
     }
 
     public static Task addTask(String name) {
@@ -15,8 +19,29 @@ public class Task {
         return newTask;
     }
 
+    /**
+     * Get the icon depending on isDone status.
+     * @return [X] if not done, [ ] is done.
+     */
+    public String getStatusIcon() {
+        return (this.isDone ? "[X]" : "[ ]"); // mark done task with X
+    }
+
+    /**
+     * To flip the status of isDone
+     */
+    public void changeStatus() {
+        this.isDone = !this.isDone;
+    }
+    public String printSelf() {
+        StringBuilder output = new StringBuilder();
+        output.append(this.getStatusIcon() + " " + this.name);
+        return output.toString();
+    }
     @Override
     public String toString() {
-        return "     " + this.index + ". " + this.name;
+        StringBuilder output = new StringBuilder("     ");
+        output.append(this.index + "." + this.printSelf());
+        return output.toString();
     }
 }

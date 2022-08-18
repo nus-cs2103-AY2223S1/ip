@@ -50,6 +50,30 @@ public class Interface {
     }
 
     /**
+     * Mark task with index specified as done.
+     * @param task Mark task with index specified fetched from the task list.
+     */
+    public static void mark(Task task) {
+        printLine();
+        System.out.println("     Nice! I've marked this task as done:");
+        task.changeStatus(); // flip status
+        System.out.println("       " + task.printSelf());
+        printLine();
+    }
+
+    /**
+     * Mark task with index specified as not done.
+     * @param task Mark task with index specified fetched from the task list.
+     */
+    public static void unmark(Task task) {
+        printLine();
+        System.out.println("     OK, I've marked this task as not done yet:");
+        task.changeStatus(); // flip status
+        System.out.println("       " + task.printSelf());
+        printLine();
+    }
+
+    /**
      * Helper func to: print a horizontal line.
      */
     private static void printLine() {

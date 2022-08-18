@@ -25,21 +25,34 @@ public class Duke {
     public static void run() {
         Scanner in = new Scanner(System.in);
         boolean lastCommandOrNot = false;
+        Task task;
         String command;
+        String[] commandList;
+        Integer taskIndex;
 
         Interface.greet();
         while (!lastCommandOrNot) {
             command = in.nextLine();
+            commandList = command.split(" ");
+            command = (commandList[0].equals("mark")) || (commandList[0].equals("unmark")) ? commandList[0] : command;
+
             switch (command) {
-                case "bye":
+                case "bye" -> {
                     Interface.bye();
                     lastCommandOrNot = true;
-                    break;
-                case "list":
-                    Interface.list(taskList);
-                    break;
-                default:
-                    taskList.add(Interface.add(command));
+                }
+                case "mark" -> {
+                    taskIndex = Helper.strToInt(commandList[1]) - 1;
+                    task = taskList.get(taskIndex);
+                    Interface.mark(task);
+                }
+                case "unmark" -> {
+                    taskIndex = Helper.strToInt(commandList[1]) - 1;
+                    task = taskList.get(taskIndex);
+                    Interface.unmark(task);
+                }
+                case "list" -> Interface.list(taskList);
+                default -> taskList.add(Interface.add(command));
             }
         }
     }
