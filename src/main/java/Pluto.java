@@ -13,22 +13,34 @@ public class Pluto {
     }
 
     public static void inputCommand(Scanner sc) {
-        ArrayList<String> missions = new ArrayList<>();
-        String command = sc.nextLine();
+        ArrayList<Task> missions = new ArrayList<>();
+        String command = sc.nextLine().strip();
         String exit = "bye";
         while (!command.equals(exit)) {
-            switch(command) {
-                case "list":
-                    for (int i = 0; i < missions.size(); i++) {
-                        String output = String.format("\t%d. %s",i + 1, missions.get(i));
-                        System.out.println(output);
-                    }
-                    break;
-                default:
-                    missions.add(command);
-                    System.out.println("\tadded: " + command);
+            if (command.startsWith("mark ")) {
+                int idx = Integer.parseInt(command.substring(5).strip());
+                Task t = missions.get(idx - 1);
+                t.markAsDone();
+
             }
-            command = sc.nextLine();
+            else if (command.startsWith("unmark ")) {
+                int idx = Integer.parseInt(command.substring(7).strip());
+                Task t = missions.get(idx - 1);
+                t.markAsUndone();
+            }
+            else if(command.equals("list")) {
+                System.out.println("\tHere are the tasks in your list:");
+                for (int i = 0; i < missions.size(); i++) {
+                    String output = String.format("\t%d. %s",i + 1, missions.get(i).toString());
+                    System.out.println(output);
+                }
+            }
+            else {
+                Task t = new Task(command);
+                missions.add(t);
+                System.out.println("\tadded: " + t);
+            }
+            command = sc.nextLine().strip();
         }
         System.out.println("Bye. Hope to see you again soon!");
     }
