@@ -59,7 +59,7 @@ public class Duke {
                         vocabList.get(taskNumber).toggleComplete(mark ? true : false);
                         String message = mark ? "Nice! I've marked this task as done:" : 
                             "OK, I've marked this task as not done yet:";
-                        echo(message);
+                        echo(String.format("%s\n%s", message, vocabList.get(taskNumber).toString()));
                     } catch (Exception e) {
                         echo(nextString);
                     }
