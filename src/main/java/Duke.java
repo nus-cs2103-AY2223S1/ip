@@ -18,6 +18,8 @@ public class Duke {
                 System.out.print(Duke.mark(input));
             } else if (input.startsWith("unmark") && input.length() >= 8) {
                 System.out.print(Duke.unmark(input));
+            } else if (input.startsWith("delete")) {
+                System.out.println(Duke.deleteTask(input));
             } else {
                 System.out.println(Duke.addTask(input));
             }
@@ -67,6 +69,15 @@ public class Duke {
         list.add(task);
         return Duke.replyFormat("Got it. I've added this task:",
                 "   " + task.toString(),
+                String.format("Now you have %d tasks in the list.", list.size()));
+    }
+
+    public static String deleteTask(String input) {
+        int toDelete = Character.getNumericValue(input.charAt(7)) - 1;
+        Task task = list.get(toDelete);
+        list.remove(toDelete);
+        return Duke.replyFormat("Noted. I've removed this task:",
+                "  " + task.toString(),
                 String.format("Now you have %d tasks in the list.", list.size()));
     }
 
