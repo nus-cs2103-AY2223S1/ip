@@ -15,6 +15,16 @@ public class Duke {
             str = scanner.next(); //This will check for the action word
             if(str.equals("bye")){
                 break;
+            }else if(str.equals("delete")) {
+                System.out.println("Noted. I've removed this task:");
+                int index = scanner.nextInt();
+                scanner.nextLine();
+                Task deleted = lst.get(index-1);
+                System.out.println(deleted.toString());
+                lst.remove(index-1);
+                count--;
+                System.out.println("Now you have "+ count + " tasks in the list.");
+
             }else if(str.equals("deadline")){
                 System.out.println("Got it. I've added this task: ");
                 String description = "";
