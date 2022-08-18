@@ -13,7 +13,8 @@ public class Duke {
         // Read user input
         Scanner scanner = new Scanner(System.in);
 
-        ArrayList<String> list = new ArrayList<>();
+        // list of items
+        ArrayList<Task> list = new ArrayList<>();
 
         while (true) {
             String input = scanner.nextLine();
@@ -22,9 +23,21 @@ public class Duke {
                 break;
             } else if (input.equals("list")) {
                 printWithLineBreak(printArray(list));
-            } else {
+            } else if (input.split(" ")[0].equals("mark")) {
+                int index = Integer.parseInt(input.split(" ")[1]) - 1;
+
+                list.get(index).setDone();
+                printWithLineBreak("Nice! I've marked this task as done:\n" + "[X] " + list.get(index));
+            } else if (input.split(" ")[0].equals("unmark")) {
+                int index = Integer.parseInt(input.split(" ")[1]) - 1;
+
+                list.get(index).setUndone();
+                printWithLineBreak("OK, I've marked this task as not done yet:\n" + "[ ] " + list.get(index));
+            }
+
+            else {
                 // add input to list
-                list.add(input);
+                list.add(new Task(input));
                 printWithLineBreak("added: " + input);
             }
         }
@@ -37,10 +50,10 @@ public class Duke {
         System.out.println("\n" + text + "\n");
     }
 
-    public static String printArray(ArrayList<String> list) {
-        String result = "";
+    public static String printArray(ArrayList<Task> list) {
+        String result = "Here are the tasks in your list:\n";
         for (int i = 0; i < list.size(); i++) {
-            result += "\t" + i + ": " + list.get(i) + "\n";
+            result += "\t" + (i + 1) + ". [" + list.get(i).getStatusIcon() + "] " + list.get(i).getDescription() + "\n";
         }
         return result;
     }
