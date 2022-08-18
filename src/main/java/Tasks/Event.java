@@ -1,4 +1,7 @@
+package Tasks;
+
 import java.time.LocalDate;
+import java.time.format.*;
 
 public class Event extends Task {
     private LocalDate date;
@@ -10,7 +13,7 @@ public class Event extends Task {
 
     @Override
     public String getDate() {
-        return this.date;
+        return this.date.format(DateTimeFormatter.ofPattern("dd MMM uuuu"));
     }
 
     @Override

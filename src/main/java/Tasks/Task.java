@@ -1,3 +1,5 @@
+package Tasks;
+
 public class Task {
     private boolean marked = false;
     private String taskName;
@@ -15,7 +17,7 @@ public class Task {
     }
 
     public String getMarkedStatus() {
-        return this.marked ? "[X] " : "[ ] ";
+        return this.marked ? "[X]" : "[ ]";
     }
 
     public String getTaskName() {
@@ -27,6 +29,6 @@ public class Task {
     }
 
     public String toString() {
-        return  getMarkedStatus() + this.taskName;
+        return  String.format("%s %s", getMarkedStatus(), this.taskName);
     }
 }
