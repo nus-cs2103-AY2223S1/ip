@@ -7,5 +7,8 @@ Hello from
 
 What may I do for you?
 Got it. I've added this task:
-  [T][ ] todo borrow book
+  [T][ ] borrow book
 Now you have 1 tasks in the list
+Got it. I've added this task:
+  [T][ ] buy bread
+Now you have 2 tasks in the list

@@ -14,8 +14,8 @@ public class Duke {
 
         ArrayList<Task> list = new ArrayList<>(); // list of user input
         int size = 0;
-        while (true) {
-            Scanner input = new Scanner(System.in);  // Create a Scanner object
+        Scanner input = new Scanner(System.in);  // Create a Scanner object
+        while (input.hasNextLine()) {
             String in = input.nextLine();  // Read user input
             try {
                 if (in.equals("bye")) {
@@ -91,7 +91,7 @@ public class Duke {
                         Todo t = new Todo(todo);
                         list.add(t);
                         size += 1;
-                        System.out.println("Got it. I've added this task: ");  // Output user input
+                        System.out.println("Got it. I've added this task:");  // Output user input
                         System.out.println("  " + t.toString());
                         System.out.println("Now you have " + size + " tasks in the list");
                     }
