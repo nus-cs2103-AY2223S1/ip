@@ -29,8 +29,15 @@ public class Todos {
     }
 
     public void cmdAddTodo(Scanner rest) {
-        String name = rest.hasNextLine() ? rest.nextLine() : "";
-        addWrapper(new Todo(name));
+        final Task task;
+        try {
+            task = Todo.fromChat(rest);
+        } catch(IllegalArgumentException e) {
+            say("Please give your todo a name.");
+            return;
+        }
+
+        addWrapper(task);
     }
 
     public void cmdAddDeadline(Scanner rest) {
