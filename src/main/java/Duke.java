@@ -75,29 +75,44 @@ public class Duke {
             String inputString = scanner.nextLine();
             String[] inputs = inputString.split(" ");
             String input = inputs[0];
-            if (input.equals("bye")) {
-                wrapText(byeMessage);
-                break;
-            } else if (input.equals("list")) {
-                wrapText(generateList());
-            } else if (input.equals("mark")) {
-                wrapText(generateMark(inputs[1]));
-            } else if (input.equals("unmark")) {
-                wrapText(generateUnmark(inputs[1]));
-            } else if (input.equals("todo")) {
-                appendToDo(inputString);
-                taskWrapper();
-            } else if (input.equals("deadline")) {
-                String[] deadlineDescription = inputString.split("/");
-                appendDeadline(deadlineDescription[0], deadlineDescription[1]);
-                taskWrapper();
-            } else if (input.equals("event")) {
-                String[] eventDescription = inputString.split("/");
-                appendEvent(eventDescription[0], eventDescription[1]);
-                taskWrapper();
-            } else {
-                appendArray(inputString);
-                wrapText("added: " + inputString);
+
+            try {
+                if (input.equals("bye")) {
+                    wrapText(byeMessage);
+                    break;
+                } else if (input.equals("list")) {
+                    wrapText(generateList());
+                } else if (input.equals("mark")) {
+                    wrapText(generateMark(inputs[1]));
+                } else if (input.equals("unmark")) {
+                    wrapText(generateUnmark(inputs[1]));
+                } else if (input.equals("todo")) {
+                    if (inputs.length <= 1) {
+                        throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+                    }
+                    appendToDo(inputString);
+                    taskWrapper();
+                } else if (input.equals("deadline")) {
+                    if (inputs.length <= 1) {
+                        throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
+                    }
+                    String[] deadlineDescription = inputString.split("/");
+                    appendDeadline(deadlineDescription[0], deadlineDescription[1]);
+                    taskWrapper();
+                } else if (input.equals("event")) {
+                    if (inputs.length <= 1) {
+                        throw new DukeException("☹ OOPS!!! The description of a event cannot be empty.");
+                    }
+                    String[] eventDescription = inputString.split("/");
+                    appendEvent(eventDescription[0], eventDescription[1]);
+                    taskWrapper();
+                } else {
+//                    appendArray(inputString);
+//                    wrapText("added: " + inputString);
+                    throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                }
+            } catch (DukeException e) {
+                wrapText(e.getMessage());
             }
         }
     }
