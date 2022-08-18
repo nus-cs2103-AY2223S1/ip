@@ -1,3 +1,9 @@
+package handlers;
+
+import exceptions.DukeException;
+import models.Deadline;
+import models.Task;
+
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -7,7 +13,7 @@ public class AddDeadlineCommand implements DukeCommand {
     public String run (List<Task> taskList, String content) throws DukeException {
 
         if (!pattern.matcher(content).find()) {
-            return "Deadline must be in this format: <Description> /by <DateTime>\n";
+            throw new DukeException("Deadline must be in this format: <Description> /by <DateTime>\n");
         }
 
         String[] detail = content.split(" /by ", 2);

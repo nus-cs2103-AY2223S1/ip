@@ -1,3 +1,8 @@
+package handlers;
+
+import exceptions.DukeException;
+import models.Task;
+
 import java.util.List;
 
 public interface DukeCommand {

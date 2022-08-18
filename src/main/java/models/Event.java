@@ -1,3 +1,7 @@
+package models;
+
+import models.Task;
+
 public class Event extends Task {
     protected String at;
 

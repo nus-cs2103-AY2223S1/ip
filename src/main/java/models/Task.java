@@ -1,13 +1,15 @@
+package models;
+
 public class Task {
     protected String content;
     protected boolean isDone;
 
-    Task (String c) {
+    public Task (String c) {
         this.content = c;
         this.isDone = false;
     }
 
-    Task (String c, boolean isDone) {
+    public Task (String c, boolean isDone) {
         this.content = c;
         this.isDone = isDone;
     }
