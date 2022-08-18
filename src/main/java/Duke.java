@@ -70,49 +70,53 @@ public class Duke {
                     int index;
                     Task curr;
                     String pack[];
-                    switch (temp[0]) {
-                        case "mark":
-                            index = Integer.parseInt(temp[1]) - 1;
-                            curr = stored_items.get(index);
-                            if (!curr.isDone) {
-                                curr.isDone = true;
-                                Duke.TaskStateChangePrint(curr, true);
-                            }
-                            break;
+                    try {
+                        switch (temp[0]) {
+                            case "mark":
+                                index = Integer.parseInt(temp[1]) - 1;
+                                curr = stored_items.get(index);
+                                if (!curr.isDone) {
+                                    curr.isDone = true;
+                                    Duke.TaskStateChangePrint(curr, true);
+                                }
+                                break;
 
-                        case "unmark":
-                            index = Integer.parseInt(temp[1]) - 1;
-                            curr = stored_items.get(index);
-                            if (curr.isDone) {
-                                curr.isDone = false;
-                                Duke.TaskStateChangePrint(curr, false);
-                            }
-                            break;
+                            case "unmark":
+                                index = Integer.parseInt(temp[1]) - 1;
+                                curr = stored_items.get(index);
+                                if (curr.isDone) {
+                                    curr.isDone = false;
+                                    Duke.TaskStateChangePrint(curr, false);
+                                }
+                                break;
 
-                        case "deadline":
-                            pack = temp[1].split("/", 2);
-                            curr = new Deadline(pack[0].trim(), pack[1].substring(3));
-                            stored_items.add(curr);
-                            Duke.FormatPrint("Got it. I've added this task:\n" + curr.toString());
-                            break;
+                            case "deadline":
+                                pack = temp[1].split("/", 2);
+                                curr = new Deadline(pack[0].trim(), pack[1].substring(3));
+                                stored_items.add(curr);
+                                Duke.FormatPrint("Got it. I've added this task:\n" + curr.toString());
+                                break;
 
-                        case "todo":
-                            curr = new Todo(temp[1]);
-                            stored_items.add(curr);
-                            Duke.FormatPrint("Got it. I've added this task:\n" + curr.toString());
-                            break;
+                            case "todo":
+                                curr = new Todo(temp[1]);
+                                stored_items.add(curr);
+                                Duke.FormatPrint("Got it. I've added this task:\n" + curr.toString());
+                                break;
 
-                        case "event":
-                            pack = temp[1].split("/", 2);
-                            curr = new Event(pack[0].trim(), pack[1].substring(3));
-                            stored_items.add(curr);
-                            Duke.FormatPrint("Got it. I've added this task:\n" + curr.toString());
-                            break;
+                            case "event":
+                                pack = temp[1].split("/", 2);
+                                curr = new Event(pack[0].trim(), pack[1].substring(3));
+                                stored_items.add(curr);
+                                Duke.FormatPrint("Got it. I've added this task:\n" + curr.toString());
+                                break;
 
-                        default:
-                            stored_items.add(new Task(str));
-                            Duke.FormatPrint("Got it. I've added this task:\n" + str);
+                            default:
+                                Duke.FormatPrint(" ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                        }
+                    } catch (Exception e) {
+                        Duke.FormatPrint(" ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                     }
+
                 }
 //                Duke.FormatPrint(str);
             }
