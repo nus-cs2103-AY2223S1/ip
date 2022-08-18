@@ -126,8 +126,6 @@ public class Duke {
             } catch (NoSuchCommandException err) {
                 System.out.println(err);
             }
-
         }
-
     }
 }
