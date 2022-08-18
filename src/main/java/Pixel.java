@@ -6,11 +6,11 @@ public class Pixel {
 
     void run() {
         String userInput = myScanner.nextLine();  // Read user input
-        System.out.println(userInput);  // Output user input
 
         if (userInput.equals("bye")) {
             System.out.println("Bye. Hope to see you again soon!");
         } else {
+            System.out.println(userInput);  // Output user input
             run();
         }
     }
