@@ -46,6 +46,15 @@ Okay, I've marked this task as not done yet.
 3. [E][ ] House barbeque (at: 27 July 1800 - 2000)
 -----
 ~ -----
+Gotcha! I'll forget about this task!
+  [D][ ] CS2103T project (by: 25 July 1000)
+You have 2 task(s) remaining.
+-----
+~ -----
+1. [T][X] Wash laundry
+2. [E][ ] House barbeque (at: 27 July 1800 - 2000)
+-----
+~ -----
 Sowwy, I don't understand
 -----
 ~ -----
