@@ -78,6 +78,10 @@ class Duke {
           }
             break;
           case "todo": {
+            if (inputArray.length == 1) {
+              Duke.printMessage("☹ OOPS!!! The description of a todo cannot be empty.");
+              break;
+            }
             String withoutPrefix = inputArray[1];
             Todo todo = new Todo(withoutPrefix);
             taskList.add(todo);
@@ -101,8 +105,7 @@ class Duke {
           }
             break;
           default:
-            taskList.add(new Task(input));
-            Duke.printMessage("added: " + input);
+            Duke.printMessage("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
       } catch (IOException e) {
       }
