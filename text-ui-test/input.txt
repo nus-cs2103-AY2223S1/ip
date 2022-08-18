@@ -1,0 +1,16 @@
+list
+Do CS2103/T homework
+Todo Do CS2103/T homework
+DEADLINE CS2109S PS0
+Deadline CS2109S PS0 /by 20/08 2359hrs
+list
+mark 1
+mark 3
+mark 1
+unmark 2
+unmark 1
+event Arts Fest
+event Arts Fest /at UTown, 19/08 2000hrs
+mark 3
+list
+bye

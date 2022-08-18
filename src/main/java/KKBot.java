@@ -76,14 +76,15 @@ public class KKBot {
                     if (task != null) {
                         if (!task.getCompletion()) {
                             task.setComplete();
+                            System.out.println(divider);
                         } else {
-                            System.out.println("Silly you, that task is already complete!");
+                            System.out.println("Silly you, that task is already complete!\n" + divider);
                         }
                     }
                 } catch (NumberFormatException nfe) {
-                    System.out.println("Woopsies you left out the task number. Please specify one!");
+                    System.out.println("Woopsies you left out the task number. Please specify one!\n" + divider);
                 } catch (IndexOutOfBoundsException ioobe) {
-                    System.out.println("Hmm... that task doesn't exist. Please input another task number!");
+                    System.out.println("Hmm... that task doesn't exist. Please input another task number!\n" + divider);
                 }
             // if user input is unmark, chatbot retrieves the specified task and marks it as incomplete
             } else if (input.startsWith("unmark") || input.startsWith("Unmark") || input.startsWith("UNMARK")) {
@@ -94,14 +95,15 @@ public class KKBot {
                     if (task != null) {
                         if (task.getCompletion()) {
                             task.setIncomplete();
+                            System.out.println(divider);
                         } else {
-                            System.out.println("Erm... that task was never complete...");
+                            System.out.println("Erm... that task was never complete...\n" + divider);
                         }
                     }
                 } catch (NumberFormatException nfe) {
-                    System.out.println("Woopsies you left out the task number. Please specify one!");
+                    System.out.println("Woopsies you left out the task number. Please specify one!\n" + divider);
                 } catch (IndexOutOfBoundsException ioobe) {
-                    System.out.println("Hmm... that task doesn't exist. Please input another task number!");
+                    System.out.println("Hmm... that task doesn't exist. Please input another task number!\n" + divider);
                 }
             // if user input is todo, chatbot creates and adds in a new todo task to the list
             } else if (input.startsWith("todo") || input.startsWith("Todo") || input.startsWith("TODO")) {
@@ -112,7 +114,7 @@ public class KKBot {
                     System.out.println("I've added something to do to your list:\n" + "    " + newToDo.toString()
                             + "\n" + "Now you have " + tasks.size() + " tasks in the list!\n" + divider);
                 } catch (IndexOutOfBoundsException ioobe) {
-                    System.out.println("You forgot to specify a task! Try again!");
+                    System.out.println("You forgot to specify a task! Try again!\n" + divider);
                 }
             // if user input is deadline, chatbot creates and adds in a new deadline task to the list
             // it also sources out the deadline from the user input and jots it down in the list as well
@@ -127,7 +129,7 @@ public class KKBot {
                             + newDeadline.toString() + "\n" + "Now you have " + tasks.size()
                             + " tasks in the list!\n" + divider);
                 } catch (IndexOutOfBoundsException ioobe) {
-                    System.out.println("You forgot to specify a task/deadline! Try again!");
+                    System.out.println("You forgot to specify a task/deadline! Try again!\n" + divider);
                 }
             // if user input is event, chatbot creates and adds in a new event to the list
             // it also sources out the event time from the user input and jots it down in the list as well
@@ -142,7 +144,7 @@ public class KKBot {
                             + "    " + newEvent.toString() + "\n" + "Now you have "
                             + tasks.size() + " tasks in the list!\n" + divider);
                 } catch (IndexOutOfBoundsException ioobe) {
-                    System.out.println("You forgot to specify a task/deadline! Try again!");
+                    System.out.println("You forgot to specify a task/deadline! Try again!\n" + divider);
                 }
             // if user input has no keywords, then chatbot returns an error message
             } else {
