@@ -1,7 +1,7 @@
 public class UnmarkRequest extends Request{
     private String[] inputArray;
     private TasksList tasksList;
-    private static final String UNMARK_MSG = "Sure! I've marked this task as not done yet: \n";
+    private static final String UNMARK_MSG = "Sure! I've marked this task as not done yet:\n";
 
     public UnmarkRequest(TasksList tasksList, String[] inputArray) {
         this.tasksList = tasksList;

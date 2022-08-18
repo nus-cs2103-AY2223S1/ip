@@ -1,7 +1,7 @@
 public class MarkRequest extends Request {
     private String[] inputArray;
     private TasksList tasksList;
-    private static final String MARK_MSG = "Nice! I've marked this task as done: \n";
+    private static final String MARK_MSG = "Nice! I've marked this task as done:\n";
 
     public MarkRequest(TasksList tasksList, String[] inputArray) {
         this.tasksList = tasksList;

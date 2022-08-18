@@ -1,7 +1,7 @@
 public class DeleteRequest extends Request {
     private TasksList tasksList;
     private String[] inputArray;
-    private static final String deleteMsg = "Noted. I've removed this task: \n";
+    private static final String deleteMsg = "Noted. I've removed this task:\n";
 
     public DeleteRequest(TasksList tasksList, String[] inputArray) {
         this.tasksList = tasksList;

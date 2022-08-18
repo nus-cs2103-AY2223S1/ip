@@ -2,7 +2,7 @@ public class TodoRequest extends Request{
     private String[] inputArray;
     private TasksList tasksList;
 
-    private static final String TO_DO_MSG = "Got it. I've added this task: \n";
+    private static final String TO_DO_MSG = "Got it. I've added this task:\n";
 
     public TodoRequest(TasksList tasksList, String[] inputArray) {
         this.tasksList = tasksList;

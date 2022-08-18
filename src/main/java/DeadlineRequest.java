@@ -4,7 +4,7 @@ public class DeadlineRequest extends Request {
     private String[] inputArray;
     private TasksList tasksList;
     private static final String DELIMITER = " /by ";
-    private static final String DEADLINE_MSG = "Got it. I've added this task: \n";
+    private static final String DEADLINE_MSG = "Got it. I've added this task:\n";
 
     public DeadlineRequest(TasksList tasksList, String[] inputArray) {
         this.tasksList = tasksList;

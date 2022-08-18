@@ -2,7 +2,7 @@ public class EventRequest extends Request {
     private String[] inputArray;
     private TasksList tasksList;
     private static final String DELIMITER = " /at ";
-    private static final String EVENT_MSG = "Got it. I've added this task: \n";
+    private static final String EVENT_MSG = "Got it. I've added this task:\n";
 
     public EventRequest(TasksList tasksList, String[] inputArray) {
         this.tasksList = tasksList;
