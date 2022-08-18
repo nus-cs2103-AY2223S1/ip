@@ -5,7 +5,7 @@ public class Duke {
 
     public static void main(String[] args) {
         final String HORIZONTAL_LINE = "  ____________________________________________________________";
-        ArrayList<String> storedText = new ArrayList<String>(100);
+        ArrayList<Task> storedTasks = new ArrayList<Task>(100);
 
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -24,13 +24,13 @@ public class Duke {
                 break;
             } else if (command.equals("list")) {
                 System.out.println(HORIZONTAL_LINE);
-                for (int i = 0; i < storedText.size(); i++) {
-                    System.out.println("  " + String.valueOf(i + 1) + ". " + storedText.get(i));
+                for (int i = 0; i < storedTasks.size(); i++) {
+                    System.out.println("  " + String.valueOf(i + 1) + ". " + storedTasks.get(i));
                 }
                 System.out.println(HORIZONTAL_LINE);
             } else {
                 System.out.println(HORIZONTAL_LINE + "\n  added: " + command + "\n" + HORIZONTAL_LINE);
-                storedText.add(command);
+                storedTasks.add(new Task(command));
             }
         }
     }
