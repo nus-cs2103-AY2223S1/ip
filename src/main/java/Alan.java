@@ -4,11 +4,13 @@ import java.util.Scanner;
 
 public class Alan {
     private Scanner input;
+    private Parser parser;
     private Formatter formatter;
     private List<Task> taskList;
 
     public Alan() {
         this.input = new Scanner(System.in);
+        this.parser = new Parser();
         this.formatter = new Formatter();
         this.taskList = new ArrayList<>();
     }
@@ -30,29 +32,50 @@ public class Alan {
         label:
         while (true) {
             String userInput = input.nextLine();
-            String[] inputSplit = userInput.split(" ");
-            String command = inputSplit[0];
+            String command = userInput.split(" ", 2)[0];
             switch (command) {
                 case "bye":
                     break label;
                 case "list":
                     System.out.println(formatter.list(taskList));
                     break;
+                case "event":
+                    ParsedInput eventInput = parser.parse(InputType.event, userInput);
+                    Task eventTask = new Event(eventInput);
+                    taskList.add(eventTask);
+                    System.out.println(formatter.addTask(eventTask, taskList.size()));
+                    break;
+                case "deadline":
+                    ParsedInput deadlineInput = parser.parse(InputType.deadline, userInput);
+                    Task deadlineTask = new Deadline(deadlineInput);
+                    taskList.add(deadlineTask);
+                    System.out.println(formatter.addTask(deadlineTask, taskList.size()));
+                    break;
+                case "todo":
+                    ParsedInput todoInput = parser.parse(InputType.todo, userInput);
+                    Task todoTask = new Todo(todoInput);
+                    taskList.add(todoTask);
+                    System.out.println(formatter.addTask(todoTask, taskList.size()));
+                    break;
                 case "mark": {
-                    Task selectedTask = taskList.get(Integer.parseInt(inputSplit[1]) - 1);
+                    ParsedInput markInput = parser.parse(InputType.mark, userInput);
+                    Task selectedTask = taskList.get(markInput.getListIndex());
                     selectedTask.markDone();
                     System.out.println(formatter.markDone(selectedTask));
                     break;
                 }
                 case "unmark": {
-                    Task selectedTask = taskList.get(Integer.parseInt(inputSplit[1]) - 1);
+                    ParsedInput unmarkInput = parser.parse(InputType.unmark, userInput);
+                    Task selectedTask = taskList.get(unmarkInput.getListIndex());
                     selectedTask.markUndone();
                     System.out.println(formatter.markUndone(selectedTask));
                     break;
                 }
+                case "help":
+                    // TODO: 18/8/22
+                    break;
                 default:
-                    taskList.add(new Task(command));
-                    System.out.println(formatter.added(command));
+                    System.out.println(formatter.invalid());
                     break;
             }
         }

@@ -1,9 +1,9 @@
-public class Task {
+public abstract class Task {
     protected String taskName;
     protected Boolean isDone;
 
-    public Task(String taskName) {
-        this.taskName = taskName;
+    public Task(ParsedInput parsedInput) {
+        this.taskName = parsedInput.getTaskName();
         this.isDone = false;
     }
 
@@ -20,8 +20,10 @@ public class Task {
     }
 
     public String getStatusIcon() {
-        return (isDone ? "X" : " ");
+        return (isDone ? "[X] " : "[ ] ");
     }
+
+    public abstract String getTypeIcon();
 
     @Override
     public String toString() {
