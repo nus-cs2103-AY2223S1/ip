@@ -2,9 +2,6 @@ Woof! I'm Cheese, your puppy assistant.
 What can I do for you?
 -----
 ~ -----
-Sowwy, I don't understand
------
-~ -----
 -----
 ~ -----
 Gotcha! I have a paw-fect memory!
@@ -28,11 +25,11 @@ You have 3 task(s) in the list.
 -----
 ~ -----
 Paw-some! Another task done!
-[T][X] Wash laundry
+  [T][X] Wash laundry
 -----
 ~ -----
 Paw-some! Another task done!
-[E][X] House barbeque (at: 27 July 1800 - 2000)
+  [E][X] House barbeque (at: 27 July 1800 - 2000)
 -----
 ~ -----
 1. [T][X] Wash laundry
@@ -41,12 +38,66 @@ Paw-some! Another task done!
 -----
 ~ -----
 Okay, I've marked this task as not done yet.
-[E][ ] House barbeque (at: 27 July 1800 - 2000)
+  [E][ ] House barbeque (at: 27 July 1800 - 2000)
 -----
 ~ -----
 1. [T][X] Wash laundry
 2. [D][ ] CS2103T project (by: 25 July 1000)
 3. [E][ ] House barbeque (at: 27 July 1800 - 2000)
+-----
+~ -----
+Sowwy, I don't understand
+-----
+~ -----
+Sowwy, the item number cannot be empty.
+-----
+~ -----
+Sowwy, the item number cannot be empty.
+-----
+~ -----
+Cannot convert non-integer to integer.
+-----
+~ -----
+Cannot convert non-integer to integer.
+-----
+~ -----
+Item number is not in list range.
+-----
+~ -----
+Item number is not in list range.
+-----
+~ -----
+Sowwy, the description of a todo cannot be empty.
+-----
+~ -----
+Sowwy, the description of a deadline cannot be empty.
+-----
+~ -----
+A deadline requires a /by flag.
+-----
+~ -----
+A deadline requires both a description and deadline.
+-----
+~ -----
+A deadline requires both a description and deadline.
+-----
+~ -----
+A deadline requires both a description and deadline.
+-----
+~ -----
+Sowwy, the description of a event cannot be empty.
+-----
+~ -----
+A deadline requires a /by flag.
+-----
+~ -----
+An event requires both a description and event time.
+-----
+~ -----
+An event requires both a description and event time.
+-----
+~ -----
+An event requires both a description and event time.
 -----
 ~ -----
 Going so soon? :') Bye

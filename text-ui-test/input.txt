@@ -1,4 +1,3 @@
-asdfg
 list
 todo Wash laundry
 deadline CS2103T project /by 25 July 1000
@@ -9,4 +8,22 @@ mark 3
 list
 unmark 3
 list
+asdfg
+mark
+unmark
+mark asd
+unmark asd
+mark 5
+unmark 5
+todo
+deadline
+deadline asd
+deadline /by
+deadline /by 25 July 1000
+deadline Drink water /by
+event
+event asd
+event /at
+event /at 25 July 1000 - 1200
+event Drink water /at
 bye
