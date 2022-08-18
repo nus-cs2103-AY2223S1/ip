@@ -9,6 +9,7 @@ public class TaskList {
     /** List out all tasks in the list
      */
     public void listTasks() {
+        System.out.println("Here are the tasks in your list:\n");
         for (Task task : tasks) {
             int index = tasks.indexOf(task) + 1;
             System.out.println(index + ". " + task.toString());
@@ -18,10 +19,11 @@ public class TaskList {
     /** Adds a new task into the list
      * @param task the task to be added
      */
-    public void addTask(String task) {
-        Task newTask = new Task(task);
-        tasks.add(newTask);
-        System.out.println("added: " + task);
+    public void addTask(Task task) {
+        tasks.add(task);
+        System.out.println("Got it! I've added this task: \n"
+                + task.toString() + "\nNow you have " + tasks.size()
+                + " tasks in the list");
     }
 
     /**
@@ -40,6 +42,6 @@ public class TaskList {
     public void unmark(int index) {
         Task temp = tasks.get(index-1);
         temp.unmark();
-        System.out.println(" OK, I've marked this task as not done yet: \n" + temp.toString());
+        System.out.println("OK, I've marked this task as not done yet: \n" + temp.toString());
     }
 }

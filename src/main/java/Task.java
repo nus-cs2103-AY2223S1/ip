@@ -1,8 +1,8 @@
 public class Task {
-    private String description;
-    private boolean done = false;
+    protected String description;
+    protected boolean done = false;
 
-    Task(String task) {
+    protected Task(String task) {
         this.description = task;
     }
     public void mark() {
