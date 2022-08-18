@@ -52,7 +52,7 @@ public class Bro {
         }
 
         else if(str.startsWith("deadline ")){
-            Task t = new Deadline(str.substring(9, str.indexOf("/")), str.substring(str.indexOf("/") + 1));
+            Task t = new Deadline(str.substring(9, str.indexOf("by")-1), str.substring(str.indexOf("by") + 2));
             t.markAsNotDone();
             list1.add(t);
             System.out.println(t.toString());
@@ -60,7 +60,7 @@ public class Bro {
         }
 
         else if(str.startsWith("event ")){
-            Task t = new Event(str.substring(6, str.indexOf("/")), str.substring(str.indexOf("/") + 1));
+            Task t = new Event(str.substring(6, str.indexOf("at")-1), str.substring(str.indexOf("at") + 2));
             t.markAsNotDone();
             list1.add(t);
             System.out.println(t.toString());
