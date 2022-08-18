@@ -10,6 +10,7 @@ public class Task {
     public boolean isMarked() {
         return this.marked;
     }
+    public String getName() {return this.name;}
 
     public String getStatusIcon() {
         return (marked ? "X" : " "); // mark done task with X
@@ -21,10 +22,5 @@ public class Task {
 
     public void unmark() {
         this.marked = false;
-    }
-
-    @Override
-    public String toString() {
-        return "[" + this.getStatusIcon() + "] " + name;
     }
 }

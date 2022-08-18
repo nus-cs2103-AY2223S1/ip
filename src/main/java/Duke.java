@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Duke {
@@ -16,54 +17,72 @@ public class Duke {
 
         while (acceptingInput) {
             Scanner inputScanner = new Scanner(System.in);
-            String[] inputStringArray = inputScanner.nextLine().split(" ");
+            String totalString  = inputScanner.nextLine();
+            String[] inputStringArray = totalString.split(" ");
 
-            if (inputStringArray[0].equals("bye")){
+            if (totalString.equals("bye")){
                 acceptingInput = false;
                 System.out.println("Bye. Hope to see you again soon!");
-            } else if (inputStringArray[0].equals("list")) {
+            } else if (totalString.equals("list")) {
                 for (int i = 0; i < storage.size(); i++) {
                     int index = i+ 1;
                     System.out.println(index + ". " + storage.get(i));
                 }
             } else if (inputStringArray[0].equals("mark")) {
-                if (inputStringArray.length == 1) {
-                    System.out.println("Please enter an argument (number) after mark!");
-                } else if (!isNumeric(inputStringArray[1])) {
-                    System.out.println("Please enter a valid number after mark");
-                } else {
                     int index = Integer.parseInt(inputStringArray[1]) - 1;
-                    if (index < 0 || index >= storage.size()) {
-                        System.out.println("Please enter between 1 to the last element of the list");
-                    } else if (storage.get(index).isMarked()) {
-                        System.out.println("That task is already marked!");
-                    } else {
-                        storage.get(index).markAsDone();
-                        System.out.println("Nice! I've marked this task as done");
-                        System.out.println(storage.get(index));
-                    }
-                }
+                    storage.get(index).markAsDone();
+                    System.out.println("Nice! I've marked this task as done");
+                    System.out.println(storage.get(index));
+
             } else if (inputStringArray[0].equals("unmark")){
-                if (inputStringArray.length == 1) {
-                    System.out.println("Please enter an argument (number) after unmark!");
-                } else if (!isNumeric(inputStringArray[1])) {
-                    System.out.println("Please enter a valid number after unmark");
-                } else {
                     int index = Integer.parseInt(inputStringArray[1]) - 1;
-                    if (index < 0 || index >= storage.size()) {
-                        System.out.println("Please enter between 1 to the last element of the list");
-                    } else if (!storage.get(index).isMarked()) {
-                        System.out.println("That task is already unmarked!");
-                    } else {
-                        storage.get(index).unmark();
-                        System.out.println("OK, I've marked this task as not done yet:");
-                        System.out.println(storage.get(index));
-                    }
-                }
+                    storage.get(index).unmark();
+                    System.out.println("OK, I've marked this task as not done yet:");
+                    System.out.println(storage.get(index));
             } else {
-                Task newTask = new Task(inputStringArray[0]);
-                storage.add(newTask);
-                System.out.println("added: " + inputStringArray[0]);
+
+
+                if (inputStringArray[0].equals("todo")) {
+                    String[] nameArray = Arrays.asList(inputStringArray).subList(1,inputStringArray.length).toArray(new String[0]);
+                    String taskName = Arrays.stream(nameArray).reduce("", (a,b) -> a + " "+ b);
+                    Todo newTask = new Todo(taskName);
+                    storage.add(newTask);
+                    System.out.println("Got it. I've added this task:");
+                    System.out.println(newTask);
+                    System.out.println("Now you have " + storage.size() + " tasks in the list");
+                } else if (inputStringArray[0].equals("deadline")){
+                    int splitter = Arrays.asList(inputStringArray).indexOf("/by");
+
+                    String[] nameArray = Arrays.asList(inputStringArray).subList(1,splitter).toArray(new String[0]);
+                    String taskName = Arrays.stream(nameArray).reduce("", (a,b) -> a + " "+ b);
+
+                    String[] deadlineArray = Arrays.asList(inputStringArray).subList(splitter + 1,inputStringArray.length).toArray(new String[0]);
+                    String deadlineName = Arrays.stream(deadlineArray).reduce("", (a,b) -> a + " "+ b);
+
+                    Deadlines newTask = new Deadlines(taskName, deadlineName);
+                    storage.add(newTask);
+                    System.out.println("Got it. I've added this task:");
+                    System.out.println(newTask);
+                    System.out.println("Now you have " + storage.size() + " tasks in the list");
+
+                } else if (inputStringArray[0].equals("event")){
+                    int splitter = Arrays.asList(inputStringArray).indexOf("/at");
+
+                    String[] nameArray = Arrays.asList(inputStringArray).subList(1,splitter).toArray(new String[0]);
+                    String taskName = Arrays.stream(nameArray).reduce("", (a,b) -> a + " "+ b);
+
+                    String[] eventArray = Arrays.asList(inputStringArray).subList(splitter + 1,inputStringArray.length).toArray(new String[0]);
+                    String eventName = Arrays.stream(eventArray).reduce("", (a,b) -> a + " "+ b);
+
+                    Event newTask = new Event(taskName,eventName);
+                    storage.add(newTask);
+                    System.out.println("Got it. I've added this task:");
+                    System.out.println(newTask);
+                    System.out.println("Now you have " + storage.size() + " tasks in the list");
+
+                } else {
+                    System.out.println("No suitable name for that task");
+                }
             }
         }
 
