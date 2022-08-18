@@ -5,11 +5,11 @@ public class main {
         Scanner sc = new Scanner(System.in);
         System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?");
-        Task[] arr = new Task[101];
+        ArrayList<Task> arr = new ArrayList<Task>();
         String input = "";
         int curr = 0;
         Task task = new Task(input, "");
-        arr[curr] = task;
+        arr.add(curr, task);
         while(!task.getVal().equals("bye")) {
             task = new Task(sc.nextLine(), "");
             //System.out.println(task.getVal());
@@ -17,16 +17,16 @@ public class main {
                 StringBuilder s = new StringBuilder();
                 for(int i = 0; i < curr; i++) {
                     s = new StringBuilder();
-                    if(arr[i] instanceof ToDo) {
+                    if(arr.get(i) instanceof ToDo) {
                         s.append("[T] ");
                     }
-                    else if(arr[i] instanceof  Deadline) {
+                    else if(arr.get(i) instanceof  Deadline) {
                         s.append("[D] ");
                     }
                     else {
                         s.append("[E] ");
                     }
-                    if(arr[i].getDone()) {
+                    if(arr.get(i).getDone()) {
                         //System.out.println(String.format("%s. [X] %s", i + 1, arr[i].getVal()));
                         s.append(" [X]");
                     }
@@ -34,7 +34,7 @@ public class main {
                         //System.out.println(String.format("%s. [ ] %s", i + 1, arr[i].getVal()));
                         s.append(" [ ]");
                     }
-                    System.out.println(String.format("%s. %s %s %s", i + 1, s, arr[i].getVal(), arr[i].getTiming()));
+                    System.out.println(String.format("%s. %s %s %s", i + 1, s, arr.get(i).getVal(), arr.get(i).getTiming()));
                 }
                 //System.out.println(input); level 1
             }
@@ -42,9 +42,9 @@ public class main {
                 String[] at = task.getVal().split(" ");
                 try {
                     int index = Integer.parseInt(at[1]);
-                    arr[index - 1] = arr[index - 1].markDone();
+                    arr.set(index - 1, arr.get(index - 1).markDone());
                     System.out.println("Nice! I've marked this task as done:");
-                    System.out.println(String.format("[X] %s", arr[index - 1].getVal()));
+                    System.out.println(String.format("[X] %s", arr.get(index - 1).getVal()));
                 } catch (Exception e) {
                     System.out.println("☹ OOPS!!! The description of a mark cannot be empty.");
                 }
@@ -54,9 +54,9 @@ public class main {
                 try {
                     int index = Integer.parseInt(at[1]);
 
-                arr[index - 1] = arr[index - 1].markUndone();
+                arr.set(index - 1, arr.get(index - 1).markUndone());
                 System.out.println("OK, I've marked this task as not done yet:");
-                System.out.println(String.format("[ ] %s", arr[index-1].getVal()));
+                System.out.println(String.format("[ ] %s", arr.get(index-1).getVal()));
                 } catch (Exception e) {
                     System.out.println("☹ OOPS!!! The description of a unmark cannot be empty.");
                 }
@@ -65,8 +65,8 @@ public class main {
                 String[] at = task.getVal().split(" ");
                 try {
                     int index = Integer.parseInt(at[1]);
-                    Task del = arr[index-1];
-                    arr[index - 1] = arr[index];
+                    Task del = arr.get(index-1);
+                    arr.set(index - 1, arr.get(index));
                     curr--;
                     System.out.println("Noted. I've removed this task:");
                     System.out.println(del);
@@ -80,7 +80,7 @@ public class main {
                 try {
                     String todo = task.getVal().substring(5);
                     task = new ToDo(todo);
-                    arr[curr++] = task;
+                    arr.add(curr++, task);
                     System.out.println("Got it. I've added this task:");
                     System.out.println(String.format("[T][ ] %s", task.getVal()));
                     System.out.println(String.format("Now you have %s tasks in the list.", curr));
@@ -94,7 +94,7 @@ public class main {
                     String deadline = task.getVal().substring(9);
                     String[] at = deadline.split("/");
                     task = new Deadline(at[0], at[1]);
-                    arr[curr++] = task;
+                    arr.add(curr++, task);
                     System.out.println("Got it. I've added this task:");
                     System.out.println(String.format("[D][ ] %s (%s)", task.getVal(), task.getTiming()));
                     System.out.println(String.format("Now you have %s tasks in the list.", curr));
@@ -108,7 +108,7 @@ public class main {
                     String event = task.getVal().substring(6);
                     String[] at = event.split("/");
                     task = new Deadline(at[0], at[1]);
-                    arr[curr++] = task;
+                    arr.add(curr++, task);
                     System.out.println("Got it. I've added this task:");
                     System.out.println(String.format("[E][ ] %s (%s)", task.getVal(), task.getTiming()));
                     System.out.println(String.format("Now you have %s tasks in the list.", curr));
