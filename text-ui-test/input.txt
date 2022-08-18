@@ -26,4 +26,7 @@ event
 event project meeting
 mark 0
 mark -1
+list
+delete 1
+delete 2
 bye
