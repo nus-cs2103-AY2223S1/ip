@@ -1,0 +1,3 @@
+todo automate testing
+list
+bye
