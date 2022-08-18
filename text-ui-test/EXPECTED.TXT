@@ -11,14 +11,14 @@ Now you have 1 tasks in the list.
 
 -----------------------------------------
 Got it. I've added this task:
-[E][ ]  sleep (at: 12am)
+[E][ ] sleep (at: 12am)
 Now you have 2 tasks in the list.
 -----------------------------------------
 
 
 -----------------------------------------
 Got it. I've added this task:
-[D][ ]  wake (by: 7am)
+[D][ ] wake (by: 7am)
 Now you have 3 tasks in the list.
 -----------------------------------------
 
@@ -31,29 +31,29 @@ Nice! I've marked this task as done:
 
 -----------------------------------------
 Nice! I've marked this task as done:
-    [E][X]  sleep (at: 12am)
+    [E][X] sleep (at: 12am)
 -----------------------------------------
 
 
 -----------------------------------------
 Here are the tasks in your list
 1. [T][X] eat
-2. [E][X]  sleep (at: 12am)
-3. [D][ ]  wake (by: 7am)
+2. [E][X] sleep (at: 12am)
+3. [D][ ] wake (by: 7am)
 -----------------------------------------
 
 
 -----------------------------------------
 Ok! I've marked this task as not done yet:
-    [E][ ]  sleep (at: 12am)
+    [E][ ] sleep (at: 12am)
 -----------------------------------------
 
 
 -----------------------------------------
 Here are the tasks in your list
 1. [T][X] eat
-2. [E][ ]  sleep (at: 12am)
-3. [D][ ]  wake (by: 7am)
+2. [E][ ] sleep (at: 12am)
+3. [D][ ] wake (by: 7am)
 -----------------------------------------
 
 
@@ -64,7 +64,7 @@ Boo... Task don't exist :(
 
 -----------------------------------------
 Noted. I've removed this task:
-    [E][ ]  sleep (at: 12am)
+    [E][ ] sleep (at: 12am)
 -----------------------------------------
 
 
