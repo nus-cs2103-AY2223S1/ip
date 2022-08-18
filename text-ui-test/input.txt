@@ -12,5 +12,7 @@ todo
 deadline
 event
 blah
+delete 3
+list
 bye
 
