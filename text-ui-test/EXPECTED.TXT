@@ -30,4 +30,10 @@ Added: Go for lecture (at: 9am tomorrow)
 2. [D] [ ] Submit Homework (by: tonight)
 3. [E] [x] Go for lecture (at: 9am tomorrow)
 --------------------
+Noted. I've removed this task
+You now have 2 tasks in your list.
+--------------------
+1. [T] [ ] Buy Grapes
+2. [E] [x] Go for lecture (at: 9am tomorrow)
+--------------------
 See you again!

@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.function.UnaryOperator;
@@ -97,35 +98,40 @@ public class Duke {
             }
 
             int pointer = 0;
-            protected Task[] list;
-            protected int length;
+            protected ArrayList<Task> list;
 
             public Todo(int length) {
-                this.list = new Task[length];
-                this.length = length;
+                this.list = new ArrayList<>(length);
             }
 
             public void addTask(String description) {
-                this.list[pointer] = new Task(description);
+                this.list.add(new Task(description));
+//                this.list[pointer] = new Task(description);
                 pointer++;
             }
 
             public void addDeadline(String desc, String deadline) {
-                this.list[pointer] = new Deadline(desc, deadline);
+                this.list.add(new Deadline(desc, deadline));
+//                this.list[pointer] = new Deadline(desc, deadline);
                 pointer++;
             }
 
             public void addEvent(String desc, String time) {
-                this.list[pointer] = new Event(desc, time);
+                this.list.add(new Event(desc, time));
+//                this.list[pointer] = new Event(desc, time);
                 pointer++;
             }
 
             public int getLength() {
-                return this.length;
+                return this.list.size();
             }
 
             protected Task get(int index) {
-                return list[index];
+                return this.list.get(index);
+            }
+
+            public void delete(int index) {
+                this.list.remove(index);
             }
 
             public void mark(int index) {
@@ -137,14 +143,7 @@ public class Duke {
             }
 
             private void printData() {
-                for (int i = 0; i < this.length; i++) {
-                    if (this.get(i) == null) {
-                        return;
-                    }
-                    Task task = this.get(i);
-                    // Could use format strings for this
-                    System.out.println((i + 1) + ". " + task);
-                }
+                this.list.forEach(x -> System.out.println(String.format("%s. %s", this.list.indexOf(x) + 1, x)));
             }
         }
         Scanner scanner = new Scanner(System.in);
@@ -172,7 +171,7 @@ public class Duke {
 //                  We can't use switch statements since we want regex matching
                         if (line.matches("mark \\d+")) {
                             int index = Integer.parseInt(line.split(" ")[1]);
-                            if (index > 100) {
+                            if (index > todolist.getLength()) {
                                 break;
                             }
 
@@ -183,7 +182,7 @@ public class Duke {
 
                         if (line.matches("unmark \\d+")) {
                             int index = Integer.parseInt(line.split(" ")[1]);
-                            if (index > 100) {
+                            if (index > todolist.getLength()) {
                                 break;
                             }
 
@@ -197,7 +196,7 @@ public class Duke {
                             String desc = res[0];
                             String deadline = res[1];
 
-                            todolist.addDeadline(desc,deadline);
+                            todolist.addDeadline(desc, deadline);
                             System.out.println(String.format("Added: %s (by: %s)", desc, deadline));
                             break;
                         }
@@ -216,6 +215,17 @@ public class Duke {
                             line = line.substring(5);
                             todolist.addTask(line);
                             System.out.println("Added: " + line);
+                            break;
+                        }
+
+                        if (line.matches("delete \\d+")) {
+                            int index = Integer.parseInt(line.split(" ")[1]);
+                            if (index > todolist.getLength()) {
+                                break;
+                            }
+                            todolist.delete(index - 1);
+                            System.out.println("Noted. I've removed this task");
+                            System.out.println(String.format("You now have %s tasks in your list.", todolist.getLength()));
                             break;
                         }
 
