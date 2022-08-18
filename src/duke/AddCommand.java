@@ -1,12 +1,13 @@
 package duke;
 
-public class AddCommand extends Command{
+public class AddCommand extends Command {
 
-    private Task task;
+    protected Task task;
 
-    public AddCommand(String task) {
-        this.task = new ToDo(task);
+    public AddCommand(Task task) {
+        this.task = task;
     }
+
     @Override
     public void execute(Ui ui, TaskList taskList) {
         taskList.addTask(task);

@@ -21,4 +21,17 @@ public abstract class Task {
         return this.isDone;
     }
 
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Task) {
+            Task x = (Task) obj;
+            if (this.description == null || x.description == null) {
+                return false;
+            }
+            return this.description.equals(x.description);
+        }
+
+        return false;
+    }
 }

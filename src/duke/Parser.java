@@ -1,8 +1,6 @@
 package duke;
 
-import duke.exceptions.BlankCommandException;
-import duke.exceptions.DukeException;
-import duke.exceptions.BlankContentException;
+import duke.exceptions.*;
 
 public class Parser {
 
@@ -18,6 +16,33 @@ public class Parser {
             case ("list"):
                 return new ListCommand();
 
+            case ("todo"):
+                if (inputArr.length == 1) {
+                    return new AddCommand(new ToDo(inputKeyword));
+                }
+                String task = inputKeyword + " " + inputArr[1];
+                return new AddCommand(new ToDo(inputKeyword));
+
+            case ("deadline"):
+                String[] deadlineArr = inputArr[1].split(" /by", 2);
+                if (deadlineArr.length == 1) {
+                    throw new ImproperFormatException();
+                }
+                if (deadlineArr[1].equals("")) {
+                    throw new NoDateException();
+                }
+                return new AddCommand(new Deadline(deadlineArr[0], deadlineArr[1]));
+
+            case ("event"):
+                String[] eventArr = inputArr[1].split(" /at", 2);
+                if (eventArr.length == 1) {
+                    throw new ImproperFormatException();
+                }
+                if (eventArr[1].equals("")) {
+                    throw new NoDateException();
+                }
+                return new AddCommand(new Event(eventArr[0], eventArr[1]));
+
             case ("mark"):
 
             case ("unmark"):
@@ -26,11 +51,7 @@ public class Parser {
                 }
                 return new ToggleStatusCommand(inputArr[1]);
             default:
-                if (inputArr.length == 1) {
-                    return new AddCommand(inputKeyword);
-                }
-                String task = inputKeyword + " " + inputArr[1];
-                return new AddCommand(task);
+                throw new CommandNotFoundException(inputKeyword);
         }
     }
 }

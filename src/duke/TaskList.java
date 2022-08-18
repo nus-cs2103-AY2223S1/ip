@@ -32,6 +32,6 @@ public class TaskList {
         for (int i = 0; i < this.taskList.size(); i++) {
             result += (i + 1) + ". " + taskArr[i].toString() + "\n";
         }
-        return result;
+        return result + "\nNOW YOU HAVE " + taskList.size() + " PROBLEMS TO HANDLE!";
     }
 }
