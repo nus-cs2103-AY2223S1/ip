@@ -73,21 +73,44 @@ public class Duke {
 
         ArrayList<ListObject> listOfItems = new ArrayList<>();
         String showList = "list";
+        String markAsDone = "mark ";
+        String markAsNotDone = "unmark ";
 
         while(true){
             Scanner readinput = new Scanner(System.in);
             String userMsg = readinput.nextLine();
-            if(!userMsg.equals(showList)) {
-                ListObject newItem = new ListObject(userMsg, 0);
-                listOfItems.add(newItem);
-                System.out.println("added: " + newItem.getTask() + "\n***********************************************************************\n");
-            } else {
+
+            if(userMsg.equals(showList)){
+                System.out.println("These are the tasks on your list!");
                 for(int i = 0; i < listOfItems.size(); i++){
                     int numb = i+1;
                     ListObject currItem = listOfItems.get(i);
                     System.out.println(numb + "." + currItem.showStatusIndicator() + currItem.getTask());
                 }
                 System.out.println("\n***********************************************************************\n");
+            }
+            if(userMsg.contains(markAsDone) && !userMsg.contains(markAsNotDone)){
+                String taskNo = userMsg.replaceAll("\\D+", "");
+                int taskNoAsInt = Integer.parseInt(taskNo)-1;
+                ListObject currItem = listOfItems.get(taskNoAsInt);
+                currItem.switchStatus();
+                System.out.println("Very well! One less burden to bear! I have marked this complete:\n");
+                System.out.println(currItem.showStatusIndicator()+ currItem.getTask());
+            }
+            if(userMsg.contains(markAsNotDone)){
+
+                String taskNo = userMsg.replaceAll("\\D+", "");
+                int taskNoAsInt = Integer.parseInt(taskNo)-1;
+                ListObject currItem = listOfItems.get(taskNoAsInt);
+                currItem.switchStatus();
+                System.out.println("Hmm....I have marked this incomplete:\n");
+                System.out.println(currItem.showStatusIndicator()+ currItem.getTask());
+
+            }
+            if(!userMsg.equals(showList)&&!userMsg.contains(markAsDone) && !userMsg.contains(markAsNotDone)){
+                ListObject newItem = new ListObject(userMsg, 0);
+                listOfItems.add(newItem);
+                System.out.println("added: " + newItem.getTask() + "\n***********************************************************************\n");
             }
         }
     }
