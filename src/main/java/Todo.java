@@ -1,5 +1,9 @@
-public class ToDo extends Task {
-    public ToDo(String title) {
+public class Todo extends Task {
+    /**
+     * Constructor for Todo
+     * @param title The title of Todo
+     */
+    public Todo(String title) {
         super(title);
     };
 

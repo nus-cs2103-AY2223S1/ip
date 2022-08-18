@@ -2,36 +2,61 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class DukeControl {
-    public ArrayList<Task> arrayList;
+    /**
+     * Arraylist contains a list of user's tasks
+     */
+    protected ArrayList<Task> arrayList;
 
+    /**
+     * Constructor for DukeControl
+     * Initializes arrayList
+     */
     public DukeControl() {
         this.arrayList = new ArrayList<>();
     }
 
+    /**
+     * Evaluates user's input according to a set of fixed commands
+     * @param input User input represented by a String
+     * @throws DukeException Throws a DukeException specific to this program
+     */
     public void evaluate(String input) throws DukeException {
         String[] command = input.split(" ");
         String mainCommand = command[0];
         String[] commandArgs = Arrays.copyOfRange(command, 1, command.length);
 
-        if (mainCommand.equals("list")) {
-            this.parseList(commandArgs);
-        } else if (mainCommand.equals("mark")) {
-            this.parseMark(commandArgs);
-        } else if (mainCommand.equals("unmark")) {
-            this.parseUnmark(commandArgs);
-        } else if (mainCommand.equals("todo")) {
-            this.parseTodo(commandArgs);
-        } else if (mainCommand.equals("deadline")) {
-            this.parseDeadline(commandArgs);
-        } else if (mainCommand.equals("event")) {
-            this.parseEvent(commandArgs);
-        } else if (mainCommand.equals("delete")) {
-            this.parseDelete(commandArgs);
-        } else {
-            throw new InvalidCommandException();
+        switch (mainCommand) {
+            case "list":
+                this.parseList(commandArgs);
+                break;
+            case "mark":
+                this.parseMark(commandArgs);
+                break;
+            case "unmark":
+                this.parseUnmark(commandArgs);
+                break;
+            case "todo":
+                this.parseTodo(commandArgs);
+                break;
+            case "deadline":
+                this.parseDeadline(commandArgs);
+                break;
+            case "event":
+                this.parseEvent(commandArgs);
+                break;
+            case "delete":
+                this.parseDelete(commandArgs);
+                break;
+            default:
+                throw new InvalidCommandException();
         }
     }
 
+    /**
+     * Parses the list command
+     * @param commandArgs Array of Strings representing command arguments
+     * @throws InvalidArgumentException If additional arguments are entered
+     */
     public void parseList(String[] commandArgs) throws InvalidArgumentException {
         if (commandArgs.length != 0) {
             throw new InvalidArgumentException();
@@ -43,6 +68,11 @@ public class DukeControl {
         }
     }
 
+    /**
+     * Parses the mark command
+     * @param commandArgs Array of Strings representing command arguments
+     * @throws InvalidArgumentException If additional arguments are entered or if index is out of bounds
+     */
     public void parseMark(String[] commandArgs) throws InvalidArgumentException {
         if (commandArgs.length != 1) {
             throw new InvalidArgumentException();
@@ -53,6 +83,11 @@ public class DukeControl {
         }
     }
 
+    /**
+     * Parses the unmark command
+     * @param commandArgs Array of Strings representing command arguments
+     * @throws InvalidArgumentException If additional arguments are entered or if index is out of bounds
+     */
     public void parseUnmark(String[] commandArgs) throws InvalidArgumentException {
         if (commandArgs.length != 1) {
             throw new InvalidArgumentException();
@@ -63,16 +98,26 @@ public class DukeControl {
         }
     }
 
+    /**
+     * Parses the todo command
+     * @param commandArgs Array of Strings representing command arguments
+     * @throws EmptyTitleException If input title is empty
+     */
     public void parseTodo(String[] commandArgs) throws EmptyTitleException {
         String title = String.join(" ", commandArgs);
 
         if (title == "") {
             throw new EmptyTitleException();
         } else {
-            this.addTask(new ToDo(title));
+            this.addTask(new Todo(title));
         }
     }
 
+    /**
+     * Parses the deadline command
+     * @param commandArgs Array of Strings representing command arguments
+     * @throws DukeException If /by is not included or if input title or deadline is empty
+     */
     public void parseDeadline(String[] commandArgs) throws DukeException {
         if (!Arrays.asList(commandArgs).contains("/by")) {
             throw new InvalidArgumentException();
@@ -91,6 +136,11 @@ public class DukeControl {
         }
     }
 
+    /**
+     * Parses the event command
+     * @param commandArgs Array of Strings representing command arguments
+     * @throws DukeException If /at is not included or if input title or time is empty
+     */
     public void parseEvent(String[] commandArgs) throws DukeException {
         if (!Arrays.asList(commandArgs).contains("/at")) {
             throw new InvalidArgumentException();
@@ -109,6 +159,11 @@ public class DukeControl {
         }
     }
 
+    /**
+     * Parses the delete command
+     * @param commandArgs Array of Strings representing command arguments
+     * @throws InvalidArgumentException If additional arguments are entered or if index is out of bounds
+     */
     public void parseDelete(String[] commandArgs) throws InvalidArgumentException {
         if (commandArgs.length != 1) {
             throw new InvalidArgumentException();
@@ -119,6 +174,10 @@ public class DukeControl {
         }
     }
 
+    /**
+     * Adds a new Task to arraylist
+     * @param newTask The new Task to be added
+     */
     public void addTask(Task newTask) {
         this.arrayList.add(newTask);
         System.out.println(String.format(
@@ -126,6 +185,10 @@ public class DukeControl {
                 newTask.print(), this.arrayList.size(), this.arrayList.size() == 1 ? "" : "s"));
     }
 
+    /**
+     * Deletes a Task from arraylist
+     * @param index The index of the Task to be deleted
+     */
     public void deleteTask(int index) {
         Task deletedTask = this.arrayList.remove(index);
         System.out.println(String.format(

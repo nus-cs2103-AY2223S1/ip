@@ -1,4 +1,8 @@
 public class DukeException extends Exception {
+    /**
+     * Constructor for DukeException
+     * @param message Message to be included when exception is thrown
+     */
     public DukeException(String message) {
         super(message +
                 "\naRCommands:\n" +

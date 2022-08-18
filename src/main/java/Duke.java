@@ -10,6 +10,7 @@ public class Duke {
         System.out.print("\n");
         String input = sc.nextLine();
 
+        // Keeps reading user input until the user types "bye"
         while(!input.equals("bye")) {
             try {
                 dc.evaluate(input);
@@ -24,10 +25,16 @@ public class Duke {
         sc.close();
     }
 
+    /**
+     * Prints hello message to the screen
+     */
     public static void hello() {
         System.out.println("Hello! I'm aRC! (°▽°)/\nWhat can I do for you?");
     }
 
+    /**
+     * Print goodbye message to the screen
+     */
     public static void bye() {
         System.out.println("Bye. Hope to see you again soon! ʘ ͜ʖ ʘ");
     }
