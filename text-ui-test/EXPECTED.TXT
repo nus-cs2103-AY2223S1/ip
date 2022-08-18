@@ -18,13 +18,46 @@ added: [D][ ] return book (by: June 6th)
 Now you have 2 tasks in the list
 ----------------------
 ----------------------
-added: [E][ ] meeting (at: tuesday 2-4pm)
+added: [E][ ] project meeting (at: Aug 6th 2-4pm)
 Now you have 3 tasks in the list
 ----------------------
 ----------------------
-1.[T][ ] read book
-2.[D][ ] return book (by: June 6th)
-3.[E][ ] meeting (at: tuesday 2-4pm)
+added: [T][ ] join sports club
+Now you have 4 tasks in the list
+----------------------
+----------------------
+added: [T][ ] borrow book
+Now you have 5 tasks in the list
+----------------------
+----------------------
+Ok! I've marked this task as done
+[T][X] read book
+----------------------
+----------------------
+Ok! I've marked this task as done
+[D][X] return book (by: June 6th)
+----------------------
+----------------------
+Ok! I've marked this task as done
+[T][X] join sports club
+----------------------
+----------------------
+1.[T][X] read book
+2.[D][X] return book (by: June 6th)
+3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+4.[T][X] join sports club
+5.[T][ ] borrow book
+----------------------
+----------------------
+Noted! I've removed this task
+[E][ ] project meeting (at: Aug 6th 2-4pm)
+Now you have 4 tasks!
+----------------------
+----------------------
+1.[T][X] read book
+2.[D][X] return book (by: June 6th)
+3.[T][X] join sports club
+4.[T][ ] borrow book
 ----------------------
 ----------------------
 Bye, hope to see you again!

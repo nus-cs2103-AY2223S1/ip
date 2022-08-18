@@ -1,12 +1,12 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Duke {
-    
+
     public static void chat(){
         Scanner myScan = new Scanner(System.in);
         String s;
-        Task[] list = new Task[100];
-        int list_counter = 0;
+        ArrayList<Task> aList = new ArrayList<>();
 
         while (true) {
 
@@ -20,44 +20,54 @@ public class Duke {
 
                 } else if (s.equals("list")) {
                     System.out.println("----------------------");
-                    for (int i = 0; i < 100; i++) {
-                        if (list[i] != null) {
-                            String display = String.format("%d.%s", i + 1, list[i].toString());
-                            System.out.println(display);
-                        }
+                    for (int i = 0; i < aList.size(); i++) {
+                        String display = String.format("%d.%s", i + 1, aList.get(i).toString());
+                        System.out.println(display);
                     }
                     System.out.println("----------------------");
 
                 } else if (s.indexOf("mark") == 0) {
-                    String subString = s.substring(5, s.length());
+                    String subString = s.substring(5);
                     int a = Integer.parseInt(subString) - 1;
-                    list[a].markDone();
+                    aList.get(a).markDone();
 
                     System.out.println("----------------------");
                     System.out.println("Ok! I've marked this task as done");
-                    System.out.println(list[a].toString());
+                    System.out.println(aList.get(a).toString());
                     System.out.println("----------------------");
 
                 } else if (s.indexOf("unmark") == 0) {
-                    String subString = s.substring(7, s.length());
+                    String subString = s.substring(7);
                     int a = Integer.parseInt(subString) - 1;
-                    list[a].markUndone();
+                    aList.get(a).markUndone();
 
                     System.out.println("----------------------");
                     System.out.println("Ok! I've marked this task as undone");
-                    System.out.println(list[a].toString());
+                    System.out.println(aList.get(a).toString());
                     System.out.println("----------------------");
+                } else if (s.indexOf("delete") == 0) {
+                    String subString = s.substring(7);
+                    int a = Integer.parseInt(subString) - 1;
+
+                    System.out.println("----------------------");
+                    System.out.println("Noted! I've removed this task");
+                    System.out.println(aList.get(a).toString());
+                    aList.remove(a);
+                    System.out.println("Now you have " + aList.size() + " tasks!");
+                    System.out.println("----------------------");
+
 
                 } else if (s.indexOf("todo") == 0) {
                     if (s.length() < 5) {
                         throw new EmptyDescriptionException("Empty description", "todo");
                     }
                     String subString = s.substring(5, s.length());
-                    list[list_counter] = new Todo(subString);
-                    list_counter += 1;
+                    Todo a = new Todo(subString);
+                    aList.add(a);
+
                     System.out.println("----------------------");
-                    System.out.println("added: " + list[list_counter - 1].toString());
-                    System.out.println(String.format("Now you have %d tasks in the list", list_counter));
+                    System.out.println("added: " + a.toString());
+                    System.out.println(String.format("Now you have %d tasks in the list", aList.size()));
                     System.out.println("----------------------");
 
                 } else if (s.indexOf("deadline") == 0 ) {
@@ -71,11 +81,11 @@ public class Duke {
 
                     String descript = s.substring(9, s.indexOf("/") - 1);
                     String by = s.substring(s.indexOf("/") + 4);
-                    list[list_counter] = new Deadline(descript, by);
-                    list_counter += 1;
+                    Deadline d = new Deadline(descript, by);
+                    aList.add(d);
                     System.out.println("----------------------");
-                    System.out.println("added: " + list[list_counter - 1].toString());
-                    System.out.println(String.format("Now you have %d tasks in the list", list_counter));
+                    System.out.println("added: " + d.toString());
+                    System.out.println(String.format("Now you have %d tasks in the list", aList.size()));
                     System.out.println("----------------------");
 
                 } else if (s.indexOf("event") == 0 ) {
@@ -89,11 +99,12 @@ public class Duke {
 
                     String descript = s.substring(6, s.indexOf("/") - 1);
                     String at = s.substring(s.indexOf("/") + 4);
-                    list[list_counter] = new Event(descript, at);
-                    list_counter += 1;
+                    Event e = new Event(descript, at);
+                    aList.add(e);
+
                     System.out.println("----------------------");
-                    System.out.println("added: " + list[list_counter - 1].toString());
-                    System.out.println(String.format("Now you have %d tasks in the list", list_counter));
+                    System.out.println("added: " + e.toString());
+                    System.out.println(String.format("Now you have %d tasks in the list", aList.size()));
                     System.out.println("----------------------");
 
                 } else {
