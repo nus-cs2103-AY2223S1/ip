@@ -41,7 +41,7 @@ public class Duke {
         sayLines(new String[] {
                 "Got it. I've added this task:",
                 "  " + task,
-                "Now you have " + tasks.size() + " task" + (tasks.size() > 1 ? "s" : "") + " in the list."
+                "Now you have " + tasks.size() + " task" + (tasks.size() == 1 ? "" : "s") + " in the list."
         });
     }
 
@@ -189,6 +189,34 @@ public class Duke {
     }
 
     /**
+     * Tries to delete the specified task and notifies user of outcome
+     * @param words The words of the command entered, first is always "delete"
+     */
+    private static void deleteTask(String[] words) {
+        if (tasks.size() == 0) {
+            throw new IllegalArgumentException("☹ OOPS!!! No tasks stored for me to do that");
+        }
+
+        Task task;
+        try {
+            int taskNumber = (words.length == 1) ? 0 : Integer.parseInt(words[1]);
+            if (taskNumber <= 0 || taskNumber > tasks.size()) {
+                throw new IllegalArgumentException();
+            }
+            task = tasks.get(taskNumber - 1);
+            tasks.remove(taskNumber - 1);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("☹ OOPS!!! The task number must be from 1 to " + tasks.size());
+        }
+
+        sayLines(new String[]{
+                "Noted. I've removed this task:",
+                "  " + task,
+                "Now you have " + tasks.size() + " task" + (tasks.size() == 1 ? "" : "s") + " in the list."
+        });
+    }
+
+    /**
      * Lists out information on all tasks stored
      */
     private static void listTasks() {
@@ -229,6 +257,8 @@ public class Duke {
                         markTaskAsDone(words);
                     } else if (words[0].equals("unmark")) {
                         markTaskAsNotDone(words);
+                    } else if (words[0].equals("delete")) {
+                        deleteTask(words);
                     } else {
                         sayLines(new String[]{"I'm sorry but I don't know what that means"});
                     }
