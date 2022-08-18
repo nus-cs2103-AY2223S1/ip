@@ -2,6 +2,9 @@ import java.util.*;
 
 public class Duke {
     public static void main(String[] args) throws DukeException{
+        String greet = "OMG HII! I am Floren! What can I do for you?\n";
+        System.out.println(greet);
+
         List list = new List();
         Scanner sc = new Scanner(System.in);
         String command = sc.nextLine();

@@ -1,16 +1,18 @@
+list
 todo make bed
-deadline
 deadline submit cs2103t /by tonight
-event
-todo
 event ambassador meeting /at 9 pm
 todo read book
 todo watch lecture
+blah
 list
 mark 1
 unmark 2
 mark 3
 delete 3
+deadline
+todo
+event
 mark
 delete
 list
