@@ -10,10 +10,35 @@ public class Duke {
     private final static String welcomeMsg = horLine + "\nHello! I'm Duke\n" +
             "What can I do for you?\n" + horLine;
 
-    private void addToList(Task task) {
-        tasks.add(task);
-        System.out.println(horLine + "\n\tI have added " + "'" + task.taskName + "'" +
-                " to the list" + "\n" + horLine);
+    private void addToList(String taskName) {
+        //if task is a todo
+        if (taskName.matches("\\btodo\\s.*\\b")){
+            Task newTask = new ToDo(taskName.substring(5));
+            tasks.add(newTask);
+            System.out.println(horLine + "\n\tGot it. I've added this task:\n" + "\t" + newTask.toString() );
+        }
+        //if task is an event
+        else if (taskName.matches("\\bevent\\s.*\\s/at\\s.*\\b")){
+            String des = taskName.substring(6,taskName.indexOf("/")-1);
+            String at = taskName.substring(taskName.indexOf("/")+4,taskName.length());
+            Task newTask = new Event(des,at);
+            tasks.add(newTask);
+            System.out.println(horLine + "\n\tGot it. I've added this task:\n" + "\t" + newTask.toString() );
+        }
+        ////if task is a deadline
+        else if (taskName.matches("\\bdeadline\\s.*\\s/by\\s.*\\b")) {
+            String des = taskName.substring(9,taskName.indexOf("/")-1);
+            String by = taskName.substring(taskName.indexOf("/")+4);
+            Task newTask = new Deadline(des,by);
+            tasks.add(newTask);
+            System.out.println(horLine + "\n\tGot it. I've added this task:\n" + "\t" + newTask.toString() );
+        } else {
+            Task newTask = new Task(taskName);
+            tasks.add(newTask);
+            System.out.println(horLine + "\n\tGot it. I've added this task:\n" + "\t" + taskName );
+        }
+
+
     }
 
 
@@ -21,7 +46,6 @@ public class Duke {
         System.out.println(welcomeMsg);
         Scanner userCommand = new Scanner(System.in);
         String input = userCommand.nextLine();
-
 
 
         while (!input.equals("bye")) {
@@ -32,8 +56,8 @@ public class Duke {
             } else if (input.matches("\\bunmark\\s\\d+\\b")) {
                 taskUndone(Integer.parseInt(input.replaceAll("[^0-9]", "")));
             } else {
-                Task newTask = new Task(input);
-                addToList(newTask);
+                addToList(input);
+                System.out.println("\tNow you have " + tasks.size() + " tasks in the list." + "\n" + horLine);
             }
             input = userCommand.nextLine();
 
@@ -60,8 +84,7 @@ public class Duke {
         System.out.println("\tHere are the tasks in your list:\n");
         for(int i = 0; i<tasks.size(); i++) {
             int num = i+1;
-            System.out.println("\t" + num + "." + "[" + tasks.get(i).getStatusIcon() + "] "
-                    + tasks.get(i).taskName );
+            System.out.println("\t" + num + "." + tasks.get(i).toString());
         }
         System.out.println("\n" + horLine);
     }
