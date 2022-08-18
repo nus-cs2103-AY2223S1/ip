@@ -1,0 +1,5 @@
+todo read book
+mark 1
+event go to class /at Friday 2-6 pm
+list
+bye
