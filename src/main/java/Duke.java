@@ -4,7 +4,14 @@ import java.util.Scanner;
 
 import static pnkp.duke.IOFormat.say;
 
+/**
+ * Entrypoint for the Duke chatbot.
+ */
 public class Duke {
+    /**
+     * Entrypoint.
+     * @param args Command-line arguments.
+     */
     public static void main(String[] args) {
         Scanner stdin = new Scanner(System.in);
 

@@ -13,9 +13,15 @@ import pnkp.duke.modules.todos.Event;
 import pnkp.duke.modules.todos.Task;
 import pnkp.duke.modules.todos.Todo;
 
+/**
+ * Module handling tracking tasks, optionally with dates or timeranges.
+ */
 public class Todos {
     private final ArrayList<Task> todos;
 
+    /**
+     * constructor
+     */
     public Todos() {
         todos = new ArrayList<>();
     }
@@ -45,6 +51,10 @@ public class Todos {
         return taskID;
     }
 
+    /**
+     * Command for adding a todo - a task with no date.
+     * @param rest The scanner with the remaining text in the message.
+     */
     public void cmdAddTodo(Scanner rest) {
         final Task task;
         try {
@@ -57,6 +67,10 @@ public class Todos {
         addWrapper(task);
     }
 
+    /**
+     * Command for adding a deadline - a task with a due date.
+     * @param rest The scanner with the remaining text in the message.
+     */
     public void cmdAddDeadline(Scanner rest) {
         final Task task;
         try {
@@ -69,6 +83,10 @@ public class Todos {
         addWrapper(task);
     }
 
+    /**
+     * Command for adding an event - a task with a time range.
+     * @param rest The scanner with the remaining text in the message.
+     */
     public void cmdAddEvent(Scanner rest) {
         final Task task;
         try {
@@ -81,6 +99,9 @@ public class Todos {
         addWrapper(task);
     }
 
+    /**
+     * Command for listing all tasks.
+     */
     public void cmdList() {
         ArrayList<String> output = new ArrayList<>(todos.size());
         output.add("Here are the tasks in your list:");
@@ -90,6 +111,10 @@ public class Todos {
         say(output);
     }
 
+    /**
+     * Command for marking a task as done.
+     * @param rest The scanner with the remaining text in the message.
+     */
     public void cmdMark(Scanner rest) {
         final int taskID;
         try {
@@ -104,6 +129,10 @@ public class Todos {
                     todos.get(taskID).toString()));
     }
 
+    /**
+     * Command for marking a task as not done.
+     * @param rest The scanner with the remaining text in the message.
+     */
     public void cmdUnmark(Scanner rest) {
         final int taskID;
         try {
@@ -118,6 +147,10 @@ public class Todos {
                 todos.get(taskID).toString()));
     }
 
+    /**
+     * Command for deleting a task.
+     * @param rest The scanner with the remaining text in the message.
+     */
     public void cmdDelete(Scanner rest) {
         final int taskID;
         try {
