@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
-    private static List<String> userCommands = new ArrayList<>();
+    private static List<Task> tasks = new ArrayList<>();
 
     public static void main(String[] args) {
         greetUser();
@@ -27,25 +27,57 @@ public class Duke {
 
     public static void askUser() {
         Scanner sc = new Scanner(System.in);
-        String userInput = sc.nextLine();
+        String userInput = sc.next();
         while (!userInput.equals("bye") && !userInput.equals("Bye")) {
             if (userInput.equals("list") || userInput.equals("List")) {
                 System.out.println("\t______________________________________________________");
-                listUserCommands();
+                listUserTasks();
                 System.out.println("\t______________________________________________________\n");
+            } else if (userInput.equals("mark") || userInput.equals("Mark")) {
+                int taskNumber = Integer.parseInt(sc.next());
+                mark(taskNumber);
+            } else if (userInput.equals("unmark") || userInput.equals("Unmark")) {
+                int taskNumber = Integer.parseInt(sc.next());
+                unmark(taskNumber);
             } else {
-                userCommands.add(userInput);
+                addUserTasks(userInput);
                 System.out.println("\t______________________________________________________");
                 System.out.println("\t" + userInput);
                 System.out.println("\t______________________________________________________\n");
             }
-            userInput = sc.nextLine();
+            userInput = sc.next();
         }
     }
 
-    public static void listUserCommands() {
-        for (int i = 0; i < userCommands.size(); i++) {
-            System.out.println("\t" + String.valueOf(i + 1) + ". " + userCommands.get(i));
+    public static void addUserTasks(String userInput) {
+        Task t = new Task(userInput);
+        tasks.add(t);
+    }
+
+    public static void listUserTasks() {
+        if (tasks.size() == 0) {
+            System.out.println("\tYou do not have any tasks!");
+        } else {
+            System.out.println("\tHere are the tasks in your list:");
+            for (int i = 0; i < tasks.size(); i++) {
+                System.out.println("\t" + (i + 1) + ". [" + tasks.get(i).getStatusIcon() + "] " + tasks.get(i).getDescription());
+            }
         }
+    }
+
+    public static void mark(int taskNumber) {
+        tasks.get(taskNumber - 1).markAsDone();
+        System.out.println("\t______________________________________________________");
+        System.out.println("\tAlright! Marked this task as done!");
+        System.out.println("\t\t[X] " + tasks.get(taskNumber - 1).getDescription());
+        System.out.println("\t______________________________________________________\n");
+    }
+
+    public static void unmark(int taskNumber) {
+        tasks.get(taskNumber - 1).markAsNotDone();
+        System.out.println("\t______________________________________________________");
+        System.out.println("\tOkay! Unmarked this task!");
+        System.out.println("\t\t[ ] " + tasks.get(taskNumber - 1).getDescription());
+        System.out.println("\t______________________________________________________\n");
     }
 }
