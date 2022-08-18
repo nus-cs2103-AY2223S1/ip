@@ -38,7 +38,7 @@ public class DukeList {
         String[] deadlineSplit = s.split(" /at ");
         try {
           newTask = new Event(deadlineSplit[0].split("event ")[1], deadlineSplit[1]);
-        } catch (IndexOutOfBoundsException e) {t
+        } catch (IndexOutOfBoundsException e) {
           throw new DukeException("An incorrect event description was entered.");
         }
         items.add(newTask);
