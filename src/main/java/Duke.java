@@ -89,7 +89,7 @@ public class Duke {
 //                arr[index] = task;
 //                index ++;
 //                System.out.println(line + "added: " + task.description + "\n" + line);
-                throw new DukeException(" ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
         }
     }
