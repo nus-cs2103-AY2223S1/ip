@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -37,7 +38,7 @@ public class Duke {
                     System.out.println(LINE + "\nHere are the tasks in your list:");
                     for (int i = 0; i < listOfInputs.size(); i++) {
                         Task curTask = listOfInputs.get(i);
-                        System.out.println((i + 1) + ".[" + curTask.getStatusIcon() + "] " + curTask.getDescription());
+                        System.out.println((i + 1) + "." + curTask.toString());
                     }
                     System.out.println(LINE);
                 }
@@ -49,7 +50,7 @@ public class Duke {
                 Task taskChosen = listOfInputs.get(taskNum);
                 taskChosen.markAsDone();
                 System.out.println(LINE + "\nOkay, I have marked this task as done: \n"
-                        + "[" + taskChosen.getStatusIcon() + "] " + taskChosen.getDescription() + LINE);
+                        + taskChosen.toString() + LINE);
                 input = sc.nextLine();
                 continue;
             // Check if user input is to unmark a task
@@ -58,9 +59,38 @@ public class Duke {
                 Task taskChosen = listOfInputs.get(taskNum);
                 taskChosen.markAsUndone();
                 System.out.println(LINE + "\nOkay, I have marked this task as not done: \n"
-                        + "[" + taskChosen.getStatusIcon() + "] " + taskChosen.getDescription() + LINE);
+                        + taskChosen.toString() + LINE);
                 input = sc.nextLine();
                 continue;
+            }
+
+            switch (inputArray[0].toUpperCase()) {
+                case "TODO":
+                    String[] taskDesc = Arrays.copyOfRange(inputArray, 1, inputArray.length);
+                    Todo newToDo = new Todo(String.join(" ", taskDesc));
+                    listOfInputs.add(newToDo);
+                    System.out.println(LINE + "\nGot it! I have added this task to your list:\n  " + newToDo.toString()
+                            + "\nNow you have " + listOfInputs.size() + " tasks in the list." + LINE);
+                    input = sc.nextLine();
+                    continue;
+                case "DEADLINE":
+                    taskDesc = Arrays.copyOfRange(inputArray, 1, inputArray.length);
+                    taskDesc = String.join(" ", taskDesc).split("/..");
+                    Deadline newDeadline = new Deadline(taskDesc[0], taskDesc[1]);
+                    listOfInputs.add(newDeadline);
+                    System.out.println(LINE + "\nGot it! I have added this task to your list:\n  " + newDeadline.toString()
+                            + "\nNow you have " + listOfInputs.size() + " tasks in the list." + LINE);
+                    input = sc.nextLine();
+                    continue;
+                case "EVENT":
+                    taskDesc = Arrays.copyOfRange(inputArray, 1, inputArray.length);
+                    taskDesc = String.join(" ", taskDesc).split("/..");
+                    Event newEvent = new Event(taskDesc[0], taskDesc[1]);
+                    listOfInputs.add(newEvent);
+                    System.out.println(LINE + "\nGot it! I have added this task to your list:\n  " + newEvent.toString()
+                            + "\nNow you have " + listOfInputs.size() + " tasks in the list." + LINE);
+                    input = sc.nextLine();
+                    continue;
             }
 
             Task newTask = new Task(input);

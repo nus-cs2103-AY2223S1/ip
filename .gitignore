@@ -21,3 +21,6 @@ src/.idea/modules.xml
 src/.idea/vcs.xml
 src/.idea/workspace.xml
 src/out/production/Individual Project/Task.class
+src/out/production/Individual Project/Deadline.class
+src/out/production/Individual Project/Event.class
+src/out/production/Individual Project/Todo.class
