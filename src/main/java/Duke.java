@@ -1,20 +1,9 @@
-//public class Duke {
-//    public static void main(String[] args) {
-//        String logo = " ____        _        \n"
-//                + "|  _ \\ _   _| | _____ \n"
-//                + "| | | | | | | |/ / _ \\\n"
-//                + "| |_| | |_| |   <  __/\n"
-//                + "|____/ \\__,_|_|\\_\\___|\n";
-//        System.out.println("Hello from\n" + logo);
-//    }
-//}
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
 
-    public static ArrayList<String> tasks = new ArrayList<>();
+    public static ArrayList<Task> tasks = new ArrayList<>();
 
     private Scanner sc = new Scanner(System.in);
 
@@ -33,6 +22,12 @@ public class Duke {
                 exitBot = true;
             } else if (input.equals("list")) {
                 listTasks();
+            } else if (input.startsWith("mark ")) {
+                int taskNum = Integer.parseInt(input.replace("mark ", ""));
+                markAsDone(taskNum);
+            } else if (input.startsWith("unmark ")) {
+                int taskNum = Integer.parseInt(input.replace("unmark ", ""));
+                markAsUndone(taskNum);
             } else {
                 addTask(input);
             }
@@ -41,15 +36,32 @@ public class Duke {
         exitMessage();
     }
 
+    public void markAsDone(int taskNum) {
+        tasks.get(taskNum - 1).markAsDone();
+        linePrint();
+        System.out.println("\tNice! I've marked this task as done:\n" +
+                "\t[" + tasks.get(taskNum - 1).getStatusIcon() + "] " + tasks.get(taskNum - 1).description);
+        linePrint();
+    }
+
+    public void markAsUndone(int taskNum) {
+        tasks.get(taskNum - 1).markAsUndone();
+        linePrint();
+        System.out.println("\tOK, I've marked this task as not done yet:\n" +
+                "\t[" + tasks.get(taskNum - 1).getStatusIcon() + "] " + tasks.get(taskNum - 1).description);
+        linePrint();
+    }
+
     public void addTask(String input) {
-        tasks.add(input);
+        tasks.add(new Task(input));
         printMessage("added: " + input);
     }
 
     public void listTasks() {
         linePrint();
+        System.out.println("\tHere are the tasks in your list:");
         for (int i = 0; i < tasks.size(); i++) {
-            System.out.println("\t" + (i + 1) + ". " + tasks.get(i));
+            System.out.println("\t" + (i + 1) + ". [" + tasks.get(i).getStatusIcon() + "] " + tasks.get(i).description);
         }
         linePrint();
     }
