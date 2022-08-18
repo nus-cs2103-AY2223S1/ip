@@ -78,9 +78,9 @@ public class Duke {
             d.systemMessage(2, d, newTask);
             puke(sc,d);
         } else {
-            //System.out.println("I am unable to Process that at the moment");
-            //puke(sc, d);
-            throw new DukeException("OOPS!!! I'm sorry, but I dont't know what that means");
+            throw new DukeException("    ____________________________________________________________\n     " +
+                    "OOPS!!! I'm sorry, but I dont't know what that means\n" +
+                    "    ____________________________________________________________");
         }
     }
 
@@ -97,7 +97,9 @@ public class Duke {
         }
 
         if (result.length() == 0) {
-            throw new DukeException("OOPS!!! The Description of a " + type + " cannot be empty.");
+            throw new DukeException("    ____________________________________________________________\n" +
+                    "     OOPS!!! The Description of a " + type + " cannot be empty.\n" +
+                    "    ____________________________________________________________");
         }
         return result;
     }
