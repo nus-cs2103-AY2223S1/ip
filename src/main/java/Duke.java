@@ -1,11 +1,13 @@
 import java.util.*;
+import java.lang.Enum;
 
 public class Duke {
+
     public static void main(String[] args) {
 
         //Initialize Scanner and ToDoList
         Scanner sc = new Scanner(System.in);
-        ToDoList toDoList = new ToDoList();
+        ToDoList list = new ToDoList();
 
         //Welcome message
         String logo = "*\\(^o^)/*";
@@ -15,55 +17,40 @@ public class Duke {
         String response = sc.nextLine();
 
         while (!response.equals("bye")) {
+            try {
+                check(response);
+                list.execute(response);
+                response = sc.nextLine();
+            } catch (DukeException de) {
+                System.out.print(de.getMessage() + "\n");
+                response = sc.nextLine();
+            }
+        }
+
+        System.out.print("Awww see you soon!!");
+        sc.close();
+    }
+
+        public static void check(String response) throws DukeException {
             if (response.equals("list")) {
-                toDoList.print();
             } else {
                 String[] arr = response.split(" ");
-                String firstWord = arr[0];
-                int len = firstWord.length();
-                String secondPart = response.substring(len + 1);
-                switch (firstWord) {
-                    case "mark": {
-                        Integer index = Integer.valueOf(secondPart);
-                        //should handle non-int
-                        toDoList.mark(index);
-                        break;
-                    }
-                    case "unmark": {
-                        Integer index = Integer.valueOf(secondPart);
-                        toDoList.unMark(index);
-                        break;
-                    }
-                    case "deadline": {
-                        String[] substrings = secondPart.split(" /by ");
-                        Deadlines d = new Deadlines(substrings[0], substrings[1]);
-                        toDoList.addTask(d);
-                        break;
-                    }
-                    case "event": {
-                        String[] substrings = secondPart.split(" /at ");
-                        Events e = new Events(substrings[0], substrings[1]);
-                        toDoList.addTask(e);
-                        break;
-                    }
-                    case "todo": {
-                        ToDos t = new ToDos(secondPart);
-                        toDoList.addTask(t);
-                        break;
-                    }
-                    default: {
-                        Task t = new Task(response);
-                        toDoList.addTask(t);
-                        break;
-                    }
+                switch (arr[0]) {
+                    case "mark":
+                    case "unmark":
+                    case "deadline":
+                    case "todo":
+                    case "event":
+                        if (arr.length == 1) {
+                            throw new EmptyDescription(arr[0]);
+                        } else {
+                            break;
+                        }
+                    default:
+                        throw new InvalidInstruction();
                 }
             }
-            response = sc.nextLine();
         }
-        System.out.println("Awww see you soon!");
-        sc.close();
-
-    }
 
 }
 
