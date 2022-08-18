@@ -67,23 +67,29 @@ public class Duke {
                     Duke.ListPrint(stored_items);
                 } else {
                     String temp[] = str.split(" ", 2);
-                    if (temp[0].equals("mark")) {
-                        int index = Integer.parseInt(temp[1]) - 1;
-                        Task curr = stored_items.get(index);
-                        if (!curr.isDone) {
-                            curr.isDone = true;
-                            Duke.TaskStateChangePrint(curr, true);
-                        }
-                    } else if (temp[0].equals("unmark")) {
-                        int index = Integer.parseInt(temp[1]) - 1;
-                        Task curr = stored_items.get(index);
-                        if (curr.isDone) {
-                            curr.isDone = false;
-                            Duke.TaskStateChangePrint(curr, false);
-                        }
-                    } else {
-                        stored_items.add(new Task(str));
-                        Duke.FormatPrint(" added: " + str);
+                    int index;
+                    Task curr;
+                    switch (temp[0]) {
+                        case "mark":
+                            index = Integer.parseInt(temp[1]) - 1;
+                            curr = stored_items.get(index);
+                            if (!curr.isDone) {
+                                curr.isDone = true;
+                                Duke.TaskStateChangePrint(curr, true);
+                            }
+                            break;
+
+                        case "unmark":
+                            index = Integer.parseInt(temp[1]) - 1;
+                            curr = stored_items.get(index);
+                            if (curr.isDone) {
+                                curr.isDone = false;
+                                Duke.TaskStateChangePrint(curr, false);
+                            }
+
+                        default:
+                            stored_items.add(new Task(str));
+                            Duke.FormatPrint(" added: " + str);
                     }
                 }
 //                Duke.FormatPrint(str);
