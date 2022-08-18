@@ -30,6 +30,22 @@ public class Task {
         this.isDone = false;
     }
 
+    public static void delete(int taskNumber) {
+        if (taskNumber < 0 || taskNumber >= Task.count()) {
+            System.out.println("\tInvalid Task Number!");
+        } else {
+            Task deletedTask = tasks.remove(taskNumber);
+            System.out.println("\tNoted. I have removed the following task:");
+            System.out.println("\t\t" + deletedTask);
+            System.out.println(Task.getCountInWords());
+        }
+    }
+
+    public static String getCountInWords() {
+        return String.format("\tNow you have %d task%s in the list",
+                Task.count(), Task.count() > 1 ? "s" : "");
+    }
+
     @Override
     public String toString() {
         return String.format("[%s] %s", this.getStatusIcon(), this.description);
@@ -42,8 +58,7 @@ public class Task {
         tasks.add(task);
         System.out.println(String.format("\tGotcha. I have added this task:"));
         System.out.println("\t\t" + task); // exploiting polymorphism
-        System.out.println(String.format("\tNow you have %d task%s in the list",
-                Task.count(), Task.count() > 1 ? "s" : ""));
+        System.out.println(Task.getCountInWords());
     }
 
     public static void listTasks() {

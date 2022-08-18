@@ -15,6 +15,8 @@ public class Duke {
 
     private static final String MARK_REGEX = "mark [0-9]+";
     private static final String UNMARK_REGEX = "unmark [0-9]+";
+    private static final String DELETE_REGEX = "delete [0-9]+";
+
     private static final String TODO_REGEX = "todo[a-z[A-Z][0-9]_ :-]*";
     private static final String DEADLINE_REGEX = "deadline[a-z[A-Z][0-9]_ ]* /by [a-z[A-Z][0-9]_ :-]*";
     private static final String EVENT_REGEX = "event[a-z[A-Z][0-9]_ ]* /at [a-z[A-Z][0-9]_ :-]*";
@@ -69,6 +71,10 @@ public class Duke {
                 } catch (Exception e) {
                     System.out.println(String.format("\t%s", e.getMessage()));
                 }
+            } else if (Pattern.matches(DELETE_REGEX, command)){
+                String temp = command.replaceAll("[^0-9]", ""); // extracting the digits
+                int taskNumber = parseInt(temp);
+                Task.delete(taskNumber - 1);
             } else {
                 System.out.println("\tOOPS! I've no idea what you're talking about! :-(");
             }
