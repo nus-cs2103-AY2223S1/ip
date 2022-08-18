@@ -36,7 +36,7 @@ public class Duke {
                     for (int i = 0; i < list.size(); i++) {
                         System.out.println(i + 1 + ". " + list.get(i));
                     }
-                } else if (input.startsWith("mark ") || input.startsWith("unmark ")) {
+                }  else if (input.startsWith("mark ") || input.startsWith("unmark ") || input.startsWith("delete ")) {
                     try {
                         if (input.startsWith("mark ")) {
                             // Parse substring starting from index 5
@@ -45,13 +45,20 @@ public class Duke {
                             t.markAsDone();
                             System.out.println("Nice! I've marked this tasks as done:");
                             System.out.println(t);
-                        } else {
+                        } else if (input.startsWith("unmark ")) {
                             // Parse substring starting from index 7
                             int taskNum = Integer.parseInt(input.substring(7)) - 1;
                             Task t = list.get(taskNum);
                             t.unmarkAsDone();
                             System.out.println("OK, I've marked this task as not done yet:");
                             System.out.println(t);
+                        } else if (input.startsWith("delete ")) {
+                            // Parse substring starting from index 7
+                            int taskNum = Integer.parseInt(input.substring(7)) - 1;
+                            Task t = list.remove(taskNum);
+                            System.out.println("Noted. I've removed this task:");
+                            System.out.println(t);
+                            System.out.printf("Now you have %d task(s) in the list.%n", list.size());
                         }
                     } catch (NumberFormatException | IndexOutOfBoundsException e) {
                         int listSize = list.size();
