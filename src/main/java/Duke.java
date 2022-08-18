@@ -89,16 +89,20 @@ public class Duke {
 
     public static void mark(String[] arr) {
         Task t = store[Integer.parseInt(arr[1]) - 1];
-        printTab("Nice! I've marked this task as done:");
         t.mark();
+        printTab(LINEBREAK);
+        printTab("Nice! I've marked this task as done:");
         printTab("  " + t);
+        printTab(LINEBREAK);
     }
 
     public static void unMark(String[] arr) {
         Task t = store[Integer.parseInt(arr[1]) - 1];
-        printTab("OK, I've marked this task as not done yet:");
         t.unMark();
+        printTab(LINEBREAK);
+        printTab("OK, I've marked this task as not done yet:");
         printTab("  " + t);
+        printTab(LINEBREAK);
     }
 
     public static void todo(String[] arr) {
