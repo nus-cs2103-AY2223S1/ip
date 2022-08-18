@@ -2,13 +2,10 @@ import java.util.Scanner;
 
 public class Duke {
     public static void main(String[] args) {
-        class Task {
+
+        abstract class Task {
             private boolean isDone = false;
             private String item;
-
-            public Task(String item){
-                this.item = item;
-            }
 
             public void setDone() {
                 this.isDone = true;
@@ -22,9 +19,53 @@ public class Duke {
                 return (isDone ? "[X] " : "[ ] "); // mark done task with X
             }
 
-            public String getTask() {
-                return this.getStatusIcon() + this.item;
+            public abstract String getTask();
+
+            public void setItem(String item) {
+                this.item = item;
             }
+
+            public String getItem() {
+                return this.item;
+            }
+        }
+
+        class Todo extends Task {
+            public Todo(String item){
+                this.setItem(item);
+            }
+
+            public String getTask() {
+                return "[T] " + this.getStatusIcon() + this.getItem();
+            }
+        }
+
+        class Deadline extends Task {
+            private String dateTime;
+
+            public Deadline(String item, String dateTime) {
+                this.setItem(item);
+                this.dateTime = dateTime;
+            }
+
+            public String getTask() {
+                return "[D] " + this.getStatusIcon() + this.getItem() + " (by: " + this.dateTime + ")";
+            }
+
+        }
+
+        class Event extends Task {
+            private String dateTime;
+
+            public Event(String item, String dateTime) {
+                this.setItem(item);
+                this.dateTime = dateTime;
+            }
+
+            public String getTask() {
+                return "[E] " + this.getStatusIcon() + this.getItem() + " (at: " + this.dateTime + ")";
+            }
+
         }
 
         String logo = " ____        _        \n"
@@ -65,10 +106,43 @@ public class Duke {
                 System.out.println("OK, I've marked this task as not done yet:");
                 System.out.println(list[index].getTask());
             }
-            else{
-                list[count] = new Task(item);
+            else if(item.length() > 8 &&  item.substring(0,8).equals("deadline")) {
+                int slash = 0;
+                for(int i = 0;  i < item.length(); i++) {
+                    if (item.charAt(i) == '/') {
+                        slash = i;
+                        break;
+                    }
+                }
+                list[count] = new Deadline(item.substring(9, slash - 1), item.substring(slash + 4));
+                System.out.println("Got it. I've added this task:");
+                System.out.println(list[count].getTask());
+                System.out.println("Now you have " + Integer.toString(count + 1) + " tasks in the list");
                 count = count + 1;
-                System.out.println("Duke: added: " + item);
+            }
+            else if(item.length() > 5 &&  item.substring(0,5).equals("event")){
+                int slash = 0;
+                for(int i = 0;  i < item.length(); i++) {
+                    if (item.charAt(i) == '/') {
+                        slash = i;
+                        break;
+                    }
+                }
+                list[count] = new Event(item.substring(6, slash - 1), item.substring(slash + 4));
+                System.out.println("Got it. I've added this task:");
+                System.out.println(list[count].getTask());
+                System.out.println("Now you have " + Integer.toString(count + 1) + " tasks in the list");
+                count = count + 1;
+            }
+            else if(item.length() > 4 &&  item.substring(0,4).equals("todo")) {
+                list[count] = new Todo(item.substring(5));
+                System.out.println("Got it. I've added this task:");
+                System.out.println(list[count].getTask());
+                System.out.println("Now you have " + Integer.toString(count + 1) + " tasks in the list");
+                count = count + 1;
+            }
+            else{
+                System.out.println("Invalid syntax");
             }
             System.out.print("You: ");
             item = scan.nextLine();
