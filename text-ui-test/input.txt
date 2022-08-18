@@ -7,11 +7,13 @@ mark 1
 mark 3
 list
 unmark 3
+delete 1
 unmark 2
 list
 unmark 100
 unmark task
 todo
+delete 999
 deadline task with no deadline
 event task with no timing
 hello

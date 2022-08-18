@@ -8,14 +8,14 @@ public class Duke {
     public static void displayList() {
         System.out.println("Here are the tasks in your list.");
         for (int i = 0; i < tasks.size(); i++) {
-            System.out.println((i + 1) + ". " + tasks.get(i).toString());
+            System.out.println("\t" + (i + 1) + ". " + tasks.get(i).toString());
         }
     }
 
     public static void addTask(Task task) {
         tasks.add(task);
         System.out.println("Gotcha! I've added this task:");
-        System.out.println(task.toString());
+        System.out.println("\t" + task);
         System.out.println("Now you have " + tasks.size() + " tasks in your list.");
     }
 
