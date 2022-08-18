@@ -95,11 +95,21 @@ public class Duke {
      *
      * @param input A String to be added to the list.
      */
-    public static void addDeadline(String input) {
+    public static void addDeadline(String input) throws DukeException {
         // Get description and date of deadline
         int slashIdx = input.indexOf("/by");
+
+        // If there is no /by, throw an error
+        if (slashIdx == -1 || slashIdx > input.length() - 5) {
+            throw new DukeException("Please set a due date!");
+        }
+
         String desc = input.substring(0, slashIdx);
         String by = input.substring((slashIdx + 4));
+
+        if (desc.length() == 0) {
+            throw new DukeException("The description of a deadline cannot be empty.");
+        }
 
         // Instantiate task object
         Task newDeadline = new Deadline(desc, by);
