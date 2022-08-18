@@ -8,7 +8,6 @@ public class DukeException extends Exception {
 
     @Override
     public String toString() {
-        String line = "    ____________________________________________________________";
-        return line + "\n     " + message + "\n" + line;
+        return "Oops! " + message;
     }
 }

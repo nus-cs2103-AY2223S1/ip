@@ -1,5 +1,5 @@
     ____________________________________________________________
-     Hello! I'm Duke
+     Hello! I'm Duke.
      What can I do for you?
     ____________________________________________________________
     ____________________________________________________________
@@ -10,12 +10,12 @@
     ____________________________________________________________
      Got it. I've added this task:
        [D][ ] do homework (by: Sunday)
-     Now you have 2 tasks in the list
+     Now you have 2 tasks in the list.
     ____________________________________________________________
     ____________________________________________________________
      Got it. I've added this task:
        [E][ ] meeting (at: 10-12pm Monday)
-     Now you have 3 tasks in the list
+     Now you have 3 tasks in the list.
     ____________________________________________________________
     ____________________________________________________________
      Here are the tasks in your list
@@ -42,47 +42,47 @@
      3.[E][ ] meeting (at: 10-12pm Monday)
     ____________________________________________________________
     ____________________________________________________________
-     Please specify task number to mark.
+     Oops! Please specify task number to mark.
     ____________________________________________________________
     ____________________________________________________________
-     Please specify task number to unmark.
+     Oops! Please specify task number to unmark.
     ____________________________________________________________
     ____________________________________________________________
-     I'm sorry, but I don't know what that means!
+     Oops! I'm sorry, but I don't know what that means!
     ____________________________________________________________
     ____________________________________________________________
-     I'm sorry, but I don't know what that means!
+     Oops! I'm sorry, but I don't know what that means!
     ____________________________________________________________
     ____________________________________________________________
-     The description of a todo cannot be empty
+     Oops! The description of a task cannot be empty.
     ____________________________________________________________
     ____________________________________________________________
-     The description of a deadline cannot be empty.
+     Oops! The description of a task cannot be empty.
     ____________________________________________________________
     ____________________________________________________________
-     Please also specify the date and time.
+     Oops! Please also specify the date and time.
     ____________________________________________________________
     ____________________________________________________________
-     The description of a event cannot be empty
+     Oops! The description of a task cannot be empty.
     ____________________________________________________________
     ____________________________________________________________
-     Please also specify the date and time.
+     Oops! Please also specify the date and time.
     ____________________________________________________________
     ____________________________________________________________
      Noted. I've removed this task:
        [D][ ] do homework (by: Sunday)
-     Now you have 2 tasks in the list
+     Now you have 2 tasks in the list.
     ____________________________________________________________
     ____________________________________________________________
-     Please specify task number to delete.
+     Oops! Please specify task number to delete.
     ____________________________________________________________
     ____________________________________________________________
-     Invalid task number.
+     Oops! Invalid task number.
     ____________________________________________________________
     ____________________________________________________________
      Noted. I've removed this task:
        [T][X] go buy dinner
-     Now you have 1 tasks in the list
+     Now you have 1 tasks in the list.
     ____________________________________________________________
     ____________________________________________________________
      Here are the tasks in your list
@@ -91,7 +91,7 @@
     ____________________________________________________________
      Noted. I've removed this task:
        [E][ ] meeting (at: 10-12pm Monday)
-     Now you have 0 tasks in the list
+     Now you have 0 tasks in the list.
     ____________________________________________________________
     ____________________________________________________________
      Bye. Hope to see you again soon!
