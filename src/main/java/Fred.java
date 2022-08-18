@@ -2,16 +2,16 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Fred {
-    public static void list(ArrayList<String> arrayList) {
-        for (String s : arrayList) {
-            System.out.println("Fred: " + (arrayList.indexOf(s) + 1) + ". " + s);
+    public static void list(ArrayList<Task> arrayList) {
+        for (Task t : arrayList) {
+            System.out.println("Fred: " + (arrayList.indexOf(t) + 1) + ". " + t.getName());
         }
     }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String input;
-        ArrayList<String> storage = new ArrayList<>();
+        ArrayList<Task> storage = new ArrayList<>();
 
         System.out.println("Fred: Hello! I'm Fred!");
         System.out.println("Fred: What can I do for you?");
@@ -30,7 +30,8 @@ public class Fred {
                     Fred.list(storage);
                     break;
                 default:
-                    storage.add(input);
+                    Task newTask = new Task(input);
+                    storage.add(newTask);
                     System.out.println("Fred: added \"" + input + "\"");
             }
         }
