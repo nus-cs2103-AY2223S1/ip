@@ -51,9 +51,19 @@ public class Duke {
                     String date = splitStr[1].replace("at", "").trim();
                     newTask = new Event(splitStr[0].replace("event", "").trim(), date);
                 } else if (input.contains("todo")) {
-                    newTask = new Todo(input.replace("todo", "").trim());
+                    try {
+                        newTask = new Todo(input.replace("todo", "").trim());
+                    } catch (DukeException e) {
+                        addTask = false;
+                        System.out.println(e);
+                    }
                 } else {
                     addTask = false;
+                    try {
+                        throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
+                    } catch (DukeException e) {
+                        System.out.println(e);
+                    }
                 }
 
                 if (addTask) {
