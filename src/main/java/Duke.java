@@ -28,6 +28,11 @@ public class Duke {
                     System.out.println("  " + String.valueOf(i + 1) + ". " + storedTasks.get(i));
                 }
                 System.out.println(HORIZONTAL_LINE);
+            } else if (command.split(" ").length == 2 && command.split(" ")[0].equals("mark")) {
+                Integer taskNumber = Integer.parseInt(command.split(" ")[1]) - 1;
+                storedTasks.get(taskNumber).markAsDone();
+                System.out.println(HORIZONTAL_LINE + "\n  Nice! I've marked this task as done:\n"
+                        + storedTasks.get(taskNumber) + "\n" + HORIZONTAL_LINE);
             } else {
                 System.out.println(HORIZONTAL_LINE + "\n  added: " + command + "\n" + HORIZONTAL_LINE);
                 storedTasks.add(new Task(command));
