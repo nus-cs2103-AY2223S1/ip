@@ -81,7 +81,7 @@ public class Duke {
 
     private void markTaskDone(int index) {
         if (index < 0 || index >= taskList.size()) {
-
+            System.out.println(); // error message
         } else {
             taskList.get(index).markDone();
         }
@@ -89,7 +89,7 @@ public class Duke {
 
     private void markTaskUndone(int index) {
         if (index < 0 || index >= taskList.size()) {
-
+            System.out.println(); // error message
         } else {
             taskList.get(index).markUndone();
         }
