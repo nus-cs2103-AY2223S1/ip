@@ -48,9 +48,27 @@ public class Hazell {
                 Task task = taskList.get(index);
                 task.markAsUndone();
                 reply(String.format("OK, I've marked this task as not done yet:\n\t%s", task.toString()));
+            } else if (userinput.startsWith("todo ")) {
+                String description = userinput.split(" ", 2)[1];
+                taskList.add(new ToDo(description));
+                reply(String.format("Got it. I've added this task:\n\t%s\nNow you have %d tasks in the list.",
+                        description, taskList.size()));
+            } else if (userinput.startsWith("deadline ")) {
+                String firstCommandOnwards = userinput.split(" ", 2)[1];
+                String description = firstCommandOnwards.split("/")[0].strip();
+                String time = firstCommandOnwards.split("/")[1].split(" ", 2)[1].strip();
+                taskList.add(new Deadline(description, time));
+                reply(String.format("Got it. I've added this task:\n\t%s\nNow you have %d tasks in the list.",
+                        description, taskList.size()));
+            } else if (userinput.startsWith("event ")) {
+                String firstCommandOnwards = userinput.split(" ", 2)[1];
+                String description = firstCommandOnwards.split("/")[0].strip();
+                String time = firstCommandOnwards.split("/")[1].split(" ", 2)[1].strip();
+                taskList.add(new Event(description, time));
+                reply(String.format("Got it. I've added this task:\n\t%s\nNow you have %d tasks in the list.",
+                        description, taskList.size()));
             } else {
-                taskList.add(new ToDo(userinput));
-                reply(String.format("added: %s", userinput));
+                reply(String.format("Unknown command :("));
             }
         }
     }
