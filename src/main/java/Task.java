@@ -1,8 +1,8 @@
-public class Event {
+public class Task {
     private String description;
     private boolean done = false;
 
-    public Event(String command) {
+    public Task(String command) {
         this.description = command;
     }
 

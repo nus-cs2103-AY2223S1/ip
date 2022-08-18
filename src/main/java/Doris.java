@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Doris {
-    ArrayList<Event> list = new ArrayList<Event>();
+    ArrayList<Task> list = new ArrayList<Task>();
 
     public void start (){
         String logo = "                                                      \n" +
@@ -48,7 +48,7 @@ public class Doris {
                 System.out.println("Eh don't laze leh go do go do");
                 System.out.println("What else you want?");
             } else {
-                list.add(new Event(command));
+                list.add(new Task(command));
                 System.out.println("Orh I remind you later to " + command);
                 System.out.println("What else you want?");
             }
