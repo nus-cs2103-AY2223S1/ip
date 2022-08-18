@@ -5,9 +5,6 @@ public class Duke {
     private static boolean END;
     private static Memory memory;
 
-    enum Level {
-        bye, todo, deadline
-    }
     /*
     Wraps the text with lines on top and below
      */
