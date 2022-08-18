@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Pixel {
@@ -22,80 +23,94 @@ public class Pixel {
         String userInput = myScanner.nextLine();  // Read user input
         int indexOfSlash = userInput.indexOf("/");
 
-        if (userInput.equals("bye")) {
-            System.out.println("Bye. Hope to see you again soon!");
+        try {
+            if (userInput.equals("bye")) {
+                System.out.println("Bye. Hope to see you again soon!");
 
-        } else if (userInput.startsWith("todo ", 0)) {
-            String temp = userInput.substring(indexOfSlash == -1 ? 5 : (indexOfSlash + 1), userInput.length());
-            Task newToDo = new ToDo(userInput.substring(5, indexOfSlash == -1 ? userInput.length() : indexOfSlash), temp); // Stores user input
-            inputTasks[count] = newToDo;
-            count += 1;
-            System.out.println("Got it. I've added this task:");
-            System.out.println(newToDo);
-            System.out.println("Now you have " + this.count + " tasks in the list.");
-            run();
+            } else if (userInput.startsWith("todo ", 0)) {
+                String temp = userInput.substring(indexOfSlash == -1 ? 5 : (indexOfSlash + 1), userInput.length());
+                Task newToDo = new ToDo(userInput.substring(5, indexOfSlash == -1 ? userInput.length() : indexOfSlash), temp); // Stores user input
+                inputTasks[count] = newToDo;
+                count += 1;
+                System.out.println("Got it. I've added this task:");
+                System.out.println(newToDo);
+                System.out.println("Now you have " + this.count + " tasks in the list.");
+                run();
 
-        } else if (userInput.startsWith("deadline ", 0)) {
-            String temp = userInput.substring(indexOfSlash == -1 ? 9 : (indexOfSlash + 1), userInput.length());
-            Task newDeadline = new Deadline(userInput.substring(9, indexOfSlash == -1 ? userInput.length() : indexOfSlash), temp); // Stores user input
-            inputTasks[count] = newDeadline;
-            count += 1;
-            System.out.println("Got it. I've added this task:");
-            System.out.println(newDeadline);
-            System.out.println("Now you have " + this.count + " tasks in the list.");
-            run();
+            } else if (userInput.startsWith("deadline ", 0)) {
+                String temp = userInput.substring(indexOfSlash == -1 ? 9 : (indexOfSlash + 1), userInput.length());
+                Task newDeadline = new Deadline(userInput.substring(9, indexOfSlash == -1 ? userInput.length() : indexOfSlash), temp); // Stores user input
+                inputTasks[count] = newDeadline;
+                count += 1;
+                System.out.println("Got it. I've added this task:");
+                System.out.println(newDeadline);
+                System.out.println("Now you have " + this.count + " tasks in the list.");
+                run();
 
-        } else if (userInput.startsWith("event ", 0)) {
-            String temp = userInput.substring(indexOfSlash == -1 ? 6 : (indexOfSlash + 1), userInput.length());
-            Task newEvent = new Event(userInput.substring(6, indexOfSlash == -1 ? userInput.length() : indexOfSlash), temp); // Stores user input
-            inputTasks[count] = newEvent;
-            count += 1;
-            System.out.println("Got it. I've added this task:");
-            System.out.println(newEvent);
-            System.out.println("Now you have " + this.count + " tasks in the list.");
-            run();
+            } else if (userInput.startsWith("event ", 0)) {
+                String temp = userInput.substring(indexOfSlash == -1 ? 6 : (indexOfSlash + 1), userInput.length());
+                Task newEvent = new Event(userInput.substring(6, indexOfSlash == -1 ? userInput.length() : indexOfSlash), temp); // Stores user input
+                inputTasks[count] = newEvent;
+                count += 1;
+                System.out.println("Got it. I've added this task:");
+                System.out.println(newEvent);
+                System.out.println("Now you have " + this.count + " tasks in the list.");
+                run();
 
-        } else if (userInput.startsWith("mark ", 0)) {
-            // truncate the front part
-            String temp = userInput.substring(5, userInput.length());
-            // System.out.println(temp);
-            int indexToChange = Character.getNumericValue(temp.charAt(0));
-            // System.out.println(indexToChange);
-            if ((indexToChange > 0) || (indexToChange < 100)) {
-                inputTasks[indexToChange - 1].markAsDone();
+            } else if (userInput.startsWith("mark ", 0)) {
+                // truncate the front part
+                String temp = userInput.substring(5, userInput.length());
+                // System.out.println(temp);
+                int indexToChange = Character.getNumericValue(temp.charAt(0));
+                // System.out.println(indexToChange);
+                if ((indexToChange > 0) || (indexToChange < 100)) {
+                    inputTasks[indexToChange - 1].markAsDone();
+                }
+                System.out.println(" Nice! I've marked this task as done:");
+                System.out.println(inputTasks[indexToChange - 1]);
+                run();
+
+            } else if (userInput.startsWith("unmark ", 0)) {
+                // truncate the front part
+                String temp = userInput.substring(7, userInput.length());
+                // System.out.println(temp);
+                int indexToChange = Character.getNumericValue(temp.charAt(0));
+                // System.out.println(indexToChange);
+                if ((indexToChange > 0) || (indexToChange < 100)) {
+                    inputTasks[indexToChange - 1].markAsNotDone();
+                }
+                System.out.println("OK, I've marked this task as not done yet:");
+                System.out.println(inputTasks[indexToChange - 1]);
+                run();
+
+            } else if (userInput.equals("list")) {
+                // System.out.println(inputMemory.length);
+                System.out.println("Here are the tasks in your list:");
+                for (int i = 0; i < count; i++) {
+                    Task currentTask = inputTasks[i];
+                    System.out.println((i + 1) + ". " + currentTask);
+                }
+                run();
+
+            } else {
+                inputTasks[count] = new Task(userInput); // Stores user input
+                System.out.println(userInput);  // Output user input
+                count += 1;
+                run();
             }
-            System.out.println(" Nice! I've marked this task as done:");
-            System.out.println(inputTasks[indexToChange - 1]);
-            run();
 
-        } else if (userInput.startsWith("unmark ", 0)) {
-            // truncate the front part
-            String temp = userInput.substring(7, userInput.length());
-            // System.out.println(temp);
-            int indexToChange = Character.getNumericValue(temp.charAt(0));
-            // System.out.println(indexToChange);
-            if ((indexToChange > 0) || (indexToChange < 100)) {
-                inputTasks[indexToChange - 1].markAsNotDone();
-            }
-            System.out.println("OK, I've marked this task as not done yet:");
-            System.out.println(inputTasks[indexToChange - 1]);
-            run();
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("caught IOOBE");
 
-        } else if (userInput.equals("list")) {
-            // System.out.println(inputMemory.length);
-            System.out.println("Here are the tasks in your list:");
-            for (int i = 0; i < count; i++) {
-                Task currentTask = inputTasks[i];
-                System.out.println((i + 1) + ". " + currentTask);
-            }
-            run();
+        } catch (StackOverflowError e) {
+            System.out.println("caught Stack Overflow Error");
 
-        } else {
-            inputTasks[count] = new Task(userInput); // Stores user input
-            System.out.println(userInput);  // Output user input
-            count += 1;
+        } finally {
+            // clean up
+            System.out.println("cleaning up");
             run();
         }
+
     }
 
     public static void main(String[] args) {
