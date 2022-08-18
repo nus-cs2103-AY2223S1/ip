@@ -26,6 +26,17 @@ public class Duke {
                 "     Got it. I've added this task:";
         System.out.println(todolist);
 
+        String todoEmpty = "____________________________________________________________\n" +
+                "     ☹ OOPS!!! The description of a todo cannot be empty.\n" +
+                "____________________________________________________________\n";
+        System.out.println(todoEmpty);
+
+        String unkown = "____________________________________________________________\n" +
+                "     ☹ OOPS!!! I'm sorry, but I don't know what that means :-(\n" +
+                "____________________________________________________________\n";
+
+        System.out.println(unkown);
+
 
     }
 }
