@@ -7,21 +7,23 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    public static void checkDescription(String[] splitInput) throws DukeException {
+        if (splitInput.length == 1)
+            throw new DukeException("Please enter the description when creating new task!");
+    }
+
     public static Task createTask(String input) throws DukeException {
         String[] splitInput = input.split(" ", 2);
 
-        switch (splitInput[0]) {
-            case "todo":
-                if (splitInput.length == 1)
-                    throw new DukeException("Please enter the description when creating new task!");
+        switch (Command.valueOf(splitInput[0])) {
+            case todo:
+                checkDescription(splitInput);
                 return Todo.createTodo(splitInput[1]);
-            case "deadline":
-                if (splitInput.length == 1)
-                    throw new DukeException("Please enter the description when creating new task!");
+            case deadline:
+                checkDescription(splitInput);
                 return Deadline.createDeadline(splitInput[1]);
-            case "event":
-                if (splitInput.length == 1)
-                    throw new DukeException("Please enter the description when creating new task!");
+            case event:
+                checkDescription(splitInput);
                 return Event.createEvent(splitInput[1]);
             default:
                 throw new DukeException("I'm sorry but I don't know what that means.");

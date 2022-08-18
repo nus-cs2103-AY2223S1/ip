@@ -54,23 +54,23 @@ public class Duke {
             int taskIndex;
 
             try {
-                switch (input.split(" ")[0]) {
-                    case "bye":
+                switch (Command.valueOf(input.split(" ")[0])) {
+                    case bye:
                         hasNextInput = false;
                         scanner.close();
                         break;
-                    case "list":
+                    case list:
                         displayList();
                         break;
-                    case "mark":
+                    case mark:
                         taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
                         changeTaskStatus(taskIndex, true);
                         break;
-                    case "unmark":
+                    case unmark:
                         taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
                         changeTaskStatus(taskIndex, false);
                         break;
-                    case "delete":
+                    case delete:
                         taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
                         removeTask(taskIndex);
                         break;
@@ -80,6 +80,8 @@ public class Duke {
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Please Enter a valid task number!");
+            } catch (IllegalArgumentException e) {
+                System.out.println("🙁 OOPS! I'm sorry but I don't know what that means.");
             } catch (DukeException e) {
                 System.out.println(e.toString());
             }
