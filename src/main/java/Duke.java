@@ -11,28 +11,45 @@ public class Duke {
             "What can I do for you?\n" + horLine;
 
     private void addToList(String taskName) {
-        //if task is a todo
-        if (taskName.matches("\\btodo\\s.*\\b")){
-            Task newTask = new ToDo(taskName.substring(5));
-            tasks.add(newTask);
-            System.out.println(horLine + "\n\tGot it. I've added this task:\n" + "\t" + newTask.toString() );
+        try{
+            //if task is a todo
+            if (taskName.matches("\\btodo\\s.*\\b")){
+                Task newTask = new ToDo(taskName.substring(5));
+                tasks.add(newTask);
+                System.out.println(horLine + "\n\tGot it. I've added this task:\n" + "\t" + newTask.toString());
+                System.out.println("\tNow you have " + tasks.size() + " tasks in the list." + "\n" + horLine);
+
+            }
+            //if task is an event
+            else if (taskName.matches("\\bevent\\s.*\\s/at\\s.*\\b")){
+                String des = taskName.substring(6,taskName.indexOf("/")-1);
+                String at = taskName.substring(taskName.indexOf("/")+4,taskName.length());
+                Task newTask = new Event(des,at);
+                tasks.add(newTask);
+                System.out.println(horLine + "\n\tGot it. I've added this task:\n" + "\t" + newTask.toString());
+                System.out.println("\tNow you have " + tasks.size() + " tasks in the list." + "\n" + horLine);
+
+            }
+            ////if task is a deadline
+            else if (taskName.matches("\\bdeadline\\s.*\\s/by\\s.*\\b")) {
+                String des = taskName.substring(9,taskName.indexOf("/")-1);
+                String by = taskName.substring(taskName.indexOf("/")+4);
+                Task newTask = new Deadline(des,by);
+                tasks.add(newTask);
+                System.out.println(horLine + "\n\tGot it. I've added this task:\n" + "\t" + newTask.toString());
+                System.out.println("\tNow you have " + tasks.size() + " tasks in the list." + "\n" + horLine);
+            }
+            else if (taskName.matches("\\btodo\\s+") || taskName.matches("\\btodo\\b")) {
+                throw new DukeException("Sorry please provide a task to be done!");
+            }
+            else {
+                throw new DukeException("I'm sorry, I don't know what that means!");
+            }
+        } catch(Exception e) {
+            System.out.println(horLine + "\n\t" + e.getMessage() + "\n" + horLine);
         }
-        //if task is an event
-        else if (taskName.matches("\\bevent\\s.*\\s/at\\s.*\\b")){
-            String des = taskName.substring(6,taskName.indexOf("/")-1);
-            String at = taskName.substring(taskName.indexOf("/")+4,taskName.length());
-            Task newTask = new Event(des,at);
-            tasks.add(newTask);
-            System.out.println(horLine + "\n\tGot it. I've added this task:\n" + "\t" + newTask.toString() );
-        }
-        ////if task is a deadline
-        else if (taskName.matches("\\bdeadline\\s.*\\s/by\\s.*\\b")) {
-            String des = taskName.substring(9,taskName.indexOf("/")-1);
-            String by = taskName.substring(taskName.indexOf("/")+4);
-            Task newTask = new Deadline(des,by);
-            tasks.add(newTask);
-            System.out.println(horLine + "\n\tGot it. I've added this task:\n" + "\t" + newTask.toString() );
-        }
+
+
 
 
     }
@@ -53,7 +70,6 @@ public class Duke {
                 taskUndone(Integer.parseInt(input.replaceAll("[^0-9]", "")));
             } else {
                 addToList(input);
-                System.out.println("\tNow you have " + tasks.size() + " tasks in the list." + "\n" + horLine);
             }
             input = userCommand.nextLine();
 
