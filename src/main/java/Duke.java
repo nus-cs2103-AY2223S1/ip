@@ -64,16 +64,24 @@ public class Duke {
             Duke.add(todo, "todo", "");
         } else if (arr[0].equals("deadline")) {
             String[] deadlineBy = s.substring(8).trim().split("/by");
+            if (deadlineBy.length <= 1) {
+                throw new DukeException("Error. The description and due date of a deadline\n\tshould be separated" +
+                        " by a \"/by\".");
+            }
             String deadline = deadlineBy[0].trim();
             String by = deadlineBy[1].trim();
             Duke.add(deadline, "deadline", by);
         } else if (arr[0].equals("event")) {
             String[] eventAt = s.substring(5).trim().split("/at");
+            if (eventAt.length <= 1) {
+                throw new DukeException("Error. The description and time of an event\n\tshould be separated" +
+                        " by a \"/at\".");
+            }
             String event = eventAt[0].trim();
             String at = eventAt[1].trim();
             Duke.add(event, "event", at);
         }  else {
-            throw new DukeException("Error. I'm sorry, but I don't know what that means.");
+            throw new DukeException("Error. Sorry, but I don't know what that means.");
         }
     }
 
