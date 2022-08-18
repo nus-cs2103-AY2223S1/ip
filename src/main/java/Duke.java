@@ -26,8 +26,8 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
         int count = 0;
         ArrayList<Task> list = new ArrayList<>();
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
+        String logo = " ____        _\n"
+                + "|  _ \\ _   _| | _____\n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
@@ -41,7 +41,7 @@ public class Duke {
                 break;
 
             } else if (input.equals("list")) {
-                System.out.println(LINE + "Here are the tasks in your list: ");
+                System.out.println(LINE + "Here are the tasks in your list:");
                 listTasks(list);
                 System.out.println(LINE);
 
