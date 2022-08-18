@@ -70,6 +70,15 @@ public class Duke {
                 System.out.println(input.toString());
                 System.out.printf("Now you have %d tasks int the list. \n", tasks.size());
             }
+            else if (str.contains(" ") && str.split(" ")[0].equals("delete")) {
+                int number = Integer.parseInt(str.split(" ", 2)[1]);
+                Task currTask = tasks.get(number - 1);
+                tasks.remove(number - 1);
+                System.out.println("Noted. I've removed this task:");
+                String checkbox = String.format("%s", currTask);
+                System.out.println(checkbox);
+                System.out.printf("Now you have %d tasks int the list. \n", tasks.size());
+            }
             else {
                 Task input = new Task(str);
                 tasks.add(input);
