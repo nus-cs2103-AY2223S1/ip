@@ -22,6 +22,7 @@ public class Duke {
                 if (count == 0) {
                     System.out.println("There is no item in list yet");
                 } else {
+                    System.out.println("Here are the tasks in your list:");
                     for (int i = 0; i < count; i++) {
                         System.out.printf("%d.%s\n", i + 1, toDoList[i]);
                     }
@@ -39,13 +40,31 @@ public class Duke {
                 System.out.println("Nice! I've marked this task as done:");
                 System.out.println(toDoList[markItem]);
             } else {
-                Task newTask = new Task(input);
-                toDoList[count] = newTask;
-                count++;
-                String message = "\t" + "_".repeat(20) + "\n"
-                        + String.format("\t  added: %s\n", input)
-                        + "\t" + "_".repeat(20) + "\n";
-                System.out.println(message);
+                Boolean addTask = true;
+                Task newTask = null;
+                if (input.contains("deadline")) {
+                    String[] splitStr = input.trim().split("/");
+                    String date = splitStr[1].replace("by", "").trim();
+                    newTask = new Deadline(splitStr[0].replace("deadline", "").trim(), date);
+                } else if (input.contains("event")) {
+                    String[] splitStr = input.trim().split("/");
+                    String date = splitStr[1].replace("at", "").trim();
+                    newTask = new Event(splitStr[0].replace("event", "").trim(), date);
+                } else if (input.contains("todo")) {
+                    newTask = new Todo(input.replace("todo", "").trim());
+                } else {
+                    addTask = false;
+                }
+
+                if (addTask = true) {
+                    toDoList[count] = newTask;
+                    count++;
+                    String message = "\t" + "_".repeat(20) + "\n"
+                            + String.format("\tGot it. I've added this task:\n\t  %s\n", newTask)
+                            + String.format("\tNow you have %s tasks in the list\n", count)
+                            + "\t" + "_".repeat(20) + "\n";
+                    System.out.println(message);
+                }
             }
         }
     }
