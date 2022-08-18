@@ -6,6 +6,7 @@ public class Duke {
 
     public static void main(String[] args) {
         greet();
+        echo();
     }
 
     private static void printTab(String content) {
@@ -18,8 +19,6 @@ public class Duke {
         printTab("What can I do for you?");
         printTab(LINEBREAK);
         System.out.println();
-        echo();
-
     }
 
     public static void echo() {
