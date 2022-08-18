@@ -38,6 +38,11 @@ public class Duke {
                 if (unmarkedTask < 0) return "Invalid task number!";
                 tasks.get(unmarkedTask - 1).done = false;
                 return "OK, this task is undone:\n" + tasks.get(unmarkedTask - 1);
+            case "delete":
+                int deleteTask = checkTask(params);
+                if (deleteTask < 0) return "Invalid task number!";
+                tasks.remove(deleteTask - 1);
+                return "OK, that task has been deleted.";
             case "bye":
                 alive = false;
                 return "Goodbye!";
