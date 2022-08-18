@@ -1,12 +1,10 @@
 public class Task {
     private String taskDescription;
     private Boolean isTaskDone;
-    private static int totalNumberOfTasks = 0;
 
     public Task(String taskDescription) {
         this.taskDescription = taskDescription;
         this.isTaskDone = false;
-        totalNumberOfTasks++;
     }
 
     public void markDone() {
@@ -15,10 +13,6 @@ public class Task {
 
     public void unmarkDone() {
         this.isTaskDone = false;
-    }
-
-    public static int getTotalNumberOfTasks() {
-        return totalNumberOfTasks;
     }
 
     @Override

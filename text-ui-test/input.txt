@@ -21,4 +21,11 @@ deadline /by wed
 event
 event go for class
 event /at fri 4-6pm
+delete
+delete hi
+delete 1
+list
+delete 5
+mark 5
+unmark 5
 bye

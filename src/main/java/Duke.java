@@ -1,7 +1,8 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Duke {
-    private static Task[] tasks = new Task[100];
+    private static ArrayList<Task> tasks = new ArrayList<>();
 
     public static void tedResponse(String filler) {
         System.out.println("~ |._.| ~\n" + filler + "~\n");
@@ -30,9 +31,9 @@ public class Duke {
             }
             if (temp.length == 1 && action.equals("list")) {
                 String listOfTasks = "Your tasklist:\n";
-                for (int i = 0; i < Task.getTotalNumberOfTasks(); i++) {
+                for (int i = 0; i < tasks.size(); i++) {
                     int bulletPoint = i + 1;
-                    listOfTasks = listOfTasks + bulletPoint + ". " + tasks[i] + "\n";
+                    listOfTasks = listOfTasks + bulletPoint + ". " + tasks.get(i) + "\n";
                 }
                 tedResponse(listOfTasks);
                 continue;
@@ -45,29 +46,41 @@ public class Duke {
                     }
                     String elaboration = temp[1];
                     int currTaskNumber = Integer.parseInt(elaboration);
-                    Task currTask = tasks[currTaskNumber - 1];
+                    Task currTask = tasks.get(currTaskNumber - 1);
                     currTask.markDone();
                     tedResponse("Great! Task done:\n" + currTask + "\n");
-                    continue;
+
                 } else if (action.equals("unmark")) {
                     if (temp.length == 1) {
                         throw new DukeException("Oh no, please indicate task to unmark T_T\n");
                     }
                     String elaboration = temp[1];
                     int currTaskNumber = Integer.parseInt(elaboration);
-                    Task currTask = tasks[currTaskNumber - 1];
+                    Task currTask = tasks.get(currTaskNumber - 1);
                     currTask.unmarkDone();
                     tedResponse("Aw :( Task undone:\n" + currTask + "\n");
-                    continue;
+
+                } else if (action.equals("delete")) {
+                    if (temp.length == 1) {
+                        throw new DukeException("Oh no, please indicate task to delete T_T\n");
+                    }
+                    String elaboration = temp[1];
+                    int currTaskNumber = Integer.parseInt(elaboration);
+                    Task currTask = tasks.get(currTaskNumber - 1);
+                    tasks.remove(currTaskNumber - 1);
+                    tedResponse("Done! Task deleted:\n" + currTask + "\nremaining task count: "
+                            + tasks.size() + "\n");
+
                 } else if (action.equals("todo")) {
                     if (temp.length == 1) {
                         throw new DukeException("Oh no, please include task description T_T\n");
                     }
                     String elaboration = temp[1];
                     Task currTask = new Todo(elaboration);
-                    tasks[Task.getTotalNumberOfTasks() - 1] = currTask;
+                    tasks.add(currTask);
                     tedResponse("added to tasklist:\n" + currTask + "\ntask count: "
-                            + Task.getTotalNumberOfTasks() + "\n");
+                            + tasks.size() + "\n");
+
                 } else if (action.equals("deadline")) {
                     if (temp.length == 1) {
                         throw new DukeException("Oh no, please include task description T_T\n");
@@ -78,9 +91,10 @@ public class Duke {
                         throw new DukeException("Oh no, please include both deadline description and time T_T\n");
                     }
                     Task currTask = new Deadline(currTaskDesc[0], currTaskDesc[1]);
-                    tasks[Task.getTotalNumberOfTasks() - 1] = currTask;
+                    tasks.add(currTask);
                     tedResponse("added to tasklist:\n" + currTask + "\ntask count: "
-                            + Task.getTotalNumberOfTasks() + "\n");
+                            + tasks.size() + "\n");
+
                 } else if (action.equals("event")) {
                     if (temp.length == 1) {
                         throw new DukeException("Oh no, please include task description T_T\n");
@@ -91,16 +105,19 @@ public class Duke {
                         throw new DukeException("Oh no, please include both event description and time T_T\n");
                     }
                     Task currTask = new Event(currTaskDesc[0], currTaskDesc[1]);
-                    tasks[Task.getTotalNumberOfTasks() - 1] = currTask;
+                    tasks.add(currTask);
                     tedResponse("added to tasklist:\n" + currTask + "\ntask count: "
-                            + Task.getTotalNumberOfTasks() + "\n");
+                            + tasks.size() + "\n");
+
                 } else {
                     throw new DukeException("Oh no, I don't understand T_T\n");
                 }
             } catch (DukeException e) {
                 tedResponse(e.getMessage());
             } catch (NumberFormatException e) {
-                tedResponse("Oh no, please indicate task to mark/unmark with a number T_T\n");
+                tedResponse("Oh no, please indicate task to mark/unmark/delete with a number T_T\n");
+            } catch (IndexOutOfBoundsException e) {
+                tedResponse("Oh no, there's no such task T_T\n");
             }
         }
     }

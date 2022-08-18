@@ -80,7 +80,7 @@ Oh no, please indicate task to mark T_T
 ~
 
 ~ |._.| ~
-Oh no, please indicate task to mark/unmark with a number T_T
+Oh no, please indicate task to mark/unmark/delete with a number T_T
 ~
 
 ~ |._.| ~
@@ -88,7 +88,7 @@ Oh no, please indicate task to unmark T_T
 ~
 
 ~ |._.| ~
-Oh no, please indicate task to mark/unmark with a number T_T
+Oh no, please indicate task to mark/unmark/delete with a number T_T
 ~
 
 ~ |._.| ~
@@ -117,6 +117,39 @@ Oh no, please include both event description and time T_T
 
 ~ |._.| ~
 Oh no, please include both event description and time T_T
+~
+
+~ |._.| ~
+Oh no, please indicate task to delete T_T
+~
+
+~ |._.| ~
+Oh no, please indicate task to mark/unmark/delete with a number T_T
+~
+
+~ |._.| ~
+Done! Task deleted:
+[T][ ] read book
+remaining task count: 3
+~
+
+~ |._.| ~
+Your tasklist:
+1. [T][ ] return book
+2. [D][ ] finish ip (by: thurs)
+3. [E][ ] attend lecture (at: fri 4-6pm)
+~
+
+~ |._.| ~
+Oh no, there's no such task T_T
+~
+
+~ |._.| ~
+Oh no, there's no such task T_T
+~
+
+~ |._.| ~
+Oh no, there's no such task T_T
 ~
 
 Goodbye! Have a pleasant day |._.|
