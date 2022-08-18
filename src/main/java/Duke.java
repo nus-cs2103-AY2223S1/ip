@@ -37,6 +37,22 @@ public class Duke {
         }
     }
 
+     public static void deleteTask(String[] parts, ArrayList<Task> inputList) throws DukeException {
+        if (parts.length == 1) {
+            throw new DukeException("Please specify the index of the task (i.e. delete 2).");
+        } else if (Integer.parseInt(parts[1]) == 0 || Integer.parseInt(parts[1]) > inputList.size()) {
+            throw new DukeException("There is no such task!");
+        } else {
+            int index = Integer.parseInt(parts[1]);
+            Task task = inputList.get(index - 1);
+            inputList.remove(index - 1);
+            String output = String.format("Noted, I've removed this task:\n%s\nNow you have %s tasks in the list.",
+                    task.toString(),
+                    inputList.size());
+            System.out.println(output);
+        }
+     }
+
     /**
      * Adds the task to arraylist, and formats a String representation
      * that is to be printed along with the task representation and size of list.
@@ -140,6 +156,12 @@ public class Duke {
                 try {
                     Event event = createEvent(input);
                     taskAdd(event, inputList);
+                } catch (DukeException e) {
+                    System.out.println(e.getMessage());
+                }
+            } else if (parts[0].equals("delete")) {
+                try {
+                    deleteTask(parts, inputList);
                 } catch (DukeException e) {
                     System.out.println(e.getMessage());
                 }
