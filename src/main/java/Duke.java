@@ -1,3 +1,4 @@
+import java.nio.InvalidMarkException;
 import java.util.Scanner;
 
 public class Duke {
@@ -24,6 +25,9 @@ public class Duke {
             String[] arr = input.split(" ", 2);
             String command = arr[0];
             if (command.equals("mark") || command.equals("unmark")) {
+                if (arr.length == 1) {
+                    throw new MarkException(command);
+                }
                 int index = Integer.parseInt(arr[1]);
                 Task b = list[index - 1];
                 if (command.equals("mark")) {
@@ -82,6 +86,11 @@ public class Duke {
         }
 
         catch (InvalidCommandException e) {
+            System.out.println(e.getMessage());
+            respond();
+        }
+
+        catch (MarkException e) {
             System.out.println(e.getMessage());
             respond();
         }
