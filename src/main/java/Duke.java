@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Duke {
     private boolean inNeed = true;
-    private final ArrayList<Task> list = new ArrayList<>(100);
+    private final ArrayList<Task> list = new ArrayList<>();
 
     private final static String DEADLINE_SPLIT = " /by ";
     private final static String EVENT_SPLIT = " /at ";
@@ -60,6 +60,10 @@ public class Duke {
             case "event":
                 this.handleAddTask(command, "event");
                 break;
+            case "delete":
+                int index3 = Integer.parseInt(command[1]);
+                this.deleteTask(index3);
+                break;
             default:
                 this.generateReply("OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
@@ -72,7 +76,7 @@ public class Duke {
         for (Task t: this.list) {
             System.out.println(count++ + ". " + t);
         }
-        System.out.println("____________________________________________________________");
+        System.out.println("____________________________________________________________\n");
     }
 
     private void addTask(Task t) {
@@ -141,6 +145,14 @@ public class Duke {
                 generateReply("OOPS!!! The description of a event cannot be empty.");
             }
         }
+    }
+
+    public void deleteTask(int index) {
+        Task deletedTask = this.list.get(index - 1);
+        this.list.remove(index - 1);
+        generateReply("Noted. I've removed this task:\n" +
+                deletedTask +
+                "\nNow you have " + this.countTask() + " tasks in the list.\n");
     }
 
     public static void main(String[] args) {
