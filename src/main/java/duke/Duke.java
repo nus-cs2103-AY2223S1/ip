@@ -6,10 +6,6 @@ import duke.parser.Parser;
 import java.io.IOException;
 
 public class Duke {
-    private static String GREETING = "Hello! I'm duke.Duke\nWhat can I do for you?";
-    private static String EXIT_MSG = "Bye. Hope to see you again soon!";
-    private static String NO_TASK_NAME = "No task name defined, please try again";
-    private static String NO_INDEX_SPECIFIED = "No index specified, try again";
     private final Ui ui;
     private final Storage storage;
 

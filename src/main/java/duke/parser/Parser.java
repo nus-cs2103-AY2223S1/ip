@@ -90,8 +90,8 @@ public class Parser {
     static String getFirstWord(String text) {
         int index = text.indexOf(' ');
 
-        if (index > -1) { // Check if there is more than one word.
-            return text.substring(0, index).trim(); // Extract first word.
+        if (index > -1) {
+            return text.substring(0, index).trim();
         }
 
         return text;
