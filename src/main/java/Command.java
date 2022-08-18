@@ -15,11 +15,11 @@ public enum Command {
      * Returns the Command corresponding to the input. This is case-insensitive.
      * If the input is unknown, an INVALID command will be returned.
      * 
-     * @param command User command.
+     * @param cmd User command.
      * @return Command corresponding to the input.
      */
-    public static Command getIfPresent(String command) {
-        String formattedString = command.trim().toUpperCase();
+    public static Command getIfPresent(String cmd) {
+        String formattedString = cmd.trim().toUpperCase();
         return NAME_MAP.getOrDefault(formattedString, Command.INVALID);
     }
 }
