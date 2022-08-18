@@ -20,17 +20,18 @@ public class Task {
     }
 
 
-    public static void markAsDone(Task task) {
-        task.isDone = true;
+    public void markAsDone() {
+        this.isDone = true;
         System.out.println("Nice! I've marked this task as done: ");
-        System.out.println(task.toString());
+        System.out.println(this.toString());
     }
 
-    public static void markAsUndone(Task task) {
-        task.isDone = false;
+    public void markAsUndone() {
+        this.isDone = false;
         System.out.println("Ok. I've marked this task as not done yet: ");
-        System.out.println(task.toString());
+        System.out.println(this.toString());
     }
+
 
 
 

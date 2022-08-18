@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import main.java.*;
@@ -7,7 +8,7 @@ import static main.java.Task.*;
 public class Duke {
 
     private static Scanner sc = new Scanner(System.in);
-    private static Task[] taskList = new Task[100];
+    private static ArrayList<Task> taskList = new ArrayList<>();
     private static int index = 0;
 
 
@@ -25,27 +26,26 @@ public class Duke {
                     System.out.println("Bye. Hope to see you again soon!");
                     break;
                 } else if (command.equals("list")) {
-                    if (index == 0) {
+                    if (taskList.size() == 0) {
                         System.out.println("There are currently no tasks in the list.");
                     } else {
                         printList(taskList);
                     }
                 } else if (command.equals("unmark")) {
                     int idx = Integer.parseInt(breakitdown[1]);
-                    Task undone = taskList[idx - 1];
-                    markAsUndone(undone);
+                    Task undone = taskList.get(idx - 1);
+                    undone.markAsUndone();
                 } else if (command.equals("mark")) {
                     int idx = Integer.parseInt(breakitdown[1]);
-                    Task done = taskList[idx - 1];
-                    markAsDone(done);
+                    Task done = taskList.get(idx - 1);
+                    done.markAsDone();
                 } else if (command.equals("todo")) {
                     if (breakitdown.length == 1) {
                         throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
                     }
                     String taskName = input.substring(5);
                     newTask = new ToDos(taskName);
-                    taskList[index] = newTask;
-                    index++;
+                    taskList.add(newTask);
                     printOnAdd(newTask);
                 } else if (command.equals("deadline")) {
                     if (breakitdown.length == 1) {
@@ -62,8 +62,7 @@ public class Duke {
                     String taskName = taskNameBy[0];
                     String by = taskNameBy[1];
                     newTask = new Deadlines(taskName, by);
-                    taskList[index] = newTask;
-                    index++;
+                    taskList.add(newTask);
                     printOnAdd(newTask);
                 } else if (command.equals("event")) {
                     if (breakitdown.length == 1) {
@@ -80,9 +79,11 @@ public class Duke {
                     String taskName = taskNameLocation[0];
                     String location = taskNameLocation[1];
                     newTask = new Events(taskName, location);
-                    taskList[index] = newTask;
-                    index++;
+                    taskList.add(newTask);
                     printOnAdd(newTask);
+                } else if (command.equals("delete")) {
+                    int idx = Integer.parseInt(breakitdown[1]);
+                    printOnDelete(taskList.remove(idx - 1));
                 } else {
                     throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
@@ -92,16 +93,22 @@ public class Duke {
         }
     }
 
-    public static void printList(Task[] list) {
+    public static void printList(ArrayList<Task> list) {
         System.out.println("Here are the tasks in your list:");
-        for (int i = 1; i < index + 1; i++) {
-            System.out.println(i + "." + list[i - 1].toString());
+        for (int i = 0; i < taskList.size(); i++) {
+            System.out.println((i + 1) + "." + taskList.get(i).toString());
         }
     }
 
     public static void printOnAdd(Task task) {
         System.out.println("Got it. I've added this task:");
         System.out.println(" " + task.toString());
-        System.out.println("Now you have " + index + " task" + (index == 1 ? " " : "s ") + "in the list");
+        System.out.println("Now you have " + taskList.size() + " task" + (taskList.size() == 1 ? " " : "s ") + "in the list");
+    }
+
+    public static void printOnDelete(Task task) {
+        System.out.println("Noted. I've removed this task:");
+        System.out.println(" " + task.toString());
+        System.out.println("Now you have " + taskList.size() + " task" + (taskList.size() == 1 ? " " : "s ") + "in the list");
     }
 }
