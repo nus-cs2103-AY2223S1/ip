@@ -2,6 +2,23 @@
      Hello! I'm Duke
      What can I do for you?
      ____________________________________________________________
+     ____________________________________________________________
      Got it. I've added this task:
-     [T][ ] todo borrow book
+          [T][ ] todo read book
      Now you have 1 tasks in the list.
+     ____________________________________________________________
+     ____________________________________________________________
+     Got it. I've added this task:
+          [D][ ]  return book  (by: June 6th)
+     Now you have 2 tasks in the list.
+     ____________________________________________________________
+     ____________________________________________________________
+     Got it. I've added this task:
+          [E][ ]  project meeting  (at: Next Monday)
+     Now you have 3 tasks in the list.
+     ____________________________________________________________
+     ____________________________________________________________
+     Got it. I've added this task:
+          [T][ ] todo return book
+     Now you have 4 tasks in the list.
+     ____________________________________________________________
