@@ -1,24 +1,24 @@
 public class Task {
 
-    String name;
-    boolean done;
+    protected String name;
+    protected boolean isDone;
 
-    public Task(String name, boolean done) {
+    public Task(String name, boolean isDone) {
         this.name = name;
-        this.done = done;
+        this.isDone = isDone;
     }
 
     public void Mark() {
-        done = true;
+        isDone = true;
     }
 
     public void Unmark() {
-        done = false;
+        isDone = false;
     }
 
     @Override
     public String toString() {
-        if (done) {
+        if (isDone) {
             return "[X] " + name;
         } else {
             return "[ ] " + name;
