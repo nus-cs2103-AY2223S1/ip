@@ -59,7 +59,7 @@ public class Duke {
      * evoke the respective TaskList methods
      * @param commandGenerator given by user in console
      */
-    public void handleCommand(CommandGenerator commandGenerator) {
+    public void handleCommand(CommandGenerator commandGenerator) throws DukeException {
         String command = commandGenerator.getCommand();
         switch (command) {
             case "list":
@@ -73,6 +73,7 @@ public class Duke {
                 taskList.updateTask(Integer.parseInt(commandGenerator.getCommandAction()) - 1, command);
                 break;
             case "todo":
+                if (commandGenerator.getCommandAction() == null) throw new EmptyTodoException();
                 taskList.addTask(new Todos(commandGenerator.getCommandAction()));
                 break;
             case "deadline":
@@ -87,7 +88,7 @@ public class Duke {
                 run = false;
                 break;
             default:
-                taskList.addTask(new Task(commandGenerator.getText()));
+                throw new NoSuchCommandException();
         }
     }
 
@@ -96,7 +97,12 @@ public class Duke {
         while (isRunning()) {
             io.scan();
             commandGenerator = new CommandGenerator(io.getText());
-            handleCommand(commandGenerator);
+            try {
+                handleCommand(commandGenerator);
+            } catch (DukeException e) {
+                IOHelper.print(e.toString());
+            }
+
         }
         printExitMessage();
     }
