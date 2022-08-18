@@ -49,34 +49,3 @@ Help : brings up this display :-> help
 Bye : closes Duke :-> bye
 
 Please enter one of the above to continue.
-Got it. I've added this task. 
-[D][ ] submit project  (by: Thursday)
-Now you have 3 tasks in the list
-Got it. I've added this task. 
-[E][ ] project meeting  (at: Mon 2pm)
-Now you have 4 tasks in the list
-Nice! I've marked this task as done 
-[T][X] bungee jumping
-Now you have 4 tasks in the list
-This task is already marked done
-Invalid command please add a space between mark and the list item you would like to interact with. 
-additionally ensure you have entered a number after mark.
-Nice! I've marked this task as done 
-[T][X] read the great gatsby
-Now you have 4 tasks in the list
-Invalid command please add a space between mark and the list item you would like to interact with. 
-additionally ensure you have entered a number after mark.
-Ok, I've marked this task as not done yet 
-[T][ ] bungee jumping
-Now you have 4 tasks in the list
-Ok, I've marked this task as not done yet 
-[T][ ] read the great gatsby
-Now you have 4 tasks in the list
-Such an item does not exist
-Here are the tasks in your list : 
-1. [T][ ] bungee jumping
-2. [T][ ] read the great gatsby
-3. [D][ ] submit project  (by: Thursday)
-4. [E][ ] project meeting  (at: Mon 2pm)
-Bye. Hope to see you again soon!
-
