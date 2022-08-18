@@ -44,6 +44,19 @@ public class Duke {
                     System.out.println(divider + indent + "Nice! I've marked this as done:");
                     System.out.println(indent + indent + taskList.get(taskIndex) + "\n" + divider);
                 }
+            } else if (input.contains("delete")) {
+                try {
+                    int indexToDelete = Integer.parseInt(input.substring(input.length() - 1)) - 1;
+                    Task removedTask = taskList.remove(indexToDelete);
+                    int numberOfTasks = taskList.size();
+                    System.out.println(divider + indent + "Noted, I've removed this task:");
+                    System.out.println(indent + indent + removedTask.toString());
+                    System.out.println(indent + "Now you have " + numberOfTasks + " tasks in your list.\n" + divider);
+                } catch (StringIndexOutOfBoundsException exception) {
+                    System.out.println(divider + indent + "Wait, which task do you want to delete?\n" + divider);
+                } catch (Exception exception) {
+                    System.out.println(divider + indent + "Error: " + exception + "\n" + divider);
+                }
             } else {
                 boolean response = false;
                 if (input.contains("event")) {
