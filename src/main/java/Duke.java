@@ -20,37 +20,39 @@ public class Duke {
                 "\n" + msg + "\n" +
                 "_______________________________________________________";
     }
-
+//add tasks
     private static String addition(String msg) {
         return "_______________________________________________________" +
-                "\n" + "added: " + msg + "\n" +
+                "\n" + "Nice, I have added  this task to your list:\n " + msg + "\n" +
+                "Great, now you have " + inputs.size() + " tasks in the list.\n" +
                 "_______________________________________________________";
     }
-//inputs contain all the tasks
+//to list down all the tasks
     private static String all() {
         String userInputs = "";
         for (int i = 0; i < inputs.size(); i++)
         {
             int index = i + 1;
             Task tempTask = inputs.get(i);
-            userInputs += "\n" + index + "." + "[" + tempTask.getStatusIcon() +"] "
-                    + tempTask.getContent() + "\n";
+            userInputs += "\n" + index + "."
+                    + tempTask.toString() + "\n";
 
         }
+
         return userInputs;
     }
-
+//set this task as done
     private static String markDone(String str) {
         return "_______________________________________________________" + "\n" +
                 "Nice! I've marked this task as done:" +
-                "\n" + "[X] " + str + "\n" +
+                "\n" + str + "\n" +
                 "\n" + "_______________________________________________________";
     }
 
     private static String markUndone(String str) {
         return "_______________________________________________________" + "\n" +
                 "Wow! I've marked this task as not done yet:" +
-                "\n" + "[ ] " + str + "\n" +
+                "\n" + str + "\n" +
                 "\n" + "_______________________________________________________";
     }
 
@@ -82,25 +84,55 @@ public class Duke {
             }
             else
             {
-                String mark = str.split(" ")[0];
-                if (mark.equals("mark"))
+                String instruction = str.split(" ")[0];
+                if (instruction.equals("mark"))
                 {
                     //this is as index is greater than array index by 1
                     int index = Integer.valueOf(str.split(" ")[1]) - 1;
                     inputs.get(index).setDone();
-                    System.out.println(markDone(inputs.get(index).getContent()));
+                    System.out.println(markDone(inputs.get(index).toString()));
                 }
-                else if ((mark.equals("unmark")))
+                else if ((instruction.equals("unmark")))
                 {
                     int index = Integer.valueOf(str.split(" ")[1]) - 1;
                     inputs.get(index).setUndone();
-                    System.out.println(markUndone(inputs.get(index).getContent()));
+                    System.out.println(markUndone(inputs.get(index).toString()));
+                }
+                else if(instruction.equals("todo"))
+                {
+                    str = str.split(" ",2)[1];
+                    ToDo tasktoDo = new ToDo(str);
+                    inputs.add(tasktoDo);
+                    System.out.println(addition(tasktoDo.toString()));
+
+                }
+                else if(instruction.equals("deadline"))
+                {
+                    //splits away deadline
+                    str = str.split(" ",2)[1];
+                    String desc = str.split("/by")[0];
+                    String by = str.split("/by")[1];
+                    Deadline taskDeadline = new Deadline(desc, by);
+                    inputs.add(taskDeadline);
+                    System.out.println(addition(taskDeadline.toString()));
+
+                }
+                else if(instruction.equals("event"))
+                {
+                    //splits away event
+                    str = str.split(" ",2)[1];
+                    String desc = str.split("/at")[0];
+                    String at = str.split("/at")[1];
+                    Event taskEvent = new Event(desc, at);
+                    inputs.add(taskEvent);
+                    System.out.println(addition(taskEvent.toString()));
+
                 }
                 else
                 {
                     Task task = new Task(str);
                     inputs.add(task);
-                    System.out.println(addition(str));
+                    System.out.println(addition(task.toString()));
                 }
             }
             str = sc.nextLine();
