@@ -2,7 +2,7 @@ public class Duke {
 
     private UI ui;
 
-    public String logo = " ____        _        \n"
+   public String logo = " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
@@ -20,14 +20,16 @@ public class Duke {
         System.out.println(logo + "\n" + ui.greet());
         boolean stillRunning = true;
         while (stillRunning) {
-            String command = ui.getInput();
-            if (command.equals("list")) {
+            String input = ui.getInput();
+            if (input.equals("bye")) {
+            System.out.println(ui.bye());
+            stillRunning = false;
+            } else if (input.equals("list")) {
                 System.out.println(ui.list());
-            } else if (command.equals("blah")) {
-                System.out.println(ui.blah());
-            } else if (command.equals("bye")) {
-                System.out.println(ui.bye());
-                stillRunning = false;
+            } else if (input.startsWith("mark") || input.startsWith("unmark")) {
+                System.out.println(ui.editTask(input));
+            } else {
+                System.out.println(ui.addTask(input));
             }
         }
     }
