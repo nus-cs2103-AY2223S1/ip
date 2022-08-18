@@ -5,10 +5,15 @@ list
 mark 1
 unmark 2
 list
+delete 2
+list
 todo
 deadline
 event
 hello
 deadline return book
 event project meeting
+delete 6
+mark 6
+unmark 6
 bye
