@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
         ArrayList<Task> ls = new ArrayList<>();
         String line = "-----------------------------";
@@ -48,14 +48,25 @@ public class Duke {
                         line + "\n");
             }
             else if (answer.startsWith("todo")) { // Task 4: todo
-                String toDoAction = answer.substring(5);
-                ToDo t = new ToDo(toDoAction);
-                ls.add(t);
-                System.out.println(line + "\n" +
-                        "Got it. I've added this task: " + "\n" +
-                        t + "\n" +
-                        "Now you have " + ls.size() + " tasks in the list." + "\n" +
-                        line + "\n");
+                try {
+                    String toDoAction = answer.substring(5);
+                    if (toDoAction != "") { // Level 5: handle todo exception
+                        ToDo t = new ToDo(toDoAction);
+                        ls.add(t);
+                        System.out.println(line + "\n" +
+                                "Got it. I've added this task: " + "\n" +
+                                t + "\n" +
+                                "Now you have " + ls.size() + " tasks in the list." + "\n" +
+                                line + "\n");
+                    }
+                } catch (Exception e) {
+                    System.out.println(line + "\n" +
+                            "☹ OOPS!!! The description of a todo cannot be empty.\n" +
+                            line + "\n");
+                }
+            }
+            else if (answer.equals("blah")) { // Level 5: handle blah exception
+                throw new Exception("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
             else if (answer.startsWith("deadline")) { // Task 4: deadline
                 String deadlineAction = answer.substring(9, answer.indexOf("/") - 1);
@@ -95,13 +106,4 @@ public class Duke {
             System.out.println((i + 1) + "." + t);
         }
     }
-
-    /*
-    // For Level-2
-    private static void list(ArrayList ls) {
-        for (int i = 0; i < ls.size(); i++) {
-            System.out.println(Integer.toString(i + 1) + ". " + ls.get(i));
-        }
-    }
-    */
 }
