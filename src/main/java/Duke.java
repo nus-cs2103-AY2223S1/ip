@@ -2,12 +2,11 @@ import java.util.Objects;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-
 /**
  * Duke is a basic chat-bot that echoes whatever the user inputs.
  *
  * @author Chi Song Yi Amadeus
- * @version Level-4
+ * @version Level-5
  * @since 17-08-2022
  */
 public class Duke {
@@ -79,7 +78,12 @@ public class Duke {
                      System.out.println("Invalid task! Please input a number!");
                  }
             } else {
-                createTask(input);
+                try{
+                    createTask(input);
+                } catch (DukeException.EmptyTaskException | DukeException.UnkownCommandException error) {
+                    System.out.println(error.getMessage());
+                }
+
             }
             input = userInput.nextLine();
         }
@@ -110,13 +114,25 @@ public class Duke {
      *
      * @param input user input.
      * @throws ArrayIndexOutOfBoundsException used to handle invalid inputs.
+     * @throws DukeException.EmptyTaskException Thrown when todo task is empty.
+     * @throws DukeException.UnkownCommandException Thrown when command is unknown.
      */
-    public static void createTask(String input) throws ArrayIndexOutOfBoundsException {
+    public static void createTask(String input)
+            throws ArrayIndexOutOfBoundsException, DukeException.EmptyTaskException, DukeException.UnkownCommandException {
 
         String[] commands = input.split("/", 2);
         String[] inputArr = commands[0].split(" ", 2);
 
+
         if (Objects.equals(inputArr[0], "todo")) {
+            try {
+                String test = inputArr[1];
+                if (!(inputArr[1].trim().length() > 0)) {
+                    throw new DukeException.EmptyTaskException("OOPS! please include a name for your task!");
+                }
+            } catch (ArrayIndexOutOfBoundsException e) {
+                throw new DukeException.EmptyTaskException("OOPS! please include a name for your task!");
+            }
             ToDo newToDo = new ToDo(inputArr[1]);
             taskArray.add(newToDo);
         } else {
@@ -144,7 +160,7 @@ public class Duke {
                     System.out.println("deadline/event requires date as a third parameter after /by or /at respectively!");
                 }
             } else {
-                System.out.println("Indicate todo/deadline/event before a task");
+                throw new DukeException.UnkownCommandException("OOPS! Indicate todo/deadline/event before a task");
             }
         }
 
