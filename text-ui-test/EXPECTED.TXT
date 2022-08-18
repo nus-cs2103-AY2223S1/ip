@@ -67,4 +67,56 @@ Your tasklist:
 4. [E][ ] attend lecture (at: fri 4-6pm)
 ~
 
+~ |._.| ~
+Oh no, I don't understand T_T
+~
+
+~ |._.| ~
+Oh no, I don't understand T_T
+~
+
+~ |._.| ~
+Oh no, please indicate task to mark T_T
+~
+
+~ |._.| ~
+Oh no, please indicate task to mark/unmark with a number T_T
+~
+
+~ |._.| ~
+Oh no, please indicate task to unmark T_T
+~
+
+~ |._.| ~
+Oh no, please indicate task to mark/unmark with a number T_T
+~
+
+~ |._.| ~
+Oh no, please include task description T_T
+~
+
+~ |._.| ~
+Oh no, please include task description T_T
+~
+
+~ |._.| ~
+Oh no, please include both deadline description and time T_T
+~
+
+~ |._.| ~
+Oh no, please include both deadline description and time T_T
+~
+
+~ |._.| ~
+Oh no, please include task description T_T
+~
+
+~ |._.| ~
+Oh no, please include both event description and time T_T
+~
+
+~ |._.| ~
+Oh no, please include both event description and time T_T
+~
+
 Goodbye! Have a pleasant day |._.|

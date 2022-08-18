@@ -8,4 +8,17 @@ mark 2
 list
 unmark 2
 list
+hi
+how are you doing
+mark
+mark hi
+unmark
+unmark hi
+todo
+deadline
+deadline read notes
+deadline /by wed
+event
+event go for class
+event /at fri 4-6pm
 bye
