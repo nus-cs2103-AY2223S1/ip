@@ -84,6 +84,12 @@ public class Duke {
                 taskList.addTask(new Event(commandGenerator.getCommandAction().split(" /at ")[0],
                         commandGenerator.getCommandAction().split(" /at ")[1]));
                 break;
+            case "delete":
+                if (!CommandGenerator.isInteger(commandGenerator.getCommandAction())) {
+                    break;
+                }
+                taskList.deleteTask(Integer.parseInt(commandGenerator.getCommandAction()) - 1);
+                break;
             case "bye":
                 run = false;
                 break;

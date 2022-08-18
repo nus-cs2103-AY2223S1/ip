@@ -58,6 +58,15 @@ public class TaskList {
         IOHelper.print(task.toString());
     }
 
+    public void deleteTask(int index) {
+        if (outOfRange(index)) {
+            return;
+        }
+        IOHelper.print("Noted. I've removed this task:");
+        IOHelper.print(tasks.remove(index).toString());
+        IOHelper.print(String.format("Now you have %d tasks in the list", tasks.size()));
+    }
+
     /**
      * Check to make sure the index given by user is not out of range
      * @param index given by user in console
