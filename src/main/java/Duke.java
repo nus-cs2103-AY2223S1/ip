@@ -5,44 +5,53 @@ import java.util.Scanner;
 import dukeExceptions.MissingDescriptionException;
 import dukeExceptions.UnknownCommandException;
 
+enum COMMANDS {
+    BYE,
+    LIST,
+    MARK,
+    UNMARK,
+    TODO,
+    DEADLINE,
+    EVENT,
+    DELETE
+}
+
 public class Duke {
     public static void main(String[] args) {
         List<Task> userData = new ArrayList<>();
-        boolean isActive = true;
 
         System.out.println("Hello! I'm Duke!\nWhat can I do for you?");
         System.out.println("-----------------------------------");
-        while (isActive) {
+        Scanner input = new Scanner(System.in);
+        while (input.hasNext()) {
             try {
-                Scanner input = new Scanner(System.in);
                 String line = input.nextLine();
 
                 String userInputs[] = line.split(" ");
-                String mainCommand = userInputs[0].toLowerCase();
+                COMMANDS mainCommand =  COMMANDS.valueOf(userInputs[0].toUpperCase());
 
                 switch (mainCommand) {
-                    case "bye": {
+                    case BYE: {
                         System.out.println("Bye. Hope to see you again soon!");
-                        isActive = false;
-                        break;
+                        return;
                     }
-                    case "list": {
+                    case LIST: {
                         for (int i = 1; i < userData.size() + 1; i++) {
                             System.out.format("%s. %s\n", i, userData.get(i - 1));
                         }
                         break;
                     }
-                    case "mark": {
+                    case MARK: {
                         userData.get(Integer.valueOf(userInputs[1])).setIsComplete(true);
                         System.out.format("Nice! I've marked this task as done: %s\n", userData.get(Integer.valueOf(userInputs[1])).toString());
                         break;
                     }
-                    case "unmark": {
+                    case UNMARK: {
                         userData.get(Integer.valueOf(userInputs[1])).setIsComplete(false);
                         System.out.format("OK, I've marked this task as not done yet: %s\n", userData.get(Integer.valueOf(userInputs[1])).toString());
                         break;
                     }
-                    case "todo": {
+                    case TODO: {
                         userInputs = Arrays.copyOfRange(userInputs, 1, userInputs.length);
 
                         // ERROR HANDLING: Check for empty ToDo description
@@ -55,7 +64,7 @@ public class Duke {
                         System.out.format("Got it. I've added this task:\n  %s\nNow you have %s %s in the list.\n", newToDo, userData.size(), userData.size() != 1 ? "tasks" : "task");
                         break;
                     }
-                    case "deadline": {
+                    case DEADLINE: {
                         userInputs = Arrays.copyOfRange(userInputs, 1, userInputs.length);
 
                         String description = splitArrayIntoSubstrings(userInputs, "/by").get(0);
@@ -73,7 +82,7 @@ public class Duke {
                         System.out.format("Got it. I've added this task:\n  %s\nNow you have %s %s in the list.\n", newDeadline, userData.size(), userData.size() != 1 ? "tasks" : "task");
                         break;
                     }
-                    case "event": {
+                    case EVENT: {
                         userInputs = Arrays.copyOfRange(userInputs, 1, userInputs.length);
 
                         String description = splitArrayIntoSubstrings(userInputs, "/at").get(0);
@@ -89,7 +98,7 @@ public class Duke {
                         System.out.format("Got it. I've added this task:\n  %s\nNow you have %s %s in the list.\n", newEvent, userData.size(), userData.size() != 1 ? "tasks" : "task");
                         break;
                     }
-                    case "delete": {
+                    case DELETE: {
                         Task toDelete = userData.get(Integer.valueOf(userInputs[1]) - 1);
                         userData.remove(Integer.valueOf(userInputs[1])-1);
                         System.out.format("Noted. I've removed this task:\n %s\nNow you have %s %s in the list.\n", toDelete, userData.size(), userData.size() != 1 ? "tasks" : "task");
