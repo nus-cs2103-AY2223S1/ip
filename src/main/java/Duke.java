@@ -62,9 +62,12 @@ public class Duke {
      */
     public static void taskList() throws NumberFormatException{
         Scanner userInput = new Scanner(System.in);
-        String input = userInput.nextLine();
-        while (!Objects.equals(input.toLowerCase(), "bye")) {
-            if (Objects.equals(input.toLowerCase(), "list")) {
+
+        while (userInput.hasNext()) {
+            String input = userInput.nextLine();
+            if (Objects.equals(input.toLowerCase(), "bye")) {
+                break;
+            } else if (Objects.equals(input.toLowerCase(), "list")) {
                  // readList function called to display list contents
                  readList();
             } else if (input.startsWith("mark") || input.startsWith("unmark")) {
@@ -77,6 +80,15 @@ public class Duke {
                  } catch (NumberFormatException e) {
                      System.out.println("Invalid task! Please input a number!");
                  }
+            } else if (input.startsWith("delete")) {
+                String[] command =  input.split(" ",2);
+                String number  = command[1];
+                try {
+                    int num = Integer.parseInt(number);
+                    delete(num - 1);
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid task! Please input a number!");
+                }
             } else {
                 try{
                     createTask(input);
@@ -85,7 +97,6 @@ public class Duke {
                 }
 
             }
-            input = userInput.nextLine();
         }
         System.out.println(
                  "    ____________________________________________________________\n" +
@@ -107,6 +118,17 @@ public class Duke {
         } else {
             taskArray.get(index - 1).unMark();
         }
+     }
+
+     public static void delete(int index) {
+        Task deletable = taskArray.get(index);
+        taskArray.remove(deletable);
+         System.out.printf(
+                 "    ____________________________________________________________\n" +
+                 "     Noted. I've removed this task:\n" +
+                 "       %s\n" +
+                 "     Now you have %d tasks in the list.\n" +
+                 "    ____________________________________________________________\n", deletable, taskArray.size());
      }
 
     /**
