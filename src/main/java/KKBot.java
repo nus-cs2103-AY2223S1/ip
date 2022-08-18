@@ -148,7 +148,7 @@ public class KKBot {
                 }
             // if user input has no keywords, then chatbot returns an error message
             } else {
-                System.out.println("Me no understood... try using the keywords!" + "\n" + divider);
+                System.out.println("KKBot doesn't understood... please try again!" + "\n" + divider);
             }
         }
     }
