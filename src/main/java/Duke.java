@@ -18,27 +18,34 @@ public class Duke {
         boolean exitBot = false;
         while (!exitBot) {
             String input = sc.nextLine();
-            if (input.equals("bye")) {
-                exitBot = true;
-            } else if (input.equals("list")) {
-                listTasks();
-            } else if (input.startsWith("mark ")) {
-                int taskNum = Integer.parseInt(input.replace("mark ", ""));
-                markAsDone(taskNum);
-            } else if (input.startsWith("unmark ")) {
-                int taskNum = Integer.parseInt(input.replace("unmark ", ""));
-                markAsUndone(taskNum);
-            } else if (input.startsWith("deadline ")) {
-                String[] deadline = input.replace("deadline ", "").split(" /by ");
-                addDeadline(deadline[0], deadline[1]);
-            } else if (input.startsWith("todo ")) {
-                String todo = input.replace("todo ", "");
-                addTodo(todo);
-            } else if (input.startsWith("event ")) {
-                String[] event = input.replace("event ", "").split(" /at ");
-                addEvent(event[0], event[1]);
-            } else {
-                addTask(input);
+            try {
+                if (input.equals("bye")) {
+                    exitBot = true;
+                } else if (input.equals("list")) {
+                    listTasks();
+                } else if (input.startsWith("mark ")) {
+                    int taskNum = Integer.parseInt(input.replace("mark ", ""));
+                    validateMark(taskNum);
+                    markAsDone(taskNum);
+                } else if (input.startsWith("unmark ")) {
+                    int taskNum = Integer.parseInt(input.replace("unmark ", ""));
+                    validateMark(taskNum);
+                    markAsUndone(taskNum);
+                } else if (input.startsWith("deadline ")) {
+                    String[] deadline = input.replace("deadline ", "").split(" /by ");
+                    addDeadline(deadline[0], deadline[1]);
+                } else if (input.startsWith("todo ")) {
+                    String todo = input.replace("todo ", "");
+                    validateTodo(todo);
+                    addTodo(todo);
+                } else if (input.startsWith("event ")) {
+                    String[] event = input.replace("event ", "").split(" /at ");
+                    addEvent(event[0], event[1]);
+                } else {
+                    throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
+                }
+            } catch (DukeException e) {
+                printMessage(e.getMessage());
             }
         }
 
@@ -59,6 +66,18 @@ public class Duke {
         System.out.println("\tOK, I've marked this task as not done yet:\n\t" +
                 tasks.get(taskNum - 1).toString());
         linePrint();
+    }
+
+    public void validateTodo(String todo) throws DukeException {
+        if(todo.isEmpty()) {
+            throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
+        }
+    }
+
+    public void validateMark(int taskNum) throws DukeException {
+        if(taskNum < 1 || taskNum > tasks.size()) {
+            throw new DukeException("OOPS!!! The index of the task is not in the list.");
+        }
     }
 
     public void addDeadline(String description, String by) {
