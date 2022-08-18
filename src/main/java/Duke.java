@@ -147,10 +147,11 @@ public class Duke {
                 arr[index - 1].unmark();
                 System.out.println("OK, I've marked this task as not done yet:\n" + arr[index - 1].toStr());
             } else if (item.startsWith("todo")) {
-                arr[count] = new Todo(item, count+1);
+                String str = item.replace("todo ", "");
+                arr[count] = new Todo(str, count+1);
                 count++;
                 System.out.println(String.format("Got it. I've added this task:\n" +
-                        "\t%s\n" +
+                        "%s\n" +
                         "Now you have %d tasks in the list.",
                         arr[count - 1].toStr(),
                         count));
@@ -160,7 +161,7 @@ public class Duke {
                 arr[count] = new Deadline(name, count + 1, input[1]);
                 count++;
                 System.out.println(String.format("Got it. I've added this task:\n" +
-                                "\t%s\n" +
+                                "%s\n" +
                                 "Now you have %d tasks in the list.",
                         arr[count - 1].toStr(),
                         count));
@@ -170,7 +171,7 @@ public class Duke {
                 arr[count] = new Event(name, count + 1, input[1]);
                 count++;
                 System.out.println(String.format("Got it. I've added this task:\n" +
-                                "\t%s\n" +
+                                "%s\n" +
                                 "Now you have %d tasks in the list.",
                         arr[count - 1].toStr(),
                         count));
