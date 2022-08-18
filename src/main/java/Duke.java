@@ -1,6 +1,8 @@
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
+import java.util.List;
 
 public class Duke {
     static ArrayList<Task> tasks = new ArrayList<>();
@@ -11,9 +13,9 @@ public class Duke {
             Scanner input = new Scanner(System.in);
             String inputText = input.nextLine();
 
-            String[] inputArray = inputText.split(" ");
+            List<String> inputArray = Arrays.asList(inputText.split(" "));
 
-            String keyword = inputArray[0];
+            String keyword = inputArray.get(0);
 
             switch(keyword) {
                 case "bye":
@@ -23,29 +25,58 @@ public class Duke {
                     printTasks();
                     break;
                 case "mark": {
-                    if (inputArray.length != 2) {
+                    if (inputArray.size() != 2) {
                         throw new Exception("Input for mark not correct");
                     }
-                    markTask(inputArray[1]);
+                    markTask(inputArray.get(1));
                     break;
                 }
                 case "unmark": {
-                    if (inputArray.length != 2) {
+                    if (inputArray.size() != 2) {
                         throw new Exception("Input for unmark not correct");
                     }
-                    unmarkTask(inputArray[1]);
+                    unmarkTask(inputArray.get(1));
+                    break;
+                }
+                case "todo": {
+                    ToDo newTask = new ToDo(String.join(" ", inputArray.subList(1,inputArray.size())));
+                    tasks.add(newTask);
+
+                    printAddTask(newTask);
+                    break;
+                }
+                case "event": {
+                    String command = String.join(" ", inputArray.subList(1,inputArray.size()));
+                    String[] commandArray = command.split(" /at ");
+                    //TODO: check command array is at least length 2
+                    Event newTask = new Event(commandArray[0], commandArray[1]);
+                    tasks.add(newTask);
+
+                    printAddTask(newTask);
+                    break;
+                }
+                case "deadline": {
+                    String command = String.join(" ", inputArray.subList(1,inputArray.size()));
+                    String[] commandArray = command.split(" /by ");
+
+                    Deadline newTask = new Deadline(commandArray[0], commandArray[1]);
+                    tasks.add(newTask);
+
+                    printAddTask(newTask);
                     break;
                 }
                 default: {
-                    Task newTask = new Task(inputText);
-                    tasks.add(newTask);
-
-                    System.out.println("\n  _______________");
-                    System.out.println("  Added: " + inputText);
-                    System.out.println("  _______________\n");
+                    System.out.println("You did not provide a valid command");
                 }
             }
         }
+    }
+
+    private static void printAddTask(Task task) {
+        System.out.println("\n  _______________");
+        System.out.println("  Added: " + task);
+        System.out.println(String.format("  Now you have %d tasks in the list", tasks.size()));
+        System.out.println("  _______________\n");
     }
 
     private static void printGreeting() {
