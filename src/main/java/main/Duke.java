@@ -44,12 +44,14 @@ public class Duke {
     try {
       Command c = Parser.parse(input);
       c.execute(TaskList);
-      System.out.println('\n');
       if (c instanceof ByeCommand) {
         this.isExit = true;
       }
+      System.out.println('\n');
     } catch (DukeException e) {
       System.out.println(e.getMessage() + '\n');
+    } catch (IllegalArgumentException e) {
+      System.out.println("No such command found \n");
     }
   }
 
