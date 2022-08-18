@@ -21,7 +21,7 @@ public class Duke {
         echo(sc);
     }
 
-    public static void intro() {
+    private static void intro() {
         String logo = " ____         _        \n"
                 + "|   | \\ _   _| | _____ \n"
                 + "|  _|  | | | | |/ / _ \\\n"
@@ -33,23 +33,40 @@ public class Duke {
 
     //Actually does what is needed to do
     public static void puke(Scanner sc, Duke d) {
+        String a = sc.next();
         String s = sc.nextLine();
-        String action = d.doWhat(s);
-        if (action.equals("bye")){
-            System.out.println("    ____________________________________________________________");
-            System.out.println("     Bye. Why are you still here?");
-            System.out.println("    ____________________________________________________________");
+        String desc = d.getMessage(s);
+        String date = d.getDate(s);
+
+        //String action = d.doWhat(s);
+        if (a.equals("bye")){
+            d.systemMessage(1,d, new Task(""));
             return;
-        } else if (action.equals("list")) {
+        } else if (a.equals("list")) {
             d.listTasks();
             puke(sc, d);
-        } else if (action.equals("mark")) {
-            int pos = Character.getNumericValue(s.charAt(5));
+        } else if (a.equals("mark")) {
+            int pos = Character.getNumericValue(s.charAt(1));
             d.taskManager("do", pos, d);
             puke(sc,d);
-        } else if (action.equals("unmark")) {
-            int pos = Character.getNumericValue(s.charAt(7));
+        } else if (a.equals("unmark")) {
+            int pos = Character.getNumericValue(s.charAt(1));
             d.taskManager("undo", pos, d);
+            puke(sc,d);
+        } else if (a.equals("todo")) {
+            Task newTask = new ToDo(desc);
+            d.addIncrement(newTask);
+            d.systemMessage(2, d, newTask);
+            puke(sc,d);
+        } else if (a.equals("deadline")) {
+            Task newTask = new Deadline(desc, date);
+            d.addIncrement(newTask);
+            d.systemMessage(2, d, newTask);
+            puke(sc,d);
+        } else if (a.equals("event")) {
+            Task newTask = new Event(desc, date);
+            d.addIncrement(newTask);
+            d.systemMessage(2, d, newTask);
             puke(sc,d);
         } else {
             Task newTask = new Task(s);
@@ -61,37 +78,58 @@ public class Duke {
         }
     }
 
-    //Acts as a controller to sort out what is needed to do as per the input
-    public String doWhat(String s) {
-        if (s.equals("list")) {
-            return "list";
-        } else if (s.equals("bye")) {
-            return "bye";
-        } else {
-            String buildFour = "";
-            String buildSix = "";
-            for (int i = 0; i < s.length(); i++) {
-                if (i < 4) {
-                    buildFour += s.charAt(i);
-                    buildSix += s.charAt(i);
-                } else if (i<6) {
-                    buildSix += s.charAt(i);
-                } else {
-                    break;
-                }
+    private static String getMessage(String s) {
+        String result = "";
+        for (int i = 0 ; i < s.length(); i++) {
+            if (i == 0) {
+                continue;
             }
-            if (buildFour.equals("mark")) {
-                return "mark";
+            if (s.charAt(i) == "/".charAt(0)) {
+                break;
             }
-            if (buildSix.equals("unmark")) {
-                return "unmark";
-            }
-            return s;
+            result += s.charAt(i);
         }
+        return result;
     }
 
-    public void listTasks() {
+    private static String getDate(String s) {
+        String result = "";
+        int temp = 0;
+        for (int i = 0 ; i < s.length(); i++) {
+            if (s.charAt(i) == "/".charAt(0)) {
+                temp = i;
+            }
+        }
+        for (int r = temp + 4 ; r < s.length(); r++) {
+            result += s.charAt(r);
+        }
+        return result;
+    }
+
+    private void systemMessage(int i , Duke d, Task t) {
+        if (i == 1) {
+            //Bye message
+            System.out.println("    ____________________________________________________________");
+            System.out.println("     Bye. Why are you still here?");
+            System.out.println("    ____________________________________________________________");
+        } else if (i == 2) {
+            // to do message
+            System.out.println("    ____________________________________________________________");
+            System.out.println("     Got it. I've added this task:");
+            System.out.println("      " + t);
+            System.out.println("     Now you have " + d.numTasks + " tasks in the list.");
+            System.out.println("    ____________________________________________________________");
+        }  else {
+            return;
+        }
+
+    }
+
+
+
+    private void listTasks() {
         System.out.println("    ____________________________________________________________");
+        System.out.println("     Here are the tasks in your list:");
         for(int i = 0; i < this.tasks.length ; i++) {
             if (this.tasks[i] == null) {
                 break;
@@ -102,7 +140,7 @@ public class Duke {
         return;
     }
 
-    public void taskManager(String s, int pos, Duke d) {
+    private void taskManager(String s, int pos, Duke d) {
         if (s.equals("do")) {
             System.out.println("    ____________________________________________________________");
             System.out.println("     Nice! I've marked this task as done: ");
@@ -120,7 +158,7 @@ public class Duke {
         }
     }
 
-    public void addIncrement(Task t) {
+    private void addIncrement(Task t) {
         this.tasks[numTasks] = t;
         this.numTasks++;
     }
@@ -132,6 +170,8 @@ public class Duke {
 
         intro();
         puke(receiver, d);
+
+        receiver.close();
 
     }
 }
