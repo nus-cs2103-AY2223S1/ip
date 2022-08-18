@@ -51,7 +51,7 @@ public class Duke {
 
     public static String breaker = "____________________________________________________________\n";
     private static ArrayList<Task> list = new ArrayList<>();
-    private static String[] commandWords = new String[]{"list", "mark", "unmark", "todo", "event", "deadline", "bye"};
+    private static String[] commandWords = new String[]{"list", "mark", "unmark", "todo", "event", "deadline", "delete", "bye"};
     private static String start = "Hello! I'm Duke\nWhat can I do for you?";
     private static String end = "Bye. Hope to see you again soon!";
 
@@ -86,7 +86,7 @@ public class Duke {
         while (!"bye".equals(text)) {
             Scanner reader = new Scanner(System.in);  // Reading from System.in
             text = reader.nextLine();
-            if (commandWords[6].equals(text)) {
+            if (commandWords[7].equals(text)) {
                 msg(end);
                 reader.close();
                 break;
@@ -117,7 +117,8 @@ public class Duke {
             int i = Integer.parseInt(text.substring(commandWords[2].length() + 1, commandWords[2].length() + 2));
             unmark(i);
         } else if (checkCommand(text, 6)) {
-            msg("Bye. Hope to see you again soon!");
+            int i = Integer.parseInt(text.substring(commandWords[6].length() + 1, commandWords[6].length() + 2));
+            delete(i);
         } else { // is a task, commandwords index 3-5 inclusive
             boolean sent = false;
             for (int i = 3; i < 6; i++) {
@@ -176,5 +177,10 @@ public class Duke {
         Task task = list.get(i-1);
         task.setStatusIcon(false);
         msg("OK, I've marked this task as not done yet:\n" + "\t" + task);
+    }
+
+    public static void delete(int i) {
+        msg("Noted. I've removed this task:\n\t" + list.get(i-1) +"\nNow you have " + (list.size()-1) + " tasks in the list.");
+        list.remove(i-1);
     }
 }
