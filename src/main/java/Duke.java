@@ -6,9 +6,17 @@ public class Duke {
     private static ArrayList<Task> tasks = new ArrayList<>();
 
     public static void displayList() {
+        System.out.println("Here are the tasks in your list.");
         for (int i = 0; i < tasks.size(); i++) {
             System.out.println((i + 1) + ". " + tasks.get(i).toString());
         }
+    }
+
+    public static void addTask(Task task) {
+        tasks.add(task);
+        System.out.println("Gotcha! I've added this task:");
+        System.out.println(task.toString());
+        System.out.println("Now you have " + tasks.size() + " tasks in your list.");
     }
 
     public static void main(String[] args) {
@@ -40,9 +48,24 @@ public class Duke {
                 case "unmark":
                     tasks.get(Integer.parseInt(input.split(" ")[1]) - 1).markAsNotDone();
                     break;
+                case "todo":
+                    Task newTodo = new Todo(input.substring(5));
+                    addTask(newTodo);
+                    break;
+                case "deadline":
+                    String deadlineDescription = input.substring(9).split("/by ")[0];
+                    String deadline = input.substring(9).split("/by ")[1];
+                    Task newDeadline = new Deadline(deadlineDescription, deadline);
+                    addTask(newDeadline);
+                    break;
+                case "event":
+                    String eventDescription = input.substring(6).split("/at ")[0];
+                    String timing = input.substring(6).split("/at ")[1];
+                    Task newEvent = new Event(eventDescription, timing);
+                    addTask(newEvent);
+                    break;
                 default:
-                    tasks.add(new Task(input));
-                    System.out.println("Added: " + input);
+                    System.out.println("Please enter a valid command.");
             }
         }
 
