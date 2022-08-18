@@ -28,9 +28,6 @@ public class Duke {
 
     // Data structures
     private static final List<Task> list = new ArrayList<>();
-    private enum TASK {
-        TODO, DEADLINE, EVENT;
-    }
 
     /**
      * Adds param str to a List.
@@ -42,7 +39,7 @@ public class Duke {
         prettyPrint(String.format("added: %s", newTask.getDescription()));
     }
 
-    private static void createTask(String str, TASK type){
+    private static void createTask(String str, TaskType type){
         try {
 
             Task newTask;
@@ -194,13 +191,13 @@ public class Duke {
                         unmarkTask(inputRem);
                         break;
                     case (TODOCOMMAND):
-                        createTask(inputRem, TASK.TODO);
+                        createTask(inputRem, TaskType.TODO);
                         break;
                     case (DEADLINECOMMAND):
-                        createTask(inputRem, TASK.DEADLINE);
+                        createTask(inputRem, TaskType.DEADLINE);
                         break;
                     case (EVENTCOMMAND):
-                        createTask(inputRem, TASK.EVENT);
+                        createTask(inputRem, TaskType.EVENT);
                         break;
                     case (DELETECOMMAND):
                         deleteTask(inputRem);
