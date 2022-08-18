@@ -40,17 +40,37 @@ public class Duke {
                         throw new DukeException("It seems that there is no corresponding task.");
                     }
                     mark(tasks, index);
-                } else if (userInput.startsWith("unmark") && userInput.split(" ", 2).length != 1) {
+                } else if (userInput.startsWith("unmark")) {
                     // when user enters unmark and a number
                     // mark the corresponding task as not done
+                    if (userInput.split(" ", 2).length == 1) {
+                        throw new DukeException("Please specify which task to unmark.");
+                    }
                     int index = Integer.parseInt(userInput.split(" ", 2)[1]) - 1;
+                    if (index >= tasks.size()) {
+                        throw new DukeException("It seems that there is no corresponding task.");
+                    }
                     unmark(tasks, index);
+                } else if (userInput.startsWith("delete")) {
+                    // when user enters delete and a number
+                    // delete the corresponding task from the list
+                    if (userInput.split(" ", 2).length == 1) {
+                        throw new DukeException("Please specify which task to delete.");
+                    }
+                    int index = Integer.parseInt(userInput.split(" ", 2)[1]) - 1;
+                    if (index >= tasks.size()) {
+                        throw new DukeException("It seems that there is no corresponding task.");
+                    }
+                    delete(tasks, index);
                 } else {
                     // add user input to the list
                     // check what type of task it is
 
-                    if (userInput.startsWith("todo") && userInput.split(" ", 2).length != 1) {
+                    if (userInput.startsWith("todo")) {
                         // the task is a todo
+                        if (userInput.split(" ", 2).length == 1) {
+                            throw new DukeException("The description of a todo cannot be empty.");
+                        }
                         String description = userInput.split(" ", 2)[1].split("/")[0].trim();
 
                         ToDo todo = new ToDo(description);
@@ -59,8 +79,11 @@ public class Duke {
                         say("Got it. I've added this task:", true, false);
                         say("  " + todo.toString(), false, false);
                         say("Now you have " + tasks.size() + " tasks in the list.", false, true);
-                    } else if (userInput.startsWith("deadline") && userInput.split(" ", 2).length != 1) {
+                    } else if (userInput.startsWith("deadline")) {
                         // the task is a deadline
+                        if (userInput.split(" ", 2).length == 1) {
+                            throw new DukeException("The description of a deadline cannot be empty.");
+                        }
                         String description = userInput.split(" ", 2)[1].split("/")[0].trim();
                         String by = userInput.split(" ", 2)[1].split("/")[1].split(" ", 2)[1];
 
@@ -70,8 +93,11 @@ public class Duke {
                         say("Got it. I've added this task:", true, false);
                         say("  " + deadline.toString(), false, false);
                         say("Now you have " + tasks.size() + " tasks in the list.", false, true);
-                    } else if (userInput.startsWith("event") && userInput.split(" ", 2).length != 1) {
+                    } else if (userInput.startsWith("event")) {
                         // the task is an event
+                        if (userInput.split(" ", 2).length == 1) {
+                            throw new DukeException("The description of an event cannot be empty.");
+                        }
                         String description = userInput.split(" ", 2)[1].split("/")[0].trim();
                         String at = userInput.split(" ", 2)[1].split("/")[1].split(" ", 2)[1];
 
@@ -81,6 +107,8 @@ public class Duke {
                         say("Got it. I've added this task:", true, false);
                         say("  " + event.toString(), false, false);
                         say("Now you have " + tasks.size() + " tasks in the list.", false, true);
+                    } else {
+                        throw new DukeException("I'm sorry, but I don't quite understand what that means.");
                     }
                 }
             } catch (DukeException exception) {
@@ -116,15 +144,20 @@ public class Duke {
 
     public static void mark(ArrayList<Task> tasks, int index) {
         tasks.get(index).setStatus(true);
-
         say("Nice! I've marked this task as done:", true, false);
         say(tasks.get(index).toString(), false, true);
     }
 
     public static void unmark(ArrayList<Task> tasks, int index) {
         tasks.get(index).setStatus(false);
-
         say("OK, I've marked this task as not done yet:", true, false);
         say(tasks.get(index).toString(), false, true);
+    }
+
+    public static void delete(ArrayList<Task> tasks, int index) {
+        say("Noted. I've removed this task:", true, false);
+        say(tasks.get(index).toString(), false, false);
+        tasks.remove(index);
+        say("Now you have " + tasks.size() + " tasks in the list.", false, true);
     }
 }
