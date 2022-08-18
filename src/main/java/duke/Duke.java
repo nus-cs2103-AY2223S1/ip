@@ -1,5 +1,7 @@
 package duke;
 
+import duke.task.*;
+
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -10,10 +12,10 @@ public class Duke {
     private static String EXIT_MSG = "Bye. Hope to see you again soon!";
     private static String NO_TASK_NAME = "No task name defined, please try again";
     private static String NO_INDEX_SPECIFIED = "No index specified, try again";
-    public static void main(String[] args) throws StorageHandler.InvalidStorageFilePathException, IOException, StorageHandler.StorageOperationException {
+    public static void main(String[] args) throws Storage.InvalidStorageFilePathException, IOException, Storage.StorageOperationException {
         Scanner scanner = new Scanner(System.in);
-        StorageHandler storageHandler = new StorageHandler();
-        Storage storage = storageHandler.loadSavedData();
+        Storage storageHandler = new Storage();
+        TaskList taskList = storageHandler.loadSavedData();
         DateTimeFormatter dateTimeFormatter = DateHandler.getDateTimeFormatter();
         System.out.println(GREETING);
 
@@ -28,7 +30,7 @@ public class Duke {
                 }
 
                 if (nextCommand.equals("list")) {
-                    storage.listTasks();
+                    taskList.listTasks();
                     continue;
                 }
 
@@ -36,8 +38,8 @@ public class Duke {
                     if (nextCommand.length() < 8) throw new DukeException(NO_INDEX_SPECIFIED);
 
                     Integer targetIndex = Integer.parseInt(nextCommand.substring(7));
-                    storage.removeTaskFromList(targetIndex);
-                    storageHandler.writeDataToFile(storage);
+                    taskList.removeTaskFromList(targetIndex);
+                    storageHandler.writeDataToFile(taskList);
                     continue;
                 }
 
@@ -45,8 +47,8 @@ public class Duke {
                     if (nextCommand.length() < 6) throw new DukeException(NO_INDEX_SPECIFIED);
 
                     Integer targetIndex = Integer.parseInt(nextCommand.substring(5));
-                    storage.markTaskAsDone(targetIndex);
-                    storageHandler.writeDataToFile(storage);
+                    taskList.markTaskAsDone(targetIndex);
+                    storageHandler.writeDataToFile(taskList);
                     continue;
                 }
 
@@ -54,8 +56,8 @@ public class Duke {
                     if (nextCommand.length() < 8) throw new DukeException(NO_INDEX_SPECIFIED);
 
                     Integer targetIndex = Integer.parseInt(nextCommand.substring(7));
-                    storage.markTaskAsUnDone(targetIndex);
-                    storageHandler.writeDataToFile(storage);
+                    taskList.markTaskAsUnDone(targetIndex);
+                    storageHandler.writeDataToFile(taskList);
                     continue;
                 }
 
@@ -65,8 +67,8 @@ public class Duke {
                     String taskName = nextCommand.substring(5);
                     if (taskName.isEmpty()) throw new DukeException(NO_TASK_NAME);
                     Task taskToAdd = new ToDo(taskName);
-                    storage.addTaskToList(taskToAdd);
-                    storageHandler.writeDataToFile(storage);
+                    taskList.addTaskToList(taskToAdd);
+                    storageHandler.writeDataToFile(taskList);
                     continue;
                 }
 
@@ -83,8 +85,8 @@ public class Duke {
 
                     LocalDateTime doneByDate = LocalDateTime.parse(doneBy, dateTimeFormatter);
                     Task taskToAdd = new Deadline(mainTask, doneByDate);
-                    storage.addTaskToList(taskToAdd);
-                    storageHandler.writeDataToFile(storage);
+                    taskList.addTaskToList(taskToAdd);
+                    storageHandler.writeDataToFile(taskList);
                     continue;
                 }
 
@@ -101,8 +103,8 @@ public class Duke {
 
                     LocalDateTime doneAtDate = LocalDateTime.parse(doneAt, dateTimeFormatter);
                     Task taskToAdd = new Event(mainTask, doneAtDate);
-                    storage.addTaskToList(taskToAdd);
-                    storageHandler.writeDataToFile(storage);
+                    taskList.addTaskToList(taskToAdd);
+                    storageHandler.writeDataToFile(taskList);
                     continue;
                 }
                 // Handle unknown commands

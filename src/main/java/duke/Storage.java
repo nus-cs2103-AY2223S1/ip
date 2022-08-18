@@ -1,96 +1,90 @@
 package duke;
 
-import java.util.ArrayList;
+import duke.task.TaskList;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 public class Storage {
-    protected final List<Task> taskList;
-    static String NO_SUCH_INDEX = "No such index in the list, please try again.";
+    public static final String DEFAULT_FILE_NAME = "todolist.txt";
+    public final Path path;
 
-    Storage() {
-        this.taskList = new ArrayList<>();
+    Storage() throws InvalidStorageFilePathException, IOException {
+        this(DEFAULT_FILE_NAME);
     }
 
-    Storage(List<Task> taskList) {
-        this.taskList = taskList;
-    }
-
-    String handleTaskOutput(Task task, int id) {
-        return String.format("%d. %s", id, task.toString());
-    }
-
-    String getItemsLeft() {
-        if (taskList.isEmpty()) {
-            return "List is empty";
-        } else {
-            return String.format("Now you have %d tasks in the list", taskList.size());
+    Storage(String filePath) throws InvalidStorageFilePathException, IOException {
+        this.path = Paths.get(System.getProperty("user.dir"), filePath);
+        if (!validPath(filePath)) {
+            throw new InvalidStorageFilePathException("duke.task.Storage file needs to end with .txt, please try again.");
+        }
+        if (!Files.exists(path) || !Files.isRegularFile(path)) {
+            // Create a new file
+            Files.createFile(path);
         }
     }
 
-    void removeTaskFromList(int id) {
-        try {
-            if (id <= 0 || id > taskList.size()) {
-                throw new DukeException(NO_SUCH_INDEX);
-            }
+    private boolean validPath(String filePath) {
+        return filePath.contains(".txt");
+    }
 
-            Task taskToRemove = this.taskList.get(id-1);
-            this.taskList.remove(id-1);
-            String taskRemovedOutput = String.format("Noted. I've removed this task:\n %s\n%s\n",
-                    taskToRemove.toString(), getItemsLeft());
-            System.out.println(taskRemovedOutput);
+    public TaskList loadSavedData() throws IOException, StorageOperationException {
+        if (!Files.exists(path) || !Files.isRegularFile(path)) {
+            // Create a new file
+            Files.createFile(path);
+        }
+
+        try {
+            List<String> fileLines = Files.readAllLines(path);
+            return StorageParser.parseFile(fileLines);
+        } catch (IOException e) {
+            throw new StorageOperationException("Error parsing file @ " + path);
+        } catch (Exception e) {
+            System.out.println(e);
+            return new TaskList();
+        }
+    }
+
+    public TaskList writeDataToFile(TaskList taskList) throws IOException {
+        if (!Files.exists(path) || !Files.isRegularFile(path)) {
+            // Create a new file
+            Files.createFile(path);
+        }
+
+        try {
+            StringBuilder sb = new StringBuilder();
+            taskList.getTaskList().forEach((task) -> {
+                sb.append(StorageWriter.writeSingleTask(task) + "\n");
+            });
+            String toWrite = sb.subSequence(0, sb.length()-1).toString();
+            byte[] byteString = toWrite.getBytes();
+            Files.write(this.path, byteString);
+            return taskList;
         } catch (Exception e) {
             System.out.println(e);
         }
+        return taskList;
     }
 
-    void addTaskToList(Task task) {
-        try {
-            this.taskList.add(task);
-            String taskAddedOutput = String.format("Got it. I've added this task:\n  %s\n%s\n",
-                    task.toString(), getItemsLeft());
-            System.out.println(taskAddedOutput);
-        } catch (Exception e) {
-            System.out.println(e);
+    /**
+     * Signals that the given file path does not fulfill the storage filepath constraints.
+     */
+    public static class InvalidStorageFilePathException extends Exception {
+        public InvalidStorageFilePathException(String message) {
+            super(message);
         }
     }
 
-    void listTasks() {
-        if (taskList.isEmpty()) {
-            System.out.println("List is empty!");
-            return;
-        }
-        String toPrint = "";
-
-        for (int i = 0; i < taskList.size(); i++) {
-            Task task = taskList.get(i);
-            String toConcat = handleTaskOutput(task, i+1);
-            toPrint = String.format("%s\n%s", toPrint, toConcat);
-        }
-
-        System.out.println(toPrint.substring(1) + "\n");
-    }
-
-    void markTaskAsDone(int id) {
-        try {
-            if (id <= 0 || id > taskList.size()) {
-                throw new DukeException(NO_SUCH_INDEX);
-            }
-            Task targetTask = taskList.get(id-1);
-            targetTask.markAsDone(false);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
-
-    void markTaskAsUnDone(int id) {
-        try {
-            if (id <= 0 || id > taskList.size()) {
-                throw new DukeException(NO_SUCH_INDEX);
-            }
-            Task targetTask = taskList.get(id-1);
-            targetTask.markAsUnDone();
-        } catch (Exception e) {
-            System.out.println(e);
+    /**
+     * Signals that some error has occured while trying to convert and read/write data between the application
+     * and the storage file.
+     */
+    public static class StorageOperationException extends Exception {
+        public StorageOperationException(String message) {
+            super(message);
         }
     }
 }

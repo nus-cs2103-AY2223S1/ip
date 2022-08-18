@@ -1,15 +1,17 @@
 package duke;
 
+import duke.task.*;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 public class StorageParser {
-    static Storage parseFile(List<String> lines) {
+    static TaskList parseFile(List<String> lines) {
         List<Task> tasks = new ArrayList<>();
         lines.forEach((x) -> tasks.add(formatTask(x)));
-        return new Storage(tasks);
+        return new TaskList(tasks);
     }
 
     static Task formatTask(String rawTask) {

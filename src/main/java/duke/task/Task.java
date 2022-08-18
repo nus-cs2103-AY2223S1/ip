@@ -1,48 +1,56 @@
-package duke;
+package duke.task;
 
 import java.time.LocalDateTime;
 
 public class Task {
-    protected String description;
-    protected boolean isDone;
-    protected LocalDateTime date;
-    final TaskType type;
+    private String description;
+    private boolean isDone;
+    private LocalDateTime date;
+    public final TaskType type;
     private static String MARKED_TXT = "Nice ! I've marked this task as done:";
     private static String UNMARKED_TEXT = "OK, I've marked this task as not done yet:";
 
-    Task(String description, TaskType type) {
+    public Task(String description, TaskType type) {
         this.description = description;
         this.isDone = false;
         this.type = type;
         this.date = LocalDateTime.now();
     }
 
-    Task(String description, TaskType type, LocalDateTime date) {
+    protected Task(String description, TaskType type, LocalDateTime date) {
         this.description = description;
         this.isDone = false;
         this.date = date;
         this.type = type;
     }
 
-    String getMarkedStatus() {
+    private String getMarkedStatus() {
         return isDone ? "[X]" : "[ ]";
     }
 
-    String determineTextOutput() {
+    private String determineTextOutput() {
         return isDone ? MARKED_TXT : UNMARKED_TEXT;
     }
 
-    void markAsDone(boolean slient) {
+    public void markAsDone(boolean slient) {
         this.isDone = true;
         if (!slient) System.out.println(determineTextOutput() + "\n" + this + "\n");
     }
 
-    void markAsUnDone() {
+    public void markAsUnDone() {
         this.isDone = false;
         System.out.println(determineTextOutput() + "\n" + this + "\n");
     }
 
-    String getBy() {
+    public String getDescription() {
+        return this.description;
+    }
+
+    public int getDoneStatus() {
+        return isDone ? 1 : 0;
+    }
+
+    public String getBy() {
         return "";
     }
 

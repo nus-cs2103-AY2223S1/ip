@@ -1,17 +1,17 @@
-package duke;
+package duke.task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
     LocalDateTime by;
-    Deadline(String description, LocalDateTime by) {
+    public Deadline(String description, LocalDateTime by) {
         super(description, TaskType.DEADLINE, by);
         this.by = by;
     }
 
     @Override
-    String getBy() {
+    public String getBy() {
         return this.by.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
     }
 

@@ -1,13 +1,13 @@
-package duke;
+package duke.task;
 
 public class ToDo extends Task{
 
-    ToDo(String description) {
+    public ToDo(String description) {
         super(description, TaskType.TODO);
     }
 
     @Override
-    String getBy() {
+    public String getBy() {
         return "";
     }
 
