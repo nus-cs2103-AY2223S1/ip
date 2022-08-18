@@ -95,13 +95,6 @@ public class Dobby {
             DobbyChat.noNumber();
         }
     }
-    private static void toDelete() {
-        int listLen = dobbyList.getLength();
-        for(int i = 1; i < listLen; i++) {
-            dobbyList.delete(i);
-        }
-        DobbyChat.allDeleted();
-    }
     private static void toAddTodo(String s) {
         try {
             String task = getTask(s, "todo");
@@ -182,11 +175,7 @@ public class Dobby {
                     toUnmark(command);
                 }
             } else if(command.startsWith("delete") || command.startsWith("remove")) {
-                if (command.contains("all")) {
-                    toDelete();
-                } else {
-                    toDelete(command);
-                }
+                toDelete(command);
             } else if(command.startsWith("todo")) {
                 toAddTodo(command);
             } else if(command.startsWith("deadline")) {
