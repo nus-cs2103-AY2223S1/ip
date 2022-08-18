@@ -30,20 +30,24 @@ public class Duke {
     }
 
     public void list() {
-        if (tasks.isEmpty()) {
-            System.out.println("Your task list is empty!");
-        } else {
+        if (!tasks.isEmpty()) {
             System.out.println("Task list:");
             for (int i = 0; i < tasks.size(); i++) {
                 int taskNum = i + 1;
                 Task task = tasks.get(i);
                 System.out.println(taskNum + "." + task);
             }
+        } else {
+            System.out.println("Your task list is empty!");
         }
     }
 
-    public void changeTaskStatus(String taskNumAsString, Command command) throws DukeException {
-        int taskNum = Integer.parseInt(taskNumAsString);
+    public void changeTaskStatus(String[] splitInputArray, Command command) throws DukeException {
+        if (splitInputArray.length < 2 || !isNumber(splitInputArray[1])) {
+            throw new DukeException("Please specify a task number!");
+        }
+
+        int taskNum = Integer.parseInt(splitInputArray[1]);
         if (taskNum > 0 && taskNum <= tasks.size()) {
             Task task = tasks.get(taskNum - 1);
             if (command == Command.MARK) {
@@ -56,9 +60,15 @@ public class Duke {
         }
     }
 
-    public void addTask(String details, Type type) throws DukeException {
+    public void addTask(String[] splitInputArray, Type type) throws DukeException {
+        boolean isToDo = type == Type.TODO;
+        if (splitInputArray.length < 2) {
+            throw new DukeException("Please provide a task description" + (isToDo ? "!" : " and a date / time!"));
+        }
+
         Task task;
-        if (type == Type.TODO) {
+        String details = splitInputArray[1];
+        if (isToDo) {
             task = new ToDo(details);
         } else {
             boolean isDeadline = type == Type.DEADLINE;
@@ -75,8 +85,12 @@ public class Duke {
         System.out.println("Task added:\n\t" + task);
     }
 
-    public void deleteTask(String taskNumAsString) throws DukeException {
-        int taskNum = Integer.parseInt(taskNumAsString);
+    public void deleteTask(String[] splitInputArray) throws DukeException {
+        if (splitInputArray.length < 2 || !isNumber(splitInputArray[1])) {
+            throw new DukeException("Please specify a task number!");
+        }
+
+        int taskNum = Integer.parseInt(splitInputArray[1]);
         if (taskNum > 0 && taskNum <= tasks.size()) {
             Task task = tasks.get(taskNum - 1);
             tasks.remove(taskNum - 1);
@@ -107,26 +121,13 @@ public class Duke {
                 } else if (input.equals("list")) {
                     duke.list();
                 } else if (firstWord.equals("mark") || firstWord.equals("unmark")) {
-                    if (splitInputArray.length > 1 && isNumber(splitInputArray[1])) {
-                        duke.changeTaskStatus(splitInputArray[1], Command.valueOf(firstWord.toUpperCase()));
-                    } else {
-                        throw new DukeException("Please specify a task number!");
-                    }
+                    duke.changeTaskStatus(splitInputArray, Command.valueOf(firstWord.toUpperCase()));
                 } else if (firstWord.equals("todo") || firstWord.equals("deadline") || firstWord.equals("event")) {
-                    if (splitInputArray.length > 1) {
-                        duke.addTask(splitInputArray[1], Type.valueOf(firstWord.toUpperCase()));
-                        duke.displayNumOfTasks();
-                    } else {
-                        throw new DukeException("Please provide a task description"
-                                + (firstWord.equals("todo") ? "" : " and a date / time") + "!");
-                    }
+                    duke.addTask(splitInputArray, Type.valueOf(firstWord.toUpperCase()));
+                    duke.displayNumOfTasks();
                 } else if (firstWord.equals("delete")) {
-                    if (splitInputArray.length > 1 && isNumber(splitInputArray[1])) {
-                        duke.deleteTask(splitInputArray[1]);
-                        duke.displayNumOfTasks();
-                    } else {
-                        throw new DukeException("Please specify a task number!");
-                    }
+                    duke.deleteTask(splitInputArray);
+                    duke.displayNumOfTasks();
                 } else {
                     throw new DukeException("Sorry! I don't know what that means :(");
                 }
