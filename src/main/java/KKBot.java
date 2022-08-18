@@ -146,6 +146,19 @@ public class KKBot {
                 } catch (IndexOutOfBoundsException ioobe) {
                     System.out.println("You forgot to specify a task/deadline! Try again!\n" + divider);
                 }
+            } else if (input.startsWith("delete") || input.startsWith("Delete") || input.startsWith("DELETE")) {
+                String inputNumber = input.substring(7);
+                try {
+                    int taskNumber = Integer.parseInt(inputNumber);
+                    Task toRemove = tasks.get(taskNumber - 1);
+                    tasks.remove(toRemove);
+                    System.out.println("This task has been deleted:\n" + "    " + toRemove.toString() + "\n"
+                            + "Now you have " + tasks.size() + " tasks in the list!\n" + divider);
+                } catch (NumberFormatException nfe) {
+                    System.out.println("Woopsies you left out the task number. Please specify one!\n" + divider);
+                } catch (IndexOutOfBoundsException ioobe) {
+                    System.out.println("Hmm... that task doesn't exist. Please input another task number!\n" + divider);
+                }
             // if user input has no keywords, then chatbot returns an error message
             } else {
                 System.out.println("KKBot doesn't understood... please try again!" + "\n" + divider);

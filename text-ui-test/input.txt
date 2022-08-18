@@ -12,5 +12,7 @@ unmark 1
 event Arts Fest
 event Arts Fest /at UTown, 19/08 2000hrs
 mark 3
+delete 5
+delete 2
 list
 bye
