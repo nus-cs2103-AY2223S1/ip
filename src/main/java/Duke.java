@@ -32,9 +32,7 @@ public class Duke {
                     System.out.println("Please input a number after mark");
                     System.out.println("##############################################");
                 } catch (DukeException e) {
-                    System.out.println("##############################################");
                     System.out.println(e.toString());
-                    System.out.println("##############################################");
                 }
             } else if(userReply.toLowerCase().startsWith("unmark")) {
                 try {
@@ -52,9 +50,7 @@ public class Duke {
                     System.out.println("Please input a number after unmark");
                     System.out.println("##############################################");
                 } catch (DukeException e) {
-                    System.out.println("##############################################");
                     System.out.println(e.toString());
-                    System.out.println("##############################################");
                 }
             } else if (userReply.toLowerCase().startsWith("todo")) {
                 try {
@@ -82,9 +78,7 @@ public class Duke {
                     String by = taskWithDeadline[1];
                     Deadline(task, by);
                 } catch (DukeException e) {
-                    System.out.println("##############################################");
                     System.out.println(e.toString());
-                    System.out.println("##############################################");
                 }
             } else if (userReply.toLowerCase().startsWith("event")) {
                 try {
@@ -103,9 +97,7 @@ public class Duke {
                     String period = taskWithPeriod[1];
                     Event(task, period);
                 } catch (DukeException e) {
-                    System.out.println("##############################################");
                     System.out.println(e.toString());
-                    System.out.println("##############################################");
                 }
             } else {
                 System.out.println("##############################################");
