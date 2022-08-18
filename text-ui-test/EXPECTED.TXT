@@ -5,3 +5,27 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
+Hello! I'm Duke
+ What can i do for you?
+
+Got it. I'hv added this task:
+   [D] [ ] MA1521 (by Mon 2359)
+Now you have 1 task in the list
+
+Got it. I'hv added this task:
+   [E] [ ] project (at: Mon 2-4pm)
+Now you have 2 task in the list
+
+Got it. I'hv added this task:
+   [D] [ ] do (by no idea :-p)
+Now you have 3 task in the list
+
+Got it. I'hv added this task:
+   [D] [ ] return (by Sunday)
+Now you have 4 task in the list
+
+Got it. I'hv added this task:
+   [T] [ ] your mom
+Now you have 5 task in the list
+
+Bye. Hope to see you again soon

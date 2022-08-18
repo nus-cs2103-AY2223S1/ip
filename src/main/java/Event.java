@@ -7,7 +7,7 @@ public class Event extends Task {
 
     @Override
     public String formatTask() {
-        return String.format("[E] [%s] %s (at: %s) \n", this.getStatusIcon(), this.description, time );
+        return String.format("[E] [%s] %s (at: %s)", this.getStatusIcon(), this.description, time );
     }
 
 
