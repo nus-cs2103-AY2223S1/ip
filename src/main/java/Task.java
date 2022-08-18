@@ -1,4 +1,5 @@
 public class Task {
+
     protected String description;
     protected boolean isDone;
 
@@ -15,7 +16,15 @@ public class Task {
         this.isDone = true;
     }
 
+    public void markAsUnDone() {
+        this.isDone = false;
+    }
+
     public String getDescription() {
         return this.description;
+    }
+
+    public String toString() {
+        return "[" + this.getStatusIcon() + "] " + this.getDescription();
     }
 }
