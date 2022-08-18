@@ -41,8 +41,24 @@ public class UI {
     }
 
     public String addTask(String str) {
-        taskList.add(new Task(str));
-        return "added: " + str;
+        if (str.startsWith("todo")) {
+            ToDo todo = new ToDo(str.substring(5));
+            taskList.add(todo);
+            return "Got it. I've added this task:\n" + todo.toString() + "\n"
+                    + String.format("There are %d task(s) in the list", taskList.size());
+        } else if (str.startsWith("event")) {
+            String[] arrOfStrings = str.split("/at", 2);
+            Event event = new Event(arrOfStrings[0], arrOfStrings[1]);
+            taskList.add(event);
+            return "Got it. I've added this task:\n" + event.toString() + "\n"
+                    + String.format("There are %d task(s) in the list", taskList.size());
+        } else {
+            String[] arrOfStrings = str.split("/by", 2);
+            Deadline deadline = new Deadline(arrOfStrings[0], arrOfStrings[1]);
+            taskList.add(deadline);
+            return "Got it. I've added this task:\n" + deadline.toString() + "\n"
+                    + String.format("There are %d task(s) in the list", taskList.size());
+        }
     }
 
     public String markTask(int id) {

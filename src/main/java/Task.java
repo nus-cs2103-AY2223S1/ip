@@ -19,6 +19,7 @@ public class Task {
         this.isDone = false;
     }
 
+    @Override
     public String toString() {
         if (this.isDone) {
             return "[X] " + this.name;
