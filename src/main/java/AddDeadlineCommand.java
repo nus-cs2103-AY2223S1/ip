@@ -12,7 +12,7 @@ public class AddDeadlineCommand implements Command {
         if (input.equals("")) {
             throw new DaveException("( ; ω ; ) Oh nyo!!! The description of an event cannot be empty!");
         }
-        String[] args = input.split("/at ");
+        String[] args = input.split("/by ");
         if (args.length > 2) {
             throw new DaveException("( ; ω ; ) Oh nyo!!! Too many deadlines, Dave's brain is fried!");
         } else if (args.length < 2) {

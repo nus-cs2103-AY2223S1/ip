@@ -69,7 +69,7 @@ public class Dave2 {
                 + "| | | |  _  | |/ / _ \\      /  /\n"
                 + "| |_| | |_| |   <  __/     /  /_\n"
                 + "|____/ \\__,_|__/ \\___|    /_____|\n";
-        System.out.println("Hello, I'm\n" + logo + "\nHow can I help ùwú?\n");
+        System.out.println(line + "Hello, I'm\n" + logo + "\nHow can I help ùwú?\n" + line);
 
         while (running) {
             inputHandling(scanner.nextLine());

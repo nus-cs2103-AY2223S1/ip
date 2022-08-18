@@ -1,0 +1,14 @@
+todo badminton
+todo badminton
+mark 2
+list
+event artcade 4 September
+event artcade /at 4 September
+deadline homework 2 tomorrow
+deadline homework 2 /by tomorrow
+list
+remove 2
+remove -1
+mark 4
+unmark 5
+bye
