@@ -24,49 +24,41 @@ public class Duke {
                     toDoList.listTasks();
                     System.out.println(hLine);
                 }
-                else if (command.matches("^todo \\S.*")) {
-                    String name = command.substring(command.indexOf(" ") + 1);
-
+                else if (command.startsWith("todo")) {
                     System.out.println(hLine);
-                    addToDo(name);
+                    addToDo(command);
                     System.out.printf("\tNow you have %d tasks in the list.\n", toDoList.getSize());
                     System.out.println(hLine);
                 }
-                else if (command.matches("^deadline \\S.*") && command.contains("/by")) {
-                    String details = command.substring(command.indexOf(" ") + 1);
-                    String name = details.split("/by ")[0];
-                    String deadline = details.split("/by ")[1];
-
+                else if (command.startsWith("deadline")) {
                     System.out.println(hLine);
-                    addDeadline(name, deadline);
-                    System.out.printf("\tNow you have %d tasks in the list.\n", toDoList.getSize());
+                    addDeadline(command);
                     System.out.println(hLine);
                 }
-                else if(command.matches("^event \\S.*") && command.contains("/at")) {
-                    String details = command.substring(command.indexOf(" ") + 1);
-                    String name = details.split("/at ")[0];
-                    String time = details.split("/at ")[1];
-
+                else if(command.startsWith("event")) {
                     System.out.println(hLine);
-                    addEvent(name, time);
+                    addEvent(command);
                     System.out.printf("\tNow you have %d tasks in the list.\n", toDoList.getSize());
                     System.out.println(hLine);
                 }
                 else if (command.matches("mark [0-9]+") || command.matches("unmark [0-9]+")) {
-                    String[] splitComm = command.split(" ");
-                    String action = splitComm[0];
-                    int index = Integer.parseInt(splitComm[1]) - 1;
-
-                    changeMark(index, action);
+                    changeMark(command);
+                }
+                else if (command.matches("delete [0-9]+")) {
+                    deleteTask(command);
+                    System.out.printf("\tNow you have %d tasks in the list.\n", toDoList.getSize());
+                } else if (command != ""){
+                    System.out.println(hLine);
+                    throw new Exception("I am sorry, I do not comprehend such commands. Please Try again...");
                 }
 
                 command = myScanner.nextLine();
             } catch (InputMismatchException e) {
-                System.out.println("\tError: please input a valid command");
+                System.out.println("\tError: please only input String commands.");
                 System.out.println(hLine);
                 command = "";
             } catch (IndexOutOfBoundsException e) {
-                System.out.println("\tIndex specified out of range, please try again.");
+                System.out.println("\tIndex specified out of range, please try again...");
                 System.out.println(hLine);
                 command = "";
             } catch (Exception e) {
@@ -81,10 +73,13 @@ public class Duke {
 
     /* Changes status of the task according to index given
      *
-     * @param index
-     * @param action
+     * @param command
      */
-    private void changeMark(int index, String action) {
+    private void changeMark(String command) {
+        String[] splitComm = command.split(" ");
+        String action = splitComm[0];
+        int index = Integer.parseInt(splitComm[1]) - 1;
+
         if (action.equals("mark")) {
             System.out.println(hLine);
             toDoList.complete(index);
@@ -96,29 +91,65 @@ public class Duke {
         }
     }
 
+    /* Changes status of the task according to index given
+     *
+     * @param command
+     */
+    private void deleteTask(String command) {
+        String[] splitComm = command.split(" ");
+        int index = Integer.parseInt(splitComm[1]) - 1;
+
+        System.out.println(hLine);
+        toDoList.delete(index);
+        System.out.println(hLine);
+    }
+
     /* Creates a ToDos instance and adds it to ToDoList
      *
-     * @param name
+     * @param command
      */
-    private void addToDo(String name) {
+    private void addToDo(String command) throws Exception {
+        if (!command.matches("todo \\S.*")) {
+            throw new Exception("The description of a todo cannot be empty.");
+        }
+        String name = command.substring(command.indexOf(" ") + 1);
+
         toDoList.addTask(new ToDos(name));
     }
 
     /* Creates a Deadline instance and adds it to ToDoList
      *
-     * @param name
-     * @param deadline
+     * @param command
      */
-    private void addDeadline(String name, String deadline) {
+    private void addDeadline(String command) throws Exception {
+        if (!command.matches("deadline \\S.*")) {
+            throw new Exception("The description of a deadline cannot be empty.");
+        } else if (!command.contains("/by")) {
+            throw new Exception("The description is missing a deadline.");
+        }
+
+        String details = command.substring(command.indexOf(" ") + 1);
+        String name = details.split("/by ")[0];
+        String deadline = details.split("/by ")[1];
+
         toDoList.addTask(new Deadline(name, deadline));
     }
 
     /* Creates an Event instance and adds it to ToDoList
      *
-     * @param name
-     * @param time
+     * @param command
      */
-    private void addEvent(String name, String time) {
+    private void addEvent(String command) throws Exception{
+        if (!command.matches("event \\S.*")) {
+            throw new Exception("The description of an event cannot be empty.");
+        } else if (!command.contains("/at")) {
+            throw new Exception("The description is missing a time.");
+        }
+
+        String details = command.substring(command.indexOf(" ") + 1);
+        String name = details.split("/at ")[0];
+        String time = details.split("/at ")[1];
+
         toDoList.addTask(new Event(name, time));
     }
 
