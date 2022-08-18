@@ -55,6 +55,18 @@ public class Seaward {
             taskList.setNotCompleted(index);
             return "I have marked this task as undone:\n" +
                     taskList.readTask(index);
+        } else if (command.equals("delete")) {
+            int index = Integer.parseInt(splitCommand[1]) - 1;
+            int numOfTasks = taskList.getNumOfTasks();
+            int newNumOfTasks = numOfTasks - 1;
+            if (index + 1 > numOfTasks) {
+                throw new InvalidCommandException("Task does not exist.");
+            }
+            String result = "Noted. I have removed this task:\n" + taskList.readTask(newNumOfTasks)
+                    + "\n" + "Now you have "
+                    + newNumOfTasks + " task(s) in your list.";
+            taskList.deleteTask(index);
+            return result;
         } else if (command.equals("todo")) {
             if (splitCommand.length == 1) {
                 throw new InvalidDescriptionException("Please add a description.");
