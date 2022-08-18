@@ -2,4 +2,4 @@ deadline return book /by Sunday
 event project meeting /at Mon 2-4pm
 mark 1
 mark 2
-list 
+list
