@@ -2,6 +2,10 @@ import java.util.*;
 
 public class Duke {
 
+    private enum Command {
+        BYE, LIST, MARK, UNMARK, DELETE, TODO, DEADLINE, EVENT
+    }
+
     private static ArrayList<Task> addedTask = new ArrayList<>(100);
 
     private static int getSize() {
@@ -53,43 +57,52 @@ public class Duke {
         Duke.addedTask.get(index - 1).unmark();
     }
 
+    private static Command parseCommand(String command) 
+            throws CommandNotFoundException {
+        try {
+            return Command.valueOf(command.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new CommandNotFoundException(command);
+        }
+    }
+
     private static void processCommand(String command)
             throws DukeException {
         String[] commandArgs = command.split(" ", 2);
-        String keyword = commandArgs[0];
+        Command keyword = Duke.parseCommand(commandArgs[0]);
         switch (keyword) {
-            case "bye":
+            case BYE:
                 System.out.println("Come again soon!");
                 System.exit(0);
-            case "list":
+            case LIST:
                 Duke.listTask();
                 break;
-            case "mark":
+            case MARK:
                 if (commandArgs.length == 1) {
                     throw new EmptyCommandException(commandArgs[0]);
                 }
                 Duke.markTask(Integer.parseInt(commandArgs[1]));
                 break;
-            case "unmark":
+            case UNMARK:
                 if (commandArgs.length == 1) {
                     throw new EmptyCommandException(commandArgs[0]);
                 }
                 Duke.unmarkTask(Integer.parseInt(commandArgs[1]));
                 break;
-            case "delete":
+            case DELETE:
                 if (commandArgs.length == 1) {
                     throw new EmptyCommandException(commandArgs[0]);
                 }
                 Duke.deleteTask(Integer.parseInt(commandArgs[1]));
                 break;
-            case "todo":
+            case TODO:
                 if (commandArgs.length == 1) {
                     throw new EmptyCommandException(commandArgs[0]);
                 }
                 Todo todo = new Todo(commandArgs[1]);
                 Duke.addTask(todo);
                 break;
-            case "deadline":
+            case DEADLINE:
                 if (commandArgs.length == 1) {
                     throw new EmptyCommandException(commandArgs[0]);
                 }
@@ -100,7 +113,7 @@ public class Duke {
                 Duke.addTask(new Deadline(deadlineDetails[0],
                         deadlineDetails[1]));
                 break;
-            case "event":
+            case EVENT:
                 if (commandArgs.length == 1) {
                     throw new EmptyCommandException(commandArgs[0]);
                 }
@@ -128,5 +141,6 @@ public class Duke {
                 System.out.println(e.getMessage());
             }
         }
+        scanner.close();   
     }
 }

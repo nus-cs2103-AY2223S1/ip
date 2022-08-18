@@ -1,8 +1,8 @@
 Hi, my name is Duke
 and it's power hour!
 ***********************
-Command not found: go running
-Command not found: stop fishing
+Command not found: go
+Command not found: stop
 Command not found: spinning
 Task added:
 [T][ ] finish THIS
