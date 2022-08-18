@@ -2,19 +2,20 @@ import java.util.Scanner;
 
 public class UwuBot {
     private static Scanner scanner = new Scanner(System.in);
+    private static UwuChat chat = new UwuChat();
 
     public static void main(String[] args) {
 
-        UwuChat.greetingUsers();
+        chat.greetingUsers();
 
         while(true) {
             String userCommand = scanner.nextLine();
 
             if (userCommand.equals("bye")) {
-                UwuChat.leavingChat();
+                chat.leavingChat();
                 break;
             } else {
-                UwuChat.userCommands(userCommand);
+                chat.userCommands(userCommand);
             }
         }
     }
