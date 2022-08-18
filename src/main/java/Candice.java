@@ -1,3 +1,4 @@
+import java.lang.IllegalArgumentException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -71,33 +72,81 @@ public class Candice {
         System.out.println("You have " + taskList.size() + " task(s). Stop procrastinating bro.");
     }
 
-    private static void addDeadlineOrEvent(String taskAndDate, String firstWord, ArrayList<Task> taskList) {
-        String[] taskSplit = taskAndDate.split("/", 2);
+    private static void addDeadlineOrEvent(String taskAndDate, String firstWord, ArrayList<Task> taskList)
+            throws InvalidFormattingException, UnknownActionException, EmptyTimingException {
+        if (!firstWord.equals("deadline") && !firstWord.equals("event")) {
+            throw new UnknownActionException();
+        } else {
+            String[] taskSplit = taskAndDate.split("/", 2);
 
-        if (taskSplit.length == 2) {
-            String taskName = taskSplit[0];
-            String date = taskSplit[1];
+            if (taskSplit.length == 2) {
+                String taskName = taskSplit[0];
+                String date = taskSplit[1];
 
-            String[] dateSplit = date.split(" ", 2);
+                String[] dateSplit = date.split(" ", 2);
 
-            if (firstWord.equals("deadline")) {
-                if (dateSplit[0].equals("by")) {
-                    Deadline newDeadline = new Deadline(taskName, dateSplit[1]);
-                    addTask(newDeadline, taskList);
-                    return;
+                if (firstWord.equals("deadline")) {
+                    if (dateSplit[0].equals("by")) {
+                        Deadline newDeadline = new Deadline(taskName, dateSplit[1]);
+                        addTask(newDeadline, taskList);
+                        return;
+                    }
                 }
-            }
 
-            if (firstWord.equals("event")) {
-                if (dateSplit[0].equals("at")) {
-                    Event newEvent = new Event(taskName, dateSplit[1]);
-                    addTask(newEvent, taskList);
-                    return;
+                if (firstWord.equals("event")) {
+                    if (dateSplit[0].equals("at")) {
+                        Event newEvent = new Event(taskName, dateSplit[1]);
+                        addTask(newEvent, taskList);
+                        return;
+                    }
                 }
+
+                throw new InvalidFormattingException(firstWord);
+            } else {
+                throw new EmptyTimingException(firstWord);
             }
         }
+    }
 
-        System.out.println("Write properly leh. Your format is wrong");
+    private static String[] taskIdentifier(String str) throws EmptyTaskNameException, UnknownActionException {
+        String[] splitStr = str.split(" ", 2);
+
+        String taskType = splitStr[0];
+        switch (taskType) {
+            case "todo":
+            case "deadline":
+            case "event":
+            case "mark":
+            case "unmark":
+                if (splitStr.length == 2) {
+                    return splitStr;
+                } else {
+                    throw new EmptyTaskNameException(splitStr[0]);
+                }
+            default:
+                throw new UnknownActionException();
+        }
+    }
+
+    private static void markOrUnmark(int taskNumber, String firstWord, ArrayList<Task> taskList)
+            throws IllegalArgumentException, UnknownActionException {
+        int length = taskList.size();
+
+        if (taskNumber <= 0 || taskNumber > length) {
+            throw new IllegalArgumentException("Wrong task number lah");
+        }
+
+        Task selectedTask = taskList.get(taskNumber - 1);
+
+        if (firstWord.equals("mark")) {
+            System.out.println("Nice one lah, finally doing your work.");
+            selectedTask.markAsFinished();
+        } else if (firstWord.equals("unmark")) {
+            System.out.println("What happened bro");
+            selectedTask.markAsUnfinished();
+        } else {
+            throw new UnknownActionException();
+        }
     }
 
     public static void main(String[] args) {
@@ -119,9 +168,8 @@ public class Candice {
                     System.out.println(taskNumber + "." + status);
                 }
             } else {
-                String[] splitString = input.split(" ", 2);
-
-                if (splitString.length == 2) {
+                try {
+                    String[] splitString = taskIdentifier(input);
                     String firstWord = splitString[0];
 
                     switch (firstWord) {
@@ -131,21 +179,13 @@ public class Candice {
 
                             try {
                                 taskNumber = Integer.parseInt(splitString[1]);
-                                if (taskNumber > taskList.size() || taskNumber <= 0) {
-                                    System.out.println("Wrong number bro.");
-                                } else {
-                                    Task selectedTask = taskList.get(taskNumber - 1);
-                                    if (firstWord.equals("mark")) {
-                                        System.out.println("Nice one lah, finally doing your work:");
-                                        selectedTask.markAsFinished();
-                                    } else {
-                                        System.out.println("Bro, what happened:");
-                                        selectedTask.markAsUnfinished();
-                                    }
-                                    System.out.println(selectedTask.status());
-                                }
+                                markOrUnmark(taskNumber, firstWord, taskList);
+
+                                System.out.println(taskList.get(taskNumber - 1).status());
                             } catch (NumberFormatException e) {
                                 System.out.println("Write properly leh. Your format is wrong");
+                            } catch (IllegalArgumentException e) {
+                                System.out.println(e);
                             }
                             break;
                         case "todo":
@@ -156,8 +196,9 @@ public class Candice {
                         case "event":
                             addDeadlineOrEvent(splitString[1], firstWord, taskList);
                     }
-                } else {
-                    System.out.println("Write properly leh.");
+                } catch (EmptyTaskNameException | UnknownActionException |
+                        InvalidFormattingException | EmptyTimingException e) {
+                    System.out.println(e);
                 }
             }
 
