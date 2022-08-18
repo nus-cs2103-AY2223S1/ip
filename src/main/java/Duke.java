@@ -38,10 +38,28 @@ public class Duke {
                 task.unmark();
                 System.out.println(indent + "Ok, I've marked this task as not done yet:");
                 System.out.println("      " + task);
-            } else {
-                System.out.println(indent + "added: " + input);
-                tasks[taskIndex] = new Task(input);
+            } else if (input.startsWith("todo")) {
+                tasks[taskIndex] = new Todo(input);
+                System.out.println(indent + "Got it. I've added this task:");
+                System.out.println("      " + tasks[taskIndex]);
                 taskIndex += 1;
+                System.out.println(indent + "Now you have " +  taskIndex + " tasks in the list");
+            } else if (input.startsWith("event")) {
+                String event = input.substring(0, input.indexOf("/"));
+                String time = input.substring(input.indexOf("/") + 1);
+                tasks[taskIndex] = new Event(event, time);
+                System.out.println(indent + "Got it. I've added this task:");
+                System.out.println("      " + tasks[taskIndex]);
+                taskIndex += 1;
+                System.out.println(indent + "Now you have " + taskIndex + " tasks in the list");
+            } else if (input.startsWith("deadline")){
+                String deadlineTask = input.substring(0, input.indexOf("/"));
+                String deadline = input.substring(input.indexOf("/") + 1);
+                tasks[taskIndex] = new Deadline(deadlineTask, deadline);
+                System.out.println(indent + "Got it. I've added this task:");
+                System.out.println("      " + tasks[taskIndex]);
+                taskIndex += 1;
+                System.out.println(indent + "Now you have " + taskIndex + " tasks in the list");
             }
             System.out.print(line);
             System.out.println();
