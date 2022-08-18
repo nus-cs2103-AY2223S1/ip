@@ -5,7 +5,7 @@ public class Fred {
     public static void list(ArrayList<Task> arrayList) {
         int counter = 1;
         for (Task t : arrayList) {
-            System.out.println("Fred: " + counter++ + ". " + t.getName());
+            System.out.println("Fred: " + counter++ + ".[" + t.getStatusIcon() + "] " + t.getName());
         }
     }
 
@@ -26,6 +26,12 @@ public class Fred {
                 break;
             } else if (input.equals("list")) {
                 Fred.list(storage);
+            } else if (input.startsWith("mark")) {
+                int index = Character.getNumericValue(input.charAt(input.length() - 1));
+                storage.get(index - 1).setStatus(true);
+            } else if (input.startsWith("unmark")) {
+                int index = Character.getNumericValue(input.charAt(input.length() - 1));
+                storage.get(index - 1).setStatus(false);
             } else {
                 Task newTask = new Task(input);
                 storage.add(newTask);
