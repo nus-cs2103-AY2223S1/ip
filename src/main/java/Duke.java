@@ -1,9 +1,11 @@
 import java.util.*;
 public class Duke {
     final static String HORIZON = "____________________________________________________________\n";
+    static List<Task> tasks = new ArrayList<>();
     static String withFormat(String str) {
         return HORIZON + str + '\n' + HORIZON;
     }
+
     public static boolean isNumeric(String str) {
         try {
             Integer.parseInt(str);
@@ -12,9 +14,36 @@ public class Duke {
             return false;
         }
     }
+
+    static String validMark(String input) {
+        if (!isNumeric(input.substring(5))) {
+            return "Pi-must be numbers behind-pi!";
+        } else if (Integer.parseInt(input.substring(5)) > tasks.size() || Integer.parseInt(input.substring(5)) <= 0) {
+            return "Pi-not within range-pi!";
+        } else {
+            int temp = Integer.parseInt(input.substring(5));
+            Task task = tasks.get(temp - 1);
+            task.setDone(true);
+            return "Pi-ka(Done): " + task;
+        }
+    }
+
+    static String validUnmark(String input) {
+        if (!isNumeric(input.substring(7))) {
+            return "Pi-must be numbers behind-pi!";
+        } else if (Integer.parseInt(input.substring(7)) > tasks.size() || Integer.parseInt(input.substring(7)) <= 0) {
+            return "Pi-not within range-pi!";
+        } else {
+            int temp = Integer.parseInt(input.substring(7));
+            Task task = tasks.get(temp - 1);
+            task.setDone(false);
+            return "Pipi-ka(Undone): " + task;
+        }
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        List<Task> tasks = new ArrayList<>();
+
 
         String intro = withFormat("Pika Pikachu! (I am Pikachu!)\nPi-ka-chu?(Do you need any help?)");
         String byebye = "Pi-ka...";
@@ -38,21 +67,19 @@ public class Duke {
                 }
                 output.deleteCharAt(output.length() - 1);
                 tempStr = String.valueOf(output);
-            } else if (input.startsWith("mark ") && isNumeric(input.substring(5)) && Integer.parseInt(input.substring(5)) <= tasks.size() && Integer.parseInt(input.substring(5)) >= 1) {
-                int temp = Integer.parseInt(input.substring(5));
-                Task task = tasks.get(temp - 1);
-                task.setDone(true);
-                tempStr="Pi-ka(Done): " + '[' + task;
-            } else if (input.startsWith("unmark ") && isNumeric(input.substring(7)) && Integer.parseInt(input.substring(7)) <= tasks.size() && Integer.parseInt(input.substring(7)) >= 1) {
-                int temp = Integer.parseInt(input.substring(7));
-                Task task = tasks.get(temp - 1);
-                task.setDone(false);
-                tempStr="Pipi-ka(Undone): " + task;
+            } else if (input.startsWith("mark ")) {
+                tempStr = validMark(input);
+            } else if (input.startsWith("unmark ")) {
+                tempStr = validUnmark(input);
             } else if (input.startsWith("todo ")){ //add as tasks
                 Todo newTODO = new Todo(input.substring(5));
-                tasks.add(newTODO);
-                tempStr = "Pikapi(added): " + newTODO + '\n';
-                tempStr += "Pikaaaaa: " + tasks.size() + (tasks.size() > 1 ? " tasks" : " task");
+                if (newTODO.description.equals("")) {
+                    tempStr = "Pi-cannot be empty-pi";
+                } else {
+                    tasks.add(newTODO);
+                    tempStr = "Pikapi(added): " + newTODO + '\n';
+                    tempStr += "Pikaaaaa: " + tasks.size() + (tasks.size() > 1 ? " tasks" : " task");
+                }
             } else if (input.startsWith("deadline ") && input.contains(" /by ")) {
                 String temp1 = input.split(" ",2)[1];
                 String[] temp2 = temp1.split(" /by ",2);
@@ -67,7 +94,10 @@ public class Duke {
                 tasks.add(newEvent);
                 tempStr = "Pikapi(added): " + newEvent + '\n';
                 tempStr += "Pikaaaaa: " + tasks.size() + (tasks.size() > 1 ? " tasks" : " task");
-            } else {
+            } //else if (input.startsWith("delete ")) {
+                //tempStr = validDelete(input);
+            //}
+        else {
                 tempStr = "Pi?";
             }
             System.out.println(withFormat(tempStr));
