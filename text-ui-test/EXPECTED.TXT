@@ -74,7 +74,7 @@
     ☹ OOPS!!! Specify which task to unmark with a positive integer.
     ____________________________________________________________
     ____________________________________________________________
-    ☹ OOPS!!! The specified task does not exist.
+    ☹ OOPS!!! Only a single positive integer should follow unmark.
     ____________________________________________________________
     ____________________________________________________________
     ☹ OOPS!!! I'm sorry, but I don't know what that means :-(

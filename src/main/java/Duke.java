@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -13,7 +14,7 @@ public class Duke {
             + INDENTATION + "| |_| | |_| |   <  __/\n"
             + INDENTATION + "|____/ \\__,_|_|\\_\\___|";
 
-    private static Task[] tasks = new Task[100];
+    private static ArrayList<Task> tasks = new ArrayList<>();
     private static int taskCount = 0;
     private static boolean isBye;
 
@@ -56,7 +57,7 @@ public class Duke {
                     } else {
                         markTask(Integer.parseInt(strings[1]));
                     }
-                } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
+                } catch (IndexOutOfBoundsException | NumberFormatException e) {
                     printError("Specify which task to mark with a positive integer.");
                 } catch (NullPointerException | DukeException e) {
                     printError("The specified task does not exist.");
@@ -68,7 +69,7 @@ public class Duke {
                     } else {
                         unmarkTask(Integer.parseInt(strings[1]));
                     }
-                } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
+                } catch (IndexOutOfBoundsException | NumberFormatException e) {
                     printError("Specify which task to unmark with a positive integer.");
                 } catch (NullPointerException | DukeException e) {
                     printError("The specified task does not exist.");
@@ -108,7 +109,7 @@ public class Duke {
         printLine();
         System.out.println(INDENTATION + "Here are the tasks in your list:");
         for (int i = 0; i < taskCount; i++) {
-            System.out.println(INDENTATION + (i + 1) + "." + tasks[i]);
+            System.out.println(INDENTATION + (i + 1) + "." + tasks.get(i));
         }
         printLine();
     }
@@ -119,11 +120,11 @@ public class Duke {
      * @param n The number index of the task as displayed in the list.
      */
     private static void markTask(int n) throws DukeException {
-        if (n > 100) {
+        if (n > taskCount) {
             throw new DukeException();
         }
 
-        Task specifiedTask = tasks[n - 1];
+        Task specifiedTask = tasks.get(n - 1);
         specifiedTask.markAsDone();
         printLine();
         System.out.println(INDENTATION + "Nice! I've marked this task as done:\n"
@@ -137,11 +138,11 @@ public class Duke {
      * @param n The number index of the task as displayed in the list.
      */
     private static void unmarkTask(int n) throws DukeException {
-        if (n > 100) {
+        if (n > taskCount) {
             throw new DukeException();
         }
 
-        Task specifiedTask = tasks[n - 1];
+        Task specifiedTask = tasks.get(n - 1);
         specifiedTask.unmarkAsDone();
         printLine();
         System.out.println(INDENTATION + "OK, I've marked this task as not done yet:\n"
@@ -156,7 +157,8 @@ public class Duke {
      * @param task The specified task to be added onto the tracked list.
      */
     private static void addTask(Task task) {
-        tasks[taskCount++] = task;
+        tasks.add(task);
+        taskCount++;
         printLine();
         System.out.println(INDENTATION + "Got it. I've added this task:\n"
                 + INDENTATION + "  " + task);
@@ -207,6 +209,15 @@ public class Duke {
         }
         String[] strings = input.split(" /at ");
         addTask(new Event(strings[0], strings[1]));
+    }
+
+    /**
+     * Delete a specified task.
+     *
+     * @param n The number index of the task as displayed in the list.
+     */
+    private static void deleteTask(int n) {
+        System.out.println("To be implemented");
     }
 
     /**

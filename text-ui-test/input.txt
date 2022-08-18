@@ -15,6 +15,6 @@ list
 mark 0
 mark 100
 unmark -1
-unmark 1000
-test
+unmark 1000 apples
+blah
 bye
