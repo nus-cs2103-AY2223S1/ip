@@ -14,6 +14,7 @@ public class Prompt {
         System.out.println("- list");
         System.out.println("- check (index)");
         System.out.println("- uncheck (index)");
+        System.out.println("- delete (index)");
         System.out.println("- bye");
     }
 
