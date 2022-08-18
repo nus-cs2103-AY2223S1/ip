@@ -36,10 +36,23 @@ public class Duke {
                 Integer taskNum = Integer.valueOf(sc.next());
                 taskList[taskNum - 1].markAsUndone();
                 System.out.print(separator + "This task is not done yet:\n" + taskList[taskNum - 1] + separator);
-            } else {
-                Task task = new Task(userInput);
-                taskList[numOfTasks++] = task;
-                System.out.print(separator + "Task added: " + task + separator);
+            } else if (userInput.equals("deadline")) {
+                String task = sc.nextLine();
+                String[] content = task.split("/by");
+                Deadline ddl = new Deadline(content[0], content[1]);
+                taskList[numOfTasks++] = ddl;
+                System.out.print(separator + "Deadline added: " + ddl + separator);
+            } else if (userInput.equals("event")) {
+                String task = sc.nextLine();
+                String[] content = task.split("/at");
+                Event ev = new Event(content[0], content[1]);
+                taskList[numOfTasks++] = ev;
+                System.out.print(separator + "Event added: " + ev + separator);
+            } else if (userInput.equals("todo")) {
+                String task = sc.nextLine();
+                Todo todo = new Todo(task);
+                taskList[numOfTasks++] = todo;
+                System.out.print(separator + "Todo added: " + todo + separator);
             }
             userInput = sc.next();
         }
