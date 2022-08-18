@@ -25,47 +25,44 @@ public class Duke {
         while (flag && sc.hasNextLine()) {
             // Read input from console
             String inputText = sc.nextLine();
-
-            // Get first word
-            int firstSpaceIdx = inputText.indexOf(" ");
-            String command = Duke.getCommand(inputText, firstSpaceIdx);
-
-            // Determine the action to perform based on the first, "command" word
             try {
+                // Get first word
+                int firstSpaceIdx = inputText.indexOf(" ");
+                Command command = Duke.getCommand(inputText, firstSpaceIdx);
+
+                // Determine the action to perform
                 switch (command) {
-                    case "bye":
+                    case BYE:
                         System.out.println("Bye. Hope to see you again soon!");
                         flag = false;
                         break;
-                    case "list":
+                    case LIST:
                         Duke.printItems();
                         break;
-                    case "mark":
+                    case MARK:
                         int markindex = Integer.parseInt(inputText.substring(firstSpaceIdx + 1));
                         Duke.mark(markindex);
                         break;
-                    case "unmark":
+                    case UNMARK:
                         int unmarkindex = Integer.parseInt(inputText.substring(firstSpaceIdx + 1));
                         Duke.unmark(unmarkindex);
                         break;
-                    case "delete":
+                    case DELETE:
                         int deleteindex = Integer.parseInt(inputText.substring(firstSpaceIdx + 1));
                         Duke.delete(deleteindex);
                         break;
-                    case "deadline":
+                    case DEADLINE:
                         String deadlineInfo = inputText.substring(firstSpaceIdx + 1);
                         Duke.addDeadline(deadlineInfo);
                         break;
-                    case "todo":
+                    case TODO:
                         String todoInfo = inputText.substring(firstSpaceIdx + 1);
                         Duke.addTodo(todoInfo);
                         break;
-                    case "event":
+                    case EVENT:
                         String eventInfo = inputText.substring(firstSpaceIdx + 1);
                         Duke.addEvent(eventInfo);
                         break;
-                    default:
-                        throw new DukeException("I'm sorry, but I don't know what that means :-(");
                 }
             } catch (DukeException exception) {
                 System.out.println(exception);
@@ -79,12 +76,23 @@ public class Duke {
      * @param inputText the user's input in the console
      * @param firstSpaceIdx the index of the space following the command word
      *
-     * @return String representing the current command
+     * @return The current command
+     *
+     * @throws DukeException if the input doesn't have a valid command word
      */
-    public static String getCommand(String inputText, int firstSpaceIdx) {
-        return firstSpaceIdx == -1
-                ? inputText
-                : inputText.substring(0, firstSpaceIdx);
+    public static Command getCommand(String inputText,
+                                     int firstSpaceIdx) throws DukeException {
+        String commandName = firstSpaceIdx == -1
+                             ? inputText
+                             : inputText.substring(0, firstSpaceIdx);
+        Command result = Command.get(commandName);
+
+        // Check if command is valid
+        if (result == null) {
+            throw new DukeException("I'm sorry, but I don't know what that means :-(");
+        }
+
+        return result;
     }
 
     /**
@@ -211,7 +219,7 @@ public class Duke {
      */
     public static void mark(int index) throws DukeException {
         // Check if the index is within the bounds of the list
-        if (index < 0 || index >= Duke.inputs.size()) {
+        if (index <= 0 || index > Duke.inputs.size()) {
             throw new DukeException("Invalid index");
         }
 
@@ -235,7 +243,7 @@ public class Duke {
      */
     public static void unmark(int index) throws DukeException {
         // Check if the index is within the bounds of the list
-        if (index < 0 || index >= Duke.inputs.size()) {
+        if (index <= 0 || index > Duke.inputs.size()) {
             throw new DukeException("Invalid index");
         }
 
@@ -253,10 +261,10 @@ public class Duke {
 
     public static void delete(int index) throws DukeException {
         // Check if the index is within the bounds of the list
-        if (index < 0 || index >= Duke.inputs.size()) {
+        if (index <= 0 || index > Duke.inputs.size()) {
             throw new DukeException("Invalid index");
         }
-        
+
         // Remove task from list and get removed task
         Task removedTask = Duke.inputs.remove(index - 1);
 
