@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Pluto {
     private static final String CHATBOT = "Pluto";
@@ -10,6 +11,7 @@ public class Pluto {
 
         Scanner sc = new Scanner(System.in);
         inputCommand(sc);
+
     }
 
     public static void inputCommand(Scanner sc) {
@@ -50,7 +52,12 @@ public class Pluto {
                 }
             }
             else {
-                System.out.println("\tOOPS!!! I'm sorry, but I don't know what that means :-(");
+                try {
+                    getException(command);
+                }
+                catch (PlutoException e) {
+                    System.out.println(e.getMessage());
+                }
             }
             command = sc.nextLine().strip();
         }
@@ -62,5 +69,18 @@ public class Pluto {
         System.out.println("\tGot it. I've added this task:");
         System.out.println("\t\t" + t.toString());
         System.out.println(String.format("\tNow you have %d tasks in the list.", missions.size()));
+    }
+
+    public static void getException(String str) throws PlutoException {
+        HashSet<String> commands = new HashSet<>();
+        commands.add("todo");
+        commands.add("deadline");
+        commands.add("event");
+        commands.add("mark");
+        commands.add("unmark");
+        if (commands.contains(str)) {
+            throw new PlutoException(String.format("\tOOPS!!! The description of %s cannot be empty.", str));
+        }
+        throw new PlutoException("\tOOPS!!! I'm sorry, but I don't know what that means :-(");
     }
 }
