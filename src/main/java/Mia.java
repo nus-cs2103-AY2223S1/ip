@@ -29,6 +29,17 @@ public class Mia {
                 printResponse(new Span(tasksManager.toString()), windowWidth);
                 System.out.print("Enter a command: ");
                 continue;
+            } else if (line.startsWith("delete ")) {
+                final int number = Integer.parseInt(line.substring(7));
+                if (tasksManager.deleteTask(number)) {
+                    printResponse(new Span("Task has been deleted!"), windowWidth);
+                } else {
+                    printResponse(new Span(String.format(
+                            "Something went wrong when deleting task %d! Likely, you specified an invalid task number.",
+                            number)), windowWidth);
+                }
+                System.out.print("Enter a command: ");
+                continue;
             } else if (line.startsWith("mark ")) {
                 final int number = Integer.parseInt(line.substring(5));
                 if (tasksManager.checkTask(number)) {

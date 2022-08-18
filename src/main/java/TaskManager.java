@@ -17,6 +17,19 @@ public class TaskManager {
     }
 
     /**
+     * Deletes a task.
+     * @param number the task number
+     * @return true if the task was deleted, false otherwise
+     */
+    public boolean deleteTask(int number) {
+        if (number > tasks.size()) {
+            return false;
+        }
+        tasks.remove(number - 1);
+        return true;
+    }
+
+    /**
      * Marks a task as completed.
      * @param number the task number
      * @return true if the task is modified, false otherwise
