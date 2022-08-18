@@ -21,4 +21,8 @@ mark 55
 unmark 0
 unmark 55
 list
+delete
+delete 2
+delete 0
+list
 bye

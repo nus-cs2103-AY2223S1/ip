@@ -73,5 +73,18 @@
    3. [D][ ]  do homework (by: no idea :-p)
    4. [E][X]  project meeting (at: Mon 2-4pm)
 ─────
+💬 Please give me a task number to delete!
+─────
+💬 OK, I've deleted this task:
+   [D][ ]  return book (by: Sunday)
+   Now you have 3 tasks in the list.
+─────
+💬 Hmm... a task with that number doesn't seem to exist. You can see a list of all tasks by saying "list".
+─────
+💬 Here are the tasks in your list:
+   1. [T][ ]  borrow book
+   2. [D][ ]  do homework (by: no idea :-p)
+   3. [E][X]  project meeting (at: Mon 2-4pm)
+─────
 💬 OK. See you next time! *boings away*
 ─────

@@ -45,6 +45,9 @@ public class Duke {
                 case "unmark":
                     todos.cmdUnmark(scanner);
                     break;
+                case "delete":
+                    todos.cmdDelete(scanner);
+                    break;
                 default:
                     say("Sorry, I didn't understand what you said :(");
                     break;

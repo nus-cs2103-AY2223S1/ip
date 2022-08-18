@@ -107,4 +107,27 @@ public class Todos {
         say(List.of("Alright, I've marked this task as not done yet:",
                 todos.get(taskID).toString()));
     }
+
+    public void cmdDelete(Scanner rest) {
+        if (!rest.hasNextInt()) {
+            say("Please give me a task number to delete!");
+            return;
+        }
+
+        int taskID = rest.nextInt() - 1;
+        if (taskID < 0 || taskID >= todos.size()) {
+            say("Hmm... a task with that number doesn't seem to exist. " +
+                    "You can see a list of all tasks by saying \"list\".");
+            return;
+        }
+
+        Task taskToDelete = todos.get(taskID);
+        todos.remove(taskID);
+        say(List.of(
+                "OK, I've deleted this task:",
+                taskToDelete.toString(),
+                format("Now you have %d %s in the list.",
+                        todos.size(),
+                        todos.size() == 1 ? "task" : "tasks")));
+    }
 }
