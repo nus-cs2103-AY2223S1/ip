@@ -86,4 +86,25 @@ public class TaskList {
             }
         }
     }
+
+    public void deleteItems(String str) throws InvalidCommandException {
+        String[] inputs = str.split(" ", 2);
+        if (inputs.length != 2) {
+            throw new InvalidCommandException("No task number indicated.");
+        } else {
+            try{
+                int marker = Integer.valueOf(inputs[1]);
+                if (marker < 1 || marker > this.list.size()) {
+                    System.out.println("Please indicate a valid task number!\n");
+                }  else {
+                    System.out.println("Noted. I have removed this task:\n" + this.list.get(marker - 1).toString());
+                    this.list.remove(marker - 1);
+                    System.out.println("Now you have " + this.list.size() + " tasks in the list.\n");
+                }
+            }
+            catch (NumberFormatException ex){
+                throw new InvalidCommandException("Invalid item to be marked.");
+            }
+        }
+    }
 }

@@ -79,6 +79,21 @@ Here are the tasks in your list:
 3. [D][X] return book (by: wednesday 10pm)
 4. [E][ ] book fair (at: nus)
 
+Noted. I have removed this task:
+[T][ ] borrow book
+Now you have 3 tasks in the list.
+
+Here are the tasks in your list:
+1. [T][ ] return book
+2. [D][X] return book (by: wednesday 10pm)
+3. [E][ ] book fair (at: nus)
+
+Please indicate a valid task number!
+
+Please indicate a valid task number!
+
+Please indicate a valid task number!
+
 Apologies Human. I do not understand that command.
 
 Goodbye Human. Till next time.

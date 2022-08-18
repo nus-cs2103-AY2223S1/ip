@@ -21,5 +21,10 @@ mark aipsoda
 unmark 123
 unmark asdioad
 list
+delete 1
+list
+delete
+delete asdasd
+delete 12312
 blahblah
 bye

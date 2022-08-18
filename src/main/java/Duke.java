@@ -40,7 +40,13 @@ public class Duke {
                 } catch (InvalidCommandException e) {
                     System.out.println("Please indicate a valid description and location for your Event task!\n");
                 }
-            } else {
+            }  else if (inputs[0].equalsIgnoreCase("delete")) {
+                try {
+                    storage.deleteItems(str);
+                } catch (InvalidCommandException e) {
+                    System.out.println("Please indicate a valid task number!\n");
+                }
+            }  else {
                 System.out.println("Apologies Human. I do not understand that command.\n");
             }
             str = sc.nextLine();
