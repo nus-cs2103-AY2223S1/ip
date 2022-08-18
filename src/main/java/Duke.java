@@ -10,7 +10,7 @@ public class Duke {
         // Need to find a way to accept input
         Scanner input = new Scanner(System.in);
         while (true) {
-            String s = input.next();
+            String s = input.nextLine();
             System.out.println(seaward.readInputString(s));
             if (s.equals("bye")) {
                 break;
