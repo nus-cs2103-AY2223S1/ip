@@ -73,5 +73,53 @@ Here are the tasks in your list:
 _________________________
 
 _________________________
+ ☹ OOPS!!! You forgot to add the description!
+_________________________
+
+_________________________
+ ☹ OOPS!!! You forgot to add the description!
+_________________________
+
+_________________________
+ ☹ OOPS!!! You forgot to add the description!
+_________________________
+
+_________________________
+ ☹ OOPS!!! You forgot to add the deadline!
+_________________________
+
+_________________________
+ ☹ OOPS!!! You forgot to add the time!
+_________________________
+
+_________________________
+ ☹ OOPS!!! You forgot to tell me the task number!
+_________________________
+
+_________________________
+ ☹ OOPS!!! There is no such task number!
+_________________________
+
+_________________________
+ ☹ OOPS!!! Task number need to be an integer!
+_________________________
+
+_________________________
+ ☹ OOPS!!! You forgot to tell me the task number!
+_________________________
+
+_________________________
+ ☹ OOPS!!! There is no such task number!
+_________________________
+
+_________________________
+ ☹ OOPS!!! Task number need to be an integer!
+_________________________
+
+_________________________
+ ☹ OOPS!!! Sorry, there is no such command!
+_________________________
+
+_________________________
 Bye! Hope you had fun!
 _________________________

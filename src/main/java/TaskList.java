@@ -31,11 +31,17 @@ public class TaskList {
         return ADD + task.toString() + "\n" + NUMBER_START + this.tasks.size() + NUMBER_END;
     }
 
-    public String markTask(int index) {
+    public String markTask(int index) throws DukeException {
+        if (index < 0 || index >= this.tasks.size()) {
+            throw new DukeException("There is no such task number!");
+        }
         return DONE + this.tasks.get(index).markAsDone();
     }
 
-    public String unmarkTask(int index) {
+    public String unmarkTask(int index) throws DukeException {
+        if (index < 0 || index >= this.tasks.size()) {
+            throw new DukeException("There is no such task number!");
+        }
         return UNDONE + this.tasks.get(index).markAsUndone();
     }
 }

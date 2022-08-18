@@ -10,4 +10,16 @@ unmark 1
 unmark 2
 unmark 3
 list
+todo
+deadline
+event
+deadline return book
+event project meeting
+mark
+mark 0
+mark mark
+unmark
+unmark 0
+unmark unmark
+fly
 bye

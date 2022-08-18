@@ -1,6 +1,6 @@
 public abstract class Command {
 
-    public static Command of(String message, TaskList tasks) {
+    public static Command of(String message, TaskList tasks) throws DukeException {
         String[] splitMessage = message.split("\\s+", 2);
         switch (splitMessage[0]) {
             case "bye":
@@ -8,20 +8,35 @@ public abstract class Command {
             case "list":
                 return new ListCommand(tasks);
             case "mark":
+                if (splitMessage.length < 2) {
+                    throw new DukeException("You forgot to tell me the task number!");
+                }
                 return new MarkCommand(splitMessage[1], tasks);
             case "unmark":
+                if (splitMessage.length < 2) {
+                    throw new DukeException("You forgot to tell me the task number!");
+                }
                 return new UnmarkCommand(splitMessage[1], tasks);
             case "todo":
+                if (splitMessage.length < 2) {
+                    throw new DukeException("You forgot to add the description!");
+                }
                 return new ToDoCommand(splitMessage[1], tasks);
             case "deadline":
+                if (splitMessage.length < 2) {
+                    throw new DukeException("You forgot to add the description!");
+                }
                 return new DeadlineCommand(splitMessage[1], tasks);
             case "event":
+                if (splitMessage.length < 2) {
+                    throw new DukeException("You forgot to add the description!");
+                }
                 return new EventCommand(splitMessage[1], tasks);
             default:
-                return new UnknownCommand();
+                throw new DukeException("Sorry, there is no such command!");
         }
     }
-    public abstract boolean run();
+    public abstract boolean run() throws DukeException;
 
 
     private static class EndCommand extends Command {
@@ -32,7 +47,7 @@ public abstract class Command {
         }
 
         @Override
-        public boolean run() {
+        public boolean run() throws DukeException {
             Reply.printMessage(END);
             return true;
         }
@@ -49,7 +64,7 @@ public abstract class Command {
         }
 
         @Override
-        public boolean run() {
+        public boolean run() throws DukeException {
             Reply.printMessage(LIST + this.tasks.toString());
             return false;
         }
@@ -66,8 +81,12 @@ public abstract class Command {
         }
 
         @Override
-        public boolean run() {
-            Reply.printMessage(this.tasks.markTask(Integer.parseInt(content) - 1));
+        public boolean run() throws DukeException {
+            try {
+                Reply.printMessage(this.tasks.markTask(Integer.parseInt(this.content) - 1));
+            } catch (NumberFormatException e) {
+                throw new DukeException("Task number need to be an integer!");
+            }
             return false;
         }
     }
@@ -83,8 +102,12 @@ public abstract class Command {
         }
 
         @Override
-        public boolean run() {
-            Reply.printMessage(this.tasks.unmarkTask(Integer.parseInt(content) - 1));
+        public boolean run() throws DukeException {
+            try {
+                Reply.printMessage(this.tasks.unmarkTask(Integer.parseInt(content) - 1));
+            } catch (NumberFormatException e) {
+                throw new DukeException("Task number need to be an integer!");
+            }
             return false;
         }
     }
@@ -99,7 +122,7 @@ public abstract class Command {
         }
 
         @Override
-        public boolean run() {
+        public boolean run() throws DukeException {
             Reply.printMessage(this.tasks.addTask(new ToDo(this.content)));
             return false;
         }
@@ -115,8 +138,11 @@ public abstract class Command {
         }
 
         @Override
-        public boolean run() {
+        public boolean run() throws DukeException {
             String[] splitMessage = this.content.split(" /by ", 2);
+            if (splitMessage.length < 2) {
+                throw new DukeException("You forgot to add the deadline!");
+            }
             Reply.printMessage(this.tasks.addTask(new Deadline(splitMessage[0], splitMessage[1])));
             return false;
         }
@@ -132,23 +158,12 @@ public abstract class Command {
         }
 
         @Override
-        public boolean run() {
+        public boolean run() throws DukeException {
             String[] splitMessage = this.content.split(" /at ", 2);
+            if (splitMessage.length < 2) {
+                throw new DukeException("You forgot to add the time!");
+            }
             Reply.printMessage(this.tasks.addTask(new Event(splitMessage[0], splitMessage[1])));
-            return false;
-        }
-    }
-
-    private static class UnknownCommand extends Command {
-
-        public static final String UNKNOWN = "Sorry, this is an unknown command!";
-
-        public UnknownCommand() {
-        }
-
-        @Override
-        public boolean run() {
-            Reply.printMessage(UNKNOWN);
             return false;
         }
     }

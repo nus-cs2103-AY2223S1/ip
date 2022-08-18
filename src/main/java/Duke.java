@@ -21,8 +21,12 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
         Duke.welcome();
         while(!ended) {
-            Command command = Command.of(sc.nextLine(), tasks);
-            this.ended = command.run();
+            try {
+                Command command = Command.of(sc.nextLine(), tasks);
+                this.ended = command.run();
+            } catch (DukeException e) {
+                Reply.printMessage(e.getMessage());
+            }
         }
     }
 
