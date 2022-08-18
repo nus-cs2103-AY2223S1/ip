@@ -44,6 +44,10 @@ public class Duke {
                     return;
                 case "todo":
                     String todoName = "";
+                    if (commandBreakdown.length == 1) {
+                        System.out.println(new EmptyTodoException());
+                        break;
+                    }
                     for (int i = 1; i < commandBreakdown.length; i++) {
                         todoName = todoName + commandBreakdown[i] + " ";
                     }
@@ -69,7 +73,7 @@ public class Duke {
                     System.out.println(String.format("Now you have %d tasks in the list", eleCount));
                     break;
                 default:
-                    System.out.println("Unrecognised command");
+                    System.out.println(new UnknownCommandException());
             }
 
         }
