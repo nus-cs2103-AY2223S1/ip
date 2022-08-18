@@ -12,6 +12,7 @@ public class Duke {
                 System.out.println("Bye. Hope to see you again soon!");
                 break;
             } else if (s.equals("list")) {
+                System.out.println("Here are the tasks in your list:");
                 for (int a = 0; a < count; a++) {
                     System.out.println((a + 1) + "." + tasks[a]);
                 }
