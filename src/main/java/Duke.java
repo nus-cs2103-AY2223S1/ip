@@ -48,22 +48,22 @@ public class Duke {
             } else if (command.split(" ").length > 3 && command.split(" ")[0].equals("deadline")) {
                 ArrayList<String> commandDelimited = new ArrayList<String>(Arrays.asList(command.split(" ")));
                 int posOfBy = commandDelimited.indexOf("/by");
-                String description = "";
-                String dateTime = "";
+                StringBuilder description = new StringBuilder();
+                StringBuilder dateTime = new StringBuilder();
                 for (int i = 1; i < commandDelimited.size(); i++) {
                     if (i < posOfBy) {
-                        description += commandDelimited.get(i);
+                        description.append(commandDelimited.get(i));
                         if (i != posOfBy - 1) {
-                            description += " ";
+                            description.append(" ");
                         }
                     } else if (i > posOfBy) {
-                        dateTime += commandDelimited.get(i);
+                        dateTime.append(commandDelimited.get(i));
                         if (i != commandDelimited.size() - 1) {
-                            dateTime += " ";
+                            dateTime.append(" ");
                         }
                     }
                 }
-                Task deadline = new Deadlines(description, dateTime);
+                Task deadline = new Deadlines(description.toString(), dateTime.toString());
                 storedTasks.add(deadline);
                 System.out.println(
                         HORIZONTAL_LINE + "\n  Got it. I've added this task:\n  " + deadline + "\n  Now you have "
@@ -71,22 +71,22 @@ public class Duke {
             } else if (command.split(" ").length > 3 && command.split(" ")[0].equals("event")) {
                 ArrayList<String> commandDelimited = new ArrayList<String>(Arrays.asList(command.split(" ")));
                 int posOfAt = commandDelimited.indexOf("/at");
-                String description = "";
-                String specificTime = "";
+                StringBuilder description = new StringBuilder();
+                StringBuilder specificTime = new StringBuilder();
                 for (int i = 1; i < commandDelimited.size(); i++) {
                     if (i < posOfAt) {
-                        description += commandDelimited.get(i);
+                        description.append(commandDelimited.get(i));
                         if (i != posOfAt - 1) {
-                            description += " ";
+                            description.append(" ");
                         }
                     } else if (i > posOfAt) {
-                        specificTime += commandDelimited.get(i);
+                        specificTime.append(commandDelimited.get(i));
                         if (i != commandDelimited.size() - 1) {
-                            specificTime += " ";
+                            specificTime.append(" ");
                         }
                     }
                 }
-                Task event = new Events(description, specificTime);
+                Task event = new Events(description.toString(), specificTime.toString());
                 storedTasks.add(event);
                 System.out.println(
                         HORIZONTAL_LINE + "\n  Got it. I've added this task:\n  " + event + "\n  Now you have "
