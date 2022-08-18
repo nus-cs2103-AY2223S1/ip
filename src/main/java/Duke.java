@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
@@ -25,8 +26,32 @@ public class Duke {
             if(!userMsg.equals(exitCmd)) {
                 System.out.println(userMsg + "\n" + "***********************************************************************\n");
             } else {
-                System.out.println("Ah! And so we part here today. \n We may yet meet again. Farewell, my friend!");
+                System.out.println("Ah! And so we part here today.\n We may yet meet again...Farewell, my friend!");
                 break;
+            }
+        }
+    }
+
+    /**
+     * Method to add user input to existing list and display list in reponse to "list" command
+     */
+    public static void addAndList(){
+
+        ArrayList<String> listOfItems = new ArrayList<>();
+        String showList = "list";
+
+        while(true){
+            Scanner readinput = new Scanner(System.in);
+            String userMsg = readinput.nextLine();
+            if(!userMsg.equals(showList)) {
+                listOfItems.add(userMsg);
+                System.out.println("added: " + userMsg + "\n***********************************************************************\n");
+            } else {
+                for(int i = 0; i < listOfItems.size(); i++){
+                    int numb = i+1;
+                    System.out.println(numb + ". " + listOfItems.get(i));
+                }
+                System.out.println("\n***********************************************************************\n");
             }
         }
     }
@@ -36,6 +61,6 @@ public class Duke {
      */
     public static void main(String[] args) {
         introduceDuke();
-        echoAndExit();
+        addAndList();
     }
 }
