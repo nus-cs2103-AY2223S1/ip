@@ -32,10 +32,6 @@ public class Duke {
             Task newTask = new Deadline(des,by);
             tasks.add(newTask);
             System.out.println(horLine + "\n\tGot it. I've added this task:\n" + "\t" + newTask.toString() );
-        } else {
-            Task newTask = new Task(taskName);
-            tasks.add(newTask);
-            System.out.println(horLine + "\n\tGot it. I've added this task:\n" + "\t" + taskName );
         }
 
 
