@@ -56,7 +56,7 @@ public class Duke {
                 "\n" + "_______________________________________________________";
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DukeException {
 
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -100,39 +100,50 @@ public class Duke {
                 }
                 else if(instruction.equals("todo"))
                 {
-                    str = str.split(" ",2)[1];
-                    ToDo tasktoDo = new ToDo(str);
-                    inputs.add(tasktoDo);
-                    System.out.println(addition(tasktoDo.toString()));
+                  try {
+                      str = str.split(" ", 2)[1];
+                      ToDo tasktoDo = new ToDo(str);
+                      inputs.add(tasktoDo);
+                      System.out.println(addition(tasktoDo.toString()));
+
+                  } catch (ArrayIndexOutOfBoundsException e) {
+                          throw new DukeException(("OOPS!!! The description of a ToDo cannot be empty."));
+                }
 
                 }
                 else if(instruction.equals("deadline"))
                 {
-                    //splits away deadline
-                    str = str.split(" ",2)[1];
-                    String desc = str.split("/by")[0];
-                    String by = str.split("/by")[1];
-                    Deadline taskDeadline = new Deadline(desc, by);
-                    inputs.add(taskDeadline);
-                    System.out.println(addition(taskDeadline.toString()));
+                  try {
+                      //splits away deadline
+                      str = str.split(" ", 2)[1];
+                      String desc = str.split("/by")[0];
+                      String by = str.split("/by")[1];
+                      Deadline taskDeadline = new Deadline(desc, by);
+                      inputs.add(taskDeadline);
+                      System.out.println(addition(taskDeadline.toString()));
+                  } catch (ArrayIndexOutOfBoundsException e) {
+                      throw new DukeException(("OOPS!!! The description of a Deadline cannot be empty."));
+                  }
 
                 }
                 else if(instruction.equals("event"))
                 {
-                    //splits away event
-                    str = str.split(" ",2)[1];
-                    String desc = str.split("/at")[0];
-                    String at = str.split("/at")[1];
-                    Event taskEvent = new Event(desc, at);
-                    inputs.add(taskEvent);
-                    System.out.println(addition(taskEvent.toString()));
+                  try {
+                      //splits away event
+                      str = str.split(" ", 2)[1];
+                      String desc = str.split("/at")[0];
+                      String at = str.split("/at")[1];
+                      Event taskEvent = new Event(desc, at);
+                      inputs.add(taskEvent);
+                      System.out.println(addition(taskEvent.toString()));
+                  } catch (ArrayIndexOutOfBoundsException e) {
+                      throw new DukeException(("OOPS!!! The description of an Event cannot be empty."));
+                  }
 
                 }
                 else
                 {
-                    Task task = new Task(str);
-                    inputs.add(task);
-                    System.out.println(addition(task.toString()));
+                    throw new DukeException("I have no idea what you are saying, this is not a task >_<");
                 }
             }
             str = sc.nextLine();
