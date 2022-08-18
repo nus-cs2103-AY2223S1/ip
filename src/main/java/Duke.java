@@ -1,13 +1,7 @@
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
-
-class CustomMessageException extends Exception {
-    CustomMessageException(String message) {
-        super(message);
-    }
-}
 
 public class Duke {
     private static final String line = "____________________________________________________________";
@@ -104,27 +98,13 @@ public class Duke {
                             throw new CustomMessageException(messageWithIndentedLines(generateEmptyDescriptionExceptionMessage("deadline")));
                         }
                         // can refactor this for deadline and event
-                        String[] splitByBy = userInput.split(" /by ");
-                        String deadlineDescription = splitByBy[0].substring(9).strip();
-                        if (deadlineDescription.isEmpty() || deadlineDescription.isBlank()) {
-                            throw new CustomMessageException(messageWithIndentedLines(generateEmptyDescriptionExceptionMessage("deadline")));
-                        }
-                        String deadlineBy = splitByBy[1];
-                        userTasks.add(new Deadline(deadlineDescription, deadlineBy.strip()));
-                        System.out.println(messageWithIndentedLines("\n     Got it. I've added this task:\n       " + userTasks.get(userTasks.size() - 1) + "\n     " + generateTasksNumberMessage()));
+                        parseTaskCommand(userInput, " /by ", Command.DEADLINE);
                         break;
                     case EVENT:
                         if (commands.length == 1) {
                             throw new CustomMessageException(messageWithIndentedLines(generateEmptyDescriptionExceptionMessage("event")));
                         }
-                        String[] splitByAt = userInput.split(" /at ");
-                        String eventDescription = splitByAt[0].substring(6).strip();
-                        if (eventDescription.isEmpty() || eventDescription.isBlank()) {
-                            throw new CustomMessageException(messageWithIndentedLines(generateEmptyDescriptionExceptionMessage("event")));
-                        }
-                        String eventAt = splitByAt[1];
-                        userTasks.add(new Event(eventDescription, eventAt.strip()));
-                        System.out.println(messageWithIndentedLines("\n     Got it. I've added this task:\n       " + userTasks.get(userTasks.size() - 1) + "\n     " + generateTasksNumberMessage()));
+                        parseTaskCommand(userInput, " /at ", Command.EVENT);
                         break;
                     default:
                         throw new CustomMessageException(messageWithIndentedLines("\n      ☹ OOPS!!! I'm sorry, but I don't know what that means :-(\n"));
@@ -135,14 +115,64 @@ public class Duke {
         }
     }
 
+    private static void parseTaskCommand(String userInput, String toSplitBy, Command taskCommand) throws CustomMessageException {
+        String[] splitByBy = userInput.split(toSplitBy);
+        String deadlineDescription = splitByBy[0].substring(taskCommand.getString().length() + 1).strip();
+        if (deadlineDescription.isEmpty() || deadlineDescription.isBlank()) {
+            throw new CustomMessageException(messageWithIndentedLines(generateEmptyDescriptionExceptionMessage(taskCommand.getString())));
+        }
+        String deadlineBy = splitByBy[1];
+        Task newTask = null;
+        if (taskCommand == Command.EVENT) {
+            newTask = new Event(deadlineDescription, deadlineBy.strip());
+        }
+        else if (taskCommand == Command.DEADLINE) {
+            newTask = new Deadline(deadlineDescription, deadlineBy.strip());
+        }
+//            Constructor<?> xxx = actionCommand.getClassAssociatedToEnum();
+//            Object t = (xxx.newInstance(deadlineDescription, deadlineBy.strip()));
+        userTasks.add(newTask);
+        //                userTasks.add(new actionCommand.getClassAssociatedToEnum(deadlineDescription, deadlineBy.strip()));
+
+//        userTasks.add(new actionCommand.getClassAssociatedToEnum(deadlineDescription, deadlineBy.strip()));
+        System.out.println(messageWithIndentedLines("\n     Got it. I've added this task:\n       " + userTasks.get(userTasks.size() - 1) + "\n     " + generateTasksNumberMessage()));
+    }
+
     public enum Command {
-        BYE,
-        LIST,
-        MARK,
-        UNMARK,
-        DELETE,
-        TODO,
-        DEADLINE,
-        EVENT
+        BYE ("bye"),
+        LIST ("list"),
+        MARK ("mark"),
+        UNMARK ("unmark"),
+        DELETE ("delete"),
+        TODO ("todo", ToDo.class),
+        DEADLINE ("deadline", Deadline.class),
+        EVENT ("event", Event.class);
+
+        private final String commandString;
+        private Class<?> x;
+
+        Command(String commandString) {
+            this.commandString = commandString;
+        }
+
+        Command(String commandString, Class<?> x) {
+            this.commandString = commandString;
+            this.x = x;
+        }
+
+        public String getString() {
+            return this.commandString;
+        }
+
+        public Constructor<?> getClassAssociatedToEnum() throws NoSuchMethodException {
+            if (this.x != null) {
+                try {
+                    return this.x.getConstructor();
+                } catch (NoSuchMethodException e) {
+                    e.printStackTrace();
+                }
+            }
+            return Object.class.getConstructor();
+        }
     }
 }
