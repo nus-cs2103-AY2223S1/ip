@@ -47,9 +47,21 @@ public class Duke {
                 input = userScan.nextLine();
                 keyword = input.split(" ");
             } else {
-                Task task = new Task(input);
-                tasks.addTasks(task);
-                System.out.println("added: " + input);
+                String[] taskText = input.split(" ", 2);
+
+                if (keyword[0].contentEquals("todo")) {
+                    //TODO
+                    ToDo todo = new ToDo(taskText[1]);
+                    tasks.addTasks(todo);
+                } else if (keyword[0].contentEquals("deadline")) {
+                    //TODO
+                    Deadline deadline = new Deadline(taskText[1]);
+                    tasks.addTasks(deadline);
+                } else if (keyword[0].contentEquals("event")) {
+                    //TODO
+                    Event event = new Event(taskText[1]);
+                    tasks.addTasks(event);
+                }
                 input = userScan.nextLine();
                 keyword = input.split(" ");
             }

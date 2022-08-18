@@ -3,8 +3,10 @@ import java.util.ArrayList;
 public class TaskList {
     private ArrayList<Task> tasks;
 
-    public ArrayList<? super Task> addTasks(Task task) {
+    public ArrayList<Task> addTasks(Task task) {
         tasks.add(task);
+        System.out.println("Ah, more reality stuff. Here, I've added:\n" + task.toString());
+        System.out.println("Now you have " + tasks.size() + " tasks in the list.");
         return tasks;
     }
 
