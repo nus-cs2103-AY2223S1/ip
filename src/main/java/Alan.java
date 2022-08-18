@@ -1,10 +1,16 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Alan {
     private Scanner input;
+    private Formatter formatter;
+    private List<String> list;
 
-    Alan() {
+    public Alan() {
         this.input = new Scanner(System.in);
+        this.formatter = new Formatter();
+        this.list = new ArrayList<>();
     }
 
     public static void main(String[] args) {
@@ -25,12 +31,15 @@ public class Alan {
             String command = input.nextLine();
             if (command.equals("bye")) {
                 break;
+            } else if (command.equals("list")) {
+                System.out.println(formatter.list(list));
             } else {
-                System.out.println(getFormattedReply(command));
+                list.add(command);
+                System.out.println(formatter.added(command));
             }
         }
 
-        System.out.println(getFormattedReply("Goodbye! See you soon!") );
+        System.out.println(formatter.basic("Goodbye! See you soon!") );
     }
 
     // Prints a greeting
@@ -57,11 +66,6 @@ public class Alan {
                 ? "Afternoon"
                 : "Evening";
         return "\nGood " + greeting;
-    }
-
-    private String getFormattedReply(String reply) {
-        String separator = "_______________________________________";
-        return separator + "\n" + reply + "\n" + separator;
     }
 }
 
