@@ -107,6 +107,16 @@ public class Duke {
                 prettyPrint("this task, I've added: \n\t\t" + newTask + "\n\t" + "you have " + tasks.size() + " tasks left");
                 break;
             }
+            case "delete":
+                try {
+                    int taskNumber = Integer.parseInt(userInput.split(" ")[1]);
+                    Task deletedTask = tasks.get(taskNumber - 1);
+                    prettyPrint("Deleted this, I have: " + deletedTask);
+                    tasks.remove(taskNumber - 1);
+                } catch (NumberFormatException | IndexOutOfBoundsException nfe) {
+                    throw new DukeException("Please enter a valid task number!");
+                } 
+                break;
             default:
                 throw new DukeException("That cmd I don't know");
                 
