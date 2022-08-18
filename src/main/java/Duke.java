@@ -1,31 +1,39 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
     public static void main(String[] args) {
-        /*
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);*/
-
         Scanner sc = new Scanner(System.in);
-        System.out.println("-----------------------------\n" +
+        ArrayList<String> ls = new ArrayList<>();
+        String line = "-----------------------------";
+        String answer = "";
+
+        // Duke's self-intro
+        System.out.println(line + "\n" +
                 "Hello! I'm Duke\n" +
                 "What can I do for you\n" +
-                "-----------------------------\n");
+                line + "\n");
 
         while (true) {
-            String answer = sc.nextLine();
-            if (!answer.equals("bye")) {
-                System.out.println("-----------------------------\n" + answer + "\n" +
-                        "-----------------------------\n");
-            } else {
-                System.out.println("-----------------------------\n" + "Bye. Hope to see you again soon!" + "\n" +
-                        "-----------------------------\n");
+            answer = sc.nextLine();
+            if (answer.equals("bye")) {
+                System.out.println(line + "\n" + "Bye. Hope to see you again soon!" + "\n" +
+                        line + "\n");
                 break;
+            } else if (answer.equals("list")) { // Task 2
+                System.out.println(line + "\n");
+                list(ls);
+                System.out.println(line + "\n");
+            } else {
+                System.out.println(line + "\n" + "added: " + answer + "\n" +
+                        line + "\n");ls.add(answer);
             }
+        }
+    }
+
+    private static void list(ArrayList ls) {
+        for (int i = 0; i < ls.size(); i++) {
+            System.out.println(Integer.toString(i + 1) + ". " + ls.get(i));
         }
     }
 }
