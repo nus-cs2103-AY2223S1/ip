@@ -4,5 +4,3 @@ Got it. I've added this task:
 Now you have 1 tasks in the list.
 ☹ OOPS!!! I'm sorry, but I don't know what that means :-()
 Bye. Hope to see you again soon!
-
-
