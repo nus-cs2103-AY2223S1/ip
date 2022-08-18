@@ -22,8 +22,13 @@ public class Duke {
                 break;
             }
 
-            String[] inputArgs = input.split(" ", 2);
-            String command = inputArgs[0];
+            String[] splitInput = input.split(" ", 2);
+            String command = splitInput[0];
+            String argument = null;
+            boolean hasArgument = splitInput.length > 1;
+            if (hasArgument) {
+                argument = splitInput[1];
+            }
             switch (command) {
                 case "list": {
                     for (int i = 0; i < numTasks; i++) {
@@ -32,40 +37,64 @@ public class Duke {
                     break;
                 }
                 case "mark": {
-                    int taskNum = Integer.parseInt(inputArgs[1]);
-                    Task task = tasks[taskNum - 1];
-                    task.markAsDone();
-                    System.out.printf("Well done! I've marked task %d as done:%n", taskNum);
-                    System.out.println(task);
+                    if (hasArgument) {
+                        int taskNum = Integer.parseInt(argument);
+                        Task task = tasks[taskNum - 1];
+                        task.markAsDone();
+                        System.out.printf("Well done! I've marked task %d as done:%n", taskNum);
+                        System.out.println(task);
+                    } else {
+                        System.out.println("Sorry, you need to tell me which task to mark.");
+                    }
                     break;
                 }
                 case "unmark": {
-                    int taskNum = Integer.parseInt(inputArgs[1]);
-                    Task task = tasks[taskNum - 1];
-                    task.markAsUndone();
-                    System.out.printf("Sure, I've marked task %d as not done:%n", taskNum);
-                    System.out.println(task);
+                    if (hasArgument) {
+                        int taskNum = Integer.parseInt(argument);
+                        Task task = tasks[taskNum - 1];
+                        task.markAsUndone();
+                        System.out.printf("Sure, I've marked task %d as not done:%n", taskNum);
+                        System.out.println(task);
+                    } else {
+                        System.out.println("Sorry, you need to tell me which task to unmark.");
+                    }
                     break;
                 }
                 case "todo": {
-                    Todo todo = new Todo(inputArgs[1]);
-                    tasks[numTasks++] = todo;
-                    System.out.println("Got it, I've added this to-do:");
-                    System.out.println(todo);
+                    if (hasArgument) {
+                        Todo todo = new Todo(argument);
+                        tasks[numTasks++] = todo;
+                        System.out.println("Got it, I've added this to-do:");
+                        System.out.println(todo);
+                    } else {
+                        System.out.println("Sorry, I will need a description for the to-do.");
+                    }
                     break;
                 }
                 case "deadline": {
-                    Deadline deadline = new Deadline(inputArgs[1]);
-                    tasks[numTasks++] = deadline;
-                    System.out.println("Got it, I've added this deadline:");
-                    System.out.println(deadline);
+                    if (hasArgument) {
+                        Deadline deadline = new Deadline(argument);
+                        tasks[numTasks++] = deadline;
+                        System.out.println("Got it, I've added this deadline:");
+                        System.out.println(deadline);
+                    } else {
+                        System.out.println("Sorry, I will need a description for the deadline.");
+                    }
                     break;
                 }
                 case "event": {
-                    Event event = new Event(inputArgs[1]);
-                    tasks[numTasks++] = event;
-                    System.out.println("Got it, I've added this event:");
-                    System.out.println(event);
+                    if (hasArgument) {
+                        Event event = new Event(argument);
+                        tasks[numTasks++] = event;
+                        System.out.println("Got it, I've added this event:");
+                        System.out.println(event);
+                    } else {
+                        System.out.println("Sorry, I will need a description for the event.");
+                    }
+                    break;
+                }
+                default: {
+                    System.out.printf("Sorry, I don't understand what %s means. :/%n", command);
                     break;
                 }
             }

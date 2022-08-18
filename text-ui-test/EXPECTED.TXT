@@ -27,4 +27,10 @@ Sure, I've marked task 3 as not done:
 1. (T) [ ] Test todo
 2. (D) [✔] Test deadline (by: Thu, Aug 18th 2359)
 3. (E) [ ] Test event (at: Fri, Aug 19th 4pm)
+Sorry, you need to tell me which task to mark.
+Sorry, you need to tell me which task to unmark.
+Sorry, I will need a description for the to-do.
+Sorry, I will need a description for the deadline.
+Sorry, I will need a description for the event.
+Sorry, I don't understand what randomness means. :/
 Ok, see you next time!
