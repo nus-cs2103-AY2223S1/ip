@@ -1,10 +1,21 @@
+import java.util.Scanner;
+
 public class Duke {
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+
+        // Initialise the chatbot
+        Seaward seaward = new Seaward();
+        System.out.println(seaward.getWelcome());
+
+        // Need to find a way to accept input
+        Scanner input = new Scanner(System.in);
+        while (true) {
+            String s = input.next();
+            System.out.println(seaward.readInputString(s));
+            if (s.equals("bye")) {
+                break;
+            }
+        }
+        input.close();
     }
 }
