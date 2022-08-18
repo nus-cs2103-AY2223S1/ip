@@ -25,7 +25,7 @@ Got it. I'hv added this task:
 Now you have 4 task in the list
 
 Got it. I'hv added this task:
-   [T] [ ] your mom
+   [T] [ ] eat choco
 Now you have 5 task in the list
 
 Nice! I'hv marked this task as done:
@@ -39,5 +39,5 @@ Now you have 4 task in the list
 Sadge u are not done :(
 [D] [ ] MA1521 Project (by Mon 2359)
 Nice! I'hv marked this task as done:
-[T] [X] your mom
+[T] [X] eat choco
 Bye. Hope to see you again soon
