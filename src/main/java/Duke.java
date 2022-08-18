@@ -35,7 +35,7 @@ public class Duke {
      */
     public void list() {
         System.out.println(INDENTATION + LINE);
-        System.out.println("Here are the tasks in your list:");
+        System.out.println(INDENTATION + "Here are the tasks in your list:");
         for (int i = 0; i < this.taskList.getSize(); i++) {
             System.out.println(INDENTATION + String.valueOf(i + 1) + ". " + this.taskList.getTask(i).toString());
         }
@@ -113,7 +113,6 @@ public class Duke {
             } else if (command.equals("event")) {
                 int atIndex = Arrays.asList(input).indexOf("/at");
                 String[] taskDescription = Arrays.copyOfRange(input, 1, atIndex);
-                System.out.println(Arrays.toString(taskDescription));
                 String[] at = Arrays.copyOfRange(input, atIndex + 1, input.length);
                 Task event = new Event(String.join(" ", taskDescription), String.join(" ", at));
                 this.add(event);
