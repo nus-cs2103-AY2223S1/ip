@@ -1,7 +1,7 @@
 public abstract class Task {
 
     public static Task valueOf(String input) {
-
+        return null; //TODO
     }
 
     protected String taskTitle;

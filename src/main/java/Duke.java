@@ -15,6 +15,10 @@ public class Duke {
     private static final String MARK_UNDONE_OUTPUT_STRING = "Sure, I have marked this as not done yet";
     private static final String MARK_UNDONE_ERROR_STRING = "Oops! Do check the index range, and the format should be \"unmark <index>\"";
     private static final String GENERAL_ERROR_STRING = "Sorry, I don't understand that!";
+    private static final String DELETE_COMMAND_STRING = "delete";
+    private static final String DELETE_ERROR_STRING = "Oops! Do check the index range, and the format should be \"delete <index>\"";
+    private static final String DELETE_OUTPUT_STRING = "Sure, I have removed this task from the list: ";
+
 
     private CommandParser commandParser;
     List<Task> taskList;
@@ -55,7 +59,7 @@ public class Duke {
         return "added: " + newTask.toString();
     }
 
-    private int getTaskIndexForMarking(String input) {
+    private int getTaskIndexFromCommand(String input) {
         int indexOfFirstWhiteSpace = CommandParser.getIndexOfFirstWhiteSpace(input);
         String tailSubString = input.substring(indexOfFirstWhiteSpace, input.length());
         tailSubString = tailSubString.replace(" ", "");
@@ -96,6 +100,17 @@ public class Duke {
         }
     }
 
+    private String deleteTask(int index) {
+        if (index < 0 || index >= taskList.size()) {
+            return DELETE_ERROR_STRING; // error message
+        } else {
+            Task removedTask = taskList.remove(index);
+            return DELETE_OUTPUT_STRING
+                    + "\n    "
+                    + removedTask;
+        }
+    }
+
     private void standBy() {
         Scanner scanner = new Scanner(System.in);
         boolean quited = false;
@@ -110,15 +125,18 @@ public class Duke {
             boolean commandFetched = true;
 
             String firstWord = CommandParser.getFirstWord(nextLine);
+            int index = getTaskIndexFromCommand(nextLine);
             switch (firstWord) {
             case (MARK_DONE_COMMAND_STRING):
-                int index = getTaskIndexForMarking(nextLine);
                 output = markTaskDone(index);
                 break;
 
             case (MARK_UNDONE_COMMAND_STRING):
-                index = getTaskIndexForMarking(nextLine);
                 output = markTaskUndone(index);
+                break;
+
+            case (DELETE_COMMAND_STRING):
+                output = deleteTask(index);
                 break;
 
             default:
