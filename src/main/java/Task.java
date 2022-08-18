@@ -16,11 +16,11 @@ public class Task {
     }
 
     private String check() {
-        return done ? "[X] " : "[ ] ";
+        return done ? "[X]" : "[ ]";
     }
 
     @Override
     public String toString() {
-        return check() + description;
+        return check() + " " + description;
     }
 }

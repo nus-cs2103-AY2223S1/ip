@@ -18,40 +18,26 @@ public class Duke {
                     taskList.show();
                 } else {
                     String cmd = words.next();
-                    String desc = "";
-                    String prev = "";
                     switch (cmd) {
                         case "mark":
-                            taskList.mark(Integer.parseInt(words.next()));
+                            taskList.mark(words);
                             break;
                         case "unmark":
-                            taskList.unmark(Integer.parseInt(words.next()));
+                            taskList.unmark(words);
                             break;
                         case "todo":
-                            desc = words.nextLine().substring(1);
-                            taskList.add(new ToDo(desc));
+                            taskList.add(new ToDo(words.nextLine().substring(1)));
                             break;
                         case "deadline":
-                            prev = words.next();
-                            while (!prev.equals("/by")) {
-                                desc += prev;
-                                prev = words.next();
-                            }
-                            String deadline = words.nextLine().substring(1);
-                            taskList.add(new Deadline(desc, deadline));
+                            words.useDelimiter(" /by ");
+                            taskList.add(new Deadline(words.next().substring(1), words.next()));
                             break;
-                        case "event":
-                            prev = words.next();
-                            while (!prev.equals("/at")) {
-                                desc += prev;
-                                prev = words.next();
-                            }
-                            String period = words.nextLine().substring(1);
-                            taskList.add(new Event(desc, period));
+                        case "event": 
+                            words.useDelimiter(" /at ");
+                            taskList.add(new Event(words.next().substring(1), words.next()));
                             break;
-                        default:
-                            taskList.add(new Task(lastLine));
-                            System.out.println("Added: " + "\"" + lastLine + "\"");
+                        default: // Junk input.
+                            System.out.println("Sorry, I don't know what that means!");
                     }
                 }
             }

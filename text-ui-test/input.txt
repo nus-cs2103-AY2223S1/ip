@@ -1,8 +1,13 @@
-what the pong
-todo task one
-deadline this /by thissasdhfskld
+todo drink water
+deadline update expenses /by tomorrow
+event golf with friends /at 9th august 2-4pm
 list
-mark 3
-mark 1
-unmark 3
+mark 2
 list
+unmark 2
+list
+dumb command here
+mark this
+mark
+mark 6
+bye

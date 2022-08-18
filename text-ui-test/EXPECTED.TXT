@@ -1,8 +1,18 @@
 My name is [insert name here], how can I help?
-Added: "what the pong"
-1. [ ] what the pong
-2. [T][ ] task one
-3. [D][ ] this (by: thissasdhfskld)
-1. [X] what the pong
-2. [T][ ] task one
-3. [D][ ] this (by: thissasdhfskld)
+---
+1. [T][ ] drink water
+2. [D][ ] update expenses (by: tomorrow)
+3. [E][ ] golf with friends (at: 9th august 2-4pm)
+---
+---
+1. [T][ ] drink water
+2. [D][X] update expenses (by: tomorrow)
+3. [E][ ] golf with friends (at: 9th august 2-4pm)
+---
+---
+1. [T][ ] drink water
+2. [D][ ] update expenses (by: tomorrow)
+3. [E][ ] golf with friends (at: 9th august 2-4pm)
+---
+Sorry, I don't know what that means!
+See you next time...
