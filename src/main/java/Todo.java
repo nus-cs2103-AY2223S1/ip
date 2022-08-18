@@ -1,7 +1,7 @@
 public class Todo extends Task {
 
     /**
-     * The constructor, does not have a "by" time
+     * The constructor, does not have a time attribute
      * @param description the description of the task to do
      */
     public Todo(String description) throws DukeException {

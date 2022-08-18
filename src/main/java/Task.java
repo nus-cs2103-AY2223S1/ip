@@ -1,6 +1,6 @@
 public abstract class Task {
 
-    // Variables of a Task
+    // Attributes of a Task
     protected String description;
     private boolean isDone;
 

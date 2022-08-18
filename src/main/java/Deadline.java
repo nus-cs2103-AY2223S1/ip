@@ -1,4 +1,6 @@
 public class Deadline extends Task {
+
+    // Attributes of a Deadline
     protected String by;
 
     /**

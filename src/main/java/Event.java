@@ -1,4 +1,6 @@
 public class Event extends Task {
+
+    // Attributes of an Event
     protected String at;
 
     /**
