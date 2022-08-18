@@ -94,7 +94,7 @@ public class Duke {
                     break;
                 }
                 default: {
-                    throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(.\n");
+                    throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(.\n");
                 }
             }
         } catch (DukeException e) {
@@ -104,7 +104,7 @@ public class Duke {
 
     private static void listCommand(String[] inputs) throws DukeException {
         if (inputs.length == 2) {
-            throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(.\n");
+            throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(.\n");
         }
 
         StringBuilder str = new StringBuilder();
@@ -118,40 +118,40 @@ public class Duke {
 
     private static void addTodoCommand(String[] inputs) throws DukeException {
         if (inputs.length == 1 || inputs[1].equals("")) {
-            throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.\n");
+            throw new DukeException("OOPS!!! The description of a todo cannot be empty.\n");
         }
         addTask(new Todo(inputs[1]));
     }
 
     private static void addDeadlineCommand(String[] inputs) throws DukeException {
         if (inputs.length == 1 || inputs[1].equals("")) {
-            throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.\n");
+            throw new DukeException("OOPS!!! The description of a deadline cannot be empty.\n");
         }
 
         String[] deadlineInputs = inputs[1].split("/by", 2);
 
         if (deadlineInputs.length == 1 || deadlineInputs[1].equals("")) {
-            throw new DukeException("☹ OOPS!!! The date of a deadline cannot be empty.\n");
+            throw new DukeException("OOPS!!! The date of a deadline cannot be empty.\n");
         }
         addTask(new Deadline(deadlineInputs[0], deadlineInputs[1]));
     }
 
     private static void addEventCommand(String[] inputs) throws DukeException {
         if (inputs.length == 1 || inputs[1].equals("")) {
-            throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.\n");
+            throw new DukeException("OOPS!!! The description of an event cannot be empty.\n");
         }
 
         String[] eventInputs = inputs[1].split("/at", 2);
 
         if (eventInputs.length == 1 || eventInputs[1].equals("")) {
-            throw new DukeException("☹ OOPS!!! The date and time of an event cannot be empty.\n");
+            throw new DukeException("OOPS!!! The date and time of an event cannot be empty.\n");
         }
         addTask(new Event(eventInputs[0], eventInputs[1]));
     }
 
     private static void markTaskCommand(String[] inputs) throws DukeException {
         if (inputs.length == 1 || inputs[1].equals("")) {
-            throw new DukeException("☹ OOPS!!! The task index cannot be empty.\n");
+            throw new DukeException("OOPS!!! The task index cannot be empty.\n");
         }
         try {
             // Tasks are stored as 0-index but display as 1-index
@@ -164,13 +164,13 @@ public class Duke {
                     task + "\n";
             printTextWithDivider(str);
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            throw new DukeException("☹ OOPS!!! The task index specified is not valid.\n");
+            throw new DukeException("OOPS!!! The task index specified is not valid.\n");
         }
     }
 
     private static void unmarkTaskCommand(String[] inputs) throws DukeException {
         if (inputs.length == 1 || inputs[1].equals("")) {
-            throw new DukeException("☹ OOPS!!! The task index cannot be empty.\n");
+            throw new DukeException("OOPS!!! The task index cannot be empty.\n");
         }
         try {
             // Tasks are stored as 0-index but display as 1-index
@@ -183,13 +183,13 @@ public class Duke {
                     task + "\n";
             printTextWithDivider(str);
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            throw new DukeException("☹ OOPS!!! The task index specified is not valid.\n");
+            throw new DukeException("OOPS!!! The task index specified is not valid.\n");
         }
     }
 
     private static void deleteTaskCommand(String[] inputs) throws DukeException {
         if (inputs.length == 1 || inputs[1].equals("")) {
-            throw new DukeException("☹ OOPS!!! The task index cannot be empty.\n");
+            throw new DukeException("OOPS!!! The task index cannot be empty.\n");
         }
         try {
             // Tasks are stored as 0-index but display as 1-index
@@ -203,7 +203,7 @@ public class Duke {
                     "Now you have " + taskList.size() + " task(s) in the list.\n";
             printTextWithDivider(str);
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            throw new DukeException("☹ OOPS!!! The task index specified is not valid.\n");
+            throw new DukeException("OOPS!!! The task index specified is not valid.\n");
         }
     }
 
