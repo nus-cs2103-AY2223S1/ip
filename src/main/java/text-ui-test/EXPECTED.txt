@@ -100,9 +100,13 @@ Alright, I have removed the following task from the list!
 You currently have 2 tasks.
 _______________________________________
 _______________________________________
+Alright, I have removed the following task from the list!
+  [D][ ] return book (by: Sunday)
+You currently have 1 task.
+_______________________________________
+_______________________________________
 Here are the tasks you have added:
-1. [D][ ] return book (by: Sunday)
-2. [D][ ] do homework (by: no idea :-p)
+1. [D][ ] do homework (by: no idea :-p)
 _______________________________________
 _______________________________________
 Goodbye! See you soon!
