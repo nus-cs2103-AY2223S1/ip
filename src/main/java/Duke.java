@@ -33,19 +33,35 @@ public class Duke {
                 System.out.println("Great! This task is completed:\n" + tasks[index]);
             }
             else {
-                if (command.contains("todo")) {
-                    tasks[currIndex++] = new Todo(command.split("todo ")[1]);
+                try {
+                    if (command.contains("todo")) {
+                        String taskName = command.length() > 5
+                                ? command.split("todo ")[1]
+                                : "";
+                        if (taskName.isBlank()) {
+                            throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
+                        }
+                        tasks[currIndex++] = new Todo(taskName);
+                        System.out.println("Got it. I've added this task:\n" + tasks[currIndex - 1]);
+                    }
+                    else if (command.contains("deadline")) {
+                        String[] res = command.split("deadline ")[1].split("\\\\by ");
+                        tasks[currIndex++] = new Deadline(res[0], res[1]);
+                        System.out.println("Got it. I've added this task:\n" + tasks[currIndex - 1]);
+                    }
+                    else if (command.contains("event")) {
+                        String[] res = command.split("event ")[1].split("\\\\at ");
+                        tasks[currIndex++] = new Event(res[0], res[1]);
+                        System.out.println("Got it. I've added this task:\n" + tasks[currIndex - 1]);
+                    }
+                    else {
+                        throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
+                    }
+                } catch (DukeException e) {
+                    System.out.println(e.getMessage());
+                } finally {
+                    continue;
                 }
-                if (command.contains("deadline")) {
-                    String[] res = command.split("deadline ")[1].split("\\\\by ");
-                    tasks[currIndex++] = new Deadline(res[0], res[1]);
-                }
-                if (command.contains("event")) {
-                    String[] res = command.split("event ")[1].split("\\\\at ");
-                    tasks[currIndex++] = new Event(res[0], res[1]);
-                }
-                System.out.println("Got it. I've added this task:\n" + tasks[currIndex - 1]);
-                continue;
             }
         }
     }

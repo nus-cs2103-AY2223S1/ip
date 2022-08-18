@@ -21,3 +21,5 @@ Okay, this task is now unchecked:
 1. [T][X] item1
 2. [D][ ] item2 (by: tomorrow)
 3. [E][ ] item3 (at: Sat to Sun)
+OOPS!!! I'm sorry, but I don't know what that means :-(
+OOPS!!! The description of a todo cannot be empty.
