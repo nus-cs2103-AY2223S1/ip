@@ -4,7 +4,7 @@ public class Duke {
     private static final String TAB = "    ";
     private static final String LINEBREAK = "______________________________";
     private static Scanner sc = new Scanner(System.in);
-    private static String[] store = new String[100];
+    private static Task[] store = new Task[100];
     private static int index = 0;
 
     public static void main(String[] args) {
@@ -55,7 +55,7 @@ public class Duke {
     }
 
     public static void add(String s) {
-        store[index] = s;
+        store[index] = new Task(s);
         index++;
         String temp = "added: " + s;
         echo(temp);
@@ -64,8 +64,8 @@ public class Duke {
     public static void list() {
         printTab(LINEBREAK);
         for (int i = 0; i < index; i++) {
-            String s = store[i];
-            String temp = String.format("%d. %s", i + 1, s);
+            Task t = store[i];
+            String temp = String.format("%d. %s", i + 1, t);
             printTab(temp);
         }
         printTab(LINEBREAK);
