@@ -118,6 +118,7 @@ public class Candice {
             case "event":
             case "mark":
             case "unmark":
+            case "delete":
                 if (splitStr.length == 2) {
                     return splitStr;
                 } else {
@@ -133,7 +134,7 @@ public class Candice {
         int length = taskList.size();
 
         if (taskNumber <= 0 || taskNumber > length) {
-            throw new IllegalArgumentException("Wrong task number lah");
+            throw new IllegalArgumentException("Wrong task number lah.");
         }
 
         Task selectedTask = taskList.get(taskNumber - 1);
@@ -142,11 +143,25 @@ public class Candice {
             System.out.println("Nice one lah, finally doing your work.");
             selectedTask.markAsFinished();
         } else if (firstWord.equals("unmark")) {
-            System.out.println("What happened bro");
+            System.out.println("What happened bro.");
             selectedTask.markAsUnfinished();
         } else {
             throw new UnknownActionException();
         }
+    }
+
+    private static void deleteTask(int taskNumber, ArrayList<Task> taskList)
+            throws IllegalArgumentException, UnknownActionException {
+        int length = taskList.size();
+
+        if (taskNumber <= 0 || taskNumber > length) {
+            throw new IllegalArgumentException("Wrong task number lah.");
+        }
+
+        Task removedTask = taskList.remove(taskNumber - 1);
+        System.out.println("I hope you're not deleting this just to avoid work:");
+        System.out.println("  " + removedTask.status());
+        System.out.println("You have " + (length - 1) + " task(s). Stop procrastinating bro.");
     }
 
     public static void main(String[] args) {
@@ -175,15 +190,19 @@ public class Candice {
                     switch (firstWord) {
                         case "mark":
                         case "unmark":
+                        case "delete":
                             int taskNumber;
 
                             try {
                                 taskNumber = Integer.parseInt(splitString[1]);
-                                markOrUnmark(taskNumber, firstWord, taskList);
-
-                                System.out.println(taskList.get(taskNumber - 1).status());
+                                if (!firstWord.equals("delete")) {
+                                    markOrUnmark(taskNumber, firstWord, taskList);
+                                    System.out.println(taskList.get(taskNumber - 1).status());
+                                } else {
+                                    deleteTask(taskNumber, taskList);
+                                }
                             } catch (NumberFormatException e) {
-                                System.out.println("Write properly leh. Your format is wrong");
+                                System.out.println("Write properly leh. Your number format is wrong");
                             } catch (IllegalArgumentException e) {
                                 System.out.println(e);
                             }
@@ -195,6 +214,7 @@ public class Candice {
                         case "deadline":
                         case "event":
                             addDeadlineOrEvent(splitString[1], firstWord, taskList);
+                            break;
                     }
                 } catch (EmptyTaskNameException | UnknownActionException |
                         InvalidFormattingException | EmptyTimingException e) {
