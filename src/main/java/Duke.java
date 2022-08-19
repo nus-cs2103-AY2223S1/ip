@@ -1,15 +1,18 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        greet();
+    private static ArrayList<String> db = new ArrayList<>(10);
+    private static Scanner sc = new Scanner(System.in);
 
+    public static void main(String[] args) {
+        greet();
         while (true) {
             String input = getInput(sc);
             if (processInput(input) == 0) {
                 break;
             }
+            System.out.println();
         }
     }
 
@@ -31,8 +34,14 @@ public class Duke {
         if (s.equals("bye")) {
             System.out.println("Bye. Hope to see you again!");
             return 0;
+        } else if (s.equals("list")) {
+            for (int i = 0; i < db.size(); i++) {
+                System.out.println(i + 1 + ". " + db.get(i));
+            }
+            return 1;
         } else {
-            System.out.println(s);
+            db.add(s);
+            System.out.println("added: " + s);
             return 1;
         }
     }
