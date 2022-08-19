@@ -6,11 +6,15 @@ import java.util.Locale;
  * @author: Jonas Png
  */
 public class Response {
+
+    private Storage storage;
+
     private final String logo = " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
+
     private final String line = "_______________________________";
 
     private TaskList userList;
@@ -19,7 +23,13 @@ public class Response {
      * Class constructor for Response.
      */
     public Response() {
-        this.userList = new TaskList();
+        try {
+            this.storage = new Storage("./data");
+            this.userList = storage.loadStorage();
+        } catch (DukeException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
     public enum Command {
@@ -36,42 +46,63 @@ public class Response {
             System.out.println(line);
             Task newListItem;
             switch (userInputToCommand(inputList[0])) {
-                case BYE:
-                    System.out.println("Bye. Hope to see you again soon!");
-                    System.out.println(line);
-                    System.exit(0);
-                    break;
-                case LIST:
-                    System.out.println("Here are the tasks in your list:");
-                    System.out.println(userList);
-                    break;
-                case UNMARK:
-                    userList.unmark(getIntegerInUserInput(inputList));
-                    break;
-                case MARK:
-                    userList.mark(getIntegerInUserInput(inputList));
-                    break;
-                case TODO:
-                    newListItem = new ToDo(getToDoDescription(inputList, input));
-                    userList.add(newListItem);
-                    break;
-                case DEADLINE:
-                    newListItem = new Deadline(getDeadlineDescription(inputList, input),
-                            getDeadlineBy(inputList, input));
-                    userList.add(newListItem);
-                    break;
-                case EVENT:
-                    newListItem = new Event(getEventDescription(inputList, input),
-                            getEventAt(inputList, input));
-                    userList.add(newListItem);
-                    break;
-                case DELETE:
-                    userList.delete(getIntegerInUserInput(inputList));
+            case BYE:
+                System.out.println("Bye. Hope to see you again soon!");
+                System.out.println(line);
+                System.exit(0);
+                break;
+            case LIST:
+                System.out.println("Here are the tasks in your list:");
+                System.out.println(userList);
+                break;
+            case UNMARK:
+                Task unmarkedTask = userList.unmark(getIntegerInUserInput(inputList));
+                System.out.println("OK, I've marked this task as not done yet:");
+                System.out.println(unmarkedTask);
+                userList.updateStorage(storage);
+                break;
+            case MARK:
+                Task markedTask = userList.mark(getIntegerInUserInput(inputList));
+                System.out.println("Nice! I've marked this task as done:");
+                System.out.println(markedTask);
+                userList.updateStorage(storage);
+                break;
+            case TODO:
+                newListItem = new ToDo(getToDoDescription(inputList, input));
+                userList.add(newListItem);
+                System.out.println("Got it. I've added this task:");
+                System.out.println(newListItem);
+                System.out.println("Now you have " + userList.getLength() + " tasks in the list");
+                userList.updateStorage(storage);
+                break;
+            case DEADLINE:
+                newListItem = new Deadline(getDeadlineDescription(inputList, input),
+                        getDeadlineBy(inputList, input));
+                userList.add(newListItem);
+                System.out.println("Got it. I've added this task:");
+                System.out.println(newListItem);
+                System.out.println("Now you have " + userList.getLength() + " tasks in the list");
+                userList.updateStorage(storage);
+                break;
+            case EVENT:
+                newListItem = new Event(getEventDescription(inputList, input),
+                        getEventAt(inputList, input));
+                userList.add(newListItem);
+                System.out.println("Got it. I've added this task:");
+                System.out.println(newListItem);
+                System.out.println("Now you have " + userList.getLength() + " tasks in the list");
+                userList.updateStorage(storage);
+                break;
+            case DELETE:
+                userList.delete(getIntegerInUserInput(inputList));
+                userList.updateStorage(storage);
+                break;
             }
         } catch (DukeException e) {
             System.out.println(e.getMessage());
         }
         System.out.println(line);
+
     }
 
     /**

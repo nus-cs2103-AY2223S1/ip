@@ -27,4 +27,9 @@ public class Event extends Task {
         return "[E]" + super.toString() + " (at: " + this.at + ")";
     }
 
+    @Override
+    public String toStorageString() {
+        return "E" + super.toStorageString() + " | " + this.at;
+    }
+
 }
