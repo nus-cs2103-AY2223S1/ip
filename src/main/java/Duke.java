@@ -67,33 +67,53 @@ public class Duke {
         System.out.println(toPrintOnAdd(i-1));
     }
 
-    private static void parseCommand(String command) {
+    private static void parseCommand(String command) throws DukeException {
         if(command.equals("bye")) {
             //exit program
             System.out.println("Bye. Hope to see you again soon!");
         } else if (command.equals("list")) {
             list();
         } else if (command.startsWith("mark")) {
-            int taskNumber = Integer.parseInt(command.split("\\s+")[1]) - 1;
-            markAsDone(taskNumber);
+            try {
+                int taskNumber = Integer.parseInt(command.split("\\s+")[1]) - 1;
+                markAsDone(taskNumber);
+            } catch (Exception e) {
+                throw new DukeException("☹ OOPS!!! Please provide a number for this command");
+            }
         } else if (command.startsWith("unmark")) {
-            int taskNumber = Integer.parseInt(command.split("\\s+")[1]) - 1;
-            markAsUndone(taskNumber);
+            try {
+                int taskNumber = Integer.parseInt(command.split("\\s+")[1]) - 1;
+                markAsUndone(taskNumber);
+            } catch (Exception e) {
+                throw new DukeException("☹ OOPS!!! Please provide a number for this command");
+            }
         } else if (command.startsWith("todo")) {
-            String description = command.split(" ", 2)[1];
-            addTodo(description);
+            try {
+                String description = command.split(" ", 2)[1];
+                addTodo(description);
+            } catch(Exception e) {
+                throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+            }
         } else if (command.startsWith("deadline")) {
-            String full = command.split(" ", 2)[1];
-            String description = full.split(" /by ")[0];
-            String deadline = full.split(" /by ")[1];
-            addDeadline(description, deadline);
+            try {
+                String full = command.split(" ", 2)[1];
+                String description = full.split(" /by ")[0];
+                String deadline = full.split(" /by ")[1];
+                addDeadline(description, deadline);
+            } catch (Exception e) {
+                throw new DukeException("☹ OOPS!!! Please format deadline request correctly.");
+            }
         } else if (command.startsWith("event")) {
-            String full = command.split(" ", 2)[1];
-            String description = full.split(" /at ")[0];
-            String at = full.split(" /at ")[1];
-            addEvent(description, at);
+            try {
+                String full = command.split(" ", 2)[1];
+                String description = full.split(" /at ")[0];
+                String at = full.split(" /at ")[1];
+                addEvent(description, at);
+            } catch (Exception e) {
+                throw new DukeException("☹ OOPS!!! Please format event request correctly.");
+            }
         } else {
-            addTask(command);
+            throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
         return;
     }
@@ -110,7 +130,11 @@ public class Duke {
             System.out.print("> ");
             command = receiveCommand();
             System.out.println("");
-            parseCommand(command);
+            try {
+                parseCommand(command);
+            } catch (DukeException e) {
+               System.out.println(e.getMessage());
+            }
             System.out.println("");
         } while (!command.equals("bye"));
     }
