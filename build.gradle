@@ -10,11 +10,16 @@ repositories {
 }
 
 dependencies {
-
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.0'
+    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.5.0'
 }
 
 application {
     mainClass = 'duke.Duke' 
+}
+
+test {
+    useJUnitPlatform()
 }
 
 jar {
