@@ -49,7 +49,7 @@ public abstract class Task {
     String cmd = cmdArray[0];
     Task newTask;
 
-    switch (Commands.valueOf(cmd)) {
+    switch (Command.valueOf(cmd)) {
       case todo:
         Task.validateTaskCreation(userCommand, TaskType.TODO);
         task = cmdArray[1].trim();
