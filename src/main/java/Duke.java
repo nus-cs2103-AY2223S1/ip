@@ -23,20 +23,24 @@ public class Duke {
             }
 
             String[] splitInput = input.split(" ", 2);
-            String command = splitInput[0];
+            Command command = Command.fromName(splitInput[0]);
+            if (command == null) {
+                System.out.printf("Sorry, I don't understand what %s means. :/%n", splitInput[0]);
+                continue;
+            }
             String argument = null;
             boolean hasArgument = splitInput.length > 1;
             if (hasArgument) {
                 argument = splitInput[1];
             }
             switch (command) {
-                case "list": {
+                case LIST: {
                     for (int i = 0; i < tasks.size(); i++) {
                         System.out.printf("%d. %s%n", i + 1, tasks.get(i));
                     }
                     break;
                 }
-                case "mark": {
+                case MARK: {
                     if (hasArgument) {
                         int taskNum = Integer.parseInt(argument);
                         Task task = tasks.get(taskNum - 1);
@@ -48,7 +52,7 @@ public class Duke {
                     }
                     break;
                 }
-                case "unmark": {
+                case UNMARK: {
                     if (hasArgument) {
                         int taskNum = Integer.parseInt(argument);
                         Task task = tasks.get(taskNum - 1);
@@ -60,7 +64,7 @@ public class Duke {
                     }
                     break;
                 }
-                case "todo": {
+                case TODO: {
                     if (hasArgument) {
                         Todo todo = new Todo(argument);
                         tasks.add(todo);
@@ -71,7 +75,7 @@ public class Duke {
                     }
                     break;
                 }
-                case "deadline": {
+                case DEADLINE: {
                     if (hasArgument) {
                         try {
                             Deadline deadline = new Deadline(argument);
@@ -87,7 +91,7 @@ public class Duke {
                     }
                     break;
                 }
-                case "event": {
+                case EVENT: {
                     if (hasArgument) {
                         try {
                             Event event = new Event(argument);
@@ -103,7 +107,7 @@ public class Duke {
                     }
                     break;
                 }
-                case "delete": {
+                case DELETE: {
                     if (hasArgument) {
                         int taskId = Integer.parseInt(argument) - 1;
                         Task task = tasks.get(taskId);
@@ -118,10 +122,6 @@ public class Duke {
                     } else {
                         System.out.println("Sorry, you need to tell me which task to delete.");
                     }
-                    break;
-                }
-                default: {
-                    System.out.printf("Sorry, I don't understand what %s means. :/%n", command);
                     break;
                 }
             }
