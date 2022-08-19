@@ -20,12 +20,12 @@ class ChatBot {
                 "What do you wanna chat about today?\n" + line);
     }
 
-    public void addTask(String input) {
-
-        Task task = new Task(input);
+    public void addTask(Task task) {
 
         this.tasks.add(task);
-        System.out.println(line + "\n\t added: " + task + "\n" + line);
+        System.out.println(line + "\n\tGot it. I just added the " +
+                "task:\n\t\t" + task + "\n\tNow you have " +
+                "" + this.tasks.size() + " tasks in the list\n" + line);
     }
 
     public void printTasks() {

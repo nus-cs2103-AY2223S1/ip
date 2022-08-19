@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Duke {
@@ -14,6 +12,8 @@ public class Duke {
 
         boolean quit = false;
         String input;
+        String[] command;
+        String time; // for the deadline or time of the event
 
 
         while(!quit) {
@@ -37,9 +37,19 @@ public class Duke {
                     chatBot.markUndone(sc.nextInt() - 1);
                     sc.nextLine();
                     break;
+                case "deadline":
+                    command = sc.nextLine().split("/by ");
+                    chatBot.addTask(new Deadline(command[0], command[1]));
+                    break;
+                case "event":
+                    command = sc.nextLine().split("/at ");
+                    chatBot.addTask(new Events(command[0], command[1]));
+                    break;
+                case "todo":
+                    chatBot.addTask(new ToDo(sc.nextLine()));
+                    break;
                 default:
-                    chatBot.addTask(input + sc.nextLine());
-
+                    break;
             }
         }
     }
