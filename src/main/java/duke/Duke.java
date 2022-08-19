@@ -1,3 +1,7 @@
+package duke;
+
+import duke.command.Command;
+
 /**
  * Simple CLI chatbot that reacts on user input.
  */
@@ -46,7 +50,8 @@ public class Duke {
     /**
      * Main function for the chatbot.
      * 
-     * @param args System arguments. Not used for this program.
+     * @param args
+     *            System arguments. Not used for this program.
      */
 
     public static void main(String[] args) {

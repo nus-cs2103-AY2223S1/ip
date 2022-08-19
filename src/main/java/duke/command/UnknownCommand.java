@@ -1,3 +1,5 @@
+package duke.command;
+
 public class UnknownCommand extends Command {
     private String command;
 

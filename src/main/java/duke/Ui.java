@@ -1,4 +1,9 @@
+package duke;
+
 import java.util.Scanner;
+
+import duke.task.Task;
+
 import java.util.Optional;
 import java.util.List;
 import java.util.ArrayList;
@@ -31,7 +36,7 @@ public class Ui {
         return PADDING + text;
     }
 
-    void formatAndPrint(List<? extends String> texts) {
+    public void formatAndPrint(List<? extends String> texts) {
         System.out.println(DIVIDER);
         texts.forEach((text) -> System.out.println(leftPad(leftPad(" " + text))));
         System.out.println(DIVIDER);
@@ -59,27 +64,27 @@ public class Ui {
         formatAndPrint(toPrint);
     }
 
-    void displayAddTaskMessage(Task task, int taskListSize) {
+    public void displayAddTaskMessage(Task task, int taskListSize) {
         displayUpdateMessage(task, "Task added: ", Optional.of(taskListSize));
     }
 
-    void displayDeleteTaskMessage(Task task, int taskListSize) {
+    public void displayDeleteTaskMessage(Task task, int taskListSize) {
         displayUpdateMessage(task, "Task deleted: ", Optional.of(taskListSize));
     }
 
-    void displayMarkTaskMessage(Task task) {
+    public void displayMarkTaskMessage(Task task) {
         displayUpdateMessage(task, "I have marked this task as done: ", Optional.empty());
     }
 
-    void displayUnmarkTaskMessage(Task task) {
+    public void displayUnmarkTaskMessage(Task task) {
         displayUpdateMessage(task, "I have unmarked the completion of this task: ", Optional.empty());
     }
 
-    void displayExitMessage() {
+    public void displayExitMessage() {
         formatAndPrint("Bye bye");
     }
 
-    void displayUnknownCommandMessage(String input) {
+    public void displayUnknownCommandMessage(String input) {
         formatAndPrint("Unknown command: " + input);
     };
 

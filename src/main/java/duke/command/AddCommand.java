@@ -1,3 +1,8 @@
+package duke.command;
+
+import duke.DukeException;
+import duke.task.Task;
+
 public class AddCommand extends Command {
     private Task task;
 
@@ -7,7 +12,7 @@ public class AddCommand extends Command {
     }
 
     @Override
-    void execute() throws DukeException {
+    public void execute() throws DukeException {
         Command.taskList.add(this.task);
         Command.storage.save(this.task);
         Command.ui.displayAddTaskMessage(this.task, Command.taskList.size());

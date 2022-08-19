@@ -1,7 +1,22 @@
+package duke;
+
 import java.util.Scanner;
 import java.util.Optional;
 import java.util.Map;
 import java.util.AbstractMap.SimpleEntry;
+
+import duke.command.AddCommand;
+import duke.command.ByeCommand;
+import duke.command.Command;
+import duke.command.DeleteCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.UnknownCommand;
+import duke.command.UnmarkCommand;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
 
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;

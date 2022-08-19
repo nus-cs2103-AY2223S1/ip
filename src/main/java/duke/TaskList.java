@@ -1,8 +1,12 @@
+package duke;
+
 import java.util.List;
 import java.util.ArrayList;
 
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import duke.task.Task;
 
 /**
  * A class that handles logging of strings.
@@ -18,22 +22,16 @@ public class TaskList {
         this(new ArrayList<>());
     }
 
-    int size() {
+    public int size() {
         return this.logs.size();
     }
 
-    Task add(String message) {
-        Task task = new Task(message);
+    public Task add(Task task) {
         logs.add(task);
         return task;
     }
 
-    Task add(Task task) {
-        logs.add(task);
-        return task;
-    }
-
-    Task delete(int index) throws DukeException {
+    public Task delete(int index) throws DukeException {
         try {
             return logs.remove(index);
         } catch (IndexOutOfBoundsException e) {
@@ -49,7 +47,7 @@ public class TaskList {
         }
     }
 
-    Task markTask(int index) throws DukeException {
+    public Task markTask(int index) throws DukeException {
         try {
             getTask(index).mark();
         } catch (IndexOutOfBoundsException e) {
@@ -58,7 +56,7 @@ public class TaskList {
         return getTask(index);
     }
 
-    Task unmarkTask(int index) throws DukeException {
+    public Task unmarkTask(int index) throws DukeException {
         try {
             getTask(index).unmark();
         } catch (IndexOutOfBoundsException e) {
@@ -67,7 +65,7 @@ public class TaskList {
         return getTask(index);
     }
 
-    List<String> getLogs() {
+    public List<String> getLogs() {
         List<String> indexedList = IntStream.range(0, logs.size())
                 .mapToObj((index) -> String.format("%d. %s", index + 1, logs.get(index).toString()))
                 .collect(Collectors.toList());

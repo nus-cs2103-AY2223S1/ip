@@ -1,3 +1,5 @@
+package duke.command;
+
 public abstract class IndexedCommand extends Command {
     protected int index;
 

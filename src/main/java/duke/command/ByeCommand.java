@@ -1,10 +1,12 @@
+package duke.command;
+
 public class ByeCommand extends Command {
     ByeCommand() {
         super.isExit = true;
     }
 
     @Override
-    void execute() {
+    public void execute() {
         Command.ui.displayExitMessage();
     }
 }
