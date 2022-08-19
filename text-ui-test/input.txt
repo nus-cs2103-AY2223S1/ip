@@ -4,6 +4,9 @@ event kahoot night /at Next Thursday 9:00-11:00pm
 todo
 deadline
 event
+mark
+unmark
+delete
 mark 1
 mark 2
 mark 3

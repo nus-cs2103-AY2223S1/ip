@@ -12,6 +12,9 @@ You have 3 task(s). Stop procrastinating bro.
 EmptyTaskNameException: You can't just say todo without any description.
 EmptyTaskNameException: You can't just say deadline without any description.
 EmptyTaskNameException: You can't just say event without any description.
+EmptyTaskNameException: You can't just say mark without any description.
+EmptyTaskNameException: You can't just say unmark without any description.
+EmptyTaskNameException: You can't just say delete without any description.
 Nice one lah, finally doing your work.
 [T][X] read book
 Nice one lah, finally doing your work.
