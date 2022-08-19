@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Duke {
     private static ArrayList<Task> taskList = new ArrayList<>();
 
-    private static String getOutput(String input) {
+    private static String getOutput(String input) throws DukeException{
         if (input.equals("bye")) {
             return "Bye. Hope to see you again soon!";
         } else if (input.equals("list")) {
@@ -20,6 +20,9 @@ public class Duke {
             currTask.markAsNotDone();
             return "OK, I've marked this task as not done yet:\n  " + currTask.toString();
         } else if (input.length() > 3 && input.substring(0, 4).equals("todo")) {
+            if (input.length() < 6) {
+                throw new DukeException("The description of a todo cannot be empty.");
+            }
             Task newTask = new Todo(input.substring(5));
             addTask(newTask);
             return "Got it. I've added this task:\n  " + newTask.toString() +
@@ -39,7 +42,7 @@ public class Duke {
             return "Got it. I've added this task:\n  " + newTask.toString() +
                     "\nNow you have " + taskList.size() + " tasks in the list.";
         } else {
-            return "invalid command";
+            throw new DukeException("I'm sorry, but I don't know what that means :-(");
         }
     }
 
@@ -65,8 +68,12 @@ public class Duke {
         System.out.println(logo + "\nHello! I'm Duke\n" + "What can I do for you?");
         String command = scanner.nextLine();
         while (true) {
-            String output = getOutput(command);
-            System.out.println(output);
+            try {
+                String output = getOutput(command);
+                System.out.println(output);
+            } catch (DukeException e) {
+                System.out.println(e.toString());
+            }
             if (command.equals("bye")) {
                 break;
             } else {
