@@ -7,9 +7,9 @@ then
 fi
 
 # delete output from previous run
-if [ -e "./ACT.TXT" ]
+if [ -e "./ACTUAL.TXT" ]
 then
-    rm ACT.TXT
+    rm ACTUAL.TXT
 fi
 
 # compile the code into the bin folder, terminates if error occurred
@@ -20,7 +20,7 @@ then
 fi
 
 # run the program, feed commands from input.txt file and redirect the output to the ACTUAL.TXT
-java -classpath ../bin Duke < INPUTS.txt > ACT.TXT
+java -classpath ../bin Duke < in.txt > ACTUAL.TXT
 
 # convert to UNIX format
 cp EXPECTED.TXT EXPECTED-UNIX.TXT
