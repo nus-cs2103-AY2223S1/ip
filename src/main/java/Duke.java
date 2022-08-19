@@ -48,32 +48,49 @@ public class Duke {
                 echo(taskStatus);
             } else if (command.contains("todo")) {
                 String todoTask = command.replace("todo ", "");
-                Task newTask = new Todo(todoTask);
-                tasklist.add(newTask);
-                String taskStatus = String.format("Got it. I've added this task:\n" +
-                        "%s\n" +
-                        "Now you have %d tasks in the list.", newTask, tasklist.size());
-                echo(taskStatus);
+                if (todoTask.equals(command) || "".equals(todoTask)) {
+                    String error = DukeException.taskErrorMessage(command);
+                    echo(error);
+                } else {
+                    Task newTask = new Todo(todoTask);
+                    tasklist.add(newTask);
+                    String taskStatus = String.format("Got it. I've added this task:\n" +
+                            "%s\n" +
+                            "Now you have %d tasks in the list.", newTask, tasklist.size());
+                    echo(taskStatus);
+                }
+
             } else if (command.contains("deadline")) {
-                String deadlineTask = command.replace("deadline", "");
-                String[] parts = deadlineTask.split(" /");
-                Task newTask = new Deadline(parts[0], parts[1]);
-                tasklist.add(newTask);
-                String taskStatus = String.format("Got it. I've added this task:\n" +
-                        "%s\n" +
-                        "Now you have %d tasks in the list.", newTask, tasklist.size());
-                echo(taskStatus);
+                String deadlineTask = command.replace("deadline ", "");
+                if (deadlineTask.equals(command) || "".equals(deadlineTask)) {
+                    String error = DukeException.taskErrorMessage(command);
+                    echo(error);
+                } else {
+                    String[] parts = deadlineTask.split(" /");
+                    Task newTask = new Deadline(parts[0], parts[1]);
+                    tasklist.add(newTask);
+                    String taskStatus = String.format("Got it. I've added this task:\n" +
+                            "%s\n" +
+                            "Now you have %d tasks in the list.", newTask, tasklist.size());
+                    echo(taskStatus);
+                }
             } else if (command.contains("event")) {
-                String deadlineTask = command.replace("event", "");
-                String[] parts = deadlineTask.split(" /");
-                Task newTask = new Event(parts[0], parts[1]);
-                tasklist.add(newTask);
-                String taskStatus = String.format("Got it. I've added this task:\n" +
-                        "%s\n" +
-                        "Now you have %d tasks in the list.", newTask, tasklist.size());
-                echo(taskStatus);
+                String eventTask = command.replace("event ", "");
+                if (eventTask.equals(command) || "".equals(eventTask)) {
+                    String error = DukeException.taskErrorMessage(command);
+                    echo(error);
+                } else {
+                    String[] parts = eventTask.split(" /");
+                    Task newTask = new Event(parts[0], parts[1]);
+                    tasklist.add(newTask);
+                    String taskStatus = String.format("Got it. I've added this task:\n" +
+                            "%s\n" +
+                            "Now you have %d tasks in the list.", newTask, tasklist.size());
+                    echo(taskStatus);
+                }
+            } else {
+                echo(DukeException.taskErrorMessage());
             }
         }
-
     }
 }
