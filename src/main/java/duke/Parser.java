@@ -1,4 +1,4 @@
-import java.util.Locale;
+package duke;
 
 /**
  * Encapsulate the Response function of the chatbot.

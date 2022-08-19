@@ -1,3 +1,3 @@
 T | 1 | go to park to run
 D | 0 | cs2100 quiz | 2022-10-15
-E | 1 | psychiatric test | 2022-10-15
+E | 0 | psychiatric test | 2022-10-15

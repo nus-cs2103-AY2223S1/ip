@@ -1,3 +1,5 @@
+package duke;
+
 /**
  * Encapsulate a Task that user adds to the list.
  *
