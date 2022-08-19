@@ -18,4 +18,7 @@ delete 3
 mark 3
 delete
 list
+mark 1
+mark 2
+list
 bye

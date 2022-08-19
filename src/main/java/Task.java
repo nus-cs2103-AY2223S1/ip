@@ -1,19 +1,16 @@
-public abstract class Task implements SetStatus {
+public abstract class Task {
 
   private final String title;
-  private final boolean status;
+  private boolean status;
 
   Task(String title, boolean status) {
     this.title = title;
     this.status = status;
   }
 
-  String getTitle() {
-    return this.title;
-  }
-
-  boolean getStatus() {
-    return this.status;
+  Task setStatus(boolean status) {
+    this.status = status;
+    return this;
   }
 
   @Override

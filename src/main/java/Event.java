@@ -8,11 +8,6 @@ public class Event extends Task {
   }
 
   @Override
-  public Event setStatus(boolean status) {
-    return new Event(this.getTitle(), status, this.date);
-  }
-
-  @Override
   public String toString() {
     return "[E]" + super.toString() + " (at: " + this.date + ")";
   }

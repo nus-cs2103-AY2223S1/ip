@@ -8,11 +8,6 @@ public class Deadline extends Task {
   }
 
   @Override
-  public Deadline setStatus(boolean status) {
-    return new Deadline(this.getTitle(), status, this.date);
-  }
-
-  @Override
   public String toString() {
     return "[D]" + super.toString() + " (by: " + this.date + ")";
   }

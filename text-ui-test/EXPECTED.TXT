@@ -7,37 +7,31 @@ ______       _
 \____/ \___/|_.__/ 
 
 What can I do for you?
-> Task added to list!: [T][ ] hi bob
-Now you have 1 tasks in the list
-> Task added to list!: [D][ ] say hi to bob (by: 10pm)
-Now you have 2 tasks in the list
-> Task added to list!: [E][ ] meet bob (at: 10pm)
-Now you have 3 tasks in the list
+> Todo task has been added!
+> Deadline task has been added!
+> Event task has been added!
 > 1) [T][ ] hi bob
 2) [D][ ] say hi to bob (by: 10pm)
 3) [E][ ] meet bob (at: 10pm)
-> Task marked as done!
-[T][X] hi bob
-> Task marked as not done!
-[T][ ] hi bob
-> Task marked as done!
-[D][X] say hi to bob (by: 10pm)
-> Task marked as not done!
-[D][ ] say hi to bob (by: 10pm)
-> Task marked as done!
-[E][X] meet bob (at: 10pm)
-> Task marked as not done!
-[E][ ] meet bob (at: 10pm)
-> Invalid task index!
-> Invalid task index!
+> Task 1 is marked as done!
+> Task 1 is marked as not done!
+> Task 2 is marked as done!
+> Task 2 is marked as not done!
+> Task 3 is marked as done!
+> Task 3 is marked as not done!
+> Task 4 does not exist
+> Task 4 does not exist
 > The description cannot be empty!
-> The description and deadline date cannot be empty!
-> The description and event date cannot be empty!
+> The date cannot be empty!
+> The date cannot be empty!
 > Sorry, I don't know what do you mean by that.
-> Task has been deleted!: [E][ ] meet bob (at: 10pm)
-Now you have 2 tasks in the list
-> Invalid task index!
-> Invalid task index!
+> Task 3 has been removed!
+> Task 3 does not exist
+> Index cannot be empty!
 > 1) [T][ ] hi bob
 2) [D][ ] say hi to bob (by: 10pm)
+> Task 1 is marked as done!
+> Task 2 is marked as done!
+> 1) [T][X] hi bob
+2) [D][X] say hi to bob (by: 10pm)
 > Goodbye!

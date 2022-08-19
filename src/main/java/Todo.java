@@ -5,11 +5,6 @@ public class Todo extends Task {
   }
 
   @Override
-  public Todo setStatus(boolean status) {
-    return new Todo(this.getTitle(), status);
-  }
-
-  @Override
   public String toString() {
     return "[T]" + super.toString();
   }
