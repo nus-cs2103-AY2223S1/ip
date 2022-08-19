@@ -19,12 +19,12 @@
     ____________________________________________________________
     ____________________________________________________________
     Added this deadline!
-      [D][ ] return book (by: June 6th)
+      [D][ ] return book (by: 29 Jun 22)
     Now you have 2 tasks.
     ____________________________________________________________
     ____________________________________________________________
     Added this event!
-      [E][ ] project meeting (at: Aug 6th 2-4pm)
+      [E][ ] project meeting (at: 06 Aug 22)
     Now you have 3 tasks.
     ____________________________________________________________
     ____________________________________________________________
@@ -43,29 +43,29 @@
     ____________________________________________________________
     ____________________________________________________________
     1: [T][X] read book
-    2: [D][ ] return book (by: June 6th)
-    3: [E][ ] project meeting (at: Aug 6th 2-4pm)
+    2: [D][ ] return book (by: 29 Jun 22)
+    3: [E][ ] project meeting (at: 06 Aug 22)
     4: [T][X] join sports club
     5: [T][ ] borrow book
     ____________________________________________________________
     ____________________________________________________________
     Added this deadline!
-      [D][ ] return book 2 (by: Sunday)
+      [D][ ] return book 2 (by: 15 Oct 19)
     Now you have 6 tasks.
     ____________________________________________________________
     ____________________________________________________________
     Added this event!
-      [E][ ] project meeting (at: Mon 2-4pm)
+      [E][ ] project meeting (at: 15 Oct 22)
     Now you have 7 tasks.
     ____________________________________________________________
     ____________________________________________________________
     1: [T][X] read book
-    2: [D][ ] return book (by: June 6th)
-    3: [E][ ] project meeting (at: Aug 6th 2-4pm)
+    2: [D][ ] return book (by: 29 Jun 22)
+    3: [E][ ] project meeting (at: 06 Aug 22)
     4: [T][X] join sports club
     5: [T][ ] borrow book
-    6: [D][ ] return book 2 (by: Sunday)
-    7: [E][ ] project meeting (at: Mon 2-4pm)
+    6: [D][ ] return book 2 (by: 15 Oct 19)
+    7: [E][ ] project meeting (at: 15 Oct 22)
     ____________________________________________________________
     ____________________________________________________________
     Description of Todo cannot be empty!
@@ -81,7 +81,7 @@
     ____________________________________________________________
     ____________________________________________________________
     Wrong format for Deadline!
-    Should be 'deadline <description> /by <deadline>'.
+    Should be 'deadline <description> /by YYYY-MM-DD'.
     ____________________________________________________________
     ____________________________________________________________
     Description of Event cannot be empty!
@@ -91,7 +91,7 @@
     ____________________________________________________________
     ____________________________________________________________
     Wrong format for Event!
-    Should be 'event <description> /at <date>'.
+    Should be 'event <description> /at YYYY-MM-DD'.
     ____________________________________________________________
     ____________________________________________________________
     Unknown command!
@@ -106,15 +106,15 @@
     ____________________________________________________________
     ____________________________________________________________
     Removing this todo!
-      [D][ ] return book (by: June 6th)
+      [D][ ] return book (by: 29 Jun 22)
     Now you have 5 tasks.
     ____________________________________________________________
     ____________________________________________________________
-    1: [E][ ] project meeting (at: Aug 6th 2-4pm)
+    1: [E][ ] project meeting (at: 06 Aug 22)
     2: [T][X] join sports club
     3: [T][ ] borrow book
-    4: [D][ ] return book 2 (by: Sunday)
-    5: [E][ ] project meeting (at: Mon 2-4pm)
+    4: [D][ ] return book 2 (by: 15 Oct 19)
+    5: [E][ ] project meeting (at: 15 Oct 22)
     ____________________________________________________________
     ____________________________________________________________
     Bye, hope to see you soon!
