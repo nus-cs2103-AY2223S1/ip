@@ -1,3 +1,4 @@
+package duke;
 /**
  * This is Duke, he replies to messages.
  * 
@@ -9,13 +10,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import commands.AbstractCommand;
-import commands.Exit;
-import commands.Greet;
-import enums.*;
-import lists.*;
-import exceptions.*;
-import utils.*;
+import duke.commands.AbstractCommand;
+import duke.commands.Exit;
+import duke.commands.Greet;
+import duke.enums.*;
+import duke.exceptions.*;
+import duke.lists.*;
+import duke.utils.*;
 
 public class Duke {
     /* Store tasks from user */

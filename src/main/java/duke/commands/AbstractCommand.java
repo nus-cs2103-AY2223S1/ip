@@ -1,6 +1,6 @@
-package commands;
+package duke.commands;
 
-import exceptions.DukeException;
+import duke.exceptions.DukeException;
 
 public interface AbstractCommand {
 

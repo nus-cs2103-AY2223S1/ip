@@ -1,7 +1,7 @@
-package commands;
+package duke.commands;
 
-import enums.Messages;
-import exceptions.DukeException;
+import duke.enums.Messages;
+import duke.exceptions.DukeException;
 
 public class InvalidCommand extends Display {
     private String message;

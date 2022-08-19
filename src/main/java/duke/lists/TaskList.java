@@ -1,8 +1,8 @@
-package lists;
+package duke.lists;
 
 import java.util.ArrayList;
 
-import entities.Task;
+import duke.entities.Task;
 
 public class TaskList {
     private ArrayList<Task> tasks;

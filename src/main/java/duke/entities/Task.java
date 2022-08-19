@@ -1,4 +1,4 @@
-package entities;
+package duke.entities;
 
 public class Task {
     private Boolean isComplete = false;

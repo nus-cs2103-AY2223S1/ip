@@ -1,9 +1,9 @@
-package commands;
+package duke.commands;
 
-import enums.*;
-import lists.*;
-import entities.*;
-import exceptions.*;
+import duke.entities.*;
+import duke.enums.*;
+import duke.exceptions.*;
+import duke.lists.*;
 
 public class AddTodo extends ShowList {
     protected String descrition;

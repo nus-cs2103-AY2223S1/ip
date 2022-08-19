@@ -1,23 +1,20 @@
-package utils;
+package duke.utils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-// Commands
-import commands.AbstractCommand;
-import commands.AddTodo;
-import commands.Mark;
-import commands.ShowList;
-import commands.AddDeadline;
-import commands.AddEvent;
-import commands.Delete;
-import commands.InvalidCommand;
-// Enums
-import enums.Commands;
-import enums.Messages;
-
-import exceptions.DukeException;
-import lists.TaskList;
+import duke.commands.AbstractCommand;
+import duke.commands.AddDeadline;
+import duke.commands.AddEvent;
+import duke.commands.AddTodo;
+import duke.commands.Delete;
+import duke.commands.InvalidCommand;
+import duke.commands.Mark;
+import duke.commands.ShowList;
+import duke.enums.Commands;
+import duke.enums.Messages;
+import duke.exceptions.DukeException;
+import duke.lists.TaskList;
 
 public class CommandFactory {
     private static Pattern INPUT_REGEX = Pattern.compile("^([a-zA-Z]+)(?: ([^/]*))?(?: /([a-zA-Z]+))?(?: ([^/]*))?$");
