@@ -1,3 +1,4 @@
+import javax.print.DocFlavor;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -19,45 +20,55 @@ public class Pixel {
 //        return -1;
 //    }
 
+    private void handleNewTask(String userInput, int indexOfSlashBy, String type) {
+        // If there's a "/by" in the input string, then the info behind the "/by" is the due
+        // if there's no "/by" string, then due should be empty
+        String due = indexOfSlashBy == -1 ? "" : userInput.substring(indexOfSlashBy + 4);
+        int indexOfEndOfDescription = indexOfSlashBy == -1 ? userInput.length() : indexOfSlashBy;
+        Task newTask;
+
+        if (type.equals("T")) { // todo
+            String description = userInput.substring(5, indexOfEndOfDescription);
+            newTask = new ToDo(description, due); // Stores user input
+
+        } else if (type.equals("D")) { // deadline
+            String description = userInput.substring(9, indexOfEndOfDescription);
+            newTask = new Deadline(description, due); // Stores user input
+
+        } else if (type.equals("E")) { // event
+            String description = userInput.substring(6, indexOfEndOfDescription);
+            newTask = new Event(description, due); // Stores user input
+
+        } else { //shouldn't reach here
+            throw new IncorrectFormatException("Invalid format of input!"); // programme breaks
+        }
+
+        inputTasks.add(count, newTask);
+        count += 1;
+        System.out.println("Got it. I've added this task:");
+        System.out.println(newTask);
+        System.out.println("Now you have " + count + " tasks in the list.");
+        // run();
+    }
+
     private void run() {
         String userInput = myScanner.nextLine();  // Read user input
-        int indexOfSlash = userInput.indexOf("/");
+        int indexOfSlashBy = userInput.indexOf("/by"); // returns -1 if such a string doesn't exist
 
         try {
-            if (userInput.equals("bye")) {
+            if (userInput.trim().equals("bye")) {
                 System.out.println("Bye. Hope to see you again soon!");
 
-            } else if (userInput.startsWith("todo ")) {
-                String due = userInput.substring(indexOfSlash == -1 ? 5 : (indexOfSlash + 1));
-                Task newToDo = new ToDo(userInput.substring(5, indexOfSlash == -1 ? userInput.length() : indexOfSlash), due); // Stores user input
-                inputTasks.add(count, newToDo);
-                count += 1;
-                System.out.println("Got it. I've added this task:");
-                System.out.println(newToDo);
-                System.out.println("Now you have " + count + " tasks in the list.");
-                run();
+            } else if (userInput.trim().startsWith("todo ")) {
+                handleNewTask(userInput, indexOfSlashBy, "T");
 
-            } else if (userInput.startsWith("deadline ")) {
-                String due = userInput.substring(indexOfSlash == -1 ? 9 : (indexOfSlash + 1));
-                Task newDeadline = new Deadline(userInput.substring(9, indexOfSlash == -1 ? userInput.length() : indexOfSlash), due); // Stores user input
-                inputTasks.add(count, newDeadline);
-                count += 1;
-                System.out.println("Got it. I've added this task:");
-                System.out.println(newDeadline);
-                System.out.println("Now you have " + count + " tasks in the list.");
-                run();
+            } else if (userInput.trim().startsWith("deadline ")) {
+                handleNewTask(userInput, indexOfSlashBy, "D");
 
-            } else if (userInput.startsWith("event ")) {
-                String due = userInput.substring(indexOfSlash == -1 ? 6 : (indexOfSlash + 1));
-                Task newEvent = new Event(userInput.substring(6, indexOfSlash == -1 ? userInput.length() : indexOfSlash), due); // Stores user input
-                inputTasks.add(count, newEvent);
-                count += 1;
-                System.out.println("Got it. I've added this task:");
-                System.out.println(newEvent);
-                System.out.println("Now you have " + count + " tasks in the list.");
-                run();
+            } else if (userInput.trim().startsWith("event ")) {
+                handleNewTask(userInput, indexOfSlashBy, "E");
 
-            } else if (userInput.startsWith("mark ")) {
+            } else if (userInput.trim().startsWith("mark ")) {
                 // truncate the front part
                 String temp = userInput.substring(5);
                 // System.out.println(temp);
@@ -68,9 +79,9 @@ public class Pixel {
                 }
                 System.out.println(" Nice! I've marked this task as done:");
                 System.out.println(inputTasks.get(indexToChange - 1));
-                run();
+                // run();
 
-            } else if (userInput.startsWith("unmark ")) {
+            } else if (userInput.trim().startsWith("unmark ")) {
                 // truncate the front part
                 String temp = userInput.substring(7);
                 // System.out.println(temp);
@@ -81,18 +92,18 @@ public class Pixel {
                 }
                 System.out.println("OK, I've marked this task as not done yet:");
                 System.out.println(inputTasks.get(indexToChange - 1));
-                run();
+                // run();
 
-            } else if (userInput.equals("list")) {
+            } else if (userInput.trim().equals("list")) {
                 // System.out.println(inputMemory.length);
                 System.out.println("Here are the tasks in your list:");
                 for (int i = 0; i < count; i++) {
                     Task currentTask = inputTasks.get(i);
                     System.out.println((i + 1) + ". " + currentTask);
                 }
-                run();
+                // run();
 
-            } else if (userInput.startsWith("delete ")) {
+            } else if (userInput.trim().startsWith("delete ")) {
                 Task tempRecord;
                 // truncate the front part
                 String temp = userInput.substring(7);
@@ -116,13 +127,14 @@ public class Pixel {
                     count -= 1;
                     System.out.println("Now you have " + count + " tasks in the list.");
                 }
-                run();
+                // run();
 
             } else {
-                inputTasks.add(count, new Task(userInput)); // Stores user input
-                System.out.println(userInput);  // Output user input
-                count += 1;
-                run();
+                throw new IncorrectFormatException("Invalid format of input!"); // programme breaks
+//                inputTasks.add(count, new Task(userInput)); // Stores user input
+//                System.out.println(userInput);  // Output user input
+//                count += 1;
+//                run();
             }
 
         } catch (IndexOutOfBoundsException e) {
@@ -143,7 +155,7 @@ public class Pixel {
 
         } finally {
             // clean up
-            System.out.println("cleaning up. Process resumes. Please enter your new input");
+            // System.out.println("cleaning up. Process resumes. Please enter your new input");
             run();
         }
 
