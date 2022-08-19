@@ -31,7 +31,7 @@ public class Duke {
         Task task;
         String command, suggestion;
         String[] commandList;
-        Integer taskIndex = null;
+        Integer taskIndex = null, i;
 
         Interface.greet();
         while (!lastCommandOrNot) {
@@ -72,6 +72,16 @@ public class Duke {
                         }
                         break;
                     }
+                    case "delete": {
+                        taskIndex = Helper.strToInt(commandList[1]) - 1;
+                        task = taskList.get(taskIndex);
+                        Interface.delete(task);
+                        taskList.remove(task);
+                        for (i = taskIndex; i < taskList.size(); i++) {
+                            taskList.get(i).updateRemoval();
+                        }
+                        break;
+                    }
                     case "list": {
                         Interface.list(taskList);
                         break;
@@ -106,7 +116,7 @@ public class Duke {
                 //check mark/ unmark
             }
             catch (IndexOutOfBoundsException e) {
-                if (command.equals("mark") || command.equals("unmark")) {
+                if (command.equals("mark") || command.equals("unmark") || command.equals("delete")) {
                     System.out.println("     ☹ OOPS!!! You have less than " + (taskIndex + 1) + " task(s).");
                     suggestion = "Try again with a task index";
                 }

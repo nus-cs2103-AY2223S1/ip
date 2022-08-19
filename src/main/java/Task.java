@@ -1,4 +1,5 @@
 import java.lang.StringBuilder;
+import java.util.ArrayList;
 
 public class Task {
     protected String name;
@@ -13,10 +14,31 @@ public class Task {
         this.isDone = false;
     }
 
+    /**
+     * Helper function to call while adding a new task.
+     * @param name the new task description.
+     * @return the Task class being created.
+     */
     public static Task addTask(String name) {
         Task newTask = new Task(name);
-        System.out.println("     " + newTask.printSelf());
+        System.out.println("       " + newTask.printSelf());
         return newTask;
+    }
+
+    /**
+     * Helper function to call while deleting a task, to keep track of the total number of tasks.
+     * @param task The task being deleted.
+     */
+    public static void removeTask(Task task) {
+        totalNumber--;
+        System.out.println("       " + task.printSelf());
+    }
+
+    /**
+     * Update the index of a particular task to be index -1 after removal.
+     */
+    public void updateRemoval() {
+        index--;
     }
 
     /**

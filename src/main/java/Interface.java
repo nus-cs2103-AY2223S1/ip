@@ -109,9 +109,18 @@ public class Interface {
         printLine();
     }
 
-
+    /**
+     *      Noted. I've removed this task:
+     *        [E][ ] project meeting (at: Aug 6th 2-4pm)
+     *      Now you have 4 tasks in the list.
+     * @param task
+     */
     public static void delete(Task task) {
+        printLine();
         System.out.println("     Noted. I've removed this task:");
+        Task.removeTask(task); // change total number of task.
+        ToDo.countTaskLeft();
+        printLine();
     }
 
     /**
