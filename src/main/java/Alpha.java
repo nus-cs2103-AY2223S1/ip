@@ -11,51 +11,110 @@ public class Alpha {
     public static void main(String[] args) {
         welcomeMessage();
         Scanner in = new Scanner(System.in);
-
-        enterMessage(in);
+        try {
+            enterMessage(in);
+        }
+        catch (AlphaException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     private static void welcomeMessage() {
         System.out.println("\n-----------------\n" + ANSI_BLUE + "Hello, I'm ALPHA!" + ANSI_RESET + "\n-----------------");
     }
 
-    private static void enterMessage(Scanner in) {
+    private static void enterMessage(Scanner in) throws AlphaException {
         String input = in.nextLine();
         String[] inputTokens = input.split(" ");
         switch (inputTokens[0]) {
             case "todo": {
-                Task t = new Todo(input, "T");
+                if (input.length() == 4) {
+                    throw new AlphaException("Invalid input: Task description is missing!");
+                }
+                Task t = new Todo(input.substring(5), "T");
                 todo.add(t);
                 System.out.println(ANSI_YELLOW + ">> " + "added: " + input + ANSI_RESET);
-                enterMessage(in);
+                try {
+                    enterMessage(in);
+                }
+                catch (AlphaException e){
+                    System.out.println(e.getMessage());
+                }
+                finally {
+                    enterMessage(in);
+                }
                 break;
             }
             case "event": {
+                if (input.length() == 5) {
+                    throw new AlphaException("Invalid input: Task description is missing!");
+                }
                 int separator = input.indexOf('/');
                 Task t = new Event(input.substring(6, separator - 1), input.substring(separator + 1), "E");
                 todo.add(t);
                 System.out.println(ANSI_YELLOW + ">> " + "added: " + input + ANSI_RESET);
-                enterMessage(in);
+                try {
+                    enterMessage(in);
+                }
+                catch (AlphaException e){
+                    System.out.println(e.getMessage());
+                }
+                finally {
+                    enterMessage(in);
+                }
                 break;
             }
             case "deadline": {
+                if (input.length() == 8) {
+                    throw new AlphaException("Invalid input: Task description is missing!");
+                }
                 int separator = input.indexOf('/');
                 Task t = new Deadline(input.substring(9, separator - 1), input.substring(separator + 1), "D");
                 todo.add(t);
                 System.out.println(ANSI_YELLOW + ">> " + "added: " + input + ANSI_RESET);
-                enterMessage(in);
+                try {
+                    enterMessage(in);
+                }
+                catch (AlphaException e){
+                    System.out.println(e.getMessage());
+                }
+                finally {
+                    enterMessage(in);
+                }
                 break;
             }
             case "mark": {
+                if (input.length() == 4) {
+                    throw new AlphaException("Invalid input: Task number is missing!");
+                }
                 todo.get(Integer.parseInt(inputTokens[1]) - 1).changeStatus(true);
                 System.out.println(ANSI_YELLOW + ">> " + "marked: Task " + inputTokens[1] + ANSI_RESET);
-                enterMessage(in);
+                try {
+                    enterMessage(in);
+                }
+                catch (AlphaException e){
+                    System.out.println(e.getMessage());
+                }
+                finally {
+                    enterMessage(in);
+                }
                 break;
             }
             case "unmark": {
+                if (input.length() == 6) {
+                    throw new AlphaException("Invalid input: Task number is missing!");
+                }
                 todo.get(Integer.parseInt(inputTokens[1]) - 1).changeStatus(false);
                 System.out.println(ANSI_YELLOW + ">> " + "unmarked: Task " + inputTokens[1] + ANSI_RESET);
-                enterMessage(in);
+                try {
+                    enterMessage(in);
+                }
+                catch (AlphaException e){
+                    System.out.println(e.getMessage());
+                }
+                finally {
+                    enterMessage(in);
+                }
                 break;
             }
             case "list": {
@@ -75,7 +134,15 @@ public class Alpha {
                     }
                     count++;
                 }
-                enterMessage(in);
+                try {
+                    enterMessage(in);
+                }
+                catch (AlphaException e){
+                    System.out.println(e.getMessage());
+                }
+                finally {
+                    enterMessage(in);
+                }
                 break;
             }
             case "bye": {
@@ -84,8 +151,8 @@ public class Alpha {
                 break;
             }
             default: {
-                System.out.println(ANSI_RED + ">> " + "Invalid Input " + ANSI_RESET);
-                enterMessage(in);
+                AlphaException e = new AlphaException("Invalid input: Task type unknown!");
+                throw e;
             }
         }
     }
