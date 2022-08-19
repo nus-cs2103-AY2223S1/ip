@@ -52,7 +52,7 @@ public class ChatBot {
                 switch (command) {
                     case "todo":
                         System.out.println(wrapMessage(taskManager.addTask(
-                                new ToDoTask(argumentScanner.next()))));
+                                new ToDoTask(argumentScanner.nextLine()))));
                         break;
                     case "deadline":
                         argumentScanner.useDelimiter("/by");
@@ -65,10 +65,13 @@ public class ChatBot {
                                 new EventTask(argumentScanner.next(), argumentScanner.next()))));
                         break;
                     case "mark":
-                        System.out.println(wrapMessage(taskManager.mark(Integer.parseInt(arguments))));
+                        System.out.println(wrapMessage(taskManager.mark(Integer.parseInt(arguments.substring(1)))));
                         break;
                     case "unmark":
-                        System.out.println(wrapMessage(taskManager.unmark(Integer.parseInt(arguments))));
+                        System.out.println(wrapMessage(taskManager.unmark(Integer.parseInt(arguments.substring(1)))));
+                        break;
+                    case "delete":
+                        System.out.println(wrapMessage(taskManager.delete(Integer.parseInt(arguments.substring(1)))));
                         break;
                     default:
                         printError(input);

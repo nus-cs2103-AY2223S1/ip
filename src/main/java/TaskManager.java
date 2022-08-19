@@ -48,4 +48,16 @@ public class TaskManager {
             return "\tThere is no such task!!\n";
         }
     }
+
+    public String delete(int itemNumber) {
+        StringBuilder stringBuilder = new StringBuilder();
+        if (itemNumber > 0 && itemNumber <= this.taskList.size()) {
+            stringBuilder.append("The following item has been removed.\n");
+            stringBuilder.append(this.taskList.remove(itemNumber - 1).toString() + "\n");
+            stringBuilder.append("You have " + (this.taskList.size()) + " item(s) remaining.\n");
+        } else {
+            return "\tThere is no such task!!\n";
+        }
+        return stringBuilder.toString();
+    }
 }
