@@ -1,7 +1,12 @@
+package duke.task;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import duke.command.DukeCommandType;
+import duke.ui.DukePrinter;
 
 public class DukeTaskManager {
     private List<Task> dukeTasks;
@@ -30,7 +35,7 @@ public class DukeTaskManager {
         }
         case DEADLINE: {
             try {
-                Pattern p = Pattern.compile("(.*)/by(.*)");
+                Pattern p = Pattern.compile("(.+)/by(.+)");
                 Matcher m = p.matcher(args);
                 m.find();
                 dukeAddToList(new Deadline(m.group(1).trim(), m.group(2).trim()));
@@ -41,7 +46,7 @@ public class DukeTaskManager {
         }
         case EVENT: {
             try {
-                Pattern p = Pattern.compile("(.*)/at(.*)");
+                Pattern p = Pattern.compile("(.+)/at(.+)");
                 Matcher m = p.matcher(args);
                 m.find();
                 dukeAddToList(new Event(m.group(1).trim(), m.group(2).trim()));
@@ -83,7 +88,7 @@ public class DukeTaskManager {
             String str = dukeTasks.get(i).toString();
             DukePrinter.dukePrint(String.format("Nice! I've marked this task as done:\n %s\n", str));
         } else {
-            DukePrinter.dukePrint("Error. Task is not in the list\n");
+            DukePrinter.dukePrint("Error. duke.task.Task is not in the list\n");
         }
     }
 
@@ -93,7 +98,7 @@ public class DukeTaskManager {
             String str = dukeTasks.get(i).toString();
             DukePrinter.dukePrint(String.format("OK, I've marked this task as not done yet:\n %s\n", str));
         } else {
-            DukePrinter.dukePrint("Error. Task is not in the list\n");
+            DukePrinter.dukePrint("Error. duke.task.Task is not in the list\n");
         }
     }
 
@@ -103,24 +108,29 @@ public class DukeTaskManager {
             String str = remove.toString();
             DukePrinter.dukePrint(String.format("OK, I've remove this task:\n %s\n %s", str, getNoOfTasks()));
         } else {
-            DukePrinter.dukePrint("Error. Task is not in the list\n");
+            DukePrinter.dukePrint("Error. duke.task.Task is not in the list\n");
         }
     }
 
-    public void dukeUpdateTaskStatus(DukeCommandType type, int index) {
-        switch (type) {
-        case MARK: {
-            dukeMarkTask(index);
-            break;
-        }
-        case UNMARK: {
-            dukeUnmarkTask(index);
-            break;
-        }
-        case DELETE: {
-            dukeRemoveTask(index);
-            break;
-        }
+    public void dukeUpdateTaskStatus(DukeCommandType type, String str) {
+        try {
+            int index = Integer.parseInt(str.split(" ")[0]) - 1;
+            switch (type) {
+            case MARK: {
+                dukeMarkTask(index);
+                break;
+            }
+            case UNMARK: {
+                dukeUnmarkTask(index);
+                break;
+            }
+            case DELETE: {
+                dukeRemoveTask(index);
+                break;
+            }
+            }
+        } catch (NumberFormatException e) {
+            DukePrinter.dukePrint("Invalid index. Index is not a number\n");
         }
     }
 

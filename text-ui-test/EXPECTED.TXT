@@ -91,13 +91,13 @@ Nice! I've marked this task as done:
 
 ===========================================
 
-Error. Task is not in the list
+Error. duke.task.Task is not in the list
 
 ===========================================
 
 ===========================================
 
-Error. Task is not in the list
+Error. duke.task.Task is not in the list
 
 ===========================================
 
@@ -139,6 +139,24 @@ Nice! I've marked this task as done:
 
 Nice! I've marked this task as done:
  [D][X] complete level 9 (by: 28 Aug 2022 23:59)
+
+===========================================
+
+===========================================
+
+Invalid index. Index is not a number
+
+===========================================
+
+===========================================
+
+Invalid Command. Please try again
+
+===========================================
+
+===========================================
+
+Bye. Hope to see you again!
 
 ===========================================
 

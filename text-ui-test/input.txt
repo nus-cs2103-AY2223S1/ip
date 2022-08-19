@@ -15,3 +15,6 @@ deadline complete level 8 /by 2022-08-28 2359
 deadline complete level 9 /by 28-08-2022 2359
 mark 4
 mark 5
+mark a
+invalid command
+bye

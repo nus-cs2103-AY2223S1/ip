@@ -1,7 +1,8 @@
-import java.util.List;
+import duke.command.DukeCommandType;
+import duke.task.DukeTaskManager;
+import duke.ui.DukePrinter;
+
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Duke {
 
@@ -43,8 +44,7 @@ public class Duke {
             case MARK:
             case UNMARK:
             case DELETE: {
-                int index = Integer.parseInt(str.split(" ")[1]) - 1;
-                taskManager.dukeUpdateTaskStatus(commandType, index);
+                taskManager.dukeUpdateTaskStatus(commandType, args);
                 break;
             }
             case TODO:
