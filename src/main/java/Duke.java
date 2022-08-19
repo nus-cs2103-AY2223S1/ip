@@ -1,5 +1,8 @@
 package main.java;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.function.Consumer;
@@ -226,6 +229,18 @@ public class Duke {
         commands.get(command).accept(userInput);
     }
 
+    private static void writeToFile(String outputDirectory, String filename)
+            throws IOException {
+        File outDir = new File(outputDirectory);
+        File outFile = new File(outputDirectory + "/" + filename);
+        if (!outDir.isDirectory()) {
+            outDir.mkdir();
+        }
+        FileWriter fw = new FileWriter(outFile);
+        fw.write(taskList.toString());
+        fw.close();
+    }
+
     /**
      * Main function with program logic.
      * @param args Command line arguments not used.
@@ -242,13 +257,22 @@ public class Duke {
         // Create Scanner object for user inputs.
         Scanner myScanner = new Scanner(System.in);
         String userInput;
+        String OUTPUT_DIRECTORY = "data";
+        String OUTPUT_FILENAME = "list.txt";
 
         while (runDuke && myScanner.hasNextLine()) {
             userInput = myScanner.nextLine();
             try {
+                String temp = taskList.toString();
                 handleUserInputs(userInput);
+                if (! taskList.toString().equals(temp)) {
+                    // Only write to file if there was a change.
+                    writeToFile(OUTPUT_DIRECTORY, OUTPUT_FILENAME);
+                }
             } catch (DukeException e) {
                 System.out.println(e.getMessage());
+            } catch (IOException e) {
+                System.out.println("Error writing to file: " + e.getMessage());
             }
         }
     }
