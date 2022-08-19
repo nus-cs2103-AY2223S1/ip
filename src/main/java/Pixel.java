@@ -69,6 +69,7 @@ public class Pixel {
         try {
             if (userInput.trim().equals("bye")) {
                 System.out.println("Bye. Hope to see you again soon!");
+                System.exit(0);
 
             } else if (userInput.trim().startsWith("todo ")) {
                 handleNewTask(userInput, indexOfSlash, "T");
