@@ -1,3 +1,4 @@
+delete 1
 list
 todo borrow book
 todo
@@ -10,9 +11,14 @@ event
 event cca /at
 event cca /at Tues 7-9pm
 mark 2
+mark 10
 list
 mark
 unmark 2
+unmark 10
 list
 unmark
+delete 2
+list
+blahhh
 bye

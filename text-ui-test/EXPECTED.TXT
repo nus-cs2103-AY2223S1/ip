@@ -2,6 +2,8 @@ Hello!!! My name is Wanya!
 WWaku WWaku! 
 How can I help you? 
 
+Whoopsie!!! Invalid task number!
+
 List is empty! Wheee slack time!
 
 You have added: 
@@ -40,6 +42,8 @@ Hehe well done! One task down, one step closer to play time!
 This task has been completed:
 [D][X] return book (by: Sunday)
 
+Whoopsie!!! Invalid task number!
+
 1.[T][ ] borrow book
 2.[D][X] return book (by: Sunday)
 3.[E][ ] project meeting (at: Mon 2-4pm)
@@ -52,6 +56,8 @@ Oh nooo!!! Gotta buck up and finish up your tasks before you can play games.
 This task has not been completed:
 [D][ ] return book (by: Sunday)
 
+Whoopsie!!! Invalid task number!
+
 1.[T][ ] borrow book
 2.[D][ ] return book (by: Sunday)
 3.[E][ ] project meeting (at: Mon 2-4pm)
@@ -60,4 +66,14 @@ This task has not been completed:
 Whoopsie!!! You didn't put the task number at the back :(.
 Wanya isn't Anya. I can't read your mind!
 
-Yayyy Wanya get to slack and watch shows now. Bye bye! :)
+WWaku WWaku!!! Wanya has used her magic powers to remove this task:
+[D][ ] return book (by: Sunday)
+Now you have 3 tasks in your list. 
+
+1.[T][ ] borrow book
+2.[E][ ] project meeting (at: Mon 2-4pm)
+3.[E][ ] cca (at: Tues 7-9pm)
+
+Whoopsie!!! I am sorry. Wanya doesn't like to study so Wanya don't know what that means.
+
+Yayyy Wanya gets to slack and watch shows now. Bye bye! :)

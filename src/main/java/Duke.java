@@ -44,6 +44,14 @@ public class Duke {
         System.out.println("Now you have " + count + " tasks in your list. \n");
     }
 
+    public void deleteTask(int index) {
+        Task task = taskList.get(index - 1);
+        count--;
+        taskList.remove(index - 1);
+        System.out.println("WWaku WWaku!!! Wanya has used her magic powers to remove this task:\n" + task);
+        System.out.println("Now you have " + count + " tasks in your list. \n");
+    }
+
     public void checkTask(String[] inputs, String command) throws DukeException {
         //handle the error where no task name
         if (inputs.length == 1) {
@@ -51,11 +59,20 @@ public class Duke {
         }
     }
 
-    public void checkMark(String[] inputs) throws DukeException {
+    public int checkTaskNumber(String[] inputs) throws DukeException {
         //handle error without task number
         if (inputs.length == 1) {
             throw new DukeException("You didn't put the task number at the back :(.\n" +
                     "Wanya isn't Anya. I can't read your mind!");
+        }
+        try {
+            int index = Integer.parseInt(inputs[1]);
+            if (index > count || index < 1) {
+                throw new DukeException("Invalid task number!");
+            }
+            return index;
+        } catch (NumberFormatException e) {
+            throw new DukeException("The task number got to be an integer!");
         }
     }
 
@@ -73,7 +90,7 @@ public class Duke {
     public static void main(String[] args) {
         Duke duke = new Duke();
         String startMsg = "Hello!!! My name is Wanya! \nWWaku WWaku! \nHow can I help you? \n";
-        String closeMsg = "Yayyy Wanya get to slack and watch shows now. Bye bye! :)";
+        String closeMsg = "Yayyy Wanya gets to slack and watch shows now. Bye bye! :)";
         Scanner sc = new Scanner(System.in);
         System.out.println(startMsg);
 
@@ -89,12 +106,10 @@ public class Duke {
                 } else if (commandInput.equals("list")) {
                     duke.showTasks();
                 } else if (command.equals("mark")) {
-                    duke.checkMark(inputs);
-                    int indexToMark = Integer.parseInt(inputs[1]);
+                    int indexToMark = duke.checkTaskNumber(inputs);
                     duke.taskList.get(indexToMark - 1).completedTask();
                 } else if (command.equals("unmark")) {
-                    duke.checkMark(inputs);
-                    int indexToUnmark = Integer.parseInt(inputs[1]);
+                    int indexToUnmark = duke.checkTaskNumber(inputs);
                     duke.taskList.get(indexToUnmark - 1).uncompletedTask();
                 } else if (command.equals("todo")) {
                     duke.checkTask(inputs, command);
@@ -105,6 +120,9 @@ public class Duke {
                 } else if (command.equals("event")) {
                     duke.checkTask(inputs, command);
                     duke.addEvent(inputs[1]);
+                } else if (command.equals("delete")) {
+                    int index = duke.checkTaskNumber(inputs);
+                    duke.deleteTask(index);
                 } else {
                     throw new DukeException("I am sorry. Wanya doesn't like to study " +
                             "so Wanya don't know what that means.");

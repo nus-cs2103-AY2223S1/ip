@@ -15,6 +15,9 @@ public abstract class Task {
     }
 
     public void completedTask() {
+        if (this.completed) {
+            System.out.println("Wanya is confused errrrr... You have already marked this task as done!\n");
+        }
         this.completed = true;
         System.out.println("Hehe well done! One task down, one step closer to play time!\n" +
                 "This task has been completed:");
@@ -22,6 +25,9 @@ public abstract class Task {
     }
 
     public void uncompletedTask() {
+        if (!this.completed) {
+            System.out.println("Wanya is confused errrrr... This task is not done yet!\n");
+        }
         this.completed = false;
         System.out.println("Oh nooo!!! Gotta buck up and finish up your tasks before you can play games.\n" +
                 "This task has not been completed:");
