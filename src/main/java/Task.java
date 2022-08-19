@@ -47,4 +47,14 @@ public class Task {
     public void renameTask(String s) {
         this.name = s;
     }
+
+    @Override
+    public String toString() {
+        if (this.isDone()) {
+            return "[X] " + this.getName();
+        } else {
+            return "[ ] " + this.getName();
+        }
+    }
+
 }
