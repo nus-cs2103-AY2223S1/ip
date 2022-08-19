@@ -1,3 +1,4 @@
+import java.util.Locale;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -86,6 +87,19 @@ public class Duke {
                     String taskStatus = String.format("Got it. I've added this task:\n" +
                             "%s\n" +
                             "Now you have %d tasks in the list.", newTask, tasklist.size());
+                    echo(taskStatus);
+                }
+            } else if (command.toLowerCase().contains("delete")) {
+                String deleteTaskNumber = command.replace("delete ", "");
+                if (deleteTaskNumber.equals(command) || "".equals(deleteTaskNumber)) {
+                    String error = DukeException.taskErrorMessage(command);
+                    echo(error);
+                } else {
+                    int n = Integer.parseInt(deleteTaskNumber);
+                    Task deletedTask = tasklist.remove(n-1);
+                    String taskStatus = String.format("Noted. I've removed this task:\n" +
+                            "%s\n" +
+                            "Now you have %d tasks in the list.", deletedTask, tasklist.size());
                     echo(taskStatus);
                 }
             } else {
