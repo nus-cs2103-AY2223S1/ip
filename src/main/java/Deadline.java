@@ -63,7 +63,7 @@ public class Deadline extends Task {
      * @return Deadline object with the given parameters.
      */
     public static Deadline create(String done, String description, String date) {
-        Deadline deadline = new Deadline(description, date);
+        Deadline deadline = new Deadline(description, LocalDate.parse(date));
         if (done.equals("1")) {
             deadline.markAsDone();
         }

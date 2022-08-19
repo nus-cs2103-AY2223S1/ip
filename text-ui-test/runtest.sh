@@ -19,6 +19,9 @@ then
     exit 1
 fi
 
+# remove the data from previous test (if any)
+rm -f data/tasks
+
 # run the program, feed commands from input.txt file and redirect the output to the ACTUAL.TXT
 java -classpath ../bin Duke < input.txt > ACTUAL.TXT
 

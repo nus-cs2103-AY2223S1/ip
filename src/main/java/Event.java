@@ -63,7 +63,7 @@ public class Event extends Task {
      * @return Event object with the given parameters.
      */
     public static Event create(String done, String description, String date) {
-        Event event = new Event(description, date);
+        Event event = new Event(description, LocalDate.parse(date));
         if (done.equals("1")) {
             event.markAsDone();
         }
