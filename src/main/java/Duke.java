@@ -22,10 +22,10 @@ public class Duke {
 
     public static void main(String[] args) {
         System.out.println(WELCOME_MESSAGE);
-        Scanner s = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         try {
             while (true) {
-                String command = s.nextLine().trim();
+                String command = sc.nextLine().trim();
                 System.out.println("\t-------------------------------");
                 if (command.equals(Commands.BYE)) {
                     System.out.println("\tBye! Hope to see you again");
@@ -66,6 +66,8 @@ public class Duke {
             }
         } catch (DukeException e) {
             System.out.println(String.format("\t", e.getMessage()));
+        } finally {
+            sc.close();
         }
         System.out.println("\t-------------------------------");
     }
