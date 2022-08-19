@@ -8,6 +8,10 @@ public class Task {
         this.isDone = false;
     }
 
+    public String toString() {
+        return "[" + this.getStatusIcon() + "] " + this.description;
+    }
+
     public String getStatusIcon() {
         return (isDone? "X": " ");
     }
