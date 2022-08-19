@@ -1,14 +1,17 @@
 import java.util.ArrayList;
 
-public class ToDoList {
+public class TaskList {
     private ArrayList<Task> taskList;
 
-    public ToDoList() {
+    public TaskList() {
        this.taskList = new ArrayList<>();
     }
 
     public void addTask(Task t) {
         taskList.add(t);
+        String reply = "Got it. I've added this task:\n" +
+                        t + "\nNow you have " + this.taskList.size() + " tasks in the list.";
+        System.out.println(reply);
     }
 
     public Task getTask(int taskNo) {
