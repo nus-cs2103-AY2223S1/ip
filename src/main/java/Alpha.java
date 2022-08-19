@@ -34,15 +34,6 @@ public class Alpha {
                 Task t = new Todo(input.substring(5), "T");
                 tasks.add(t);
                 System.out.println(ANSI_YELLOW + ">> " + "added: " + input + ANSI_RESET);
-                try {
-                    enterMessage(in);
-                }
-                catch (AlphaException e){
-                    System.out.println(e.getMessage());
-                }
-                finally {
-                    enterMessage(in);
-                }
                 break;
             }
             case "event": {
@@ -53,15 +44,6 @@ public class Alpha {
                 Task t = new Event(input.substring(6, separator - 1), input.substring(separator + 1), "E");
                 tasks.add(t);
                 System.out.println(ANSI_YELLOW + ">> " + "added: " + input + ANSI_RESET);
-                try {
-                    enterMessage(in);
-                }
-                catch (AlphaException e){
-                    System.out.println(e.getMessage());
-                }
-                finally {
-                    enterMessage(in);
-                }
                 break;
             }
             case "deadline": {
@@ -72,15 +54,6 @@ public class Alpha {
                 Task t = new Deadline(input.substring(9, separator - 1), input.substring(separator + 1), "D");
                 tasks.add(t);
                 System.out.println(ANSI_YELLOW + ">> " + "added: " + input + ANSI_RESET);
-                try {
-                    enterMessage(in);
-                }
-                catch (AlphaException e){
-                    System.out.println(e.getMessage());
-                }
-                finally {
-                    enterMessage(in);
-                }
                 break;
             }
             case "mark": {
@@ -89,15 +62,6 @@ public class Alpha {
                 }
                 tasks.get(Integer.parseInt(inputTokens[1]) - 1).changeStatus(true);
                 System.out.println(ANSI_YELLOW + ">> " + "marked: Task " + inputTokens[1] + ANSI_RESET);
-                try {
-                    enterMessage(in);
-                }
-                catch (AlphaException e){
-                    System.out.println(e.getMessage());
-                }
-                finally {
-                    enterMessage(in);
-                }
                 break;
             }
             case "unmark": {
@@ -106,15 +70,6 @@ public class Alpha {
                 }
                 tasks.get(Integer.parseInt(inputTokens[1]) - 1).changeStatus(false);
                 System.out.println(ANSI_YELLOW + ">> " + "unmarked: Task " + inputTokens[1] + ANSI_RESET);
-                try {
-                    enterMessage(in);
-                }
-                catch (AlphaException e){
-                    System.out.println(e.getMessage());
-                }
-                finally {
-                    enterMessage(in);
-                }
                 break;
             }
             case "list": {
@@ -134,15 +89,14 @@ public class Alpha {
                     }
                     count++;
                 }
-                try {
-                    enterMessage(in);
+                break;
+            }
+            case "delete": {
+                if (input.length() == 6) {
+                    throw new AlphaException("Invalid input: Task number is missing!");
                 }
-                catch (AlphaException e){
-                    System.out.println(e.getMessage());
-                }
-                finally {
-                    enterMessage(in);
-                }
+                tasks.remove(Integer.parseInt(inputTokens[1]) - 1);
+                System.out.println(ANSI_YELLOW + ">> " + "deleted: Task " + inputTokens[1] + ANSI_RESET);
                 break;
             }
             case "bye": {
@@ -154,6 +108,15 @@ public class Alpha {
                 AlphaException e = new AlphaException("Invalid input: Task type unknown!");
                 throw e;
             }
+        }
+        try {
+            enterMessage(in);
+        }
+        catch (AlphaException e){
+            System.out.println(e.getMessage());
+        }
+        finally {
+            enterMessage(in);
         }
     }
 }
