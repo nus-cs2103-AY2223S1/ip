@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.List;
 import java.util.ArrayList;
 
 public class Duke {
@@ -44,9 +45,16 @@ public class Duke {
      * Marks a particular task from the given task list as done.
      *
      * @param tasks     The list of tasks
-     * @param taskID    The task ID, starting from 1
+     * @param input     Raw input string to be processed within
      */
-    public static void markTaskAsDone(ArrayList<Task> tasks, int taskID) throws DukeException {
+    public static void markTaskAsDone(List<Task> tasks, String input) throws DukeException {
+        int taskID;
+        try {
+            String keyword = input.split(" ")[0];
+            taskID = Integer.parseInt(input.replace(keyword, "").strip());
+        } catch (NumberFormatException e) {
+            throw new DukeException("Task ID is not an integer, how come!");
+        }
         if (1 <= taskID && taskID <= tasks.size()) {
             printIndented("LFG, marking this task as done!");
             tasks.get(taskID - 1).markAsDone();
@@ -60,9 +68,16 @@ public class Duke {
      * Unmarks a particular task from the given task list as not done.
      *
      * @param tasks The list of tasks
-     * @param taskID The task ID, starting from 1
+     * @param input     Raw input string to be processed within
      */
-    public static void unmarkTaskAsNotDone(ArrayList<Task> tasks, int taskID) throws DukeException {
+    public static void unmarkTaskAsNotDone(List<Task> tasks, String input) throws DukeException {
+        int taskID;
+        try {
+            String keyword = input.split(" ")[0];
+            taskID = Integer.parseInt(input.replace(keyword, "").strip());
+        } catch (NumberFormatException e) {
+            throw new DukeException("Task ID is not an integer, how come!");
+        }
         if (1 <= taskID && taskID <= tasks.size()) {
             printIndented("L + ratio, unmarking this task as not done!");
             tasks.get(taskID - 1).unmarkAsNotDone();
@@ -76,9 +91,16 @@ public class Duke {
      * Deletes a particular task from the given task list.
      *
      * @param tasks     The list of tasks
-     * @param taskID    The task ID, starting from 1
+     * @param input     Raw input string to be processed within
      */
-    public static void deleteTask(ArrayList<Task> tasks, int taskID) throws DukeException {
+    public static void deleteTask(List<Task> tasks, String input) throws DukeException {
+        int taskID;
+        try {
+            String keyword = input.split(" ")[0];
+            taskID = Integer.parseInt(input.replace(keyword, "").strip());
+        } catch (NumberFormatException e) {
+            throw new DukeException("Task ID is not an integer, how come!");
+        }
         if (1 <= taskID && taskID <= tasks.size()) {
             printIndented("Task has been removed!\n  " + tasks.get(taskID - 1));
             tasks.remove(taskID - 1);
@@ -94,7 +116,7 @@ public class Duke {
      * @param tasks The list of tasks
      * @param input The input string, consists of the keyword, the task name, and the by/at metadata
      */
-    public static void createNewTask(ArrayList<Task> tasks, String input) throws DukeException {
+    public static void createNewTask(List<Task> tasks, String input) throws DukeException {
         String taskName;
         String by;
         String at;
@@ -158,19 +180,19 @@ public class Duke {
                         printTasks(tasks);
                         break;
                     case "mark":
-                        markTaskAsDone(tasks, Integer.parseInt(input.split(" ")[1]));
+                        markTaskAsDone(tasks, input);
                         break;
                     case "unmark":
-                        unmarkTaskAsNotDone(tasks, Integer.parseInt(input.split(" ")[1]));
+                        unmarkTaskAsNotDone(tasks, input);
                         break;
                     case "delete":
-                        deleteTask(tasks, Integer.parseInt(input.split(" ")[1]));
+                        deleteTask(tasks, input);
                         break;
                     case "todo": case "deadline": case "event":
                         createNewTask(tasks, input);
                         break;
                     default:
-                        throw new DukeException("Sorry, I don't understand :(");
+                        throw new DukeException("I have no idea what are you saying :<");
                 }
             } catch (DukeException d) {
                 printIndented(d.getMessage());
