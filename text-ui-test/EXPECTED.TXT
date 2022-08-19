@@ -1,7 +1,43 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+Hello! I'm Rio, the reality check you never asked for but really need.
+What can I help with today?
 
+Ah, more reality stuff. Here, I've added:
+[T] [ ] read book
+Now you have 1 tasks in the list.
+Ah, more reality stuff. Here, I've added:
+[D] [ ] return book  (by:  Monday)
+Now you have 2 tasks in the list.
+Ah, more reality stuff. Here, I've added:
+[E] [ ] meeting  (at:  Tuesday 2-4pm)
+Now you have 3 tasks in the list.
+1. [T] [ ] read book
+2. [D] [ ] return book  (by:  Monday)
+3. [E] [ ] meeting  (at:  Tuesday 2-4pm)
+Congratulations on smashing reality!
+[T] [X] read book
+Congratulations on smashing reality!
+[D] [X] return book  (by:  Monday)
+Oops reality is catching up... this is still undone:
+[D] [ ] return book  (by:  Monday)
+Congratulations on smashing reality!
+[E] [X] meeting  (at:  Tuesday 2-4pm)
+Ah, more reality stuff. Here, I've added:
+[D] [ ] homework  (by:  Monday)
+Now you have 4 tasks in the list.
+Congratulations on smashing reality!
+[D] [X] homework  (by:  Monday)
+Ah, more reality stuff. Here, I've added:
+[E] [ ] class  (at:  Tuesday 2-4pm)
+Now you have 5 tasks in the list.
+Ah, more reality stuff. Here, I've added:
+[T] [ ] cook dinner
+Now you have 6 tasks in the list.
+Congratulations on smashing reality!
+[E] [X] class  (at:  Tuesday 2-4pm)
+1. [T] [X] read book
+2. [D] [ ] return book  (by:  Monday)
+3. [E] [X] meeting  (at:  Tuesday 2-4pm)
+4. [D] [X] homework  (by:  Monday)
+5. [E] [X] class  (at:  Tuesday 2-4pm)
+6. [T] [ ] cook dinner
+Goodbye, see you soon for your next healthy reality check!

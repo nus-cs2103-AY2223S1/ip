@@ -24,46 +24,35 @@ public class Duke {
         System.out.println("Hello! I'm Rio, the reality check you never asked for but really need.\n" +
                 "What can I help with today?\n");
         Scanner userScan = new Scanner(System.in);
-        String input = userScan.nextLine();
-        String[] keyword = input.split(" ");
-        while (true) {
+        while (userScan.hasNext()) {
+            String input = userScan.nextLine();
+            String[] keyword = input.split(" ");
             if (input.contentEquals("bye")) {
                 System.out.println("Goodbye, see you soon for your next healthy reality check!");
                 break;
             } else if (input.contentEquals("list")) {
                 tasks.list();
-                input = userScan.nextLine();
-                keyword = input.split(" ");
             } else if (keyword[0].contentEquals("mark")) {
                 String message = tasks.markTask(Integer.parseInt(keyword[1]));
                 System.out.println("Congratulations on smashing reality!");
                 System.out.println(message);
-                input = userScan.nextLine();
-                keyword = input.split(" ");
             } else if (keyword[0].contentEquals("unmark")) {
                 String message = tasks.unmarkTask(Integer.parseInt(keyword[1]));
-                System.out.println("Oops reality is catching up... this is still undone: ");
+                System.out.println("Oops reality is catching up... this is still undone:");
                 System.out.println(message);
-                input = userScan.nextLine();
-                keyword = input.split(" ");
             } else {
                 String[] taskText = input.split(" ", 2);
 
                 if (keyword[0].contentEquals("todo")) {
-                    //TODO
                     ToDo todo = new ToDo(taskText[1]);
                     tasks.addTasks(todo);
                 } else if (keyword[0].contentEquals("deadline")) {
-                    //TODO
                     Deadline deadline = new Deadline(taskText[1]);
                     tasks.addTasks(deadline);
                 } else if (keyword[0].contentEquals("event")) {
-                    //TODO
                     Event event = new Event(taskText[1]);
                     tasks.addTasks(event);
                 }
-                input = userScan.nextLine();
-                keyword = input.split(" ");
             }
         }
     }
