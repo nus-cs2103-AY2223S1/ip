@@ -1,10 +1,10 @@
-import java.rmi.server.ExportException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
 
     private static int index = 1;
-    private final static Task[] userInputs = new Task[100];
+    private final static ArrayList<Task> listOfTasks = new ArrayList<>();
 
     public static void main(String[] args) {
         System.out.println("Hello! I'm SoCCat\nWhat can I do for you?");
@@ -18,7 +18,7 @@ public class Duke {
     private static void getList() {
         System.out.println("Here are the tasks in your list: ");
         for (int i = 1; i < index; i++) {
-            System.out.println(i + "." + userInputs[i]);
+            System.out.println(i + "." + listOfTasks.get(i - 1));
         }
     }
     
@@ -64,10 +64,10 @@ public class Duke {
             throw new DukeEmptyException(currInput[0]);
         }
         try {
-            int taskIndex = Integer.parseInt(currInput[1]);
-            System.out.println(userInputs[taskIndex].markAsDone());
-        } catch (NumberFormatException | IndexOutOfBoundsException | NullPointerException ex) {
-            throw new DukeIndexOutOfBoundsException(userInputs.length);
+            int taskIndex = Integer.parseInt(currInput[1]) - 1;
+            System.out.println(listOfTasks.get(taskIndex).markAsDone());
+        } catch (NumberFormatException | IndexOutOfBoundsException ex) {
+            throw new DukeIndexOutOfBoundsException(listOfTasks.size());
         }
     }
     
@@ -76,15 +76,15 @@ public class Duke {
             throw new DukeEmptyException(currInput[0]);
         }
         try {
-            int taskIndex = Integer.parseInt(currInput[1]);
-            System.out.println(userInputs[taskIndex].unmarkAsNotDone());
-        } catch (NumberFormatException | IndexOutOfBoundsException | NullPointerException ex) {
-            throw new DukeIndexOutOfBoundsException(userInputs.length);
+            int taskIndex = Integer.parseInt(currInput[1]) - 1;
+            System.out.println(listOfTasks.get(taskIndex).unmarkAsNotDone());
+        } catch (NumberFormatException | IndexOutOfBoundsException ex) {
+            throw new DukeIndexOutOfBoundsException(listOfTasks.size());
         }
     }
     
     private void newTaskAdded() {
-        System.out.println("Got it. I've added this task: \n" + userInputs[index] + "\n" + numberOfTasks());
+        System.out.println("Got it. I've added this task: \n" + listOfTasks.get(index -1) + "\n" + numberOfTasks());
         index++;
     }
     
@@ -93,10 +93,10 @@ public class Duke {
             throw new DukeEmptyException(currInput[0]);
         }
         try {
-            userInputs[index] = new ToDos(currInput[1]);
+            listOfTasks.add(new ToDos(currInput[1]));
             newTaskAdded();
         } catch (IndexOutOfBoundsException ex) {
-            throw new DukeIndexOutOfBoundsException(userInputs.length);
+            throw new DukeIndexOutOfBoundsException(listOfTasks.size());
         }
     }
     private void createDeadlines(String[] currInput) throws DukeException{
@@ -107,10 +107,10 @@ public class Duke {
             String[] taskDetails = currInput[1].split(" /by ", 2);
             String task = taskDetails[0];
             String deadline = taskDetails[1];
-            userInputs[index] = new Deadlines(task, deadline);
+            listOfTasks.add(new Deadlines(task, deadline));
             newTaskAdded();
         } catch (IndexOutOfBoundsException ex) {
-            throw new DukeIndexOutOfBoundsException(userInputs.length);
+            throw new DukeIndexOutOfBoundsException(listOfTasks.size());
         }
     }
 
@@ -122,10 +122,10 @@ public class Duke {
             String[] taskDetails = currInput[1].split(" /at ", 2);
             String task = taskDetails[0];
             String eventTime = taskDetails[1];
-            userInputs[index] = new Events(task, eventTime);
+            listOfTasks.add(new Events(task, eventTime));
             newTaskAdded();
         } catch (IndexOutOfBoundsException ex) {
-            throw new DukeIndexOutOfBoundsException(userInputs.length);
+            throw new DukeIndexOutOfBoundsException(listOfTasks.size());
         }
     }
 
