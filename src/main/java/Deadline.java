@@ -12,6 +12,8 @@ public class Deadline extends Task {
         this.byDate = LocalDate.parse(dateTimeSplit[0]);
         if (dateTimeSplit.length > 1) {
             this.byTime = LocalTime.parse(dateTimeSplit[1]);
+        } else {
+            this.byTime = LocalTime.parse("23:59");
         }
     }
 

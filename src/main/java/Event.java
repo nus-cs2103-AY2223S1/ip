@@ -12,6 +12,8 @@ public class Event extends Task {
         this.atDate = LocalDate.parse(dateTimeSplit[0]);
         if (dateTimeSplit.length > 1) {
             this.atTime = LocalTime.parse(dateTimeSplit[1]);
+        } else {
+            this.atTime = LocalTime.parse("23:59");
         }
     }
 
