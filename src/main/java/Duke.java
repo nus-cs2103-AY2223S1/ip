@@ -18,12 +18,17 @@ public class Duke {
         command = sc.nextLine();
         Duke duke = new Duke();
         while (true) {
-            if (command.equals("bye")) {
-                System.out.println("Bye. Hope to see you again soon!");
-                break;
-            } // Say goodbye.
-            duke.PrintCommand(command);
-            command = sc.nextLine();
+            try {
+                if (command.equals("bye")) {
+                    System.out.println("Bye. Hope to see you again soon!");
+                    break;
+                } // Say goodbye.
+                duke.PrintCommand(command);
+                command = sc.nextLine();
+            } catch (DukeException e) {
+                System.out.println(e.toString());
+                command = sc.nextLine();
+            }
         }
     }
 
