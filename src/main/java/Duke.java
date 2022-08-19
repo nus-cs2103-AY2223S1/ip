@@ -26,21 +26,34 @@ public class Duke {
             if (input.equals("list")) {
                 System.out.println("___________________________________");
                 for (int i = 0; i < list.size(); i++) {
-                    System.out.println( (i+1) + "." + list.get(i));
+                    System.out.println( (i+1) + "." + "[" + list.get(i).getStatusIcon()
+                     + "] " +list.get(i).description);
                 }
                 System.out.println("___________________________________");
-                input = sc.nextLine();
+                input = sc.next();
 
             }
 
-            else if (input.equals("mark")) {
-                s
+            if (input.equals("mark")) {
+                int number = sc.nextInt();
+                list.get(number-1).mark();
                 System.out.println("___________________________________");
                 System.out.println("Nice! I've marked this task done: " + "\n"
-                        + "[" + list.get(i+1)
+                        + "[" + list.get(number-1).getStatusIcon() + "] " +
+                        list.get(number-1).description);
+                System.out.println("___________________________________");
+                input = sc.next();
+            }
 
-                );
-
+            if (input.equals("unmark")) {
+                int number = sc.nextInt();
+                list.get(number-1).unmark();
+                System.out.println("___________________________________");
+                System.out.println("OK, I've marked this task as not done yet: " + "\n"
+                        + "[" + list.get(number-1).getStatusIcon() + "] " +
+                        list.get(number-1).description);
+                System.out.println("___________________________________");
+                input = sc.next();
             }
 
             else {
@@ -49,7 +62,7 @@ public class Duke {
                 System.out.println("___________________________________");
                 System.out.println("added: " + input);
                 System.out.println("___________________________________");
-                input = sc.nextLine();
+                input = sc.next();
             }
 
         }
