@@ -82,8 +82,6 @@ public enum Command {
         System.out.println(BORDER + "\n");
       } catch (DukeException e) {
         System.out.println(e.getMessage());
-      } finally {
-        System.out.println("Try Again (:");
       }
     }
   }
@@ -102,7 +100,7 @@ public enum Command {
         throw noNumberException;
       }
 
-      int index = Integer.parseInt(commandArray[1]);
+      int index = Integer.parseInt(commandArray[1]) - 1;
       allTasks.markTask(index);
     } catch (NumberFormatException e) {
       throw noNumberException;
@@ -123,7 +121,7 @@ public enum Command {
         throw noNumberException;
       }
 
-      int index = Integer.parseInt(commandArray[1]);
+      int index = Integer.parseInt(commandArray[1]) - 1;
       allTasks.unMarkTask(index);
     } catch (NumberFormatException e) {
       throw noNumberException;
@@ -144,7 +142,7 @@ public enum Command {
         throw noNumberException;
       }
 
-      int index = Integer.parseInt(commandArray[1]);
+      int index = Integer.parseInt(commandArray[1]) - 1;
       allTasks.delete(index);
     } catch (NumberFormatException e) {
       throw noNumberException;
@@ -166,7 +164,7 @@ public enum Command {
     AllTasksList allTasks
   )
     throws DukeException {
-    String[] commandArray = userInput.split(" ");
+    String[] commandArray = userInput.split(" ", 2);
     String command = commandArray[0];
 
     try {
