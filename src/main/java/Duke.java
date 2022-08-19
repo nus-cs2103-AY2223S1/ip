@@ -3,43 +3,97 @@ public class Duke {
 
     private static Task[] tasks = new Task[100];
     private static int i = 0;
-    public static String receiveCommand() {
+
+    private static String receiveCommand() {
         Scanner myObj = new Scanner(System.in);  // Create a Scanner object
         String task = myObj.nextLine();  // Read user input
         return task;
     }
 
-    public static void parseCommand(String command) {
+    private static void list() {
+        //list out all tasks
+        for (int j = 0; j < i; j++) {
+            System.out.println(j+1 + ": " + tasks[j]);
+        }
+        return;
+    }
+
+    private static void markAsDone(int taskNumber) {
+        //mark task number as done
+        if(taskNumber < i && taskNumber >= 0){
+            tasks[taskNumber].markAsDone();
+            System.out.println("Nice! I've marked this task as done:\n  " + tasks[taskNumber]);
+        }
+        return;
+    }
+
+    private static void markAsUndone(int taskNumber) {
+        //mark task number as undone
+        if(taskNumber < i && taskNumber >= 0){
+            tasks[taskNumber].markAsUndone();
+            System.out.println("OK, I've marked this task as not done yet:\n  " + tasks[taskNumber]);
+        }
+        return;
+    }
+
+    private static String toPrintOnAdd(int taskNum) {
+        return "Got it. I've added this task:\n  " + tasks[taskNum] + "\nNow you have " + i + " tasks in the list.";
+    }
+
+    private static void addTask(String description) {
+        //add task
+        tasks[i] = new Task(description);
+        i += 1;
+        System.out.println(toPrintOnAdd(i-1));
+        return;
+    }
+
+    private static void addTodo(String description) {
+        //add todo
+        tasks[i] = new Todo(description);
+        i+=1;
+        System.out.println(toPrintOnAdd(i-1));
+    }
+
+    private static void addDeadline(String description, String deadline) {
+        tasks[i] = new Deadline(description, deadline);
+        i+=1;
+        System.out.println(toPrintOnAdd(i-1));
+    }
+
+    private static void addEvent(String description, String at) {
+        tasks[i] = new Event(description, at);
+        i+=1;
+        System.out.println(toPrintOnAdd(i-1));
+    }
+
+    private static void parseCommand(String command) {
         if(command.equals("bye")) {
             //exit program
             System.out.println("Bye. Hope to see you again soon!");
         } else if (command.equals("list")) {
-            //list out all tasks
-            for (int j = 0; j < i; j++) {
-                System.out.println(j+1 + ": " + tasks[j]);
-            }
+            list();
         } else if (command.startsWith("mark")) {
-            //mark task number as done
             int taskNumber = Integer.parseInt(command.split("\\s+")[1]) - 1;
-
-            if(taskNumber < i && taskNumber > 0){
-                tasks[taskNumber].markAsDone();
-                System.out.println("Nice! I've marked this task as done:\n  " + tasks[taskNumber]);
-            }
+            markAsDone(taskNumber);
         } else if (command.startsWith("unmark")) {
-            //mark task number as undone
             int taskNumber = Integer.parseInt(command.split("\\s+")[1]) - 1;
-
-            if(taskNumber < i && taskNumber > 0) {
-                tasks[taskNumber].markAsUndone();
-                System.out.println("OK, I've marked this task as not done yet:\n  " + tasks[taskNumber]);
-            }
+            markAsUndone(taskNumber);
+        } else if (command.startsWith("todo")) {
+            String description = command.split(" ", 2)[1];
+            addTodo(description);
+        } else if (command.startsWith("deadline")) {
+            String full = command.split(" ", 2)[1];
+            String description = full.split(" /by ")[0];
+            String deadline = full.split(" /by ")[1];
+            addDeadline(description, deadline);
+        } else if (command.startsWith("event")) {
+            String full = command.split(" ", 2)[1];
+            String description = full.split(" /at ")[0];
+            String at = full.split(" /at ")[1];
+            addEvent(description, at);
         } else {
-            //add task
-            tasks[i] = new Task(command);
-            i += 1;
-
-            System.out.println("Ok, I have added: " + command);
+            addTask(command);
         }
         return;
     }
@@ -55,7 +109,9 @@ public class Duke {
         do {
             System.out.print("> ");
             command = receiveCommand();
+            System.out.println("");
             parseCommand(command);
+            System.out.println("");
         } while (!command.equals("bye"));
     }
 }
