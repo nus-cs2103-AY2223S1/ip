@@ -1,19 +1,42 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * The main class that executes the Duke chatbot.
+ *
+ * @author Melissa Anastasia Harijanto
+ */
 public class Duke {
+    /** List of tasks. */
     static ArrayList<Task> taskList = new ArrayList<>();
+
+    /** Ui that prints statements for the bot. */
     static Ui ui = new Ui();
 
-    public static boolean doesCommandExist(String cmd) {
-        return cmd.equals("list") || cmd.equals("mark")
-                || cmd.equals("unmark") || cmd.equals("deadline") || cmd.equals("event")
-                || cmd.equals("todo") || cmd.equals("delete") || cmd.equals("bye");
+    /**
+     * Determines whether a command line inputted by
+     * the user is a valid command.
+     *
+     * @param command Command line that is inputted by the user.
+     * @return A boolean value that states whether the command exists or not.
+     */
+    public static boolean doesCommandExist(String command) {
+        return command.equals("list") || command.equals("mark")
+                || command.equals("unmark") || command.equals("deadline") || command.equals("event")
+                || command.equals("todo") || command.equals("delete") || command.equals("bye");
     }
 
-    public static void detectCommand(CommandLine commandLine, String cmd) {
+    /**
+     * Detects the commands inputted by a user; if the command exists,
+     * it will execute the given command. Otherwise, the ui will
+     * print a message saying that the command does not exist.
+     *
+     * @param typeOfCommandLine The type of command line inputted by the user.
+     * @param userInput The whole string inputted by the user.
+     */
+    public static void detectCommand(CommandLine typeOfCommandLine, String userInput) {
         try {
-            switch (commandLine) {
+            switch (typeOfCommandLine) {
                 case BYE:
                     ui.exit();
                     break;
@@ -21,22 +44,22 @@ public class Duke {
                     ui.list(taskList);
                     break;
                 case MARK:
-                    Commands.mark(cmd, taskList);
+                    Commands.mark(userInput, taskList);
                     break;
                 case UNMARK:
-                    Commands.unmark(cmd, taskList);
+                    Commands.unmark(userInput, taskList);
                     break;
                 case DEADLINE:
-                    Commands.deadline(cmd, taskList);
+                    Commands.deadline(userInput, taskList);
                     break;
                 case EVENT:
-                    Commands.event(cmd, taskList);
+                    Commands.event(userInput, taskList);
                     break;
                 case TODO:
-                    Commands.toDo(cmd, taskList);
+                    Commands.toDo(userInput, taskList);
                     break;
                 case DELETE:
-                    Commands.delete(cmd, taskList);
+                    Commands.delete(userInput, taskList);
                     break;
                 default:
                     ui.commandDoesNotExist();
@@ -47,27 +70,35 @@ public class Duke {
         }
     }
 
+    /**
+     * Executes the bot.
+     *
+     * @param args Main arguments.
+     */
     public static void main(String[] args) {
-        ui.greeting();
+        ui.greet();
 
         Scanner sc = new Scanner(System.in);
-        String cmd = sc.nextLine();
+        String userInput = sc.nextLine();
 
         while (true) {
-            String cmdLine = cmd.split(" ")[0];
-            if (doesCommandExist(cmdLine)) {
-                CommandLine commandLine = CommandLine.valueOf(cmdLine.toUpperCase());
-                detectCommand(commandLine, cmd);
-                if (commandLine == CommandLine.BYE) {
+            String commandLine = userInput.split(" ")[0];
+            if (doesCommandExist(commandLine)) {
+                CommandLine typeOfCommandLine = CommandLine.valueOf(commandLine.toUpperCase());
+                detectCommand(typeOfCommandLine, userInput);
+                if (typeOfCommandLine == CommandLine.BYE) {
                     return;
                 }
             } else {
                 ui.commandDoesNotExist();
             }
-            cmd = sc.nextLine();
+            userInput = sc.nextLine();
         }
     }
 
+    /**
+     * Enum class to represent the command lines that exist.
+     */
     enum CommandLine {
         BYE,
         LIST,

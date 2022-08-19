@@ -1,38 +1,70 @@
 import java.util.ArrayList;
 
+/**
+ * A class to represent the commands that the users can use.
+ *
+ * @author Melissa Anastasia Harijanto
+ */
 public class Commands {
+    /** Ui that prints statements for the bot. */
     protected static Ui ui = new Ui();
 
-    public static void mark(String cmd, ArrayList<Task> taskList) throws DukeException{
+    /**
+     * Marks a task as done.
+     *
+     * @param command The command that is inputted by the user.
+     * @param taskList The list of tasks that the user has inputted.
+     * @throws DukeException Exceptions exclusive to the Duke bot, thrown when
+     * the user does not input a number, or inputs invalid characters after the
+     * 'mark' command.
+     */
+    public static void mark(String command, ArrayList<Task> taskList) throws DukeException{
         try {
-            String number = cmd.split(" ")[1];
+            String number = command.split(" ")[1];
             int num = Integer.parseInt(number);
             Task task = taskList.get(num - 1);
             task.markAsDone();
-            ui.marked(task);
+            ui.mark(task);
         } catch (Exception e) {
             throw new DukeException("☹ OOPS!!! The number you are talking about does not exist. " +
                     "\nPerhaps it is not a number at all? Please check again!");
         }
     }
 
-    public static void unmark(String cmd, ArrayList<Task> taskList) throws DukeException{
+    /**
+     * Unmarks a task as undone.
+     *
+     * @param command The command that is inputted by the user.
+     * @param taskList The list of tasks that the user has inputted.
+     * @throws DukeException Exceptions exclusive to the Duke bot, thrown when
+     * the user does not input a number, or inputs invalid characters after the
+     * 'unmark' command.
+     */
+    public static void unmark(String command, ArrayList<Task> taskList) throws DukeException{
         try {
-            String number = cmd.split(" ")[1];
+            String number = command.split(" ")[1];
             int num = Integer.parseInt(number);
             Task task = taskList.get(num - 1);
             task.unmarkAsDone();
-            ui.unmarked(task);
+            ui.unmark(task);
         } catch (Exception e) {
             throw new DukeException("☹ OOPS!!! The number you are talking about does not exist." +
                     "\nPerhaps it is not a number at all? Please check again!");
         }
     }
 
-    public static void deadline(String cmd, ArrayList<Task> taskList) throws DukeException {
+    /**
+     * Adds a task with a deadline.
+     *
+     * @param command The command that is inputted by the user.
+     * @param taskList The list of tasks that the user has inputted.
+     * @throws DukeException Exceptions exclusive to the Duke bot, thrown when
+     * the user does not include a proper description of the task.
+     */
+    public static void deadline(String command, ArrayList<Task> taskList) throws DukeException {
         try {
-            String taskName = cmd.substring(cmd.indexOf(" ") + 1, cmd.indexOf("/") - 1);
-            String by = cmd.substring(cmd.indexOf("/") + 5);
+            String taskName = command.substring(command.indexOf(" ") + 1, command.indexOf("/") - 1);
+            String by = command.substring(command.indexOf("/") + 5);
             Task newTask = new Deadline(taskName, by);
             taskList.add(newTask);
             int amountOfTasks = taskList.size();
@@ -42,10 +74,18 @@ public class Commands {
         }
     }
 
-    public static void event(String cmd, ArrayList<Task> taskList) throws DukeException {
+    /**
+     * Adds a task that is classified as an event.
+     *
+     * @param command The command that is inputted by the user.
+     * @param taskList The list of tasks that the user has inputted.
+     * @throws DukeException Exceptions exclusive to the Duke bot, thrown when
+     * the user does not include a proper description of the task.
+     */
+    public static void event(String command, ArrayList<Task> taskList) throws DukeException {
         try {
-            String taskName = cmd.substring(cmd.indexOf(" ") + 1, cmd.indexOf("/") - 1);
-            String at = cmd.substring(cmd.indexOf("/") + 5);
+            String taskName = command.substring(command.indexOf(" ") + 1, command.indexOf("/") - 1);
+            String at = command.substring(command.indexOf("/") + 5);
             Task newTask = new Event(taskName, at);
             taskList.add(newTask);
             int amountOfTasks = taskList.size();
@@ -55,10 +95,19 @@ public class Commands {
         }
     }
 
-    public static void toDo(String cmd, ArrayList<Task> taskList) throws DukeException {
+    /**
+     * Function to add a task with that has to be done soon, without a description
+     * of the specific place or time.
+     *
+     * @param command The command that is inputted by the user.
+     * @param taskList The list of tasks that the user has inputted.
+     * @throws DukeException Exceptions exclusive to the Duke bot, thrown when
+     * the user does not include a proper description of the task.
+     */
+    public static void toDo(String command, ArrayList<Task> taskList) throws DukeException {
         try {
-            if (cmd.split(" ")[1] != null) {
-                String taskName = cmd.substring(cmd.indexOf(" ") + 1);
+            if (command.split(" ")[1] != null) {
+                String taskName = command.substring(command.indexOf(" ") + 1);
                 Task newTask = new ToDo(taskName);
                 taskList.add(newTask);
                 int amountOfTasks = taskList.size();
@@ -69,9 +118,17 @@ public class Commands {
         }
     }
 
-    public static void delete(String cmd, ArrayList<Task> taskList) throws DukeException {
+    /**
+     * Function to delete any task that has been inputted.
+     *
+     * @param command The command that is inputted by the user.
+     * @param taskList The list of tasks that the user has inputted.
+     * @throws DukeException Exceptions exclusive to the Duke bot, thrown when
+     * the user does not include a proper description of the task.
+     */
+    public static void delete(String command, ArrayList<Task> taskList) throws DukeException {
         try {
-            String number = cmd.split(" ")[1];
+            String number = command.split(" ")[1];
             int num = Integer.parseInt(number);
             Task task = taskList.get(num - 1);
             taskList.remove(num - 1);
