@@ -23,18 +23,42 @@ public class Duke {
 
     public static void listAllItems() {
         printLine();
-        for(int i = 0; i < tasks.size(); i++) {
+        for (int i = 0; i < tasks.size(); i++) {
             int number = i + 1;
             System.out.println(number + ". " + tasks.get(i).toString());
         }
         printLine();
     }
 
-    public static void addAnItem(String item) {
-        Task newTask = new Task(item);
-        tasks.add(newTask);
+    public static void addATask(String item) {
+        String[] arr = item.split(" ", 2);
+        String type = arr[0];
+        switch (type) {
+            case "todo":
+                String todoName = arr[1].trim();
+                Task newTodo = new Todo(todoName);
+                tasks.add(newTodo);
+                break;
+            case "deadline":
+                String[] deadlineArr = arr[1].split("/");
+                String deadlineName = deadlineArr[0];
+                String dl = deadlineArr[1];
+                Task newDeadline = new Deadline(deadlineName, dl);
+                tasks.add(newDeadline);
+                break;
+            case "event":
+                String[] eventArr = arr[1].split("/");
+                String eventName = eventArr[0];
+                String eventTime = eventArr[1];
+                Task newEvent = new Deadline(eventName,eventTime);
+                tasks.add(newEvent);
+                break;
+        }
+
         printLine();
-        System.out.println("added: " + item);
+        int numOfTasks = tasks.size();
+        System.out.println("Got it. I've added this task:" + "\n" + tasks.get(numOfTasks - 1).toString() +
+                "\n" + "Now you have " + numOfTasks + " tasks in the list.");
         printLine();
     }
 
@@ -62,12 +86,12 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
 
-       greetings();
+        greetings();
         Scanner sc = new Scanner(System.in);
         while (true) {
             String input = sc.nextLine();
             String command = input.split(" ")[0];
-            switch(command) {
+            switch (command) {
                 case "bye":
                     printBye();
                     return;
@@ -80,10 +104,10 @@ public class Duke {
                     break;
                 case "unmark":
                     int num2 = Integer.parseInt(input.split(" ")[1]);
-                    ummark(num2);
+                    unmark(num2);
                     break;
                 default:
-                    addAnItem(input);
+                    addATask(input);
                     break;
             }
         }
