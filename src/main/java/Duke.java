@@ -20,8 +20,25 @@ public class Duke {
         while (!userInputS[0].equals("bye")) {
             if (userInputS[0].equals("list")) {
                 myStorage.printStorage();
+                System.out.println(HORIZONTAL_LINE);
             } else if (userInputS[0].equals("mark")) {
                 myStorage.markDone(Integer.parseInt(userInputS[1]));
+                System.out.println(HORIZONTAL_LINE);
+            } else if (userInputS[0].equals("unmark")) {
+                myStorage.unmarkDone(Integer.parseInt(userInputS[1]));
+                System.out.println(HORIZONTAL_LINE);
+            } else if (userInputS[0].equals("todo")) {
+                myStorage.addTask(new ToDo(userInput.substring(5)));
+                System.out.println(HORIZONTAL_LINE);
+            } else if (userInputS[0].equals("event")) {
+                userInput = userInput.substring(6);
+                String[] Stringy = userInput.split("/at");
+                myStorage.addTask(new Event(Stringy[0], Stringy[1]));
+                System.out.println(HORIZONTAL_LINE);
+            } else if (userInputS[0].equals("deadline")) {
+                userInput = userInput.substring(9);
+                String[] Stringy = userInput.split("/by");
+                myStorage.addTask(new Deadline(Stringy[0], Stringy[1]));
                 System.out.println(HORIZONTAL_LINE);
             } else {
                 Task newInput = new Task(userInput);
