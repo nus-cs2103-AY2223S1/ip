@@ -1,0 +1,11 @@
+list
+deadline cs2100 lab /by next monday
+event bizco /at tonight
+list
+mark 2
+mark 1
+list
+todo join odac!
+delete 2
+list
+bye
