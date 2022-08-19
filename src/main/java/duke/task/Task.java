@@ -1,8 +1,8 @@
-package duke.tasks;
+package duke.task;
 
 public abstract class Task {
 
-    protected String description;
+    protected final String description;
     protected boolean isDone;
 
     protected Task(String description) {
@@ -14,9 +14,9 @@ public abstract class Task {
         return isDone ? "[X]" : "[ ]";
     }
 
-    protected void setDone(boolean isDone) {
+    public void setDone(boolean isDone) {
         this.isDone = isDone;
     }
 
-    public abstract String savedString();
+    public abstract String encodeToString();
 }

@@ -1,4 +1,4 @@
-package duke.tasks;
+package duke.task;
 
 public class ToDo extends Task {
 
@@ -7,9 +7,9 @@ public class ToDo extends Task {
     }
 
     @Override
-    public String savedString() {
-        String status = isDone ? "1" : "0";
-        return String.format("T | %s | %s", status, description);
+    public String encodeToString() {
+        String taskStatus = isDone ? "1" : "0";
+        return String.format("T | %s | %s ", taskStatus, description);
     }
 
     @Override
