@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Duke {
     private static ArrayList<Task> taskList = new ArrayList<>();
 
-    private static String getOutput(String input) throws DukeException{
+    private static String getOutput(String input) throws DukeException {
         if (input.equals("bye")) {
             return "Bye. Hope to see you again soon!";
         } else if (input.equals("list")) {
@@ -34,12 +34,18 @@ public class Duke {
             addTask(newTask);
             return "Got it. I've added this task:\n  " + newTask.toString() +
                     "\nNow you have " + taskList.size() + " tasks in the list.";
-        } else if (input.length() > 5 && input.substring(0, 5).equals("event")) {
+        } else if (input.length() > 4 && input.substring(0, 5).equals("event")) {
             String taskInput = input.substring(6);
             String[] taskAndDate = taskInput.split("/at ");
             Task newTask = new Event(taskAndDate[0], taskAndDate[1]);
             addTask(newTask);
             return "Got it. I've added this task:\n  " + newTask.toString() +
+                    "\nNow you have " + taskList.size() + " tasks in the list.";
+        } else if (input.length() > 5 && input.substring(0, 6).equals("delete")) {
+            int index = Integer.parseInt(input.substring(7)) - 1;
+            Task currTask = taskList.get(index);
+            taskList.remove(index);
+            return "Noted. I've removed this task:\n  " + currTask.toString() +
                     "\nNow you have " + taskList.size() + " tasks in the list.";
         } else {
             throw new DukeException("I'm sorry, but I don't know what that means :-(");
