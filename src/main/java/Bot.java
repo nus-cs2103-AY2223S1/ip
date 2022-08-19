@@ -18,7 +18,7 @@ public class Bot {
     public String answer(String input) {
         String response;
         try {
-            String[] split = input.split("\\s");
+            String[] split = input.split("\\s+");
             if (split.length == 0) {
                 throw DukeException.DukeEmptyInputException();
             }
@@ -39,10 +39,10 @@ public class Bot {
                     if (command.equals("todo")) {
                         task = new Todo(name);
                     } else if (command.equals("deadline")) {
-                        String[] details = name.split("\\s/by\\s");
+                        String[] details = name.split("\\s+/by\\s+");
                         task = new Deadline(details[0], details[1]);
                     } else {
-                        String[] details = name.split("\\s/at\\s");
+                        String[] details = name.split("\\s+/at\\s+");
                         task = new Event(details[0], details[1]);
                     }
                 } catch (ArrayIndexOutOfBoundsException e) {
@@ -55,34 +55,46 @@ public class Bot {
                 response = String.format("%s\n%s\n%s", header, line, footer);
             } else if (command.equals("mark")) {
                 try {
-                    int num = Integer.parseInt(split[1]);
-                    Task task = this.taskList.getTask(num);
-                    task.mark();
-                    String header = "Nice! I've marked this task as done:";
-                    String line = String.format("  %s", task);
-                    response = String.format("%s\n%s", header, line);
+                    if (split.length == 2) {
+                        int num = Integer.parseInt(split[1]);
+                        Task task = this.taskList.getTask(num);
+                        task.mark();
+                        String header = "Nice! I've marked this task as done:";
+                        String line = String.format("  %s", task);
+                        response = String.format("%s\n%s", header, line);
+                    } else {
+                        throw DukeException.DukeInvalidIndexException();
+                    }
                 } catch (NumberFormatException | IndexOutOfBoundsException e) {
                     throw DukeException.DukeInvalidIndexException();
                 }
             } else if (command.equals("unmark")) {
                 try {
-                    int num = Integer.parseInt(split[1]);
-                    Task task = this.taskList.getTask(num);
-                    task.unmark();
-                    String header = "OK, I've marked this task as not done yet:";
-                    String line = String.format("  %s", task);
-                    response = String.format("%s\n%s", header, line);
+                    if (split.length == 2) {
+                        int num = Integer.parseInt(split[1]);
+                        Task task = this.taskList.getTask(num);
+                        task.unmark();
+                        String header = "OK, I've marked this task as not done yet:";
+                        String line = String.format("  %s", task);
+                        response = String.format("%s\n%s", header, line);
+                    } else {
+                        throw DukeException.DukeInvalidIndexException();
+                    }
                 } catch (NumberFormatException | IndexOutOfBoundsException e) {
                     throw DukeException.DukeInvalidIndexException();
                 }
             } else if (command.equals("delete")) {
                 try {
-                    int num = Integer.parseInt(split[1]);
-                    Task task = this.taskList.getTask(num);
-                    taskList.removeTask(num);
-                    String header = "Noted. I've removed this task:";
-                    String line = String.format("  %s", task.toString());
-                    response = String.format("%s\n%s", header, line);
+                    if (split.length == 2) {
+                        int num = Integer.parseInt(split[1]);
+                        Task task = this.taskList.getTask(num);
+                        taskList.removeTask(num);
+                        String header = "Noted. I've removed this task:";
+                        String line = String.format("  %s", task.toString());
+                        response = String.format("%s\n%s", header, line);
+                    } else {
+                        throw DukeException.DukeInvalidIndexException();
+                    }
                 } catch (NumberFormatException | IndexOutOfBoundsException e) {
                     throw DukeException.DukeInvalidIndexException();
                 }

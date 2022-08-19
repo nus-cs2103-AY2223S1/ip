@@ -1,0 +1,43 @@
+todo make omelette
+todo     make     dough
+todo
+deadline make salad /by 3pm
+deadline     make     butter /by 3pm
+deadline make toast     /by    8pm
+deadline
+deadline commit crime
+deadline shoplift /by
+deadline rob houses /at now
+event make hash brown /at 3pm
+event     make     fries /at 1pm
+event make nuggets     /at    10am
+event
+event play Valorant
+event play Mobile Legends /at
+event push rank /by idk
+list
+list me pls
+mark 1
+mark 3
+mark
+mark A+
+mark 2 ironman
+mark 100
+unmark 1
+unmark
+unmark rob houses
+unmark 3 banana
+unmark 1000
+list
+delete 1
+delete
+delete my life
+delete 3 friends
+delete 69
+list
+
+bye bye
+bye
+
+
+
