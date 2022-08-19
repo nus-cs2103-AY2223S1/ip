@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Duke {
     public static void main(String[] args) throws DukeException{
-        System.out.println("Hello! I'm Edric \nWhat can I do for you?");
+        System.out.println("Hello! I'm Edric\nWhat can I do for you?");
 
 //        try {
             List<Task> db = new ArrayList<>();
