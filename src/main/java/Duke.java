@@ -12,21 +12,45 @@ public class Duke {
         System.out.println("Hello from\n" + logo);
         System.out.println("Hello! I'm Duke\n" + "What can I do for you?");
 
-        ArrayList<String> text = new ArrayList<>();
+        ArrayList<Task> text = new ArrayList<>();
         Scanner in = new Scanner(System.in);
         while (true) {
             String s = in.nextLine();
             if ("bye".equalsIgnoreCase(s)) {
                 break;
             }
-            if ("list".equalsIgnoreCase(s)) {
+            else if (s.length() > 4 && s.substring(0,4).equalsIgnoreCase("mark")) {
+                int selectedTask = Integer.parseInt(s.substring(5));
+                if (selectedTask > text.size()) {
+                    System.out.println("No such task");
+                }
+                else {
+                    Task t = text.get(selectedTask - 1);
+                    t.markAsDone();
+                    System.out.println("Nice! I've marked this task as done:\n" + t);
+                }
+            }
+            else if (s.length() > 6 && s.substring(0,6).equalsIgnoreCase("unmark")) {
+                int selectedTask = Integer.parseInt(s.substring(7));
+                if (selectedTask > text.size()) {
+                    System.out.println("No such task");
+                }
+                else {
+                    Task t = text.get(selectedTask - 1);
+                    t.markAsNotDone();
+                    System.out.println("OK, I've marked this task as not done yet:\n" + t);
+                }
+            }
+            else if ("list".equalsIgnoreCase(s)) {
                 int length = text.size();
+                System.out.println("Here are the tasks in your list:");
                 for (int i = 0; i < length; i++) {
                     System.out.println(i + 1 + ". " + text.get(i));
                 }
             }
             else {
-                text.add(s);
+                Task t = new Task(s);
+                text.add(t);
                 System.out.println("added: " + s);
             }
         }
