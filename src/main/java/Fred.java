@@ -83,6 +83,13 @@ public class Fred {
                     System.out.println("Fred: Got it. I've added this task:");
                     System.out.println("Fred: " + storage.get(storage.size() - 1).toString());
                     System.out.println("Fred: Now you have " + storage.size() + " tasks in your list.");
+                } else if (input.startsWith("delete")) {
+                    int index = Integer.parseInt(input.substring(7));
+                    String nameDeleted = storage.get(index - 1).toString();
+                    storage.remove(index - 1);
+                    System.out.println("Fred: Noted. I've removed this task:");
+                    System.out.println("Fred: " + nameDeleted);
+                    System.out.println("Fred: Now you have " + storage.size() + " tasks in your list.");
                 } else {
                     throw new FredException("I'm sorry, but I don't know what that means :(");
                 }
