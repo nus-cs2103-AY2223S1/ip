@@ -2,10 +2,14 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 /**
- * The Duke class that instantiates instances of duke
+ * The Duke class that instantiates instances of duke.
  *
- * Duke is a chatbot that performs different actions
- * based on commands provided by user
+ * Duke is a ChatBot that performs different actions
+ * based on commands provided by user.
+ *
+ * CS2103T IP
+ * AY22/23 Semester 1
+ * @author Tan Jia Rong
  */
 public class Duke {
     // Name of Bot
@@ -16,8 +20,6 @@ public class Duke {
     private ArrayList<Task> tasks = new ArrayList<>();
 
     /**
-     * Greeting Method for ChatBot.
-     *
      * Prints Greetings Message.
      */
     private void greetings() {
@@ -26,8 +28,6 @@ public class Duke {
     }
 
     /**
-     * Greeting Method for ChatBot.
-     *
      * Prints Farewell Message.
      */
     private void farewell() {
@@ -37,9 +37,9 @@ public class Duke {
     }
 
     /**
-     * Method to print an exception
+     * Prints exception message.
      *
-     * @param e An exception
+     * @param e An exception.
      */
     private void printErr(Exception e) {
         System.out.println("\n-----------------------------------------");
@@ -48,8 +48,7 @@ public class Duke {
     }
 
     /**
-     * List method for ChatBot
-     * List and prints out tasks stored in duke
+     * Prints tasks in List.
      */
     private void list() {
         System.out.println("\n-----------------------------------------");
@@ -61,10 +60,11 @@ public class Duke {
     }
 
     /**
-     * Mark method for ChatBot
-     * Marks task as done and prints it if it exist
+     * Marks task as done.
+     * If task exists at given index, mark task as done and print result.
+     * Else, print error message.
      *
-     * @param index index of task in list of tasks
+     * @param index index of task in list.
      */
     private void mark(int index) {
         try {
@@ -76,17 +76,20 @@ public class Duke {
                 System.out.println("Nice! I've marked this task as done:");
                 System.out.println("    " + task);
                 System.out.println("-----------------------------------------\n");
-            } else throw new DukeOutOfBoundException();
+            } else {
+                throw new DukeOutOfBoundException();
+            }
         } catch (DukeOutOfBoundException e) {
             printErr(e);
         }
     }
 
     /**
-     * Unmark method for ChatBot
-     * Unmarks task as done and prints it if it exist
+     * Unmarks task as not done.
+     * If task exists at given index, unmark task and print result.
+     * Else, print error message.
      *
-     * @param index index of task in list of tasks
+     * @param index index of task in list.
      */
     private void unmark(int index) {
         try {
@@ -98,17 +101,20 @@ public class Duke {
                 System.out.println("Ok! I've marked this task as not done yet:");
                 System.out.println("    " + task);
                 System.out.println("-----------------------------------------\n");
-            } else throw new DukeOutOfBoundException();
+            } else {
+                throw new DukeOutOfBoundException();
+            }
         } catch (DukeOutOfBoundException e) {
             printErr(e);
         }
     }
 
     /**
-     * Delete method for ChatBot
-     * Delete the task at given index and print
+     * Delete task in list.
+     * If task exists at given index, Delete task and print result.
+     * Else, print error message.
      *
-     * @param index index of task in list of tasks
+     * @param index index of task in list.
      */
     private void delete(int index) {
         try {
@@ -119,21 +125,27 @@ public class Duke {
                 System.out.println("    " + task);
                 tasks.remove(index);
                 System.out.println("-----------------------------------------\n");
-            } else throw new DukeOutOfBoundException();
+            } else {
+                throw new DukeOutOfBoundException();
+            }
         } catch (DukeOutOfBoundException e) {
             printErr(e);
         }
     }
 
     /**
-     * Todo method for ChatBot
-     * Adds a Todo Task to the list of tasks and print
+     * Adds Todo to the list.
+     * If description is valid, add Todo to list and print result.
+     * Else, print error message.
      *
-     * @param description todo details
+     * @param description Description of Todo task.
      */
     private void addTodo(String description) {
         try {
-            if (description.isEmpty() || description.substring(1).isEmpty()) throw new DukeEmptyToDoException();
+            if (description.isEmpty() || description.substring(1).isEmpty()) {
+                throw new DukeEmptyToDoException();
+            }
+
             ToDo todo = new ToDo(description.substring(1));
             tasks.add(todo);
 
@@ -148,14 +160,18 @@ public class Duke {
     }
 
     /**
-     * Deadline method for ChatBot
-     * Adds a Deadline Task to the list of tasks
+     * Adds Deadline to the list.
+     * If description is valid, add Deadline to list and print result.
+     * Else, print error message.
      *
-     * @param description deadline details
+     * @param description Description of Deadline.
      */
     private void addDeadline(String description) {
         try {
-            if (description.isEmpty() || description.substring(1).isEmpty()) throw new DukeEmptyDeadlineException();
+            if (description.isEmpty() || description.substring(1).isEmpty()) {
+                throw new DukeEmptyDeadlineException();
+            }
+
             String[] details = description.substring(1).split(" /by ");
             Deadline deadline = new Deadline(details[0], details[1]);
             tasks.add(deadline);
@@ -171,14 +187,18 @@ public class Duke {
     }
 
     /**
-     * Event method for ChatBot
-     * Adds a Event Task to the list of tasks
+     * Adds Event to the list.
+     * If description is valid, add Event to list and print result.
+     * Else, print error message.
      *
-     * @param description Event details
+     * @param description Description of Event.
      */
     private void addEvent(String description) {
         try {
-            if (description.isEmpty() || description.substring(1).isEmpty()) throw new DukeEmptyEventException();
+            if (description.isEmpty() || description.substring(1).isEmpty()) {
+                throw new DukeEmptyEventException();
+            }
+
             String[] details = description.substring(1).split(" /at ");
             Event event = new Event(details[0], details[1]);
             tasks.add(event);
@@ -194,7 +214,7 @@ public class Duke {
     }
 
     /**
-     * The main Method that runs the Duke programme
+     * Returns the Duke ChatBot.
      *
      * @param args arguments (if any).
      */
@@ -226,10 +246,13 @@ public class Duke {
                     duke.addDeadline(description);
                 } else if (command.toLowerCase().equals("event")) {
                     duke.addEvent(description);
-                } else throw new DukeInvalidCommandException();
+                } else {
+                    throw new DukeInvalidCommandException();
+                }
             } catch (DukeInvalidCommandException e) {
                 duke.printErr(e);
             }
+
             command = duke.sc.next();
             description = duke.sc.nextLine();
         }
