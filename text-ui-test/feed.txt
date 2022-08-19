@@ -1,7 +1,0 @@
-todo borrow book
-event project meeting /at Mon 2-4pm
-deadline assignment /by 3pm
-mark 2
-delete 2
-list
-bye
