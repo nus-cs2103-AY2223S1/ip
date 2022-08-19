@@ -22,17 +22,22 @@ public class Deadline extends Task {
         this.isDone = isDone;
     }
 
-    @Override
-    public String serialize() {
-        return String.format("D|%s|%s|%s", isDone, description, deadline);
-    }
-
     public static Task deserialize(String str) {
         String[] parts = str.split("\\|");
         if (parts.length != 4 || !parts[0].equals("D")) {
             throw new IllegalArgumentException("Invalid deadline format");
         }
         return new Deadline(parts[2], parts[3], Boolean.parseBoolean(parts[1]));
+    }
+
+    @Override
+    public String serialize() {
+        return String.format(
+                "D|%s|%s|%s",
+                isDone,
+                description,
+                Task.DATE_TIME_FORMATTER.format(deadline)
+        );
     }
 
     @Override
