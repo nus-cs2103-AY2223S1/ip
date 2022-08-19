@@ -1,22 +1,25 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
 public class Event extends Task {
-    private String at;
+    private LocalDate at;
 
     public Event(String[] args) throws DukeException {
         super("event", Arrays.stream(args).takeWhile(x -> !x.contains("/")).toArray(String[]::new));
         String[] curArgs = Arrays.stream(args).dropWhile(x -> !x.contains("/")).toArray(String[]::new);
-        if (curArgs.length == 0 || !curArgs[0].equals("/at")) {
+        if (curArgs.length <= 1 || !curArgs[0].equals("/at")) {
             throw new DukeException("☹ OOPS!!! There is no /at argument for deadline :(");
         }
-        this.at = Arrays.stream(curArgs).skip(1).reduce("", (x, y) -> x + " " + y);
-        if (this.at.isEmpty()) {
-            throw new DukeException("☹ OOPS!!! No time is specified for the event :(");
+        try {
+            this.at = LocalDate.parse(curArgs[1]);
+        } catch (java.time.format.DateTimeParseException exception) {
+            throw new DukeException("☹ OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.");
         }
     }
 
     @Override
     public String toString() {
-        return super.toString() + " (at:" + this.at + ")";
+        return super.toString() + " (at: " + this.at.format(DateTimeFormatter.ofPattern("MMM d, yyyy")) + ")";
     }
 }
