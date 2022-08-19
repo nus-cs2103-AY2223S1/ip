@@ -31,7 +31,7 @@ public class Duke {
         return new Duke(TaskList.newEmptyTaskList());
     }
 
-    private static Duke getInstance() {
+    public static Duke getInstance() {
         return INSTANCE;
     }
 
