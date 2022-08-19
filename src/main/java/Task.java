@@ -35,6 +35,14 @@ public class Task {
     }
 
     /**
+     * Returns whether the task is completed.
+     * @return True if done, False if have not yet done.
+     */
+    public boolean checkDone() {
+        return this.isDone;
+    }
+
+    /**
      * Print this line at the end of task adding/deleting for alert.
      */
     public static void countTaskLeft() {

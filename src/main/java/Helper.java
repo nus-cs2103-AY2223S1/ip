@@ -10,7 +10,7 @@ public class Helper {
             result = Integer.valueOf(str);
         } catch (NumberFormatException e) {
             System.out.println(e.getMessage());
-            System.out.println("String converting to Integer failed. Please check!");
+            System.out.println("Conversion from String to Integer failed. Please check!");
         }
         return result;
     }
