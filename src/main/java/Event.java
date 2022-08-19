@@ -1,5 +1,4 @@
 public class Event extends Task {
-
     protected String range;
 
     public Event(String description, String range) {

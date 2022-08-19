@@ -1,4 +1,4 @@
-public class DukeException extends Exception{
+public class DukeException extends Exception {
     private String message;
     DukeException(String message) {
         super(message);
