@@ -145,7 +145,10 @@ public class Duke {
                 System.out.println(e.getMessage());
             }
             return false;
-
+        } else if (input.contains("delete")) {
+            int index = Integer.parseInt(input.replace("delete", "").trim()) - 1;
+            this.deleteTask(index);
+            return false;
         }
         throw new DukeException("\t☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
     }
@@ -209,12 +212,12 @@ public class Duke {
             throw new DukeException("\t☹ OOPS!!! The description of a todo cannot be empty.");
         }
         ToDo task = new ToDo(content);
+        this.list.add(task);
         System.out.println("\t____________________________________________________________");
         System.out.println("\tGot it. I've added this task:");
         System.out.println(String.format("\t  %s", task.toString()));
-        System.out.println(String.format("\tNow you have %d tasks in the list.", this.list.size() + 1));
+        System.out.println(String.format("\tNow you have %d tasks in the list.", this.list.size()));
         System.out.println("\t____________________________________________________________");
-        this.list.add(task);
     }
 
     public void addDeadline(String input) throws DukeException{
@@ -228,12 +231,12 @@ public class Duke {
             throw new DukeException("\t☹ OOPS!!! The description of a deadline cannot be empty.");
         }
         Deadline task = new Deadline(content, by);
+        this.list.add(task);
         System.out.println("\t____________________________________________________________");
         System.out.println("\tGot it. I've added this task:");
         System.out.println(String.format("\t  %s", task.toString()));
-        System.out.println(String.format("\tNow you have %d tasks in the list.", this.list.size() + 1));
+        System.out.println(String.format("\tNow you have %d tasks in the list.", this.list.size()));
         System.out.println("\t____________________________________________________________");
-        this.list.add(task);
     }
 
     public void addEvent(String input) throws DukeException{
@@ -247,13 +250,28 @@ public class Duke {
             throw new DukeException("\t☹ OOPS!!! The description of an event cannot be empty.");
         }
         Event task = new Event(content, time);
+        this.list.add(task);
         System.out.println("\t____________________________________________________________");
         System.out.println("\tGot it. I've added this task:");
         System.out.println(String.format("\t  %s", task.toString()));
-        System.out.println(String.format("\tNow you have %d tasks in the list.", this.list.size() + 1));
+        System.out.println(String.format("\tNow you have %d tasks in the list.", this.list.size()));
         System.out.println("\t____________________________________________________________");
-        this.list.add(task);
     }
 
+    public void deleteTask(int index) {
+        Task task = null;
+        try {
+            task = this.list.get(index);
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("\t☹ OOPS!!! Task number to be deleted does not exist.");
+            return;
+        }
+        this.list.remove(index);
+        System.out.println("\t____________________________________________________________");
+        System.out.println("\tNoted. I've removed this task:");
+        System.out.println(String.format("\t  %s", task.toString()));
+        System.out.println(String.format("\tNow you have %d tasks in the list.", this.list.size()));
+        System.out.println("\t____________________________________________________________");
+    }
     
 }
