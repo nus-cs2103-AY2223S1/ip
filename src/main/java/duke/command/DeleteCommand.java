@@ -1,14 +1,22 @@
-public class MarkCommand extends Command {
+package duke.command;
+
+import duke.DukeException;
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
+
+public class DeleteCommand extends Command {
     private int index;
 
-    public MarkCommand(int index) {
+    public DeleteCommand(int index) {
         this.index = index;
     }
 
     @Override
     public void execute(Storage storage, TaskList taskList, Ui ui) {
         try {
-            ui.printMarkTask(taskList.markTask(index - 1));
+            ui.printDeleteTask(taskList.deleteTask(index - 1));
+            ui.printSizeOfList(taskList.size());
             storage.save(taskList.getTasks());
         } catch (DukeException e) {
             ui.printErrorMessage(e.getMessage());
