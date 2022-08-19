@@ -4,6 +4,7 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 
 public class Storage {
@@ -51,6 +52,16 @@ public class Storage {
             Files.write(filePath, line.getBytes(), StandardOpenOption.APPEND);
         } catch (IOException e) {
             throw new DukeException("Error occured when writing to storage file!", e);
+        }
+    }
+
+    void updateLine(int lineIndex, String updatedLine) throws DukeException {
+        try {
+            List<String> lines = Files.readAllLines(filePath, StandardCharsets.UTF_8);
+            lines.set(lineIndex, updatedLine);
+            Files.write(filePath, lines, StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            throw new DukeException("Error occured when updating storage file!", e);
         }
     }
 
