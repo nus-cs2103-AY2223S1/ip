@@ -15,30 +15,42 @@ public class AllTasksList {
    * Method used to mark a task at index as complete
    *
    * @param index  the index of task to mark as complete
-   * @throws IndexOutOfBoundsException
+   * @throws DukeException
    */
-  public void markTask(int index) throws IndexOutOfBoundsException {
-    this.allTasks.get(index).markAsDone();
+  public void markTask(int index) throws DukeException {
+    try {
+      this.allTasks.get(index).markAsDone();
+    } catch (IndexOutOfBoundsException e) {
+      throw new DukeException("Error: Task not found");
+    }
   }
 
   /**
    * Method used to mark a task at index as incomplete
    *
    * @param index  the index of task to mark as incomplete
-   * @throws IndexOutOfBoundsException
+   * @throws DukeException
    */
-  public void unMarkTask(int index) throws IndexOutOfBoundsException {
-    this.allTasks.get(index).unmark();
+  public void unMarkTask(int index) throws DukeException {
+    try {
+      this.allTasks.get(index).unmark();
+    } catch (IndexOutOfBoundsException e) {
+      throw new DukeException("Error: Task not found");
+    }
   }
 
   /**
    * Method used to mark a task at index as incomplete
    *
    * @param index  the index of task to mark as incomplete
-   * @throws IndexOutOfBoundsException
+   * @throws DukeException
    */
-  public void delete(int index) throws IndexOutOfBoundsException {
-    this.allTasks.remove(index);
+  public void delete(int index) throws DukeException {
+    try {
+      this.allTasks.remove(index);
+    } catch (IndexOutOfBoundsException e) {
+      throw new DukeException("Error: Task not found");
+    }
   }
 
   /**
