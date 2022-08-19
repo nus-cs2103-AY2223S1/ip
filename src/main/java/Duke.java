@@ -13,7 +13,7 @@ public class Duke {
         String HORIZONTAL_LINE = "----------------------";
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("Hello! I'm Duke \n What can I do for you?");
+        System.out.println("Hello! I'm Duke \nWhat can I do for you?");
         String userInput = sc.nextLine();
         String[] userInputS = userInput.split(" ");
 
