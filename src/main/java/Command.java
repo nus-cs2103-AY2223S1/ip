@@ -32,6 +32,9 @@ public enum Command {
     "|____/ \\__,_|_|\\_\\___|\n";
   private static final String BORDER = "------------------------------";
   private static boolean isChatting = true;
+  private static DukeException noNumberException = new DukeException(
+    "Sorry, no number was detected"
+  );
 
   /**
    * Execute the greet command and welcome the user.
@@ -77,7 +80,11 @@ public enum Command {
         Command.parseAndExecuteCommand(userInput, scanner, allTasks);
 
         System.out.println(BORDER + "\n");
-      } catch (Exception e) {}
+      } catch (DukeException e) {
+        System.out.println(e.getMessage());
+      } finally {
+        System.out.println("Try Again (:");
+      }
     }
   }
 
@@ -86,17 +93,20 @@ public enum Command {
    *
    * @param commandArray  a string array of commands to be parsed for more information
    * @param allTasks  the list to store all tasks created by the user
-   * @throws NumberFormatException
    * @throws DukeException
    */
   public static void markTask(String[] commandArray, AllTasksList allTasks)
-    throws NumberFormatException, DukeException {
-    if (commandArray.length <= 1) {
-      throw new DukeException("Sorry, no number was detected");
-    }
+    throws DukeException {
+    try {
+      if (commandArray.length <= 1) {
+        throw noNumberException;
+      }
 
-    int index = Integer.parseInt(commandArray[1]);
-    allTasks.markTask(index);
+      int index = Integer.parseInt(commandArray[1]);
+      allTasks.markTask(index);
+    } catch (NumberFormatException e) {
+      throw noNumberException;
+    }
   }
 
   /**
@@ -104,17 +114,20 @@ public enum Command {
    *
    * @param commandArray  a string array of commands to be parsed for more information
    * @param allTasks  the list to store all tasks created by the user
-   * @throws NumberFormatException
    * @throws DukeException
    */
   public static void unMarkTask(String[] commandArray, AllTasksList allTasks)
-    throws NumberFormatException, DukeException {
-    if (commandArray.length <= 1) {
-      throw new DukeException("Sorry, no number was detected");
-    }
+    throws DukeException {
+    try {
+      if (commandArray.length <= 1) {
+        throw noNumberException;
+      }
 
-    int index = Integer.parseInt(commandArray[1]);
-    allTasks.unMarkTask(index);
+      int index = Integer.parseInt(commandArray[1]);
+      allTasks.unMarkTask(index);
+    } catch (NumberFormatException e) {
+      throw noNumberException;
+    }
   }
 
   /**
@@ -122,17 +135,20 @@ public enum Command {
    *
    * @param commandArray  a string array of commands to be parsed for more information
    * @param allTasks  the list to store all tasks created by the user
-   * @throws NumberFormatException
    * @throws DukeException
    */
   public static void delete(String[] commandArray, AllTasksList allTasks)
-    throws NumberFormatException, DukeException {
-    if (commandArray.length <= 1) {
-      throw new DukeException("Sorry, no number was detected");
-    }
+    throws DukeException {
+    try {
+      if (commandArray.length <= 1) {
+        throw noNumberException;
+      }
 
-    int index = Integer.parseInt(commandArray[1]);
-    allTasks.delete(index);
+      int index = Integer.parseInt(commandArray[1]);
+      allTasks.delete(index);
+    } catch (NumberFormatException e) {
+      throw noNumberException;
+    }
   }
 
   /**
@@ -149,28 +165,33 @@ public enum Command {
     Scanner scanner,
     AllTasksList allTasks
   )
-    throws NumberFormatException, DukeException {
+    throws DukeException {
     String[] commandArray = userInput.split(" ");
     String command = commandArray[0];
-    switch (Command.valueOf(command)) {
-      case bye:
-        Command.exit(scanner);
-        return;
-      case list:
-        Command.listTasks(allTasks);
-        break;
-      case mark:
-        Command.markTask(commandArray, allTasks);
-        break;
-      case unmark:
-        Command.unMarkTask(commandArray, allTasks);
-        break;
-      case delete:
-        Command.delete(commandArray, allTasks);
-        break;
-      default:
-        Task newTask = Task.createTask(commandArray);
-        allTasks.addTask(newTask);
+
+    try {
+      switch (Command.valueOf(command)) {
+        case bye:
+          Command.exit(scanner);
+          return;
+        case list:
+          Command.listTasks(allTasks);
+          break;
+        case mark:
+          Command.markTask(commandArray, allTasks);
+          break;
+        case unmark:
+          Command.unMarkTask(commandArray, allTasks);
+          break;
+        case delete:
+          Command.delete(commandArray, allTasks);
+          break;
+        default:
+          Task newTask = Task.createTask(commandArray);
+          allTasks.addTask(newTask);
+      }
+    } catch (IllegalArgumentException e) {
+      throw new DukeException();
     }
   }
 }
