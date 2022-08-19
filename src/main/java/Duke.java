@@ -42,6 +42,9 @@ public class Duke {
     public void unmark(Task t) {
         t.unmark(t);
     }
+    //@@author johndoe-reused
+    //Reused from https://nus-cs2103-ay2223s1.github.io/website/schedule/week2/project.html
+    // with minor modifications
     public class Task {
         protected boolean isDone;
         protected String description;
@@ -111,10 +114,11 @@ public class Duke {
             return "[E]" + super.toString() + " (by: " + this.at + ")";
         }
     }
+    //@@author
 
     public static void main(String[] args) {
         Duke d = new Duke();
-        String logo = " ____            _    \n"
+        String logo = " ____            _\n"
                 + "|  _ \\ _   _  __| | ___\n"
                 + "| | | | | | |/ _  |/ _ \\\n"
                 + "| |_| | |_| | |_| |  __/\n"
