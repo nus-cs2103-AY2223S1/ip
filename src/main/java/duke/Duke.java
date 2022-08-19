@@ -4,6 +4,12 @@ import java.io.FileNotFoundException;
 
 import duke.command.Command;
 
+/**
+ * A Personal Assistant Chatbot that helps a person to keep track of various things.
+ *
+ * @author Jet Lee
+ * @version CS2103T AY22/23 Sem 1
+ */
 public class Duke {
     private Storage storage;
     private TaskList tasks;
