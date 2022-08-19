@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'application'
+    id 'checkstyle'
     id 'com.github.johnrengelman.shadow' version '5.1.0'
 }
 
@@ -28,12 +29,20 @@ test {
 }
 
 application {
-    mainClassName = "seedu.duke.Duke"
+    mainClassName = "duke.Duke"
 }
 
 shadowJar {
     archiveBaseName = "duke"
     archiveClassifier = null
+}
+
+checkstyle {
+    toolVersion = '8.29'
+}
+
+checkstyleMain {
+    source = 'src/main/java'
 }
 
 run{
