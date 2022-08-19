@@ -9,7 +9,7 @@ public class Duke {
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hewwo! My name is\n" + logo + "\nWhat can I do for you?");
+        System.out.println("Hewwo! I'm\n" + logo + "\nWhat can I do for you?");
 
         //Initialising task array for list cmd
         Task[] taskList = new Task[100];
@@ -17,49 +17,87 @@ public class Duke {
 
         //Initialising scanner
         Scanner sc = new Scanner(System.in);
-        String userInput = "";
+        String userInput;
 
         //Loop continues until bye cmd is given
-        while (!userInput.equals("bye")) {
+        while (numOfInputs < 100) {
             userInput = sc.next();
+            Task task;
+            int taskNum;
 
-            //When list cmd is given
-            if (userInput.equals("list")) {
-                System.out.println("Here are your tasks =ôwô=");
+            switch (userInput) {
 
-                for (int i = 0; i < numOfInputs; i++) {
-                    Task task = taskList[i];
+                case "list":
+                    System.out.println("Here are your tasks =ôwô=");
 
-                    if (task.isDone()) { //task is done
-                        System.out.println((i + 1) + ". " + task);
+                    for (int i = 0; i < numOfInputs; i++) {
+                        task = taskList[i];
 
-                    } else { //task is not done
-                        System.out.println((i + 1) + ". " + task);
+                        if (task.isDone()) { //task is done
+                            System.out.println((i + 1) + ". " + task);
+
+                        } else { //task is not done
+                            System.out.println((i + 1) + ". " + task);
+                        }
                     }
-                }
+                    continue;
 
-            } else if (userInput.equals("mark")) { //mark task as done
-                int taskNum = sc.nextInt();
-                Task completedTask = taskList[taskNum - 1];
-                completedTask.markAsDone();
-                System.out.println("Good job (=ↀωↀ=) You finished this task! \n" + completedTask);
+                case "mark":
+                    taskNum = sc.nextInt();
+                    task = taskList[taskNum - 1];
+                    task.markAsDone();
+                    System.out.println("Good job (=ↀωↀ=) You finished this task! \n" + task);
+                    continue;
 
-            } else if (userInput.equals("unmark")) { //mark task as undone
-                int taskNum = sc.nextInt();
-                Task undoneTask = taskList[taskNum - 1];
-                undoneTask.markAsNotDone();
-                System.out.println("uwu this task has been marked as not done... \n" + undoneTask);
+                case "unmark":
+                    taskNum = sc.nextInt();
+                    task = taskList[taskNum - 1];
+                    task.markAsNotDone();
+                    System.out.println("uwu this task has been marked as not done... \n" + task);
+                    continue;
 
-            } else {
-                //Add a task to list
-                Task currTask = new Task(userInput);
-                taskList[numOfInputs] = currTask;
-                numOfInputs += 1;
+                case "todo":
+                    userInput = sc.nextLine();
+                    Task t = new ToDos(userInput);
+                    taskList[numOfInputs] = t;
+                    numOfInputs += 1;
+                    System.out.println("(=^-ω-^=) " + t + " has been added to your task list!\n");
+                    System.out.println("You now have " + numOfInputs + " tasks");
+                    continue;
+
+                case "deadline":
+                    userInput = sc.nextLine();
+                    String[] splitB = userInput.split("/by");
+                    String deadline = splitB[1];
+                    Task d = new Deadlines(splitB[0], deadline);
+                    taskList[numOfInputs] = d;
+                    numOfInputs += 1;
+                    System.out.println("(=^-ω-^=) " + d + " has been added to your task list!\n");
+                    System.out.println("You now have " + numOfInputs + " tasks");
+                    numOfInputs += 1;
+                    continue;
+
+                case "event":
+                    userInput = sc.nextLine();
+                    String[] splitA = userInput.split("/at");
+                    String time = splitA[1];
+                    Task e = new Events(splitA[0], time);
+                    taskList[numOfInputs] = e;
+                    numOfInputs += 1;
+                    System.out.println("(=^-ω-^=) " + e + " has been added to your task list!\n");
+                    System.out.println("You now have " + numOfInputs + " tasks");
+                    continue;
+
+                case "bye":
+                    System.out.println("UwU Come back soon meowmeow misses youuuu!");
+                    sc.close();
+                    break;
+
+                default:
+                    System.out.println("Sowwie meowmeow doesn't understand what you said uwu");
+                    continue;
             }
         }
-
-        //when bye cmd is given
-        System.out.println("UwU Come back soon meowmeow misses youuuu!");
-        sc.close();
+        System.out.println("(；¬＿¬) Meowmeow you have too many tasks");
     }
 }
