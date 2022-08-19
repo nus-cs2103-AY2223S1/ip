@@ -1,88 +1,131 @@
+import java.rmi.server.ExportException;
 import java.util.Scanner;
 
 public class Duke {
 
-    static int index = 1;
-    static Task[] userInputs = new Task[100];
+    private static int index = 1;
+    private final static Task[] userInputs = new Task[100];
 
     public static void main(String[] args) {
-
-        System.out.println("Hello! I'm SoCCat \nWhat can I do for you?");
-        Scanner input = new Scanner(System.in);
-        String currInput = input.nextLine();
-
-        while (!currInput.equals("bye")) {
-            if (currInput.equals("list")) {
-                getList();
-            }  else {
-                String[] words = currInput.split(" ", 2);
-                if (words.length < 2) {
-                    System.out.println("added: " + currInput);
-                    userInputs[index] = new Task(currInput);
-                    index++;
-                } else {
-                    String firstHalf = words[0];
-                    String secondHalf = words[1];
-
-                    if (firstHalf.equals("todo")) {
-                        System.out.println(Task.newTask());
-                        userInputs[index] = new ToDos(secondHalf);
-                        System.out.println(userInputs[index] + "\n" + numberOfTasks());
-                        index++;
-
-                    } else if (firstHalf.equals("deadline")) {
-                        System.out.println(Task.newTask());
-                        String[] taskDetails = currInput.split(" /by ", 2);
-                        String task = taskDetails[0];
-                        String deadline = taskDetails[1];
-                        userInputs[index] = new Deadlines(task, deadline);
-                        System.out.println(userInputs[index] + "\n" + numberOfTasks());
-                        index++;
-
-                    } else if (firstHalf.equals("event")) {
-                        System.out.println(Task.newTask());
-                        String[] taskDetails = currInput.split(" /at ", 2);
-                        String task = taskDetails[0];
-                        String eventTime = taskDetails[1];
-                        userInputs[index] = new Events(task, eventTime);
-                        System.out.println(userInputs[index] + "\n" + numberOfTasks());
-                        index++;
-
-                    } else {
-
-                        if (words[0].equals("mark")) {
-                            int taskIndex = Integer.parseInt(secondHalf);
-                            if (taskIndex <= index) {
-                                System.out.println(userInputs[taskIndex].mark());
-                            }
-                        } else if (words[0].equals("unmark")) {
-                            int taskIndex = Integer.parseInt(secondHalf);
-                            if (taskIndex <= index) {
-                                System.out.println(userInputs[taskIndex].unmark());
-                            }
-                        } else {
-                            System.out.println("added: " + currInput);
-                            userInputs[index] = new Task(currInput);
-                            index++;
-                        }
-                    }
-                }
-            }
-                currInput = input.nextLine();
-        }
-        System.out.println("Bye. Hope to see you again soon!");
+        System.out.println("Hello! I'm SoCCat\nWhat can I do for you?");
+        new Duke().start();
     }
 
-    public static String numberOfTasks() {
+    private static String numberOfTasks() {
         return "Now you have " + index +  (index < 2 ? " task" : " tasks") + " in your list.";
     }
 
-    public static void getList() {
+    private static void getList() {
         System.out.println("Here are the tasks in your list: ");
         for (int i = 1; i < index; i++) {
-//            System.out.println(i + ".[" + userInputs[i].getStatusIcon() + "] " + userInputs[i].getDescription());
             System.out.println(i + "." + userInputs[i]);
+        }
+    }
+    
+    private void start() {
+        Scanner scanner = new Scanner(System.in);
 
+        while (scanner.hasNextLine()) {
+            String input = scanner.nextLine();
+            String[] words = input.split(" ", 2);
+            String keyword = words[0];
+
+            try {
+                if (keyword.equals("bye")) {
+                    bye();
+                    return;
+                } else if (keyword.equals("list")) {
+                    getList();
+                } else if (keyword.equals("todo")) {
+                    createToDos(words);
+                } else if (keyword.equals("deadline")) {
+                    createDeadlines(words);
+                } else if (keyword.equals("event")) {
+                    createEvents(words);
+                } else if (keyword.equals("mark")) {
+                    mark(words);
+                } else if (keyword.equals("unmark")) {
+                    unmark(words);
+                } else {
+                    throw new DukeInvalidException();
+                }
+            } catch (DukeException ex) {
+                System.out.println(ex.getMessage());
+            } 
+        }
+    }
+    
+    private void bye() {
+        System.out.println("Bye. Hope to see you again soon!");
+    }
+    
+    private void mark(String[] currInput) throws DukeException{
+        if (currInput.length < 2) {
+            throw new DukeEmptyException(currInput[0]);
+        }
+        try {
+            int taskIndex = Integer.parseInt(currInput[1]);
+            System.out.println(userInputs[taskIndex].markAsDone());
+        } catch (NumberFormatException | IndexOutOfBoundsException | NullPointerException ex) {
+            throw new DukeIndexOutOfBoundsException(userInputs.length);
+        }
+    }
+    
+    private void unmark(String[] currInput) throws DukeException{
+        if (currInput.length < 2) {
+            throw new DukeEmptyException(currInput[0]);
+        }
+        try {
+            int taskIndex = Integer.parseInt(currInput[1]);
+            System.out.println(userInputs[taskIndex].unmarkAsNotDone());
+        } catch (NumberFormatException | IndexOutOfBoundsException | NullPointerException ex) {
+            throw new DukeIndexOutOfBoundsException(userInputs.length);
+        }
+    }
+    
+    private void newTaskAdded() {
+        System.out.println("Got it. I've added this task: \n" + userInputs[index] + "\n" + numberOfTasks());
+        index++;
+    }
+    
+    private void createToDos(String[] currInput) throws DukeException{
+        if (currInput.length < 2) {
+            throw new DukeEmptyException(currInput[0]);
+        }
+        try {
+            userInputs[index] = new ToDos(currInput[1]);
+            newTaskAdded();
+        } catch (IndexOutOfBoundsException ex) {
+            throw new DukeIndexOutOfBoundsException(userInputs.length);
+        }
+    }
+    private void createDeadlines(String[] currInput) throws DukeException{
+        if (currInput.length < 2) {
+            throw new DukeEmptyException(currInput[0]);
+        }
+        try {
+            String[] taskDetails = currInput[1].split(" /by ", 2);
+            String task = taskDetails[0];
+            String deadline = taskDetails[1];
+            userInputs[index] = new Deadlines(task, deadline);
+            newTaskAdded();
+        } catch (IndexOutOfBoundsException ex) {
+            throw new DukeIndexOutOfBoundsException(userInputs.length);
+        }
+    }
+
+    private void createEvents(String[] currInput) throws DukeException{
+        if (currInput.length < 2) {
+            throw new DukeEmptyException(currInput[0]);
+        }
+        try {
+            String[] taskDetails = currInput[1].split(" /at ", 2);
+            String task = taskDetails[0];
+            String eventTime = taskDetails[1];
+            userInputs[index] = new Events(task, eventTime);
+            newTaskAdded();
+        } catch (IndexOutOfBoundsException ex) {
+            throw new DukeIndexOutOfBoundsException(userInputs.length);
         }
     }
 

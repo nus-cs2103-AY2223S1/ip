@@ -15,17 +15,13 @@ public class Task {
         return description;
     }
 
-    public static String newTask() {
-        return "Got it. I've added this task: ";
-    }
-
-    public String mark() {
+    public String markAsDone() {
         this.isDone = true;
         return "Nice! I've marked this task as done: \n" + this;
 
     }
 
-    public String unmark() {
+    public String unmarkAsNotDone() {
         this.isDone = false;
         return "Ok! I've marked this task as not done yet: \n" + this;
     }
