@@ -1,12 +1,5 @@
 package duke.storage;
 
-import duke.DukeException;
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.TaskList;
-import duke.task.ToDo;
-
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -15,6 +8,13 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import duke.DukeException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.Todo;
 
 public class StorageFile {
 
@@ -60,7 +60,7 @@ public class StorageFile {
 
                 switch (taskType) {
                 case "T":
-                    task = new ToDo(description);
+                    task = new Todo(description);
                     break;
                 case "D":
                     task = new Deadline(description, inputArray[3]);
@@ -71,7 +71,11 @@ public class StorageFile {
                 }
 
                 if (task != null) {
-                    task.setDone(inputArray[1].equals("1"));
+                    if (inputArray[1].equals("1")) {
+                        task.mark();
+                    } else {
+                        task.unmark();
+                    }
                     tasks.add(task);
                 }
             }

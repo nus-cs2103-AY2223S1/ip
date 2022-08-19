@@ -1,11 +1,11 @@
 package duke.task;
 
 
+import java.util.List;
+
 import duke.DukeException;
 import duke.common.Messages;
 import duke.ui.Ui;
-
-import java.util.List;
 
 public class TaskList {
 
@@ -22,7 +22,7 @@ public class TaskList {
     }
 
     public void addTodo(String description) {
-        Task task = new ToDo(description);
+        Task task = new Todo(description);
         tasks.add(task);
         ui.showMessages(
                 Messages.MESSAGE_TASK_ADDED,
@@ -60,18 +60,18 @@ public class TaskList {
     }
 
     public void markTask(int inputIndex) throws DukeException {
-        updateTaskStatus(inputIndex, true);
+        int targetIndex = checkIndex(inputIndex);
+        tasks.get(targetIndex).mark();
+        ui.showMessages(
+                String.format(Messages.MESSAGE_TASK_UPDATE_STATUS, "done"),
+                "  " + getTask(targetIndex));
     }
 
     public void unmarkTask(int inputIndex) throws DukeException {
-        updateTaskStatus(inputIndex, false);
-    }
-
-    private void updateTaskStatus(int inputIndex, boolean isDone) throws DukeException {
         int targetIndex = checkIndex(inputIndex);
-        tasks.get(targetIndex).setDone(isDone);
+        tasks.get(targetIndex).unmark();
         ui.showMessages(
-                String.format(Messages.MESSAGE_TASK_UPDATE_STATUS, isDone ? "done" : "not done"),
+                String.format(Messages.MESSAGE_TASK_UPDATE_STATUS, "not done"),
                 "  " + getTask(targetIndex));
     }
 
