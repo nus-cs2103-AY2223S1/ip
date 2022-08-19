@@ -1,5 +1,7 @@
 package main.java;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,17 +28,24 @@ public class TaskList {
     }
 
     /**
-     * Get date as String from input.
+     * Get venue as String from input.
+     * @param input String of words given by user as input
+     * @return      Return venue of input task.
+     */
+    private String getVenue(String input) {
+        return input.substring(input.indexOf("/at ") + 4);
+    }
+
+    /**
+     * Get venue as LocalDate from input.
      * @param input String of words given by user as input
      * @return      Return date of input task.
      */
-    private String getDate(String input) {
-        if (input.startsWith("deadline")) {
-            return input.substring(input.indexOf("/by ") + 4);
-        } else if (input.startsWith("event")) {
-            return input.substring(input.indexOf("/at ") + 4);
-        }
-        return null;
+    private LocalDate getDate(String input) {
+        DateTimeFormatter formatter
+                = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        String dateString = input.substring(input.indexOf("/by ") + 4);
+        return LocalDate.parse(dateString, formatter);
     }
 
     /**
@@ -52,7 +61,7 @@ public class TaskList {
                 newTask = new Deadline(getDescription(input), getDate(input));
                 break;
             case "event":
-                newTask = new Event(getDescription(input), getDate(input));
+                newTask = new Event(getDescription(input), getVenue(input));
                 break;
             case "todo":
                 newTask = new ToDo(getDescription(input));

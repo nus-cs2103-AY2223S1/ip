@@ -1,13 +1,15 @@
 package main.java;
 
+import java.time.LocalDate;
+
 public class Deadline extends Task {
 
     /**
      * Deadline of 'Deadline' object
      */
-    protected String by;
+    protected LocalDate by;
 
-    public Deadline(String description, String by) {
+    public Deadline(String description, LocalDate by) {
         super(description);
         this.by = by;
     }
