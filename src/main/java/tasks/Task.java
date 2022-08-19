@@ -1,17 +1,35 @@
 package tasks;
 
 public class Task {
-  protected String description;
+
+  public enum Type {
+    TODO,
+    EVENT,
+    DEADLINE;
+  }
+
+  Type taskType;
+
+  protected String taskDescription;
+  protected String dateDescription;
   protected boolean isDone;
 
-  public Task(String description) {
-    this.description = description;
+  public Task(String taskDescription) {
+    this.taskDescription = taskDescription;
     this.isDone = false;
+    this.taskType = Type.TODO;
+  }
+
+  public Task(String taskDescription, String dateDescription, Type taskType) {
+    this.taskDescription = taskDescription;
+    this.dateDescription = dateDescription;
+    this.taskType = taskType;
   }
 
   public String getStatusIcon() {
     return ("[" + (isDone ? "X" : " ") + "]");
   }
+
 
   /*
    * Updates the status of the task. If task status
@@ -44,6 +62,15 @@ public class Task {
 
   @Override
   public String toString() {
-    return (getStatusIcon() + " " + description);
+    switch (taskType) {
+      case TODO: 
+        return "[T]" + getStatusIcon() + " " + taskDescription;
+      case DEADLINE:
+        return "[D]" + getStatusIcon() + " " + taskDescription + " (by: " + dateDescription + ")";
+      case EVENT:
+        return "[E]" + getStatusIcon() + " " + taskDescription + " (at: " + dateDescription + ")";
+      default:
+        return "";
+    }
   }
 }
