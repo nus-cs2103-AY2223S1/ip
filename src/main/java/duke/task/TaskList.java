@@ -2,6 +2,7 @@ package duke.task;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import duke.DukeException;
 
@@ -33,6 +34,14 @@ public class TaskList {
         } else {
             return String.format("Now you have %d tasks in the list", taskList.size());
         }
+    }
+
+    public TaskList findMatchingTasks(String query) {
+        List<Task> result = this.taskList.stream().filter(item -> item.getDescription().contains(query))
+                .collect(Collectors.toList());
+        TaskList filteredTasks = new TaskList(result);
+
+        return filteredTasks;
     }
 
     public void removeTaskFromList(int id) {

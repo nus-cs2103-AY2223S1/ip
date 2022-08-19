@@ -10,6 +10,7 @@ import duke.command.DeadlineCommand;
 import duke.command.DeleteCommand;
 import duke.command.EventCommand;
 import duke.command.ExitCommand;
+import duke.command.FindCommand;
 import duke.command.InvalidCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
@@ -23,6 +24,7 @@ import duke.task.ToDo;
 public class Parser {
     private static String NO_INDEX_SPECIFIED = "No index specified, try again";
     private static String NO_TASK_NAME = "No task name defined, please try again";
+    private static final String NO_QUERY_SPECIFIED = "No query specified, please try again";
 
     public static Command parse(String command) throws DukeException {
         DateTimeFormatter dateTimeFormatter = DateHandler.getDateTimeFormatter();
@@ -110,6 +112,15 @@ public class Parser {
             taskToAdd = new Event(mainTask, doneAtDate);
 
             return new EventCommand(taskToAdd);
+        case FindCommand.COMMAND_ID:
+            String query;
+            mainTask = command.substring(5);
+            if (!mainTask.isEmpty()) {
+                query = mainTask;
+                return new FindCommand(query);
+            } else {
+                throw new DukeException(NO_QUERY_SPECIFIED);
+            }
         default: // Invalid Command Handler
             return new InvalidCommand();
         }
