@@ -16,6 +16,7 @@ public class Duke {
                 if (str.contains("list")) {
                     System.out.println("list items -");
                     for (int j = 0; j < i; j++){
+                        if (arr[j] == null) {continue;}
                         System.out.println("List " + j + ". [" + eventTypeArr[j] + "][" + markArr[j] + "] " + arr[j]);
                     }
                 } else if (str.contains("blah")) {
@@ -80,6 +81,18 @@ public class Duke {
                     System.out.println("Got it. I've added this task:");
                     System.out.println("List " + i + ". [" + eventTypeArr[i] + "][" + markArr[i] + "] " + arr[i]);
                     i++;
+
+                } else if (str.startsWith("delete")) {
+//                    System.out.println(str.substring(5));
+                    try {
+                        int j = Integer.valueOf(str.substring(7));
+                        arr[j] = null;
+                        System.out.println("Alight! I've deleted this task for you:");
+                        System.out.println("List " + j + ". [" + eventTypeArr[j] + "][" + markArr[j] + "] " + arr[j]);
+                    } catch (Exception e) {
+                        System.out.println("Something went wrong, here's the error message cuz im lazy to figure it out for you: " + e);
+                    }
+
 
                 } else {
                     System.out.println("Storing this text in the list (type unspecified):");
