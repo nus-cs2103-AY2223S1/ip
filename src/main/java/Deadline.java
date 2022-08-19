@@ -26,4 +26,9 @@ public class Deadline extends Task{
     public String toString() {
         return "[D]" + super.toString() + " (by: " + this.by + ")";
     }
+
+    @Override
+    public String toStorageString() {
+        return "D" + super.toStorageString() + " | " + this.by;
+    }
 }

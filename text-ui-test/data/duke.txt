@@ -1,0 +1,3 @@
+T | 1 | go to park to run
+D | 0 | cs2100 quiz | tues
+E | 0 | psychiatric test | IMH 3pm

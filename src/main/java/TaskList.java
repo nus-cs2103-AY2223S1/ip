@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -27,21 +28,20 @@ public class TaskList {
     public void add(Task item) {
         list.add(item);
         this.length += 1;
-        System.out.println("Got it. I've added this task:");
-        System.out.println(item);
-        System.out.println("Now you have " + this.length + " tasks in the list");
     }
 
     /**
      * Marks item in list.
      *
      * @param itemNumber item with the number user want to mark as done.
+     * @return the task that got unmarked.
      */
-    public void mark(int itemNumber) {
+    public Task mark(int itemNumber) throws DukeException {
         try {
             list.get(itemNumber - 1).markAsDone();
+            return list.get(itemNumber - 1);
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("You do not have that item number!");
+            throw new DukeException("You do not have that item number!");
         }
     }
 
@@ -49,10 +49,12 @@ public class TaskList {
      * Marks item as not done in list.
      *
      * @param itemNumber item with the number user want to mark as not done.
+     * @return the task that got unmarked.
      */
-    public void unmark(int itemNumber) throws DukeException{
+    public Task unmark(int itemNumber) throws DukeException{
         try {
             list.get(itemNumber - 1).markAsNotDone();
+            return list.get(itemNumber - 1);
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException("You do not have that item number!");
         }
@@ -74,6 +76,14 @@ public class TaskList {
         } catch (IndexOutOfBoundsException e) {
             System.out.println("You do not have that item number!");
         }
+    }
+
+    public void updateStorage(Storage storage) throws DukeException {
+        storage.update(this.list);
+    }
+
+    public int getLength() {
+        return this.length;
     }
 
     @Override
