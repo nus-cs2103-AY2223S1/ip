@@ -10,4 +10,7 @@ mark 5
 list
 unmark 2
 list
+todo
+todo   
+event  
 bye

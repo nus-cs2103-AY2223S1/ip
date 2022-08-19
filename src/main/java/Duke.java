@@ -66,7 +66,14 @@ public class Duke {
                 continue;
             }
             if (text.startsWith("todo ")) {
-                addTask(new Todo(text.substring(5)));
+                String desc = text.substring(5);
+                if (desc.trim().length() == 0) {
+                    System.out.println(divider);
+                    System.out.println("Empty task? Are you kidding me??");
+                    System.out.println(divider);
+                    continue;
+                }
+                addTask(new Todo(desc));
                 continue;
             }
             if (text.startsWith("deadline ")) {
@@ -75,11 +82,23 @@ public class Duke {
                     failure();
                     continue;
                 }
+                if (params[0].trim().length() == 0) {
+                    System.out.println(divider);
+                    System.out.println("Empty task? Are you kidding me??");
+                    System.out.println(divider);
+                    continue;
+                }
                 addTask(new Deadline(params[0], params[1]));
                 continue;
             }
             if (text.startsWith("event ")) {
                 String[] params = text.substring(6).split(" /at ");
+                if (params[0].trim().length() == 0) {
+                    System.out.println(divider);
+                    System.out.println("Empty task? Are you kidding me??");
+                    System.out.println(divider);
+                    continue;
+                }
                 if (params.length < 2) {
                     failure();
                     continue;
