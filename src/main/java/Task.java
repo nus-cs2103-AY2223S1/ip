@@ -3,24 +3,29 @@
 public class Task {
     protected String description;
     protected boolean isDone;
-    protected int index;
     protected char taskType;
     protected String dateTime;
     protected String dueDescription; // Stores either 'by' or 'at'
 
-    public Task(String description, int index) {
-        this.description = description.split(" ", 2)[1];
-        this.index = index;
-        this.isDone = false;
-        this.taskType = description.split(" ", 2)[0].toUpperCase().charAt(0);
-
-        if (this.taskType == 'D') {
-            parseDateTime("/by");
-        } else if (this.taskType == 'E') {
-            parseDateTime("/at");
-        } else {
-            this.dueDescription = "";
+    public Task(String description) throws Exception{
+        try {
+            this.description = description.split(" ", 2)[1];
+            this.isDone = false;
+            this.taskType = description.split(" ", 2)[0].toUpperCase().charAt(0);
+    
+            if (this.taskType == 'D') {
+                parseDateTime("/by");
+            } else if (this.taskType == 'E') {
+                parseDateTime("/at");
+            } else if (this.taskType == 'T') {
+                this.dueDescription = "";
+            } else {
+                throw new Exception("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+            }
+        } catch (Exception e) {
+            throw new Exception("☹ OOPS!!! The description of a todo cannot be empty.");
         }
+
     }
 
     private void parseDateTime(String delimiter){

@@ -5,7 +5,6 @@ public class Duke {
     private static final String indentation = "    ";
     private static final String horizontalLine = "____________________________________________________________";
     private static List<Task> list = new ArrayList<>();
-    private static int listSize = 0;
 
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -48,10 +47,28 @@ public class Duke {
     }
 
     private static void addToList(String item){
-        listSize++;
-        Task newTask = new Task(item, listSize);
-        list.add(newTask);
-        echo("added: " + newTask.toString());
+        try {
+            Task newTask = new Task(item);
+            list.add(newTask);
+            int listSize = list.size();
+            String addedMsg = "Got it. I've added this task: \n"
+                                + newTask.toString()
+                                + "\n Now you have %d tasks in the list.";
+            addedMsg = String.format(addedMsg, listSize);
+            echo(addedMsg);
+        } catch (Exception e) {
+            echo(e.getMessage());
+        }
+
+    }
+
+    private static void deleteFromList(int number) {
+        Task removed = list.remove(number);
+        String rmvMsg = "Noted. I've removed this task: \n"
+                        + removed.toString()
+                        + "\n Now you have %d tasks in the list.";
+        rmvMsg = String.format(rmvMsg, list.size());
+        echo(rmvMsg);
     }
 
     private static void markAsDone(int number){
@@ -75,8 +92,10 @@ public class Duke {
 
     private static void printList(){
         String itemString = "";
+        int index = 1;
         for (Task item : list) {
-            itemString += String.valueOf(item.index) + ". " + item.toString() + "\n";
+            itemString += String.valueOf(index) + ". " + item.toString() + "\n";
+            index++;
         }
         encapsulateMessage(itemString);
     }
@@ -99,9 +118,12 @@ public class Duke {
             } else if (command.split(" ")[0].toLowerCase().equals("mark")) {
                 int number = Integer.parseInt(command.split(" ")[1]);
                 markAsDone(number);
-            } else if (command.split(" ")[0].toLowerCase().equals("unmark")){
+            } else if (command.split(" ")[0].toLowerCase().equals("unmark")) {
                 int number = Integer.parseInt(command.split(" ")[1]);
                 unmarkTask(number);
+            } else if (command.split(" ")[0].toLowerCase().equals("delete")) {
+                int number = Integer.parseInt(command.split(" ")[1]);
+                deleteFromList(number);
             } else {
                 addToList(command);
             }
