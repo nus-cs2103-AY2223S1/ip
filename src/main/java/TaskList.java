@@ -32,6 +32,11 @@ public class TaskList {
         return taskMark.toString();
     }
 
+    public String deleteTask(Integer n) {
+        Task deletedTask = tasks.remove(n.intValue() - 1);
+        return deletedTask.toString() + "\n" + "Now you have " + tasks.size() + " tasks in the list.";
+    }
+
     public TaskList() {
         tasks = new ArrayList<>();
     }
