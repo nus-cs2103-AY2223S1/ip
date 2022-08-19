@@ -1,5 +1,6 @@
-package duke;
+package duke.parser;
 
+import duke.DukeException;
 import duke.commands.ByeCommand;
 import duke.commands.Command;
 import duke.commands.DeadlineCommand;
