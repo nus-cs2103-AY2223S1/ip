@@ -69,13 +69,15 @@ public enum Command {
    */
   public static void chat(Scanner scanner, AllTasksList allTasks) {
     while (isChatting) {
-      System.out.println(BORDER);
-      System.out.print(": ");
+      try {
+        System.out.println(BORDER);
+        System.out.print(": ");
 
-      String userInput = scanner.nextLine();
-      Command.parseAndExecuteCommand(userInput, scanner, allTasks);
+        String userInput = scanner.nextLine();
+        Command.parseAndExecuteCommand(userInput, scanner, allTasks);
 
-      System.out.println(BORDER + "\n");
+        System.out.println(BORDER + "\n");
+      } catch (Exception e) {}
     }
   }
 
@@ -139,12 +141,15 @@ public enum Command {
    * @param userInput  the raw input string the user entered into the chatbot
    * @param scanner  the scanner that needs to be closed
    * @param allTasks  the Object storing all the tasks created by the user
+   * @throws DukeException
+   * @throws NumberFormatException
    */
   public static void parseAndExecuteCommand(
     String userInput,
     Scanner scanner,
     AllTasksList allTasks
-  ) {
+  )
+    throws NumberFormatException, DukeException {
     String[] commandArray = userInput.split(" ");
     String command = commandArray[0];
     switch (Command.valueOf(command)) {
