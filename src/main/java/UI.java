@@ -52,12 +52,12 @@ public class UI {
      *
      * @param str String input specifying the type of task and its description.
      * @return String telling the user what task was added and the number of current tasks.
-     * @throws DukeEmptyDescriptionException if the description of the given is empty.
+     * @throws DukeInvalidDescriptionException if the description of the given is empty.
      */
-    public String addTask(String str) throws DukeEmptyDescriptionException {
+    public String addTask(String str) throws DukeInvalidDescriptionException {
         if (str.startsWith("todo")) {
             if (str.length() == 4 || str.length() == 5) {
-                throw new DukeEmptyDescriptionException("☹ OOPS!!! The description of a todo cannot be empty.");
+                throw new DukeInvalidDescriptionException("☹ OOPS!!! The description of a todo cannot be empty.");
             }
             ToDo todo = new ToDo(str.substring(5));
             taskList.add(todo);
@@ -65,22 +65,24 @@ public class UI {
                     + String.format("There are %d task(s) in the list", taskList.size());
         } else if (str.startsWith("event")) {
             String[] arrOfStrings = str.split("/at", 2);
-            if (arrOfStrings[0].length() == 5 || arrOfStrings[0].length() == 6) {
-                    throw new DukeEmptyDescriptionException("☹ OOPS!!! The description of an event cannot be empty.");
-            }
-            Event event = new Event(arrOfStrings[0], arrOfStrings[1]);
-            taskList.add(event);
-            return "Got it. I've added this task:\n" + event.toString() + "\n"
-                    + String.format("There are %d task(s) in the list", taskList.size());
+                if (arrOfStrings[0].length() == 5 || arrOfStrings[0].length() == 6 || !str.contains("/at")) {
+                    throw new DukeInvalidDescriptionException("☹ OOPS!!! The description you provided is invalid! " +
+                            "Did you add both the description and time/date of this Event?");
+                }
+                Event event = new Event(arrOfStrings[0], arrOfStrings[1]);
+                taskList.add(event);
+                return "Got it. I've added this task:\n" + event.toString() + "\n"
+                        + String.format("There are %d task(s) in the list", taskList.size());
         } else {
             String[] arrOfStrings = str.split("/by", 2);
-            if (arrOfStrings[0].length() == 8 || arrOfStrings[0].length() == 9) {
-                throw new DukeEmptyDescriptionException("☹ OOPS!!! The description of a deadline cannot be empty.");
-            }
-            Deadline deadline = new Deadline(arrOfStrings[0], arrOfStrings[1]);
-            taskList.add(deadline);
-            return "Got it. I've added this task:\n" + deadline.toString() + "\n"
-                    + String.format("There are %d task(s) in the list", taskList.size());
+                if (arrOfStrings[0].length() == 8 || arrOfStrings[0].length() == 9 || !str.contains("/by")) {
+                    throw new DukeInvalidDescriptionException("☹ OOPS!!! The description you provided is invalid! "
+                            + "Did you add both the description and due time/date of this deadline?");
+                }
+                Deadline deadline = new Deadline(arrOfStrings[0], arrOfStrings[1]);
+                taskList.add(deadline);
+                return "Got it. I've added this task:\n" + deadline.toString() + "\n"
+                        + String.format("There are %d task(s) in the list", taskList.size());
         }
     }
 

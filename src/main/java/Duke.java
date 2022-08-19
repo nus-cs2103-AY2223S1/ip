@@ -41,7 +41,7 @@ public class Duke {
                     System.out.println(ui.list());
                 } else if (input.startsWith("mark") || input.startsWith("unmark")) {
                     System.out.println(ui.editTask(input));
-                } else if (input.startsWith("todo") || input.startsWith("event") || input.startsWith("deadline")){
+                } else if (input.startsWith("todo ") || input.startsWith("event ") || input.startsWith("deadline ")){
                     System.out.println(ui.addTask(input));
                 } else if (input.startsWith("delete")) {
                     System.out.println(ui.deleteTask(input));
