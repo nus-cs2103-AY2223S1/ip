@@ -11,9 +11,9 @@ public class ToDoList {
         if (command.startsWith("todo")) {
             command = command.replace("todo", "");
             if (command.length() == 0) {
-                throw new BobException(
+                System.err.println(
                         "\n   --------------------------------------------------------------------------------\n" +
-                                "     The description of deadline cannot be empty!\n" +
+                                "     The description cannot be empty!\n" +
                                 "     You can't possibly just do nothing... Right? Right? Guys I'm RIGHT right?\n" +
                                 "   --------------------------------------------------------------------------------"
                 );
@@ -33,10 +33,9 @@ public class ToDoList {
             try {
                 command = command.replace("deadline ", "");
                 if (command.length() == 0) {
-                    throw new BobException(
+                    System.err.println(
                             "\n   --------------------------------------------------------------------------------\n" +
                                     "     The description of deadline cannot be empty!\n" +
-                                    "     You need to finish your tasks eventually... Right? Right?\n" +
                                     "   --------------------------------------------------------------------------------"
                     );
                 } else {
@@ -53,9 +52,10 @@ public class ToDoList {
                     );
                 }
             } catch (ArrayIndexOutOfBoundsException e) {
-                throw new BobException(
+                System.err.println(
                         "\n   --------------------------------------------------------------------------------\n" +
-                        "       Set a deadline for your task!\n" +
+                                "       Invalid input! Set a deadline for your task!\n" +
+                                "       You need to finish your tasks eventually... Right? Right?\n" +
                                 "   --------------------------------------------------------------------------------"
                 );
             }
@@ -63,7 +63,7 @@ public class ToDoList {
             try {
                 command = command.replace("event ", "");
                 if (command.length() == 0) {
-                    throw new BobException(
+                    System.err.println(
                             "   --------------------------------------------------------------------------------\n" +
                                     "     The description of event cannot be empty!\n" +
                                     "     It's impossible to go for something that does not exist...\n" +
@@ -83,10 +83,10 @@ public class ToDoList {
                     );
                 }
             } catch (ArrayIndexOutOfBoundsException e) {
-                throw new BobException(
-                    "\n   --------------------------------------------------------------------------------\n" +
-                            "       Please set a date for your event!\n" +
-                            "   --------------------------------------------------------------------------------"
+                System.err.println(
+                        "\n   --------------------------------------------------------------------------------\n" +
+                                "       Please set a date for your event!\n" +
+                                "   --------------------------------------------------------------------------------"
                 );
             }
         } else {
@@ -102,13 +102,14 @@ public class ToDoList {
     /* Method for deleting a specific event */
     public void deleteTask(int index) {
         System.out.println(
-                "   --------------------------------------------------------------------------------\n" +
-                        "     Got it. I've removed this task: \n" +
-                        "       " + this.list.get(index).toString() + "\n" +
-                        "     You now have " + (list.size() - 1) + " tasks in the list.\n" +
-                        "   --------------------------------------------------------------------------------"
+                 "   --------------------------------------------------------------------------------\n" +
+                         "     Got it. I've removed this task: \n" +
+                         "       " + this.list.get(index).toString() + "\n" +
+                         "     You now have " + (list.size() - 1) + " tasks in the list.\n" +
+                         "   --------------------------------------------------------------------------------"
         );
         this.list.remove(index - 1);
+
     }
 
     /* Method to mark a certain item in the list as done */

@@ -1,3 +1,4 @@
+import javax.swing.plaf.SeparatorUI;
 import java.util.Scanner;
 
 public class BobTheBot {
@@ -25,18 +26,23 @@ public class BobTheBot {
                     list.markItemUndone(index);
                 } catch (NumberFormatException e) {
                     list.addTask(command);
+                } finally {
+                    continue;
                 }
             } else if (command.startsWith("delete")) {
                 try {
                     int index = Integer.parseInt(command.replace("delete ", ""));
                     list.deleteTask(index);
                 } catch (NumberFormatException e) {
-                    throw new BobException(
+                    System.err.println(e.toString());
+                    System.err.println(
                             "\n   --------------------------------------------------------------------------------\n" +
                                     "     Please enter the index of the item you would like to delete!\n" +
                                     "     Eg. delete 2 (where 2 is the index of the item you would like to delete)\n" +
                                     "   --------------------------------------------------------------------------------"
                     );
+                } finally {
+                    continue;
                 }
             } else {
                 list.addTask(command);
