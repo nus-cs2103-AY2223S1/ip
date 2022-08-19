@@ -7,12 +7,16 @@ public class TaskManager {
     }
 
     public String list() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("\tI have your list of tasks displayed below:\n");
-        for (int i = 0; i < this.taskList.size(); i++) {
-            stringBuilder.append("\t" + (i + 1) + ") " + taskList.get(i) + "\n");
+        if (taskList.size() == 0) {
+            return "\tYou have no tasks in your list."
+        } else {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("\tI have your list of tasks displayed below:\n");
+            for (int i = 0; i < this.taskList.size(); i++) {
+                stringBuilder.append("\t" + (i + 1) + ") " + taskList.get(i) + "\n");
+            }
+            return stringBuilder.toString();
         }
-        return stringBuilder.toString();
     }
     public String addTask(Task task) {
         this.taskList.add(task);

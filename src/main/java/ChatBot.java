@@ -1,6 +1,4 @@
 import java.util.Scanner;
-import java.util.List;
-import java.util.ArrayList;
 public class ChatBot {
     private final String name;
     private boolean runningState;
@@ -38,29 +36,56 @@ public class ChatBot {
                     System.out.println(wrapMessage(taskManager.list()));
                     break;
                 default:
-                    System.out.println(wrapMessage(taskManager.addTask(new Task(input))));
+                    printError(input);
                     break;
             }
         } else {
-            if (inputScanner.hasNextInt()) {
-                int itemNumber = inputScanner.nextInt();
-                if (!(inputScanner.hasNext())) {
-                    switch (command) {
-                        case "mark":
-                            System.out.println(wrapMessage(taskManager.mark(itemNumber)));
-                            break;
-                        case "unmark":
-                            System.out.println(wrapMessage(taskManager.unmark(itemNumber)));
-                            break;
-                        default:
-                            System.out.println(wrapMessage(taskManager.addTask(new Task(input))));
-                            break;
-                    }
-                } else {
-                    System.out.println(wrapMessage(taskManager.addTask(new Task(input))));
+            try {
+                switch (command) {
+                    case "todo":
+                        System.out.println(wrapMessage(taskManager.addTask(
+                                new ToDoTask(inputScanner.nextLine()))));
+                        break;
+                    case "deadline":
+                        inputScanner.useDelimiter("/by");
+                        System.out.println(wrapMessage(taskManager.addTask(
+                                new DeadlineTask(inputScanner.next(), inputScanner.next()))));
+                        break;
+                    case "event":
+                        inputScanner.useDelimiter("/at");
+                        System.out.println(wrapMessage(taskManager.addTask(
+                                new EventTask(inputScanner.next(), inputScanner.next()))));
+                        break;
+                    case "mark":
+                        if (inputScanner.hasNextInt()) {
+                            int itemNumber = inputScanner.nextInt();
+                            if (!(inputScanner.hasNext())) {
+                                System.out.println(wrapMessage(taskManager.mark(itemNumber)));
+                            } else {
+                                printError(input);
+                            }
+                        } else {
+                            printError(input);
+                        }
+                        break;
+                    case "unmark":
+                        if (inputScanner.hasNextInt()) {
+                            int itemNumber = inputScanner.nextInt();
+                            if (!(inputScanner.hasNext())) {
+                                System.out.println(wrapMessage(taskManager.unmark(itemNumber)));
+                            } else {
+                                printError(input);
+                            }
+                        } else {
+                            printError(input);
+                        }
+                        break;
+                    default:
+                        printError(input);
+                        break;
                 }
-            } else {
-                System.out.println(wrapMessage(taskManager.addTask(new Task(input))));
+            } catch(Exception exception) {
+                printError(input);
             }
         }
         inputScanner.close();
@@ -72,5 +97,9 @@ public class ChatBot {
         stringBuilder.append(str);
         stringBuilder.append("--------------------------------------------------");
         return stringBuilder.toString();
+    }
+
+    private void printError(String input) {
+        System.out.println(wrapMessage("Sorry, I don't understand what you mean by \"" + input + "\"\n"));
     }
 }
