@@ -14,9 +14,21 @@ public class Duke {
         String a = sc.next();
         // if input received is anything but "bye" system will output what the user
         // inputted
+
+        String[] arr = new String[100];
+        int pos = 0;
         while (!a.equals("bye")) {
-            System.out.println(a);
-            a = sc.next();
+            if (a.equals("list")) {
+                for (int i = 1; i <= pos; i++) {
+                    System.out.println(i + ". " + arr[i - 1]);
+                }
+                a = sc.next();
+            } else {
+                arr[pos] = a;
+                pos++;
+                System.out.println("added: " + a);
+                a = sc.next();
+            }
         }
         System.out.println("Bye. Hope to see you again soon!");
     }
