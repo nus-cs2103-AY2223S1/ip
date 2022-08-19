@@ -3,10 +3,19 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
+    static List<Task> todoList = new ArrayList<>();
+
+    /**
+     * class for each task
+     */
     public static class Task {
         protected String description;
         protected boolean isDone;
 
+        /**
+         * Takes in a description for the task
+         * @param description The task description
+         * */
         public Task(String description) {
             this.description = description;
             this.isDone = false;
@@ -24,6 +33,10 @@ public class Duke {
             this.isDone = false;
         }
 
+        /**
+         * Returns a String representation of the task
+         * @return string
+         */
         @Override
         public String toString() {
             return "[" + getStatusIcon() + "] " + this.description;
@@ -33,11 +46,20 @@ public class Duke {
 
         protected String by;
 
+        /**
+         * Takes in a description and deadline for the task
+         * @param description task description
+         * @param by deadline of task
+         */
         public Deadline(String description, String by) {
             super(description);
             this.by = by;
         }
 
+        /**
+         * Returns a String representation of the task
+         * @return string
+         */
         @Override
         public String toString() {
             return "[D]" + super.toString() + " (by: " + by + ")";
@@ -45,10 +67,18 @@ public class Duke {
     }
     public static class Todo extends Task {
 
+        /**
+         * Takes in a description for the task
+         * @param description task description
+         */
         public Todo(String description) {
             super(description);
         }
 
+        /**
+         * Returns a String representation of the task
+         * @return string
+         */
         @Override
         public String toString() {
             return "[T]" + super.toString();
@@ -58,52 +88,56 @@ public class Duke {
     public static class Event extends Task {
         protected String at;
 
+        /**
+         * Takes in a description and time for the task
+         * @param description task description
+         * @param at time of task
+         */
         public Event(String description, String at) {
             super(description);
             this.at = at;
         }
 
+        /**
+         * Returns a String representation of the task
+         * @return string
+         */
         @Override
         public String toString() {
             return "[E]" + super.toString() + " (at: " + at + ")";
         }
     }
 
-    public static class DukeExceptions extends Exception {
-        public DukeExceptions(String message) {
-            super("oh nooo the " + message + "cannot be empty!");
-        }
-    }
     public static void main(String[] args) {
         String reply = "";
-        String exit = "bye";
-        List<Task> todoList = new ArrayList<>();
+        String exit = "bye"; // the keyword to exit
+
         System.out.println("hi im chompers what do u need!!!\n");
 
         while(true) {
             Scanner scanIn = new Scanner(System.in);
-            reply = scanIn.nextLine();
+            reply = scanIn.nextLine(); // read from input
 
             if(reply.equals(exit)) {
-                System.out.println("bye see u");
+                System.out.println("bye see u"); // exits the program
                 scanIn.close();
                 break;
             } else if (reply.equals("list")) {
                 System.out.println("here! ur tasks:");
-                printList(todoList);
+                printList(); // prints the list of tasks
             } else {
-                String[] substr = reply.split(" ", 2);
+                String[] substr = reply.split(" ", 2); // to identify the keyword used
                 Integer index;
                 Task temp;
                 switch (substr[0]) {
                     case "mark":
-                        if(substr.length == 1) {
+                        if(substr.length == 1) { // no number was given
                             System.out.println("enter an index!");
                             break;
                         }
                         try {
                             index = Integer.parseInt(substr[1]) - 1;
-                            if(index < 0 || index >= todoList.size()) {
+                            if(index < 0 || index >= todoList.size()) { // to check if index is out of range
                                 System.out.println("thrs nth there :<");
                                 continue;
                             }
@@ -111,7 +145,7 @@ public class Duke {
                             temp.markAsDone();
                             System.out.println("oke this is done now:\n" + temp);
                         } catch (NumberFormatException e) {
-                            System.out.println("Invalid input");
+                            System.out.println("Invalid input"); // if index given cannot be converted or was the wrong format
                         }
                         break;
                     case "unmark":
@@ -121,7 +155,7 @@ public class Duke {
                         }
                         try {
                             index = Integer.parseInt(substr[1]) - 1;
-                            if(index < 0 || index >= todoList.size()) {
+                            if(index < 0 || index >= todoList.size()) { // check if index is out of range
                                 System.out.println("thrs nth there :<");
                                 continue;
                             }
@@ -158,9 +192,7 @@ public class Duke {
                             break;
                         }
                         temp = new Todo(substr[1]);
-                        todoList.add(temp);
-                        System.out.println("oke i added:\n" + temp.toString());
-                        System.out.println("now u have " + todoList.size() + " task(s)!");
+                        addTask(temp);
                         break;
                     case "deadline":
                         if(substr.length == 1) {
@@ -173,9 +205,7 @@ public class Duke {
                             break;
                         }
                         temp = new Deadline(dlDesc[0], dlDesc[1]);
-                        todoList.add(temp);
-                        System.out.println("oke i added:\n" + temp.toString());
-                        System.out.println("now u have " + todoList.size() + " task(s)!");
+                        addTask(temp);
                         break;
                     case "event":
                         if(substr.length == 1) {
@@ -188,9 +218,7 @@ public class Duke {
                             break;
                         }
                         temp = new Event(eventDesc[0], eventDesc[1]);
-                        todoList.add(temp);
-                        System.out.println("oke i added:\n" + temp.toString());
-                        System.out.println("now u have " + todoList.size() + " task(s)!");
+                        addTask(temp);
                         break;
                     default:
                         System.out.println("idk what that means :(");
@@ -201,9 +229,23 @@ public class Duke {
 
         }
     }
-    public static void printList(List<Task> list) {
-        for(int i = 1; i <= list.size(); i++) {
-            Task task = list.get(i-1);
+
+    /**
+     * Adds the task to the list
+     * @param task task to be added
+     */
+    public static void addTask(Task task) {
+        todoList.add(task);
+        System.out.println("oke i added:\n" + task.toString());
+        System.out.println("now u have " + todoList.size() + " task(s)!");
+    }
+
+    /**
+     * Prints out the current list
+     */
+    public static void printList() {
+        for(int i = 1; i <= todoList.size(); i++) {
+            Task task = todoList.get(i-1);
             System.out.println(i + "." + task.toString());
         }
     }
