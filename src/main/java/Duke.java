@@ -4,14 +4,40 @@ import java.util.Scanner;
 
 public class Duke {
     public static void main(String[] args) {
+        File file = new File("data/duke.txt");
+        ArrayList<Task> tasks = new ArrayList<>();
+        try {
+            file.getParentFile().mkdirs();
+            file.createNewFile();
+            Scanner myReader = new Scanner(file);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                String[] words = data.split("\\s*\\|\\s*");
+                Task newTask;
+                if (words[0].equals("T")) {
+                    newTask = new Todo(words[2]);
+                } else if (words[0].equals("E")) {
+                    newTask = new Event(words[2], words[3]);
+                } else {
+                    newTask = new Deadline(words[2], words[3]);
+                }
+                if (words[1].equals("1")) {
+                    newTask.isDone = true;
+                }
+                tasks.add(newTask);
+            }
+            myReader.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
         Scanner myObj = new Scanner(System.in);
         System.out.println("Hello! I'm Snoopy");
         System.out.println("What can I do for you?");
         String input = myObj.nextLine();
         String[] words = input.split(" ");
         String response = words[0];
-        ArrayList<Task> tasks = new ArrayList<>();
-        int i = 0;
+        int i = tasks.size();
         while (!response.equals("bye")) {
             try {
                 switch (response) {
@@ -110,10 +136,7 @@ public class Duke {
             } catch (InvalidCommandException | EmptyTodoListException e) {
                 System.out.println(e.getMessage());
             }
-            File file = new File("data/duke.txt");
             try {
-                file.getParentFile().mkdirs();
-                file.createNewFile();
                 FileWriter myWriter = new FileWriter("data/duke.txt");
                 StringBuilder output = new StringBuilder();
                 for (Task task:tasks) {
