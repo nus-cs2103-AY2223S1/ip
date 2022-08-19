@@ -43,7 +43,7 @@ public class Duke {
         File file = new File(taskStoragePath);
         FileWriter fw = new FileWriter(file);
         for (Task task : this.taskArr) {
-            fw.write(task + "\n");
+            fw.write(task.toFileFormatString() + "\n");
         }
         fw.close();
     }
@@ -75,7 +75,6 @@ public class Duke {
                 this.taskArr.add(task);
                 break;
         }
-        saveTasksToStorage();
         System.out.println("Got it. I've added this task:");
         System.out.println("   " + task);
         System.out.println("Now, you have " + this.taskArr.size() + " tasks in the list");
@@ -160,11 +159,13 @@ public class Duke {
             case UNMARK:    
             case DELETE:
                 this.editTask(command, detailsString);
+                saveTasksToStorage();
                 break;
             case TODO:
             case EVENT:
             case DEADLINE:
                 this.addTask(command, detailsString);
+                saveTasksToStorage();
                 break;
         }
         return false;
