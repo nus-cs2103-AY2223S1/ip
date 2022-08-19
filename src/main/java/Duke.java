@@ -15,54 +15,55 @@ public class Duke {
             try {
                 String[] str = input.split(" ", 2);
                 String firstWord = str[0];
-                switch (str.length) {
-                    case 1 :
-                    {
-                        switch(firstWord) {
-                            case "bye":
-                                endChat();
-                                break;
-                            case "list":
-                                displayList();
-                                break;
-                            case "mark":
-                            case "deadline":
-                            case "unmark":
-                            case "todo":
-                            case "event":
-                            case "delete":
-                                throw new MissingDescriptionException(firstWord);
-                            default:
-                                throw new InvalidInputException();
-                        }
+                if (str.length == 1) {
+                    switch (firstWord) {
+                    case "bye": {
+                        endChat();
+                        break;
                     }
-                    break;
-                    case 2 :
-                    {
-                        switch(firstWord) {
-                            case "mark":
-                                markTaskDone(str[1]);
-                                break;
-                            case "unmark":
-                                markTaskUndone(str[1]);
-                                break;
-                            case "todo":
-                                addNewToDo(str[1]);
-                                break;
-                            case "deadline":
-                                addNewDeadline(str[1]);
-                                break;
-                            case "event":
-                                addNewEvent(str[1]);
-                                break;
-                            case "delete":
-                                deleteTask(str[1]);
-                                break;
-                            default:
-                                throw new InvalidInputException();
-                        }
+                    case "list": {
+                        displayList();
+                        break;
                     }
-                    break;
+                    case "mark":
+                    case "deadline":
+                    case "unmark":
+                    case "todo":
+                    case "event":
+                    case "delete":
+                        throw new MissingDescriptionException(firstWord);
+                    default:
+                        throw new InvalidInputException();
+                    }
+                } else {
+                    switch (firstWord) {
+                    case "mark": {
+                        markTaskDone(str[1]);
+                        break;
+                    }
+                    case "unmark": {
+                        markTaskUndone(str[1]);
+                        break;
+                    }
+                    case "todo": {
+                        addNewToDo(str[1]);
+                        break;
+                    }
+                    case "deadline": {
+                        addNewDeadline(str[1]);
+                        break;
+                    }
+                    case "event": {
+                        addNewEvent(str[1]);
+                        break;
+                    }
+                    case "delete": {
+                        deleteTask(str[1]);
+                        break;
+                    }
+                    default:
+                        throw new InvalidInputException();
+                    }
                 }
             } catch (DukeException e) {
                 System.out.println(e.getMessage());
