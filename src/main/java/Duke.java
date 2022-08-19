@@ -11,23 +11,50 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
         System.out.println("Hello! I'm Kuke\n" +
                 "What can I do for you?");
-        String a = sc.next();
+        String a = sc.nextLine();
+        String[] arr = new String[100];
+        int[] status = new int[100];
+        int pos = 0;
+
         // if input received is anything but "bye" system will output what the user
         // inputted
-
-        String[] arr = new String[100];
-        int pos = 0;
         while (!a.equals("bye")) {
             if (a.equals("list")) {
+                System.out.println("Here are the tasks in your list:");
                 for (int i = 1; i <= pos; i++) {
-                    System.out.println(i + ". " + arr[i - 1]);
+                    if (status[i - 1] == 0) {
+                        System.out.println(i + ". [ ] " + arr[i - 1]);
+                    } else {
+                        System.out.println(i + ". [X] " + arr[i - 1]);
+                    }
                 }
-                a = sc.next();
+                a = sc.nextLine();
+            } else if (a.contains("unmark")) {
+                char b = a.charAt(7);
+                int c = Character.getNumericValue(b);
+                status[c - 1] = 0;
+//                System.out.println(status[c - 1]);
+                System.out.println("OK, I've marked this task as not done yet: ");
+                System.out.println("[ ] " + arr[c - 1]);
+                a = sc.nextLine();
+            } else if (a.contains("mark")) {
+                char b = a.charAt(5);
+                int c = Character.getNumericValue(b);
+//                System.out.println(b);
+//                System.out.println(c);
+                status[c - 1] = 1;
+//                System.out.println(status[c - 1]);
+//                System.out.println(c - 1);
+//                System.out.println(status[0]);
+                System.out.println("Nice! I've marked this task as done:");
+                System.out.println("[X] " + arr[c - 1]);
+                a = sc.nextLine();
             } else {
                 arr[pos] = a;
+                status[pos] = 0;
                 pos++;
                 System.out.println("added: " + a);
-                a = sc.next();
+                a = sc.nextLine();
             }
         }
         System.out.println("Bye. Hope to see you again soon!");
