@@ -4,6 +4,6 @@ event picnic /at 4pm
 deadline essay /by 3pm
 mark 2
 delete 2
-mark 4
+mark 3
 list
 bye
