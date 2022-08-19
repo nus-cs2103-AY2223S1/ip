@@ -30,7 +30,7 @@ public class TaskList {
 
     public Task markTask(int index) throws DukeException {
         if (index < 0 || index >= this.size()) {
-            throw new DukeException("duke.task.Task number does not exist.");
+            throw new DukeException("Task number does not exist.");
         }
         Task task = this.tasks.get(index);
         task.mark();
@@ -39,7 +39,7 @@ public class TaskList {
 
     public Task unmarkTask(int index) throws DukeException {
         if (index < 0 || index >= this.size()) {
-            throw new DukeException("duke.task.Task number does not exist.");
+            throw new DukeException("Task number does not exist.");
         }
         Task task = this.tasks.get(index);
         task.unmark();
@@ -48,7 +48,7 @@ public class TaskList {
 
     public Task deleteTask(int index) throws DukeException {
         if (index < 0 || index >= this.size()) {
-            throw new DukeException("duke.task.Task number does not exist.");
+            throw new DukeException("Task number does not exist.");
         }
         Task task = this.tasks.remove(index);
         return task;
