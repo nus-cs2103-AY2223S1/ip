@@ -37,12 +37,12 @@ What can I do for you? ^_^
 		[T][ ] read book
 	Oops! I'm sorry >< I don't know what this means :(
 	Oops! I'm sorry >< I don't know what this means :(
-	Oops! Todo description cannot be empty!
-	Oops! Event description cannot be empty!
-	Oops! Deadline description cannot be empty!
-	Oops! I don't know which task to mark as done!
-	Oops! I don't know which task to mark as not done!
-	Oops! Deadline description cannot be empty!
+	Oops! Please add using the following format: todo <description>
+	Oops! Please add using the following format: event <description> /at <date>
+	Oops! Please add using the following format: deadline <description> /by <date>
+	Oops! Please mark using this format: mark <task-number>
+	Oops! Please unmark using this format: mark <task-number>
+	Oops! Please add using the following format: deadline <description> /by <date>
 	Oops! The task number exceeds the number of tasks in the list!
 	Noted, I have removed this task:
 		[T][ ] read book
@@ -50,6 +50,6 @@ What can I do for you? ^_^
 	1. [D][ ] submit project (by: 18 august)
 	2. [E][X] project meeting (at: 20 september)
 	3. [T][ ] sweep the floor
-	Oops! I don't know when is the deadline :(, please specify the task in this format: deadline <description> /by <due date>
-	Oops! I don't know when is the event taking place :(, please specify the task in this format: event <description> /at <date>
+	Oops! Please add using the following format: deadline <description> /by <date>
+	Oops! Please add using the following format: event <description> /at <date>
 	Bye. Hope to see you again soon :D
