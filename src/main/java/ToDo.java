@@ -1,8 +1,12 @@
 /**
- * A class that stores something to do
+ * A class that stores something to do.
  */
 public class ToDo extends Task {
 
+    /**
+     * Creates a todo item.
+     * @param description Description of todo.
+     */
     public ToDo(String description) {
         super(description);
     }

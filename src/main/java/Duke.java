@@ -12,16 +12,16 @@ public class Duke {
     private static ArrayList<Task> list;
 
     /**
-     * Style and print a single line with a border.
-     * @param line line to be printed
+     * Styles and prints a single line with a border.
+     * @param line Line to be printed
      */
     public static void messagePrint(String line) {
         messagePrint(new String[]{line});
     }
 
     /**
-     * Style and print lines with a border.
-     * @param lines lines to be printed
+     * Styles and prints lines with a border.
+     * @param lines Lines to be printed
      */
     public static void messagePrint(String[] lines) {
         System.out.println(",----------------------------------------------------------------");
@@ -151,8 +151,8 @@ public class Duke {
     }
 
     /**
-     * The main structure of the chatbot execution.
-     * @param args command line args which are not used
+     * Runs the chatbot execution.
+     * @param args Command line args which are not used.
      */
     public static void main(String[] args) {
         greet();

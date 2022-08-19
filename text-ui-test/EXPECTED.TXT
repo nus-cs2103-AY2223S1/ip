@@ -194,5 +194,20 @@
 | Sorry, the number 24, wasn't in the range.
 '----------------------------------------------------------------
 ,----------------------------------------------------------------
+| That's going to happen at some time later:
+| [E][ ] wow  much  space (at: 10am)
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| Here, your tasks:
+| 1.[T][ ] homework
+| 2.[E][ ] meet friends (at: [unknown])
+| 3.[E][ ] meet people at dinner (at: 6:25 pm)
+| 4.[E][ ] meet people at function x/y/z whatever (at: 7:12am)
+| 5.[D][ ] /at mysterious (by: [unknown])
+| 6.[D][ ] /by mysterious number 2 (by: [unknown])
+| 7.[D][ ] rush this please (by: when?)
+| 8.[E][ ] wow  much  space (at: 10am)
+'----------------------------------------------------------------
+,----------------------------------------------------------------
 | It was nice to have you around, I'm going back to sleep...
 '----------------------------------------------------------------

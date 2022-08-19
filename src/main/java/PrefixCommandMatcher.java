@@ -3,13 +3,18 @@ import java.util.Map;
 import java.util.function.BiConsumer;
 
 /**
- * Makes a command matcher based on prefix
+ * Makes a command matcher based on prefix.
  * It splits the slash options "/by /at" and other parts as a Map&lt;String, String&gt;
- * and trims the string involved. The action takes the String and String
+ * and trims the string involved.
+ * The action takes the String and a map containing the options.
  */
 public class PrefixCommandMatcher extends CommandMatcher {
-    PrefixCommandMatcher(String prefix, BiConsumer<String, Map<String, String>> action) {
-        super((cmd) -> cmd.startsWith(prefix + " ") || cmd.equals(prefix), (cmd) -> {
+    /**
+     * Creates a command matcher that tries to match a prefix.
+     */
+    public PrefixCommandMatcher(String prefix, BiConsumer<String, Map<String, String>> action) {
+        super((cmd) -> cmd.strip().startsWith(prefix + " ") || cmd.strip().equals(prefix), (cmd) -> {
+            cmd = cmd.strip();
             if (cmd.equals(prefix)) {
                 Duke.messagePrint("(>.<') Add a description to your " + prefix + ".");
                 return;
