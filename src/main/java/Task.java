@@ -3,12 +3,48 @@
  * Tasks cannot be instantiated directly - they should be inherited by a subclass.
  */
 public abstract class Task {
-    private final String description;
-    private boolean isDone;
+    protected final String description;
+    protected boolean isDone;
 
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+    }
+
+    public Task(String description, boolean isDone) {
+        this.description = description;
+        this.isDone = isDone;
+    }
+
+    /**
+     * Returns a string representation of this task, meant for writing to a file.
+     * We will assume that the any part of the string representation of a task
+     * contains the delimiter used to separate the different parts of the task
+     * during serialization.
+     *
+     * @return the serialized task
+     * @since Level-7
+     */
+    public abstract String serialize();
+
+    /**
+     * Returns a task object from a serialized string.
+     * 
+     * @param str the serialized task
+     * @return the deserialized task object
+     * @since Level-7
+     */
+    public static Task deserialize(String str) {
+        switch (str.charAt(0)) {
+            case 'T':
+                return Todo.deserialize(str);
+            case 'E':
+                return Event.deserialize(str);
+            case 'D':
+                return Deadline.deserialize(str);
+            default:
+                throw new IllegalArgumentException("Invalid task format");
+        }
     }
 
     /**

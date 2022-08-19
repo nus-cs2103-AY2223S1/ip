@@ -1,9 +1,39 @@
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 
 public class Duke {
-    private final TaskList taskList = new TaskList();
+    private static final Path PATH = Paths.get(System.getProperty("user.home"),
+            "duke",
+            "tasks.txt"
+    );
+    private static final Duke INSTANCE = Duke.createNewInstance();
+    private final TaskList taskList;
+
+    private Duke(TaskList taskList) {
+        this.taskList = taskList;
+    }
+
+    private static Duke createNewInstance() {
+        if (PATH != null && Files.exists(PATH) && Files.isRegularFile(PATH)) {
+            try {
+                return new Duke(TaskList.readFromFile(PATH));
+            } catch (IOException e) {
+                System.out.println("Failed to restore task list from " + PATH);
+                System.out.println("Creating a new task list instead.");
+                return new Duke(TaskList.newEmptyTaskList());
+            }
+        }
+        return new Duke(TaskList.newEmptyTaskList());
+    }
+
+    private static Duke getInstance() {
+        return INSTANCE;
+    }
 
     public static void main(String[] args) {
         String logo = " ____        _        \n" +
@@ -16,7 +46,7 @@ public class Duke {
         System.out.println("What can I do for you?");
 
         Scanner scanner = new Scanner(System.in);
-        Duke duke = new Duke();
+        Duke duke = Duke.getInstance();
 
         System.out.print("\n> ");
         while (scanner.hasNextLine()) {
@@ -28,6 +58,8 @@ public class Duke {
                 }
             } catch (DukeException e) {
                 System.out.printf("%s.\n", e.getMessage());
+            } catch (IOException e) {
+                System.out.println(e.toString());
             }
             System.out.print("\n> ");
         }
@@ -44,25 +76,37 @@ public class Duke {
         return IntStream.range(0, arguments.length)
                 .filter(i -> arguments[i].equals(query))
                 .findFirst()
-                .orElseThrow(() -> new DukeException(String.format("Missing argument `%s`", query)));
+                .orElseThrow(() -> new DukeException(String.format(
+                        "Missing argument `%s`",
+                        query
+                )));
     }
 
     private static String concatenateArguments(String[] arguments, int start, int end) {
         return Arrays.stream(arguments, start, end)
-                .collect(StringBuilder::new, StringBuilder::append, StringBuilder::append)
+                .collect(StringBuilder::new,
+                        StringBuilder::append,
+                        StringBuilder::append
+                )
                 .toString();
     }
 
     private static String concatenateArguments(String[] arguments, int start) {
         return Arrays.stream(arguments, start, arguments.length)
                 .map(str -> str + " ")
-                .collect(StringBuilder::new, StringBuilder::append, StringBuilder::append)
+                .collect(StringBuilder::new,
+                        StringBuilder::append,
+                        StringBuilder::append
+                )
                 .toString()
                 .strip();
     }
 
     private void printTaskListSize() {
-        System.out.printf("You now have %d %s.", taskList.size(), taskList.size() == 1 ? "task" : "tasks");
+        System.out.printf("You now have %d %s.",
+                taskList.size(),
+                taskList.size() == 1 ? "task" : "tasks"
+        );
     }
 
     /**
@@ -71,7 +115,7 @@ public class Duke {
      * @param command the command string
      * @return `true` if the command is terminal, `false` otherwise
      */
-    private boolean executeCommand(String command) {
+    private boolean executeCommand(String command) throws IOException {
         String[] arguments = getArguments(command);
         if (arguments.length == 0) {
             System.out.println("Please enter a command.");
@@ -79,7 +123,8 @@ public class Duke {
         }
         switch (arguments[0]) {
             case "mark": {
-                int index = Integer.parseInt(arguments[1]) - 1; // task indexing is 1-indexed
+                int index = Integer.parseInt(arguments[1]) -
+                        1; // task indexing is 1-indexed
                 Task task = taskList.getTask(index);
                 task.markAsDone();
                 System.out.println("I've marked this task as done.");
@@ -87,7 +132,8 @@ public class Duke {
                 break;
             }
             case "unmark": {
-                int index = Integer.parseInt(arguments[1]) - 1; // task indexing is 1-indexed
+                int index = Integer.parseInt(arguments[1]) -
+                        1; // task indexing is 1-indexed
                 Task task = taskList.getTask(index);
                 task.markAsUndone();
                 System.out.println("I've unmarked this task as done.");
@@ -98,7 +144,8 @@ public class Duke {
                 if (arguments.length < 2) {
                     throw new DukeException("Missing task index");
                 }
-                int index = Integer.parseInt(arguments[1]) - 1; // task indexing is 1-indexed
+                int index = Integer.parseInt(arguments[1]) -
+                        1; // task indexing is 1-indexed
                 Task task = taskList.getTask(index);
                 taskList.deleteTask(index);
                 System.out.println("I've deleted this task.");
@@ -133,8 +180,13 @@ public class Duke {
                 }
                 // Find the "/by" delimiter to get the two arguments.
                 int delimiter = findArgumentIndex(arguments, "/by");
-                String description = concatenateArguments(arguments, 1, delimiter);
-                String deadline = concatenateArguments(arguments, delimiter + 1);
+                String description = concatenateArguments(arguments,
+                        1,
+                        delimiter
+                );
+                String deadline = concatenateArguments(arguments,
+                        delimiter + 1
+                );
                 // Create and add the task.
                 Task task = new Deadline(description, deadline);
                 taskList.addTask(task);
@@ -149,8 +201,13 @@ public class Duke {
                 }
                 // Find the "/at" delimiter to get the two arguments.
                 int delimiter = findArgumentIndex(arguments, "/at");
-                String description = concatenateArguments(arguments, 1, delimiter);
-                String datetime = concatenateArguments(arguments, delimiter + 1);
+                String description = concatenateArguments(arguments,
+                        1,
+                        delimiter
+                );
+                String datetime = concatenateArguments(arguments,
+                        delimiter + 1
+                );
                 // Create and add the task.
                 Task task = new Event(description, datetime);
                 taskList.addTask(task);
@@ -163,6 +220,7 @@ public class Duke {
                 throw new DukeException("Unknown command");
             }
         }
+        taskList.writeToFile(PATH);
         System.out.println();
         return false;
     }
