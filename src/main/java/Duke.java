@@ -1,31 +1,13 @@
-import java.util.Arrays;
 import java.util.Scanner;
-
-import org.apache.commons.text.WordUtils;
 
 public class Duke {
 
-    private static final String LINE = "──────────────────────────────────────────\n";
     private static final String LOGO = " ____        _\n"
             + "|  _ \\ _   _| | _____\n"
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
     private static final String GREETING = "Hello! I'm Duke\nWhat can I do for you?";
-
-    /**
-     * Pretty prints an output string
-     *
-     * @param output The string representing the output.
-     */
-    public static void printMsg(String output) {
-        String[] lines = output.split("\n");
-        String newStr = Arrays.stream(lines).map(line ->
-                String.format("\t %s%s\n", line.replace(line.stripLeading(), ""),
-                        WordUtils.wrap(line, 40, "\n\t ", false)))
-                .reduce("", String::concat);
-        System.out.printf("\t%s%s\t%s%n", LINE, newStr, LINE);
-    }
 
     private final TaskList taskList;
 
@@ -41,7 +23,7 @@ public class Duke {
      */
     public void run() {
 
-        printMsg(String.format("%s%s", LOGO, GREETING));
+        IOParser.printMsg(String.format("%s%s", LOGO, GREETING));
 
         Scanner sc = new Scanner(System.in);
         boolean hasExited = false;
@@ -51,15 +33,34 @@ public class Duke {
             String input = sc.nextLine();
             switch (input.toLowerCase()) {
             case "bye":
-                printMsg("Bye. Hope to see you again soon!");
+                IOParser.printMsg("Bye. Hope to see you again soon!");
                 hasExited = true;
                 break;
             case "list":
-                printMsg(this.taskList.toString());
+                IOParser.printMsg(this.taskList.toString());
                 break;
             default:
+                String[] inputs = input.split(" ", 2);
+                String command = inputs[0].toLowerCase();
+                if (command.equals("mark") && inputs.length == 2 && inputs[1].matches("\\d+")) {
+                    int index = Integer.parseInt(inputs[1]) - 1;
+                    if (index < this.taskList.size() && index >= 0) {
+                        this.taskList.setDone(index, true);
+                        IOParser.printMsg(String.format("Nice! I've marked this task as done:\n %s",
+                                this.taskList.get(index)));
+                        break;
+                    }
+                } else if (command.equals("unmark") && inputs.length == 2 && inputs[1].matches("\\d+")) {
+                    int index = Integer.parseInt(inputs[1]) - 1;
+                    if (index < this.taskList.size() && index >= 0) {
+                        this.taskList.setDone(index, false);
+                        IOParser.printMsg(String.format("OK, I've marked this task as not done yet:\n %s",
+                                this.taskList.get(index)));
+                        break;
+                    }
+                }
                 this.taskList.addTask(input);
-                printMsg(String.format("Added task: %s", input));
+                IOParser.printMsg(String.format("Added task:\n %s", this.taskList.get(this.taskList.size() - 1)));
             }
         }
     }
