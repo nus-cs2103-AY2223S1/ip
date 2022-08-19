@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
  */
 public abstract class Task {
     protected static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern(
-            "d/M/yy HH:mm");
+            "d/M/y H:mm");
     protected final String description;
     protected boolean isDone;
 
