@@ -4,4 +4,8 @@ public class EventException extends CommandException {
     public EventException() {
         super("The description and time of event cannot be empty");
     }
+
+    public EventException(String error) {
+        super(error);
+    }
 }

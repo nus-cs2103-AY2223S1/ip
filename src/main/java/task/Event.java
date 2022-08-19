@@ -1,15 +1,27 @@
 package task;
 
-public class Event extends Task {
-    private String time;
+import exception.EventException;
 
-    public Event(String description, String time) {
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.LocalDate;
+
+public class Event extends Task {
+    private LocalDate time;
+
+    public Event(String description, String time) throws EventException {
         super(description);
-        this.time = time;
+        try {
+            this.time = LocalDate.parse(time);
+        } catch (DateTimeParseException error) {
+            throw new EventException("The time given is not a valid date. " +
+                    "Try to represent the time in yyyy-mm-dd format.");
+        }
     }
 
     @Override
     public String toString() {
-        return String.format("[E]%s (at: %s)", super.toString(), this.time);
+        return String.format("[E]%s (at: %s)", super.toString(),
+                this.time.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
     }
 }
