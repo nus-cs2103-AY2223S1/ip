@@ -17,8 +17,14 @@ public class Duke {
             if (input.equals("bye")) {
                 System.out.println(">>> Byebye! See you again soon!");
                 running = false;
+            } else if (input.equals("list")) {
+                for (int i = 0; i < count; i++) {
+                    System.out.println(i + 1 + ". " + history[i]);
+                }
             } else {
-                System.out.println(">>> " + input);
+                history[count] = input;
+                count++;
+                System.out.println("added: " + input);
             }
         }
     }
