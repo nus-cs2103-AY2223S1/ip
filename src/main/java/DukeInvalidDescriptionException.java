@@ -7,7 +7,7 @@ public class DukeInvalidDescriptionException extends DukeException {
     /**
      * Public constructor for a DukeEmptyDescriptionException.
      *
-     * @param message the message to be printed when a DukeEmptyDescriptionException is thrown and caught.
+     * @param message the message to be printed when a DukeInvalidDescriptionException is thrown and caught.
      */
     public DukeInvalidDescriptionException(String message) {
         super(message);
