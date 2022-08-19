@@ -10,6 +10,12 @@ public class MarkCommand extends Command {
     public static final String COMMAND_ID = "MARK";
     private final int targetIndex;
 
+    /**
+     * Constructor for MarkCommand which inherits Command
+     * @param targetIndex number on the list to be deleted
+     * @return an instance of MarkCommand
+     * @see Command
+     */
     public MarkCommand(int targetIndex) {
         super();
         this.targetIndex = targetIndex;

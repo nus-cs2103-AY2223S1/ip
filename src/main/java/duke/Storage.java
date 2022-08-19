@@ -32,6 +32,13 @@ public class Storage {
         return filePath.contains(".txt");
     }
 
+    /**
+     * Loads saved data from the target filename.txt to a TaskList instance.
+     * @return a TaskList instance with the loaded data from filename.txt
+     * @throws IOException
+     * @throws StorageOperationException
+     * @see TaskList
+     */
     public TaskList loadSavedData() throws IOException, StorageOperationException {
         if (!Files.exists(path) || !Files.isRegularFile(path)) {
             // Create a new file
@@ -49,6 +56,13 @@ public class Storage {
         }
     }
 
+    /**
+     * Writes data to targetfile.txt from taskList
+     * @param taskList
+     * @return a tasklist if needed
+     * @throws IOException
+     * @see TaskList
+     */
     public TaskList writeDataToFile(TaskList taskList) throws IOException {
         if (!Files.exists(path) || !Files.isRegularFile(path)) {
             // Create a new file

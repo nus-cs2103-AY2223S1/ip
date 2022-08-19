@@ -6,8 +6,8 @@ import java.util.List;
 import duke.DukeException;
 
 public class TaskList {
-    private static String NO_SUCH_INDEX = "No such index in the list, please try again.";
-    private static String NO_TASKS_LEFT = "List is empty, 0 items left !";
+    private static final String NO_SUCH_INDEX = "No such index in the list, please try again.";
+    private static final String NO_TASKS_LEFT = "List is empty, 0 items left !";
     private final List<Task> taskList;
 
 
@@ -23,6 +23,11 @@ public class TaskList {
         return String.format("%d. %s", id, task.toString());
     }
 
+    /**
+     * Get a list of tasks
+     * @return a task list
+     * @see Task
+     */
     public List<Task> getTaskList() {
         return this.taskList;
     }
@@ -35,6 +40,10 @@ public class TaskList {
         }
     }
 
+    /**
+     * Remove a task from list via id and outputs the status.
+     * @param id refers to the task number on the list.
+     */
     public void removeTaskFromList(int id) {
         try {
             if (id <= 0 || id > taskList.size()) {
@@ -51,6 +60,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Add a task to the list
+     * @param task task to be added to list
+     * @see Task
+     */
     public void addTaskToList(Task task) {
         try {
             this.taskList.add(task);
@@ -62,6 +76,9 @@ public class TaskList {
         }
     }
 
+    /**
+     * List all tasks as numbered list.
+     */
     public void listTasks() {
         if (taskList.isEmpty()) {
             System.out.println(NO_TASKS_LEFT);
@@ -78,6 +95,11 @@ public class TaskList {
         System.out.println(toPrint.substring(1) + "\n");
     }
 
+    /**
+     * Mark a task as done with regards to given task number.
+     * @param id refers to the task number on the list.
+     * @see Task
+     */
     public void markTaskAsDone(int id) {
         try {
             if (id <= 0 || id > taskList.size()) {
@@ -90,6 +112,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Mark a task as undone with regards to given task number.
+     * @param id refers to the task number on the list.
+     * @see Task
+     */
     public void markTaskAsUnDone(int id) {
         try {
             if (id <= 0 || id > taskList.size()) {
@@ -102,6 +129,10 @@ public class TaskList {
         }
     }
 
+    /**
+     * Get last added task output. Reccomended for testing purposes.
+     * @return output regarding to last action.
+     */
     public String getAddedTaskOutput() {
         Task lastAddedTask = new Task("", TaskType.TASK);
         if (!taskList.isEmpty()) {

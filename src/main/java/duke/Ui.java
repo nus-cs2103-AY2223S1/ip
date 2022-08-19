@@ -27,6 +27,9 @@ public class Ui {
         return line.trim().isEmpty() || line.contains("//");
     }
 
+    /**
+     * Start message of Duke
+     */
     public void startMessage() {
         System.out.println(GREETING);
     }

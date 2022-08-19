@@ -5,6 +5,11 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 
 public class DateHandler {
+    /**
+     * Configures a DateTimeFormatter
+     * @return a DateTimeFormatter instance
+     * @see DateTimeFormatterBuilder
+     */
     public static DateTimeFormatter getDateTimeFormatter() {
         DateTimeFormatterBuilder builder = new DateTimeFormatterBuilder();
         builder.appendOptional(DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"))
@@ -20,6 +25,12 @@ public class DateHandler {
         return builder.toFormatter();
     }
 
+    /**
+     * Convert dateString to LocalDateTime
+     * @param dateString
+     * @return a LocalDateTime object
+     * @see LocalDateTime
+     */
     static LocalDateTime parseDateString(String dateString) {
         LocalDateTime dateTime = LocalDateTime.parse(dateString, getDateTimeFormatter());
         return dateTime;

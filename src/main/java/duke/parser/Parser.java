@@ -21,9 +21,15 @@ import duke.task.Task;
 import duke.task.ToDo;
 
 public class Parser {
-    private static String NO_INDEX_SPECIFIED = "No index specified, try again";
-    private static String NO_TASK_NAME = "No task name defined, please try again";
+    private static final String NO_INDEX_SPECIFIED = "No index specified, try again";
+    private static final String NO_TASK_NAME = "No task name defined, please try again";
 
+    /**
+     * Parses the given String command based on a list of available commands.
+     * @param command full command from Scanner
+     * @return a Command instance
+     * @throws DukeException
+     */
     public static Command parse(String command) throws DukeException {
         DateTimeFormatter dateTimeFormatter = DateHandler.getDateTimeFormatter();
         String firstCommand = getFirstWord(command).toUpperCase();

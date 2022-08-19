@@ -9,11 +9,22 @@ public class Duke {
     private final Ui ui;
     private final Storage storage;
 
+    /**
+     * Constructor for Duke, creates a Ui and Storage instance.
+     * @return Duke object instance.
+     * @throws Storage.InvalidStorageFilePathException
+     * @throws IOException
+     * @see Ui
+     * @see Storage
+     */
     public Duke() throws Storage.InvalidStorageFilePathException, IOException {
         this.ui = new Ui(System.in, System.out);
         this.storage = new Storage();
     }
 
+    /**
+     * Function to start running duke.
+     */
     public void run() {
         ui.startMessage();
         boolean isExit = false;
@@ -30,6 +41,12 @@ public class Duke {
         }
     }
 
+    /**
+     * Start point for Duke
+     * @param args
+     * @throws Storage.InvalidStorageFilePathException
+     * @throws IOException
+     */
     public static void main(String[] args) throws Storage.InvalidStorageFilePathException, IOException {
         Duke duke = new Duke();
         duke.run();
