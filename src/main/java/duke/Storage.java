@@ -10,7 +10,7 @@ import duke.task.TaskList;
 
 public class Storage {
     public static final String DEFAULT_FILE_NAME = "todolist.txt";
-    public final Path path;
+    private final Path path;
 
     Storage() throws InvalidStorageFilePathException, IOException {
         this(DEFAULT_FILE_NAME);
