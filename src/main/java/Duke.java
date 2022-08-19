@@ -2,7 +2,7 @@ import java.lang.IllegalArgumentException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Candice {
+public class Duke {
 
     private static class Task {
         private boolean finished = false;

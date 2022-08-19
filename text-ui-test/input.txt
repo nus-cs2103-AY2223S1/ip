@@ -1,1 +1,22 @@
 todo read book
+deadline return book /by Sunday
+event kahoot night /at Next Thursday 9:00-11:00pm
+todo
+deadline
+event
+mark 1
+mark 2
+mark 3
+list
+unmark 1
+unmark 2
+unmark 3
+mark 0
+mark 4
+mark -1
+help
+deadline return book
+deadline return book /at Sunday
+event kahoot night
+event kahoot night /by Sunday
+bye

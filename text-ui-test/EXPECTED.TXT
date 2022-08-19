@@ -3,3 +3,37 @@ I'm here to help you track your tasks!
 I gotchu fam. Your task has been added:
   [T][ ] read book
 You have 1 task(s). Stop procrastinating bro.
+I gotchu fam. Your task has been added:
+  [D][ ] return book (by: Sunday)
+You have 2 task(s). Stop procrastinating bro.
+I gotchu fam. Your task has been added:
+  [E][ ] kahoot night (at: Next Thursday 9:00-11:00pm)
+You have 3 task(s). Stop procrastinating bro.
+EmptyTaskNameException: You can't just say todo without any description.
+EmptyTaskNameException: You can't just say deadline without any description.
+EmptyTaskNameException: You can't just say event without any description.
+Nice one lah, finally doing your work.
+[T][X] read book
+Nice one lah, finally doing your work.
+[D][X] return book (by: Sunday)
+Nice one lah, finally doing your work.
+[E][X] kahoot night (at: Next Thursday 9:00-11:00pm)
+Here are your tasks. You better start now:
+1.[T][X] read book
+2.[D][X] return book (by: Sunday)
+3.[E][X] kahoot night (at: Next Thursday 9:00-11:00pm)
+What happened bro.
+[T][ ] read book
+What happened bro.
+[D][ ] return book (by: Sunday)
+What happened bro.
+[E][ ] kahoot night (at: Next Thursday 9:00-11:00pm)
+java.lang.IllegalArgumentException: Wrong task number lah.
+java.lang.IllegalArgumentException: Wrong task number lah.
+java.lang.IllegalArgumentException: Wrong task number lah.
+UnknownActionException: I have no clue what you're trying to do bro.
+EmptyTimingException: You have not set a timing for your deadline buddy.
+InvalidFormattingException: Wrong formatting for a deadline bro.
+EmptyTimingException: You have not set a timing for your event buddy.
+InvalidFormattingException: Wrong formatting for a event bro.
+Bye bro. See you soon.
