@@ -2,23 +2,29 @@ import java.util.Arrays;
 
 public abstract class Task {
     private String taskType;
-    protected String description;
-    protected boolean isDone;
+    private String description;
+    private boolean isDone;
+    private String[] command;
 
-    public Task(String taskType, String[] args) throws DukeException {
+    public Task(String[] command, String taskType, boolean isDone, String[] args) throws DukeException {
+        this.command = command;
         this.taskType = taskType;
+        this.isDone = isDone;
         this.description = Arrays.stream(args).skip(1).reduce("", (x, y) -> x + " " + y);
-        this.isDone = false;
         if (this.description.isEmpty()) {
             throw new DukeException("☹ OOPS!!! The description of a " + this.taskType + " cannot be empty.");
         }
     }
 
-    private char getStatusIcon() {
+    public String[] getCommand() {
+        return command;
+    }
+
+    public char getStatusIcon() {
         return (isDone ? 'X' : ' '); // mark done task with X
     }
 
-    private char getTaskTypeIcon() {
+    public char getTaskTypeIcon() {
         return taskType.toUpperCase().charAt(0);
     }
 

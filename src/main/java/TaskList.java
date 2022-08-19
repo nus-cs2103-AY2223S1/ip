@@ -1,16 +1,21 @@
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class TaskList {
+    private Storage storage;
     private ArrayList<Task> taskList;
 
-    public TaskList() {
-        this.taskList = new ArrayList<Task>();
+    public TaskList() throws DukeException {
+        this.storage = new Storage();
+        this.taskList = storage.readFile();
     }
 
-    public void addItem(Task item) {
+    public void addItem(Task item) throws DukeException {
         taskList.add(item);
         System.out.println("OK, I've added the following task:\n  " + item);
         System.out.println("Now you have " + taskList.size() + " tasks in the list.");
+        storage.saveFile(taskList);
     }
 
     public void markItem(int index) throws DukeException {
@@ -20,6 +25,7 @@ public class TaskList {
         } catch (IndexOutOfBoundsException exception) {
             throw new DukeException("☹ OOPS!!! No such task exists :(");
         }
+        storage.saveFile(taskList);
     }
 
     public void unmarkItem(int index) throws DukeException {
@@ -29,6 +35,7 @@ public class TaskList {
         } catch (IndexOutOfBoundsException exception) {
             throw new DukeException("☹ OOPS!!! No such task exists :(");
         }
+        storage.saveFile(taskList);
     }
 
     public void deleteItem(int index) throws DukeException {
@@ -38,6 +45,7 @@ public class TaskList {
         } catch (IndexOutOfBoundsException exception) {
             throw new DukeException("☹ OOPS!!! No such task exists :(");
         }
+        storage.saveFile(taskList);
     }
 
     public void printList() {

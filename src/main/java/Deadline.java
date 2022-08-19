@@ -3,8 +3,8 @@ import java.util.Arrays;
 public class Deadline extends Task {
     private String by;
 
-    public Deadline(String[] args) throws DukeException {
-        super("deadline", Arrays.stream(args).takeWhile(x -> !x.contains("/")).toArray(String[]::new));
+    public Deadline(boolean isDone, String[] args) throws DukeException {
+        super(args, "deadline", isDone, Arrays.stream(args).takeWhile(x -> !x.contains("/")).toArray(String[]::new));
         String[] curArgs = Arrays.stream(args).dropWhile(x -> !x.contains("/")).toArray(String[]::new);
         if (curArgs.length == 0 || !curArgs[0].equals("/by")) {
             throw new DukeException("☹ OOPS!!! There is no /by argument for deadline :(");
