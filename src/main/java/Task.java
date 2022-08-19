@@ -26,6 +26,14 @@ public class Task {
     }
 
     /**
+     * Renames the Task to the input name.
+     * @param s New name of task
+     */
+    public void renameTask(String s) {
+        this.name = s;
+    }
+
+    /**
      * Checks if Task is completed
      * @return True if Task completed, False if not
      */
@@ -48,13 +56,9 @@ public class Task {
     }
 
     /**
-     * Renames the Task to the input name.
-     * @param s New name of task
+     * Returns a string representation of the Task instance.
+     * @return String representation of Task
      */
-    public void renameTask(String s) {
-        this.name = s;
-    }
-
     @Override
     public String toString() {
         if (this.isDone()) {
@@ -63,5 +67,4 @@ public class Task {
             return "[ ] " + this.getName();
         }
     }
-
 }
