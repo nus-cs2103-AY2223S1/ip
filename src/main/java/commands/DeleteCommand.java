@@ -15,10 +15,10 @@ public class DeleteCommand extends Command {
     Task taskToRemove = this.tasks.get(index);
     this.tasks.remove(index);
     System.out.println(
-        "I've successfully removed this task: \n" +
+        "I've successfully removed this task:\n" +
         taskToRemove +
         "\n" + 
-        "Do your own chores next time hunbun!"
+        "Do your own chores next time hunbun!\n"
         );
     return true;
   }

@@ -138,7 +138,7 @@ public class Duke {
 
       // Throw an error if there isn't a task with that index
       index = Integer.parseInt(splitInput[1]);
-      if (index >= tasks.size()) {
+      if (index > tasks.size()) {
         throw new DukeException("There isn't a task with that index !!!");
       }
 
@@ -153,6 +153,33 @@ public class Duke {
     {
       String[] newSplitInput = parseString(action, splitInput);
       Command command = new TaskCommand(newSplitInput, tasks);
+      return command.performAction();
+    } else if (action.equals("delete")) {
+
+      // Throw an error if the formatting for the 'delete' command is wrong
+      if (!(splitInput.length == 2)) {
+        throw new DukeException(
+            "Your formatting for the " + action + " command is wrong...sigh\n" +
+            "In future, please do: " + action + " <index of task>\n" +
+            "You can do it peepaw!"
+            );
+      }
+
+      Integer index;
+      // Throw an error if the character after the 'delete' string is not an integer
+      try {
+        index = Integer.parseInt(splitInput[1]);
+      } catch (NumberFormatException e) {
+        throw new DukeException("Index was not properly specified (has to be an integer) for your " + action + " command!");
+      }
+
+      // Throw an error if there isn't a task with that index
+      index = Integer.parseInt(splitInput[1]);
+      if (index > tasks.size()) {
+        throw new DukeException("There isn't a task with that index !!!");
+      }
+
+      Command command = new DeleteCommand(splitInput, tasks);
       return command.performAction();
     } else {
       throw new DukeException(
