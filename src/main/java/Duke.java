@@ -44,24 +44,65 @@ public class Duke {
             System.out.println("Bye. Hope to see you again!");
             return 0;
         } else if (s.equals("list")) {
-            for (int i = 0; i < db.size(); i++) {
-                System.out.println(i + 1 + ". " + db.get(i).toString());
-            }
-            return 1;
+            return this.list();
         } else if (userInput[0].equals("mark")) {
-            Task tmp = db.get(Integer.parseInt(userInput[1]) - 1);
-            tmp.setDone();
-            System.out.println("Nice! I've marked this task as done:");
-            System.out.println(tmp);
-            return 1;
+            return this.mark(userInput);
         } else if (userInput[0].equals("unmark")) {
-            Task tmp = db.get(Integer.parseInt(userInput[1]) - 1);
-            tmp.setUndone();
-            System.out.println("OK, I've marked this task as undone:");
-            System.out.println(tmp);
-            return 1;
+            return this.unmark(userInput);
         } else {
-            db.add(new Task(s));
+            return this.add(s);
+        }
+    }
+
+    /**
+     * Lists out all Tasks stored in Duke.
+     * @return 1 for successful execution
+     */
+    private int list() {
+        for (int i = 0; i < db.size(); i++) {
+            System.out.println(i + 1 + ". " + db.get(i).toString());
+        }
+        return 1;
+    }
+
+    /**
+     * Marks the input task as completed.
+     * @param userInput User input task number
+     * @return 1 on successfully execution
+     */
+    private int mark(String[] userInput) {
+        Task tmp = db.get(Integer.parseInt(userInput[1]) - 1);
+        tmp.setDone();
+        System.out.println("Nice! I've marked this task as done:");
+        System.out.println(tmp);
+        return 1;
+    }
+
+    /**
+     * Marks the input task as incomplete.
+     * @param userInput User input task number
+     * @return 1 on successfully execution
+     */
+    private int unmark(String[] userInput) {
+        Task tmp = db.get(Integer.parseInt(userInput[1]) - 1);
+        tmp.setUndone();
+        System.out.println("OK, I've marked this task as undone:");
+        System.out.println(tmp);
+        return 1;
+    }
+
+    private int add(String s) {
+        // Event
+        if (s.lastIndexOf("/at") != -1) {
+            return 1;
+
+        // Deadline
+        } else if (s.lastIndexOf("/by") != -1) {
+            return 1;
+
+        // Normal To-Do
+        } else {
+            db.add(new Todo(s));
             System.out.println("added: " + s);
             return 1;
         }
