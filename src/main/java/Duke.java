@@ -1,8 +1,13 @@
-import javax.swing.event.TreeWillExpandListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
 
 public class Duke {
     public static void main(String[] args) {
+
+        List<String> list = new ArrayList<>(); // to store list of inputs
+
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -25,11 +30,28 @@ public class Duke {
                 System.out.println(indent + "Bye. Hope to see you again soon!");
                 System.out.println(separator);
                 break;
-            } else {
+            } else if (input.equals("list")) {
                 System.out.println(separator);
-                System.out.println(indent + input);
+                listPrinter(list);
+                System.out.println(separator);
+            } else {
+                list.add(input);
+                System.out.println(separator);
+                System.out.println(indent + "added: " + input);
                 System.out.println(separator);
             }
         }
     }
+
+    static void listPrinter(List<String> list) {
+        String out = "";
+        int num = 1;
+        for (String x : list) {
+            out += "      ";
+            out += Integer.toString(num) + ". " + x + "\n";
+            num++;
+        }
+        System.out.println(out);
+    }
+
 }
