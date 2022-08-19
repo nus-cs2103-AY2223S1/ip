@@ -14,6 +14,7 @@ public class Duke {
         String a = sc.nextLine();
         String[] arr = new String[100];
         int[] status = new int[100];
+        String[] taskType = new String[100];
         int pos = 0;
 
         // if input received is anything but "bye" system will output what the user
@@ -24,9 +25,9 @@ public class Duke {
                 System.out.println("Here are the tasks in your list:");
                 for (int i = 1; i <= pos; i++) {
                     if (status[i - 1] == 0) {
-                        System.out.println(i + ". [ ] " + arr[i - 1]);
+                        System.out.println(i + ".[" + taskType[i - 1] + "][ ] " + arr[i - 1]);
                     } else {
-                        System.out.println(i + ". [X] " + arr[i - 1]);
+                        System.out.println(i + ".[" + taskType[i - 1] + "][X] " + arr[i - 1]);
                     }
                 }
                 a = sc.nextLine();
@@ -50,6 +51,45 @@ public class Duke {
 //                System.out.println(status[0]);
                 System.out.println("Nice! I've marked this task as done:");
                 System.out.println("[X] " + arr[c - 1]);
+                a = sc.nextLine();
+            } else if (a.contains("todo")) {
+                String task = a.substring(5);
+                arr[pos] = task;
+                status[pos] = 0;
+                taskType[pos] = "T";
+                pos++;
+                System.out.println("Got it. I've added this task:\n" +
+                        "[T][ ] " + task + "\n" +
+                        "Now you have " + pos + " tasks in the list.");
+                a = sc.nextLine();
+            } else if (a.contains("deadline")) {
+                String task = a.substring(9, a.lastIndexOf("/") - 1);
+                String day = a.substring(a.lastIndexOf("/by") + 4);
+//                System.out.println(task);
+//                System.out.println(day);
+                String overall = task + " (by: " + day + ")";
+//                System.out.println(overall);
+                arr[pos] = overall;
+                status[pos] = 0;
+                taskType[pos] = "D";
+                pos++;
+                System.out.println("Got it. I've added this task:\n" +
+                        "[D][ ] " + overall + "\n" +
+                        "Now you have " + pos + " tasks in the list.");
+                a = sc.nextLine();
+            } else if (a.contains("event")) {
+                String task = a.substring(6, a.lastIndexOf("/") - 1);
+                String time = a.substring(a.lastIndexOf("/at") + 4);
+//                System.out.println(time);
+                String overall = task + " (at: " + time + ")";
+//                System.out.println(overall);
+                arr[pos] = overall;
+                status[pos] = 0;
+                taskType[pos] = "E";
+                pos++;
+                System.out.println("Got it. I've added this task:\n" +
+                        "[E][ ] " + overall + "\n" +
+                        "Now you have " + pos + " tasks in the list.");
                 a = sc.nextLine();
             } else {
                 arr[pos] = a;
