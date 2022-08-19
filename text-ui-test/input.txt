@@ -1,0 +1,18 @@
+hello
+test
+todo
+todo hi
+deadline hi
+deadline hi /by
+deadline hi /by then
+event hi /at
+event hi /at now
+list
+mark 5
+mark 0
+mark -1
+unmark 1
+mark 1
+list
+unmark 1
+bye
