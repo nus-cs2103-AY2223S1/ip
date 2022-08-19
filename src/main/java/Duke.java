@@ -2,56 +2,92 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
-    static ArrayList<Task> taskList = new ArrayList<>();
-    public static void main(String[] args) {
-        Ui ui = new Ui();
-        ui.greeting();
+    enum CommandLine {
+        BYE,
+        LIST,
+        MARK,
+        UNMARK,
+        DEADLINE,
+        EVENT,
+        TODO,
+        DELETE,
+    }
 
-        Scanner sc = new Scanner(System.in);
-        String cmd = sc.nextLine();
-        while (!cmd.equals("bye")){
-            if (cmd.equals("list")) {
+    static ArrayList<Task> taskList = new ArrayList<>();
+    static Ui ui = new Ui();
+
+    public static boolean doesCommandExist(String cmd) {
+        return cmd.equals("list") || cmd.equals("mark")
+                || cmd.equals("unmark")  || cmd.equals("deadline")  || cmd.equals("event")
+                || cmd.equals("todo")  || cmd.equals("delete") ;
+    }
+    public static void detectCommand(CommandLine commandLine, String cmd) {
+        switch (commandLine) {
+            case LIST:
                 ui.list(taskList);
-            } else if (cmd.split(" ")[0].equals("mark")) {
+                break;
+            case MARK:
                 try {
                     Commands.mark(cmd, taskList);
                 } catch (DukeException e) {
                     ui.errorMessage(e);
                 }
-            } else if (cmd.split(" ")[0].equals("unmark")) {
+                break;
+            case UNMARK:
                 try {
                     Commands.unmark(cmd, taskList);
                 } catch (DukeException e) {
                     ui.errorMessage(e);
                 }
-            } else if (cmd.split(" ")[0].equals("deadline")){
+                break;
+            case DEADLINE:
                 try {
                     Commands.deadline(cmd, taskList);
                 } catch (DukeException e) {
                     ui.errorMessage(e);
                 }
-            } else if (cmd.split(" ")[0].equals("event")){
+                break;
+            case EVENT:
                 try {
                     Commands.event(cmd, taskList);
                 } catch (DukeException e) {
                     ui.errorMessage(e);
                 }
-            } else if (cmd.split(" ")[0].equals("todo")){
-                    try {
-                        Commands.toDo(cmd, taskList);
-                    } catch (DukeException e) {
-                        ui.errorMessage(e);
-                    }
-            } else if (cmd.split(" ")[0].equals("delete")) {
+                break;
+            case TODO:
+                try {
+                    Commands.toDo(cmd, taskList);
+                } catch (DukeException e) {
+                    ui.errorMessage(e);
+                }
+                break;
+            case DELETE:
                 try {
                     Commands.delete(cmd, taskList);
                 } catch (DukeException e) {
                     ui.errorMessage(e);
                 }
+                break;
+            default:
+                ui.commandDoesNotExist();
+                break;
+        }
+    }
+
+    public static void main(String[] args) {
+        ui.greeting();
+
+        Scanner sc = new Scanner(System.in);
+        String cmd = sc.nextLine();
+
+        while (!cmd.equals("bye")){
+            String cmdLine = cmd.split(" ")[0];
+            if (doesCommandExist(cmdLine)) {
+                CommandLine commandLine = CommandLine.valueOf(cmdLine.toUpperCase());
+                detectCommand(commandLine, cmd);
             } else {
                 ui.commandDoesNotExist();
             }
-
             cmd = sc.nextLine();
         }
         ui.exit();
