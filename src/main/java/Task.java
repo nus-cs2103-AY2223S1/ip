@@ -1,9 +1,16 @@
 public class Task {
+
+    enum Tag {
+        T,
+        E,
+        D
+    }
+
     protected String description;
-    protected String tag;
+    protected Tag tag;
     protected boolean isDone;
 
-    public Task(String description, String tag) {
+    public Task(String description, Tag tag) {
         this.description = description;
         this.tag = tag;
         this.isDone = false;
