@@ -1,4 +1,5 @@
 import java.io.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -19,7 +20,7 @@ public class Duke {
                 } else if (words[0].equals("E")) {
                     newTask = new Event(words[2], words[3]);
                 } else {
-                    newTask = new Deadline(words[2], words[3]);
+                    newTask = new Deadline(words[2], LocalDate.parse(words[3]));
                 }
                 if (words[1].equals("1")) {
                     newTask.isDone = true;
@@ -85,7 +86,8 @@ public class Duke {
                             deadline.append(" ");
                             deadline.append(words[b]);
                         }
-                        tasks.add(i, new Deadline(task.toString(), deadline.toString()));
+                        LocalDate d1 = LocalDate.parse(deadline);
+                        tasks.add(i, new Deadline(task.toString(), d1));
                         i++;
                         System.out.println("Got it. I've added this task:");
                         System.out.println(tasks.get(i-1));
