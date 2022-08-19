@@ -33,7 +33,7 @@ public class Duke {
                 String s = scan.nextLine();
                 int indexOfSpace = s.indexOf(' ');
                 isMultipleWords = indexOfSpace > -1;
-                firstWord = "";
+                firstWord = s;
                 restWord = "";
                 if (isMultipleWords) {
                     firstWord = s.substring(0, indexOfSpace);
@@ -53,26 +53,39 @@ public class Duke {
                         count++;
                     }
                 } else {
-                    if (isMultipleWords && firstWord.equals("mark")) {
+                    if (firstWord.equals("mark")) {
+                        if (!isMultipleWords) {
+                            throw new DukeException("Index of task to mark required");
+                        }
                         int index = Integer.parseInt(restWord) - 1; //array starts from 0
                         Task temp = log.get(index);
                         temp.Mark();
                         System.out.println("This task is now done: \n" + temp);
-                    } else if (isMultipleWords && firstWord.equals("unmark")) {
+                    } else if (firstWord.equals("unmark")) {
+                        if (!isMultipleWords) {
+                            throw new DukeException("Index of task to unmark required");
+                        }
                         int index = Integer.parseInt(restWord) - 1; //array starts from 0
                         Task temp = log.get(index);
                         temp.Unmark();
                         System.out.println("This task is now not done: \n" + temp);
+                    } else if (firstWord.equals("delete")) {
+                        if (!isMultipleWords) {
+                            throw new DukeException("Index of task to delete required");
+                        }
+                        Task temp = log.get(Integer.parseInt(restWord) - 1);
+                        log.remove(Integer.parseInt(restWord) - 1);
+                        System.out.println("This task is now removed: \n" + temp);
                     } else {
                         if (s.equals("todo") || firstWord.equals("todo")) {
                             log.add(new Todo(restWord, false));
                             System.out.println("added todo: " + restWord);
-                        } else if (isMultipleWords && firstWord.equals("deadline") && restWord.contains("/by")) {
+                        } else if (firstWord.equals("deadline") && restWord.contains("/by")) {
                             String by = dateFinder(restWord, "/by");
                             String name = nameFinder(restWord, "/by");
                             log.add(new Deadline(name, false, by));
                             System.out.println("added deadline: " + name);
-                        } else if (isMultipleWords && firstWord.equals("event") && restWord.contains("/at")) {
+                        } else if (firstWord.equals("event") && restWord.contains("/at")) {
                             String at = dateFinder(restWord, "/at");
                             String name = nameFinder(restWord, "/at");
                             log.add(new Event(name, false, at));
@@ -84,6 +97,8 @@ public class Duke {
                 }
             } catch (DukeException e) {
                 System.out.println("Error occurred " + e);
+            } catch (NumberFormatException e) {
+                System.out.println("Error occurred: Could not identify index");
             } finally {
                 System.out.println("--------------------------------------");
             }
