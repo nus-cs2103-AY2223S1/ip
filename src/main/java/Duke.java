@@ -2,7 +2,7 @@ import java.util.Scanner;
 public class Duke {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        System.out.println("What are your commands sir: ");
+        System.out.println("What are your commands sir:");
         String[] arr = new String[100];
         char[] markArr = new char[100];
         char[] eventTypeArr = new char[100];
@@ -27,13 +27,13 @@ public class Duke {
 //                    System.out.println(str.substring(5));
                     int j = Integer.valueOf(str.substring(5));
                     markArr[j] = 'X';
-                    System.out.println("Nice! I've marked this task as done: ");
+                    System.out.println("Nice! I've marked this task as done:");
                     System.out.println("List " + j + ". [" + eventTypeArr[j] + "][" + markArr[j] + "] " + arr[j]);
 
                 } else if (str.startsWith("unmark")) {
                     int j = Integer.valueOf(str.substring(7));
                     markArr[j] = ' ';
-                    System.out.println("Got it. I've mark this task as not done: ");
+                    System.out.println("Got it. I've mark this task as not done:");
                     System.out.println("List " + j + ". [" + eventTypeArr[j] + "][" + markArr[j] + "] " + arr[j]);
 
                 } else if (str.startsWith("todo")) {
@@ -41,7 +41,7 @@ public class Duke {
                     arr[i] = str;
                     markArr[i] = ' ';
                     eventTypeArr[i] = 'T';
-                    System.out.println("Got it. I've added this task: ");
+                    System.out.println("Got it. I've added this task:");
                     System.out.println("List " + i + ". [" + eventTypeArr[i] + "][" + markArr[i] + "] " + arr[i]);
                     i++;
 
@@ -50,7 +50,7 @@ public class Duke {
                     arr[i] = str.substring(0, str.indexOf('/')) + '(' + str.substring(str.indexOf('/') + 1) + ')';
                     markArr[i] = ' ';
                     eventTypeArr[i] = 'D';
-                    System.out.println("Got it. I've added this task: ");
+                    System.out.println("Got it. I've added this task:");
                     System.out.println("List " + i + ". [" + eventTypeArr[i] + "][" + markArr[i] + "] " + arr[i]);
                     i++;
 
@@ -59,12 +59,12 @@ public class Duke {
                     arr[i] = str.substring(0, str.indexOf('/')) + '(' + str.substring(str.indexOf('/') + 1) + ')';
                     markArr[i] = ' ';
                     eventTypeArr[i] = 'E';
-                    System.out.println("Got it. I've added this task: ");
+                    System.out.println("Got it. I've added this task:");
                     System.out.println("List " + i + ". [" + eventTypeArr[i] + "][" + markArr[i] + "] " + arr[i]);
                     i++;
 
                 } else {
-                    System.out.println("Storing this text in the list (type unspecified): ");
+                    System.out.println("Storing this text in the list (type unspecified):");
                     arr[i] = str;
                     markArr[i] = ' ';
                     eventTypeArr[i] = '?';
@@ -74,12 +74,12 @@ public class Duke {
             }
 
         }
-
-        String logo = " ____        _        \n"
-                    + "|  _ \\ _   _| | _____ \n"
-                    + "| | | | | | | |/ / _ \\\n"
-                    + "| |_| | |_| |   <  __/\n"
-                    + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Bye from\n" + logo);
+//
+//        String logo = " ____        _        \n"
+//                    + "|  _ \\ _   _| | _____ \n"
+//                    + "| | | | | | | |/ / _ \\\n"
+//                    + "| |_| | |_| |   <  __/\n"
+//                    + "|____/ \\__,_|_|\\_\\___|\n";
+//        System.out.println("Bye from\n" + logo);
     }
 }
