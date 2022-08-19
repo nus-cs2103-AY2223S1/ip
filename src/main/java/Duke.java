@@ -1,11 +1,11 @@
-
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 public class Duke {
     private static String WELCOME_MESSAGE =  "Hello! I'm Duke\n" + "What can I do for you?";
     private static String GOODBYE_MESSAGE =  "Bye. Hope to see you again soon!";
-    private ArrayList<Task> tasks = new ArrayList<>();
+    private List<Task> tasks = Task.loadSavedTasks();
 
     private int getNumTasks() {
         return this.tasks.size();
@@ -106,6 +106,8 @@ public class Duke {
                     );
                 break;
         }
+
+        Task.saveTaskList(this.tasks);
     }
 
     /**

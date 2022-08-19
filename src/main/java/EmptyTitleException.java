@@ -4,4 +4,3 @@ public class EmptyTitleException extends InvalidCommandException {
     }
 }
 
-
