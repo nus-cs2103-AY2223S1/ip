@@ -1,13 +1,17 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 /**
  * Event is a Task that starts at a specific time and ends at a specific time.
  */
 public class Event extends Task {
     public final static DukeException emptyDescription = new DukeException("Description of Event cannot be empty!");
     public final static DukeException wrongFormat =
-            new DukeException("Wrong format for Event!\n    Should be 'event <description> /at <date>'.");
+            new DukeException("Wrong format for Event!\n    Should be 'event <description> /at YYYY-MM-DD'.");
 
     /** Date of the event. */
-    private final String date;
+    private final LocalDate date;
 
     /**
      * Private constructor for an event, with a description and date.
@@ -16,7 +20,7 @@ public class Event extends Task {
      * @param description Description of an event.
      * @param date        Date of an event.
      */
-    private Event(String description, String date) {
+    private Event(String description, LocalDate date) {
         super(description);
         this.date = date;
     }
@@ -40,7 +44,13 @@ public class Event extends Task {
         }
         String description = split[0];
         String date = split[1];
-        return new Event(description, date);
+        LocalDate localDate;
+        try {
+            localDate = LocalDate.parse(date);
+        } catch (DateTimeParseException e) {
+            throw DukeException.invalidDate;
+        }
+        return new Event(description, localDate);
     }
 
     /**
@@ -50,6 +60,8 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[E]%s (at: %s)", super.toString(), this.date);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yy");
+        String date = this.date.format(formatter);
+        return String.format("[E]%s (at: %s)", super.toString(), date);
     }
 }
