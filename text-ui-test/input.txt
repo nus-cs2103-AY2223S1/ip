@@ -1,4 +1,16 @@
-todo borrow book
+todo read book
+todo
+event bday party /at 8/14
+event
+event bday party /at 8/14 move-in /at 8/30
 deadline return book /by Sunday
-event project meeting /at Mon 2-4pm
+deadline
+mark 0
+mark 1
+unmark 1
+unmark 0
+delete -1
+delete 1
+list
+blah
 
