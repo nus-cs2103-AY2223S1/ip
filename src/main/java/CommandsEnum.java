@@ -4,4 +4,7 @@ public enum CommandsEnum {
     mark,
     unmark,
     delete,
+    todo,
+    deadline,
+    event,
 }
