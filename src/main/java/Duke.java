@@ -21,12 +21,6 @@ public class Duke {
         System.out.println(divider);
     }
     public static void main(String[] args) {
-
-        System.out.println("  _  __                    \n" +
-                " | |/ /__ _ _ __ ___ _ __  \n" +
-                " | ' // _` | '__/ _ \\ '_ \\ \n" +
-                " | . \\ (_| | | |  __/ | | |\n" +
-                " |_|\\_\\__,_|_|  \\___|_| |_|\n");
         System.out.println("Hello I'm Karen. What do you want??\n" + divider);
         Scanner input = new Scanner(System.in);
         while (true) {
