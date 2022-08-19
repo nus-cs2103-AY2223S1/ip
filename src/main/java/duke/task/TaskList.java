@@ -99,4 +99,9 @@ public class TaskList {
             System.out.println(e);
         }
     }
+
+    public String getAddedTaskOutput(Task task) {
+        return String.format("Got it. I've added this task:\n  %s\n%s\n",
+                task.toString(), getItemsLeft());
+    }
 }
