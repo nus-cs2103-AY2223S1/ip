@@ -41,8 +41,8 @@ public class TaskList {
                 throw new DukeException(NO_SUCH_INDEX);
             }
 
-            Task taskToRemove = this.taskList.get(id-1);
-            this.taskList.remove(id-1);
+            Task taskToRemove = this.taskList.get(id - 1);
+            this.taskList.remove(id - 1);
             String taskRemovedOutput = String.format("Noted. I've removed this task:\n %s\n%s\n",
                     taskToRemove.toString(), getItemsLeft());
             System.out.println(taskRemovedOutput);
@@ -71,7 +71,7 @@ public class TaskList {
 
         for (int i = 0; i < taskList.size(); i++) {
             Task task = taskList.get(i);
-            String toConcat = handleTaskOutput(task, i+1);
+            String toConcat = handleTaskOutput(task, i + 1);
             toPrint = String.format("%s\n%s", toPrint, toConcat);
         }
 
@@ -83,7 +83,7 @@ public class TaskList {
             if (id <= 0 || id > taskList.size()) {
                 throw new DukeException(NO_SUCH_INDEX);
             }
-            Task targetTask = taskList.get(id-1);
+            Task targetTask = taskList.get(id - 1);
             targetTask.markAsDone(false);
         } catch (Exception e) {
             System.out.println(e);
@@ -95,7 +95,7 @@ public class TaskList {
             if (id <= 0 || id > taskList.size()) {
                 throw new DukeException(NO_SUCH_INDEX);
             }
-            Task targetTask = taskList.get(id-1);
+            Task targetTask = taskList.get(id - 1);
             targetTask.markAsUnDone();
         } catch (Exception e) {
             System.out.println(e);

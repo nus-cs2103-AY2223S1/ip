@@ -1,9 +1,9 @@
 package duke;
 
+import java.io.IOException;
+
 import duke.command.Command;
 import duke.parser.Parser;
-
-import java.io.IOException;
 
 public class Duke {
     private final Ui ui;

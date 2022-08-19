@@ -1,16 +1,24 @@
 package duke.parser;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import duke.DateHandler;
 import duke.DukeException;
-import duke.command.*;
+import duke.command.Command;
+import duke.command.DeadlineCommand;
+import duke.command.DeleteCommand;
+import duke.command.EventCommand;
+import duke.command.ExitCommand;
+import duke.command.InvalidCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.ToDoCommand;
+import duke.command.UnMarkCommand;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
-
-import java.text.DateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class Parser {
     private static String NO_INDEX_SPECIFIED = "No index specified, try again";
@@ -24,66 +32,86 @@ public class Parser {
         String mainTask;
 
         switch (firstCommand) {
-            case ListCommand.COMMAND_ID:
-                return new ListCommand();
-            case ExitCommand.COMMAND_ID:
-                return new ExitCommand();
-            case DeleteCommand.COMMAND_ID:
-                if (command.length() < 8) throw new DukeException(NO_INDEX_SPECIFIED);
+        case ListCommand.COMMAND_ID:
+            return new ListCommand();
+        case ExitCommand.COMMAND_ID:
+            return new ExitCommand();
+        case DeleteCommand.COMMAND_ID:
+            if (command.length() < 8) {
+                throw new DukeException(NO_INDEX_SPECIFIED);
+            }
 
-                targetIndex = Integer.parseInt(command.substring(7));
-                return new DeleteCommand(targetIndex);
-            case MarkCommand.COMMAND_ID:
-                if (command.length() < 6) throw new DukeException(NO_INDEX_SPECIFIED);
+            targetIndex = Integer.parseInt(command.substring(7));
+            return new DeleteCommand(targetIndex);
+        case MarkCommand.COMMAND_ID:
+            if (command.length() < 6) {
+                throw new DukeException(NO_INDEX_SPECIFIED);
+            }
 
-                targetIndex = Integer.parseInt(command.substring(5));
-                return new MarkCommand(targetIndex);
-            case UnMarkCommand.COMMAND_ID:
-                if (command.length() < 8) throw new DukeException(NO_INDEX_SPECIFIED);
+            targetIndex = Integer.parseInt(command.substring(5));
+            return new MarkCommand(targetIndex);
+        case UnMarkCommand.COMMAND_ID:
+            if (command.length() < 8) {
+                throw new DukeException(NO_INDEX_SPECIFIED);
+            }
 
-                targetIndex = Integer.parseInt(command.substring(7));
-                return new UnMarkCommand(targetIndex);
-            case ToDoCommand.COMMAND_ID:
-                if (command.length() < 6) throw new DukeException(NO_TASK_NAME);
+            targetIndex = Integer.parseInt(command.substring(7));
+            return new UnMarkCommand(targetIndex);
+        case ToDoCommand.COMMAND_ID:
+            if (command.length() < 6) {
+                throw new DukeException(NO_TASK_NAME);
+            }
 
-                String taskName = command.substring(5);
+            String taskName = command.substring(5);
 
-                if (taskName.isEmpty()) throw new DukeException(NO_TASK_NAME);
+            if (taskName.isEmpty()) {
+                throw new DukeException(NO_TASK_NAME);
+            }
 
-                Task taskToAdd = new ToDo(taskName);
-                return new ToDoCommand(taskToAdd);
-            case DeadlineCommand.COMMAND_ID:
-                lastIdx = command.lastIndexOf("/by");
-                if (lastIdx == -1)
-                    throw new DukeException("Please follow the format <taskname> /by <datetime>");
+            Task taskToAdd = new ToDo(taskName);
+            return new ToDoCommand(taskToAdd);
+        case DeadlineCommand.COMMAND_ID:
+            lastIdx = command.lastIndexOf("/by");
+            if (lastIdx == -1) {
+                throw new DukeException("Please follow the format <taskname> /by <datetime>");
+            }
 
-                mainTask = command.substring(9, lastIdx);
-                if (mainTask.isEmpty()) throw new DukeException(NO_TASK_NAME);
+            mainTask = command.substring(9, lastIdx);
+            if (mainTask.isEmpty()) {
+                throw new DukeException(NO_TASK_NAME);
+            }
 
-                String doneBy = command.substring(lastIdx + 4);
-                if (doneBy.isEmpty()) throw new DukeException("No deadline given, please try again");
+            String doneBy = command.substring(lastIdx + 4);
+            if (doneBy.isEmpty()) {
+                throw new DukeException("No deadline given, please try again");
+            }
 
-                LocalDateTime doneByDate = LocalDateTime.parse(doneBy, dateTimeFormatter);
-                taskToAdd = new Deadline(mainTask, doneByDate);
+            LocalDateTime doneByDate = LocalDateTime.parse(doneBy, dateTimeFormatter);
+            taskToAdd = new Deadline(mainTask, doneByDate);
 
-                return new DeadlineCommand(taskToAdd);
-            case EventCommand.COMMAND_ID:
-                lastIdx = command.lastIndexOf("/at");
-                if (lastIdx == -1)
-                    throw new DukeException("Please follow the format <taskname> /at <date and time>");
+            return new DeadlineCommand(taskToAdd);
+        case EventCommand.COMMAND_ID:
+            lastIdx = command.lastIndexOf("/at");
+            if (lastIdx == -1) {
+                throw new DukeException("Please follow the format <taskname> /at <date and time>");
+            }
 
-                mainTask = command.substring(6, lastIdx);
-                if (mainTask.isEmpty()) throw new DukeException(NO_TASK_NAME);
+            mainTask = command.substring(6, lastIdx);
+            if (mainTask.isEmpty()) {
+                throw new DukeException(NO_TASK_NAME);
+            }
 
-                String doneAt = command.substring(lastIdx + 4);
-                if (doneAt.isEmpty()) throw new DukeException("No date given, please try again");
+            String doneAt = command.substring(lastIdx + 4);
+            if (doneAt.isEmpty()) {
+                throw new DukeException("No date given, please try again");
+            }
 
-                LocalDateTime doneAtDate = LocalDateTime.parse(doneAt, dateTimeFormatter);
-                taskToAdd = new Event(mainTask, doneAtDate);
+            LocalDateTime doneAtDate = LocalDateTime.parse(doneAt, dateTimeFormatter);
+            taskToAdd = new Event(mainTask, doneAtDate);
 
-                return new EventCommand(taskToAdd);
-            default: // Invalid Command Handler
-                return new InvalidCommand();
+            return new EventCommand(taskToAdd);
+        default: // Invalid Command Handler
+            return new InvalidCommand();
         }
     }
 

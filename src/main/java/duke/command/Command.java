@@ -1,11 +1,11 @@
 package duke.command;
 
+import java.io.IOException;
+
 import duke.DukeException;
 import duke.Storage;
 import duke.Ui;
 import duke.task.TaskList;
-
-import java.io.IOException;
 
 public class Command {
     public void execute(TaskList taskList, Ui ui, Storage storage) throws IOException, DukeException {

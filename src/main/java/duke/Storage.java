@@ -1,12 +1,12 @@
 package duke;
 
-import duke.task.TaskList;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+
+import duke.task.TaskList;
 
 public class Storage {
     public static final String DEFAULT_FILE_NAME = "todolist.txt";
@@ -19,7 +19,8 @@ public class Storage {
     Storage(String filePath) throws InvalidStorageFilePathException, IOException {
         this.path = Paths.get(System.getProperty("user.dir"), filePath);
         if (!validPath(filePath)) {
-            throw new InvalidStorageFilePathException("duke.task.Storage file needs to end with .txt, please try again.");
+            throw new InvalidStorageFilePathException(
+                    "duke.task.Storage file needs to end with .txt, please try again.");
         }
         if (!Files.exists(path) || !Files.isRegularFile(path)) {
             // Create a new file
@@ -63,7 +64,7 @@ public class Storage {
             taskList.getTaskList().forEach((task) -> {
                 sb.append(StorageWriter.writeSingleTask(task) + "\n");
             });
-            String toWrite = sb.subSequence(0, sb.length()-1).toString();
+            String toWrite = sb.subSequence(0, sb.length() - 1).toString();
             byte[] byteString = toWrite.getBytes();
             Files.write(this.path, byteString);
             return taskList;

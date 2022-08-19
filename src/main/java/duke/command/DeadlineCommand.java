@@ -1,11 +1,11 @@
 package duke.command;
 
+import java.io.IOException;
+
 import duke.Storage;
 import duke.Ui;
 import duke.task.Task;
 import duke.task.TaskList;
-
-import java.io.IOException;
 
 public class DeadlineCommand extends Command {
     public static final String COMMAND_ID = "DEADLINE";
