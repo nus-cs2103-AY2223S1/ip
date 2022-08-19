@@ -1,0 +1,12 @@
+hi
+todo read book
+event aiesec /19th august
+deadline ps0 /20th august
+todo return book
+mark 1
+mark 3
+list
+unmark 2
+unmark 3
+list
+bye

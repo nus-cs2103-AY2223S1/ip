@@ -10,15 +10,16 @@ public class Alpha {
 
     public static void main(String[] args) {
         welcomeMessage();
-        enterMessage();
+        Scanner in = new Scanner(System.in);
+
+        enterMessage(in);
     }
 
     private static void welcomeMessage() {
         System.out.println("\n-----------------\n" + ANSI_BLUE + "Hello, I'm ALPHA!" + ANSI_RESET + "\n-----------------");
     }
 
-    private static void enterMessage() {
-        Scanner in = new Scanner(System.in);
+    private static void enterMessage(Scanner in) {
         String input = in.nextLine();
         String[] inputTokens = input.split(" ");
         switch (inputTokens[0]) {
@@ -26,7 +27,7 @@ public class Alpha {
                 Task t = new Todo(input, "T");
                 todo.add(t);
                 System.out.println(ANSI_YELLOW + ">> " + "added: " + input + ANSI_RESET);
-                enterMessage();
+                enterMessage(in);
                 break;
             }
             case "event": {
@@ -34,7 +35,7 @@ public class Alpha {
                 Task t = new Event(input.substring(6, separator - 1), input.substring(separator + 1), "E");
                 todo.add(t);
                 System.out.println(ANSI_YELLOW + ">> " + "added: " + input + ANSI_RESET);
-                enterMessage();
+                enterMessage(in);
                 break;
             }
             case "deadline": {
@@ -42,19 +43,19 @@ public class Alpha {
                 Task t = new Deadline(input.substring(9, separator - 1), input.substring(separator + 1), "D");
                 todo.add(t);
                 System.out.println(ANSI_YELLOW + ">> " + "added: " + input + ANSI_RESET);
-                enterMessage();
+                enterMessage(in);
                 break;
             }
             case "mark": {
                 todo.get(Integer.parseInt(inputTokens[1]) - 1).changeStatus(true);
                 System.out.println(ANSI_YELLOW + ">> " + "marked: Task " + inputTokens[1] + ANSI_RESET);
-                enterMessage();
+                enterMessage(in);
                 break;
             }
             case "unmark": {
                 todo.get(Integer.parseInt(inputTokens[1]) - 1).changeStatus(false);
                 System.out.println(ANSI_YELLOW + ">> " + "unmarked: Task " + inputTokens[1] + ANSI_RESET);
-                enterMessage();
+                enterMessage(in);
                 break;
             }
             case "list": {
@@ -74,7 +75,7 @@ public class Alpha {
                     }
                     count++;
                 }
-                enterMessage();
+                enterMessage(in);
                 break;
             }
             case "bye": {
@@ -84,7 +85,7 @@ public class Alpha {
             }
             default: {
                 System.out.println(ANSI_RED + ">> " + "Invalid Input " + ANSI_RESET);
-                enterMessage();
+                enterMessage(in);
             }
         }
     }
