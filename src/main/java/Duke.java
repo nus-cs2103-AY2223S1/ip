@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 
 public class Duke {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DukeException, IllegalArgumentException {
 
         List<Task> list = new ArrayList<>(); // to store list of inputs
 
@@ -20,45 +20,102 @@ public class Duke {
         String input = "";
 
         while (true) {
-            input = sc.nextLine();
 
-            if (input.equals("bye")) {
-                System.out.println("Bye. Hope to see you again soon!");
-                break;
-            } else if (input.equals("list")) {
-                System.out.println("Here are the tasks in your list:");
-                taskPrinter(list);
-            } else if (input.startsWith("mark")) {
-                int index = Integer.parseInt(input.replaceAll("mark","")
-                        .trim()) - 1;
-                list.get(index).Done();
-                System.out.println("Nice! I've marked this task as done:");
-                System.out.println(list.get(index).toString());
-            } else if (input.startsWith("unmark")) {
-                int index = Integer.parseInt(input.replaceAll("unmark", "")
-                        .trim()) - 1;
-                list.get(index).unDone();
-                System.out.println("Ok, I've marked this task as not done yet:");
-                System.out.println(list.get(index).toString());
-            } else {
-                Task task;
-                if (input.startsWith("todo")) {
-                    task = new ToDo(input.replaceAll("todo","").trim());
-                } else if (input.startsWith("event")) {
-                    String[] arr = input.split("/");
-                    // check if split into 2 strings only?
-                    task = new Event(arr[0].replaceAll("event","").trim(), arr[1].replaceAll("at","")
-                            .trim());
-                } else  {
-                    input.replaceAll("deadline","").trim();
-                    String[] arr = input.split("/");
-                    task = new Deadline(arr[0].replaceAll("deadline","").trim(), arr[1].replaceAll("by","")
-                            .trim());
+            try {
+                input = sc.nextLine();
+
+                if (input.equals("bye")) {
+                    System.out.println("Bye. Hope to see you again soon!");
+                    break;
+                } else if (input.equals("list")) {
+                    System.out.println("Here are the tasks in your list:");
+                    taskPrinter(list);
+                } else if (input.startsWith("mark")) {
+                    String in = input.replaceAll("mark", "").trim();
+                    if (in.isEmpty()) {
+                        throw new TaskStatusException("Please provide task number");
+                    } else {
+                        int index = Integer.parseInt(in) - 1;
+                        if (index > list.size() || index < 0){
+                            throw new TaskStatusException("Please provide correct task number");
+                        } else {
+                            list.get(index).Done();
+                            System.out.println("Nice! I've marked this task as done:");
+                            System.out.println(list.get(index).toString());
+                        }
+                    }
+                } else if (input.startsWith("unmark")) {
+                    String in = input.replaceAll("unmark", "").trim();
+                    if (in.isEmpty()) {
+                        throw new TaskStatusException("Please provide task number");
+                    } else {
+                        int index = Integer.parseInt(in) - 1;
+                        if (index > list.size() || index < 0){
+                            throw new TaskStatusException("Please provide correct task number");
+                        } else {
+                            list.get(index).unDone();
+                            System.out.println("Ok, I've marked this task as not done yet:");
+                            System.out.println(list.get(index).toString());
+                        }
+                    }
+                } else {
+                    Task task;
+                    if (input.startsWith("todo")) {
+                        String s = input;
+                        if (s.replaceAll("todo","").trim().isEmpty()) {
+                            throw new IncompleteTaskNameException("Please provide task name");
+                        } else {
+                            task = new ToDo(input.replaceAll("todo", "").trim());
+                        }
+                    } else if (input.startsWith("event")) {
+                        String[] arr = input.split("/");
+                        if (arr.length != 2) {
+                            throw new IllegalArgumentException("Please write your task in the proper format");
+                        } else {
+                            String name = arr[0].replaceAll("event","").trim();
+                            String date = arr[1];
+                            if (name.isEmpty()) {
+                                throw new IncompleteTaskNameException("Please provide task name");
+                            } else if (date.isEmpty()) {
+                                throw new MissingDateException("Please provide a time for your task");
+                            } else if (!date.startsWith("at")) {
+                                throw new IllegalArgumentException("Event time must be specified with at");
+                                } else {
+                                task = new Event(arr[0].replaceAll("event", "").trim(), arr[1].replaceAll("at", "")
+                                        .trim());
+                            }
+                        }
+                    } else if (input.startsWith("deadline")) {
+                        String[] arr = input.split("/");
+                        if (arr.length != 2) {
+                            throw new IllegalArgumentException("Please write your task in the proper format");
+                        } else {
+                            String name = arr[0].replaceAll("deadline", "").trim();
+                            String date = arr[1];
+                            if (name.isEmpty()) {
+                                throw new IncompleteTaskNameException("Please provide task name");
+                            } else if (date.isEmpty()) {
+                                throw new MissingDateException("Please provide a time for your task");
+                            } else if (!date.startsWith("by")) {
+                                throw new IllegalArgumentException("Deadline time must be specified with by");
+                            } else {
+                                task = new Deadline(arr[0].replaceAll("deadline", "").trim(), arr[1].replaceAll("by", "")
+                                        .trim());
+                            }
+                        }
+                    }
+                    else {
+                        throw new IllegalArgumentException("Please provide a proper format");
+                    }
+                    list.add(task);
+                    System.out.println("Got it. I've added this task: ");
+                    System.out.println("  " + task.toString());
+                    System.out.println("Now you have " + list.size() + " task(s) in the list.");
                 }
-                list.add(task);
-                System.out.println("Got it. I've added this task: ");
-                System.out.println("  " + task.toString());
-                System.out.println("Now you have " + list.size() + " task(s) in the list.");
+            } catch (DukeException e) {
+                System.out.println(e.toString());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.toString());
             }
         }
     }
