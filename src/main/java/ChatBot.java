@@ -5,12 +5,12 @@ class ChatBot {
     private String name;
     private final String line = "------------------------------" +
             "----------------------------------";
-    private ArrayList<String> tasks;
+    private ArrayList<Task> tasks;
 
     ChatBot(String name) {
 
         this.name = name;
-        this.tasks = new ArrayList<String>();
+        this.tasks = new ArrayList<Task>();
 
     }
 
@@ -22,8 +22,10 @@ class ChatBot {
 
     public void addTask(String input) {
 
-        this.tasks.add(input);
-        System.out.println(line + "\n\t added: " + input + "\n" + line);
+        Task task = new Task(input);
+
+        this.tasks.add(task);
+        System.out.println(line + "\n\t added: " + task + "\n" + line);
     }
 
     public void printTasks() {
@@ -35,6 +37,21 @@ class ChatBot {
             System.out.println("\t" + (i + 1) + ". " + this.tasks.get(i));
         }
         System.out.println(line);
+    }
+
+    public void markDone(int index) {
+
+        this.tasks.get(index).done(true);
+        System.out.println(line + "\n\tExcellent! I have marked " +
+                "the task as done:\n\t" + this.tasks.get(index) + "\n" + line);
+    }
+
+    public void markUndone(int index) {
+
+        this.tasks.get(index).done(false);
+        System.out.println(line + "\n\tNoted! I have marked " +
+                "the task as not done yet:\n\t"
+                + this.tasks.get(index) + "\n" + line);
     }
 
     public void echo(String input) {

@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -14,18 +15,31 @@ public class Duke {
         boolean quit = false;
         String input;
 
+
         while(!quit) {
 
-            input = sc.nextLine();
+            input = sc.next();
 
-            if(input.equals("bye")) {
+            switch (input) {
 
-                quit = true;
-                chatBot.bye();
-            } else if (input.equals("list")) {
-                chatBot.printTasks();
-            } else {
-                chatBot.addTask(input);
+                case "bye":
+                    quit = true;
+                    chatBot.bye();
+                    break;
+                case "list":
+                    chatBot.printTasks();
+                    break;
+                case "mark":
+                    chatBot.markDone(sc.nextInt() - 1);
+                    sc.nextLine();
+                    break;
+                case "unmark":
+                    chatBot.markUndone(sc.nextInt() - 1);
+                    sc.nextLine();
+                    break;
+                default:
+                    chatBot.addTask(input + sc.nextLine());
+
             }
         }
     }
