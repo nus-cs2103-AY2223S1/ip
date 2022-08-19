@@ -15,7 +15,7 @@ public class Task {
 
     public static Task addTask(String name) {
         Task newTask = new Task(name);
-        System.out.println("     added: " + newTask.name);
+        System.out.println("     " + newTask.printSelf());
         return newTask;
     }
 
@@ -33,6 +33,18 @@ public class Task {
     public void changeStatus() {
         this.isDone = !this.isDone;
     }
+
+    /**
+     * Print this line at the end of task adding/deleting for alert.
+     */
+    public static void countTaskLeft() {
+        System.out.println("     Now you have " + totalNumber + " tasks in the list.");
+    }
+
+    /**
+     * helper func for toString method
+     * @return string like: [icon] task name
+     */
     public String printSelf() {
         StringBuilder output = new StringBuilder();
         output.append(this.getStatusIcon() + " " + this.name);

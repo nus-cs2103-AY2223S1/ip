@@ -26,13 +26,49 @@ public class Interface {
     }*/
 
     /**
-     * Add a new task.
-     * @param str the description of task.
-     * @return a newly created Task class for storage.
+     * Add a new Deadline.
+     * @param str the description of ddl + by when
+     * @return a newly created Deadline class for storage.
      */
-    public static Task add(String str) {
+    public static Deadline addDeadline(String str) {
+        String name = str.split(" /", 2)[0];
+        String by = str.split(" /", 2)[1].split("by ", 2)[1];
+
         printLine();
-        Task task = Task.addTask(str);
+        System.out.println("     Got it. I've added this task:");
+        Deadline task = Deadline.addTask(name, by);
+        Deadline.countTaskLeft();
+        printLine();
+        return task;
+    }
+
+    /**
+     * Add a new Event.
+     * @param str the description of event + at what time
+     * @return a newly created Event class for storage.
+     */
+    public static Event addEvent(String str) {
+        String name = str.split(" /", 2)[0];
+        String at = str.split(" /", 2)[1].split("at ", 2)[1];
+
+        printLine();
+        System.out.println("     Got it. I've added this task:");
+        Event task = Event.addTask(name, at);
+        Event.countTaskLeft();
+        printLine();
+        return task;
+    }
+
+    /**
+     * Add a new ToDo task.
+     * @param str the description of to do task.
+     * @return a newly created ToDo class for storage.
+     */
+    public static ToDo addToDo(String str) {
+        printLine();
+        System.out.println("     Got it. I've added this task:");
+        ToDo task = ToDo.addTask(str);
+        ToDo.countTaskLeft();
         printLine();
         return task;
     }
@@ -72,6 +108,7 @@ public class Interface {
         System.out.println("       " + task.printSelf());
         printLine();
     }
+
 
     public static void delete(Task task) {
         System.out.println("     Noted. I've removed this task:");

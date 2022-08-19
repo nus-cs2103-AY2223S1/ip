@@ -1,6 +1,7 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
+
 public class Duke {
     public static ArrayList<Task> taskList = new ArrayList<>();
 
@@ -32,27 +33,51 @@ public class Duke {
 
         Interface.greet();
         while (!lastCommandOrNot) {
-            command = in.nextLine();
-            commandList = command.split(" ");
-            command = (commandList[0].equals("mark")) || (commandList[0].equals("unmark")) ? commandList[0] : command;
+            command = in.nextLine().trim();
+            commandList = command.split(" ",2);
+            command = (Helper.multipleVariable(commandList[0])) ? commandList[0] : command;
+
 
             switch (command) {
-                case "bye" -> {
+                case "bye": {
                     Interface.bye();
                     lastCommandOrNot = true;
+                    break;
                 }
-                case "mark" -> {
+                case "mark":
+                case "unmark": {
                     taskIndex = Helper.strToInt(commandList[1]) - 1;
                     task = taskList.get(taskIndex);
-                    Interface.mark(task);
+                    switch (command) {
+                        case "mark": {
+                            Interface.mark(task);
+                            break;
+                        }
+                        case "unmark": {
+                            Interface.unmark(task);
+                            break;
+                        }
+                    }
+                    break;
                 }
-                case "unmark" -> {
-                    taskIndex = Helper.strToInt(commandList[1]) - 1;
-                    task = taskList.get(taskIndex);
-                    Interface.unmark(task);
+                case "list": {
+                    Interface.list(taskList);
+                    break;
                 }
-                case "list" -> Interface.list(taskList);
-                default -> taskList.add(Interface.add(command));
+                case "todo": {
+                    taskList.add(Interface.addToDo(commandList[1]));
+                    break;
+                }
+                case "deadline": {
+                    taskList.add(Interface.addDeadline(commandList[1]));
+                    break;
+                }
+                case "event": {
+                    taskList.add(Interface.addEvent(commandList[1]));
+                    break;
+                }
+                default:
+                    System.out.println("No such command available.");
             }
         }
     }
