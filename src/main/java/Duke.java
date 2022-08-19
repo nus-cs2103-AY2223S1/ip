@@ -1,7 +1,48 @@
 import java.util.Scanner;
 
 public class Duke {
-    public static class Task {
+    static boolean running = true;
+    static Task[] tasks = new Task[100];
+    static int count = 0;
+    static Scanner sc = new Scanner(System.in);
+    public void addTodo(String s) {
+        Todo t = new Todo(s);
+        tasks[count] = t;
+        count++;
+        System.out.println("added: " + t);
+        System.out.println("You have " + count + " tasks in the list now");
+    }
+
+    public void addDeadline(String s, String by) {
+        Deadline t = new Deadline(s, by);
+        tasks[count] = t;
+        count++;
+        System.out.println("added: " + t);
+        System.out.println("You have " + count + " tasks in the list now");
+    }
+
+    public void addEvent(String s, String at) {
+        Event t = new Event(s, at);
+        tasks[count] = t;
+        count++;
+        System.out.println("added: " + t);
+        System.out.println("You have " + count + " tasks in the list now");
+    }
+
+    public void getList() {
+        for (int i = 0; i < count; i++) {
+            System.out.println(i + 1 + "." + tasks[i]);
+        }
+    }
+
+    public void mark(Task t) {
+        t.mark(t);
+    }
+
+    public void unmark(Task t) {
+        t.unmark(t);
+    }
+    public class Task {
         protected boolean isDone;
         protected String description;
 
@@ -14,56 +55,94 @@ public class Duke {
             return isDone ? "X" : " ";
         }
 
-        public String getTask() {
-            return this.description;
-        }
-
-        public static void markDone(Task t) {
+        public void mark(Task t) {
             t.isDone = true;
+            System.out.println("Successfully marked this task as done: " + t);
         }
 
-        public static void markUndone(Task t) {
+        public void unmark(Task t) {
             t.isDone = false;
+            System.out.println("Successfully marked this task as not done: " + t);
+        }
+
+        @Override
+        public String toString() {
+            return "[" + this.getStatusIcon() + "] " + this.description;
         }
     }
+
+    public class Deadline extends Task {
+
+        protected String by;
+
+        public Deadline(String description, String by) {
+            super(description);
+            this.by = by;
+        }
+
+        @Override
+        public String toString() {
+            return "[D]" + super.toString() + " (by: " + this.by + ")";
+        }
+    }
+
+    public class Todo extends Task {
+        public Todo(String description) {
+            super(description);
+        }
+
+        @Override
+        public String toString() {
+            return "[T]" + super.toString();
+        }
+    }
+
+    public class Event extends Task {
+
+        protected String at;
+
+        public Event(String description, String at) {
+            super(description);
+            this.at = at;
+        }
+
+        @Override
+        public String toString() {
+            return "[E]" + super.toString() + " (by: " + this.at + ")";
+        }
+    }
+
     public static void main(String[] args) {
+        Duke d = new Duke();
         String logo = " ____            _    \n"
                 + "|  _ \\ _   _  __| | ___\n"
                 + "| | | | | | |/ _  |/ _ \\\n"
                 + "| |_| | |_| | |_| |  __/\n"
                 + "|____/ \\__,_|\\__,_|\\___|\n";
         System.out.println("Hello from\n" + logo);
-        boolean running = true;
-        Task[] history = new Task[100];
-        int count = 0;
-        Scanner sc = new Scanner(System.in);
-        while (running) {
-            String input = sc.nextLine();
+        while (d.running) {
+            String input = d.sc.nextLine();
             if (input.equals("bye")) {
-                System.out.println(">>> Byebye! See you again soon!");
-                running = false;
+                System.out.println("Byebye! See you again soon!");
+                d.running = false;
             } else if (input.equals("list")) {
-                for (int i = 0; i < count; i++) {
-                    System.out.println(i + 1 + ".[" + history[i].getStatusIcon() + "] "
-                            + history[i].getTask());
-                }
+                d.getList();
             } else if (input.startsWith("mark")) {
-                int taskNum = Integer.parseInt(input.substring(5)) - 1;
-                Task target = history[taskNum];
-                Task.markDone(target);
-                System.out.println("Successfully marked this task as done: ["
-                        + target.getStatusIcon() + "] " + target.getTask());
+                Task t = tasks[Integer.parseInt(input.substring(5)) - 1];
+                d.mark(t);
             } else if (input.startsWith("unmark")) {
-                int taskNum = Integer.parseInt(input.substring(7)) - 1;
-                Task target = history[taskNum];
-                Task.markUndone(target);
-                System.out.println("Successfully marked this task as not done yet: ["
-                        + target.getStatusIcon() + "] " + target.getTask());
+                Task t = tasks[Integer.parseInt(input.substring(7)) - 1];
+                d.unmark(t);
             } else {
-                Task t = new Task(input);
-                history[count] = t;
-                count++;
-                System.out.println("added: " + input);
+                if (input.startsWith("todo")) {
+                    d.addTodo(input.substring(5));
+                } else if (input.startsWith("deadline")) {
+                    d.addDeadline(input.substring(9, input.indexOf("/by") - 1),
+                            input.substring(input.indexOf("/by") + 4));
+                } else if (input.startsWith("event")) {
+                    d.addEvent(input.substring(6, input.indexOf("/at") - 1),
+                            input.substring(input.indexOf("/at") + 4));
+                }
             }
         }
     }
