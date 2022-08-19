@@ -1,4 +1,13 @@
 public class Todo extends Task {
+
+    /**
+     * A constructor that creates an instance of Todo.
+     *
+     * It takes in the description of the task.
+     *
+     * @param description The description of the task.
+     * @throws DukeException
+     */
     public Todo(String description) throws DukeException {
         super(description);
         if (description.length() == 0) {

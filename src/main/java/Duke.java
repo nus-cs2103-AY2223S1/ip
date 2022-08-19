@@ -5,6 +5,9 @@ import java.util.Scanner;
 public class Duke {
     private static ArrayList<Task> storage = new ArrayList<>();
 
+    /**
+     * Lists all the tasks currently being stored.
+     */
     private static void list() {
         System.out.println("____________________________________________________________ \n"
                 + "Here are the tasks in your list:");
@@ -20,6 +23,14 @@ public class Duke {
         System.out.println("____________________________________________________________");
     }
 
+    /**
+     *  Removes the specified Task from storage if it exists.
+     *
+     *  If the specified Task does not exist, a statement telling the user that
+     *  the specified does not exist is printed.
+     *
+     * @param index The index of the Task to be removed from storage.
+     */
     private static void delete(int index) {
         try {
             Task toRemove = storage.get(index);
