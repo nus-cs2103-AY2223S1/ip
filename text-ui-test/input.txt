@@ -1,6 +1,8 @@
 todo borrow book
 list
-deadline return book /by Sunday
+deadline return book /by 2022/12/25
+deadline buy cookies /by 2022//12
+deadline buy cookies2 /by 2022/13/1
 event project meeting /at Mon 2-4pm
 todo feed cat
 deadline buy cat food /by tomorrow
