@@ -1,7 +1,6 @@
 import exceptions.*;
 
-import static utils.TaskOperation.*;
-import static utils.UserOperation.*;
+import static utils.UserRequest.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -127,16 +126,12 @@ public class Duke {
         if (chosenTask > taskCount || chosenTask < 1) {
             throw new InvalidInputException("Are you sure this number corresponds to a task?");
         }
-        markDone(list.get(chosenTask - 1));
+        list.get(chosenTask - 1).markDone();
         printTasksInList(list);
         System.out.print("You have marked task " + chosenTask + " as complete! Congrats!\n" +
                 "If you want to mark another task as complete, please type 'mark' again.\n" +
                 "Else, you can input a new task!\n" +
                 "Please type here: ");
-    }
-
-    private static void markDone(Task task) {
-        task.isDone = true;
     }
 
 }
