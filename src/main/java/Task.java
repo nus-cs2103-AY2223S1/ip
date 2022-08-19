@@ -1,6 +1,11 @@
+import java.time.format.FormatStyle;
+import java.util.Formatter;
+
 public class Task {
     private String title;
     private boolean completed;
+
+    public static final FormatStyle DATE_FORMAT = FormatStyle.MEDIUM;
 
     Task(String title) {
         this.title = title;
