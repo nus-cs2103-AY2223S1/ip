@@ -8,7 +8,7 @@ public class Duke {
     public static void main(String[] args) {
         //start up sequence
         Scanner sc = new Scanner(System.in);
-        List<Task> list = new ArrayList<Task>(MAX_TASK_SIZE);
+        List<Task> Tasks = new ArrayList<Task>(MAX_TASK_SIZE);
         greet();
 
         while (true) {
@@ -19,13 +19,13 @@ public class Duke {
                 return;
 
             case "list":
-                showList(list);
+                showTasks(Tasks);
                 break;
 
             default:
                 printLine();
                 Task curr = new Task(input);
-                list.add(curr);
+                Tasks.add(curr);
                 printIndent("added: " + curr);
                 printLine();
             }
@@ -64,12 +64,16 @@ public class Duke {
         printLine();
     }
 
-    public static void showList(List<Task> list) {
+    public static void showTasks(List<Task> Tasks) {
         printLine();
         printIndent("Here are the tasks in your list:");
-        for (int i =1; i <= list.size(); i++) {
-            printIndent(i + "." + list.get(i-1));
+        for (int i =1; i <= Tasks.size(); i++) {
+            printIndent(i + "." + Tasks.get(i-1));
         }
         printLine();
+    }
+
+    public static void markTask(int index) {
+
     }
 }
