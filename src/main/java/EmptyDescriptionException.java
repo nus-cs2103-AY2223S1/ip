@@ -1,6 +1,6 @@
-public class EmptyToDoDescriptionException extends  Exception{
+public class EmptyDescriptionException extends  Exception{
 
-    public EmptyToDoDescriptionException(){
+    public EmptyDescriptionException(){
         super("☹ OOPS!!! The description of a todo cannot be empty.");
     }
 }
