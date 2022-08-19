@@ -51,59 +51,90 @@ public class Duke {
 
     public static String breaker = "____________________________________________________________\n";
     private static ArrayList<Task> list = new ArrayList<>();
-    private static String[] commandWords = new String[]{"list", "mark", "unmark", "todo", "event", "deadline", "bye"};
+    private static String[] commandWords = new String[]{"list", "mark", "unmark", "todo", "event", "deadline", "delete", "bye"};
+    private static String start = "Hello! I'm Duke\nWhat can I do for you?";
+    private static String end = "Bye. Hope to see you again soon!";
 
+    public static class DukeException extends Exception {
+        public DukeException(String msg) {
+            super(msg);
+        }
+    }
+    public static class EmptyMessageException extends DukeException {
+        public EmptyMessageException() {
+            super("☹ OOPS!!! The description of a todo cannot be empty.");
+        }
+    }
+    public static class InvalidCommandException extends DukeException {
+        public InvalidCommandException() {
+            super("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+        }
+    }
 
+    public static void main(String[] args) throws InvalidCommandException, EmptyMessageException {
 
-    public static void main(String[] args) {
-
-        String start = "Hello! I'm Duke\nWhat can I do for you?";
-        String end = "Bye. Hope to see you again soon!";
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
         msg(start);
 
         String text = "";
+        Scanner reader = new Scanner(System.in);  // Reading from System.in
         while (!"bye".equals(text)) {
-            Scanner reader = new Scanner(System.in);  // Reading from System.in
             text = reader.nextLine();
-            if (commandWords[3].equals(text)) {
+            if (commandWords[7].equals(text)) {
                 msg(end);
                 reader.close();
-            } else if (checkCommand(text, 0)) {
-                displayList(list);
-            } else if (checkCommand(text, 1)) {
-                int i = Integer.parseInt(text.substring(commandWords[1].length()+1, commandWords[1].length()+2));
-                mark(i);
-            } else if (checkCommand(text, 2)) {
-                int i = Integer.parseInt(text.substring(commandWords[2].length() + 1, commandWords[2].length() + 2));
-                unmark(i);
-            } else if (checkCommand(text, 6)) {
-                msg("Bye. Hope to see you again soon!");
-            } else { // is a task, commandwords index 3-5 inclusive
-
-                for (int i = 3; i < 6; i++) {
-                    if (checkCommand(text, i)) {
-                        if (i > 3) {
-                            String[] temp = text.split("/");
-                            text = temp[0].substring(commandWords[i].length()+1) + "(" + temp[1] +")";
-                        } else {
-                            text = text.substring(commandWords[i].length()+1);
-                        }
-                        add(text, commandWords[i], list);
-                        break;
-                    }
-                }
+                break;
+            }
+            try {
+                processInput(text);
+            } catch (InvalidCommandException e1) {
+                msg(e1.getMessage());
+            } catch (EmptyMessageException e2) {
+                msg(e2.getMessage());
             }
         }
+
     }
 
     private static boolean checkCommand(String s, int i) {
         return s.length() >= commandWords[i].length() && commandWords[i].equals(s.substring(0,commandWords[i].length()));
+    }
+
+    private static void processInput(String text) throws EmptyMessageException, InvalidCommandException {
+
+        if (checkCommand(text, 0)) {
+            displayList(list);
+        } else if (checkCommand(text, 1)) {
+            int i = Integer.parseInt(text.substring(commandWords[1].length()+1, commandWords[1].length()+2));
+            mark(i);
+        } else if (checkCommand(text, 2)) {
+            int i = Integer.parseInt(text.substring(commandWords[2].length() + 1, commandWords[2].length() + 2));
+            unmark(i);
+        } else if (checkCommand(text, 6)) {
+            int i = Integer.parseInt(text.substring(commandWords[6].length() + 1, commandWords[6].length() + 2));
+            delete(i);
+        } else { // is a task, commandwords index 3-5 inclusive
+            boolean sent = false;
+            for (int i = 3; i < 6; i++) {
+                if (checkCommand(text, i)) {
+                    sent = true;
+                    if (text.length() <= commandWords[i].length() + 1) {
+                        throw new EmptyMessageException();
+                    }
+                    if (i > 3) {
+                        String[] temp = text.split("/");
+                        text = temp[0].substring(commandWords[i].length()+1) + "(" + temp[1] +")";
+                    } else {
+                        text = text.substring(commandWords[i].length()+1);
+                    }
+                    add(text, commandWords[i], list);
+                    break;
+                }
+            }
+            if (!sent) {
+                throw new InvalidCommandException();
+            }
+        }
+
     }
 
     public static void msg(String s) {
@@ -139,5 +170,10 @@ public class Duke {
         Task task = list.get(i-1);
         task.setStatusIcon(false);
         msg("OK, I've marked this task as not done yet:\n" + "\t" + task);
+    }
+
+    public static void delete(int i) {
+        msg("Noted. I've removed this task:\n\t" + list.get(i-1) +"\nNow you have " + (list.size()-1) + " tasks in the list.");
+        list.remove(i-1);
     }
 }
