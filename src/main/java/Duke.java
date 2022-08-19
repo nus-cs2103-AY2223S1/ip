@@ -8,25 +8,34 @@ public class Duke {
     public static void main(String[] args) {
         //start up sequence
         Scanner sc = new Scanner(System.in);
-        List<Task> Tasks = new ArrayList<Task>(MAX_TASK_SIZE);
+        List<Task> tasks = new ArrayList<>(MAX_TASK_SIZE);
         greet();
 
         while (true) {
             String input = sc.nextLine().strip();
-            switch (input) {
+            String action = input.split(" ")[0];
+            switch (action) {
             case "bye":
                 sayonara();
                 return;
 
             case "list":
-                showTasks(Tasks);
+                showTasks(tasks);
+                break;
+
+            case "mark":
+                markTask(tasks, Integer.parseInt(input.split(" ")[1]));
+                break;
+
+            case "unmark":
+                unMarkTask(tasks, Integer.parseInt(input.split(" ")[1]));
                 break;
 
             default:
                 printLine();
-                Task curr = new Task(input);
-                Tasks.add(curr);
-                printIndent("added: " + curr);
+                Task task = new Task(input);
+                tasks.add(task);
+                printIndent("added: " + task);
                 printLine();
             }
         }
@@ -38,6 +47,12 @@ public class Duke {
 
     public static void printLine() {
         printIndent("____________________________________________________________");
+    }
+
+    public static void printBlock(String s) {
+        printLine();
+        printIndent(s);
+        printLine();
     }
 
     public static void greet() {
@@ -59,21 +74,27 @@ public class Duke {
     }
 
     public static void sayonara() {
-        printLine();
-        printIndent("Boo! Bye bye... :(");
-        printLine();
+        printBlock("Boo! Bye bye... :(");
     }
 
     public static void showTasks(List<Task> Tasks) {
-        printLine();
-        printIndent("Here are the tasks in your list:");
+        printBlock("Here are the tasks in your list:");
         for (int i =1; i <= Tasks.size(); i++) {
-            printIndent(i + "." + Tasks.get(i-1));
+            printIndent(i + "." + Tasks.get(i - 1));
         }
-        printLine();
     }
 
-    public static void markTask(int index) {
+    public static void markTask(List<Task> Tasks, int index) {
+        Task task = Tasks.get(index - 1);
+        task.setDone(true);
+        printBlock(String.format("Hehe okay guess this is now done\n"
+                + "  %s", task));
+    }
 
+    public static void unMarkTask(List<Task> Tasks, int index) {
+        Task task = Tasks.get(index - 1);
+        task.setDone(false);
+        printBlock(String.format("Ooops, you haven't done this yet? Here ya go:\n"
+                + "  %s", task));
     }
 }

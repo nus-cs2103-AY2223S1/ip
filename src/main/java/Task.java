@@ -11,6 +11,10 @@ public class Task {
         return isDone ? "X" : " ";
     }
 
+    public void setDone(boolean done) {
+        isDone = done;
+    }
+
     @Override
     public String toString() {
         return String.format("[%s] %s",getStatusIcon(), this.description);
