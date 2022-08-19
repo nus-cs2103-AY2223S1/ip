@@ -22,9 +22,8 @@ public abstract class Task {
 
     /**
      * Returns a string representation of this task, meant for writing to a file.
-     * We will assume that the any part of the string representation of a task
-     * contains the delimiter used to separate the different parts of the task
-     * during serialization.
+     * We will assume that no part of the task (e.g. description) contains
+     * the delimiter used to separate the different parts of the task during serialization.
      *
      * @return the serialized task
      * @since Level-7
