@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Duke {
     private static final int HORIZONTAL_LINE_LENGTH = 50;
-    private static final String NAME = "Duke";
+    private static final String NAME = "Stashy";
 
     /**
      * Prints multiple lines, each indented by 4 spaces.
@@ -27,7 +27,7 @@ public class Duke {
      * @param tasks The list of tasks
      */
     public static void printTasks(ArrayList<Task> tasks) {
-        printIndented("Here are the tasks in your list:");
+        printIndented("Listing all task(s) in your list...");
         for (int i = 1; i <= tasks.size(); i++) {
             printIndented(i + "." + tasks.get(i - 1));
         }
@@ -48,7 +48,7 @@ public class Duke {
      */
     public static void markTaskAsDone(ArrayList<Task> tasks, int taskID) throws DukeException {
         if (1 <= taskID && taskID <= tasks.size()) {
-            printIndented("Nice! I've marked this task as done:");
+            printIndented("LFG, marking this task as done!");
             tasks.get(taskID - 1).markAsDone();
             printIndented("  " + tasks.get(taskID - 1));
         } else {
@@ -64,7 +64,7 @@ public class Duke {
      */
     public static void unmarkTaskAsNotDone(ArrayList<Task> tasks, int taskID) throws DukeException {
         if (1 <= taskID && taskID <= tasks.size()) {
-            printIndented("OK, I've marked this task as not done yet:");
+            printIndented("L + ratio, unmarking this task as not done!");
             tasks.get(taskID - 1).unmarkAsNotDone();
             printIndented("  " + tasks.get(taskID - 1));
         } else {
@@ -80,9 +80,9 @@ public class Duke {
      */
     public static void deleteTask(ArrayList<Task> tasks, int taskID) throws DukeException {
         if (1 <= taskID && taskID <= tasks.size()) {
-            printIndented("Noted. I've removed this task:\n  " + tasks.get(taskID - 1));
+            printIndented("Task has been removed!\n  " + tasks.get(taskID - 1));
             tasks.remove(taskID - 1);
-            printIndented("Now you have " + tasks.size() + " tasks in the list.");
+            printIndented("You have " + tasks.size() + " task(s) in the list.");
         } else {
             throw new DukeException("Invalid task ID: " + taskID);
         }
@@ -101,38 +101,38 @@ public class Duke {
         if (input.startsWith("todo")) {
             taskName = input.replace("todo", "").strip();
             if (taskName.isEmpty()) {
-                throw new DukeException("The description of a todo cannot be empty.");
+                throw new DukeException("Please don't give me an empty todo description :(");
             }
             tasks.add(new ToDos(taskName));
         } else if (input.startsWith("deadline")) {
             String[] temp = input.replace("deadline", "").strip().split("/by");
             taskName = temp[0].strip();
             if (taskName.isEmpty()) {
-                throw new DukeException("The description of a deadline cannot be empty.");
+                throw new DukeException("Please don't give me an empty deadline description :(");
             } else if (temp.length < 2) {
-                throw new DukeException("You need to specify the due date of the deadline.");
+                throw new DukeException("Specify the due date of the deadline, perhaps?");
             }
             by = temp[1].strip();
             if (by.isEmpty()) {
-                throw new DukeException("You need to specify the due date of the deadline.");
+                throw new DukeException("Specify the due date of the deadline, perhaps?");
             }
             tasks.add(new Deadlines(taskName, by));
         } else if (input.startsWith("event")) {
             String[] temp = input.replace("event", "").strip().split("/at");
             taskName = temp[0].strip();
             if (taskName.isEmpty()) {
-                throw new DukeException("The description of an event cannot be empty.");
+                throw new DukeException("Please don't give me an empty event description :(");
             } else if (temp.length < 2) {
-                throw new DukeException("You need to specify the time of the event.");
+                throw new DukeException("Specify the time of the event, perhaps?");
             }
             at = temp[1].strip();
             if (at.isEmpty()) {
-                throw new DukeException("You need to specify the time of the event.");
+                throw new DukeException("Specify the time of the event, perhaps?");
             }
             tasks.add(new Events(taskName, at));
         }
-        printIndented("Got it. I've added this task:\n  " + tasks.get(tasks.size() - 1)
-                + "\nNow you have " + tasks.size() + " tasks in the list.");
+        printIndented("There, we have a new task:\n  " + tasks.get(tasks.size() - 1)
+                + "\nYou have " + tasks.size() + " task(s) in the list.");
     }
 
     /**
@@ -142,7 +142,7 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
         ArrayList<Task> tasks = new ArrayList<Task>();
         printHorizontalLine();
-        printIndented("Hello! I'm " + NAME + "\nWhat can I do for you?");
+        printIndented("Beep boop! I'm " + NAME + "\nWhat can I do for you, busy guy?");
         printHorizontalLine();
         while (true) {
             String input = sc.nextLine().strip();
