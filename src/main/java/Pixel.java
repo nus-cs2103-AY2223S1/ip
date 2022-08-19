@@ -127,15 +127,23 @@ public class Pixel {
 
         } catch (IndexOutOfBoundsException e) {
             System.out.println(e);
-            System.out.println("caught IOOBE");
+            System.out.println("caught Index Out of Bounds Exception");
 
         } catch (StackOverflowError e) {
             System.out.println(e);
             System.out.println("caught Stack Overflow Error");
 
+        } catch (NullPointerException e) {
+            System.out.println(e);
+            System.out.println("caught Null pointer exception");
+
+        } catch (IncorrectFormatException e) {
+            System.out.println(e);
+            System.out.println("Incorrect format of input message!");
+
         } finally {
             // clean up
-            System.out.println("cleaning up");
+            System.out.println("cleaning up. Process resumes. Please enter your new input");
             run();
         }
 
