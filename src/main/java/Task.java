@@ -51,10 +51,7 @@ public class Task {
         return String.format("[%s] %s", this.getStatusIcon(), this.description);
     }
 
-    public static void add(Task task) throws DukeException {
-        if (task.getDescription().equals("")) {
-            throw new DukeException("OOPS! Looks like you forgot to specify a description");
-        }
+    public static void add(Task task)  {
         tasks.add(task);
         System.out.println(String.format("\tGotcha. I have added this task:"));
         System.out.println("\t\t" + task); // exploiting polymorphism
