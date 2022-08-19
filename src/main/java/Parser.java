@@ -13,28 +13,28 @@ public class Parser {
         }
 
         switch (inputCommand) {
-            case "help":
-                return new Command.HelpCommand(args);
-            case "bye":
-                return new Command.ByeCommand(args);
-            case "list":
-                return new Command.ListCommand(args);
-            case "mark":
-                return new Command.MarkCommand(args);
-            case "unmark":
-                return new Command.UnmarkCommand(args);
-            case "todo":
-                return new Command.ToDoCommand(args);
-            case "event":
-                return new Command.EventCommand(args);
-            case "deadline":
-                return new Command.DeadlineCommand(args);
-            case "delete":
-                return new Command.DeleteCommand(args);
-            case "":
-                return new Command.EmptyCommand(args);
-            default:
-                return new Command.UnknownCommand(args);
+        case "help":
+            return new Command.HelpCommand(args);
+        case "bye":
+            return new Command.ByeCommand(args);
+        case "list":
+            return new Command.ListCommand(args);
+        case "mark":
+            return new Command.MarkCommand(args);
+        case "unmark":
+            return new Command.UnmarkCommand(args);
+        case "todo":
+            return new Command.ToDoCommand(args);
+        case "event":
+            return new Command.EventCommand(args);
+        case "deadline":
+            return new Command.DeadlineCommand(args);
+        case "delete":
+            return new Command.DeleteCommand(args);
+        case "":
+            return new Command.EmptyCommand(args);
+        default:
+            return new Command.UnknownCommand(args);
         }
     }
 }
