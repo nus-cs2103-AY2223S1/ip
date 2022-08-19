@@ -41,6 +41,10 @@ public class ChatBot {
                 String description = arguments[0];
                 String date = arguments[1];
                 this.taskList.addTask(new Events(description, date));
+            } else if (input.toLowerCase().contains("delete")) {
+                String[] arguments = input.split(" ");
+                int taskNo = Integer.parseInt(arguments[1]);
+                this.taskList.deleteTask(taskNo);
             } else {
                 throw new InvalidInputException();
             }

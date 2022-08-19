@@ -30,7 +30,16 @@ public class TaskList {
         System.out.println("OK, I've marked this task as not done yet:\n" + task);
     }
 
+    public void deleteTask(int taskNo) {
+        Task t = this.getTask(taskNo);
+        this.taskList.remove(taskNo - 1);
+        String reply = "Noted. I've removed this task:\n" +
+                        t + "\nNow you have " + this.taskList.size() + " tasks in the list.";
+        System.out.println(reply);
+    }
+
     public void printList() {
+        System.out.println("Here are the tasks in your list:\n");
         int ListLength = taskList.size();
         for (int i = 0; i < ListLength; i++) {
             System.out.println((i + 1) + ". " + taskList.get(i));
