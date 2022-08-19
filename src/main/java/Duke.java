@@ -32,11 +32,7 @@ public class Duke {
                 break;
 
             default:
-                printLine();
-                Task task = new Task(input);
-                tasks.add(task);
-                printIndent("added: " + task);
-                printLine();
+                addTask(tasks, input);
             }
         }
     }
@@ -75,6 +71,14 @@ public class Duke {
 
     public static void sayonara() {
         printBlock("Boo! Bye bye... :(");
+    }
+
+    public static void addTask(List<Task> tasks, String input) {
+        Task task = new Task(input);
+        tasks.add(task);
+        printBlock("Okay okay, I'll add this task then: \n"
+                + task
+                + String.format("You now have %d many tasks in your list", tasks.size()));
     }
 
     public static void showTasks(List<Task> Tasks) {
