@@ -14,13 +14,13 @@ dependencies {
 }
 
 application {
-    mainClass = 'Duke' 
+    mainClass = 'duke.Duke' 
 }
 
 jar {
     manifest {
         attributes(
-                'Main-Class': 'Duke'
+                'Main-Class': 'duke.Duke'
         )
     }
 }
