@@ -9,7 +9,7 @@ public class Event extends Task {
    * @param eventTime the time range for this event (String)
    */
   public Event(String task, String eventTime) {
-    this.task = task;
+    super(task);
     this.eventTime = eventTime;
   }
 

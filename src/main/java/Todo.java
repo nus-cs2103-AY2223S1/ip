@@ -6,7 +6,7 @@ public class Todo extends Task {
    * @param task the task that you want to complete (String)
    */
   public Todo(String task) {
-    this.task = task;
+    super(task);
   }
 
   /**
