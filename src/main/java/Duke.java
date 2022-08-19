@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -109,6 +110,35 @@ public class Duke {
             } catch (InvalidCommandException | EmptyTodoListException e) {
                 System.out.println(e.getMessage());
             }
+            File file = new File("data/duke.txt");
+            try {
+                file.getParentFile().mkdirs();
+                file.createNewFile();
+                FileWriter myWriter = new FileWriter("data/duke.txt");
+                StringBuilder output = new StringBuilder();
+                for (Task task:tasks) {
+                    int number;
+                    if (task.isDone) {
+                        number = 1;
+                    } else {
+                        number = 0;
+                    }
+                    if (task instanceof Todo) {
+                        output.append("T | ").append(number).append(" | ").append(task.description).append("\n");
+                    } else if (task instanceof Event) {
+                        output.append("E | ").append(number).append(" | ").append(task.description).append(" | ")
+                                .append(((Event) task).at).append("\n");
+                    } else {
+                        output.append("D | ").append(number).append(" | ").append(task.description).append(" | ")
+                                .append(((Deadline) task).by).append("\n");
+                    }
+                }
+                myWriter.write(output.toString());
+                myWriter.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
             input = myObj.nextLine();
             words = input.split(" ");
             response = words[0];
