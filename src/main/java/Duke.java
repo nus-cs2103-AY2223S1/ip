@@ -48,6 +48,80 @@ public class Duke {
         return newArr;
     }
 
+    private static void handleMarkDoneUndone(ArrayList<Task> arrayList, String command) throws DukeException {
+        String args[] = command.split(" ", 2);
+        if (args.length != 2) {
+            throw new DukeException("Invalid command");
+        }
+        int index = Integer.parseInt(args[1]) - 1;
+        if (index < 0 || index > arrayList.size() - 1) {
+            throw new DukeException("Invalid command");
+        }
+        Task curr = arrayList.get(index);
+        if (args[0].equals("mark")) {
+            if (!curr.isDone) {
+                curr.isDone = true;
+                Duke.TaskStateChangePrint(curr, true);
+            }
+        } else { // args[0].equals("unmark")
+            if (curr.isDone) {
+                curr.isDone = false;
+                Duke.TaskStateChangePrint(curr, false);
+            }
+        }
+    }
+
+    private static void handleDelete(ArrayList<Task> arrayList, String command) throws DukeException {
+        String args[] = command.split(" ", 2);
+        int index;
+        try {
+            index = Integer.parseInt(args[1]) - 1;
+        } catch (NumberFormatException e) {
+            throw new DukeException("Invalid command");
+        }
+        Task curr = arrayList.get(index);
+        arrayList = Duke.remove(index, arrayList);
+        Duke.FormatPrint("Noted. I've removed this task:\n" + curr.toString()
+                + "Now you have " + String.valueOf(arrayList.size()) + " tasks in the list.");
+    }
+
+    private enum TaskEnum {
+        Todo,
+        Deadline,
+        Event
+    }
+
+    private static void createEvent(ArrayList<Task> tasks, TaskEnum taskEnum, String command) throws DukeException{
+        String args[];
+        Task res;
+        switch (taskEnum) {
+            case Todo:
+                res = new Todo(command);
+                break;
+
+            case Deadline:
+                args = command.split("/", 2);
+                if (args.length != 2) {
+                    throw new DukeException("Invalid Input");
+                }
+                res = new Deadline(args[0].trim(), args[1].substring(3));
+                break;
+
+            case Event:
+                args = command.split("/", 2);
+                if (args.length != 2) {
+                    throw new DukeException("Invalid Input");
+                }
+                res = new Event(args[0].trim(), args[1].substring(3));;
+                break;
+
+            default:
+                throw new DukeException("Invalid Input");
+        }
+        tasks.add(res);
+        Duke.FormatPrint("Got it. I've added this task:\n" + res.toString());
+    }
+
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -58,9 +132,11 @@ public class Duke {
 
         String OPENING = "    Hello! I'm Duke\n    What can I do for you?";
         String LIST_WORD = "list";
-        ArrayList<Task> stored_items = new ArrayList<>();
+        String ERROR_MESSAGE = "OOPS!!! I'm sorry, but I don't know what that means :-(";
         String END_WORD = "bye";
         String ENDING = "    Bye. Hope to see you again soon!";
+
+        ArrayList<Task> stored_items = new ArrayList<>();
 
         // opening
         Duke.FormatPrint(OPENING);
@@ -81,64 +157,35 @@ public class Duke {
                 if (str.equals(LIST_WORD)) {
                     Duke.ListPrint(stored_items);
                 } else {
-                    String temp[] = str.split(" ", 2);
-                    int index;
-                    Task curr;
-                    String pack[];
+                    String arguments[] = str.split(" ", 2);
                     try {
-                        switch (temp[0]) {
-                            case "mark":
-                                index = Integer.parseInt(temp[1]) - 1;
-                                curr = stored_items.get(index);
-                                if (!curr.isDone) {
-                                    curr.isDone = true;
-                                    Duke.TaskStateChangePrint(curr, true);
-                                }
-                                break;
-
+                        switch (arguments[0]) {
+                            case "mark": // same flow as case "unmark"
                             case "unmark":
-                                index = Integer.parseInt(temp[1]) - 1;
-                                curr = stored_items.get(index);
-                                if (curr.isDone) {
-                                    curr.isDone = false;
-                                    Duke.TaskStateChangePrint(curr, false);
-                                }
+                                handleMarkDoneUndone(stored_items, str);
                                 break;
 
                             case "delete":
-                                index = Integer.parseInt(temp[1]) - 1;
-                                curr = stored_items.get(index);
-                                stored_items = Duke.remove(index, stored_items);
-                                Duke.FormatPrint("Noted. I've removed this task:\n" + curr.toString()
-                                        + "Now you have " + String.valueOf(stored_items.size()) + " tasks in the list.");
+                                Duke.handleDelete(stored_items, str);
                                 break;
 
-
                             case "deadline":
-                                pack = temp[1].split("/", 2);
-                                curr = new Deadline(pack[0].trim(), pack[1].substring(3));
-                                stored_items.add(curr);
-                                Duke.FormatPrint("Got it. I've added this task:\n" + curr.toString());
+                                Duke.createEvent(stored_items, TaskEnum.Deadline, arguments[1]);
                                 break;
 
                             case "todo":
-                                curr = new Todo(temp[1]);
-                                stored_items.add(curr);
-                                Duke.FormatPrint("Got it. I've added this task:\n" + curr.toString());
+                                Duke.createEvent(stored_items, TaskEnum.Todo, arguments[1]);
                                 break;
 
                             case "event":
-                                pack = temp[1].split("/", 2);
-                                curr = new Event(pack[0].trim(), pack[1].substring(3));
-                                stored_items.add(curr);
-                                Duke.FormatPrint("Got it. I've added this task:\n" + curr.toString());
+                                Duke.createEvent(stored_items, TaskEnum.Event, arguments[1]);
                                 break;
 
                             default:
-                                Duke.FormatPrint(" ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                                Duke.FormatPrint(ERROR_MESSAGE);
                         }
-                    } catch (Exception e) {
-                        Duke.FormatPrint(" ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                    } catch (DukeException e) {
+                        Duke.FormatPrint(ERROR_MESSAGE);
                     }
 
                 }
