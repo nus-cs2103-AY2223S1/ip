@@ -1,5 +1,5 @@
 public class ToDo extends Task {
-    public ToDo(String[] args) throws DukeException {
-        super("todo", args);
+    public ToDo(boolean isDone, String[] args) throws DukeException {
+        super(args, "todo", isDone, args);
     }
 }

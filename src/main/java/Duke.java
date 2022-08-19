@@ -8,7 +8,11 @@ public class Duke {
     private TaskList taskList;
 
     public Duke() {
-        taskList = new TaskList();
+        try {
+            taskList = new TaskList();
+        } catch (DukeException exception) {
+            System.out.println(exception.getMessage());
+        }
         System.out.println("Hello from\n" + Duke.LOGO);
         System.out.println("What can I do for you?\n");
     }
@@ -31,15 +35,15 @@ public class Duke {
                     return true;
 
                 case ADD_TODO:
-                    taskList.addItem(new ToDo(instructionArgs));
+                    taskList.addItem(new ToDo(false, instructionArgs));
                     break;
 
                 case ADD_DEADLINE:
-                    taskList.addItem(new Deadline(instructionArgs));
+                    taskList.addItem(new Deadline(false, instructionArgs));
                     break;
 
                 case ADD_EVENT:
-                    taskList.addItem(new Event(instructionArgs));
+                    taskList.addItem(new Event(false, instructionArgs));
                     break;
 
                 case PRINT_LIST:
