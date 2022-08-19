@@ -8,7 +8,7 @@ public class Duke {
         if (input.equals("bye")) {
             return "Bye. Hope to see you again soon!";
         } else if (input.equals("list")) {
-            return "Here are the tasks in your list:\n" + listTasks();
+            return "Here are the tasks in your list:" + listTasks();
         } else if (input.length() > 3 && input.substring(0, 4).equals("mark")) {
             int index = Integer.parseInt(input.substring(5)) - 1;
             Task currTask = taskList.get(index);
@@ -23,21 +23,21 @@ public class Duke {
             Task newTask = new Todo(input.substring(5));
             addTask(newTask);
             return "Got it. I've added this task:\n  " + newTask.toString() +
-                    "\nNow you have " + taskList.size() + " tasks in the list";
+                    "\nNow you have " + taskList.size() + " tasks in the list.";
         } else if (input.length() > 7 && input.substring(0, 8).equals("deadline")) {
             String taskInput = input.substring(9);
             String[] taskAndDate = taskInput.split("/by ");
             Task newTask = new Deadline(taskAndDate[0], taskAndDate[1]);
             addTask(newTask);
             return "Got it. I've added this task:\n  " + newTask.toString() +
-                    "\nNow you have " + taskList.size() + " tasks in the list";
+                    "\nNow you have " + taskList.size() + " tasks in the list.";
         } else if (input.length() > 5 && input.substring(0, 5).equals("event")) {
             String taskInput = input.substring(6);
             String[] taskAndDate = taskInput.split("/at ");
             Task newTask = new Event(taskAndDate[0], taskAndDate[1]);
             addTask(newTask);
             return "Got it. I've added this task:\n  " + newTask.toString() +
-                    "\nNow you have " + taskList.size() + " tasks in the list";
+                    "\nNow you have " + taskList.size() + " tasks in the list.";
         } else {
             return "invalid command";
         }
@@ -50,13 +50,13 @@ public class Duke {
     private static String listTasks() {
         String tasks = "";
         for (int i = 0; i < taskList.size(); i++) {
-            tasks += (i + 1) + ". " + taskList.get(i).toString() + "\n";
+            tasks += "\n" + (i + 1) + ". " + taskList.get(i).toString();
         }
         return tasks;
     }
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        String logo = " ____        _        \n"
+        String logo = " ____        _\n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
