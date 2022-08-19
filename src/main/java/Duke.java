@@ -1,10 +1,61 @@
-import java.util.*;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Duke {
+    static File saveFile = new File("list.txt");
+    public static void save(List<Task> taskList) {
+        try {
+            FileWriter fw = new FileWriter(saveFile.getPath());
+            for (Task task : taskList) {
+                fw.write(task.getSaveString() + "\n");
+            }
+            fw.close();
+        } catch (IOException e) {
+            System.out.println("Something is wrong nya! I can't seem to save your task list");
+        }
+    }
+
+    public static List<Task> load() {
+        List<Task> taskList = new ArrayList<>();
+        try {
+            Scanner sc = new Scanner(saveFile);
+            while (sc.hasNextLine()) {
+                String nextLine = sc.nextLine();
+                String[] taskInfo = nextLine.split(" \\| ");
+                Task curr = null;
+                switch (taskInfo[0]) {
+                case "T" :
+                    curr = new ToDo(taskInfo[2]);
+                    taskList.add(curr);
+                    break;
+                case "D":
+                    curr = new Deadline(taskInfo[2], taskInfo[3]);
+                    taskList.add(curr);
+                    break;
+                case "E":
+                    curr = new Event(taskInfo[2], taskInfo[3]);
+                    taskList.add(curr);
+                    break;
+                }
+                if (taskInfo[1].equals("1")) {
+                    curr.markAsDone();
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Sorry! I can't find your file nya");
+        }
+        return taskList;
+    }
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        List<Task> taskArr = new ArrayList<>();
-        //int taskCounter = 0;
+        List<Task> taskArr = saveFile.exists() ? load() : new ArrayList<>();
         String input = "";
         System.out.print("Hi I'm catBot!\nHow can I help you nya?\n");
 
@@ -27,6 +78,7 @@ public class Duke {
                         System.out.println("Roger nya! Added this task:\n  " + task.toString());
                         taskArr.add(task);
                         System.out.println("Now you have " + taskArr.size() + " task(s) in the list nya.");
+                        save(taskArr);
                         break;
                     } catch (ArrayIndexOutOfBoundsException e) {
                         System.out.println("Sorry nya, the description of a todo cannot be empty :3");
@@ -45,6 +97,7 @@ public class Duke {
                         System.out.println("Roger nya! Added this task:\n  " + task.toString());
                         taskArr.add(task);
                         System.out.println("Now you have " + taskArr.size() + " task(s) in the list nya.");
+                        save(taskArr);
                         break;
                     } catch (ArrayIndexOutOfBoundsException e) {
                         System.out.println("Sorry nya, the description of a deadline cannot be empty :3");
@@ -64,6 +117,7 @@ public class Duke {
                         System.out.println("Roger nya! Added this task:\n  " + task.toString());
                         taskArr.add(task);
                         System.out.println("Now you have " + taskArr.size() + " task(s) in the list nya.");
+                        save(taskArr);
                         break;
                     } catch (ArrayIndexOutOfBoundsException e) {
                         System.out.println("Sorry nya, the description of an event cannot be empty :3");
@@ -79,6 +133,7 @@ public class Duke {
                     int index = Integer.parseInt(task);
                     taskArr.get(index - 1).markAsDone();
                     System.out.println("I've marked this task as done. Great job nya!");
+                    save(taskArr);
                     break;
                 }
 
@@ -88,6 +143,7 @@ public class Duke {
                     int index = Integer.parseInt(task);
                     taskArr.get(index - 1).markAsNotDone();
                     System.out.println("Roger nya! I've marked this task as not done.");
+                    save(taskArr);
                     break;
                 }
 
@@ -99,8 +155,7 @@ public class Duke {
                     System.out.println("Roger nya! I've removed this task:\n  " + target.toString());
                     taskArr.remove(index - 1);
                     System.out.println("Now you have " + taskArr.size() + " task(s) left in the list.");
-
-
+                    save(taskArr);
                     break;
                 }
 
