@@ -1,5 +1,5 @@
-import java.util.NoSuchElementException;
 import java.util.Scanner;
+import java.util.NoSuchElementException;
 
 public class StorageParser {
     private static final String DELIMITER = "\\s*[|]\\s*";
@@ -18,17 +18,17 @@ public class StorageParser {
             String taskIndicator = scanner.next();
             Task task;
             switch (taskIndicator) {
-                case (TODO_INDICATOR):
-                    task = parseTodo(input);
-                    break;
-                case (DEADLINE_INDICATOR):
-                    task = parseDeadline(input);
-                    break;
-                case (EVENT_INDICATOR):
-                    task = parseEvent(input);
-                    break;
-                default:
-                    throw new DukeException("Unknown task");
+            case (TODO_INDICATOR):
+                task = parseTodo(input);
+                break;
+            case (DEADLINE_INDICATOR):
+                task = parseDeadline(input);
+                break;
+            case (EVENT_INDICATOR):
+                task = parseEvent(input);
+                break;
+            default:
+                throw new DukeException("Unknown task");
             }
             return task;
         }

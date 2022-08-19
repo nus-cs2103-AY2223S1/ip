@@ -1,7 +1,8 @@
-import java.util.Map;
-import java.util.Optional;
-import java.util.AbstractMap.SimpleEntry;
 import java.util.Scanner;
+import java.util.Optional;
+import java.util.Map;
+import java.util.AbstractMap.SimpleEntry;
+
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 
@@ -48,33 +49,33 @@ public abstract class Parser {
 
         Command command;
         switch (commandIndicator) {
-            case BYE:
-                command = parseBye();
-                break;
-            case LIST:
-                command = parseList();
-                break;
-            case TODO:
-                command = parseTodo(getCommandArgument(commandArguments));
-                break;
-            case DEADLINE:
-                command = parseDeadline(getCommandArgument(commandArguments));
-                break;
-            case EVENT:
-                command = parseEvent(getCommandArgument(commandArguments));
-                break;
-            case MARK:
-                command = parseMark(getCommandArgument(commandArguments));
-                break;
-            case UNMARK:
-                command = parseUnmark(getCommandArgument(commandArguments));
-                break;
-            case DELETE:
-                command = parseDelete(getCommandArgument(commandArguments));
-                break;
-            default:
-                command = parseUnknown(commandIndicator);
-                break;
+        case BYE:
+            command = parseBye();
+            break;
+        case LIST:
+            command = parseList();
+            break;
+        case TODO:
+            command = parseTodo(getCommandArgument(commandArguments));
+            break;
+        case DEADLINE:
+            command = parseDeadline(getCommandArgument(commandArguments));
+            break;
+        case EVENT:
+            command = parseEvent(getCommandArgument(commandArguments));
+            break;
+        case MARK:
+            command = parseMark(getCommandArgument(commandArguments));
+            break;
+        case UNMARK:
+            command = parseUnmark(getCommandArgument(commandArguments));
+            break;
+        case DELETE:
+            command = parseDelete(getCommandArgument(commandArguments));
+            break;
+        default:
+            command = parseUnknown(commandIndicator);
+            break;
         }
         return command;
     }

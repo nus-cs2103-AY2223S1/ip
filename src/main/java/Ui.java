@@ -1,8 +1,9 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
 import java.util.Scanner;
+import java.util.Optional;
+import java.util.List;
+import java.util.ArrayList;
+
+import java.util.NoSuchElementException;
 
 public class Ui {
     private Scanner scanner;
