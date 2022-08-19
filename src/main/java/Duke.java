@@ -48,6 +48,9 @@ public class Duke {
                 case "todo":
                     chatBot.addTask(new ToDo(sc.nextLine()));
                     break;
+                case "delete":
+                    chatBot.delete(sc.nextInt() - 1);
+                    sc.nextLine();
                 default:
                     break;
             }

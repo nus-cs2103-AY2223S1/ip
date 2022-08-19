@@ -54,6 +54,15 @@ class ChatBot {
                 + this.tasks.get(index) + "\n" + line);
     }
 
+    public void delete(int index) {
+
+        System.out.println(line + "\n\tNoted. I've remove this task:" +
+                this.tasks.get(index));
+        this.tasks.remove(index);
+        System.out.println("\t Now you have " + this.tasks.size() + " " +
+                "tasks in the list.\n" + line);
+    }
+
     public void echo(String input) {
 
         System.out.println(line + "\n\tYou just said " + input + "\n" + line);

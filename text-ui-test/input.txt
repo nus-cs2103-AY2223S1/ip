@@ -8,4 +8,7 @@ list
 unmark 1
 list
 todo join sports club
+list
+delete 2
+list
 bye
