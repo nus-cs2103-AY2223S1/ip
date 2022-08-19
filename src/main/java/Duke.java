@@ -10,7 +10,7 @@ public class Duke {
     }
 
     public enum Commands {
-        bye, list, mark, unmark, todo, deadline, events
+        bye, list, mark, unmark, todo, deadline, event
     }
 
     private abstract class Task {
@@ -79,46 +79,75 @@ public class Duke {
         }
     }
 
+    private class DukeException extends Exception {
+        public DukeException(String message) {
+            super(message);
+        }
+    }
+
     public static void main(String[] args) {
         Duke duke = new Duke();
         duke.greeting();
+        Boolean quit = false;
         Scanner scanner = new Scanner(System.in);
-
-        while (true) {
-            System.out.println("Enter command below:");
+        while (!quit) {
+            System.out.println("Enter a command below:");
             String input = scanner.nextLine();
-
-            if (input.contains("bye")) {
-                break;
-                
-            } else if (input.contains("list")) {
-                duke.printList();
-
-            } else if (input.contains("unmark")) {
-                int index = Integer.parseInt(input.replace("unmark", "").trim()) - 1;
-                duke.unmarkTask(index);
-
-            } else if (input.contains("mark")) {
-                int index = Integer.parseInt(input.replace("mark", "").trim()) - 1;
-                duke.markTask(index);
-
-            } else if (input.contains("todo")) {
-                duke.addToDo(input.replace("todo", "").trim());
-
-            } else if (input.contains("deadline")) {
-                String[] split = input.replace("deadline", "").split(" by ");
-                duke.addDeadline(split[0].trim(), split[1].trim());
-
-            } else if (input.contains("event")) {
-                String[] split = input.replace("event", "").split(" on ");
-                duke.addEvent(split[0].trim(), split[1].trim());
-
-            } else {
-                duke.addToDo(input);
+            try {
+                quit = duke.FeedDuke(input);
+            } catch (DukeException e) {
+                System.out.println(e.getMessage());
+                quit = false;
             }
         }
         scanner.close();
         duke.goodbye();
+    }
+
+    public Boolean FeedDuke(String input) throws DukeException {
+        if (input.contains("bye")) {
+            return true;
+            
+        } else if (input.contains("list")) {
+            this.printList();
+            return false;
+
+        } else if (input.contains("unmark")) {
+            int index = Integer.parseInt(input.replace("unmark", "").trim()) - 1;
+            this.unmarkTask(index);
+            return false;
+
+        } else if (input.contains("mark")) {
+            int index = Integer.parseInt(input.replace("mark", "").trim()) - 1;
+            this.markTask(index);
+            return false;
+
+        } else if (input.contains("todo")) {
+            try {
+                this.addToDo(input);
+            } catch (DukeException e) {
+                System.out.println(e.getMessage());
+            }
+            return false;
+        
+        } else if (input.contains("deadline")) {
+            try {
+                this.addDeadline(input);
+            } catch (DukeException e) {
+                System.out.println(e.getMessage());
+            }
+            return false;
+
+        } else if (input.contains("event")) {
+            try {
+                this.addEvent(input);
+            } catch (DukeException e) {
+                System.out.println(e.getMessage());
+            }
+            return false;
+
+        }
+        throw new DukeException("\t☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
     }
 
     public void greeting() {
@@ -140,7 +169,12 @@ public class Duke {
     }
 
     public void unmarkTask(int index) {
-        this.list.get(index).unmarkComplete();
+        try {
+            this.list.get(index).unmarkComplete();
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("\t☹ OOPS!!! Task number to be unmarked does not exist.");
+            return;
+        }
         System.out.println("\t____________________________________________________________");
         System.out.println("\tOK, I've marked this task as not done yet:");
         System.out.println("\t" + list.get(index).toString());
@@ -148,7 +182,12 @@ public class Duke {
     }
 
     public void markTask(int index) {
-        this.list.get(index).markComplete();
+        try {
+            this.list.get(index).markComplete();
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("\t☹ OOPS!!! Task number to be marked does not exist.");
+            return;
+        }
         System.out.println("\t____________________________________________________________");
         System.out.println("\tNice! I've marked this task as done:");
         System.out.println("\t" + list.get(index).toString());
@@ -164,7 +203,11 @@ public class Duke {
         System.out.println("\t____________________________________________________________");
     }
 
-    public void addToDo(String content) {
+    public void addToDo(String input) throws DukeException{
+        String content = input.replace("todo", "").trim();
+        if (content.length() == 0) {
+            throw new DukeException("\t☹ OOPS!!! The description of a todo cannot be empty.");
+        }
         ToDo task = new ToDo(content);
         System.out.println("\t____________________________________________________________");
         System.out.println("\tGot it. I've added this task:");
@@ -174,7 +217,16 @@ public class Duke {
         this.list.add(task);
     }
 
-    public void addDeadline(String content, String by) {
+    public void addDeadline(String input) throws DukeException{
+        if (!input.contains(" by ")) {
+            throw new DukeException("\t☹ OOPS!!! Formatting of deadline is incorrect.");
+        }
+        String[] split = input.replace("deadline", "").split(" by ");
+        String content = split[0].trim();
+        String by = split[1].trim();
+        if (content.length() == 0 || by.length() == 0) {
+            throw new DukeException("\t☹ OOPS!!! The description of a deadline cannot be empty.");
+        }
         Deadline task = new Deadline(content, by);
         System.out.println("\t____________________________________________________________");
         System.out.println("\tGot it. I've added this task:");
@@ -184,7 +236,16 @@ public class Duke {
         this.list.add(task);
     }
 
-    public void addEvent(String content, String time) {
+    public void addEvent(String input) throws DukeException{
+        if (!input.contains(" on ")) {
+            throw new DukeException("\t☹ OOPS!!! Formatting of event is incorrect.");
+        }
+        String[] split = input.replace("event", "").split(" on ");
+        String content = split[0].trim();
+        String time = split[1].trim();
+        if (content.length() == 0 || time.length() == 0) {
+            throw new DukeException("\t☹ OOPS!!! The description of an event cannot be empty.");
+        }
         Event task = new Event(content, time);
         System.out.println("\t____________________________________________________________");
         System.out.println("\tGot it. I've added this task:");
@@ -194,4 +255,5 @@ public class Duke {
         this.list.add(task);
     }
 
+    
 }
