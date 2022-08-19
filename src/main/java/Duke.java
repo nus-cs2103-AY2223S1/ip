@@ -45,9 +45,37 @@ public class Duke {
                 System.out.println(formatText(outputText));
 
             } else {
-                String outputElement = "";
-                userInputArray.add(new Task(userInput));
-                outputElement += "added: " + userInput;
+                String outputElement = "Got it. I've added this task:\n";
+
+                if (userInput.startsWith("todo")) {
+                    String taskDescription = userInput.replaceFirst("todo","").strip();
+                    Task newTask = new Todo(taskDescription);
+                    userInputArray.add(newTask);
+                    outputElement += " " + newTask.toString() + "\n";
+
+                } else if (userInput.startsWith("deadline")) {
+                    String[] temp = userInput.replaceFirst("deadline","").strip().split("/by");
+                    String taskDescription = temp[0].strip();
+                    String byDate = temp[1].strip();
+                    Task newTask = new Deadline(taskDescription, byDate);
+                    userInputArray.add(newTask);
+                    outputElement += " " + newTask.toString() + "\n";
+
+                } else if (userInput.startsWith("event")) {
+                    String[] temp = userInput.replaceFirst("event","").strip().split("/at");
+                    String taskDescription = temp[0].strip();
+                    String byDateTime = temp[1].strip();
+                    Task newTask = new Event(taskDescription, byDateTime);
+                    userInputArray.add(newTask);
+                    outputElement += " " + newTask.toString() + "\n";
+
+                } else {
+                    Task newTask = new Task(userInput);
+                    userInputArray.add(newTask);
+                    outputElement += " " + newTask.toString() + "\n";
+
+                }
+                outputElement += "Now you have " + userInputArray.size() + " tasks in the list.";
                 outputElement = formatText(outputElement);
                 System.out.println(outputElement);
             }
