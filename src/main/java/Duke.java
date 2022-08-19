@@ -35,6 +35,7 @@ public class Duke {
                         int taskNo = sc.nextInt();
                         store.get(taskNo - 1).doTask();
                         System.out.println("        " + store.get(taskNo - 1));
+                        System.out.println("    ____________________________________________________________\n");
                         input = sc.next();
                         break;
                     }
@@ -43,6 +44,17 @@ public class Duke {
                         int taskNo = sc.nextInt();
                         store.get(taskNo - 1).undoTask();
                         System.out.println("        " + store.get(taskNo - 1));
+                        System.out.println("    ____________________________________________________________\n");
+                        input = sc.next();
+                        break;
+                    }
+                    case "delete": {
+                        System.out.println("     Noted. I've removed this task:");
+                        int taskNo = sc.nextInt();
+                        System.out.println("     " + store.get(taskNo -1));
+                        store.remove(taskNo - 1);
+                        System.out.println("     Now you have " + store.size() + " tasks in the list.");
+                        System.out.println("    ____________________________________________________________\n");
                         input = sc.next();
                         break;
                     }
@@ -62,6 +74,7 @@ public class Duke {
                             while (!sc.hasNext("/by")) {
                                 task = task + " " + sc.next();
                             }
+                            sc.next();
                             //if (sc.next().equals("")) throw new DukeException("     ☹ OOPS!!! I can't add this to your list without a deadline.");
                             String deadline = sc.nextLine();
                             //if (task.equals("")) throw new DukeException("     ☹ OOPS!!! The description of a deadline cannot be empty.");
