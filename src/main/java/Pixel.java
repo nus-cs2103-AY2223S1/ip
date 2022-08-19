@@ -123,15 +123,20 @@ public class Pixel {
                 // System.out.println(indexToChange);
                 if ((indexToDelete > 0) || (indexToDelete < 100)) {
                     tempRecord = inputTasks.get(indexToDelete - 1);
-                    inputTasks.remove(indexToDelete - 1);
-                    System.out.println("rgdgdfgfdg");
+                    int originalInputListSize = inputTasks.size();
+
                     System.out.println("Noted. I've removed this task:");
                     System.out.println(tempRecord);
-                    for (int i = (indexToDelete - 1); i < inputTasks.size(); i++) {
+                    System.out.println(originalInputListSize + " input task size");
+
+                    // shift everything forward by 1, starting at the element to be removed (which is replaced by next element)
+                    for (int i = (indexToDelete - 1); i < originalInputListSize; i++) {
                         // move everything up by 1
-                        if (i == inputTasks.size() - 1) {
+                        if (i == (originalInputListSize - 1)) {
+                            // System.out.println(i + " remove");
                             inputTasks.remove(i);
                         } else {
+                            // System.out.println(i + " replace");
                             inputTasks.set(i, inputTasks.get(i + 1));
                         }
                     }
