@@ -77,7 +77,7 @@ public class ChatBot {
                         break;
 
                     case 7:
-                        System.out.println("Please type in the task index that you want to unmark:");
+                        System.out.println("Please type in the task index that you want to delete:");
                         int taskIndexToDelete = controller.userTask() - 1;
                         controller.deleteFromList(taskIndexToDelete);
                         controller.display(null, false, false, false, true);
