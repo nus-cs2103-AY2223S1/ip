@@ -20,24 +20,35 @@ public class Pixel {
 //        return -1;
 //    }
 
-    private void handleNewTask(String userInput, int indexOfSlashBy, String type) {
-        // If there's a "/by" in the input string, then the info behind the "/by" is the due
-        // if there's no "/by" string, then due should be empty
-        String due = indexOfSlashBy == -1 ? "" : userInput.substring(indexOfSlashBy + 4);
-        int indexOfEndOfDescription = indexOfSlashBy == -1 ? userInput.length() : indexOfSlashBy;
+    private void handleNewTask(String userInput, int indexOfSlash, String type) {
+        // If there's a "/by" or "/at" in the input string, then the info behind the "/by" or "/at" is the due
+        // if there's no "/by" and "/at" string, then due should be empty
+        String due = indexOfSlash == -1 ? "" : userInput.substring(indexOfSlash + 4);
+        int indexOfEndOfDescription = indexOfSlash == -1 ? userInput.length() : indexOfSlash;
         Task newTask;
+        String commandWord = "";
+
+        if (indexOfSlash != -1) {
+            if (userInput.substring(indexOfSlash + 1).startsWith("by")) {
+                commandWord = "by";
+            } else if (userInput.substring(indexOfSlash + 1).startsWith("at")) {
+                commandWord = "at";
+            } else {
+                throw new IncorrectFormatException("Slash should he followed \"by\" or \"at\"! "); // programme breaks
+            }
+        }
 
         if (type.equals("T")) { // todo
             String description = userInput.substring(5, indexOfEndOfDescription);
-            newTask = new ToDo(description, due); // Stores user input
+            newTask = new ToDo(description, due, commandWord); // Stores user input
 
         } else if (type.equals("D")) { // deadline
             String description = userInput.substring(9, indexOfEndOfDescription);
-            newTask = new Deadline(description, due); // Stores user input
+            newTask = new Deadline(description, due, commandWord); // Stores user input
 
         } else if (type.equals("E")) { // event
             String description = userInput.substring(6, indexOfEndOfDescription);
-            newTask = new Event(description, due); // Stores user input
+            newTask = new Event(description, due, commandWord); // Stores user input
 
         } else { //shouldn't reach here
             throw new IncorrectFormatException("Invalid format of input!"); // programme breaks
@@ -53,20 +64,20 @@ public class Pixel {
 
     private void run() {
         String userInput = myScanner.nextLine();  // Read user input
-        int indexOfSlashBy = userInput.indexOf("/by"); // returns -1 if such a string doesn't exist
+        int indexOfSlash = userInput.indexOf("/"); // returns -1 if such a string doesn't exist
 
         try {
             if (userInput.trim().equals("bye")) {
                 System.out.println("Bye. Hope to see you again soon!");
 
             } else if (userInput.trim().startsWith("todo ")) {
-                handleNewTask(userInput, indexOfSlashBy, "T");
+                handleNewTask(userInput, indexOfSlash, "T");
 
             } else if (userInput.trim().startsWith("deadline ")) {
-                handleNewTask(userInput, indexOfSlashBy, "D");
+                handleNewTask(userInput, indexOfSlash, "D");
 
             } else if (userInput.trim().startsWith("event ")) {
-                handleNewTask(userInput, indexOfSlashBy, "E");
+                handleNewTask(userInput, indexOfSlash, "E");
 
             } else if (userInput.trim().startsWith("mark ")) {
                 // truncate the front part
@@ -130,7 +141,7 @@ public class Pixel {
                 // run();
 
             } else {
-                throw new IncorrectFormatException("Invalid format of input!"); // programme breaks
+                throw new IncorrectFormatException("Input should be a task or command!"); // programme breaks
 //                inputTasks.add(count, new Task(userInput)); // Stores user input
 //                System.out.println(userInput);  // Output user input
 //                count += 1;
@@ -151,7 +162,7 @@ public class Pixel {
 
         } catch (IncorrectFormatException e) {
             System.out.println(e);
-            System.out.println("Incorrect format of input message!");
+            System.out.println("Incorrect format exception!");
 
         } finally {
             // clean up
