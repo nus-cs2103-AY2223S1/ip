@@ -1,13 +1,15 @@
 package duke.task;
 
-import duke.DukeException;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import duke.DukeException;
+
 public class TaskList {
+    private static String NO_SUCH_INDEX = "No such index in the list, please try again.";
+    private static String NO_TASKS_LEFT = "List is empty, 0 items left !";
     private final List<Task> taskList;
-    static String NO_SUCH_INDEX = "No such index in the list, please try again.";
+
 
     public TaskList() {
         this.taskList = new ArrayList<>();
@@ -27,7 +29,7 @@ public class TaskList {
 
     private String getItemsLeft() {
         if (taskList.isEmpty()) {
-            return "List is empty, 0 items left !";
+            return NO_TASKS_LEFT;
         } else {
             return String.format("Now you have %d tasks in the list", taskList.size());
         }
@@ -62,7 +64,7 @@ public class TaskList {
 
     public void listTasks() {
         if (taskList.isEmpty()) {
-            System.out.println("List is empty, 0 items left !");
+            System.out.println(NO_TASKS_LEFT);
             return;
         }
         String toPrint = "";
@@ -100,8 +102,13 @@ public class TaskList {
         }
     }
 
-    public String getAddedTaskOutput(Task task) {
-        return String.format("Got it. I've added this task:\n  %s\n%s\n",
-                task.toString(), getItemsLeft());
+    public String getAddedTaskOutput() {
+        Task lastAddedTask = new Task("", TaskType.TASK);
+        if (!taskList.isEmpty()) {
+            lastAddedTask = taskList.get(taskList.size() - 1);
+            return String.format("Got it. I've added this task:\n  %s\n%s\n",
+                    lastAddedTask.toString(), getItemsLeft());
+        }
+        return NO_TASKS_LEFT;
     }
 }
