@@ -34,10 +34,17 @@ public class Task {
     }
 
     /**
-     * Changes the completion status of the Task.
+     * Marks the Task as completed.
      */
-    public void toggleDone() {
-        this.done = !this.done;
+    public void setDone() {
+        this.done = true;
+    }
+
+    /**
+     * Marks the Task as incomplete.
+     */
+    public void setUndone() {
+        this.done = false;
     }
 
     /**
