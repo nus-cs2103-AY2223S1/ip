@@ -110,15 +110,16 @@ public class Duke {
 
             throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :(");
 
-            /**Task newTask = new Task(str2);
-            tasks[taskNum] = newTask;
-            taskNum++;
-            System.out.println("added: " + str2);
-            str2 = sc.nextLine();*/
         }
         //System.out.println("Bye! See you soon!");
     }
 
+    /**
+     * Display the list of tasks that the user has
+     *
+     * @param taskNo The task number
+     * @param arr1 The ArrayList containing all the tasks objects
+     */
     public static void showList(int taskNo, ArrayList<Task> arr1){
         drawLine();
         System.out.println("Here are the tasks in your list:");
@@ -129,6 +130,12 @@ public class Duke {
         drawLine();
     }
 
+    /**
+     * Mark tasks as done
+     *
+     * @param task The string containing which task to be marked
+     * @param arr1 The ArrayList containing all the tasks
+     */
     public static void markDone(String task, ArrayList<Task> arr1) {
         int taskToMark = 0;
         drawLine();
@@ -144,6 +151,12 @@ public class Duke {
         System.out.println("[" + arr1.get(taskToMark - 1).getStatusIcon() + "] " + arr1.get(taskToMark - 1).description);
     }
 
+    /**
+     * Change status of task back to not done
+     *
+     * @param task The string containing which task to be unmarked
+     * @param arr The ArrayList containing all the tasks
+     */
     public static void markUndone(String task, ArrayList<Task> arr) {
         int taskToUnmark = 0;
         drawLine();
@@ -159,6 +172,13 @@ public class Duke {
         System.out.println("[" + arr.get(taskToUnmark - 1).getStatusIcon() + "] " + arr.get(taskToUnmark - 1).description);
     }
 
+    /**
+     * Add Todo tasks
+     *
+     * @param str The string containing task to be added
+     * @param arr The ArrayList containing all the tasks
+     * @param num The task number
+     */
     public static void addToDo(String str, ArrayList<Task> arr, int num) {
         drawLine();
         System.out.println("Got it. I've added this task:");
@@ -167,6 +187,13 @@ public class Duke {
         System.out.println(arr.get(num).toString());
     }
 
+    /**
+     * Add Deadline tasks
+     *
+     * @param str The string containing task to be added
+     * @param arr The ArrayList containing all the tasks
+     * @param num The task number
+     */
     public static void addDeadline(String str, ArrayList<Task> arr, int num) {
         drawLine();
         System.out.println("Got it. I've added this task:");
@@ -183,6 +210,13 @@ public class Duke {
         System.out.println(arr.get(num).toString());
     }
 
+    /**
+     * Add Event tasks
+     *
+     * @param str The string containing task to be added
+     * @param arr The ArrayList containing all the tasks
+     * @param num The task number
+     */
     public static void addEvent(String str, ArrayList<Task> arr, int num) {
         drawLine();
         System.out.println("Got it. I've added this task:");
@@ -199,6 +233,12 @@ public class Duke {
         System.out.println(arr.get(num).toString());
     }
 
+    /**
+     * Delete task
+     *
+     * @param str The string sepcifying which task to be deleted
+     * @param arr The ArrayList containing all the tasks
+     */
     public static void deleteTask(String str, ArrayList<Task> arr) {
         int taskToDel = 0;
         drawLine();
@@ -215,6 +255,9 @@ public class Duke {
         System.out.println("Now you have " + arr.size() + " tasks in the list.");
     }
 
+    /**
+     * Draw horizontal line
+     */
     public static void drawLine() {
         String str = "";
         for (int i = 0; i < 80; i++) {

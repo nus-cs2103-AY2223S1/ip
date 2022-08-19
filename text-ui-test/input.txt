@@ -1,3 +1,7 @@
 todo read
 todo eat
+deadline prj /by Sun
+mark 2
+delete 1
+list
 bye
