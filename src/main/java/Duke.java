@@ -13,7 +13,20 @@ public class Duke {
         System.out.println(banner);
     }
 
-    public static void main(String[] args) {
+    private static String getTaskName(String[] msg) {
+        String input = "";
+        for (int i = 1; i < msg.length; i++) {
+            input += msg[i];
+            if (i < msg.length - 1) input += " ";
+        }
+        return input;
+    }
+
+    private static void printAddTask(String msg) {
+        print("Got it. I've added this task:\n" + msg + "\nNow you have " + tasks.size() +  " tasks in the list.");
+    }
+
+    public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
         print(greetings);
 
@@ -52,9 +65,47 @@ public class Duke {
                 tasks.get(index).unmark();
                 print("I've marked this task as undone: \n" + tasks.get(index));
 
+            } else if (input.startsWith("todo")) {
+
+                String[] msg = input.split(" ");
+                if (msg.length < 2) {
+                    print("nothing to add!");
+                    continue;
+                }
+                input = getTaskName(msg);
+                tasks.add(new Todo(input));
+                printAddTask(input);
+
+            } else if (input.startsWith("deadline")) {
+                String[] msg = input.split("/");
+                if (msg.length < 2) {
+                    print("no date specified!");
+                    continue;
+                }
+                String[] tmp = msg[0].split(" ");
+                if (msg.length < 2) {
+                    print("nothing to add!");
+                    continue;
+                }
+                input = getTaskName(tmp);
+                tasks.add(new Deadline(input, msg[1]));
+                printAddTask(input);
+            } else if (input.startsWith("event")) {
+                String[] msg = input.split("/");
+                if (msg.length < 2) {
+                    print("no date specified!");
+                    continue;
+                }
+                String[] tmp = msg[0].split(" ");
+                if (msg.length < 2) {
+                    print("nothing to add!");
+                    continue;
+                }
+                input = getTaskName(tmp);
+                tasks.add(new Event(input, msg[1]));
+                printAddTask(input);
             } else {
-                    print("added: " + input);
-                    tasks.add(new Task(input));
+                throw(new Exception("I do not understand!"));
             }
         }
     }
