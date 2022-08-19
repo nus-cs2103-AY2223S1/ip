@@ -3,6 +3,13 @@ import java.util.*;
 public class Doke {
 
     private static void listOut(ArrayList<Task> arr) {
+        if (arr.isEmpty()) {
+            System.out.println("_________________________");
+            System.out.println("You have no task!");
+            System.out.println("_________________________");
+            return;
+        }
+
         int len = arr.size();
         int i=0;
         System.out.println("_________________________");
@@ -14,7 +21,6 @@ public class Doke {
     }
 
     private static boolean isInt(String str) {
-
         try {
             @SuppressWarnings("unused")
             int x = Integer.parseInt(str);
@@ -26,7 +32,6 @@ public class Doke {
     }
 
     private static int toInt(String str) {
-
         try {
             @SuppressWarnings("unused")
             int x = Integer.parseInt(str);
@@ -37,16 +42,40 @@ public class Doke {
 
     }
 
-    private static Task createSpecialTask(String[] arr) {
+    private static void addTask(String[] arr, String action,
+                                          ArrayList<Task> arrayList) {
 
-        String word = arr[1];
+        if (arr.length == 1) {
+            if (action.equals("todo")) {
+                try {
+                    throw new DokeException("todo");
+                } catch (DokeException d) {
+                    System.out.println(d.toString());
+                }
+            } else if (action.equals("deadline")) {
+                try {
+                    throw new DokeException("deadline");
+                } catch (DokeException d) {
+                    System.out.println(d.toString());
+                }
+            }else {
+                try {
+                    throw new DokeException("todo");
+                } catch (DokeException d) {
+                    System.out.println(d.toString());
+                }
+            }
+            return;
+        }
+
+        String word = "";
         String time="";
-        int i = 2;
+        int i = 1;
         int length = arr.length;
 
-        while (i < length && ((!arr[i].equals("/at") && arr[0].equals("event"))
-                || (!arr[i].equals("/by") && arr[0].equals("deadline"))
-                || arr[0].equals("todo"))) {
+        while (i < length && ((!arr[i].equals("/at") && action.equals("event"))
+                || (!arr[i].equals("/by") && action.equals("deadline"))
+                || action.equals("todo"))) {
             word = word + " " + arr[i];
             i++;
         }
@@ -58,15 +87,24 @@ public class Doke {
                 time += " " + arr[i];
                 i++;
             }
+        }
 
-        }
-        if (arr[0].equals("todo")) {
-            return new ToDo(word);
-        } else if (arr[0].equals("deadline")) {
-            return new Deadline(word, time);
+        if (action.equals("todo")) {
+            Task addition =  new ToDo(word);
+            arrayList.add(addition);
+        } else if (action.equals("deadline")) {
+            Task addition =  new Deadline(word, time);
+            arrayList.add(addition);
         } else {
-            return new Events(word, time);
+            Task addition =  new Events(word, time);
+            Task add =  new ToDo(word);
+            arrayList.add(addition);
         }
+
+        System.out.println("_________________________");
+        System.out.println("added: " + arrayList.get(arrayList.size() - 1).toString());
+        System.out.println("Nice, now you have " + arrayList.size() + " tasks!!");
+        System.out.println("_________________________" +"\n");
     }
 
     public static void main(String[] args) {
@@ -90,102 +128,66 @@ public class Doke {
                 continue;
             }
 
-            if (str.contains(" ")) {
+            String[] temp = str.split(" ");
+            String action = temp[0];
 
-                String[] temp = str.split(" ");
+            if (temp.length == 2 && isInt(temp[1])) {
                 int num = toInt(temp[1]);
-                boolean x = isInt(temp[1]);
+                if(action.equals("mark")) {
 
-                if (x && num > 0) {
-                    if (temp[0].equals("mark")) {
-
-                        Task current = arrayList.get(num - 1);
-                        try {
-                            current.markDone();
-                            System.out.println("_________________________");
-                            System.out.println("Nice! I've marked this task as done:");
-                            System.out.println(current.toString());
-                            System.out.println("_________________________" + "\n");
-                        } catch (DokeException a) {
-                            System.out.println("_________________________");
-                            System.out.println("This task is already marked done:");
-                            System.out.println(current.toString());
-                            System.out.println("_________________________" + "\n");
-                        }
-                    }
-
-                    if (temp[0].equals("unmark")) {
-
-                        Task current = arrayList.get(num - 1);
-                        try {
-                            current.markNotDone();
-                            System.out.println("_________________________");
-                            System.out.println("OK, I've marked this task as not done yet:");
-                            System.out.println(current.toString());
-                            System.out.println("_________________________" + "\n");
-                        } catch (DokeException a) {
-                            System.out.println("_________________________");
-                            System.out.println("This task is already marked not done:");
-                            System.out.println(current.toString());
-                            System.out.println("_________________________" + "\n");
-                        }
-                    }
-
-                    if (temp[0].equals("delete")) {
-
-                        Task current = arrayList.get(num - 1);
-                        arrayList.remove(num-1);
+                    Task current = arrayList.get(num - 1);
+                    try {
+                        current.markDone();
                         System.out.println("_________________________");
-                        System.out.println("This task has been removed:");
+                        System.out.println("Nice! I've marked this task as done:");
                         System.out.println(current.toString());
-                        System.out.println("Nice, now you have " + arrayList.size() + " tasks!!");
+                        System.out.println("_________________________" + "\n");
+                    } catch (DokeException a) {
+                        System.out.println("_________________________");
+                        System.out.println("This task is already marked done:");
+                        System.out.println(current.toString());
                         System.out.println("_________________________" + "\n");
                     }
-                    str = sc.nextLine();
-                    continue;
-                }
-                if (temp[0].equals("todo") || temp[0].equals("deadline") || temp[0].equals("event")) {
-                    arrayList.add(createSpecialTask(temp));
-                } else {
+                } else if(action.equals("unmark")) {
+
+                    Task current = arrayList.get(num - 1);
                     try {
-                        Task dummy = new Task();
-                    } catch (DokeException d){
-                        System.out.println(d.toString());
+                        current.markNotDone();
+                        System.out.println("_________________________");
+                        System.out.println("OK, I've marked this task as not done yet:");
+                        System.out.println(current.toString());
+                        System.out.println("_________________________" + "\n");
+                    } catch (DokeException a) {
+                        System.out.println("_________________________");
+                        System.out.println("This task is already marked not done:");
+                        System.out.println(current.toString());
+                        System.out.println("_________________________" + "\n");
                     }
-                    str = sc.nextLine();
-                    continue;
-                }
-            } else {
-                String temp = str.split(" ")[0];
-                if (temp.equals("todo")
-                        || temp.equals("deadline")
-                        || temp.equals("event")) {
-                    try {
-                        if (temp.equals("todo")) {
-                            throw new DokeException("todo");
-                        } else if (temp.equals("deadline")) {
-                            throw new DokeException("deadline");
-                        } else {
-                            throw new DokeException("event");
-                        }
-                    } catch (DokeException d) {
-                        System.out.println(d.toString());
-                    }
-                }else {
-                    try {
-                        Task dummy = new Task();
-                    } catch (DokeException d) {
-                        System.out.println(d.toString());
-                    }
+                } else if(action.equals("delete")) {
+
+                    Task current = arrayList.get(num - 1);
+                    arrayList.remove(num-1);
+                    System.out.println("_________________________");
+                    System.out.println("This task has been removed:");
+                    System.out.println(current.toString());
+                    System.out.println("Nice, now you have " + arrayList.size() + " tasks!!");
+                    System.out.println("_________________________" + "\n");
                 }
                 str = sc.nextLine();
                 continue;
             }
 
-            System.out.println("_________________________");
-            System.out.println("added: " + arrayList.get(arrayList.size() - 1).toString());
-            System.out.println("Nice, now you have " + arrayList.size() + " tasks!!");
-            System.out.println("_________________________" +"\n");
+            if (action.equals("todo") || action.equals("deadline") || action.equals("event")) {
+                addTask(temp, action, arrayList);
+            } else {
+                try {
+                    throw new DokeException();
+                } catch(DokeException d){
+                    System.out.println(d.toString());
+                }
+                str = sc.nextLine();
+                continue;
+            }
 
             str = sc.nextLine();
         }
