@@ -284,6 +284,7 @@ public abstract class Command {
             helpGuide.add("5. " + ToDoCommand.usage);
             helpGuide.add("6. " + EventCommand.usage);
             helpGuide.add("7. " + DeadlineCommand.usage);
+            helpGuide.add("8. " + DeleteCommand.usage);
             return helpGuide.toArray(new String[0]);
         }
 
