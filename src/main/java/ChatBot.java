@@ -1,11 +1,11 @@
 public class ChatBot {
     public static final String NAME = "Duke";
-    private Command command;
+    private ToDoList toDoList;
     public ChatBot(){
         String greetingMessage = "Hello! I'm " + NAME + "\n"
                 + "What can I do for you?\n";
         System.out.println(greetingMessage);
-        command = new Command();
+        this.toDoList = new ToDoList();
     }
 
     public void echo (String input) {
@@ -13,9 +13,17 @@ public class ChatBot {
             System.out.println("Bye. Hope to see you again soon!\n");
             System.exit(0);
         } else if ("list".equalsIgnoreCase(input)) {
-            command.printList();
+            this.toDoList.printList();
+        } else if (input.toLowerCase().contains("unmark")) {
+            String[] arguments = input.split(" ");
+            int taskNo = Integer.parseInt(arguments[1]);
+            this.toDoList.unMarkTask(taskNo);
+        } else if (input.toLowerCase().contains("mark")) {
+            String[] arguments = input.split(" ");
+            int taskNo = Integer.parseInt(arguments[1]);
+            this.toDoList.markTask(taskNo);
         } else {
-            command.addCommand(input);
+            this.toDoList.addTask(new Task(input));
             System.out.println(NAME + ": Added: " + input + "\n");
         }
     }
