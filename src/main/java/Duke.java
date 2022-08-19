@@ -41,6 +41,13 @@ public class Duke {
     
     public void saveTasksToStorage() throws IOException {
         File file = new File(taskStoragePath);
+        File storageDir = new File(file.getParent());
+    
+        // create storage dir if it does not exist
+        if (!storageDir.exists()) {
+            storageDir.mkdirs();
+        }
+        
         FileWriter fw = new FileWriter(file);
         for (Task task : this.taskArr) {
             fw.write(task.toFileFormatString() + "\n");
@@ -49,6 +56,7 @@ public class Duke {
     }
     
     public void readTasksFromStorage() {
+        System.out.print("Loading your tasks......");
         File file = new File(taskStoragePath);
         try {
             Scanner sc = new Scanner(file);
@@ -56,8 +64,10 @@ public class Duke {
                 Task task = Task.getTaskFromString(sc.nextLine());
                 this.taskArr.add(task);
             }
+            System.out.println("Successfully loaded all tasks! :)");
         } catch (FileNotFoundException fnfe) {
-            System.out.println("The storage file containing the tasks cannot be found :(");
+            System.out.println("FAILED! Could not find storage file containing your tasks");
+            System.out.println("Add a task to generate one!!!");
         }
     }
 
@@ -186,10 +196,11 @@ public class Duke {
 
     public void start() {
         Scanner scanner = new Scanner(System.in);
+        readTasksFromStorage();
         this.greetUser();
 
         boolean end = false;
-        readTasksFromStorage();
+     
 
         while (!end) {
             System.out.print("\n>>> ");

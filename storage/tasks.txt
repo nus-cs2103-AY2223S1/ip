@@ -1,3 +1,0 @@
-T|0|this task
-D|0|a deadline task|tmr morning
-E|0|an event|tonight Ldwwddwd
