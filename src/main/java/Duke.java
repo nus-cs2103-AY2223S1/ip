@@ -6,17 +6,14 @@ import static java.lang.Integer.decode;
 import static java.lang.Integer.parseInt;
 
 public class Duke {
-    // Special commands
-    private static final String BYE = "bye";
-    private static final String LIST = "list";
-    private static final String TODO = "todo";
-    private static final String DEADLINE = "deadline";
-    private static final String EVENT = "event";
 
+    // Oerations on tasks
     private static final String MARK_REGEX = "mark [0-9]+";
     private static final String UNMARK_REGEX = "unmark [0-9]+";
     private static final String DELETE_REGEX = "delete [0-9]+";
+    private static final String LIST = "list";
 
+    // Regex for pattern matching
     private static final String TODO_REGEX = "todo[a-z[A-Z][0-9]_ :-]*";
     private static final String DEADLINE_REGEX = "deadline[a-z[A-Z][0-9]_ ]* /by [a-z[A-Z][0-9]_ :-]*";
     private static final String EVENT_REGEX = "event[a-z[A-Z][0-9]_ ]* /at [a-z[A-Z][0-9]_ :-]*";
@@ -31,7 +28,7 @@ public class Duke {
         while (true) {
             String command = s.nextLine().trim();
             System.out.println("\t-------------------------------");
-            if (command.equals(BYE)) {
+            if (command.equals(Commands.BYE)) {
                 System.out.println("\tBye! Hope to see you again");
                 break;
             } else if (command.equals(LIST)) {
@@ -45,14 +42,14 @@ public class Duke {
                 int taskNumber = parseInt(temp);
                 Task.markAsNotDone(taskNumber - 1);
             } else if (Pattern.matches(TODO_REGEX, command)) {
-                String desc = command.substring(TODO.length()).trim(); // Ignore the word "todo"
+                String desc = command.substring(Commands.TODO.toString().length()).trim(); // Ignore the word "todo"
                 try {
                     Task.add(new ToDo(desc));
                 } catch (DukeException e) {
                     System.out.println(String.format("\t%s", e.getMessage()));
                 }
             } else if (Pattern.matches(DEADLINE_REGEX, command)) {
-                String temp = command.substring(DEADLINE.length());
+                String temp = command.substring(Commands.DEADLINE.toString().length());
                 String[] details = temp.split("/by");
                 details[0] = details[0].trim(); // description
                 details[1] = details[1].trim(); // deadline
@@ -62,7 +59,7 @@ public class Duke {
                     System.out.println(String.format("\t%s", e.getMessage()));
                 }
             } else if (Pattern.matches(EVENT_REGEX, command)) {
-                String temp = command.substring(EVENT.length());
+                String temp = command.substring(Commands.EVENT.toString().length());
                 String[] details = temp.split("/at");
                 details[0] = details[0].trim(); // description
                 details[1] = details[1].trim(); // timing
@@ -82,5 +79,6 @@ public class Duke {
         }
         System.out.println("\t-------------------------------");
     }
+
 }
 
