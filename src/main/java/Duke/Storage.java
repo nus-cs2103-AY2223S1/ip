@@ -23,6 +23,11 @@ public class Storage {
         this.filepath = filepath;
     }
 
+    /**
+     * Loads saved task from file to taskList
+     *
+     * @return ArrayList of Tasks
+     */
     public ArrayList<Task> load() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM uuuu");
         ArrayList<Task> contents = new ArrayList<>();
@@ -55,6 +60,11 @@ public class Storage {
         return contents;
     }
 
+    /**
+     * Writes the stringified tasks to file
+     *
+     * @param lst list of stringified tasks
+     */
     public void save(List<String> lst) {
         FileWriter fileWriter = null;
         try {

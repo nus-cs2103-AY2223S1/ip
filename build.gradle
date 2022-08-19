@@ -34,7 +34,7 @@ dependencies {
 }
 
 application {
-    mainClassName = "seedu.duke.Duke"
+    mainClassName = "Duke.Duke"
 }
 
 shadowJar {

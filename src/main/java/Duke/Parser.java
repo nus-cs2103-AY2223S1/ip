@@ -9,6 +9,13 @@ import static java.lang.Integer.parseInt;
 
 public class Parser {
 
+    /**
+     * Returns command that would be executed
+     *
+     * @param command Command entered by user
+     * @return Command
+     * @throws DukeException
+     */
     public static Command parse(String command) throws DukeException {
         String[] parse = command.split(" ", 2);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM uuuu");
