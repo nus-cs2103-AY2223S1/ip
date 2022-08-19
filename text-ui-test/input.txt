@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 todo read book
 deadline return book /by: June 6th
 event project meeting /at: Aug 6th 2-4pm
@@ -9,3 +10,6 @@ list
 deadline return book /by Sunday
 event project meeting /at Mon 2-4pm
 bye
+=======
+bye
+>>>>>>> 86a34130f359ee956c41e7413e2754222ed60349
