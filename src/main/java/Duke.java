@@ -2,13 +2,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
-    private ArrayList<Task> db;
-    private Scanner sc;
-
-    public Duke() {
-        this.sc = new Scanner(System.in);
-        this.db = new ArrayList<>(10);
-    }
+    private final ArrayList<Task> db = new ArrayList<>(10);
+    private final Scanner sc = new Scanner(System.in);
 
     /**
      * Welcome message that is printed upon starting the bot.
@@ -91,21 +86,35 @@ public class Duke {
         return 1;
     }
 
+    /**
+     * Classify the input task into To-do, Deadline or Event,
+     * then adds the task to Duke's database.
+     * @param s Input string by user
+     * @return 1 on successful execution
+     */
     private int add(String s) {
+        Task task;
+
         // Event
-        if (s.lastIndexOf("/at") != -1) {
-            return 1;
-
+        if (s.contains("/at")) {
+            String[] tmp = s.split("/at");
+            task = new Event(tmp[0].strip(), tmp[1].strip());
+            db.add(task);
         // Deadline
-        } else if (s.lastIndexOf("/by") != -1) {
-            return 1;
-
+        } else if (s.contains("/by")) {
+            String[] tmp = s.split("/by");
+            task = new Deadline(tmp[0].strip(), tmp[1].strip());
+            db.add(task);
         // Normal To-Do
         } else {
-            db.add(new Todo(s));
-            System.out.println("added: " + s);
-            return 1;
+            task = new Todo(s);
+            db.add(task);
         }
+
+        System.out.println("Got it. I added this task: ");
+        System.out.println(task);
+        System.out.printf("Now you have %d tasks in the list.%n", db.size());
+        return 1;
     }
 
     // Initializes and starts a Duke instance.
