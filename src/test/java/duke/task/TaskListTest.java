@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TaskListTest {
     @Test
     public void testToString() {
-        TaskList taskList = TaskList.newEmptyTaskList();
+        TaskList taskList = new TaskList();
         taskList.addTask(new Todo("abc", false));
         taskList.addTask(new Event("def ghi", "12/12/2022 12:12"));
         taskList.addTask(new Deadline("jkl mno pqr", "1/1/1 1:01", true));
