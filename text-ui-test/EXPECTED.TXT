@@ -34,6 +34,7 @@ What happened bro.
 java.lang.IllegalArgumentException: Wrong task number lah.
 java.lang.IllegalArgumentException: Wrong task number lah.
 java.lang.IllegalArgumentException: Wrong task number lah.
+java.lang.NumberFormatException: Write properly leh. Your number format is wrong.
 UnknownActionException: I have no clue what you're trying to do bro.
 EmptyTimingException: You have not set a timing for your deadline buddy.
 InvalidFormattingException: Wrong formatting for a deadline bro.

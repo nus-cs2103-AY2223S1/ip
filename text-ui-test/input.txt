@@ -17,6 +17,7 @@ unmark 3
 mark 0
 mark 4
 mark -1
+delete 4a
 help
 deadline return book
 deadline return book /at Sunday

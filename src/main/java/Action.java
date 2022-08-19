@@ -120,7 +120,7 @@ public abstract class Action {
                         int taskNumber = Integer.parseInt(actionSplit[1]);
                         return new NumberedAction(action, taskNumber);
                     } catch (NumberFormatException e) {
-                        throw e;
+                        throw new NumberFormatException("Write properly leh. Your number format is wrong.");
                     }
                 } else {
                     throw new EmptyTaskNameException(action);
