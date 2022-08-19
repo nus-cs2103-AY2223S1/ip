@@ -1,3 +1,3 @@
 interface SetStatus {
-    Task setStatus(boolean status);
+  Task setStatus(boolean status);
 }

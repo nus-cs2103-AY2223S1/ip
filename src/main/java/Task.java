@@ -1,22 +1,23 @@
 public abstract class Task implements SetStatus {
-    private final String title;
-    private final boolean status; 
 
-    Task(String title, boolean status) {
-        this.title = title;
-        this.status = status;
-    }
+  private final String title;
+  private final boolean status;
 
-    String getTitle() {
-        return this.title;
-    }
+  Task(String title, boolean status) {
+    this.title = title;
+    this.status = status;
+  }
 
-    boolean getStatus() {
-        return this.status;
-    }
+  String getTitle() {
+    return this.title;
+  }
 
-    @Override
-    public String toString() {
-        return "[" + (this.status ? "X" : " ") + "] " + this.title;
-    }
+  boolean getStatus() {
+    return this.status;
+  }
+
+  @Override
+  public String toString() {
+    return "[" + (this.status ? "X" : " ") + "] " + this.title;
+  }
 }
