@@ -85,32 +85,54 @@ public class Roofus {
                 case DELETE:
                     try {
                         int index = Integer.parseInt(sc2.next());
+                        if (index > roofus.tasks.size() || index < 1) {
+                            //handles index out of bounds exception
+                            throw new RoofusException("Hey! It's not even in this list!");
+                        }
                         roofus.delete(index);
-                    } catch (NoSuchElementException | IndexOutOfBoundsException err) {
-                        errMessage("Hey! It's not even in this list!");
+                    } catch (RoofusException err) {
+                        errMessage(err.getMessage());
+                    } catch (Exception err) {
+                        errMessage("Sorry could not understand you!");
                     }
                     break;
                 case MARK:
                     try {
                         int index1 = Integer.parseInt(sc2.next());
+                        if (index1 > roofus.tasks.size() || index1 < 1) {
+                            throw new RoofusException("Hey! It's not even in this list!");
+                        }
                         roofus.mark(index1);
-                    } catch (NoSuchElementException | IndexOutOfBoundsException err) {
-                        errMessage("Hey! It's not even in this list!");
+                    } catch (RoofusException err) {
+                        errMessage(err.getMessage());
+                    } catch (Exception err) {
+                        errMessage("Sorry could not understand you!");
                     }
                     break;
                 case UNMARK:
                     try {
                         int index2 = Integer.parseInt(sc2.next());
+                        if (index2 > roofus.tasks.size() || index2 < 1) {
+                            throw new RoofusException("Hey! It's not even in this list!");
+                        }
                         roofus.unMark(index2);
-                    } catch (NoSuchElementException | IndexOutOfBoundsException err) {
-                        errMessage("Hey! It's not even in this list!");
+                    } catch (RoofusException err) {
+                        errMessage(err.getMessage());
+                    } catch (Exception err) {
+                        errMessage("Sorry could not understand you!");
                     }
                     break;
                 case TODO:
                     try {
+                        if (!sc2.hasNextLine()) {
+                            //handles no such element exception
+                            throw new RoofusException("Huh? To do what?");
+                        }
                         roofus.addTask(new ToDo(sc2.nextLine()));
-                    } catch (NoSuchElementException err) {
-                        errMessage("Huh?! To do what?");
+                    } catch (RoofusException err) {
+                        errMessage(err.getMessage());
+                    } catch (Exception err) {
+                        errMessage("Sorry could not understand you!");
                     }
                     break;
                 case DEADLINE:

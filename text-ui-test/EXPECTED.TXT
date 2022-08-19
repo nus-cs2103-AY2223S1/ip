@@ -35,7 +35,7 @@ Nice! I've marked this task as done:
 [T][X] read book
 ****************************************
 ****************************************
-Hey! It's not even in this list!
+Sorry could not understand you!
 ****************************************
 ****************************************
 Noted. I've removed this task:
