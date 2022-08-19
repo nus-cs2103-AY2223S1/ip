@@ -1,6 +1,11 @@
 import java.util.Scanner;
 import static java.lang.System.exit;
 
+/**
+ * Represents an interactive 'ToDo list' with set commands to add, modify, and remove tasks.
+ *
+ * @author WR3nd3
+ */
 public class Duke {
     public enum Command {
         BYE, LIST, MARK, UNMARK, TODO, EVENT, DEADLINE, DELETE
@@ -19,8 +24,8 @@ public class Duke {
                 + " / __/ _` | __/ __|\n"
                 + "| (_| (_| | |_\\__ \\\n"
                 + " \\___\\__,_|\\__|___/\n";
-        String border = "\n____________________________________________________________\n";
-        String service = "\nWhat can I do for mew?";
+        String border = "____________________________________________________________\n";
+        String service = "\nWhat can I do for mew?\n";
         String goodbye = "Bye! See nya later!\n";
 
         System.out.println(border + "Meow from\n" + cat + service + border);
@@ -105,10 +110,5 @@ public class Duke {
                 System.out.println(border);
             }
         }
-
-
-
-
     }
-
 }

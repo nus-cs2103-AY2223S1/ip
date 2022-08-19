@@ -1,33 +1,46 @@
+/**
+ * Abstract class that represents a task.
+ *
+ * @author WR3nd3
+ */
+
 abstract public class Task {
     private  String modifier = "[?]";
     private String description;
     private String addOn = "nya!";
     private Boolean completed;
+    private String notDoneSymbol = "[Zzzzzzz]";
+    private String doneSymbol    = "[=^._.^=]";
 
-    private String notDoneSymbol = "[Zzzzz]";
-
-    private String doneSymbol    = "[/ᐠ｡ꞈ｡ᐟ\\]";
-
+    /**
+     * Constructor of the Task object to be called by its subclasses.
+     *
+     * @param description String representing the details of the task.
+     */
     public Task(String description) {
         this.description = description;
         this.completed = false;
     }
 
-    public String describe() {
-        return this.description + " " + addOn;
-    }
-    public Boolean status() {
-        return this.completed;
-    }
-
+    /**
+     * Marks this task as complete.
+     */
     public void markAsDone() {
         this.completed = true;
     }
 
+    /**
+     * Marks this task as incomplete.
+     */
     public void markAsNotDone() {
         this.completed = false;
     }
 
+    /**
+     * Returns a string representation of the task.
+     *
+     * @return a string consisting of the task completion status and description.
+     */
     @Override
     public String toString() {
         String symbol;

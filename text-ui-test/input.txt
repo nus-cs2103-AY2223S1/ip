@@ -1,0 +1,10 @@
+todo eat
+deadline eat lunch /by 12
+event dinner /at 6
+lisp
+mark 1
+list
+unmark 1
+delete 2
+list
+bye

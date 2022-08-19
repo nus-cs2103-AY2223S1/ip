@@ -1,15 +1,20 @@
 import java.util.ArrayList;
 
 /**
- * Object to represent a list of tasks created based on input and to print the list as output.
+ * Represents a list of tasks created based on input and to print the list as output.
  *
+ * @author WR3nd3
  */
 public class TaskList {
     private Integer totalTasks = 0;
 
     private ArrayList<Task> allTaskList = new ArrayList<>();
 
-
+    /**
+     * Returns a message reporting the number of tasks in list.
+     *
+     * @return String containing number of tasks in list.
+     */
     public String tasksLeft() {
         String str;
         if (totalTasks > 1) {
@@ -20,6 +25,12 @@ public class TaskList {
         return "Nyaw you have " + Math.max(totalTasks, 0) + " " + str;
     }
 
+    /**
+     * Creates Todo task representing the description and adds it to the list.
+     * Prints message indicating completion of the action.
+     *
+     * @param description String representing the description of the task.
+     */
     public void addTodo(String description) {
         totalTasks++;
         Task task = new Todo(description);
@@ -29,6 +40,13 @@ public class TaskList {
                             + tasksLeft());
     }
 
+    /**
+     * Creates Event task representing the description and adds it to the list.
+     * Prints message indicating completion of the action.
+     *
+     * @param description String representing the description of the task.
+     * @param date String representing the time of the event.
+     */
     public void addEvent(String description, String date) {
         totalTasks++;
         Task task = new Event(description, date);
@@ -38,6 +56,13 @@ public class TaskList {
                 + tasksLeft());
     }
 
+    /**
+     * Creates Deadline task representing the description and adds it to the list.
+     * Prints message indicating completion of the action.
+     *
+     * @param description String representing the description of the task.
+     * @param date String representing the deadline of the event.
+     */
     public void addDeadline(String description, String date) {
         totalTasks++;
         Task task = new Deadline(description, date);
@@ -47,6 +72,11 @@ public class TaskList {
                 + tasksLeft());
     }
 
+    /**
+     * Marks the task represented by the rank in the list as complete.
+     *
+     * @param rank Integer indicating the position of the task relative in the list.
+     */
     public void mark(Integer rank) {
         String msg;
         if (rank <= 0 || rank > totalTasks) {
@@ -60,6 +90,11 @@ public class TaskList {
         System.out.println(msg);
     }
 
+    /**
+     * Marks the task represented by the rank in the list as incomplete.
+     *
+     * @param rank Integer indicating the position of the task relative in the list.
+     */
     public void unMark(Integer rank) {
         String msg;
         if (rank <= 0 || rank > totalTasks) {
@@ -73,6 +108,11 @@ public class TaskList {
         System.out.println(msg);
     }
 
+    /**
+     * Deletes the task represented by the rank in the list from the list.
+     *
+     * @param rank Integer indicating the position of the task relative in the list.
+     */
     public void delete(Integer rank) {
         String msg;
         if (rank <= 0 || rank > totalTasks) {
@@ -82,11 +122,15 @@ public class TaskList {
             Task t = allTaskList.get(rank - 1);
             msg = "It's dead!! It's deadsss!\n"
                     + "    "
-                    + t
+                    + t + "\n"
                     + tasksLeft();
         }
         System.out.println(msg);
     }
+
+    /**
+     * Prints the status of the list to the command line interface.
+     */
     public void printList() {
         String intro;
         if (totalTasks == 0) {
