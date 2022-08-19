@@ -25,13 +25,13 @@ You now have 2 tasks.
 
 
 > I've added this event.
-[E][ ] ghi (at: tomorrow2-4pm)
+[E][ ] ghi (at: tomorrow 2-4pm)
 You now have 3 tasks.
 
 > Here are your tasks:
 1. [T][ ] abc
 2. [D][ ] def (by: tomorrow)
-3. [E][ ] ghi (at: tomorrow2-4pm)
+3. [E][ ] ghi (at: tomorrow 2-4pm)
 
 
 > I've marked this task as done.
@@ -43,13 +43,13 @@ You now have 3 tasks.
 
 
 > I've marked this task as done.
-[E][✓] ghi (at: tomorrow2-4pm)
+[E][✓] ghi (at: tomorrow 2-4pm)
 
 
 > Here are your tasks:
 1. [T][✓] abc
 2. [D][✓] def (by: tomorrow)
-3. [E][✓] ghi (at: tomorrow2-4pm)
+3. [E][✓] ghi (at: tomorrow 2-4pm)
 
 
 > I've unmarked this task as done.
@@ -59,7 +59,7 @@ You now have 3 tasks.
 > Here are your tasks:
 1. [T][✓] abc
 2. [D][ ] def (by: tomorrow)
-3. [E][✓] ghi (at: tomorrow2-4pm)
+3. [E][✓] ghi (at: tomorrow 2-4pm)
 
 
 > I've unmarked this task as done.
@@ -67,13 +67,13 @@ You now have 3 tasks.
 
 
 > I've unmarked this task as done.
-[E][ ] ghi (at: tomorrow2-4pm)
+[E][ ] ghi (at: tomorrow 2-4pm)
 
 
 > Here are your tasks:
 1. [T][ ] abc
 2. [D][ ] def (by: tomorrow)
-3. [E][ ] ghi (at: tomorrow2-4pm)
+3. [E][ ] ghi (at: tomorrow 2-4pm)
 
 
 > 

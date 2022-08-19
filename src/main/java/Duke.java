@@ -55,8 +55,10 @@ public class Duke {
 
     private static String concatenateArguments(String[] arguments, int start) {
         return Arrays.stream(arguments, start, arguments.length)
+                .map(str -> str + " ")
                 .collect(StringBuilder::new, StringBuilder::append, StringBuilder::append)
-                .toString();
+                .toString()
+                .strip();
     }
 
     private void printTaskListSize() {
