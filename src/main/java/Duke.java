@@ -57,7 +57,9 @@ public class Duke {
         else {
             Task task = Task.of(command, arrayList, num);
             System.out.println(task.toString());
-            num++;
+            if (task.AddToList()) {
+                num++;
+            }
         }
     }
 }

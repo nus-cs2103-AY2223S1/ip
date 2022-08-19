@@ -48,6 +48,10 @@ public class Task {
         return task;
     }
 
+    public boolean AddToList() {
+        return true;
+    }
+
     public String toString() {
         return " " + description + "\n";
     }
