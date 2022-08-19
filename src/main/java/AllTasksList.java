@@ -47,7 +47,10 @@ public class AllTasksList {
    */
   public void delete(int index) throws DukeException {
     try {
+      System.out.println("\nNoted. I've removed this task:");
+      System.out.println(this.allTasks.get(index));
       this.allTasks.remove(index);
+      this.getSize();
     } catch (IndexOutOfBoundsException e) {
       throw new DukeException("Error: Task not found");
     }
@@ -59,7 +62,10 @@ public class AllTasksList {
    * @param task  the task to be added
    */
   public void addTask(Task task) {
+    System.out.println("\nGot it. I've added this task:");
+    System.out.println(task);
     this.allTasks.add(task);
+    this.getSize();
   }
 
   /**
@@ -71,5 +77,14 @@ public class AllTasksList {
       output += "\n" + (i + 1) + ". " + this.allTasks.get(i).toString();
     }
     System.out.println(output);
+  }
+
+  /**
+   * Method used to output to the user the number of items left on the list
+   */
+  private void getSize() {
+    System.out.println(
+      "Now you have " + this.allTasks.size() + " tasks in the list."
+    );
   }
 }
