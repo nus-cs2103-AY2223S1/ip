@@ -5,14 +5,14 @@ import Tasks.Event;
 import Tasks.Task;
 import Tasks.ToDo;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -26,9 +26,8 @@ public class Storage {
     public ArrayList<Task> load() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM uuuu");
         ArrayList<Task> contents = new ArrayList<>();
-        BufferedReader reader = null;
         try {
-            reader = new BufferedReader(new FileReader(this.filepath));
+            BufferedReader reader = new BufferedReader(new FileReader(this.filepath));
             String line = reader.readLine();
             while (line != null) {
                 String[] parse = line.split(" - ");
@@ -56,10 +55,9 @@ public class Storage {
     }
 
     public void save(List<String> lst) {
-        FileWriter fileWriter = null;
         try {
             File file = new File(this.filepath);
-            fileWriter = new FileWriter(file);
+            FileWriter fileWriter = new FileWriter(file);
             for (int i = 0; i < lst.size(); i++) {
                 fileWriter.write(lst.get(i));
             }
