@@ -4,6 +4,9 @@ public class Duke {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        System.out.println("_____________   _       _______________\n|___   __||  | | |     | |__  __| ____|" +
+                "\n    | |  | __ ||  \\   /  |  | | | |___\n _  | | | |__| |   \\_/   |  | | |  ___|" +
+                "\n| |_| | |  __  | |\\   /| |__| |_| |___\n|_____| |_|  |_|_| \\_/ |_|______|_____|" );
         System.out.println("Hi, I'm Jamie.\nWhat do you want?");
 
 

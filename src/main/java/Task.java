@@ -11,6 +11,11 @@ public class Task {
         this.done = false;
     }
 
+    /**
+     * The toString method of the Task class.
+     *
+     * @return The string representation of the Task object.
+     */
     @Override
     public String toString() {
         if (!done) {
@@ -28,6 +33,9 @@ public class Task {
         this.done = false;
     }
 
+    /**
+     * The method to list out the tasks that are present in taskList.
+     */
     public static void printTaskList() {
         System.out.println("Here are your tasks");
         System.out.println("____________________________________________________________");

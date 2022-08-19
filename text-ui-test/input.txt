@@ -1,9 +1,19 @@
 todo
 todo homework
+deadline
+deadline asdklj /by
 deadline assignment /by Friday
 event block event /at tuesday
+event test /by
+event test /at thursday
 mark 1
+mark 2
+list
+unmark 2
 list
 mark 5
-unmark 1
+unmark 0
+list
+delete 5
+delete 1
 bye
