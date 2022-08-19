@@ -3,13 +3,20 @@ package duke.task;
 import java.time.LocalDateTime;
 
 public class Task {
-    private static String MARKED_TXT = "Nice ! I've marked this task as done:";
-    private static String UNMARKED_TEXT = "OK, I've marked this task as not done yet:";
+    private static final String MARKED_TXT = "Nice ! I've marked this task as done:";
+    private static final String UNMARKED_TEXT = "OK, I've marked this task as not done yet:";
     public final TaskType type;
     private String description;
     private boolean isDone;
     private LocalDateTime date;
 
+    /**
+     * Constructor for a Task instance.
+     * @param description task information
+     * @param type task type Enum
+     * @see TaskType
+     * @see Enum
+     */
     public Task(String description, TaskType type) {
         this.description = description;
         this.isDone = false;
@@ -32,6 +39,10 @@ public class Task {
         return isDone ? MARKED_TXT : UNMARKED_TEXT;
     }
 
+    /**
+     * Mark a task as done, outputs status of action if needed.
+     * @param slient option to slience task output in console.
+     */
     public void markAsDone(boolean slient) {
         this.isDone = true;
         if (!slient) {
@@ -39,6 +50,9 @@ public class Task {
         }
     }
 
+    /**
+     * Mark a task as undone, outputs status of action.
+     */
     public void markAsUnDone() {
         this.isDone = false;
         System.out.println(determineTextOutput() + "\n" + this + "\n");
