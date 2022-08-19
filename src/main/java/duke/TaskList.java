@@ -17,9 +17,9 @@ public class TaskList {
         this.size = 0;
     }
 
-    public TaskList(ArrayList<String> list) {
+    public TaskList(ArrayList<String> dataList) {
         this.tasks = new ArrayList<>();
-        for (String data : list) {
+        for (String data : dataList) {
             tasks.add(Task.loadTask(data));
         }
         this.size = tasks.size();
@@ -30,11 +30,11 @@ public class TaskList {
     }
 
     public ArrayList<String> saveTasks() {
-        ArrayList<String> data = new ArrayList<>();
+        ArrayList<String> dataList = new ArrayList<>();
         for (Task task : tasks) {
-            data.add(task.saveTask());
+            dataList.add(task.saveTask());
         }
-        return data;
+        return dataList;
     }
 
     public String markTask(int idx) {

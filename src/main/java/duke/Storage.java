@@ -15,25 +15,25 @@ public class Storage {
     }
 
     public ArrayList<String> load() throws FileNotFoundException {
-        ArrayList<String> data = new ArrayList<>();
+        ArrayList<String> dataList = new ArrayList<>();
         File f = new File(filePath);
         Scanner sc = new Scanner(f);
 
         while (sc.hasNext()) {
-            data.add(sc.nextLine());
+            dataList.add(sc.nextLine());
         }
         sc.close();
 
-        return data;
+        return dataList;
     }
 
-    public void save(ArrayList<String> data) {
+    public void save(ArrayList<String> dataList) {
         try {
             new File(filePath).getParentFile().mkdirs();
             FileWriter fw = new FileWriter(filePath);
 
-            for (String s : data) {
-                fw.write(String.format("%s%n", s));
+            for (String data : dataList) {
+                fw.write(String.format("%s%n", data));
             }
             fw.close();
         } catch (IOException e) {
