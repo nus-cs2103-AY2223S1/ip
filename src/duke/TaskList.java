@@ -57,6 +57,16 @@ public class TaskList {
             throw new CannotFindTaskException();
         }
     }
+
+    public Task deleteTask(int task) throws DukeException {
+        try {
+            Task curr = taskList.get(task - 1);
+            taskList.remove(task - 1);
+            return curr;
+        } catch (IndexOutOfBoundsException e) {
+            throw new CannotFindTaskException();
+        }
+    }
     @Override
     public String toString() {
         Object[] taskArr = this.taskList.toArray();

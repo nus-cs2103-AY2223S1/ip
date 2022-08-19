@@ -53,4 +53,7 @@ public class Ui {
             System.out.println("GOOD JOB BROTHER!\n" + task.toString());
         }
     }
+    public void showDeleteSuccess(Task task, String numOfTask) {
+        System.out.println("Deleted: " + task.toString() + "\n" + numOfTask);
+    }
 }

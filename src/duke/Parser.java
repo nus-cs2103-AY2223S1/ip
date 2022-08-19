@@ -57,8 +57,9 @@ public class Parser {
                     int x = Integer.valueOf(inputArr[1]);
                     return new MarkStatusCommand(x);
                 } catch (NumberFormatException e) {
-                    throw new ValidNumberException();
+                    throw new InvalidNumberException();
                 }
+
             case ("unmark"):
                 if (inputArr.length < 2) {
                     throw new BlankContentException();
@@ -67,7 +68,18 @@ public class Parser {
                     int x = Integer.valueOf(inputArr[1]);
                     return new UnmarkStatusCommand(x);
                 } catch (NumberFormatException e) {
-                    throw new ValidNumberException();
+                    throw new InvalidNumberException();
+                }
+
+            case ("delete"):
+                if (inputArr.length < 2) {
+                    throw new BlankContentException();
+                }
+                try {
+                    int x = Integer.valueOf(inputArr[1]);
+                    return new DeleteCommand(x);
+                } catch (NumberFormatException e) {
+                    throw new InvalidNumberException();
                 }
             default:
                 throw new CommandNotFoundException(inputKeyword);
