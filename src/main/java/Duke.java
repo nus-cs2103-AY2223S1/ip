@@ -32,26 +32,28 @@ public class Duke {
         String command, suggestion;
         String[] commandList;
         Integer taskIndex = null, i;
+        CommandType type;
 
         Interface.greet();
         while (!lastCommandOrNot) {
             command = in.nextLine().trim();
             commandList = command.split(" ", 2);
             command = (Helper.multipleVariable(commandList[0])) ? commandList[0] : command;
+            type = CommandType.map(command);
 
             try {
-                switch (command) {
-                    case "bye": {
+                switch (type) {
+                    case BYE: {
                         Interface.bye();
                         lastCommandOrNot = true;
                         break;
                     }
-                    case "mark":
-                    case "unmark": {
+                    case MARK:
+                    case UNMARK: {
                         taskIndex = Helper.strToInt(commandList[1]) - 1;
                         task = taskList.get(taskIndex);
-                        switch (command) {
-                            case "mark": {
+                        switch (type) {
+                            case MARK: {
                                 if (!task.checkDone())
                                     Interface.mark(task);
                                 else {
@@ -60,7 +62,7 @@ public class Duke {
                                 }
                                 break;
                             }
-                            case "unmark": {
+                            case UNMARK: {
                                 if (task.checkDone())
                                     Interface.unmark(task);
                                 else {
@@ -72,7 +74,7 @@ public class Duke {
                         }
                         break;
                     }
-                    case "delete": {
+                    case DELETE: {
                         taskIndex = Helper.strToInt(commandList[1]) - 1;
                         task = taskList.get(taskIndex);
                         Interface.delete(task);
@@ -82,19 +84,19 @@ public class Duke {
                         }
                         break;
                     }
-                    case "list": {
+                    case LIST: {
                         Interface.list(taskList);
                         break;
                     }
-                    case "todo": {
+                    case TODO: {
                         taskList.add(Interface.addToDo(commandList[1]));
                         break;
                     }
-                    case "deadline": {
+                    case DEADLINE: {
                         taskList.add(Interface.addDeadline(commandList[1]));
                         break;
                     }
-                    case "event": {
+                    case EVENT: {
                         taskList.add(Interface.addEvent(commandList[1]));
                         break;
                     }

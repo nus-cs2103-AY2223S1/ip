@@ -18,6 +18,6 @@ public class Helper {
     public static boolean multipleVariable (String str) {
         String[] commands = {"mark", "unmark", "todo", "deadline", "event", "delete"};
         HashSet<String> checkList = new HashSet<String>(Arrays.asList(commands));
-        return checkList.contains(str);
+        return checkList.contains(str.toLowerCase());
     }
 }
