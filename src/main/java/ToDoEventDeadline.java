@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ToDoEventDeadline {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?");
 
@@ -34,6 +34,9 @@ public class ToDoEventDeadline {
                 System.out.println(task);
 
 
+            }
+            else if (input.equals("blah")) { // Level 5: handle blah exception
+                throw new Exception("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             } else {
                 Task task = null;
                 
