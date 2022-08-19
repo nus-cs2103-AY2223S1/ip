@@ -19,16 +19,22 @@ public class Duke {
                         System.out.println("List " + j + ". [" + eventTypeArr[j] + "][" + markArr[j] + "] " + arr[j]);
                     }
                 } else if (str.contains("blah")) {
-                    System.out.println("blah");
+                    System.out.println("Sorry, I don't know what that means");
                 } else if (str.contains("bye")) {
                     System.out.println("Bye. Hope to see you again");
                     pred = false;
                 } else if (str.startsWith("mark")){
 //                    System.out.println(str.substring(5));
-                    int j = Integer.valueOf(str.substring(5));
-                    markArr[j] = 'X';
-                    System.out.println("Nice! I've marked this task as done:");
-                    System.out.println("List " + j + ". [" + eventTypeArr[j] + "][" + markArr[j] + "] " + arr[j]);
+                    try{
+                        int j = Integer.valueOf(str.substring(5));
+                        markArr[j] = 'X';
+                        System.out.println("Nice! I've marked this task as done:");
+                        System.out.println("List " + j + ". [" + eventTypeArr[j] + "][" + markArr[j] + "] " + arr[j]);
+                    } catch (Exception e) {
+                        System.out.println("Something went wrong, here's the error message cuz im lazy to figure it out for you: " + e);
+                    }
+
+
 
                 } else if (str.startsWith("unmark")) {
                     int j = Integer.valueOf(str.substring(7));
@@ -37,13 +43,25 @@ public class Duke {
                     System.out.println("List " + j + ". [" + eventTypeArr[j] + "][" + markArr[j] + "] " + arr[j]);
 
                 } else if (str.startsWith("todo")) {
-                    str = str.substring(5);
-                    arr[i] = str;
-                    markArr[i] = ' ';
-                    eventTypeArr[i] = 'T';
-                    System.out.println("Got it. I've added this task:");
-                    System.out.println("List " + i + ". [" + eventTypeArr[i] + "][" + markArr[i] + "] " + arr[i]);
-                    i++;
+                    try {
+                        str = str.substring(5);
+                        if (str.isBlank()) {
+                            System.out.println("Oops, todo can't be empty");
+                            continue;
+                        }
+                        arr[i] = str;
+                        markArr[i] = ' ';
+                        eventTypeArr[i] = 'T';
+                        System.out.println("Got it. I've added this task:");
+                        System.out.println("List " + i + ". [" + eventTypeArr[i] + "][" + markArr[i] + "] " + arr[i]);
+                        i++;
+                    } catch (StringIndexOutOfBoundsException e) {
+                        System.out.println("Oops, todo can't be empty");
+                    } catch (Exception e) {
+                        System.out.println("...");
+                        System.out.println(e);
+                    }
+
 
                 } else if (str.startsWith("deadline")) {
                     str = str.substring(9);
