@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Ui {
     private static final String GREETING = "Hello! I'm Duke\nWhat can I do for you?";
     private final Scanner scanner;
-    private PrintStream out;
+    private final PrintStream out;
 
     Ui(InputStream in, PrintStream out) {
         this.scanner = new Scanner(in);

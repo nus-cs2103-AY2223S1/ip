@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
     private LocalDateTime by;
+
     public Deadline(String description, LocalDateTime by) {
         super(description, TaskType.DEADLINE, by);
         this.by = by;
