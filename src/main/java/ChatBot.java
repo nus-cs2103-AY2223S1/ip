@@ -1,3 +1,5 @@
+import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 public class ChatBot {
     private final String name;
@@ -26,69 +28,67 @@ public class ChatBot {
 
     public void processCommand(String input) {
         Scanner inputScanner = new Scanner(input);
-        String command = inputScanner.next();
-        if (!(inputScanner.hasNext())) {
-            switch (command) {
-                case "bye":
-                    this.runningState = false;
-                    break;
-                case "list":
-                    System.out.println(wrapMessage(taskManager.list()));
-                    break;
-                default:
-                    printError(input);
-                    break;
-            }
-        } else {
-            try {
+        try {
+            String command = inputScanner.next();
+            if (!(inputScanner.hasNext())) {
+                switch (command) {
+                    case "bye":
+                        this.runningState = false;
+                        break;
+                    case "list":
+                        System.out.println(wrapMessage(taskManager.list()));
+                        break;
+                    case "todo":
+                    case "deadline":
+                    case "event":
+                        throw new EmptyTaskException();
+                    default:
+                        printError(input);
+                        break;
+                }
+            } else {
+                String arguments = inputScanner.nextLine();
+                Scanner argumentScanner = new Scanner(arguments);
                 switch (command) {
                     case "todo":
                         System.out.println(wrapMessage(taskManager.addTask(
-                                new ToDoTask(inputScanner.nextLine()))));
+                                new ToDoTask(argumentScanner.next()))));
                         break;
                     case "deadline":
-                        inputScanner.useDelimiter("/by");
+                        argumentScanner.useDelimiter("/by");
                         System.out.println(wrapMessage(taskManager.addTask(
-                                new DeadlineTask(inputScanner.next(), inputScanner.next()))));
+                                new DeadlineTask(argumentScanner.next(), argumentScanner.next()))));
                         break;
                     case "event":
-                        inputScanner.useDelimiter("/at");
+                        argumentScanner.useDelimiter("/at");
                         System.out.println(wrapMessage(taskManager.addTask(
-                                new EventTask(inputScanner.next(), inputScanner.next()))));
+                                new EventTask(argumentScanner.next(), argumentScanner.next()))));
                         break;
                     case "mark":
-                        if (inputScanner.hasNextInt()) {
-                            int itemNumber = inputScanner.nextInt();
-                            if (!(inputScanner.hasNext())) {
-                                System.out.println(wrapMessage(taskManager.mark(itemNumber)));
-                            } else {
-                                printError(input);
-                            }
-                        } else {
-                            printError(input);
-                        }
+                        System.out.println(wrapMessage(taskManager.mark(Integer.parseInt(arguments))));
                         break;
                     case "unmark":
-                        if (inputScanner.hasNextInt()) {
-                            int itemNumber = inputScanner.nextInt();
-                            if (!(inputScanner.hasNext())) {
-                                System.out.println(wrapMessage(taskManager.unmark(itemNumber)));
-                            } else {
-                                printError(input);
-                            }
-                        } else {
-                            printError(input);
-                        }
+                        System.out.println(wrapMessage(taskManager.unmark(Integer.parseInt(arguments))));
                         break;
                     default:
                         printError(input);
                         break;
                 }
-            } catch(Exception exception) {
-                printError(input);
+                argumentScanner.close();
             }
+        } catch (InputMismatchException exception) {
+            System.out.println(wrapMessage("You need to put a number after your command!\n"));
+        } catch (NoSuchElementException exception) {
+            System.out.println(wrapMessage("You placed invalid arguments!\n"));
+        } catch (EmptyTaskException exception) {
+            System.out.println(wrapMessage(exception.toString()));
+        } catch (InvalidDeadlineException exception) {
+            System.out.println(wrapMessage(exception.toString()));
+        } catch (InvalidEventException exception) {
+            System.out.println(wrapMessage(exception.toString()));
+        } finally {
+            inputScanner.close();
         }
-        inputScanner.close();
     }
 
     private String wrapMessage(String str) {

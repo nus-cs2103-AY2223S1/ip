@@ -8,7 +8,7 @@ public class TaskManager {
 
     public String list() {
         if (taskList.size() == 0) {
-            return "\tYou have no tasks in your list."
+            return "\tYou have no tasks in your list.\n";
         } else {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("\tI have your list of tasks displayed below:\n");

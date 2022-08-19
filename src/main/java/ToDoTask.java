@@ -1,6 +1,9 @@
 public class ToDoTask extends Task {
-    ToDoTask(String task) {
+    ToDoTask(String task) throws EmptyTaskException {
         super(task);
+        if (super.getName().equals("")) {
+            throw new EmptyTaskException();
+        }
     }
 
     @Override
