@@ -33,6 +33,15 @@ public abstract class Task {
     }
 
     /**
+     * Gets the task in a format for file saving.
+     *
+     * @return The task in file saving format.
+     */
+    public String getFileFormat() {
+        return String.format("%s | %s", this.isDone ? "1" : "0", this.description);
+    }
+
+    /**
      * Gets the string representation of a task.
      *
      * @return String representation of a task.

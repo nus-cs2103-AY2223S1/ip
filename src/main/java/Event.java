@@ -44,6 +44,32 @@ public class Event extends Task {
     }
 
     /**
+     * Factory method for an Event, with done and description and date.
+     *
+     * @param done Whether the Event is done.
+     * @param description Description of Event.
+     * @param date Date of Event.
+     *
+     * @return Event object with the given parameters.
+     */
+    public static Event create(String done, String description, String date) {
+        Event event = new Event(description, date);
+        if (done.equals("1")) {
+            event.markAsDone();
+        }
+        return event;
+    }
+
+    /**
+     * Gets the string representation of an Event.
+     *
+     * @return String representation of an Event.
+     */
+    public String getFileFormat() {
+        return String.format("E | %s | %s", super.getFileFormat(), this.date);
+    }
+
+    /**
      * Gets the string representation of an event.
      *
      * @return String representation of an event
