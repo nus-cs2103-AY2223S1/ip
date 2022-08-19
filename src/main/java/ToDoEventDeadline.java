@@ -33,8 +33,16 @@ public class ToDoEventDeadline {
                 System.out.println("OK, I've marked this task as not done yet:");
                 System.out.println(task);
 
+            } else if (input.startsWith("delete")) {
+                Task task = toDo.get(Integer.parseInt(input.substring(7)) - 1);
+                toDo.remove(task);
 
+                System.out.println("Noted. I've removed this task:");
+                System.out.println(task);
+                System.out.printf("Now you have %d tasks in the list.%n", toDo.size());
             }
+
+
             else if (input.equals("blah")) { // Level 5: handle blah exception
                 throw new Exception("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             } else {
