@@ -1,5 +1,8 @@
 package main.java;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.function.Consumer;
@@ -110,6 +113,18 @@ public class Duke {
                     throw new DukeException("Wrong format! To add a new " +
                             "deadline, please enter the following:\n" +
                             "   deadline [TASK DESCRIPTION] /by [DUE DATE]\n");
+                }
+                String dateString
+                            = userInput.substring(userInput.indexOf("/by") + 4);
+                try {
+                    DateTimeFormatter formatter
+                                = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+                    LocalDate.parse(dateString, formatter);
+                } catch (DateTimeParseException e) {
+                    throw new DukeException("Wrong date format! To add a new " +
+                            "deadline, please enter the following:\n" +
+                            "   deadline [TASK DESCRIPTION] /by " +
+                            "[YYYY/MM/DD]\n");
                 }
                 break;
             }
