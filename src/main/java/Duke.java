@@ -146,7 +146,7 @@ public class Duke {
                     throw new DukeException("Task number must be an integer!" +
                             "\n   delete [TASK NUMBER]\n");
                 }
-                if (index < 0 || index >= size) {
+                if (index <= 0 || index > size) {
                     throw new DukeException("Task number is invalid." +
                             String.format("You have %d tasks!", size) +
                             "\n   delete [TASK NUMBER]\n");
@@ -167,7 +167,7 @@ public class Duke {
                     throw new DukeException("Task number must be an integer!" +
                             "\n   mark [TASK NUMBER]\n");
                 }
-                if (index < 0 || index >= size) {
+                if (index <= 0 || index > size) {
                     throw new DukeException("Task number is invalid." +
                             String.format("You have %d tasks!", size) +
                             "\n   mark [TASK NUMBER]\n");
@@ -188,7 +188,7 @@ public class Duke {
                     throw new DukeException("Task number must be an integer!" +
                             "\n   unmark [TASK NUMBER]\n");
                 }
-                if (index < 0 || index >= size) {
+                if (index <= 0 || index > size) {
                     throw new DukeException("Task number is invalid." +
                             String.format("You have %d tasks!", size) +
                             "\n   mark [TASK NUMBER]\n");

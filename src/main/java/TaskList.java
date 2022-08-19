@@ -72,7 +72,7 @@ public class TaskList {
      * @param input String user input command to delete a task.
      */
     public void delete(String input) {
-        int index = Integer.parseInt(input.split(" ")[1]);
+        int index = Integer.parseInt(input.split(" ")[1]) - 1;
         String taskToDelete = taskList.get(index).toString();
 
         taskList.remove(index);
