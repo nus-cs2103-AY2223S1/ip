@@ -60,7 +60,7 @@ public class Doke {
                 }
             }else {
                 try {
-                    throw new DokeException("todo");
+                    throw new DokeException("event");
                 } catch (DokeException d) {
                     System.out.println(d.toString());
                 }
