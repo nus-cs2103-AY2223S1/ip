@@ -9,7 +9,7 @@ public class Scruffles {
         Scanner sc = new Scanner(System.in);
         String input = "";
 
-        ArrayList<String> listRef = new ArrayList<String>(100);
+        ArrayList<Task> list = new ArrayList<Task>(100);
 
         while (true) {
 
@@ -19,12 +19,16 @@ public class Scruffles {
                 System.out.println("woof see you again woof!");
                 break;
             } else if (input.equals("list")) {
-                for (int i = 0; i < listRef.size(); i++) {
-                    String output = (i + 1) + ". " + listRef.get(i);
+                for (int i = 0; i < list.size(); i++) {
+                    String output = (i + 1) + "." + list.get(i).toString();
                     System.out.println(output);
                 }
+            } else if (input.startsWith("mark")) {
+                int listRef = input.charAt(4) - 32;
+                list.get(listRef).setDone();
+                System.out.println("woof! the task is now marked as done woof!\n" + list.get(listRef).toString());
             } else {
-                listRef.add(input);
+                list.add(new Task(input));
                 System.out.println("added: " + input);
             }
         }
