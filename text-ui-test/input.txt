@@ -4,9 +4,13 @@ todo Add To Do
 list
 
 event Add Event /at Event Time
+event Add Event /at 2022-02-30
+event Add Event /at 2022-02-02
 list
 
 deadline Add Deadline /by Deadline Time
+deadline Add Deadline /by 2000-1-2
+deadline Add Deadline /by 0001-01-01
 list
 
 mark 1
@@ -42,12 +46,12 @@ event
 deadline
 deadline /at
 deadline /by
-deadline /at Unknown
-deadline /by Unknown
+deadline /at 2001-01-01
+deadline /by 2000-12-31
 deadline Is Deadline 0 /at
-deadline Is Deadline 1 /at Unknown
+deadline Is Deadline 1 /at 2005-01-01
 deadline Is Deadline 2 /by
-deadline Is Deadline 3 /by Unknown
+deadline Is Deadline 3 /by 2006-01-01
 
 event
 event /at
@@ -55,9 +59,9 @@ event /by
 event /at Unknown
 event /by Unknown
 event Is Event 0 /at
-event Is Event 1 /at Unknown
+event Is Event 1 /at 2003-01-01
 event Is Event 2 /by
-event Is Event 3 /by Unknown
+event Is Event 3 /by 2004-01-01
 
 
 random

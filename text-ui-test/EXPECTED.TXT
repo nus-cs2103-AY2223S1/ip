@@ -13,49 +13,53 @@ OK, I've added the following task:
 Now you have 1 tasks in the list.
 Here are the tasks in your list:
 1. [T][ ] Add To Do
+☹ OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.
+☹ OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.
 OK, I've added the following task:
-  [E][ ] Add Event (at: Event Time)
+  [E][ ] Add Event (at: Feb 2, 2022)
 Now you have 2 tasks in the list.
 Here are the tasks in your list:
 1. [T][ ] Add To Do
-2. [E][ ] Add Event (at: Event Time)
+2. [E][ ] Add Event (at: Feb 2, 2022)
+☹ OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.
+☹ OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.
 OK, I've added the following task:
-  [D][ ] Add Deadline (by: Deadline Time)
+  [D][ ] Add Deadline (by: Jan 1, 0001)
 Now you have 3 tasks in the list.
 Here are the tasks in your list:
 1. [T][ ] Add To Do
-2. [E][ ] Add Event (at: Event Time)
-3. [D][ ] Add Deadline (by: Deadline Time)
+2. [E][ ] Add Event (at: Feb 2, 2022)
+3. [D][ ] Add Deadline (by: Jan 1, 0001)
 Nice! I've marked this task as done:
   [T][X] Add To Do
 Here are the tasks in your list:
 1. [T][X] Add To Do
-2. [E][ ] Add Event (at: Event Time)
-3. [D][ ] Add Deadline (by: Deadline Time)
+2. [E][ ] Add Event (at: Feb 2, 2022)
+3. [D][ ] Add Deadline (by: Jan 1, 0001)
 Nice! I've marked this task as done:
-  [D][X] Add Deadline (by: Deadline Time)
+  [D][X] Add Deadline (by: Jan 1, 0001)
 Here are the tasks in your list:
 1. [T][X] Add To Do
-2. [E][ ] Add Event (at: Event Time)
-3. [D][X] Add Deadline (by: Deadline Time)
+2. [E][ ] Add Event (at: Feb 2, 2022)
+3. [D][X] Add Deadline (by: Jan 1, 0001)
 OK, I've marked this task as not done yet:
   [T][ ] Add To Do
 Here are the tasks in your list:
 1. [T][ ] Add To Do
-2. [E][ ] Add Event (at: Event Time)
-3. [D][X] Add Deadline (by: Deadline Time)
+2. [E][ ] Add Event (at: Feb 2, 2022)
+3. [D][X] Add Deadline (by: Jan 1, 0001)
 Nice! I've marked this task as done:
-  [E][X] Add Event (at: Event Time)
+  [E][X] Add Event (at: Feb 2, 2022)
 Here are the tasks in your list:
 1. [T][ ] Add To Do
-2. [E][X] Add Event (at: Event Time)
-3. [D][X] Add Deadline (by: Deadline Time)
+2. [E][X] Add Event (at: Feb 2, 2022)
+3. [D][X] Add Deadline (by: Jan 1, 0001)
 OK, I've marked this task as not done yet:
-  [D][ ] Add Deadline (by: Deadline Time)
+  [D][ ] Add Deadline (by: Jan 1, 0001)
 Here are the tasks in your list:
 1. [T][ ] Add To Do
-2. [E][X] Add Event (at: Event Time)
-3. [D][ ] Add Deadline (by: Deadline Time)
+2. [E][X] Add Event (at: Feb 2, 2022)
+3. [D][ ] Add Deadline (by: Jan 1, 0001)
 ☹ OOPS!!! You didn't give a valid index :(
 ☹ OOPS!!! No such task exists :(
 ☹ OOPS!!! You didn't give a valid index :(
@@ -65,7 +69,7 @@ Nice! I've marked this task as done:
 ☹ OOPS!!! No such task exists :(
 ☹ OOPS!!! You didn't give a valid index :(
 OK, I've marked this task as not done yet:
-  [D][ ] Add Deadline (by: Deadline Time)
+  [D][ ] Add Deadline (by: Jan 1, 0001)
 ☹ OOPS!!! The description of a event cannot be empty.
 ☹ OOPS!!! The description of a event cannot be empty.
 ☹ OOPS!!! The description of a event cannot be empty.
@@ -77,18 +81,18 @@ OK, I've marked this task as not done yet:
 ☹ OOPS!!! The description of a deadline cannot be empty.
 ☹ OOPS!!! There is no /by argument for deadline :(
 ☹ OOPS!!! There is no /by argument for deadline :(
-☹ OOPS!!! No time is specified for the deadline :(
+☹ OOPS!!! There is no /by argument for deadline :(
 OK, I've added the following task:
-  [D][ ] Is Deadline 3 (by: Unknown)
+  [D][ ] Is Deadline 3 (by: Jan 1, 2006)
 Now you have 4 tasks in the list.
 ☹ OOPS!!! The description of a event cannot be empty.
 ☹ OOPS!!! The description of a event cannot be empty.
 ☹ OOPS!!! The description of a event cannot be empty.
 ☹ OOPS!!! The description of a event cannot be empty.
 ☹ OOPS!!! The description of a event cannot be empty.
-☹ OOPS!!! No time is specified for the event :(
+☹ OOPS!!! There is no /at argument for deadline :(
 OK, I've added the following task:
-  [E][ ] Is Event 1 (at: Unknown)
+  [E][ ] Is Event 1 (at: Jan 1, 2003)
 Now you have 5 tasks in the list.
 ☹ OOPS!!! There is no /at argument for deadline :(
 ☹ OOPS!!! There is no /at argument for deadline :(
@@ -98,32 +102,32 @@ Now you have 5 tasks in the list.
 ☹ OOPS!!! I'm sorry, but I don't know what that means :(
 Here are the tasks in your list:
 1. [T][X] Add To Do
-2. [E][X] Add Event (at: Event Time)
-3. [D][ ] Add Deadline (by: Deadline Time)
-4. [D][ ] Is Deadline 3 (by: Unknown)
-5. [E][ ] Is Event 1 (at: Unknown)
+2. [E][X] Add Event (at: Feb 2, 2022)
+3. [D][ ] Add Deadline (by: Jan 1, 0001)
+4. [D][ ] Is Deadline 3 (by: Jan 1, 2006)
+5. [E][ ] Is Event 1 (at: Jan 1, 2003)
 Noted. I've removed this task:
   [T][X] Add To Do
 Here are the tasks in your list:
-1. [E][X] Add Event (at: Event Time)
-2. [D][ ] Add Deadline (by: Deadline Time)
-3. [D][ ] Is Deadline 3 (by: Unknown)
-4. [E][ ] Is Event 1 (at: Unknown)
+1. [E][X] Add Event (at: Feb 2, 2022)
+2. [D][ ] Add Deadline (by: Jan 1, 0001)
+3. [D][ ] Is Deadline 3 (by: Jan 1, 2006)
+4. [E][ ] Is Event 1 (at: Jan 1, 2003)
 ☹ OOPS!!! No such task exists :(
 ☹ OOPS!!! No such task exists :(
 ☹ OOPS!!! You didn't give a valid index :(
 ☹ OOPS!!! You didn't give a valid index :(
 ☹ OOPS!!! You didn't give a valid index :(
 Noted. I've removed this task:
-  [D][ ] Is Deadline 3 (by: Unknown)
+  [D][ ] Is Deadline 3 (by: Jan 1, 2006)
 Here are the tasks in your list:
-1. [E][X] Add Event (at: Event Time)
-2. [D][ ] Add Deadline (by: Deadline Time)
-3. [E][ ] Is Event 1 (at: Unknown)
+1. [E][X] Add Event (at: Feb 2, 2022)
+2. [D][ ] Add Deadline (by: Jan 1, 0001)
+3. [E][ ] Is Event 1 (at: Jan 1, 2003)
 ☹ OOPS!!! No task index is specified :(
 Here are the tasks in your list:
-1. [E][X] Add Event (at: Event Time)
-2. [D][ ] Add Deadline (by: Deadline Time)
-3. [E][ ] Is Event 1 (at: Unknown)
+1. [E][X] Add Event (at: Feb 2, 2022)
+2. [D][ ] Add Deadline (by: Jan 1, 0001)
+3. [E][ ] Is Event 1 (at: Jan 1, 2003)
 Bye. Hope to see you again soon!
 
