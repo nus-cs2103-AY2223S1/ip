@@ -1,5 +1,4 @@
-abc
-Eh hello, my name is Uncle Cheong.
+Eh hello, my name is Uncle Cheong. 
 What you want?
 Swee lah! I added this task liao:
 [E][ ] exam (at: noon)
