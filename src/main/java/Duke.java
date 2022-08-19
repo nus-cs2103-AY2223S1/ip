@@ -28,7 +28,9 @@ public class Duke {
 
     public static void processInput(String input) throws Exception {
         if (input.equals("bye")) {
+
             print("Cya!");
+
         } else if (input.equals("list")) {
 
             String list = "";
@@ -55,6 +57,13 @@ public class Duke {
             tasks.get(index).unmark();
             print("I've marked this task as undone: \n" + tasks.get(index));
 
+        } else if (input.startsWith("delete")) {
+            String[] msg = input.split(" ");
+            if (msg.length < 2) throw(new DukeException("nothing to delete!"));
+            int index = Integer.valueOf(msg[1]) - 1;
+            print("I've deleted this task: \n" + tasks.get(index));
+            tasks.remove(index);
+
         } else if (input.startsWith("todo")) {
 
             String[] msg = input.split(" ");
@@ -65,6 +74,7 @@ public class Duke {
             printAddTask(input);
 
         } else if (input.startsWith("deadline")) {
+
             String[] msg = input.split("/");
             if (msg.length < 2) throw(new DukeException("no date specified!"));
 
@@ -74,7 +84,9 @@ public class Duke {
             input = getTaskName(tmp);
             tasks.add(new Deadline(input, msg[1]));
             printAddTask(input);
+
         } else if (input.startsWith("event")) {
+
             String[] msg = input.split("/");
             if (msg.length < 2) throw(new DukeException("no date specified!"));
 
@@ -83,6 +95,7 @@ public class Duke {
             input = getTaskName(tmp);
             tasks.add(new Event(input, msg[1]));
             printAddTask(input);
+
         } else {
             throw(new DukeException("I do not understand!"));
         }
