@@ -6,30 +6,30 @@ You: Sweetie, here is the list of tasks that you have <3
 
 You: Hey sweetie, I've added: 'sweep room' to your lists of tasks~
 
-You: Hunbun, ERROR!!! There isn't a task with that index !!!
+You: This task has been successfully marked as done!
 
 You: Sweetie, here is the list of tasks that you have <3
-1. [T][ ] sweep room
+1. [T][X] sweep room
 
-You: Hunbun, ERROR!!! There isn't a task with that index !!!
+You: Honeypie, this task has already been marked as done!
 
 You: Sweetie, here is the list of tasks that you have <3
-1. [T][ ] sweep room
+1. [T][X] sweep room
 
-You: Hunbun, ERROR!!! There isn't a task with that index !!!
+You: This task has been successfully marked as not done yet!
 
 You: Sweetie, here is the list of tasks that you have <3
 1. [T][ ] sweep room
 
 You: Hey sweetie, I've added: 'eat fruits' to your lists of tasks~
 
-You: Hunbun, ERROR!!! There isn't a task with that index !!!
+You: This task has been successfully marked as done!
 
 You: Hey sweetie, I've added: 'breakfast w friends' to your lists of tasks~
 
 You: Sweetie, here is the list of tasks that you have <3
 1. [T][ ] sweep room
-2. [D][ ] eat fruits (by: tonight !)
+2. [D][X] eat fruits (by: tonight !)
 3. [E][ ] breakfast w friends (at: my home~)
 
 You: Hunbun, ERROR!!! Your formatting for the mark command is wrong...sigh
@@ -71,5 +71,17 @@ event <task description>  /at  <date description> <3
 You: Hunbun, ERROR!!! Your deadline command does not follow proper formatting!
 A deadline command should follow this convention:
 deadline <task description>  /by  <date description> <3
+
+You: Hunbun, ERROR!!! Your formatting for the delete command is wrong...sigh
+In future, please do: delete <index of task>
+You can do it peepaw!
+
+You: Hunbun, ERROR!!! There isn't a task with that index !!!
+
+You: Hunbun, ERROR!!! Index was not properly specified (has to be an integer) for your delete command!
+
+You: I've successfully removed this task:
+[D][X] eat fruits (by: tonight !)
+Do your own chores next time hunbun!
 
 You: MumBot: Goodbyeeee sweetheart <3

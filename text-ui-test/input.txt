@@ -22,4 +22,8 @@ event eat eggs
 deadline eat chicken /by
 event eat duck /at
 deadline sleep /by next year /by tomorrow
+delete
+delete 100
+delete a
+delete 2
 Bye
