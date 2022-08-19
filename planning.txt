@@ -1,3 +1,15 @@
 ToDo {
+    Week 2: Clean up code
+(after dinner)
 1. Add exception for trying to delete an incomplete task
+2. Add handler
+3. Add exceptions
+4. Move display functions to utils
+5. Do proper commit messages
+6. Move (delet, mark etc) to taskList
+}
+
+{
+    Week 3: New feature
+1. 
 }
