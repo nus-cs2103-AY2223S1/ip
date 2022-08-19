@@ -7,7 +7,7 @@ public class UI {
     private Scanner sc;
     private List<Task> taskList;
 
-    private static String initGreeting = "Hello! I'm Duke ┌|*ﾟｏﾟ|┘\nWhat can I do for you?";
+    private static String initGreeting = "Hello! I'm Duke \nWhat can I do for you?";
 
     public UI() {
         this.sc = new Scanner(System.in);
