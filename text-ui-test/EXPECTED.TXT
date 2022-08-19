@@ -16,36 +16,36 @@ Here are the tasks in your list:
 1. [T][ ] first task
 
 Got it. I've added this task:
-[D][ ] second task (by: SEP 20 2022)
+[D][ ] second task (by: Sep 20 2022)
 Now you have 2 tasks in the list.
 Got it. I've added this task:
-[E][ ] third task (at: NOV 3 2022)
+[E][ ] third task (at: Nov 03 2022)
 Now you have 3 tasks in the list.
 Here are the tasks in your list:
 1. [T][ ] first task
-2. [D][ ] second task (by: SEP 20 2022)
-3. [E][ ] third task (at: NOV 3 2022)
+2. [D][ ] second task (by: Sep 20 2022)
+3. [E][ ] third task (at: Nov 03 2022)
 
 Nice! I've marked this task as done:
 [T][X] first task
 Here are the tasks in your list:
 1. [T][X] first task
-2. [D][ ] second task (by: SEP 20 2022)
-3. [E][ ] third task (at: NOV 3 2022)
+2. [D][ ] second task (by: Sep 20 2022)
+3. [E][ ] third task (at: Nov 03 2022)
 
 OK, I've marked this task as not done yet:
 [T][ ] first task
 Here are the tasks in your list:
 1. [T][ ] first task
-2. [D][ ] second task (by: SEP 20 2022)
-3. [E][ ] third task (at: NOV 3 2022)
+2. [D][ ] second task (by: Sep 20 2022)
+3. [E][ ] third task (at: Nov 03 2022)
 
 Noted. I've removed this task:
 [T][ ] first task
 Now you have 2 tasks in the list.
 Here are the tasks in your list:
-1. [D][ ] second task (by: SEP 20 2022)
-2. [E][ ] third task (at: NOV 3 2022)
+1. [D][ ] second task (by: Sep 20 2022)
+2. [E][ ] third task (at: Nov 03 2022)
 
 OOPS!!! I'm sorry, but I don't know what that means :-(
 Task number does not exist.
@@ -55,7 +55,7 @@ OOPS!!! The description of a todo cannot be empty :-(
 Please format date in YYYY-MM-DD.
 OOPS!!! The description of an event cannot be empty :-(
 Here are the tasks in your list:
-1. [D][ ] second task (by: SEP 20 2022)
-2. [E][ ] third task (at: NOV 3 2022)
+1. [D][ ] second task (by: Sep 20 2022)
+2. [E][ ] third task (at: Nov 03 2022)
 
 Bye. Hope to see you again soon!
