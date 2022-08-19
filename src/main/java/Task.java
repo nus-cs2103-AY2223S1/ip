@@ -16,14 +16,16 @@ public abstract class Task {
 
     public void completedTask() {
         this.completed = true;
-        System.out.println("Hehe well done! One task down, one step closer to play time! \nThis task has been completed:");
-        System.out.println(this);
+        System.out.println("Hehe well done! One task down, one step closer to play time!\n" +
+                "This task has been completed:");
+        System.out.println(this + "\n");
     }
 
     public void uncompletedTask() {
         this.completed = false;
-        System.out.println("Oh nooo!!! Gotta buck up and finish up your tasks before you can play games. \nThis task has not been completed:");
-        System.out.println(this);
+        System.out.println("Oh nooo!!! Gotta buck up and finish up your tasks before you can play games.\n" +
+                "This task has not been completed:");
+        System.out.println(this+ "\n");
     }
 
     @Override

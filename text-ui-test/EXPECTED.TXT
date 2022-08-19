@@ -2,30 +2,62 @@ Hello!!! My name is Wanya!
 WWaku WWaku! 
 How can I help you? 
 
+List is empty! Wheee slack time!
+
 You have added: 
 [T][ ] borrow book
 Now you have 1 tasks in your list. 
 
+Whoopsie!!! The description of a todo cannot be empty
+
 You have added: 
-[D][ ] return book (by Sunday)
+[D][ ] return book (by: Sunday)
 Now you have 2 tasks in your list. 
 
+Whoopsie!!! The description of a deadline cannot be empty
+
+Whoopsie!!! Deadline must have a due date
+Include '/by' and date at the back
+
+Whoopsie!!! Deadline must have a due date
+Include '/by' and date at the back
+
 You have added: 
-[E][ ] project meeting (at Mon 2-4pm)
+[E][ ] project meeting (at: Mon 2-4pm)
 Now you have 3 tasks in your list. 
 
-Hehe well done! One task down, one step closer to play time! 
+Whoopsie!!! Event must have a date
+Include '/at' and date at the back
+
+Whoopsie!!! Event must have a date
+Include '/at' and date at the back
+
+You have added: 
+[E][ ] cca (at: Tues 7-9pm)
+Now you have 4 tasks in your list. 
+
+Hehe well done! One task down, one step closer to play time!
 This task has been completed:
-[D][X] return book (by Sunday)
-1.[T][ ] borrow book
-2.[D][X] return book (by Sunday)
-3.[E][ ] project meeting (at Mon 2-4pm)
+[D][X] return book (by: Sunday)
 
-Oh nooo!!! Gotta buck up and finish up your tasks before you can play games. 
+1.[T][ ] borrow book
+2.[D][X] return book (by: Sunday)
+3.[E][ ] project meeting (at: Mon 2-4pm)
+4.[E][ ] cca (at: Tues 7-9pm)
+
+Whoopsie!!! You didn't put the task number at the back :(.
+Wanya isn't Anya. I can't read your mind!
+
+Oh nooo!!! Gotta buck up and finish up your tasks before you can play games.
 This task has not been completed:
-[D][ ] return book (by Sunday)
-1.[T][ ] borrow book
-2.[D][ ] return book (by Sunday)
-3.[E][ ] project meeting (at Mon 2-4pm)
+[D][ ] return book (by: Sunday)
 
-I am so sad that you have to go :( bye bye :(
+1.[T][ ] borrow book
+2.[D][ ] return book (by: Sunday)
+3.[E][ ] project meeting (at: Mon 2-4pm)
+4.[E][ ] cca (at: Tues 7-9pm)
+
+Whoopsie!!! You didn't put the task number at the back :(.
+Wanya isn't Anya. I can't read your mind!
+
+Yayyy Wanya get to slack and watch shows now. Bye bye! :)
