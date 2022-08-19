@@ -14,7 +14,7 @@ public class Duke {
 		String input;
 		String[] command;
 		String time; // for the deadline or time of the event
-
+		String taskName;
 
 		while (!quit) {
 
@@ -47,7 +47,13 @@ public class Duke {
 						chatBot.addTask(new Events(command[0], command[1]));
 						break;
 					case "todo":
-						chatBot.addTask(new ToDo(sc.nextLine()));
+						taskName = sc.nextLine();
+						if (taskName.isEmpty()) {
+							throw new ChatBotException("The description of todo cannot be empty " +
+									"please use the format:\n\t" +
+									"todo <description>");
+						}
+						chatBot.addTask(new ToDo(taskName));
 						break;
 					case "delete":
 						chatBot.delete(sc.nextInt() - 1);
