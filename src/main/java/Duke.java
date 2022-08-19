@@ -72,6 +72,10 @@ public class Duke {
                 String message = tasks.unmarkTask(Integer.parseInt(keyword[1].substring(0,1)));
                 System.out.println("Oops reality is catching up... this is still undone:");
                 System.out.println(message);
+            } else if (keyword[0].contentEquals("delete")) {
+                String message = tasks.deleteTask(Integer.parseInt(keyword[1].substring(0,1)));
+                System.out.println("This task as perished from reality:");
+                System.out.println(message);
             } else {
                 try {
                     addTask(tasks, keyword);
