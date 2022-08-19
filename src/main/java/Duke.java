@@ -1,9 +1,14 @@
+import java.io.*;
+import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+import java.nio.file.Path;
+
 public class Duke {
     private ArrayList<Task> taskArr = new ArrayList<>();
-
+    private final String taskStoragePath = "storage" + File.separator + "tasks.txt";
+    
     public void greetUser() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -33,8 +38,17 @@ public class Duke {
         }
         System.out.println("===============================");
     }
+    
+    public void saveTasksToStorage() throws IOException {
+        File file = new File(taskStoragePath);
+        FileWriter fw = new FileWriter(file);
+        for (Task task : this.taskArr) {
+            fw.write(task + "\n");
+        }
+        fw.close();
+    }
 
-    public void addTask(Command command, String details) throws DukeException {
+    public void addTask(Command command, String details) throws DukeException, IOException {
         if (details.length() == 0) {
             throw new MissingArgumentException(command);
         }
@@ -61,11 +75,11 @@ public class Duke {
                 this.taskArr.add(task);
                 break;
         }
-
-
+        saveTasksToStorage();
         System.out.println("Got it. I've added this task:");
         System.out.println("   " + task);
         System.out.println("Now, you have " + this.taskArr.size() + " tasks in the list");
+        
     }
 
     public void markTaskAsDone(int taskIndex) {
@@ -118,7 +132,7 @@ public class Duke {
         }
     }
 
-    public boolean readInput(String inputString) throws DukeException {
+    public boolean readInput(String inputString) throws DukeException, IOException {
         String[] inputStringArr = inputString.split(" ", 2);
         String commandString = inputStringArr[0].strip();
         String detailsString = inputStringArr.length > 1 ? inputStringArr[1].strip() : "";
@@ -169,6 +183,8 @@ public class Duke {
                 end = readInput(inputString);
             } catch (DukeException de) {
                 System.out.println(de.getMessage());
+            } catch (IOException ioe) {
+                System.out.println("Unable to save task :(");
             }
         }
     }
