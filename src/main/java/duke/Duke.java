@@ -33,7 +33,9 @@ public class Duke {
         ui.showWelcome();
     }
 
-    /** Prints the exit message and exits. */
+    /**
+     * Prints the exit message and exits.
+     */
     private void exit() {
         ui.showExit();
         System.exit(0);

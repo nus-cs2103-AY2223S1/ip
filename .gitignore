@@ -17,3 +17,9 @@ bin/
 /text-ui-test/ACTUAL-KS-Mac.TXT
 /text-ui-test/EXPECTED-UNIX.TXT
 data/
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+# Avoid ignore Gradle wrappper properties
+!gradle-wrapper.properties

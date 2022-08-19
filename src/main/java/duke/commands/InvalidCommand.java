@@ -6,19 +6,19 @@ import duke.ui.Ui;
 
 public class InvalidCommand extends Command {
 
-	private final String errorMessage;
+    private final String errorMessage;
 
-	public InvalidCommand(String errorMessage) {
-		this.errorMessage = errorMessage;
-	}
+    public InvalidCommand(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
 
-	@Override
-	public boolean isExit() {
-		return false;
-	}
+    @Override
+    public boolean isExit() {
+        return false;
+    }
 
-	@Override
-	public void execute(TaskList taskList, Ui ui, StorageFile storage) {
-		ui.showMessages(errorMessage);
-	}
+    @Override
+    public void execute(TaskList taskList, Ui ui, StorageFile storage) {
+        ui.showMessages(errorMessage);
+    }
 }
