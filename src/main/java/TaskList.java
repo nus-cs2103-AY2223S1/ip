@@ -9,11 +9,23 @@ public class TaskList {
         tasks.add(newTask);
     }
 
+    public String markAsDone(int taskId) {
+        Task task = tasks.get(taskId);
+        task.markAsDone();
+        return task.toString();
+    }
+
+    public String markAsUndone(int taskId) {
+        Task task = tasks.get(taskId);
+        task.markAsUndone();
+        return task.toString();
+    }
+
     @Override
     public String toString() {
         String result = "";
         for (int i = 0; i < tasks.size(); i++) {
-            result += (i+1) + ". " + tasks.get(i);
+            result += (i+1) + "." + tasks.get(i);
             if (i != tasks.size() - 1) {
                 result += "\n";
             }

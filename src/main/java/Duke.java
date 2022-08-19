@@ -10,6 +10,20 @@ public class Duke {
             if (input.equals("list")) {
                 // display TaskList
                 printResponse(taskList.toString());
+            } else if (input.split(" ")[0].equals("mark")) {
+                // mark task as done
+                int index = Integer.valueOf(input.split(" ")[1]) - 1;
+                String doneTask = taskList.markAsDone(index);
+                String response = "Task marked as done:\n" + doneTask;
+                printResponse(response);
+                // todo: handle missing/invalid index
+            } else if (input.split(" ")[0].equals("unmark")) {
+                // mark task as undone;
+                int index = Integer.valueOf(input.split(" ")[1]) - 1;
+                String undoneTask = taskList.markAsUndone(index);
+                String response = "Task marked as not done yet:\n" + undoneTask;
+                printResponse(response);
+                // todo: handle code duplication (similar to mark)
             } else {
                 // add task to TaskList
                 taskList.addTask(input);
