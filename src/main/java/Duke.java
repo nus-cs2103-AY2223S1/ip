@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -58,7 +59,8 @@ public class Duke {
                             deadline.append(" ");
                             deadline.append(words[b]);
                         }
-                        tasks.add(i, new Deadline(task.toString(), deadline.toString()));
+                        LocalDate d1 = LocalDate.parse(deadline);
+                        tasks.add(i, new Deadline(task.toString(), d1));
                         i++;
                         System.out.println("Got it. I've added this task:");
                         System.out.println(tasks.get(i-1));
