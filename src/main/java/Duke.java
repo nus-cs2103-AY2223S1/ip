@@ -2,11 +2,10 @@ import java.util.Scanner;
 
 public class Duke {
     private enum Command {
-        BYE, LIST, MARK, UNMARK, TODO, EVENT, DEADLINE;
+        BYE, LIST, MARK, UNMARK, TODO, EVENT, DEADLINE, DELETE;
     }
 
     private static boolean terminate = false;
-    private static final String HORIZONTAL_LINE = "----------------------";
     private static Storage myStorage = new Storage();
 
     private static void displayError(String error) {
@@ -28,14 +27,14 @@ public class Duke {
             case MARK:
                 try {
                     mark(userInput);
-                } catch (DukeException | IndexOutOfBoundsException e) {
+                } catch (IndexOutOfBoundsException e) {
                     displayError("Please enter a valid index to mark.");
                 }
                 break;
             case UNMARK:
                 try {
                     unmark(userInput);
-                } catch (DukeException | IndexOutOfBoundsException e) {
+                } catch (IndexOutOfBoundsException e) {
                     displayError("Please enter a valid index to unmark.");
                 }
                 break;
@@ -69,25 +68,29 @@ public class Duke {
                     displayError("Please use /by to specify deadline time.");
                 }
                 break;
+            case DELETE:
+                try {
+                    delete(userInput);
+                } catch (IndexOutOfBoundsException e) {
+                    displayError("Sorry. Task does not exist.");
+                }
         }
     }
 
-    private static void mark(String userInput) throws DukeException {
-        if (userInput.length() == 4 ) {
-            throw new DukeException();
-        }
+    private static void mark(String userInput) {
         String input = userInput.substring(5);
         myStorage.markDone(Integer.parseInt(input));
     }
 
-    private static void unmark(String userInput) throws DukeException {
-        if (userInput.length() == 6 ) {
-            throw new DukeException();
-        }
+    private static void unmark(String userInput){
         String input = userInput.substring(7);
         myStorage.unmarkDone(Integer.parseInt(input));
     }
 
+    private static void delete(String userInput) {
+        String input = userInput.substring(7);
+        myStorage.deleteTask(Integer.parseInt(input));
+    }
     private static void todo(String userInput) {
         myStorage.addTask(new ToDo(userInput.substring(5)));
     }
@@ -109,7 +112,6 @@ public class Duke {
         }
         myStorage.addTask(new Deadline(Strings[0], Strings[1]));
     }
-
 
     public static void main(String[] args) {
         String logo = " ____        _        \n"

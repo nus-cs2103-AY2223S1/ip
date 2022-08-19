@@ -23,6 +23,17 @@ public class Storage {
         System.out.println(storage.get(i - 1).toString());
     }
 
+    public void deleteTask(int i) {
+        Task target = storage.get(i - 1);
+        System.out.println("Noted. I've removed this task:");
+        System.out.println(target.toString());
+        storage.remove(target);
+        if (storage.size() == 1) {
+            System.out.println("Now you have 1 task in the list.");
+        } else {
+            System.out.println("Now you have " + storage.size() + " tasks in the list.");
+        }
+    }
     public void addTask(Task t) {
         this.storage.add(t);
         System.out.println("Got it. I've added this task:");
