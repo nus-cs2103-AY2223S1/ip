@@ -1,34 +1,39 @@
 package command;
-import storage.Storage;
-import printer.Printer;
-import task.Task;
-import task.ToDo;
-import task.Event;
-import task.Deadline;
-import exception.CommandException;
-import exception.ToDoException;
-import exception.DeadlineException;
-import exception.EventException;
+
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.Arrays;
+
+import exception.CommandException;
+import exception.DeadlineException;
+import exception.EventException;
+import exception.ToDoException;
+
+import task.Deadline;
+import task.Event;
+import task.Task;
+import task.ToDo;
+
+import storage.Config;
+import storage.Storage;
+
+import printer.Printer;
 
 public class CommandHandler {
     private final Storage storage;
 
     public CommandHandler() {
-        this.storage = new Storage();
+        this.storage = new Storage(Config.DIRECTORY, Config.NAME);
     }
 
     public void processSingleCommand(Command command) {
-        switch(command) {
-            case BYE:
-                Printer.print("Bye. See you later master!");
-                break;
-
-            case LIST:
-                Printer.print(this.storage.toString());
-                break;
+        switch (command) {
+        case BYE:
+            Printer.print("Bye. See you later master!");
+            break;
+        case LIST:
+            Printer.print(this.storage.toString());
+            break;
         }
     }
 
@@ -45,18 +50,16 @@ public class CommandHandler {
             throw new CommandException();
         }
 
-        switch(command) {
-            case MARK:
-                this.storage.markTaskWithIndex(selectedIndex);
-                break;
-
-            case UNMARK:
-                this.storage.unmarkTaskWithIndex(selectedIndex);
-                break;
-
-            case DELETE:
-                this.storage.removeTaskWithIndex(selectedIndex);
-                break;
+        switch (command) {
+        case MARK:
+            this.storage.markTaskWithIndex(selectedIndex);
+            break;
+        case UNMARK:
+            this.storage.unmarkTaskWithIndex(selectedIndex);
+            break;
+        case DELETE:
+            this.storage.removeTaskWithIndex(selectedIndex);
+            break;
         }
     }
 
@@ -64,36 +67,35 @@ public class CommandHandler {
         Task newTask = null;
 
         switch(command) {
-            case TODO:
-                if (description.isEmpty()) {
-                    throw new ToDoException();
-                }
-                newTask = new ToDo(description);
-                break;
+        case TODO:
+            if (description.isEmpty()) {
+                throw new ToDoException();
+            }
+            newTask = new ToDo(description);
+            break;
+        case DEADLINE:
+            List<String> deadlineInfo = Arrays.stream(description.split("/by", 2))
+                    .map(String::trim)
+                    .filter(info -> !info.isEmpty())
+                    .collect(Collectors.toList());
 
-            case DEADLINE:
-                List<String> deadlineInfo = Arrays.stream(description.split("/by", 2))
-                        .map(String::trim)
-                        .filter(info -> !info.isEmpty())
-                        .collect(Collectors.toList());
+            if (deadlineInfo.size() < 2) {
+                throw new DeadlineException();
+            }
 
-                if (deadlineInfo.size() < 2) {
-                    throw new DeadlineException();
-                }
-                newTask = new Deadline(deadlineInfo.get(0), deadlineInfo.get(1));
-                break;
+            newTask = new Deadline(deadlineInfo.get(0), deadlineInfo.get(1));
+            break;
+        case EVENT:
+            List<String> eventInfo = Arrays.stream(description.split("/at", 2))
+                    .map(String::trim)
+                    .filter(info -> !info.isEmpty())
+                    .collect(Collectors.toList());
 
-            case EVENT:
-                List<String> eventInfo = Arrays.stream(description.split("/at", 2))
-                        .map(String::trim)
-                        .filter(info -> !info.isEmpty())
-                        .collect(Collectors.toList());
-
-                if (eventInfo.size() < 2) {
-                    throw new EventException();
-                }
-                newTask = new Event(eventInfo.get(0), eventInfo.get(1));
-                break;
+            if (eventInfo.size() < 2) {
+                throw new EventException();
+            }
+            newTask = new Event(eventInfo.get(0), eventInfo.get(1));
+            break;
         }
 
         this.storage.addTask(newTask);

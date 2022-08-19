@@ -12,4 +12,9 @@ public class Event extends Task {
     public String toString() {
         return String.format("[E]%s (at: %s)", super.toString(), this.time);
     }
+
+    @Override
+    public String toStorageRepresentation() {
+        return "E|" + super.toStorageRepresentation() + "|" + this.time;
+    }
 }
