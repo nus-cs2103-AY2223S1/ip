@@ -3,13 +3,13 @@ package duke.command;
 public class UnknownCommand extends Command {
     private String command;
 
-    UnknownCommand(String command) {
+    public UnknownCommand(String command) {
         super.isExit = false;
         this.command = command;
     }
 
     @Override
-    void execute() {
+    public void execute() {
         Command.ui.displayUnknownCommandMessage(this.command);
     }
 }

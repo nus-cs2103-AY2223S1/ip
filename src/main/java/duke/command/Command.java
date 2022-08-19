@@ -11,21 +11,21 @@ public abstract class Command {
     protected static Storage storage;
     protected boolean isExit;
 
-    static void setUi(Ui ui) {
+    public static void setUi(Ui ui) {
         Command.ui = ui;
     }
 
-    static void setTaskList(TaskList taskList) {
+    public static void setTaskList(TaskList taskList) {
         Command.taskList = taskList;
     }
 
-    static void setStorage(Storage storage) {
+    public static void setStorage(Storage storage) {
         Command.storage = storage;
     }
 
-    boolean isExit() {
+    public boolean isExit() {
         return this.isExit;
     }
 
-    abstract void execute() throws DukeException;
+    public abstract void execute() throws DukeException;
 }

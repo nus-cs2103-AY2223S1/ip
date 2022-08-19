@@ -4,7 +4,7 @@ import duke.DukeException;
 import duke.task.Task;
 
 public class DeleteCommand extends IndexedCommand {
-    DeleteCommand(int index) {
+    public DeleteCommand(int index) {
         super(index);
     }
 

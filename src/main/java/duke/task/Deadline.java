@@ -16,11 +16,11 @@ public class Deadline extends Task {
         this(description, false, by);
     }
 
-    Deadline(String description, boolean isComplete, String by) throws DukeException {
+    public Deadline(String description, boolean isComplete, String by) throws DukeException {
         this(description, isComplete, Task.parseDate(by));
     }
 
-    Deadline(String description, String by) throws DukeException {
+    public Deadline(String description, String by) throws DukeException {
         this(description, false, Task.parseDate(by));
     }
 

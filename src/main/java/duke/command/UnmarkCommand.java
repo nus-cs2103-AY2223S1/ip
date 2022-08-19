@@ -4,7 +4,7 @@ import duke.DukeException;
 import duke.task.Task;
 
 public class UnmarkCommand extends IndexedCommand {
-    UnmarkCommand(int index) {
+    public UnmarkCommand(int index) {
         super(index);
     }
 

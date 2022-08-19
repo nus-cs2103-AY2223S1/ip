@@ -17,15 +17,15 @@ public class Task {
         this.isComplete = isComplete;
     }
 
-    Task(String description) {
+    public Task(String description) {
         this(description, false);
     }
 
-    void mark() {
+    public void mark() {
         this.isComplete = true;
     }
 
-    void unmark() {
+    public void unmark() {
         this.isComplete = false;
     }
 

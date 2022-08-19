@@ -1,12 +1,12 @@
 package duke.command;
 
 public class ListCommand extends Command {
-    ListCommand() {
+    public ListCommand() {
         super.isExit = false;
     }
 
     @Override
-    void execute() {
+    public void execute() {
         Command.ui.formatAndPrint(Command.taskList.getLogs());
     }
 }
