@@ -58,6 +58,21 @@ public class Duke {
                             System.out.println(list.get(index).toString());
                         }
                     }
+                } else if (input.startsWith("delete")) {
+                    String in = input.replaceAll("delete", "").trim();
+                    if (in.isEmpty()) {
+                        throw new TaskStatusException("Please provide task number");
+                    } else {
+                        int index = Integer.parseInt(in) - 1;
+                        if (index > list.size() || index < 0){
+                            throw new TaskStatusException("Please provide correct task number");
+                        } else {
+                            Task removed = list.remove(index);
+                            System.out.println("Noted. I've removed this task:");
+                            System.out.println(removed.toString());
+                            System.out.println("Now you have " + list.size() + " task(s) in the list");
+                        }
+                    }
                 } else {
                     Task task;
                     if (input.startsWith("todo")) {
