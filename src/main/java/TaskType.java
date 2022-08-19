@@ -3,7 +3,7 @@ public enum TaskType {
     EVENT("event"),
     DEADLINE("deadline");
 
-    String stringRepresentation;
+    private final String stringRepresentation;
     TaskType(String stringRepresentation) {
         this.stringRepresentation = stringRepresentation;
     }
