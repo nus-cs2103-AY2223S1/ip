@@ -35,8 +35,8 @@ What can I do for you? ^_^
 	4. [T][ ] sweep the floor
 	Okay! I have marked this task as not done:
 		[T][ ] read book
-	Oops! I'm sorry >< I don't know what this means :(
-	Oops! I'm sorry >< I don't know what this means :(
+	Oops! I don't know what this means :(
+	Oops! I don't know what this means :(
 	Oops! Please add using the following format: todo <description>
 	Oops! Please add using the following format: event <description> /at <date>
 	Oops! Please add using the following format: deadline <description> /by <date>

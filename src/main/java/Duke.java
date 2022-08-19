@@ -35,6 +35,59 @@ public class Duke {
         return "\tBye. Hope to see you again soon :D";
     }
 
+    public void changeStatus(String id, boolean mark) {
+        int index = Integer.parseInt(id) - 1;
+        if (mark) {
+            System.out.println(this.tasks.getTask(index).markAsDone());
+        } else {
+            System.out.println(this.tasks.getTask(index).markAsNotDone());
+        }
+    }
+
+    public void addTodo(String message) throws DukeException {
+        if (message.length() == 0) {
+            throw new DukeException("Please add using the following format: todo <description>");
+        }
+        ToDo todo = new ToDo(message);
+        System.out.println(this.tasks.add(todo));
+    }
+
+    public void addDeadline(String message) throws DukeException {
+        String[] info = message.split(" /by ");
+        if (info.length < 2) {
+            throw new DukeException("Please add using the following format: " +
+                    "deadline <description> /by <date>");
+        }
+        String description = info[0];
+        String by = info[1];
+        Deadline deadline = new Deadline(description, by);
+        System.out.println(this.tasks.add(deadline));
+    }
+
+    public void addEvent(String message) throws DukeException {
+        String[] info = message.split(" /at ");
+        if (info.length < 2) {
+            throw new DukeException("Please add using the following format: " +
+                    "event <description> /at <date>");
+        }
+        String description = info[0];
+        String at = info[1];
+        Event event = new Event(description, at);
+        System.out.println(this.tasks.add(event));
+    }
+
+    public void delete(String message) throws DukeException {
+        if (message.length() == 0) {
+            throw new DukeException("I don't know which task to delete :(, " +
+                    "please delete using the following format: delete <task-number>");
+        }
+        int taskNumber = Integer.parseInt(message);
+        if (taskNumber > this.tasks.size()) {
+            throw new DukeException("The task number exceeds the number of tasks in the list!");
+        }
+        System.out.println(this.tasks.delete(taskNumber));
+    }
+
     public static void main(String[] args) {
         String logo = " ____        _\n"
                 + "|  _ \\ _   _| | _____\n"
@@ -51,62 +104,41 @@ public class Duke {
             String command = scanner.next();
             String message = scanner.nextLine().trim();
             try {
-                if (command.equals("bye")) {
-                    System.out.println(duke.exit());
-                    run = false;
-                    scanner.close();
-                } else if (command.equals("list")) {
-                    System.out.println(duke.tasks.list());
-                } else if (command.equals("mark")) {
-                    if (message.length() == 0) {
-                        throw new DukeException("Please mark using this format: mark <task-number>");
-                    }
-                    int taskNumber = Integer.parseInt(message);
-                    System.out.println(duke.tasks.getTask(taskNumber - 1).markAsDone());
-                } else if (command.equals("unmark")) {
-                    if (message.length() == 0) {
-                        throw new DukeException("Please unmark using this format: mark <task-number>");
-                    }
-                    int taskNumber = Integer.parseInt(message);
-                    System.out.println(duke.tasks.getTask(taskNumber - 1).markAsNotDone());
-                } else if (command.equals("todo")) {
-                    if (message.length() == 0) {
-                        throw new DukeException("Please add using the following format: todo <description>");
-                    }
-                    ToDo todo = new ToDo(message);
-                    System.out.println(duke.tasks.add(todo));
-                } else if (command.equals("deadline")) {
-                    String[] info = message.split(" /by ");
-                    if (info.length < 2) {
-                        throw new DukeException("Please add using the following format: " +
-                                "deadline <description> /by <date>");
-                    }
-                    String description = info[0];
-                    String by = info[1];
-                    Deadline deadline = new Deadline(description, by);
-                    System.out.println(duke.tasks.add(deadline));
-                } else if (command.equals("event")) {
-                    String[] info = message.split(" /at ");
-                    if (info.length < 2) {
-                        throw new DukeException("Please add using the following format: " +
-                                "event <description> /at <date>");
-                    }
-                    String description = info[0];
-                    String at = info[1];
-                    Event event = new Event(description, at);
-                    System.out.println(duke.tasks.add(event));
-                } else if (command.equals("delete")) {
-                    if (message.length() == 0) {
-                        throw new DukeException("I don't know which task to delete :(, " +
-                                "please delete using the following format: delete <task-number>");
-                    }
-                    int taskNumber = Integer.parseInt(message);
-                    if (taskNumber > duke.tasks.size()) {
-                        throw new DukeException("The task number exceeds the number of tasks in the list!");
-                    }
-                    System.out.println(duke.tasks.delete(taskNumber));
-                } else {
-                    throw new DukeException("I'm sorry >< I don't know what this means :(");
+                switch (command) {
+                    case "bye":
+                        System.out.println(duke.exit());
+                        run = false;
+                        scanner.close();
+                        break;
+                    case "list":
+                        System.out.println(duke.tasks.list());
+                        break;
+                    case "mark":
+                        if (message.length() == 0) {
+                            throw new DukeException("Please mark using this format: mark <task-number>");
+                        }
+                        duke.changeStatus(message, true);
+                        break;
+                    case "unmark":
+                        if (message.length() == 0) {
+                            throw new DukeException("Please unmark using this format: mark <task-number>");
+                        }
+                        duke.changeStatus(message, false);
+                        break;
+                    case "todo":
+                        duke.addTodo(message);
+                        break;
+                    case "deadline":
+                        duke.addDeadline(message);
+                        break;
+                    case "event":
+                        duke.addEvent(message);
+                        break;
+                    case "delete":
+                        duke.delete(message);
+                        break;
+                    default:
+                        throw new DukeException("I don't know what this means :(");
                 }
             } catch (DukeException e) {
                 System.out.println("\t" + e.getMessage());
