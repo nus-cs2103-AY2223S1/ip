@@ -6,16 +6,13 @@ import java.util.Scanner;
 public class Duke {
     public static void main(String[] args) {
 
-        List<String> list = new ArrayList<>(); // to store list of inputs
+        List<Task> list = new ArrayList<>(); // to store list of inputs
 
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        String separator = "     ==================================";
-        String indent = "      ";
-
         String welcomeMsg = "Hello! I'm\n" + logo + "\nWhat can I do for you?\n";
         System.out.println(welcomeMsg);
 
@@ -26,29 +23,35 @@ public class Duke {
             input = sc.nextLine();
 
             if (input.equals("bye")) {
-                System.out.println(separator);
-                System.out.println(indent + "Bye. Hope to see you again soon!");
-                System.out.println(separator);
+                System.out.println("Bye. Hope to see you again soon!");
                 break;
             } else if (input.equals("list")) {
-                System.out.println(separator);
-                listPrinter(list);
-                System.out.println(separator);
+                System.out.println("Here are the tasks in your list:");
+                taskPrinter(list);
+            } else if (input.startsWith("mark")) {
+                int index = Integer.parseInt(input.replaceAll("mark","")
+                        .trim()) - 1;
+                list.get(index).Done();
+                System.out.println("Nice! I've marked this task as done:");
+                System.out.println(list.get(index).toString());
+            } else if (input.startsWith("unmark")) {
+                int index = Integer.parseInt(input.replaceAll("unmark", "")
+                        .trim()) - 1;
+                list.get(index).unDone();
+                System.out.println("Ok, I've marked this task as not done yet:");
+                System.out.println(list.get(index).toString());
             } else {
-                list.add(input);
-                System.out.println(separator);
-                System.out.println(indent + "added: " + input);
-                System.out.println(separator);
+                list.add(new Task(input));
+                System.out.println("added: " + input);
             }
         }
     }
 
-    static void listPrinter(List<String> list) {
+    static void taskPrinter(List<Task> list) {
         String out = "";
         int num = 1;
-        for (String x : list) {
-            out += "      ";
-            out += Integer.toString(num) + ". " + x + "\n";
+        for (Task x : list) {
+            out += num + ". " + x.toString() + "\n";
             num++;
         }
         System.out.println(out);
