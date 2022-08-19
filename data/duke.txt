@@ -1,3 +1,0 @@
-T | 0 | test
-E | 0 | test | 10pm
-D | 0 | test | wed

@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -9,7 +8,6 @@ import java.util.ArrayList;
 public class TaskList {
 
     protected ArrayList<Task> list;
-
     protected int length;
 
     /**
@@ -18,6 +16,14 @@ public class TaskList {
     public TaskList() {
         this.list = new ArrayList<>();
         this.length = 0;
+    }
+
+    /**
+     * Class constructor for ToDoList with an ArrayList argument.
+     */
+    public TaskList(ArrayList<Task> list) {
+        this.list = list;
+        this.length = list.size();
     }
 
     /**
@@ -64,18 +70,18 @@ public class TaskList {
      * Delete item for list
      *
      * @param itemNumber item with the number user want to delete.
+     * @return Task to be deleted
      */
-    public void delete(int itemNumber) {
+    public Task delete(int itemNumber) {
+        Task itemToRemove = null;
         try {
-            Task itemToRemove = list.get(itemNumber - 1);
+            itemToRemove = list.get(itemNumber - 1);
             list.remove(itemNumber - 1);
             this.length -= 1;
-            System.out.println("Noted. I've removed this task:");
-            System.out.println(itemToRemove);
-            System.out.println("Now you have " + this.length + " tasks in the list");
         } catch (IndexOutOfBoundsException e) {
             System.out.println("You do not have that item number!");
         }
+        return itemToRemove;
     }
 
     public void updateStorage(Storage storage) throws DukeException {

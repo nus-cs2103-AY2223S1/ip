@@ -43,13 +43,13 @@ public class Storage {
         }
     }
 
-    public TaskList loadStorage() throws DukeException {
-        TaskList taskList = new TaskList();
+    public ArrayList<Task> load() throws DukeException {
+        ArrayList<Task> memory = new ArrayList<>();
         Scanner myReader;
         try {
             myReader = new Scanner(this.dataFile);
         } catch (FileNotFoundException e) {
-            throw new DukeException("Storage File not found!");
+            throw new DukeException("Storage file not found at specified path!");
         }
         while (myReader.hasNextLine()) {
             String taskString = myReader.nextLine();
@@ -58,15 +58,15 @@ public class Storage {
             switch (taskDataArray[0]) {
             case "T":
                 currTask = new ToDo(taskDataArray[2]);
-                taskList.add(currTask);
+                memory.add(currTask);
                 break;
             case "E":
                 currTask = new Event(taskDataArray[2], taskDataArray[3]);
-                taskList.add(currTask);
+                memory.add(currTask);
                 break;
             case "D":
                 currTask = new Deadline(taskDataArray[2], taskDataArray[3]);
-                taskList.add(currTask);
+                memory.add(currTask);
                 break;
             }
             if (taskDataArray[1].equals("1")) {
@@ -74,6 +74,6 @@ public class Storage {
                 currTask.markAsDone();
             }
         }
-        return taskList;
+        return memory;
     }
 }
