@@ -7,7 +7,11 @@ import exceptions.InvalidCommandException;
 import exceptions.InvalidSecondaryCommandException;
 import exceptions.InvalidTaskNameException;
 
+/**
+ * The {@code Input} class formats a string input into an input object.
+ */
 public class Input {
+
     private Command command;
     private String mainData;
     private String secondaryData;
@@ -29,6 +33,12 @@ public class Input {
         return secondaryData;
     }
 
+    /**
+     * A method that formats a string input into an input object
+     *
+     * @param input A string containing text provided by the user.
+     * @return An input object containing important information from the user.
+     */
     public static Input formatInput(String input) throws DukeException {
         Input result = new Input();
         int maxParameters = 2;

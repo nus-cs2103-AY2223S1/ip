@@ -6,8 +6,18 @@ import utils.Utils;
 
 import java.util.Scanner;
 
+
+/**
+ * The {@code Duke} class enables users to store and indicated various
+ * types of tasking, check and uncheck them, delete them and view a list
+ * of all present tasks. It has a command line interface and does not
+ * store data from each run.
+ */
 public class Duke {
 
+    /**
+     * TaskList stores all the current task created by the user.
+     */
     private static final TaskList taskList = new TaskList();
 
     public static void main(String[] args) {
@@ -16,7 +26,7 @@ public class Duke {
         while (scanner.hasNext()) {
             try {
                 String inputString = scanner.nextLine();
-                if (inputString.length() == 0) {
+                if (inputString.isEmpty()) {
                     continue;
                 }
                 Input input = Input.formatInput(inputString.trim());
@@ -67,10 +77,18 @@ public class Duke {
 
     }
 
+    /**
+     * List all current task in the taskList.
+     */
     private static void listTasks() {
         taskList.listTask();
     }
 
+    /**
+     * Given an index, mark a task as done.
+     *
+     * @param index index of the task we would like to mark as done.
+     */
     private static void checkTask(String index) throws InvalidIndexException {
         if (Utils.isNotParsable(index)) {
             throw new InvalidIndexException(String.format("%s is not a number", index));
@@ -79,6 +97,11 @@ public class Duke {
         taskList.listTask();
     }
 
+    /**
+     * Given an index, mark a task as undone.
+     *
+     * @param index index of the task we would like to mark as undone.
+     */
     private static void uncheckTask(String index) throws InvalidIndexException {
         if (Utils.isNotParsable(index)) {
             throw new InvalidIndexException(String.format("%s is not a number", index));
@@ -87,6 +110,11 @@ public class Duke {
         taskList.listTask();
     }
 
+    /**
+     * Given an index, delete a task.
+     *
+     * @param index index of the task we would like to delete.
+     */
     private static void deleteTask(String index) throws InvalidIndexException {
         if (Utils.isNotParsable(index)) {
             throw new InvalidIndexException(String.format("%s is not a number", index));
@@ -95,6 +123,12 @@ public class Duke {
         taskList.listTask();
     }
 
+    /**
+     * Given a task, add it to the task list.
+     *
+     * @param <T>  type of the task we would like to add to the task list.
+     * @param task the task we would like to add to the task list.
+     */
     private static <T extends Task> void addTask(T task) {
         taskList.addTask(task);
         taskList.listTask();
