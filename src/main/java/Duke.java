@@ -30,7 +30,8 @@ public class Duke {
                         || userInput.contains("unmark")
                         || userInput.contains("todo")
                         || userInput.contains("deadline")
-                        || userInput.contains("event")) {
+                        || userInput.contains("event")
+                        || userInput.contains("delete")) {
 
                     operations(userInput);
                 } else {
@@ -57,6 +58,12 @@ public class Duke {
 
 
                     break;
+
+                case "delete":
+                    int taskNo = Integer.parseInt(tokens[1]);
+                    deleteTask(taskNo);
+                    break;
+
                 case "todo": {
 
                     String taskContent = tokens[1];
@@ -118,6 +125,12 @@ public class Duke {
         result[0] = taskContent;
         result[1] = date;
         return result;
+    }
+
+    private static void deleteTask(int number) {
+        Task task = list.get(number - 1);
+        list.remove(task);
+        printWithFormat("Noted. I've removed this task:\n"+ task+"\nNow you have " + list.size() + " tasks in the list.");
     }
 
     private static void addTaskToList(Task task) {
