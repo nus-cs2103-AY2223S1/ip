@@ -1,12 +1,10 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
+import java.util.*;
 public class Alpha {
-    public static List<String> list = new ArrayList<>();
+    public static List<Task> todo = new ArrayList<>();
     public static final String ANSI_YELLOW = "\u001B[33m";
     public static final String ANSI_BLUE = "\u001B[36m";
     public static final String ANSI_RESET = "\u001B[0m";
+
     public static void main(String[] args) {
         welcomeMessage();
         enterMessage();
@@ -19,15 +17,30 @@ public class Alpha {
     private static void enterMessage() {
         Scanner in = new Scanner(System.in);
         String input = in.nextLine();
-        switch (input) {
+        String[] inputTokens = input.split(" ");
+        switch (inputTokens[0]) {
+            case "mark": {
+                todo.get(Integer.parseInt(inputTokens[1]) - 1).changeStatus(true);
+                System.out.println(ANSI_YELLOW + ">> " + "marked: " + inputTokens[1] + ANSI_RESET);
+                enterMessage();
+                break;
+            }
+            case "unmark": {
+                todo.get(Integer.parseInt(inputTokens[1]) - 1).changeStatus(false);
+                System.out.println(ANSI_YELLOW + ">> " + "unmarked: " + inputTokens[1] + ANSI_RESET);
+                enterMessage();
+                break;
+            }
             case "list": {
-                System.out.println(ANSI_YELLOW + ">> " + "Your to-do list is as follows:" + ANSI_RESET);
+                System.out.println(ANSI_YELLOW + ">> " + "Your task list is as follows:" + ANSI_RESET);
                 int count = 1;
-                for (String task:list) {
-                    System.out.println(ANSI_YELLOW + count + ") " + task + ANSI_RESET);
+                for (Task task : todo) {
+                    System.out.println(ANSI_YELLOW + count + ") " +  "["
+                            + task.getStatus() + "] " + task.getDescription() + ANSI_RESET);
                     count++;
                 }
                 enterMessage();
+                break;
             }
             case "bye": {
                 System.out.println(ANSI_YELLOW + ">> " + "Bye, See you soon!" + ANSI_RESET);
@@ -35,7 +48,8 @@ public class Alpha {
                 break;
             }
             default: {
-                list.add(input);
+                Task t = new Task(input);
+                todo.add(t);
                 System.out.println(ANSI_YELLOW + ">> " + "added: " + input + ANSI_RESET);
                 enterMessage();
             }
