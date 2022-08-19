@@ -28,7 +28,7 @@ public class Duke {
             switch (userInput) {
 
                 case "list":
-                    System.out.println("Here are your tasks =ôwô=");
+                    System.out.println("Here are your tasks =0w0=");
 
                     for (int i = 0; i < numOfInputs; i++) {
                         task = taskList[i];
@@ -46,7 +46,7 @@ public class Duke {
                     taskNum = sc.nextInt();
                     task = taskList[taskNum - 1];
                     task.markAsDone();
-                    System.out.println("Good job (=ↀωↀ=) You finished this task! \n" + task);
+                    System.out.println("Good job (=OwO=) You finished this task! \n" + task);
                     continue;
 
                 case "unmark":
@@ -61,7 +61,7 @@ public class Duke {
                     Task t = new ToDos(userInput);
                     taskList[numOfInputs] = t;
                     numOfInputs += 1;
-                    System.out.println("(=^-ω-^=) " + t + " has been added to your task list!\n");
+                    System.out.println("(=^-w-^=) " + t + " has been added to your task list!\n");
                     System.out.println("You now have " + numOfInputs + " tasks");
                     continue;
 
@@ -72,7 +72,7 @@ public class Duke {
                     Task d = new Deadlines(splitB[0], deadline);
                     taskList[numOfInputs] = d;
                     numOfInputs += 1;
-                    System.out.println("(=^-ω-^=) " + d + " has been added to your task list!\n");
+                    System.out.println("(=^-w-^=) " + d + " has been added to your task list!\n");
                     System.out.println("You now have " + numOfInputs + " tasks");
                     numOfInputs += 1;
                     continue;
@@ -84,7 +84,7 @@ public class Duke {
                     Task e = new Events(splitA[0], time);
                     taskList[numOfInputs] = e;
                     numOfInputs += 1;
-                    System.out.println("(=^-ω-^=) " + e + " has been added to your task list!\n");
+                    System.out.println("(=^-w-^=) " + e + " has been added to your task list!\n");
                     System.out.println("You now have " + numOfInputs + " tasks");
                     continue;
 
@@ -98,6 +98,6 @@ public class Duke {
                     continue;
             }
         }
-        System.out.println("(；¬＿¬) Meowmeow you have too many tasks");
+        System.out.println("(uwu) Meowmeow you have too many tasks");
     }
 }
