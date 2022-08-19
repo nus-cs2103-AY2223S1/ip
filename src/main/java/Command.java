@@ -31,11 +31,12 @@ public enum Command {
     "| |_| | |_| |   <  __/\n" +
     "|____/ \\__,_|_|\\_\\___|\n";
   private static final String BORDER = "------------------------------";
+  private static boolean isChatting = true;
 
   /**
    * Execute the greet command and welcome the user.
    */
-  public void greet() {
+  public static void greet() {
     System.out.println("Hello from\n" + Command.LOGO);
     System.out.println("What can I do for you?");
   }
@@ -45,80 +46,126 @@ public enum Command {
    *
    * @param scanner  The scanner object that needs to be closed
    */
-  public void exit(Scanner scanner) {
+  public static void exit(Scanner scanner) {
     System.out.println(" Bye. Hope to see you again soon!");
+    Command.isChatting = false;
     scanner.close();
   }
 
   /**
    * Execute the command to list all available tasks.
+   *
+   * @param allTasks  the list to store all tasks created by the user
    */
-  public void listTasks() {
-    String output = "";
-    for (int i = 0; i < Duke.allTasks.size(); i++) {
-      output += "\n" + (i + 1) + ". " + Duke.allTasks.get(i).toString();
-    }
-    System.out.println(output);
+  public static void listTasks(AllTasksList allTasks) {
+    allTasks.listAllTasks();
   }
 
   /**
    * Execute the command to chat with the user.
+   *
+   * @param scanner  the scanner object to get user input
+   * @param allTasks  the list to store all tasks created by the user
    */
-  public void chat(Scanner scanner) {
-    System.out.println(BORDER);
-    System.out.print(": ");
+  public static void chat(Scanner scanner, AllTasksList allTasks) {
+    while (isChatting) {
+      System.out.println(BORDER);
+      System.out.print(": ");
 
-    String userInput = scanner.nextLine();
-    parseAndExecuteCommand(userInput);
+      String userInput = scanner.nextLine();
+      Command.parseAndExecuteCommand(userInput, scanner, allTasks);
 
-    System.out.println(BORDER + "\n");
+      System.out.println(BORDER + "\n");
+    }
   }
 
   /**
    * Execute the command to mark a task as complete.
    *
    * @param commandArray  a string array of commands to be parsed for more information
+   * @param allTasks  the list to store all tasks created by the user
+   * @throws NumberFormatException
+   * @throws DukeException
    */
-  public void markTask(String[] commandArray) {}
+  public static void markTask(String[] commandArray, AllTasksList allTasks)
+    throws NumberFormatException, DukeException {
+    if (commandArray.length <= 1) {
+      throw new DukeException("Sorry, no number was detected");
+    }
+
+    int index = Integer.parseInt(commandArray[1]);
+    allTasks.markTask(index);
+  }
 
   /**
    * Execute the command to mark a task as incomplete.
    *
    * @param commandArray  a string array of commands to be parsed for more information
+   * @param allTasks  the list to store all tasks created by the user
+   * @throws NumberFormatException
+   * @throws DukeException
    */
-  public void unMarkTask(String[] commandArray) {}
+  public static void unMarkTask(String[] commandArray, AllTasksList allTasks)
+    throws NumberFormatException, DukeException {
+    if (commandArray.length <= 1) {
+      throw new DukeException("Sorry, no number was detected");
+    }
+
+    int index = Integer.parseInt(commandArray[1]);
+    allTasks.unMarkTask(index);
+  }
 
   /**
    * Execute the command to delete a task.
    *
    * @param commandArray  a string array of commands to be parsed for more information
+   * @param allTasks  the list to store all tasks created by the user
+   * @throws NumberFormatException
+   * @throws DukeException
    */
-  public void delete(String[] commandArray) {}
+  public static void delete(String[] commandArray, AllTasksList allTasks)
+    throws NumberFormatException, DukeException {
+    if (commandArray.length <= 1) {
+      throw new DukeException("Sorry, no number was detected");
+    }
+
+    int index = Integer.parseInt(commandArray[1]);
+    allTasks.delete(index);
+  }
 
   /**
    * utility method used to parse the and execute the user command.
    *
    * @param userInput  the raw input string the user entered into the chatbot
+   * @param scanner  the scanner that needs to be closed
+   * @param allTasks  the Object storing all the tasks created by the user
    */
-  public void parseAndExecuteCommand(String userInput) {
+  public static void parseAndExecuteCommand(
+    String userInput,
+    Scanner scanner,
+    AllTasksList allTasks
+  ) {
     String[] commandArray = userInput.split(" ");
     String command = commandArray[0];
-    try {
-      switch (Command.valueOf(command)) {
-        case bye:
-          return;
-        case list:
-          break;
-        case mark:
-          break;
-        case unmark:
-          break;
-        case delete:
-          break;
-        default:
-      }
-    } catch (NumberFormatException e) {
-      System.out.println("Error: Cannot cast a non-integer into an integer");
+    switch (Command.valueOf(command)) {
+      case bye:
+        Command.exit(scanner);
+        return;
+      case list:
+        Command.listTasks(allTasks);
+        break;
+      case mark:
+        Command.markTask(commandArray, allTasks);
+        break;
+      case unmark:
+        Command.unMarkTask(commandArray, allTasks);
+        break;
+      case delete:
+        Command.delete(commandArray, allTasks);
+        break;
+      default:
+        Task newTask = Task.createTask(commandArray);
+        allTasks.addTask(newTask);
     }
   }
 }
