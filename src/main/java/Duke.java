@@ -22,7 +22,7 @@ public class Duke {
     private static void startService() {
         DukePrinter.dukePrint("Hello! I'm Duke\nWhat can I do for you?\n");
         sc = new Scanner(System.in);
-        taskManager = new DukeTaskManager(SaveManager.loadData());
+        taskManager = new DukeTaskManager(Storage.loadData());
         run();
     }
 
@@ -62,7 +62,7 @@ public class Duke {
 
     private static void endService() {
         DukePrinter.dukePrint("Bye. Hope to see you again!\n");
-        SaveManager.saveData(taskManager.getTasks());
+        Storage.saveData(taskManager.getTasks());
         sc.close();
         return;
     }

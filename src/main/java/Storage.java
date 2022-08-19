@@ -10,7 +10,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 
-public class SaveManager {
+public class Storage {
 
     private static final String FILE_NAME = "data.txt";
 
