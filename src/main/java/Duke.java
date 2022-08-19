@@ -1,3 +1,5 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 /**
@@ -5,7 +7,8 @@ import java.util.Scanner;
  */
 public class Duke {
     private static final Scanner scanner = new Scanner(System.in);
-
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+    
     /**
      * Main method that runs the program
      * @param args Arguments passed to the program
@@ -68,6 +71,13 @@ public class Duke {
                         Task task = storageList.get(index);
                         storageList.delete(index);
                         Output.DELETE.modifyTask(task, storageList);
+                    } catch (DukeException e) {
+                        System.out.println(e.getMessage());
+                    }
+                    break;
+                case "date":
+                    try {
+                        Output.DATE.listMatches(storageList, LocalDateTime.parse(findFirstCommand(input, command), formatter));
                     } catch (DukeException e) {
                         System.out.println(e.getMessage());
                     }
@@ -151,5 +161,13 @@ public class Duke {
      */
     private static int getIndex(String input) {
         return Integer.parseInt(input.split(" ")[1]) - 1;
+    }
+
+    /**
+     * Return the formatter for the DateTime
+     * @return DateTimeFormatter 
+     */
+    public static DateTimeFormatter getFormatter() {
+        return formatter;
     }
 }

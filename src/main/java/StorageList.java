@@ -1,3 +1,4 @@
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,7 +76,24 @@ public class StorageList {
       throw new DukeException("Invalid index.");
     }
   }
-  
+
+  /**
+   * An overloaded method that return the String representation of the list of task in which the date is matched.
+   * @param date Date to be matched
+   * @return String representation of the list of task with correct date.
+   */
+  public String toString(LocalDateTime date) {
+    StringBuilder sb = new StringBuilder();
+    int i = 1;
+    for (Task t : list) {
+      if (t instanceof Deadline && ((Deadline) t).getDateTime().equals(date)) {
+        sb.append("\t " + i + ". " + t.toString() + "\n");
+        i++;
+      }
+    }
+    return sb.toString();
+  }
+
   /**
    * Returns the list of strings
    * @return String representation of the list of strings
