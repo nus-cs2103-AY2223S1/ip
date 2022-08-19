@@ -27,11 +27,8 @@ public class Neo {
             }
             if (userText.equals("list") || userText.equals("List")) {
                 for (int i = 0; i < arrayL.size(); i++) {
-                    //System.out.println("check");
                     int j = i + 1;
-                    //System.out.println(j + ". " + arrayList.get(i));
                     Task temp = arrayL.get(i);
-                    //System.out.println(j + ". [" + temp.getIsDone() + "] " + temp.description);
                     System.out.println(j + "." + temp.toString());
                 }
             }
@@ -41,16 +38,21 @@ public class Neo {
                 int tempi = Integer.valueOf(arr[1]);
                 arrayL.get(tempi -1).setIsDone(true);
                 System.out.println("Nice! I've marked this task as done");
-                System.out.println("[" + arrayL.get(tempi-1).getIsDone() + "] " + arrayL.get(tempi-1).description);
+                System.out.println(arrayL.get(tempi-1).toString());
             }
             if (arr.length>1 && arr[0].equals("unmark")){
                 int tempi = Integer.valueOf(arr[1]);
                 arrayL.get(tempi - 1).setIsDone(false);
                 System.out.println("ok, I've marked this task as not done yet");
-                System.out.println("[" + arrayL.get(tempi-1).getIsDone() + "] " + arrayL.get(tempi-1).description);
+                System.out.println(arrayL.get(tempi-1).toString());
+            }
+            if (arr.length>1 && arr[0].equals("delete")){
+                int tempi = Integer.valueOf(arr[1]);
+                System.out.println("ok, I've deleted this take from array");
+                System.out.println(arrayL.get(tempi-1).toString());
+                arrayL.remove(tempi - 1);
             }
             else {
-                //System.out.println(userText);
                 try {
                     if (!userText.equals("list") && !userText.equals("List") && !arr[0].equals("unmark") && !arr[0].equals("mark") && !arr[0].equals("delete")) {
                         if (arr.length > 1 && arr[0].equals("deadline")) {
