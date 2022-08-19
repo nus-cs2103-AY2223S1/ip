@@ -33,6 +33,7 @@ public class Duke {
         for (int i = 0; i < count; i++) {
             System.out.println(i + 1 + "." + tasks[i]);
         }
+        System.out.println("There are " + count + " tasks in the list.");
     }
 
     public void mark(Task t) {
@@ -116,6 +117,18 @@ public class Duke {
     }
     //@@author
 
+    public class DukeException extends Exception {
+        public DukeException(String message) {
+            super(message);
+        }
+
+        public class MissingFieldException extends DukeException {
+            public MissingFieldException(String message) {
+                super(message);
+            }
+        }
+    }
+
     public static void main(String[] args) {
         Duke d = new Duke();
         String logo = " ____            _\n"
@@ -132,21 +145,54 @@ public class Duke {
             } else if (input.equals("list")) {
                 d.getList();
             } else if (input.startsWith("mark")) {
-                Task t = tasks[Integer.parseInt(input.substring(5)) - 1];
-                d.mark(t);
+                int index = Integer.parseInt(input.substring(5)) - 1;
+                if (index >= count) {
+                    System.out.println("No such task is found.");
+                } else {
+                    Task t = tasks[index];
+                    d.mark(t);
+                }
             } else if (input.startsWith("unmark")) {
-                Task t = tasks[Integer.parseInt(input.substring(7)) - 1];
-                d.unmark(t);
-            } else {
-                if (input.startsWith("todo")) {
+                int index = Integer.parseInt(input.substring(5)) - 1;
+                if (index >= count) {
+                    System.out.println("No such task is found.");
+                } else {
+                    Task t = tasks[index];
+                    d.unmark(t);
+                }
+            } else if (input.startsWith("todo")) {
+                if (input.length() < 6) {
+                    System.out.println("The task is empty! What do you mean exactly?");
+                } else {
                     d.addTodo(input.substring(5));
-                } else if (input.startsWith("deadline")) {
+                }
+            } else if (input.startsWith("deadline")) {
+                if (! input.contains("/by")) {
+                    System.out.println("Specify a deadline type task by typing " +
+                            "deadline <task> /by <deadline>");
+                } else if (input.indexOf("/by") < 11) {
+                    System.out.println("You did not specify a task.");
+                } else if (input.indexOf("/by") + 4 >= input.length()) {
+                    System.out.println("You did not specify a deadline.");
+                } else {
                     d.addDeadline(input.substring(9, input.indexOf("/by") - 1),
                             input.substring(input.indexOf("/by") + 4));
-                } else if (input.startsWith("event")) {
+                }
+            } else if (input.startsWith("event")) {
+                if (! input.contains("/at")) {
+                    System.out.println("Specify an event type task by typing " +
+                            "event <task> /at <time>");
+                } else if (input.indexOf("/at") < 8) {
+                    System.out.println("You did not specify a task.");
+                } else if (input.indexOf("/at") + 4 >= input.length()) {
+                    System.out.println("You did not specify a deadline.");
+                } else {
                     d.addEvent(input.substring(6, input.indexOf("/at") - 1),
                             input.substring(input.indexOf("/at") + 4));
                 }
+            } else {
+                System.out.println("Sorry, I cannot understand what you mean. I can only understand" +
+                        "todo, deadline, event, mark, unmark, list, bye");
             }
         }
     }
