@@ -14,7 +14,9 @@ public enum Output{
   MARK("Nice! I've marked this task as done:\n"),
   UNMARK("OK, I've marked this task as not done yet:\n"),
   ADD("Got it. I've added this task:\n"),
-  DELETE("Noted. I've removed this task:\n");
+  DELETE("Noted. I've removed this task:\n"),
+  SAVE("Saving...\n"),
+  LOAD("Loading...\n");
 
   private String output = "";
 

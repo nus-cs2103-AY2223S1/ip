@@ -75,6 +75,13 @@ public class StorageList {
       throw new DukeException("Invalid index.");
     }
   }
+
+  /**
+   * Resets the list of tasks
+   */
+  public void reset() {
+    list.clear();
+  }
   
   /**
    * Returns the list of strings

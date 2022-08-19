@@ -14,4 +14,8 @@ unmark 100
 delete 3
 list
 delete 3
+save
+save ./save/test.txt
+load 
+list
 bye
