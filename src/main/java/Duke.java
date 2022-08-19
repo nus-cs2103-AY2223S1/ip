@@ -3,10 +3,10 @@ public class Duke {
 
     private static Task[] tasks = new Task[100];
     private static int i = 0;
+    private static Scanner input = new Scanner(System.in);
 
     private static String receiveCommand() {
-        Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-        String task = myObj.nextLine();  // Read user input
+        String task = input.nextLine();  // Read user input
         return task;
     }
 

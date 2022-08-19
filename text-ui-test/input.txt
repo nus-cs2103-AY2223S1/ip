@@ -1,0 +1,7 @@
+deadline do homework /by no idea :-p
+event lecture /at 4pm
+list
+mark 1
+unmark 1
+unmark 2
+bye
