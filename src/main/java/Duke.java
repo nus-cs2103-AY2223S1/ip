@@ -54,8 +54,6 @@ public class Duke {
     private static String[] commandWords = new String[]{"list", "mark", "unmark", "todo", "event", "deadline", "delete", "bye"};
     private static String start = "Hello! I'm Duke\nWhat can I do for you?";
     private static String end = "Bye. Hope to see you again soon!";
-<<<<<<< HEAD
-=======
 
     public static class DukeException extends Exception {
         public DukeException(String msg) {
@@ -74,35 +72,8 @@ public class Duke {
     }
 
     public static void main(String[] args) throws InvalidCommandException, EmptyMessageException {
->>>>>>> 86a34130f359ee956c41e7413e2754222ed60349
 
-    public static class DukeException extends Exception {
-        public DukeException(String msg) {
-            super(msg);
-        }
-    }
-    public static class EmptyMessageException extends DukeException {
-        public EmptyMessageException() {
-            super("☹ OOPS!!! The description of a todo cannot be empty.");
-        }
-    }
-    public static class InvalidCommandException extends DukeException {
-        public InvalidCommandException() {
-            super("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
-        }
-    }
 
-<<<<<<< HEAD
-    public static void main(String[] args) throws InvalidCommandException, EmptyMessageException {
-
-=======
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
->>>>>>> 86a34130f359ee956c41e7413e2754222ed60349
         msg(start);
 
         String text = "";
