@@ -9,17 +9,15 @@ import javax.swing.plaf.basic.BasicComboBoxUI.ComboBoxLayoutManager;
  */
 
 public enum Commands {
-    GET_COMMAND(""),
     EXIT("bye"),
-    SHOW_LIST("list"),
+    LIST("list"),
     GREET("greet"),
-    ADD_TASK("Add Task"),
-    ADD_TODO("todo"),
-    ADD_EVENT("event"),
-    ADD_DEADLINE("deadline"),
+    TASK("Add Task"),
+    TODO("todo"),
+    EVENT("event"),
+    DEADLINE("deadline"),
     DELETE("delete"),
-    MARK_DONE("mark"),
-    MARK_UNDONE("mark"),
+    MARK("mark"),
     ERROR("");
 
     private String command;
