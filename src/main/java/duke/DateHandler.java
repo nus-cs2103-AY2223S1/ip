@@ -14,6 +14,7 @@ public class DateHandler {
         DateTimeFormatterBuilder builder = new DateTimeFormatterBuilder();
         builder.appendOptional(DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"))
                 .appendOptional(DateTimeFormatter.ofPattern("yyyy/MM/dd HHmm"))
+                .appendOptional(DateTimeFormatter.ofPattern("HHmm dd/MM/yyyy"))
                 .appendOptional(DateTimeFormatter.ofPattern("HHmm yyyy-MM-dd"))
                 .appendOptional(DateTimeFormatter.ofPattern("HHmm yyyy/MM/dd"))
                 .appendOptional(DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"))

@@ -2,6 +2,7 @@ package duke.task;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import duke.DukeException;
 
@@ -38,6 +39,19 @@ public class TaskList {
         } else {
             return String.format("Now you have %d tasks in the list", taskList.size());
         }
+    }
+
+    /**
+     * Search function with the given query string
+     * @param query is the target search term for task description in the list.
+     * @return a tasklist with the filtered result
+     */
+    public TaskList findMatchingTasks(String query) {
+        List<Task> result = this.taskList.stream().filter(item -> item.getDescription().contains(query))
+                .collect(Collectors.toList());
+        TaskList filteredTasks = new TaskList(result);
+
+        return filteredTasks;
     }
 
     /**
