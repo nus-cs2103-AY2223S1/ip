@@ -1,6 +1,6 @@
 todo go to park to run
-deadline cs2100 quiz /by tues
-event psychiatric test /at IMH 3pm
+deadline cs2100 quiz /by 2022-10-15
+event psychiatric test /at 2022-10-15
 list
 mark 3
 mark 1

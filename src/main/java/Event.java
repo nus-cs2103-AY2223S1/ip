@@ -1,3 +1,7 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 /**
  * Encapsulate Event which is-a Task.
  *
@@ -5,7 +9,7 @@
  */
 public class Event extends Task {
 
-    protected String at;
+    protected LocalDate at;
 
     /**
      * Class constructor for Event.
@@ -19,12 +23,18 @@ public class Event extends Task {
         if (at.equals(" ")) {
             throw new DukeException("☹ OOPS!!! The event needs to have specific start time and end time");
         }
-        this.at = at;
+        try {
+            this.at = LocalDate.parse(at);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("date after /at should be in YYYY-MM-DD Format.");
+        }
+
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + this.at + ")";
+        return "[E]" + super.toString() + " (at: "
+                + this.at.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 
     @Override

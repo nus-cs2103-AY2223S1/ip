@@ -15,24 +15,24 @@ Now you have 1 tasks in the list
 _______________________________
 _______________________________
 Got it. I've added this task:
-[D][ ] cs2100 quiz (by: tues)
+[D][ ] cs2100 quiz (by: Oct 15 2022)
 Now you have 2 tasks in the list
 _______________________________
 _______________________________
 Got it. I've added this task:
-[E][ ] psychiatric test (at: IMH 3pm)
+[E][ ] psychiatric test (at: Oct 15 2022)
 Now you have 3 tasks in the list
 _______________________________
 _______________________________
 Here are the tasks in your list:
 1. [T][ ] go to park to run
-2. [D][ ] cs2100 quiz (by: tues)
-3. [E][ ] psychiatric test (at: IMH 3pm)
+2. [D][ ] cs2100 quiz (by: Oct 15 2022)
+3. [E][ ] psychiatric test (at: Oct 15 2022)
 
 _______________________________
 _______________________________
 Nice! I've marked this task as done:
-[E][X] psychiatric test (at: IMH 3pm)
+[E][X] psychiatric test (at: Oct 15 2022)
 _______________________________
 _______________________________
 Nice! I've marked this task as done:
@@ -41,19 +41,19 @@ _______________________________
 _______________________________
 Here are the tasks in your list:
 1. [T][X] go to park to run
-2. [D][ ] cs2100 quiz (by: tues)
-3. [E][X] psychiatric test (at: IMH 3pm)
+2. [D][ ] cs2100 quiz (by: Oct 15 2022)
+3. [E][X] psychiatric test (at: Oct 15 2022)
 
 _______________________________
 _______________________________
 OK, I've marked this task as not done yet:
-[E][ ] psychiatric test (at: IMH 3pm)
+[E][ ] psychiatric test (at: Oct 15 2022)
 _______________________________
 _______________________________
 Here are the tasks in your list:
 1. [T][X] go to park to run
-2. [D][ ] cs2100 quiz (by: tues)
-3. [E][ ] psychiatric test (at: IMH 3pm)
+2. [D][ ] cs2100 quiz (by: Oct 15 2022)
+3. [E][ ] psychiatric test (at: Oct 15 2022)
 
 _______________________________
 _______________________________

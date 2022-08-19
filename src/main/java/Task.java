@@ -5,7 +5,7 @@
  */
 public abstract class Task {
 
-    private  String description;
+    private String description;
 
     private boolean isDone;
 
