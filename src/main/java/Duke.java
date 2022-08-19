@@ -5,56 +5,90 @@ import java.util.Scanner;
 public class Duke {
 
     static List<Task> list = new ArrayList<>();
+    static boolean isRunning = true;
 
     public static void main(String[] args) {
 
         printWelcomeMsg();
 
         //interaction with user
-        while(true) {
+        while(isRunning) {
+            try {
+                Scanner scanner = new Scanner(System.in);
+                String userInput = scanner.nextLine();
 
-            Scanner scanner = new Scanner(System.in);
-            String userInput = scanner.nextLine();
+                if (userInput.equals("bye")) {
+
+                    printEndingMsg();
+                    isRunning = false;
+
+                } else if (userInput.equals("list")) {
+
+                    displayTasks(list);
+
+                } else if (userInput.contains("mark")
+                        || userInput.contains("unmark")
+                        || userInput.contains("todo")
+                        || userInput.contains("deadline")
+                        || userInput.contains("event")) {
+
+                    operations(userInput);
+                } else {
+                    throw new DukeException();
+                }
+            } catch (DukeException e) {
+                printWithFormat("☹ OOPS!!! I'm sorry, but I don't know what that means");
+            }
+        }
+    }
+
+    private static void operations(String userInput) {
+
+        try {
             String[] tokens = userInput.split("\\s+", 2);
             String firstWord = tokens[0];
 
-            if(firstWord.equals("mark") || firstWord.equals("unmark")) {
+            switch (firstWord) {
+                case "mark":
+                case "unmark":
 
-                int taskNumber = Integer.parseInt(tokens[1]);
-                markingOfTask(firstWord,taskNumber); //and print
+                    int taskNumber = Integer.parseInt(tokens[1]);
+                    markingOfTask(firstWord, taskNumber); //and print
 
-            } else if(userInput.equals("bye")){
 
-                printEndingMsg();
-                break;
+                    break;
+                case "todo": {
 
-            } else if(userInput.equals("list")){
+                    String taskContent = tokens[1];
+                    ToDos toDos = new ToDos(taskContent);
+                    addTaskToList(toDos); //and print
 
-                displayTasks(list);
 
-            } else if(firstWord.equals("todo")){
+                    break;
+                }
+                case "deadline": {
 
-                String taskContent = tokens[1];
-                ToDos toDos = new ToDos(taskContent);
-                addTaskToList(toDos); //and print
+                    String[] token = splitDeadlineInput(userInput);
+                    String taskContent = token[0];
+                    String date = token[1];
 
-            }else if(firstWord.equals("deadline")){
+                    Deadline deadline = new Deadline(taskContent, date);
+                    addTaskToList(deadline);
 
-                String[] token = splitDeadlineInput(userInput);
-                String taskContent = token[0];
-                String date = token[1];
+                    break;
+                }
+                case "event": {
+                    String[] token = splitEventInput(userInput);
+                    String taskContent = token[0];
+                    String date = token[1];
 
-                Deadline deadline = new Deadline(taskContent, date);
-                addTaskToList(deadline);
-
-            } else if(firstWord.equals("event")) {
-                String[] token = splitEventInput(userInput);
-                String taskContent = token[0];
-                String date = token[1];
-
-                Event event = new Event(taskContent, date);
-                addTaskToList(event);
+                    Event event = new Event(taskContent, date);
+                    addTaskToList(event);
+                    break;
+                }
             }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            printWithFormat(" ☹ OOPS!!! The description of a " + userInput + " cannot be empty.");
         }
     }
 
