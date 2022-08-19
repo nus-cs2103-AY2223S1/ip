@@ -31,8 +31,6 @@ public class StorageParser {
                     throw new DukeException("Unknown task");
             }
             return task;
-        } catch (DukeException e) {
-            throw new DukeException(e.getMessage(), e);
         }
     }
 
