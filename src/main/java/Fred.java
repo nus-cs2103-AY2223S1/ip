@@ -36,6 +36,8 @@ public class Fred {
                     int index = Integer.parseInt(input.substring(5));
                     if (index > storage.size()) {
                         throw new FredException("Your list has only " + storage.size() + " items!");
+                    } else if (index <= 0) {
+                        throw new FredException("Input an integer that is greater than 0!");
                     }
                     storage.get(index - 1).setStatus(true);
                     System.out.println("Fred: Nice! I've marked this task as done:");
@@ -47,6 +49,8 @@ public class Fred {
                     int index = Integer.parseInt(input.substring(7));
                     if (index > storage.size()) {
                         throw new FredException("Your list has only " + storage.size() + " items!");
+                    } else if (index <= 0) {
+                        throw new FredException("Input an integer that is greater than 0!");
                     }
                     storage.get(index - 1).setStatus(false);
                     System.out.println("Fred: OK, I've marked this task as not done yet:");
@@ -84,7 +88,15 @@ public class Fred {
                     System.out.println("Fred: " + storage.get(storage.size() - 1).toString());
                     System.out.println("Fred: Now you have " + storage.size() + " tasks in your list.");
                 } else if (input.startsWith("delete")) {
+                    if (input.trim().equals("delete")) {
+                        throw new FredException("The input of delete cannot be empty!");
+                    }
                     int index = Integer.parseInt(input.substring(7));
+                    if (index > storage.size()) {
+                        throw new FredException("Your list has only " + storage.size() + " items!");
+                    } else if (index <= 0) {
+                        throw new FredException("Input an integer that is greater than 0!");
+                    }
                     String nameDeleted = storage.get(index - 1).toString();
                     storage.remove(index - 1);
                     System.out.println("Fred: Noted. I've removed this task:");
