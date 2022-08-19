@@ -2,7 +2,6 @@ import java.util.*;
 public class Neo {
     public static void main(String[] args) {
 
-        List<String> arrayList = new ArrayList<String>();
         List<Task> arrayL = new ArrayList<Task>();
         String userText;
 
@@ -12,18 +11,23 @@ public class Neo {
         System.out.println("Hello! I'm Neo");
         System.out.println("What can I do for you?");
 
+        Scanner sc = new Scanner(System.in);
+
         while (true) {
             System.out.println("Please enter items you want to add to the list, if you want to quit enter bye");
             System.out.println("");
-            Scanner sc = new Scanner(System.in);
             System.out.print("Enter Your command: ");
             userText = sc.nextLine();
             System.out.println("");
+            String arr[];
+            arr = userText.split(" ", 2);
+
             if (userText.equals("bye") || userText.equals("Bye")) {
                 System.out.println("Exiting chatbot! Hope to see you again");
                 break;
+                //System.exit(0);
             }
-            if (userText.equals("list") || userText.equals("List")) {
+            else if (userText.equals("list") || userText.equals("List")) {
                 for (int i = 0; i < arrayL.size(); i++) {
                     //System.out.println("check");
                     int j = i + 1;
@@ -33,19 +37,18 @@ public class Neo {
                     System.out.println(j + "." + temp.toString());
                 }
             }
-            String arr[];
-            arr = userText.split(" ", 2);
-            if (arr.length>1 && arr[0].equals("mark")){
+
+            else if (arr.length>1 && arr[0].equals("mark")){
                 int tempi = Integer.valueOf(arr[1]);
                 arrayL.get(tempi -1).setIsDone(true);
                 System.out.println("Nice! I've marked this task as done");
-                System.out.println("[" + arrayL.get(tempi-1).getIsDone() + "] " + arrayL.get(tempi-1).description);
+                System.out.println("[" + arrayL.get(tempi).getIsDone() + "] " + arrayL.get(tempi).description);
             }
-            if (arr.length>1 && arr[0].equals("unmark")){
+            else if (arr.length>1 && arr[0].equals("unmark")){
                 int tempi = Integer.valueOf(arr[1]);
                 arrayL.get(tempi - 1).setIsDone(false);
                 System.out.println("ok, I've marked this task as not done yet");
-                System.out.println("[" + arrayL.get(tempi-1).getIsDone() + "] " + arrayL.get(tempi-1).description);
+                System.out.println("[" + arrayL.get(tempi).getIsDone() + "] " + arrayL.get(tempi).description);
             }
             else {
                 //System.out.println(userText);
@@ -77,12 +80,9 @@ public class Neo {
                         arrayL.add(td);
                         System.out.println("Added: " + td.toString());
                     }
-                    //arrayList.add(userText);
-                    //Task t = new Task(userText);
-                    //arrayL.add(t);
-                    //System.out.println("Added: " + userText);
                 }
             }
         }
     }
 }
+
