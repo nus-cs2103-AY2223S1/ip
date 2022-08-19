@@ -7,6 +7,6 @@ public class Mark extends Task {
 
     @Override
     public String toString() {
-        return "Nice! I've marked this task as done:\n" + this.command.substring(2, 5) + "[X] " + this.command.substring(9);
+        return "Nice! I've marked this task as done:\n" + this.command.substring(0, 3) + "[X]" + this.command.substring(6);
     }
 }

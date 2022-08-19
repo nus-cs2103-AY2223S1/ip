@@ -1,9 +1,11 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class Duke {
     int num = 1;
-    HashMap<Integer, String> map = new HashMap<>();
+
+    ArrayList<String> arrayList = new ArrayList<>();
 
     public static void main(String[] args) {
         String command;
@@ -40,16 +42,22 @@ public class Duke {
     public void PrintCommand(String command) {
         if (command.equals("list")) {
             String list = "";
-            for (int k = 1; k < map.size() + 1; k++) {
-                list += map.get(k) + "\n";
+            for (int k = 1; k < arrayList.size() + 1; k++) {
+                list += k + "." + arrayList.get(k - 1) + "\n";
             }
             System.out.println(list);
         }
+        else if (command.split(" ")[0].equals("delete")) {
+            int number = Integer.parseInt(command.split(" ")[1]) - 1;
+            num--;
+            Delete task = new Delete(arrayList.get(number), num);
+            arrayList.remove(number);
+            System.out.println(task.toString());
+        }
         else {
-            Task task = Task.of(command, map, num);
+            Task task = Task.of(command, arrayList, num);
             System.out.println(task.toString());
             num++;
         }
     }
-
 }
