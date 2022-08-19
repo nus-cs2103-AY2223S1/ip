@@ -5,3 +5,38 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
+? hi, i'm Duke!
+  what would you like to do today?
+? your list is empty. start adding some tasks to do now!
+? hmm, you do not have any tasks in your list to be marked. add some now!
+? sorry, i don't know what that means :(
+? added:
+     [T][ ] clean room
+  you now have 1 task in the list. type list to see it!
+? added:
+     [D][ ] lab 1 (by: tomorrow midnight)
+  now you have 2 tasks in the list. type list to view them.
+? added:
+     [E][ ] training (at: Friday 7-9pm)
+  now you have 3 tasks in the list. type list to view them.
+? these are the tasks in your list:
+  1. [T][ ] clean room
+  2. [D][ ] lab 1 (by: tomorrow midnight)
+  3. [E][ ] training (at: Friday 7-9pm)
+? good job! this task has been marked as done:
+     [T][X] clean room
+? good job! this task has been marked as done:
+     [E][X] training (at: Friday 7-9pm)
+? ok, i've marked this task as not done yet:
+     [E][ ] training (at: Friday 7-9pm)
+? these are the tasks in your list:
+  1. [T][X] clean room
+  2. [D][ ] lab 1 (by: tomorrow midnight)
+  3. [E][ ] training (at: Friday 7-9pm)
+? okay! i have deleted the following task from your list:
+     [T][X] clean room
+  now you have 2 tasks in the list. type list to view them.
+? these are the tasks in your list:
+  1. [D][ ] lab 1 (by: tomorrow midnight)
+  2. [E][ ] training (at: Friday 7-9pm)
+? bye! i hope to see you again soon! :)
