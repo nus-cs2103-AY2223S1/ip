@@ -52,6 +52,10 @@ public abstract class Task {
         }
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     /**
      * Returns a checkmark `✓` if the task is done, an empty string otherwise.
      *
