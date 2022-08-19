@@ -1,8 +1,12 @@
+import java.time.format.DateTimeFormatter;
+
 /**
  * A task has a description and a status tracking whether it is done or not.
  * Tasks cannot be instantiated directly - they should be inherited by a subclass.
  */
 public abstract class Task {
+    protected static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern(
+            "d/M/yy HH:mm");
     protected final String description;
     protected boolean isDone;
 

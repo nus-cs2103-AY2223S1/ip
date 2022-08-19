@@ -59,10 +59,7 @@ public class TaskList {
         String serialized = list.stream()
                 .map(Task::serialize)
                 .map(str -> str + "\n")
-                .collect(StringBuilder::new,
-                        StringBuilder::append,
-                        StringBuilder::append
-                )
+                .collect(StringBuilder::new, StringBuilder::append, StringBuilder::append)
                 .toString();
         Files.writeString(path, serialized);
     }
@@ -114,10 +111,7 @@ public class TaskList {
     public String toString() {
         return IntStream.range(0, list.size())
                 .mapToObj(i -> String.format("%d. %s\n", i + 1, list.get(i)))
-                .collect(StringBuilder::new,
-                        StringBuilder::append,
-                        StringBuilder::append
-                )
+                .collect(StringBuilder::new, StringBuilder::append, StringBuilder::append)
                 .toString()
                 .trim();
     }
