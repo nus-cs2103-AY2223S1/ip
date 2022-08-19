@@ -142,9 +142,9 @@ public class Duke {
     private void markTask(String input) throws NullPointerException, ArrayIndexOutOfBoundsException,
             NumberFormatException {
         int markIndex = Integer.parseInt(input.substring(5));
+        inputArray.get(markIndex -1).done();
         System.out.println("Nice! I've marked this task as done liao!:\n"
                 + inputArray.get(markIndex - 1));
-        inputArray.get(markIndex -1).done();
     }
 
     /*
@@ -155,9 +155,9 @@ public class Duke {
     private void unmarkTask(String input) throws NullPointerException, ArrayIndexOutOfBoundsException,
             NumberFormatException {
         int markIndex = Integer.parseInt(input.substring(7));
+        inputArray.get(markIndex - 1).unDone();
         System.out.println("OK, I unmark this task as not done le:\n"
                 + inputArray.get(markIndex - 1));
-        inputArray.get(markIndex - 1).unDone();
     }
 
     /*
