@@ -2,25 +2,18 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
-    private static ArrayList<Task> db = new ArrayList<>(10);
-    private static Scanner sc = new Scanner(System.in);
+    private ArrayList<Task> db;
+    private Scanner sc;
 
-    // Main driver code for DukeBot
-    public static void main(String[] args) {
-        greet();
-        while (true) {
-            String input = getInput(sc);
-            if (processInput(input) == 0) {
-                break;
-            }
-            System.out.println();
-        }
+    public Duke() {
+        this.sc = new Scanner(System.in);
+        this.db = new ArrayList<>(10);
     }
 
     /**
      * Welcome message that is printed upon starting the bot.
      */
-    public static void greet() {
+    public void greet() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -34,7 +27,7 @@ public class Duke {
      * @param sc Scanner object to read user input
      * @return User input for processing
      */
-    public static String getInput(Scanner sc) {
+    public String getInput(Scanner sc) {
         System.out.println("What can I do for you?");
         return sc.nextLine();
     }
@@ -44,7 +37,7 @@ public class Duke {
      * @param s User input
      * @return 0 if "bye" is input, 1 for successfully running any other instruction
      */
-    public static int processInput(String s) {
+    public int processInput(String s) {
         String[] userInput = s.split(" ", 2);
 
         if (s.equals("bye")) {
@@ -71,6 +64,20 @@ public class Duke {
             db.add(new Task(s));
             System.out.println("added: " + s);
             return 1;
+        }
+    }
+
+    // Initializes and starts a Duke instance.
+    public static void main(String[] args) {
+        Duke duke = new Duke();
+
+        duke.greet();
+        while (true) {
+            String input = duke.getInput(duke.sc);
+            if (duke.processInput(input) == 0) {
+                break;
+            }
+            System.out.println();
         }
     }
 }
