@@ -9,7 +9,7 @@ public class Duke {
     public static void addTask(Task task) {
         taskList.add(task);
         System.out.println(divider);
-        System.out.println("K. added your task:");
+        System.out.println("K. Added your task:");
         System.out.println(task);
         System.out.println("Now you have " + taskList.size() + " tasks.");
         System.out.println(divider);
@@ -41,7 +41,7 @@ public class Duke {
             }
             if (text.startsWith("mark ")) {
                 int index = Integer.parseInt(text.split(" ")[1]) - 1;
-                if (index >= taskList.size()) {
+                if (index < 0 || index >= taskList.size()) {
                     System.out.println(divider);
                     System.out.println("Umm can you count?" + "\n" + divider);
                     continue;
@@ -54,7 +54,7 @@ public class Duke {
             }
             if (text.startsWith("unmark ")) {
                 int index = Integer.parseInt(text.split(" ")[1]) - 1;
-                if (index >= taskList.size()) {
+                if (index < 0 || index >= taskList.size()) {
                     System.out.println(divider);
                     System.out.println("Uh can you count?" + "\n" + divider);
                     continue;
@@ -104,6 +104,22 @@ public class Duke {
                     continue;
                 }
                 addTask(new Event(params[0], params[1]));
+                continue;
+            }
+            if (text.startsWith("delete ")) {
+                int index = Integer.parseInt(text.split(" ")[1]) - 1;
+                if (index < 0 || index >= taskList.size()) {
+                    System.out.println(divider);
+                    System.out.println("Umm can you count?" + "\n" + divider);
+                    continue;
+                }
+                Task toRemove = taskList.get(index);
+                taskList.remove(index);
+                System.out.println(divider);
+                System.out.println("K. Removed your task:");
+                System.out.println(toRemove);
+                System.out.println("Now you have " + taskList.size() + " tasks.");
+                System.out.println(divider);
                 continue;
             }
             failure();

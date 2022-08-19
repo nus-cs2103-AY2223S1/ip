@@ -13,4 +13,6 @@ list
 todo
 todo   
 event  
+delete 2
+list
 bye
