@@ -20,6 +20,7 @@ public class Duke {
         // inputted
         while (!a.equals("bye")) {
             if (a.equals("list")) {
+                //lists out all elements in task list
                 System.out.println("Here are the tasks in your list:");
                 for (int i = 1; i <= pos; i++) {
                     if (status[i - 1] == 0) {
@@ -30,6 +31,7 @@ public class Duke {
                 }
                 a = sc.nextLine();
             } else if (a.contains("unmark")) {
+                // if unmark, update status
                 char b = a.charAt(7);
                 int c = Character.getNumericValue(b);
                 status[c - 1] = 0;
