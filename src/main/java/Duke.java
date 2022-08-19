@@ -41,8 +41,24 @@ public class Duke {
                 System.out.println("Ok, I've marked this task as not done yet:");
                 System.out.println(list.get(index).toString());
             } else {
-                list.add(new Task(input));
-                System.out.println("added: " + input);
+                Task task;
+                if (input.startsWith("todo")) {
+                    task = new ToDo(input.replaceAll("todo","").trim());
+                } else if (input.startsWith("event")) {
+                    String[] arr = input.split("/");
+                    // check if split into 2 strings only?
+                    task = new Event(arr[0].replaceAll("event","").trim(), arr[1].replaceAll("at","")
+                            .trim());
+                } else  {
+                    input.replaceAll("deadline","").trim();
+                    String[] arr = input.split("/");
+                    task = new Deadline(arr[0].replaceAll("deadline","").trim(), arr[1].replaceAll("by","")
+                            .trim());
+                }
+                list.add(task);
+                System.out.println("Got it. I've added this task: ");
+                System.out.println("  " + task.toString());
+                System.out.println("Now you have " + list.size() + " task(s) in the list.");
             }
         }
     }
