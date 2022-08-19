@@ -1,230 +1,202 @@
     __________________________________________________
-    Hello! I'm Duke
-    What can I do for you?
+    Beep boop! I'm Stashy
+    What can I do for you, busy guy?
     __________________________________________________
     __________________________________________________
-    Got it. I've added this task:
+    ☹ BEEP BOOP BUZZ ERROR!!! Please don't give me an empty todo description :(
+    __________________________________________________
+    __________________________________________________
+    There, we have a new task:
       [T][ ] borrow book
-    Now you have 1 tasks in the list.
+    You have 1 task(s) in the list.
     __________________________________________________
     __________________________________________________
-    Got it. I've added this task:
-      [D][ ] return book (by: Sunday)
-    Now you have 2 tasks in the list.
+    There, we have a new task:
+      [T][ ] borrow book with /at perhaps?
+    You have 2 task(s) in the list.
     __________________________________________________
     __________________________________________________
-    Got it. I've added this task:
-      [D][ ] return book (by: the time fire nation stops attacking)
-    Now you have 3 tasks in the list.
+    ☹ BEEP BOOP BUZZ ERROR!!! I have no idea what are you saying :<
     __________________________________________________
     __________________________________________________
-    Got it. I've added this task:
-      [E][ ] project meeting (at: Mon 2-4pm)
-    Now you have 4 tasks in the list.
-    __________________________________________________
-    __________________________________________________
-    Got it. I've added this task:
-      [T][ ] read book
-    Now you have 5 tasks in the list.
-    __________________________________________________
-    __________________________________________________
-    Nice! I've marked this task as done:
-      [D][X] return book (by: Sunday)
-    __________________________________________________
-    __________________________________________________
-    Here are the tasks in your list:
+    Listing all task(s) in your list...
     1.[T][ ] borrow book
-    2.[D][X] return book (by: Sunday)
-    3.[D][ ] return book (by: the time fire nation stops attacking)
-    4.[E][ ] project meeting (at: Mon 2-4pm)
-    5.[T][ ] read book
+    2.[T][ ] borrow book with /at perhaps?
     __________________________________________________
     __________________________________________________
-    Nice! I've marked this task as done:
-      [D][X] return book (by: the time fire nation stops attacking)
+    ☹ BEEP BOOP BUZZ ERROR!!! Please don't give me an empty deadline description :(
     __________________________________________________
     __________________________________________________
-    Here are the tasks in your list:
+    ☹ BEEP BOOP BUZZ ERROR!!! Specify the due date of the deadline, perhaps?
+    __________________________________________________
+    __________________________________________________
+    ☹ BEEP BOOP BUZZ ERROR!!! Specify the due date of the deadline, perhaps?
+    __________________________________________________
+    __________________________________________________
+    There, we have a new task:
+      [D][ ] do there (by: 2.45pm)
+    You have 3 task(s) in the list.
+    __________________________________________________
+    __________________________________________________
+    There, we have a new task:
+      [D][ ] do this (by: you do that)
+    You have 4 task(s) in the list.
+    __________________________________________________
+    __________________________________________________
+    ☹ BEEP BOOP BUZZ ERROR!!! Please don't give me an empty deadline description :(
+    __________________________________________________
+    __________________________________________________
+    Listing all task(s) in your list...
     1.[T][ ] borrow book
-    2.[D][X] return book (by: Sunday)
-    3.[D][X] return book (by: the time fire nation stops attacking)
-    4.[E][ ] project meeting (at: Mon 2-4pm)
-    5.[T][ ] read book
+    2.[T][ ] borrow book with /at perhaps?
+    3.[D][ ] do there (by: 2.45pm)
+    4.[D][ ] do this (by: you do that)
     __________________________________________________
     __________________________________________________
-    OK, I've marked this task as not done yet:
-      [E][ ] project meeting (at: Mon 2-4pm)
+    ☹ BEEP BOOP BUZZ ERROR!!! Please don't give me an empty event description :(
     __________________________________________________
     __________________________________________________
-    OK, I've marked this task as not done yet:
-      [T][ ] borrow book
+    ☹ BEEP BOOP BUZZ ERROR!!! Specify the time of the event, perhaps?
     __________________________________________________
     __________________________________________________
-    Here are the tasks in your list:
+    ☹ BEEP BOOP BUZZ ERROR!!! Specify the time of the event, perhaps?
+    __________________________________________________
+    __________________________________________________
+    There, we have a new task:
+      [E][ ] do that (at: the right time)
+    You have 5 task(s) in the list.
+    __________________________________________________
+    __________________________________________________
+    There, we have a new task:
+      [E][ ] do this (at: do that)
+    You have 6 task(s) in the list.
+    __________________________________________________
+    __________________________________________________
+    ☹ BEEP BOOP BUZZ ERROR!!! Please don't give me an empty event description :(
+    __________________________________________________
+    __________________________________________________
+    Listing all task(s) in your list...
     1.[T][ ] borrow book
-    2.[D][X] return book (by: Sunday)
-    3.[D][X] return book (by: the time fire nation stops attacking)
-    4.[E][ ] project meeting (at: Mon 2-4pm)
-    5.[T][ ] read book
+    2.[T][ ] borrow book with /at perhaps?
+    3.[D][ ] do there (by: 2.45pm)
+    4.[D][ ] do this (by: you do that)
+    5.[E][ ] do that (at: the right time)
+    6.[E][ ] do this (at: do that)
     __________________________________________________
     __________________________________________________
-    Nice! I've marked this task as done:
+    LFG, marking this task as done!
       [T][X] borrow book
     __________________________________________________
     __________________________________________________
-    Here are the tasks in your list:
-    1.[T][X] borrow book
-    2.[D][X] return book (by: Sunday)
-    3.[D][X] return book (by: the time fire nation stops attacking)
-    4.[E][ ] project meeting (at: Mon 2-4pm)
-    5.[T][ ] read book
+    LFG, marking this task as done!
+      [D][X] do this (by: you do that)
     __________________________________________________
     __________________________________________________
-    OK, I've marked this task as not done yet:
+    L + ratio, unmarking this task as not done!
       [T][ ] borrow book
     __________________________________________________
     __________________________________________________
-    Got it. I've added this task:
-      [T][ ] abc
-    Now you have 6 tasks in the list.
+    L + ratio, unmarking this task as not done!
+      [E][ ] do that (at: the right time)
     __________________________________________________
     __________________________________________________
-    Got it. I've added this task:
-      [T][ ] xyz
-    Now you have 7 tasks in the list.
-    __________________________________________________
-    __________________________________________________
-    ☹ OOPS!!! Sorry, I don't understand :(
-    __________________________________________________
-    __________________________________________________
-    Got it. I've added this task:
-      [T][ ] finish this project
-    Now you have 8 tasks in the list.
-    __________________________________________________
-    __________________________________________________
-    Nice! I've marked this task as done:
-      [T][X] xyz
-    __________________________________________________
-    __________________________________________________
-    Noted. I've removed this task:
-      [T][X] xyz
-    Now you have 7 tasks in the list.
-    __________________________________________________
-    __________________________________________________
-    Here are the tasks in your list:
+    Listing all task(s) in your list...
     1.[T][ ] borrow book
-    2.[D][X] return book (by: Sunday)
-    3.[D][X] return book (by: the time fire nation stops attacking)
-    4.[E][ ] project meeting (at: Mon 2-4pm)
-    5.[T][ ] read book
-    6.[T][ ] abc
-    7.[T][ ] finish this project
+    2.[T][ ] borrow book with /at perhaps?
+    3.[D][ ] do there (by: 2.45pm)
+    4.[D][X] do this (by: you do that)
+    5.[E][ ] do that (at: the right time)
+    6.[E][ ] do this (at: do that)
     __________________________________________________
     __________________________________________________
-    Noted. I've removed this task:
-      [T][ ] finish this project
-    Now you have 6 tasks in the list.
+    ☹ BEEP BOOP BUZZ ERROR!!! Task ID is not an integer, how come!
     __________________________________________________
     __________________________________________________
-    Here are the tasks in your list:
+    ☹ BEEP BOOP BUZZ ERROR!!! Task ID is not an integer, how come!
+    __________________________________________________
+    __________________________________________________
+    ☹ BEEP BOOP BUZZ ERROR!!! Task ID is not an integer, how come!
+    __________________________________________________
+    __________________________________________________
+    ☹ BEEP BOOP BUZZ ERROR!!! Task ID is not an integer, how come!
+    __________________________________________________
+    __________________________________________________
+    LFG, marking this task as done!
+      [T][X] borrow book with /at perhaps?
+    __________________________________________________
+    __________________________________________________
+    ☹ BEEP BOOP BUZZ ERROR!!! Task ID is not an integer, how come!
+    __________________________________________________
+    __________________________________________________
+    LFG, marking this task as done!
+      [E][X] do this (at: do that)
+    __________________________________________________
+    __________________________________________________
+    Listing all task(s) in your list...
     1.[T][ ] borrow book
-    2.[D][X] return book (by: Sunday)
-    3.[D][X] return book (by: the time fire nation stops attacking)
-    4.[E][ ] project meeting (at: Mon 2-4pm)
-    5.[T][ ] read book
-    6.[T][ ] abc
+    2.[T][X] borrow book with /at perhaps?
+    3.[D][ ] do there (by: 2.45pm)
+    4.[D][X] do this (by: you do that)
+    5.[E][ ] do that (at: the right time)
+    6.[E][X] do this (at: do that)
     __________________________________________________
     __________________________________________________
-    Noted. I've removed this task:
-      [D][X] return book (by: Sunday)
-    Now you have 5 tasks in the list.
-    __________________________________________________
-    __________________________________________________
-    Noted. I've removed this task:
+    Task has been removed!
       [T][ ] borrow book
-    Now you have 4 tasks in the list.
+    You have 5 task(s) in the list.
     __________________________________________________
     __________________________________________________
-    Here are the tasks in your list:
-    1.[D][X] return book (by: the time fire nation stops attacking)
-    2.[E][ ] project meeting (at: Mon 2-4pm)
-    3.[T][ ] read book
-    4.[T][ ] abc
+    Listing all task(s) in your list...
+    1.[T][X] borrow book with /at perhaps?
+    2.[D][ ] do there (by: 2.45pm)
+    3.[D][X] do this (by: you do that)
+    4.[E][ ] do that (at: the right time)
+    5.[E][X] do this (at: do that)
     __________________________________________________
     __________________________________________________
-    Got it. I've added this task:
-      [D][ ] destroy megamind (by: 12am midnight)
-    Now you have 5 tasks in the list.
+    ☹ BEEP BOOP BUZZ ERROR!!! Invalid task ID: 0
     __________________________________________________
     __________________________________________________
-    Here are the tasks in your list:
-    1.[D][X] return book (by: the time fire nation stops attacking)
-    2.[E][ ] project meeting (at: Mon 2-4pm)
-    3.[T][ ] read book
-    4.[T][ ] abc
-    5.[D][ ] destroy megamind (by: 12am midnight)
+    ☹ BEEP BOOP BUZZ ERROR!!! Invalid task ID: -17
     __________________________________________________
     __________________________________________________
-    ☹ OOPS!!! Invalid task ID: 30
+    ☹ BEEP BOOP BUZZ ERROR!!! Invalid task ID: 30
     __________________________________________________
     __________________________________________________
-    ☹ OOPS!!! Invalid task ID: -3
+    Task has been removed!
+      [T][X] borrow book with /at perhaps?
+    You have 4 task(s) in the list.
     __________________________________________________
     __________________________________________________
-    ☹ OOPS!!! Invalid task ID: 17
+    Listing all task(s) in your list...
+    1.[D][ ] do there (by: 2.45pm)
+    2.[D][X] do this (by: you do that)
+    3.[E][ ] do that (at: the right time)
+    4.[E][X] do this (at: do that)
     __________________________________________________
     __________________________________________________
-    ☹ OOPS!!! Invalid task ID: 0
+    Task has been removed!
+      [D][X] do this (by: you do that)
+    You have 3 task(s) in the list.
     __________________________________________________
     __________________________________________________
-    Got it. I've added this task:
-      [E][ ] this (at: idk)
-    Now you have 6 tasks in the list.
+    Listing all task(s) in your list...
+    1.[D][ ] do there (by: 2.45pm)
+    2.[E][ ] do that (at: the right time)
+    3.[E][X] do this (at: do that)
     __________________________________________________
     __________________________________________________
-    ☹ OOPS!!! You need to specify the due date of the deadline.
+    ☹ BEEP BOOP BUZZ ERROR!!! Task ID is not an integer, how come!
     __________________________________________________
     __________________________________________________
-    ☹ OOPS!!! You need to specify the time of the event.
+    ☹ BEEP BOOP BUZZ ERROR!!! Task ID is not an integer, how come!
     __________________________________________________
     __________________________________________________
-    Nice! I've marked this task as done:
-      [E][X] project meeting (at: Mon 2-4pm)
+    ☹ BEEP BOOP BUZZ ERROR!!! Task ID is not an integer, how come!
     __________________________________________________
     __________________________________________________
-    Nice! I've marked this task as done:
-      [T][X] read book
+    ☹ BEEP BOOP BUZZ ERROR!!! I have no idea what are you saying :<
     __________________________________________________
     __________________________________________________
-    Nice! I've marked this task as done:
-      [D][X] destroy megamind (by: 12am midnight)
-    __________________________________________________
-    __________________________________________________
-    OK, I've marked this task as not done yet:
-      [D][ ] return book (by: the time fire nation stops attacking)
-    __________________________________________________
-    __________________________________________________
-    OK, I've marked this task as not done yet:
-      [T][ ] abc
-    __________________________________________________
-    __________________________________________________
-    Here are the tasks in your list:
-    1.[D][ ] return book (by: the time fire nation stops attacking)
-    2.[E][X] project meeting (at: Mon 2-4pm)
-    3.[T][X] read book
-    4.[T][ ] abc
-    5.[D][X] destroy megamind (by: 12am midnight)
-    6.[E][ ] this (at: idk)
-    __________________________________________________
-    __________________________________________________
-    ☹ OOPS!!! You need to specify the due date of the deadline.
-    __________________________________________________
-    __________________________________________________
-    ☹ OOPS!!! You need to specify the time of the event.
-    __________________________________________________
-    __________________________________________________
-    ☹ OOPS!!! Sorry, I don't understand :(
-    __________________________________________________
-    __________________________________________________
-    Bye. Hope to see you again soon!
+    Stashy says goodbye!
     __________________________________________________

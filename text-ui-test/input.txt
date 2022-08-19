@@ -1,46 +1,46 @@
+todo
 todo borrow book
-deadline return book /by Sunday
-deadline return book /by the time fire nation stops attacking
-event project meeting /at Mon 2-4pm
-todo read book
-mark 2
+   todo    borrow book with /at perhaps?
+
 list
-mark 3
+deadline
+ deadline do this
+deadline    do that /by
+      deadline do there /by 2.45pm
+deadline do this /by you do that /by another one?
+deadline /by no description? :megamind:
 list
-unmark 4
-unmark 1
+     event
+event do this
+event do that /at
+event do that /at the right time
+event do this /at do that /at again???
+event /at empty description
 list
 mark 1
-list
+mark 4
 unmark 1
-todo abc
-todo     xyz
-hahahaha
-todo finish this project
-mark 7
-delete 7
+unmark 5
 list
-delete 7
+mark lol
+mark 1 2
+unmark lmao
+unmark to 1
+mark 2
+    mark       3.14
+mark     6
 list
-delete 2
 delete 1
 list
-deadline    destroy megamind /by 12am midnight
-list
-mark 30
-unmark -3
-delete 17
 delete 0
-          event this /at idk
-deadline no time
-event no time
-mark 2
-mark 3
-mark 5
-unmark 1
-unmark 4
+ delete    -17
+    delete 30
+delete 1
 list
-deadline empty by /by
-event empty at /at
-what do you do
+ delete  2
+         list
+delete a     b  c
+delete      1  2?
+delete everything!!!
+bye?
 bye
