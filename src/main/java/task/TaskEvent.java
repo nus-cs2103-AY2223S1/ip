@@ -1,3 +1,5 @@
+package task;
+
 public class TaskEvent extends Task {
 
     private final String taskAt;

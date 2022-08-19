@@ -1,3 +1,7 @@
+package task;
+
+import utils.Prompt;
+
 public class Task {
     final private String taskName;
     private boolean done;
@@ -13,12 +17,12 @@ public class Task {
 
     public void markDone() {
         this.done = true;
-        System.out.println("Nice! I have marked (" + this.taskName + ") as done!");
+        Prompt.markDone(taskName);
     }
 
     public void markUndone() {
         this.done = false;
-        System.out.println("Nice! I have marked (" + this.taskName + ") as undone!");
+        Prompt.markUndone(taskName);
     }
 
     @Override
