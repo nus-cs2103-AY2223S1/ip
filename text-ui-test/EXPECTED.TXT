@@ -22,7 +22,7 @@ Here are the tasks in your list:
 1. [T][ ] borrow book
 
 Got it. I've added this task:
-   [D][ ] return book (by: 2022/12/25)
+   [D][ ] return book (by: 2022-12-25)
 Now you have 2 tasks in the list.
 
 Wrong date format! To add a new deadline, please enter the following:
@@ -52,7 +52,7 @@ Now you have 6 tasks in the list.
 
 Here are the tasks in your list:
 1. [T][ ] borrow book
-2. [D][ ] return book (by: 2022/12/25)
+2. [D][ ] return book (by: 2022-12-25)
 3. [E][ ] project meeting (at: Mon 2-4pm)
 4. [T][ ] feed cat
 5. [E][ ] submit ModReg appeals (at: Sunday)
@@ -63,7 +63,7 @@ Nice! I've marked this task as done:
 
 Here are the tasks in your list:
 1. [T][X] borrow book
-2. [D][ ] return book (by: 2022/12/25)
+2. [D][ ] return book (by: 2022-12-25)
 3. [E][ ] project meeting (at: Mon 2-4pm)
 4. [T][ ] feed cat
 5. [E][ ] submit ModReg appeals (at: Sunday)
@@ -74,7 +74,7 @@ OK, I've marked this task as not done yet:
 
 Here are the tasks in your list:
 1. [T][ ] borrow book
-2. [D][ ] return book (by: 2022/12/25)
+2. [D][ ] return book (by: 2022-12-25)
 3. [E][ ] project meeting (at: Mon 2-4pm)
 4. [T][ ] feed cat
 5. [E][ ] submit ModReg appeals (at: Sunday)
@@ -88,7 +88,7 @@ Nice! I've marked this task as done:
 
 Here are the tasks in your list:
 1. [T][ ] borrow book
-2. [D][ ] return book (by: 2022/12/25)
+2. [D][ ] return book (by: 2022-12-25)
 3. [E][X] project meeting (at: Mon 2-4pm)
 4. [T][X] feed cat
 5. [E][ ] submit ModReg appeals (at: Sunday)
@@ -105,10 +105,10 @@ OK, I've marked this task as not done yet:
    [E][ ] project meeting (at: Mon 2-4pm)
 
 OK, I've marked this task as not done yet:
-   [D][ ] return book (by: 2022/12/25)
+   [D][ ] return book (by: 2022-12-25)
 
 OK, I've marked this task as not done yet:
-   [D][ ] return book (by: 2022/12/25)
+   [D][ ] return book (by: 2022-12-25)
 
 OK, I've marked this task as not done yet:
    [T][ ] borrow book
@@ -191,7 +191,7 @@ Task number is invalid.You have 8 tasks!
 
 Here are the tasks in your list:
 1. [T][ ] borrow book
-2. [D][ ] return book (by: 2022/12/25)
+2. [D][ ] return book (by: 2022-12-25)
 3. [E][ ] project meeting (at: Mon 2-4pm)
 4. [T][X] feed cat
 5. [E][X] submit ModReg appeals (at: Sunday)
@@ -214,7 +214,7 @@ Got it. I've removed this task:
 Now you have 6 tasks in the list.
 
 Here are the tasks in your list:
-1. [D][ ] return book (by: 2022/12/25)
+1. [D][ ] return book (by: 2022-12-25)
 2. [T][X] feed cat
 3. [E][X] submit ModReg appeals (at: Sunday)
 4. [T][ ] feed neighbour's cat
