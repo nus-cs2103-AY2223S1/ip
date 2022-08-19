@@ -47,6 +47,19 @@ public class Duke {
         }
         fw.close();
     }
+    
+    public void readTasksFromStorage() {
+        File file = new File(taskStoragePath);
+        try {
+            Scanner sc = new Scanner(file);
+            while (sc.hasNext()) {
+                Task task = Task.getTaskFromString(sc.nextLine());
+                this.taskArr.add(task);
+            }
+        } catch (FileNotFoundException fnfe) {
+            System.out.println("The storage file containing the tasks cannot be found :(");
+        }
+    }
 
     public void addTask(Command command, String details) throws DukeException, IOException {
         if (details.length() == 0) {
@@ -176,6 +189,7 @@ public class Duke {
         this.greetUser();
 
         boolean end = false;
+        readTasksFromStorage();
 
         while (!end) {
             System.out.print("\n>>> ");

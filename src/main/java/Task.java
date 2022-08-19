@@ -6,6 +6,30 @@ public class Task {
         this.description = description;
         this.isDone = false;
     }
+    
+    
+    public static Task getTaskFromString(String fileFormatString) {
+        String[] taskSplit = fileFormatString.split("\\|");
+        String taskSymbol = taskSplit[0];
+        boolean isComplete = taskSplit[1].equals("1");
+        String taskDescription = taskSplit[2];
+        Task task;
+        
+        if (taskSymbol.equals("T")) {
+            task = new Todo(taskDescription);
+        } else if (taskSymbol.equals("D")) {
+            String deadline = taskSplit[3];
+            task = new Deadline(taskDescription, deadline);
+        } else {
+            String time = taskSplit[3];
+            task = new Event(taskDescription, time);
+        }
+        
+        if (isComplete) {
+            task.markAsDone();
+        }
+        return task;
+    }
 
     public String getStatusIcon() {
         return isDone ? "X" : " ";
