@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Scruffles {
     public static void main(String[] args) {
@@ -8,6 +9,8 @@ public class Scruffles {
         Scanner sc = new Scanner(System.in);
         String input = "";
 
+        ArrayList<String> listRef = new ArrayList<String>(100);
+
         while (true) {
 
             input = sc.nextLine();
@@ -15,8 +18,14 @@ public class Scruffles {
             if (input.equals("bye")) {
                 System.out.println("woof see you again woof!");
                 break;
+            } else if (input.equals("list")) {
+                for (int i = 0; i < listRef.size(); i++) {
+                    String output = (i + 1) + ". " + listRef.get(i);
+                    System.out.println(output);
+                }
             } else {
-                System.out.println(input);
+                listRef.add(input);
+                System.out.println("added: " + input);
             }
         }
     }
