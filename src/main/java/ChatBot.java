@@ -65,7 +65,7 @@ class ChatBot {
 
     public void echo(String input) {
 
-        System.out.println(line + "\n\tYou just said " + input + "\n" + line);
+        System.out.println(line + "\n\t" + input + "\n" + line);
     }
 
     public void bye() {
