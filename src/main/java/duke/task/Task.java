@@ -23,6 +23,26 @@ public abstract class Task {
     }
 
     /**
+     * Returns a task object from a serialized string.
+     *
+     * @param str the serialized task
+     * @return the deserialized task object
+     * @since Level-7
+     */
+    public static Task deserialize(String str) {
+        switch (str.charAt(0)) {
+        case 'T':
+            return Todo.deserialize(str);
+        case 'E':
+            return Event.deserialize(str);
+        case 'D':
+            return Deadline.deserialize(str);
+        default:
+            throw new IllegalArgumentException("Invalid task format");
+        }
+    }
+
+    /**
      * Returns a string representation of this task, meant for writing to a file.
      * We will assume that no part of the task (e.g. description) contains
      * the delimiter used to separate the different parts of the task during serialization.
@@ -31,26 +51,6 @@ public abstract class Task {
      * @since Level-7
      */
     public abstract String serialize();
-
-    /**
-     * Returns a task object from a serialized string.
-     * 
-     * @param str the serialized task
-     * @return the deserialized task object
-     * @since Level-7
-     */
-    public static Task deserialize(String str) {
-        switch (str.charAt(0)) {
-            case 'T':
-                return Todo.deserialize(str);
-            case 'E':
-                return Event.deserialize(str);
-            case 'D':
-                return Deadline.deserialize(str);
-            default:
-                throw new IllegalArgumentException("Invalid task format");
-        }
-    }
 
     /**
      * Returns a checkmark `✓` if the task is done, an empty string otherwise.
