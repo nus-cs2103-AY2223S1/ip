@@ -1,15 +1,17 @@
-todo todo this
-todo 
+todo
+todo some todo task
 list
 deadline 
-deadline task with deadline
-deadline task with deadline /by 
-deadline task with deadline /by Monday
+deadline task with deadline, using default time
+deadline task with deadline, using default time /by 
+deadline task with deadline, using default time /by 2022-02-02
+deadline task with strict deadline /by 2022-02-02 07:17
 list
 event
-event some event
-event some event /at
-event some event /at Sunday
+event some event, using default time
+event some event, using default time /at
+event some event, using default time /at 2022-02-02
+event some event, using strict time /at 2022-02-02 07:17
 list
 mark 1
 list

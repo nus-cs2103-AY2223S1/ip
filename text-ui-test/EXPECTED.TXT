@@ -1,3 +1,6 @@
+Loading tasks from disk.......
+FAILED! Could not find storage file containing your tasks
+Add a task to generate one!!!
  ____        _        
 |  _ \ _   _| | _____ 
 | | | | | | | |/ / _ \
@@ -5,54 +8,155 @@
 |____/ \__,_|_|\_\___|
 
 Hello! I'm Duke. How may I assist you?
+
+>>> Invalid command format.
+Usage: todo <String>
+
 >>> Got it. I've added this task:
-   [T][ ] borrow book
-Now, you have 1 tasks in the list
+   [T][ ] some todo task
+You have 1 tasks in the list
+
+>>> ===============================
+   1.[T][ ] some todo task
+===============================
+
+>>> Invalid command format.
+Usage: deadline <String> /by <String>
+
+>>> Invalid command format.
+Usage: deadline <String> /by <String>
+
+>>> Invalid command format.
+Usage: deadline <String> /by <String>
+
 >>> Got it. I've added this task:
-   [D][ ] return book (by: Sunday)
-Now, you have 2 tasks in the list
->>> Here are your tasks: 
-1. [T][ ] borrow book
-2. [D][ ] return book (by: Sunday)
->>> Nice! I've marked this task as done: 
-   [T][X] borrow book
+   [D][ ] task with deadline, using default time (by: 02 Feb 2022, 23:59)
+You have 2 tasks in the list
+
 >>> Got it. I've added this task:
-   [E][ ] project meeting (at: Mon 2-4pm)
-Now, you have 3 tasks in the list
->>> Nice! I've marked this task as done: 
-   [D][X] return book (by: Sunday)
->>> Here are your tasks: 
-1. [T][X] borrow book
-2. [D][X] return book (by: Sunday)
-3. [E][ ] project meeting (at: Mon 2-4pm)
->>> Sure! I've marked this task as not yet done: 
-   [D][ ] return book (by: Sunday)
->>> Here are your tasks: 
-1. [T][X] borrow book
-2. [D][ ] return book (by: Sunday)
-3. [E][ ] project meeting (at: Mon 2-4pm)
+   [D][ ] task with strict deadline (by: 02 Feb 2022, 07:17)
+You have 3 tasks in the list
+
+>>> ===============================
+   1.[T][ ] some todo task
+   2.[D][ ] task with deadline, using default time (by: 02 Feb 2022, 23:59)
+   3.[D][ ] task with strict deadline (by: 02 Feb 2022, 07:17)
+===============================
+
+>>> Invalid command format.
+Usage: event <String> /at <String>
+
+>>> Invalid command format.
+Usage: event <String> /at <String>
+
+>>> Invalid command format.
+Usage: event <String> /at <String>
+
 >>> Got it. I've added this task:
-   [D][ ] do homework (by: no idea :-p)
-Now, you have 4 tasks in the list
+   [E][ ] some event, using default time (by: 02 Feb 2022, 23:59)
+You have 4 tasks in the list
+
 >>> Got it. I've added this task:
-   [T][ ] lepak
-Now, you have 5 tasks in the list
->>> Here are your tasks: 
-1. [T][X] borrow book
-2. [D][ ] return book (by: Sunday)
-3. [E][ ] project meeting (at: Mon 2-4pm)
-4. [D][ ] do homework (by: no idea :-p)
-5. [T][ ] lepak
->>> Swee! I've removed this task: 
-   [T][X] borrow book
-Now, you have 4 tasks in the list
->>> Invalid task index.
->>> Here are your tasks: 
-1. [D][ ] return book (by: Sunday)
-2. [E][ ] project meeting (at: Mon 2-4pm)
-3. [D][ ] do homework (by: no idea :-p)
-4. [T][ ] lepak
->>> What talking you? Idk what command this is
->>> Invalid task index.
->>> OOOOF! Description for [todo] cannot be empty!
->>> Bye! Hope to see you soon!
+   [E][ ] some event, using strict time (by: 02 Feb 2022, 07:17)
+You have 5 tasks in the list
+
+>>> ===============================
+   1.[T][ ] some todo task
+   2.[D][ ] task with deadline, using default time (by: 02 Feb 2022, 23:59)
+   3.[D][ ] task with strict deadline (by: 02 Feb 2022, 07:17)
+   4.[E][ ] some event, using default time (by: 02 Feb 2022, 23:59)
+   5.[E][ ] some event, using strict time (by: 02 Feb 2022, 07:17)
+===============================
+
+>>> Sure! I've marked this task as done: 
+   [T][X] some todo task
+You have 5 tasks in the list
+
+>>> ===============================
+   1.[T][X] some todo task
+   2.[D][ ] task with deadline, using default time (by: 02 Feb 2022, 23:59)
+   3.[D][ ] task with strict deadline (by: 02 Feb 2022, 07:17)
+   4.[E][ ] some event, using default time (by: 02 Feb 2022, 23:59)
+   5.[E][ ] some event, using strict time (by: 02 Feb 2022, 07:17)
+===============================
+
+>>> Invalid command format.
+Usage: mark <Integer>
+
+>>> The provided task index 0 is out of range! Accepted Range: [1, 5]
+
+>>> Invalid command format.
+Usage: mark <Integer>
+
+>>> The provided task index 999 is out of range! Accepted Range: [1, 5]
+
+>>> Sure! I've unmarked this task as done: 
+   [T][ ] some todo task
+You have 5 tasks in the list
+
+>>> ===============================
+   1.[T][ ] some todo task
+   2.[D][ ] task with deadline, using default time (by: 02 Feb 2022, 23:59)
+   3.[D][ ] task with strict deadline (by: 02 Feb 2022, 07:17)
+   4.[E][ ] some event, using default time (by: 02 Feb 2022, 23:59)
+   5.[E][ ] some event, using strict time (by: 02 Feb 2022, 07:17)
+===============================
+
+>>> Invalid command format.
+Usage: unmark <Integer>
+
+>>> The provided task index 0 is out of range! Accepted Range: [1, 5]
+
+>>> Invalid command format.
+Usage: mark <Integer>
+
+>>> The provided task index 999 is out of range! Accepted Range: [1, 5]
+
+>>> The provided task index 0 is out of range! Accepted Range: [1, 5]
+
+>>> The provided task index 999 is out of range! Accepted Range: [1, 5]
+
+>>> Invalid command format.
+Usage: delete <Integer>
+
+>>> Okie, I've deleted this task: 
+   [T][ ] some todo task
+You have 4 tasks in the list
+
+>>> ===============================
+   1.[T][ ] some todo task
+   2.[D][ ] task with strict deadline (by: 02 Feb 2022, 07:17)
+   3.[E][ ] some event, using default time (by: 02 Feb 2022, 23:59)
+   4.[E][ ] some event, using strict time (by: 02 Feb 2022, 07:17)
+===============================
+
+>>> Okie, I've deleted this task: 
+   [T][ ] some todo task
+You have 3 tasks in the list
+
+>>> ===============================
+   1.[T][ ] some todo task
+   2.[E][ ] some event, using default time (by: 02 Feb 2022, 23:59)
+   3.[E][ ] some event, using strict time (by: 02 Feb 2022, 07:17)
+===============================
+
+>>> Okie, I've deleted this task: 
+   [T][ ] some todo task
+You have 2 tasks in the list
+
+>>> ===============================
+   1.[T][ ] some todo task
+   2.[E][ ] some event, using strict time (by: 02 Feb 2022, 07:17)
+===============================
+
+>>> Okie, I've deleted this task: 
+   [T][ ] some todo task
+You have 1 tasks in the list
+
+>>> foo is not a valid command!
+
+>>> bar is not a valid command!
+
+>>> Command cannot be empty
+
+>>> Goodbye! Hope to see you soon!
