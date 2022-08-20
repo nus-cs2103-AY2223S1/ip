@@ -10,4 +10,6 @@ delete 7
 delete 7
 delete 7
 list
+todo |
+list
 bye

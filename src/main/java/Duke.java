@@ -143,6 +143,9 @@ public class Duke {
     private void processInput(String input) {
         try {
             input = input.trim();
+            if (input.contains("|")) {
+                throw new BannedDukeCharacterException("|");
+            }
             if (input.equals("bye")) {
                 exit();
                 return;
@@ -220,6 +223,9 @@ public class Duke {
             default:
                 throw new InvalidDukeInputException();
             }
+        } catch (BannedDukeCharacterException e) {
+            printMessage("☹ Woah there!!! Your input contains a \"" + e.getMessage()
+                    + "\" character which is not allowed!!");
         } catch (InvalidDukeInputException e) {
             printMessage("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         } catch (MissingDukeInputException e) {
