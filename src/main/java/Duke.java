@@ -1,9 +1,15 @@
+import java.io.FileWriter;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.io.File;
+import java.io.IOException;
+
 
 public class Duke {
     private static ArrayList<Task> taskList = new ArrayList<>();
-    final static String logo =
+    final static String PATH = "./data";
+    final static String FILENAME = "./data/duke.txt";
+    final static String LOGO =
             "   __ __    ____       ___               __\n" +
                     "  / // /__ / / /__    / _ \\___ ____  ___/ /__ _\n" +
                     " / _  / -_) / / _ \\  / ___/ _ `/ _ \\/ _  / _ `/\n" +
@@ -42,9 +48,41 @@ public class Duke {
         }
     }
 
-    private static void beginBot() throws DukeException {
+    private static String getList() {
+        String result = "";
+        for (int i = 0; i < taskList.size(); i++) {
+            if (taskList.get(i) == null) break;
+            result += taskList.get(i).toString() + "\n" ;
+        }
+        return result;
+    }
 
-            System.out.println("Hello from\n" + logo);
+    private static void writeFile(String str) {
+        try {
+            FileWriter fw = new FileWriter(FILENAME);
+            fw.write(str);
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void createFile() {
+
+        File directory = new File(PATH);
+        if (!directory.exists()) {
+            directory.mkdir();
+        }
+        File file = new File(FILENAME);
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void beginBot() throws DukeException {
+            System.out.println("Hello from\n" + LOGO);
             Scanner sc = new Scanner(System.in);
             System.out.println("How can I help you today? :)");
             String command = sc.nextLine();
@@ -58,18 +96,21 @@ public class Duke {
                     String s = command.substring(7);
                     int i = Integer.parseInt(s);
                     unmarkTask(i - 1);
+                    writeFile(getList());
                     command = sc.nextLine();
                     continue;
                 } else if (command.contains("mark")) {
                     String s = command.substring(5);
                     int i = Integer.parseInt(s);
                     markTask(i - 1);
+                    writeFile(getList());
                     command = sc.nextLine();
                     continue;
                 } else if (command.contains("delete")) {
                     String s = command.substring(7);
                     int i = Integer.parseInt(s);
                     deleteTask(i - 1);
+                    writeFile(getList());
                     command = sc.nextLine();
                     continue;
                 } else if (command.contains("deadline")) {
@@ -78,6 +119,7 @@ public class Duke {
                     String[] result = s.split(" /by ");
                     Deadline d = new Deadline(result[0], result[1]);
                     taskList = d.printAndStoreTask(taskList);
+                    writeFile(getList());
                     command = sc.nextLine();
                     continue;
                 } else if (command.contains("todo")) {
@@ -86,6 +128,7 @@ public class Duke {
                     if (s == " ") throw new DukeException("OOPS!!! I'm sorry but description of a todo cannot be empty");
                     Todo t = new Todo(s);
                     taskList = t.printAndStoreTask(taskList);
+                    writeFile(getList());
                     command = sc.nextLine();
                     continue;
                 } else if (command.contains("event")) {
@@ -94,6 +137,7 @@ public class Duke {
                     String[] result = s.split(" /at ");
                     Event e = new Event(result[0], result[1]);
                     e.printAndStoreTask(taskList);
+                    writeFile(getList());
                     command = sc.nextLine();
                     continue;
                 }
@@ -111,6 +155,7 @@ public class Duke {
 
     public static void main(String[] args) {
         try {
+            createFile();
             beginBot();
         } catch (DukeException e) {
             e.printStackTrace();
