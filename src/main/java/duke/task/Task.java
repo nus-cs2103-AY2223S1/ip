@@ -52,15 +52,12 @@ public abstract class Task {
             case "T":
                 task = new ToDo(args[2], args[1].equals("X"));
                 break;
-
             case "E":
                 task = new Event(args[2], args[1].equals("X"), LocalDate.parse(args[3]));
                 break;
-
             case "D":
                 task = new Deadline(args[2], args[1].equals("X"), LocalDate.parse(args[3]));
                 break;
-
             default:
                 throw new DukeException("OOPS!!! Invalid encoded format :(");
             }
