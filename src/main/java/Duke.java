@@ -17,14 +17,17 @@ public class Duke {
 
         while (hasnext) {
             String message = sc.nextLine();
-
+            List list = new List(message);
             switch (message) {
                 case "bye" :
                     hasnext = false;
-                    System.out.println("Bye. Hope to see you again soon!");
+                    System.out.println("Bye. Hope to see you again soon!\n");
+                    break;
+                case "list" :
+                    System.out.println(list.listOut());
                     break;
                 default :
-                    System.out.println(message);
+                    System.out.println(String.format("added: %s\n", message));
             }
         }
     }
