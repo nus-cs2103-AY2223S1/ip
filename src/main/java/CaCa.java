@@ -4,6 +4,25 @@ import java.util.List;
 
 /**
  * CaCa is a personal assistant chatbot that helps users manage and track things.
+ * <p>
+ * Functions with respective commands are listed below as Function (description): command. e.g...
+ * <ul><li>Greet user (triggered as soon as the chatbot is run)</li>
+ * <li>Exit program (end chatbot): bye</li>
+ * <li>Add tasks:</li>
+ * <ul>
+ *     <li>ToDos (tasks without any date/time): todo taskDescription</li>
+ *     e.g.todo borrow book
+ *     <li>Deadlines (tasks to be done before date/time): deadline taskDescription /by dateTime</li>
+ *     e.g. deadline return book /by Sunday
+ *     <li>Events (tasks that start and end at a specific time): event taskDescription /at dateTime</li>
+ *     e.g. event project meeting /at Mon 2-4pm
+ * </ul>
+ * <li>List task (displays a list of all tasks stored): list</li>
+ * <li>Mark task (marks task as done with a "X"): mark taskIndex. e.g. mark 2</li>
+ * <li>Unmark task (marks task as not done and removes "X"): unmark taskIndex. e.g. unmark 2</li>
+ * <li>Delete task (deletes task from list): delete taskIndex. e.g. delete 3</li>
+ * </ul>
+ * </p>
  * @author Carrie Zheng Jiarui
  * @version CS2103T AY22/23 Semester 1, iP
  */
@@ -81,7 +100,7 @@ public class CaCa {
     /**
      * Marks a task as done as instructed by user.
      * @param command User command with type of task and task description.
-     * @throws InvalidTaskIndex Indicates that the task index is invalid, i.e. out of range.
+     * @throws InvalidTaskIndex If task index is invalid, i.e. out of range.
      */
     public static void markTask(String[] command) throws InvalidTaskIndex {
         // taskIndex entered by user is 1 larger than its array index.
@@ -93,6 +112,11 @@ public class CaCa {
         System.out.println(taskToMark + "\n" + line);
     }
 
+    /**
+     * Marks a task as not done as instructed by user.
+     * @param command User command with type of task and task description.
+     * @throws InvalidTaskIndex If task index is invalid, i.e. out of range.
+     */
     public static void unmarkTask(String[] command) throws InvalidTaskIndex {
         // taskIndex entered by user is 1 larger than its array index.
         int taskIndex = Integer.parseInt(command[1]);
