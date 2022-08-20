@@ -1,8 +1,11 @@
+import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.io.FileNotFoundException;
 
 public class Duke {
 
     public static void main(String[] args) {
+        Task.loadTasks();
         Scanner input = new Scanner(System.in);
         BotResponse.welcome();
         String userResponse = input.nextLine();
@@ -121,6 +124,7 @@ public class Duke {
         default:
             throw new InvalidInputException();
         }
+        Task.saveTasks();
     }
 
 }
