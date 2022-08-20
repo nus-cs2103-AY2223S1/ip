@@ -17,18 +17,16 @@ public class Task {
 
     public void mark() {
         this.setDone(true);
-        System.out.println("Nice! I've marked this task as done:\n" +
-                String.format("   [X] %s", this.description));
+        System.out.println("Nice! I've marked this task as done:\n" + this);
     }
 
     public void unmark() {
         this.setDone(false);
-        System.out.println("OK, I've marked this task as not done yet:\n" +
-                String.format("   [ ] %s", this.description));
+        System.out.println("OK, I've marked this task as not done yet:\n" + this);
     }
 
     @Override
     public String toString() {
-        return this.description;
+        return String.format("[%s] %s", this.getStatusIcon(), this.description);
     }
 }
