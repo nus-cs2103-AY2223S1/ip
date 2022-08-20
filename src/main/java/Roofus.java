@@ -1,5 +1,6 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.DateTimeException;
 import java.util.NoSuchElementException;
 
 import java.util.Scanner;
@@ -28,29 +29,23 @@ public class Roofus {
         Scanner sc = new Scanner(this.storage);
         while (sc.hasNextLine()) {
             String line = sc.nextLine();
-            String taskType = line.substring(0, 6);
-            boolean isComplete = taskType.charAt(4) == 'X';
-            Task thisTask = new Task("initialised");
-            if (taskType.charAt(1) == 'T') {
-                thisTask = new ToDo(line.substring(6));
-            } else {
-                if (taskType.charAt(1) == 'D') {
-                    String[] descTimeDetails = line.substring(6).split("by:", 2);
-                    String description = descTimeDetails.length < 1 ? " " :
-                            descTimeDetails[0].substring(0, descTimeDetails[0].length() - 1);
-                    String time = descTimeDetails.length < 2 ? " " :
-                            descTimeDetails[1].substring(0, descTimeDetails[1].length() - 1);
-                    thisTask = new Deadline(description, time);
-                } else {
-                    String[] descTimeDetails = line.substring(6).split("at:", 2);
-                    String description = descTimeDetails.length < 1 ? " " : 
-                            descTimeDetails[0].substring(0, descTimeDetails[0].length() - 1);
-                    String time = descTimeDetails.length < 2 ? " " : 
-                            descTimeDetails[1].substring(0, descTimeDetails[1].length() - 1);
-                    thisTask = new Event(description, time);    
-                }
+            char taskType = line.charAt(0);
+            String[] components = line.split(" \\| ");
+            Task thisTask = new Task("task not saved");
+            switch (taskType) {
+                case 'T':
+                    thisTask = new ToDo(components[2]);
+                    break;
+                case 'D':
+                    thisTask = new Deadline(components[2], 
+                            components[3]);
+                    break;
+                case 'E':
+                    thisTask = new Event(components[2],
+                            components[3], components[4]);
+                    break;
             }
-            if (isComplete) {
+            if (components[1].equals("1")) {
                 thisTask.setDone();
             }
             this.tasks.add(thisTask);
@@ -60,7 +55,7 @@ public class Roofus {
     void save() throws IOException {
         FileWriter editor = new FileWriter(STORAGEPATH);
         for (Task t : tasks) {
-            editor.write(t.toString() + "\n");
+            editor.write(t.writeString() + "\n");
         }
         editor.close();
     }
@@ -200,18 +195,22 @@ public class Roofus {
                         errMessage("Oops! Your deadline task isn't clear.");
                     } catch (NoSuchElementException err) {
                         errMessage("Huh?! What deadline?");
+                    } catch (DateTimeException err) {
+                        errMessage("What kind of date is that?");
                     }
                     break;
                 case EVENT:
                     try {
                         String details2 = sc2.nextLine();
                         String[] separate = details2.split(" /at ", 2);
-                        String[] startEnd = separate[1].split(" to ");
+                        String[] startEnd = separate[1].split(" to ", 2);
                         roofus.addTask(new Event(separate[0], startEnd[0], startEnd[1]));
                     } catch (ArrayIndexOutOfBoundsException err) {
                         errMessage("Oops! Your event task isn't clear.");
                     } catch (NoSuchElementException err) {
                         errMessage("Huh?! What event?");
+                    } catch (DateTimeException err) {
+                        errMessage("What kind of date is that?");
                     }
                     break;
                 default:

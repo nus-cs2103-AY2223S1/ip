@@ -30,7 +30,11 @@ public class Task {
     String getDescription() {
         return this.description;
     }
-
+    
+    public String writeString() {
+        return new String();
+    }
+    
     @Override
     public String toString() {
         if (isDone) {

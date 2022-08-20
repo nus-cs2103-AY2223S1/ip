@@ -11,9 +11,12 @@ public class Deadline extends Task {
     }
     
     @Override
+    public String writeString() {
+        return String.format("D | %d | %s | %s", super.isDone ? 1 : 0, super.description, date);
+    }
+    
+    @Override
     public String toString() {
-        return String.format("[D]%s (by: %s)", super.toString(), String.format("%s, %d %s, %s",
-                date.getDayOfWeek(), date.getDayOfMonth(),
-                date.getMonth(), date.getYear()));
+        return String.format("[D]%s by: %s", super.toString(), this.date.toString());
     }
 }

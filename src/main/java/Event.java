@@ -13,13 +13,13 @@ public class Event extends Task {
     }
 
     @Override
+    public String writeString() {
+        return String.format("E | %d | %s | %s | %s", super.isDone ? 1 : 0, super.description, 
+                start, end);
+    }
+
+    @Override
     public String toString() {
-        String startFormat = String.format("%s, %d %s, %s",
-                start.getDayOfWeek(), start.getDayOfMonth(),
-                start.getMonth(), start.getYear());
-        String endFormat = String.format("%s, %d %s, %s",
-                end.getDayOfWeek(), end.getDayOfMonth(),
-                end.getMonth(), end.getYear());
-        return String.format("[E] %s(at: %s to %s)", super.toString(), startFormat, endFormat);
+        return String.format("[E]%s at: %s to %s", super.toString(), start.toString(), end.toString());
     }
 }
