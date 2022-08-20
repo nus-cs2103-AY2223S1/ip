@@ -7,6 +7,8 @@ abstract public class Task {
         isDone = false;
     }
 
+    abstract public String getDataFormat();
+
     public String getStatusIcon() {
         return (isDone ? "X" : " ");
     }

@@ -7,6 +7,11 @@ public class Deadline extends Task {
     }
 
     @Override
+    public String getDataFormat() {
+        return String.format("D // %s // %s // %s", getStatusIcon(), description, by);
+    }
+
+    @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + by + ")";
     }
