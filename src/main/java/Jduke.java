@@ -7,8 +7,8 @@ public class Jduke {
     private static final String PROMPT = "jduke> ";
     private static final String GOODBYE = "|  Goodbye";
     private static final String TODO_FORMAT = "todo <description>";
-    private static final String EVENT_FORMAT = "event <description> /at <timing>";
-    private static final String DEADLINE_FORMAT = "deadline <description> /by <timing>";
+    private static final String EVENT_FORMAT = "event <description> /at <dd/mm/yyyy> <[hhmm]>";
+    private static final String DEADLINE_FORMAT = "deadline <description> /by <dd/mm/yyyy> <[hhmm]>";
     private static final String MARK_FORMAT = "mark <integer>";
     private static final String UNMARK_FORMAT = "unmark <integer>";
     private static final String DELETE_FORMAT = "delete <integer>";
@@ -42,7 +42,9 @@ public class Jduke {
     }
 
     public static void addDeadline(String input) throws JdukeException {
-        if (!input.toLowerCase().matches("deadline [^ ](.*) /by (.*)")) {
+        if (!(input.toLowerCase().matches(
+                "deadline [^ ](.*) /by [0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{4}")
+                || input.toLowerCase().matches("deadline [^ ](.*) /by [0-9]{1,2}/[0-9]{1,2}/[0-9]{4}"))) {
             throw new JdukeException("invalid DEADLINE format", DEADLINE_FORMAT);
         }
         String details = input.split(" ", 2)[1];
@@ -51,7 +53,9 @@ public class Jduke {
         printLastTask();
     }
     public static void addEvent(String input) throws JdukeException {
-        if (!input.toLowerCase().matches("event [^ ](.*) /at (.*)")) {
+        if (!(input.toLowerCase().matches(
+                "event [^ ](.*) /at [0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{4}")
+                || input.toLowerCase().matches("event [^ ](.*) /at [0-9]{1,2}/[0-9]{1,2}/[0-9]{4}"))) {
             throw new JdukeException("invalid EVENT format", EVENT_FORMAT);
         }
         String details = input.split(" ", 2)[1];
