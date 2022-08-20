@@ -1,21 +1,23 @@
+package duke;
+
 import java.time.LocalDate;
 
-public class DeadlineCommand extends Command {
+public class EventCommand extends Command {
     private String description;
-    private LocalDate by;
+    private LocalDate at;
 
-    public DeadlineCommand(String description, LocalDate by) {
+    public EventCommand(String description, LocalDate at) {
         super();
         this.description = description;
-        this.by = by;
+        this.at = at;
     }
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-        Task deadline = new Deadline(this.description, this.by);
-        tasks.addTask(deadline);
+        Event event = new Event(this.description, this.at);
+        tasks.addTask(event);
         storage.save(tasks);
-        ui.showAddTask(deadline, tasks.getSize());
+        ui.showAddTask(event, tasks.getSize());
     }
 
     @Override
