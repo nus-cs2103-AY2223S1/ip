@@ -4,23 +4,18 @@ import java.util.Scanner;
 public class Duke {
     protected ArrayList<Task> tasks = new ArrayList<Task>();
 
-    protected static boolean isNumber(String str) {
+    public enum Command {
+        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE
+    }
+
+    public Command getCommand(String str) throws DukeException {
         try {
-            Integer.parseInt(str);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
+            return Command.valueOf(str.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new DukeException("Sorry! I don't know what that means :(");
         }
     }
 
-    public enum Command {
-        MARK, UNMARK
-    }
-
-    public enum Type {
-        TODO, DEADLINE, EVENT
-    }
-    
     public void greet() {
         System.out.println("Hello! I'm Pip :)\nWhat can I do for you?");
     }
@@ -42,15 +37,23 @@ public class Duke {
         }
     }
 
-    public void changeTaskStatus(String[] splitInputArray, Command command) throws DukeException {
-        if (splitInputArray.length < 2 || !isNumber(splitInputArray[1])) {
+    protected static int getTaskNumber(String[] splitInputArray) throws DukeException {
+        if (splitInputArray.length > 1) {
+            try {
+                return Integer.parseInt(splitInputArray[1]);
+            } catch (NumberFormatException e) {
+                throw new DukeException("Please specify a task number!");
+            }
+        } else {
             throw new DukeException("Please specify a task number!");
         }
+    }
 
-        int taskNum = Integer.parseInt(splitInputArray[1]);
+    public void changeTaskStatus(String[] splitInputArray) throws DukeException {
+        int taskNum = getTaskNumber(splitInputArray);
         if (taskNum > 0 && taskNum <= tasks.size()) {
             Task task = tasks.get(taskNum - 1);
-            if (command == Command.MARK) {
+            if (splitInputArray[0].equals("mark")) {
                 task.markAsDone();
             } else {
                 task.markAsNotDone();
@@ -60,8 +63,9 @@ public class Duke {
         }
     }
 
-    public void addTask(String[] splitInputArray, Type type) throws DukeException {
-        boolean isToDo = type == Type.TODO;
+    public void addTask(String[] splitInputArray) throws DukeException {
+        String command = splitInputArray[0];
+        boolean isToDo = command.equals("todo");
         if (splitInputArray.length < 2) {
             throw new DukeException("Please provide a task description" + (isToDo ? "!" : " and a date / time!"));
         }
@@ -71,7 +75,7 @@ public class Duke {
         if (isToDo) {
             task = new ToDo(details);
         } else {
-            boolean isDeadline = type == Type.DEADLINE;
+            boolean isDeadline = command.equals("deadline");
             int pos = details.indexOf(isDeadline ? " /by " : " /at ");
             if (pos > 0 && details.length() > pos + 5) {
                 String description = details.substring(0, pos);
@@ -86,11 +90,7 @@ public class Duke {
     }
 
     public void deleteTask(String[] splitInputArray) throws DukeException {
-        if (splitInputArray.length < 2 || !isNumber(splitInputArray[1])) {
-            throw new DukeException("Please specify a task number!");
-        }
-
-        int taskNum = Integer.parseInt(splitInputArray[1]);
+        int taskNum = getTaskNumber(splitInputArray);
         if (taskNum > 0 && taskNum <= tasks.size()) {
             Task task = tasks.get(taskNum - 1);
             tasks.remove(taskNum - 1);
@@ -101,7 +101,7 @@ public class Duke {
     }
 
     public void displayNumOfTasks() {
-        System.out.println("You have " + tasks.size() + " task" + (tasks.size() != 1 ? "s" : "") + " in the list.");
+        System.out.println("You have " + tasks.size() + (tasks.size() == 1 ? " task" : " tasks") + " in the list.");
     }
 
     public static void main(String[] args) {
@@ -116,20 +116,29 @@ public class Duke {
             String[] splitInputArray = input.split(" ", 2);
             String firstWord = splitInputArray[0];
             try {
-                if (input.equals("bye")) {
-                    duke.exit();
-                } else if (input.equals("list")) {
-                    duke.list();
-                } else if (firstWord.equals("mark") || firstWord.equals("unmark")) {
-                    duke.changeTaskStatus(splitInputArray, Command.valueOf(firstWord.toUpperCase()));
-                } else if (firstWord.equals("todo") || firstWord.equals("deadline") || firstWord.equals("event")) {
-                    duke.addTask(splitInputArray, Type.valueOf(firstWord.toUpperCase()));
-                    duke.displayNumOfTasks();
-                } else if (firstWord.equals("delete")) {
-                    duke.deleteTask(splitInputArray);
-                    duke.displayNumOfTasks();
-                } else {
-                    throw new DukeException("Sorry! I don't know what that means :(");
+                switch (duke.getCommand(firstWord)) {
+                    case BYE:
+                        duke.exit();
+                        break;
+                    case LIST:
+                        duke.list();
+                        break;
+                    case MARK:
+                    case UNMARK:
+                        duke.changeTaskStatus(splitInputArray);
+                        break;
+                    case TODO:
+                    case DEADLINE:
+                    case EVENT:
+                        duke.addTask(splitInputArray);
+                        duke.displayNumOfTasks();
+                        break;
+                    case DELETE:
+                        duke.deleteTask(splitInputArray);
+                        duke.displayNumOfTasks();
+                        break;
+                    default:
+                        throw new DukeException("Sorry! I don't know what that means :(");
                 }
             } catch (DukeException e) {
                 System.out.println(e.getMessage());
