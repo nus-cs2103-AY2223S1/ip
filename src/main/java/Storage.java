@@ -5,23 +5,22 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
-import java.util.stream.Stream;
 
 /**
  * Handles file state.
  */
-public class FileState {
-    private static Map<String, FileState> fileStates = new HashMap<>();
+public class Storage {
+    private static Map<String, Storage> fileStates = new HashMap<>();
     private String contents = null;
     private String fileName;
 
-    private FileState(String fileName) {
+    private Storage(String fileName) {
         this.fileName = fileName;
     }
 
-    public static FileState getFileState(String fileName) {
+    public static Storage getFileState(String fileName) {
         if (!fileStates.containsKey(fileName)) {
-            fileStates.put(fileName, new FileState(fileName));
+            fileStates.put(fileName, new Storage(fileName));
         }
         return fileStates.get(fileName);
     }

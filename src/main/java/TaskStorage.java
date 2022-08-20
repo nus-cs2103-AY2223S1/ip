@@ -5,16 +5,16 @@ import java.util.stream.Collectors;
 /**
  * Accesses a file for tasks.
  */
-public class TasksFileState {
+public class TaskStorage {
 
     /**
      * Gets ArrayList of previously saved tasks.
      * @return ArrayList of tasks.
      */
     public static ArrayList<Task> getTasks() {
-        FileState fileState = FileState.getFileState("./duke.txt");
+        Storage storage = Storage.getFileState("./duke.txt");
         ArrayList<Task> tasks = new ArrayList<>();
-        for (String[] line : fileState.getLines()) {
+        for (String[] line : storage.getLines()) {
             TaskFactory.constructOptionalTask(line).ifPresent((task) -> tasks.add(task));
         }
         return tasks;
@@ -26,7 +26,7 @@ public class TasksFileState {
      */
     public static void saveTasks(List<Task> tasks) {
         List<String[]> lines = tasks.stream().map(Task::getAsStringArray).collect(Collectors.toList());
-        FileState fileState = FileState.getFileState("./duke.txt");
-        fileState.saveLines((String[][]) lines.toArray(new String[][]{}));
+        Storage storage = Storage.getFileState("./duke.txt");
+        storage.saveLines((String[][]) lines.toArray(new String[][]{}));
     }
 }
