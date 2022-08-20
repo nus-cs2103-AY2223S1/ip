@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
@@ -20,9 +21,8 @@ public class Duke {
      * @param input String input from the user.
      */
     public static void isMark(String input) {
-        // Isolate int from string input
         String numString = input.replace("mark", "")
-                .replace(" ", "");
+                .replace(" ", ""); // Isolate int from string input
         int num = Integer.parseInt(numString);
         tasks.get(num - 1).markAsDone();
         System.out.println("Enter command:");
@@ -52,7 +52,7 @@ public class Duke {
             throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
         }
         String description = input.substring(9, input.indexOf('/') - 1);
-        String by = input.substring(input.indexOf('/') + 4);
+        LocalDate by = LocalDate.parse(input.substring(input.indexOf('/') + 4));
         Task t = new Deadline(description, by);
         tasks.add(t);
         reply(t);
@@ -179,9 +179,8 @@ public class Duke {
                 continue;
             }
 
-            // Incorrect input: unknown input
             System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(" +
-                    "\nEnter command:");
+                    "\nEnter command:"); // Incorrect input: unknown input
             command = sc.nextLine();
         }
 
