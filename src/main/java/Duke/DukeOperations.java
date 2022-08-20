@@ -1,4 +1,8 @@
+package Duke;
+
 import java.util.ArrayList;
+
+
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -12,9 +16,7 @@ public class DukeOperations {
 
 
 
-    public DukeOperations() {
 
-    }
     public void exit() {
         System.out.println("_________________________________________________________________________");
         System.out.println("        Bye. Hope to see you again soon!");
