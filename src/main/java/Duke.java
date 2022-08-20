@@ -16,7 +16,7 @@ public class Duke {
             message = sc.nextLine();
             }
 
-        System.out.println("Bye. Hope to see you again soon!");
+        System.out.println("\nBye. Hope to see you again soon!");
         sc.close();
         }
     }

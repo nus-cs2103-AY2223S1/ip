@@ -47,14 +47,12 @@ public class Control {
         }
 
         public void evalList(String[] subCmd) {
-            StringBuilder tmp = new StringBuilder();
-            tmp.append("Here are the tasks in your list:\n");
+            System.out.println("Here are the tasks in your list:");
 
             for(int i = 0; i < dir.size(); i++) {
                 Task currTask = dir.get(i);
-                tmp.append(String.format("%d. %s\n", i + 1, currTask));
+                System.out.println(String.format("    %d. %s", i + 1, currTask));
             }
-            System.out.println(tmp);
         }
 
         public void evalMark(String[] subCmd) {
@@ -73,9 +71,10 @@ public class Control {
             System.out.println(String.format("Got it. I've added this task:\n\t%s\n" +
                     "Now you have %d tasks in the list.\n", tmpTask, this.dir.size()));
         }
+
         public void evalDeadline(String[] subCmd) {
             String tmp = String.join(" ", subCmd);
-            String[] tempSplit = tmp.split("/by");
+            String[] tempSplit = tmp.split(" /by ");
             Deadline tmpTask = new Deadline(tempSplit[0], tempSplit[1]);
 
             this.addDir(tmpTask);
@@ -86,7 +85,7 @@ public class Control {
 
         public void evalEvent(String[] subCmd) {
             String tmp = String.join(" ", subCmd);
-            String[] tempSplit = tmp.split("/at");
+            String[] tempSplit = tmp.split(" /at ");
             Event tmpTask = new Event(tempSplit[0], tempSplit[1]);
 
             this.addDir(tmpTask);
@@ -94,16 +93,4 @@ public class Control {
                     "Now you have %d tasks in the list.\n", tmpTask, this.dir.size()));
         }
 
-
-        @Override
-        public String toString() {
-            StringBuilder tmp = new StringBuilder();
-            tmp.append("Here are the tasks in your list:\n");
-
-            for(int i = 0; i < dir.size(); i++) {
-                Task currTask = dir.get(i);
-                tmp.append(String.format("%d. %s\n", i + 1, currTask));
-            }
-            return tmp.toString();
-        }
     }
