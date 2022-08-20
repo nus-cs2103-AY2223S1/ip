@@ -12,10 +12,10 @@ Here are the tasks in your list:
 Nice! I've marked this task as done:
 [T][X] eat
 Got it. I've added this task:
-[D][ ] return book (by: 20/8/2021)
+[D][ ] return book (by: Aug 20 2021)
 Now you have 3 tasks in the list.
 Got it. I've added this task:
-[D][ ] return book (by: 2021-08-20 12:00)
+[D][ ] rear chicken (by: Oct 15 2021)
 Now you have 4 tasks in the list.
 Nice! I've marked this task as done:
 [T][X] cs2103 tut
@@ -25,7 +25,7 @@ Now you have 5 tasks in the list.
 Here are the tasks in your list:
 1.[T][X] eat
 2.[T][X] cs2103 tut
-3.[D][ ] return book (by: 20/8/2021)
-4.[D][ ] return book (by: 2021-08-20 12:00)
+3.[D][ ] return book (by: Aug 20 2021)
+4.[D][ ] rear chicken (by: Oct 15 2021)
 5.[E][ ] meeting (at: 2021-08-23 17:00)
 Bye. Hope to see you again soon!
