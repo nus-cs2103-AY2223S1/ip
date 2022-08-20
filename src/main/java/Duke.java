@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -112,13 +113,15 @@ public class Duke {
         addTask(todo);
     }
 
-    private void addDeadline(String description, String date) {
-        Deadline deadline = new Deadline(description, date);
+    private void addDeadline(String description, String date, String time) {
+        Deadline deadline = new Deadline(description, date, time);
         addTask(deadline);
     }
 
-    private void addEvent(String description, String date) {
-        Event event = new Event(description, date);
+    private void addEvent(String description,
+                          String dateStart, String timeStart,
+                          String dateEnd, String timeEnd) {
+        Event event = new Event(description, dateStart, timeStart, dateEnd, timeEnd);
         addTask(event);
     }
 
@@ -191,8 +194,10 @@ public class Duke {
                     throw new MissingDukeInputException(cmd);
                 }
                 String description = str2[0];
-                String date = str2[1];
-                addDeadline(description, date);
+                String[] dateTime = Arrays.copyOf(str2[1].split(" "), 2);
+                String date = dateTime[0];
+                String time = dateTime[1] == null ? "" : dateTime[1];
+                addDeadline(description, date, time);
                 break;
             }
             case "event": {
@@ -201,8 +206,12 @@ public class Duke {
                     throw new MissingDukeInputException(cmd);
                 }
                 String description = str2[0];
-                String date = str2[1];
-                addEvent(description, date);
+                String[] dateTimes = Arrays.copyOf(str2[1].split(" "), 4);
+                String dateStart = dateTimes[0];
+                String timeStart = dateTimes[1] == null ? "" : dateTimes[1];
+                String dateEnd = dateTimes[2] == null ? "" : dateTimes[2];
+                String timeEnd = dateTimes[3] == null ? "" : dateTimes[3];
+                addEvent(description, dateStart, timeStart, dateEnd, timeEnd);
                 break;
             }
             default:
@@ -215,6 +224,9 @@ public class Duke {
         } catch (InputIndexOutOfBoundsException e) {
             printMessage("☹ OOPS!!! You " + e.getMessage()
                     + " but it doesn't exist in the list!");
+        } catch (DateTimeParseException e) {
+            printMessage("☹ OOPS!!! I can't recognise the date you just inputted :-(\n"
+                    + "Dates should be inputted in a 'YYYY-MM-DD HH:MM' format, and events should have 2 dates.");
         }
     }
 

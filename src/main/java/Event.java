@@ -1,9 +1,31 @@
-public class Event extends Task {
-    protected String date;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
-    public Event(String description, String date) {
+public class Event extends Task {
+    LocalDate dateStart;
+    LocalTime timeStart;
+
+    LocalDate dateEnd;
+    LocalTime timeEnd;
+
+    public Event(String description,
+                    String dateStart, String timeStart,
+                    String dateEnd, String timeEnd) throws DateTimeParseException {
         super(description);
-        this.date = date;
+        this.dateStart = LocalDate.parse(dateStart);
+        this.timeStart = LocalTime.parse(timeStart);
+        this.dateEnd = LocalDate.parse(dateEnd);
+        this.timeEnd = LocalTime.parse(timeEnd);
+    }
+
+    private String formatAsMmmDdYyyy(LocalDate date) {
+        return date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+    }
+
+    private String formatAs12Hour(LocalTime time) {
+        return time.format(DateTimeFormatter.ofPattern("hh:mm a"));
     }
 
     public Event(String description, int status, String date) {
@@ -18,6 +40,8 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + date + ")";
+        return "[E]" + super.toString() + " (at: "
+                + formatAsMmmDdYyyy(dateStart) + " " + formatAs12Hour(timeStart) + " - "
+                + formatAsMmmDdYyyy(dateEnd) + " " + formatAs12Hour(timeEnd) + ")";
     }
 }
