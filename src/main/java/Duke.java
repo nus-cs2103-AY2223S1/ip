@@ -143,7 +143,6 @@ public class Duke {
             if ((args.length != 2)) {
                 throw new DukeException("Wrong format! To delete a task, " +
                         "type:\n   delete [TASK NUMBER]\n");
-
             }
             try {
                 index = Integer.parseInt(args[1]);
@@ -165,7 +164,6 @@ public class Duke {
             if ((args.length != 2)) {
                 throw new DukeException("Wrong format! To mark a task as " +
                         "done, type:\n   mark [TASK NUMBER]\n");
-
             }
             try {
                 index = Integer.parseInt(args[1]);
@@ -187,7 +185,6 @@ public class Duke {
             if ((args.length != 2)) {
                 throw new DukeException("Wrong format! To unmark a task " +
                         "as done, type:\n   unmark [TASK NUMBER]\n");
-
             }
             try {
                 index = Integer.parseInt(args[1]);
@@ -231,7 +228,7 @@ public class Duke {
         }
         // Call respective 'Consumer' object on input once it has been verified.
         commands.get(command).accept(userInput);
-        }
+    }
 
     /**
      * Method to write `taskList` to text file.
