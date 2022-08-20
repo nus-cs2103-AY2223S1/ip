@@ -25,8 +25,7 @@ public class Parser {
                 }
                 // Find the "/by" delimiter to get the two arguments.
                 int delimiter = Parser.findArgumentIndex(arguments, "/by");
-                return new DeadlineCommand(
-                        Parser.concatenateArguments(arguments, 1, delimiter),
+                return new DeadlineCommand(Parser.concatenateArguments(arguments, 1, delimiter),
                         Parser.concatenateArguments(arguments, delimiter + 1)
                 );
             case "event":
@@ -34,12 +33,16 @@ public class Parser {
                     throw new DukeException("Missing event description and/or date-time");
                 }
                 delimiter = Parser.findArgumentIndex(arguments, "/at");
-                return new EventCommand(
-                        Parser.concatenateArguments(arguments, 1, delimiter),
+                return new EventCommand(Parser.concatenateArguments(arguments, 1, delimiter),
                         Parser.concatenateArguments(arguments, delimiter + 1)
                 );
             case "list":
                 return new ListCommand();
+            case "find":
+                if (arguments.length < 2) {
+                    throw new DukeException("Missing search query");
+                }
+                return new FindCommand(Parser.concatenateArguments(arguments, 1));
             case "mark":
                 if (arguments.length < 2) {
                     throw new DukeException("Missing index");
@@ -72,8 +75,7 @@ public class Parser {
         return IntStream.range(0, arguments.length)
                 .filter(i -> arguments[i].equals(query))
                 .findFirst()
-                .orElseThrow(() -> new DukeException(String.format(
-                        "Missing argument `%s`",
+                .orElseThrow(() -> new DukeException(String.format("Missing argument `%s`",
                         query
                 )));
     }
