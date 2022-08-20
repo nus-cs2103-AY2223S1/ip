@@ -35,6 +35,7 @@ public abstract class Command {
      * @param tasks TaskList containing the Task list.
      * @param ui Ui handling interactions with the user.
      * @param storage Storage handling loading data from and saving data to files.
+     * @throws RuntimeException If the user provides an invalid input.
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage);
+    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws RuntimeException;
 }
