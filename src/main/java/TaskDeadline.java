@@ -1,13 +1,14 @@
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
 public class TaskDeadline extends Task{
 
-    private String deadline;
+    private LocalDate deadline;
 
     public TaskDeadline(String name, boolean done, String deadline) throws TaskNoNameException {
         super(name, done);
-        this.deadline = deadline;
+        this.deadline = LocalDate.parse(deadline);
     }
 
     public static String makeDeadline(Scanner s, List<Task> taskList) {
@@ -30,12 +31,13 @@ public class TaskDeadline extends Task{
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + this.deadline + ")";
+        return "[D]" + super.toString() + " (by: " + DukeDateTimeFormatter.formatDisplay(this.deadline) + ")";
     }
 
     @Override
     public String toStorageString() {
-        return super.toStorageString() + "|||" + "deadline" + "|||" + this.deadline;
+        return super.toStorageString() + "|||" + "deadline" + "|||" +
+                DukeDateTimeFormatter.formatStorage(this.deadline);
     }
 
 }
