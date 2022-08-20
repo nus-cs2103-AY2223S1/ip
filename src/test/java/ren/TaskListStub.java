@@ -26,6 +26,11 @@ public class TaskListStub extends TaskList {
     }
 
     @Override
+    public String findTasks(String term) {
+        return "";
+    }
+
+    @Override
     public String emptyList() {
         return "";
     }

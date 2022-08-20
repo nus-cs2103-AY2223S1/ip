@@ -83,6 +83,12 @@ public class Parser {
             }
         case "list":
             return tasks.listTasks();
+        case "find":
+            if (hasSecondTerm) {
+                return tasks.findTasks(firstParse[1]);
+            } else {
+                throw new RenException("Please provide a search term.");
+            }
         case "empty":
             return tasks.emptyList();
         default:

@@ -36,4 +36,14 @@ public abstract class Task {
             ? " Great job! I will mark the task as completed.\n" + "   " + this
             : " Understood. I will mark the task as uncompleted.\n" + "   " + this;
     }
+
+    /**
+     * Check if the description of this task contains a search term.
+     *
+     * @param term The Search Term.
+     * @return true if it contains the search term, false otherwise.
+     */
+    public boolean isMatch(String term) {
+        return this.description.contains(term);
+    }
 }
