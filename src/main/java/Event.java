@@ -11,8 +11,9 @@ public class Event extends Task {
         DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
         DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd MMM yyyy | E | h:mma");
         LocalDateTime dateTime = LocalDateTime.parse(at.trim(), inputFormatter);
-
         this.at = dateTime.format(outputFormatter);
+
+
     }
 
     public Event(String description, boolean isDone, String at) {
@@ -20,10 +21,12 @@ public class Event extends Task {
         this.at = at;
     }
 
+    @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + at + ")";
     }
 
+    @Override
     public String toStringData() {
         return "E | " + super.toStringData() + " | " + at;
     }

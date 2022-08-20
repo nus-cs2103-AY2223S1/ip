@@ -6,12 +6,16 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Storage {
-    private static final String FILE_LOCATION = "./data/TaskFile.txt";
+    private String fileLocation;
     private static final int ISDONE_MARKER = 4;
     private static final int DESC_MARKER = 8;
 
-    public static ArrayList<Task> loadTaskFile() {
-        File taskFile = new File(FILE_LOCATION);
+    public Storage(String filePath) {
+        this.fileLocation = filePath;
+    }
+
+    public ArrayList<Task> loadTaskFile() {
+        File taskFile = new File(fileLocation);
         ArrayList<Task> tasks = new ArrayList<Task>();
 
         if (!taskFile.exists()) {
@@ -54,15 +58,16 @@ public class Storage {
             }
             sc.close();
         } catch (FileNotFoundException e) {
-            BotResponse.separationLine();
+            Ui.separationLine();
             System.out.println(e.getMessage());
         }
         return tasks;
     }
 
-    public static void saveTaskFile(ArrayList<Task> tasks) {
+    public void saveTaskFile(TaskList taskList) {
+        ArrayList<Task> tasks = taskList.getTasks();
         try {
-            FileWriter taskFile = new FileWriter(FILE_LOCATION);
+            FileWriter taskFile = new FileWriter(fileLocation);
             String textToSave = " ";
             for (int i = 0; i < tasks.size(); i++) {
                 textToSave += tasks.get(i).toStringData() + "\n";
