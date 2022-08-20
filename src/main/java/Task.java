@@ -1,18 +1,20 @@
+import java.time.LocalDateTime;
+
 public class Task {
     protected String description;
-    protected String modifier;
     protected boolean isDone;
     private final Commands type;
+    private final LocalDateTime date;
 
-    public Task(String description, String modifier, Commands type) {
-        this(description, modifier, type, false);
+    public Task(Commands type, String description, LocalDateTime date) {
+        this(type, description, date, false);
     }
 
-    public Task(String description, String modifier, Commands type, boolean isDone) {
-        this.description = description;
-        this.modifier = modifier;
-        this.isDone = isDone;
+    public Task(Commands type, String description, LocalDateTime date, boolean isDone) {
         this.type = type;
+        this.description = description;
+        this.date = date;
+        this.isDone = false;
     }
 
     public String getStatusIcon() {
@@ -30,10 +32,10 @@ public class Task {
             return "[T]" + getStatusIcon() + " " + description;
         case DEADLINE:
             return "[D]" + getStatusIcon() + " " + description + " (by: "
-                   + modifier + ")";
+                   + date.toString().replace("T", " ") + ")";
         default:
             return "[E]" + getStatusIcon() + " " + description + " (at: "
-                   + modifier + ")";
+                   + date.toString().replace("T", " ") + ")";
         }
     }
 
@@ -43,10 +45,10 @@ public class Task {
             return "T | " + (isDone ? 1 : 0) + " | " + description;
         case DEADLINE:
             return "D | " + (isDone ? 1 : 0) + " | " + description + " | (by: "
-                   + modifier + ")";
+                   + date.toString().replace("T", " ") + ")";
         default:
-            return "E | " + (isDone ? 1 : 0) + " | " + description + " | (at: "
-                   + modifier + ")";
+            return "[E]" + getStatusIcon() + " " + description + " (at: "
+                   + date.toString().replace("T", " ") + ")";
         }
     }
 }

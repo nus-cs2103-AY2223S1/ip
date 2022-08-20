@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -64,12 +66,15 @@ public class Henry {
         while (s.hasNextLine()) {
             String line = s.nextLine();
             String[] tokens = line.split("\\|");
-            String description;
-            String modifier = "";
-            String prefix;
-            boolean isComplete;
             Commands type;
+            String description;
+            LocalDateTime date = null;
+            boolean isComplete;
+
+            String prefix;
+            String cleaned;
             prefix = tokens[0].trim();
+
             switch (prefix) {
             case "T":
                 type = Commands.TODO;
@@ -80,18 +85,34 @@ public class Henry {
                 type = Commands.DEADLINE;
                 isComplete = tokens[1].trim().equals("1");
                 description = tokens[2].trim();
-                modifier = tokens[3].trim();
+                cleaned = tokens[3].replace("(by:", "").replace(")", "").trim();
+                date = parseDateTimeFromFile(cleaned.split(" ")[0], cleaned.split(" ")[1]);
                 break;
             default:
                 type = Commands.EVENT;
                 isComplete = tokens[1].trim().equals("1");
                 description = tokens[2].trim();
-                modifier = tokens[3].trim();
+                cleaned = tokens[3].replace("(by:", "").replace(")", "").trim();
+                date = parseDateTimeFromFile(cleaned.split(" ")[0], cleaned.split(" ")[1]);
                 break;
             }
-            tasks.add(new Task(description, modifier, type, isComplete));
+            tasks.add(new Task(type, description, date, isComplete));
         }
         return tasks;
+    }
+
+    private LocalDateTime parseDateTimeFromFile(String date, String time) {
+        String[] tokens = date.split("-");
+        String[] timeTokens = time.split(":");
+        return LocalDate.of(Integer.parseInt(tokens[0]), Integer.parseInt(tokens[1]), Integer.parseInt(tokens[2]))
+                        .atTime(Integer.parseInt(timeTokens[0]), Integer.parseInt(timeTokens[1]));
+    }
+
+    private LocalDateTime parseDateTime(String date, String time) {
+        String[] tokens = date.split("-");
+        String[] timeTokens = time.split(":");
+        return LocalDate.of(Integer.parseInt(tokens[2]), Integer.parseInt(tokens[1]), Integer.parseInt(tokens[0]))
+                        .atTime(Integer.parseInt(timeTokens[0]), Integer.parseInt(timeTokens[1]));
     }
 
     public boolean isActivated() {
@@ -149,9 +170,9 @@ public class Henry {
                 break;
             }
         } catch (IndexOutOfBoundsException e5) {
-            output("NO SUCH TASK");
+            output("COMMAND SYNTAX ERROR");
         } catch (NumberFormatException e6) {
-            output("INVALID TASK INDEX. PLEASE ENTER A NUMBER");
+            output("COMMAND HAS THE WRONG FORMAT! USE DD-MM-YYYY HH:MM FORMAT");
         } catch (IOException e7) {
             output("FILE NOT FOUND");
         }
@@ -186,19 +207,27 @@ public class Henry {
 
     public void handleAddTask(String command) throws ImproperCommandSyntaxException, IOException {
         Task task;
-        if (command.matches("deadline (.+) /by (.+)")) {
+        if (command.matches("deadline (.+) /at (\\d){1,3}-(\\d){1,3}-(\\d){4} (\\d){2}:(\\d){2}")) {
             int indexSlash = command.indexOf('/');
             String description = command.substring(0, indexSlash).replace("deadline", "").trim();
             String modifier = command.substring(indexSlash + 1).replace("by", "").trim();
-            task = new Task(description, modifier, Commands.DEADLINE);
-        } else if (command.matches("event (.+) /at (.+)")) {
+            String date = modifier.split(" ")[0];
+            String time = modifier.split(" ")[1];
+            LocalDateTime parsed = parseDateTime(date, time);
+            task = new Task(Commands.DEADLINE, description, parsed);
+        } else if (command.matches("event (.+) /at (\\d){1,3}-(\\d){1,3}-(\\d){4} (\\d){2}:(\\d){2}")) {
             int indexSlash = command.indexOf('/');
             String description = command.substring(0, indexSlash).replace("event", "").trim();
             String modifier = command.substring(indexSlash + 1).replace("at", "").trim();
-            task = new Task(description, modifier, Commands.EVENT);
+            String date = modifier.split(" ")[0];
+            String time = modifier.split(" ")[1];
+            System.out.println(date);
+            System.out.println(time);
+            LocalDateTime parsed = parseDateTime(date, time);
+            task = new Task(Commands.EVENT, description, parsed);
         } else if (command.matches("todo (.+)")) {
             String description = command.replace("todo", "").trim();
-            task = new Task(description, "", Commands.TODO);
+            task = new Task(Commands.TODO, description, null);
         } else {
             throw new ImproperCommandSyntaxException();
         }
