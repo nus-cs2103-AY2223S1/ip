@@ -1,4 +1,4 @@
-public class Task {
+abstract class Task {
     protected String description;
     protected boolean isDone;
 
@@ -11,21 +11,21 @@ public class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
-    public void mark() throws BlinkException{
+    public String mark() throws BlinkException{
         if (this.isDone) {
             throw new BlinkException("This task has already been done :|");
         } else {
             this.isDone = true;
-            System.out.println("Mission complete! Nice ah\n" + this);
+            return "Mission complete! Nice ah\n" + this;
         }
     }
 
-    public void unMark() throws BlinkException{
+    public String unMark() throws BlinkException{
         if (!this.isDone) {
             throw new BlinkException("An unfinished task cannot be unmark...");
         } else {
             this.isDone = false;
-            System.out.println("Looks like there is more work to do\n" + this);
+            return "Looks like there is more work to do\n" + this;
         }
     }
 
@@ -33,4 +33,6 @@ public class Task {
     public String toString() {
         return "[" + this.getStatusIcon() + "] " + this.description;
     }
+
+    abstract String saveString();
 }
