@@ -29,8 +29,7 @@ public class Deadline extends Task {
      */
     public String toFileFormat() {
         return "deadline" + "|"
-                + this.isDone + "|"
-                + this.description + "|"
+                + super.toFileFormat() + "|"
                 + this.by;
     }
 }

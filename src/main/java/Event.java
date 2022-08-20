@@ -29,8 +29,7 @@ public class Event extends Task {
      */
     public String toFileFormat() {
         return "event" + "|"
-                    + this.isDone + "|"
-                    + this.description + "|"
+                    + super.toFileFormat() + "|"
                     + this.at;
     }
 }

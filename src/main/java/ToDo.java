@@ -21,9 +21,7 @@ public class ToDo extends Task {
      * @return "todo|[COMPLETION STATUS]|[TASK DESCRIPTION]|"
      */
     public String toFileFormat() {
-        return "todo" + "|"
-                + this.isDone + "|"
-                + this.description;
+        return "todo" + "|" + super.toFileFormat();
     }
 
 }
