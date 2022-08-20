@@ -1,10 +1,12 @@
+package duke.exception;
+
 public class DukeException extends Exception {
 
-  DukeException() {
+  public DukeException() {
     super("Sorry, something went wrong!");
   }
 
-  DukeException(String message) {
+  public DukeException(String message) {
     super(message);
   }
 }

@@ -1,33 +1,35 @@
+package duke.task;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
-public class Deadline extends Task {
+public class Event extends Task {
 
-  public static final String SYMBOL = "D";
+  public static final String SYMBOL = "E";
 
   private final LocalDate date;
 
-  Deadline(String title, boolean status, String date)
+  public Event(String title, boolean status, String date)
     throws DateTimeParseException {
     super(title, status);
     this.date = LocalDate.parse(date);
   }
 
   @Override
-  String saveString() {
+  public String encode() {
     return (
       SYMBOL +
       " | " +
       (this.status ? "1" : "0") +
       " | " +
       this.title +
-      " /by " +
+      " | " +
       this.date
     );
   }
 
   @Override
   public String toString() {
-    return "[D]" + super.toString() + " (by: " + this.date + ")";
+    return "[E]" + super.toString() + " (at: " + this.date + ")";
   }
 }
