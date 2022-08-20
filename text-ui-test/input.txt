@@ -1,6 +1,6 @@
 todo go buy dinner
-deadline do homework /by Sunday
-event meeting /at 10-12pm Monday
+deadline do homework /by 2/12/2019 1800
+event meeting /at 2019-10-15
 list
 mark 2
 unmark 2

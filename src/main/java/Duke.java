@@ -1,10 +1,14 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
     private static int index = 0;
-    private static ArrayList<Task> arr = new ArrayList<>();
-    private static Scanner sc = new Scanner(System.in);
+    private static final ArrayList<Task> arr = new ArrayList<>();
+    private static final Scanner sc = new Scanner(System.in);
 
     enum TaskType {
         TODO,
@@ -26,6 +30,39 @@ public class Duke {
         printGoodbye();
     }
 
+    private static LocalDateTime processDateTime(String str) throws DukeException {
+        String[] dateTimeFormat = {
+                "yyyy/MM/dd HHmm",
+                "yyyy-MM-dd HHmm",
+                "dd/MM/yyyy HHmm",
+                "d/MM/yyyy HHmm",
+                "d/M/yyyy HHmm",
+        };
+        String[] dateFormat = {
+                "yyyy/MM/dd",
+                "yyyy-MM-dd",
+                "yyyy-MM-d",
+                "yyyy-M-dd",
+                "yyyy-M-d",
+                "dd/MM/yyyy",
+                "d/MM/yyyy",
+                "d/M/yyyy",
+        };
+        for (String format : dateTimeFormat) {
+            try {
+                return LocalDateTime.parse(str, DateTimeFormatter.ofPattern(format));
+            } catch (DateTimeParseException ignored) {
+            }
+        }
+        for (String format : dateFormat) {
+            try {
+                LocalDate date = LocalDate.parse(str, DateTimeFormatter.ofPattern(format));
+                return date.atStartOfDay();
+            } catch (DateTimeParseException ignored) {
+            }
+        }
+        throw new DukeException("Please specify the date and time in YYYY-MM-DD TTTT format.");
+    }
     private static void processInput(String str) throws DukeException {
         String[] splitStr = str.split(" ", 2);
         switch (splitStr[0]) {
@@ -111,7 +148,8 @@ public class Duke {
                 if (strDeadline.length < 2 || strDeadline[1].equals("")) {
                     throw new DukeException("Please also specify the date and time.");
                 }
-                arr.add(new Deadline(strDeadline[0].trim(), strDeadline[1].trim()));
+                LocalDateTime deadlineDateTime = processDateTime(strDeadline[1].trim());
+                arr.add(new Deadline(strDeadline[0].trim(), deadlineDateTime));
                 index++;
                 printMessage("Got it. I've added this task:\n       " + arr.get(index - 1)
                         + "\n     Now you have " + index + " tasks in the list.");
@@ -121,7 +159,8 @@ public class Duke {
                 if (strEvent.length < 2 || strEvent[1].equals("")) {
                     throw new DukeException("Please also specify the date and time.");
                 }
-                arr.add(new Event(strEvent[0].trim(), strEvent[1].trim()));
+                LocalDateTime eventDateTime = processDateTime(strEvent[1].trim());
+                arr.add(new Event(strEvent[0].trim(), eventDateTime));
                 index++;
                 printMessage("Got it. I've added this task:\n       " + arr.get(index - 1)
                         + "\n     Now you have " + index + " tasks in the list.");
