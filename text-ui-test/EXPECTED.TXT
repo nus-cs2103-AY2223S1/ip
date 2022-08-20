@@ -64,31 +64,31 @@
      5.[D][ ] cs2109s ps0 (by: the coming Sun 2359)
     ____________________________________________________________
     ____________________________________________________________
-     ☹ OOPS!!! I'm sorry, but I don't know what that means :-(
+     OOPS!!! The description of an event cannot be empty.
     ____________________________________________________________
     ____________________________________________________________
-     ☹ OOPS!!! I'm sorry, but I don't know what that means :-(
+     OOPS!!! I'm sorry, but I don't know what that means :-(
     ____________________________________________________________
     ____________________________________________________________
-     ☹ OOPS!!! You did not give an integer for the task number :-(
+     OOPS!!! You did not give an integer for the task number :-(
     ____________________________________________________________
     ____________________________________________________________
-     ☹ OOPS!!! The index number is out of bounds :-(
+     OOPS!!! The index number is out of bounds :-(
     ____________________________________________________________
     ____________________________________________________________
-     ☹ OOPS!!! The formatting of the deadline message is wrong.
+     OOPS!!! The formatting of the deadline message is wrong.
     ____________________________________________________________
     ____________________________________________________________
-     ☹ OOPS!!! The formatting of the event message is wrong.
+     OOPS!!! The formatting of the event message is wrong.
     ____________________________________________________________
     ____________________________________________________________
-     ☹ OOPS!!! The description of a todo cannot be empty.
+     OOPS!!! The description of a todo cannot be empty.
     ____________________________________________________________
     ____________________________________________________________
-     ☹ OOPS!!! The index number is out of bounds :-(
+     OOPS!!! The index number is out of bounds :-(
     ____________________________________________________________
     ____________________________________________________________
-     ☹ OOPS!!! I'm sorry, but I don't know what that means :-(
+     OOPS!!! The description of an event cannot be empty.
     ____________________________________________________________
     ____________________________________________________________
      Noted. I've removed the task:
