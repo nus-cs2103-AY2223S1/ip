@@ -40,6 +40,18 @@ public class ParserTest {
     }
 
     @Test
+    public void testFind() {
+        try {
+            assertEquals(false, Parser.parse("find").isExit());
+            assertEquals(false, Parser.parse("find read").isExit());
+            assertTrue(Parser.parse("find") instanceof FindCommand);
+            assertTrue(Parser.parse("find read") instanceof FindCommand);
+        } catch (Exception exception) {
+            fail();
+        }
+    }
+
+    @Test
     public void testMark() {
         try {
             assertEquals(false, Parser.parse("mark").isExit());

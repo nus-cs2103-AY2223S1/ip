@@ -77,6 +77,10 @@ public class TaskListTest {
         assertEquals(arrayList, taskList.getTasks());
         assertEquals("1. [T][X] todo\n2. [D][X] deadline (by: Dec 12, 2022)\n3. [E][ ] event (at: Dec 12, 2012)\n", taskList.toString());
 
+        assertEquals("1. [T][X] todo\n2. [D][X] deadline (by: Dec 12, 2022)\n", taskList.filter(x -> x.getStatusIcon() == 'X').toString());
+        assertEquals("1. [D][X] deadline (by: Dec 12, 2022)\n2. [E][ ] event (at: Dec 12, 2012)\n", taskList.filter(x -> x.getTaskTypeIcon() != 'T').toString());
+        assertEquals("1. [T][X] todo\n2. [D][X] deadline (by: Dec 12, 2022)\n", taskList.filter(x -> x.getDescription().contains("d")).toString());
+
         try {
             taskList.deleteItem(1);
         } catch (Exception exception) {

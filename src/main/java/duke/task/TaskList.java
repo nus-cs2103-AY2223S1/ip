@@ -3,6 +3,8 @@ package duke.task;
 import duke.common.DukeException;
 
 import java.util.ArrayList;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class TaskList {
     private ArrayList<Task> tasks;
@@ -21,6 +23,10 @@ public class TaskList {
 
     public ArrayList<Task> getTasks() {
         return tasks;
+    }
+
+    public TaskList filter(Predicate<Task> predicate) {
+        return new TaskList(tasks.stream().filter(predicate).collect(Collectors.toCollection(ArrayList::new)));
     }
 
     public void addItem(Task item) {
