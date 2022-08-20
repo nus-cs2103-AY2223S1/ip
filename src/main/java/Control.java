@@ -67,7 +67,7 @@ public class Control {
 
         public void evaltodo(String[] subCmd) {
             String tmp = String.join(" ", subCmd);
-            Task tmpTask = new Task(tmp);
+            Todo tmpTask = new Todo(tmp);
 
             this.dir.add(tmpTask);
             System.out.println(String.format("Got it. I've added this task:\n\t%s\n" +
