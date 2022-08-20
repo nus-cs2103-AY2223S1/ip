@@ -1,20 +1,27 @@
+import java.io.FileWriter;
 import java.sql.SQLSyntaxErrorException;
 import java.util.ArrayList;
 import java.util.ListIterator;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Duke {
     private static ArrayList<Task> all = new ArrayList<>();
     private static int count = 0;
+    private static String filePath = "data/duke.txt";
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-//        String logo = " ____        _        \n"
-//                + "|  _ \\ _   _| | _____ \n"
-//                + "| | | | | | | |/ / _ \\\n"
-//                + "| |_| | |_| |   <  __/\n"
-//                + "|____/ \\__,_|_|\\_\\___|\n";
-//        System.out.println("Hello from\n" + logo);
+
+        try {
+            loadData();
+        } catch (FileNotFoundException e) {
+            System.out.println("data file not found! create a text file duke.txt under folder data and try again!");
+        }
+
         System.out.println("Hello! I am Duke");
         System.out.println("What can I do for you?");
 
@@ -52,7 +59,56 @@ public class Duke {
             } else {
                 store(s);
             }
+
+            try {
+                saveData();
+            } catch (FileNotFoundException e) {
+                System.out.println("data file not found! create a text file duke.txt under folder data and try again!");
+            }
         }
+    }
+
+    private static void loadData() throws FileNotFoundException {
+        File f = new File(filePath);
+        Scanner sc = new Scanner(f);
+
+        while (sc.hasNext()) {
+            String s = sc.nextLine();
+            char type = s.charAt(1);
+            boolean isDone = s.charAt(4) == 'X';
+            String des = s.substring(7);
+            Task newTask;
+
+            if (type == 'T') {
+                newTask = new Todo(des);
+            } else if (type == 'D') {
+                int i = des.indexOf('(');
+                newTask = new Deadline(des.substring(0, i - 1), des.substring(i + 5));
+            } else if (type == 'E') {
+                int i = des.indexOf('(');
+                newTask = new Event(des.substring(0, i - 1), des.substring(i + 5));
+            } else {
+                newTask = null;
+            }
+            System.out.println(newTask);
+            all.add(newTask);
+            count += 1;
+        }
+    }
+
+    private static void saveData() throws FileNotFoundException {
+        try {
+            FileWriter fw = new FileWriter(filePath);
+            String s = "";
+            for (int i = 0; i < all.size(); i++) {
+                s += all.get(i).toString() + "\n";
+            }
+            fw.write(s);
+            fw.close();
+        } catch (IOException e) {
+            System.out.println("Something went wrong: " + e.getMessage());
+        }
+
     }
 
     private static void bye() {
