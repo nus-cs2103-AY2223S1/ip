@@ -3,12 +3,6 @@ import java.util.Scanner;
 public class Duke {
 
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
 
         Scanner sc = new Scanner(System.in);
         System.out.println("Hello! I'm Duke\n" + "What can I do for you?");
@@ -18,17 +12,25 @@ public class Duke {
 
         while (hasnext) {
             String message = sc.nextLine();
-            list.addList(message);
 
-            switch (message) {
+            String[] tempMsg = message.split(" ");
+
+            switch (tempMsg[0]) {
+                case "mark" :
+                    list.dir.get(Integer.parseInt(tempMsg[1]) - 1).mark();
+                    break;
+                case "unmark" :
+                    list.dir.get(Integer.parseInt(tempMsg[1]) - 1).unmark();
+                    break;
                 case "bye" :
                     hasnext = false;
                     System.out.println("Bye. Hope to see you again soon!\n");
                     break;
                 case "list" :
-                    System.out.println(list.listOut());
+                    System.out.println(list);
                     break;
                 default :
+                    list.addDir(message);
                     System.out.println(String.format("added: %s\n", message));
             }
         }
