@@ -31,6 +31,7 @@ public class UserInputHistory {
         try {
             createIfDoesntExist();
             Task newTask = new Task(s);
+            appendToFile(newTask.toString() + "\n");
             userInputHistory.add(newTask);
             //echo request
             System.out.printf("Noted down: %s\n There are %d items on your list now. \n", s, userInputHistory.size());
@@ -46,11 +47,17 @@ public class UserInputHistory {
      * @param at
      */
     public void addEventToHistory(String description, String at) {
-        Event newEvent = new Event(description, at);
-        userInputHistory.add(newEvent);
-        //echo request
-        System.out.printf("Noted down: %s\n There are %d items on your list now. \n", description, userInputHistory.size());
-        System.out.print(">>");
+        try {
+            createIfDoesntExist();
+            Event newEvent = new Event(description, at);
+            appendToFile(newEvent.toString() + "\n");
+            userInputHistory.add(newEvent);
+            //echo request
+            System.out.printf("Noted down: %s\n There are %d items on your list now. \n", description, userInputHistory.size());
+            System.out.print(">>");
+        } catch (IOException e) {
+            System.out.println("IOException: " + e);
+        }
     }
 
     /**
@@ -59,11 +66,17 @@ public class UserInputHistory {
      * @param by
      */
     public void addDeadlineToHistory(String description, String by) {
-        Deadline newDeadline = new Deadline(description, by);
-        userInputHistory.add(newDeadline);
-        //echo request
-        System.out.printf("Noted down: %s\n There are %d items on your list now. \n", description, userInputHistory.size());
-        System.out.print(">>");
+        try {
+            createIfDoesntExist();
+            Deadline newDeadline = new Deadline(description, by);
+            appendToFile(newDeadline.toString() + "\n");
+            userInputHistory.add(newDeadline);
+            //echo request
+            System.out.printf("Noted down: %s\n There are %d items on your list now. \n", description, userInputHistory.size());
+            System.out.print(">>");
+        } catch (IOException e) {
+            System.out.println("IOException: " + e);
+        }
     }
 
     /**
