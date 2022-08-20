@@ -3,6 +3,7 @@
  */
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.time.LocalDate;
 
 /**
  * Main class that runs chat bot Duke.
@@ -23,7 +24,7 @@ public class Duke {
         Scanner scan = new Scanner(System.in);
         printMsg(initText);
         TaskList ls = new TaskList();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MM yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(" d/MM/uuuu");
 
         while (true) {
             System.out.println("Say something: ");
@@ -99,15 +100,19 @@ public class Duke {
                             break;
 
                         case TODO:
-                            printMsg(ls.addTask(new Task(com[1], "[T]")));
+                            printMsg(ls.addTask(new Todo(com[1])));
                             break;
 
                         case DEADLINE:
-                            printMsg(ls.addTask(new Task(com[1], "[D]")));
+                            String[] parse = com[1].split("/by", 2);
+                            LocalDate localDate = LocalDate.parse(parse[1], formatter);
+                            printMsg(ls.addTask(new Deadline(parse[0], localDate)));
                             break;
 
                         case EVENT:
-                            printMsg(ls.addTask(new Task(com[1], "[E]")));
+                            String[] parse1 = com[1].split("/at", 2);
+                            LocalDate localDate1 = LocalDate.parse(parse1[1], formatter);
+                            printMsg(ls.addTask(new Event(parse1[0], localDate1)));
                             break;
 
                         case DELETE:
