@@ -37,4 +37,8 @@ public abstract class Task {
         return this.getStatusIcon() + " " + this.desc;
     }
 
+    public String toStorageString() {
+        return String.format("%s / %s", this.desc, this.isDone);
+    }
+
 }

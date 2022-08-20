@@ -4,7 +4,10 @@ REM create bin directory if it doesn't exist
 if not exist ..\bin mkdir ..\bin
 
 REM delete output from previous run
-if exist ACTUAL.TXT del ACTUAL.TXT
+if exist ACTUAL.txt del ACTUAL.txt
+
+REM delete savefile from previous run
+if exist data\save.txt del data\save.txt
 
 REM compile the code into the bin folder
 javac -cp ..\src\main\java -Xlint:none -d ..\bin -encoding utf8 ..\src\main\java\*.java

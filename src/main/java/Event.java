@@ -24,4 +24,9 @@ public class Event extends Task {
         return String.format("[E]%s (at: %s)", super.toString(), this.timeRange);
     }
 
+    @Override
+    public String toStorageString() {
+        return String.format("%s / E / %s", super.toStorageString(), this.timeRange);
+    }
+
 }

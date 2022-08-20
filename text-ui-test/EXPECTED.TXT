@@ -1,3 +1,6 @@
+Loading save file.....
+Uh-oh ☹! No save file found. A new save file is generated.
+
 Hello! I'm TedBot ヾ(≧▽≦*)o
 What do you want to do today?
 Here are your tasks that I have recorded:
