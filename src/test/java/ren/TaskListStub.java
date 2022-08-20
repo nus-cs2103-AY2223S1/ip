@@ -1,6 +1,12 @@
 package ren;
 
+/**
+ * Stub for TaskList.
+ */
 public class TaskListStub extends TaskList {
+    /**
+     * Constructor for a TaskListStub.
+     */
     public TaskListStub() {
         super(new Storage("data/list_test.txt"));
     }
