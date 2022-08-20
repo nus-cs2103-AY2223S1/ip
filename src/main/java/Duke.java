@@ -1,10 +1,14 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
     private static int index = 0;
-    private static ArrayList<Task> arr = new ArrayList<>();
-    private static Scanner sc = new Scanner(System.in);
+    private static final ArrayList<Task> tasks = new ArrayList<>();
+    private static final Scanner sc = new Scanner(System.in);
 
     enum TaskType {
         TODO,
@@ -14,7 +18,9 @@ public class Duke {
 
     public static void main(String[] args) {
         printGreetings();
+        loadData();
         String str = sc.nextLine().trim();
+
         while(!str.equals("bye")) {
             try {
                 processInput(str);
@@ -23,7 +29,88 @@ public class Duke {
             }
             str = sc.nextLine().trim();
         }
+
+        saveData();
         printGoodbye();
+    }
+
+    private static void loadData() {
+        if (createDukeTextFile()) {
+            try {
+                File dukeFile = new File("data/duke.txt");
+                Scanner myReader = new Scanner(dukeFile);
+                while (myReader.hasNextLine()) {
+                    String data = myReader.nextLine();
+                    char taskType = data.charAt(0);
+                    switch (taskType) {
+                        case 'T':
+                            String[] todoSplit = data.split(" // ", 3);
+                            Task todo = new Todo(todoSplit[2]);
+                            if (todoSplit[1].equals("X")) {
+                                todo.markAsDone();
+                            }
+                            tasks.add(todo);
+                            index++;
+                            break;
+                        case 'D':
+                            String[] deadlineSplit = data.split(" // ", 4);
+                            Task deadline = new Deadline(deadlineSplit[2], deadlineSplit[3]);
+                            if (deadlineSplit[1].equals("X")) {
+                                deadline.markAsDone();
+                            }
+                            tasks.add(deadline);
+                            index++;
+                            break;
+                        case 'E':
+                            String[] eventSplit = data.split(" // ", 4);
+                            Task event = new Event(eventSplit[2], eventSplit[3]);
+                            if (eventSplit[1].equals("X")) {
+                                event.markAsDone();
+                            }
+                            tasks.add(event);
+                            index++;
+                            break;
+                        default:
+                            printMessage("Something is wrong with the text file.");
+                    }
+                }
+                myReader.close();
+            } catch (FileNotFoundException e) {
+                printMessage("An error occurred.");
+            }
+        }
+    }
+
+    private static void saveData() {
+        try {
+            FileWriter writer = new FileWriter("data/duke.txt");
+            writer.write("");
+            for (Task task : tasks) {
+                writer.append(task.getDataFormat()).append("\n");
+            }
+            writer.close();
+        } catch (IOException e) {
+            printMessage("An error occurred.");
+        }
+    }
+
+    private static boolean createDukeTextFile() {
+        boolean isAlreadyCreated = false;
+        File dataFolder = new File("data");
+        File dukeFile = new File("data/duke.txt");
+        try {
+            if (dataFolder.mkdirs()) {
+                printMessage("data folder created");
+            }
+            if (dukeFile.createNewFile()) {
+                printMessage("File created: " + dukeFile.getName());
+            } else {
+                isAlreadyCreated = true;
+            }
+        } catch (IOException e) {
+            printMessage("An error occurred.");
+        }
+        return isAlreadyCreated;
     }
 
     private static void processInput(String str) throws DukeException {
@@ -71,8 +158,8 @@ public class Duke {
         if (markNo > index) {
             throw new DukeException("There are not that many tasks!");
         }
-        arr.get(markNo - 1).markAsDone();
-        printMessage("Nice! I've marked this task as done:\n       " + arr.get(markNo - 1));
+        tasks.get(markNo - 1).markAsDone();
+        printMessage("Nice! I've marked this task as done:\n       " + tasks.get(markNo - 1));
     }
 
     private static void unmark(String[] splitStr) throws DukeException {
@@ -91,8 +178,8 @@ public class Duke {
         if (unmarkNo > index) {
             throw new DukeException("There are not that many tasks!");
         }
-        arr.get(unmarkNo - 1).markAsUnDone();
-        printMessage("Nice! I've marked this task as not done yet:\n       " + arr.get(unmarkNo - 1));
+        tasks.get(unmarkNo - 1).markAsUnDone();
+        printMessage("Nice! I've marked this task as not done yet:\n       " + tasks.get(unmarkNo - 1));
     }
 
     private static void addTask(String[] splitStr, TaskType type) throws DukeException {
@@ -101,9 +188,9 @@ public class Duke {
         }
         switch (type) {
             case TODO:
-                arr.add(new Todo(splitStr[1]));
+                tasks.add(new Todo(splitStr[1]));
                 index++;
-                printMessage("Got it. I've added this task:\n       " + arr.get(index - 1)
+                printMessage("Got it. I've added this task:\n       " + tasks.get(index - 1)
                         + "\n     Now you have " + index + " tasks in the list");
                 break;
             case DEADLINE:
@@ -111,9 +198,9 @@ public class Duke {
                 if (strDeadline.length < 2 || strDeadline[1].equals("")) {
                     throw new DukeException("Please also specify the date and time.");
                 }
-                arr.add(new Deadline(strDeadline[0].trim(), strDeadline[1].trim()));
+                tasks.add(new Deadline(strDeadline[0].trim(), strDeadline[1].trim()));
                 index++;
-                printMessage("Got it. I've added this task:\n       " + arr.get(index - 1)
+                printMessage("Got it. I've added this task:\n       " + tasks.get(index - 1)
                         + "\n     Now you have " + index + " tasks in the list.");
                 break;
             case EVENT:
@@ -121,9 +208,9 @@ public class Duke {
                 if (strEvent.length < 2 || strEvent[1].equals("")) {
                     throw new DukeException("Please also specify the date and time.");
                 }
-                arr.add(new Event(strEvent[0].trim(), strEvent[1].trim()));
+                tasks.add(new Event(strEvent[0].trim(), strEvent[1].trim()));
                 index++;
-                printMessage("Got it. I've added this task:\n       " + arr.get(index - 1)
+                printMessage("Got it. I've added this task:\n       " + tasks.get(index - 1)
                         + "\n     Now you have " + index + " tasks in the list.");
                 break;
             default:
@@ -148,9 +235,9 @@ public class Duke {
             throw new DukeException("There are not that many tasks!");
         }
         index--;
-        printMessage("Noted. I've removed this task:\n       " + arr.get(deleteNo - 1)
+        printMessage("Noted. I've removed this task:\n       " + tasks.get(deleteNo - 1)
                 + "\n     Now you have " + index + " tasks in the list.");
-        arr.remove(deleteNo - 1);
+        tasks.remove(deleteNo - 1);
     }
 
     private static void printMessage(String message) {
@@ -172,10 +259,11 @@ public class Duke {
         String line = "    ____________________________________________________________";
         System.out.println(line);
         System.out.println("     Here are the tasks in your list");
-        for (Task t : arr) {
+        for (Task t : tasks) {
             System.out.println("     " + i + "." + t);
             i++;
         }
         System.out.println(line);
     }
+
 }

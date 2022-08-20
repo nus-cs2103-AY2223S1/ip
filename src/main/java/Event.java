@@ -7,6 +7,11 @@ public class Event extends Task{
     }
 
     @Override
+    public String getDataFormat() {
+        return String.format("E // %s // %s // %s", getStatusIcon(), description, at);
+    }
+
+    @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + at + ")";
     }
