@@ -1,3 +1,7 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 abstract class Task {
     private final String description;
     private final char symbol;
@@ -42,16 +46,24 @@ abstract class Task {
     }
 
     private static class DeadlineTask extends Task {
-        private final String deadline;
+        private final LocalDateTime deadline;
+        private static final DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd-MM-yy HHmm");
+        private static final DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("hh:mm a, MMM d, yyyy");
 
         public DeadlineTask(String[] args) {
             super(args[0], 'D');
-            this.deadline = args[1];
+            try {
+                System.out.println(args[1]);
+                this.deadline = LocalDateTime.parse(args[1], inputFormatter);
+            }  catch (DateTimeParseException e) {
+                e.printStackTrace();
+                throw new DukeException("The Date/Time was not understood");
+            }
         }
 
         @Override
         public String toString() {
-            return super.toString() + " (by: " + this.deadline + ")";
+            return super.toString() + " (by: " + deadline.format(outputFormatter) + ")";
         }
 
         @Override
@@ -61,16 +73,22 @@ abstract class Task {
     }
 
     private static class EventTask extends Task {
-        private final String time;
+        private final LocalDateTime time;
+        private static final DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd-MM-yy HHmm");
+        private static final DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("hh:mm a, MMM d, yyyy");
 
         public EventTask(String[] args) {
             super(args[0], 'E');
-            this.time = args[1];
+            try {
+                this.time = LocalDateTime.parse(args[1], inputFormatter);
+            }  catch (DateTimeParseException e) {
+                throw new DukeException("The Date/Time was not understood");
+            }
         }
 
         @Override
         public String toString() {
-            return super.toString() + " (at: " + this.time + ")";
+            return super.toString() + " (at: " + time.format(outputFormatter) + ")";
         }
 
         @Override
