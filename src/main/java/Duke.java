@@ -32,6 +32,12 @@ public class Duke {
                 String task = userInput.substring(7);
                 String s = unmarkDone(task, list);
                 System.out.println(line + s + line);
+            } else if (userInput.startsWith("delete")) {
+                try {
+                    deleteItem(userInput.substring(7), list);
+                } catch (DukeException e) {
+                    System.out.println(line + e.getMessage() + "\n" + line);
+                }
             } else {
                 try {
                     addTask(userInput, list);
@@ -75,12 +81,23 @@ public class Duke {
         String line = " _______________________________________ \n";
         if (!userInput.startsWith("todo") && !userInput.startsWith("deadline") && !userInput.startsWith("event")) {
             throw new DukeException("sowwie idk what this means.");
-        } else if (userInput.substring(userInput.indexOf(" ") + 1).length() == 0) {
+        } else if (!userInput.contains(" ") || userInput.substring(userInput.indexOf(" ")).trim().isEmpty()) {
             throw new DukeException("the description of a task cannot be empty.");
         }
         Task t = new Task(userInput.substring(userInput.indexOf(" ") + 1),
                 userInput.substring(0, userInput.indexOf(" ")).toUpperCase(), false);
         ls.add(t);
         System.out.println(line + " okie! i've added: \n " + t + "\n now you have " + ls.size() + " task(s) in your list!\n" + line);
+    }
+
+    public static void deleteItem(String userInput, ArrayList<Task> ls) throws DukeException {
+        String line = " _______________________________________ \n";
+        int index = Integer.parseInt(userInput.trim());
+        if (index <= 0 || index > ls.size()) {
+            throw new DukeException("sowwie this item is not found. enter a valid index number from list please!");
+        }
+        Task taskRemoved = ls.get(index - 1);
+        ls.remove(index - 1);
+        System.out.println(line + " okie! i've removed: \n " + taskRemoved + "\n now you have " + ls.size() + " task(s) in your list!\n" + line);
     }
 }
