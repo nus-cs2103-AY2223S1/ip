@@ -109,8 +109,8 @@ public class Duke {
         switch(command) {
         case "deadline": {
             if ((userInput.indexOf(" ") != 8) ||
-                    (userInput.indexOf("/by") <= 9)) {
-                // Should have a " " delimiter followed by "/by"
+                    (userInput.indexOf("/by ") <= 9)) {
+                // Should have a " " delimiter followed by "/by:"
                 throw new DukeException("Wrong format! To add a new " +
                         "deadline, please enter the following:\n" +
                         "   deadline [TASK DESCRIPTION] /by [DUE DATE]\n");
@@ -120,10 +120,10 @@ public class Duke {
 
         case "event": {
             if ((userInput.indexOf(" ") != 5) ||
-                    (userInput.indexOf("/at") <= 6)) {
+                    (userInput.indexOf("/at ") <= 6)) {
                 // Should have a " " delimiter followed by "/at"
                 throw new DukeException("Wrong format! To add a new " +
-                          "event, please enter the following:\n" +
+                        "event, please enter the following:\n" +
                         "   event [TASK DESCRIPTION] /at [VENUE]\n");
             }
             break;
@@ -231,7 +231,7 @@ public class Duke {
         }
         // Call respective 'Consumer' object on input once it has been verified.
         commands.get(command).accept(userInput);
-    }
+        }
 
     /**
      * Method to write `taskList` to text file.
