@@ -54,22 +54,9 @@ public class TaskList {
         return task;
     }
 
-    public ToDo addToDo(String description) {
-        ToDo todo = new ToDo(description);
-        this.addToTasks(todo);
-        return todo;
-    }
-
-    public Deadline addDeadline(String description, LocalDate by) {
-        Deadline deadline = new Deadline(description, by);
-        this.addToTasks(deadline);
-        return deadline;
-    }
-
-    public Event addEvent(String description, LocalDate at) {
-        Event event = new Event(description, at);
-        this.addToTasks(event);
-        return event;
+    public Task addTasks(Task task) {
+        this.tasks.add(task);
+        return task;
     }
 
     @Override
@@ -79,9 +66,5 @@ public class TaskList {
             result.append(String.format("%d. %s\n", 1 + i, this.tasks.get(i).toString()));
         }
         return result.toString();
-    }
-
-    private void addToTasks(Task task) {
-        this.tasks.add(task);
     }
 }
