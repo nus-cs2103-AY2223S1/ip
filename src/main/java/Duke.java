@@ -8,12 +8,20 @@ public class Duke {
     }
 
     private void startChatBot() {
+        try {
             Scanner sc = new Scanner(System.in);
             System.out.print("Eh hello, my name is Uncle Cheong. \n" +
                     "What you want?\n");
+            TasksReader tasksReader = new TasksReader();
+            tasks = tasksReader.readSavedTasks();
             InputParser inputParser = new InputParser(sc, tasks);
             inputParser.parseInputs();
-            System.out.println("Eh you leaving me so soon?");
+            TasksWriter tasksWriter = new TasksWriter(tasks);
+            tasksWriter.writeToFile();
+        } catch (DukeException e) {
+            System.out.println(e);
+        }
+        System.out.println("Eh you leaving me so soon?");
     }
 
     public static void main(String[] args) {
