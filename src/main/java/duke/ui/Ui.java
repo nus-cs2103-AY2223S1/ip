@@ -6,6 +6,9 @@ import duke.task.Task;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Handles interactions with user through command line.
+ */
 public class Ui {
     private Scanner myObj = new Scanner(System.in);
 
