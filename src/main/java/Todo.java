@@ -4,7 +4,7 @@ public class Todo extends Task {
     }
     @Override
     public String toPrint() {
-        return "T" + super.toPrint();
+        return "[T]" + super.toPrint();
     }
     public String toString() {
         return "[T]" + super.toString();

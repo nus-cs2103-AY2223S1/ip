@@ -26,7 +26,7 @@ public class Dobby {
         return "wrongDateFormat";
     }
     private static String getTask(String s, String task) {
-        
+
         if(task == "todo") {
             return s.substring(5);
         } else {
@@ -116,7 +116,7 @@ public class Dobby {
             DobbyChat.noNumber();
         }
     }
-//    //delete all feature to be added
+    //    //delete all feature to be added
 //    private static void toDelete() {
 //        int listLen = dobbyList.getLength();
 //        for(int i  = 1; i <= listLen; i++) {

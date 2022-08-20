@@ -7,7 +7,7 @@ public class Event extends Task {
     }
     @Override
     public String toPrint() {
-        return "E" + super.toPrint() + " | " + date;
+        return "[E]" + super.toPrint() + " | " + date;
     }
     @Override
     public String toString() {
