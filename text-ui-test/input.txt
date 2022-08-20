@@ -6,4 +6,16 @@ mark 2
 mark 3
 unmark 2
 list
+mark
+unmark
+mark -1
+mark test
+unmark -1
+unmark test
+deadline
+deadline test
+todo
+todo test
+event
+event test
 bye
