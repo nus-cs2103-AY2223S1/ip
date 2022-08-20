@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Event extends Task {
-    private LocalDate localDate;
+    private final LocalDate localDate;
 
     public Event(String description, boolean isDone, LocalDate localDate) throws DukeException {
         super("event", description, isDone);
@@ -15,11 +15,13 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return super.toString() + " (at: " + this.localDate.format(DateTimeFormatter.ofPattern("MMM d, yyyy")) + ")";
+        return super.toString() + " (at: " +
+                this.localDate.format(DateTimeFormatter.ofPattern("MMM d, yyyy")) + ")";
     }
 
     @Override
     public String encode() {
-        return super.encode() + Task.ENCODING_SEPARATOR + this.localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        return super.encode() + Task.ENCODING_SEPARATOR +
+                this.localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 }

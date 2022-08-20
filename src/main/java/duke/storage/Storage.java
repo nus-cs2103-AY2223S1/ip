@@ -1,8 +1,8 @@
 package duke.storage;
 
+import duke.common.DukeException;
 import duke.task.Task;
 import duke.task.TaskList;
-import duke.common.DukeException;
 
 import java.io.File;
 import java.io.PrintWriter;
