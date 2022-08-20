@@ -1,10 +1,12 @@
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
+
+import static java.util.stream.Collectors.toCollection;
 
 public class Duke {
     private static class DukeException extends Exception {
@@ -87,11 +89,12 @@ public class Duke {
         }
         String description = args[0];
         String by = args[1];
+        LocalDate byDate = LocalDate.parse(by);
         if (description.length() == 0) {
             throw new DukeException("Description should not be empty.");
         }
 
-        return new Deadline(description, by);
+        return new Deadline(description, byDate);
     }
 
     public static Event parseEvent(String argsString) throws DukeException {
@@ -104,7 +107,8 @@ public class Duke {
             throw new DukeException("Description should not be empty.");
         }
         String at = args[1];
-        return new Event(description, at);
+        LocalDate atDate = LocalDate.parse(at);
+        return new Event(description, atDate);
 
     }
     public static void addTask(String argsString, TaskType type) throws DukeException {
@@ -234,13 +238,28 @@ public class Duke {
                 dataFolder.mkdir();
             }
             FileWriter fw = new FileWriter("data/duke.txt");
-            for (Task task: taskList) {
+            for (Task task : taskList) {
                 fw.write(task.toFileRepresentation() + System.lineSeparator());
             }
             fw.close();
         } catch (IOException e) {
             throw new DukeException("Where are you running this file? " + e.getMessage());
         }
+    }
+
+    public static void listTasksOn(LocalDate date) {
+        String formattedDate = date.format(DateTimeFormatter.ofPattern("E, d MMM yyyy"));
+        ArrayList<Task> filteredTaskList = taskList.stream().
+                                                   filter(task -> task.isOn(date)).
+                                                   collect(toCollection(ArrayList::new));
+        printLine();
+        printWithIndent(String.format("Here are the tasks on %s:", formattedDate));
+        for (int i = 0; i < filteredTaskList.size(); i++) {
+            Task task =  filteredTaskList.get(i);
+            printWithIndent(i + 1 + ". " + task);
+        }
+        printLine();
+
     }
 
     public static void main(String[] args) {
@@ -285,6 +304,9 @@ public class Duke {
                         break;
                     case "delete":
                         deleteTask(parseInt(argsString));
+                        break;
+                    case "on":
+                        listTasksOn(LocalDate.parse(argsString));
                         break;
                     default:
                         throw new DukeException("I don't know this command!");

@@ -1,9 +1,17 @@
-public class Deadline extends Task {
-    private String by;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
-    public Deadline(String description, String by) {
+
+public class Deadline extends Task {
+    private LocalDate by;
+
+    public Deadline(String description, LocalDate by) {
         super(description);
         this.by = by;
+    }
+
+    public boolean isOn(LocalDate date) {
+        return this.by.equals(date);
     }
 
     @Override
@@ -16,7 +24,7 @@ public class Deadline extends Task {
         boolean isDone = args[1].equals("1");
         String description = args[2];
         String date = args[3];
-        Deadline result = new Deadline(description, date);
+        Deadline result = new Deadline(description, LocalDate.parse(date));
         if (isDone) {
             result.markDone();
         }
@@ -25,6 +33,6 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return String.format("[D] %s (by: %s)", super.toString(), this.by);
+        return String.format("[D] %s (by: %s)", super.toString(), this.by.format(DateTimeFormatter.ofPattern("E, d MMM yyyy")));
     }
 }

@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 public abstract class Task {
     String description;
     private boolean done;
@@ -21,6 +22,10 @@ public abstract class Task {
 
     public static Task fromFileRepresentation(String rep) {
         return null;
+    }
+
+    public boolean isOn(LocalDate date) {
+        return false;
     }
 
     @Override
