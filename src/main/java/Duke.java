@@ -12,9 +12,9 @@ public class Duke {
     private Storage storage;
     private TaskList tasks;
     
-    public Duke() {
+    public Duke(String pathString) {
         this.ui = new Ui();
-        this.storage = new Storage("storage/tasks.txt");
+        this.storage = new Storage(pathString);
         try {
             this.tasks = new TaskList(storage.load());
         } catch(FileNotFoundException fnfe) {
@@ -41,7 +41,7 @@ public class Duke {
         }
     }
     public static void main(String[] args) {
-        Duke duke = new Duke();
+        Duke duke = new Duke("storage/tasks.txt");
         duke.start();
     }
 }
