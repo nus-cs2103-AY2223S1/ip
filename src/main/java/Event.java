@@ -10,14 +10,35 @@ public class Event extends Task {
     protected String at;
 
     /**
-     * Constructor for Event
+     * Constructor for Event.
      *
-     * @param description Description of the Event
-     * @param at The timing of the Event
+     * @param description Description of the Event.
+     * @param at The timing of the Event.
      */
     public Event(String description, String at) {
-        super(description);
+        super(description, "E");
         this.at = at;
+    }
+
+    /**
+     * Constructor for Event.
+     *
+     * @param description Description of the Event.
+     * @param done Completeness of Event.
+     * @param at The timing of the Event.
+     */
+    public Event(String description, String done, String at) {
+        super(description, done,"E");
+        this.at = at;
+    }
+
+    /**
+     * Gets timing of Event.
+     *
+     * @return Timing of Event.
+     */
+    public String getDate() {
+        return this.at;
     }
 
     /**
@@ -27,6 +48,6 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + at + ")";
+        return "[" + this.getType() + "]" + super.toString()  + " (at: " + at + ")";
     }
 }

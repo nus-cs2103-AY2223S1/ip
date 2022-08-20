@@ -8,17 +8,38 @@
 public class Task {
     /** Stores the description of the task */
     protected String description;
+    /** Type of task */
+    protected String type;
     /** Stores the status of the task */
     protected boolean isDone;
+
 
     /**
      * Constructor for Task.
      *
      * @param description Description of the task.
+     * @param type Type of the Task.
      */
-    public Task(String description) {
+    public Task(String description, String type) {
         this.description = description;
+        this.type = type;
         this.isDone = false;
+    }
+
+    /**
+     * Constructor for Task.
+     *
+     * @param description Description of the Task.
+     * @param done Completeness of Task.
+     * @param type Type of the Task.
+     */
+    public Task(String description, String done, String type) {
+        this.description = description;
+        this.type = type;
+
+        if (done.equals("1")) {
+            this.isDone = true;
+        }
     }
 
     /**
@@ -31,6 +52,33 @@ public class Task {
     public String getStatusIcon() {
         // mark done task with X
         return (isDone ? "X" : " ");
+    }
+
+    /**
+     * Gets type of the Task.
+     *
+     * @return Type of Task (Deadline, Event, Todo)
+     */
+    public String getType() {
+        return this.type;
+    }
+
+    /**
+     * Gets date of Task.
+     *
+     * @return Date of task.
+     */
+    public String getDate() {
+        return "Not Applicable";
+    }
+
+    /**
+     * Gets description of the Task.
+     *
+     * @return returns description of the Task.
+     */
+    public String getDescription() {
+        return this.description;
     }
 
     /**

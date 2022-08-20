@@ -16,8 +16,29 @@ public class Deadline extends Task {
      * @param by The due date of the Deadline.
      */
     public Deadline(String description, String by) {
-        super(description);
+        super(description, "D");
         this.by = by;
+    }
+
+    /**
+     * Constructor for Deadline.
+     *
+     * @param description Description of the Deadline.
+     * @param done Completeness of Deadline.
+     * @param by The due date of the Deadline.
+     */
+    public Deadline(String description, String done, String by) {
+        super(description, done,"E");
+        this.by = by;
+    }
+
+    /**
+     * Gets due date of Deadline.
+     *
+     * @return Due date of Deadline.
+     */
+    public String getDate() {
+        return this.by;
     }
 
     /**
@@ -27,6 +48,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by + ")";
+        return "[" + this.getType() + "]" + super.toString()  + " (by: " + by + ")";
     }
 }

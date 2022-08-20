@@ -18,6 +18,15 @@ public class Duke {
     // Initialise variables
     private Scanner sc = new Scanner(System.in);
     private ArrayList<Task> tasks = new ArrayList<>();
+    private SaveFile saveFile = new SaveFile();
+
+    /**
+     * Initialises the ChatBot, Duke.
+     */
+    private void init() {
+        this.saveFile.readFromFile(tasks);
+        greetings();
+    }
 
     /**
      * Prints Greetings Message.
@@ -34,6 +43,7 @@ public class Duke {
         System.out.println("\n-----------------------------------------");
         System.out.println("Bye Bye! Hope to see you again soon!");
         System.out.println("-----------------------------------------\n");
+        this.saveFile.writeToSaveFile(this.tasks);
     }
 
     /**
@@ -110,7 +120,7 @@ public class Duke {
     }
 
     /**
-     * Delete task in list.
+     * Deletes selected task in list.
      * If task exists at given index, Delete task and print result.
      * Else, print error message.
      *
@@ -221,8 +231,7 @@ public class Duke {
     public static void main(String[] args) {
         // Initialise variables
         Duke duke = new Duke();
-
-        duke.greetings();
+        duke.init();
 
         String command = duke.sc.next();
         String description = duke.sc.nextLine();
