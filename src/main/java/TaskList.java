@@ -67,31 +67,6 @@ public class TaskList {
                 size, size == 1 ? "" : "s");
     }
 
-    /**
-     * Method to add tasks from file to `taskList`.
-     * @param input String object to be added to `inputList`.
-     */
-    public void add(String[] input) {
-        Task newTask = null;
-        switch (input[0]) {
-            case "deadline":
-                newTask = new Deadline(input[1], input[2]);
-                break;
-            case "event":
-                newTask = new Event(input[1], input[2]);
-                break;
-            case "todo":
-                newTask = new ToDo(input[1]);
-                break;
-        }
-
-        taskList.add(newTask);
-        int size = this.getSize();
-        System.out.println("Got it. I've added this task:");
-        System.out.println("   " + newTask);
-        System.out.printf("Now you have %d task%s in the list.%n%n",
-                size, size == 1 ? "" : "s");
-    }
 
     /**
      * Method to delete a task.
@@ -159,8 +134,33 @@ public class TaskList {
     public String toFile() {
         StringBuilder res = new StringBuilder();
         for (Task task : taskList) {
-            res.append(task.toFileFormat());
+            res.append(task.toFileFormat() + "\n");
         }
         return res.toString();
+    }
+
+    /**
+     * Method to add tasks from file to `taskList`.
+     * @param dataArgs Array containing details of task to be
+     *                 added to `inputList`.
+     */
+    public void addFromFile(String[] dataArgs) {
+        Boolean isDone = dataArgs[1].equals("true");
+        Task newTask = null;
+
+        switch (dataArgs[0]) {
+        case ("deadline"):
+            newTask = new Deadline(dataArgs[2], dataArgs[3], isDone);
+            break;
+
+        case ("event"):
+            newTask = new Event(dataArgs[2], dataArgs[3], isDone);
+            break;
+
+        case ("todo"):
+            newTask = new ToDo(dataArgs[2], isDone);
+            break;
+        }
+        taskList.add(newTask);
     }
 }
