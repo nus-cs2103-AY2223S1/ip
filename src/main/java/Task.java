@@ -17,6 +17,18 @@ public class Task {
         this.isDone = false;
     }
 
+    public Integer getDoneStatus() {
+        if (this.isDone) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
     @Override
     public String toString() {
         if (this.isDone) {

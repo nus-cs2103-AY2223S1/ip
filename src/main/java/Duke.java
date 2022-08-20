@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 public class Duke {
     private static ArrayList<Task> listOfTasks = new ArrayList<>();
+    private static FileStorage taskStorage = new FileStorage(System.getProperty("user.home"));
     private static boolean inUse = true;
 
     private static void startIntro() {
@@ -10,6 +11,7 @@ public class Duke {
     }
 
     private static void startChat() {
+        readDataFile();
         Scanner sc = new Scanner(System.in);
         while (inUse) {
             String input = sc.nextLine();
@@ -75,6 +77,7 @@ public class Duke {
 
     private static void endChat() {
         inUse = false;
+        taskStorage.writeToFile(listOfTasks);
         System.out.println("Bye. Hope to see you again soon!");
     }
 
@@ -163,6 +166,16 @@ public class Duke {
         } catch (DukeException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private static void readDataFile() {
+        if (!taskStorage.isDirectoryPresent()) {
+            taskStorage.createDirectory();
+        }
+        if (!taskStorage.isFilePresent()) {
+            taskStorage.createFile();
+        }
+        listOfTasks = taskStorage.retrieveFileContents();
     }
 
     public static void main(String[] args) {
