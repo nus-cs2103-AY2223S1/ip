@@ -1,4 +1,9 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Duke {
@@ -183,12 +188,68 @@ public class Duke {
         printLine();
     }
 
+    public static ArrayList<Task> loadFile() throws DukeException {
+        //
+        File dataDirectory = new File("data");
+        if (!dataDirectory.exists()) {
+            dataDirectory.mkdir();
+        }
+        File dataFile = new File("data/duke.txt");
+        try {
+            taskList = new ArrayList<>();
+            if (dataFile.exists()) {
+                Scanner s = new Scanner(dataFile);
+                while (s.hasNext()) {
+                    String line = s.nextLine();
+                    char firstLetter = line.charAt(0);
+                    Task task;
+                    switch (firstLetter) {
+                        case 'T':
+                            task = Todo.fromFileRepresentation(line);
+                            break;
+                        case 'E':
+                            task = Event.fromFileRepresentation(line);
+                            break;
+                        case 'D':
+                            task = Deadline.fromFileRepresentation(line);
+                            break;
+                        default:
+                            throw new DukeException("Did you wrongly modify the file?");
+                    }
+                    taskList.add(task);
+                }
+            } else {
+                dataFile.createNewFile();
+            }
+        } catch (IOException e) {
+            System.out.println("This should not happen... " + e.getMessage());
+        }
+        return taskList;
+    }
+
+    public static void saveFile(ArrayList<Task> taskList) throws DukeException {
+        try {
+            File dataFolder = new File("data");
+            if (!dataFolder.exists()) {
+                dataFolder.mkdir();
+            }
+            FileWriter fw = new FileWriter("data/duke.txt");
+            for (Task task: taskList) {
+                fw.write(task.toFileRepresentation() + System.lineSeparator());
+            }
+            fw.close();
+        } catch (IOException e) {
+            throw new DukeException("Where are you running this file? " + e.getMessage());
+        }
+    }
+
     public static void main(String[] args) {
         greet();
         Scanner scanner = new Scanner(System.in);
         boolean stillRunning = true;
         while (stillRunning) {
             try {
+                taskList = loadFile();
                 // Partially Parse Input
                 String input = scanner.nextLine().strip();
                 String[] inputArray = input.split(" +", 2);
@@ -228,6 +289,7 @@ public class Duke {
                     default:
                         throw new DukeException("I don't know this command!");
                 }
+                saveFile(taskList);
             } catch (DukeException exception) {
                 printLine();
                 printError(exception.toString());
