@@ -39,63 +39,64 @@ public class Duke {
         while (!text.equals("bye")) {
             try {
                 switch (text) {//Handle case when task aTodo
-                    case "todo" :
-                        String tDescription = input.nextLine();
-                        printTodo(tDescription);
-                        break;
+                    
+                case "todo" :
+                    String tDescription = input.nextLine();
+                    printTodo(tDescription);
+                    break;
 
-                    //Handle case when task is a deadline
-                    case "deadline": {
-                        String str = input.nextLine();
-                        String dDescription = str.substring(0, str.indexOf('/') - 1);
-                        String dBy = str.substring(str.indexOf('/') + 4);
-                        printDeadline(dDescription, dBy);
-                        break;
-                    }
+                //Handle case when task is a deadline
+                case "deadline": {
+                    String str = input.nextLine();
+                    String dDescription = str.substring(0, str.indexOf('/') - 1);
+                    String dBy = str.substring(str.indexOf('/') + 4);
+                    printDeadline(dDescription, dBy);
+                    break;
+                }
 
-                    //Handle case when task is an event
-                    case "event": {
-                        String str = input.nextLine();
-                        String eDescription = str.substring(0, str.indexOf('/') - 1);
-                        String eAt = str.substring(str.indexOf('/') + 4);
-                        printEvent(eDescription, eAt);
-                        break;
-                    }
+                //Handle case when task is an event
+                case "event": {
+                    String str = input.nextLine();
+                    String eDescription = str.substring(0, str.indexOf('/') - 1);
+                    String eAt = str.substring(str.indexOf('/') + 4);
+                    printEvent(eDescription, eAt);
+                    break;
+                }
 
-                    //Handle case when user wants to list tasks
-                    case "list" :
-                        listTasks();
-                        break;
+                //Handle case when user wants to list tasks
+                case "list" :
+                    listTasks();
+                    break;
 
-                    //Handle case when user wants to mark task
-                    case "mark": {
-                        //-1 to get index in 0 indexing
-                        int index = input.nextInt() - 1;
-                        markTask(index);
-                        break;
-                    }
+                //Handle case when user wants to mark task
+                case "mark": {
+                    //-1 to get index in 0 indexing
+                    int index = input.nextInt() - 1;
+                    markTask(index);
+                    break;
+                }
 
-                    //Handle case when user wants to unmark task
-                    case "unmark": {
-                        //-1 to get index in 0 indexing
-                        int index = input.nextInt() - 1;
-                        unmarkTask(index);
-                        break;
-                    }
+                //Handle case when user wants to unmark task
+                case "unmark": {
+                    //-1 to get index in 0 indexing
+                    int index = input.nextInt() - 1;
+                    unmarkTask(index);
+                    break;
+                }
 
-                    //Handle case when user wants to delete task
-                    case "delete": {
-                        //-1 to get in 0 indexing
-                        int index = input.nextInt() - 1;
-                        deleteTask(index);
-                        break;
-                    }
+                //Handle case when user wants to delete task
+                case "delete": {
+                    //-1 to get in 0 indexing
+                    int index = input.nextInt() - 1;
+                    deleteTask(index);
+                    break;
+                }
 
-                    //Default case: Not any of the tasks(aTodo, Deadline, Event) and hence, throws an Exception
-                    default:
-                        //To handle any extra words the user keyed in
-                        input.nextLine();
-                        throw new DukeException("OOPS! I'm sorry, but I don't know what that means :-(");
+                //Default case: Not any of the tasks(aTodo, Deadline, Event) and hence, throws an Exception
+                default:
+                    //To handle any extra words the user keyed in
+                    input.nextLine();
+                    throw new DukeException("OOPS! I'm sorry, but I don't know what that means :-(");
 
                 }
             } catch (DukeException dE) {
