@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class Duke {
@@ -9,11 +9,11 @@ public class Duke {
             + "|____/ \\__,_|_|\\_\\___|\n";
     private static final String GREET_MESSAGE = "Hello! I am Duke. How can I help you?";
 
-    private final ArrayList<Task> tasks;
+    private final TaskList tasks;
     private final Scanner scanner;
 
     public Duke() {
-        tasks = new ArrayList<>();
+        tasks = new TaskList(Paths.get(System.getProperty("user.dir"), "data", "data.txt"));
         scanner = new Scanner(System.in);
     }
 

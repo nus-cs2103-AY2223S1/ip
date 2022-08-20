@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 abstract class Command {
     private static final String WRONG_ARGS_COUNT = "Wrong number of arguments provided!";
 
@@ -49,14 +47,14 @@ abstract class Command {
         }
     }
 
-    public void execute(ArrayList<Task> tasks) throws DukeException {
+    public void execute(TaskList tasks) throws DukeException {
         if (!this.command.isCompatible(args)) {
             throw new DukeException(WRONG_ARGS_COUNT);
         }
         this.runSpecialTask(tasks);
     }
 
-    public abstract void runSpecialTask(ArrayList<Task> tasks) throws DukeException;
+    public abstract void runSpecialTask(TaskList tasks) throws DukeException;
 
     private static class ListCommand extends Command {
         public ListCommand(String[] args) {
@@ -64,16 +62,8 @@ abstract class Command {
         }
 
         @Override
-        public void runSpecialTask(ArrayList<Task> tasks) {
-            StringBuilder response = new StringBuilder();
-            response.append("List of tasks:\n");
-            for (int i = 0; i < tasks.size(); ++i) {
-                response.append(String.format("\t%d. %s", i + 1, tasks.get(i)));
-                if (i + 1 < tasks.size()) {
-                    response.append("\n");
-                }
-            }
-            IOHelper.print(response.toString());
+        public void runSpecialTask(TaskList tasks) {
+            tasks.print();
         }
     }
 
@@ -90,7 +80,7 @@ abstract class Command {
         }
 
         @Override
-        public void runSpecialTask(ArrayList<Task> tasks) throws DukeException {
+        public void runSpecialTask(TaskList tasks) throws DukeException {
             int index;
             try {
                 index = Integer.parseInt(args[0]) - 1;
@@ -101,7 +91,8 @@ abstract class Command {
                 throw new DukeException(INDEX_OUT_OF_BOUND);
             }
             Task task = tasks.get(index);
-            task.isDone = this.isDone;
+            task.setDone(isDone);
+            tasks.save();
             IOHelper.print(String.format("I've %s this task\n\t", this.isDone ? "checked" : "unchecked") + task);
         }
     }
@@ -112,9 +103,10 @@ abstract class Command {
         }
 
         @Override
-        public void runSpecialTask(ArrayList<Task> tasks) {
+        public void runSpecialTask(TaskList tasks) {
             Task task = Task.of(this.command, this.args);
             tasks.add(task);
+            tasks.save();
             IOHelper.print("I've added the following task:\n\t" + task);
         }
     }
@@ -129,7 +121,7 @@ abstract class Command {
         }
 
         @Override
-        public void runSpecialTask(ArrayList<Task> tasks) throws DukeException {
+        public void runSpecialTask(TaskList tasks) throws DukeException {
             int index;
             try {
                 index = Integer.parseInt(args[0]) - 1;
@@ -141,6 +133,7 @@ abstract class Command {
             }
             Task task = tasks.get(index);
             tasks.remove(index);
+            tasks.save();
             IOHelper.print("I've removed this task\n\t" + task);
         }
     }
@@ -153,7 +146,7 @@ abstract class Command {
         }
 
         @Override
-        public void runSpecialTask(ArrayList<Task> tasks) {
+        public void runSpecialTask(TaskList tasks) {
             IOHelper.print(BYE_MESSAGE);
         }
     }
@@ -166,13 +159,13 @@ abstract class Command {
         }
 
         @Override
-        public void execute(ArrayList<Task> tasks) throws DukeException {
+        public void execute(TaskList tasks) throws DukeException {
             // bypass compatibility check
             this.runSpecialTask(tasks);
         }
 
         @Override
-        public void runSpecialTask(ArrayList<Task> tasks) throws DukeException {
+        public void runSpecialTask(TaskList tasks) throws DukeException {
             throw new DukeException(BAD_COMMAND);
         }
     }
@@ -183,7 +176,7 @@ abstract class Command {
         }
 
         @Override
-        public void runSpecialTask(ArrayList<Task> tasks) {
+        public void runSpecialTask(TaskList tasks) {
             // does nothing
         }
     }
