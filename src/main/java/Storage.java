@@ -14,13 +14,13 @@ public class Storage {
         this.saveFile = new File(savePath + saveName);
     }
 
-    public void saveFile(Duke saveData) {
+    public void saveFile(TaskList tasks) {
         try {
             if (!saveFolder.exists()) {
                 saveFolder.mkdir();
             }
             FileWriter fw = new FileWriter(saveFile);
-            for (Task t : saveData.getTasks()) {
+            for (Task t : tasks.getTasks()) {
                 String saveTask = t.parseToSaveData();
                 fw.write(saveTask + "\n");
             }
@@ -30,13 +30,13 @@ public class Storage {
         }
     }
 
-    public void loadFile(Duke duke) {
+    public void loadFile(TaskList tasks) {
         try {
             if (saveFile.exists()) {
                 Scanner s = new Scanner(saveFile);
                 while (s.hasNext()) {
                     String line = s.nextLine();
-                    loadTaskLineTo(duke, line);
+                    loadTaskLineTo(tasks, line);
                 }
                 s.close();
             }
@@ -45,7 +45,7 @@ public class Storage {
         }
     }
 
-    private void loadTaskLineTo(Duke duke, String line) {
+    private void loadTaskLineTo(TaskList tasks, String line) {
         String[] temp = line.split("\\|");
         String[] info = Arrays.copyOf(temp, 7);
         String taskType = info[0];
@@ -57,13 +57,13 @@ public class Storage {
         String time2 = info[6];
         switch (taskType) {
         case "T":
-            duke.loadTask(new Todo(description, status));
+            tasks.loadTask(new Todo(description, status));
             break;
         case "D":
-            duke.loadTask(new Deadline(description, status, date1, time1));
+            tasks.loadTask(new Deadline(description, status, date1, time1));
             break;
         case "E":
-            duke.loadTask(new Event(description, status, date1, time1, date2, time2));
+            tasks.loadTask(new Event(description, status, date1, time1, date2, time2));
             break;
         default:
             System.out.println("Unknown task type");
