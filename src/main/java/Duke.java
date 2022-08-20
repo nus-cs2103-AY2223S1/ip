@@ -81,8 +81,10 @@ public class Duke {
         addTask(deadline);
     }
 
-    private void addEvent(String description, String date) {
-        Event event = new Event(description, date);
+    private void addEvent(String description,
+                          String dateStart, String timeStart,
+                          String dateEnd, String timeEnd) {
+        Event event = new Event(description, dateStart, timeStart, dateEnd, timeEnd);
         addTask(event);
     }
 
@@ -167,8 +169,12 @@ public class Duke {
                     throw new MissingDukeInputException(cmd);
                 }
                 String description = str2[0];
-                String date = str2[1];
-                addEvent(description, date);
+                String[] dateTimes = Arrays.copyOf(str2[1].split(" "), 4);
+                String dateStart = dateTimes[0];
+                String timeStart = dateTimes[1] == null ? "" : dateTimes[1];
+                String dateEnd = dateTimes[2] == null ? "" : dateTimes[2];
+                String timeEnd = dateTimes[3] == null ? "" : dateTimes[3];
+                addEvent(description, dateStart, timeStart, dateEnd, timeEnd);
                 break;
             }
             default:
@@ -182,8 +188,8 @@ public class Duke {
             printMessage("☹ OOPS!!! You " + e.getMessage()
                     + " but it doesn't exist in the list!");
         } catch (DateTimeParseException e) {
-            printMessage("☹ OOPS!!! I can't recognise the date you just inputted :-( "
-                    + "Dates should be inputted in a 'YYYY-MM-DD HH:MM' format.");
+            printMessage("☹ OOPS!!! I can't recognise the date you just inputted :-(\n"
+                    + "Dates should be inputted in a 'YYYY-MM-DD HH:MM' format, and events should have 2 dates.");
         }
     }
 
