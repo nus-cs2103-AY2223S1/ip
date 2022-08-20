@@ -1,1 +1,11 @@
+todo read
+deadline problem set /by Monday 2359
+event concert /at Friday 1200
+list
+mark 1
+mark 2
+unmark 2
+list
+delete 2
+list
 bye
