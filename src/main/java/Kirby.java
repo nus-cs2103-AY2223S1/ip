@@ -222,32 +222,32 @@ public class Kirby {
 
                     if (taskType != null) {
                         switch (taskType) {
-                            case TODO:
-                                try {
-                                    toDo(inputString, Tasks);
-                                    break;
-                                } catch (KirbyMissingArgumentException e) {
-                                    System.out.println(e.getMessage());
-                                    break;
-                                }
+                        case TODO:
+                            try {
+                                toDo(inputString, Tasks);
+                                break;
+                            } catch (KirbyMissingArgumentException e) {
+                                System.out.println(e.getMessage());
+                                break;
+                            }
 
-                            case DEADLINE:
-                                try {
-                                    deadline(inputString, Tasks);
-                                    break;
-                                } catch (KirbyMissingArgumentException e) {
-                                    System.out.println(e.getMessage());
-                                    break;
-                                }
+                        case DEADLINE:
+                            try {
+                                deadline(inputString, Tasks);
+                                break;
+                            } catch (KirbyMissingArgumentException e) {
+                                System.out.println(e.getMessage());
+                                break;
+                            }
 
-                            case EVENT:
-                                try {
-                                    event(inputString, Tasks);
-                                    break;
-                                } catch (KirbyMissingArgumentException e) {
-                                    System.out.println(e.getMessage());
-                                    break;
-                                }
+                        case EVENT:
+                            try {
+                                event(inputString, Tasks);
+                                break;
+                            } catch (KirbyMissingArgumentException e) {
+                                System.out.println(e.getMessage());
+                                break;
+                            }
                         }
                     }
 
