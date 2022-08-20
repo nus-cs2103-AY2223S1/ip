@@ -34,6 +34,7 @@ public class Duke {
 
         Duke duke = new Duke();
         System.out.println(Duke.GREETING);
+        duke.tasks.read();
         Scanner scanner = new Scanner(System.in);
         boolean run = true;
         while (run) {
