@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
@@ -59,7 +60,7 @@ public class Duke {
             throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
         }
         String description = input.substring(9, input.indexOf('/') - 1);
-        String by = input.substring(input.indexOf('/') + 4);
+        LocalDate by = LocalDate.parse(input.substring(input.indexOf('/') + 4));
         Task t = new Deadline(description, by);
         tasks.add(t);
         saveToFile();
