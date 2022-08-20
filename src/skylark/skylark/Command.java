@@ -1,3 +1,5 @@
+package skylark;
+
 public abstract class Command {
 
     private final String input;
@@ -9,7 +11,7 @@ public abstract class Command {
     public static Command createCommand(String command) {
         if (command.equals(CommandList.COMMAND_BYE.toString())) {
             return new ByeCommand(command);
-        } else if (command.equals(CommandList.COMMAND_LIST.toString())) {
+        } else if (command.equals(skylark.CommandList.COMMAND_LIST.toString())) {
             return new ListCommand(command);
         } else if (command.length() >= 4 && command.startsWith(CommandList.COMMAND_DONE.toString())) {
             return new DoneCommand(command);

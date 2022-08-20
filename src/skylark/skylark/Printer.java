@@ -1,3 +1,5 @@
+package skylark;
+
 public class Printer {
 
     public static void printText(String text) {

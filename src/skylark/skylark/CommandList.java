@@ -1,3 +1,5 @@
+package skylark;
+
 enum CommandList {
     COMMAND_BYE, COMMAND_LIST, COMMAND_DONE,
     COMMAND_UNDONE, COMMAND_DEADLINE,

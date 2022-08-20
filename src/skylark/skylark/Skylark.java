@@ -1,3 +1,5 @@
+package skylark;
+
 import java.util.Scanner;
 
 public class Skylark {

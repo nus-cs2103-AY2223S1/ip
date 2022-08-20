@@ -1,3 +1,5 @@
+package skylark;
+
 public class ToDo extends Task{
     private final char SYMBOL = 'T';
 
@@ -12,6 +14,7 @@ public class ToDo extends Task{
 
     @Override
     public String toStringFile() {
-        return String.format("%c | %d | %s", SYMBOL, super.getStatusIcon() == "X" ? 1 : 0, super.getDescription());
+        return String.format("%c | %d | %s", SYMBOL,
+                super.getStatusIcon().equals("X") ? 1 : 0, super.getDescription());
     }
 }

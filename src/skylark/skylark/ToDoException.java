@@ -1,8 +1,10 @@
-public class DeadlineException extends SkylarkException{
+package skylark;
 
-    private String description;
+public class ToDoException extends SkylarkException{
 
-    public DeadlineException(String description) {
+    private final String description;
+
+    public ToDoException(String description) {
         super(description);
         this.description = description;
     }
