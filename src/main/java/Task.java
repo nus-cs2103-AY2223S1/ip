@@ -1,3 +1,5 @@
+import java.time.LocalDateTime;
+
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -7,8 +9,7 @@ public class Task {
         this.isDone = false;
     }
     
-    
-    public static Task getTaskFromString(String fileFormatString) {
+    public static Task parse(String fileFormatString) {
         String[] taskSplit = fileFormatString.split("\\|");
         String taskSymbol = taskSplit[0];
         boolean isComplete = taskSplit[1].equals("1");
@@ -18,11 +19,11 @@ public class Task {
         if (taskSymbol.equals("T")) {
             task = new Todo(taskDescription);
         } else if (taskSymbol.equals("D")) {
-            String deadline = taskSplit[3];
-            task = new Deadline(taskDescription, deadline);
+            LocalDateTime byDateTime = Parser.parseDateTime(taskSplit[3]);
+            task = new Deadline(taskDescription, byDateTime);
         } else {
-            String time = taskSplit[3];
-            task = new Event(taskDescription, time);
+            LocalDateTime atDateTime = Parser.parseDateTime(taskSplit[3]);
+            task = new Event(taskDescription, atDateTime);
         }
         
         if (isComplete) {

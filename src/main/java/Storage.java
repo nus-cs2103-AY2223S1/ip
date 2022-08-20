@@ -34,19 +34,25 @@ public class Storage {
         Scanner sc = new Scanner(file);
         ArrayList<Task> tasks = new ArrayList<>();
         while (sc.hasNext()) {
-            Task task = Task.getTaskFromString(sc.nextLine());
+            Task task = Task.parse(sc.nextLine());
             tasks.add(task);
         }
         return tasks;
     }
     
-    public void save(TaskList tasks) throws IOException {
+    public void save(TaskList tasks) throws DukeException {
         File file = new File(pathString);
-        FileWriter fw =  new FileWriter(file);
- 
-        for (Task task : tasks.getTasks()) {
-            fw.write(task.toFileFormatString() + "\n");
+        try {
+            FileWriter fw =  new FileWriter(file);
+            for (Task task : tasks.getTasks()) {
+                fw.write(task.toFileFormatString() + "\n");
+            }
+            fw.close();
+        } catch (IOException ioe) {
+            throw new DukeException("foo");
         }
-        fw.close();
+     
+ 
+        
     }
 }
