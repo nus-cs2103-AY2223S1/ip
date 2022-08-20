@@ -9,8 +9,8 @@ public class Skylark {
     private final ArrayList<Task> taskList;
 
     public Skylark() {
-        scan = new Scanner(System.in);
-        taskList = new ArrayList<>();
+        this.scan = new Scanner(System.in);
+        this.taskList = new ArrayList<>();
 
         Printer.printText(Skylark.TEXT_HELLO);
     }
