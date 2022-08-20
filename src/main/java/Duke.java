@@ -1,8 +1,13 @@
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
+
+  private static final String FILE_DIRECTORY = "data";
+  private static final String FILE_NAME = "task.txt";
+  private static final String FILE_PATH = FILE_DIRECTORY + "/" + FILE_NAME;
 
   private static List<Task> list = new ArrayList<Task>();
   private static Scanner scanner = new Scanner(System.in);
@@ -51,12 +56,12 @@ public class Duke {
     }
   }
 
-  static void addTodoTask(String[] input) {
+  static void addTodoTask(String[] input, boolean status) {
     try {
       if (input.length < 2) {
         throw new DukeException("The description cannot be empty!");
       }
-      list.add(new Todo(input[1], false));
+      list.add(new Todo(input[1], status));
 
       System.out.println("Todo task has been added!");
     } catch (DukeException e) {
@@ -64,7 +69,7 @@ public class Duke {
     }
   }
 
-  static void addDeadlineTask(String[] input) {
+  static void addDeadlineTask(String[] input, boolean status) {
     try {
       if (input.length < 2) {
         throw new DukeException("The description cannot be empty!");
@@ -73,7 +78,7 @@ public class Duke {
       if (input.length < 2) {
         throw new DukeException("The date cannot be empty!");
       }
-      list.add(new Deadline(input[0], false, input[1]));
+      list.add(new Deadline(input[0], status, input[1]));
 
       System.out.println("Deadline task has been added!");
     } catch (DukeException e) {
@@ -81,7 +86,7 @@ public class Duke {
     }
   }
 
-  static void addEventTask(String[] input) {
+  static void addEventTask(String[] input, boolean status) {
     try {
       if (input.length < 2) {
         throw new DukeException("The description cannot be empty!");
@@ -90,10 +95,60 @@ public class Duke {
       if (input.length < 2) {
         throw new DukeException("The date cannot be empty!");
       }
-      list.add(new Event(input[0], false, input[1]));
+      list.add(new Event(input[0], status, input[1]));
 
       System.out.println("Event task has been added!");
     } catch (DukeException e) {
+      System.out.println(e.getMessage());
+    }
+  }
+
+  static void loadAllTasks() {
+    try (BufferedReader br = new BufferedReader(new FileReader(FILE_PATH))) {
+      String line = br.readLine();
+
+      while (line != null) {
+        String[] input = line.split("\\s*\\|\\s*");
+        if (input.length < 3) {
+          throw (new DukeException("Invalid task format!"));
+        }
+        String[] data = { input[1], input[2] };
+
+        switch (input[0]) {
+          case Todo.SYMBOL:
+            addTodoTask(data, data[0] == "1");
+            break;
+          case Deadline.SYMBOL:
+            addDeadlineTask(data, data[0] == "1");
+            break;
+          case Event.SYMBOL:
+            addEventTask(data, data[0] == "1");
+            break;
+          default:
+            System.out.println("Invalid task type!");
+            break;
+        }
+
+        line = br.readLine();
+      }
+    } catch (FileNotFoundException e) {
+      System.out.println("No task previously saved!");
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+  }
+
+  static void saveAllTasks() {
+    File directory = new File(FILE_DIRECTORY);
+    if (!directory.exists()) {
+      directory.mkdir();
+    }
+
+    try (PrintWriter pw = new PrintWriter(FILE_PATH, "UTF-8")) {
+      list.forEach(task -> pw.println(task.saveString()));
+    } catch (FileNotFoundException e) {
+      System.out.println("Cannot save tasks!");
+    } catch (Exception e) {
       System.out.println(e.getMessage());
     }
   }
@@ -108,6 +163,8 @@ public class Duke {
       "\\____/ \\___/|_.__/ \n";
     System.out.println("Hello from\n" + logo);
     System.out.println("What can I do for you?");
+
+    loadAllTasks();
 
     while (true) {
       System.out.print("> ");
@@ -132,17 +189,19 @@ public class Duke {
           deleteTask(input);
           break;
         case "todo":
-          addTodoTask(input);
+          addTodoTask(input, false);
           break;
         case "deadline":
-          addDeadlineTask((input));
+          addDeadlineTask(input, false);
           break;
         case "event":
-          addEventTask(input);
+          addEventTask(input, false);
           break;
         default:
           System.out.println("Sorry, I don't know what do you mean by that.");
       }
+
+      saveAllTasks();
     }
   }
 }

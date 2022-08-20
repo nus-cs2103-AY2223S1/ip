@@ -19,6 +19,15 @@ then
     exit 1
 fi
 
+# create data directory if it doesn't exist
+if [ ! -d "data" ]
+then
+    mkdir data
+fi
+
+# copy task.txt into data folder
+cp task.txt data/
+
 # run the program, feed commands from input.txt file and redirect the output to the ACTUAL.TXT
 java -classpath ../bin Duke < input.txt > ACTUAL.TXT
 

@@ -1,7 +1,7 @@
 public abstract class Task {
 
-  private final String title;
-  private boolean status;
+  protected final String title;
+  protected boolean status;
 
   Task(String title, boolean status) {
     this.title = title;
@@ -12,6 +12,8 @@ public abstract class Task {
     this.status = status;
     return this;
   }
+
+  abstract String saveString();
 
   @Override
   public String toString() {
