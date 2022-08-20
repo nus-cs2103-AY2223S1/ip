@@ -28,6 +28,6 @@ public class Deadline extends Task {
     public String toStringFile() {
         return String.format("%c | %d | %s | %s", SYMBOL,
                 super.getStatusIcon() == "X" ? 1 : 0, super.getDescription(),
-                this.endDate.format(DateTimeFormatter.ofPattern(outputFormat)));
+                this.endDate.format(DateTimeFormatter.ofPattern(inputFormat)));
     }
 }
