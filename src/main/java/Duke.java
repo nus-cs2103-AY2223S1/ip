@@ -1,6 +1,7 @@
 package main.java;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
@@ -106,140 +107,161 @@ public class Duke {
         String command = args[0];
         // Error checking based on command.
         switch(command) {
-            case "deadline": {
-                if ((userInput.indexOf(" ") != 8) ||
-                        (userInput.indexOf("/by") <= 9)) {
-                    // Should have a " " delimiter followed by "/by:"
-                    throw new DukeException("Wrong format! To add a new " +
-                            "deadline, please enter the following:\n" +
-                            "   deadline [TASK DESCRIPTION] /by [DUE DATE]\n");
-                }
-                break;
+        case "deadline": {
+            if ((userInput.indexOf(" ") != 8) ||
+                    (userInput.indexOf("/by") <= 9)) {
+                // Should have a " " delimiter followed by "/by"
+                throw new DukeException("Wrong format! To add a new " +
+                        "deadline, please enter the following:\n" +
+                        "   deadline [TASK DESCRIPTION] /by [DUE DATE]\n");
             }
+            break;
+        }
 
-            case "event": {
-                if ((userInput.indexOf(" ") != 5) ||
-                        (userInput.indexOf("/at") <= 6)) {
-                    // Should have a " " delimiter followed by "/at"
-                    throw new DukeException("Wrong format! To add a new " +
-                            "event, please enter the following:\n" +
-                            "   event [TASK DESCRIPTION] /at [VENUE]\n");
-                }
-                break;
+        case "event": {
+            if ((userInput.indexOf(" ") != 5) ||
+                    (userInput.indexOf("/at") <= 6)) {
+                // Should have a " " delimiter followed by "/at"
+                throw new DukeException("Wrong format! To add a new " +
+                          "event, please enter the following:\n" +
+                        "   event [TASK DESCRIPTION] /at [VENUE]\n");
             }
+            break;
+        }
 
-            case "todo": {
-                if ((args.length < 2)) {
-                    throw new DukeException("Wrong format! To create a " +
-                            "'todo' task, type:\n   todo [DESCRIPTION]\n");
-                }
-                break;
+        case "todo": {
+            if ((args.length < 2)) {
+                throw new DukeException("Wrong format! To create a " +
+                        "'todo' task, type:\n   todo [DESCRIPTION]\n");
             }
+            break;
+        }
 
-            case "delete": {
-                int index;
-                int size = taskList.getSize();
-                if ((args.length != 2)) {
-                    throw new DukeException("Wrong format! To delete a task, " +
-                            "type:\n   delete [TASK NUMBER]\n");
-                }
-                try {
-                    index = Integer.parseInt(args[1]);
-                } catch (NumberFormatException e) {
-                    throw new DukeException("Task number must be an integer!" +
-                            "\n   delete [TASK NUMBER]\n");
-                }
-                if (index < 0 || index >= size) {
-                    throw new DukeException("Task number is invalid." +
-                            String.format("You have %d tasks!", size) +
-                            "\n   delete [TASK NUMBER]\n");
-                }
-                break;
+        case "delete": {
+            int index;
+            int size = taskList.getSize();
+            if ((args.length != 2)) {
+                throw new DukeException("Wrong format! To delete a task, " +
+                        "type:\n   delete [TASK NUMBER]\n");
             }
+            try {
+                index = Integer.parseInt(args[1]);
+            } catch (NumberFormatException e) {
+                throw new DukeException("Task number must be an integer!" +
+                        "\n   delete [TASK NUMBER]\n");
+            }
+            if (index < 0 || index >= size) {
+                throw new DukeException("Task number is invalid." +
+                        String.format("You have %d tasks!", size) +
+                        "\n   delete [TASK NUMBER]\n");
+            }
+            break;
+        }
 
-            case "mark": {
-                int index;
-                int size = taskList.getSize();
-                if ((args.length != 2)) {
-                    throw new DukeException("Wrong format! To mark a task as " +
-                            "done, type:\n   mark [TASK NUMBER]\n");
-                }
-                try {
-                    index = Integer.parseInt(args[1]);
-                } catch (NumberFormatException e) {
-                    throw new DukeException("Task number must be an integer!" +
-                            "\n   mark [TASK NUMBER]\n");
-                }
-                if (index < 0 || index >= size) {
-                    throw new DukeException("Task number is invalid." +
-                            String.format("You have %d tasks!", size) +
-                            "\n   mark [TASK NUMBER]\n");
-                }
-                break;
+        case "mark": {
+            int index;
+            int size = taskList.getSize();
+            if ((args.length != 2)) {
+                throw new DukeException("Wrong format! To mark a task as " +
+                        "done, type:\n   mark [TASK NUMBER]\n");
             }
+            try {
+                index = Integer.parseInt(args[1]);
+            } catch (NumberFormatException e) {
+                throw new DukeException("Task number must be an integer!" +
+                        "\n   mark [TASK NUMBER]\n");
+            }
+            if (index < 0 || index >= size) {
+                throw new DukeException("Task number is invalid." +
+                        String.format("You have %d tasks!", size) +
+                        "\n   mark [TASK NUMBER]\n");
+            }
+            break;
+        }
 
-            case "unmark": {
-                int index;
-                int size = taskList.getSize();
-                if ((args.length != 2)) {
-                    throw new DukeException("Wrong format! To unmark a task " +
-                            "as done, type:\n   unmark [TASK NUMBER]\n");
-                }
-                try {
-                    index = Integer.parseInt(args[1]);
-                } catch (NumberFormatException e) {
-                    throw new DukeException("Task number must be an integer!" +
-                            "\n   unmark [TASK NUMBER]\n");
-                }
-                if (index < 0 || index >= size) {
-                    throw new DukeException("Task number is invalid." +
-                            String.format("You have %d tasks!", size) +
-                            "\n   mark [TASK NUMBER]\n");
-                }
-                break;
+        case "unmark": {
+            int index;
+            int size = taskList.getSize();
+            if ((args.length != 2)) {
+                throw new DukeException("Wrong format! To unmark a task " +
+                        "as done, type:\n   unmark [TASK NUMBER]\n");
             }
+            try {
+                index = Integer.parseInt(args[1]);
+            } catch (NumberFormatException e) {
+                throw new DukeException("Task number must be an integer!" +
+                        "\n   unmark [TASK NUMBER]\n");
+            }
+            if (index < 0 || index >= size) {
+                throw new DukeException("Task number is invalid." +
+                        String.format("You have %d tasks!", size) +
+                        "\n   mark [TASK NUMBER]\n");
+            }
+            break;
+        }
 
-            case "list": {
-                if (!userInput.equals("list")) {
-                    // Whole input should only be "list"
-                    throw new DukeException("Wrong format! To list tasks, " +
-                            "type:\n   list\n");
-                }
-                break;
+        case "list": {
+            if (!userInput.equals("list")) {
+                // Whole input should only be "list"
+                throw new DukeException("Wrong format! To list tasks, " +
+                        "type:\n   list\n");
             }
+            break;
+        }
 
-            case "bye": {
-                if (!userInput.equals("bye")) {
-                    // Whole input should only be "bye"
-                    throw new DukeException("Wrong format! To exit, type:\n" +
-                            "   bye\n");
-                }
-                break;
+        case "bye": {
+            if (!userInput.equals("bye")) {
+                // Whole input should only be "bye"
+                throw new DukeException("Wrong format! To exit, type:\n" +
+                        "   bye\n");
             }
+            break;
+        }
 
-            default: {
-                // Case where no commands are matched.
-                throw new DukeException("Sorry, I did not quite get that! " +
-                        String.format("(%s)\n%s",
-                                userInput, AVAILABLE_COMMANDS));
-            }
+        default: {
+            // Case where no commands are matched.
+            throw new DukeException("Sorry, I did not quite get that! " +
+                    String.format("(%s)\n%s",
+                            userInput, AVAILABLE_COMMANDS));
+        }
 
         }
         // Call respective 'Consumer' object on input once it has been verified.
         commands.get(command).accept(userInput);
     }
 
+    /**
+     * Method to write `taskList` to text file.
+     * @param outputDirectory Directory to output text file.
+     * @param filename        Name of text file to ouput.
+     * @throws IOException
+     */
     private static void writeToFile(String outputDirectory, String filename)
-            throws IOException {
-        File outDir = new File(outputDirectory);
+                throws IOException {
         File outFile = new File(outputDirectory + "/" + filename);
-        if (!outDir.isDirectory()) {
-            outDir.mkdir();
-        }
         FileWriter fw = new FileWriter(outFile);
-        fw.write(taskList.toString());
+        fw.write(taskList.toFile());
         fw.close();
     }
+
+    /**
+     * Method to add tasks from lines in file.
+     * @param data             Single line of data in file.
+     * @param lineNumberInFile Line number of current line.
+     */
+    private static void addFromFile(String data, int lineNumberInFile) {
+        String[] dataArgs = data.split("\\|");
+        if ((dataArgs[0].equals("deadline") && dataArgs.length == 4) ||
+                (dataArgs[0].equals("event") && dataArgs.length == 4) ||
+                (dataArgs[0].equals("todo") && dataArgs.length == 3)) {
+            // Only add task if format in file is correct.
+            taskList.addFromFile(dataArgs);
+        } else {
+            System.out.printf("Line %d: Error in format of saved file!%n" +
+                    "Line will be ignored.%n%n", lineNumberInFile);
+        }
+    }
+
 
     /**
      * Main function with program logic.
@@ -255,13 +277,38 @@ public class Duke {
         System.out.println("Hello from\n" + logo + AVAILABLE_COMMANDS);
 
         // Create Scanner object for user inputs.
-        Scanner myScanner = new Scanner(System.in);
+        Scanner sc1 = new Scanner(System.in);
         String userInput;
         String OUTPUT_DIRECTORY = "data";
         String OUTPUT_FILENAME = "list.txt";
+        int lineNumberInFile = 1;
 
-        while (runDuke && myScanner.hasNextLine()) {
-            userInput = myScanner.nextLine();
+        try {
+            // Try to read task list from file.
+            File currList = new File(OUTPUT_DIRECTORY + "/"
+                        + OUTPUT_FILENAME);
+            Scanner sc2 = new Scanner(currList);
+            while (sc2.hasNextLine()) {
+                String data = sc2.nextLine();
+                if (! data.equals("")) {
+                    // Parse non-empty lines and add the tasks to 'taskList'.
+                    addFromFile(data, lineNumberInFile);
+                }
+                lineNumberInFile++;
+            }
+            sc2.close();
+        } catch (FileNotFoundException e) {
+            // If file does not exist, check if directory exists. If
+            // directory does not exist, create the directory.
+            File outDir = new File(OUTPUT_DIRECTORY);
+            if (!outDir.exists()) {
+                outDir.mkdir();
+            }
+        }
+
+        // Run Duke.
+        while (runDuke && sc1.hasNextLine()) {
+            userInput = sc1.nextLine();
             try {
                 String temp = taskList.toString();
                 handleUserInputs(userInput);
@@ -275,5 +322,6 @@ public class Duke {
                 System.out.println("Error writing to file: " + e.getMessage());
             }
         }
+        sc1.close();
     }
 }
