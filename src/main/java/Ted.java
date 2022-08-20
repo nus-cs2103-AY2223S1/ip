@@ -3,7 +3,8 @@ import java.util.Scanner;
 
 public class Ted {
 
-    private static final String GREETING = "##################################################\n" +
+    private static final String GREETING =
+            "##################################################\n" +
                     "||                                              ||\n" +
                     "||                Hello! I'm Ted                ||\n" +
                     "||            What can I do for you?            ||\n" +
@@ -55,7 +56,12 @@ public class Ted {
             }
 
             if (index > this.tasks.size()) {
-                throw new InvalidInputException(String.format("Error: The number of task to be marked must be less than or equal to %d.", this.tasks.size()));
+                throw new InvalidInputException(
+                        String.format(
+                                "Error: The number of task to be marked must be less than or equal to %d.",
+                                this.tasks.size()
+                        )
+                );
             }
 
             this.tasks.get(index - 1).markAsDone();
@@ -77,7 +83,12 @@ public class Ted {
             }
 
             if (index > this.tasks.size()) {
-                throw new InvalidInputException(String.format("The number of task to be unmarked must be less than or equal to %d.", this.tasks.size()));
+                throw new InvalidInputException(
+                        String.format(
+                                "The number of task to be unmarked must be less than or equal to %d.",
+                                this.tasks.size()
+                        )
+                );
             }
 
             this.tasks.get(index - 1).unmark();
@@ -103,7 +114,9 @@ public class Ted {
         String description = inputs[0];
 
         if (inputs.length <= 1) {
-            throw new InvalidInputException("The deadline (use /by) of task must be set. If you wish to create a task without deadline, try using todo command.");
+            throw new InvalidInputException(
+                    "The deadline (use /by) of task must be set. " +
+                            "If you wish to create a task without deadline, try using todo command.");
         }
 
         String by = inputs[1];
@@ -119,7 +132,8 @@ public class Ted {
         String description = inputs[0];
 
         if (inputs.length <= 1) {
-            throw new InvalidInputException("The datetime (use /at) of event must be set. If you wish to create a task without date or time, try using todo command.");
+            throw new InvalidInputException("The datetime (use /at) of event must be set. " +
+                    "If you wish to create a task without date or time, try using todo command.");
         }
 
         String at = inputs[1];
@@ -139,7 +153,12 @@ public class Ted {
             }
 
             if (index > this.tasks.size()) {
-                throw new InvalidInputException(String.format("The number of task to be deleted must be less than or equal to %d.", this.tasks.size()));
+                throw new InvalidInputException(
+                        String.format(
+                                "The number of task to be deleted must be less than or equal to %d.",
+                                this.tasks.size()
+                        )
+                );
             }
 
             System.out.printf("Noted. I've removed this task:\n" +
