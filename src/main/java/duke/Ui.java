@@ -6,13 +6,13 @@ public class Ui {
 
     private Scanner scanner;
 
-    private final String logo = " ____        _        \n"
+    private final String LOGO = " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
 
-    private final String line = "_______________________________";
+    private final String LINE = "_______________________________";
 
 
     public Ui() {
@@ -24,19 +24,20 @@ public class Ui {
      */
     public void showWelcome() {
         showLine();
-        System.out.println(logo);
+        System.out.println(LOGO);
         System.out.println("Hello! I'm Duke\nWhat can I do for you?");
         showLine();
     }
 
     public void showLine() {
-        System.out.println(line);
+        System.out.println(LINE);
     }
 
 
     public void showLoadingError() {
-        String temp = line + "Storage file not found at specified path!" + line;
-        System.out.println(temp);
+        showLine();
+        System.out.println("Storage file not found at specified path!");
+        showLine();
     }
 
 
@@ -69,12 +70,11 @@ public class Ui {
 
     public void showBye() {
         System.out.println("Bye. Hope to see you again soon!");
-        System.out.println(line);
+        System.out.println(LINE);
     }
 
     public String readCommand() {
-        String command = scanner.nextLine();
-        return command;
+        return scanner.nextLine();
     }
 
     public void showError(String message) {

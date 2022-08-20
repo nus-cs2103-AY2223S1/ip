@@ -60,7 +60,6 @@ public abstract class Task {
             return " | " + "1" + " | " + this.description;
         }
         return " | " + "0" + " | " + this.description;
-
     }
 
 }
