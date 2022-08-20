@@ -7,12 +7,14 @@ import java.time.LocalDate;
 import exception.DeadlineException;
 
 public class Deadline extends Task {
+    private String deadlineString;
     private LocalDate deadline;
 
-    public Deadline(String description, String deadline) throws DeadlineException {
+    public Deadline(String description, String deadlineString) throws DeadlineException {
         super(description);
         try {
-            this.deadline = LocalDate.parse(deadline);
+            this.deadlineString = deadlineString;
+            this.deadline = LocalDate.parse(deadlineString);
         } catch (DateTimeParseException error) {
             throw new DeadlineException("The deadline given is not a valid date. " +
                     "Try to represent the deadline in yyyy-mm-dd format.");
@@ -27,6 +29,6 @@ public class Deadline extends Task {
 
     @Override
     public String toStorageRepresentation() {
-        return "D|" + super.toStorageRepresentation() + "|" + this.deadline;
+        return "D|" + super.toStorageRepresentation() + "|" + this.deadlineString;
     }
 }

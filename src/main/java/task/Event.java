@@ -7,12 +7,14 @@ import java.time.format.DateTimeParseException;
 import java.time.LocalDate;
 
 public class Event extends Task {
+    private String timeString;
     private LocalDate time;
 
-    public Event(String description, String time) throws EventException {
+    public Event(String description, String timeString) throws EventException {
         super(description);
         try {
-            this.time = LocalDate.parse(time);
+            this.timeString = timeString;
+            this.time = LocalDate.parse(this.timeString);
         } catch (DateTimeParseException error) {
             throw new EventException("The time given is not a valid date. " +
                     "Try to represent the time in yyyy-mm-dd format.");
@@ -27,6 +29,6 @@ public class Event extends Task {
 
     @Override
     public String toStorageRepresentation() {
-        return "E|" + super.toStorageRepresentation() + "|" + this.time;
+        return "E|" + super.toStorageRepresentation() + "|" + this.timeString;
     }
 }

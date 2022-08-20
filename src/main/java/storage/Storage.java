@@ -16,6 +16,8 @@ import task.ToDo;
 
 import printer.Printer;
 
+import exception.CommandException;
+
 public class Storage {
     private List<Task> tasks;
     private final String filePath;
@@ -38,13 +40,12 @@ public class Storage {
             } else {
                 storageFile.createNewFile();
             }
-        } catch (IOException error) {
+        } catch (CommandException | IOException error) {
             Printer.print(String.format("Failed to load tasks, %s", error.getMessage()));
         }
-
     }
 
-    private void loadTasksInStorage() throws IOException {
+    private void loadTasksInStorage() throws CommandException, IOException {
         List<Task> loadedTasks = new ArrayList<>();
         BufferedReader storageReader = new BufferedReader(new FileReader(this.filePath));
         String taskString = storageReader.readLine();
