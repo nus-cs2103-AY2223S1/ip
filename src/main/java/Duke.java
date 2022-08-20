@@ -2,58 +2,76 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
+
+    private static ArrayList<Task> tasks = new ArrayList<>();
+
+    public static void list() {
+        System.out.println("    Here are the tasks in your list:");
+        for (int i = 0; i < Task.getTaskCount(); i++) {
+            System.out.println(String.format("      %d. %s", i + 1, tasks.get(i)));
+        }
+    }
+
+    public static void mark(int taskNumber) throws MarkToggleException {
+        tasks.get(taskNumber).markComplete();
+        System.out.println("    Nice! I've marked this task as done:");
+        System.out.println(String.format("      %s", tasks.get(taskNumber)));
+    }
+
+    public static void unmark(int taskNumber) throws MarkToggleException {
+        tasks.get(taskNumber).markIncomplete();
+        System.out.println("    OK, I've marked this task as not done yet");
+        System.out.println(String.format("      %s", tasks.get(taskNumber)));
+    }
+
+    public static void delete(int taskToDelete) {
+        Task deletedTask = tasks.remove(taskToDelete);
+        Task.reduceTaskCount();
+        System.out.println("    Noted. I've removed this task:");
+        System.out.println(String.format("      %s", deletedTask));
+        System.out.println(String.format("    Now you have %d tasks in the list.", Task.getTaskCount()));
+    }
+
     public static void main(String[] args) {
         System.out.println("-----------------------------------------------");
         System.out.println("| Hi this is Thesh. What can I do for you? |");
         System.out.println("-----------------------------------------------");
         Scanner sc = new Scanner(System.in);
-        ArrayList<Task> tasks = new ArrayList<>();
-        int taskCount = 0;
         while (sc.hasNext()) {
             String command = sc.nextLine();
             System.out.println("    ____________________________________________________________");
             if (command.equals("bye")) {
                 break;
             } else if (command.equals("list")) {
-                System.out.println("    Here are the tasks in your list:");
-                for (int i = 0; i < taskCount; i++) {
-                    System.out.println(String.format("      %d. %s", i + 1, tasks.get(i)));
-                }
+                Duke.list();
             } else if (command.startsWith("mark")) {
                 try {
                     String taskNumberString = command.split(" ")[1];
                     int taskNumber = Integer.parseInt(taskNumberString);
-                    tasks.get(taskNumber-1).markComplete();
-                    System.out.println("    Nice! I've marked this task as done:");
-                    System.out.println(String.format("      %s", tasks.get(taskNumber-1)));
+                    Duke.mark(taskNumber - 1);
                 } catch (MarkToggleException e) {
                     System.out.println(e);
                 } catch (NumberFormatException e) {
                     System.out.println("    please only input a number after 'mark'.");
                 } catch (NullPointerException e) {
-                    System.out.println(String.format("There is only %d tasks in the list.", taskCount));
+                    System.out.println(String.format("There is only %d tasks in the list.", Task.getTaskCount()));
                 }
             } else if (command.startsWith("unmark")) {
                 try {
                     String taskNumberString = command.split(" ")[1];
                     int taskNumber = Integer.parseInt(taskNumberString);
-                    tasks.get(taskNumber-1).markIncomplete();
-                    System.out.println("    OK, I've marked this task as not done yet");
-                    System.out.println(String.format("      %s", tasks.get(taskNumber-1)));
+                    Duke.unmark(taskNumber - 1);
                 } catch (MarkToggleException e) {
                     System.out.println(e);
                 } catch (NumberFormatException e) {
                     System.out.println("    please only input a number after 'unmark'.");
                 } catch (NullPointerException e) {
-                    System.out.println(String.format("There is only %d tasks in the list.", taskCount));
+                    System.out.println(String.format("There is only %d tasks in the list.", Task.getTaskCount()));
                 }
             } else if (command.startsWith("delete")) {
                 command = command.replace("delete ", "");
                 int taskToDelete = Integer.parseInt(command);
-                Task deletedTask = tasks.remove(taskToDelete - 1);
-                System.out.println("    Noted. I've removed this task:");
-                System.out.println(String.format("      %s", deletedTask));
-                System.out.println(String.format("    Now you have %d tasks in the list.", --taskCount));
+                Duke.delete(taskToDelete - 1);
             } else {
                 Task newTask = null;
                 if (command.startsWith("todo")) {
@@ -86,11 +104,11 @@ public class Duke {
                     System.out.println("    OOPS!!! I'm sorry, but I don't know what that means :-(");
                     continue;
                 }
-                tasks.add(taskCount++, newTask);
+                tasks.add(newTask);
                 System.out.println("    Got it. I've added this task:");
                 System.out.print("      ");
                 System.out.println(newTask);
-                System.out.println(String.format("    Now you have %d tasks in the list.", taskCount));
+                System.out.println(String.format("    Now you have %d tasks in the list.", Task.getTaskCount()));
             }
             System.out.println("    ____________________________________________________________");
         }
