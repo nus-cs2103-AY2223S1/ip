@@ -4,11 +4,11 @@ public class Task {
     private static ArrayList<Task> tasks = new ArrayList<Task>();
 
     private String description;
-    private boolean done;
+    private boolean isDone;
 
     public Task(String description) {
         this.description = description;
-        this.done = false;
+        this.isDone = false;
         addTask(this);
     }
 
@@ -26,7 +26,7 @@ public class Task {
     }
 
     private String getStatus() {
-        return (this.done ? "X" : " ");
+        return (this.isDone ? "X" : " ");
     }
 
     public String toString() {
@@ -34,7 +34,7 @@ public class Task {
     }
 
     public static void markDone(int index, boolean done) {
-        Task.tasks.get(index).done = done;
+        Task.tasks.get(index).isDone = done;
         BotResponse.markLog(Task.tasks.get(index), done);
     }
 
