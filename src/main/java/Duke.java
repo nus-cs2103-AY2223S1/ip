@@ -1,6 +1,5 @@
-import java.io.FileNotFoundException;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
-import java.io.FileNotFoundException;
 
 public class Duke {
 
@@ -62,6 +61,7 @@ public class Duke {
                     throw new InvalidDescriptionException();
                 }
                 ToDo todo = new ToDo(description);
+                Task.addTask(todo);
                 BotResponse.addTaskLog(todo);
             } catch (InvalidDescriptionException e) {
                 System.out.println(e.getMessage());
@@ -82,10 +82,17 @@ public class Duke {
                 if (time.isEmpty()) {
                     throw new InvalidTimeException();
                 }
+
                 Deadline deadline = new Deadline(description, time);
+                Task.addTask(deadline);
                 BotResponse.addTaskLog(deadline);
+
             } catch (InvalidDescriptionException | InvalidTimeException e) {
                 System.out.println(e.getMessage());
+            } catch (DateTimeParseException e) {
+                BotResponse.separationLine();
+                System.out.println("Enter a valid date and time! (Eg. 2020-12-25 1330)");
+                BotResponse.separationLine();
             }
             break;
 
@@ -103,10 +110,18 @@ public class Duke {
                 if (time.isEmpty()) {
                     throw new InvalidTimeException();
                 }
+
+
                 Event event = new Event(description, time);
+                Task.addTask(event);
                 BotResponse.addTaskLog(event);
+
             } catch (InvalidDescriptionException | InvalidTimeException e) {
                 System.out.println(e.getMessage());
+            } catch (DateTimeParseException e) {
+                BotResponse.separationLine();
+                System.out.println("Enter a valid date and time! (Eg. 2020-12-25 1330)");
+                BotResponse.separationLine();
             }
             break;
 

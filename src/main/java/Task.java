@@ -19,7 +19,6 @@ public class Task {
     protected Task(String description) {
         this.description = description;
         this.isDone = false;
-        addTask(this);
     }
 
     protected Task(String description, boolean isDone) {
