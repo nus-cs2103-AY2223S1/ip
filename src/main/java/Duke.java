@@ -40,6 +40,19 @@ public class Duke {
                     System.out.println("OK, I've marked this task as not done yet:\n" + t);
                 }
             }
+            else if (s.equalsIgnoreCase("delete")) {
+                int selectedTask = in.nextInt();
+                if (selectedTask > tasks.size()) {
+                    System.out.println("No such task");
+                }
+                else {
+                    Task t = tasks.remove(selectedTask - 1);
+                    int length = tasks.size();
+                    String output = length == 1 ? " task in the list." : " tasks in the list.";
+                    System.out.println("Noted. I've removed this task:\n" + t +
+                            "\nNow you have " + length + output);
+                }
+            }
             else if (s.equalsIgnoreCase("list")) {
                 int length = tasks.size();
                 System.out.println("Here are the tasks in your list:");
