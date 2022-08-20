@@ -8,7 +8,7 @@ abstract public class Task {
     private  String modifier = "[?]";
     private String description;
     private String addOn = "nya!";
-    private Boolean completed;
+    private Boolean isCompleted;
     private String notDoneSymbol = "[Zzzzzzz]";
     private String doneSymbol    = "[=^._.^=]";
 
@@ -19,21 +19,21 @@ abstract public class Task {
      */
     public Task(String description) {
         this.description = description;
-        this.completed = false;
+        this.isCompleted = false;
     }
 
     /**
      * Marks this task as complete.
      */
     public void markAsDone() {
-        this.completed = true;
+        this.isCompleted = true;
     }
 
     /**
      * Marks this task as incomplete.
      */
     public void markAsNotDone() {
-        this.completed = false;
+        this.isCompleted = false;
     }
 
     /**
@@ -44,7 +44,7 @@ abstract public class Task {
     @Override
     public String toString() {
         String symbol;
-        if (this.completed) {
+        if (this.isCompleted) {
             symbol = doneSymbol;
         } else {
             symbol = notDoneSymbol;
