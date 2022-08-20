@@ -1,6 +1,6 @@
 package Duke;
 
-import Commands.*;
+import Commands.Command;
 
 import java.time.format.DateTimeParseException;
 

@@ -26,12 +26,12 @@ public class Ui {
 
     public void printAddTask(Task t, int size) {
         System.out.printf("Got it. I've added this task: \n %s \n Now you have %d tasks left.%n",
-                t.toString(), size);
+                    t.toString(), size);
     }
 
     public void printDeleteTask(Task t, int size) {
         System.out.printf("Noted. I've removed this task: \n%s \nNow you have %d tasks left.%n",
-                t.toString(), size);
+                    t.toString(), size);
     }
 
     public void printMark(Task t) {
