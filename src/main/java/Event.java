@@ -2,7 +2,7 @@
  * Handles an event.
  */
 public class Event extends Task {
-    protected String datetime;
+    protected ParsedDateTime datetime;
 
     /**
      * Creates an event.
@@ -11,11 +11,11 @@ public class Event extends Task {
      */
     public Event(String description, String at) {
         super(description);
-        datetime = at;
+        datetime = new ParsedDateTime(at);
     }
 
     @Override
     public String toString() {
-        return String.format("[E]%s (at: %s)", super.toString(), datetime);
+        return String.format("[E]%s (at: %s)", super.toString(), datetime.toString());
     }
 }
