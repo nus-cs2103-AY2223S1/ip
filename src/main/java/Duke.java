@@ -31,10 +31,10 @@ public class Duke {
 
         boolean isExit = false;
 
-        while (!isExit) {
+        while (!isExit && scanner.hasNext()) {
             try {
                 this.ui.showPrompt();
-                String fullCommand = scanner.nextLine().strip();
+                String fullCommand = scanner.nextLine();
                 Command command = Parser.parse(fullCommand);
                 command.execute(this.tasks, this.ui, this.storage);
             } catch (DukeException de) {
