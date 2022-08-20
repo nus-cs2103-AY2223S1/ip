@@ -2,7 +2,7 @@ public class Deadline extends Task {
     protected String endTime;
 
     public Deadline(String task, String endTime) {
-        super(task);
+        super(task, "deadline");
         this.endTime = endTime;
     }
 
