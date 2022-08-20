@@ -15,8 +15,10 @@ public class Duke {
     public Duke(String pathString) {
         this.ui = new Ui();
         this.storage = new Storage(pathString);
+        ui.showIsLoading();
         try {
             this.tasks = new TaskList(storage.load());
+            ui.showLoadingSuccess();
         } catch(FileNotFoundException fnfe) {
             ui.showLoadingError();
             this.tasks = new TaskList();

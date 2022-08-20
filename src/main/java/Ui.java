@@ -17,9 +17,9 @@ public class Ui {
         System.out.println("FAILED! Could not find storage file containing your tasks");
         System.out.println("Add a task to generate one!!!");
     }
-    
+
     public void showLoadingSuccess() {
-        System.out.println("Successfully loaded all tasks! :)");
+        System.out.println("Yay! Your tasks were loaded successfully!");
     }
     
     public void showError(String errorMessage) {
@@ -60,6 +60,10 @@ public class Ui {
     
     public void showTask(Task task) {
         System.out.println("   " + task);
+    }
+    
+    public void showIsLoading() {
+        System.out.println("Loading tasks from disk.......");
     }
     
 }
