@@ -1,7 +1,11 @@
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 public class Duke {
     private static final String LOGO = " ____        _        \n"
@@ -48,6 +52,9 @@ public class Duke {
                             delete(index);
                             break;
                     }
+                } else if (split.length == 2 && split[0].equals("date")) {
+                    LocalDate date = getDate(split[1]);
+                    getDate(date);
                 }
                 else {
                     throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
@@ -79,12 +86,9 @@ public class Duke {
             throw new DukeException("☹ OOPS!!! Please add a date for your deadline with /by.");
         } else {
             String taskName = String.join(" ", Arrays.copyOfRange(input, 1, indexOfDate));
-            String date = String.join(" ", Arrays.copyOfRange(input, indexOfDate +1 , input.length));
+            LocalDate date = getDate(input[indexOfDate+1]);
             if( taskName.equals("")){
                 throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
-            }
-            if( date.equals("")){
-                throw new DukeException("☹ OOPS!!! The date of a deadline cannot be empty.");
             }
             addTask(new Deadline(taskName,date));
         }
@@ -100,14 +104,46 @@ public class Duke {
             throw new DukeException("☹ OOPS!!! Please add a date for your event with /at.");
         } else {
             String taskName = String.join(" ", Arrays.copyOfRange(input, 1, indexOfDate));
-            String date = String.join(" ", Arrays.copyOfRange(input, indexOfDate +1 , input.length));
+            LocalDate date = getDate(input[indexOfDate+1]);
             if( taskName.equals("")){
                 throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.");
             }
-            if( date.equals("")){
-                throw new DukeException("☹ OOPS!!! The date of an event cannot be empty.");
-            }
             addTask(new Event(taskName,date));
+        }
+    }
+
+    private static LocalDate getDate(String date) throws DukeException {
+        try {
+            return LocalDate.parse(date);
+        } catch (DateTimeParseException e){
+            throw new DukeException("☹ OOPS!!! Please format your date as yyyy-mm-dd format (e.g., 2019-10-15)");
+        }
+    }
+
+    private static void getDate(LocalDate date) {
+        List<String> onThisDate = new ArrayList<>();
+        List<String> byThisDate = new ArrayList<>();
+        for (Task task : TASK_LIST) {
+            if(task instanceof Event){
+                Event event = (Event) task;
+                if(event.onThisDate(date)){
+                    onThisDate.add(event.toStringDate());
+                }
+            }
+            if(task instanceof Deadline ){
+                Deadline deadline = (Deadline) task;
+                if( deadline.byThisDate(date)){
+                    byThisDate.add( deadline.toStringDate());
+                }
+            }
+        }
+        System.out.println("Things on this day :" );
+        for(String s : onThisDate) {
+            System.out.println(s + "\n");
+        }
+        System.out.println("Things to do by this day :" );
+        for(String s : byThisDate) {
+            System.out.println(s + "\n");
         }
     }
 
