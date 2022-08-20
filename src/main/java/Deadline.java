@@ -1,26 +1,25 @@
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
-    protected LocalDate byDate;
-    protected LocalTime byTime;
+    protected LocalDateTime dateTime;
 
     public Deadline(String description, String by) {
         super(description);
         String[] dateTimeSplit = by.split(" ");
-        this.byDate = LocalDate.parse(dateTimeSplit[0]);
-        if (dateTimeSplit.length > 1) {
-            this.byTime = LocalTime.parse(dateTimeSplit[1]);
+        String isoDateFormat = "";
+        if (dateTimeSplit.length == 1) {
+            isoDateFormat = String.format("%sT23:59",dateTimeSplit[0]);
         } else {
-            this.byTime = LocalTime.parse("23:59");
+            isoDateFormat = String.format("%sT%s", dateTimeSplit[0], dateTimeSplit[1]);
         }
+        this.dateTime= LocalDateTime.parse(isoDateFormat);
     }
 
     @Override
     public String toString() {
-        String formattedDate =  this.byDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
-        String formattedTime = this.byTime.format(DateTimeFormatter.ofPattern("HH:mm"));
-        return String.format("[D] %s (by: %s %s)", super.toString(), formattedDate, formattedTime);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy, HH:mm");
+        String formattedDateTime = this.dateTime.format(formatter);
+        return String.format("[E]%s (by: %s)", super.toString(), formattedDateTime);
     }
 }
