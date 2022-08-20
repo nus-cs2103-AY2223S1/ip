@@ -1,4 +1,7 @@
 import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 public class DukeOperations {
     public void exit() {
@@ -31,17 +34,17 @@ public class DukeOperations {
         }
     }
 
-    public void deadline(ArrayList<Task> array,String item, String deadline, int counter){
+    public void deadline(ArrayList<Task> array,String item, String deadline, String timing,  int counter){
 
-        array.add(counter,new Deadline(item, deadline));
+        array.add(counter,new Deadline(item, deadline, timing));
         System.out.println("Got it. I've added this task:");
         System.out.println(array.get(counter).toString());
         counter ++;
         System.out.println("Now you have " + counter + " tasks in the list.");
     }
 
-    public void event(ArrayList<Task> array,String item, String deadline, int counter) {
-        array.add(counter,new Event(item,deadline));
+    public void event(ArrayList<Task> array,String item, String deadline, String timing, int counter) {
+        array.add(counter,new Event(item,deadline, timing));
         System.out.println("Got it. I've added this task:");
         System.out.println(array.get(counter).toString());
         counter ++;

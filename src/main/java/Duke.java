@@ -41,15 +41,17 @@ public class Duke {
 
             else if(firstword.equals("deadline")) {
                 System.out.println("_________________________________________________________________________");
-                String arr2[] = arr[1].split("/by",2);
-                ops.deadline(array,arr2[0],arr2[1],counter);
+                String arr2[] = arr[1].split("/by ",2);
+                String arr3[] = arr2[1].split(" ",2);
+                ops.deadline(array,arr2[0],arr3[0],arr3[1],counter);
                 System.out.println("_________________________________________________________________________");
                 counter++;
             }
             else if(firstword.equals("event")) {
                 System.out.println("_________________________________________________________________________");
-                String arr2[] = arr[1].split("/at",2);
-                ops.event(array,arr2[0],arr2[1],counter);
+                String arr2[] = arr[1].split("/at ",2);
+                String arr3[] = arr2[1].split(" ",2);
+                ops.event(array,arr2[0],arr3[0],arr3[1],counter);
                 System.out.println("_________________________________________________________________________");
                 counter++;
             }
