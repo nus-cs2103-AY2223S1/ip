@@ -6,7 +6,7 @@ public class Deadline extends Task {
 
     public Deadline(String description, String by) {
         super(description);
-        String[] dateTimeSplit = by.split(" ");
+        String[] dateTimeSplit = by.split("[ T]");
         String isoDateFormat = "";
         if (dateTimeSplit.length == 1) {
             isoDateFormat = String.format("%sT23:59",dateTimeSplit[0]);

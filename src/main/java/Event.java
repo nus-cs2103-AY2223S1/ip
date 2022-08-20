@@ -6,7 +6,7 @@ public class Event extends Task {
 
     public Event(String description, String at) {
         super(description);
-        String[] dateTimeSplit = at.split(" ");
+        String[] dateTimeSplit = at.split("[ T]");
         String isoDateFormat = "";
         if (dateTimeSplit.length == 1) {
             isoDateFormat = String.format("%sT23:59",dateTimeSplit[0]);
