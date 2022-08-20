@@ -55,8 +55,10 @@ public class DukeTaskManager {
             }
             break;
         }
+        default: {
+            return;
         }
-        return;
+        }
     }
 
     private void dukeAddToList(Task task) {
@@ -130,6 +132,9 @@ public class DukeTaskManager {
             case DELETE: {
                 dukeRemoveTask(index);
                 break;
+            }
+            default: {
+                return;
             }
             }
         } catch (NumberFormatException e) {

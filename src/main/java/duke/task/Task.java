@@ -7,14 +7,14 @@ public abstract class Task implements Serializable {
     private boolean completed;
     private char type;
 
-    public Task (String name, char type, boolean completed) {
+    public Task(String name, char type, boolean completed) {
         this.name = name;
         this.type = type;
         this.completed = completed;
     }
 
-    public Task (String name, char type) {
-        this(name, type,false);
+    public Task(String name, char type) {
+        this(name, type, false);
     }
 
     public void markComplete() {

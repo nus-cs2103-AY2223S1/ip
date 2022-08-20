@@ -29,12 +29,12 @@ public class Duke {
     }
 
     private static void run() {
-        while(dukeUi.hasNextLine()) {
+        while (dukeUi.hasNextLine()) {
             Command command = Parser.getCommand(dukeUi.getNextLine());
             DukeCommandType commandType = command.getCommandType();
             String args = command.getArgs();
             switch (commandType) {
-            case EXIT:{
+            case EXIT: {
                 endService();
                 return;
             }

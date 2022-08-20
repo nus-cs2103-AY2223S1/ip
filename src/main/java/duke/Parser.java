@@ -1,7 +1,8 @@
 package duke;
 
-import duke.command.DukeCommandType;
+
 import duke.command.Command;
+import duke.command.DukeCommandType;
 
 public class Parser {
 
