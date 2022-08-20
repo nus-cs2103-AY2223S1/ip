@@ -2,21 +2,26 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
-    private static boolean isAcceptingInput;
-    private static ArrayList<Task> tasks;
+    private boolean isAcceptingInput;
+    private ArrayList<Task> tasks;
 
-    private static void startUp() {
+    public Duke() {
         isAcceptingInput = true;
         tasks = new ArrayList<>();
-        printStartupMessage();
     }
 
-    private static void printMessage(String msg) {
+    private static Duke startUp() {
+        Duke instance = new Duke();
+        instance.printStartupMessage();
+        return instance;
+    }
+
+    private void printMessage(String msg) {
         String border = "____________________________________________________________\n";
         System.out.println(border + msg + "\n" + border);
     }
 
-    private static void printStartupMessage() {
+    private void printStartupMessage() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -28,17 +33,17 @@ public class Duke {
         printMessage(startupMsg);
     }
 
-    private static String getCurrentListStatus() {
+    private String getCurrentListStatus() {
         return "Now you have " + tasks.size() + " task(s) in the list.";
     }
 
-    private static void exit() {
+    private void exit() {
         isAcceptingInput = false;
         String exitMsg = "Bye. Hope to see you again soon!";
         printMessage(exitMsg);
     }
 
-    private static void listTasks() {
+    private void listTasks() {
         int pointer = 1;
         String reply = "Here are the tasks in your list:";
         for (Task task : tasks) {
@@ -48,7 +53,7 @@ public class Duke {
         printMessage(reply);
     }
 
-    private static void addTask(Task task) {
+    private void addTask(Task task) {
         tasks.add(task);
         String msg = "Got it. I've added this task:\n"
                 + task + "\n"
@@ -56,7 +61,7 @@ public class Duke {
         printMessage(msg);
     }
 
-    private static void removeTask(int index) {
+    private void removeTask(int index) {
         Task removedTask = tasks.remove(index);
         String msg = "Noted. I've removed this task:\n"
                 + removedTask + "\n"
@@ -64,34 +69,34 @@ public class Duke {
         printMessage(msg);
     }
 
-    private static void addTodo(String description) {
+    private void addTodo(String description) {
         Todo todo = new Todo(description);
         addTask(todo);
     }
 
-    private static void addDeadline(String description, String date) {
+    private void addDeadline(String description, String date) {
         Deadline deadline = new Deadline(description, date);
         addTask(deadline);
     }
 
-    private static void addEvent(String description, String date) {
+    private void addEvent(String description, String date) {
         Event event = new Event(description, date);
         addTask(event);
     }
 
-    private static void markTask(int index) {
+    private void markTask(int index) {
         Task task = tasks.get(index);
         task.markAsDone();
         printMessage("Nice! I've marked this task as done:\n" + task);
     }
 
-    private static void unmarkTask(int index) {
+    private void unmarkTask(int index) {
         Task task = tasks.get(index);
         task.markAsUndone();
         printMessage("OK, I've marked this task as not done yet:\n" + task);
     }
 
-    private static void processInput(String input) {
+    private void processInput(String input) {
         try {
             input = input.trim();
             if (input.equals("bye")) {
@@ -176,12 +181,12 @@ public class Duke {
     }
 
     private static void runDuke() {
-        startUp();
+        Duke instance = startUp();
 
         Scanner sc = new Scanner(System.in);
-        while (isAcceptingInput) {
+        while (instance.isAcceptingInput) {
             String input = sc.nextLine();
-            processInput(input);
+            instance.processInput(input);
         }
     }
 
