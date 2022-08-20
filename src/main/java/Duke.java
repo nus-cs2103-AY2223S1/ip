@@ -106,6 +106,23 @@ public class Duke {
         }
     }
 
+    public static void addToList(ArrayList<Task> lst, String message, Command command) throws DukeException {
+        switch (command) {
+            case TODO: {
+                toDo(lst, message);
+                break;
+            }
+            case DEADLINE: {
+                makeDeadline(lst, message);
+                break;
+            }
+            case EVENT: {
+                makeEvent(lst, message);
+                break;
+            }
+        }
+    }
+
     public static void main(String[] args) throws DukeException {
         ArrayList<Task> lst = new ArrayList<>();
         boolean isDone = false;
@@ -113,45 +130,49 @@ public class Duke {
         System.out.println("What can I do for you?");
         Scanner sc = new Scanner(System.in);
         while (!isDone) {
-            String first = sc.next();
-            String message = sc.nextLine();
-            switch (first) {
-                case ("bye"): {
-                    System.out.println("Bye. Hope to see you again soon!");
-                    isDone = true;
-                    break;
+            try {
+                String first = sc.next();
+                String message = sc.nextLine();
+                switch (first) {
+                    case ("bye"): {
+                        System.out.println("Bye. Hope to see you again soon!");
+                        isDone = true;
+                        break;
+                    }
+                    case ("list"): {
+                        enumerateList(lst);
+                        break;
+                    }
+                    case ("mark"): {
+                        markDone(lst, message);
+                        break;
+                    }
+                    case ("unmark"): {
+                        markUndone(lst, message);
+                        break;
+                    }
+                    case ("todo"): {
+                        addToList(lst, message, Command.TODO);
+                        break;
+                    }
+                    case ("deadline"): {
+                        addToList(lst, message, Command.DEADLINE);
+                        break;
+                    }
+                    case ("event"): {
+                        addToList(lst, message, Command.EVENT);
+                        break;
+                    }
+                    case ("delete"): {
+                        delete(lst, message);
+                        break;
+                    }
+                    default: {
+                        throw new DukeException("OOPS! I'm sorry, but I don't know what that means...");
+                    }
                 }
-                case ("list"): {
-                    enumerateList(lst);
-                    break;
-                }
-                case ("mark"): {
-                    markDone(lst, message);
-                    break;
-                }
-                case ("unmark"): {
-                    markUndone(lst, message);
-                    break;
-                }
-                case ("todo"): {
-                    toDo(lst, message);
-                    break;
-                }
-                case ("deadline"): {
-                    makeDeadline(lst, message);
-                    break;
-                }
-                case ("event"): {
-                    makeEvent(lst, message);
-                    break;
-                }
-                case ("delete"): {
-                    delete(lst, message);
-                    break;
-                }
-                default: {
-                    throw new DukeException("OOPS! I'm sorry, but I don't know what that means...");
-                }
+            } catch (DukeException e) {
+                System.out.println(e.toString());
             }
         }
     }
