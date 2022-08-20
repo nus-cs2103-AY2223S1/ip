@@ -1,5 +1,6 @@
 import java.io.*;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -7,15 +8,21 @@ import java.nio.file.Path;
 
 public class Duke {
     private Ui ui;
-    private ArrayList<Task> taskArr = new ArrayList<>();
-    private final String taskStoragePath = "storage" + File.separator + "tasks.txt";
+    private Storage storage;
+    private List<Task> taskArr;
+
     
     public Duke() {
         this.ui = new Ui();
+        this.storage = new Storage("storage/tasks.txt");
+        try {
+            taskArr = this.storage.load();
+        } catch(FileNotFoundException fnfe) {
+            ui.showLoadingError();
+            taskArr = new ArrayList<>();
+        }
     }
-
-   
-
+    
     public void listTasks() {
         System.out.println("Here are your tasks: ");
         System.out.println("===============================");
@@ -31,36 +38,6 @@ public class Duke {
         System.out.println("===============================");
     }
     
-    public void saveTasksToStorage() throws IOException {
-        File file = new File(taskStoragePath);
-        File storageDir = new File(file.getParent());
-    
-        // create storage dir if it does not exist
-        if (!storageDir.exists()) {
-            storageDir.mkdirs();
-        }
-        
-        FileWriter fw = new FileWriter(file);
-        for (Task task : this.taskArr) {
-            fw.write(task.toFileFormatString() + "\n");
-        }
-        fw.close();
-    }
-    
-    public void readTasksFromStorage() {
-        System.out.print("Loading your tasks......");
-        File file = new File(taskStoragePath);
-        try {
-            Scanner sc = new Scanner(file);
-            while (sc.hasNext()) {
-                Task task = Task.getTaskFromString(sc.nextLine());
-                this.taskArr.add(task);
-            }
-           this.ui.showLoadingSuccess();
-        } catch (FileNotFoundException fnfe) {
-            this.ui.showLoadingError();
-        }
-    }
 
     public void addTask(Command command, String details) throws DukeException, IOException {
         if (details.length() == 0) {
@@ -173,13 +150,13 @@ public class Duke {
             case UNMARK:    
             case DELETE:
                 this.editTask(command, detailsString);
-                saveTasksToStorage();
+                this.storage.save(taskArr);
                 break;
             case TODO:
             case EVENT:
             case DEADLINE:
                 this.addTask(command, detailsString);
-                saveTasksToStorage();
+                this.storage.save(taskArr);
                 break;
         }
         return false;
@@ -187,7 +164,6 @@ public class Duke {
 
     public void start() {
         Scanner scanner = new Scanner(System.in);
-        readTasksFromStorage();
         this.ui.showWelcome();
 
         boolean end = false;
