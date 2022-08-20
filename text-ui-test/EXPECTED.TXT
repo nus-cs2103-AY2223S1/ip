@@ -1,37 +1,21 @@
 Hello I'm Duke
 What can I do for you?
-OOPS!!! The description of a todo cannot be empty
-Got it. I've added this task:
-  [T][ ] read book
-Now you have 1 tasks in the list.
-☹ OOPS!!! I'm sorry, but I don't know what that means :-(
-Got it. I've added this task:
-  [D][ ] lab (by: June 9th)
-Now you have 2 tasks in the list.
-OOPS!!! The description of a event cannot be empty
-Got it. I've added this task:
-  [E][ ] project meeting  (at: Mon 2-4pm)
-Now you have 3 tasks in the list.
-☹ OOPS!!! I'm sorry, but I don't know what that means :-(
-☹ OOPS!!! I'm sorry, but I don't know what that means :-(
-Nice! I've marked this task as done:
-  [T][X] read book
-☹ OOPS!!! I'm sorry, no tasks exist at this index :-(
-☹ OOPS!!! I'm sorry, please input a valid integer :-(
 Here are the tasks in your list:
 1.[T][X] read book
-2.[D][ ] lab (by: June 9th)
-3.[E][ ] project meeting  (at: Mon 2-4pm)
-OK, I've marked this task as not done yet:
-  [T][ ] read book
+2.[E][ ] project meeting (at: Mon 2-4pm)
+Got it. I've added this task:
+  [T][ ] return book
+Now you have 3 tasks in the list.
+Got it. I've added this task:
+  [D][ ] lab (by: June 9th)
+Now you have 4 tasks in the list.
 Nice! I've marked this task as done:
-  [D][X] lab (by: June 9th)
-OOPS!!! The description of a mark cannot be empty
-☹ OOPS!!! I'm sorry, please input a valid integer :-(
-Noted. I've removed this task:
-  [T][ ] read book
-Now you have 2 tasks in the list.
+  [E][ ] project meeting (at: Mon 2-4pm)
+Nice! I've marked this task as done:
+  [T][X] return book
 Here are the tasks in your list:
-1.[D][X] lab (by: June 9th)
-2.[E][ ] project meeting  (at: Mon 2-4pm)
+1.[T][X] read book
+2.[E][X] project meeting (at: Mon 2-4pm)
+3.[T][X] return book
+4.[D][ ] lab (by: June 9th)
 Bye. Hope to see you again soon!

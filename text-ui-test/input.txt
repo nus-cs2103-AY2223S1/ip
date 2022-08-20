@@ -1,19 +1,7 @@
-todo
-todo read book
-deadline lab /by
-deadline lab /by June 9th
-event
-event project meeting /at Mon 2-4pm
-bat
-hello there
-mark 1
-unmark 4
-mark s
 list
-unmark 1
+todo return book
+deadline lab /by June 9th
 mark 2
-mark
-delete s
-delete 1
+mark 3
 list
 bye
