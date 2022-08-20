@@ -1,7 +1,12 @@
+package duke.storage;
+
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.common.DukeException;
+
 import java.io.File;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Storage {
@@ -30,7 +35,7 @@ public class Storage {
             Scanner scanner = new Scanner(saveFile);
             return scanner;
         } catch (java.io.FileNotFoundException exception) {
-            throw new DukeException("Save file not found, even after Duke tries to create one :(");
+            throw new DukeException("Save file not found, even after duke.Duke tries to create one :(");
         }
     }
 
@@ -40,7 +45,7 @@ public class Storage {
             PrintWriter writer = new PrintWriter(saveFile);
             return writer;
         } catch (java.io.FileNotFoundException exception) {
-            throw new DukeException("Save file not found, even after Duke tries to create one :(");
+            throw new DukeException("Save file not found, even after duke.Duke tries to create one :(");
         }
     }
 

@@ -1,6 +1,9 @@
+package duke.task;
+
+import duke.common.DukeException;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
 
 public class Event extends Task {
     private LocalDate localDate;

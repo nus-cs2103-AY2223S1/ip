@@ -1,5 +1,8 @@
+package duke.task;
+
+import duke.common.DukeException;
+
 import java.time.LocalDate;
-import java.util.Arrays;
 
 public abstract class Task {
     protected static final String ENCODING_SEPARATOR = " | ";

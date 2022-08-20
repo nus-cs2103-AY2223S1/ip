@@ -1,3 +1,5 @@
+package duke.ui;
+
 import java.io.PrintWriter;
 import java.util.Scanner;
 

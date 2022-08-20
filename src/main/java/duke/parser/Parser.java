@@ -1,3 +1,12 @@
+package duke.parser;
+
+
+import duke.command.*;
+import duke.common.DukeException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.ToDo;
+
 import java.time.LocalDate;
 import java.util.Arrays;
 
@@ -54,7 +63,7 @@ public abstract class Parser {
                     String[] timeArgument = Arrays.stream(args).dropWhile(x -> !x.contains("/")).toArray(String[]::new);
                     if (timeArgument.length <= 1 || !timeArgument[0].equals("/at")) {
                         throw new DukeException("☹ OOPS!!! There is no /at argument for event :(");
-                    };
+                    }
                     command = new AddCommand(new Event(description, false, LocalDate.parse(timeArgument[1])));
                 } catch (java.time.format.DateTimeParseException exception) {
                     throw new DukeException("☹ OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.");
@@ -67,7 +76,7 @@ public abstract class Parser {
                     String[] timeArgument = Arrays.stream(args).dropWhile(x -> !x.contains("/")).toArray(String[]::new);
                     if (timeArgument.length <= 1 || !timeArgument[0].equals("/by")) {
                         throw new DukeException("☹ OOPS!!! There is no /by argument for deadline :(");
-                    };
+                    }
                     command = new AddCommand(new Deadline(description, false, LocalDate.parse(timeArgument[1])));
                 } catch (java.time.format.DateTimeParseException exception) {
                     throw new DukeException("☹ OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.");
