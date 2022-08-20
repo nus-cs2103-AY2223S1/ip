@@ -18,7 +18,7 @@ public class Skylark {
     public void startRunning() {
         while (true) {
             try {
-                boolean isEnd = Skylark.response(scan, taskList);
+                boolean isEnd = response(scan, taskList);
                 if (isEnd) {
                     break;
                 }
@@ -28,7 +28,7 @@ public class Skylark {
         }
     }
 
-    private static boolean response(Scanner scan, ArrayList<Task> taskList) throws SkylarkException {
+    private boolean response(Scanner scan, ArrayList<Task> taskList) throws SkylarkException {
         String input = scan.nextLine();
         Command command = Command.createCommand(input);
         command.run(taskList);
