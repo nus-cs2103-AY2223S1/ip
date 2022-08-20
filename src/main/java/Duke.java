@@ -57,13 +57,7 @@ public class Duke {
                         break;
                     }
 
-                    // TODO: A lot of code repetition for the next four pieces of code... Not sure how to resolve yet.
-                    case "add": {
-                        Task newTask = new Task(userParams[0][1]);
-                        taskList.addTask(newTask);
-                        System.out.printf("Gotcha! I added the following task to the list:\n  %s\nCurrently, I have %d tasks recorded\n", newTask, taskList.getLength());
-                        break;
-                    }
+                    // TODO: A lot of code repetition for the next three pieces of code... Not sure how to resolve yet.
 
                     case "todo": {
                         Todo newTodo = new Todo(userParams[0][1]);

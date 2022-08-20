@@ -2,11 +2,9 @@ list
 
 unknown
 mark 1
-add hello world
 todo CS2103T iP Level-4
 deadline CS2105 HW /by Sunday, 21 August 2022
 event NUS SoC Career Fair /at Wednesday, 12-5pm
-add
 todo
 deadline
 event
@@ -30,9 +28,9 @@ delete 5
 delete -1
 delete ab
 delete
-delete 2
+delete 1
 list
-delete 4
 delete 3
+delete 2
 list
 bye

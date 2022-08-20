@@ -1,4 +1,4 @@
-public class Task {
+public abstract class Task {
     private static final String NO_DESC_MESSAGE = "The description of a Task must not be empty.";
 
     protected String desc;

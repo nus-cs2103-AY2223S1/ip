@@ -8,18 +8,14 @@ Uh-oh ☹! Sorry, I don't know what that means.
 Did you make a mistake? Please note that commands are case-sensitive.
 Uh-oh ☹! I do not have a task with that number in my list.
 Gotcha! I added the following task to the list:
-  [ ] hello world
+  [T][ ] CS2103T iP Level-4
 Currently, I have 1 tasks recorded
 Gotcha! I added the following task to the list:
-  [T][ ] CS2103T iP Level-4
+  [D][ ] CS2105 HW (by: Sunday, 21 August 2022)
 Currently, I have 2 tasks recorded
 Gotcha! I added the following task to the list:
-  [D][ ] CS2105 HW (by: Sunday, 21 August 2022)
-Currently, I have 3 tasks recorded
-Gotcha! I added the following task to the list:
   [E][ ] NUS SoC Career Fair (at: Wednesday, 12-5pm)
-Currently, I have 4 tasks recorded
-Uh-oh ☹! The description of a Task must not be empty.
+Currently, I have 3 tasks recorded
 Uh-oh ☹! The description of a Task must not be empty.
 Uh-oh ☹! The description of a Task must not be empty.
 Uh-oh ☹! The description of a Task must not be empty.
@@ -30,48 +26,43 @@ Uh-oh ☹! An Event-type Task must be provided with a time range. Use the /at pa
 Uh-oh ☹! You must pass an index value.
 Uh-oh ☹! You must pass an integer value. asda is not an integer.
 Here are your tasks that I have recorded:
-01. [ ] hello world
-02. [T][ ] CS2103T iP Level-4
-03. [D][ ] CS2105 HW (by: Sunday, 21 August 2022)
-04. [E][ ] NUS SoC Career Fair (at: Wednesday, 12-5pm)
-Noice! I've marked this task as done:
-  [✔] hello world
-Sorry, but it seems you have marked this task as done:
-  [✔] hello world
-Sorry, but it seems you haven't marked this task as done:
-  [T][ ] CS2103T iP Level-4
+01. [T][ ] CS2103T iP Level-4
+02. [D][ ] CS2105 HW (by: Sunday, 21 August 2022)
+03. [E][ ] NUS SoC Career Fair (at: Wednesday, 12-5pm)
 Noice! I've marked this task as done:
   [T][✔] CS2103T iP Level-4
+Sorry, but it seems you have marked this task as done:
+  [T][✔] CS2103T iP Level-4
+Sorry, but it seems you haven't marked this task as done:
+  [D][ ] CS2105 HW (by: Sunday, 21 August 2022)
+Noice! I've marked this task as done:
+  [D][✔] CS2105 HW (by: Sunday, 21 August 2022)
 Here are your tasks that I have recorded:
-01. [✔] hello world
-02. [T][✔] CS2103T iP Level-4
-03. [D][ ] CS2105 HW (by: Sunday, 21 August 2022)
-04. [E][ ] NUS SoC Career Fair (at: Wednesday, 12-5pm)
+01. [T][✔] CS2103T iP Level-4
+02. [D][✔] CS2105 HW (by: Sunday, 21 August 2022)
+03. [E][ ] NUS SoC Career Fair (at: Wednesday, 12-5pm)
 Alright, I've marked this task as not done:
-  [ ] hello world
+  [T][ ] CS2103T iP Level-4
 Uh-oh ☹! I do not have a task with that number in my list.
 Uh-oh ☹! I do not have a task with that number in my list.
 Here are your tasks that I have recorded:
-01. [ ] hello world
-02. [T][✔] CS2103T iP Level-4
-03. [D][ ] CS2105 HW (by: Sunday, 21 August 2022)
-04. [E][ ] NUS SoC Career Fair (at: Wednesday, 12-5pm)
+01. [T][ ] CS2103T iP Level-4
+02. [D][✔] CS2105 HW (by: Sunday, 21 August 2022)
+03. [E][ ] NUS SoC Career Fair (at: Wednesday, 12-5pm)
 Uh-oh ☹! I do not have a task with that number in my list.
 Uh-oh ☹! I do not have a task with that number in my list.
 Uh-oh ☹! You must pass an integer value. ab is not an integer.
 Uh-oh ☹! You must pass an index value.
 Understood, I've deleted the following task:
-  [T][✔] CS2103T iP Level-4
-You now have 3 tasks remaining.
+  [T][ ] CS2103T iP Level-4
+You now have 2 tasks remaining.
 Here are your tasks that I have recorded:
-01. [ ] hello world
-02. [D][ ] CS2105 HW (by: Sunday, 21 August 2022)
-03. [E][ ] NUS SoC Career Fair (at: Wednesday, 12-5pm)
+01. [D][✔] CS2105 HW (by: Sunday, 21 August 2022)
+02. [E][ ] NUS SoC Career Fair (at: Wednesday, 12-5pm)
 Uh-oh ☹! I do not have a task with that number in my list.
 Understood, I've deleted the following task:
   [E][ ] NUS SoC Career Fair (at: Wednesday, 12-5pm)
-You now have 2 tasks remaining.
+You now have 1 tasks remaining.
 Here are your tasks that I have recorded:
-01. [ ] hello world
-02. [D][ ] CS2105 HW (by: Sunday, 21 August 2022)
+01. [D][✔] CS2105 HW (by: Sunday, 21 August 2022)
 Bye! Hope to see you soon ༼- つ ◕_◕ ༽つ
