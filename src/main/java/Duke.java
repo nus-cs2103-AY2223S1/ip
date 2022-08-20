@@ -53,6 +53,12 @@ public class Duke {
                 System.out.println("[X] " + arr[c - 1]);
                 a = sc.nextLine();
             } else if (a.contains("todo")) {
+                try {
+                    a.substring(5);
+                } catch (Exception StringIndexOutOfBoundsException) {
+                    DukeException.todoException();
+                    a = sc.nextLine();
+                }
                 String task = a.substring(5);
                 arr[pos] = task;
                 status[pos] = 0;
@@ -93,10 +99,12 @@ public class Duke {
                 a = sc.nextLine();
             } else {
                 // else
-                arr[pos] = a;
-                status[pos] = 0;
-                pos++;
-                System.out.println("added: " + a);
+//                arr[pos] = a;
+//                status[pos] = 0;
+//                pos++;
+//                System.out.println("added: " + a);
+//                a = sc.nextLine();
+                DukeException.taskException();
                 a = sc.nextLine();
             }
         }
