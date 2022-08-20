@@ -32,30 +32,22 @@ public class Duke {
                 String task = userInput.substring(7);
                 String s = unmarkDone(task, list);
                 System.out.println(line + s + line);
-            } else if (userInput.startsWith("todo") || userInput.startsWith("deadline") || userInput.startsWith("event")) {
-                Task t = new Task(userInput.substring(userInput.indexOf(" ") + 1),
-                        userInput.substring(0, userInput.indexOf(" ")).toUpperCase(), false);
-                list.add(t);
-                System.out.println(line + " okie! i've added: \n " + t.toString() + "\n now you have " + list.size() + " task(s) in your list!\n" + line);  // Output user input
             } else {
-                /* list.add(new Task(userInput.substring(userInput.indexOf(" ") + 1),
-                        userInput.substring(0, userInput.indexOf(" ")).toUpperCase(), false));
-                System.out.println(line + " added: " + userInput + "\n" + line);  // Output user input */
-                System.out.println("reach end");
+                try {
+                    addTask(userInput, list);
+                } catch (DukeException e) {
+                    System.out.println(line + e.getMessage() + "\n" + line);
+                }
             }
         }
     }
 
     public static String makeList(ArrayList<Task> ls) {
         String s = "";
-
         for (int i = 0; i < ls.size(); i++) {
             int index = i + 1;
-            // s += index + "." + ls.get(i).isDoneString() + " " + ls.get(i).getTask() + "\n";
             s += " " + index + "." + ls.get(i).toString() + "\n";
-
         }
-
         return s;
     }
 
@@ -77,5 +69,18 @@ public class Duke {
             }
         }
         return task + " not found :(\n";
+    }
+
+    public static void addTask(String userInput, ArrayList<Task> ls) throws DukeException {
+        String line = " _______________________________________ \n";
+        if (!userInput.startsWith("todo") && !userInput.startsWith("deadline") && !userInput.startsWith("event")) {
+            throw new DukeException("sowwie idk what this means.");
+        } else if (userInput.substring(userInput.indexOf(" ") + 1).length() == 0) {
+            throw new DukeException("the description of a task cannot be empty.");
+        }
+        Task t = new Task(userInput.substring(userInput.indexOf(" ") + 1),
+                userInput.substring(0, userInput.indexOf(" ")).toUpperCase(), false);
+        ls.add(t);
+        System.out.println(line + " okie! i've added: \n " + t + "\n now you have " + ls.size() + " task(s) in your list!\n" + line);
     }
 }
