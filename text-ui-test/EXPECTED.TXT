@@ -10,7 +10,7 @@ Got it. I've added this task:
   [D][ ] lab (by: June 9th)
 Now you have 4 tasks in the list.
 Nice! I've marked this task as done:
-  [E][ ] project meeting (at: Mon 2-4pm)
+  [E][X] project meeting (at: Mon 2-4pm)
 Nice! I've marked this task as done:
   [T][X] return book
 Here are the tasks in your list:
