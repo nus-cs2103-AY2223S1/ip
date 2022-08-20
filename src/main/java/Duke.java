@@ -1,100 +1,11 @@
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Duke {
     private final Ui ui;
-
-    private void list(ArrayList<Task> tasks) {
-        for (int i = 0; i < tasks.size(); i++) {
-            this.ui.showf("%d: %s", i + 1, tasks.get(i));
-        }
-    }
-
-    private void mark(ArrayList<Task> tasks, String[] split) throws DukeException {
-        if (split.length != 2) {
-            throw DukeException.noIndex;
-        }
-        String indexInput = split[1];
-        int i = Integer.parseInt(indexInput);
-        if (i <= 0 || i > tasks.size()) {
-            throw DukeException.invalidIndex;
-        }
-        // Subtract 1 to account for 0-index data structure.
-        Task task = tasks.get(i - 1);
-        task.markAsDone();
-
-        this.ui.showMarkResult(task, i);
-    }
-
-    private void unmark(ArrayList<Task> tasks, String[] split) throws DukeException {
-        if (split.length != 2) {
-            throw DukeException.noIndex;
-        }
-        String indexInput = split[1];
-        int i = Integer.parseInt(indexInput);
-        if (i <= 0 || i > tasks.size()) {
-            throw DukeException.invalidIndex;
-        }
-        // Subtract 1 to account for 0-index data structure.
-        Task task = tasks.get(i - 1);
-        task.markAsUndone();
-
-        this.ui.showUnmarkResult(task, i);
-    }
-
-    private void delete(ArrayList<Task> tasks, String[] split) throws DukeException {
-        if (split.length != 2) {
-            throw DukeException.noIndex;
-        }
-        String indexInput = split[1];
-        int i = Integer.parseInt(indexInput);
-        if (i <= 0 || i > tasks.size()) {
-            throw DukeException.invalidIndex;
-        }
-        // Subtract 1 to account for 0-index data structure.
-        Task task = tasks.get(i - 1);
-        tasks.remove(i - 1);
-        int numberOfTasks = tasks.size();
-
-        this.ui.showDeleteResult(task, numberOfTasks);
-    }
-
-    private void todo(ArrayList<Task> tasks, String[] split) throws DukeException {
-        if (split.length != 2) {
-            throw Todo.emptyDescription;
-        }
-        String description = split[1];
-        Todo todo = Todo.create(description);
-        tasks.add(todo);
-        int numberOfTasks = tasks.size();
-
-        this.ui.showTodoResult(todo, numberOfTasks);
-    }
-
-    private void deadline(ArrayList<Task> tasks, String[] split) throws DukeException {
-        if (split.length != 2) {
-            throw Deadline.emptyDescription;
-        }
-        String descAndDate = split[1];
-        Deadline deadline = Deadline.create(descAndDate);
-        tasks.add(deadline);
-        int numberOfTasks = tasks.size();
-
-        this.ui.showDeadlineResult(deadline, numberOfTasks);
-    }
-
-    private void event(ArrayList<Task> tasks, String[] split) throws DukeException {
-        if (split.length != 2) {
-            throw Event.emptyDescription;
-        }
-        String descAndDate = split[1];
-        Event event = Event.create(descAndDate);
-        tasks.add(event);
-        int numberOfTasks = tasks.size();
-
-        this.ui.showEventResult(event, numberOfTasks);
-    }
 
     public Duke() {
         this.ui = new Ui();
@@ -120,51 +31,58 @@ public class Duke {
         scanLoop:
         while (scanner.hasNext()) {
             try {
-                String input = scanner.nextLine();
+                String userInput = scanner.nextLine();
 
-                String[] split = input.split(" ", 2);
-                String command = split[0];
+                Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)\\s?(?<arguments>.*)");
+                Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput);
+                String commandWord, arguments;
+                if (matcher.matches()) {
+                    commandWord = matcher.group("commandWord");
+                    arguments = matcher.group("arguments");
+                } else {
+                    throw DukeException.unknownCommand;
+                }
+                Command command;
 
                 // Handle the various commands.
-                switch (command) {
+                switch (commandWord) {
                     case "bye":
                         // Stops the application, by breaking out of the scan loop.
                         break scanLoop;
                     case "list":
-                        duke.list(tasks);
+                        command = new ListCommand(tasks);
                         break;
                     case "mark": {
-                        duke.mark(tasks, split);
-                        storage.save(tasks);
+                        command = new MarkCommand(tasks, arguments);
                         break;
                     }
                     case "unmark": {
-                        duke.unmark(tasks, split);
-                        storage.save(tasks);
+                        command = new UnmarkCommand(tasks, arguments);
                         break;
                     }
                     case "delete": {
-                        duke.delete(tasks, split);
-                        storage.save(tasks);
+                        command = new DeleteCommand(tasks, arguments);
                         break;
                     }
                     case "todo": {
-                        duke.todo(tasks, split);
-                        storage.save(tasks);
+                        command = new TodoCommand(tasks, arguments);
                         break;
                     }
                     case "deadline": {
-                        duke.deadline(tasks, split);
-                        storage.save(tasks);
+                        command = new DeadlineCommand(tasks, arguments);
                         break;
                     }
                     case "event": {
-                        duke.event(tasks, split);
-                        storage.save(tasks);
+                        command = new EventCommand(tasks, arguments);
                         break;
                     }
                     default:
                         throw DukeException.unknownCommand;
+                }
+                CommandResult result = command.execute();
+                duke.ui.showResult(result);
+                if (result.shouldUpdateFile()) {
+                    storage.save(tasks);
                 }
                 duke.ui.showLineBreak();
             } catch (DukeException | IOException e) {

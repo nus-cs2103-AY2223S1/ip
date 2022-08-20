@@ -60,16 +60,20 @@
     ____________________________________________________________
     Description of Todo cannot be empty!
     ____________________________________________________________
-    Description of Deadline cannot be empty!
-    ____________________________________________________________
-    Description of Deadline cannot be empty!
+    Wrong format for Deadline!
+    Should be 'deadline <description> /by YYYY-MM-DD'.
     ____________________________________________________________
     Wrong format for Deadline!
     Should be 'deadline <description> /by YYYY-MM-DD'.
     ____________________________________________________________
-    Description of Event cannot be empty!
+    Wrong format for Deadline!
+    Should be 'deadline <description> /by YYYY-MM-DD'.
     ____________________________________________________________
-    Description of Event cannot be empty!
+    Wrong format for Event!
+    Should be 'event <description> /at YYYY-MM-DD'.
+    ____________________________________________________________
+    Wrong format for Event!
+    Should be 'event <description> /at YYYY-MM-DD'.
     ____________________________________________________________
     Wrong format for Event!
     Should be 'event <description> /at YYYY-MM-DD'.
