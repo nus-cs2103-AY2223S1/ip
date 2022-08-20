@@ -6,8 +6,8 @@ Type 'list' to list out all your tasks.
 Type 'mark' to complete a task.
 Type 'unmark' to un-complete a task.
 Type 'bye' to finish the conversation.
-Type your instructions to Maria: What is the name of your todo: Maria says: I created a Todo [T][ ] Eat dinner for you.
-Type your instructions to Maria: What is the name of your event: What is the start time of your event: What is the end time of your event: Maria says: I created a Event [E][ ] Eat breakfast (from 7am to 8am) for you.
+Type your instructions to Maria: What is the name of your todo: Maria says: I created a TaskTodo [T][ ] Eat dinner for you.
+Type your instructions to Maria: What is the name of your event: What is the start time of your event: What is the end time of your event: Maria says: I created a TaskEvent [E][ ] Eat breakfast (from 7am to 8am) for you.
 Type your instructions to Maria: Maria says: Here are the list of tasks you have:
 1. [T][ ] Eat dinner
 2. [E][ ] Eat breakfast (from 7am to 8am)

@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -8,15 +7,17 @@ public class Chatbot {
     private final String name;
     private boolean isActive;
 
-    private Scanner scanner;
+    private final Scanner scanner;
 
-    private List<Task> taskList;
+    private final TaskList taskList;
+    private final Storage storage;
 
     public Chatbot(String name) {
         this.name = name;
         this.isActive = true;
         this.scanner = new Scanner(System.in);
-        this.taskList = new ArrayList<>();
+        this.storage = new Storage("tasks.dukedata");
+        this.taskList = StorageConverter.stringToTasks(this.storage);
     }
 
     private void printInstructions() {
@@ -51,24 +52,25 @@ public class Chatbot {
 
     private String receiveMsg(String msg) {
 
-        if (msg.equals("bye")) {
+        switch (msg) {
+        case "bye":
             this.isActive = false;
             return "Goodbye, see you soon!";
-        } else if (msg.equals("todo")) {
+        case "todo":
             return makeTodo();
-        } else if (msg.equals("deadline")) {
+        case "deadline":
             return makeDeadline();
-        } else if (msg.equals("event")) {
+        case "event":
             return makeEvent();
-        } else if (msg.equals("list")) {
+        case "list":
             return getListOfTasks();
-        } else if (msg.equals("mark")) {
+        case "mark":
             return markTask();
-        } else if (msg.equals("unmark")) {
+        case "unmark":
             return unmarkTask();
-        } else if (msg.equals("delete")) {
+        case "delete":
             return removeTask();
-        } else {
+        default:
             printInstructions();
             return "I don't know what you want me to do :( Please type exactly as per the instructions above.";
         }
@@ -76,57 +78,15 @@ public class Chatbot {
     }
 
     private String makeTodo() {
-
-        System.out.print("What is the name of your todo: ");
-        String name = this.scanner.nextLine();
-
-        try {
-            Task task = new Todo(name, false);
-            this.taskList.add(task);
-            return "I created a Todo " + task + " for you. You have " + this.taskList.size() + " tasks now.";
-        } catch (TaskNoNameException e) {
-            return e.getMessage();
-        }
-
+        return TaskTodo.makeTodo(this.scanner, this.taskList);
     }
 
     private String makeDeadline() {
-
-        System.out.print("What is the name of your deadline task: ");
-        String name = this.scanner.nextLine();
-
-        System.out.print("What is the deadline of your task: ");
-        String deadline = this.scanner.nextLine();
-
-        try {
-            Task task = new Deadline(name, false, deadline);
-            this.taskList.add(task);
-            return "I created a Deadline " + task + " for you. You have " + this.taskList.size() + " tasks now.";
-        } catch (TaskNoNameException e) {
-            return e.getMessage();
-        }
-
+        return TaskDeadline.makeDeadline(this.scanner, this.taskList);
     }
 
     private String makeEvent() {
-
-        System.out.print("What is the name of your event: ");
-        String name = this.scanner.nextLine();
-
-        System.out.print("What is the start time of your event: ");
-        String start = this.scanner.nextLine();
-
-        System.out.print("What is the end time of your event: ");
-        String end = this.scanner.nextLine();
-
-        try {
-            Task task = new Event(name, false, start, end);
-            this.taskList.add(task);
-            return "I created a Event " + task + " for you. You have " + this.taskList.size() + " tasks now.";
-        } catch (TaskNoNameException e) {
-            return e.getMessage();
-        }
-
+        return TaskEvent.makeEvent(this.scanner, this.taskList);
     }
 
     private String markTask() {
@@ -135,6 +95,7 @@ public class Chatbot {
         int i = this.scanner.nextInt() - 1;
         this.scanner.nextLine();
         this.taskList.get(i).setDone(true);
+        this.taskList.mutatedTask();
         return "Your task " + this.taskList.get(i) + " has been completed.";
 
     }
@@ -145,6 +106,7 @@ public class Chatbot {
         int i = this.scanner.nextInt() - 1;
         this.scanner.nextLine();
         this.taskList.get(i).setDone(false);
+        this.taskList.mutatedTask();
         return "Your task " + this.taskList.get(i) + " has been un-completed.";
 
     }
