@@ -1,4 +1,4 @@
-import duke.*;
+package duke;
 
 public class Duke {
 

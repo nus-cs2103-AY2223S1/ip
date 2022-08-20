@@ -1,1 +1,2 @@
-T | 1 | blah
+T | 0 | blah
+E | 0 | testing | 2022-08-20
