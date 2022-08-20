@@ -75,6 +75,7 @@ public abstract class Command {
                 currentTask.markAsDone();
                 Printer.printText("Nice! I've marked this task as done:");
                 Printer.printText(currentTask.toString());
+                taskList.saveToFile();
             } else {
                 throw new SkylarkException("Sorry, index does not exist!");
             }
@@ -94,6 +95,7 @@ public abstract class Command {
                 currentTask.markAsUndone();
                 Printer.printText("OK, I've marked this task as not done yet:");
                 Printer.printText(currentTask.toString());
+                taskList.saveToFile();
             } else {
                 throw new SkylarkException("Sorry, index does not exist!");
             }
@@ -115,6 +117,7 @@ public abstract class Command {
             Printer.printText("Got it. I've added this task:");
             Printer.printText(toDoTask.toString());
             Printer.printText("Now you have " + taskList.size() + " tasks in the list.");
+            taskList.saveToFile();
         }
     }
 
@@ -138,6 +141,7 @@ public abstract class Command {
             Printer.printText("Got it. I've added this task:");
             Printer.printText(deadlineTask.toString());
             Printer.printText("Now you have " + taskList.size() + " tasks in the list.");
+            taskList.saveToFile();
         }
     }
 
@@ -161,6 +165,7 @@ public abstract class Command {
             Printer.printText("Got it. I've added this task:");
             Printer.printText(eventTask.toString());
             Printer.printText("Now you have " + taskList.size() + " tasks in the list.");
+            taskList.saveToFile();
         }
     }
 
@@ -179,6 +184,7 @@ public abstract class Command {
                 Printer.printText("Noted. I've removed this task:");
                 Printer.printText(currentTask.toString());
                 Printer.printText("Now you have " + taskList.size() + " tasks in the list.");
+                taskList.saveToFile();
             } else {
                 throw new SkylarkException("Sorry, index does not exist!");
             }

@@ -1,30 +1,32 @@
 import java.io.File;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.FileWriter;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TaskList {
-    ArrayList<Task> taskArrayList;
+    private final ArrayList<Task> taskArrayList;
+    private File file;
 
     public TaskList(String filePath) {
         this.taskArrayList = new ArrayList<>();
 
         try {
-            File file = new File(filePath);
-            if (file.isDirectory()) {
+            this.file = new File(filePath);
+            if (this.file.isDirectory()) {
                 throw new SkylarkException("This path is a directory!");
             }
 
-            if (!file.exists()) {
+            if (!this.file.exists()) {
                 try {
                     // https://stackoverflow.com/questions/9620683/java-fileoutputstream-create-file-if-not-exists
-                    if (!file.getParentFile().mkdirs()) {
+                    if (!this.file.getParentFile().mkdirs()) {
                         throw new SkylarkException("Error creating directory!");
                     }
 
-                    if (!file.createNewFile()) {
+                    if (!this.file.createNewFile()) {
                         throw new SkylarkException("Error creating new file!");
                     }
                 } catch (IOException ioException) {
@@ -33,7 +35,7 @@ public class TaskList {
             }
 
             try {
-                Scanner scanner = new Scanner(file);
+                Scanner scanner = new Scanner(this.file);
                 while (scanner.hasNextLine()) {
                     String nextLine = scanner.nextLine();
                     String[] splitString = nextLine.split(" \\| ", -1);
@@ -98,5 +100,18 @@ public class TaskList {
 
     public boolean doesIndexExist(int index) {
         return index >= 0 && index < this.taskArrayList.size();
+    }
+
+    public void saveToFile() throws SkylarkException {
+        try {
+            FileWriter fileWriter = new FileWriter(this.file);
+            for (Task currentTask : this.taskArrayList) {
+                // Reference: https://www.baeldung.com/java-string-newline
+                fileWriter.write(currentTask.toStringFile() + System.lineSeparator());
+            }
+            fileWriter.close();
+        } catch (IOException e) {
+            throw new SkylarkException("IOException occurred when writing to file");
+        }
     }
 }
