@@ -11,7 +11,7 @@ import java.util.List;
 public class UserInputHistory {
     private ArrayList<Task> userInputHistory = new ArrayList<>();
     Path path = Paths.get(System.getProperty("user.dir"),"src", "main", "java", "userinputhistory.txt");
-
+    Path tempFilePath = Paths.get(System.getProperty("user.dir"),"src", "main", "java", "userinputhistorytemp.txt");
     private void createIfDoesntExist() {
         try {
             if (!Files.exists(path)) {
@@ -24,8 +24,24 @@ public class UserInputHistory {
     }
     private void appendToFile(String s)  {
         try {
-            createIfDoesntExist();
             Files.write(path, s.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
+        } catch (IOException e) {
+            System.out.println("IOException: " + e);
+        }
+    }
+
+    private void deleteLine(int index) {
+        try {
+            List<String> history = Files.readAllLines(path);
+            Files.createFile(tempFilePath);
+            int n = history.size(), i = 0;
+            for (i = 0; i < n ; i ++) {
+                if (i != index - 1) {
+                    Files.write(tempFilePath, history.get(i).getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
+                }
+            }
+            Files.move(tempFilePath, path);
+            Files.delete(tempFilePath);
         } catch (IOException e) {
             System.out.println("IOException: " + e);
         }
@@ -128,6 +144,7 @@ public class UserInputHistory {
             List<String> history = Files.readAllLines(path);;
             for (String s: history) {
                 System.out.printf("%d. %s\n", count, s);
+                count++;
             }
         } catch (IOException e) {
             System.out.println("IOException: " + e);
@@ -155,6 +172,7 @@ public class UserInputHistory {
         try {
             syncUserInputHistory();
             Task taskToModify = userInputHistory.get(n - 1);
+            deleteLine(n);
             userInputHistory.remove(n - 1);
             System.out.printf("Task removed: \n%s\n", taskToModify);
             System.out.printf("Total: %d\n", userInputHistory.size());
