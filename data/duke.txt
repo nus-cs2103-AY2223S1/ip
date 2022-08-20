@@ -1,9 +1,7 @@
-<<<<<<< HEAD
 [T][ ] ry
 [D][ ] die (by: Sep 09 2019)
-=======
 [T][X] cry
-[D][ ] kill soeul (by: 2019-05-05)
+[D][ ] kill soeul (by: May 05 2015)
 [T][X] ur
-[E][ ] crpao (at: 2023-08-06)
->>>>>>> 0b15f97bddf833ae94f150fcd58782c44405856c
+[E][ ] crpao (at: Aug 06 2022)
+[D][ ] cry (by: Aug 08 2018)
