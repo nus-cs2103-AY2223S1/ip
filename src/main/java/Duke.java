@@ -30,11 +30,14 @@ public class Duke {
         printLine();
     }
 
-    public static void addATask(String item) {
+    public static void addATask(String item) throws DukeException {
         String[] arr = item.split(" ", 2);
         String type = arr[0];
         switch (type) {
             case "todo":
+                if (arr.length == 1) {
+                    throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+                }
                 String todoName = arr[1].trim();
                 Task newTodo = new Todo(todoName);
                 tasks.add(newTodo);
@@ -50,9 +53,12 @@ public class Duke {
                 String[] eventArr = arr[1].split("/");
                 String eventName = eventArr[0];
                 String eventTime = eventArr[1];
-                Task newEvent = new Deadline(eventName,eventTime);
+                Task newEvent = new Deadline(eventName, eventTime);
                 tasks.add(newEvent);
                 break;
+            default:
+                DukeException e = new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                throw e;
         }
 
         printLine();
@@ -77,6 +83,16 @@ public class Duke {
         System.out.println(tasks.get(num - 1).toString());
         printLine();
     }
+
+    public static void delete(int num) {
+        printLine();
+        Task removedTask = tasks.get(num - 1);
+        tasks.remove(num - 1);
+        System.out.println("Noted. I've removed this task:" + "\n" + tasks.toString()
+        + "Now you have " + tasks.size() + " tasks in the list.");
+        printLine();
+    }
+
 
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -106,12 +122,21 @@ public class Duke {
                     int num2 = Integer.parseInt(input.split(" ")[1]);
                     unmark(num2);
                     break;
+                case "delete":
+                    int num3 = Integer.parseInt(input.split(" ")[1]);
+                    delete(num3);
+                    break;
                 default:
-                    addATask(input);
+                    try {
+                        addATask(input);
+                    } catch (DukeException e) {
+                        printLine();
+                        System.out.println(e.getMessage());
+                        printLine();
+                    }
                     break;
             }
         }
     }
-
 
 }
