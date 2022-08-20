@@ -1,0 +1,3 @@
+T | false | todo
+D | true | deadline | Sunday
+E | false | event | Sunday

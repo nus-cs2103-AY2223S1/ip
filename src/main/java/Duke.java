@@ -1,8 +1,10 @@
-import org.junit.jupiter.api.Test;
-
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.File;
 
 /**
  * The main class to run Duke.
@@ -10,6 +12,8 @@ import java.util.regex.Pattern;
 public class Duke {
     /** Boolean to check if code should stop */
     private static boolean isDone;
+
+    private static final String FILE = "data/duke.txt";
 
     /** Scanner Object */
     private static final Scanner echo = new Scanner(System.in);
@@ -30,6 +34,12 @@ public class Duke {
         EVENT
     }
 
+    private static void writeToFile(String filePath, String textToAdd) throws IOException {
+        FileWriter fw = new FileWriter(filePath);
+        fw.write(textToAdd);
+        fw.close();
+    }
+
     /**
      * To check if the String is an integer.
      *
@@ -43,8 +53,59 @@ public class Duke {
         return checkString.matcher(strNum).matches();
     }
 
+    private static String fileFormatString(Task task) {
+        if (task instanceof DeadlineTask) {
+            DeadlineTask deadlineTask = (DeadlineTask) task;
+            return "D | " + deadlineTask.isDone + " | " + deadlineTask.getDescription() + " | " + deadlineTask.by;
+        } else if (task instanceof EventTask) {
+            EventTask eventTask = (EventTask) task;
+            return "E | " + eventTask.isDone + " | " + eventTask.getDescription() + " | " + eventTask.at;
+        } else {
+            TodoTask todoTask = (TodoTask) task;
+            return "T | " + todoTask.isDone + " | " + todoTask.getDescription();
+        }
+    }
+
+    private static void addDukeToList(String filePath) throws FileNotFoundException {
+        File file = new File(filePath); // create a File for the given file path
+        Scanner scanner = new Scanner(file); // create a Scanner using the File as the source
+        while (scanner.hasNext()) {
+            String line = scanner.nextLine();
+            String lineWithNoSpaces = line.replaceAll(" ","");
+            String[] keywords = lineWithNoSpaces.split("\\|", 4);
+            switch (keywords[0]) {
+            case "D":
+                DeadlineTask deadlineTask = new DeadlineTask(keywords[2], keywords[3]);
+                if(Boolean.parseBoolean(keywords[1])) {
+                    deadlineTask.mark();
+                } else {
+                    deadlineTask.unMark();
+                }
+                storage.add(deadlineTask);
+                break;
+            case "E":
+                EventTask eventTask = new EventTask(keywords[2], keywords[3]);
+                if(Boolean.parseBoolean(keywords[1])) {
+                    eventTask.mark();
+                } else {
+                    eventTask.unMark();
+                }
+                storage.add(eventTask);
+                break;
+            case "T":
+                TodoTask todoTask = new TodoTask(keywords[2]);
+                if(Boolean.parseBoolean(keywords[1])) {
+                    todoTask.mark();
+                } else {
+                    todoTask.unMark();
+                }
+                storage.add(todoTask);
+            }
+        }
+    }
+
     /**
-     * Add task to list
+     * Add task to list (outdated, kept for Level 2)
      *
      * @param task
      */
@@ -149,7 +210,7 @@ public class Duke {
      * @param parts    The array that contains the action and the name of the task.
      * @throws DukeException
      */
-    private static void addTaskType(Type type, String[] parts) throws DukeException{
+    private static void addTaskType(Type type, String[] parts) throws DukeException {
         String part2;
         switch (type) {
         case DEADLINE:
@@ -218,7 +279,7 @@ public class Duke {
      * @param response         The input.
      * @throws DukeException
      */
-    private static void reply(String response) throws DukeException {
+    private static void reply(String response) throws DukeException, IOException {
         String[] parts = response.split(" ", 2);
         /** the action */
         String part1 = parts[0];
@@ -228,6 +289,11 @@ public class Duke {
             System.out.println("-----------------------------------------------");
             System.out.println("Bye. Hope to see you again soon!");
             System.out.println("-----------------------------------------------");
+            String temp = "";
+            for (int i = 0; i < storage.size(); i++) {
+                temp = temp + fileFormatString(storage.get(i)) + System.lineSeparator();
+            }
+            writeToFile(FILE, temp);
             storage.clear();
             echo.close();
             isDone = true;
@@ -279,19 +345,30 @@ public class Duke {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
+        try {
+            File newDuke = new File(FILE);
+            newDuke.createNewFile();
+            addDukeToList(FILE);
+        } catch (IOException e) {
+            System.out.println("Something went wrong: " + e.getMessage());
+        }
         System.out.println("Hello! I'm Duke\nWhat can I do for you?\n" );
         String response;
         isDone = false;
-        while (!isDone) {
-            try {
-                response = echo.nextLine();
-                reply(response);
-            } catch (DukeException e) {
-                System.out.println("-----------------------------------------------");
-                System.out.println(e);
-                System.out.println("-----------------------------------------------");
+        try {
+            while (!isDone) {
+                try {
+                    response = echo.nextLine();
+                    reply(response);
+                } catch (DukeException e) {
+                    System.out.println("-----------------------------------------------");
+                    System.out.println(e);
+                    System.out.println("-----------------------------------------------");
+                }
             }
+        } catch (IOException e) {
+            System.out.println("Something went wrong: " + e.getMessage());
         }
     }
 }
