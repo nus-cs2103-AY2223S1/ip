@@ -19,6 +19,7 @@ public class Duke {
 
         Task[] tasks = new Task[100];
         int counter = 0;
+        ArrayList<Task> collection = new ArrayList<>();
 
         Scanner sc = new Scanner(System.in);
         String input = sc.nextLine();
@@ -30,31 +31,31 @@ public class Duke {
                 System.out.println("___________________________________");
                 for (int i = 0; i < counter; i++) {
                     System.out.println( (i+1) + "."
-                            + tasks[i].toString());
+                            + collection.get(i).toString());
                 }
                 System.out.println("___________________________________");
-                input = sc.nextLine();
+                input = sc.next();
 
             }
 
             else if (input.equals("mark")) {
                 int number = sc.nextInt();
-                tasks[number-1].mark();
+                collection.get(number-1).mark();
                 System.out.println("___________________________________");
                 System.out.println("Nice! I've marked this task done: " + "\n"
-                        + "[" + tasks[number-1].getStatusIcon() + "] " +
-                        tasks[number-1].description);
+                        + "[" + collection.get(number-1).getStatusIcon() + "] " +
+                        collection.get(number-1).description);
                 System.out.println("___________________________________");
                 input = sc.next();
             }
 
             else if (input.equals("unmark")) {
                 int number = sc.nextInt();
-                tasks[number-1].unmark();
+                collection.get(number-1).unmark();
                 System.out.println("___________________________________");
                 System.out.println("OK, I've marked this task as not done yet: " + "\n"
-                        + "[" + tasks[number-1].getStatusIcon() + "] " +
-                        tasks[number-1].description);
+                        + "[" + collection.get(number-1).getStatusIcon() + "] " +
+                        collection.get(number-1).description);
                 System.out.println("___________________________________");
                 input = sc.next();
             }
@@ -63,10 +64,10 @@ public class Duke {
                 String what = sc.nextLine();
                 if (what.equals("")) throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
                 String byWhen = sc.nextLine();
-                tasks[counter] = new Deadline(what, byWhen);
+                collection.add(new Deadline(what, byWhen));
                 System.out.println("___________________________________");
                 System.out.println("Got it. I've added this task:" + "\n"
-                        + "  " + tasks[counter].toString() + "\n"
+                        + "  " + collection.get(counter).toString() + "\n"
                         + "Now you have " + (counter+1) + " tasks in the list.");
                 System.out.println("___________________________________");
                 counter++;
@@ -76,10 +77,10 @@ public class Duke {
             else if (input.equals("todo")) {
                 String what = sc.nextLine();
                 if (what.equals("")) throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
-                tasks[counter] = new Todo(what);
+                collection.add(new Todo(what));
                 System.out.println("___________________________________");
                 System.out.println("Got it. I've added this task:" + "\n"
-                        + "  " + tasks[counter].toString() + "\n"
+                        + "  " + collection.get(counter).toString() + "\n"
                         + "Now you have " + (counter+1) + " tasks in the list.");
                 System.out.println("___________________________________");
                 counter++;
@@ -90,14 +91,28 @@ public class Duke {
                 String what = sc.nextLine();
                 if (what.equals("")) throw new DukeException("☹ OOPS!!! The description of a event cannot be empty.");
                 String atWhen = sc.nextLine();
-                tasks[counter] = new Event(what, atWhen);
+                collection.add(new Event(what, atWhen));
                 System.out.println("___________________________________");
                 System.out.println("Got it. I've added this task:" + "\n"
-                        + "  " + tasks[counter].toString() + "\n"
+                        + "  " + collection.get(counter).toString() + "\n"
                         + "Now you have " + (counter+1) + " tasks in the list.");
                 System.out.println("___________________________________");
                 counter++;
                 input = sc.nextLine();
+            }
+
+            else if (input.equals("delete")) {
+                int number = sc.nextInt();
+                Task temp = collection.get(number-1);
+                collection.remove(number-1);
+                counter--;
+                System.out.println("___________________________________");
+                System.out.println("Noted. I've removed this task:" + "\n"
+                        + "  " + temp.toString() + "\n"
+                        + "Now you have " + counter + " tasks in the list.");
+                System.out.println("___________________________________");
+                input = sc.next();
+
             }
 
             else {
