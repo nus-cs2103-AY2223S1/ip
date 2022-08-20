@@ -1,8 +1,21 @@
 package main.java;
 
 public class ToDo extends Task {
+    /**
+     * Constructor method for `Event`.
+     * @param description Description of task.
+     */
     public ToDo(String description) {
         super(description);
+    }
+
+    /**
+     * Constructor method for `Event`.
+     * @param description Description of task.
+     * @param isDone      Whether task is done.
+     */
+    public ToDo(String description, Boolean isDone) {
+        super(description, isDone);
     }
 
     /**

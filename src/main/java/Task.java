@@ -12,12 +12,22 @@ public abstract class Task {
     protected boolean isDone;
 
     /**
-     * Constructor method for class.
+     * Constructor method for `Task`.
      * @param description Description of task.
      */
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+    }
+
+    /**
+     * Constructor method for `Task`.
+     * @param description Description of task.
+     * @param isDone      Whether task is done.
+     */
+    public Task(String description, Boolean isDone) {
+        this.description = description;
+        this.isDone = isDone;
     }
 
     /**
