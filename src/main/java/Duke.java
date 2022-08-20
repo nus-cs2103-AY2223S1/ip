@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
@@ -12,7 +13,7 @@ public class Duke {
         System.out.println("Hewwo! I'm\n" + logo + "\nWhat can I do for you?");
 
         //Initialising task array for list cmd
-        Task[] taskList = new Task[100];
+        ArrayList<Task> taskList = new ArrayList<>(100);
         int numOfInputs = 0;
 
         //Initialising scanner
@@ -31,7 +32,7 @@ public class Duke {
                     System.out.println("Here are your tasks =0w0=");
 
                     for (int i = 0; i < numOfInputs; i++) {
-                        task = taskList[i];
+                        task = taskList.get(i);
 
                         if (task.isDone()) { //task is done
                             System.out.println((i + 1) + ". " + task);
@@ -46,7 +47,7 @@ public class Duke {
                     try {
                         taskNum = sc.nextInt();
                         if (taskNum <= numOfInputs) {
-                            task = taskList[taskNum - 1];
+                            task = taskList.get(taskNum - 1);
                             task.markAsDone();
                             System.out.println("Good job (=OwO=) You finished this task! \n" + task);
                             continue;
@@ -62,7 +63,7 @@ public class Duke {
                     try {
                         taskNum = sc.nextInt();
                         if (taskNum <= numOfInputs) {
-                            task = taskList[taskNum - 1];
+                            task = taskList.get(taskNum - 1);
                             task.markAsNotDone();
 
                             System.out.println("uwu this task has been marked as not done... \n" + task);
@@ -83,11 +84,11 @@ public class Duke {
                             throw new DukeException("Meowmeow needs a name for the task you want to add (=^0w0^=)");
                         } else {
                             Task t = new ToDos(userInput);
-                            taskList[numOfInputs] = t;
+                            taskList.add(t);
                             numOfInputs += 1;
 
                             System.out.println("(=^-w-^=) " + t + " has been added to your task list!\n");
-                            System.out.println("You now have " + numOfInputs + " tasks");
+                            System.out.println("You now have " + numOfInputs + " tasks >w<");
                             continue;
                         }
                     } catch (DukeException e){
@@ -95,11 +96,11 @@ public class Duke {
                     }
                     userInput = sc.nextLine();
                     Task t = new ToDos(" " + userInput);
-                    taskList[numOfInputs] = t;
+                    taskList.add(t);
                     numOfInputs += 1;
 
                     System.out.println("(=^-w-^=) " + t + " has been added to your task list!\n");
-                    System.out.println("You now have " + numOfInputs + " tasks");
+                    System.out.println("You now have " + numOfInputs + " tasks >w<");
                     continue;
 
                 case "deadline":
@@ -107,11 +108,11 @@ public class Duke {
                     String[] splitB = userInput.split("/by");
                     String deadline = splitB[1];
                     Task d = new Deadlines(splitB[0], deadline);
-                    taskList[numOfInputs] = d;
+                    taskList.add(d);
                     numOfInputs += 1;
 
                     System.out.println("(=^-w-^=) " + d + " has been added to your task list!\n");
-                    System.out.println("You now have " + numOfInputs + " tasks");
+                    System.out.println("You now have " + numOfInputs + " tasks >w<");
                     continue;
 
                 case "event":
@@ -119,15 +120,32 @@ public class Duke {
                     String[] splitA = userInput.split("/at");
                     String time = splitA[1];
                     Task e = new Events(splitA[0], time);
-                    taskList[numOfInputs] = e;
+                    taskList.add(e);
                     numOfInputs += 1;
 
                     System.out.println("(=^-w-^=) " + e + " has been added to your task list!\n");
-                    System.out.println("You now have " + numOfInputs + " tasks");
+                    System.out.println("You now have " + numOfInputs + " tasks >w<");
                     continue;
 
+                case "delete":
+                    try {
+                        taskNum = sc.nextInt() - 1;
+                        if (taskNum >= numOfInputs) {
+                            throw new DukeException("Meowmeow can't throw away a task that doesn't exist =owo=");
+                        } else {
+                            System.out.println("Meowmeow has thrown this task into the void!! (=^>w<^=) \n" + taskList.get(taskNum));
+                            taskList.remove(taskNum);
+                            numOfInputs -= 1;
+                            System.out.println("You have " + numOfInputs + " tasks left now Owo");
+                            continue;
+                        }
+                    } catch (DukeException x) {
+                        System.out.println(x.message);
+                        continue;
+                    }
+
                 case "bye":
-                    System.out.println("UwU Byebyeeee! Come back soon meowmeow misses youuuu!");
+                    System.out.println("UwU Byebyeeee! Come back soon... Meowmeow misses you already =^._.^= ");
                     sc.close();
                     break;
 
