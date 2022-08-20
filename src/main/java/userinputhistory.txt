@@ -1,0 +1,3 @@
+[T][ ] noway
+[T][ ] task1
+[D][ ] d1 (by: 1)

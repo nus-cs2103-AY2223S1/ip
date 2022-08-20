@@ -4,14 +4,13 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.io.IOException;
 import java.nio.file.StandardOpenOption;
-import java.text.StringCharacterIterator;
 import java.util.ArrayList;
-import java.text.CharacterIterator;
+import java.util.List;
 
 
 public class UserInputHistory {
     private ArrayList<Task> userInputHistory = new ArrayList<>();
-    Path path = Paths.get(System.getProperty("user.dir"),"userinputhistory.txt");
+    Path path = Paths.get(System.getProperty("user.dir"),"src", "main", "java", "userinputhistory.txt");
     private void createIfDoesntExist() throws IOException {
         if (!Files.exists(path)) {
             Files.createFile(path);
@@ -21,6 +20,11 @@ public class UserInputHistory {
     private void appendToFile(String s) throws IOException {
         createIfDoesntExist();
         Files.write(path, s.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
+    }
+
+    private List<String> getFileLines() throws IOException {
+        List<String> lines = Files.readAllLines(path);
+        return lines;
     }
 
     /**
@@ -96,6 +100,15 @@ public class UserInputHistory {
         System.out.printf("Total: %d\n", userInputHistory.size());
         System.out.print("______\n");
         System.out.print(">>");
+        try {
+            List<String> history = getFileLines();
+            for (String s: history) {
+                System.out.println(s);
+            }
+        } catch (IOException e) {
+            System.out.println("IOException: " + e);
+        }
+
     }
 
     /**
