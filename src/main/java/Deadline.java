@@ -48,4 +48,9 @@ public class Deadline extends Task {
     public String toString() {
         return String.format("%s (by: %s)", super.toString(), this.deadline);
     }
+
+    @Override
+    String toFileSaveString() {
+        return String.format("%s%s\n", super.toFileSaveString(), deadline);
+    }
 }
