@@ -14,7 +14,7 @@ public class UnmarkCommand extends Command {
             throw DukeException.invalidIndex;
         }
         // Subtract 1 to account for 0-index data structure.
-        Task task = this.tasks.get(this.index - 1);
+        Task task = this.tasks.getTask(this.index - 1);
         task.markAsUndone();
         String userMessage = String.format(userMessageFormat, this.index, task);
         return new CommandResult(userMessage, true, false);

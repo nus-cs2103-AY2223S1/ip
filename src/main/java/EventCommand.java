@@ -31,7 +31,7 @@ public class EventCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        this.tasks.add(this.event);
+        this.tasks.addTask(this.event);
         int numberOfTasks = this.tasks.size();
         String userMessage = String.format(userMessageFormat, this.event, numberOfTasks);
         return new CommandResult(userMessage, true, false);

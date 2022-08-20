@@ -1,9 +1,7 @@
-import java.util.ArrayList;
-
 public abstract class Command {
-    protected ArrayList<Task> tasks;
+    protected TaskList tasks;
 
-    protected void setData(ArrayList<Task> tasks) {
+    protected void setData(TaskList tasks) {
         this.tasks = tasks;
     }
 

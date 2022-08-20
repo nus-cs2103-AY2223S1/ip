@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
@@ -19,13 +18,13 @@ public class Duke {
 
         Storage storage = new Storage("data", "data/tasks");
 
-        ArrayList<Task> tasks;
+        TaskList tasks;
         try {
             tasks = storage.load();
         } catch (DukeException e) {
             duke.ui.showErrorMessage(e);
             // Load with empty list instead.
-            tasks = new ArrayList<>();
+            tasks = new TaskList();
         }
 
         while (scanner.hasNext()) {

@@ -14,8 +14,8 @@ public class DeleteCommand extends Command {
             throw DukeException.invalidIndex;
         }
         // Subtract 1 to account for 0-index data structure.
-        Task task = this.tasks.get(this.index - 1);
-        this.tasks.remove(this.index - 1);
+        Task task = this.tasks.getTask(this.index - 1);
+        this.tasks.removeTask(this.index - 1);
         int numberOfTasks = this.tasks.size();
         String userMessage = String.format(userMessageFormat, task, numberOfTasks);
         return new CommandResult(userMessage, true, false);

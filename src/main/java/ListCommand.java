@@ -7,7 +7,7 @@ public class ListCommand extends Command {
         String[] lines = new String[this.tasks.size()];
 
         for (int i = 0; i < tasks.size(); i++) {
-            lines[i] = String.format(lineFormat, i + 1, this.tasks.get(i));
+            lines[i] = String.format(lineFormat, i + 1, this.tasks.getTask(i));
         }
 
         String userMessage = String.join("\n", lines);

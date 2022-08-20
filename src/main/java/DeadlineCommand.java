@@ -31,7 +31,7 @@ public class DeadlineCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        this.tasks.add(this.deadline);
+        this.tasks.addTask(this.deadline);
         int numberOfTasks = this.tasks.size();
         String userMessage = String.format(userMessageFormat, this.deadline, numberOfTasks);
         return new CommandResult(userMessage, true, false);

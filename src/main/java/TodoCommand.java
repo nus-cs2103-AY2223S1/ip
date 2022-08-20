@@ -13,7 +13,7 @@ public class TodoCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        this.tasks.add(this.todo);
+        this.tasks.addTask(this.todo);
         int numberOfTasks = this.tasks.size();
         String userMessage = String.format(userMessageFormat, this.todo, numberOfTasks);
         return new CommandResult(userMessage, true, false);

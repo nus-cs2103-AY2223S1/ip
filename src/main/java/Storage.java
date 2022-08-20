@@ -4,7 +4,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Storage {
@@ -21,7 +20,7 @@ public class Storage {
      *
      * @return The tasks loaded from the file.
      */
-    public ArrayList<Task> load() throws DukeException {
+    public TaskList load() throws DukeException {
         Path directoryPath = Paths.get(this.directoryPath);
         Path filePath = Paths.get(this.filePath);
         File directory = new File(directoryPath.toUri());
@@ -30,7 +29,7 @@ public class Storage {
         directory.mkdir();
         File file = new File(filePath.toUri());
 
-        ArrayList<Task> tasks = new ArrayList<>();
+        TaskList tasks = new TaskList();
         try {
             // Create file if it does not exist.
             if (file.createNewFile()) {
@@ -60,7 +59,7 @@ public class Storage {
                         throw DukeException.badData;
                 }
 
-                tasks.add(task);
+                tasks.addTask(task);
             }
         } catch (FileNotFoundException e) {
             // Should not happen because file is created beforehand.
@@ -75,12 +74,13 @@ public class Storage {
      *
      * @param tasks The tasks to be saved to the file.
      */
-    public void save(ArrayList<Task> tasks) throws IOException {
+    public void save(TaskList tasks) throws IOException {
         Path filePath = Paths.get(this.filePath);
         File file = new File(filePath.toUri());
         FileWriter fw = new FileWriter(file);
 
-        for (Task task : tasks) {
+        for (int i = 0; i < tasks.size(); i++) {
+            Task task = tasks.getTask(i);
             String line = task.getFileFormat();
             fw.write(line + "\n");
         }
