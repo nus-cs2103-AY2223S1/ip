@@ -69,7 +69,7 @@ public class Duke {
       if (input.length < 2) {
         throw new DukeException("The description cannot be empty!");
       }
-      input = input[1].split(" /by ", 2);
+      input = input[1].split("\\s*/by\\s*", 2);
       if (input.length < 2) {
         throw new DukeException("The date cannot be empty!");
       }
@@ -86,7 +86,7 @@ public class Duke {
       if (input.length < 2) {
         throw new DukeException("The description cannot be empty!");
       }
-      input = input[1].split(" /at ", 2);
+      input = input[1].split("\\s*/at\\s*", 2);
       if (input.length < 2) {
         throw new DukeException("The date cannot be empty!");
       }
