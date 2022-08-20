@@ -6,7 +6,7 @@ public class Duke {
     public Task[] tasks;
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DukeException {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -61,6 +61,7 @@ public class Duke {
 
             else if (input.equals("deadline")) {
                 String what = sc.nextLine();
+                if (what.equals("")) throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
                 String byWhen = sc.nextLine();
                 tasks[counter] = new Deadline(what, byWhen);
                 System.out.println("___________________________________");
@@ -74,6 +75,7 @@ public class Duke {
 
             else if (input.equals("todo")) {
                 String what = sc.nextLine();
+                if (what.equals("")) throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
                 tasks[counter] = new Todo(what);
                 System.out.println("___________________________________");
                 System.out.println("Got it. I've added this task:" + "\n"
@@ -86,6 +88,7 @@ public class Duke {
 
             else if (input.equals("event")) {
                 String what = sc.nextLine();
+                if (what.equals("")) throw new DukeException("☹ OOPS!!! The description of a event cannot be empty.");
                 String atWhen = sc.nextLine();
                 tasks[counter] = new Event(what, atWhen);
                 System.out.println("___________________________________");
@@ -98,12 +101,9 @@ public class Duke {
             }
 
             else {
-                tasks[counter] = new Task(input);
                 System.out.println("___________________________________");
-                System.out.println("added: " + input);
-                System.out.println("___________________________________");
-                counter++;
-                input = sc.nextLine();
+                throw new DukeException(" ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+
             }
 
         }
