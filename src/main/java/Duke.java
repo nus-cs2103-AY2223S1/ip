@@ -1,8 +1,13 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
-import tasks.*;
-import commands.*;
+import tasks.Task;
+import commands.Command;
+import commands.DeleteCommand;
+import commands.TaskCommand;
+import commands.ByeCommand;
+import commands.ListCommand;
+import commands.MarkCommand;
 import exceptions.DukeException;
 
 /*
