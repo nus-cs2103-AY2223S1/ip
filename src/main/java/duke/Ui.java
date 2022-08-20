@@ -81,4 +81,9 @@ public class Ui {
         showLine();
         System.out.println(message);
     }
+
+    public void showFilteredList(TaskList tasks) {
+        System.out.println("Here are the matching tasks in your list:");
+        System.out.println(tasks);
+    }
 }

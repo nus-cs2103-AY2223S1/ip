@@ -1,6 +1,7 @@
 package duke;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 
 /**
@@ -93,6 +94,12 @@ public class TaskList {
 
     public int getLength() {
         return this.length;
+    }
+
+    public TaskList find(String userInput) {
+        ArrayList<Task> currTasks = new ArrayList<>(this.list);
+        currTasks.removeIf(x -> !x.getDescription().contains(userInput));
+        return new TaskList(currTasks);
     }
 
     @Override
