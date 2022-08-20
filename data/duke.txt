@@ -1,5 +1,2 @@
-T //   // task 1
-T // X // task 2
-D //   // task 3 // 2359
-E //   // task 4 // 2359 also
-E // X // task 5 // tmr
+D //   // test // 2019-12-02T18:00
+D //   // do homework // 2019-12-02T18:00

@@ -2,6 +2,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -54,7 +58,7 @@ public class Duke {
                             break;
                         case 'D':
                             String[] deadlineSplit = data.split(" // ", 4);
-                            Task deadline = new Deadline(deadlineSplit[2], deadlineSplit[3]);
+                            Task deadline = new Deadline(deadlineSplit[2], LocalDateTime.parse(deadlineSplit[3]));
                             if (deadlineSplit[1].equals("X")) {
                                 deadline.markAsDone();
                             }
@@ -63,7 +67,7 @@ public class Duke {
                             break;
                         case 'E':
                             String[] eventSplit = data.split(" // ", 4);
-                            Task event = new Event(eventSplit[2], eventSplit[3]);
+                            Task event = new Event(eventSplit[2], LocalDateTime.parse(eventSplit[3]));
                             if (eventSplit[1].equals("X")) {
                                 event.markAsDone();
                             }
@@ -111,6 +115,40 @@ public class Duke {
             printMessage("An error occurred.");
         }
         return isAlreadyCreated;
+    }
+
+    private static LocalDateTime processDateTime(String str) throws DukeException {
+        String[] dateTimeFormat = {
+                "yyyy/MM/dd HHmm",
+                "yyyy-MM-dd HHmm",
+                "dd/MM/yyyy HHmm",
+                "d/MM/yyyy HHmm",
+                "d/M/yyyy HHmm",
+        };
+        String[] dateFormat = {
+                "yyyy/MM/dd",
+                "yyyy-MM-dd",
+                "yyyy-MM-d",
+                "yyyy-M-dd",
+                "yyyy-M-d",
+                "dd/MM/yyyy",
+                "d/MM/yyyy",
+                "d/M/yyyy",
+        };
+        for (String format : dateTimeFormat) {
+            try {
+                return LocalDateTime.parse(str, DateTimeFormatter.ofPattern(format));
+            } catch (DateTimeParseException ignored) {
+            }
+        }
+        for (String format : dateFormat) {
+            try {
+                LocalDate date = LocalDate.parse(str, DateTimeFormatter.ofPattern(format));
+                return date.atStartOfDay();
+            } catch (DateTimeParseException ignored) {
+            }
+        }
+        throw new DukeException("Please specify the date and time in YYYY-MM-DD TTTT format.");
     }
 
     private static void processInput(String str) throws DukeException {
@@ -198,7 +236,8 @@ public class Duke {
                 if (strDeadline.length < 2 || strDeadline[1].equals("")) {
                     throw new DukeException("Please also specify the date and time.");
                 }
-                tasks.add(new Deadline(strDeadline[0].trim(), strDeadline[1].trim()));
+                LocalDateTime deadlineDateTime = processDateTime(strDeadline[1].trim());
+                tasks.add(new Deadline(strDeadline[0].trim(), deadlineDateTime));
                 index++;
                 printMessage("Got it. I've added this task:\n       " + tasks.get(index - 1)
                         + "\n     Now you have " + index + " tasks in the list.");
@@ -208,7 +247,8 @@ public class Duke {
                 if (strEvent.length < 2 || strEvent[1].equals("")) {
                     throw new DukeException("Please also specify the date and time.");
                 }
-                tasks.add(new Event(strEvent[0].trim(), strEvent[1].trim()));
+                LocalDateTime eventDateTime = processDateTime(strEvent[1].trim());
+                tasks.add(new Event(strEvent[0].trim(), eventDateTime));
                 index++;
                 printMessage("Got it. I've added this task:\n       " + tasks.get(index - 1)
                         + "\n     Now you have " + index + " tasks in the list.");
