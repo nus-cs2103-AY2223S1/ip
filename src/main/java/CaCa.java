@@ -51,9 +51,9 @@ public class CaCa {
     }
 
     /**
-     * Prints message to greet the user.
+     * Greets user with CaCa logo and introduction.
      */
-    public static void greeting() {
+    public static void greet() {
         // ASCII text banner below created and adapted from
         // https://manytools.org/hacker-tools/ascii-banner/
         // with the following settings:
@@ -72,7 +72,7 @@ public class CaCa {
     }
 
     /**
-     * Prints message to say bye to the user.
+     * Says bye to user.
      */
     public static void bye() {
         System.out.println("Bye. Hope to see you again soon!\n" + LINE);
@@ -82,7 +82,7 @@ public class CaCa {
      * Adds a ToDo task to user list.
      * @param taskDescription Task description entered by user.
      */
-    public static void toDo(String taskDescription) {
+    public static void addToDo(String taskDescription) {
         Task taskToAdd = new Todo(taskDescription);
         tasks.add(taskToAdd);
         System.out.println("Got it. I've added this task:");
@@ -96,7 +96,7 @@ public class CaCa {
      * @param taskInfo Task information with task description and task date/time.
      * @throws MissingDetailException If task description or task date/time is missing.
      */
-    public static void deadline(String taskInfo) throws MissingDetailException {
+    public static void addDeadline(String taskInfo) throws MissingDetailException {
         String[] detailedCommand = taskInfo.split(" /by ", 2);
         if (detailedCommand.length == 1) {
             String message = "OOPS!!! Details missing! "
@@ -125,7 +125,7 @@ public class CaCa {
      * @param taskInfo Task information with task description and task start & end time.
      * @throws MissingDetailException If task description or task start & end time is missing.
      */
-    public static void event(String taskInfo) throws MissingDetailException {
+    public static void addEvent(String taskInfo) throws MissingDetailException {
         String[] detailedCommand = taskInfo.split(" /at ", 2);
         if (detailedCommand.length == 1) {
             String message = "OOPS!!! Details missing! "
@@ -224,7 +224,7 @@ public class CaCa {
      */
     public static void main(String[] args) {
 
-        greeting();
+        greet();
 
         // Solution below on getting user input is
         // adapted from https://www.w3schools.com/java/java_user_input.asp
@@ -250,21 +250,24 @@ public class CaCa {
                     bye();
                     break;
 
-                } else if (commandType.equals("todo") || commandType.equals("deadline") || commandType.equals("event")) {
+                } else if (commandType.equals("todo")
+                        || commandType.equals("deadline")
+                        || commandType.equals("event")) {
 
                     // Checks whether description is empty or contains only white spaces.
                     if (command.length == 1 || command[1].isBlank()) {
-                        String message = String.format("OOPS!!! The description of %s cannot be empty.", commandType);
+                        String message = String.format("OOPS!!! The description of %s cannot be empty.",
+                                commandType);
                         throw new EmptyInputException(message);
 
                     } else if (commandType.equals("todo")) {
-                        toDo(command[1]);
+                        addToDo(command[1]);
 
                     } else if (commandType.equals("deadline")) {
-                        deadline(command[1]);
+                        addDeadline(command[1]);
 
                     } else { // Event
-                        event(command[1]);
+                        addEvent(command[1]);
                     }
 
                 } else if (commandType.equals("list")) {
@@ -281,7 +284,8 @@ public class CaCa {
 
                 } else {
                     // Invalid input.
-                    System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(\n" + LINE);
+                    System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(\n"
+                            + LINE);
 
                 }
             } catch (CaCaException e) {
