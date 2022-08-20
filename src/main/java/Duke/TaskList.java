@@ -34,6 +34,17 @@ public class TaskList {
         return t;
     }
 
+    public List<Task> findTask(String name) {
+        List<Task> foundTasks = new ArrayList<>();
+        for (int i = 0; i < lst.size(); i++) {
+            Task t = lst.get(i);
+            if (t.getTaskName().contains(name)) {
+                foundTasks.add(t);
+            }
+        }
+        return foundTasks;
+    }
+
     public int getSize() {
         return lst.size();
     }
@@ -42,6 +53,13 @@ public class TaskList {
         System.out.println(Constants.list);
         for (int i = 0; i < lst.size(); i++) {
             System.out.println(String.format("%d.%s", i + 1, lst.get(i).toString()));
+        }
+    }
+
+    public void printList(List<Task> list) {
+        System.out.println(Constants.find);
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(String.format("%d.%s", i + 1, list.get(i).toString()));
         }
     }
 

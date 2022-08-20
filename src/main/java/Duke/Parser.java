@@ -26,6 +26,9 @@ public class Parser {
             case "delete":
                 checkInputError(parse);
                 return new DeleteCommand(parseInt(parse[1]));
+            case "find":
+                checkInputError(parse);
+                return new FindCommand(parse[1]);
             case "todo":
                 checkInputError(parse);
                 return new ToDoCommand(parse[1]);
