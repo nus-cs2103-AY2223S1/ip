@@ -31,7 +31,7 @@ public class CaCa {
     /**
      * A horizontal line to be displayed as separator for each activity with CaCa.
      */
-    private static String line = "____________________________________________________________\n";
+    private static String LINE = "____________________________________________________________\n";
 
     /**
      * A class-level array to store all user inputs.
@@ -43,9 +43,9 @@ public class CaCa {
      */
     public static void isValid(int taskIndex) throws InvalidTaskIndex {
         if (taskIndex <= 0 || taskIndex > tasks.size()) {
-            String message = String.format("OOPS!!! You have entered an invalid task index. " +
+            String MESSAGE = String.format("OOPS!!! You have entered an invalid task index. " +
                     "It should be between 1 and %d.", tasks.size());
-            throw new InvalidTaskIndex(message);
+            throw new InvalidTaskIndex(MESSAGE);
         }
     }
 
@@ -57,24 +57,24 @@ public class CaCa {
         // https://manytools.org/hacker-tools/ascii-banner/
         // with the following settings:
         // Banner text: CaCa, Font: Big, Horizontal spacing: Normal, Vertical spacing: Normal.
-        String logo = "   _____       _____      \n"
+        String LOGO = "   _____       _____      \n"
                 + "  / ____|     / ____|     \n"
                 + " | |     __ _| |     __ _ \n"
                 + " | |    / _` | |    / _` |\n"
                 + " | |___| (_| | |___| (_| |\n"
                 + "  \\_____\\__,_|\\_____\\__,_|\n\n";
 
-        String greeting = "Hello! I'm CaCa.\n"
+        String GREETING = "Hello! I'm CaCa.\n"
                 + "What can I do for you?\n";
 
-        System.out.println(line + logo + greeting + line);
+        System.out.println(LINE + LOGO + GREETING + LINE);
     }
 
     /**
      * Prints message to say bye to the user.
      */
     public static void bye() {
-        System.out.println("Bye. Hope to see you again soon!\n" + line);
+        System.out.println("Bye. Hope to see you again soon!\n" + LINE);
     }
 
     /**
@@ -83,15 +83,16 @@ public class CaCa {
     public static void listTasks() {
         if (tasks.isEmpty()) {
             // No task in the tasks list.
-            System.out.println("There is no task in your list!\n" + line);
+            System.out.println("There is no task in your list!\n" + LINE);
         } else {
             System.out.println("Here are the tasks in your list:");
             for (int i = 0; i < tasks.size(); i++) {
                 Task task = tasks.get(i);
                 System.out.printf("%d.%s%n", i + 1, task);
 
+                // Prints the line after listing all tasks.
                 if (i == tasks.size() - 1) {
-                    System.out.println(line);
+                    System.out.println(LINE);
                 }
             }
         }
@@ -109,7 +110,7 @@ public class CaCa {
         Task taskToMark = tasks.get(taskIndex - 1);
         taskToMark.markAsDone();
         System.out.println("Nice! I've marked this task as done:");
-        System.out.println(taskToMark + "\n" + line);
+        System.out.println(taskToMark + "\n" + LINE);
     }
 
     /**
@@ -124,7 +125,7 @@ public class CaCa {
         Task taskToUnmark = tasks.get(taskIndex - 1);
         taskToUnmark.markAsUndone();
         System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println(taskToUnmark + "\n" + line);
+        System.out.println(taskToUnmark + "\n" + LINE);
     }
 
     /**
@@ -149,7 +150,8 @@ public class CaCa {
             // 2nd element is the task description with or without date/time.
             String[] command = input.split(" ", 2);
 
-            System.out.print(line);
+            // Prints the line after each user input.
+            System.out.print(LINE);
 
             try {
                 if (command[0].isBlank()) {
@@ -175,7 +177,7 @@ public class CaCa {
                     tasks.remove(taskToMark);
                     System.out.println("Noted. I've removed this task:\n" + taskToMark);
                     System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
-                    System.out.println(line);
+                    System.out.println(LINE);
 
                 } else if (command[0].equals("todo") || command[0].equals("deadline") || command[0].equals("event")) {
                     Task taskToAdd = null;
@@ -230,17 +232,17 @@ public class CaCa {
                     System.out.println("Got it. I've added this task:");
                     System.out.println(taskToAdd);
                     System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
-                    System.out.println(line);
+                    System.out.println(LINE);
 
                 } else {
                     // Invalid input.
-                    System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(\n" + line);
+                    System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(\n" + LINE);
 
                 }
             } catch (CaCaException e) {
                 System.out.println(e.getMessage());
                 System.out.println("Please try again!");
-                System.out.println(line);
+                System.out.println(LINE);
             }
         }
     }
