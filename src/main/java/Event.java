@@ -12,7 +12,7 @@ public class Event extends Task {
     public Event(String description, String at) throws InvalidEventException {
         super(description);
         try {
-            this.at = LocalDate.parse(at);
+            this.at = LocalDate.parse(at.trim());
         } catch (DateTimeParseException e) {
             throw new InvalidEventException();
         }
@@ -25,7 +25,7 @@ public class Event extends Task {
     public Event(String description, String at, boolean completed) throws InvalidEventException {
         super(description, completed);
         try {
-            this.at = LocalDate.parse(at);
+            this.at = LocalDate.parse(at.trim());
         } catch (DateTimeParseException e) {
             throw new InvalidEventException();
         }

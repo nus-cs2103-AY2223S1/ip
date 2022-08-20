@@ -11,7 +11,7 @@ public class Deadline extends Task {
     public Deadline(String description, String by) throws InvalidDeadlineException {
         super(description);
         try {
-            this.by = LocalDate.parse(by);
+            this.by = LocalDate.parse(by.trim());
         } catch (DateTimeParseException e) {
             throw new InvalidDeadlineException();
         }
@@ -20,7 +20,7 @@ public class Deadline extends Task {
     public Deadline(String description, String by, boolean completed) throws InvalidDeadlineException {
         super(description, completed);
         try {
-            this.by = LocalDate.parse(by);
+            this.by = LocalDate.parse(by.trim());
         } catch (DateTimeParseException e) {
             throw new InvalidDeadlineException();
         }
