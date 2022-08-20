@@ -1,6 +1,5 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class Duke {
     UserInputHistory userInputHistory = new UserInputHistory();
