@@ -17,6 +17,18 @@ public class ToDoCommand extends Command {
     }
 
     @Override
+    public boolean equals(Object obj){
+        if (obj == null) {
+            return false;
+        }
+        if (obj.getClass() != this.getClass()) {
+            return false;
+        }
+        ToDoCommand commandOther = (ToDoCommand) obj;
+        return command.equals(commandOther.command) && tasks.equals(commandOther.tasks) && ui.equals(commandOther.ui);
+    }
+
+    @Override
     public void execute() throws DukeException {
         String[] returnedArray = command.split(" ");
         if (returnedArray.length == 1) {

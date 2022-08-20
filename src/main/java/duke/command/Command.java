@@ -6,6 +6,7 @@ public abstract class Command {
     public enum Commands {
         bye, list, help, mark, unmark, delete, todo, deadline, event, invalid;
     }
+
     public abstract void execute() throws DukeException;
     public abstract boolean isExit();
 
