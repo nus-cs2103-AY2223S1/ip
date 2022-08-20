@@ -1,3 +1,4 @@
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Duke {
@@ -77,6 +78,8 @@ public class Duke {
                     }
                 } catch (IllegalArgumentException e) {
                     throw new DukeException("I don't know what this means :(");
+                } catch (NoSuchElementException e) {
+                    e.printStackTrace();
                 }
             } catch (DukeException e) {
                 System.out.println("\t" + e.getMessage());

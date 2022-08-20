@@ -10,4 +10,14 @@ public class Event extends Task {
     public String toString() {
         return "[E]" + super.toString() + String.format(" (at: %s)", this.at);
     }
+
+    @Override
+    public String getDate() {
+        return this.at;
+    }
+
+    @Override
+    public String getTaskType() {
+        return "E";
+    }
 }
