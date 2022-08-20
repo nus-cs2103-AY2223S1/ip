@@ -6,23 +6,15 @@ import java.util.ArrayList;
 import java.nio.file.Path;
 
 public class Duke {
+    private Ui ui;
     private ArrayList<Task> taskArr = new ArrayList<>();
     private final String taskStoragePath = "storage" + File.separator + "tasks.txt";
     
-    public void greetUser() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println(logo);
-        System.out.println("Hello! I'm Duke. How may I assist you?");
+    public Duke() {
+        this.ui = new Ui();
     }
 
-    public void sayBye() {
-        String message = "Bye! Hope to see you soon!";
-        System.out.println(message);
-    }
+   
 
     public void listTasks() {
         System.out.println("Here are your tasks: ");
@@ -64,10 +56,9 @@ public class Duke {
                 Task task = Task.getTaskFromString(sc.nextLine());
                 this.taskArr.add(task);
             }
-            System.out.println("Successfully loaded all tasks! :)");
+           this.ui.showLoadingSuccess();
         } catch (FileNotFoundException fnfe) {
-            System.out.println("FAILED! Could not find storage file containing your tasks");
-            System.out.println("Add a task to generate one!!!");
+            this.ui.showLoadingError();
         }
     }
 
@@ -173,7 +164,7 @@ public class Duke {
         Command command = Command.valueOf(commandString.toUpperCase());
         switch (command) {
             case BYE:
-                this.sayBye();
+                this.ui.showGoodbye();
                 return true;
             case LIST:
                 this.listTasks();
@@ -197,20 +188,20 @@ public class Duke {
     public void start() {
         Scanner scanner = new Scanner(System.in);
         readTasksFromStorage();
-        this.greetUser();
+        this.ui.showWelcome();
 
         boolean end = false;
      
 
         while (!end) {
-            System.out.print("\n>>> ");
+            this.ui.showPrompt();
             String inputString = scanner.nextLine().strip();
             try {
                 end = readInput(inputString);
             } catch (DukeException de) {
-                System.out.println(de.getMessage());
+                this.ui.showError(de.getMessage());
             } catch (IOException ioe) {
-                System.out.println("Unable to save task :(");
+                this.ui.showError(ioe.getMessage());
             }
         }
     }
