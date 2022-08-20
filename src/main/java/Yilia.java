@@ -1,5 +1,7 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 enum Type {
     TODO,
@@ -55,26 +57,27 @@ class Todo extends Task {
 }
 
 class Deadline extends Task {
-    String date;
+    LocalDate date;
     Deadline(String content, String date) {
         super(content);
-        this.date = date;
+        this.date = LocalDate.parse(date);
     }
     @Override
     public String toString() {
-        return "[D]" + super.toString() + "(" + date.substring(0,2) + ":" + date.substring(2) + ")";
+        return "[D]" + super.toString() + "(" + ":" + date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 }
 
 class Event extends Task {
-    String date;
+    LocalDate date;
     Event(String content, String date) {
         super(content);
-        this.date = date;
+        System.out.println(date);
+        this.date = LocalDate.parse(date);
     }
     @Override
     public String toString() {
-        return "[E]" + super.toString() + "(" + date.substring(0,2) + ":" + date.substring(2) + ")";
+        return "[E]" + super.toString() + "(" + ":" + date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 }
 
