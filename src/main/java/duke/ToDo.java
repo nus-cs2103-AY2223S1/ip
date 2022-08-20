@@ -12,7 +12,7 @@ public class ToDo extends Task{
      *
      * @param description Todo's description.
      */
-    public ToDo(String description) throws DukeException {
+    public ToDo(String description) {
         super(description);
     }
 

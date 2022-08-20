@@ -17,10 +17,7 @@ public abstract class Task {
      * @param description name of item.
      * @throws DukeException If user did not give description of task.
      */
-    public Task(String description) throws DukeException{
-        if (description.equals(" ")) {
-            throw new DukeException("☹ OOPS!!! The description of a task cannot be empty.");
-        }
+    public Task(String description) {
         this.description = description;
         this.isDone = false;
     }
