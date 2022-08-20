@@ -1,150 +1,53 @@
 package duke;
 
-import duke.Task.Task;
-import duke.Enums.Action;
 import duke.Exceptions.*;
-import duke.Task.*;
 
-import java.util.List;
+import java.io.File;
 import java.util.Scanner;
 public class Duke {
-    private static String WELCOME_MESSAGE =  "Hello! I'm duke.Duke\n" + "What can I do for you?";
-    private static String GOODBYE_MESSAGE =  "Bye. Hope to see you again soon!";
-    private List<Task> tasks = Task.loadSavedTasks();
+    private static final String DATA_PATH = new File("").getAbsolutePath() + "/data/duke.txt";
+    private TaskList taskList;
+    private Storage storage;
+    private Ui ui;
 
-    private int getNumTasks() {
-        return this.tasks.size();
+    Duke() {
+        Storage storage = new Storage(DATA_PATH);
+        this.storage = storage;
+        this.taskList = new TaskList(storage.load());
+        this.ui = new Ui();
     }
 
-    private String getNumTasksAsString() {
-        return String.format("Now you have %d tasks in the list.", this.getNumTasks());
-    }
-    private void storeTask(Task task) {
-        this.tasks.add(task);
-        System.out.println(
-                String.format("Got it. I've added this task:\n\t%s\n",
-                    task,
-                    this.getNumTasksAsString()));
-    }
+    public void run() {
+        this.ui.showWelcomeMessage();
 
-    private void getTasks() {
-        System.out.println("Here are the tasks in your list:");
-        for (int i = 0; i < this.getNumTasks(); i++) {
-            System.out.println(String.format("%d. %s", i+1, this.tasks.get(i)));
-        }
-    }
+        boolean isExit = false;
 
-    private Task getTaskAtIndex(String index) throws InvalidCommandException {
-        try {
-            int i = Integer.parseInt(index);
-            return this.tasks.get(i-1);
-        } catch (NumberFormatException e) {
-            throw new InvalidTaskIndexException();
-        } catch (IndexOutOfBoundsException e) {
-            throw new NoSuchTaskException(this.getNumTasks(), index);
-        }
-    }
+        Scanner scanner = new Scanner(System.in);
+        Duke duke = new Duke();
 
-    private void markTaskAtIndexAsComplete(String index) throws InvalidCommandException {
-        Task task = this.getTaskAtIndex(index);
-        task.markAsCompleted();
-    }
+        while (!isExit && scanner.hasNextLine()) {
+            try {
+                String fullCommand = scanner.nextLine();
 
-    private void markTaskAtIndexAsIncomplete(String index) throws InvalidCommandException {
-        Task task = this.getTaskAtIndex(index);
-        task.markAsIncomplete();
-    }
+                Command c = Parser.parse(fullCommand);
+                c.execute(this.taskList, this.ui, this.storage);
 
-    private void deleteTaskAtIndex(String index) throws InvalidCommandException {
-        Task task = this.getTaskAtIndex(index);
-        this.tasks.remove(Integer.parseInt(index) - 1);
-        System.out.println(
-                String.format("Noted. I've removed this task:\n\t%s\n",
-                        task,
-                        this.getNumTasksAsString()));
-    }
+                isExit = c.isExit();
 
-    private void handleActionAndCommand(String command, Action action) throws InvalidCommandException {
-        String[] components = command.split(" ");
-        String contents = command.substring(action.label.length()).trim();
-
-        switch (action) {
-            case Mark:
-                this.markTaskAtIndexAsComplete(contents);
-                break;
-            case Unmark:
-                this.markTaskAtIndexAsIncomplete(contents);
-                break;
-            case Delete:
-                this.deleteTaskAtIndex(contents);
-                break;
-            case Todo:
-                if (contents.isBlank())
-                    throw new EmptyTitleException();
-                else
-                    this.storeTask(new Todo(contents));
-                break;
-            case Deadline:
-                String[] deadlineComponents = contents.split(" /by ");
-
-                if (deadlineComponents.length != 2)
-                    throw new InvalidDeadlineException();
-                else if (deadlineComponents[0].isBlank())
-                    throw new EmptyTitleException();
-                else
-                    this.storeTask(
-                            new Deadline(deadlineComponents[0].trim(),
-                                    deadlineComponents[1].trim())
-                    );
-                break;
-
-            case Event:
-                String[] eventComponents = contents.split(" /at ");
-                if (eventComponents.length != 2)
-                    throw new InvalidEventException();
-                else if (eventComponents[0].isBlank())
-                    throw new EmptyTitleException();
-                else
-                    this.storeTask(
-                            new Event(eventComponents[0].trim(),
-                                    eventComponents[1].trim())
-                    );
-                break;
+            } catch (InvalidCommandException e) {
+                ui.showMessage(e.getMessage());
+            }
         }
 
-        Task.saveTaskList(this.tasks);
+        scanner.close();
     }
-
     /**
     * Note: You are strongly encouraged to customize the chatbot name,
     * command/display formats, and even the personality of the chatbot
     * to make your chatbot unique.
     */
     public static void main(String[] args) {
-        System.out.println(WELCOME_MESSAGE);
-
-        Scanner scanner = new Scanner(System.in);
         Duke duke = new Duke();
-
-        while (true) {
-
-            String command = scanner.nextLine();
-
-            if (command.equals("bye")) {
-                System.out.println(GOODBYE_MESSAGE);
-                break;
-            } else if (command.equals("list")) {
-                duke.getTasks();
-            } else {
-                try {
-                    Action action = Action.parseCommand(command);
-                    duke.handleActionAndCommand(command, action);
-                } catch (InvalidCommandException e) {
-                    System.out.println("Invalid command given.\n" + e.getMessage());
-                }
-            }
-        }
-
-        scanner.close();
+        duke.run();
     }
 }
