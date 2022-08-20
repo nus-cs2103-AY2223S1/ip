@@ -1,11 +1,17 @@
 import java.io.FileWriter;
 import java.sql.SQLSyntaxErrorException;
+import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ListIterator;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
+import java.time.format.DateTimeFormatter;
+
 import java.util.Scanner;
 
 public class Duke {
@@ -68,6 +74,7 @@ public class Duke {
         }
     }
 
+
     private static void loadData() throws FileNotFoundException {
         File f = new File(filePath);
         Scanner sc = new Scanner(f);
@@ -108,6 +115,14 @@ public class Duke {
         } catch (IOException e) {
             System.out.println("Something went wrong: " + e.getMessage());
         }
+    }
+
+    private static LocalDate parseDate(String s) {
+        return LocalDate.parse(s.replace('/', '-'));
+    }
+
+    private static String dateToString(LocalDate date) {
+        return date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
 
     }
 
@@ -235,16 +250,16 @@ public class Duke {
 
     private static class Deadline extends Task {
 
-        protected String by;
+        protected LocalDate by;
 
         public Deadline(String description, String by) {
             super(description);
-            this.by = by;
+            this.by = parseDate(by);
         }
 
         @Override
         public String toString() {
-            return "[D]" + super.toString() + " (by: " + by + ")";
+            return "[D]" + super.toString() + " (by: " + dateToString(by) + ")";
         }
     }
 
@@ -260,16 +275,16 @@ public class Duke {
     }
 
     private static class Event extends Task {
-        private String at;
+        private LocalDate at;
 
         public Event(String description, String at) {
             super(description);
-            this.at = at;
+            this.at = parseDate(at);
         }
 
         @Override
         public String toString() {
-            return "[E]" + super.toString() + " (at: " + at + ")";
+            return "[E]" + super.toString() + " (at: " + dateToString(at) + ")";
         }
     }
 
