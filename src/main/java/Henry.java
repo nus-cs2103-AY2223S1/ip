@@ -4,6 +4,7 @@ import exceptions.NoSuchCommandException;
 import exceptions.NoTaskIndexGivenException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,7 +12,19 @@ public class Henry {
 
     private final List<Task> tasks;
     private final Scanner sc;
+    private static final HashMap<String, Commands> language = new HashMap<>();
     private boolean activated;
+    static {
+        language.put("echo", Commands.ECHO);
+        language.put("list", Commands.LIST);
+        language.put("bye", Commands.BYE);
+        language.put("todo", Commands.TODO);
+        language.put("deadline", Commands.DEADLINE);
+        language.put("event", Commands.EVENT);
+        language.put("mark", Commands.MARK);
+        language.put("unmark", Commands.UNMARK);
+        language.put("delete", Commands.DELETE);
+    }
 
     public Henry() {
         System.out.println(
@@ -35,20 +48,35 @@ public class Henry {
     // Command handling
     public void parseCommand(String command) {
         try {
-            if (command.equalsIgnoreCase("list")) {
-                getList();
-            } else if (command.equalsIgnoreCase("bye")) {
-                close();
-            } else if (command.matches("mark\\s\\d")) {
-                markTask(command);
-            } else if (command.matches("unmark\\s\\d")) {
-                unmarkTask(command);
-            } else if (command.startsWith("todo") ||
-                       command.startsWith("deadline") ||
-                       command.startsWith("event")) {
-                handleAddTask(command);
-            } else if (command.startsWith("delete")) {
-                deleteTask(command);
+            String parse = command.contains(" ") ? command.split(" ")[0] : command;
+            String modifiers = command.contains(" ") ? command.split(" ")[1] : "";
+            if (language.containsKey(parse)) {
+                Commands cmd = language.get(parse);
+                switch (cmd) {
+                    case ECHO:
+                        echo(modifiers);
+                        break;
+                    case LIST:
+                        getList();
+                        break;
+                    case BYE:
+                        close();
+                        break;
+                    case MARK:
+                        markTask(command);
+                        break;
+                    case UNMARK:
+                        unmarkTask(command);
+                        break;
+                    case TODO:
+                    case DEADLINE:
+                    case EVENT:
+                        handleAddTask(command);
+                        break;
+                    default:
+                        deleteTask(command);
+                        break;
+                }
             } else {
                 throw new NoSuchCommandException();
             }
@@ -160,7 +188,7 @@ public class Henry {
                                    .trim();
                         task = new Task(
                             taskDescription.replace("deadline", "").trim(),
-                            taskDeadline, TaskTypes.DEADLINE);
+                            taskDeadline, Commands.DEADLINE);
                     }
                 } else {
                     if (!command.contains("at")) {
@@ -171,7 +199,7 @@ public class Henry {
                                    .trim();
                         task = new Task(
                             taskDescription.replace("event", "").trim(),
-                            taskTime, TaskTypes.EVENT);
+                            taskTime, Commands.EVENT);
                     }
                 }
             }
@@ -181,7 +209,7 @@ public class Henry {
                 throw new NoDescriptionException();
             } else {
                 String taskDescription = command.split("todo")[1];
-                task = new Task(taskDescription, "", TaskTypes.TODO);
+                task = new Task(taskDescription, "", Commands.TODO);
             }
         }
         addToList(task);

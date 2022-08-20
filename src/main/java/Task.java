@@ -2,9 +2,9 @@ public class Task {
     protected String description;
     protected String modifier;
     protected boolean isDone;
-    private final TaskTypes type;
+    private final Commands type;
 
-    public Task(String description, String modifier, TaskTypes type) {
+    public Task(String description, String modifier, Commands type) {
         this.description = description;
         this.modifier = modifier;
         this.isDone = false;
