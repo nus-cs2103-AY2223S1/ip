@@ -17,6 +17,9 @@ public class Task {
     public Boolean isMarked() {
         return isDone;
     }
+    public String toPrint() {
+        return " | " + "[" + getStatusIcon() + "] | " + description;
+    }
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;

@@ -45,6 +45,19 @@ public class DobbyList {
             return intro + dobbyListString;
         }
     }
+    public String toSave() {
+        if(getLength() == 0) {
+            return "No Task Available";
+        } else {
+            String dobbyListString = "";
+            int i = 0;
+            for( Task dobbyTask : dobbyList) {
+                dobbyListString += dobbyTask.toPrint() + "\n";
+                i++;
+            }
+            return dobbyListString;
+        }
+    }
     public String getTaskString(int i) {
 /*      Old method of getting individual task in string form
 

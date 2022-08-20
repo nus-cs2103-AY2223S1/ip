@@ -90,7 +90,7 @@ public class DobbyChat {
     public static void allUnmarked() {
         printChat("All tasks unmarked, master!");
     }
-    public static void allDeleted() {
-        printChat("All tasks deleted, master!");
+    public static void noFileFound() {
+        printChat("Dobby can't find this file, master!");
     }
 }

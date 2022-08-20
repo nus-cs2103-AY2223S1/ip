@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Dobby {
@@ -12,14 +13,17 @@ public class Dobby {
         return s.substring(i + 4);
     }
     private static String getTask(String s, String task) {
+        
         if(task == "todo") {
             return s.substring(5);
-        } else if(task == "deadline") {
-            return s.substring(9);
-        } else{
-            return s.substring(6);
+        } else {
+            int startIndex = task.length() + 1;
+            int endIndex = s.indexOf("/");
+
+            return s.substring(startIndex, endIndex);
         }
     }
+
     private static void toList(String s) {
         DobbyChat.echo(dobbyList.toString());
     }
@@ -149,15 +153,12 @@ public class Dobby {
         }
     }
 
-    public static void main(String[] args) {
-
-
-        DobbyChat.sayHello();
-
+    private static void dobbyStart() throws IOException {
         while(true) {
             String command = scanner.nextLine();
 
             if(command.equals("bye") || command.equals("end") || command.equals("quit")) {
+                DobbyIO.save(dobbyList);
                 DobbyChat.sayBye();
                 break;
             } else if(command.equals("list")) {
@@ -186,5 +187,12 @@ public class Dobby {
                 DobbyChat.unknown();
             }
         }
+    }
+
+    public static void main(String[] args) throws IOException {
+
+        DobbyChat.sayHello();
+        dobbyStart();
+
     }
 }
