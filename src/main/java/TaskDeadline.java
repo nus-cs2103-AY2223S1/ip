@@ -16,7 +16,7 @@ public class TaskDeadline extends Task{
         System.out.print("What is the name of your deadline task: ");
         String name = s.nextLine();
 
-        System.out.print("When is the deadline of your task: ");
+        System.out.print("When is the deadline of your task, type in YYYY-MM-DD: ");
         String deadline = s.nextLine();
 
         try {

@@ -18,10 +18,10 @@ public class TaskEvent extends Task{
         System.out.print("What is the name of your event: ");
         String name = s.nextLine();
 
-        System.out.print("What is the start time of your event: ");
+        System.out.print("What is the start date of your event, type in YYYY-MM-DD: ");
         String start = s.nextLine();
 
-        System.out.print("What is the end time of your event: ");
+        System.out.print("What is the end date of your event, type in YYYY-MM-DD: ");
         String end = s.nextLine();
 
         try {
