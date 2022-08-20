@@ -1,9 +1,20 @@
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+=======
+import java.io.File;
+import java.io.FileWriter;
+>>>>>>> branch-Level-7
 
 public class DukeOperations {
+
+
+
+    public DukeOperations() {
+
+    }
     public void exit() {
         System.out.println("_________________________________________________________________________");
         System.out.println("        Bye. Hope to see you again soon!");
@@ -29,6 +40,7 @@ public class DukeOperations {
             array.add(counter, new Todo(arr[1]));
             System.out.println("Got it. I've added this task:");
             System.out.println(array.get(counter).toString());
+
             counter++;
             System.out.println("Now you have " + counter + " tasks in the list.");
         }

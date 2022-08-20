@@ -1,6 +1,9 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileWriter;
 
 public class Duke {
     public static void main(String[] args) {
@@ -10,6 +13,10 @@ public class Duke {
         boolean flag = false;
         Scanner in = new Scanner(System.in);
         DukeOperations ops = new DukeOperations();
+
+
+        File f = new File("data/duke.txt");
+
         while (!flag) {
             String output = in.nextLine();
             String arr[] = output.split(" ",2);
@@ -27,19 +34,30 @@ public class Duke {
 
             }
             else if(firstword.equals("todo")) {
+                if(!f.exists()) {
+                    System.out.println("File doesnt exist yet");
+                }
                 try {
+                    FileWriter fw = new FileWriter("data/duke.txt",true);
                     System.out.println("_________________________________________________________________________");
                     ops.todo(array, arr, counter);
                     System.out.println("_________________________________________________________________________");
+                    fw.write(array.get(counter).toString() + System.lineSeparator());
+                    fw.close();
                     counter++;
                 }
                 catch (DukeException e1) {
                     System.out.println(e1.toString());
                 }
 
+                catch(IOException e1) {
+                    System.out.println(e1.toString());
+                }
+
             }
 
             else if(firstword.equals("deadline")) {
+<<<<<<< HEAD
                 System.out.println("_________________________________________________________________________");
                 String arr2[] = arr[1].split("/by ",2);
                 String arr3[] = arr2[1].split(" ",2);
@@ -54,6 +72,42 @@ public class Duke {
                 ops.event(array,arr2[0],arr3[0],arr3[1],counter);
                 System.out.println("_________________________________________________________________________");
                 counter++;
+=======
+                if(!f.exists()) {
+                    System.out.println("File doesnt exist yet");
+                }
+                try {
+                    FileWriter fw = new FileWriter("data/duke.txt",true);
+                    System.out.println("_________________________________________________________________________");
+                    String arr2[] = arr[1].split("/by", 2);
+                    ops.deadline(array, arr2[0], arr2[1], counter);
+                    System.out.println("_________________________________________________________________________");
+                    fw.write(array.get(counter).toString() + System.lineSeparator());
+                    fw.close();
+                    counter++;
+                }
+                catch(IOException e1) {
+                    System.out.println(e1.toString());
+                }
+            }
+            else if(firstword.equals("event")) {
+                if(!f.exists()) {
+                    System.out.println("File doesnt exist yet");
+                }
+                try {
+                    FileWriter fw = new FileWriter("data/duke.txt",true);
+                    System.out.println("_________________________________________________________________________");
+                    String arr2[] = arr[1].split("/at", 2);
+                    ops.event(array, arr2[0], arr2[1], counter);
+                    fw.write(array.get(counter).toString() + System.lineSeparator());
+                    fw.close();
+                    System.out.println("_________________________________________________________________________");
+                    counter++;
+                }
+                catch(IOException e2) {
+                    System.out.println(e2.toString());
+                }
+>>>>>>> branch-Level-7
             }
 
             else if(firstword.equals("mark")) {
