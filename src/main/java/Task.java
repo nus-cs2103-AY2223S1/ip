@@ -1,4 +1,7 @@
 public abstract class Task {
+
+    private static int taskCount = 0;
+
     private String description;
     private boolean isComplete = false;
 
@@ -9,6 +12,7 @@ public abstract class Task {
      */
     public Task(String description) {
         this.description = description;
+        Task.taskCount++;
     }
 
     /**
@@ -30,6 +34,28 @@ public abstract class Task {
             throw new MarkToggleException();
         }
         this.isComplete = true;
+    }
+
+    /**
+     * Get task count.
+     *
+     * @return taskCount Number of tasks.
+     */
+    public static int getTaskCount() {
+        return taskCount;
+    }
+    /**
+     * Increase task count by 1.
+     */
+    public static void addTaskCount() {
+        Task.taskCount++;
+    }
+
+    /**
+     * Reduce task count by 1.
+     */
+    public static void reduceTaskCount() {
+        Task.taskCount--;
     }
 
     /**
