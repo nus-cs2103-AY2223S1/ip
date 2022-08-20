@@ -33,5 +33,12 @@ public class Deadline extends Task {
         }
         return null;
     }
+
+    /*
+    @Override
+    public String saveString() {
+        return "D " + "| " + getStringStatusIcon() + " | " + getSubstring() + "|" + by + "\n";
+    }
+    */
 }
 
