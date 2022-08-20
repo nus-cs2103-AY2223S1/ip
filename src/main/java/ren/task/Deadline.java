@@ -32,6 +32,7 @@ public class Deadline extends Task {
      * @return Deadline Task or null if data is corrupted.
      */
     public static Deadline readData(String[] data) {
+        // Check if data is complete
         if (data.length < 4) {
             return null;
         }

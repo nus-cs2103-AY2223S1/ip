@@ -27,7 +27,9 @@ public class Ui {
     }
 
     /**
-     * Say Goodbye to the user.
+     * Returns a Farewell message for the user.
+     *
+     * @return String with the Farewell message.
      */
     public static String goodbye() {
         return " Farewell!\n";

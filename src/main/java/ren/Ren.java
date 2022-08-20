@@ -4,9 +4,10 @@ package ren;
  * Ren is a Task Manager program that helps a user keep track of and manage their tasks.
  */
 public class Ren {
-    /** Stores the list of tasks added by the user. */
+    /** Stores and manages the list of tasks added by the user. */
     private final TaskList tasks;
 
+    /** Manages the interaction between user and Ren. */
     private final Ui ui = new Ui();
 
     /**
@@ -40,6 +41,9 @@ public class Ren {
         new Ren().run();
     }
 
+    /**
+     * The types of Tasks supported by Ren.
+     */
     enum TaskType {
         TODO,
         DEADLINE,

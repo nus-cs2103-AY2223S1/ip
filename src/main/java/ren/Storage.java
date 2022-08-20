@@ -42,9 +42,13 @@ public class Storage {
         init();
     }
 
+    /**
+     * Initialises dataArray using dataFile and creates dataFile if it is missing.
+     */
     private void init() {
         if (!dataFile.exists()) {
             try {
+                // Check if the parent directory exists
                 if (!dataFile.getParentFile().exists()) {
                     dataFile.getParentFile().mkdir();
                 }
@@ -66,6 +70,9 @@ public class Storage {
         }
     }
 
+    /**
+     * Resets the File to a blank File.
+     */
     private void newFile() {
         try {
             dataFile.delete();
@@ -75,6 +82,9 @@ public class Storage {
         }
     }
 
+    /**
+     * Overwrite the File with a new list of Tasks.
+     */
     private void writeToFile() {
         // Disable writing to File if error occurred during creation of file or reading of file.
         if (hasError) {
@@ -94,6 +104,9 @@ public class Storage {
         }
     }
 
+    /**
+     * Append a new Task's information to the File.
+     */
     private void appendToFile() {
         // Disable writing to File if error occurred during creation of file or reading of file.
         if (hasError) {
@@ -123,6 +136,7 @@ public class Storage {
     public ArrayList<Task> load() {
         ArrayList<Task> tasks = new ArrayList<>();
         for (int i = 0; i < this.counter; i++) {
+            // Split the task information into individual terms
             String[] data = dataArray.get(i).split("\\|");
             Task newTask = null;
             switch (data[0]) {
