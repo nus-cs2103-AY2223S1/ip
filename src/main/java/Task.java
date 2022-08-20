@@ -63,12 +63,12 @@ abstract class Task {
 
         @Override
         public String toString() {
-            return super.toString() + " (by: " + deadline.format(outputFormatter) + ")";
+            return super.toString() + " (by: " + this.deadline.format(outputFormatter) + ")";
         }
 
         @Override
         public String toSaveString() {
-            return super.toSaveString() + " | " + this.deadline;
+            return super.toSaveString() + " | " + this.deadline.format(inputFormatter);
         }
     }
 
@@ -88,12 +88,12 @@ abstract class Task {
 
         @Override
         public String toString() {
-            return super.toString() + " (at: " + time.format(outputFormatter) + ")";
+            return super.toString() + " (at: " + this.time.format(outputFormatter) + ")";
         }
 
         @Override
         public String toSaveString() {
-            return super.toSaveString() + " | " + this.time;
+            return super.toSaveString() + " | " + this.time.format(inputFormatter);
         }
     }
 }
