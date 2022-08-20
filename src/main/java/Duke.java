@@ -1,14 +1,12 @@
-import java.time.DateTimeException;
+package main.java;
+
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.io.*;
-
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 
 
 import static java.lang.Integer.parseInt;
@@ -78,17 +76,11 @@ public class Duke {
                     throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
             } else if (echo.startsWith("todo") && Character.isWhitespace(echo.charAt(4))) {
                     tasks.add(new ToDo(echo));
-
                     System.out.println("Got it. I've added this task:");
                     System.out.println(tasks.get(tasks.size() - 1) + "\nNow you have " + tasks.size() +
                             " tasks in the list.");
-
-                    System.out.println(tasks.get(tasks.size() - 1) + "\nNow you have "
-                            + tasks.size() + " tasks in the list.");
-
-                //System.out.println("_________________________________________________\nadded: " + echo + "\n" +
-                //        "_________________________________________________\n");
-            } else if (echo.equals("deadline") || (echo.startsWith("deadline") && echo.substring(9).isBlank())) {
+            } else if (echo.equals("deadline") || (echo.startsWith("deadline")
+                    && echo.substring(9).isBlank())) {
                 throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
             } else if (echo.startsWith("deadline") && Character.isWhitespace(echo.charAt(8))) {
                 if (!echo.contains("/by")) {
@@ -103,11 +95,6 @@ public class Duke {
 
                     System.out.println(tasks.get(tasks.size() - 1) + "\nNow you have " + tasks.size() +
                             " tasks in the list.");
-
-                    tasks.add(new Deadline(echo));
-                    System.out.println(tasks.get(tasks.size() - 1) + "\nNow you have "
-                            + tasks.size() + " tasks in the list.");
-
                 }
             } else if (echo.equals("event") || (echo.startsWith("event") && echo.substring(6).isBlank())) {
                 throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.");
@@ -121,14 +108,9 @@ public class Duke {
                         throw new DukeException("☹ OOPS!!! Please use the correct date format!");
                     }
                     System.out.println("Got it. I've added this task:");
-
-                    System.out.println(tasks.get(tasks.size() - 1) + "\nNow you have " + tasks.size() +
-                            " tasks in the list.");
-
-                    tasks.add(new Event(echo));
                     System.out.println(tasks.get(tasks.size() - 1) + "\nNow you have "
-                            + tasks.size() + " tasks in the list.");
-
+                            + tasks.size() +
+                            " tasks in the list.");
                 }
             } else {
                 throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
@@ -191,10 +173,9 @@ public class Duke {
                         tasks.get(tasks.size() - 1).markAsDone();
                     }
                 } else if (line.startsWith("[D]")) {
-
                     String tempDeadline = "deadline"
                             + line.substring(line.lastIndexOf("]") + 1, line.lastIndexOf("("))
-                            + "/by" + line.substring(line.lastIndexOf(":") + 1, line.lastIndexOf(")"));
+                            + "/by " + parseLocalDate(line.substring(line.lastIndexOf(":") + 2, line.lastIndexOf(")")));
                     tasks.add(new Deadline(tempDeadline));
                     if (line.startsWith("[D][X]")) {
                         tasks.get(tasks.size() - 1).markAsDone();
@@ -202,7 +183,7 @@ public class Duke {
                 } else if (line.startsWith("[E]")) {
                     String tempEvent = "event"
                             + line.substring(line.lastIndexOf("]") + 1, line.lastIndexOf("("))
-                            + "/at" + line.substring(line.lastIndexOf(":") + 1, line.lastIndexOf(")"));
+                            + "/at " + parseLocalDate(line.substring(line.lastIndexOf(":") + 2, line.lastIndexOf(")")));
                     tasks.add(new Event(tempEvent));
                     if (line.startsWith("[E][X]")) {
                         tasks.get(tasks.size() - 1).markAsDone();
@@ -213,5 +194,11 @@ public class Duke {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public static String parseLocalDate(String string) {
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("MMM dd yyyy");
+        LocalDate localdate = LocalDate.parse(string, format);
+        return localdate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 }

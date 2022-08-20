@@ -6,7 +6,11 @@
 # Gradle build files
 /.gradle/
 /build/
+<<<<<<< .merge_file_a09532
+src/java/main/resources/docs/
+=======
 src/main/resources/docs/
+>>>>>>> .merge_file_a11572
 
 # MacOS custom attributes files created by Finder
 .DS_Store
