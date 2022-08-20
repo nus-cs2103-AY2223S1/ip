@@ -93,11 +93,11 @@ public class CaCa {
 
     /**
      * Adds a Deadline task to user list.
-     * @param command User command with command type, task description and task date/time.
+     * @param taskInfo Task information with task description and task date/time.
      * @throws MissingDetailException If task description or task date/time is missing.
      */
-    public static void deadline(String[] command) throws MissingDetailException {
-        String[] detailedCommand = command[1].split(" /by ", 2);
+    public static void deadline(String taskInfo) throws MissingDetailException {
+        String[] detailedCommand = taskInfo.split(" /by ", 2);
         if (detailedCommand.length == 1) {
             String message = "OOPS!!! Details missing! "
                     + "A deadline must have both description and date/time.";
@@ -122,11 +122,11 @@ public class CaCa {
 
     /**
      * Adds an Event task to user list.
-     * @param command User command with command type, task description and task start & end time
+     * @param taskInfo Task information with task description and task start & end time.
      * @throws MissingDetailException If task description or task start & end time is missing.
      */
-    public static void event(String[] command) throws MissingDetailException {
-        String[] detailedCommand = command[1].split(" /at ", 2);
+    public static void event(String taskInfo) throws MissingDetailException {
+        String[] detailedCommand = taskInfo.split(" /at ", 2);
         if (detailedCommand.length == 1) {
             String message = "OOPS!!! Details missing! "
                     + "An event must have both description and specific start & end time.";
@@ -171,14 +171,14 @@ public class CaCa {
     }
 
     /**
-     * Marks a task as done as instructed by user.
-     * @param command User command with command type and task description.
+     * Marks a task as done in task list.
+     * @param index Task index entered by user.
      * @throws InvalidTaskIndex If task index is invalid, i.e. out of range.
      */
-    public static void markTask(String[] command) throws InvalidTaskIndex {
-        // taskIndex entered by user is 1 larger than its array index.
-        int taskIndex = Integer.parseInt(command[1]);
+    public static void markTask(String index) throws InvalidTaskIndex {
+        int taskIndex = Integer.parseInt(index);
         isValid(taskIndex);
+        // taskIndex entered by user is 1 larger than its array index.
         Task taskToMark = tasks.get(taskIndex - 1);
         taskToMark.markAsDone();
         System.out.println("Nice! I've marked this task as done:");
@@ -186,18 +186,34 @@ public class CaCa {
     }
 
     /**
-     * Marks a task as not done as instructed by user.
-     * @param command User command with command type and task description.
+     * Marks a task as not done in task list.
+     * @param index Task index entered by user.
      * @throws InvalidTaskIndex If task index is invalid, i.e. out of range.
      */
-    public static void unmarkTask(String[] command) throws InvalidTaskIndex {
-        // taskIndex entered by user is 1 larger than its array index.
-        int taskIndex = Integer.parseInt(command[1]);
+    public static void unmarkTask(String index) throws InvalidTaskIndex {
+        int taskIndex = Integer.parseInt(index);
         isValid(taskIndex);
+        // taskIndex entered by user is 1 larger than its array index.
         Task taskToUnmark = tasks.get(taskIndex - 1);
         taskToUnmark.markAsUndone();
         System.out.println("OK, I've marked this task as not done yet:");
         System.out.println(taskToUnmark + "\n" + LINE);
+    }
+
+    /**
+     * Deletes a task from task list.
+     * @param index Task index entered by user.
+     * @throws InvalidTaskIndex If task index is invalid, i.e. out of range.
+     */
+    public static void deleteTask(String index) throws InvalidTaskIndex {
+        int taskIndex = Integer.parseInt(index);
+        isValid(taskIndex);
+        // taskIndex entered by user is 1 larger than its array index.
+        Task taskToDelete = tasks.get(taskIndex - 1);
+        tasks.remove(taskToDelete);
+        System.out.println("Noted. I've removed this task:\n" + taskToDelete);
+        System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
+        System.out.println(LINE);
     }
 
     /**
@@ -234,24 +250,6 @@ public class CaCa {
                     bye();
                     break;
 
-                } else if (commandType.equals("list")) {
-                    listTasks();
-
-                } else if (commandType.equals("mark")) {
-                    markTask(command);
-
-                } else if (commandType.equals("unmark")) {
-                    unmarkTask(command);
-
-                } else if (commandType.equals("delete")) {
-                    int taskIndex = Integer.parseInt(command[1]);
-                    isValid(taskIndex);
-                    Task taskToMark = tasks.get(taskIndex - 1);
-                    tasks.remove(taskToMark);
-                    System.out.println("Noted. I've removed this task:\n" + taskToMark);
-                    System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
-                    System.out.println(LINE);
-
                 } else if (commandType.equals("todo") || commandType.equals("deadline") || commandType.equals("event")) {
 
                     // Checks whether description is empty or contains only white spaces.
@@ -263,11 +261,23 @@ public class CaCa {
                         toDo(command[1]);
 
                     } else if (commandType.equals("deadline")) {
-                        deadline(command);
+                        deadline(command[1]);
 
-                    } else { // event
-                        event(command);
+                    } else { // Event
+                        event(command[1]);
                     }
+
+                } else if (commandType.equals("list")) {
+                    listTasks();
+
+                } else if (commandType.equals("mark")) {
+                    markTask(command[1]);
+
+                } else if (commandType.equals("unmark")) {
+                    unmarkTask(command[1]);
+
+                } else if (commandType.equals("delete")) {
+                    deleteTask(command[1]);
 
                 } else {
                     // Invalid input.
