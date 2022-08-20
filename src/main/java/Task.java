@@ -1,3 +1,4 @@
+
 import java.io.FileNotFoundException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -8,10 +9,16 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.Scanner;
 
+import java.time.format.FormatStyle;
+import java.util.Formatter;
+
+
 public class Task {
     private static final String DATA_PATH = new File("").getAbsolutePath() + "/data/duke.txt";
     private String title;
     private boolean completed;
+
+    public static final FormatStyle DATE_FORMAT = FormatStyle.MEDIUM;
 
     Task(String title) {
         this.title = title;
