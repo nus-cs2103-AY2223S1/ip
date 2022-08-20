@@ -18,7 +18,7 @@
 
  Understood. I have added the following task:
    [T][ ] todoTest
- You have a total of 1 task(s).
+ You now have a total of 1 task(s).
 
 ============================================================
 ============================================================
@@ -35,7 +35,7 @@
 
  Understood. I have added the following task:
    [D][ ] deadlineTest (by: TestDay)
- You have a total of 2 task(s).
+ You now have a total of 2 task(s).
 
 ============================================================
 ============================================================
@@ -52,7 +52,7 @@
 
  Understood. I have added the following task:
    [E][ ] eventTest (at: TestDay)
- You have a total of 3 task(s).
+ You now have a total of 3 task(s).
 
 ============================================================
 ============================================================
@@ -184,7 +184,7 @@
 
  Understood. I have removed the following task:
    [E][ ] eventTest (at: TestDay)
- You have a total of 2 task(s).
+ You have a total of 2 task(s) left.
 
 ============================================================
 ============================================================
@@ -213,7 +213,7 @@
 
  Understood. I have added the following task:
    [E][ ] eventTest (at: TestDay)
- You have a total of 3 task(s).
+ You now have a total of 3 task(s).
 
 ============================================================
 ============================================================
@@ -236,12 +236,12 @@
 ============================================================
 ============================================================
 
- ☹ Apologies! Please indicate a task no. between 1 to 0.
+ ☹ Apologies! You have no tasks to mark or unmark.
 
 ============================================================
 ============================================================
 
- ☹ Apologies! Please indicate a task no. between 1 to 0.
+ ☹ Apologies! You have no tasks to mark or unmark.
 
 ============================================================
 ============================================================

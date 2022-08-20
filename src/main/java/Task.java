@@ -1,14 +1,14 @@
 /**
  * Parent Class for all Tasks.
  */
-public class Task {
+public abstract class Task {
     protected String description;
     protected boolean isDone;
 
     /**
      * Constructor for a Task.
      *
-     * @param description the description of the Task
+     * @param description Description of the Task.
      */
     public Task(String description) {
         this.description = description;
@@ -16,30 +16,22 @@ public class Task {
     }
 
     /**
-     * Sets the Task as completed.
+     * Returns the Task information for writing to a File.
      *
-     * @return string containing the completed message, to be displayed to the user
+     * @return String with Task information.
      */
-    public String mark() {
-        this.isDone = true;
-        return " Great job! I will mark the task as completed.\n"
-            + "   " + this;
-    }
+    public abstract String writeData();
 
     /**
-     * Sets the Task as uncompleted.
+     * Sets the completion status of this task.
      *
-     * @return string containing the uncompleted message, to be displayed to the user
+     * @param isDone New completion status of the task.
+     * @return String with message for user.
      */
-    public String unmark() {
-        this.isDone = false;
-        return " Understood. I will mark the task as uncompleted.\n"
-            + "   " + this;
-    }
-
-    @Override
-    public String toString() {
-        String symbol = this.isDone ? "X" : " ";
-        return "[" + symbol + "] " + this.description + "\n";
+    public String setDone(boolean isDone) {
+        this.isDone = isDone;
+        return isDone
+            ? " Great job! I will mark the task as completed.\n" + "   " + this
+            : " Understood. I will mark the task as uncompleted.\n" + "   " + this;
     }
 }
