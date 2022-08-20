@@ -1,17 +1,68 @@
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.NoSuchElementException;
+
 import java.util.Scanner;
+
+import java.io.File;
+import java.io.FileWriter;
+
 import java.util.List;
 import java.util.ArrayList;
 
 public class Roofus {
     static String LINESEP = "****************************************";
-
+    
+    private static String STORAGEPATH = "./data/roofus.txt";
+    private File storage = new File(STORAGEPATH);
+    
     private List<Task> tasks = new ArrayList<>();
 
     void greet() {
         System.out.println(LINESEP);
         System.out.println("Hello I'm Roofus\n" + "What can I do for you?");
         System.out.println(LINESEP);
+    }
+    
+    void load() throws FileNotFoundException {
+        Scanner sc = new Scanner(this.storage);
+        while (sc.hasNextLine()) {
+            String line = sc.nextLine();
+            String taskType = line.substring(0, 6);
+            boolean isComplete = taskType.charAt(4) == 'X';
+            Task thisTask = new Task("initialised");
+            if (taskType.charAt(1) == 'T') {
+                thisTask = new ToDo(line.substring(6));
+            } else {
+                if (taskType.charAt(1) == 'D') {
+                    String[] descTimeDetails = line.substring(6).split("by:", 2);
+                    String description = descTimeDetails.length < 1 ? " " :
+                            descTimeDetails[0].substring(0, descTimeDetails[0].length() - 1);
+                    String time = descTimeDetails.length < 2 ? " " :
+                            descTimeDetails[1].substring(0, descTimeDetails[1].length() - 1);
+                    thisTask = new Deadline(description, time);
+                } else {
+                    String[] descTimeDetails = line.substring(6).split("at:", 2);
+                    String description = descTimeDetails.length < 1 ? " " : 
+                            descTimeDetails[0].substring(0, descTimeDetails[0].length() - 1);
+                    String time = descTimeDetails.length < 2 ? " " : 
+                            descTimeDetails[1].substring(0, descTimeDetails[1].length() - 1);
+                    thisTask = new Event(description, time);    
+                }
+            }
+            if (isComplete) {
+                thisTask.setDone();
+            }
+            this.tasks.add(thisTask);
+        }
+    }
+    
+    void save() throws IOException {
+        FileWriter editor = new FileWriter(STORAGEPATH);
+        for (Task t : tasks) {
+            editor.write(t.toString() + "\n");
+        }
+        editor.close();
     }
 
     void addTask(Task task) {
@@ -56,7 +107,7 @@ public class Roofus {
 
     static void errMessage(String message) {
         System.out.println(LINESEP);
-        System.out.println(message);
+        System.out.println(message.toUpperCase());
         System.out.println(LINESEP);
     }
 
@@ -67,6 +118,11 @@ public class Roofus {
 
     public static void main(String[] args) {
         Roofus roofus = new Roofus();
+        try {
+            roofus.load();
+        } catch (FileNotFoundException err) {
+            errMessage("Required file not found\nRoofus cannot load storage data");
+        }
         roofus.greet();
         Scanner sc = new Scanner(System.in);
         boolean isRunning = true;
@@ -164,6 +220,11 @@ public class Roofus {
             if (!isRunning) {
                 break;
             }
+        }
+        try {
+            roofus.save();
+        } catch (IOException err) {
+            errMessage("file not saved");
         }
     }
 }
