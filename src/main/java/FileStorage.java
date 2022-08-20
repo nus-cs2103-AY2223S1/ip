@@ -2,6 +2,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,15 +84,10 @@ public class FileStorage {
             taskStatus = Integer.parseInt(components[0]);
             break;
         }
-        case DEADLINE: {
-            components = input.split(" \\| ", 3);
-            task = new Deadline(components[1], components[2], type);
-            taskStatus = Integer.parseInt(components[0]);
-            break;
-        }
+        case DEADLINE:
         case EVENT: {
             components = input.split(" \\| ", 3);
-            task = new Event(components[1], components[2], type);
+            task = createTaskWithDate(components[1], components[2], type);
             taskStatus = Integer.parseInt(components[0]);
             break;
         }
@@ -131,5 +129,33 @@ public class FileStorage {
         } catch (IOException exception) {
             System.out.println(exception.getMessage());
         }
+    }
+
+    private Task createTaskWithDate(String description, String timePeriod, TaskType type) {
+        LocalTime time = null;
+        LocalDate date;
+        Task task = null;
+        String[] components = timePeriod.split(" ", 2);
+        date = LocalDate.parse(components[0]);
+        switch (type) {
+        case DEADLINE:
+            if (components.length != 1) {
+                time = LocalTime.parse(components[1]);
+            }
+            task = new Deadline(description, date, time, type);
+            break;
+        case EVENT:
+            LocalTime timeEnd;
+            if (components.length == 1) {
+                throw new DateTimeParseException("", components[0], 1);
+            } else {
+                String[] duration = components[1].split("-", 2);
+                time = LocalTime.parse(duration[0]);
+                timeEnd = LocalTime.parse(duration[1]);
+            }
+            task = new Event(description, date, time, timeEnd, type);
+            break;
+        }
+        return task;
     }
 }

@@ -1,5 +1,9 @@
 import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
+
 public class Duke {
     private static ArrayList<Task> listOfTasks = new ArrayList<>();
     private static FileStorage taskStorage = new FileStorage(System.getProperty("user.home"));
@@ -28,6 +32,7 @@ public class Duke {
                         displayList();
                         break;
                     }
+                    case "get":
                     case "mark":
                     case "deadline":
                     case "unmark":
@@ -62,6 +67,10 @@ public class Duke {
                     }
                     case "delete": {
                         deleteTask(str[1]);
+                        break;
+                    }
+                    case "get": {
+                        getDueTasks(str[1]);
                         break;
                     }
                     default:
@@ -102,12 +111,14 @@ public class Duke {
             }
             case DEADLINE: {
                 String[] deadlineComponents = input.split("/by ", 2);
-                task = new Deadline(deadlineComponents[0], deadlineComponents[1], TaskType.DEADLINE);
+                task = createTaskWithDate(deadlineComponents[0],
+                        deadlineComponents[1].trim(), TaskType.DEADLINE);
                 break;
             }
             case EVENT: {
                 String[] eventComponents = input.split("/at ", 2);
-                task = new Event(eventComponents[0], eventComponents[1], TaskType.EVENT);
+                task = createTaskWithDate(eventComponents[0],
+                        eventComponents[1].trim(), TaskType.EVENT);
                 break;
             }
             default:
@@ -116,6 +127,9 @@ public class Duke {
             listOfTasks.add(task);
             System.out.println("Got it. I've added this task:\n  " + task
                     + displayListSize());
+        } catch (DateTimeParseException e) {
+            System.out.println("Input proper date in the format YYYY-MM-DD HH:mm/YYYY-MM-DD for deadlines and " +
+                    "YYYY-MM-DD HH:mm-HH:mm for events");
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new InvalidInputException();
         } catch (DukeException e) {
@@ -176,6 +190,50 @@ public class Duke {
             taskStorage.createFile();
         }
         listOfTasks = taskStorage.retrieveFileContents();
+    }
+
+    private static Task createTaskWithDate(String description, String timePeriod, TaskType type) {
+        LocalTime time = null;
+        LocalDate date;
+        Task task = null;
+        String[] components = timePeriod.split(" ", 2);
+        date = LocalDate.parse(components[0]);
+        switch (type) {
+        case DEADLINE:
+            if (components.length != 1) {
+                time = LocalTime.parse(components[1]);
+            }
+            task = new Deadline(description, date, time, type);
+            break;
+        case EVENT:
+            LocalTime timeEnd;
+            if (components.length == 1) {
+                throw new DateTimeParseException("", components[0], 1);
+            } else {
+                String[] duration = components[1].split("-", 2);
+                time = LocalTime.parse(duration[0]);
+                timeEnd = LocalTime.parse(duration[1]);
+            }
+            task = new Event(description, date, time, timeEnd, type);
+            break;
+        }
+        return task;
+    }
+
+    private static void getDueTasks(String input) {
+        try {
+            LocalDate date = LocalDate.parse(input);
+            int i = 1;
+            System.out.println("Here are the tasks due at this date:");
+            for (Task task : listOfTasks) {
+                if (task.isDateEqual(date)) {
+                    System.out.println(i + "." + task);
+                    i++;
+                }
+            }
+        } catch (DateTimeParseException e) {
+            System.out.println("Input a valid date in the format YYYY-MM-DD");
+        }
     }
 
     public static void main(String[] args) {

@@ -1,7 +1,8 @@
 list
 todo return book
-deadline lab /by June 9th
+deadline lab /by 2019-11-12 10:00
 mark 2
 mark 3
 list
+get 2019-12-10
 bye
