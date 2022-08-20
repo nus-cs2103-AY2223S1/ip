@@ -1,8 +1,9 @@
-import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Scanner;
 public class Duke {
     private static ArrayList<Task> listOfTasks = new ArrayList<>();
     private static boolean inUse = true;
+
     private static void startIntro() {
         System.out.println("Hello I'm Duke\n" + "What can I do for you?");
         startChat();
@@ -46,15 +47,15 @@ public class Duke {
                         break;
                     }
                     case "todo": {
-                        addNewToDo(str[1]);
+                        addTask(str[1], TaskType.TODO);
                         break;
                     }
                     case "deadline": {
-                        addNewDeadline(str[1]);
+                        addTask(str[1], TaskType.DEADLINE);
                         break;
                     }
                     case "event": {
-                        addNewEvent(str[1]);
+                        addTask(str[1], TaskType.EVENT);
                         break;
                     }
                     case "delete": {
@@ -88,36 +89,35 @@ public class Duke {
         return "\nNow you have " + listOfTasks.size() + " tasks in the list.";
     }
 
-    private static void addNewToDo(String input) {
-        addToList(new ToDo(input));
-    }
-
-    private static void addNewDeadline(String input) {
+    private static void addTask(String input, TaskType type) {
+        Task task = null;
         try {
-            String[] deadlineComponents = input.split("/by ", 2);
-            addToList(new Deadline(deadlineComponents[0], deadlineComponents[1]));
+            switch (type) {
+            case TODO: {
+                task = new ToDo(input, TaskType.TODO);
+                break;
+            }
+            case DEADLINE: {
+                String[] deadlineComponents = input.split("/by ", 2);
+                task = new Deadline(deadlineComponents[0], deadlineComponents[1], TaskType.DEADLINE);
+                break;
+            }
+            case EVENT: {
+                String[] eventComponents = input.split("/at ", 2);
+                task = new Event(eventComponents[0], eventComponents[1], TaskType.EVENT);
+                break;
+            }
+            default:
+                throw new InvalidInputException();
+            }
+            listOfTasks.add(task);
+            System.out.println("Got it. I've added this task:\n  " + task
+                    + displayListSize());
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new InvalidInputException();
         } catch (DukeException e) {
             System.out.println(e.getMessage());
         }
-    }
-
-    private static void addNewEvent(String input) {
-        try {
-            String[] eventComponents = input.split("/at ", 2);
-            addToList(new Event(eventComponents[0], eventComponents[1]));
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw new InvalidInputException();
-        } catch (DukeException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    private static void addToList(Task task) {
-        listOfTasks.add(task);
-        System.out.println("Got it. I've added this task:\n  " + task
-                + displayListSize());
     }
 
     private static void markTaskDone(String str) {
