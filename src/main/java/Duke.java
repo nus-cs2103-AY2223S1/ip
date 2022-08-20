@@ -14,10 +14,12 @@ public class Duke {
         System.out.println("Hello! I'm Duke\n" + "What can I do for you?");
 
         boolean hasnext = true;
+        List list = new List();
 
         while (hasnext) {
             String message = sc.nextLine();
-            List list = new List(message);
+            list.addList(message);
+
             switch (message) {
                 case "bye" :
                     hasnext = false;

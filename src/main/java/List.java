@@ -2,9 +2,13 @@ import java.util.ArrayList;
 
 public class List {
 
-    public static ArrayList<String> dir = new ArrayList<String>();
+    public ArrayList<String> dir = new ArrayList<String>();
 
-    public List(String cmd) {
+    public List(){
+
+    }
+
+    public void addList(String cmd) {
         if (!cmd.equals("list")) {
             dir.add(cmd);
         }
