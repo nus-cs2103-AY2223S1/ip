@@ -1,9 +1,14 @@
+import java.io.*;
+import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+import java.nio.file.Path;
+
 public class Duke {
     private ArrayList<Task> taskArr = new ArrayList<>();
-
+    private final String taskStoragePath = "storage" + File.separator + "tasks.txt";
+    
     public void greetUser() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -33,8 +38,40 @@ public class Duke {
         }
         System.out.println("===============================");
     }
+    
+    public void saveTasksToStorage() throws IOException {
+        File file = new File(taskStoragePath);
+        File storageDir = new File(file.getParent());
+    
+        // create storage dir if it does not exist
+        if (!storageDir.exists()) {
+            storageDir.mkdirs();
+        }
+        
+        FileWriter fw = new FileWriter(file);
+        for (Task task : this.taskArr) {
+            fw.write(task.toFileFormatString() + "\n");
+        }
+        fw.close();
+    }
+    
+    public void readTasksFromStorage() {
+        System.out.print("Loading your tasks......");
+        File file = new File(taskStoragePath);
+        try {
+            Scanner sc = new Scanner(file);
+            while (sc.hasNext()) {
+                Task task = Task.getTaskFromString(sc.nextLine());
+                this.taskArr.add(task);
+            }
+            System.out.println("Successfully loaded all tasks! :)");
+        } catch (FileNotFoundException fnfe) {
+            System.out.println("FAILED! Could not find storage file containing your tasks");
+            System.out.println("Add a task to generate one!!!");
+        }
+    }
 
-    public void addTask(Command command, String details) throws DukeException {
+    public void addTask(Command command, String details) throws DukeException, IOException {
         if (details.length() == 0) {
             throw new MissingArgumentException(command);
         }
@@ -61,11 +98,10 @@ public class Duke {
                 this.taskArr.add(task);
                 break;
         }
-
-
         System.out.println("Got it. I've added this task:");
         System.out.println("   " + task);
         System.out.println("Now, you have " + this.taskArr.size() + " tasks in the list");
+        
     }
 
     public void markTaskAsDone(int taskIndex) {
@@ -118,7 +154,7 @@ public class Duke {
         }
     }
 
-    public boolean readInput(String inputString) throws DukeException {
+    public boolean readInput(String inputString) throws DukeException, IOException {
         String[] inputStringArr = inputString.split(" ", 2);
         String commandString = inputStringArr[0].strip();
         String detailsString = inputStringArr.length > 1 ? inputStringArr[1].strip() : "";
@@ -146,11 +182,13 @@ public class Duke {
             case UNMARK:    
             case DELETE:
                 this.editTask(command, detailsString);
+                saveTasksToStorage();
                 break;
             case TODO:
             case EVENT:
             case DEADLINE:
                 this.addTask(command, detailsString);
+                saveTasksToStorage();
                 break;
         }
         return false;
@@ -158,9 +196,11 @@ public class Duke {
 
     public void start() {
         Scanner scanner = new Scanner(System.in);
+        readTasksFromStorage();
         this.greetUser();
 
         boolean end = false;
+     
 
         while (!end) {
             System.out.print("\n>>> ");
@@ -169,6 +209,8 @@ public class Duke {
                 end = readInput(inputString);
             } catch (DukeException de) {
                 System.out.println(de.getMessage());
+            } catch (IOException ioe) {
+                System.out.println("Unable to save task :(");
             }
         }
     }
