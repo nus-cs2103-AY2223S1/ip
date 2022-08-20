@@ -53,7 +53,7 @@ public class Duke {
                 String[] eventArr = arr[1].split("/");
                 String eventName = eventArr[0];
                 String eventTime = eventArr[1];
-                Task newEvent = new Deadline(eventName, eventTime);
+                Task newEvent = new Event(eventName, eventTime);
                 tasks.add(newEvent);
                 break;
             default:
