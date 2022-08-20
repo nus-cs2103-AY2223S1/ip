@@ -1,20 +1,18 @@
-import java.io.FileWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class UserInputHistory {
     private ArrayList<Task> userInputHistory = new ArrayList<>();
 
-    /**
-     * Appends string to file given.
-     * @param filePath path of file to add text to.
-     * @param textToAdd text to append to file.
-     * @throws IOException e.g. when file not found.
-     */
-    private static void appendToFile(String filePath, String textToAdd) throws IOException {
-        FileWriter fw = new FileWriter(filePath, true);
-        fw.write(textToAdd);
-        fw.close();
+    public static void createIfDoesntExist() throws IOException {
+        String currDir = System.getProperty("user.dir");
+        Path path = Paths.get(currDir,"fruit.txt");
+        if (!Files.exists(path)) {
+            Files.createFile(path);
+        }
     }
 
     /**
