@@ -21,39 +21,75 @@ public class DobbyList {
     public void delete(int toDelete) {
         dobbyList.remove(toDelete - 1);
     }
-    @Override
-    public String toString() {
-        if(getLength() == 0) {
-            return "Dobby is FREEEEEEE";
+    public void addTask(String string) {
+        String s = string.substring(5);
+        boolean isDone = s.charAt(0) == 'X';
+        String taskAndDate = s.substring(5);
+        if(string.startsWith("E")) {
+            addEvent(taskAndDate, isDone);
+        } else if(string.startsWith("D")) {
+            addDeadline(taskAndDate, isDone);
+        } else if(string.startsWith("T")) {
+            addTodo(taskAndDate, isDone);
         } else {
-            String dobbyListString = "";
-            String intro = "Here are the tasks in your list: " + "\n\t";
-
-            int i = 0;
-            for(Task dobbyTask : dobbyList) {
-/*          Old Method of getting list in string form
-
-            String task = dobbyList.get(i).toString();
-            String status = dobbyList.get(i).getStatusIcon();
-            dobbyListString += (i+1) + "."
-                                + "[" + status + "] "
-                                + task + "\n\t";
-*/
-                dobbyListString += (i+1) + "." + dobbyTask.toString() + "\n\t";
-                i++;
-            }
-            return intro + dobbyListString;
+            DobbyChat.wrongTaskFormat();
         }
     }
-    public String toSave() {
+    public void addTodo(String string, boolean isDone) {
+        Todo newTodo = new Todo(string);
+
+        if(isDone) {
+            newTodo.mark();
+            dobbyList.add(newTodo);
+        } else {
+            dobbyList.add(newTodo);
+        }
+    }
+    public void addDeadline(String string, boolean isDone) {
+        int endIndex = string.indexOf("|") - 2;
+        String task = string.substring(0, endIndex);
+        String date = string.substring(endIndex + 4);
+        Deadline newDeadline = new Deadline(task, date);
+
+        if(isDone) {
+            newDeadline.mark();
+            dobbyList.add(newDeadline);
+        } else {
+            dobbyList.add(newDeadline);
+        }
+    }
+    public void addEvent(String string, boolean isDone) {
+        int endIndex = string.indexOf("|") - 2;
+        String task = string.substring(0, endIndex);
+        String date = string.substring(endIndex + 4);
+        Event newEvent = new Event(task, date);
+
+        if(isDone) {
+            newEvent.mark();
+            dobbyList.add(newEvent);
+        } else {
+            dobbyList.add(newEvent);
+        }
+    }
+    @Override
+    public String toString() {
+        String dobbyListString = "";
+        String intro = "Here are the tasks in your list: " + "\n\t";
+
+        int i = 0;
+        for(Task dobbyTask : dobbyList) {
+            dobbyListString += (i+1) + "." + dobbyTask.toString() + "\n\t";
+            i++;
+        }
+        return intro + dobbyListString;
+    }
+    public String toPrint() {
         if(getLength() == 0) {
             return "No Task Available";
         } else {
             String dobbyListString = "";
-            int i = 0;
             for( Task dobbyTask : dobbyList) {
                 dobbyListString += dobbyTask.toPrint() + "\n";
-                i++;
             }
             return dobbyListString;
         }

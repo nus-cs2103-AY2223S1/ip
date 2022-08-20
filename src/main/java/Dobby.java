@@ -25,7 +25,11 @@ public class Dobby {
     }
 
     private static void toList(String s) {
-        DobbyChat.echo(dobbyList.toString());
+        if (dobbyList.isEmpty()) {
+            DobbyChat.listEmpty();
+        } else {
+            DobbyChat.echo(dobbyList.toString());
+        }
     }
     private static void toMark(String s) {
         try {
@@ -154,6 +158,7 @@ public class Dobby {
     }
 
     private static void dobbyStart() throws IOException {
+        DobbyIO.load(dobbyList);
         while(true) {
             String command = scanner.nextLine();
 

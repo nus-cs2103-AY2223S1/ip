@@ -93,4 +93,10 @@ public class DobbyChat {
     public static void noFileFound() {
         printChat("Dobby can't find this file, master!");
     }
+    public static void wrongTaskFormat() {
+        printChat("Dobby doesn't understand what's written here..." );
+    }
+    public static void listEmpty() {
+        printChat("No tasks left, Dobby is FREEEEEEEEEEEE!");
+    }
 }

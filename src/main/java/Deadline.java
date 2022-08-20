@@ -5,9 +5,10 @@ public class Deadline extends Task {
         super(task);
         this.date = date;
     }
+
     @Override
     public String toPrint() {
-        return "[D]" + super.toPrint() + " | " + date;
+        return "D" + super.toPrint() + " | " + date;
     }
     @Override
     public String toString() {

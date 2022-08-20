@@ -1,1 +1,3 @@
-[T] | [ ] | test1
+T | [ ] | test1
+D | [ ] | test2 | date2
+E | [ ] | test3 | date3
