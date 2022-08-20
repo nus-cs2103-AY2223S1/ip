@@ -14,6 +14,7 @@ public class Henry {
     private final Scanner sc;
     private static final HashMap<String, Commands> language = new HashMap<>();
     private boolean activated;
+
     static {
         language.put("echo", Commands.ECHO);
         language.put("list", Commands.LIST);
@@ -48,34 +49,36 @@ public class Henry {
     // Command handling
     public void parseCommand(String command) {
         try {
-            String parse = command.contains(" ") ? command.split(" ")[0] : command;
-            String modifiers = command.contains(" ") ? command.split(" ")[1] : "";
+            String parse =
+                command.contains(" ") ? command.split(" ")[0] : command;
+            String modifiers =
+                command.contains(" ") ? command.split(" ")[1] : "";
             if (language.containsKey(parse)) {
                 Commands cmd = language.get(parse);
                 switch (cmd) {
-                    case ECHO:
-                        echo(modifiers);
-                        break;
-                    case LIST:
-                        getList();
-                        break;
-                    case BYE:
-                        close();
-                        break;
-                    case MARK:
-                        markTask(command);
-                        break;
-                    case UNMARK:
-                        unmarkTask(command);
-                        break;
-                    case TODO:
-                    case DEADLINE:
-                    case EVENT:
-                        handleAddTask(command);
-                        break;
-                    default:
-                        deleteTask(command);
-                        break;
+                case ECHO:
+                    echo(modifiers);
+                    break;
+                case LIST:
+                    getList();
+                    break;
+                case BYE:
+                    close();
+                    break;
+                case MARK:
+                    markTask(command);
+                    break;
+                case UNMARK:
+                    unmarkTask(command);
+                    break;
+                case TODO:
+                case DEADLINE:
+                case EVENT:
+                    handleAddTask(command);
+                    break;
+                default:
+                    deleteTask(command);
+                    break;
                 }
             } else {
                 throw new NoSuchCommandException();
@@ -86,23 +89,25 @@ public class Henry {
             System.out.println(NoDescriptionException.ERROR_MESSAGE);
         } catch (ImproperCommandSyntaxException e3) {
             switch (e3.getErrorType()) {
-                case 0:
-                    System.out.println(
-                        ImproperCommandSyntaxException.ERROR_MESSAGE);
-                    break;
-                case 1:
-                    System.out.println(
-                        ImproperCommandSyntaxException.ERROR_MESSAGE_NO_BY);
-                    break;
-                default:
-                    System.out.println(
-                        ImproperCommandSyntaxException.ERROR_MESSAGE_NO_AT);
-                    break;
+            case 0:
+                System.out.println(
+                    ImproperCommandSyntaxException.ERROR_MESSAGE);
+                break;
+            case 1:
+                System.out.println(
+                    ImproperCommandSyntaxException.ERROR_MESSAGE_NO_BY);
+                break;
+            default:
+                System.out.println(
+                    ImproperCommandSyntaxException.ERROR_MESSAGE_NO_AT);
+                break;
             }
         } catch (NoTaskIndexGivenException e4) {
             System.out.println(NoTaskIndexGivenException.ERROR_MESSAGE);
         } catch (IndexOutOfBoundsException e5) {
             output("NO SUCH TASK");
+        } catch (NumberFormatException e6) {
+            output("INVALID TASK INDEX. PLEASE ENTER A NUMBER");
         }
     }
 
@@ -138,7 +143,8 @@ public class Henry {
     }
 
     public void markTask(String command) throws NoTaskIndexGivenException,
-                                                IndexOutOfBoundsException {
+                                                IndexOutOfBoundsException,
+                                                NumberFormatException {
         int index;
         if (command.split(" ").length <= 1) {
             throw new NoTaskIndexGivenException();
@@ -150,7 +156,8 @@ public class Henry {
     }
 
     public void unmarkTask(String command) throws NoTaskIndexGivenException,
-                                                  IndexOutOfBoundsException {
+                                                  IndexOutOfBoundsException,
+                                                  NumberFormatException {
         int index;
         if (command.split(" ").length <= 1) {
             throw new NoTaskIndexGivenException();
