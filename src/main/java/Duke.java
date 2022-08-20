@@ -1,30 +1,24 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.io.File;
 
 public class Duke {
     private static ArrayList<Task> data = new ArrayList<Task>();
     private static List<String> UNKNOWN_COMMANDS = Arrays.asList("todo", "deadline", "event");
 
-    private static void addItem(String item) {
-        System.out.println("added: " + item);
-        data.add(new Task(item));
-    }
-
     private static void addTodo(String[] inputs) {
         String task = String.join(" ", Arrays.copyOfRange(inputs, 1, inputs.length));
         data.add(new Todo(task));
-        System.out.printf("Got it. I've added this task:\n%s\nNow you have %d tasks in the list\n",
-                data.get(data.size() - 1), data.size());
     }
     private static void addDeadLine(String[] inputs) {
         int limit = findElem(inputs, "/by");
         String task = String.join(" ", Arrays.copyOfRange(inputs, 1, limit));
         String by = String.join(" ", Arrays.copyOfRange(inputs, limit + 1, inputs.length));
         data.add(new Deadline(task, by));
-        System.out.printf("Got it. I've added this task:\n%s\nNow you have %d tasks in the list\n",
-                data.get(data.size() - 1), data.size());
     }
 
     private static void addEvent(String[] inputs) {
@@ -32,8 +26,6 @@ public class Duke {
         String task = String.join(" ", Arrays.copyOfRange(inputs, 1, limit));
         String at = String.join(" ", Arrays.copyOfRange(inputs, limit + 1, inputs.length));
         data.add(new Event(task, at));
-        System.out.printf("Got it. I've added this task:\n%s\nNow you have %d tasks in the list\n",
-                data.get(data.size() - 1), data.size());
     }
 
     private static void listItems() {
@@ -73,7 +65,72 @@ public class Duke {
         return -1;
     }
 
+    private static void printTaskAddedMessage() {
+        System.out.printf("Got it. I've added this task:\n%s\nNow you have %d tasks in the list\n",
+                data.get(data.size() - 1), data.size());
+    }
+    private static void loadFileContents(String folderPath, String filePath) {
+        try {
+            File directory = new File(folderPath);
+            directory.mkdir();
+            File file = new File(filePath);
+            if (!file.createNewFile()) {
+                Scanner scanner = new Scanner(file);
+                int index = 0;
+                while (scanner.hasNext()) {
+                    String[] input = scanner.nextLine().split("\\|");
+                    switch (input[0]) {
+                    case "T":
+                        addTodo(Arrays.copyOfRange(input, 1, input.length));
+                        break;
+                    case "E":
+                        addEvent(Arrays.copyOfRange(input, 1, input.length));
+                        break;
+                    case "D":
+                        addDeadLine(Arrays.copyOfRange(input, 1, input.length));
+                        break;
+                    }
+                    if (input[1].equals("X")) {
+                        data.get(index).markAsDone();
+                    }
+                    index++;
+                }
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void saveFileContents(String filePath) {
+        try {
+            FileWriter fw = new FileWriter(filePath);
+            for (Task task : data) {
+                switch (task.getTaskType()) {
+                case "T":
+                    Todo todo = (Todo) task;
+                    fw.write(todo.getTaskType() + "|" + todo.getStatusIcon() + "|" + todo.getDescription()
+                            + System.lineSeparator());
+                    break;
+                case "E":
+                    Event event = (Event) task;
+                    fw.write(event.getTaskType() + "|" + event.getStatusIcon() + "|" + event.getDescription()
+                            + "|/at|" + event.getAt() + System.lineSeparator());
+                    break;
+                case "D":
+                    Deadline deadline = (Deadline) task;
+                    fw.write(deadline.getTaskType() + "|" + deadline.getStatusIcon() + "|"
+                            + deadline.getDescription() + "|/by|" + deadline.getBy() + System.lineSeparator());
+                    break;
+                }
+            }
+            fw.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     public static void main(String[] args) {
+        loadFileContents("./data", "./data/duke.txt");
         System.out.println("Hello! I'm Duke\nWhat can I do for you?");
         Scanner sc = new Scanner(System.in);
         while (true) {
@@ -103,18 +160,22 @@ public class Duke {
                     switch (inputs[0]) {
                         case "todo": {
                             addTodo(inputs);
+                            printTaskAddedMessage();
                             break;
                         }
                         case "deadline": {
                             addDeadLine(inputs);
+                            printTaskAddedMessage();
                             break;
                         }
                         case "event": {
                             addEvent(inputs);
+                            printTaskAddedMessage();
                             break;
                         }
                     }
                 }
+                saveFileContents("./data/duke.txt");
             } catch (DukeException e) {
                 System.out.println(e.getMessage());
             }

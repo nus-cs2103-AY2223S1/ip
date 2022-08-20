@@ -7,15 +7,18 @@ public class Event extends Task {
      * @param at the start time of the event
      */
     public Event(String description, String at) {
-        super(description);
+        super(description, "E");
         this.at = at;
     }
 
+    public String getAt() {
+        return this.at;
+    }
     /**
      * @return String representation of the event
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + at + ")";
+        return "[" + super.getTaskType() + "]" + super.toString() + " (at: " + at + ")";
     }
 }
