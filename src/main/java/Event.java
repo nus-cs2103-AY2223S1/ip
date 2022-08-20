@@ -1,7 +1,6 @@
 /**
  * The Event class represents a task that
- * starts at a specific time and
- * ends at a specific time.
+ * happens at a specified time.
  */
 public class Event extends Task {
     private String at;

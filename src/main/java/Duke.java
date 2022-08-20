@@ -41,6 +41,26 @@ public class Duke {
     }
 
     /**
+     * Prints the first message from Duke when it starts running.
+     */
+    private static void printStart() {
+        System.out.println(INDENTATION + "Hello from\n" + LOGO);
+        printLine();
+        System.out.println(INDENTATION + "Hello! I'm Duke\n"
+                + INDENTATION + "What can I do for you?");
+        printLine();
+    }
+
+    /**
+     * Exits from Duke.
+     */
+    private static void exitDuke() {
+        isBye = true;
+        printLine();
+        System.out.println(INDENTATION + "Bye. Hope to see you again soon!");
+    }
+
+    /**
      * Executes the user command specified to Duke.
      *
      * @param input The command specified to Duke.
@@ -50,71 +70,71 @@ public class Duke {
         Command cmd = Command.valueOf(strings[0].toUpperCase());
 
         switch (cmd) {
-            case BYE:
-                isBye = true;
-                break;
+        case BYE:
+            exitDuke();
+            break;
 
-            case LIST:
-                displayList();
-                break;
+        case LIST:
+            displayList();
+            break;
 
-            case MARK:
-                try {
-                    markTask(input);
-                } catch (IndexOutOfBoundsException e) {
-                    printError("The specified task does not exist.");
-                } catch (NumberFormatException | DukeException e) {
-                    printError("Specify which task to mark with a single integer.");
-                }
-                break;
+        case MARK:
+            try {
+                markTask(input);
+            } catch (IndexOutOfBoundsException e) {
+                printError("The specified task does not exist.");
+            } catch (NumberFormatException | DukeException e) {
+                printError("Specify which task to mark with a single integer.");
+            }
+            break;
 
-            case UNMARK:
-                try {
-                    unmarkTask(input);
-                } catch (IndexOutOfBoundsException e) {
-                    printError("The specified task does not exist.");
-                } catch (NumberFormatException | DukeException e) {
-                    printError("Specify which task to unmark with a single integer.");
-                }
-                break;
+        case UNMARK:
+            try {
+                unmarkTask(input);
+            } catch (IndexOutOfBoundsException e) {
+                printError("The specified task does not exist.");
+            } catch (NumberFormatException | DukeException e) {
+                printError("Specify which task to unmark with a single integer.");
+            }
+            break;
 
-            case TODO:
-                try {
-                    addTodo(input);
-                } catch (StringIndexOutOfBoundsException e) {
-                    printError("The description of a todo cannot be empty.");
-                }
-                break;
+        case TODO:
+            try {
+                addTodo(input);
+            } catch (StringIndexOutOfBoundsException e) {
+                printError("The description of a todo cannot be empty.");
+            }
+            break;
 
-            case DEADLINE:
-                try {
-                    addDeadline(input);
-                } catch (StringIndexOutOfBoundsException | DukeException e) {
-                    printError("The description of a deadline cannot be empty.");
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    printError("Use /by to provide when a deadline must be completed.");
-                }
-                break;
+        case DEADLINE:
+            try {
+                addDeadline(input);
+            } catch (StringIndexOutOfBoundsException | DukeException e) {
+                printError("The description of a deadline cannot be empty.");
+            } catch (ArrayIndexOutOfBoundsException e) {
+                printError("Use /by to provide when a deadline must be completed.");
+            }
+            break;
 
-            case EVENT:
-                try {
-                    addEvent(input);
-                } catch (StringIndexOutOfBoundsException | DukeException e) {
-                    printError("The description of an event cannot be empty.");
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    printError("Use /at to provide when an event occurs.");
-                }
-                break;
+        case EVENT:
+            try {
+                addEvent(input);
+            } catch (StringIndexOutOfBoundsException | DukeException e) {
+                printError("The description of an event cannot be empty.");
+            } catch (ArrayIndexOutOfBoundsException e) {
+                printError("Use /at to provide when an event occurs.");
+            }
+            break;
 
-            case DELETE:
-                try {
-                    deleteTask(input);
-                } catch (IndexOutOfBoundsException e) {
-                    printError("The specified task does not exist.");
-                } catch (NumberFormatException | DukeException e) {
-                    printError("Specify which task to delete with a single integer.");
-                }
-                break;
+        case DELETE:
+            try {
+                deleteTask(input);
+            } catch (IndexOutOfBoundsException e) {
+                printError("The specified task does not exist.");
+            } catch (NumberFormatException | DukeException e) {
+                printError("Specify which task to delete with a single integer.");
+            }
+            break;
         }
     }
 
@@ -236,7 +256,7 @@ public class Duke {
     }
 
     /**
-     * Delete a specified task.
+     * Deletes a specified task.
      *
      * @param input The command specified to Duke.
      * @throws DukeException when the command is just "delete".
@@ -269,13 +289,7 @@ public class Duke {
      */
     public static void main(String[] args) {
         isBye = false;
-
-        System.out.println(INDENTATION + "Hello from\n" + LOGO);
-        printLine();
-        System.out.println(INDENTATION + "Hello! I'm Duke\n"
-                + INDENTATION + "What can I do for you?");
-        printLine();
-
+        printStart();
         Scanner sc = new Scanner(System.in);
         while (!isBye) {
             try {
@@ -284,9 +298,6 @@ public class Duke {
                 printError("I'm sorry, but I don't know what that means :-(");
             }
         }
-
-        printLine();
-        System.out.println(INDENTATION + "Bye. Hope to see you again soon!");
         sc.close();
     }
 }

@@ -1,6 +1,6 @@
 /**
  * The Deadline class represents a task
- * that needs to be done before a specific date/time.
+ * that needs to be done by a specified date/time.
  */
 public class Deadline extends Task {
     private String by;
