@@ -1,16 +1,29 @@
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Scanner;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class Dobby {
     private static Scanner scanner = new Scanner(System.in);
     private static DobbyList dobbyList = new DobbyList();
 
-    private static String getDate(String s, String task) {
-        int i = s.indexOf(task =="deadline" ? "/by" : "/at");
-        if (i == -1) {
-            return "noDate";
+    private static String getDate(String s, String task) throws DateTimeParseException {
+        String dateFormatted = "";
+        try {
+            int i = s.indexOf(task == "deadline" ? "/by" : "/at");
+            if (i == -1) {
+                return "noDate";
+            }
+            String dateString = s.substring(i + 4);
+            DateTimeFormatter form = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+            LocalDateTime date = LocalDateTime.parse(dateString, form);
+            dateFormatted = date.format(DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm"));
+            return dateFormatted;
+        } catch (DateTimeParseException e) {
+            DobbyChat.wrongDateFormat();
         }
-        return s.substring(i + 4);
+        return "wrongDateFormat";
     }
     private static String getTask(String s, String task) {
         
@@ -103,6 +116,13 @@ public class Dobby {
             DobbyChat.noNumber();
         }
     }
+//    //delete all feature to be added
+//    private static void toDelete() {
+//        int listLen = dobbyList.getLength();
+//        for(int i  = 1; i <= listLen; i++) {
+//            dobbyList.delete(i);
+//        }
+//    }
     private static void toAddTodo(String s) {
         try {
             String task = getTask(s, "todo");
@@ -126,9 +146,11 @@ public class Dobby {
 
             if(task.isBlank()) {
                 DobbyChat.noTask();
-            } else if(date == "noDate") {
+            } else if(date == "wrongDateFormat") {
+
+            }else if(date == "noDate") {
                 DobbyChat.noDeadlineDate();
-            } else {
+            }  else {
                 dobbyList.add(newDeadline);
                 DobbyChat.added(newDeadline, dobbyList);
             }
@@ -145,6 +167,8 @@ public class Dobby {
 
             if(task.isEmpty()) {
                 DobbyChat.noTask();
+            } else if(date == "wrongDateFormat") {
+
             } else if(date == "noDate") {
                 DobbyChat.noEventDate();
             } else {
@@ -169,18 +193,24 @@ public class Dobby {
             } else if(command.equals("list")) {
                 toList(command);
             } else if(command.startsWith("mark")) {
-                if (command.contains("all")) {
+                if(command.contains("all")) {
                     toMark();
                 } else {
                     toMark(command);
                 }
             } else if(command.startsWith("unmark")) {
-                if (command.contains("all")) {
+                if(command.contains("all")) {
                     toUnmark();
                 } else {
                     toUnmark(command);
                 }
             } else if(command.startsWith("delete") || command.startsWith("remove")) {
+//                delete all feature to be added
+//                if(command.contains("all")) {
+//                    toDelete();
+//                } else {
+//                    toDelete(command);
+//                }
                 toDelete(command);
             } else if(command.startsWith("todo")) {
                 toAddTodo(command);

@@ -99,4 +99,7 @@ public class DobbyChat {
     public static void listEmpty() {
         printChat("No tasks left, Dobby is FREEEEEEEEEEEE!");
     }
+    public static void wrongDateFormat() {
+        printChat("Master, please write dates using the YYYY-MM-DD HHMM format");
+    }
 }

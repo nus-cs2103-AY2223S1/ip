@@ -31,6 +31,8 @@ public class DobbyList {
             addDeadline(taskAndDate, isDone);
         } else if(string.startsWith("T")) {
             addTodo(taskAndDate, isDone);
+        } else if(string.equals("No Task Available")) {
+
         } else {
             DobbyChat.wrongTaskFormat();
         }
