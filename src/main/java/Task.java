@@ -1,7 +1,7 @@
 /**
  * The task class.
  */
-public class Task {
+  public class Task {
     protected String description;
     protected boolean isDone;
 
