@@ -1,3 +1,6 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -39,6 +42,10 @@ public class Task {
      */
     public void markAsNotDone() {
         this.isDone = false;
+    }
+
+    public static String parseDate(LocalDate date) {
+        return date.format(DateTimeFormatter.ofPattern("d MMM yyyy"));
     }
 
     /**

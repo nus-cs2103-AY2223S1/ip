@@ -1,5 +1,7 @@
+import java.time.LocalDate;
+
 public class Event extends Task {
-    protected String at;
+    protected LocalDate at;
 
     /**
      * Creates an event with a start time
@@ -8,7 +10,7 @@ public class Event extends Task {
      */
     public Event(String description, String at) {
         super(description);
-        this.at = at;
+        this.at = LocalDate.parse(at);
     }
 
     /**
@@ -16,6 +18,6 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + at + ")";
+        return "[E]" + super.toString() + " (at: " + parseDate(at) + ")";
     }
 }

@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
@@ -20,6 +21,10 @@ public class Duke {
     }
     private static void addDeadLine(String[] inputs) {
         int limit = findElem(inputs, "/by");
+        if (limit == -1) {
+            System.out.println("Oops! Remember to include /by and the deadline after your task description");
+            return;
+        }
         String task = String.join(" ", Arrays.copyOfRange(inputs, 1, limit));
         String by = String.join(" ", Arrays.copyOfRange(inputs, limit + 1, inputs.length));
         data.add(new Deadline(task, by));
@@ -29,6 +34,10 @@ public class Duke {
 
     private static void addEvent(String[] inputs) {
         int limit = findElem(inputs, "/at");
+        if (limit == -1) {
+            System.out.println("Oops! Remember to include /at and the event time after your task description");
+            return;
+        }
         String task = String.join(" ", Arrays.copyOfRange(inputs, 1, limit));
         String at = String.join(" ", Arrays.copyOfRange(inputs, limit + 1, inputs.length));
         data.add(new Event(task, at));
