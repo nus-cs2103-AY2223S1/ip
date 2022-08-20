@@ -4,9 +4,12 @@ import java.util.Scanner;
 public class Duke {
 
     public static void main(String[] args) {
-        Task.loadTasks();
+
         Scanner input = new Scanner(System.in);
+        Task.setTasks(Storage.loadTaskFile());
+
         BotResponse.welcome();
+
         String userResponse = input.nextLine();
         while (!userResponse.equalsIgnoreCase("bye")) {
             try {
@@ -139,7 +142,7 @@ public class Duke {
         default:
             throw new InvalidInputException();
         }
-        Task.saveTasks();
+        Storage.saveTaskFile(Task.getTasks());
     }
 
 }

@@ -24,7 +24,14 @@ public class Task {
     protected Task(String description, boolean isDone) {
         this.description = description;
         this.isDone = isDone;
-        addTask(this);
+    }
+
+    public static void setTasks(ArrayList<Task> tasks) {
+        Task.tasks = tasks;
+    }
+
+    public static ArrayList<Task> getTasks() {
+        return Task.tasks;
     }
 
     public static void addTask(Task task) {
@@ -67,68 +74,5 @@ public class Task {
             System.out.println((i + 1) + "." + Task.tasks.get(i));
         }
         BotResponse.separationLine();
-    }
-
-    public static void loadTasks() {
-        File taskFile = new File(FILE_LOCATION);
-
-        if (!taskFile.exists()) {
-            File directory = new File(taskFile.getParent());
-            directory.mkdir();
-            try {
-                taskFile.createNewFile();
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-
-        try {
-            Scanner sc = new Scanner(taskFile);
-            while (sc.hasNext()) {
-                String line = sc.nextLine();
-                char TaskType = line.charAt(0);
-                boolean taskIsDone = line.charAt(ISDONE_MARKER) == '1';
-                String taskDesc;
-                String taskTime;
-
-                switch (TaskType) {
-                case 'T':
-                    taskDesc = line.substring(DESC_MARKER).trim();
-                    new ToDo(taskDesc, taskIsDone);
-                    break;
-
-                case 'D':
-                    taskDesc = line.substring(DESC_MARKER, line.lastIndexOf('|')).trim();
-                    taskTime = line.substring(line.lastIndexOf('|') + 1).trim();
-                    new Deadline(taskDesc, taskIsDone, taskTime);
-                    break;
-
-                case 'E':
-                    taskDesc = line.substring(DESC_MARKER, line.lastIndexOf('|')).trim();
-                    taskTime = line.substring(line.lastIndexOf('|') + 1).trim();
-                    new Event(taskDesc, taskIsDone, taskTime);
-                    break;
-                }
-            }
-            sc.close();
-        } catch (FileNotFoundException e) {
-            BotResponse.separationLine();
-            System.out.println(e.getMessage());
-        }
-
-    }
-
-    public static void saveTasks() {
-        try {
-            FileWriter taskFile = new FileWriter(FILE_LOCATION);
-            String textToSave = " ";
-            for (int i = 0; i < Task.tasks.size(); i++) {
-                textToSave += Task.tasks.get(i).toStringData() + "\n";
-            }
-            taskFile.write(textToSave.trim());
-            taskFile.close();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
     }
 }
