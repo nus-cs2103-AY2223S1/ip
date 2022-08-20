@@ -7,6 +7,11 @@ public class Deadline extends Task{
     }
 
     @Override
+    public String parseTask() {
+        return "D" + super.parseTask() + "/" + this.date;
+    }
+
+    @Override
     public String toString(){
         return "[D]" + super.toString() + " (by: " + this.date + ")";
     }
