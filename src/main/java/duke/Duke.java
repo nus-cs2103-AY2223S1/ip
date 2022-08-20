@@ -1,13 +1,15 @@
+package duke;
+
 import java.util.Scanner;
 
-import command.CommandHandler;
-import command.CommandPair;
+import duke.command.CommandHandler;
+import duke.command.CommandPair;
 
-import exception.CommandException;
+import duke.exception.DukeException;
 
-import parser.Parser;
+import duke.parser.Parser;
 
-import ui.Ui;
+import duke.ui.Ui;
 
 public class Duke {
     private Ui ui;
@@ -34,7 +36,7 @@ public class Duke {
                 String currentText = sc.nextLine();
                 CommandPair commandPair = this.parser.parseText(currentText);
                 this.commandHandler.handleCommand(commandPair);
-            } catch (CommandException error) {
+            } catch (DukeException error) {
                 this.ui.printError(error);
             }
         }

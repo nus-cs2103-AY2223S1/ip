@@ -1,4 +1,4 @@
-package storage;
+package duke.storage;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -9,16 +9,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import task.*;
+import duke.exception.DukeException;
 
-import printer.Printer;
-
-import exception.CommandException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.ToDo;
 
 public class Storage {
     private final String filePath;
 
-    public Storage(String directoryName, String fileName) {
+    public Storage(String directoryName, String fileName) throws DukeException {
         this.filePath = directoryName + "/" + fileName;
 
         try {
@@ -34,7 +36,8 @@ public class Storage {
                 storageFile.createNewFile();
             }
         } catch (IOException error) {
-            Printer.print(String.format("Failed to load tasks, %s", error.getMessage()));
+            throw new DukeException(String.format("Failed to load tasks, %s",
+                    error.getMessage()));
         }
     }
 
@@ -71,14 +74,14 @@ public class Storage {
 
             storageReader.close();
             loadedTaskList = new TaskList(loadedTasks);
-        } catch (CommandException | IOException error) {
+        } catch (DukeException | IOException error) {
             loadedTaskList = new TaskList();
         }
 
         return loadedTaskList;
     }
 
-    public void saveTasksInStorage(List<String> taskListString) {
+    public void saveTasksInStorage(List<String> taskListString) throws DukeException {
         try {
             FileWriter storageWriter = new FileWriter(this.filePath);
             for (int i = 0; i < taskListString.size(); i++) {
@@ -86,7 +89,8 @@ public class Storage {
             }
             storageWriter.close();
         } catch (IOException error) {
-            Printer.print(String.format("Failed to update tasks, %s", error.getMessage()));
+            throw new DukeException(String.format("Failed to update tasks, %s",
+                    error.getMessage()));
         }
     }
 }

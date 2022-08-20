@@ -1,4 +1,4 @@
-package command;
+package duke.command;
 
 public enum Command {
     BYE,

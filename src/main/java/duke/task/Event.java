@@ -1,6 +1,6 @@
-package task;
+package duke.task;
 
-import exception.EventException;
+import duke.exception.EventException;
 
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;

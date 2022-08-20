@@ -1,14 +1,14 @@
-package parser;
+package duke.parser;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import exception.CommandException;
-import exception.EmptyCommandException;
+import duke.exception.DukeException;
+import duke.exception.EmptyCommandException;
 
-import command.Command;
-import command.CommandPair;
+import duke.command.Command;
+import duke.command.CommandPair;
 
 public class Parser {
     private boolean isListening;
@@ -17,7 +17,7 @@ public class Parser {
         this.isListening = true;
     }
 
-    public CommandPair parseText(String text) throws CommandException {
+    public CommandPair parseText(String text) throws DukeException {
         List<String> commands = Arrays.stream(text.trim().split(" ", 2))
                 .map(String::trim).collect(Collectors.toList());
         String mainCommand = commands.get(0);
@@ -43,7 +43,7 @@ public class Parser {
         } else if (mainCommand.isEmpty()) {
             throw new EmptyCommandException();
         } else {
-            throw new CommandException();
+            throw new DukeException();
         }
     }
 

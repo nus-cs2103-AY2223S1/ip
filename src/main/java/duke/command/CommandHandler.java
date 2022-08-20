@@ -1,37 +1,41 @@
-package command;
+package duke.command;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import exception.CommandException;
-import exception.DeadlineException;
-import exception.EventException;
-import exception.ToDoException;
+import duke.exception.DeadlineException;
+import duke.exception.DukeException;
+import duke.exception.EventException;
+import duke.exception.ToDoException;
 
-import task.Deadline;
-import task.Event;
-import task.Task;
-import task.TaskList;
-import task.ToDo;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.ToDo;
 
-import storage.Config;
-import storage.Storage;
+import duke.storage.Config;
+import duke.storage.Storage;
 
-import ui.Ui;
+import duke.ui.Ui;
 
 public class CommandHandler {
-    private final Storage storage;
-    private final TaskList taskList;
-    private final Ui ui;
+    private Storage storage = null;
+    private TaskList taskList = null;
+    private Ui ui = null;
 
     public CommandHandler(Ui ui) {
-        this.storage = new Storage(Config.DIRECTORY, Config.NAME);
-        this.taskList = this.storage.loadTasksInStorage();
-        this.ui = ui;
+        try {
+            this.ui = ui;
+            this.storage = new Storage(Config.DIRECTORY, Config.NAME);
+            this.taskList = this.storage.loadTasksInStorage();
+        } catch (DukeException error) {
+            ui.printError(error);
+        }
     }
 
-    public void handleCommand(CommandPair commandPair) throws CommandException {
+    public void handleCommand(CommandPair commandPair) throws DukeException {
         Command command = commandPair.getCommand();
         String description = commandPair.getDescription();
 
@@ -56,7 +60,7 @@ public class CommandHandler {
         }
     }
 
-    private void editTask(Command command, String description) throws CommandException {
+    private void editTask(Command command, String description) throws DukeException {
         try {
             int selectedIndex = Integer.parseInt(description) - 1;
 
@@ -77,11 +81,11 @@ public class CommandHandler {
 
             this.storage.saveTasksInStorage(this.taskList.toStorageRepresentation());
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
-            throw new CommandException();
+            throw new DukeException();
         }
     }
 
-    private void addTask(Command command, String description) throws CommandException {
+    private void addTask(Command command, String description) throws DukeException {
         Task newTask = null;
 
         switch(command) {

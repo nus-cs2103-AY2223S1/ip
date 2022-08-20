@@ -1,9 +1,9 @@
-package ui;
+package duke.ui;
 
-import exception.CommandException;
+import duke.exception.DukeException;
 
-import task.Task;
-import task.TaskList;
+import duke.task.Task;
+import duke.task.TaskList;
 
 public class Ui {
     private final String DASH = "----------------------------------------";
@@ -27,7 +27,7 @@ public class Ui {
         printTemplate("Bye. See you later master!");
     }
 
-    public void printError(CommandException error) {
+    public void printError(DukeException error) {
         printTemplate(error.getMessage());
     }
 

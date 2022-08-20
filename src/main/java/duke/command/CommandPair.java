@@ -1,4 +1,4 @@
-package command;
+package duke.command;
 
 public class CommandPair {
     private Command command;
