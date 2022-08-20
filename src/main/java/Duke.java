@@ -2,11 +2,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
-    /** List of items stored by Duke. */
+    /** List of items. */
     private static final ArrayList<Task> tasks = new ArrayList<>();
 
     /**
-     * Duke's startup message (When program is first booted).
+     * Startup message (When program is first booted).
      *
      */
     private static void greetUser() {
@@ -15,7 +15,7 @@ public class Duke {
     }
 
     /**
-     * Duke prints all items in a list format that it stores.
+     * Prints all items in a list format that is stored.
      *
      */
     private static void listItems() {
@@ -30,117 +30,129 @@ public class Duke {
     }
 
     /**
-     * Duke marks a task as done or unmarks a task (Depends on userInput),
-     * and updates the array list of tasks.
+     * Marks a Task as done, or unmarks a task.
      *
-     * @param userInput The input given by user (In the format "mark 2" or "unmark 2").
-     * @throws DukeException For unsupported userInput
-     * @throws NumberFormatException When a user's input second argument cannot be casted into an integer.
+     * @param userInput The index of task to be marked as done, preceded by an empty space.
+     * @param isMarkDone If true, mark task as done, else, unmark task.
+     * @throws DukeException If index is not given, or index <= 1 or index >= tasks.size().
+     * @throws NumberFormatException If index given by user cannot be casted into an integer.
      */
-    private static void markOrUnmarkTask(String userInput) throws DukeException, NumberFormatException {
-        String[] userInputWords = userInput.split(" ");
-        if (userInputWords.length != 2) {
-            throw new DukeException("Usage 'mark/unmark index'");
+    private static void markTask(String userInput, boolean isMarkDone) throws DukeException, NumberFormatException {
+        if (userInput.trim().length() == 0) {
+            throw new DukeException("Index of mark cannot be empty!");
         }
 
-        String action = userInputWords[0];
-        int index = Integer.parseInt(userInputWords[1]);
+        int index = Integer.parseInt(userInput.trim());
 
         if (index < 1 || index > Duke.tasks.size()) {
-            throw new DukeException("Out of bounds, choose a valid index!");
+            throw new DukeException("Invalid index, please provide a valid input");
         }
 
-        if (action.equals("mark")) {
+        if (!isMarkDone) {
+            Duke.tasks.get(index - 1).unmark();
+            System.out.println(Duke.formatText("OK, I've marked this task as not done yet:\n" +
+                    Duke.tasks.get(index - 1)));
+        } else {
             Duke.tasks.get(index - 1).markAsDone();
             System.out.println(Duke.formatText("Nice! I've marked this task as done:\n" + Duke.tasks.get(index - 1)));
-        } else if (action.equals("unmark")) {
-            Duke.tasks.get(index - 1).unmark();
-            System.out.println(Duke.formatText("OK, I've marked this task as not done yet:\n" + Duke.tasks.get(index - 1)));
-        } else {
-            throw new DukeException("Sorry, I don't know what that means");
         }
     }
 
     /**
-     * Duke creates one To Do task and adds it to the array list.
+     * Creates one To Do task and adds it to the array list.
      *
-     * @param userInput The input given by the user (Format: todo taskDescription).
-     * @throws DukeException For unsupported userInput
+     * @param userInput The task description, preceded by an empty space.
+     * @throws DukeException If description is empty.
      */
     private static void createToDoTask(String userInput) throws DukeException {
-        if (userInput.trim().length() == 4) {
-            throw new DukeException("The description of a todo cannot by empty.");
+        String description = userInput.trim();
+        if (description.length() == 0) {
+            throw new DukeException("The description of a To Do task cannot by empty.");
         }
 
-        Duke.tasks.add(new ToDo(userInput.substring(5)));
+        Duke.tasks.add(new ToDo(description));
+
+        System.out.println(Duke.formatText("Got it. I've added this task:\n" + "  " +
+                Duke.tasks.get(Duke.tasks.size() - 1) + "\n" +
+                "Now you have " + Duke.tasks.size() + " tasks in the list."));
     }
 
     /**
-     * Duke creates one Deadline and adds it to the array list.
+     * Creates one Deadline and adds it to the array list.
      *
-     * @param userInput The input given by the user (Format: deadline buy milk /by June 6th).
-     * @throws DukeException For unsupported userInput
+     * @param userInput The description of the task, and deadline, preceded by an empty space.
+     * @throws DukeException If userInput is not in the form "description /by deadline".
      */
     private static void createDeadline(String userInput) throws DukeException {
-        if (userInput.length() <= 8) {
+        String trimmedInput = userInput.trim();
+        if (trimmedInput.length() == 0) {
             throw new DukeException("The description of a deadline cannot be empty");
         }
-        String details = userInput.substring(9);
 
-        String[] detailsFragments = details.split(" /by");
+        String[] detailsFragments = trimmedInput.split(" /by");
         if (detailsFragments.length != 2) {
-            throw new DukeException("Missing /by in usage, deadline cannot have an empty date");
+            throw new DukeException("Usage description /by deadline");
         }
 
         Duke.tasks.add(new Deadline(detailsFragments[0], detailsFragments[1]));
+
+        System.out.println(Duke.formatText("Got it. I've added this task:\n" + "  " +
+                Duke.tasks.get(Duke.tasks.size() - 1) + "\n" +
+                "Now you have " + Duke.tasks.size() + " tasks in the list."));
     }
 
     /**
-     * Duke creates one Event and adds it to the array list.
+     * Creates one Event and adds it to the array list.
      *
-     * @param userInput The input given by the user (Format: event orbital /at June 10 2-4pm).
-     * @throws DukeException For unsupported userInput
+     * @param userInput The description of the task, and event time, preceded by an empty space.
+     * @throws DukeException If userInput is not in the form "description /at time".
      */
     private static void createEvent(String userInput) throws DukeException {
-        if (userInput.length() <= 5) {
+        String trimmedInput = userInput.trim();
+        if (trimmedInput.length() == 0) {
             throw new DukeException("The description of an event cannot be empty");
         }
-        String details = userInput.substring(6);
 
-        String[] detailsFragments = details.split(" /at");
+        String[] detailsFragments = trimmedInput.split(" /at");
         if (detailsFragments.length != 2) {
-            throw new DukeException("Missing /at in usage, event date cannot be empty");
+            throw new DukeException("Usage description /at time");
         }
 
         Duke.tasks.add(new Event(detailsFragments[0], detailsFragments[1]));
+
+        System.out.println(Duke.formatText("Got it. I've added this task:\n" + "  " +
+                Duke.tasks.get(Duke.tasks.size() - 1) + "\n" +
+                "Now you have " + Duke.tasks.size() + " tasks in the list."));
     }
 
     /**
-     * Duke deletes a task from the tasks array list.
+     * Deletes a task from the tasks array list.
      *
-     * @param userInput The input given by the user (Format: delete 3).
-     * @throws DukeException For unsupported userInput.
+     * @param userInput The index of item to delete, preceded by an empty space.
+     * @throws DukeException If index is empty or out of bounds from the array list.
+     * @throws NumberFormatException If index cannot be casted into an integer.
      */
     private static void deleteItem(String userInput) throws DukeException, NumberFormatException {
-        String[] userInputWords = userInput.split(" ");
-        if (userInputWords.length != 2) {
-            throw new DukeException("Usage 'delete index'");
+        String index = userInput.trim();
+        if (index.length() == 0) {
+            throw new DukeException("Index cannot be empty!");
         }
 
-        int deleteIndex = Integer.parseInt(userInputWords[1]);
+        int deleteIndex = Integer.parseInt(index);
 
         if (deleteIndex < 1 || deleteIndex > Duke.tasks.size()) {
             throw new DukeException("Invalid index, choose a valid item index!");
         }
 
-        System.out.println(Duke.formatText("Noted. I've removed this task:\n  " + Duke.tasks.get(deleteIndex - 1) + "\n"
-            + "Now you have " + (Duke.tasks.size() - 1) + " tasks in the list"));
+        System.out.println(Duke.formatText("Noted. I've removed this task:\n  " +
+                Duke.tasks.get(deleteIndex - 1) + "\n" +
+                "Now you have " + (Duke.tasks.size() - 1) + " tasks in the list"));
 
         Duke.tasks.remove(deleteIndex - 1);
     }
 
     /**
-     * Called to make Duke start servicing the user from CLI.
+     * Starts serving the user in CLI.
      *
      */
     private static void startService() {
@@ -149,65 +161,67 @@ public class Duke {
         while (true) {
             String userInput = sc.nextLine();
 
-            // End service.
+            // Service has ended
             if (userInput.equals("bye")) {
                 System.out.println(Duke.formatText("Bye. Hope to see you again soon!"));
                 break;
             }
 
+            // List all the tasks.
             if (userInput.equals("list")) {
                 Duke.listItems();
                 continue;
             }
 
-            // Mark item as done or undone.
-            if (userInput.startsWith("mark ") || userInput.startsWith("unmark ")) {
+            // Mark item as done.
+            if (userInput.startsWith("mark ")) {
                 try {
-                    Duke.markOrUnmarkTask(userInput);
-                } catch (DukeException e) {
-                    System.out.println(e);
+                    Duke.markTask(userInput.substring(4), true);
                     continue;
-                } catch (NumberFormatException e) {
-                    System.out.println("Index has to be an integer");
-                    continue;
-                }
-
-                continue;
-            }
-
-            // Delete task from the array list.
-            if (userInput.startsWith("delete ")) {
-                try {
-                    Duke.deleteItem(userInput);
-                    continue;
-                } catch (DukeException e) {
-                    System.out.println(e);
-                    continue;
-                } catch (NumberFormatException e) {
+                } catch (DukeException | NumberFormatException e) {
                     System.out.println(e.getMessage());
                     continue;
                 }
             }
 
-            // Add item to list.
+            // Unmark an item (becomes not done).
+            if (userInput.startsWith("unmark ")) {
+                try {
+                    Duke.markTask(userInput.substring(6), false);
+                    continue;
+                } catch (DukeException | NumberFormatException e) {
+                    System.out.println(e.getMessage());
+                    continue;
+                }
+            }
+
+            // Deletes a task from tasks.
+            if (userInput.startsWith("delete ")) {
+                try {
+                    Duke.deleteItem(userInput.substring(6));
+                    continue;
+                } catch (DukeException | NumberFormatException e) {
+                    System.out.println(e.getMessage());
+                    continue;
+                }
+            }
+
+            // Add item to tasks.
             try {
                 if (userInput.startsWith("todo ")) {
-                    Duke.createToDoTask(userInput);
+                    Duke.createToDoTask(userInput.substring(4));
                 } else if (userInput.startsWith("deadline ")) {
-                    Duke.createDeadline(userInput);
+                    Duke.createDeadline(userInput.substring(8));
                 } else if (userInput.startsWith("event ")) {
-                    Duke.createEvent(userInput);
+                    Duke.createEvent(userInput.substring(5));
+                } else if (userInput.equals("todo") || userInput.equals("deadline") || userInput.equals("event")) {
+                    throw new DukeException("The description of a " + userInput + " cannot be empty.");
                 } else {
                     throw new DukeException("I'm sorry, but I don't know what that means :-(");
                 }
             } catch (DukeException e) {
-                System.out.println(e);
-                continue;
+                System.out.println(e.getMessage());
             }
-
-            System.out.println(Duke.formatText("Got it. I've added this task:\n" + "  " +
-                    Duke.tasks.get(Duke.tasks.size() - 1) + "\n" +
-                    "Now you have " + Duke.tasks.size() + " tasks in the list."));
         }
     }
 
@@ -218,7 +232,7 @@ public class Duke {
      * @return Formatted String that has proper indentation and wrapped around horizontal lines.
      */
     protected static String formatText(String text) {
-        final String HORIZONTAL_LINE = "\t--------------------------------------------------\n";
+        final String HORIZONTAL_LINE = "\t---------------------------------------------------------------------\n";
 
         String[] lines = text.split("\\r?\\n");
         StringBuilder formattedText = new StringBuilder(HORIZONTAL_LINE);
