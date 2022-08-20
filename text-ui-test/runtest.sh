@@ -12,6 +12,12 @@ then
     rm ACTUAL.TXT
 fi
 
+# delete save file from previous run
+if [ -e "./data/tasks.txt" ]
+then
+    rm data/tasks.txt
+fi
+
 # compile the code into the bin folder, terminates if error occurred
 if ! javac -cp ../src/main/java -Xlint:none -d ../bin ../src/main/java/*.java
 then

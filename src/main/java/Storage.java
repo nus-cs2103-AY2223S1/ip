@@ -1,18 +1,14 @@
 import java.io.File;
 import java.io.PrintWriter;
-import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Storage {
-    private static final String STORAGE_FILEPATH = "./data/duke.txt";
-    private static final String SEPARATOR = ":::";
-
     private File saveFile;
 
-    public Storage() {
-        this.saveFile = new File(STORAGE_FILEPATH);
+    public Storage(String filePath) {
+        this.saveFile = new File(filePath);
     }
 
     private void createSaveFile(File saveFile) throws DukeException {
@@ -48,44 +44,26 @@ public class Storage {
         }
     }
 
-    public ArrayList<Task> readFile() throws DukeException {
+    public ArrayList<Task> load() throws DukeException {
         ArrayList<Task> tasks = new ArrayList<Task>();
         Scanner scanner = getInputScanner(this.saveFile);
         while (scanner.hasNextLine()) {
-            String line = scanner.nextLine();
-            String[] args = line.split(SEPARATOR);
-            System.out.println(line);
-            if (args.length != 2) {
-                continue;
-            }
-            Instruction instruction = new Instruction(args[1]);
-            InstructionType instructionType = instruction.getInstructionType();
-            String[] instructionArgs = instruction.getInstructionArgs();
-            boolean isDone = args[0].equals("X");
-            switch (instructionType) { // will ignore all lines with invalid format
-                case ADD_TODO:
-                    tasks.add(new ToDo(isDone, instructionArgs));
-                    break;
-
-                case ADD_DEADLINE:
-                    tasks.add(new Deadline(isDone, instructionArgs));
-                    break;
-
-                case ADD_EVENT:
-                    tasks.add(new Event(isDone, instructionArgs));
-                    break;
-                default:
-                    // do nothing
+            String input = scanner.nextLine().trim();
+            try {
+                tasks.add(Task.decode(input));
+            } catch (DukeException exception) {
+                // ignore invalid line in save file
             }
         }
         return tasks;
     }
 
-    public void saveFile(ArrayList<Task> tasks) throws DukeException {
+    public void save(TaskList taskList) throws DukeException {
+        ArrayList<Task> tasks = taskList.getTasks();
         PrintWriter writer = getOutputWriter(this.saveFile);
         for (int i = 0; i < tasks.size(); i += 1) {
             Task task = tasks.get(i);
-            writer.println(task.getStatusIcon() + SEPARATOR + Arrays.stream(task.getCommand()).reduce("", (x, y) -> x + " " + y));
+            writer.println(task.encode());
         }
         writer.close();
     }
