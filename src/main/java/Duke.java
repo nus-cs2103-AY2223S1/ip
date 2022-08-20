@@ -3,6 +3,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Duke {
+    UserInputHistory userInputHistory = new UserInputHistory();
     enum CommandType {TODO, MARK, UNMARK, DEADLINE, EVENT, BYE, LIST, DELETE};
     private static void greetUser() {
         String logo = "_______     _\n" +
@@ -17,14 +18,14 @@ public class Duke {
         System.out.println("Where would you like to go next?");
         System.out.print(">> ");
     }
-    
+
     /**
      * Mark Task at index n in list.
      * No checks performed to check if task is already marked.
      * @param n task to mark as done (n - 1) index in actual list
      */
-    public static void markTask(int n) {
-        Task taskToModify = userInputHistory.get(n - 1);
+    public void markTask(int n) {
+        Task taskToModify = userInputHistory.getTask(n);
         taskToModify.markAsDone();
         System.out.printf("Marked task %d \n%s\n", n, taskToModify);
         System.out.print(">>");
@@ -35,44 +36,10 @@ public class Duke {
      * No checks performed to check if task is already unmarked.
      * @param n task to mark as not done (n - 1) index in actual list
      */
-    public static void unmarkTask(int n)  {
-        Task taskToModify = userInputHistory.get(n - 1);
+    public void unmarkTask(int n)  {
+        Task taskToModify = userInputHistory.getTask(n);
         taskToModify.markAsNotDone();
         System.out.printf("Unmarked task %d \n%s\n", n, taskToModify);
-        System.out.print(">>");
-    }
-
-    /**
-     * Extract task number from string input
-     * @param s extracts task number from user input
-     * @return index of the task in the list plus one
-     */
-    private static int getTaskNumber(String s) throws DukeException{
-        // credit: https://stackoverflow.com/questions/14974033/extract-digits-from-string-stringutils-java
-        String numberOnly= s.replaceAll("[^0-9]", "");
-        int n;
-        if (numberOnly.length() <= 0) {
-            throw new DukeException("no number given\n>>");
-        } else {
-            n = Integer.parseInt(numberOnly);
-            if (n > userInputHistory.size()) {
-                throw new DukeException("task does not exist is list\n>>");
-            } else {
-                return n;
-            }
-        }
-    }
-
-    /**
-     * Delete task at index n in userInputHistory
-     * @param n index to be deleted
-     */
-    private static void deleteTask(int n)   {
-        Task taskToModify = userInputHistory.get(n - 1);
-        userInputHistory.remove(n - 1);
-        System.out.printf("Task removed: \n%s\n", taskToModify);
-        System.out.printf("Total: %d\n", userInputHistory.size());
-        System.out.print("______\n");
         System.out.print(">>");
     }
 
@@ -80,18 +47,18 @@ public class Duke {
      * Filter userInput and call addEventToHistory
      * @param event
      */
-    private static void handleEvent(String event) throws DukeException{
+    private void handleEvent(String event) throws DukeException{
         String description, at;
         description = getDescription(event, "event");
         at = getDate(event);
-        addEventToHistory(description, at);
+        userInputHistory.addEventToHistory(description, at);
     }
 
     /**
      * Filter userInput and call addDeadlineToHistory
      * @param deadline
      */
-    private static void handleDeadline(String deadline) throws DukeException{
+    private  void handleDeadline(String deadline) throws DukeException{
         String description, by;
         description = getDescription(deadline, "deadline");
         by = getDate(description);
@@ -102,7 +69,7 @@ public class Duke {
      * Filter userInput and call addDeadlineToHistory
      * @param task
      */
-    private static void handleTask(String task) throws DukeException {
+    private  void handleTask(String task) throws DukeException {
         String description;
         description = getDescription(task, "todo");
         addTaskToHistory(description);

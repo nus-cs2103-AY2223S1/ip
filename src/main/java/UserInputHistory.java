@@ -20,7 +20,7 @@ public class UserInputHistory {
      * @param description
      * @param at
      */
-    private  void addEventToHistory(String description, String at) {
+    public void addEventToHistory(String description, String at) {
         Event newEvent = new Event(description, at);
         userInputHistory.add(newEvent);
         //echo request
@@ -33,7 +33,7 @@ public class UserInputHistory {
      * @param description
      * @param by
      */
-    private void addDeadlineToHistory(String description, String by) {
+    public void addDeadlineToHistory(String description, String by) {
         Deadline newDeadline = new Deadline(description, by);
         userInputHistory.add(newDeadline);
         //echo request
@@ -60,4 +60,46 @@ public class UserInputHistory {
         System.out.print(">>");
     }
 
+    /**
+     *
+     * @param n index to retrieve
+     * @return task at index n - 1 in the userInputHistory arraylist
+     */
+    public Task getTask(int n) {
+        return userInputHistory.get(n - 1);
+    }
+
+    /**
+     * Delete task at index n in userInputHistory
+     * @param n index to be deleted
+     */
+    private  void deleteTask(int n)   {
+        Task taskToModify = userInputHistory.get(n - 1);
+        userInputHistory.remove(n - 1);
+        System.out.printf("Task removed: \n%s\n", taskToModify);
+        System.out.printf("Total: %d\n", userInputHistory.size());
+        System.out.print("______\n");
+        System.out.print(">>");
+    }
+
+    /**
+     * Extract task number from string input
+     * @param s extracts task number from user input
+     * @return index of the task in the list plus one
+     */
+    private int getTaskNumber(String s) throws DukeException{
+        // credit: https://stackoverflow.com/questions/14974033/extract-digits-from-string-stringutils-java
+        String numberOnly= s.replaceAll("[^0-9]", "");
+        int n;
+        if (numberOnly.length() <= 0) {
+            throw new DukeException("no number given\n>>");
+        } else {
+            n = Integer.parseInt(numberOnly);
+            if (n > userInputHistory.size()) {
+                throw new DukeException("task does not exist is list\n>>");
+            } else {
+                return n;
+            }
+        }
+    }
 }
