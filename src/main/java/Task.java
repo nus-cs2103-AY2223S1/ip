@@ -1,15 +1,11 @@
 public abstract class Task {
     protected String name;
     protected boolean done;
-    protected static int taskCounter = 0;
     protected String type;
-    protected int taskNumber;
 
     private Task(String name) {
         this.name = name;
         this.done = false;
-        taskCounter++;
-        this.taskNumber = taskCounter;
     }
 
     private static class ToDo extends Task {
@@ -48,7 +44,7 @@ public abstract class Task {
 
     @Override
     public String toString() {
-        return taskNumber + ". " + type + getStatus() + " " + name;
+        return type + getStatus() + " " + name;
     }
 
     public static Task createTask(String name, String date, String task) {
@@ -72,10 +68,6 @@ public abstract class Task {
 
     public String getStatus() {
         return done ? "[✓]" : "[ ]";
-    }
-
-    public int getTaskNumber() {
-        return taskNumber;
     }
 
 }
