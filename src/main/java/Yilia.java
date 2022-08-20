@@ -1,6 +1,8 @@
 import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 enum Type {
     TODO,
@@ -70,18 +72,18 @@ class Todo extends Task {
 }
 
 class Deadline extends Task {
-    String date;
+    LocalDate date;
     Deadline(String content, String date) {
         super(content);
-        this.date = date;
+        this.date = LocalDate.parse(date);
     }
     Deadline(String content, boolean isDone, String date) {
         super(content, isDone);
-        this.date = date;
+        this.date = LocalDate.parse(date);
     }
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + date + ")";
+        return "[D]" + super.toString() + " (by: " + date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
     @Override
     public String parse() {
@@ -90,18 +92,18 @@ class Deadline extends Task {
 }
 
 class Event extends Task {
-    String date;
+    LocalDate date;
     Event(String content, String date) {
         super(content);
-        this.date = date;
+        this.date = LocalDate.parse(date);
     }
     Event(String content, boolean isDone, String date) {
         super(content, isDone);
-        this.date = date;
+        this.date = LocalDate.parse(date);
     }
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + date + ")";
+        return "[E]" + super.toString() + " (at: " + date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
     @Override
     public String parse() {
