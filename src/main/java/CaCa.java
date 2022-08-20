@@ -3,22 +3,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * CaCa is a personal assistant chatbot that helps users manage and track your things.
- * Functions with respective commands are listed below as
- * Function (description): command. e.g...
- * - Greet user (triggered as soon as the chatbot is run)
- * - Exit program (end chatbot): bye
- * - Add tasks:
- *     - ToDos (tasks without any date/time): todo taskDescription.
- *     e.g.todo borrow book
- *     - Deadlines (tasks to be done before date/time): deadline taskDescription /by dateTime.
- *     e.g. deadline return book /by Sunday
- *     - Events (tasks that start and end at a specific time): event taskDescription /at dateTime
- *     e.g. event project meeting /at Mon 2-4pm
- * - List task (displays a list of all tasks stored): list
- * - Mark task (marks task as done with a "X"): mark taskIndex. e.g. mark 2
- * - Unmark task (marks task as not done and removes "X"): unmark taskIndex. e.g. unmark 2
- * - Delete task (deletes task from list): delete taskIndex. e.g. delete 3
+ * CaCa is a personal assistant chatbot that helps users manage and track things.
+ * @author Carrie Zheng Jiarui
+ * @version CS2103T AY22/23 Semester 1, iP
  */
 public class CaCa {
 

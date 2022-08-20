@@ -1,5 +1,7 @@
 /**
  * This class represents tasks that need to be done before a specific date/time.
+ * @author Carrie Zheng Jiarui
+ * @version CS2103T AY22/23 Semester 1, iP
  */
 public class Deadline extends Task {
     protected String by;

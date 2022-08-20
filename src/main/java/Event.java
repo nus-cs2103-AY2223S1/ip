@@ -1,5 +1,7 @@
 /**
  * This class represents tasks that start at a specific time and ends at a specific time.
+ * @author Carrie Zheng Jiarui
+ * @version CS2103T AY22/23 Semester 1, iP
  */
 public class Event extends Task {
     protected String at;

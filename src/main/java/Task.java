@@ -1,5 +1,7 @@
 /**
  * This class represents tasks added by the user.
+ * @author Carrie Zheng Jiarui
+ * @version CS2103T AY22/23 Semester 1, iP
  */
 public abstract class Task {
     protected String description;

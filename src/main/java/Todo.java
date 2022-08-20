@@ -1,5 +1,7 @@
 /**
  * This class represents tasks without any date/time attached to it.
+ * @author Carrie Zheng Jiarui
+ * @version CS2103T AY22/23 Semester 1, iP
  */
 public class Todo extends Task {
 
