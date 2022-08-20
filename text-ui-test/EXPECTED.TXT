@@ -10,12 +10,16 @@ jduke> |  Error:
 
 jduke> |  added task:
 |    [T][ ] cry
-|  1 task in list
+|  5 tasks in list
 
-jduke> 1 ==> [T][ ] cry
+jduke> 1 ==> [T][X] read book
+2 ==> [D][ ] return book (by: June 6th)
+3 ==> [E][ ] project meeting (at: Aug 6th 2-4pm)
+4 ==> [T][X] join sports club
+5 ==> [T][ ] cry
 
 jduke> |  marked task:
-|    [T][X] cry
+|    [T][X] read book
 
 jduke> |  Error:
 |  invalid MARK format
@@ -23,7 +27,7 @@ jduke> |  Error:
 
 jduke> |  Error:
 |  invalid task number
-|    max index is 1
+|    max index is 5
 
 jduke> |  Error:
 |  invalid DEADLINE format
@@ -35,7 +39,7 @@ jduke> |  Error:
 
 jduke> |  added task:
 |    [D][ ] CS2103T Week 2 (by: Aug 18)
-|  2 tasks in list
+|  6 tasks in list
 
 jduke> |  Error:
 |  invalid EVENT format
@@ -55,48 +59,60 @@ jduke> |  Error:
 
 jduke> |  added task:
 |    [T][ ] cry harder
-|  3 tasks in list
+|  7 tasks in list
 
 jduke> |  added task:
 |    [E][ ] end of sem (at: NEVER)
-|  4 tasks in list
+|  8 tasks in list
 
-jduke> 1 ==> [T][X] cry
-2 ==> [D][ ] CS2103T Week 2 (by: Aug 18)
-3 ==> [T][ ] cry harder
-4 ==> [E][ ] end of sem (at: NEVER)
+jduke> 1 ==> [T][X] read book
+2 ==> [D][ ] return book (by: June 6th)
+3 ==> [E][ ] project meeting (at: Aug 6th 2-4pm)
+4 ==> [T][X] join sports club
+5 ==> [T][ ] cry
+6 ==> [D][ ] CS2103T Week 2 (by: Aug 18)
+7 ==> [T][ ] cry harder
+8 ==> [E][ ] end of sem (at: NEVER)
 
 jduke> |  Error:
 |  invalid MARK format
 |    mark <integer>
 
 jduke> |  marked task:
-|    [D][X] CS2103T Week 2 (by: Aug 18)
+|    [D][X] return book (by: June 6th)
 
 jduke> |  deleted task:
-|    [D][X] CS2103T Week 2 (by: Aug 18)
-|  3 tasks in list
+|    [D][X] return book (by: June 6th)
+|  7 tasks in list
 
 jduke> |  Error:
 |  invalid task number
-|    max index is 3
+|    max index is 7
 
 jduke> |  Error:
 |  invalid MARK format
 |    mark <integer>
 
-jduke> 1 ==> [T][X] cry
-2 ==> [T][ ] cry harder
-3 ==> [E][ ] end of sem (at: NEVER)
+jduke> 1 ==> [T][X] read book
+2 ==> [E][ ] project meeting (at: Aug 6th 2-4pm)
+3 ==> [T][X] join sports club
+4 ==> [T][ ] cry
+5 ==> [D][ ] CS2103T Week 2 (by: Aug 18)
+6 ==> [T][ ] cry harder
+7 ==> [E][ ] end of sem (at: NEVER)
 
 jduke> |  marked task:
-|    [T][X] cry
+|    [T][X] read book
 
 jduke> |  unmarked task:
-|    [T][ ] cry harder
+|    [E][ ] project meeting (at: Aug 6th 2-4pm)
 
-jduke> 1 ==> [T][X] cry
-2 ==> [T][ ] cry harder
-3 ==> [E][ ] end of sem (at: NEVER)
+jduke> 1 ==> [T][X] read book
+2 ==> [E][ ] project meeting (at: Aug 6th 2-4pm)
+3 ==> [T][X] join sports club
+4 ==> [T][ ] cry
+5 ==> [D][ ] CS2103T Week 2 (by: Aug 18)
+6 ==> [T][ ] cry harder
+7 ==> [E][ ] end of sem (at: NEVER)
 
 jduke> |  Goodbye
