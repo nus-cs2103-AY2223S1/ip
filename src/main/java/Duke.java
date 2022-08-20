@@ -1,4 +1,8 @@
 import java.util.Scanner;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.io.File;
+import java.io.IOException;
 
 public class Duke {
     /**
@@ -10,6 +14,19 @@ public class Duke {
         String in = "";
         TaskList list = new TaskList();
         Scanner sc = new Scanner(System.in);
+
+        try {
+            Files.createDirectories(Paths.get("./data"));
+            File file = new File("./data/duke.txt");
+
+            if (!file.exists()) {
+                boolean result = file.createNewFile();
+            }
+        }
+
+        catch (IOException e) {
+            e.printStackTrace();
+        }
 
         while (true) {
             in = sc.nextLine();
@@ -70,6 +87,8 @@ public class Duke {
                 }
             }
             System.out.println("-------------------------------------------");
+
+            FileWriting.update("./data/duke.txt", list);
         }
         Messages.bye();
     }
