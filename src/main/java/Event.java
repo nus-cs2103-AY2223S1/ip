@@ -20,6 +20,13 @@ public class Event extends Task {
         this.timeEnd = LocalTime.parse(timeEnd);
     }
 
+    public Event(String description, int status,
+                 String dateStart, String timeStart,
+                 String dateEnd, String timeEnd) throws DateTimeParseException {
+        this(description, dateStart, timeStart, dateEnd, timeEnd);
+        isDone = status == 1;
+    }
+
     private String formatAsMmmDdYyyy(LocalDate date) {
         return date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
     }
@@ -28,14 +35,10 @@ public class Event extends Task {
         return time.format(DateTimeFormatter.ofPattern("hh:mm a"));
     }
 
-    public Event(String description, int status, String date) {
-        super(description, status);
-        this.date = date;
-    }
-
     @Override
     public String parseToSaveData() {
-        return "E" + "|" + super.parseToSaveData() + "|" + date;
+        return "E" + "|" + super.parseToSaveData() + "|"
+                + dateStart + "|" + timeStart + "|" + dateEnd + "|" + timeEnd;
     }
 
     @Override

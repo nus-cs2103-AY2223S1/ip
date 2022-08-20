@@ -13,6 +13,11 @@ public class Deadline extends Task {
         this.time = LocalTime.parse(time);
     }
 
+    public Deadline(String description, int status, String date, String time) {
+        this(description, date, time);
+        isDone = status == 1;
+    }
+
     private String formatAsMmmDdYyyy() {
         return date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
     }
@@ -21,14 +26,9 @@ public class Deadline extends Task {
         return time.format(DateTimeFormatter.ofPattern("hh:mm a"));
     }
 
-    public Deadline(String description, int status, String date) {
-        super(description, status);
-        this.date = date;
-    }
-
     @Override
     public String parseToSaveData() {
-        return "E" + "|" + super.parseToSaveData() + "|" + date;
+        return "D" + "|" + super.parseToSaveData() + "|" + date + "|" + time;
     }
 
     @Override

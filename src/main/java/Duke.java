@@ -35,20 +35,23 @@ public class Duke {
 
     public void loadTaskLineFromSave(String line) {
         String[] temp = line.split("\\|");
-        String[] info = Arrays.copyOf(temp, 4);
+        String[] info = Arrays.copyOf(temp, 7);
         String taskType = info[0];
         int status = Integer.parseInt(info[1]);
         String description = info[2];
-        String date = info[3];
+        String date1 = info[3];
+        String time1 = info[4];
+        String date2 = info[5];
+        String time2 = info[6];
         switch (taskType) {
         case "T":
             tasks.add(new Todo(description, status));
             break;
         case "D":
-            tasks.add(new Deadline(description, status, date));
+            tasks.add(new Deadline(description, status, date1, time1));
             break;
         case "E":
-            tasks.add(new Event(description, status, date));
+            tasks.add(new Event(description, status, date1, time1, date2, time2));
             break;
         default:
             System.out.println("Unknown task type");

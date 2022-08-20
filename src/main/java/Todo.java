@@ -4,7 +4,8 @@ public class Todo extends Task {
     }
 
     public Todo(String description, int status) {
-        super(description, status);
+        this(description);
+        isDone = status == 1;
     }
 
     @Override
