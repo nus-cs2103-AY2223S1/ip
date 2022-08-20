@@ -11,9 +11,14 @@ public class Control {
 
         public void addDir(Task task) {
             this.dir.add(task);
-
         }
 
+        public void deleteDir(int x) {
+            Task temp = this.dir.remove(x - 1);
+            System.out.println(String.format(
+                    "Noted. I've removed this task:\n\t%s\nNow you have %d task%s in the list.",
+                    temp, this.dir.size(), this.dir.size() == 1 ? "" : "s"));
+        }
         public void eval(String cmd) throws DukeException {
             String[] temp = cmd.split(" ");
             String mainCmd = temp[0];
@@ -37,6 +42,9 @@ public class Control {
                     break;
                 case "event" :
                     this.evalEvent(subCmd);
+                    break;
+                case "delete" :
+                    this.evalDelete(subCmd);
                     break;
                 default:
                     this.dir.add(new Task(cmd));
@@ -85,7 +93,8 @@ public class Control {
 
                 this.dir.add(tmpTask);
                 System.out.println(String.format("Got it. I've added this task:\n\t%s\n" +
-                        "Now you have %d tasks in the list.\n", tmpTask, this.dir.size()));
+                        "Now you have %d task%s in the list.\n", tmpTask, this.dir.size(),
+                        this.dir.size() == 1 ? "" : "s"));
             }
         }
 
@@ -98,8 +107,9 @@ public class Control {
                 Deadline tmpTask = new Deadline(tempSplit[0], tempSplit[1]);
 
                 this.addDir(tmpTask);
-                System.out.println(String.format("Got it. I've added this task:\n\t%s\n" +
-                        "Now you have %d tasks in the list.\n", tmpTask, this.dir.size()));
+                System.out.println(String.format(
+                        "Got it. I've added this task:\n\t%s\nNow you have %d task%s in the list.\n",
+                        tmpTask, this.dir.size(), this.dir.size() == 1 ? "" : "s"));
             }
 
         }
@@ -113,8 +123,18 @@ public class Control {
                 Event tmpTask = new Event(tempSplit[0], tempSplit[1]);
 
                 this.addDir(tmpTask);
-                System.out.println(String.format("Got it. I've added this task:\n\t%s\n" +
-                        "Now you have %d tasks in the list.\n", tmpTask, this.dir.size()));
+                System.out.println(String.format(
+                        "Got it. I've added this task:\n\t%s\nNow you have %d task%s in the list.\n",
+                        tmpTask, this.dir.size(), this.dir.size() == 1 ? "" : "s"));
             }
         }
-    }
+
+        public void evalDelete(String[] subCmd) throws InvalidDescriptionException {
+            if (Integer.parseInt(subCmd[0]) <= 0 || Integer.parseInt(subCmd[0]) > this.dir.size()) {
+                throw new InvalidDescriptionException();
+            } else {
+                this.deleteDir(Integer.parseInt(subCmd[0]));
+            }
+        }
+}
+
