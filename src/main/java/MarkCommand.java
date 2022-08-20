@@ -1,24 +1,22 @@
-import java.util.ArrayList;
-
 public class MarkCommand extends Command {
+    public static final String COMMAND_WORD = "mark";
     private static final String userMessageFormat = "Marked task %d as done!\n  %s";
     private final int index;
-    private final Task task;
 
-    public MarkCommand(ArrayList<Task> tasks, String arguments) throws DukeException {
-        int i = Integer.parseInt(arguments);
-        if (i <= 0 || i > tasks.size()) {
-            throw DukeException.invalidIndex;
-        }
-        this.index = i;
-        // Subtract 1 to account for 0-index data structure.
-        this.task = tasks.get(this.index - 1);
+    public MarkCommand(String arguments) {
+        this.index = Integer.parseInt(arguments);
     }
 
     @Override
-    public CommandResult execute() {
+    public CommandResult execute() throws DukeException {
+        // Check if index is out of bounds.
+        if (this.index <= 0 || this.index > this.tasks.size()) {
+            throw DukeException.invalidIndex;
+        }
+        // Subtract 1 to account for 0-index data structure.
+        Task task = this.tasks.get(this.index - 1);
         task.markAsDone();
-        String userMessage = String.format(userMessageFormat, this.index, this.task);
-        return new CommandResult(userMessage, true);
+        String userMessage = String.format(userMessageFormat, this.index, task);
+        return new CommandResult(userMessage, true, false);
     }
 }

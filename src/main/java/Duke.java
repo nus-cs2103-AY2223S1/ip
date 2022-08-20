@@ -1,14 +1,14 @@
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Duke {
     private final Ui ui;
+    private final Parser parser;
 
     public Duke() {
         this.ui = new Ui();
+        this.parser = new Parser();
     }
 
     public static void main(String[] args) {
@@ -28,63 +28,21 @@ public class Duke {
             tasks = new ArrayList<>();
         }
 
-        scanLoop:
         while (scanner.hasNext()) {
             try {
                 String userInput = scanner.nextLine();
-
-                Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)\\s?(?<arguments>.*)");
-                Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput);
-                String commandWord, arguments;
-                if (matcher.matches()) {
-                    commandWord = matcher.group("commandWord");
-                    arguments = matcher.group("arguments");
-                } else {
-                    throw DukeException.unknownCommand;
-                }
-                Command command;
-
-                // Handle the various commands.
-                switch (commandWord) {
-                    case "bye":
-                        // Stops the application, by breaking out of the scan loop.
-                        break scanLoop;
-                    case "list":
-                        command = new ListCommand(tasks);
-                        break;
-                    case "mark": {
-                        command = new MarkCommand(tasks, arguments);
-                        break;
-                    }
-                    case "unmark": {
-                        command = new UnmarkCommand(tasks, arguments);
-                        break;
-                    }
-                    case "delete": {
-                        command = new DeleteCommand(tasks, arguments);
-                        break;
-                    }
-                    case "todo": {
-                        command = new TodoCommand(tasks, arguments);
-                        break;
-                    }
-                    case "deadline": {
-                        command = new DeadlineCommand(tasks, arguments);
-                        break;
-                    }
-                    case "event": {
-                        command = new EventCommand(tasks, arguments);
-                        break;
-                    }
-                    default:
-                        throw DukeException.unknownCommand;
-                }
+                Command command = duke.parser.parseCommand(userInput);
+                // Populate command with tasks.
+                command.setData(tasks);
                 CommandResult result = command.execute();
-                duke.ui.showResult(result);
+                if (result.shouldExit()) {
+                    // Exit application by exiting the scan loop.
+                    break;
+                }
                 if (result.shouldUpdateFile()) {
                     storage.save(tasks);
                 }
-                duke.ui.showLineBreak();
+                duke.ui.showResult(result);
             } catch (DukeException | IOException e) {
                 duke.ui.showErrorMessage(e);
             } catch (NumberFormatException e) {

@@ -1,16 +1,15 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DeadlineCommand extends Command {
+    public static final String COMMAND_WORD = "deadline";
     private static final Pattern ARGUMENTS_FORMAT = Pattern.compile("(?<description>.+)\\s+/by\\s+(?<deadline>\\d{4}-\\d{2}-\\d{2})");
     private static final String userMessageFormat = "Added this deadline!\n  %s\nNow you have %d tasks.";
-    private final ArrayList<Task> tasks;
     private final Deadline deadline;
 
-    public DeadlineCommand(ArrayList<Task> tasks, String arguments) throws DukeException {
+    public DeadlineCommand(String arguments) throws DukeException {
         Matcher matcher = ARGUMENTS_FORMAT.matcher(arguments);
         String description, deadline;
         if (matcher.matches()) {
@@ -27,7 +26,6 @@ public class DeadlineCommand extends Command {
             throw DukeException.invalidDate;
         }
 
-        this.tasks = tasks;
         this.deadline = new Deadline(description, localDate);
     }
 
@@ -36,6 +34,6 @@ public class DeadlineCommand extends Command {
         this.tasks.add(this.deadline);
         int numberOfTasks = this.tasks.size();
         String userMessage = String.format(userMessageFormat, this.deadline, numberOfTasks);
-        return new CommandResult(userMessage, true);
+        return new CommandResult(userMessage, true, false);
     }
 }

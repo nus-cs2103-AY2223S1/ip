@@ -15,10 +15,6 @@ public class Ui {
         }
     }
 
-    public void showLineBreak() {
-        this.show(horizontalLine);
-    }
-
     public void showWelcomeMessage() {
         this.show(
                 horizontalLine,
@@ -53,6 +49,6 @@ public class Ui {
     }
 
     public void showResult(CommandResult result) {
-        this.show(result.getUserMessage());
+        this.show(result.getUserMessage(), horizontalLine);
     }
 }

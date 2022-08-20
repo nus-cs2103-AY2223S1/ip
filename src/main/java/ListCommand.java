@@ -1,12 +1,6 @@
-import java.util.ArrayList;
-
 public class ListCommand extends Command {
+    public static final String COMMAND_WORD = "list";
     private static final String lineFormat = "%d: %s";
-    private final ArrayList<Task> tasks;
-
-    public ListCommand(ArrayList<Task> tasks) {
-        this.tasks = tasks;
-    }
 
     @Override
     public CommandResult execute() {
@@ -17,6 +11,6 @@ public class ListCommand extends Command {
         }
 
         String userMessage = String.join("\n", lines);
-        return new CommandResult(userMessage, false);
+        return new CommandResult(userMessage, false, false);
     }
 }

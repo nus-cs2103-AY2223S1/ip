@@ -1,24 +1,22 @@
-import java.util.ArrayList;
-
 public class UnmarkCommand extends Command {
+    public static final String COMMAND_WORD = "unmark";
     private static final String userMessageFormat = "Marked task %d as not done!\n  %s";
     private final int index;
-    private final Task task;
 
-    public UnmarkCommand(ArrayList<Task> tasks, String arguments) throws DukeException {
-        int i = Integer.parseInt(arguments);
-        if (i <= 0 || i > tasks.size()) {
-            throw DukeException.invalidIndex;
-        }
-        this.index = i;
-        // Subtract 1 to account for 0-index data structure.
-        this.task = tasks.get(this.index - 1);
+    public UnmarkCommand(String arguments) {
+        this.index = Integer.parseInt(arguments);
     }
 
     @Override
-    public CommandResult execute() {
+    public CommandResult execute() throws DukeException {
+        // Check if index is out of bounds.
+        if (this.index <= 0 || this.index > this.tasks.size()) {
+            throw DukeException.invalidIndex;
+        }
+        // Subtract 1 to account for 0-index data structure.
+        Task task = this.tasks.get(this.index - 1);
         task.markAsUndone();
-        String userMessage = String.format(userMessageFormat, this.index, this.task);
-        return new CommandResult(userMessage, true);
+        String userMessage = String.format(userMessageFormat, this.index, task);
+        return new CommandResult(userMessage, true, false);
     }
 }
