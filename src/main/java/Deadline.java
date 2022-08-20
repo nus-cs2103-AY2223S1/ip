@@ -1,18 +1,21 @@
 package main.java;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Deadline extends Task {
 
     /**
      * Deadline of 'Deadline' object
      */
-    protected String by;
+    protected LocalDate by;
 
     /**
      * Constructor method for `Deadline`.
      * @param description Description of task.
      * @param by          Deadline of task.
      */
-    public Deadline(String description, String by) {
+    public Deadline(String description, LocalDate by) {
         super(description);
         this.by = by;
     }
@@ -23,7 +26,7 @@ public class Deadline extends Task {
      * @param by          Deadline of task.
      * @param isDone      Whether task is done.
      */
-    public Deadline(String description, String by, Boolean isDone) {
+    public Deadline(String description, LocalDate by, Boolean isDone) {
         super(description, isDone);
         this.by = by;
     }
@@ -35,7 +38,10 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by + ")";
+        DateTimeFormatter formatter
+                = DateTimeFormatter.ofPattern("MMM dd yyyy");
+        String date = by.format(formatter);
+        return "[D]" + super.toString() + " (by: " + date + ")";
     }
 
     /**
