@@ -53,4 +53,8 @@ delete 7
 delete 0
 delete -1
 list
+mark 1
+mark 3
+mark 5
+list
 bye
