@@ -68,6 +68,32 @@ public class TaskList {
     }
 
     /**
+     * Method to add tasks from file to `taskList`.
+     * @param input String object to be added to `inputList`.
+     */
+    public void add(String[] input) {
+        Task newTask = null;
+        switch (input[0]) {
+            case "deadline":
+                newTask = new Deadline(input[1], input[2]);
+                break;
+            case "event":
+                newTask = new Event(input[1], input[2]);
+                break;
+            case "todo":
+                newTask = new ToDo(input[1]);
+                break;
+        }
+
+        taskList.add(newTask);
+        int size = this.getSize();
+        System.out.println("Got it. I've added this task:");
+        System.out.println("   " + newTask);
+        System.out.printf("Now you have %d task%s in the list.%n%n",
+                size, size == 1 ? "" : "s");
+    }
+
+    /**
      * Method to delete a task.
      * @param input String user input command to delete a task.
      */
@@ -124,5 +150,17 @@ public class TaskList {
      */
     public int getSize() {
         return taskList.size();
+    }
+
+    /**
+     * Return 'taskList' as format to be saved in hard disk.
+     * @return String of 'taskList' as format to be saved in file.
+     */
+    public String toFile() {
+        StringBuilder res = new StringBuilder();
+        for (Task task : taskList) {
+            res.append(task.toFileFormat());
+        }
+        return res.toString();
     }
 }
