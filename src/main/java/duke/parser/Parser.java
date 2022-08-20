@@ -16,6 +16,10 @@ public class Parser {
         return Integer.parseInt(words[1]);
     }
 
+    public String getKeyword() {
+        return words[1];
+    }
+
     public String getDeadlineDescription() {
         int a = 2;
         StringBuilder task = new StringBuilder(words[1]);

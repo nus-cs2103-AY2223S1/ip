@@ -42,4 +42,15 @@ public class TaskList {
     public void addTask(Task task) {
         taskList.add(task);
     }
+
+    public ArrayList<Task> searchMatches(String keyword) {
+        ArrayList<Task> matchingList = new ArrayList<>();
+        for (Task task: taskList) {
+            String description = task.getDescription();
+            if (description.contains(keyword)) {
+                matchingList.add(task);
+            }
+        }
+        return matchingList;
+    }
 }

@@ -32,6 +32,15 @@ public class Ui {
         }
     }
 
+    public void printMatchingList(ArrayList<Task> tasks) {
+        int i = tasks.size();
+        System.out.println("Here are the matching tasks in your list:");
+        for (int a = 1; a <= i; a++) {
+            String output = a + "." + tasks.get(a - 1).toString();
+            System.out.println(output);
+        }
+    }
+
     public void printDeleteMessage(TaskList taskList, int taskNumber) {
         System.out.println("Noted. I've removed this task:");
         System.out.println(taskList.retrieveTask(taskNumber));
