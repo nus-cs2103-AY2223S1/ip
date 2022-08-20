@@ -7,7 +7,7 @@ public class IOParser {
     private static final String LINE = "──────────────────────────────────────────\n";
 
     /**
-     * Pretty prints an output string
+     * Pretty-prints an output string
      *
      * @param output The string representing the output.
      */

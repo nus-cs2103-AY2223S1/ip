@@ -10,7 +10,7 @@ public class TaskList extends ArrayList<Task> {
     }
 
     /**
-     * Method that adds a new Task with a given description to the TaskList.
+     * Adds a new Task with a given description to the TaskList.
      * @param description The string representing the description of the Task to be added.
      */
     public void addTask(String description) {
@@ -18,7 +18,7 @@ public class TaskList extends ArrayList<Task> {
     }
 
     /**
-     * Method that marks a Task as done or undone.
+     * Marks a Task as done or undone.
      * @param index The index of the Task to be marked.
      * @param isDone Whether the Task is to be marked as done or undone.
      */

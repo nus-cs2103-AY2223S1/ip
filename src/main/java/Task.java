@@ -22,7 +22,7 @@ public class Task {
     }
 
     /**
-     * Set the Task's isDone to isDone.
+     * Sets the Task's isDone to isDone.
      * @param isDone The boolean to set the Task's isDone to.
      */
     protected void setDone(boolean isDone) {
