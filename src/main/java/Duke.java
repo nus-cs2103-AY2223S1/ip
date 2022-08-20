@@ -70,7 +70,7 @@ public class Duke {
                     addNewTask(command, inputWordsSplit[1]);
                     continue;
                 } catch (IndexOutOfBoundsException e) {
-                    System.out.println("test");
+                    System.out.println("Hmm... looks like you don't have a description for this task :( Please try again!");
                 }
             }
         }
