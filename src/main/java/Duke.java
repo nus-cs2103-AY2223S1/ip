@@ -12,18 +12,10 @@ public class Duke {
     private static ArrayList<Task> list;
 
     /**
-     * Styles and prints a single line with a border.
-     * @param line Line to be printed
-     */
-    public static void messagePrint(String line) {
-        messagePrint(new String[]{line});
-    }
-
-    /**
      * Styles and prints lines with a border.
      * @param lines Lines to be printed
      */
-    public static void messagePrint(String[] lines) {
+    public static void messagePrint(String... lines) {
         System.out.println(",----------------------------------------------------------------");
         for (String str : lines) {
             System.out.print("| ");
@@ -33,12 +25,9 @@ public class Duke {
     }
 
     private static void greet() {
-        String[] greeting = {
-            "...where is this again?",
-            "Oh, hello, I didn't see you there - I'm Anthea, a chatbot...",
-            "...or at least that's what they told me."
-        };
-        Duke.messagePrint(greeting);
+        Duke.messagePrint("...where is this again?",
+                "Oh, hello, I didn't see you there - I'm Anthea, a chatbot...",
+                "...or at least that's what they told me.");
     }
 
     private static void leave() {
@@ -59,9 +48,16 @@ public class Duke {
         }
     }
 
+    private static void initializeTaskList() {
+        list = TasksFileState.getTasks();
+    }
+
+    private static void finalizeTaskList() {
+        TasksFileState.saveTasks(list);
+    }
+
     private static void initializeCommands() {
         commands = new ArrayList<>();
-        list = new ArrayList<>();
 
         commands.add(new CommandMatcher((str) -> str.equals("list"), (str) -> {
             String[] output = new String[list.size() + 1];
@@ -86,59 +82,44 @@ public class Duke {
         commands.add(new PrefixCommandMatcher("unmark", (str, map) -> {
             getTask(str).ifPresent((task) -> {
                 task.markAsNotDone();
-                String[] output = {
-                    "Aw... it's not done yet:",
-                    task.toString()
-                };
-                Duke.messagePrint(output);
+                Duke.messagePrint("Aw... it's not done yet:",
+                        task.toString());
             });
         }));
 
         commands.add(new PrefixCommandMatcher("deadline", (str, map) -> {
             Task task = new Deadline(str, map.getOrDefault("by", "[unknown]"));
             list.add(task);
-            String[] output = {
-                "Good luck with the deadline, here's the task:",
-                task.toString()
-            };
-            Duke.messagePrint(output);
+            Duke.messagePrint("Good luck with the deadline, here's the task:",
+                    task.toString());
         }));
 
         commands.add(new PrefixCommandMatcher("todo", (str, map) -> {
             Task task = new ToDo(str);
             list.add(task);
-            String[] output = {
-                "I've recorded this thing you need to do:",
-                task.toString()
-            };
-            Duke.messagePrint(output);
+            Duke.messagePrint("I've recorded this thing you need to do:",
+                    task.toString());
         }));
 
         commands.add(new PrefixCommandMatcher("event", (str, map) -> {
             Task task = new Event(str, map.getOrDefault("at", "[unknown]"));
             list.add(task);
-            String[] output = {
-                "That's going to happen at some time later:",
-                task.toString()
-            };
-            Duke.messagePrint(output);
+            Duke.messagePrint("That's going to happen at some time later:",
+                    task.toString());
         }));
 
         commands.add(new PrefixCommandMatcher("delete", (str, map) -> {
             getTask(str).ifPresent((task) -> {
                 list.remove(task);
-                String[] output = {
-                    "It seems you didn't need this task anymore, so I removed it:",
-                    task.toString(),
-                    String.format("You have %d tasks left.", list.size())
-                };
-                Duke.messagePrint(output);
+                Duke.messagePrint("It seems you didn't need this task anymore, so I removed it:",
+                        task.toString(),
+                        String.format("You have %d tasks left.", list.size()));
             });
         }));
 
         // default command matcher - add to list
         commands.add(new CommandMatcher((str) -> true, (str) -> {
-            Duke.messagePrint("(>.<')  I'm sorry, I don't really know what that means.");
+            Duke.messagePrint("(>.<') I'm sorry, I don't really know what that means.");
         }));
     }
 
@@ -156,6 +137,7 @@ public class Duke {
      */
     public static void main(String[] args) {
         greet();
+        initializeTaskList();
         initializeCommands();
         Scanner input = new Scanner(System.in);
         boolean keepRunning = true;
@@ -167,6 +149,7 @@ public class Duke {
                 handleCommand(command);
             }
         }
+        finalizeTaskList();
         leave();
     }
 }

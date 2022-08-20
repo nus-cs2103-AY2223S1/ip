@@ -14,8 +14,20 @@ IF ERRORLEVEL 1 (
 )
 REM no error here, errorlevel == 0
 
+REM delete data
+if exist duke.txt del duke.txt
+
 REM run the program, feed commands from input.txt file and redirect the output to the ACTUAL.TXT
 java -classpath ..\bin Duke < input.txt > ACTUAL.TXT
 
 REM compare the output to the expected output
 FC ACTUAL.TXT EXPECTED.TXT
+
+REM delete output from previous run
+if exist ACTUAL1.TXT del ACTUAL1.TXT
+
+REM run the program, feed commands from input.txt file and redirect the output to the ACTUAL1.TXT
+java -classpath ..\bin Duke < input.txt > ACTUAL1.TXT
+
+REM compare the output to the expected output
+FC ACTUAL1.TXT EXPECTED1.TXT
