@@ -36,25 +36,30 @@ public class Duke {
     }
 
     private static void addTask(TaskType type, String task, String dateTime) {
-        Task newTask;
-        switch (type) {
-        case TODO:
-            newTask = new Todo(task);
-            break;
-        case DEADLINE:
-            newTask = new Deadline(task, dateTime);
-            break;
-        case EVENT:
-            newTask = new Event(task, dateTime);
-            break;
-        default:
-            newTask = new Task(task);
+        try {
+            Task newTask;
+            switch (type) {
+            case TODO:
+                newTask = new Todo(task);
+                break;
+            case DEADLINE:
+                newTask = new Deadline(task, dateTime);
+                break;
+            case EVENT:
+                newTask = new Event(task, dateTime);
+                break;
+            default:
+                newTask = new Task(task);
+            }
+            tasks.add(newTask);
+            pointer++;
+            speak(" Understood. I have added the following task:\n"
+                + "   " + newTask
+                + " You have a total of " + pointer + " task(s).\n");
+        } catch (DukeException e) {
+            speak(e.toString());
         }
-        tasks.add(newTask);
-        pointer++;
-        speak(" Understood. I have added the following task:\n"
-            + "   " + newTask
-            + " You have a total of " + pointer + " task(s).\n");
+
     }
 
     private static void deleteTask(int taskNum) throws DukeException {

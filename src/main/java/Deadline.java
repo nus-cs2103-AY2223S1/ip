@@ -2,7 +2,7 @@
  * Deadline Task represents an action that needs to be done by a certain date or time.
  */
 public class Deadline extends Task {
-    protected String dateTime;
+    protected TimeStamp dateTime;
 
     /**
      * Constructor for a Deadline Task.
@@ -10,9 +10,9 @@ public class Deadline extends Task {
      * @param description the description of the Task
      * @param dateTime the deadline of the Task
      */
-    public Deadline(String description, String dateTime) {
+    public Deadline(String description, String dateTime) throws DukeException {
         super(description);
-        this.dateTime = dateTime;
+        this.dateTime = TimeStamp.of(dateTime);
     }
 
     @Override
