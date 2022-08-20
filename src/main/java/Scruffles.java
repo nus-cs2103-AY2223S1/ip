@@ -101,6 +101,30 @@ public class Scruffles {
                 } catch (DescriptionEmptyException e) {
                     System.out.println(e.getMessage());
                 }
+            } else if (input.startsWith("delete")) {
+                try {
+                    if (input.equals("delete") || input.equals("delete ")) {
+                        throw new DescriptionEmptyException("grrrr >:( you need to delete something woof woof!");
+                    } else {
+                        input = input.replaceFirst("delete ", "");
+                        int listRef = Integer.parseInt(input) - 1;
+                        if (listRef >= list.size() || listRef < 0) {
+                            throw new OutOfBoundsException(listRef + 1);
+                        } else {
+                            String deletedTask = list.get(listRef).toString();
+                            list.remove(listRef);
+                            System.out.println("woof! the task is now deleted woof!");
+                            System.out.println(deletedTask);
+                            System.out.println("you now have " + (taskCount - 1) + " tasks in the list woof!");
+
+                            taskCount--;
+                        }
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("grrrr >:( you need to input an integer woof woof!");
+                } catch (DescriptionEmptyException | OutOfBoundsException e) {
+                    System.out.println(e.getMessage());
+                }
             } else {
                 try {
                     throw new UnknownArgumentException(input);
