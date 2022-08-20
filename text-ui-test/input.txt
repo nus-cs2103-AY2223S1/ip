@@ -1,5 +1,7 @@
+list
 add
 todo
+
 CS2103 Quiz
 add
 deadline
@@ -12,8 +14,11 @@ Tuesday 2pm
 list
 mark
 2
-list
+mark
+3
 unmark
-2
+3
+delete 
+1
 list
 bye
