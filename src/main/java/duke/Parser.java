@@ -13,11 +13,24 @@ import duke.command.MarkCommand;
 import duke.command.TodoCommand;
 import duke.command.UnmarkCommand;
 
+/**
+ * Parser makes sense of user inputs.
+ *
+ * @author Jet Lee
+ * @version CS2103T AY22/23 Sem 1
+ */
 public class Parser {
     private enum CommandType {
         BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE
     }
 
+    /**
+     * Returns a Command to be executed according to the user input.
+     *
+     * @param fullCommand User input.
+     * @return Command corresponding to the user input.
+     * @throws DukeException If the user input is invalid.
+     */
     public static Command parse(String fullCommand) throws DukeException {
         String[] commandSplit = fullCommand.strip().split(" ", 2);
 
