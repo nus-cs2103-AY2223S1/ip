@@ -4,26 +4,26 @@ Roger nya! Added this task:
   [T][ ] borrow book
 Now you have 1 task(s) in the list nya.
 Roger nya! Added this task:
-  [D][ ] return book  (by: Sunday)
+  [D][ ] return book (by: Nov-10-2022)
 Now you have 2 task(s) in the list nya.
 Roger nya! Added this task:
-  [E][ ] project meeting  (at: Mon 2-4pm)
+  [E][ ] project meeting (at: Oct-10-2022)
 Now you have 3 task(s) in the list nya.
 Here are the tasks in your list nya:
 1.[T][ ] borrow book
-2.[D][ ] return book  (by: Sunday)
-3.[E][ ] project meeting  (at: Mon 2-4pm)
+2.[D][ ] return book (by: Nov-10-2022)
+3.[E][ ] project meeting (at: Oct-10-2022)
 I've marked this task as done. Great job nya!
 I've marked this task as done. Great job nya!
 Here are the tasks in your list nya:
 1.[T][ ] borrow book
-2.[D][X] return book  (by: Sunday)
-3.[E][X] project meeting  (at: Mon 2-4pm)
+2.[D][X] return book (by: Nov-10-2022)
+3.[E][X] project meeting (at: Oct-10-2022)
 Roger nya! I've marked this task as not done.
 Here are the tasks in your list nya:
 1.[T][ ] borrow book
-2.[D][ ] return book  (by: Sunday)
-3.[E][X] project meeting  (at: Mon 2-4pm)
+2.[D][ ] return book (by: Nov-10-2022)
+3.[E][X] project meeting (at: Oct-10-2022)
 Sorry nya, the description of a todo cannot be empty :3
 Sorry nya, I don't understand what that means :3
 Roger nya! I've removed this task:

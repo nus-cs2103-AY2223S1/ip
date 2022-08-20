@@ -36,11 +36,11 @@ public class Duke {
 
                 case "deadline": {
                     try {
-                        String[] splitDes = splitInput[1].split("/", 2);
-                        String[] splitWhen = splitDes[1].split(" ", 2);
-                        String des = splitDes[0];
-                        String when = splitWhen[1];
-                        Task task = new Deadline(des, when);
+                        String[] desAndWhen = splitInput[1].split(" /by ", 2);
+                        String[] dateAndTime = desAndWhen[1].split(" ", 2);
+                        String des = desAndWhen[0];
+                        String date = dateAndTime[0];
+                        Task task = new Deadline(des, date);
 
                         System.out.println("Roger nya! Added this task:\n  " + task.toString());
                         taskArr.add(task);
@@ -55,11 +55,11 @@ public class Duke {
 
                 case "event": {
                     try {
-                        String[] splitDes = splitInput[1].split("/", 2);
-                        String[] splitWhen = splitDes[1].split(" ", 2);
-                        String des = splitDes[0];
-                        String when = splitWhen[1];
-                        Task task = new Event(des, when);
+                        String[] desAndWhen = splitInput[1].split(" /at ", 2);
+                        String[] dateAndTime = desAndWhen[1].split(" ", 2);
+                        String des = desAndWhen[0];
+                        String date = dateAndTime[0];
+                        Task task = new Event(des, date);
 
                         System.out.println("Roger nya! Added this task:\n  " + task.toString());
                         taskArr.add(task);
