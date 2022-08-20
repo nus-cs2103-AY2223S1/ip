@@ -7,6 +7,8 @@ public class Duke {
     private List<Task> lst;
     //Scanner object to take in input from user
     private Scanner input;
+    //Constant string to represent a line break
+    private final String LINE_BREAK = "____________________________________________________________";
 
     public Duke() {
         this.lst = new ArrayList<>();
@@ -25,19 +27,18 @@ public class Duke {
     }
 
     private void hello() {
-        System.out.println("Hello! I'm Donovan\nWhat can I do for you?");
+        System.out.println(LINE_BREAK + "\nHello! I'm Donovan\nWhat can I do for you?\n" + LINE_BREAK);
     }
 
     private void bye() {
-        System.out.println("\tBye! Hope to see you again soon!");
+        System.out.println(LINE_BREAK + "\n\tBye! Hope to see you again soon!\n" + LINE_BREAK);
     }
 
     private void run() {
         String text = input.next();
         while (!text.equals("bye")) {
             try {
-                switch (text) {
-                    //Handle case when task aTodo
+                switch (text) {//Handle case when task aTodo
                     case "todo" :
                         String tDescription = input.nextLine();
                         printTodo(tDescription);
@@ -95,6 +96,7 @@ public class Duke {
                         //To handle any extra words the user keyed in
                         input.nextLine();
                         throw new DukeException("OOPS! I'm sorry, but I don't know what that means :-(");
+
                 }
             } catch (DukeException dE) {
                 System.out.println(dE);
@@ -104,11 +106,13 @@ public class Duke {
     }
 
     private void listTasks() {
+        System.out.println(LINE_BREAK);
         System.out.println("\tHere are the tasks in your list.");
         for (int i = 0; i < lst.size(); i++) {
             Task task = lst.get(i);
             System.out.printf("\t%d. %s\n", i+1, task.toString());
         }
+        System.out.println(LINE_BREAK);
     }
 
     /**
@@ -122,7 +126,9 @@ public class Duke {
             Task todo = new Todo(tDescription);
             lst.add(todo);
             int size = lst.size();
-            System.out.printf("\tGot it. I've added this task:\n\t%s\n\tNow you have %d tasks in the list.\n",
+            System.out.printf(LINE_BREAK
+                            + "\n\tGot it. I've added this task:\n\t%s\n\tNow you have %d tasks in the list.\n"
+                            + LINE_BREAK + "\n",
                     todo,
                     size);
         }
@@ -136,7 +142,9 @@ public class Duke {
         Task deadline = new Deadline(dDescription, dBy);
         lst.add(deadline);
         int size2 = lst.size();
-        System.out.printf("\tGot it. I've added this task:\n\t%s\n\tNow you have %d tasks in the list.\n",
+        System.out.printf(LINE_BREAK
+                        + "\n\tGot it. I've added this task:\n\t%s\n\tNow you have %d tasks in the list.\n"
+                        + LINE_BREAK + "\n",
                 deadline,
                 size2);
     }
@@ -149,7 +157,9 @@ public class Duke {
         Task event = new Event(eDescription, eAt);
         lst.add(event);
         int size3 = lst.size();
-        System.out.printf("\tGot it. I've added this task:\n\t%s\n\tNow you have %d tasks in the list.\n",
+        System.out.printf(LINE_BREAK
+                        + "\n\tGot it. I've added this task:\n\t%s\n\tNow you have %d tasks in the list.\n"
+                        + LINE_BREAK + "\n",
                 event,
                 size3);
     }
@@ -165,7 +175,9 @@ public class Duke {
         } else {
             Task taskToBeMarked = lst.get(index);
             taskToBeMarked.markAsDone();
-            System.out.printf("\tNice! I've marked this task as done:\n\t%s\n",
+            System.out.printf(LINE_BREAK
+                            + "\n\tNice! I've marked this task as done:\n\t%s\n"
+                            + LINE_BREAK + "\n",
                     taskToBeMarked);
         }
     }
@@ -181,7 +193,9 @@ public class Duke {
         } else {
             Task taskToBeUnmarked = lst.get(index);
             taskToBeUnmarked.markAsUndone();
-            System.out.printf("\tOkay, I've marked this task as not done yet:\n\t%s\n",
+            System.out.printf(LINE_BREAK
+                            + "\n\tOkay, I've marked this task as not done yet:\n\t%s\n"
+                            + LINE_BREAK + "\n",
                     taskToBeUnmarked);
         }
     }
@@ -198,8 +212,9 @@ public class Duke {
             Task taskToBeDeleted = lst.get(index);
             lst.remove(index);
             int newSize = lst.size();
-            System.out.printf("\tNoted. I've removed this task:\n\t%s\n" +
-                            "\tNow you have %d tasks in the list.\n",
+            System.out.printf(LINE_BREAK
+                            + "\n\tNoted. I've removed this task:\n\t%s\n" + "\tNow you have %d tasks in the list.\n"
+                            + LINE_BREAK + "\n",
                     taskToBeDeleted, newSize);
         }
     }
