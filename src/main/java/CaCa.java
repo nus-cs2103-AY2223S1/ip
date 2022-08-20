@@ -77,8 +77,76 @@ public class CaCa {
         System.out.println("Bye. Hope to see you again soon!\n" + LINE);
     }
 
-    public static void toDo() {
+    /**
+     * Adds a ToDo task to user list.
+     * @param command User command with task type and task description.
+     */
+    public static void toDo(String command) {
+        String taskDescription = command;
+        Task taskToAdd = new Todo(taskDescription);
+        tasks.add(taskToAdd);
+        System.out.println("Got it. I've added this task:");
+        System.out.println(taskToAdd);
+        System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
+        System.out.println(LINE);
+    }
 
+    /**
+     * Adds a Deadline task to user list.
+     * @param command User command with task type, task description and task date/time.
+     * @throws MissingDetailException
+     */
+    public static void deadline(String[] command) throws MissingDetailException {
+        String[] detailedCommand = command[1].split(" /by ", 2);
+        if (detailedCommand.length == 1) {
+            String message = "OOPS!!! Details missing! "
+                    + "A deadline must have both description and date/time.";
+            throw new MissingDetailException(message);
+        } else {
+            if (detailedCommand[0].isBlank() || detailedCommand[1].isBlank()) {
+                String MESSAGE = "OOPS!!! I do not accept blank details. "
+                        + "A deadline must have both description and date/time.";
+                throw new MissingDetailException(MESSAGE);
+            } else {
+                String description = detailedCommand[0];
+                String by = detailedCommand[1];
+                Task taskToAdd = new Deadline(description, by);
+                tasks.add(taskToAdd);
+                System.out.println("Got it. I've added this task:");
+                System.out.println(taskToAdd);
+                System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
+                System.out.println(LINE);
+            }
+        }
+    }
+
+    /**
+     * Adds an Event task to user list.
+     * @param command User command with task type, task description and task start & end time
+     * @throws MissingDetailException
+     */
+    public static void event(String[] command) throws MissingDetailException {
+        String[] detailedCommand = command[1].split(" /at ", 2);
+        if (detailedCommand.length == 1) {
+            String message = "OOPS!!! Details missing! "
+                    + "An event must have both description and specific start & end time.";
+            throw new MissingDetailException(message);
+        } else {
+            if (detailedCommand[0].isBlank() || detailedCommand[1].isBlank()) {
+                String message = "OOPS!!! I do not accept blank details. "
+                        + "An event must have both description and specific start & end time.";
+                throw new MissingDetailException(message);
+            } else {
+                String description = detailedCommand[0];
+                String at = detailedCommand[1];
+                Task taskToAdd = new Event(description, at);
+                tasks.add(taskToAdd);
+                System.out.println("Got it. I've added this task:");
+                System.out.println(taskToAdd);
+                System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
+                System.out.println(LINE);
+            }
+        }
     }
 
     /**
@@ -185,7 +253,6 @@ public class CaCa {
                     System.out.println(LINE);
 
                 } else if (taskType.equals("todo") || taskType.equals("deadline") || taskType.equals("event")) {
-                    Task taskToAdd = null;
 
                     // Checks whether description is empty or contains only white spaces.
                     if (command.length == 1 || command[1].isBlank()) {
@@ -193,51 +260,14 @@ public class CaCa {
                         throw new EmptyInputException(message);
 
                     } else if (taskType.equals("todo")) {
-                        String taskDescription = command[1];
-                        taskToAdd = new Todo(taskDescription);
+                        toDo(command[1]);
 
                     } else if (taskType.equals("deadline")) {
-                        String[] detailedCommand = command[1].split(" /by ", 2);
-                        if (detailedCommand.length == 1) {
-                            String message = "OOPS!!! Details missing! "
-                                    + "A deadline must have both description and date/time.";
-                            throw new MissingDetailException(message);
-                        } else {
-                            if (detailedCommand[0].isBlank() || detailedCommand[1].isBlank()) {
-                                String message = "OOPS!!! I do not accept blank details. "
-                                        + "A deadline must have both description and date/time.";
-                                throw new MissingDetailException(message);
-                            } else {
-                                String description = detailedCommand[0];
-                                String by = detailedCommand[1];
-                                taskToAdd = new Deadline(description, by);
-                            }
-                        }
+                        deadline(command);
 
                     } else { // event
-                        String[] detailedCommand = command[1].split(" /at ", 2);
-                        if (detailedCommand.length == 1) {
-                            String message = "OOPS!!! Details missing! "
-                                    + "An event must have both description and specific start & end time.";
-                            throw new MissingDetailException(message);
-                        } else {
-                            if (detailedCommand[0].isBlank() || detailedCommand[1].isBlank()) {
-                                String message = "OOPS!!! I do not accept blank details. "
-                                        + "An event must have both description and specific start & end time.";
-                                throw new MissingDetailException(message);
-                            } else {
-                                String description = detailedCommand[0];
-                                String at = detailedCommand[1];
-                                taskToAdd = new Event(description, at);
-                            }
-                        }
+                        event(command);
                     }
-
-                    tasks.add(taskToAdd);
-                    System.out.println("Got it. I've added this task:");
-                    System.out.println(taskToAdd);
-                    System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
-                    System.out.println(LINE);
 
                 } else {
                     // Invalid input.
