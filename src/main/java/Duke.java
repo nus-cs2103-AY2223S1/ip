@@ -49,16 +49,20 @@ public class Duke {
             }
             else {
                 if (s.equalsIgnoreCase("todo")) {
-                    s = in.nextLine();
-                    s = s.substring(1);
-                    Task t = new Todo(s);
-                    tasks.add(t);
-                    int length = tasks.size();
-                    String output = length == 1 ? " task in the list." : " tasks in the list.";
-                    System.out.println("Got it. I've added this task:\n" + t +
-                            "\nNow you have " + length + output);
+                    try {
+                        s = scanNextLine(in);
+                        s = s.substring(1);
+                        Task t = new Todo(s);
+                        tasks.add(t);
+                        int length = tasks.size();
+                        String output = length == 1 ? " task in the list." : " tasks in the list.";
+                        System.out.println("Got it. I've added this task:\n" + t +
+                                "\nNow you have " + length + output);
+                    } catch (DukeException e) {
+                        System.err.println(e);
+                    }
                 }
-                if (s.equalsIgnoreCase("deadline")) {
+                else if (s.equalsIgnoreCase("deadline")) {
                     StringBuilder desc = new StringBuilder();
                     String token;
                     while (!(token = in.next()).equals("/by")) {
@@ -73,7 +77,7 @@ public class Duke {
                     System.out.println("Got it. I've added this task:\n" + t +
                             "\nNow you have " + length + output);
                 }
-                if (s.equalsIgnoreCase("event")) {
+                else if (s.equalsIgnoreCase("event")) {
                     StringBuilder desc = new StringBuilder();
                     String token;
                     while (!(token = in.next()).equals("/at")) {
@@ -88,10 +92,21 @@ public class Duke {
                     System.out.println("Got it. I've added this task:\n" + t +
                             "\nNow you have " + length + output);
                 }
+                else {
+                    System.err.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                }
             }
         }
         System.out.println("Bye. Hope to see you again soon!");
 
         in.close();
+    }
+
+    public static String scanNextLine(Scanner sc) throws DukeException {
+        String s = sc.nextLine();
+        if (s.length() < 2) {
+            throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+        }
+        return s;
     }
 }
