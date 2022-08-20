@@ -4,33 +4,35 @@ public class FileIO {
   /**
    * Save the list of tasks to a file
    * @param list List of tasks to save
-   * @param filename The path of the file to save to
+   * @param filePath The path of the file to save to
    */
-  public static void save(StorageList list, String filename) {
+  public static void save(StorageList list, String filePath) throws DukeException {
     try {
-      FileWriter fw = new FileWriter(filename);
+      createFile(filePath);
+      FileWriter fw = new FileWriter(filePath);
       BufferedWriter bw = new BufferedWriter(fw);
       for (int i = 0; i < list.getSize(); i++) {
         bw.write(list.get(i).toString());
         bw.newLine();
       }
       bw.close();
-    } catch (DukeException e) {
-      System.out.println(e.getMessage());
+    } catch (FileNotFoundException e) {
+      throw new DukeException("File not found.");
     } catch (IOException e) {
-      System.out.println(new DukeException("Error writing to file.").getMessage());
+      throw new DukeException("Error writing to file.");
     }
   }
 
   /**
    * Loads the tasks from the file
    * @param list List of tasks to load into
-   * @param filename The path of the file to load from
+   * @param filePath The path of the file to load from
    */
-  public static void load(StorageList list, String filename) {
+  public static void load(StorageList list, String filePath) throws DukeException {
     try {
       list.reset();
-      FileReader fr = new FileReader(filename);
+      createFile(filePath);
+      FileReader fr = new FileReader(filePath);
       BufferedReader br = new BufferedReader(fr);
       String line;
       while ((line = br.readLine()) != null) {
@@ -39,8 +41,10 @@ public class FileIO {
         }
       }
       br.close();
+    } catch (FileNotFoundException e) {
+      throw new DukeException("File not found.");
     } catch (IOException e) {
-      System.out.println(new DukeException("Error writing to file.").getMessage());
+      throw new DukeException("Error reading from file.");
     }
   }
 
@@ -49,7 +53,7 @@ public class FileIO {
    * @param line The line of text to parse
    * @param list The list to add the task to
    */
-  private static void parseLine(String line, StorageList list) {
+  private static void parseLine(String line, StorageList list) throws DukeException {
     String description = getDescription(line);
     String addition = getAddition(line);
     Task task;
@@ -93,5 +97,9 @@ public class FileIO {
     } else {
       return line.substring(line.indexOf(":") + 2, line.indexOf(")"));
     }
+  }
+  
+  private static void createFile(String filePath) throws IOException {
+    new File(filePath).createNewFile();
   }
 }

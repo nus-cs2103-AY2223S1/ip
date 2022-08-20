@@ -3,12 +3,16 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class Deadline extends Task{
-  public Deadline(String description, String by) {
+  public Deadline(String description, String by) throws DukeException {
     super(description);
     try {
-      this.dateTime = LocalDateTime.parse(by, Duke.getFormatter());
+      this.dateTime = LocalDateTime.parse(by, Ui.getInputFormatter());
     } catch (DateTimeParseException e) {
-      System.out.println(new DukeException("Invalid date format. Use yyyy-mm-dd HHmm.").getMessage());
+      try {
+        this.dateTime = LocalDateTime.parse(by, Ui.getOutputFormatter());
+      } catch (DateTimeParseException e2) {
+        throw new DukeException("Invalid date format. Use yyyy-mm-dd HHmm.");
+      }
     }
   }
 
@@ -18,6 +22,6 @@ public class Deadline extends Task{
    */
   @Override
   public String toString() {
-    return "[D]" + super.toString() + "(by: " + dateTime.format(DateTimeFormatter.ofPattern("HH:mm, E, MMM dd yyyy")) + ")";
+    return "[D]" + super.toString() + "(by: " + dateTime.format(Ui.getOutputFormatter()) + ")";
   }
 }
