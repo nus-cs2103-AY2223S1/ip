@@ -62,7 +62,7 @@ public class Duke {
         String description, by;
         description = getDescription(deadline, "deadline");
         by = getDate(description);
-        addDeadlineToHistory(description, by);
+        userInputHistory.addDeadlineToHistory(description, by);
         }
 
     /**
@@ -72,7 +72,7 @@ public class Duke {
     private  void handleTask(String task) throws DukeException {
         String description;
         description = getDescription(task, "todo");
-        addTaskToHistory(description);
+        userInputHistory.addTaskToHistory(description);
     }
 
     /**
@@ -102,7 +102,7 @@ public class Duke {
      * Menu handler
      * @param userInput
      */
-    private static void handleInput(String userInput) throws DukeException{
+    private void handleInput(String userInput) throws DukeException{
         CommandType command = getCommand(userInput);
         if (command == null) {
             throw new DukeException( "Enter a valid command (todo, event, deadline, list, mark, unmark, bye)\n>>");
@@ -113,13 +113,13 @@ public class Duke {
                 System.exit(0);
                 break;
             case LIST:
-                showHistory();
+                userInputHistory.showHistory();
                 break;
             case MARK:
-                markTask(getTaskNumber(userInput));
+                markTask(userInputHistory.getTaskNumber(userInput));
                 break;
             case UNMARK:
-                unmarkTask(getTaskNumber(userInput));
+                unmarkTask(userInputHistory.getTaskNumber(userInput));
                 break;
             case TODO:
                 handleTask(userInput);
@@ -131,7 +131,7 @@ public class Duke {
                 handleDeadline(userInput);
                 break;
             case DELETE:
-                deleteTask(getTaskNumber(userInput));
+                userInputHistory.deleteTask(userInputHistory.getTaskNumber(userInput));
                 break;
             default:
                 handleDeadline(userInput);
@@ -193,13 +193,14 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        greetUser();
+        Duke dukeProgram = new Duke();
+        Duke.greetUser();
         Scanner in = new Scanner(System.in);
         String s;
         while(true) {
             try {
                 s = in.nextLine();
-                handleInput(s);
+                dukeProgram.handleInput(s);
             } catch (InputMismatchException ime) {
                 System.out.print(ime);
                 System.exit(0);

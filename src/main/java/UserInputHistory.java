@@ -44,7 +44,7 @@ public class UserInputHistory {
     /**
      * Method to show history
      */
-    private void showHistory() {
+    public void showHistory() {
         int count = 1;
         System.out.print("______\n");
         System.out.println("Tasks in your list are: ");
@@ -73,7 +73,7 @@ public class UserInputHistory {
      * Delete task at index n in userInputHistory
      * @param n index to be deleted
      */
-    private  void deleteTask(int n)   {
+    public void deleteTask(int n)   {
         Task taskToModify = userInputHistory.get(n - 1);
         userInputHistory.remove(n - 1);
         System.out.printf("Task removed: \n%s\n", taskToModify);
@@ -87,7 +87,7 @@ public class UserInputHistory {
      * @param s extracts task number from user input
      * @return index of the task in the list plus one
      */
-    private int getTaskNumber(String s) throws DukeException{
+    public int getTaskNumber(String s) throws DukeException{
         // credit: https://stackoverflow.com/questions/14974033/extract-digits-from-string-stringutils-java
         String numberOnly= s.replaceAll("[^0-9]", "");
         int n;
