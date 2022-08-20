@@ -1,3 +1,8 @@
+package duke.commands;
+
+import duke.exceptions.DukeException;
+import duke.task.Task;
+
 public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
     private static final String userMessageFormat = "Removing this task!\n  %s\nNow you have %d tasks left.";

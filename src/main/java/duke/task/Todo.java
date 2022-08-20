@@ -1,3 +1,7 @@
+package duke.task;
+
+import duke.exceptions.DukeException;
+
 /**
  * Todo is a Task without any date/time attached to it.
  */

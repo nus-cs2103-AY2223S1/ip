@@ -1,3 +1,5 @@
+package duke.commands;
+
 public class CommandResult {
     private final String userMessage;
     private final boolean hasUpdates;

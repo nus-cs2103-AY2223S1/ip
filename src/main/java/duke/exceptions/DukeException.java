@@ -1,3 +1,5 @@
+package duke.exceptions;
+
 /**
  * Exception for the Duke application.
  */

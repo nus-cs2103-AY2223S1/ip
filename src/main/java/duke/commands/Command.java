@@ -1,7 +1,12 @@
+package duke.commands;
+
+import duke.exceptions.DukeException;
+import duke.task.TaskList;
+
 public abstract class Command {
     protected TaskList tasks;
 
-    protected void setData(TaskList tasks) {
+    public void setData(TaskList tasks) {
         this.tasks = tasks;
     }
 

@@ -1,3 +1,5 @@
+package duke.task;
+
 /**
  * Task is a representation of a task in Duke.
  */

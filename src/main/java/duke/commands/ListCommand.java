@@ -1,3 +1,5 @@
+package duke.commands;
+
 public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
     private static final String lineFormat = "%d: %s";

@@ -1,3 +1,8 @@
+package duke.commands;
+
+import duke.exceptions.DukeException;
+import duke.task.Deadline;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;

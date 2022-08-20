@@ -1,3 +1,7 @@
+package duke.ui;
+
+import duke.commands.CommandResult;
+
 public class Ui {
     private static final String indentation = "    ";
     private static final String horizontalLine = "____________________________________________________________";

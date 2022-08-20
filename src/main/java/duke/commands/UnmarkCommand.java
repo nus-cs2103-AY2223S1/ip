@@ -1,9 +1,14 @@
-public class MarkCommand extends Command {
-    public static final String COMMAND_WORD = "mark";
-    private static final String userMessageFormat = "Marked task %d as done!\n  %s";
+package duke.commands;
+
+import duke.exceptions.DukeException;
+import duke.task.Task;
+
+public class UnmarkCommand extends Command {
+    public static final String COMMAND_WORD = "unmark";
+    private static final String userMessageFormat = "Marked task %d as not done!\n  %s";
     private final int index;
 
-    public MarkCommand(String arguments) {
+    public UnmarkCommand(String arguments) {
         this.index = Integer.parseInt(arguments);
     }
 
@@ -15,7 +20,7 @@ public class MarkCommand extends Command {
         }
         // Subtract 1 to account for 0-index data structure.
         Task task = this.tasks.getTask(this.index - 1);
-        task.markAsDone();
+        task.markAsUndone();
         String userMessage = String.format(userMessageFormat, this.index, task);
         return new CommandResult(userMessage, true, false);
     }

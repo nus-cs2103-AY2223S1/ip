@@ -1,3 +1,8 @@
+package duke.commands;
+
+import duke.exceptions.DukeException;
+import duke.task.Todo;
+
 public class TodoCommand extends Command {
     public static final String COMMAND_WORD = "todo";
     private static final String userMessageFormat = "Added this todo!\n  %s\nNow you have %d tasks.";
