@@ -59,9 +59,9 @@ public abstract class Parser {
 
             case "event":
                 try {
-                    String description = Arrays.stream(args).takeWhile(x -> !x.contains("/")).skip(1).reduce("", (x, y) -> x + " " + y).trim();
-                    String[] timeArgument = Arrays.stream(args).dropWhile(x -> !x.contains("/")).toArray(String[]::new);
-                    if (timeArgument.length <= 1 || !timeArgument[0].equals("/at")) {
+                    String description = Arrays.stream(args).takeWhile(x -> !x.equals("/at")).skip(1).reduce("", (x, y) -> x + " " + y).trim();
+                    String[] timeArgument = Arrays.stream(args).dropWhile(x -> !x.equals("/at")).toArray(String[]::new);
+                    if (timeArgument.length <= 1) {
                         throw new DukeException("☹ OOPS!!! There is no /at argument for event :(");
                     }
                     command = new AddCommand(new Event(description, false, LocalDate.parse(timeArgument[1])));
@@ -72,9 +72,9 @@ public abstract class Parser {
 
             case "deadline":
                 try {
-                    String description = Arrays.stream(args).takeWhile(x -> !x.contains("/")).skip(1).reduce("", (x, y) -> x + " " + y).trim();
-                    String[] timeArgument = Arrays.stream(args).dropWhile(x -> !x.contains("/")).toArray(String[]::new);
-                    if (timeArgument.length <= 1 || !timeArgument[0].equals("/by")) {
+                    String description = Arrays.stream(args).takeWhile(x -> !x.equals("/by")).skip(1).reduce("", (x, y) -> x + " " + y).trim();
+                    String[] timeArgument = Arrays.stream(args).dropWhile(x -> !x.equals("/by")).toArray(String[]::new);
+                    if (timeArgument.length <= 1) {
                         throw new DukeException("☹ OOPS!!! There is no /by argument for deadline :(");
                     }
                     command = new AddCommand(new Deadline(description, false, LocalDate.parse(timeArgument[1])));

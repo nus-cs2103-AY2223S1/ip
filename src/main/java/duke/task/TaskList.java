@@ -23,7 +23,7 @@ public class TaskList {
         return tasks;
     }
 
-    public void addItem(Task item) throws DukeException {
+    public void addItem(Task item) {
         tasks.add(item);
     }
 
