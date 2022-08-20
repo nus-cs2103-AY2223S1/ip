@@ -1,3 +1,3 @@
 public enum UserCommand {
-    TASK, LIST, MARK, UNMARK, BYE
+    TODO, DEADLINE, EVENT, LIST, MARK, UNMARK, BYE
 }
