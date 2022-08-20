@@ -99,7 +99,7 @@ public class Storage {
                 contents = new StringBuilder(dataArray.get(0));
             } else {
                 contents = new StringBuilder(System.lineSeparator());
-                contents.append(dataArray.get(0));
+                contents.append(dataArray.get(counter - 1));
             }
             writer.write(contents.toString());
             writer.close();

@@ -28,6 +28,27 @@ public class TimeStamp {
         }
     }
 
+    /**
+     * Factory method for TimeStamps, meant for reading from File.
+     *
+     * @param dateTime Date and Time information in the format of (dd/MM/yyyy-HH:mm).
+     * @return TimeStamp.
+     */
+    public static TimeStamp fromFile(String dateTime) {
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("E, d MMMM yyyy h:mm a");
+        try {
+            return new TimeStamp(LocalDateTime.parse(dateTime.strip(), format));
+        } catch (DateTimeParseException e) {
+            System.out.println("fromFile failed");
+            return new TimeStamp(LocalDateTime.now());
+        }
+    }
+
+    /**
+     * Returns String Representation of a TimeStamp.
+     *
+     * @return String Representation.
+     */
     @Override
     public String toString() {
         return " " + timestamp.format(DateTimeFormatter.ofPattern("E, d MMMM yyyy h:mm a"));

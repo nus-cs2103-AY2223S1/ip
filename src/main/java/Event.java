@@ -18,6 +18,12 @@ public class Event extends Task {
         this.end = TimeStamp.of(duration[1]);
     }
 
+    private Event(String description, TimeStamp start, TimeStamp end) {
+        super(description);
+        this.start = start;
+        this.end = end;
+    }
+
     /**
      * Returns an Event constructed with data read from File.
      *
@@ -25,10 +31,10 @@ public class Event extends Task {
      * @return Event or null if data is corrupted.
      */
     public static Event readData(String[] data) {
-        if (data.length < 4) {
+        if (data.length < 5) {
             return null;
         }
-        Event newEvent = new Event(data[2], data[3]);
+        Event newEvent = new Event(data[2], TimeStamp.fromFile(data[3]), TimeStamp.fromFile(data[4]));
         if (data[1].equals("X")) {
             newEvent.setDone(true);
         }
@@ -43,7 +49,7 @@ public class Event extends Task {
     @Override
     public String writeData() {
         String symbol = this.isDone ? "X" : " ";
-        return "E|" + symbol + "|" + this.description + "|" + this.dateTime;
+        return "E|" + symbol + "|" + this.description + "|" + this.start + "|" + this.end;
     }
 
     /**

@@ -15,6 +15,11 @@ public class Deadline extends Task {
         this.dateTime = TimeStamp.of(dateTime);
     }
 
+    private Deadline(String description, TimeStamp dateTime) {
+        super(description);
+        this.dateTime = dateTime;
+    }
+
     /**
      * Returns a Deadline Task constructed with data read from File.
      *
@@ -25,7 +30,7 @@ public class Deadline extends Task {
         if (data.length < 4) {
             return null;
         }
-        Deadline newDeadline = new Deadline(data[2], data[3]);
+        Deadline newDeadline = new Deadline(data[2], TimeStamp.fromFile(data[3]));
         if (data[1].equals("X")) {
             newDeadline.setDone(true);
         }
@@ -40,7 +45,7 @@ public class Deadline extends Task {
     @Override
     public String writeData() {
         String symbol = this.isDone ? "X" : " ";
-        return "D|" + symbol + "|" + this.description + "|" + this.dateTime;
+        return "D|" + symbol + "|" + this.description + "|" + this.dateTime.toString();
     }
 
     /**
