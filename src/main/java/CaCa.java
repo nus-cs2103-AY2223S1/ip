@@ -33,7 +33,7 @@ public class CaCa {
     private static List<Task> tasks = new ArrayList<>();
 
     /**
-     * A class-level method to check if task index is valid.
+     * Checks if task index is valid.
      */
     public static void isValid(int taskIndex) throws InvalidTaskIndex {
         if (taskIndex <= 0 || taskIndex > tasks.size()) {
