@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Duke {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DukeException {
 
         //Chatbot intro segment
         String logo = " ____        _        \n"
@@ -43,24 +43,61 @@ public class Duke {
                     continue;
 
                 case "mark":
-                    taskNum = sc.nextInt();
-                    task = taskList[taskNum - 1];
-                    task.markAsDone();
-                    System.out.println("Good job (=OwO=) You finished this task! \n" + task);
-                    continue;
+                    try {
+                        taskNum = sc.nextInt();
+                        if (taskNum <= numOfInputs) {
+                            task = taskList[taskNum - 1];
+                            task.markAsDone();
+                            System.out.println("Good job (=OwO=) You finished this task! \n" + task);
+                            continue;
+                        } else {
+                            throw new DukeException("Meowmeow there isn't a task with that number uwu");
+                        }
+                    } catch (DukeException e) {
+                        System.out.println(e.message);
+                        continue;
+                    }
 
                 case "unmark":
-                    taskNum = sc.nextInt();
-                    task = taskList[taskNum - 1];
-                    task.markAsNotDone();
-                    System.out.println("uwu this task has been marked as not done... \n" + task);
-                    continue;
+                    try {
+                        taskNum = sc.nextInt();
+                        if (taskNum <= numOfInputs) {
+                            task = taskList[taskNum - 1];
+                            task.markAsNotDone();
+
+                            System.out.println("uwu this task has been marked as not done... \n" + task);
+                            continue;
+                        } else {
+                            throw new DukeException("Meowmeow there isn't a task with that number uwu");
+                        }
+
+                    } catch (DukeException e){
+                        System.out.println(e.message);
+                        continue;
+                    }
 
                 case "todo":
+                    try {
+                        userInput = sc.nextLine();
+                        if (userInput == null || userInput.equals("")) {
+                            throw new DukeException("Meowmeow needs a name for the task you want to add (=^0w0^=)");
+                        } else {
+                            Task t = new ToDos(userInput);
+                            taskList[numOfInputs] = t;
+                            numOfInputs += 1;
+
+                            System.out.println("(=^-w-^=) " + t + " has been added to your task list!\n");
+                            System.out.println("You now have " + numOfInputs + " tasks");
+                            continue;
+                        }
+                    } catch (DukeException e){
+                        System.out.println(e.message);
+                    }
                     userInput = sc.nextLine();
-                    Task t = new ToDos(userInput);
+                    Task t = new ToDos(" " + userInput);
                     taskList[numOfInputs] = t;
                     numOfInputs += 1;
+
                     System.out.println("(=^-w-^=) " + t + " has been added to your task list!\n");
                     System.out.println("You now have " + numOfInputs + " tasks");
                     continue;
@@ -72,9 +109,9 @@ public class Duke {
                     Task d = new Deadlines(splitB[0], deadline);
                     taskList[numOfInputs] = d;
                     numOfInputs += 1;
+
                     System.out.println("(=^-w-^=) " + d + " has been added to your task list!\n");
                     System.out.println("You now have " + numOfInputs + " tasks");
-                    numOfInputs += 1;
                     continue;
 
                 case "event":
@@ -84,12 +121,13 @@ public class Duke {
                     Task e = new Events(splitA[0], time);
                     taskList[numOfInputs] = e;
                     numOfInputs += 1;
+
                     System.out.println("(=^-w-^=) " + e + " has been added to your task list!\n");
                     System.out.println("You now have " + numOfInputs + " tasks");
                     continue;
 
                 case "bye":
-                    System.out.println("UwU Come back soon meowmeow misses youuuu!");
+                    System.out.println("UwU Byebyeeee! Come back soon meowmeow misses youuuu!");
                     sc.close();
                     break;
 
