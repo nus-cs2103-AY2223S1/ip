@@ -10,7 +10,19 @@ import duke.task.ToDo;
 import java.time.LocalDate;
 import java.util.Arrays;
 
+/**
+ * Deals with parsing the user input.
+ *
+ * @author Rama Aryasuta Pangestu
+ */
 public abstract class Parser {
+    /**
+     * Returns a <code>Command</code> equivalent to the user input.
+     *
+     * @param input the user input
+     * @return a <code>Command</code> equivalent to the user input
+     * @throws DukeException if the input format is invalid
+     */
     public static Command parse(String input) throws DukeException {
         String[] args = input.trim().split("\\s+");
         Command command;

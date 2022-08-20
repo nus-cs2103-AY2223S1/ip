@@ -9,9 +9,19 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Deals with loading tasks from the save file and saving tasks in the save file.
+ *
+ * @author Rama Aryasuta Pangestu
+ */
 public class Storage {
     private File saveFile;
 
+    /**
+     * Constructs a helper tool to load and save tasks to the specified file.
+     *
+     * @param filePath the path of the specified file.
+     */
     public Storage(String filePath) {
         this.saveFile = new File(filePath);
     }
@@ -49,6 +59,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Returns the tasks saved in the specified save file.
+     *
+     * @return tasks saved in the file
+     * @throws DukeException if an IO error occurs
+     */
     public ArrayList<Task> load() throws DukeException {
         ArrayList<Task> tasks = new ArrayList<Task>();
         Scanner scanner = getInputScanner(this.saveFile);
@@ -63,6 +79,12 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Saves the tasks in the task list to the save file
+     *
+     * @param taskList the task list
+     * @throws DukeException if an IO error occurs
+     */
     public void save(TaskList taskList) throws DukeException {
         ArrayList<Task> tasks = taskList.getTasks();
         PrintWriter writer = getOutputWriter(this.saveFile);
