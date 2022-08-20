@@ -1,12 +1,7 @@
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.HashSet;
 
 public class Parser {
-    private final static HashSet<String> VALID_COMMANDS = new HashSet<>(Arrays.asList(
-            "todo", "deadline", "event", "mark", "unmark", "delete", "list", "bye"));
-    
     public static LocalDateTime parseDateTime(String dateTimeString) {
         String[] dateTimeSplit = dateTimeString.split("[ T]");
         String isoDateFormat = "";
@@ -28,30 +23,33 @@ public class Parser {
     }
     public static Command parse(String fullCommand) throws DukeException, DateTimeException {
         String[] fullCommandSplit = fullCommand.split(" ", 2);
-        String command = fullCommandSplit[0];
-        String commandArgument = fullCommandSplit.length > 1 ? fullCommandSplit[1] : "";
+        String command = fullCommandSplit[0].strip();
+        String commandArgument = fullCommandSplit.length > 1 ? fullCommandSplit[1].strip() : "";
         
+        if (command.equals("")) {
+            throw new DukeException("Command cannot be empty");
+        }
         try {
             if (command.equals("todo")) {
                 if (commandArgument.length() == 0) {
                     throw new InvalidCommandFormatException(TodoCommand.getFormat());
                 }
-                return new TodoCommand(fullCommandSplit[1]);
+                return new TodoCommand(commandArgument);
             } else if (command.equals("deadline")) {
                 String[] argumentSplit = commandArgument.split(" /by ");
                 if (argumentSplit.length < 2) {
                     throw new InvalidCommandFormatException(DeadlineCommand.getFormat());
                 }
-                String description = argumentSplit[0];
-                LocalDateTime byDateTime = parseDateTime(argumentSplit[1]);
+                String description = argumentSplit[0].strip();
+                LocalDateTime byDateTime = parseDateTime(argumentSplit[1].strip());
                 return new DeadlineCommand(description, byDateTime);
             } else if (command.equals("event")) {
                 String[] argumentSplit = commandArgument.split(" /at ");
                 if (argumentSplit.length < 2) {
                     throw new InvalidCommandFormatException(EventCommand.getFormat());
                 }
-                String description = argumentSplit[0];
-                LocalDateTime atDateTime = parseDateTime(argumentSplit[1]);
+                String description = argumentSplit[0].strip();
+                LocalDateTime atDateTime = parseDateTime(argumentSplit[1].strip());
                 return new EventCommand(description, atDateTime);
             } else if (command.equals("mark") || command.equals("unmark") || command.equals("delete")) {
                 String commandFormat = command.equals("mark")
