@@ -1,3 +1,7 @@
+package duke.command;
+
+import duke.*;
+
 public class UnmarkCommand extends Command {
     private int index;
 

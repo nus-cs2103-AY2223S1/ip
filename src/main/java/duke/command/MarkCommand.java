@@ -1,15 +1,19 @@
-public class DeleteCommand extends Command {
+package duke.command;
+
+import duke.*;
+
+public class MarkCommand extends Command {
     private int index;
 
-    public DeleteCommand(int index) {
+    public MarkCommand(int index) {
         this.index = index;
     }
+
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
-        Task task = taskList.deleteTask(index);
-        ui.printWithIndent("Noted. I've removed this task:");
+        Task task = taskList.markTask(index);
+        ui.printWithIndent("Nice! I've marked this task as done:");
         ui.printWithIndent("  " + task);
-        ui.printTaskCount(taskList.taskCount());
         storage.saveFile(taskList);
     }
 }

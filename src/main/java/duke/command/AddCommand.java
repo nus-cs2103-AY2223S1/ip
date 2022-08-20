@@ -1,3 +1,7 @@
+package duke.command;
+
+import duke.*;
+
 public class AddCommand extends Command {
     private Task task;
 
