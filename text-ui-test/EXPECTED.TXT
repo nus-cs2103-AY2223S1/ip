@@ -207,6 +207,7 @@ Wrong format! To list tasks, type:
 
 Got it. I've removed this task:
    [T][ ] borrow book
+
 Now you have 7 tasks in the list.
 
 Got it. I've removed this task:
