@@ -3,7 +3,6 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Duke {
-    private static ArrayList<Task> userInputHistory = new ArrayList<>();
     enum CommandType {TODO, MARK, UNMARK, DEADLINE, EVENT, BYE, LIST, DELETE};
     private static void greetUser() {
         String logo = "_______     _\n" +
@@ -18,64 +17,7 @@ public class Duke {
         System.out.println("Where would you like to go next?");
         System.out.print(">> ");
     }
-
-    /**
-     * Method to add Task to history
-     * @param s String description to add to userInputHistory
-     */
-    private static void addTaskToHistory(String s) {
-        Task newTask = new Task(s);
-        userInputHistory.add(newTask);
-        //echo request
-        System.out.printf("Noted down: %s\n There are %d items on your list now. \n", s, userInputHistory.size());
-        System.out.print(">>");
-    }
-
-    /**
-     * Method to add Event to userInputHistory
-     * @param description
-     * @param at
-     */
-    private static void addEventToHistory(String description, String at) {
-        Event newEvent = new Event(description, at);
-        userInputHistory.add(newEvent);
-        //echo request
-        System.out.printf("Noted down: %s\n There are %d items on your list now. \n", description, userInputHistory.size());
-        System.out.print(">>");
-    }
-
-    /**
-     * Method to add Event to userInputHistory
-     * @param description
-     * @param by
-     */
-    private static void addDeadlineToHistory(String description, String by) {
-        Deadline newDeadline = new Deadline(description, by);
-        userInputHistory.add(newDeadline);
-        //echo request
-        System.out.printf("Noted down: %s\n There are %d items on your list now. \n", description, userInputHistory.size());
-        System.out.print(">>");
-    }
-
-    /**
-     * Method to show history
-     */
-    private static void showHistory() {
-        int count = 1;
-        System.out.print("______\n");
-        System.out.println("Tasks in your list are: ");
-        for (Task t: userInputHistory) {
-            System.out.printf("%d. %s\n",count, t);
-            count ++;
-        }
-        userInputHistory.forEach(input -> {
-
-        });
-        System.out.printf("Total: %d\n", userInputHistory.size());
-        System.out.print("______\n");
-        System.out.print(">>");
-    }
-
+    
     /**
      * Mark Task at index n in list.
      * No checks performed to check if task is already marked.
@@ -198,36 +140,37 @@ public class Duke {
         if (command == null) {
             throw new DukeException( "Enter a valid command (todo, event, deadline, list, mark, unmark, bye)\n>>");
         } else {
-            switch (command) {
-                case BYE:
-                    System.out.println("Thank you for swinging by :)");
-                    System.exit(0);
-                    break;
-                case LIST:
-                    showHistory();
-                    break;
-                case MARK:
-                    markTask(getTaskNumber(userInput));
-                    break;
-                    case UNMARK:
-                        unmarkTask(getTaskNumber(userInput));
-                        break;
-                case TODO:
-                    handleTask(userInput);
-                    break;
-                case EVENT:
-                    handleEvent(userInput);
-                    break;
-                case DEADLINE:
-                    handleDeadline(userInput);
-                    break;
-                case DELETE:
-                    deleteTask(getTaskNumber(userInput));
-                    break;
-                default:
-                    handleDeadline(userInput);
-                    throw new DukeException("Enter a valid command (todo, event, deadline, list, mark, unmark, bye)\n>>");
+            switch(command) {
+            case BYE:
+                System.out.println("Thank you for swinging by :)");
+                System.exit(0);
+                break;
+            case LIST:
+                showHistory();
+                break;
+            case MARK:
+                markTask(getTaskNumber(userInput));
+                break;
+            case UNMARK:
+                unmarkTask(getTaskNumber(userInput));
+                break;
+            case TODO:
+                handleTask(userInput);
+                break;
+            case EVENT:
+                handleEvent(userInput);
+                break;
+            case DEADLINE:
+                handleDeadline(userInput);
+                break;
+            case DELETE:
+                deleteTask(getTaskNumber(userInput));
+                break;
+            default:
+                handleDeadline(userInput);
+                throw new DukeException("Enter a valid command (todo, event, deadline, list, mark, unmark, bye)\n>>");
             }
+
         }
     }
 
