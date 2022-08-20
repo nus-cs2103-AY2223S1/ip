@@ -59,5 +59,13 @@ We now have 1 tasks left.
 -------------------------------------------
 Invalid command. Please try again.
 -------------------------------------------
+added: [D][ ] watch lecture (by: Aug 30 2022)
+-------------------------------------------
+added: [D][ ] submit quiz (by: Aug 23 2022 11:59 PM)
+-------------------------------------------
+1.[D][ ] return book (by: Sunday)
+2.[D][ ] watch lecture (by: Aug 30 2022)
+3.[D][ ] submit quiz (by: Aug 23 2022 11:59 PM)
+-------------------------------------------
 See you later alligator!
 -------------------------------------------

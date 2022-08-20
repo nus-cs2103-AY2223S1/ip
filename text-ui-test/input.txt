@@ -20,4 +20,7 @@ list
 delete 2
 list
 delete 3
+deadline watch lecture /by 2022-8-30
+deadline submit quiz /by 2022-8-23 2359
+list
 bye
