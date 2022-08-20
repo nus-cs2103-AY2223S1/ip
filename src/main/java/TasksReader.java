@@ -10,9 +10,6 @@ import java.util.Scanner;
 public class TasksReader {
     private String userDirectory = System.getProperty("user.dir");
 
-    TasksReader() {
-    }
-
     public ArrayList<Task> readSavedTasks() throws DukeException {
         Path dataDirectoryPath = Paths.get(userDirectory, "data");
         Path savedTasksPath = Paths.get(userDirectory, "data", "duke.txt");
