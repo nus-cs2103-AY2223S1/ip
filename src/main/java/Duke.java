@@ -4,7 +4,7 @@ public class Duke {
     final static private String GREETING = "Hello! I'm Duke\nWhat can I do for you? ^_^";
     final static private String EXIT = "\tBye. Hope to see you again soon :D";
     private enum Command {
-        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE
+        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, TASKS
     }
     final private TaskList tasks;
 
@@ -74,6 +74,8 @@ public class Duke {
                         case DELETE:
                             duke.tasks.delete(message);
                             break;
+                        case TASKS:
+                            duke.tasks.getTasks(message);
                     }
                 } catch (IllegalArgumentException e) {
                     throw new DukeException("I don't know what this means :(");

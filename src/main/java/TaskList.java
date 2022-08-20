@@ -2,6 +2,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class TaskList {
     private final ArrayList<Task> tasks;
@@ -114,6 +115,27 @@ public class TaskList {
             System.out.println(this.tasks.get(index).markAsDone());
         } else {
             System.out.println(this.tasks.get(index).markAsNotDone());
+        }
+    }
+
+    public void getTasks(String date) {
+        LocalDate parsedDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        StringBuilder stringBuilder = new StringBuilder("\tYour tasks for today include:");
+        int count = 1;
+        for (Task task : this.tasks) {
+            if (task.getTaskType().equals("D") || task.getTaskType().equals("E")){
+                if (task.getDate().equals(parsedDate)) {
+                    String formatted = String.format("\n\t%d. %s", count, task);
+                    stringBuilder.append(formatted);
+                    count++;
+                }
+            }
+        }
+        if (count == 1) {
+            System.out.println(String.format("\tNo tasks on %s",
+                    parsedDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy"))));
+        } else {
+            System.out.println(stringBuilder);
         }
     }
 }
