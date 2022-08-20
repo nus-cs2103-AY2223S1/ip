@@ -1,3 +1,8 @@
+package duke.command;
+
+import duke.*;
+import duke.task.Task;
+
 public class DeleteCommand extends Command {
   @Override
   public void execute(Ui ui, StorageList storageList) throws DukeException {

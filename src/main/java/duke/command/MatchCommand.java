@@ -1,3 +1,7 @@
+package duke.command;
+
+import duke.*;
+
 import java.time.LocalDateTime;
 
 public class MatchCommand extends Command{

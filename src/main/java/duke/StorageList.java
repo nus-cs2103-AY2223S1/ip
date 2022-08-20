@@ -1,25 +1,30 @@
+package duke;
+
+import duke.task.Deadline;
+import duke.task.Task;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * StorageList is a class that stores a list of strings
+ * duke.StorageList is a class that stores a list of strings
  */
 public class StorageList {
   private final List<Task> list = new ArrayList<>();
 
   /**
    * Adds a string to the list
-   * @param t Task to be added to the list
+   * @param t duke.task.Task to be added to the list
    */
   public void add(Task t) {
     list.add(t);
   }
 
   /**
-   * Returns the Task at the specified index
-   * @param index Index of the Task to be returned
-   * @return Task at the specified index
+   * Returns the duke.task.Task at the specified index
+   * @param index Index of the duke.task.Task to be returned
+   * @return duke.task.Task at the specified index
    * @throws DukeException Thrown when the index is out of bounds
    */
   public Task get(int index) throws DukeException {
@@ -31,8 +36,8 @@ public class StorageList {
   }
 
   /**
-   * Marks the Task at the specified index as completed
-   * @param i Index of the Task to be marked as completed
+   * Marks the duke.task.Task at the specified index as completed
+   * @param i Index of the duke.task.Task to be marked as completed
    * @throws DukeException Thrown when the index is out of bounds
    */
   public void mark(int i) throws DukeException {
@@ -44,8 +49,8 @@ public class StorageList {
   }
 
   /**
-   * Unmarks the Task at the specified index as completed
-   * @param i Index of the Task to be unmarked as completed
+   * Unmarks the duke.task.Task at the specified index as completed
+   * @param i Index of the duke.task.Task to be unmarked as completed
    * @throws DukeException Thrown when the index is out of bounds
    */
   public void unmark(int i) throws DukeException {
@@ -65,8 +70,8 @@ public class StorageList {
   }
   
   /**
-   * Deletes the Task at the specified index
-   * @param i Index of the Task to be deleted
+   * Deletes the duke.task.Task at the specified index
+   * @param i Index of the duke.task.Task to be deleted
    * @throws DukeException Thrown when the index is out of bounds
    */
   public void delete(int i) throws DukeException{

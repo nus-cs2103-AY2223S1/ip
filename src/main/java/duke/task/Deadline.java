@@ -1,5 +1,9 @@
+package duke.task;
+
+import duke.DukeException;
+import duke.Ui;
+
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class Deadline extends Task{
@@ -17,7 +21,7 @@ public class Deadline extends Task{
   }
 
   /**
-   * Returns the description of the task, with a Deadline tag
+   * Returns the description of the task, with a duke.task.Deadline tag
    * @return Description of the task.
    */
   @Override

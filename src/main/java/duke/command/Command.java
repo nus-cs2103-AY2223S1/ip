@@ -1,3 +1,9 @@
+package duke.command;
+
+import duke.DukeException;
+import duke.StorageList;
+import duke.Ui;
+
 public abstract class Command {
   protected boolean isExit = false;
 

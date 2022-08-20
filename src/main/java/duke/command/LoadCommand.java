@@ -1,3 +1,7 @@
+package duke.command;
+
+import duke.*;
+
 public class LoadCommand extends Command{
   @Override
   public void execute(Ui ui, StorageList storageList) throws DukeException {

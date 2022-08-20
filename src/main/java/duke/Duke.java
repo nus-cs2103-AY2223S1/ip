@@ -1,8 +1,6 @@
-import com.sun.source.util.TaskListener;
+package duke;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Scanner;
+import duke.command.Command;
 
 /**
  * Duke is a personal assistant Chat-bot that aims to help users to keep track of various things

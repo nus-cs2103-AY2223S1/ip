@@ -1,3 +1,7 @@
+package duke;
+
+import duke.task.Task;
+
 import java.time.LocalDateTime;
 
 /**
@@ -9,7 +13,7 @@ public enum Output{
           + "| | | | | | | |/ / _ \\\n\t "
           + "| |_| | |_| |   <  __/\n\t "
           + "|____/ \\__,_|_|\\_\\___|\n\n\t "
-          + "Hello! I'm Duke\n\t "
+          + "Hello! I'm duke.Duke\n\t "
           + "What can I do for you?\n"),
   GOODBYE ("Bye. Hope to see you again soon!\n"),
   LIST("Here are the task(s) in your list:\n"),
@@ -34,7 +38,7 @@ public enum Output{
   /**
    * Prints the enum output with the specified format
    */
-  void print() {
+  public void print() {
     echo(this.output);
   }
 
@@ -42,16 +46,16 @@ public enum Output{
    * Prints the format when a change of status has occurred
    * @param task The task where the change of status occurred
    */
-  void changeStatus(Task task) {
+  public void changeStatus(Task task) {
     echo(this.output + "\t  " + task + "\n");
   }
 
   /**
-   * Prints the format when a new Task is modified
-   * @param task Task to be modified
+   * Prints the format when a new duke.task.Task is modified
+   * @param task duke.task.Task to be modified
    * @param list List where the task is modified
    */
-  void modifyTask(Task task, StorageList list) {
+  public void modifyTask(Task task, StorageList list) {
     echo(this.output + "\t  " + task + "\n" + getNumTask(list));
   }
 
@@ -68,7 +72,7 @@ public enum Output{
    * Prints the String format of the list
    * @param list List to be printed
    */
-  void list(StorageList list) {
+  public void list(StorageList list) {
     echo(this.output + list.toString());
   }
 
@@ -77,7 +81,7 @@ public enum Output{
    * @param list List of tasks to be printed
    * @param date Date to be matched
    */
-  void listMatches(StorageList list, LocalDateTime date) {
+  public void listMatches(StorageList list, LocalDateTime date) {
     echo(this.output + list.toString(date));
   }
 
@@ -85,7 +89,7 @@ public enum Output{
    * Prints the specified output format
    * @param s String to be printed out
    */
-  static void echo(String s) {
+  public static void echo(String s) {
     System.out.println(wrapper(s));
   }
 

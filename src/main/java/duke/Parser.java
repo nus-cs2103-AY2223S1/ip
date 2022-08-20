@@ -1,4 +1,10 @@
-import java.time.LocalDateTime;
+package duke;
+
+import duke.command.*;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
 
 /**
  * Deals with making sense of the user command
@@ -60,10 +66,10 @@ public class Parser {
   }
 
   /**
-   * Parses the user input and creates a Task object
+   * Parses the user input and creates a duke.task.Task object
    * @param input User input
-   * @param command Command that the user inputs
-   * @param storageList StorageList object
+   * @param command duke.commands.Command that the user inputs
+   * @param storageList duke.StorageList object
    * @param secCommand Second command that the user inputs
    */
   public static void parseTask(String input, String command, StorageList storageList, String secCommand) {
@@ -88,9 +94,9 @@ public class Parser {
   }
 
   /**
-   * Adds a Task to the StorageList, print out the appropriate String
-   * @param task Task to be added to the StorageList
-   * @param storageList StorageList to be added to
+   * Adds a duke.task.Task to the duke.StorageList, print out the appropriate String
+   * @param task duke.task.Task to be added to the duke.StorageList
+   * @param storageList duke.StorageList to be added to
    */
   private static void addTask(Task task, StorageList storageList) {
     storageList.add(task);
@@ -98,9 +104,9 @@ public class Parser {
   }
 
   /**
-   * Finds the index of the Task that the user wants to mark/unmark/delete
+   * Finds the index of the duke.task.Task that the user wants to mark/unmark/delete
    * @param input User input
-   * @return Index of the Task
+   * @return Index of the duke.task.Task
    */
   public static int getIndex(String input) {
     return Integer.parseInt(input.split(" ")[1]) - 1;

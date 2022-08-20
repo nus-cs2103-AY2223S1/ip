@@ -1,4 +1,5 @@
-import java.time.LocalDateTime;
+package duke;
+
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
