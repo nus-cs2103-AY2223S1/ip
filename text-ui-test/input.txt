@@ -1,16 +1,52 @@
-todo read book
-deadline return book /by June 6th
-event project meeting /at Aug 6th 2-4pm
-todo join sports club
+#CORRECT_INPUTS
+TOdo read book
+deADline return book /by June 6th
+eveNt project meeting /at Aug 6th 2-4pm
+Todo go clubbing
+Event Funeral /at 243
+toDo join sports club
 todo borrow book
-mark 1
-mark 4
+mARk 1
+marK 4
 mark 5
 unmark 5
 list
-deadline return book /by Sunday
-event project meeting /at Mon 2-4pm
-deadline do homework /by no idea :-p
+deADline return book /by Sunday
+eveNt project meeting /at Mon 2-4pm
+deadlIne do homework /by no idea :-p
+Todo go to heaven
+maRK 7
+delete 7
+DelETe 8
 list
-byee
-bye
+#EMPTY_COMMAND_DESCRIPTION_ERROR
+toDo    
+EvENT
+DEADline
+marK
+unMArk
+DeleTE
+#INTEGER_INDEX_ERROR
+delEte 1000
+mArk 100
+unmark 15
+#TASK_INCORRECT_FORMAT_ERROR
+EVent /at
+DeadLINE      /by 243
+EVENT funeral /at    
+#COMMAND_NOT_RECOGNIZED_ERROR (Including Empty commands)
+eve
+
+delet
+listT
+BYEE
+#SHOULD_HAVE_NO_DESCRIPTION_ERROR
+list 78
+lisT aadasda
+#INDEX_OUT_OF_BOUNDS_ERROR
+unmark 0
+unmark -1
+MARK -100
+MARK 10000
+DELETE 20
+DelETe 1000
