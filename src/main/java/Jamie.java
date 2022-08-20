@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Duke {
+public class Jamie {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -40,7 +40,7 @@ public class Duke {
                 String textInput;
                 String byInput;
                 try {
-                    textInput = input.substring(10, end);
+                    textInput = input.substring(9, end);
                     byInput = input.substring(end + 4);
                 } catch (StringIndexOutOfBoundsException e) {
                     System.out.println("Something is missing in the description of this deadline >:(");
@@ -52,7 +52,7 @@ public class Duke {
                 String textInput;
                 String atInput;
                 try {
-                    textInput = input.substring(7, end);
+                    textInput = input.substring(6, end);
                     atInput = input.substring(end + 4);
                 } catch (StringIndexOutOfBoundsException e) {
                     System.out.println("Something is missing in the description of this event >:(");
