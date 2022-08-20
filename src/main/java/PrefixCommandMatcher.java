@@ -16,7 +16,7 @@ public class PrefixCommandMatcher extends CommandMatcher {
         super((cmd) -> cmd.strip().startsWith(prefix + " ") || cmd.strip().equals(prefix), (cmd) -> {
             cmd = cmd.strip();
             if (cmd.equals(prefix)) {
-                Duke.messagePrint("(>.<') Add a description to your " + prefix + ".");
+                Ui.messagePrint("(>.<') Add a description to your " + prefix + ".");
                 return;
             }
             String withoutPrefix = cmd.split(" ", 2)[1];
@@ -32,7 +32,7 @@ public class PrefixCommandMatcher extends CommandMatcher {
             }
             commandParts[0] = commandParts[0].strip();
             if (commandParts[0].equals("")) {
-                Duke.messagePrint("(>.<') The description for " + prefix + " shouldn't be empty.");
+                Ui.messagePrint("(>.<') The description for " + prefix + " shouldn't be empty.");
                 return;
             }
             action.accept(commandParts[0].strip(), map);

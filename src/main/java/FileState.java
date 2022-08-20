@@ -105,7 +105,7 @@ public class FileState {
             }
             writer.close();
         } catch (IOException ex) {
-            Duke.messagePrint("(>.<') I was unable to record your tasks...");
+            Ui.messagePrint("(>.<') I was unable to record your tasks...");
             ex.printStackTrace();
         }
     }

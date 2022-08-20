@@ -11,39 +11,16 @@ public class Duke {
     /** List of strings to remember */
     private static ArrayList<Task> list;
 
-    /**
-     * Styles and prints lines with a border.
-     * @param lines Lines to be printed
-     */
-    public static void messagePrint(String... lines) {
-        System.out.println(",----------------------------------------------------------------");
-        for (String str : lines) {
-            System.out.print("| ");
-            System.out.println(str);
-        }
-        System.out.println("'----------------------------------------------------------------");
-    }
-
-    private static void greet() {
-        Duke.messagePrint("...where is this again?",
-                "Oh, hello, I didn't see you there - I'm Anthea, a chatbot...",
-                "...or at least that's what they told me.");
-    }
-
-    private static void leave() {
-        Duke.messagePrint("It was nice to have you around, I'm going back to sleep...");
-    }
-
     private static Optional<Task> getTask(String index) {
         try {
             int idx = Integer.parseInt(index);
             Task task = list.get(idx - 1);
             return Optional.of(task);
         } catch (NumberFormatException ex) {
-            messagePrint("Sorry, I didn't understand " + index + ", please give me a number.");
+            Ui.messagePrint("Sorry, I didn't understand " + index + ", please give me a number.");
             return Optional.empty();
         } catch (IndexOutOfBoundsException ex) {
-            messagePrint("Sorry, the number " + index + ", wasn't in the range.");
+            Ui.messagePrint("Sorry, the number " + index + ", wasn't in the range.");
             return Optional.empty();
         }
     }
@@ -65,7 +42,7 @@ public class Duke {
             for (int i = 0; i < list.size(); i++) {
                 output[i + 1] = (i + 1) + "." + list.get(i).toString();
             }
-            Duke.messagePrint(output);
+            Ui.messagePrint(output);
         }));
 
         commands.add(new PrefixCommandMatcher("mark", (str, map) -> {
@@ -75,14 +52,14 @@ public class Duke {
                     "Marked your task as done:",
                     task.toString()
                 };
-                Duke.messagePrint(output);
+                Ui.messagePrint(output);
             });
         }));
 
         commands.add(new PrefixCommandMatcher("unmark", (str, map) -> {
             getTask(str).ifPresent((task) -> {
                 task.markAsNotDone();
-                Duke.messagePrint("Aw... it's not done yet:",
+                Ui.messagePrint("Aw... it's not done yet:",
                         task.toString());
             });
         }));
@@ -90,28 +67,28 @@ public class Duke {
         commands.add(new PrefixCommandMatcher("deadline", (str, map) -> {
             Task task = new Deadline(str, map.getOrDefault("by", "[unknown]"));
             list.add(task);
-            Duke.messagePrint("Good luck with the deadline, here's the task:",
+            Ui.messagePrint("Good luck with the deadline, here's the task:",
                     task.toString());
         }));
 
         commands.add(new PrefixCommandMatcher("todo", (str, map) -> {
             Task task = new ToDo(str);
             list.add(task);
-            Duke.messagePrint("I've recorded this thing you need to do:",
+            Ui.messagePrint("I've recorded this thing you need to do:",
                     task.toString());
         }));
 
         commands.add(new PrefixCommandMatcher("event", (str, map) -> {
             Task task = new Event(str, map.getOrDefault("at", "[unknown]"));
             list.add(task);
-            Duke.messagePrint("That's going to happen at some time later:",
+            Ui.messagePrint("That's going to happen at some time later:",
                     task.toString());
         }));
 
         commands.add(new PrefixCommandMatcher("delete", (str, map) -> {
             getTask(str).ifPresent((task) -> {
                 list.remove(task);
-                Duke.messagePrint("It seems you didn't need this task anymore, so I removed it:",
+                Ui.messagePrint("It seems you didn't need this task anymore, so I removed it:",
                         task.toString(),
                         String.format("You have %d tasks left.", list.size()));
             });
@@ -119,7 +96,7 @@ public class Duke {
 
         // default command matcher - add to list
         commands.add(new CommandMatcher((str) -> true, (str) -> {
-            Duke.messagePrint("(>.<') I'm sorry, I don't really know what that means.");
+            Ui.messagePrint("(>.<') I'm sorry, I don't really know what that means.");
         }));
     }
 
@@ -136,7 +113,7 @@ public class Duke {
      * @param args Command line args which are not used.
      */
     public static void main(String[] args) {
-        greet();
+        Ui.greet();
         initializeTaskList();
         initializeCommands();
         Scanner input = new Scanner(System.in);
@@ -150,6 +127,6 @@ public class Duke {
             }
         }
         finalizeTaskList();
-        leave();
+        Ui.leave();
     }
 }
