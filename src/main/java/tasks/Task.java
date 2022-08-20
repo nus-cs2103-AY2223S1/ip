@@ -63,14 +63,14 @@ public class Task {
   @Override
   public String toString() {
     switch (taskType) {
-      case TODO: 
-        return "[T]" + getStatusIcon() + " " + taskDescription;
-      case DEADLINE:
-        return "[D]" + getStatusIcon() + " " + taskDescription + " (by: " + dateDescription + ")";
-      case EVENT:
-        return "[E]" + getStatusIcon() + " " + taskDescription + " (at: " + dateDescription + ")";
-      default:
-        return "";
+    case TODO: 
+      return "[T]" + getStatusIcon() + " " + taskDescription;
+    case DEADLINE:
+      return "[D]" + getStatusIcon() + " " + taskDescription + " (by: " + dateDescription + ")";
+    case EVENT:
+      return "[E]" + getStatusIcon() + " " + taskDescription + " (at: " + dateDescription + ")";
+    default:
+      return "";
     }
   }
 }
