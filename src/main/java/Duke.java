@@ -1,4 +1,5 @@
 import java.io.*;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -81,6 +82,8 @@ public class Duke {
       list.add(new Deadline(input[0], status, input[1]));
 
       System.out.println("Deadline task has been added!");
+    } catch (DateTimeParseException e) {
+      System.out.println("Invalid date format!");
     } catch (DukeException e) {
       System.out.println(e.getMessage());
     }
@@ -98,6 +101,8 @@ public class Duke {
       list.add(new Event(input[0], status, input[1]));
 
       System.out.println("Event task has been added!");
+    } catch (DateTimeParseException e) {
+      System.out.println("Invalid date format!");
     } catch (DukeException e) {
       System.out.println(e.getMessage());
     }

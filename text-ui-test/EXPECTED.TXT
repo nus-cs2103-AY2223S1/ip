@@ -7,31 +7,37 @@ ______       _
 \____/ \___/|_.__/ 
 
 What can I do for you?
+Todo task has been added!
+Invalid date format!
 > Todo task has been added!
 > Deadline task has been added!
 > Event task has been added!
+> Invalid date format!
 > 1) [T][ ] hi bob
-2) [D][ ] say hi to bob (by: 10pm)
-3) [E][ ] meet bob (at: 10pm)
+2) [T][ ] hi bob
+3) [D][ ] say hi to bob (by: 2022-06-06)
+4) [E][ ] meet bob (at: 2022-06-06)
 > Task 1 is marked as done!
 > Task 1 is marked as not done!
 > Task 2 is marked as done!
 > Task 2 is marked as not done!
 > Task 3 is marked as done!
 > Task 3 is marked as not done!
-> Task 4 does not exist
-> Task 4 does not exist
+> Task 8 does not exist
+> Task 8 does not exist
 > The description cannot be empty!
 > The date cannot be empty!
 > The date cannot be empty!
 > Sorry, I don't know what do you mean by that.
 > Task 3 has been removed!
-> Task 3 does not exist
+> Task 3 is marked as done!
 > Index cannot be empty!
 > 1) [T][ ] hi bob
-2) [D][ ] say hi to bob (by: 10pm)
+2) [T][ ] hi bob
+3) [E][X] meet bob (at: 2022-06-06)
 > Task 1 is marked as done!
 > Task 2 is marked as done!
 > 1) [T][X] hi bob
-2) [D][X] say hi to bob (by: 10pm)
+2) [T][X] hi bob
+3) [E][X] meet bob (at: 2022-06-06)
 > Goodbye!

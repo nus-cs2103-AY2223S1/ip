@@ -1,6 +1,7 @@
 todo hi bob
-deadline say hi to bob /by 10pm
-event meet bob /at 10pm
+deadline say hi to bob /by 2022-06-06
+event meet bob /at 2022-06-06
+event bruh /at 12345
 list
 mark 1
 unmark 1
