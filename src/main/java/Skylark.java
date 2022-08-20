@@ -3,8 +3,31 @@ import java.util.Scanner;
 
 public class Skylark {
 
-    private static String TEXT_HELLO = "Hello, I am Skylark, how can I help you today?";
-    private static String TEXT_BYE = "Bye. Hope to see you again soon!";
+    private static final String TEXT_HELLO = "Hello, I am Skylark, how can I help you today?";
+    private static final String TEXT_BYE = "Bye. Hope to see you again soon!";
+
+    private final Scanner scan;
+    private final ArrayList<Task> taskList;
+
+    public Skylark() {
+        scan = new Scanner(System.in);
+        taskList = new ArrayList<>();
+
+        Printer.printText(Skylark.TEXT_HELLO);
+    }
+
+    public void startRunning() {
+        while (true) {
+            try {
+                boolean isEnd = Skylark.response(scan, taskList);
+                if (isEnd) {
+                    break;
+                }
+            } catch (SkylarkException exception) {
+                Printer.printText(exception.toString());
+            }
+        }
+    }
 
     private static boolean doesIndexExist(ArrayList<Task> list, int index) {
         return index >= 0 && index < list.size();
@@ -97,21 +120,7 @@ public class Skylark {
     }
 
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        ArrayList<Task> taskList = new ArrayList<>();
-
-        Printer.printText(Skylark.TEXT_HELLO);
-
-        while (true) {
-            try {
-                boolean isEnd = Skylark.response(scan, taskList);
-                if (isEnd) {
-                    break;
-                }
-            } catch (SkylarkException exception) {
-                System.out.println(exception);
-            }
-        }
-
+        Skylark skylark = new Skylark();
+        skylark.startRunning();
     }
 }
