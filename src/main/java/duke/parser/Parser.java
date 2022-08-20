@@ -1,3 +1,7 @@
+package duke.parser;
+
+import duke.exception.EmptyTodoListException;
+
 import java.time.LocalDate;
 
 public class Parser {
