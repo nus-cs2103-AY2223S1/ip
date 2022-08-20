@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 public abstract class Task {
     private final String description;
     private boolean isCompleted;
@@ -24,6 +26,8 @@ public abstract class Task {
     }
 
     public abstract String getType();
+
+    public abstract boolean isEqualDate(LocalDate date);
 
     @Override
     public String toString() {

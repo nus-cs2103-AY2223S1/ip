@@ -28,4 +28,9 @@ public class Deadline extends Task {
         );
     }
 
+    @Override
+    public boolean isEqualDate(LocalDate date) {
+        return this.date.equals(date);
+    }
+
 }
