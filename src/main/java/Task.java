@@ -7,8 +7,12 @@ public class Task {
     private String name;
     private boolean done;
     Task(String name) {
+        this(name, false);
+    }
+
+    Task(String name, boolean done) {
         this.name = name;
-        this.done = false;
+        this.done = done;
     }
 
     public void markAsDone() {
@@ -25,5 +29,13 @@ public class Task {
     @Override
     public String toString() {
         return String.format("[%c] %s", getDoneMarker(), name);
+    }
+
+    /**
+     * Get a string array representation suitable for printing to files.
+     * @return String array representation.
+     */
+    public String[] getAsStringArray() {
+        return new String[]{ "Task", name, String.valueOf(done) };
     }
 }
