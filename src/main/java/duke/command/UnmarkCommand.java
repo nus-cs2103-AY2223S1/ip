@@ -1,3 +1,9 @@
+package duke.command;
+
+import duke.FileStorage;
+import duke.task.TaskList;
+import duke.Ui;
+
 public class UnmarkCommand extends Command {
     public static final String COMMAND_WORD = "unmark";
     private int index;

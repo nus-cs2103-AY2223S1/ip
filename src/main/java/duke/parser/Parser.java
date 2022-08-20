@@ -1,3 +1,24 @@
+package duke.parser;
+
+import duke.command.Command;
+import duke.command.DeadlineCommand;
+import duke.command.DeleteCommand;
+import duke.command.DueCommand;
+import duke.command.EventCommand;
+import duke.command.ExitCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.ToDoCommand;
+import duke.command.UnmarkCommand;
+import duke.exception.InvalidDateException;
+import duke.exception.InvalidIndexException;
+import duke.exception.InvalidInputException;
+import duke.exception.MissingDescriptionException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.TaskType;
+import duke.task.ToDo;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
@@ -10,7 +31,7 @@ public class Parser {
         String[] str = input.split(" ", 2);
         String commandWord = str[0];
         Command command;
-        if (str.length == 1) {
+        if (str.length == 1 || str[1].trim().equals("")) {
             switch (commandWord) {
             case ExitCommand.COMMAND_WORD: {
                 command = new ExitCommand();
