@@ -1,0 +1,15 @@
+
+todo borrow book
+list
+deadline return book /by Sunday
+event project meeting /at Mon 2-4pm
+event
+todo
+event hello goodbye
+done 1
+deadline return to home /by idk
+delete 1
+delete 1000000000
+done kjwekjgiwe
+done 3
+bye
