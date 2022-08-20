@@ -2,8 +2,6 @@ package duke;
 
 /**
  * Represents the Main Duke program which has-a Storage, TaskList and Ui.
- *
- * @author: Jonas Png
  */
 public class Duke {
 
@@ -11,6 +9,11 @@ public class Duke {
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Class constructor for Duke program.
+     *
+     * @param filePath to store data file.
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);

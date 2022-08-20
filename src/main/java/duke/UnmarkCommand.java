@@ -3,8 +3,6 @@ package duke;
 /**
  * Encapsulate a command that allows user mark existing Tasks as not done,
  * which is-a Command.
- *
- * @author: Jonas Png
  */
 public class UnmarkCommand extends Command {
 
@@ -14,7 +12,7 @@ public class UnmarkCommand extends Command {
     /**
      * Class constructor for UnmarkCommand.
      *
-     * @param taskNumber task number to mark as not done
+     * @param taskNumber task number to mark as not done.
      */
     public UnmarkCommand(int taskNumber) {
         this.taskNumber = taskNumber;
@@ -23,9 +21,9 @@ public class UnmarkCommand extends Command {
     /**
      * Mark specified task as not done and update datafile.
      *
-     * @param tasks list of existing tasks
-     * @param ui user interface to be shown
-     * @param storage to rewrite the data file
+     * @param tasks list of existing tasks.
+     * @param ui user interface to be shown.
+     * @param storage to rewrite the data file.
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {

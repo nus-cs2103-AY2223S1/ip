@@ -3,8 +3,6 @@ package duke;
 /**
  * Encapsulate the command that allow users to delete existing task from the TaskList,
  * which is-a Command.
- *
- * @author: Jonas Png
  */
 public class DeleteCommand extends Command {
 
@@ -13,7 +11,7 @@ public class DeleteCommand extends Command {
     /**
      * Class constructor for DeleteCommand.
      *
-     * @param taskNumber number of the task to be deleted
+     * @param taskNumber number of the task to be deleted.
      */
     public DeleteCommand(int taskNumber) {
         this.taskNumber = taskNumber;
@@ -22,9 +20,9 @@ public class DeleteCommand extends Command {
     /**
      * Delete existing task int the tasklist and update the data file.
      *
-     * @param tasks list of existing tasks
-     * @param ui user interface to be shown
-     * @param storage to rewrite the data file
+     * @param tasks list of existing tasks.
+     * @param ui user interface to be shown.
+     * @param storage to rewrite the data file.
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {

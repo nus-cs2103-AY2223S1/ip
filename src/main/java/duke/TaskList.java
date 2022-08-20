@@ -5,8 +5,6 @@ import java.util.ArrayList;
 
 /**
  * Encapsulate a list that store all User's tasks.
- *
- * @author: Jonas Png
  */
 public class TaskList {
 
@@ -24,7 +22,7 @@ public class TaskList {
     /**
      * Class constructor for ToDoList with an ArrayList argument.
      *
-     * @param list arraylist of task
+     * @param list arraylist of task.
      */
     public TaskList(ArrayList<Task> list) {
         this.list = list;
@@ -34,7 +32,7 @@ public class TaskList {
     /**
      * Adds new item to list.
      *
-     * @param item new list item to be added
+     * @param item new list item to be added.
      */
     public void add(Task item) {
         list.add(item);
@@ -44,9 +42,9 @@ public class TaskList {
     /**
      * Marks item in list.
      *
-     * @param taskNumber task number that user wants to mark as done
-     * @return the task that got unmarked
-     * @throws DukeException if item number is not valid
+     * @param taskNumber task number that user wants to mark as done.
+     * @return the task that got unmarked.
+     * @throws DukeException if item number is not valid.
      */
     public Task mark(int taskNumber) throws DukeException {
         try {
@@ -60,9 +58,9 @@ public class TaskList {
     /**
      * Marks item as not done in list.
      *
-     * @param taskNumber task number that user wants to mark as not done
-     * @return the task that got unmarked
-     * @throws DukeException if task number is not valid
+     * @param taskNumber task number that user wants to mark as not done.
+     * @return the task that got unmarked.
+     * @throws DukeException if task number is not valid.
      */
     public Task unmark(int taskNumber) throws DukeException{
         try {
@@ -74,10 +72,10 @@ public class TaskList {
     }
 
     /**
-     * Delete item for list
+     * Delete item for list.
      *
-     * @param taskNumber item with the number user want to delete
-     * @return Task to be deleted
+     * @param taskNumber item with the number user want to delete.
+     * @return Task to be deleted.
      */
     public Task delete(int taskNumber) {
         Task taskToRemove = null;
@@ -92,10 +90,10 @@ public class TaskList {
     }
 
     /**
-     * Updates data file with all existing tasks
+     * Updates data file with all existing tasks.
      *
-     * @param storage storage with path to data file
-     * @throws DukeException if something went wrong with the update
+     * @param storage storage with path to data file.
+     * @throws DukeException if something went wrong with the update.
      */
     public void updateStorage(Storage storage) throws DukeException {
         storage.update(this.list);

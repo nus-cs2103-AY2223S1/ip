@@ -2,8 +2,6 @@ package duke;
 
 /**
  * Encapsulate Todo which is-a Task.
- *
- * @author: Jonas Png
  */
 public class ToDo extends Task{
 

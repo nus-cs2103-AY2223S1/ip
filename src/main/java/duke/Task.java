@@ -2,8 +2,6 @@ package duke;
 
 /**
  * Encapsulate a Task that user adds to the TaskList.
- *
- * @author: Jonas Png
  */
 public abstract class Task {
 
