@@ -1,3 +1,10 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
@@ -20,11 +27,11 @@ public class Duke {
      * @param input String input from the user.
      */
     public static void isMark(String input) {
-        // Isolate int from string input
         String numString = input.replace("mark", "")
-                .replace(" ", "");
+                .replace(" ", ""); // Isolate int from string input
         int num = Integer.parseInt(numString);
         tasks.get(num - 1).markAsDone();
+        saveToFile();
         System.out.println("Enter command:");
     }
 
@@ -55,6 +62,7 @@ public class Duke {
         String by = input.substring(input.indexOf('/') + 4);
         Task t = new Deadline(description, by);
         tasks.add(t);
+        saveToFile();
         reply(t);
     }
 
@@ -71,6 +79,7 @@ public class Duke {
         String description = input.substring(5);
         Task t = new Todo(description);
         tasks.add(t);
+        saveToFile();
         reply(t);
     }
 
@@ -88,6 +97,7 @@ public class Duke {
         String at = input.substring(input.indexOf('/') + 4);
         Task t = new Event(description, at);
         tasks.add(t);
+        saveToFile();
         reply(t);
     }
 
@@ -102,6 +112,7 @@ public class Duke {
         int num = Integer.parseInt(numString);
         System.out.println("Noted. I've removed this task:\n" + "  " + tasks.get(num - 1));
         tasks.remove(num - 1);
+        saveToFile();
         String size = Integer.toString(tasks.size());
         System.out.println("Now you have " + size + " tasks in the list.");
         System.out.println("Enter command:");
@@ -117,6 +128,87 @@ public class Duke {
         System.out.println("Got it. I've added this task:\n" + "  " + t);
         System.out.println("Now you have " + size + " tasks in the list.");
         System.out.println("Enter command:");
+    }
+
+    /**
+     * Saves the current list of tasks to "duke.txt" file.
+     */
+    public static void saveToFile() {
+        String filePath = "data\\duke.txt";
+        try {
+            FileWriter fw = new FileWriter(filePath);
+            fw.flush();
+            for (Task t : tasks) {
+                fw.write(t.toString() + "\n");
+            }
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Creates "data" folder if folder does not exist, and does nothing if
+     * folder already exists.
+     */
+    public static void createFolder() {
+        Path folder = Paths.get("data");
+        try {
+            Files.createDirectories(folder);
+        } catch (IOException e) {
+            System.err.println("Failed to create folder!" + e.getMessage());
+        }
+    }
+
+    /**
+     * Creates "duke.txt" file in "data" folder if file does not exist, and
+     * does nothing if file already exists.
+     */
+    public static void createFile() {
+        File file = new File("data\\duke.txt");
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            System.err.println("Failed to create file!" + e.getMessage());
+        }
+    }
+
+    /**
+     * Loads the data from "duke.txt" file. If file does not exist, create
+     * "data" folder and create "duke.txt" file in it.
+     */
+    public static void loadFromFile() {
+        File file = new File("data\\duke.txt");
+        try {
+            Scanner sc = new Scanner(file);
+
+            while (sc.hasNext()) {
+                String s = sc.nextLine();
+                String description;
+                char task = s.charAt(1);
+
+                if (task == 'T') {
+                    description = s.substring(7);
+                    tasks.add(new Todo(description));
+                    continue;
+                }
+
+                description = s.substring(7, s.indexOf('(') - 1);
+                String time = s.substring(s.indexOf('(') + 5, s.indexOf(')'));
+                if (task == 'D') {
+                    tasks.add(new Deadline(description, time));
+                    continue;
+                }
+
+                if (task == 'E') {
+                    tasks.add(new Event(description, time));
+                }
+
+            }
+        } catch (FileNotFoundException e) {
+            createFolder();
+            createFile();
+        }
     }
 
     /**
@@ -179,9 +271,8 @@ public class Duke {
                 continue;
             }
 
-            // Incorrect input: unknown input
             System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(" +
-                    "\nEnter command:");
+                    "\nEnter command:"); // Incorrect input: unknown input
             command = sc.nextLine();
         }
 
@@ -198,8 +289,9 @@ public class Duke {
         System.out.println("Hello! I'm Duke\n" +
                 "What can I do for you?");
 
-        // Prompt user input
-        System.out.println("Enter command:");
+        loadFromFile();
+
+        System.out.println("Enter command:"); // Prompt user input
 
         decision();
     }
