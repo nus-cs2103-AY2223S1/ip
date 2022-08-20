@@ -110,4 +110,7 @@ public class Duke {
         System.out.print("Bye. Hope to see you again soon!");
 
     }
+    /*
+    * Enumerations: currently not applicable ?
+    * */
 }
