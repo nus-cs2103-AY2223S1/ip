@@ -21,7 +21,8 @@ public class Duke {
     private static void commandParser() {
         boolean endLoop = false;
         StorageList storageList = new StorageList();
-
+        FileIO.load(storageList, "./default.txt");
+        
         while (!endLoop) {
             String input = scanner.nextLine();
             String command = input.split(" ")[0];
@@ -71,6 +72,24 @@ public class Duke {
                     } catch (DukeException e) {
                         System.out.println(e.getMessage());
                     }
+                    break;
+                case "save":
+                    String filename = "./default.txt";
+                    if (input.split(" ").length == 2) {
+                        filename = input.split(" ")[1];
+                    }
+                    
+                    Output.SAVE.print();
+                    FileIO.save(storageList, filename);
+                    break; 
+                case "load":    
+                    filename = "./default.txt";
+                    if (input.split(" ").length == 2) {
+                        filename = input.split(" ")[1];
+                    }
+                    
+                    Output.LOAD.print();
+                    FileIO.load(storageList, filename);
                     break;
                 default:
                     System.out.println(new DukeException("I'm sorry, but I don't know what that means :-(").getMessage());
@@ -129,6 +148,7 @@ public class Duke {
                     addTask(new Todo(desc), storageList);
                     break;
             }
+            FileIO.save(storageList, "./default.txt");
         } catch (DukeException e) {
             System.out.println(e.getMessage());
         }
