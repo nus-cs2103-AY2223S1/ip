@@ -6,12 +6,11 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Scanner;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 public class Henry {
 
@@ -21,6 +20,8 @@ public class Henry {
     private static final String home = System.getProperty("user.home");
     private static final Path FILE_PATH = java.nio.file.Paths.get(home, "Desktop", "henry.txt");
     private boolean isActivated;
+    private static final String DATE_FORMATTER = "dd-MM-yyyy HH:mm";
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMATTER);
 
 
     static {
@@ -65,7 +66,9 @@ public class Henry {
         List<Task> tasks = new ArrayList<>();
         while (s.hasNextLine()) {
             String line = s.nextLine();
+            System.out.println(line);
             String[] tokens = line.split("\\|");
+            System.out.println(Arrays.toString(tokens));
             Commands type;
             String description;
             LocalDateTime date = null;
@@ -86,14 +89,14 @@ public class Henry {
                 isComplete = tokens[1].trim().equals("1");
                 description = tokens[2].trim();
                 cleaned = tokens[3].replace("(by:", "").replace(")", "").trim();
-                date = parseDateTimeFromFile(cleaned.split(" ")[0], cleaned.split(" ")[1]);
+                date = parseDateTime(cleaned.split(" ")[0], cleaned.split(" ")[1]);
                 break;
             default:
                 type = Commands.EVENT;
                 isComplete = tokens[1].trim().equals("1");
                 description = tokens[2].trim();
                 cleaned = tokens[3].replace("(by:", "").replace(")", "").trim();
-                date = parseDateTimeFromFile(cleaned.split(" ")[0], cleaned.split(" ")[1]);
+                date = parseDateTime(cleaned.split(" ")[0], cleaned.split(" ")[1]);
                 break;
             }
             tasks.add(new Task(type, description, date, isComplete));
@@ -101,17 +104,10 @@ public class Henry {
         return tasks;
     }
 
-    private LocalDateTime parseDateTimeFromFile(String date, String time) {
-        String[] tokens = date.split("-");
-        String[] timeTokens = time.split(":");
-        return LocalDate.of(Integer.parseInt(tokens[0]), Integer.parseInt(tokens[1]), Integer.parseInt(tokens[2]))
-                        .atTime(Integer.parseInt(timeTokens[0]), Integer.parseInt(timeTokens[1]));
-    }
-
     private LocalDateTime parseDateTime(String date, String time) {
         String[] tokens = date.split("-");
         String[] timeTokens = time.split(":");
-        return LocalDate.of(Integer.parseInt(tokens[2]), Integer.parseInt(tokens[1]), Integer.parseInt(tokens[0]))
+        return LocalDate.of(Integer.parseInt(tokens[0]), Integer.parseInt(tokens[1]), Integer.parseInt(tokens[2]))
                         .atTime(Integer.parseInt(timeTokens[0]), Integer.parseInt(timeTokens[1]));
     }
 
@@ -211,19 +207,13 @@ public class Henry {
             int indexSlash = command.indexOf('/');
             String description = command.substring(0, indexSlash).replace("deadline", "").trim();
             String modifier = command.substring(indexSlash + 1).replace("by", "").trim();
-            String date = modifier.split(" ")[0];
-            String time = modifier.split(" ")[1];
-            LocalDateTime parsed = parseDateTime(date, time);
+            LocalDateTime parsed = LocalDateTime.parse(modifier, formatter);
             task = new Task(Commands.DEADLINE, description, parsed);
         } else if (command.matches("event (.+) /at (\\d){1,3}-(\\d){1,3}-(\\d){4} (\\d){2}:(\\d){2}")) {
             int indexSlash = command.indexOf('/');
             String description = command.substring(0, indexSlash).replace("event", "").trim();
             String modifier = command.substring(indexSlash + 1).replace("at", "").trim();
-            String date = modifier.split(" ")[0];
-            String time = modifier.split(" ")[1];
-            System.out.println(date);
-            System.out.println(time);
-            LocalDateTime parsed = parseDateTime(date, time);
+            LocalDateTime parsed = LocalDateTime.parse(modifier, formatter);
             task = new Task(Commands.EVENT, description, parsed);
         } else if (command.matches("todo (.+)")) {
             String description = command.replace("todo", "").trim();

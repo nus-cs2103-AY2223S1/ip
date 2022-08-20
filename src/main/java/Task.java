@@ -47,7 +47,7 @@ public class Task {
             return "D | " + (isDone ? 1 : 0) + " | " + description + " | (by: "
                    + date.toString().replace("T", " ") + ")";
         default:
-            return "[E]" + getStatusIcon() + " " + description + " (at: "
+            return "E |" + (isDone ? 1 : 0) + " | " + description + " | (by: "
                    + date.toString().replace("T", " ") + ")";
         }
     }
