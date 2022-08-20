@@ -1,3 +1,0 @@
-[T] | [ ] | test1
-[E] | [ ] | test2  | TEST2
-[D] | [ ] | test3  | TEST3
