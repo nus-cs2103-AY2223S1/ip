@@ -4,13 +4,13 @@ todo borrow book
 list
 deadline
 deadline return book /by
-deadline return book /by Sunday
+deadline return book /by 2000-12-12
 event
 event project meeting /at
-event project meeting /at Mon 2-4pm
+event project meeting /at 2000-10-10
 list
-deadline die /by 1st April 2100
-event hang out w/ friends /at Sat/Sun
+deadline die /by 1999-09-10
+event hang out w/ friends /at 1900-02-24
 list
 mark
 mark 2 3
@@ -32,5 +32,10 @@ delete 23
 delete 3
 list
 unmark 3
+list
+delete 1
+delete 1
+delete 1
+delete 1
 list
 bye
