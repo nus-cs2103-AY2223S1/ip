@@ -20,7 +20,7 @@ public class TaskList {
         if (!isValidIndex(taskIndex)) {
             throw new TaskIndexOutOfBoundsException(taskIndex, this.size());
         }
-        Task task = this.tasks.get(taskIndex);
+        Task task = this.tasks.get(taskIndex - 1);
         this.tasks.remove(taskIndex);
         return task;
     }
@@ -29,7 +29,7 @@ public class TaskList {
         if (!isValidIndex(taskIndex)) {
             throw new TaskIndexOutOfBoundsException(taskIndex, this.size());
         }
-        Task task = this.tasks.get(taskIndex);
+        Task task = this.tasks.get(taskIndex - 1);
         task.markAsDone();
         return task;
     }
@@ -38,7 +38,7 @@ public class TaskList {
         if (!isValidIndex(taskIndex)) {
             throw new TaskIndexOutOfBoundsException(taskIndex, this.size());
         }
-        Task task = this.tasks.get(taskIndex);
+        Task task = this.tasks.get(taskIndex - 1);
         task.unmarkAsDone();
         return task;
     }
@@ -64,6 +64,6 @@ public class TaskList {
     }
     
     public boolean isValidIndex(int index) {
-        return index >= 0 && index < this.size();
+        return index >= 1 && index <= this.size();
     }
 }

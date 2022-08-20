@@ -61,7 +61,7 @@ public class Parser {
                     throw new InvalidCommandFormatException(commandFormat);
                 }
 
-                int taskIndex = Integer.parseInt(commandArgument) - 1;
+                int taskIndex = Integer.parseInt(commandArgument);
                 return command.equals("mark")
                         ? new MarkCommand(taskIndex)
                         : command.equals("unmark")
