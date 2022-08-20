@@ -26,9 +26,13 @@ cp data.txt data/jduke.txt
 # run the program, feed commands from input.txt file and redirect the output to the ACTUAL.TXT
 java -classpath ../bin Jduke < input.txt > ACTUAL.TXT
 
+# copies the final saved data
+cp data/jduke.txt ACTUAL_DATA.TXT
+cp EXPECTED_DATA.TXT EXPECTED_DATA-UNIX.TXT
+
 # convert to UNIX format
 cp EXPECTED.TXT EXPECTED-UNIX.TXT
-dos2unix ACTUAL.TXT EXPECTED-UNIX.TXT
+#dos2unix ACTUAL.TXT EXPECTED-UNIX.TXT
 
 # delete data directory and files
 rm -rf data/
@@ -38,8 +42,16 @@ diff ACTUAL.TXT EXPECTED-UNIX.TXT
 if [ $? -eq 0 ]
 then
     echo "Test result: PASSED"
-    exit 0
 else
     echo "Test result: FAILED"
+fi
+
+diff ACTUAL_DATA.TXT EXPECTED_DATA-UNIX.TXT
+if [ $? -eq 0 ]
+then
+    echo "Data test result: PASSED"
+    exit 0
+else
+    echo "Data test result: FAILED"
     exit 1
 fi

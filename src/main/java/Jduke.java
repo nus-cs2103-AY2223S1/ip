@@ -94,7 +94,7 @@ public class Jduke {
         try {
             File file = new File("data/jduke.txt");
             Scanner sc = new Scanner(file);
-            ArrayList<String> temp = new ArrayList<>();
+            StringBuilder sb = new StringBuilder("");
             int currLine = 0;
             while (sc.hasNext()) {
                 String task = sc.nextLine();
@@ -102,12 +102,12 @@ public class Jduke {
                 if (currLine == pos) {
                     switch (type) {
                     case MARK:
-                        temp.add(String.format(
+                        sb.append(String.format(
                                 "%s | 1 | %s%n", taskParams[0], taskParams[2]
                         ));
                         break;
                     case UNMARK:
-                        temp.add(String.format(
+                        sb.append(String.format(
                                 "%s | 0 | %s%n", taskParams[0], taskParams[2]
                         ));
                         break;
@@ -115,15 +115,11 @@ public class Jduke {
                         break;
                     }
                 } else {
-                    temp.add(task + "\n");
+                    sb.append(task + "\n");
                 }
                 currLine += 1;
             }
             FileWriter fw = new FileWriter("data/jduke.txt", false);
-            StringBuilder sb = new StringBuilder("");
-            for (String task : temp) {
-                sb.append(task);
-            }
             fw.write(String.valueOf(sb));
             fw.close();
         } catch (FileNotFoundException e) {
