@@ -1,6 +1,15 @@
 package duke;
 
-import duke.command.*;
+import duke.command.ByeCommand;
+import duke.command.Command;
+import duke.command.DeadlineCommand;
+import duke.command.DeleteCommand;
+import duke.command.EventCommand;
+import duke.command.FindCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.TodoCommand;
+import duke.command.UnmarkCommand;
 
 import java.util.Arrays;
 import java.util.stream.IntStream;
@@ -22,55 +31,54 @@ public class Parser {
             throw new DukeException("Missing command");
         }
         switch (arguments[0]) {
-            case "bye":
-                return new ByeCommand();
-            case "todo":
-                if (arguments.length < 2) {
-                    throw new DukeException("Missing todo description");
-                }
-                return new TodoCommand(Parser.concatenateArguments(arguments, 1));
-            case "deadline":
-                if (arguments.length < 3) {
-                    throw new DukeException("Missing deadline description and/or deadline");
-                }
-                // Find the "/by" delimiter to get the two arguments.
-                int delimiter = Parser.findArgumentIndex(arguments, "/by");
-                return new DeadlineCommand(Parser.concatenateArguments(arguments, 1, delimiter),
-                        Parser.concatenateArguments(arguments, delimiter + 1)
-                );
-            case "event":
-                if (arguments.length < 3) {
-                    throw new DukeException("Missing event description and/or date-time");
-                }
-                delimiter = Parser.findArgumentIndex(arguments, "/at");
-                return new EventCommand(Parser.concatenateArguments(arguments, 1, delimiter),
-                        Parser.concatenateArguments(arguments, delimiter + 1)
-                );
-            case "list":
-                return new ListCommand();
-            case "find":
-                if (arguments.length < 2) {
-                    throw new DukeException("Missing search query");
-                }
-                return new FindCommand(Parser.concatenateArguments(arguments, 1));
-            case "mark":
-                if (arguments.length < 2) {
-                    throw new DukeException("Missing index");
-                }
-                return new MarkCommand(Integer.parseInt(arguments[1]) - 1); // 1-indexed
-            case "unmark":
-                if (arguments.length < 2) {
-                    throw new DukeException("Missing index");
-                }
-                return new UnmarkCommand(Integer.parseInt(arguments[1]) - 1); // 1-indexed
-            case "delete":
-                if (arguments.length < 2) {
-                    throw new DukeException("Missing index");
-                }
-                return new DeleteCommand(Integer.parseInt(arguments[1]) - 1);
-            default: {
-                throw new DukeException("Unknown command");
+        case "bye":
+            return new ByeCommand();
+        case "todo":
+            if (arguments.length < 2) {
+                throw new DukeException("Missing todo description");
             }
+            return new TodoCommand(Parser.concatenateArguments(arguments, 1));
+        case "deadline":
+            if (arguments.length < 3) {
+                throw new DukeException("Missing deadline description and/or deadline");
+            }
+            // Find the "/by" delimiter to get the two arguments.
+            int delimiter = Parser.findArgumentIndex(arguments, "/by");
+            return new DeadlineCommand(Parser.concatenateArguments(arguments, 1, delimiter),
+                    Parser.concatenateArguments(arguments, delimiter + 1)
+            );
+        case "event":
+            if (arguments.length < 3) {
+                throw new DukeException("Missing event description and/or date-time");
+            }
+            delimiter = Parser.findArgumentIndex(arguments, "/at");
+            return new EventCommand(Parser.concatenateArguments(arguments, 1, delimiter),
+                    Parser.concatenateArguments(arguments, delimiter + 1)
+            );
+        case "list":
+            return new ListCommand();
+        case "find":
+            if (arguments.length < 2) {
+                throw new DukeException("Missing search query");
+            }
+            return new FindCommand(Parser.concatenateArguments(arguments, 1));
+        case "mark":
+            if (arguments.length < 2) {
+                throw new DukeException("Missing index");
+            }
+            return new MarkCommand(Integer.parseInt(arguments[1]) - 1); // 1-indexed
+        case "unmark":
+            if (arguments.length < 2) {
+                throw new DukeException("Missing index");
+            }
+            return new UnmarkCommand(Integer.parseInt(arguments[1]) - 1); // 1-indexed
+        case "delete":
+            if (arguments.length < 2) {
+                throw new DukeException("Missing index");
+            }
+            return new DeleteCommand(Integer.parseInt(arguments[1]) - 1);
+        default:
+            throw new DukeException("Unknown command");
         }
     }
 
