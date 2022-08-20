@@ -22,9 +22,33 @@ public class UserInputHistory {
         Files.write(path, s.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
     }
 
-    private List<String> getFileLines() throws IOException {
-        List<String> lines = Files.readAllLines(path);
-        return lines;
+    private void updateUserInputHistory(String control,String command, String description, String date, int n) throws IOException {
+        switch (control) {
+        case "add" :
+            switch(command)  {
+            case "deadline":
+                userInputHistory.add(new Deadline(description, date));
+                break;
+            case "event":
+                userInputHistory.add(new Event(description, date));
+                break;
+            case "task":
+                userInputHistory.add(new Task(description));
+                break;
+        }
+            break;
+        case "remove":
+            userInputHistory.remove(n - 1);
+            break;
+        }
+    }
+
+    private void  syncUserInputHistory() throws IOException {
+        createIfDoesntExist();
+        List<String> history = Files.readAllLines(path);;
+        history.forEach(line -> {
+            userInputHistory.add();
+        });
     }
 
     /**
@@ -36,8 +60,7 @@ public class UserInputHistory {
             createIfDoesntExist();
             Task newTask = new Task(s);
             appendToFile(newTask.toString() + "\n");
-            userInputHistory.add(newTask);
-            //echo request
+            updateUserInputHistory("add", "task",s, "", -1);
             System.out.printf("Noted down: %s\n There are %d items on your list now. \n", s, userInputHistory.size());
             System.out.print(">>");
         } catch (IOException e) {
@@ -55,7 +78,7 @@ public class UserInputHistory {
             createIfDoesntExist();
             Event newEvent = new Event(description, at);
             appendToFile(newEvent.toString() + "\n");
-            userInputHistory.add(newEvent);
+            updateUserInputHistory("add", "event",description, "", -1);
             //echo request
             System.out.printf("Noted down: %s\n There are %d items on your list now. \n", description, userInputHistory.size());
             System.out.print(">>");
@@ -74,7 +97,7 @@ public class UserInputHistory {
             createIfDoesntExist();
             Deadline newDeadline = new Deadline(description, by);
             appendToFile(newDeadline.toString() + "\n");
-            userInputHistory.add(newDeadline);
+            updateUserInputHistory("add", "deadline",description, "", -1);
             //echo request
             System.out.printf("Noted down: %s\n There are %d items on your list now. \n", description, userInputHistory.size());
             System.out.print(">>");
@@ -90,25 +113,17 @@ public class UserInputHistory {
         int count = 1;
         System.out.print("______\n");
         System.out.println("Tasks in your list are: ");
-        for (Task t: userInputHistory) {
-            System.out.printf("%d. %s\n",count, t);
-            count ++;
-        }
-        userInputHistory.forEach(input -> {
-
-        });
-        System.out.printf("Total: %d\n", userInputHistory.size());
-        System.out.print("______\n");
-        System.out.print(">>");
         try {
-            List<String> history = getFileLines();
+            List<String> history = Files.readAllLines(path);;
             for (String s: history) {
-                System.out.println(s);
+                System.out.printf("%d. %s\n", count, s);
             }
         } catch (IOException e) {
             System.out.println("IOException: " + e);
         }
-
+        System.out.printf("Total: %d\n", userInputHistory.size());
+        System.out.print("______\n");
+        System.out.print(">>");
     }
 
     /**
