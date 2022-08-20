@@ -6,8 +6,6 @@ import java.time.format.DateTimeParseException;
 
 /**
  * Encapsulate Deadline which is-a Task
- *
- * @author: Jonas Png
  */
 public class Deadline extends Task {
 
@@ -34,9 +32,15 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + this.by.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+        return "[D]" + super.toString()
+                + " (by: " + this.by.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 
+    /**
+     * Class constructor for Deadline.
+     *
+     * @return string that represent this deadline object, to be stored in data file.
+     */
     @Override
     public String toStorageString() {
         return "D" + super.toStorageString() + " | " + this.by;

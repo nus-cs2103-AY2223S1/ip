@@ -4,9 +4,7 @@ import java.util.ArrayList;
 
 
 /**
- * Encapsulate the todolist that stores all user input.
- *
- * @author: Jonas Png
+ * Encapsulate a list that store all User's tasks.
  */
 public class TaskList {
 
@@ -23,6 +21,8 @@ public class TaskList {
 
     /**
      * Class constructor for ToDoList with an ArrayList argument.
+     *
+     * @param list arraylist of task.
      */
     public TaskList(ArrayList<Task> list) {
         this.list = list;
@@ -42,13 +42,14 @@ public class TaskList {
     /**
      * Marks item in list.
      *
-     * @param itemNumber item with the number user want to mark as done.
+     * @param taskNumber task number that user wants to mark as done.
      * @return the task that got unmarked.
+     * @throws DukeException if item number is not valid.
      */
-    public Task mark(int itemNumber) throws DukeException {
+    public Task mark(int taskNumber) throws DukeException {
         try {
-            list.get(itemNumber - 1).markAsDone();
-            return list.get(itemNumber - 1);
+            list.get(taskNumber - 1).markAsDone();
+            return list.get(taskNumber - 1);
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException("You do not have that item number!");
         }
@@ -57,36 +58,43 @@ public class TaskList {
     /**
      * Marks item as not done in list.
      *
-     * @param itemNumber item with the number user want to mark as not done.
+     * @param taskNumber task number that user wants to mark as not done.
      * @return the task that got unmarked.
+     * @throws DukeException if task number is not valid.
      */
-    public Task unmark(int itemNumber) throws DukeException{
+    public Task unmark(int taskNumber) throws DukeException{
         try {
-            list.get(itemNumber - 1).markAsNotDone();
-            return list.get(itemNumber - 1);
+            list.get(taskNumber - 1).markAsNotDone();
+            return list.get(taskNumber - 1);
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException("You do not have that item number!");
         }
     }
 
     /**
-     * Delete item for list
+     * Delete item for list.
      *
-     * @param itemNumber item with the number user want to delete.
-     * @return Task to be deleted
+     * @param taskNumber item with the number user want to delete.
+     * @return Task to be deleted.
      */
-    public Task delete(int itemNumber) {
-        Task itemToRemove = null;
+    public Task delete(int taskNumber) {
+        Task taskToRemove = null;
         try {
-            itemToRemove = list.get(itemNumber - 1);
-            list.remove(itemNumber - 1);
+            taskToRemove = list.get(taskNumber - 1);
+            list.remove(taskNumber - 1);
             this.length -= 1;
         } catch (IndexOutOfBoundsException e) {
             System.out.println("You do not have that item number!");
         }
-        return itemToRemove;
+        return taskToRemove;
     }
 
+    /**
+     * Updates data file with all existing tasks.
+     *
+     * @param storage storage with path to data file.
+     * @throws DukeException if something went wrong with the update.
+     */
     public void updateStorage(Storage storage) throws DukeException {
         storage.update(this.list);
     }

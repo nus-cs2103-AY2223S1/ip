@@ -1,29 +1,18 @@
 package duke;
 
 /**
- * Encapsulate the Response function of the chatbot.
- *
- * @author: Jonas Png
+ * Represents a parser that parse user command.
  */
 public class Parser {
-
-    private TaskList userList;
-
-    /**
-     * Class constructor for Response.
-     */
-    public Parser() {
-
-    }
 
     public enum userCommand {
         BYE, LIST, UNMARK, MARK, TODO, DEADLINE, EVENT, DELETE
     }
 
     /**
-     * Handles user's input into chatbot.
+     * Handles user's input into program.
      *
-     * @param input User input into chatbot.
+     * @param input User input into program.
      */
     public static Command parse(String input) throws DukeException {
         String[] inputList = input.split(" ");
@@ -55,7 +44,7 @@ public class Parser {
     }
 
     /**
-     * gets the todo description from user input.
+     * Gets the todo description from user input.
      *
      * @param inputList user input after spliting by " ".
      * @param input user input.
@@ -68,7 +57,7 @@ public class Parser {
     }
 
     /**
-     * gets the Deadline's description from user input.
+     * Gets the Deadline's description from user input.
      *
      * @param inputList user input after spliting by " ".
      * @param input user input.
@@ -82,7 +71,7 @@ public class Parser {
     }
 
     /**
-     * gets the Deadline's by from user input.
+     * Gets the Deadline's by from user input.
      *
      * @param inputList user input after spliting by " ".
      * @param input user input.
@@ -96,7 +85,7 @@ public class Parser {
     }
 
     /**
-     * gets the Event's description from user input.
+     * Gets the Event's description from user input.
      *
      * @param inputList user input after spliting by " ".
      * @param input user input.
@@ -111,7 +100,7 @@ public class Parser {
     }
 
     /**
-     * gets the Event's at from user input.
+     * Gets the Event's at from user input.
      *
      * @param inputList user input after spliting by " ".
      * @param input user input.
@@ -125,7 +114,7 @@ public class Parser {
     }
 
     /**
-     * gets the user integer input from user string input.
+     * Gets the user integer input from user string input.
      *
      * @param inputList user input after spliting by " ".
      * @throws DukeException if input list length > 2 or input list length < 2.
