@@ -1,5 +1,6 @@
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
@@ -137,6 +138,23 @@ public class Duke {
         }
     }
 
+    private static void listItemsDueOn(String[] inputs) {
+        LocalDate date = LocalDate.parse(inputs[1]);
+        for (Task task : data) {
+            if (!task.getTaskType().equals("T")) {
+                if (task.getTaskType().equals("E")) {
+                    if (LocalDate.parse(((Event)task).getAt()).equals(date)) {
+                        System.out.println(task);
+                    }
+                } else if (task.getTaskType().equals("D")) {
+                    if (LocalDate.parse(((Deadline) task).getBy()).equals(date)) {
+                        System.out.println(task);
+                    }
+                }
+            }
+        }
+    }
+
     public static void main(String[] args) {
         loadFileContents("./data", "./data/duke.txt");
         System.out.println("Hello! I'm Duke\nWhat can I do for you?");
@@ -163,6 +181,8 @@ public class Duke {
                         unMarkItem(inputs);
                     } else if (inputs[0].equals("delete")) {
                         deleteItem(inputs);
+                    } else if (inputs[0].equals("list")) {
+                        listItemsDueOn(inputs);
                     }
                 } else {
                     switch (inputs[0]) {
