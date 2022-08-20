@@ -1,7 +1,12 @@
 plugins {
     id 'java'
     id 'application'
+    id 'checkstyle'
     id 'com.github.johnrengelman.shadow' version '5.1.0'
+}
+
+checkstyle {
+    toolVersion = '10.2'
 }
 
 repositories {
@@ -18,7 +23,6 @@ test {
 
     testLogging {
         events "passed", "skipped", "failed"
-
         showExceptions true
         exceptionFormat "full"
         showCauses true
@@ -28,7 +32,7 @@ test {
 }
 
 application {
-    mainClassName = "seedu.duke.Duke"
+    mainClassName = "Duke"
 }
 
 shadowJar {
@@ -39,3 +43,4 @@ shadowJar {
 run{
     standardInput = System.in
 }
+
