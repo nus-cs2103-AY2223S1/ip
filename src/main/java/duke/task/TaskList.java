@@ -2,6 +2,7 @@ package duke.task;
 
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import duke.DukeException;
 import duke.common.Messages;
@@ -113,6 +114,16 @@ public class TaskList {
         ui.showMessages(
                 String.format(Messages.MESSAGE_TASK_UPDATE_STATUS, "not done"),
                 "  " + getTask(targetIndex));
+    }
+
+    /**
+     * Finds tasks in the task list with a keyword.
+     */
+    public void findTask(String keyword) {
+        AtomicInteger index = new AtomicInteger(1);
+        tasks.stream()
+                .filter(t -> t.toString().contains(keyword))
+                .forEach(t -> System.out.println(index.getAndIncrement() + "." + t));
     }
 
     /**

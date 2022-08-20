@@ -9,6 +9,7 @@ import duke.commands.DeadlineCommand;
 import duke.commands.DeleteCommand;
 import duke.commands.EventCommand;
 import duke.commands.ExitCommand;
+import duke.commands.FindCommand;
 import duke.commands.HelpCommand;
 import duke.commands.InvalidCommand;
 import duke.commands.ListCommand;
@@ -27,6 +28,7 @@ public class Parser {
     // any character, one or more times
     private static final Pattern TASK_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
     private static final Pattern DESCRIPTION_FORMAT = Pattern.compile("(?<description>.+)");
+    private static final Pattern FIND_FORMAT = Pattern.compile("^\\S+$");
     private static final Pattern DEADLINE_FORMAT = Pattern.compile("(?<description>.+\\S+)/by\\S+(?<dateTime>.+)");
     private static final Pattern EVENT_FORMAT = Pattern.compile("(?<description>.+\\S+)/at\\S+(?<dateTime>.+)");
 
@@ -62,6 +64,8 @@ public class Parser {
             return prepareUnmark(arguments);
         case DeleteCommand.COMMAND_WORD:
             return prepareDelete(arguments);
+        case FindCommand.COMMAND_WORD:
+            return prepareFind(arguments);
         case HelpCommand.COMMAND_WORD: // Fallthrough
         default:
             return new HelpCommand();
@@ -93,6 +97,14 @@ public class Parser {
         } catch (DukeException e) {
             return new InvalidCommand(e.getMessage());
         }
+    }
+
+    private Command prepareFind(String args) {
+        final Matcher matcher = FIND_FORMAT.matcher(args.trim());
+        if (!matcher.matches()) {
+            return new InvalidCommand(Messages.ERROR_INVALID_ARGUMENTS);
+        }
+        return new FindCommand(args);
     }
 
     private Command prepareDelete(String args) {
