@@ -1,0 +1,8 @@
+todo Read
+deadline Return /by tmr
+event Eat /at Sunday
+mark 1
+mark 2
+unmark 1
+list
+bye
