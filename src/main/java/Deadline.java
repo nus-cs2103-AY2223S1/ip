@@ -2,7 +2,7 @@
  * Handles a task with a deadline.
  */
 public class Deadline extends Task {
-    protected String datetime;
+    protected ParsedDateTime datetime;
 
     /**
      * Creates a Deadline object.
@@ -21,12 +21,12 @@ public class Deadline extends Task {
      */
     public Deadline(String description, String by, boolean done) {
         super(description, done);
-        datetime = by;
+        datetime = new ParsedDateTime(by);
     }
 
     @Override
     public String toString() {
-        return String.format("[D]%s (by: %s)", super.toString(), datetime);
+        return String.format("[D]%s (by: %s)", super.toString(), datetime.toString());
     }
 
     /**
@@ -36,6 +36,6 @@ public class Deadline extends Task {
     @Override
     public String[] getAsStringArray() {
         String[] data = super.getAsStringArray();
-        return new String[]{ "Deadline", data[1], data[2], datetime };
+        return new String[]{ "Deadline", data[1], data[2], datetime.toString() };
     }
 }

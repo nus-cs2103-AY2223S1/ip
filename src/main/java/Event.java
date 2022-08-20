@@ -2,7 +2,7 @@
  * Handles an event.
  */
 public class Event extends Task {
-    protected String datetime;
+    protected ParsedDateTime datetime;
 
     /**
      * Creates an event.
@@ -21,12 +21,12 @@ public class Event extends Task {
      */
     public Event(String description, String at, boolean done) {
         super(description, done);
-        datetime = at;
+        datetime = new ParsedDateTime(at);
     }
 
     @Override
     public String toString() {
-        return String.format("[E]%s (at: %s)", super.toString(), datetime);
+        return String.format("[E]%s (at: %s)", super.toString(), datetime.toString());
     }
 
     /**
@@ -36,6 +36,6 @@ public class Event extends Task {
     @Override
     public String[] getAsStringArray() {
         String[] data = super.getAsStringArray();
-        return new String[]{ "Event", data[1], data[2], datetime };
+        return new String[]{ "Event", data[1], data[2], datetime.toString() };
     }
 }
