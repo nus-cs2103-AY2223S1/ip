@@ -1,9 +1,9 @@
 package ren;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
+
+import org.junit.jupiter.api.Test;
 
 public class TimeStampTest {
     @Test
@@ -28,7 +28,7 @@ public class TimeStampTest {
 
     @Test
     public void fromFile_dateTime_success() {
-            TimeStamp test = TimeStamp.fromFile("Sat, 20 August 2022 10:04 PM");
-            assertEquals(" Sat, 20 August 2022 10:04 PM", test.toString());
+        TimeStamp test = TimeStamp.fromFile("Sat, 20 August 2022 10:04 PM");
+        assertEquals(" Sat, 20 August 2022 10:04 PM", test.toString());
     }
 }
