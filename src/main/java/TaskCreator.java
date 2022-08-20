@@ -58,11 +58,12 @@ public class TaskCreator {
 
             if (converter.isValidDate(dateTimeDeadline[0])) {
                 date = converter.convert(dateTimeDeadline);
+                task = new Deadline(description, date, LocalDate.parse(dateTimeDeadline[0], formatter));
             } else {
                 date = info.substring(indexOfSplit + SIZEOFPREPOSITION);
+                task = new Deadline(description, date, null);
             }
 
-            task = new Deadline(description, date, LocalDate.parse(dateTimeDeadline[0], formatter));
             break;
 
         case EVENT:
