@@ -7,8 +7,24 @@ public class Event extends Task {
      */
     protected String at;
 
+    /**
+     * Constructor method for `Event`.
+     * @param description Description of task.
+     * @param at          Deadline of task.
+     */
     public Event(String description, String at) {
         super(description);
+        this.at = at;
+    }
+
+    /**
+     * Constructor method for `Event`.
+     * @param description Description of task.
+     * @param at          Deadline of task.
+     * @param isDone      Whether task is done.
+     */
+    public Event(String description, String at, Boolean isDone) {
+        super(description, isDone);
         this.at = at;
     }
 

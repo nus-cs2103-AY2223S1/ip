@@ -7,8 +7,24 @@ public class Deadline extends Task {
      */
     protected String by;
 
+    /**
+     * Constructor method for `Deadline`.
+     * @param description Description of task.
+     * @param by          Deadline of task.
+     */
     public Deadline(String description, String by) {
         super(description);
+        this.by = by;
+    }
+
+    /**
+     * Constructor method for `Deadline`.
+     * @param description Description of task.
+     * @param by          Deadline of task.
+     * @param isDone      Whether task is done.
+     */
+    public Deadline(String description, String by, Boolean isDone) {
+        super(description, isDone);
         this.by = by;
     }
 
