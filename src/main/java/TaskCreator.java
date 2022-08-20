@@ -37,33 +37,33 @@ public class TaskCreator {
         String description;
 
         switch (type) {
-            case TODO:
-                task = new Todo(info);
-                break;
+        case TODO:
+            task = new Todo(info);
+            break;
 
-            case DEADLINE:
-                indexOfSplit = info.indexOf("/by");
-                if (indexOfSplit == -1) {
-                    return new ErrorTask("");
-                }
+        case DEADLINE:
+            indexOfSplit = info.indexOf("/by");
+            if (indexOfSplit == -1) {
+                return new ErrorTask("");
+            }
 
-                description = info.substring(0,indexOfSplit);
-                String date = info.substring(indexOfSplit + SIZEOFPREPOSITION);
+            description = info.substring(0,indexOfSplit);
+            String date = info.substring(indexOfSplit + SIZEOFPREPOSITION);
 
-                task = new Deadline(description, date);
-                break;
+            task = new Deadline(description, date);
+            break;
 
-            case EVENT:
-                indexOfSplit = info.indexOf("/at");
-                if (indexOfSplit == -1) {
-                    return new ErrorTask("");
-                }
+        case EVENT:
+            indexOfSplit = info.indexOf("/at");
+            if (indexOfSplit == -1) {
+                return new ErrorTask("");
+            }
 
-                description = info.substring(0,indexOfSplit);
-                String dateTime = info.substring(indexOfSplit + SIZEOFPREPOSITION);
+            description = info.substring(0,indexOfSplit);
+            String dateTime = info.substring(indexOfSplit + SIZEOFPREPOSITION);
 
-                task = new Event(description, dateTime);
-                break;
+            task = new Event(description, dateTime);
+            break;
         }
         return task;
     }
