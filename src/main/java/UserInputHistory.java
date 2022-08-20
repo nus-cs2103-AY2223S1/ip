@@ -5,19 +5,6 @@ import java.util.ArrayList;
 public class UserInputHistory {
     private ArrayList<Task> userInputHistory = new ArrayList<>();
 
-
-    /**
-     * Overwrites string to file given.
-     * @param filePath path of file to store text in.
-     * @param textToAdd text to overwrite file with.
-     * @throws IOException e.g. when file not found.
-     */
-    private static void writeToFile(String filePath, String textToAdd) throws IOException {
-        FileWriter fw = new FileWriter(filePath);
-        fw.write(textToAdd);
-        fw.close();
-    }
-
     /**
      * Appends string to file given.
      * @param filePath path of file to add text to.
