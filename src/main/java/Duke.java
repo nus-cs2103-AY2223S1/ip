@@ -1,4 +1,6 @@
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Duke {
@@ -74,8 +76,8 @@ public class Duke {
         addTask(todo);
     }
 
-    private void addDeadline(String description, String date) {
-        Deadline deadline = new Deadline(description, date);
+    private void addDeadline(String description, String date, String time) {
+        Deadline deadline = new Deadline(description, date, time);
         addTask(deadline);
     }
 
@@ -153,8 +155,10 @@ public class Duke {
                     throw new MissingDukeInputException(cmd);
                 }
                 String description = str2[0];
-                String date = str2[1];
-                addDeadline(description, date);
+                String[] dateTime = Arrays.copyOf(str2[1].split(" "), 2);
+                String date = dateTime[0];
+                String time = dateTime[1] == null ? "" : dateTime[1];
+                addDeadline(description, date, time);
                 break;
             }
             case "event": {
@@ -177,6 +181,9 @@ public class Duke {
         } catch (InputIndexOutOfBoundsException e) {
             printMessage("☹ OOPS!!! You " + e.getMessage()
                     + " but it doesn't exist in the list!");
+        } catch (DateTimeParseException e) {
+            printMessage("☹ OOPS!!! I can't recognise the date you just inputted :-( "
+                    + "Dates should be inputted in a 'YYYY-MM-DD HH:MM' format.");
         }
     }
 
