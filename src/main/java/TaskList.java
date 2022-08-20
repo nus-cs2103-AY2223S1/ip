@@ -1,15 +1,7 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class TaskList {
     private final ArrayList<Task> tasks;
-    final static private String DIRECTORY_PATH = "./data";
-    final static private String FILE_PATH = "./data/duke.txt";
-    final static private String TEMP_FILE_PATH = "./data/temp.txt";
 
     public TaskList() {
         this.tasks = new ArrayList<>();

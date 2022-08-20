@@ -7,7 +7,7 @@ public class Duke {
     private enum Command {
         BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE
     }
-    private TaskList tasks;
+    final private TaskList tasks;
 
     /**
      * Constructor.
