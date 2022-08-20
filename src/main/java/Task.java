@@ -1,6 +1,6 @@
 package main.java;
 
-public class Task {
+public abstract class Task {
     /**
      * Description of task.
      */
@@ -44,11 +44,20 @@ public class Task {
 
     /**
      * Override 'toString' method to return status and description of Task.
-     * @return
+     * @return [[TASK STATUS]] [TASK DESCRIPTION]
      */
     @Override
     public String toString() {
         return String.format("[%s] %s",
                 this.getStatusIcon(), this.description);
+    }
+
+    /**
+     * To produce a String with "|" delimiters for storing the task's data
+     * into a text file.
+     * @return "deadline|[COMPLETION STATUS]|[TASK DESCRIPTION]|[TASK DEADLINE]
+     */
+    public String toFileFormat() {
+        return this.isDone + "|" + this.description;
     }
 }
