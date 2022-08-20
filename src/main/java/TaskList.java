@@ -26,6 +26,18 @@ public class TaskList {
         }
     }
 
+    public String getTasks() {
+        int index = 0;
+        Task item;
+        String result = "";
+        while (index < taskList.size()) {
+            item = taskList.get(index);
+            result += ((index + 1) + "." + item.toString() + "\n");
+            index++;
+        }
+        return result;
+    }
+
     public void mark(int index) {
         taskList.get(index).markAsDone();
         Messages.mark();
