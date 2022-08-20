@@ -37,33 +37,33 @@ public class Duke {
     public static void detectCommand(CommandLine typeOfCommandLine, String userInput) {
         try {
             switch (typeOfCommandLine) {
-                case BYE:
-                    ui.exit();
-                    break;
-                case LIST:
-                    ui.list(taskList);
-                    break;
-                case MARK:
-                    Commands.mark(userInput, taskList);
-                    break;
-                case UNMARK:
-                    Commands.unmark(userInput, taskList);
-                    break;
-                case DEADLINE:
-                    Commands.deadline(userInput, taskList);
-                    break;
-                case EVENT:
-                    Commands.event(userInput, taskList);
-                    break;
-                case TODO:
-                    Commands.toDo(userInput, taskList);
-                    break;
-                case DELETE:
-                    Commands.delete(userInput, taskList);
-                    break;
-                default:
-                    ui.commandDoesNotExist();
-                    break;
+            case BYE:
+                ui.exit();
+                break;
+            case LIST:
+                ui.list(taskList);
+                break;
+            case MARK
+                Commands.mark(userInput, taskList);
+                break;
+            case UNMARK:
+                Commands.unmark(userInput, taskList);
+                break;
+            case DEADLINE:
+                Commands.deadline(userInput, taskList);
+                break;
+            case EVENT:
+                Commands.event(userInput, taskList);
+                break;
+            case TODO:
+                Commands.toDo(userInput, taskList);
+                break;
+            case DELETE:
+                Commands.delete(userInput, taskList);
+                break;
+            default:
+                ui.commandDoesNotExist();
+                break;
             }
         } catch (DukeException e) {
             ui.errorMessage(e);
