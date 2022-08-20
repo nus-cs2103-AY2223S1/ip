@@ -1,5 +1,8 @@
-read book
+todo read book
 list
 todo buy book
+list
 deadline sell book /by Sunday
+list
 event project meeting /at Mon 2-4pm
+list
