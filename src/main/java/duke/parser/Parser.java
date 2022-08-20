@@ -4,11 +4,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import duke.DukeException;
-import duke.commands.ByeCommand;
 import duke.commands.Command;
 import duke.commands.DeadlineCommand;
 import duke.commands.DeleteCommand;
 import duke.commands.EventCommand;
+import duke.commands.ExitCommand;
 import duke.commands.HelpCommand;
 import duke.commands.InvalidCommand;
 import duke.commands.ListCommand;
@@ -17,6 +17,9 @@ import duke.commands.TodoCommand;
 import duke.commands.UnmarkCommand;
 import duke.common.Messages;
 
+/**
+ * Parses user input.
+ */
 public class Parser {
 
     // commandWord arguments (. - matches any character, * - zero or more times)
@@ -27,6 +30,12 @@ public class Parser {
     private static final Pattern DEADLINE_FORMAT = Pattern.compile("(?<description>.+\\S+)/by\\S+(?<dateTime>.+)");
     private static final Pattern EVENT_FORMAT = Pattern.compile("(?<description>.+\\S+)/at\\S+(?<dateTime>.+)");
 
+    /**
+     * Parses user input into command for execution.
+     *
+     * @param userInput full user input string
+     * @return the command based on the user input
+     */
     public Command parseCommand(String userInput) {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
@@ -39,8 +48,8 @@ public class Parser {
         switch (command) {
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
-        case ByeCommand.COMMAND_WORD:
-            return new ByeCommand();
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
         case TodoCommand.COMMAND_WORD:
             return prepareTodo(arguments);
         case DeadlineCommand.COMMAND_WORD:

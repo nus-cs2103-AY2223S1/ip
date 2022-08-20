@@ -1,5 +1,8 @@
 package duke.task;
 
+/**
+ * Represents a task.
+ */
 public abstract class Task {
 
     protected final String description;

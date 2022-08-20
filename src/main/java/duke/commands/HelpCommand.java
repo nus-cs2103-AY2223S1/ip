@@ -4,6 +4,9 @@ import duke.storage.StorageFile;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/**
+ * Displays each command and their usages.
+ */
 public class HelpCommand extends Command {
 
     public static final String COMMAND_WORD = "help";
@@ -22,7 +25,7 @@ public class HelpCommand extends Command {
                 DeleteCommand.MESSAGE_USAGE,
                 ListCommand.MESSAGE_USAGE,
                 HelpCommand.MESSAGE_USAGE,
-                ByeCommand.MESSAGE_USAGE
+                ExitCommand.MESSAGE_USAGE
         );
     }
 }

@@ -4,9 +4,12 @@ import duke.storage.StorageFile;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
-public class ByeCommand extends Command {
+/**
+ * Terminates the program.
+ */
+public class ExitCommand extends Command {
 
-    public static final String COMMAND_WORD = "bye";
+    public static final String COMMAND_WORD = "exit";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Exits Duke.\n"
             + "Example: " + COMMAND_WORD;
