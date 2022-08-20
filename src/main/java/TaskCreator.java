@@ -1,3 +1,6 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class TaskCreator {
     /**
      * Main class to create new Task
@@ -48,9 +51,18 @@ public class TaskCreator {
             }
 
             description = info.substring(0,indexOfSplit);
-            String date = info.substring(indexOfSplit + SIZEOFPREPOSITION);
+            String[] dateTimeDeadline = info.substring(indexOfSplit + SIZEOFPREPOSITION).split(" ");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-M-d");
+            DateTimeConverter converter = new DateTimeConverter(formatter);
+            String date;
 
-            task = new Deadline(description, date);
+            if (converter.isValidDate(dateTimeDeadline[0])) {
+                date = converter.convert(dateTimeDeadline);
+            } else {
+                date = info.substring(indexOfSplit + SIZEOFPREPOSITION);
+            }
+
+            task = new Deadline(description, date, LocalDate.parse(dateTimeDeadline[0], formatter));
             break;
 
         case EVENT:
@@ -60,9 +72,9 @@ public class TaskCreator {
             }
 
             description = info.substring(0,indexOfSplit);
-            String dateTime = info.substring(indexOfSplit + SIZEOFPREPOSITION);
+            String dateTimeEvent = info.substring(indexOfSplit + SIZEOFPREPOSITION);
 
-            task = new Event(description, dateTime);
+            task = new Event(description, dateTimeEvent);
             break;
         }
         return task;
