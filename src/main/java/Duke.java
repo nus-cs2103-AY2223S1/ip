@@ -1,47 +1,63 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 public class Duke {
+
+
+//
+//
+//    public void start(){
+//        Scanner input = new Scanner(System.in);
+//
+//        System.out.println("What are your commands sir:");
+//    }
+//
+//    public static void main(String[] args) {
+//        start();
+//    }
+
+
+
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         System.out.println("What are your commands sir:");
-        String[] arr = new String[100];
-        char[] markArr = new char[100];
-        char[] eventTypeArr = new char[100];
+
+        ArrayList<DukeTask> tasklist = new ArrayList<>();
+
+//        String[] arr = new String[100];
+//        char[] markArr = new char[100];
+//        char[] eventTypeArr = new char[100];
         boolean pred = true;
-        int i = 0;
+//        int i = 0;
 
-        while(pred){
-            if (input.hasNext()){
+        while(pred) {
+            if (input.hasNext()) {
                 String str = input.nextLine();
-
-                if (str.contains("list")) {
-                    System.out.println("list items -");
-                    for (int j = 0; j < i; j++){
-                        if (arr[j] == null) {continue;}
-                        System.out.println("List " + j + ". [" + eventTypeArr[j] + "][" + markArr[j] + "] " + arr[j]);
+                if (str.startsWith("list")) {
+                    System.out.println("You requested to view your schedule:");
+                    for (int j = 0; j < tasklist.size(); j++) {
+                        System.out.println(String.format("List %d: ", j) + tasklist.get(j).toString());
                     }
-                } else if (str.contains("blah")) {
-                    System.out.println("Sorry, I don't know what that means");
-                } else if (str.contains("bye")) {
+                } else if (str.startsWith("bye")) {
                     System.out.println("Bye. Hope to see you again");
                     pred = false;
-                } else if (str.startsWith("mark")){
+
+                } else if (str.startsWith("mark")) {
 //                    System.out.println(str.substring(5));
-                    try{
+                    try {
                         int j = Integer.valueOf(str.substring(5));
-                        markArr[j] = 'X';
+                        tasklist.get(j).isMarked = true;
                         System.out.println("Nice! I've marked this task as done:");
-                        System.out.println("List " + j + ". [" + eventTypeArr[j] + "][" + markArr[j] + "] " + arr[j]);
+                        System.out.println(String.format("List %d: ", j) + tasklist.get(j).toString());
                     } catch (Exception e) {
                         System.out.println("Something went wrong, here's the error message cuz im lazy to figure it out for you: " + e);
                     }
 
 
-
                 } else if (str.startsWith("unmark")) {
                     int j = Integer.valueOf(str.substring(7));
-                    markArr[j] = ' ';
+                    tasklist.get(j).isMarked = false;
                     System.out.println("Got it. I've mark this task as not done:");
-                    System.out.println("List " + j + ". [" + eventTypeArr[j] + "][" + markArr[j] + "] " + arr[j]);
+                    System.out.println(String.format("List %d: ", j) + tasklist.get(j).toString());
 
                 } else if (str.startsWith("todo")) {
                     try {
@@ -50,12 +66,10 @@ public class Duke {
                             System.out.println("Oops, todo can't be empty");
                             continue;
                         }
-                        arr[i] = str;
-                        markArr[i] = ' ';
-                        eventTypeArr[i] = 'T';
+                        DukeTask t = new DukeTask(str, false, 'T');
+                        tasklist.add(t);
                         System.out.println("Got it. I've added this task:");
-                        System.out.println("List " + i + ". [" + eventTypeArr[i] + "][" + markArr[i] + "] " + arr[i]);
-                        i++;
+                        System.out.println(String.format("List %d: ", tasklist.size() - 1) + t.toString());
                     } catch (StringIndexOutOfBoundsException e) {
                         System.out.println("Oops, todo can't be empty");
                     } catch (Exception e) {
@@ -66,45 +80,40 @@ public class Duke {
 
                 } else if (str.startsWith("deadline")) {
                     str = str.substring(9);
-                    arr[i] = str.substring(0, str.indexOf('/')) + '(' + str.substring(str.indexOf('/') + 1) + ')';
-                    markArr[i] = ' ';
-                    eventTypeArr[i] = 'D';
+                    String s = str.substring(0, str.indexOf('/')) + '(' + str.substring(str.indexOf('/') + 1) + ')';
+                    DukeTask t = new DukeTask(s, false, 'D');
+                    tasklist.add(t);
                     System.out.println("Got it. I've added this task:");
-                    System.out.println("List " + i + ". [" + eventTypeArr[i] + "][" + markArr[i] + "] " + arr[i]);
-                    i++;
+                    System.out.println(String.format("List %d: ", tasklist.size() - 1) + t.toString());
 
                 } else if (str.startsWith("event")) {
                     str = str.substring(6);
-                    arr[i] = str.substring(0, str.indexOf('/')) + '(' + str.substring(str.indexOf('/') + 1) + ')';
-                    markArr[i] = ' ';
-                    eventTypeArr[i] = 'E';
+                    String s = str.substring(0, str.indexOf('/')) + '(' + str.substring(str.indexOf('/') + 1) + ')';
+                    DukeTask t = new DukeTask(s, false, 'E');
+                    tasklist.add(t);
                     System.out.println("Got it. I've added this task:");
-                    System.out.println("List " + i + ". [" + eventTypeArr[i] + "][" + markArr[i] + "] " + arr[i]);
-                    i++;
+                    System.out.println(String.format("List %d: ", tasklist.size() - 1) + t.toString());
 
                 } else if (str.startsWith("delete")) {
 //                    System.out.println(str.substring(5));
                     try {
                         int j = Integer.valueOf(str.substring(7));
-                        arr[j] = null;
                         System.out.println("Alight! I've deleted this task for you:");
-                        System.out.println("List " + j + ". [" + eventTypeArr[j] + "][" + markArr[j] + "] " + arr[j]);
+                        System.out.println(String.format("List %d: ", j) + tasklist.get(j).toString());
+                        tasklist.remove(j);
+
                     } catch (Exception e) {
                         System.out.println("Something went wrong, here's the error message cuz im lazy to figure it out for you: " + e);
                     }
 
 
                 } else {
-                    System.out.println("Storing this text in the list (type unspecified):");
-                    arr[i] = str;
-                    markArr[i] = ' ';
-                    eventTypeArr[i] = '?';
-                    i++;
+                    System.out.println("Sorry, I don't know what that means");
 
                 }
             }
-
         }
+
 //
 //        String logo = " ____        _        \n"
 //                    + "|  _ \\ _   _| | _____ \n"
