@@ -1,6 +1,13 @@
+import java.time.DateTimeException;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+
 
 import static java.lang.Integer.parseInt;
 
@@ -64,8 +71,8 @@ public class Duke {
             } else if (echo.equals("todo") || (echo.startsWith("todo") && echo.substring(5).isBlank())) {
                     throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
             } else if (echo.startsWith("todo") && Character.isWhitespace(echo.charAt(4))) {
-                    System.out.println("Got it. I've added this task:");
                     tasks.add(new ToDo(echo));
+                    System.out.println("Got it. I've added this task:");
                     System.out.println(tasks.get(tasks.size() - 1) + "\nNow you have " + tasks.size() +
                             " tasks in the list.");
                 //System.out.println("_________________________________________________\nadded: " + echo + "\n" +
@@ -76,8 +83,12 @@ public class Duke {
                 if (!echo.contains("/by")) {
                     throw new DukeException("☹ OOPS!!! Please use the correct format!");
                 } else {
+                    try {
+                        tasks.add(new Deadline(echo));
+                    } catch (DateTimeParseException e) {
+                        throw new DukeException("☹ OOPS!!! Please use the correct date format!");
+                    }
                     System.out.println("Got it. I've added this task:");
-                    tasks.add(new Deadline(echo));
                     System.out.println(tasks.get(tasks.size() - 1) + "\nNow you have " + tasks.size() +
                             " tasks in the list.");
                 }
@@ -87,8 +98,12 @@ public class Duke {
                 if (!echo.contains("/at")) {
                     throw new DukeException("☹ OOPS!!! Please use the correct format!");
                 } else {
+                    try {
+                        tasks.add(new Event(echo));
+                    } catch (DateTimeParseException e) {
+                        throw new DukeException("☹ OOPS!!! Please use the correct date format!");
+                    }
                     System.out.println("Got it. I've added this task:");
-                    tasks.add(new Event(echo));
                     System.out.println(tasks.get(tasks.size() - 1) + "\nNow you have " + tasks.size() +
                             " tasks in the list.");
                 }
