@@ -5,9 +5,9 @@ public class Event extends Task {
 
     protected LocalDate at;
 
-    public Event(String description, String at) {
+    public Event(String description, LocalDate at) {
         super(description);
-        this.at = LocalDate.parse(at);
+        this.at = at;
     }
 
     @Override
@@ -16,6 +16,6 @@ public class Event extends Task {
     }
     @Override
     public String getSaveString() {
-        return "E | " + (isDone ? "1 | " : "0 | " + this.description + " | " + this.at);
+        return "E | " + (isDone ? "1 | " : "0 | ") + this.description + " | " + this.at;
     }
 }
