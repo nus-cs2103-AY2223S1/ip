@@ -1,18 +1,30 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Event extends Task {
-    protected String at;
+    protected LocalDateTime dateTime;
 
     public Event(String description, String at) {
         super(description);
-        this.at = at;
+        String[] dateTimeSplit = at.split(" ");
+        String isoDateFormat = "";
+        if (dateTimeSplit.length == 1) {
+            isoDateFormat = String.format("%sT23:59",dateTimeSplit[0]);
+        } else {
+            isoDateFormat = String.format("%sT%s", dateTimeSplit[0], dateTimeSplit[1]);
+        }
+        this.dateTime= LocalDateTime.parse(isoDateFormat);
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + at + ")";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy, HH:mm");
+        String formattedDateTime = this.dateTime.format(formatter);
+        return String.format("[E]%s (by: %s)", super.toString(), formattedDateTime);
     }
 
     @Override
     public String toFileFormatString() {
-        return "E" + super.toFileFormatString() + description + "|" + at;
+        return "E" + super.toFileFormatString() + description + "|" + dateTime;
     }
 }
