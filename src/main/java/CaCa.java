@@ -77,6 +77,10 @@ public class CaCa {
         System.out.println("Bye. Hope to see you again soon!\n" + LINE);
     }
 
+    public static void toDo() {
+
+    }
+
     /**
      * Displays a list of all the tasks stored in CaCa.
      */
@@ -149,28 +153,29 @@ public class CaCa {
             // Detect user command, where 1st element is the type of task to be done,
             // 2nd element is the task description with or without date/time.
             String[] command = input.split(" ", 2);
+            String taskType = command[0];
 
             // Prints the line after each user input.
             System.out.print(LINE);
 
             try {
-                if (command[0].isBlank()) {
+                if (taskType.isBlank()) {
                     throw new EmptyInputException("OOPS!!! You have entered an empty input.");
 
-                } else if (command[0].equals("bye")) {
+                } else if (taskType.equals("bye")) {
                     bye();
                     break;
 
-                } else if (command[0].equals("list")) {
+                } else if (taskType.equals("list")) {
                     listTasks();
 
-                } else if (command[0].equals("mark")) {
+                } else if (taskType.equals("mark")) {
                     markTask(command);
 
-                } else if (command[0].equals("unmark")) {
+                } else if (taskType.equals("unmark")) {
                     unmarkTask(command);
 
-                } else if (command[0].equals("delete")) {
+                } else if (taskType.equals("delete")) {
                     int taskIndex = Integer.parseInt(command[1]);
                     isValid(taskIndex);
                     Task taskToMark = tasks.get(taskIndex - 1);
@@ -179,19 +184,19 @@ public class CaCa {
                     System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
                     System.out.println(LINE);
 
-                } else if (command[0].equals("todo") || command[0].equals("deadline") || command[0].equals("event")) {
+                } else if (taskType.equals("todo") || taskType.equals("deadline") || taskType.equals("event")) {
                     Task taskToAdd = null;
 
                     // Checks whether description is empty or contains only white spaces.
                     if (command.length == 1 || command[1].isBlank()) {
-                        String message = String.format("OOPS!!! The description of %s cannot be empty.", command[0]);
+                        String message = String.format("OOPS!!! The description of %s cannot be empty.", taskType);
                         throw new EmptyInputException(message);
 
-                    } else if (command[0].equals("todo")) {
-                        String description = command[1];
-                        taskToAdd = new Todo(description);
+                    } else if (taskType.equals("todo")) {
+                        String taskDescription = command[1];
+                        taskToAdd = new Todo(taskDescription);
 
-                    } else if (command[0].equals("deadline")) {
+                    } else if (taskType.equals("deadline")) {
                         String[] detailedCommand = command[1].split(" /by ", 2);
                         if (detailedCommand.length == 1) {
                             String message = "OOPS!!! Details missing! "
