@@ -7,6 +7,11 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    public Task(String description, int status) {
+        this.description = description;
+        this.isDone = status == 1;
+    }
+
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
     }
@@ -17,6 +22,11 @@ public abstract class Task {
 
     public void markAsUndone() {
         isDone = false;
+    }
+
+    public String parseToSaveData() {
+        int isDoneNum = isDone ? 1 : 0;
+        return isDoneNum + "|" + description;
     }
 
     @Override
