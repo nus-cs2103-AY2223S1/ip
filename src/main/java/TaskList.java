@@ -22,6 +22,9 @@ public class TaskList {
 
     @Override
     public String toString() {
+        if (tasks.isEmpty()) {
+            return "You have no tasks currently.";
+        }
         String result = "";
         for (int i = 0; i < tasks.size(); i++) {
             result += (i + 1) + "." + tasks.get(i);
