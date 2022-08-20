@@ -54,28 +54,28 @@ public class Duke {
     public void addTask(String cmd) {
         try {
             String type = cmd.split(" ")[0];
-            boolean added = false;
+            boolean isAdded = false;
             int sizePrev = tasks.size();
             switch (type) {
-                case "todo":
-                    addTodo(cmd);
-                    added = sizePrev != tasks.size();
-                    break;
+            case "todo":
+                addTodo(cmd);
+                isAdded = sizePrev != tasks.size();
+                break;
 
-                case "deadline":
-                    addDeadline(cmd);
-                    added = sizePrev != tasks.size();
-                    break;
+            case "deadline":
+                addDeadline(cmd);
+                isAdded = sizePrev != tasks.size();
+                break;
 
-                case "event":
-                    addEvent(cmd);
-                    added = sizePrev != tasks.size();
-                    break;
+            case "event":
+                addEvent(cmd);
+                isAdded = sizePrev != tasks.size();
+                break;
 
-                default:
-                    throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+            default:
+                throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
-            if (added) {
+            if (isAdded) {
                 String content;
                 Task task = tasks.get(tasks.size() - 1);
                 content = INDENT + "Got it. I've added this task:\n";
@@ -187,7 +187,8 @@ public class Duke {
                 curr.unmarkTask();
                 msg(INDENT + "OK, I've marked this task as not done yet:\n" + INDENT + "  " + curr + "\n");
             } else {
-                msg(INDENT + "This task has not been done in the first place.\n" + INDENT + "  " + curr + "\n");
+                msg(INDENT + "This task has not been done in the first place.\n" + INDENT + "  " +
+                        curr + "\n");
             }
         } catch (DukeException e) {
             msg(INDENT + e.getMessage() + "\n");
