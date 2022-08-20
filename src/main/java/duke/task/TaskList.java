@@ -1,7 +1,14 @@
+package duke.task;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import duke.Ui;
+
+/**
+ * Holds the list of tasks
+ */
 public class TaskList {
     /** List of tasks to remember */
     private static ArrayList<Task> taskList = new ArrayList<>();
@@ -15,9 +22,9 @@ public class TaskList {
     }
 
     /**
-     * Get task from index as string
-     * @param index the index as a string
-     * @return Optional.of(task) if successful, else Optional.empty()
+     * Get task from index as string.
+     * @param index Index as a string.
+     * @return Optional.of(task) if successful, else Optional.empty().
      */
     public static Optional<Task> getTask(String index) {
         try {

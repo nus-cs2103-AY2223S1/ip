@@ -1,3 +1,5 @@
+package duke.task;
+
 /**
  * A class that stores something to do.
  */
@@ -32,6 +34,6 @@ public class ToDo extends Task {
     @Override
     public String[] getAsStringArray() {
         String[] data = super.getAsStringArray();
-        return new String[]{ "ToDo", data[1], data[2] };
+        return new String[]{ "duke.tasks.ToDo", data[1], data[2] };
     }
 }

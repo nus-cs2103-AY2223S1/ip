@@ -1,3 +1,5 @@
+package duke;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -17,7 +19,12 @@ public class ParsedDateTime {
 
     private Optional<LocalDateTime> parsedDateTime;
     private String input;
-    ParsedDateTime(String input) {
+
+    /**
+     * Creates an object to handle if the date/time can be parsed.
+     * @param input String that may represent date/time.
+     */
+    public ParsedDateTime(String input) {
         this.input = input;
         parsedDateTime = Optional.empty();
         for (DateTimeFormatter formatter : formatters) {

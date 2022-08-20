@@ -1,3 +1,7 @@
+package duke.task;
+
+import duke.ParsedDateTime;
+
 /**
  * Handles an event.
  */
@@ -36,6 +40,6 @@ public class Event extends Task {
     @Override
     public String[] getAsStringArray() {
         String[] data = super.getAsStringArray();
-        return new String[]{ "Event", data[1], data[2], datetime.toString() };
+        return new String[]{ "duke.tasks.Event", data[1], data[2], datetime.toString() };
     }
 }

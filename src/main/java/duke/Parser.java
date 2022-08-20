@@ -1,8 +1,12 @@
+package duke;
+
+import duke.task.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Handles creating commands through CommandMatcher/PrefixCommandMatcher.
+ * Handles creating commands through duke.CommandMatcher/duke.PrefixCommandMatcher.
  */
 public class Parser {
 
