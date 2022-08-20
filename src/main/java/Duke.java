@@ -5,23 +5,39 @@ import java.util.Scanner;
 
 public class Duke {
     public static void main(String[] args) {
-        List<String> storage = new ArrayList<>();
+        List<Task> storage = new ArrayList<>();
         System.out.println("Hello! I'm Duke\nWhat can I do for you?");
         Scanner scanner = new Scanner(System.in);
-        while (scanner.hasNextLine()) {
-            String command = scanner.nextLine();
-            if (command.equals("bye")) {
-                System.out.println("Bye. Hope to see you again soon!");
+        UserInput: while (scanner.hasNextLine()) {
+            UserCommand command = UserCommand.valueOf(scanner.next().toUpperCase());
+            switch(command) {
+            case TASK:
+                String taskDescription = scanner.nextLine().strip();
+                storage.add(new Task(taskDescription));
+                System.out.println("added: " + taskDescription);
                 break;
-            } else if (command.equals("list")) {
-                ListIterator<String> listIterator = storage.listIterator();
+            case LIST:
+                System.out.println("Here are the tasks in your list:");
+                ListIterator<Task> listIterator = storage.listIterator();
                 while (listIterator.hasNext()) {
                     System.out.println(listIterator.nextIndex() + 1 + ". " + listIterator.next());
                 }
-            } else {
-                storage.add(command);
-                System.out.println("added: " + command);
+                break;
+            case MARK:
+                int markIndex = scanner.nextInt();
+                storage.get(markIndex - 1).markAsDone();
+                break;
+            case UNMARK:
+                int unmarkIndex = scanner.nextInt();
+                storage.get(unmarkIndex - 1).markAsUndone();
+                break;
+            case BYE:
+                System.out.println("Bye. Hope to see you again soon!");
+                break UserInput;
+            default:
+                System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
         }
+        scanner.close();
     }
 }
