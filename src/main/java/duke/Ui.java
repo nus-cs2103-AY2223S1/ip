@@ -129,6 +129,11 @@ public class Ui {
         System.out.println(message);
     }
 
+    /**
+     * Handles user interface for showing matching tasks.
+     *
+     * @param tasks list of matching tasks to show.
+     */
     public void showFilteredList(TaskList tasks) {
         System.out.println("Here are the matching tasks in your list:");
         System.out.println(tasks);

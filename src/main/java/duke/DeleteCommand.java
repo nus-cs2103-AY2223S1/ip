@@ -23,6 +23,7 @@ public class DeleteCommand extends Command {
      * @param tasks list of existing tasks.
      * @param ui user interface to be shown.
      * @param storage to rewrite the data file.
+     * @throws DukeException if something went wrong with the update of data file.
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
