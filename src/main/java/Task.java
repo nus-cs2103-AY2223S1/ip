@@ -23,7 +23,7 @@ public class Task {
     public String toString() {
         switch (type) {
             case TODO:
-                return "[T]" + getStatusIcon() + description;
+                return "[T]" + getStatusIcon() + " " + description;
             case DEADLINE:
                 return "[D]" + getStatusIcon() + " " + description + " (by: " +
                        modifier + ")";
