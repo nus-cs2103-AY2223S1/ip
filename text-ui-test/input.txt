@@ -1,5 +1,5 @@
 todo borrow book
-deadline return book /by Sunday
+deadline return book /by 2019-10-15 1800
 event project meeting /at Mon 2-4pm
 mark 1
 mark 2
@@ -18,4 +18,5 @@ save
 save ./save/test.txt
 load 
 list
+date 2019-10-15 1800
 bye

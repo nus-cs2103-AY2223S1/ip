@@ -1,3 +1,5 @@
+import java.time.LocalDateTime;
+
 /**
  * Enum for the various different outputs that the Chat-bot can give.
  */
@@ -16,7 +18,8 @@ public enum Output{
   ADD("Got it. I've added this task:\n"),
   DELETE("Noted. I've removed this task:\n"),
   SAVE("Saving...\n"),
-  LOAD("Loading...\n");
+  LOAD("Loading...\n"),
+  DATE("These tasks matches the date:\n");
 
   private String output = "";
 
@@ -67,6 +70,15 @@ public enum Output{
    */
   void list(StorageList list) {
     echo(this.output + list.toString());
+  }
+
+  /**
+   * Prints the String representation of the list of tasks that matches the specified date
+   * @param list List of tasks to be printed
+   * @param date Date to be matched
+   */
+  void listMatches(StorageList list, LocalDateTime date) {
+    echo(this.output + list.toString(date));
   }
 
   /**
