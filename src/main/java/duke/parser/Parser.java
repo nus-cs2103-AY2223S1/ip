@@ -23,6 +23,10 @@ public abstract class Parser {
                 command = new ListCommand();
                 break;
 
+            case "find":
+                command = new FindCommand(Arrays.stream(args).skip(1).reduce("", (x, y) -> x + " " + y).trim());
+                break;
+
             case "mark":
                 try {
                     command = new MarkCommand(Integer.parseInt(args[1]) - 1);

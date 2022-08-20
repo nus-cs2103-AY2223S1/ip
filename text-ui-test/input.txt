@@ -73,6 +73,10 @@ list
 delete 1
 list
 
+find
+find is
+find NaN
+
 delete -1
 delete 0
 delete 10000000000
