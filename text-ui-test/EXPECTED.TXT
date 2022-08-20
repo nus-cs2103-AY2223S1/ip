@@ -1,0 +1,385 @@
+	            __                  __           __                  __
+	           |  |____    _____   |  |_____    |  |____    _____   |  |_____
+	           |   ___/   /     \  |        \   |   ___/   /     \  |        \
+	           |  |      |  / \  | |   / \   |  |  |      |  / \  | |   / \   |
+	           |  \_____ |  \ /  | |   \ /   |  |  \_____ |  \ /  | |   \ /   |
+	            \______/  \_____/   \_______/    \______/  \_____/   \_______/
+	
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Tob Tob! Who's there?
+	What do you want Tob Tob to do for you today?
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#CORRECT_INPUTS
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Oopsieee! Command "#correct_inputs" is not in Tob Tob Dictionary
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+TOdo read book
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Wiii! Now Tob Tob's brain has more stuffs
+	[T][ ] read book
+	
+	Abrakadabraaa! Here's what's inside Tob Tob's Brain:
+	1.[T][ ] read book
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+deADline return book /by June 6th
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Wiii! Now Tob Tob's brain has more stuffs
+	[D][ ] return book (by: June 6th)
+	
+	Abrakadabraaa! Here's what's inside Tob Tob's Brain:
+	1.[T][ ] read book
+	2.[D][ ] return book (by: June 6th)
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+eveNt project meeting /at Aug 6th 2-4pm
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Wiii! Now Tob Tob's brain has more stuffs
+	[E][ ] project meeting (at: Aug 6th 2-4pm)
+	
+	Abrakadabraaa! Here's what's inside Tob Tob's Brain:
+	1.[T][ ] read book
+	2.[D][ ] return book (by: June 6th)
+	3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Todo go clubbing
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Wiii! Now Tob Tob's brain has more stuffs
+	[T][ ] go clubbing
+	
+	Abrakadabraaa! Here's what's inside Tob Tob's Brain:
+	1.[T][ ] read book
+	2.[D][ ] return book (by: June 6th)
+	3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+	4.[T][ ] go clubbing
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Event Funeral /at 243
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Wiii! Now Tob Tob's brain has more stuffs
+	[E][ ] Funeral (at: 243)
+	
+	Abrakadabraaa! Here's what's inside Tob Tob's Brain:
+	1.[T][ ] read book
+	2.[D][ ] return book (by: June 6th)
+	3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+	4.[T][ ] go clubbing
+	5.[E][ ] Funeral (at: 243)
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+toDo join sports club
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Wiii! Now Tob Tob's brain has more stuffs
+	[T][ ] join sports club
+	
+	Abrakadabraaa! Here's what's inside Tob Tob's Brain:
+	1.[T][ ] read book
+	2.[D][ ] return book (by: June 6th)
+	3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+	4.[T][ ] go clubbing
+	5.[E][ ] Funeral (at: 243)
+	6.[T][ ] join sports club
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+todo borrow book
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Wiii! Now Tob Tob's brain has more stuffs
+	[T][ ] borrow book
+	
+	Abrakadabraaa! Here's what's inside Tob Tob's Brain:
+	1.[T][ ] read book
+	2.[D][ ] return book (by: June 6th)
+	3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+	4.[T][ ] go clubbing
+	5.[E][ ] Funeral (at: 243)
+	6.[T][ ] join sports club
+	7.[T][ ] borrow book
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+mARk 1
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Yoohooo! Tob Tob has marked this task as done:
+	[T][X] read book
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+marK 4
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Yoohooo! Tob Tob has marked this task as done:
+	[T][X] go clubbing
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+mark 5
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Yoohooo! Tob Tob has marked this task as done:
+	[E][X] Funeral (at: 243)
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+unmark 5
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Saddd! Tob Tob has marked this task as not done yet:
+	[E][ ] Funeral (at: 243)
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+list
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Abrakadabraaa! Here's what's inside Tob Tob's Brain:
+	1.[T][X] read book
+	2.[D][ ] return book (by: June 6th)
+	3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+	4.[T][X] go clubbing
+	5.[E][ ] Funeral (at: 243)
+	6.[T][ ] join sports club
+	7.[T][ ] borrow book
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+deADline return book /by Sunday
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Wiii! Now Tob Tob's brain has more stuffs
+	[D][ ] return book (by: Sunday)
+	
+	Abrakadabraaa! Here's what's inside Tob Tob's Brain:
+	1.[T][X] read book
+	2.[D][ ] return book (by: June 6th)
+	3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+	4.[T][X] go clubbing
+	5.[E][ ] Funeral (at: 243)
+	6.[T][ ] join sports club
+	7.[T][ ] borrow book
+	8.[D][ ] return book (by: Sunday)
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+eveNt project meeting /at Mon 2-4pm
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Wiii! Now Tob Tob's brain has more stuffs
+	[E][ ] project meeting (at: Mon 2-4pm)
+	
+	Abrakadabraaa! Here's what's inside Tob Tob's Brain:
+	1.[T][X] read book
+	2.[D][ ] return book (by: June 6th)
+	3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+	4.[T][X] go clubbing
+	5.[E][ ] Funeral (at: 243)
+	6.[T][ ] join sports club
+	7.[T][ ] borrow book
+	8.[D][ ] return book (by: Sunday)
+	9.[E][ ] project meeting (at: Mon 2-4pm)
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+deadlIne do homework /by no idea :-p
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Wiii! Now Tob Tob's brain has more stuffs
+	[D][ ] do homework (by: no idea :-p)
+	
+	Abrakadabraaa! Here's what's inside Tob Tob's Brain:
+	1.[T][X] read book
+	2.[D][ ] return book (by: June 6th)
+	3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+	4.[T][X] go clubbing
+	5.[E][ ] Funeral (at: 243)
+	6.[T][ ] join sports club
+	7.[T][ ] borrow book
+	8.[D][ ] return book (by: Sunday)
+	9.[E][ ] project meeting (at: Mon 2-4pm)
+	10.[D][ ] do homework (by: no idea :-p)
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Todo go to heaven
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Wiii! Now Tob Tob's brain has more stuffs
+	[T][ ] go to heaven
+	
+	Abrakadabraaa! Here's what's inside Tob Tob's Brain:
+	1.[T][X] read book
+	2.[D][ ] return book (by: June 6th)
+	3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+	4.[T][X] go clubbing
+	5.[E][ ] Funeral (at: 243)
+	6.[T][ ] join sports club
+	7.[T][ ] borrow book
+	8.[D][ ] return book (by: Sunday)
+	9.[E][ ] project meeting (at: Mon 2-4pm)
+	10.[D][ ] do homework (by: no idea :-p)
+	11.[T][ ] go to heaven
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+maRK 7
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Yoohooo! Tob Tob has marked this task as done:
+	[T][X] borrow book
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+delete 7
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Ewww! This task is no longer in Tob Tob's Brain:
+	
+	[T][X] borrow book
+	Abrakadabraaa! Here's what's inside Tob Tob's Brain:
+	1.[T][X] read book
+	2.[D][ ] return book (by: June 6th)
+	3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+	4.[T][X] go clubbing
+	5.[E][ ] Funeral (at: 243)
+	6.[T][ ] join sports club
+	7.[D][ ] return book (by: Sunday)
+	8.[E][ ] project meeting (at: Mon 2-4pm)
+	9.[D][ ] do homework (by: no idea :-p)
+	10.[T][ ] go to heaven
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+DelETe 8
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Ewww! This task is no longer in Tob Tob's Brain:
+	
+	[E][ ] project meeting (at: Mon 2-4pm)
+	Abrakadabraaa! Here's what's inside Tob Tob's Brain:
+	1.[T][X] read book
+	2.[D][ ] return book (by: June 6th)
+	3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+	4.[T][X] go clubbing
+	5.[E][ ] Funeral (at: 243)
+	6.[T][ ] join sports club
+	7.[D][ ] return book (by: Sunday)
+	8.[D][ ] do homework (by: no idea :-p)
+	9.[T][ ] go to heaven
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+list
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Abrakadabraaa! Here's what's inside Tob Tob's Brain:
+	1.[T][X] read book
+	2.[D][ ] return book (by: June 6th)
+	3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+	4.[T][X] go clubbing
+	5.[E][ ] Funeral (at: 243)
+	6.[T][ ] join sports club
+	7.[D][ ] return book (by: Sunday)
+	8.[D][ ] do homework (by: no idea :-p)
+	9.[T][ ] go to heaven
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#EMPTY_COMMAND_DESCRIPTION_ERROR
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Oopsieee! Command "#empty_command_description_error" is not in Tob Tob Dictionary
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+toDo
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Oopsieee! Command description cannot be empty
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+EvENT
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Oopsieee! Command description cannot be empty
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+DEADline
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Oopsieee! Command description cannot be empty
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+marK
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Oopsieee! Command description cannot be empty
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+unMArk
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Oopsieee! Command description cannot be empty
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+DeleTE
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Oopsieee! Command description cannot be empty
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#INTEGER_INDEX_ERROR
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Oopsieee! Command "#integer_index_error" is not in Tob Tob Dictionary
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+delEte 1000
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Oopsieee! There are only 9 tasks in Tob Tob Brain.
+	Index should be a positive number and less than 9.
+	To see the task list, input "list"
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+mArk 100
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Oopsieee! There are only 9 tasks in Tob Tob Brain.
+	Index should be a positive number and less than 9.
+	To see the task list, input "list"
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+unmark 15
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Oopsieee! There are only 9 tasks in Tob Tob Brain.
+	Index should be a positive number and less than 9.
+	To see the task list, input "list"
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#TASK_INCORRECT_FORMAT_ERROR
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Oopsieee! Command "#task_incorrect_format_error" is not in Tob Tob Dictionary
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+EVent /at
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Oopsieee! Task name and datetime format is incorrect.
+	Please indicate task name and datetime separated using " /at " for event
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+DeadLINE      /by 243
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Oopsieee! Task name and datetime format is incorrect.
+	Please indicate task name and datetime separated using " /by " for deadline
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+EVENT funeral /at
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Oopsieee! Task name and datetime format is incorrect.
+	Please indicate task name and datetime separated using " /at " for event
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#COMMAND_NOT_RECOGNIZED_ERROR (Including Empty commands)
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Oopsieee! Command "#command_not_recognized_error" is not in Tob Tob Dictionary
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+eve
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Oopsieee! Command "eve" is not in Tob Tob Dictionary
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Oopsieee! Command "" is not in Tob Tob Dictionary
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+delet
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Oopsieee! Command "delet" is not in Tob Tob Dictionary
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+listT
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Oopsieee! Command "listt" is not in Tob Tob Dictionary
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+BYEE
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Oopsieee! Command "byee" is not in Tob Tob Dictionary
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#SHOULD_HAVE_NO_DESCRIPTION_ERROR
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Oopsieee! Command "#should_have_no_description_error" is not in Tob Tob Dictionary
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+list 78
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Oopsieee! Command "list" shouldn't have any description
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+lisT aadasda
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Oopsieee! Command "list" shouldn't have any description
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#INDEX_OUT_OF_BOUNDS_ERROR
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Oopsieee! Command "#index_out_of_bounds_error" is not in Tob Tob Dictionary
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+unmark 0
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Oopsieee! There are only 9 tasks in Tob Tob Brain.
+	Index should be a positive number and less than 9.
+	To see the task list, input "list"
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+unmark -1
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Oopsieee! There are only 9 tasks in Tob Tob Brain.
+	Index should be a positive number and less than 9.
+	To see the task list, input "list"
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+MARK -100
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Oopsieee! There are only 9 tasks in Tob Tob Brain.
+	Index should be a positive number and less than 9.
+	To see the task list, input "list"
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+MARK 10000
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Oopsieee! There are only 9 tasks in Tob Tob Brain.
+	Index should be a positive number and less than 9.
+	To see the task list, input "list"
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+DELETE 20
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Oopsieee! There are only 9 tasks in Tob Tob Brain.
+	Index should be a positive number and less than 9.
+	To see the task list, input "list"
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+DelETe 1000
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Oopsieee! There are only 9 tasks in Tob Tob Brain.
+	Index should be a positive number and less than 9.
+	To see the task list, input "list"
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
