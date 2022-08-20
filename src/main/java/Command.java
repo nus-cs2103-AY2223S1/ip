@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public abstract class Command {
 
     private final String input;
@@ -30,11 +28,7 @@ public abstract class Command {
         }
     }
 
-    public abstract void run(ArrayList<Task> taskList) throws SkylarkException;
-
-    private static boolean doesIndexExist(ArrayList<Task> list, int index) {
-        return index >= 0 && index < list.size();
-    }
+    public abstract void run(TaskList taskList) throws SkylarkException;
 
     public String getInput() {
         return this.input;
@@ -48,7 +42,7 @@ public abstract class Command {
         }
 
         @Override
-        public void run(ArrayList<Task> taskList) {
+        public void run(TaskList taskList) {
             Printer.printText(ByeCommand.TEXT);
         }
     }
@@ -59,7 +53,7 @@ public abstract class Command {
         }
 
         @Override
-        public void run(ArrayList<Task> taskList) {
+        public void run(TaskList taskList) {
             Printer.printText("Here are the tasks in your list:");
             for (int i = 0; i < taskList.size(); i++) {
                 Task currentTask = taskList.get(i);
@@ -74,9 +68,9 @@ public abstract class Command {
         }
 
         @Override
-        public void run(ArrayList<Task> taskList) throws SkylarkException {
+        public void run(TaskList taskList) throws SkylarkException {
             int index = Integer.parseInt(super.getInput().substring(5)) - 1;
-            if (Command.doesIndexExist(taskList, index)) {
+            if (taskList.doesIndexExist(index)) {
                 Task currentTask = taskList.get(index);
                 currentTask.markAsDone();
                 Printer.printText("Nice! I've marked this task as done:");
@@ -93,9 +87,9 @@ public abstract class Command {
         }
 
         @Override
-        public void run(ArrayList<Task> taskList) throws SkylarkException {
+        public void run(TaskList taskList) throws SkylarkException {
             int index = Integer.parseInt(super.getInput().substring(7)) - 1;
-            if (Command.doesIndexExist(taskList, index)) {
+            if (taskList.doesIndexExist(index)) {
                 Task currentTask = taskList.get(index);
                 currentTask.markAsUndone();
                 Printer.printText("OK, I've marked this task as not done yet:");
@@ -112,7 +106,7 @@ public abstract class Command {
         }
 
         @Override
-        public void run(ArrayList<Task> taskList) throws SkylarkException {
+        public void run(TaskList taskList) throws SkylarkException {
             if (super.getInput().equals(CommandList.COMMAND_TODO.toString())) {
                 throw new ToDoException("☹ OOPS!!! The description of a todo cannot be empty.");
             }
@@ -130,7 +124,7 @@ public abstract class Command {
         }
 
         @Override
-        public void run(ArrayList<Task> taskList) throws SkylarkException {
+        public void run(TaskList taskList) throws SkylarkException {
             String command = super.getInput();
             int slashIndex = command.lastIndexOf("/");
             String desc = command.substring(9, slashIndex - 1);
@@ -153,7 +147,7 @@ public abstract class Command {
         }
 
         @Override
-        public void run(ArrayList<Task> taskList) throws SkylarkException {
+        public void run(TaskList taskList) throws SkylarkException {
             String command = super.getInput();
             int slashIndex = command.lastIndexOf("/");
             String desc = command.substring(6, slashIndex - 1);
@@ -176,10 +170,10 @@ public abstract class Command {
         }
 
         @Override
-        public void run(ArrayList<Task> taskList) throws SkylarkException {
+        public void run(TaskList taskList) throws SkylarkException {
             String command = super.getInput();
             int index = Integer.parseInt(command.substring(7)) - 1;
-            if (Command.doesIndexExist(taskList, index)) {
+            if (taskList.doesIndexExist(index)) {
                 Task currentTask = taskList.get(index);
                 taskList.remove(index);
                 Printer.printText("Noted. I've removed this task:");
@@ -199,7 +193,7 @@ public abstract class Command {
         }
 
         @Override
-        public void run(ArrayList<Task> taskList) throws SkylarkException {
+        public void run(TaskList taskList) throws SkylarkException {
             throw new SkylarkException(TEXT);
         }
     }

@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Skylark {
@@ -6,11 +5,11 @@ public class Skylark {
     private static final String TEXT_HELLO = "Hello, I am Skylark, how can I help you today?";
 
     private final Scanner scan;
-    private final ArrayList<Task> taskList;
+    private final TaskList taskList;
 
     public Skylark() {
         this.scan = new Scanner(System.in);
-        this.taskList = new ArrayList<>();
+        this.taskList = new TaskList("data/text.txt");
 
         Printer.printText(Skylark.TEXT_HELLO);
     }
@@ -28,7 +27,7 @@ public class Skylark {
         }
     }
 
-    private boolean response(Scanner scan, ArrayList<Task> taskList) throws SkylarkException {
+    private boolean response(Scanner scan, TaskList taskList) throws SkylarkException {
         String input = scan.nextLine();
         Command command = Command.createCommand(input);
         command.run(taskList);
