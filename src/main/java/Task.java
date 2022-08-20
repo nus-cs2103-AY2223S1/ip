@@ -25,12 +25,10 @@ abstract class Task {
 
     public void markDone() {
         isDone = true;
-        System.out.println(this);
     }
 
     public void markUndone() {
         isDone = false;
-        System.out.println(this);
     }
 
     @Override

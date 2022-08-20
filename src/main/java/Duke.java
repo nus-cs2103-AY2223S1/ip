@@ -1,5 +1,8 @@
-import java.util.Scanner;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Duke {
     private enum Commands {
@@ -18,9 +21,11 @@ public class Duke {
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|";
-    private final static String greeting
-            = "Hello! I'm Duke.\n"
-            + "What can I do for you?";
+    private final static String greeting1
+            = "Hello! I'm Duke.";
+    private final static String greeting2
+            = "What can I do for you?";
+    private static String saveFilePath;
 
     private ArrayList<Task> history = new ArrayList<>();
     private Scanner commandInput;
@@ -102,10 +107,11 @@ public class Duke {
         } else if (isNumber(returnedArray[1])) {
             int taskId = Integer.parseInt(returnedArray[1]) - 1;
             if (history.size() <= taskId || taskId < 0) {
-                throw new DukeException("that task you want to delete does not exist."
-                        + "\nUse the [list] command to check what tasks are available.");
+                throw new DukeException("that task you want to delete does not exist." +
+                        "\nUse the [list] command to check what tasks are available.");
             } else {
-                System.out.println("Understood. I will purge this task from your list:\n" + history.get(taskId) +
+                System.out.println("Understood. I will purge this task from your list:\n" +
+                        history.get(taskId) +
                         "\nCurrently, you have " + (history.size() - 1) + " tasks in your list.");
                 history.remove(taskId);
             }
@@ -150,6 +156,7 @@ public class Duke {
             } else {
                 System.out.println("Good Job! I will mark this task as done:");
                 history.get(taskId).markDone();
+                System.out.println(history.get(taskId));
             }
         } else {
             throw new DukeException("your command is incorrect." +
@@ -172,6 +179,7 @@ public class Duke {
             } else {
                 System.out.println("Alright, I will mark this task as undone:");
                 history.get(taskId).markUndone();
+                System.out.println(history.get(taskId));
             }
         } else {
             throw new DukeException("your command is incorrect." +
@@ -187,6 +195,7 @@ public class Duke {
         return Commands.invalid;
     }
 
+    //Extra method not in project specs
     private void listCommands() {
         System.out.println("These are the commands I know.");
         for (Commands e : Commands.values()) {
@@ -230,6 +239,100 @@ public class Duke {
         }
     }
 
+    private void saveDuke() throws IOException {
+        File save = new File(saveFilePath);
+        FileWriter saveWriter = new FileWriter(save);
+        String saveString = "";
+
+        for (int i = 0; i < history.size(); i++) {
+            saveString += history.get(i) + "\n";
+        }
+        saveWriter.write(saveString);
+        saveWriter.flush();
+        saveWriter.close();
+    }
+
+    private void loadToDo(boolean taskWasDone, String taskDesc) {
+        ToDo todo = new ToDo("todo " + taskDesc);
+        if (taskWasDone) {
+            todo.markDone();
+        } else {
+            todo.markUndone();
+        }
+        history.add(todo);
+    }
+
+    private void loadDeadline(boolean taskWasDone, String taskDesc) {
+        String[] deadlineSpecifics = taskDesc.split(" \\(by: ");
+        Deadline deadline = new Deadline(deadlineSpecifics[0], deadlineSpecifics[1].substring(0, deadlineSpecifics[1].length() - 1));
+        if (taskWasDone) {
+            deadline.markDone();
+        } else {
+            deadline.markUndone();
+        }
+        history.add(deadline);
+    }
+
+    private void loadEvent(boolean taskWasDone, String taskDesc) {
+        String[] eventSpecifics = taskDesc.split(" \\(at: ");
+        Event event = new Event(eventSpecifics[0], eventSpecifics[1].substring(0, eventSpecifics[1].length() - 1));
+        if (taskWasDone) {
+            event.markDone();
+        } else {
+            event.markUndone();
+        }
+        history.add(event);
+    }
+
+    private void loadTaskDifferentiator(String data) throws DukeException {
+        String taskType = data.substring(0, 3);
+        boolean taskWasDone = data.startsWith("[X]", 4);
+        String taskDesc = data.substring(8);
+        switch (taskType) {
+        case "[T]":
+            loadToDo(taskWasDone, taskDesc);
+            break;
+        case "[D]":
+            loadDeadline(taskWasDone, taskDesc);
+            break;
+        case "[E]":
+            loadEvent(taskWasDone, taskDesc);
+            break;
+        default:
+            throw new DukeException("I seem to forgotten what tasks you have asked me to remember." +
+                    "Do you know where I left my notes?");
+        }
+        return ;
+    }
+
+    private void loadDuke() throws IOException {
+        File dataDir = new File(System.getProperty("user.dir") + "\\data");
+        File savesDir = new File(System.getProperty("user.dir") + "\\data\\saves");
+        if (!dataDir.exists()) {
+            dataDir.mkdir();
+        }
+        if (!savesDir.exists()) {
+            savesDir.mkdir();
+        }
+
+        File save = new File(saveFilePath);
+        if (save.exists()) {
+            Scanner sc = new Scanner(save);
+            while (sc.hasNextLine()) {
+                try {
+                    String command = sc.nextLine();
+                    loadTaskDifferentiator(command);
+                } catch (DukeException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+            listOut();
+            sc.close();
+        } else {
+            System.out.println("It appears this is our first meeting.");
+        }
+    }
+
     //For single-word commands
     private void inputCommand(String command) throws DukeException {
         String[] returnedArray = command.split(" ");
@@ -239,53 +342,60 @@ public class Duke {
         } else {
             Commands word = checkEnums(returnedArray[0]);
             switch (word) {
-                case bye:
-                    goodbye();
-                    break;
-                case list:
-                    listOut();
-                    break;
-                case help:
-                    listCommands();
-                    break;
-                case mark:
-                    markDone(returnedArray);
-                    break;
-                case unmark:
-                    markUndone(returnedArray);
-                    break;
-                case delete:
-                    deleteTask(returnedArray);
-                    break;
-                case todo:
-                    addToDoToHistory(command);
-                    break;
-                case deadline:
-                    addDeadlineToHistory(command);
-                    break;
-                case event:
-                    addEventToHistory(command);
-                    break;
-                case invalid: //Notice the control flow still reaches here even if [invalid] is input
-                    throw new DukeException("I don't understand your command.\nCould you please repeat yourself?" +
-                            "\nIf unsure, please use command [help] for the list of commands that I understand.");
+            case bye:
+                goodbye();
+                break;
+            case list:
+                listOut();
+                break;
+            case help:
+                listCommands();
+                break;
+            case mark:
+                markDone(returnedArray);
+                break;
+            case unmark:
+                markUndone(returnedArray);
+                break;
+            case delete:
+                deleteTask(returnedArray);
+                break;
+            case todo:
+                addToDoToHistory(command);
+                break;
+            case deadline:
+                addDeadlineToHistory(command);
+                break;
+            case event:
+                addEventToHistory(command);
+                break;
+            case invalid: //Notice the control flow still reaches here even if [invalid] is input
+                throw new DukeException("I don't understand your command.\nCould you please repeat yourself?" +
+                        "\nIf unsure, please use command [help] for the list of commands that I understand.");
             }
         }
     }
 
     public static void main(String[] args) {
         Duke duke = new Duke();
-        System.out.println(duke.logo + "\n"
-                + duke.greeting
-                + "\n"
-                + duke.lineBreak1);
+        saveFilePath = System.getProperty("user.dir") + "\\data\\saves\\tasks.txt";
+        System.out.println(duke.logo + "\n" + greeting1);
+        try {
+            duke.loadDuke();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        System.out.println(greeting2 + "\n" + duke.lineBreak1);
         duke.commandInput = new Scanner(System.in);
         while (duke.commandInput.hasNextLine()) {
             String command = duke.commandInput.nextLine();
             System.out.println(lineBreak2);
             try {
                 duke.inputCommand(command);
+                duke.saveDuke(); //consider a bool check for if the save should happen?
             } catch (DukeException e) {
+                System.out.println(e.getMessage());
+            } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
             System.out.println(lineBreak1);
