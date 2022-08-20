@@ -75,7 +75,7 @@ public class CaCa {
      * Says bye to user.
      */
     public static void bye() {
-        System.out.println("Bye. Hope to see you again soon!\n" + LINE);
+        System.out.println("Bye. Hope to see you again soon!");
     }
 
     /**
@@ -88,7 +88,6 @@ public class CaCa {
         System.out.println("Got it. I've added this task:");
         System.out.println(taskToAdd);
         System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
-        System.out.println(LINE);
     }
 
     /**
@@ -115,7 +114,6 @@ public class CaCa {
                 System.out.println("Got it. I've added this task:");
                 System.out.println(taskToAdd);
                 System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
-                System.out.println(LINE);
             }
         }
     }
@@ -144,7 +142,6 @@ public class CaCa {
                 System.out.println("Got it. I've added this task:");
                 System.out.println(taskToAdd);
                 System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
-                System.out.println(LINE);
             }
         }
     }
@@ -155,17 +152,12 @@ public class CaCa {
     public static void listTasks() {
         if (tasks.isEmpty()) {
             // No task in the tasks list.
-            System.out.println("There is no task in your list!\n" + LINE);
+            System.out.println("There is no task in your list!");
         } else {
             System.out.println("Here are the tasks in your list:");
             for (int i = 0; i < tasks.size(); i++) {
                 Task task = tasks.get(i);
                 System.out.printf("%d.%s%n", i + 1, task);
-
-                // Prints the line after listing all tasks.
-                if (i == tasks.size() - 1) {
-                    System.out.println(LINE);
-                }
             }
         }
     }
@@ -182,7 +174,7 @@ public class CaCa {
         Task taskToMark = tasks.get(taskIndex - 1);
         taskToMark.markAsDone();
         System.out.println("Nice! I've marked this task as done:");
-        System.out.println(taskToMark + "\n" + LINE);
+        System.out.println(taskToMark);
     }
 
     /**
@@ -197,7 +189,7 @@ public class CaCa {
         Task taskToUnmark = tasks.get(taskIndex - 1);
         taskToUnmark.markAsUndone();
         System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println(taskToUnmark + "\n" + LINE);
+        System.out.println(taskToUnmark);
     }
 
     /**
@@ -213,7 +205,6 @@ public class CaCa {
         tasks.remove(taskToDelete);
         System.out.println("Noted. I've removed this task:\n" + taskToDelete);
         System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
-        System.out.println(LINE);
     }
 
     /**
@@ -239,7 +230,7 @@ public class CaCa {
             String[] command = input.split(" ", 2);
             String commandType = command[0];
 
-            // Prints the line after each user input.
+            // Prints a line after a user input, to start CaCa response.
             System.out.print(LINE);
 
             try {
@@ -284,13 +275,16 @@ public class CaCa {
 
                 } else {
                     // Invalid input.
-                    System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(\n"
-                            + LINE);
+                    System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(");
 
                 }
+
             } catch (CaCaException e) {
                 System.out.println(e.getMessage());
                 System.out.println("Please try again!");
+
+            } finally {
+                // Prints a line to end CaCa response.
                 System.out.println(LINE);
             }
         }
