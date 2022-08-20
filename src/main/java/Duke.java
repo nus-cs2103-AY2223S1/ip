@@ -1,9 +1,7 @@
-<<<<<<< HEAD
 import java.time.DateTimeException;
 import java.time.format.DateTimeParseException;
-=======
 import java.io.*;
->>>>>>> branch-Level-7
+
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
@@ -80,14 +78,14 @@ public class Duke {
                     throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
             } else if (echo.startsWith("todo") && Character.isWhitespace(echo.charAt(4))) {
                     tasks.add(new ToDo(echo));
-<<<<<<< HEAD
+
                     System.out.println("Got it. I've added this task:");
                     System.out.println(tasks.get(tasks.size() - 1) + "\nNow you have " + tasks.size() +
                             " tasks in the list.");
-=======
+
                     System.out.println(tasks.get(tasks.size() - 1) + "\nNow you have "
                             + tasks.size() + " tasks in the list.");
->>>>>>> branch-Level-7
+
                 //System.out.println("_________________________________________________\nadded: " + echo + "\n" +
                 //        "_________________________________________________\n");
             } else if (echo.equals("deadline") || (echo.startsWith("deadline") && echo.substring(9).isBlank())) {
@@ -102,14 +100,14 @@ public class Duke {
                         throw new DukeException("☹ OOPS!!! Please use the correct date format!");
                     }
                     System.out.println("Got it. I've added this task:");
-<<<<<<< HEAD
+
                     System.out.println(tasks.get(tasks.size() - 1) + "\nNow you have " + tasks.size() +
                             " tasks in the list.");
-=======
+
                     tasks.add(new Deadline(echo));
                     System.out.println(tasks.get(tasks.size() - 1) + "\nNow you have "
                             + tasks.size() + " tasks in the list.");
->>>>>>> branch-Level-7
+
                 }
             } else if (echo.equals("event") || (echo.startsWith("event") && echo.substring(6).isBlank())) {
                 throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.");
@@ -123,14 +121,14 @@ public class Duke {
                         throw new DukeException("☹ OOPS!!! Please use the correct date format!");
                     }
                     System.out.println("Got it. I've added this task:");
-<<<<<<< HEAD
+
                     System.out.println(tasks.get(tasks.size() - 1) + "\nNow you have " + tasks.size() +
                             " tasks in the list.");
-=======
+
                     tasks.add(new Event(echo));
                     System.out.println(tasks.get(tasks.size() - 1) + "\nNow you have "
                             + tasks.size() + " tasks in the list.");
->>>>>>> branch-Level-7
+
                 }
             } else {
                 throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
