@@ -1,6 +1,11 @@
 import exceptions.ImproperCommandSyntaxException;
 import exceptions.NoSuchCommandException;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,10 +13,13 @@ import java.util.Scanner;
 
 public class Henry {
 
-    private final List<Task> tasks;
+    private List<Task> tasks;
     private final Scanner sc;
     private static final HashMap<String, Commands> language = new HashMap<>();
-    private boolean activated;
+    private static final String home = System.getProperty("user.home");
+    private static final Path FILE_PATH = java.nio.file.Paths.get(home, "Desktop", "henry.txt");
+    private boolean isActivated;
+
 
     static {
         language.put("echo", Commands.ECHO);
@@ -33,14 +41,61 @@ public class Henry {
             + " |  __  |  __| | . ` |  _  / \\   /\n"
             + " | |  | | |____| |\\  | | \\ \\  | |\n"
             + " |_|  |_|______|_| \\_|_|  \\_\\ |_|");
-        tasks = new ArrayList<>();
         sc = new Scanner(System.in);
-        activated = true;
+        isActivated = true;
         output("HELLO. I AM HENRY. HOW MAY I ASSIST YOU TODAY?");
+        try {
+            File savedList = new File(FILE_PATH.toUri());
+            if (savedList.createNewFile()) {
+                tasks = new ArrayList<>();
+                output("CREATED NEW TASK LIST");
+            } else {
+                output("LOADED EXISTING TASK LIST");
+                tasks = parseTasksFromFile(savedList);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private List<Task> parseTasksFromFile(File savedList) throws FileNotFoundException {
+        Scanner s = new Scanner(savedList);
+        List<Task> tasks = new ArrayList<>();
+        while (s.hasNextLine()) {
+            String line = s.nextLine();
+            String[] tokens = line.split("\\|");
+            String description;
+            String modifier = "";
+            String prefix;
+            boolean isComplete;
+            Commands type;
+            prefix = tokens[0].trim();
+            switch (prefix) {
+            case "T":
+                type = Commands.TODO;
+                isComplete = tokens[1].trim().equals("1");
+                description = tokens[2].trim();
+                break;
+            case "D":
+                type = Commands.DEADLINE;
+                isComplete = tokens[1].trim().equals("1");
+                description = tokens[2].trim();
+                modifier = tokens[3].trim();
+                break;
+            default:
+                type = Commands.EVENT;
+                isComplete = tokens[1].trim().equals("1");
+                description = tokens[2].trim();
+                modifier = tokens[3].trim();
+                break;
+            }
+            tasks.add(new Task(description, modifier, type, isComplete));
+        }
+        return tasks;
     }
 
     public boolean isActivated() {
-        return activated;
+        return isActivated;
     }
 
     // Command handling
@@ -97,6 +152,8 @@ public class Henry {
             output("NO SUCH TASK");
         } catch (NumberFormatException e6) {
             output("INVALID TASK INDEX. PLEASE ENTER A NUMBER");
+        } catch (IOException e7) {
+            output("FILE NOT FOUND");
         }
     }
 
@@ -127,7 +184,7 @@ public class Henry {
         output("I'VE MARKED THIS TASK AS NOT DONE: \n" + tasks.get(index));
     }
 
-    public void handleAddTask(String command) throws ImproperCommandSyntaxException {
+    public void handleAddTask(String command) throws ImproperCommandSyntaxException, IOException {
         Task task;
         if (command.matches("deadline (.+) /by (.+)")) {
             int indexSlash = command.indexOf('/');
@@ -148,14 +205,21 @@ public class Henry {
         addToList(task);
     }
 
-    public void addToList(Task task) {
+    public void addToList(Task task) throws IOException {
         tasks.add(task);
-        output("OK. I ADDED THIS TASK TO MY LIST:\n\t\t\t" + task.toString() + "\n\t\tNOW YOU HAVE " + tasks.size()
+        appendToFile(task.toSimpleString());
+        output("OK. I ADDED THIS TASK TO MY LIST:\n\t\t\t" + task + "\n\t\tNOW YOU HAVE " + tasks.size()
                + (tasks.size() == 1 ? " TASK" : " TASKS") + " IN YOUR LIST.");
     }
 
-    public void getList() {
-        System.out.println(formatList());
+    private void appendToFile(String textToAdd) throws IOException {
+        FileWriter fw = new FileWriter(Henry.FILE_PATH.toFile(), true);
+        fw.write(textToAdd + "\n");
+        fw.close();
+    }
+
+    public void getList() throws FileNotFoundException {
+        output(formatList());
     }
 
     public String getInput() {
@@ -164,21 +228,20 @@ public class Henry {
 
     public void close() {
         output("GOODBYE!");
-        activated = false;
+        isActivated = false;
     }
 
     private String formatList() {
         StringBuilder sb = new StringBuilder();
-        sb.append("____________________________________________________________");
-        sb.append("\n HENRY:\n");
+        sb.append("\n");
         for (int i = 1; i <= tasks.size(); i++) {
             sb.append(" ").append(i).append(". ").append(tasks.get(i - 1)).append("\n");
         }
-        sb.append("____________________________________________________________");
         return sb.toString();
     }
 
     private String formatResponse(String input) {
-        return "____________________________________________________________" + "\n HENRY: " + input + "\n" + "____________________________________________________________";
+        return "____________________________________________________________" + "\n HENRY: "
+               + input + "\n" + "____________________________________________________________";
     }
 }
