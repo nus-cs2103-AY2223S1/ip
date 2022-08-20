@@ -1,10 +1,14 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 public class Event extends Task {
 
-  private final String date;
+  private final LocalDate date;
 
-  Event(String title, boolean status, String date) {
+  Event(String title, boolean status, String date)
+    throws DateTimeParseException {
     super(title, status);
-    this.date = date;
+    this.date = LocalDate.parse(date);
   }
 
   @Override
