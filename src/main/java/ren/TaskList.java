@@ -116,6 +116,28 @@ public class TaskList {
     }
 
     /**
+     * Searches TaskList to Tasks matching a search term.
+     *
+     * @param term The Search Term to match Tasks with.
+     * @return String containing the list of matching Tasks.
+     */
+    public String findTasks(String term) {
+        if (tasks.size() == 0) {
+            return " Apologies! I have not found any matching tasks.\n";
+        } else {
+            int index = 1;
+            StringBuilder result = new StringBuilder(" I have found these matching tasks:\n");
+            for (Task taskToCheck : tasks) {
+                if (taskToCheck.isMatch(term)) {
+                    result.append(" ").append(index).append(".").append(taskToCheck);
+                    index++;
+                }
+            }
+            return index != 1 ? result.toString() : " Apologies! I have not found any matching tasks.\n";
+        }
+    }
+
+    /**
      * Removes all Tasks from the TaskList.
      *
      * @return String containing a message for the user.

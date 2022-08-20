@@ -161,7 +161,26 @@ public class ParserTest {
     }
 
     @Test
-    public void parseCommand_empty_success() {
+    public void parseCommand_find_success() {
+        try {
+            assertEquals("", Parser.parseCommand("find test", stub));
+        } catch (RenException e) {
+            fail();
+        }
+    }
+
+    @Test
+    public void parseCommand_find_exceptionThrown() {
+        try {
+            Parser.parseCommand("find", stub);
+            fail();
+        } catch (RenException e) {
+            assertEquals("Please provide a search term.", e.getMessage());
+        }
+    }
+
+    @Test
+    public void parseCommand_empty_success () {
         try {
             assertEquals("", Parser.parseCommand("empty", stub));
         } catch (RenException e) {
