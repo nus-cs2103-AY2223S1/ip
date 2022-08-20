@@ -58,11 +58,11 @@ public class Control {
         }
 
         public void evalMark(String[] subCmd) {
-            this.dir.get(Integer.parseInt(subCmd[1]) - 1).mark();
+            this.dir.get(Integer.parseInt(subCmd[0]) - 1).mark();
         }
 
         public void evalUnmark(String[] subCmd) {
-            this.dir.get(Integer.parseInt(subCmd[1]) - 1).unmark();
+            this.dir.get(Integer.parseInt(subCmd[0]) - 1).unmark();
         }
 
         public void evaltodo(String[] subCmd) {
@@ -71,7 +71,7 @@ public class Control {
 
             this.dir.add(tmpTask);
             System.out.println(String.format("Got it. I've added this task:\n\t%s\n" +
-                    "Now you have %d tasks in the list.", tmpTask, this.dir.size()));
+                    "Now you have %d tasks in the list.\n", tmpTask, this.dir.size()));
         }
         public void evalDeadline(String[] subCmd) {
             String tmp = String.join(" ", subCmd);
@@ -80,7 +80,7 @@ public class Control {
 
             this.addDir(tmpTask);
             System.out.println(String.format("Got it. I've added this task:\n\t%s\n" +
-                    "Now you have %d tasks in the list.", tmpTask, this.dir.size()));
+                    "Now you have %d tasks in the list.\n", tmpTask, this.dir.size()));
 
         }
 
@@ -91,7 +91,7 @@ public class Control {
 
             this.addDir(tmpTask);
             System.out.println(String.format("Got it. I've added this task:\n\t%s\n" +
-                    "Now you have %d tasks in the list.", tmpTask, this.dir.size()));
+                    "Now you have %d tasks in the list.\n", tmpTask, this.dir.size()));
         }
 
 

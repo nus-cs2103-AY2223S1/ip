@@ -6,7 +6,7 @@ public class Duke {
 
         Scanner sc = new Scanner(System.in);
         Control dc = new Control();
-        System.out.println("Hello! I'm Duke\n" + "What can I do for you?");
+        System.out.println("Hello! I'm Duke\n" + "What can I do for you?\n");
 
         String message = sc.nextLine();
 
