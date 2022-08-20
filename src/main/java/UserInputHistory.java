@@ -11,44 +11,45 @@ import java.util.List;
 public class UserInputHistory {
     private ArrayList<Task> userInputHistory = new ArrayList<>();
     Path path = Paths.get(System.getProperty("user.dir"),"src", "main", "java", "userinputhistory.txt");
+
     private void createIfDoesntExist() throws IOException {
         if (!Files.exists(path)) {
             Files.createFile(path);
         }
     }
-
     private void appendToFile(String s) throws IOException {
         createIfDoesntExist();
         Files.write(path, s.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
     }
 
-    private void updateUserInputHistory(String control,String command, String description, String date, int n) throws IOException {
-        switch (control) {
-        case "add" :
-            switch(command)  {
-            case "deadline":
-                userInputHistory.add(new Deadline(description, date));
-                break;
-            case "event":
-                userInputHistory.add(new Event(description, date));
-                break;
-            case "task":
-                userInputHistory.add(new Task(description));
-                break;
-        }
-            break;
-        case "remove":
-            userInputHistory.remove(n - 1);
-            break;
-        }
-    }
-
     private void  syncUserInputHistory() throws IOException {
         createIfDoesntExist();
-        List<String> history = Files.readAllLines(path);;
-        history.forEach(line -> {
-            userInputHistory.add();
-        });
+        userInputHistory.removeAll(userInputHistory);
+        List<String> history = Files.readAllLines(path);
+        int historyLen = history.size();
+        String line, taskType, description, date;
+        Task t = new Task("");
+        for (int i = 0; i < historyLen; i++ ) {
+            line = history.get(i);
+            taskType = line.substring(1,2);
+            switch (taskType) {
+            case "T":
+                description = line.substring(6);
+                t = new Task(description);
+                break;
+            case "E":
+                description = line.substring(6, line.indexOf("("));
+                date = line.substring(line.indexOf(")"));
+                t = new Event(description, date);
+                break;
+            case "D":
+                description = line.substring(6, line.indexOf("("));
+                date = line.substring(line.indexOf("(by: ") + 5, line.indexOf(")"));
+                t = new Deadline(description, date);
+                break;
+            }
+            userInputHistory.add(t);
+        }
     }
 
     /**
@@ -57,10 +58,10 @@ public class UserInputHistory {
      */
     public void addTaskToHistory(String s) {
         try {
-            createIfDoesntExist();
+            syncUserInputHistory();
             Task newTask = new Task(s);
             appendToFile(newTask.toString() + "\n");
-            updateUserInputHistory("add", "task",s, "", -1);
+            userInputHistory.add(newTask);
             System.out.printf("Noted down: %s\n There are %d items on your list now. \n", s, userInputHistory.size());
             System.out.print(">>");
         } catch (IOException e) {
@@ -75,10 +76,10 @@ public class UserInputHistory {
      */
     public void addEventToHistory(String description, String at) {
         try {
-            createIfDoesntExist();
+            syncUserInputHistory();
             Event newEvent = new Event(description, at);
             appendToFile(newEvent.toString() + "\n");
-            updateUserInputHistory("add", "event",description, "", -1);
+            userInputHistory.add(newEvent);
             //echo request
             System.out.printf("Noted down: %s\n There are %d items on your list now. \n", description, userInputHistory.size());
             System.out.print(">>");
@@ -94,10 +95,10 @@ public class UserInputHistory {
      */
     public void addDeadlineToHistory(String description, String by) {
         try {
-            createIfDoesntExist();
+            syncUserInputHistory();
             Deadline newDeadline = new Deadline(description, by);
             appendToFile(newDeadline.toString() + "\n");
-            updateUserInputHistory("add", "deadline",description, "", -1);
+           userInputHistory.add(newDeadline);
             //echo request
             System.out.printf("Noted down: %s\n There are %d items on your list now. \n", description, userInputHistory.size());
             System.out.print(">>");
@@ -114,6 +115,7 @@ public class UserInputHistory {
         System.out.print("______\n");
         System.out.println("Tasks in your list are: ");
         try {
+            syncUserInputHistory();
             List<String> history = Files.readAllLines(path);;
             for (String s: history) {
                 System.out.printf("%d. %s\n", count, s);

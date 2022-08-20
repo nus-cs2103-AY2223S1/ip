@@ -173,13 +173,13 @@ public class Duke {
     /**
      * Grabs date from string which is expected to have format:
      * ... /<at/by> <date in HH:MM DD:MM:YYYY>
-     * @param command - string to extract date from
+     * @param command is the string to extract date from
      * @return <date> component of command
      * @throws DukeException
      */
     private static String getDate(String command) throws DukeException{
         String date = "";
-        int startDateIndex = command.indexOf("/") + 2;
+        int startDateIndex = command.indexOf("/") + 3;
         if (startDateIndex < 0) {
             throw new DukeException("Command does not follow pattern ... /<at/by> <date in HH:MM DD:MM:YYYY>\n>>");
         } else {
