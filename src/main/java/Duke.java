@@ -13,24 +13,21 @@ public class Duke {
         for (String input = sc.nextLine(); !input.equals("bye"); input = sc.nextLine()) {
             if (input.equals("list")) {
                 Task.printTaskList();
-            }
-            if (input.startsWith("mark")) {
+            } else if (input.startsWith("mark ")) {
                 try{
                     int number = Integer.parseInt(input.substring(5));
                     Task.mark(number);
                 } catch (Exception e) {
                     System.out.println("Please enter numbers after mark");
                 }
-            }
-            if (input.startsWith("unmark")) {
+            } else if (input.startsWith("unmark ")) {
                 try{
                     int number = Integer.parseInt(input.substring(7));
                     Task.unMark(number);
                 } catch (Exception e) {
                     System.out.println("Please enter numbers after unmark");
                 }
-            }
-            if (input.startsWith("todo")) {
+            } else if (input.startsWith("todo ")) {
                 try {
                     input = input.substring(5);
                 } catch (StringIndexOutOfBoundsException e) {
@@ -38,40 +35,39 @@ public class Duke {
                     continue;
                 }
                 Task.addTask(new ToDo(input));
-            }
-            if (input.startsWith("deadline")) {
+            } else if (input.startsWith("deadline ")) {
                 int end = input.indexOf("/by ");
                 String textInput;
                 String byInput;
                 try {
-                    textInput = input.substring(9, end);
+                    textInput = input.substring(10, end);
                     byInput = input.substring(end + 4);
                 } catch (StringIndexOutOfBoundsException e) {
                     System.out.println("Something is missing in the description of this deadline >:(");
                     continue;
                 }
                 Task.addTask(new Deadline(textInput, byInput));
-            }
-            if (input.startsWith("event")) {
+            } else if (input.startsWith("event ")) {
                 int end = input.indexOf("/at ");
                 String textInput;
                 String atInput;
                 try {
-                    textInput = input.substring(6, end);
+                    textInput = input.substring(7, end);
                     atInput = input.substring(end + 4);
                 } catch (StringIndexOutOfBoundsException e) {
                     System.out.println("Something is missing in the description of this event >:(");
                     continue;
                 }
                 Task.addTask(new Event(textInput, atInput));
-            }
-            if (input.startsWith("delete")) {
+            } else if (input.startsWith("delete ")) {
                 try{
                     int number = Integer.parseInt(input.substring(7));
                     Task.deleteTask(number);
                 } catch (Exception e) {
                     System.out.println("Please enter numbers after delete");
                 }
+            } else {
+                System.out.println("Please enter a valid command");
             }
 
         }
