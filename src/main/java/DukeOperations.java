@@ -1,12 +1,12 @@
 import java.util.ArrayList;
-<<<<<<< HEAD
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-=======
+
 import java.io.File;
 import java.io.FileWriter;
->>>>>>> branch-Level-7
+
 
 public class DukeOperations {
 

@@ -57,30 +57,15 @@ public class Duke {
             }
 
             else if(firstword.equals("deadline")) {
-<<<<<<< HEAD
-                System.out.println("_________________________________________________________________________");
-                String arr2[] = arr[1].split("/by ",2);
-                String arr3[] = arr2[1].split(" ",2);
-                ops.deadline(array,arr2[0],arr3[0],arr3[1],counter);
-                System.out.println("_________________________________________________________________________");
-                counter++;
-            }
-            else if(firstword.equals("event")) {
-                System.out.println("_________________________________________________________________________");
-                String arr2[] = arr[1].split("/at ",2);
-                String arr3[] = arr2[1].split(" ",2);
-                ops.event(array,arr2[0],arr3[0],arr3[1],counter);
-                System.out.println("_________________________________________________________________________");
-                counter++;
-=======
                 if(!f.exists()) {
                     System.out.println("File doesnt exist yet");
                 }
                 try {
                     FileWriter fw = new FileWriter("data/duke.txt",true);
                     System.out.println("_________________________________________________________________________");
-                    String arr2[] = arr[1].split("/by", 2);
-                    ops.deadline(array, arr2[0], arr2[1], counter);
+                    String arr2[] = arr[1].split("/by ", 2);
+                    String arr3[] = arr2[1].split(" ",2);
+                    ops.deadline(array,arr2[0], arr3[0], arr3[1], counter);
                     System.out.println("_________________________________________________________________________");
                     fw.write(array.get(counter).toString() + System.lineSeparator());
                     fw.close();
@@ -89,6 +74,8 @@ public class Duke {
                 catch(IOException e1) {
                     System.out.println(e1.toString());
                 }
+
+
             }
             else if(firstword.equals("event")) {
                 if(!f.exists()) {
@@ -97,18 +84,21 @@ public class Duke {
                 try {
                     FileWriter fw = new FileWriter("data/duke.txt",true);
                     System.out.println("_________________________________________________________________________");
-                    String arr2[] = arr[1].split("/at", 2);
-                    ops.event(array, arr2[0], arr2[1], counter);
+                    String arr2[] = arr[1].split("/at ", 2);
+                    String arr3[] = arr2[1].split(" ",2);
+                    ops.event(array,arr2[0], arr3[0], arr3[1], counter);
+                    System.out.println("_________________________________________________________________________");
                     fw.write(array.get(counter).toString() + System.lineSeparator());
                     fw.close();
-                    System.out.println("_________________________________________________________________________");
                     counter++;
                 }
-                catch(IOException e2) {
-                    System.out.println(e2.toString());
+                catch(IOException e1) {
+                    System.out.println(e1.toString());
                 }
->>>>>>> branch-Level-7
+
+
             }
+
 
             else if(firstword.equals("mark")) {
                 int num = Integer.parseInt(arr[1]);
