@@ -147,100 +147,100 @@ public class Duke {
         int argCount = argTokens.length;
 
         switch (cmd) {
-            case LIST:
-                this.viewAllTask();
-                break;
-            case MARK:
-                if (argCount < 2) {
-                    throw new DukeException("Oh no! Try doing 'mark <index>'!");
-                }
-                // markIndex - 1 because viewAllTasks is 1-indexed
-                // whereas actual implementation is 0-indexed.
-                try {
-                    int markIndex = Integer.parseInt(
-                            argTokens[1], 10) - 1;
-                    this.markTask(markIndex);
-                } catch (NumberFormatException e) {
-                    throw new DukeException("Oh no! Try doing 'mark <index>'!");
-                }
-                break;
-            case UNMARK:
-                if (argCount < 2) {
-                    throw new DukeException(
-                            "Oh no! Try doing 'unmark <index>'!");
-                }
-                try {
-                    int unmarkIndex = Integer.parseInt(
-                            argTokens[1], 10) - 1;
+        case LIST:
+            this.viewAllTask();
+            break;
+        case MARK:
+            if (argCount < 2) {
+                throw new DukeException("Oh no! Try doing 'mark <index>'!");
+            }
+            // markIndex - 1 because viewAllTasks is 1-indexed
+            // whereas actual implementation is 0-indexed.
+            try {
+                int markIndex = Integer.parseInt(
+                        argTokens[1], 10) - 1;
+                this.markTask(markIndex);
+            } catch (NumberFormatException e) {
+                throw new DukeException("Oh no! Try doing 'mark <index>'!");
+            }
+            break;
+        case UNMARK:
+            if (argCount < 2) {
+                throw new DukeException(
+                        "Oh no! Try doing 'unmark <index>'!");
+            }
+            try {
+                int unmarkIndex = Integer.parseInt(
+                        argTokens[1], 10) - 1;
 
-                    this.unmarkTask(unmarkIndex);
-                } catch (NumberFormatException e) {
-                    throw new DukeException("Oh no! Try doing 'unmark <index>'!");
-                }
-                break;
-            case DELETE:
-                if (argCount < 2) {
-                    throw new DukeException(
-                            "Oh no! Try doing 'delete <index>'!");
-                }
-                try {
-                    int deleteIndex = Integer.parseInt(
-                            argTokens[1], 10) - 1;
-                    this.deleteTask(deleteIndex);
-                } catch (NumberFormatException e) {
-                    throw new DukeException(
-                            "Oh no! Try doing 'delete <index>'!");
-                }
-                break;
-            case TODO:
-                if (argCount < 2) {
-                    throw new DukeException(
-                            "Oh no! The description of a todo cannot be empty.");
-                }
-                String todoTitle = argTokens[1].trim();
-                Todo newTodo = new Todo(todoTitle, false);
-                this.addTask(newTodo);
-                break;
-            case DEADLINE:
-                if (argCount < 2) {
-                    throw new DukeException(
-                            "Oh no! The description of a deadline cannot"
-                                    + " be empty.");
-                }
-                String[] deadlineTokens = argTokens[1].split("/by");
-                if (deadlineTokens.length < 2) {
-                    throw new DukeException(
-                            "Oh no! Try doing 'deadline <description> /by "
-                                    + "<date>'!");
-                }
-                String deadlineTitle = deadlineTokens[0].trim();
-                String by = deadlineTokens[1].trim();
-                Deadline newDeadline = new Deadline(deadlineTitle, false, by);
-                this.addTask(newDeadline);
-                break;
-            case EVENT:
-                if (argCount < 2) {
-                    throw new DukeException(
-                            "Oh no! The description of an event cannot be"
-                                    + " empty.");
-                }
-                String[] eventTokens = argTokens[1].split("/at");
-                if (eventTokens.length < 2) {
-                    throw new DukeException(
-                            "Oh no! Try doing 'event <description> /at"
-                                    + " <date>'!");
-                }
-                String eventTitle = eventTokens[0].trim();
-                String at = eventTokens[1].trim();
-                Event newEvent = new Event(eventTitle, false, at);
-                this.addTask(newEvent);
-                break;
-            case INVALID:
+                this.unmarkTask(unmarkIndex);
+            } catch (NumberFormatException e) {
+                throw new DukeException("Oh no! Try doing 'unmark <index>'!");
+            }
+            break;
+        case DELETE:
+            if (argCount < 2) {
                 throw new DukeException(
-                        "Sorry, I don't understand this!");
-            default:
+                        "Oh no! Try doing 'delete <index>'!");
+            }
+            try {
+                int deleteIndex = Integer.parseInt(
+                        argTokens[1], 10) - 1;
+                this.deleteTask(deleteIndex);
+            } catch (NumberFormatException e) {
                 throw new DukeException(
-                        "Sorry, I don't understand this!");
+                        "Oh no! Try doing 'delete <index>'!");
+            }
+            break;
+        case TODO:
+            if (argCount < 2) {
+                throw new DukeException(
+                        "Oh no! The description of a todo cannot be empty.");
+            }
+            String todoTitle = argTokens[1].trim();
+            Todo newTodo = new Todo(todoTitle, false);
+            this.addTask(newTodo);
+            break;
+        case DEADLINE:
+            if (argCount < 2) {
+                throw new DukeException(
+                        "Oh no! The description of a deadline cannot"
+                                + " be empty.");
+            }
+            String[] deadlineTokens = argTokens[1].split("/by");
+            if (deadlineTokens.length < 2) {
+                throw new DukeException(
+                        "Oh no! Try doing 'deadline <description> /by "
+                                + "<date>'!");
+            }
+            String deadlineTitle = deadlineTokens[0].trim();
+            String by = deadlineTokens[1].trim();
+            Deadline newDeadline = new Deadline(deadlineTitle, false, by);
+            this.addTask(newDeadline);
+            break;
+        case EVENT:
+            if (argCount < 2) {
+                throw new DukeException(
+                        "Oh no! The description of an event cannot be"
+                                + " empty.");
+            }
+            String[] eventTokens = argTokens[1].split("/at");
+            if (eventTokens.length < 2) {
+                throw new DukeException(
+                        "Oh no! Try doing 'event <description> /at"
+                                + " <date>'!");
+            }
+            String eventTitle = eventTokens[0].trim();
+            String at = eventTokens[1].trim();
+            Event newEvent = new Event(eventTitle, false, at);
+            this.addTask(newEvent);
+            break;
+        case INVALID:
+            throw new DukeException(
+                    "Sorry, I don't understand this!");
+        default:
+            throw new DukeException(
+                    "Sorry, I don't understand this!");
         }
     }
 
