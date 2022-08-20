@@ -90,7 +90,7 @@ public class TaskListTest {
             taskList.deleteItem(2);
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! No such task exists :(", exception.getMessage());
+            assertEquals("OOPS!!! No such task exists :(", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }
@@ -99,7 +99,7 @@ public class TaskListTest {
             taskList.markItem(-1);
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! No such task exists :(", exception.getMessage());
+            assertEquals("OOPS!!! No such task exists :(", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }
@@ -108,7 +108,7 @@ public class TaskListTest {
             taskList.unMarkItem(1000000000);
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! No such task exists :(", exception.getMessage());
+            assertEquals("OOPS!!! No such task exists :(", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }

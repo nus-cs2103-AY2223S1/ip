@@ -41,7 +41,7 @@ public class TaskTest {
             Task task = Task.decode("T |");
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! Invalid encoded format :(", exception.getMessage());
+            assertEquals("OOPS!!! Invalid encoded format :(", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }
@@ -49,7 +49,7 @@ public class TaskTest {
             Task task = Task.decode("ToDo | X | is todo");
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! Invalid encoded format :(", exception.getMessage());
+            assertEquals("OOPS!!! Invalid encoded format :(", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }
@@ -57,7 +57,7 @@ public class TaskTest {
             Task task = Task.decode("ToDo | X |");
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! Invalid encoded format :(", exception.getMessage());
+            assertEquals("OOPS!!! Invalid encoded format :(", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }
@@ -96,7 +96,7 @@ public class TaskTest {
             Task task = Task.decode("E | X | my todo | 2012-02-30");
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.", exception.getMessage());
+            assertEquals("OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }
@@ -104,7 +104,7 @@ public class TaskTest {
             Task task = Task.decode("E | X | my todo");
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! Invalid encoded format :(", exception.getMessage());
+            assertEquals("OOPS!!! Invalid encoded format :(", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }
@@ -112,7 +112,7 @@ public class TaskTest {
             Task task = Task.decode("Event | X | my todo");
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! Invalid encoded format :(", exception.getMessage());
+            assertEquals("OOPS!!! Invalid encoded format :(", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }
@@ -151,7 +151,7 @@ public class TaskTest {
             Task task = Task.decode("D | X | my todo | 2012-02-30");
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.", exception.getMessage());
+            assertEquals("OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }
@@ -159,7 +159,7 @@ public class TaskTest {
             Task task = Task.decode("D | X | my todo");
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! Invalid encoded format :(", exception.getMessage());
+            assertEquals("OOPS!!! Invalid encoded format :(", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }
@@ -167,7 +167,7 @@ public class TaskTest {
             Task task = Task.decode("Deadline | X | my todo");
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! Invalid encoded format :(", exception.getMessage());
+            assertEquals("OOPS!!! Invalid encoded format :(", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }

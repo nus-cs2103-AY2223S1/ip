@@ -27,9 +27,9 @@ public abstract class Parser {
                 try {
                     command = new MarkCommand(Integer.parseInt(args[1]) - 1);
                 } catch (IndexOutOfBoundsException exception) {
-                    throw new DukeException("☹ OOPS!!! No task index is specified :(");
+                    throw new DukeException("OOPS!!! No task index is specified :(");
                 } catch (NumberFormatException exception) {
-                    throw new DukeException("☹ OOPS!!! You didn't give a valid index :(");
+                    throw new DukeException("OOPS!!! You didn't give a valid index :(");
                 }
                 break;
 
@@ -37,9 +37,9 @@ public abstract class Parser {
                 try {
                     command = new UnMarkCommand(Integer.parseInt(args[1]) - 1);
                 } catch (IndexOutOfBoundsException exception) {
-                    throw new DukeException("☹ OOPS!!! No task index is specified :(");
+                    throw new DukeException("OOPS!!! No task index is specified :(");
                 } catch (NumberFormatException exception) {
-                    throw new DukeException("☹ OOPS!!! You didn't give a valid index :(");
+                    throw new DukeException("OOPS!!! You didn't give a valid index :(");
                 }
                 break;
 
@@ -47,9 +47,9 @@ public abstract class Parser {
                 try {
                     command = new DeleteCommand(Integer.parseInt(args[1]) - 1);
                 } catch (IndexOutOfBoundsException exception) {
-                    throw new DukeException("☹ OOPS!!! No task index is specified :(");
+                    throw new DukeException("OOPS!!! No task index is specified :(");
                 } catch (NumberFormatException exception) {
-                    throw new DukeException("☹ OOPS!!! You didn't give a valid index :(");
+                    throw new DukeException("OOPS!!! You didn't give a valid index :(");
                 }
                 break;
 
@@ -62,11 +62,11 @@ public abstract class Parser {
                     String description = Arrays.stream(args).takeWhile(x -> !x.equals("/at")).skip(1).reduce("", (x, y) -> x + " " + y).trim();
                     String[] timeArgument = Arrays.stream(args).dropWhile(x -> !x.equals("/at")).toArray(String[]::new);
                     if (timeArgument.length <= 1) {
-                        throw new DukeException("☹ OOPS!!! There is no /at argument for event :(");
+                        throw new DukeException("OOPS!!! There is no /at argument for event :(");
                     }
                     command = new AddCommand(new Event(description, false, LocalDate.parse(timeArgument[1])));
                 } catch (java.time.format.DateTimeParseException exception) {
-                    throw new DukeException("☹ OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.");
+                    throw new DukeException("OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.");
                 }
                 break;
 
@@ -75,16 +75,16 @@ public abstract class Parser {
                     String description = Arrays.stream(args).takeWhile(x -> !x.equals("/by")).skip(1).reduce("", (x, y) -> x + " " + y).trim();
                     String[] timeArgument = Arrays.stream(args).dropWhile(x -> !x.equals("/by")).toArray(String[]::new);
                     if (timeArgument.length <= 1) {
-                        throw new DukeException("☹ OOPS!!! There is no /by argument for deadline :(");
+                        throw new DukeException("OOPS!!! There is no /by argument for deadline :(");
                     }
                     command = new AddCommand(new Deadline(description, false, LocalDate.parse(timeArgument[1])));
                 } catch (java.time.format.DateTimeParseException exception) {
-                    throw new DukeException("☹ OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.");
+                    throw new DukeException("OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.");
                 }
                 break;
 
             default:
-                throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :(");
+                throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :(");
         }
         return command;
     }

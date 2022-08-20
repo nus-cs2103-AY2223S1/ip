@@ -18,7 +18,7 @@ public abstract class Task {
         this.description = description;
         this.isDone = isDone;
         if (this.description.isBlank()) {
-            throw new DukeException("☹ OOPS!!! The description of a " + this.taskType + " cannot be empty.");
+            throw new DukeException("OOPS!!! The description of a " + this.taskType + " cannot be empty.");
         }
     }
 
@@ -61,12 +61,12 @@ public abstract class Task {
                     break;
 
                 default:
-                    throw new DukeException("☹ OOPS!!! Invalid encoded format :(");
+                    throw new DukeException("OOPS!!! Invalid encoded format :(");
             }
         } catch (IndexOutOfBoundsException exception) {
-            throw new DukeException("☹ OOPS!!! Invalid encoded format :(");
+            throw new DukeException("OOPS!!! Invalid encoded format :(");
         } catch (java.time.format.DateTimeParseException exception) {
-            throw new DukeException("☹ OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.");
+            throw new DukeException("OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.");
         }
         return task;
     }

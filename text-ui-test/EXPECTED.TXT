@@ -20,10 +20,10 @@ Here are the tasks in your list:
 1. [T][ ] Add To Do
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.
+OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.
+OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.
 ____________________________________________________________
 ____________________________________________________________
 OK, I've added the following task:
@@ -36,10 +36,10 @@ Here are the tasks in your list:
 2. [E][ ] Add Event (at: Feb 2, 2022)
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.
+OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.
+OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.
 ____________________________________________________________
 ____________________________________________________________
 OK, I've added the following task:
@@ -103,66 +103,66 @@ Here are the tasks in your list:
 3. [D][ ] Add Deadline (by: Jan 1, 0001)
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! You didn't give a valid index :(
+OOPS!!! You didn't give a valid index :(
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! No such task exists :(
+OOPS!!! No such task exists :(
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! You didn't give a valid index :(
+OOPS!!! You didn't give a valid index :(
 ____________________________________________________________
 ____________________________________________________________
 Nice! I've marked this task as done:
   [T][X] Add To Do
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! No such task exists :(
+OOPS!!! No such task exists :(
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! No such task exists :(
+OOPS!!! No such task exists :(
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! You didn't give a valid index :(
+OOPS!!! You didn't give a valid index :(
 ____________________________________________________________
 ____________________________________________________________
 OK, I've marked this task as not done yet:
   [D][ ] Add Deadline (by: Jan 1, 0001)
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! There is no /at argument for event :(
+OOPS!!! There is no /at argument for event :(
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! There is no /at argument for event :(
+OOPS!!! There is no /at argument for event :(
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! There is no /at argument for event :(
+OOPS!!! There is no /at argument for event :(
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! There is no /at argument for event :(
+OOPS!!! There is no /at argument for event :(
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! There is no /by argument for deadline :(
+OOPS!!! There is no /by argument for deadline :(
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! There is no /by argument for deadline :(
+OOPS!!! There is no /by argument for deadline :(
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! There is no /by argument for deadline :(
+OOPS!!! There is no /by argument for deadline :(
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! There is no /by argument for deadline :(
+OOPS!!! There is no /by argument for deadline :(
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! The description of a deadline cannot be empty.
+OOPS!!! The description of a deadline cannot be empty.
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! There is no /by argument for deadline :(
+OOPS!!! There is no /by argument for deadline :(
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! There is no /by argument for deadline :(
+OOPS!!! There is no /by argument for deadline :(
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! There is no /by argument for deadline :(
+OOPS!!! There is no /by argument for deadline :(
 ____________________________________________________________
 ____________________________________________________________
 OK, I've added the following task:
@@ -170,22 +170,22 @@ OK, I've added the following task:
 Now you have 4 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! There is no /at argument for event :(
+OOPS!!! There is no /at argument for event :(
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! There is no /at argument for event :(
+OOPS!!! There is no /at argument for event :(
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! There is no /at argument for event :(
+OOPS!!! There is no /at argument for event :(
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.
+OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! There is no /at argument for event :(
+OOPS!!! There is no /at argument for event :(
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! There is no /at argument for event :(
+OOPS!!! There is no /at argument for event :(
 ____________________________________________________________
 ____________________________________________________________
 OK, I've added the following task:
@@ -193,22 +193,22 @@ OK, I've added the following task:
 Now you have 5 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! There is no /at argument for event :(
+OOPS!!! There is no /at argument for event :(
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! There is no /at argument for event :(
+OOPS!!! There is no /at argument for event :(
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! I'm sorry, but I don't know what that means :(
+OOPS!!! I'm sorry, but I don't know what that means :(
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! I'm sorry, but I don't know what that means :(
+OOPS!!! I'm sorry, but I don't know what that means :(
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! I'm sorry, but I don't know what that means :(
+OOPS!!! I'm sorry, but I don't know what that means :(
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! I'm sorry, but I don't know what that means :(
+OOPS!!! I'm sorry, but I don't know what that means :(
 ____________________________________________________________
 ____________________________________________________________
 Here are the tasks in your list:
@@ -230,19 +230,19 @@ Here are the tasks in your list:
 4. [E][ ] Is Event 1 (at: Jan 1, 2003)
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! No such task exists :(
+OOPS!!! No such task exists :(
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! No such task exists :(
+OOPS!!! No such task exists :(
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! You didn't give a valid index :(
+OOPS!!! You didn't give a valid index :(
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! You didn't give a valid index :(
+OOPS!!! You didn't give a valid index :(
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! You didn't give a valid index :(
+OOPS!!! You didn't give a valid index :(
 ____________________________________________________________
 ____________________________________________________________
 Noted. I've removed this task:
@@ -255,7 +255,7 @@ Here are the tasks in your list:
 3. [E][ ] Is Event 1 (at: Jan 1, 2003)
 ____________________________________________________________
 ____________________________________________________________
-☹ OOPS!!! No task index is specified :(
+OOPS!!! No task index is specified :(
 ____________________________________________________________
 ____________________________________________________________
 Here are the tasks in your list:

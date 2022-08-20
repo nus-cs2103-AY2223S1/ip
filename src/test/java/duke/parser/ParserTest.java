@@ -45,7 +45,7 @@ public class ParserTest {
             assertEquals(false, Parser.parse("mark").isExit());
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! No task index is specified :(", exception.getMessage());
+            assertEquals("OOPS!!! No task index is specified :(", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }
@@ -53,7 +53,7 @@ public class ParserTest {
             assertEquals(false, Parser.parse("mark NaN").isExit());
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! You didn't give a valid index :(", exception.getMessage());
+            assertEquals("OOPS!!! You didn't give a valid index :(", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }
@@ -77,7 +77,7 @@ public class ParserTest {
             assertEquals(false, Parser.parse("unmark").isExit());
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! No task index is specified :(", exception.getMessage());
+            assertEquals("OOPS!!! No task index is specified :(", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }
@@ -85,7 +85,7 @@ public class ParserTest {
             assertEquals(false, Parser.parse("unmark NaN").isExit());
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! You didn't give a valid index :(", exception.getMessage());
+            assertEquals("OOPS!!! You didn't give a valid index :(", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }
@@ -109,7 +109,7 @@ public class ParserTest {
             assertEquals(false, Parser.parse("delete").isExit());
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! No task index is specified :(", exception.getMessage());
+            assertEquals("OOPS!!! No task index is specified :(", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }
@@ -117,7 +117,7 @@ public class ParserTest {
             assertEquals(false, Parser.parse("delete NaN").isExit());
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! You didn't give a valid index :(", exception.getMessage());
+            assertEquals("OOPS!!! You didn't give a valid index :(", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }
@@ -141,7 +141,7 @@ public class ParserTest {
             Command command = Parser.parse("todo");
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! The description of a todo cannot be empty.", exception.getMessage());
+            assertEquals("OOPS!!! The description of a todo cannot be empty.", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }
@@ -149,7 +149,7 @@ public class ParserTest {
             Command command = Parser.parse("todo \n  \t \n");
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! The description of a todo cannot be empty.", exception.getMessage());
+            assertEquals("OOPS!!! The description of a todo cannot be empty.", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }
@@ -168,7 +168,7 @@ public class ParserTest {
             Command command = Parser.parse("event");
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! There is no /at argument for event :(", exception.getMessage());
+            assertEquals("OOPS!!! There is no /at argument for event :(", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }
@@ -176,7 +176,7 @@ public class ParserTest {
             Command command = Parser.parse("event one two four");
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! There is no /at argument for event :(", exception.getMessage());
+            assertEquals("OOPS!!! There is no /at argument for event :(", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }
@@ -184,7 +184,7 @@ public class ParserTest {
             Command command = Parser.parse("event /");
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! There is no /at argument for event :(", exception.getMessage());
+            assertEquals("OOPS!!! There is no /at argument for event :(", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }
@@ -192,7 +192,7 @@ public class ParserTest {
             Command command = Parser.parse("event six /by");
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! There is no /at argument for event :(", exception.getMessage());
+            assertEquals("OOPS!!! There is no /at argument for event :(", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }
@@ -200,7 +200,7 @@ public class ParserTest {
             Command command = Parser.parse("event six /by 2020-12-12");
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! There is no /at argument for event :(", exception.getMessage());
+            assertEquals("OOPS!!! There is no /at argument for event :(", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }
@@ -208,7 +208,7 @@ public class ParserTest {
             Command command = Parser.parse("event event /at time");
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.", exception.getMessage());
+            assertEquals("OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }
@@ -216,7 +216,7 @@ public class ParserTest {
             Command command = Parser.parse("event event /at 10000-01-01");
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.", exception.getMessage());
+            assertEquals("OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }
@@ -224,7 +224,7 @@ public class ParserTest {
             Command command = Parser.parse("event event /at 1000-00-00");
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.", exception.getMessage());
+            assertEquals("OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }
@@ -232,7 +232,7 @@ public class ParserTest {
             Command command = Parser.parse("event event /at 2000-12-32");
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.", exception.getMessage());
+            assertEquals("OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }
@@ -240,7 +240,7 @@ public class ParserTest {
             Command command = Parser.parse("event event /at 2003-02-29");
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.", exception.getMessage());
+            assertEquals("OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }
@@ -248,7 +248,7 @@ public class ParserTest {
             Command command = Parser.parse("event /at 2004-02-29");
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! The description of a event cannot be empty.", exception.getMessage());
+            assertEquals("OOPS!!! The description of a event cannot be empty.", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }
@@ -274,7 +274,7 @@ public class ParserTest {
             Command command = Parser.parse("deadline");
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! There is no /by argument for deadline :(", exception.getMessage());
+            assertEquals("OOPS!!! There is no /by argument for deadline :(", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }
@@ -282,7 +282,7 @@ public class ParserTest {
             Command command = Parser.parse("deadline one two four");
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! There is no /by argument for deadline :(", exception.getMessage());
+            assertEquals("OOPS!!! There is no /by argument for deadline :(", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }
@@ -290,7 +290,7 @@ public class ParserTest {
             Command command = Parser.parse("deadline /");
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! There is no /by argument for deadline :(", exception.getMessage());
+            assertEquals("OOPS!!! There is no /by argument for deadline :(", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }
@@ -298,7 +298,7 @@ public class ParserTest {
             Command command = Parser.parse("deadline six /at");
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! There is no /by argument for deadline :(", exception.getMessage());
+            assertEquals("OOPS!!! There is no /by argument for deadline :(", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }
@@ -306,7 +306,7 @@ public class ParserTest {
             Command command = Parser.parse("deadline six /at 2020-12-12");
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! There is no /by argument for deadline :(", exception.getMessage());
+            assertEquals("OOPS!!! There is no /by argument for deadline :(", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }
@@ -315,7 +315,7 @@ public class ParserTest {
             Command command = Parser.parse("deadline event /by time");
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.", exception.getMessage());
+            assertEquals("OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }
@@ -323,7 +323,7 @@ public class ParserTest {
             Command command = Parser.parse("deadline event /by 10000-01-01");
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.", exception.getMessage());
+            assertEquals("OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }
@@ -331,7 +331,7 @@ public class ParserTest {
             Command command = Parser.parse("deadline event /by 1000-00-00");
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.", exception.getMessage());
+            assertEquals("OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }
@@ -339,7 +339,7 @@ public class ParserTest {
             Command command = Parser.parse("deadline event /by 2000-12-32");
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.", exception.getMessage());
+            assertEquals("OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }
@@ -347,7 +347,7 @@ public class ParserTest {
             Command command = Parser.parse("deadline event /by 2003-02-29");
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.", exception.getMessage());
+            assertEquals("OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }
@@ -355,7 +355,7 @@ public class ParserTest {
             Command command = Parser.parse("deadline /by 2004-02-29");
             fail();
         } catch (DukeException exception) {
-            assertEquals("☹ OOPS!!! The description of a deadline cannot be empty.", exception.getMessage());
+            assertEquals("OOPS!!! The description of a deadline cannot be empty.", exception.getMessage());
         } catch (Exception exception) {
             fail();
         }

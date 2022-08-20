@@ -32,7 +32,7 @@ public class TaskList {
             tasks.get(index).setDone(true);
             return tasks.get(index);
         } catch (IndexOutOfBoundsException exception) {
-            throw new DukeException("☹ OOPS!!! No such task exists :(");
+            throw new DukeException("OOPS!!! No such task exists :(");
         }
     }
 
@@ -41,7 +41,7 @@ public class TaskList {
             tasks.get(index).setDone(false);
             return tasks.get(index);
         } catch (IndexOutOfBoundsException exception) {
-            throw new DukeException("☹ OOPS!!! No such task exists :(");
+            throw new DukeException("OOPS!!! No such task exists :(");
         }
     }
 
@@ -51,7 +51,7 @@ public class TaskList {
             tasks.remove(index);
             return task;
         } catch (IndexOutOfBoundsException exception) {
-            throw new DukeException("☹ OOPS!!! No such task exists :(");
+            throw new DukeException("OOPS!!! No such task exists :(");
         }
     }
 
