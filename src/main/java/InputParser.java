@@ -42,6 +42,5 @@ public class InputParser {
                 System.out.println(e);
             }
         }
-        System.out.println("Eh you leaving me so soon?");
     }
 }

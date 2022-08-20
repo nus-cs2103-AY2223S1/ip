@@ -1,8 +1,8 @@
 public class Event extends Task {
     protected String range;
 
-    public Event(String description, String range) {
-        super(description);
+    public Event(String description, String range, boolean isDone) {
+        super(description, isDone);
         this.range = range;
     }
 
