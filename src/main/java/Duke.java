@@ -11,10 +11,13 @@ public class Duke {
         String message = sc.nextLine();
 
         while (!message.equals("bye")) {
-
-            dc.eval(message);
-            message = sc.nextLine();
+            try {
+                dc.eval(message);
+            } catch (DukeException e){
+                System.out.println(e);
             }
+            message = sc.nextLine();
+        }
 
         System.out.println("\nBye. Hope to see you again soon!");
         sc.close();

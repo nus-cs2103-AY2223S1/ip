@@ -14,7 +14,7 @@ public class Control {
 
         }
 
-        public void eval(String cmd) {
+        public void eval(String cmd) throws DukeException {
             String[] temp = cmd.split(" ");
             String mainCmd = temp[0];
             String[] subCmd = Arrays.copyOfRange(temp, 1, temp.length);
@@ -46,51 +46,75 @@ public class Control {
             }
         }
 
-        public void evalList(String[] subCmd) {
-            System.out.println("Here are the tasks in your list:");
+        public void evalList(String[] subCmd) throws InvalidDescriptionException {
+            if (subCmd.length != 0) {
+                throw new InvalidDescriptionException();
+            } else {
+                System.out.println("Here are the tasks in your list:");
 
-            for(int i = 0; i < dir.size(); i++) {
-                Task currTask = dir.get(i);
-                System.out.println(String.format("    %d. %s", i + 1, currTask));
+                for (int i = 0; i < dir.size(); i++) {
+                    Task currTask = dir.get(i);
+                    System.out.println(String.format("    %d. %s", i + 1, currTask));
+                }
             }
         }
 
-        public void evalMark(String[] subCmd) {
-            this.dir.get(Integer.parseInt(subCmd[0]) - 1).mark();
+        public void evalMark(String[] subCmd) throws InvalidDescriptionException {
+            if (Integer.parseInt(subCmd[0]) <= 0 || Integer.parseInt(subCmd[0]) > this.dir.size()) {
+                throw new InvalidDescriptionException();
+            } else {
+                this.dir.get(Integer.parseInt(subCmd[0]) - 1).mark();
+            }
         }
 
-        public void evalUnmark(String[] subCmd) {
-            this.dir.get(Integer.parseInt(subCmd[0]) - 1).unmark();
+        public void evalUnmark(String[] subCmd) throws InvalidDescriptionException {
+            if (Integer.parseInt(subCmd[0]) <= 0 || Integer.parseInt(subCmd[0]) > this.dir.size()) {
+                throw new InvalidDescriptionException();
+            } else {
+                this.dir.get(Integer.parseInt(subCmd[0]) - 1).unmark();
+            }
         }
 
-        public void evaltodo(String[] subCmd) {
+        public void evaltodo(String[] subCmd) throws EmptyDescriptionException {
+
             String tmp = String.join(" ", subCmd);
-            Todo tmpTask = new Todo(tmp);
+            if (tmp.equals("")) {
+                throw new EmptyDescriptionException();
+            } else {
+                Todo tmpTask = new Todo(tmp);
 
-            this.dir.add(tmpTask);
-            System.out.println(String.format("Got it. I've added this task:\n\t%s\n" +
-                    "Now you have %d tasks in the list.\n", tmpTask, this.dir.size()));
+                this.dir.add(tmpTask);
+                System.out.println(String.format("Got it. I've added this task:\n\t%s\n" +
+                        "Now you have %d tasks in the list.\n", tmpTask, this.dir.size()));
+            }
         }
 
-        public void evalDeadline(String[] subCmd) {
+        public void evalDeadline(String[] subCmd) throws EmptyDescriptionException {
             String tmp = String.join(" ", subCmd);
-            String[] tempSplit = tmp.split(" /by ");
-            Deadline tmpTask = new Deadline(tempSplit[0], tempSplit[1]);
+            if (tmp.equals("")) {
+                throw new EmptyDescriptionException();
+            } else {
+                String[] tempSplit = tmp.split(" /by ");
+                Deadline tmpTask = new Deadline(tempSplit[0], tempSplit[1]);
 
-            this.addDir(tmpTask);
-            System.out.println(String.format("Got it. I've added this task:\n\t%s\n" +
-                    "Now you have %d tasks in the list.\n", tmpTask, this.dir.size()));
+                this.addDir(tmpTask);
+                System.out.println(String.format("Got it. I've added this task:\n\t%s\n" +
+                        "Now you have %d tasks in the list.\n", tmpTask, this.dir.size()));
+            }
 
         }
 
-        public void evalEvent(String[] subCmd) {
+        public void evalEvent(String[] subCmd) throws EmptyDescriptionException{
             String tmp = String.join(" ", subCmd);
-            String[] tempSplit = tmp.split(" /at ");
-            Event tmpTask = new Event(tempSplit[0], tempSplit[1]);
+            if (tmp.equals("")) {
+                throw new EmptyDescriptionException();
+            } else {
+                String[] tempSplit = tmp.split(" /at ");
+                Event tmpTask = new Event(tempSplit[0], tempSplit[1]);
 
-            this.addDir(tmpTask);
-            System.out.println(String.format("Got it. I've added this task:\n\t%s\n" +
-                    "Now you have %d tasks in the list.\n", tmpTask, this.dir.size()));
+                this.addDir(tmpTask);
+                System.out.println(String.format("Got it. I've added this task:\n\t%s\n" +
+                        "Now you have %d tasks in the list.\n", tmpTask, this.dir.size()));
+            }
         }
-
     }
