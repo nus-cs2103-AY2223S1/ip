@@ -12,6 +12,7 @@ import exception.ToDoException;
 import task.Deadline;
 import task.Event;
 import task.Task;
+import task.TaskList;
 import task.ToDo;
 
 import storage.Config;
@@ -21,9 +22,11 @@ import printer.Printer;
 
 public class CommandHandler {
     private final Storage storage;
+    private final TaskList taskList;
 
     public CommandHandler() {
         this.storage = new Storage(Config.DIRECTORY, Config.NAME);
+        this.taskList = this.storage.loadTasksInStorage();
     }
 
     public void processSingleCommand(Command command) {
@@ -32,34 +35,30 @@ public class CommandHandler {
             Printer.print("Bye. See you later master!");
             break;
         case LIST:
-            Printer.print(this.storage.toString());
+            Printer.print(this.taskList.toString());
             break;
         }
     }
 
     public void editTask(Command command, String description) throws CommandException {
-        int selectedIndex;
-
         try {
-            selectedIndex = Integer.parseInt(description) - 1;
-        } catch (NumberFormatException e) {
-            throw new CommandException();
-        }
+            int selectedIndex = Integer.parseInt(description) - 1;
 
-        if (!this.storage.checkIndex(selectedIndex)) {
-            throw new CommandException();
-        }
+            switch (command) {
+            case MARK:
+                this.taskList.markTaskWithIndex(selectedIndex);
+                break;
+            case UNMARK:
+                this.taskList.unmarkTaskWithIndex(selectedIndex);
+                break;
+            case DELETE:
+                this.taskList.removeTaskWithIndex(selectedIndex);
+                break;
+            }
 
-        switch (command) {
-        case MARK:
-            this.storage.markTaskWithIndex(selectedIndex);
-            break;
-        case UNMARK:
-            this.storage.unmarkTaskWithIndex(selectedIndex);
-            break;
-        case DELETE:
-            this.storage.removeTaskWithIndex(selectedIndex);
-            break;
+            this.storage.saveTasksInStorage(this.taskList.toStorageRepresentation());
+        } catch (IndexOutOfBoundsException | NumberFormatException e) {
+            throw new CommandException();
         }
     }
 
@@ -98,6 +97,7 @@ public class CommandHandler {
             break;
         }
 
-        this.storage.addTask(newTask);
+        this.taskList.addTask(newTask);
+        this.storage.saveTasksInStorage(this.taskList.toStorageRepresentation());
     }
 }
