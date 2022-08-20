@@ -12,14 +12,23 @@ public class UserInputHistory {
     private ArrayList<Task> userInputHistory = new ArrayList<>();
     Path path = Paths.get(System.getProperty("user.dir"),"src", "main", "java", "userinputhistory.txt");
 
-    private void createIfDoesntExist() throws IOException {
-        if (!Files.exists(path)) {
-            Files.createFile(path);
+    private void createIfDoesntExist() {
+        try {
+            if (!Files.exists(path)) {
+                Files.createFile(path);
+            }
+        } catch (IOException e) {
+            System.out.println("IOException: " + e);
         }
+
     }
-    private void appendToFile(String s) throws IOException {
-        createIfDoesntExist();
-        Files.write(path, s.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
+    private void appendToFile(String s)  {
+        try {
+            createIfDoesntExist();
+            Files.write(path, s.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
+        } catch (IOException e) {
+            System.out.println("IOException: " + e);
+        }
     }
 
     private void  syncUserInputHistory() throws IOException {
@@ -133,21 +142,27 @@ public class UserInputHistory {
      * @param n index to retrieve
      * @return task at index n - 1 in the userInputHistory arraylist
      */
-    public Task getTask(int n) {
-        return userInputHistory.get(n - 1);
+    public Task getTask(int n) throws IOException {
+            syncUserInputHistory();
+            return userInputHistory.get(n - 1);
     }
 
     /**
      * Delete task at index n in userInputHistory
      * @param n index to be deleted
      */
-    public void deleteTask(int n)   {
-        Task taskToModify = userInputHistory.get(n - 1);
-        userInputHistory.remove(n - 1);
-        System.out.printf("Task removed: \n%s\n", taskToModify);
-        System.out.printf("Total: %d\n", userInputHistory.size());
-        System.out.print("______\n");
-        System.out.print(">>");
+    public void deleteTask(int n)  {
+        try {
+            syncUserInputHistory();
+            Task taskToModify = userInputHistory.get(n - 1);
+            userInputHistory.remove(n - 1);
+            System.out.printf("Task removed: \n%s\n", taskToModify);
+            System.out.printf("Total: %d\n", userInputHistory.size());
+            System.out.print("______\n");
+            System.out.print(">>");
+        } catch (IOException e) {
+            System.out.println("IOException: " + e);
+        }
     }
 
     /**
@@ -155,8 +170,9 @@ public class UserInputHistory {
      * @param s extracts task number from user input
      * @return index of the task in the list plus one
      */
-    public int getTaskNumber(String s) throws DukeException{
+    public int getTaskNumber(String s) throws DukeException, IOException{
         // credit: https://stackoverflow.com/questions/14974033/extract-digits-from-string-stringutils-java
+        syncUserInputHistory();
         String numberOnly= s.replaceAll("[^0-9]", "");
         int n;
         if (numberOnly.length() <= 0) {

@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -23,7 +24,7 @@ public class Duke {
      * No checks performed to check if task is already marked.
      * @param n task to mark as done (n - 1) index in actual list
      */
-    public void markTask(int n) {
+    public void markTask(int n) throws IOException {
         Task taskToModify = userInputHistory.getTask(n);
         taskToModify.markAsDone();
         System.out.printf("Marked task %d \n%s\n", n, taskToModify);
@@ -35,7 +36,7 @@ public class Duke {
      * No checks performed to check if task is already unmarked.
      * @param n task to mark as not done (n - 1) index in actual list
      */
-    public void unmarkTask(int n)  {
+    public void unmarkTask(int n) throws IOException {
         Task taskToModify = userInputHistory.getTask(n);
         taskToModify.markAsNotDone();
         System.out.printf("Unmarked task %d \n%s\n", n, taskToModify);
@@ -101,7 +102,7 @@ public class Duke {
      * Menu handler
      * @param userInput
      */
-    private void handleInput(String userInput) throws DukeException{
+    private void handleInput(String userInput) throws DukeException, IOException{
         CommandType command = getCommand(userInput);
         if (command == null) {
             throw new DukeException( "Enter a valid command (todo, event, deadline, list, mark, unmark, bye)\n>>");
@@ -205,6 +206,8 @@ public class Duke {
                 System.exit(0);
             } catch (DukeException de) {
                 System.out.print(de);
+            } catch (IOException ioe) {
+                System.out.print(ioe);
             }
         }
     }
