@@ -4,8 +4,14 @@ import java.util.List;
 public class TaskList {
     private List<Task> tasks = new ArrayList<>(100);
 
-    public void addTask(Task task) {
+    public void add(Task task) {
         tasks.add(task);
+    }
+
+    public String delete(int taskId) {
+        Task task = tasks.get(taskId);
+        tasks.remove(taskId);
+        return task.toString();
     }
 
     public String markAsDone(int taskId) {

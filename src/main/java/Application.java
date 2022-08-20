@@ -7,20 +7,23 @@ public class Application {
     public void run() {
         Scanner sc = new Scanner(System.in);
         while (active) {
-            printResponse("please choose from these commands: add | list | mark | unmark | bye");
+            printResponse("please choose from these commands: add | delete | mark | unmark | list | bye");
             String input = sc.nextLine().strip().toUpperCase();
             switch (input) {
                 case "LIST":
                     list();
                     break;
                 case "MARK":
-                    mark(input, sc);
+                    mark(sc);
                     break;
                 case "UNMARK":
-                    unmark(input, sc);
+                    unmark(sc);
                     break;
                 case "ADD":
                     add(sc);
+                    break;
+                case "DELETE":
+                    delete(sc);
                     break;
                 case "BYE":
                     bye();
@@ -37,7 +40,7 @@ public class Application {
         printResponse(taskList.toString());
     }
 
-    private void mark(String input, Scanner sc) {
+    private void mark(Scanner sc) {
         printResponse("which task would you like to mark as done? (enter its number in the list!)");
         int index = Integer.valueOf(sc.nextLine()) - 1;
         String doneTask = taskList.markAsDone(index);
@@ -46,11 +49,20 @@ public class Application {
         // todo: handle missing/invalid index
     }
 
-    private void unmark(String input, Scanner sc) {
+    private void unmark(Scanner sc) {
         printResponse("which task would you like to mark as undone? (enter its number in the list!)");
         int index = Integer.valueOf(sc.nextLine()) - 1;
         String doneTask = taskList.markAsUndone(index);
         String response = "Task marked as undone:\n" + doneTask;
+        printResponse(response);
+        // todo: handle missing/invalid index
+    }
+
+    private void delete(Scanner sc) {
+        printResponse("which task would you like to delete? (enter its number in the list!)");
+        int index = Integer.valueOf(sc.nextLine()) - 1;
+        String taskToDelete = taskList.delete(index);
+        String response = "I've removed this task:\n" + taskToDelete;
         printResponse(response);
         // todo: handle missing/invalid index
     }
@@ -75,7 +87,7 @@ public class Application {
                 newTask = new Event(description, eventTime);
                 break;
         }
-        taskList.addTask(newTask);
+        taskList.add(newTask);
         printResponse("added: " + newTask);
     }
 
