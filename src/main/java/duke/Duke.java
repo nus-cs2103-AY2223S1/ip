@@ -10,8 +10,6 @@ public class Duke {
 
     private static DukeTaskManager taskManager;
     private static DukeUi dukeUi;
-    private static Parser parser;
-
 
     public static void main(String[] args) {
         String logo = " ____        _        \n"

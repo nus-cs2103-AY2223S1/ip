@@ -77,8 +77,10 @@ public class DukeTaskManager {
 
     public void dukeShowList() {
         String tasks = "List of tasks to be done:\n";
+        int size = dukeTasks.size();
+        int margin = String.valueOf(size).length();
         for (int i = 0; i < dukeTasks.size(); i++) {
-            tasks += String.format("%d. %s\n", i + 1, dukeTasks.get(i));
+            tasks += String.format("%" + margin + "d. %s\n", i + 1, dukeTasks.get(i));
         }
         DukeUi.dukePrint(tasks);
     }
