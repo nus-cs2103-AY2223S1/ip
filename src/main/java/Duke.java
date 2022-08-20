@@ -92,6 +92,7 @@ public class Duke {
                         "Now you have " + pos + " tasks in the list.");
                 a = sc.nextLine();
             } else {
+                // else
                 arr[pos] = a;
                 status[pos] = 0;
                 pos++;
