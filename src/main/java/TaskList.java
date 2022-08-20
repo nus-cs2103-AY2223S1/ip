@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class TaskList {
-    protected final ArrayList<Task> tasks;
+    private final ArrayList<Task> tasks;
     private final File dataFile;
 
     public TaskList(Path path) {
@@ -61,7 +61,8 @@ public class TaskList {
                 }
 
                 try {
-                    task.isDone = Integer.parseInt(splits[1]) == 1;
+                    boolean isDone = Integer.parseInt(splits[1]) == 1;
+                    task.setDone(isDone);
                 } catch (NumberFormatException e) {
                     throw new DukeException("Datafile is corrupted");
                 }
@@ -83,5 +84,33 @@ public class TaskList {
         } catch (IOException e) {
             throw new DukeException("Could not write to file: " + dataFile);
         }
+    }
+
+    public void print() {
+        StringBuilder response = new StringBuilder();
+        response.append("List of tasks:\n");
+        for (int i = 0; i < tasks.size(); ++i) {
+            response.append(String.format("\t%d. %s", i + 1, tasks.get(i)));
+            if (i + 1 < tasks.size()) {
+                response.append("\n");
+            }
+        }
+        IOHelper.print(response.toString());
+    }
+
+    public int size() {
+        return tasks.size();
+    }
+
+    public Task get(int index) {
+        return tasks.get(index);
+    }
+
+    public void remove(int index) {
+        tasks.remove(index);
+    }
+
+    public void add(Task task) {
+        tasks.add(task);
     }
 }

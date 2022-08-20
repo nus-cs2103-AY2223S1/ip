@@ -1,7 +1,7 @@
 abstract class Task {
-    protected final String description;
-    protected boolean isDone;
-    protected char symbol;
+    private final String description;
+    private final char symbol;
+    private boolean isDone;
 
     private Task(String description, char symbol) {
         this.description = description;
@@ -12,6 +12,14 @@ abstract class Task {
     @Override
     public String toString() {
         return String.format("[%c][%s] %s", this.symbol, this.isDone ? "✔" : " ", this.description);
+    }
+
+    public String toSaveString() {
+        return String.format("%c | %d | %s", this.symbol, this.isDone ? 1 : 0, this.description);
+    }
+
+    public void setDone(boolean isDone) {
+        this.isDone = isDone;
     }
 
     public static Task of(CommandType command, String[] args) {
@@ -43,7 +51,12 @@ abstract class Task {
 
         @Override
         public String toString() {
-            return super.toString() + " (by: " + deadline + ")";
+            return super.toString() + " (by: " + this.deadline + ")";
+        }
+
+        @Override
+        public String toSaveString() {
+            return super.toSaveString() + " | " + this.deadline;
         }
     }
 
@@ -57,7 +70,12 @@ abstract class Task {
 
         @Override
         public String toString() {
-            return super.toString() + " (at: " + time + ")";
+            return super.toString() + " (at: " + this.time + ")";
+        }
+
+        @Override
+        public String toSaveString() {
+            return super.toSaveString() + " | " + this.time;
         }
     }
 }
