@@ -1,26 +1,36 @@
+_________________________________________________________________
 Hello I'm Duke
 What can I do for you?
-Here are the tasks in your list:
-1.[D][ ] lab (by: 06:30 Dec 10 2019)
-2.[E][ ] meeting (at: 08:30 to 10:30 Dec 10 2019)
-3.[T][ ] read book
+_________________________________________________________________
 Got it. I've added this task:
   [T][ ] return book
-Now you have 4 tasks in the list.
+Now you have 1 tasks in the list.
+_________________________________________________________________
 Got it. I've added this task:
   [D][ ] lab (by: 10:00 Nov 12 2019)
-Now you have 5 tasks in the list.
+Now you have 2 tasks in the list.
+_________________________________________________________________
+Got it. I've added this task:
+  [E][ ] meeting (at: 16:00 to 18:00 Nov 12 2019)
+Now you have 3 tasks in the list.
+_________________________________________________________________
 Nice! I've marked this task as done:
-  [E][X] meeting (at: 08:30 to 10:30 Dec 10 2019)
+  [D][X] lab (by: 10:00 Nov 12 2019)
+_________________________________________________________________
 Nice! I've marked this task as done:
-  [T][X] read book
+  [E][X] meeting (at: 16:00 to 18:00 Nov 12 2019)
+_________________________________________________________________
 Here are the tasks in your list:
-1.[D][ ] lab (by: 06:30 Dec 10 2019)
-2.[E][X] meeting (at: 08:30 to 10:30 Dec 10 2019)
-3.[T][X] read book
-4.[T][ ] return book
-5.[D][ ] lab (by: 10:00 Nov 12 2019)
+1.[T][ ] return book
+2.[D][X] lab (by: 10:00 Nov 12 2019)
+3.[E][X] meeting (at: 16:00 to 18:00 Nov 12 2019)
+_________________________________________________________________
+Noted. I've removed this task:
+  [D][X] lab (by: 10:00 Nov 12 2019)
+Now you have 2 tasks in the list.
+_________________________________________________________________
 Here are the tasks due at this date:
-1.[D][ ] lab (by: 06:30 Dec 10 2019)
-2.[E][X] meeting (at: 08:30 to 10:30 Dec 10 2019)
+1.[E][X] meeting (at: 16:00 to 18:00 Nov 12 2019)
+_________________________________________________________________
 Bye. Hope to see you again soon!
+_________________________________________________________________
