@@ -105,6 +105,7 @@ public class CaCa {
     public static void addToDo(String taskDescription) {
         Task taskToAdd = new Todo(taskDescription);
         tasks.add(taskToAdd);
+
         System.out.println("Got it. I've added this task:");
         System.out.println(taskToAdd);
         System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
@@ -122,16 +123,19 @@ public class CaCa {
             String message = "OOPS!!! Details missing! "
                     + "A deadline must have both description and date/time.";
             throw new MissingDetailException(message);
+
         } else {
             if (detailedCommand[0].isBlank() || detailedCommand[1].isBlank()) {
                 String MESSAGE = "OOPS!!! I do not accept blank details. "
                         + "A deadline must have both description and date/time.";
                 throw new MissingDetailException(MESSAGE);
+
             } else {
                 String description = detailedCommand[0];
                 String by = detailedCommand[1];
                 Task taskToAdd = new Deadline(description, by);
                 tasks.add(taskToAdd);
+
                 System.out.println("Got it. I've added this task:");
                 System.out.println(taskToAdd);
                 System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
@@ -151,16 +155,19 @@ public class CaCa {
             String message = "OOPS!!! Details missing! "
                     + "An event must have both description and specific start & end time.";
             throw new MissingDetailException(message);
+
         } else {
             if (detailedCommand[0].isBlank() || detailedCommand[1].isBlank()) {
                 String message = "OOPS!!! I do not accept blank details. "
                         + "An event must have both description and specific start & end time.";
                 throw new MissingDetailException(message);
+
             } else {
                 String description = detailedCommand[0];
                 String at = detailedCommand[1];
                 Task taskToAdd = new Event(description, at);
                 tasks.add(taskToAdd);
+
                 System.out.println("Got it. I've added this task:");
                 System.out.println(taskToAdd);
                 System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
@@ -193,9 +200,11 @@ public class CaCa {
     public static void markTask(String index) throws InvalidTaskIndex {
         int taskIndex = Integer.parseInt(index);
         isValid(taskIndex);
+
         // taskIndex entered by user is 1 larger than its array index.
         Task taskToMark = tasks.get(taskIndex - 1);
         taskToMark.markAsDone();
+
         System.out.println("Nice! I've marked this task as done:");
         System.out.println(taskToMark);
     }
@@ -209,9 +218,11 @@ public class CaCa {
     public static void unmarkTask(String index) throws InvalidTaskIndex {
         int taskIndex = Integer.parseInt(index);
         isValid(taskIndex);
+
         // taskIndex entered by user is 1 larger than its array index.
         Task taskToUnmark = tasks.get(taskIndex - 1);
         taskToUnmark.markAsUndone();
+
         System.out.println("OK, I've marked this task as not done yet:");
         System.out.println(taskToUnmark);
     }
@@ -225,9 +236,11 @@ public class CaCa {
     public static void deleteTask(String index) throws InvalidTaskIndex {
         int taskIndex = Integer.parseInt(index);
         isValid(taskIndex);
-        // taskIndex entered by user is 1 larger than its array index.
+
+        // taskIndex input is 1 larger than array index.
         Task taskToDelete = tasks.get(taskIndex - 1);
         tasks.remove(taskToDelete);
+
         System.out.println("Noted. I've removed this task:\n" + taskToDelete);
         System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
     }
@@ -269,26 +282,23 @@ public class CaCa {
                     bye();
                     break;
 
-                } else if (commandType.equals("todo")
-                        || commandType.equals("deadline")
-                        || commandType.equals("event")) {
-
-                    // Checks whether description is empty or blank before proceeding.
+                } else if (commandType.equals("todo")) {
+                    // Checks for valid description, i.e. not empty or blank, before adding todo.
                     hasDescription(command);
 
-                    if (commandType.equals("todo")) {
-                        addToDo(command[1]);
+                    addToDo(command[1]);
 
-                    } else if (commandType.equals("deadline")) {
-                        addDeadline(command[1]);
+                } else if (commandType.equals("deadline")) {
+                    // Checks for valid description, i.e. not empty or blank, before adding deadline.
+                    hasDescription(command);
 
-                    } else if (commandType.equals("event")) {
-                        addEvent(command[1]);
+                    addDeadline(command[1]);
 
-                    } else {
-                        // Invalid input.
-                        System.out.println("OOPS!!! Something went wrong. Please provide a valid input :-(");
-                    }
+                } else if (commandType.equals("event")) {
+                    // Checks for valid description, i.e. not empty or blank, before adding event.
+                    hasDescription(command);
+
+                    addEvent(command[1]);
 
                 } else if (commandType.equals("list")) {
                     listTasks();
