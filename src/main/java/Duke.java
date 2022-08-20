@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
@@ -5,13 +6,15 @@ import java.util.Scanner;
 import static java.lang.Integer.parseInt;
 
 public class Duke {
-    public static void main(String[] args) throws DukeException {
-        String greetings = "_________________________________________________\nHello! I'm Duke" +
-                "\nWhat can I do for you?\n_________________________________________________";
+
+    private static ArrayList<Task> tasks = new ArrayList<>();
+
+    public static void main(String[] args) throws DukeException, IOException, FileNotFoundException {
+        String greetings = "_________________________________________________\nHello! I'm Duke"
+                + "\nWhat can I do for you?\n_________________________________________________";
         System.out.println(greetings);
 
-        ArrayList<Task> tasks = new ArrayList<>();
-        //int count = 1;
+        loadFile();
 
         Scanner sc = new Scanner(System.in);
         String echo = sc.nextLine();
@@ -34,7 +37,8 @@ public class Duke {
                     throw new DukeException("☹ OOPS!!! Task number does not exist.");
                 } else {
                     tasks.get(number - 1).markAsDone();
-                    System.out.println("Nice! I've marked this task as done:\n" + tasks.get(number - 1).toString());
+                    System.out.println("Nice! I've marked this task as done:\n"
+                            + tasks.get(number - 1).toString());
                 }
                 //int number = Character.getNumericValue(echo.charAt(5));
                 //similar logic as above
@@ -46,8 +50,8 @@ public class Duke {
                     throw new DukeException("☹ OOPS!!! Task number does not exist.");
                 } else {
                     tasks.get(number - 1).markAsNotDone();
-                    System.out.println("OK, I've marked this task as not done yet:\n" +
-                            tasks.get(number - 1).toString());
+                    System.out.println("OK, I've marked this task as not done yet:\n"
+                            + tasks.get(number - 1).toString());
                 }
                 //int number = Character.getNumericValue(echo.charAt(5));
             } else if (echo.length() >= 7 && (echo.startsWith("delete") &&
@@ -57,7 +61,8 @@ public class Duke {
                 if (number > tasks.size() || number <= 0) {
                     throw new DukeException("☹ OOPS!!! Task number does not exist.");
                 } else {
-                    System.out.println("Noted. I've removed this task:\n" + tasks.get(number - 1).toString());
+                    System.out.println("Noted. I've removed this task:\n"
+                            + tasks.get(number - 1).toString());
                     tasks.remove(number - 1);
                     System.out.println("Now you have " + tasks.size() + " tasks in the list.");
                 }
@@ -66,8 +71,8 @@ public class Duke {
             } else if (echo.startsWith("todo") && Character.isWhitespace(echo.charAt(4))) {
                     System.out.println("Got it. I've added this task:");
                     tasks.add(new ToDo(echo));
-                    System.out.println(tasks.get(tasks.size() - 1) + "\nNow you have " + tasks.size() +
-                            " tasks in the list.");
+                    System.out.println(tasks.get(tasks.size() - 1) + "\nNow you have "
+                            + tasks.size() + " tasks in the list.");
                 //System.out.println("_________________________________________________\nadded: " + echo + "\n" +
                 //        "_________________________________________________\n");
             } else if (echo.equals("deadline") || (echo.startsWith("deadline") && echo.substring(9).isBlank())) {
@@ -78,8 +83,8 @@ public class Duke {
                 } else {
                     System.out.println("Got it. I've added this task:");
                     tasks.add(new Deadline(echo));
-                    System.out.println(tasks.get(tasks.size() - 1) + "\nNow you have " + tasks.size() +
-                            " tasks in the list.");
+                    System.out.println(tasks.get(tasks.size() - 1) + "\nNow you have "
+                            + tasks.size() + " tasks in the list.");
                 }
             } else if (echo.equals("event") || (echo.startsWith("event") && echo.substring(6).isBlank())) {
                 throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.");
@@ -89,40 +94,91 @@ public class Duke {
                 } else {
                     System.out.println("Got it. I've added this task:");
                     tasks.add(new Event(echo));
-                    System.out.println(tasks.get(tasks.size() - 1) + "\nNow you have " + tasks.size() +
-                            " tasks in the list.");
+                    System.out.println(tasks.get(tasks.size() - 1) + "\nNow you have "
+                            + tasks.size() + " tasks in the list.");
                 }
             } else {
                 throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
             echo = sc.nextLine();
         }
-        System.out.println("_________________________________________________\nBye. Hope to see you again soon!\n" +
-                "_________________________________________________\n");
-        /*
-        String greetings = "_________________________________________________\nHello! I'm Duke" +
-                "\nWhat can I do for you?\n_________________________________________________";
-        System.out.println(greetings);
+        System.out.println("_________________________________________________\nBye. Hope to see you again soon!\n"
+                + "_________________________________________________\n");
+        saveFile();
+    }
 
-        String[] tasks = new String[100];
-        int count = 1;
+    public static void saveFile() {
+        String directory = System.getProperty("user.dir") + "/data/";
+        String path = System.getProperty("user.dir") + "/data/duke.txt";
+        File directoryFolder = new File(directory);
 
-        Scanner sc = new Scanner(System.in);
-        String echo = sc.nextLine();
-        while (!Objects.equals(echo, "bye")) {
-            if (Objects.equals(echo, "list")) {
-                for (int i = 1; i < tasks.length; i++) {
-                    System.out.println(i + ". " + tasks[i]);
+        if (!directoryFolder.exists()) {
+            System.out.println("Creating new /data/ directory folder.");
+            directoryFolder.mkdir();
+        }
+
+        try {
+            FileWriter filewriter = new FileWriter(path);
+            for (Task task : tasks) {
+                filewriter.write(task.toString() + "\n");
+            }
+            filewriter.flush();
+            filewriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Saved successfully!");
+    }
+
+    public static void loadFile() throws IOException {
+        String directory = System.getProperty("user.dir") + "/data/";
+        String path = System.getProperty("user.dir") + "/data/duke.txt";
+        File directoryFolder = new File(directory);
+        File file = new File(path);
+
+        if (!directoryFolder.exists()) {
+            System.out.println("Creating new /data/ directory folder.");
+            directoryFolder.mkdir();
+        }
+
+        if (!file.exists()) {
+            file.createNewFile();
+            System.out.println("Creating new duke.txt file under /data/ directory folder.");
+        }
+
+        try {
+            FileReader filereader = new FileReader(path);
+            BufferedReader bufferedreader = new BufferedReader(filereader);
+            String line;
+            System.out.println("Loaded successfully!");
+            while ((line = bufferedreader.readLine()) != null) {
+                if (line.startsWith("[T]")) {
+                    tasks.add(new ToDo(line.substring(0, 5) + line.substring(7)));
+                    if (line.startsWith("[T][X]")) {
+                        tasks.get(tasks.size() - 1).markAsDone();
+                    }
+                } else if (line.startsWith("[D]")) {
+
+                    String tempDeadline = "deadline"
+                            + line.substring(line.lastIndexOf("]") + 1, line.lastIndexOf("("))
+                            + "/by" + line.substring(line.lastIndexOf(":") + 1, line.lastIndexOf(")"));
+                    tasks.add(new Deadline(tempDeadline));
+                    if (line.startsWith("[D][X]")) {
+                        tasks.get(tasks.size() - 1).markAsDone();
+                    }
+                } else if (line.startsWith("[E]")) {
+                    String tempEvent = "event"
+                            + line.substring(line.lastIndexOf("]") + 1, line.lastIndexOf("("))
+                            + "/at" + line.substring(line.lastIndexOf(":") + 1, line.lastIndexOf(")"));
+                    tasks.add(new Event(tempEvent));
+                    if (line.startsWith("[E][X]")) {
+                        tasks.get(tasks.size() - 1).markAsDone();
+                    }
                 }
             }
-            System.out.println("_________________________________________________\nadded: " + echo + "\n" +
-                    "_________________________________________________\n");
-            tasks[count] = echo;
-            count++;
-            echo = sc.nextLine();
+            bufferedreader.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
-        System.out.println("_________________________________________________\nBye. Hope to see you again soon!\n" +
-                "_________________________________________________\n");
-        */
     }
 }
