@@ -1,4 +1,9 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class TaskList {
     protected ArrayList<Task> tasks = new ArrayList<>();
@@ -32,11 +37,7 @@ public class TaskList {
         int taskNum = getTaskNumber(splitInputArray);
         if (taskNum > 0 && taskNum <= tasks.size()) {
             Task task = tasks.get(taskNum - 1);
-            if (splitInputArray[0].equals("mark")) {
-                task.markAsDone();
-            } else {
-                task.markAsNotDone();
-            }
+            task.changeStatus(splitInputArray[0].equals("mark"), true);
         } else {
             throw new DukeException("No such task!");
         }
@@ -58,14 +59,18 @@ public class TaskList {
             int pos = details.indexOf(isDeadline ? " /by " : " /at ");
             if (pos > 0 && details.length() > pos + 5) {
                 String description = details.substring(0, pos);
-                String by = details.substring(pos + 5);
-                task = isDeadline ? new Deadline(description, by) : new Event(description, by);
+                String when = details.substring(pos + 5);
+                task = isDeadline ? new Deadline(description, when) : new Event(description, when);
             } else {
                 throw new DukeException("Please provide a task description and a date / time!");
             }
         }
         tasks.add(task);
         System.out.println("Task added:\n\t" + task);
+    }
+
+    public void addTaskFromFile(Task task) {
+        tasks.add(task);
     }
 
     public void deleteTask(String[] splitInputArray) throws DukeException {

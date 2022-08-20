@@ -28,42 +28,51 @@ public class Duke {
         duke.greet();
 
         Scanner in = new Scanner(System.in);
-        
         String input;
-        do {
-            input = in.nextLine();
-            String[] splitInputArray = input.split(" ", 2);
-            String firstWord = splitInputArray[0];
-            try {
-                switch (duke.getCommand(firstWord)) {
-                    case BYE:
-                        duke.exit();
-                        break;
-                    case LIST:
-                        duke.tasks.list();
-                        break;
-                    case MARK:
-                    case UNMARK:
-                        duke.tasks.changeTaskStatus(splitInputArray);
-                        break;
-                    case TODO:
-                    case DEADLINE:
-                    case EVENT:
-                        duke.tasks.addTask(splitInputArray);
-                        duke.tasks.displayNumOfTasks();
-                        break;
-                    case DELETE:
-                        duke.tasks.deleteTask(splitInputArray);
-                        duke.tasks.displayNumOfTasks();
-                        break;
-                    default:
-                        throw new DukeException("Sorry! I don't know what that means :(");
-                }
-            } catch (DukeException e) {
-                System.out.println(e.getMessage());
-            }
-        } while (!input.equals("bye"));
 
-        in.close();
+        TaskFile taskFile = new TaskFile();
+
+        try {
+            taskFile.readFile(duke.tasks);
+            do {
+                input = in.nextLine();
+                String[] splitInputArray = input.split(" ", 2);
+                String firstWord = splitInputArray[0];
+
+                try {
+                    switch (duke.getCommand(firstWord)) {
+                        case BYE:
+                            duke.exit();
+                            break;
+                        case LIST:
+                            duke.tasks.list();
+                            break;
+                        case MARK:
+                        case UNMARK:
+                            duke.tasks.changeTaskStatus(splitInputArray);
+                            break;
+                        case TODO:
+                        case DEADLINE:
+                        case EVENT:
+                            duke.tasks.addTask(splitInputArray);
+                            duke.tasks.displayNumOfTasks();
+                            break;
+                        case DELETE:
+                            duke.tasks.deleteTask(splitInputArray);
+                            duke.tasks.displayNumOfTasks();
+                            break;
+                        default:
+                            throw new DukeException("Sorry! I don't know what that means :(");
+                    }
+                } catch (DukeException e) {
+                    System.out.println(e.getMessage());
+                }
+                taskFile.saveToFile(duke.tasks);
+            } while (!input.equals("bye"));
+        } catch (DukeException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            in.close();
+        }
     }
 }
