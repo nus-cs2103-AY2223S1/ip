@@ -1,8 +1,7 @@
+package duke.Task;
+import duke.Exceptions.*;
 
-import java.io.FileNotFoundException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -10,7 +9,6 @@ import java.io.FileWriter;
 import java.util.Scanner;
 
 import java.time.format.FormatStyle;
-import java.util.Formatter;
 
 
 public class Task {
@@ -68,7 +66,7 @@ public class Task {
         } else if (type.equals("E")) {
             return Event.parse(data);
         } else {
-            throw new ParsingTaskException(String.format("Task was of unknown type: %s", type));
+            throw new ParsingTaskException(String.format("duke.Task.Task was of unknown type: %s", type));
         }
     }
 

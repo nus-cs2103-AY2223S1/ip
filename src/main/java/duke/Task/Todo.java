@@ -1,3 +1,6 @@
+package duke.Task;
+import duke.Exceptions.*;
+
 /**
  * Todos are tasks without any date/time attached to it e.g., visit new theme park
  */

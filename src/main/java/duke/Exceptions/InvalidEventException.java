@@ -1,3 +1,5 @@
+package duke.Exceptions;
+
 public class InvalidEventException extends InvalidCommandException {
     public InvalidEventException() {
         super("Could not parse event. To create an event, "

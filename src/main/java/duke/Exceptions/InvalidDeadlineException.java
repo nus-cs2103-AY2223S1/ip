@@ -1,3 +1,5 @@
+package duke.Exceptions;
+
 public class InvalidDeadlineException extends InvalidCommandException {
     public InvalidDeadlineException() {
         super("Could not parse deadline. To create a deadline, "

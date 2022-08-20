@@ -1,9 +1,14 @@
-import java.io.*;
-import java.util.ArrayList;
+package duke;
+
+import duke.Task.Task;
+import duke.Enums.Action;
+import duke.Exceptions.*;
+import duke.Task.*;
+
 import java.util.List;
 import java.util.Scanner;
 public class Duke {
-    private static String WELCOME_MESSAGE =  "Hello! I'm Duke\n" + "What can I do for you?";
+    private static String WELCOME_MESSAGE =  "Hello! I'm duke.Duke\n" + "What can I do for you?";
     private static String GOODBYE_MESSAGE =  "Bye. Hope to see you again soon!";
     private List<Task> tasks = Task.loadSavedTasks();
 
