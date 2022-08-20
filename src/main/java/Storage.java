@@ -40,11 +40,11 @@ public class Storage {
         return tasks;
     }
     
-    public void save(List<Task> tasks) throws IOException {
+    public void save(TaskList tasks) throws IOException {
         File file = new File(pathString);
         FileWriter fw =  new FileWriter(file);
  
-        for (Task task : tasks) {
+        for (Task task : tasks.getTasks()) {
             fw.write(task.toFileFormatString() + "\n");
         }
         fw.close();

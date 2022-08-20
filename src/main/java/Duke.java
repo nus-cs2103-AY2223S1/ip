@@ -9,32 +9,23 @@ import java.nio.file.Path;
 public class Duke {
     private Ui ui;
     private Storage storage;
-    private List<Task> taskArr;
-
+    private TaskList tasks;
     
     public Duke() {
         this.ui = new Ui();
         this.storage = new Storage("storage/tasks.txt");
         try {
-            taskArr = this.storage.load();
+            this.tasks = new TaskList(storage.load());
         } catch(FileNotFoundException fnfe) {
             ui.showLoadingError();
-            taskArr = new ArrayList<>();
+            this.tasks = new TaskList();
         }
     }
     
     public void listTasks() {
         System.out.println("Here are your tasks: ");
         System.out.println("===============================");
-        int len = this.taskArr.size();
-        if (len == 0) {
-            System.out.println("       YOU HAVE NO TASKS");
-        } else {
-            for (int i = 0; i < len; i++) {
-                Task task = this.taskArr.get(i);
-                System.out.printf("   %d.%s%n", i + 1, task);
-            }
-        }
+        this.tasks.listTasks();
         System.out.println("===============================");
     }
     
@@ -47,7 +38,7 @@ public class Duke {
         switch (command) {
             case TODO:
                 task = new Todo(details);
-                this.taskArr.add(task);
+                this.tasks.add(task);
                 break;
             case DEADLINE:
                 String[] detailsArr = details.split( " /by ", 2);
@@ -55,7 +46,7 @@ public class Duke {
                     throw new MissingArgumentException(command);
                 }
                 task = new Deadline(detailsArr[0], detailsArr[1]);
-                this.taskArr.add(task);
+                this.tasks.add(task);
                 break;
             default: // EVENT
                 detailsArr = details.split( " /at ", 2);
@@ -63,35 +54,32 @@ public class Duke {
                     throw new MissingArgumentException(command);
                 }
                 task = new Event(detailsArr[0], detailsArr[1]);
-                this.taskArr.add(task);
+                this.tasks.add(task);
                 break;
         }
         System.out.println("Got it. I've added this task:");
         System.out.println("   " + task);
-        System.out.println("Now, you have " + this.taskArr.size() + " tasks in the list");
+        System.out.println("Now, you have " + this.tasks.size() + " tasks in the list");
         
     }
 
-    public void markTaskAsDone(int taskIndex) {
-        Task task = this.taskArr.get(taskIndex);
-        task.markAsDone();
+    public void markTaskAsDone(int taskIndex) throws TaskIndexOutOfBoundsException {
+        Task task = this.tasks.mark(taskIndex);
         System.out.println("Nice! I've marked this task as done: ");
         System.out.println("   " + task);
     }
 
-    public void unmarkTaskAsDone(int taskIndex) {
-        Task task = this.taskArr.get(taskIndex);
-        task.unmarkAsDone();
+    public void unmarkTaskAsDone(int taskIndex) throws TaskIndexOutOfBoundsException {
+        Task task = this.tasks.unmark(taskIndex);
         System.out.println("Sure! I've marked this task as not yet done: ");
         System.out.println("   " + task);
     }
     
-    public void deleteTask(int taskIndex) {
-        Task task = this.taskArr.get(taskIndex);
-        this.taskArr.remove(taskIndex);
+    public void deleteTask(int taskIndex) throws TaskIndexOutOfBoundsException{
+        Task task = this.tasks.delete(taskIndex);
         System.out.println("Swee! I've removed this task: ");
         System.out.println("   " + task);
-        System.out.println("Now, you have " + this.taskArr.size() + " tasks in the list");
+        System.out.println("Now, you have " + this.tasks.size() + " tasks in the list");
     }
 
     public void editTask(Command command, String details) throws DukeException {
@@ -103,8 +91,8 @@ public class Duke {
             int taskIndex = Integer.parseInt(details) - 1;
 
             // integer out of bounds
-            if (taskIndex < 0 || taskIndex >= this.taskArr.size()) {
-                throw new TaskIndexOutOfBoundsException(taskIndex + 1, this.taskArr.size());
+            if (taskIndex < 0 || taskIndex >= this.tasks.size()) {
+                throw new TaskIndexOutOfBoundsException(taskIndex + 1, this.tasks.size());
             }
             switch (command) {
                 case MARK:
@@ -150,13 +138,13 @@ public class Duke {
             case UNMARK:    
             case DELETE:
                 this.editTask(command, detailsString);
-                this.storage.save(taskArr);
+                this.storage.save(tasks);
                 break;
             case TODO:
             case EVENT:
             case DEADLINE:
                 this.addTask(command, detailsString);
-                this.storage.save(taskArr);
+                this.storage.save(tasks);
                 break;
         }
         return false;
@@ -167,7 +155,6 @@ public class Duke {
         this.ui.showWelcome();
 
         boolean end = false;
-     
 
         while (!end) {
             this.ui.showPrompt();
