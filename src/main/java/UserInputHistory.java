@@ -1,18 +1,26 @@
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.io.IOException;
+import java.nio.file.StandardOpenOption;
+import java.text.StringCharacterIterator;
 import java.util.ArrayList;
+import java.text.CharacterIterator;
+
 
 public class UserInputHistory {
     private ArrayList<Task> userInputHistory = new ArrayList<>();
-
-    public static void createIfDoesntExist() throws IOException {
-        String currDir = System.getProperty("user.dir");
-        Path path = Paths.get(currDir,"userinputhistory.txt");
+    Path path = Paths.get(System.getProperty("user.dir"),"userinputhistory.txt");
+    private void createIfDoesntExist() throws IOException {
         if (!Files.exists(path)) {
             Files.createFile(path);
         }
+    }
+
+    private void appendToFile(String s) throws IOException {
+        createIfDoesntExist();
+        Files.write(path, s.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
     }
 
     /**
