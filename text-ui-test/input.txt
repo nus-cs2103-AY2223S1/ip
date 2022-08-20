@@ -1,0 +1,7 @@
+todo this
+event meeting /at 2pm
+deadline homework /by 2am
+mark 1
+delete 2
+list
+bye
