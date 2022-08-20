@@ -14,4 +14,16 @@ public class ToDo extends Task {
     public String toString() {
         return "[T]" + super.toString();
     }
+
+    /**
+     * To produce a String with "|" delimiters for storing the task's data
+     * into a text file.
+     * @return "todo|[COMPLETION STATUS]|[TASK DESCRIPTION]|"
+     */
+    public String toFileFormat() {
+        return "todo" + "|"
+                + this.isDone + "|"
+                + this.description;
+    }
+
 }

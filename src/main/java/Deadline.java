@@ -21,4 +21,16 @@ public class Deadline extends Task {
     public String toString() {
         return "[D]" + super.toString() + " (by: " + by + ")";
     }
+
+    /**
+     * To produce a String with "|" delimiters for storing the task's data
+     * into a text file.
+     * @return "deadline|[COMPLETION STATUS]|[TASK DESCRIPTION]|[TASK DEADLINE]
+     */
+    public String toFileFormat() {
+        return "deadline" + "|"
+                + this.isDone + "|"
+                + this.description + "|"
+                + this.by;
+    }
 }

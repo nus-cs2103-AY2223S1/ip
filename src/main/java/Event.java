@@ -14,11 +14,23 @@ public class Event extends Task {
 
     /**
      * Override 'toString' method to return status and description of
-     * 'Deadline' object.
+     * 'Event' object.
      * @return [E][COMPLETION STATUS][TASK DESCRIPTION]
      */
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + at + ")";
+    }
+
+    /**
+     * To produce a String with "|" delimiters for storing the task's data
+     * into a text file.
+     * @return "event|[COMPLETION STATUS]|[TASK DESCRIPTION]|[TASK VENUE]"
+     */
+    public String toFileFormat() {
+        return "event" + "|"
+                    + this.isDone + "|"
+                    + this.description + "|"
+                    + this.at;
     }
 }
