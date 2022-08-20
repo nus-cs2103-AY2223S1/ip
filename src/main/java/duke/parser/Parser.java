@@ -4,14 +4,26 @@ import duke.exception.EmptyTodoListException;
 
 import java.time.LocalDate;
 
+/**
+ * Makes sense of user command.
+ */
 public class Parser {
     private String[] words;
 
+    /**
+     * Retrieves command word entered by user.
+     * @param input Message entered.
+     * @return Command word.
+     */
     public String checkResponse(String input) {
         words = input.split(" ");
         return words[0];
     }
 
+    /**
+     * Obtains task number for operation to be performed.
+     * @return Task number.
+     */
     public int getTaskNumber() {
         return Integer.parseInt(words[1]);
     }
@@ -20,6 +32,10 @@ public class Parser {
         return words[1];
     }
 
+    /**
+     * Obtains description of deadline task.
+     * @return Description of deadline task.
+     */
     public String getDeadlineDescription() {
         int a = 2;
         StringBuilder task = new StringBuilder(words[1]);
@@ -31,6 +47,10 @@ public class Parser {
         return task.toString();
     }
 
+    /**
+     * Obtains time of deadline task.
+     * @return Time of deadline task.
+     */
     public LocalDate getDeadlineTime() {
         int a = 2;
         while (!words[a].equals("/by")) {
@@ -45,6 +65,10 @@ public class Parser {
         return LocalDate.parse(deadline);
     }
 
+    /**
+     * Obtains description of event task.
+     * @return Description of event task.
+     */
     public String getEventDescription() {
         int a = 2;
         StringBuilder task = new StringBuilder(words[1]);
@@ -56,6 +80,10 @@ public class Parser {
         return task.toString();
     }
 
+    /**
+     * Obtains time of event task.
+     * @return Time of event task.
+     */
     public String getEventTime() {
         int a = 2;
         while (!words[a].equals("/at")) {
@@ -70,6 +98,10 @@ public class Parser {
         return event.toString();
     }
 
+    /**
+     * Obtains description of todo task.
+     * @return Description of todo task.
+     */
     public String getTodoDescription() throws EmptyTodoListException {
         if (words.length <= 1) {
             throw new EmptyTodoListException();

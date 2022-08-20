@@ -14,14 +14,26 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Controls loading of and saving to text file.
+ */
 public class Storage {
 
     private String filePath;
 
+    /**
+     * Constructs a storage instance.
+     * @param filePath Path of text file.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Obtains list of tasks from saved text file.
+     * @return List of tasks.
+     * @throws DukeException DukeException.
+     */
     public ArrayList<Task> load() throws DukeException {
         File file = new File(this.filePath);
         ArrayList<Task> tasks = new ArrayList<>();
@@ -52,6 +64,10 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Saves list of tasks to text file.
+     * @param taskList List of tasks.
+     */
     public void saveTasks(TaskList taskList) {
         try {
             FileWriter myWriter = new FileWriter(this.filePath);
