@@ -22,6 +22,7 @@ public class TimeStamp {
      * @throws RenException If dateTime is not formatted correctly.
      */
     public static TimeStamp of(String dateTime) throws RenException {
+        // format of the date and time information in the input
         DateTimeFormatter format = DateTimeFormatter.ofPattern("d/M/yyyy-H:mm");
         try {
             return new TimeStamp(LocalDateTime.parse(dateTime.strip(), format));
@@ -37,6 +38,7 @@ public class TimeStamp {
      * @return TimeStamp.
      */
     public static TimeStamp fromFile(String dateTime) {
+        // format of the date and time information in the input
         DateTimeFormatter format = DateTimeFormatter.ofPattern("E, d MMMM yyyy h:mm a");
         try {
             return new TimeStamp(LocalDateTime.parse(dateTime.strip(), format));

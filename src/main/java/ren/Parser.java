@@ -5,7 +5,7 @@ package ren;
  */
 public class Parser {
     /**
-     * Interprets user commands ad executes them.
+     * Interprets user commands and executes them.
      *
      * @param cmd Command to execute.
      * @param tasks TaskList to execute commands on.
@@ -55,8 +55,10 @@ public class Parser {
                     : "0";
                 return tasks.deleteTask(Integer.parseInt(secondTerm));
             } catch (NumberFormatException e) {
+                // If the second term parsed isn't an integer
                 throw new RenException("Please indicate the task no. in digits.");
             } catch (RenException f) {
+                // The user entered an invalid number
                 return f.toString();
             }
         case "mark":
@@ -66,8 +68,10 @@ public class Parser {
                     : "0";
                 return tasks.updateTask(true, Integer.parseInt(secondTerm));
             } catch (NumberFormatException e) {
+                // If the second term parsed isn't an integer
                 throw new RenException("Please indicate the task no. in digits.");
             } catch (RenException f) {
+                // The user entered an invalid number
                 return f.toString();
             }
         case "unmark":
@@ -77,8 +81,10 @@ public class Parser {
                     : "0";
                 return tasks.updateTask(false, Integer.parseInt(secondTerm));
             } catch (NumberFormatException e) {
+                // If the second term parsed isn't an integer
                 throw new RenException("Please indicate the task no. in digits.");
             } catch (RenException f) {
+                // The user entered an invalid number
                 return f.toString();
             }
         case "list":

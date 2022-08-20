@@ -20,6 +20,7 @@ public class Todo extends Task {
      * @return Todo Task or null if data is corrupted.
      */
     public static Todo readData(String[] data) {
+        // Check if data is complete
         if (data.length < 3) {
             return null;
         }

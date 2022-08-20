@@ -7,7 +7,6 @@ import ren.task.Event;
 import ren.task.Task;
 import ren.task.Todo;
 
-
 /**
  * TaskList contains a list of Tasks as well methods to add, delete, update tasks.
  */
@@ -15,7 +14,7 @@ public class TaskList {
     /** ArrayList to store all Tasks. */
     private final ArrayList<Task> tasks;
 
-    /** Storage to read and write all Tasks to File. */
+    /** Storage to synchronize all changes with. */
     private final Storage storage;
 
     /**

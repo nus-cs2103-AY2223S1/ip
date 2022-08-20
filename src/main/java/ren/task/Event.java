@@ -36,6 +36,7 @@ public class Event extends Task {
      * @return Event or null if data is corrupted.
      */
     public static Event readData(String[] data) {
+        // Check if data is complete
         if (data.length < 5) {
             return null;
         }
