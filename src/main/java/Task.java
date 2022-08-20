@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -15,6 +17,10 @@ public class Task {
 
     public void markUndone() {
         this.isDone = false;
+    }
+
+    public boolean isDateEqual(LocalDate date) {
+        throw new UnsupportedOperationException();
     }
 
     @Override

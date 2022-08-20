@@ -1,13 +1,29 @@
-public class Event extends Task {
-    protected String at;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
-    public Event(String description, String at, TaskType type) {
+public class Event extends Task {
+    protected LocalDate at;
+    protected LocalTime timeStart;
+    protected LocalTime timeEnd;
+
+    public Event(String description, LocalDate at, LocalTime timeStart, LocalTime timeEnd, TaskType type) {
         super(description, type);
         this.at = at;
+        this.timeStart = timeStart;
+        this.timeEnd = timeEnd;
     }
 
     @Override
+    public boolean isDateEqual(LocalDate date) {
+        return at.isEqual(date);
+    }
+    @Override
     public String toString() {
-        return "[E]" + super.toString() + "(at: " + at + ")";
+        String str = "";
+        str += timeStart.format(DateTimeFormatter.ofPattern("HH:mm ")) + "to ";
+        str += timeEnd.format(DateTimeFormatter.ofPattern("HH:mm "));
+        str += at.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        return "[E]" + super.toString() + "(at: " + str + ")";
     }
 }
