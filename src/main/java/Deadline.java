@@ -1,8 +1,18 @@
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
 public class Deadline extends Task {
-    private String due;
-    public Deadline(String description, String due) {
+    private LocalDate date;
+    private LocalTime time;
+
+    public Deadline(String description, String timing) {
         super(description);
-        this.due = due;
+        String[] timingParams = timing.split(" ");
+        if (timingParams.length == 2) {
+            this.time = LocalTime.parse(timingParams[1], DateTimeFormatter.ofPattern("HHmm"));
+        }
+        this.date = LocalDate.parse(timingParams[0], DateTimeFormatter.ofPattern("d/M/yyyy"));
     }
     @Override
     public String getType() {
@@ -11,7 +21,16 @@ public class Deadline extends Task {
 
     @Override
     public String getDescription() {
-        return super.getDescription() + " (by: " + this.due + ")";
+        return String.format("%s (by: %s%s)",
+                super.getDescription(),
+                this.date.format(DateTimeFormatter.ofPattern("MMM dd yyyy")),
+                (this.time != null ? this.time.format(DateTimeFormatter.ofPattern(" hh:mm a")) : "")
+        );
+    }
+
+    @Override
+    public boolean isEqualDate(LocalDate date) {
+        return this.date.equals(date);
     }
 
 }

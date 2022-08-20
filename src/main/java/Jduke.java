@@ -2,6 +2,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -11,11 +15,13 @@ public class Jduke {
     private static final String PROMPT = "jduke> ";
     private static final String GOODBYE = "|  Goodbye";
     private static final String TODO_FORMAT = "todo <description>";
-    private static final String EVENT_FORMAT = "event <description> /at <timing>";
-    private static final String DEADLINE_FORMAT = "deadline <description> /by <timing>";
+    private static final String EVENT_FORMAT = "event <description> /at <dd/mm/yyyy> <hhmm | optional>";
+    private static final String DEADLINE_FORMAT = "deadline <description> /by <dd/mm/yyyy> <hhmm | optional>";
     private static final String MARK_FORMAT = "mark <integer>";
     private static final String UNMARK_FORMAT = "unmark <integer>";
     private static final String DELETE_FORMAT = "delete <integer>";
+
+    private static final String LIST_FORMAT = "list <dd/mm/yyyy | optional>";
     public enum Command {
         LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE
     }
@@ -143,7 +149,9 @@ public class Jduke {
     }
 
     public static void addDeadline(String input) throws JdukeException {
-        if (!input.toLowerCase().matches("deadline [^ ](.*) /by (.*)")) {
+        if (!(input.toLowerCase().matches(
+                "deadline [^ ](.*) /by [0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{4}")
+                || input.toLowerCase().matches("deadline [^ ](.*) /by [0-9]{1,2}/[0-9]{1,2}/[0-9]{4}"))) {
             throw new JdukeException("invalid DEADLINE format", DEADLINE_FORMAT);
         }
         String details = input.split(" ", 2)[1];
@@ -153,7 +161,9 @@ public class Jduke {
         printLastTask();
     }
     public static void addEvent(String input) throws JdukeException {
-        if (!input.toLowerCase().matches("event [^ ](.*) /at (.*)")) {
+        if (!(input.toLowerCase().matches(
+                "event [^ ](.*) /at [0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{4}")
+                || input.toLowerCase().matches("event [^ ](.*) /at [0-9]{1,2}/[0-9]{1,2}/[0-9]{4}"))) {
             throw new JdukeException("invalid EVENT format", EVENT_FORMAT);
         }
         String details = input.split(" ", 2)[1];
@@ -162,12 +172,30 @@ public class Jduke {
         tasks.add(new Event(eventParams[0], eventParams[1]));
         printLastTask();
     }
-    public static void listTasks() {
+    public static void listTasks(String input) throws JdukeException {
+        if (!(input.matches("list [0-9]{1,2}/[0-9]{1,2}/[0-9]{4}")
+                || input.matches("list"))) {
+            throw new JdukeException("invalid LIST format", LIST_FORMAT);
+        }
         if (tasks.size() == 0) {
             System.out.println("|  no tasks found");
-        }
-        for (int pos = 0; pos < tasks.size(); pos++) {
-            System.out.printf("%d ==> %s%n", pos + 1, tasks.get(pos));
+        } else if (input.split(" ").length == 1) {
+            for (int pos = 0; pos < tasks.size(); pos++) {
+                System.out.printf("%d ==> %s%n", pos + 1, tasks.get(pos));
+            }
+        } else {
+            LocalDate date = LocalDate.parse(input.split(" ")[1],
+                    DateTimeFormatter.ofPattern("d/M/yyyy"));
+            boolean hasTask = false;
+            for (int pos = 0; pos < tasks.size(); pos++) {
+                if (tasks.get(pos).isEqualDate(date)) {
+                    hasTask = true;
+                    System.out.printf("%d ==> %s%n", pos + 1, tasks.get(pos));
+                }
+            }
+            if (!hasTask) {
+                System.out.println("|  no tasks found");
+            }
         }
     }
     public static int handleTaskPos(String input) throws JdukeException {
@@ -229,7 +257,7 @@ public class Jduke {
                 Command mainCmd = handleCommand(input);
                 switch (mainCmd) {
                 case LIST:
-                    listTasks();
+                    listTasks(input);
                     break;
                 case MARK:
                     markTask(input);
