@@ -9,13 +9,13 @@ public class Ui {
 
     private Scanner scanner;
 
-    private final String logo = " ____        _        \n"
+    private final String LOGO = " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
 
-    private final String line = "_______________________________";
+    private final String LINE = "_______________________________";
 
     /**
      * Class constructor for Ui class.
@@ -29,7 +29,7 @@ public class Ui {
      */
     public void showWelcome() {
         showLine();
-        System.out.println(logo);
+        System.out.println(LOGO);
         System.out.println("Hello! I'm Duke\nWhat can I do for you?");
         showLine();
     }
@@ -38,15 +38,16 @@ public class Ui {
      * Handles line showing.
      */
     public void showLine() {
-        System.out.println(line);
+        System.out.println(LINE);
     }
 
     /**
      * Handles user interface for loading error.
      */
     public void showLoadingError() {
-        String temp = line + "Storage file not found at specified path!" + line;
-        System.out.println(temp);
+        showLine();
+        System.out.println("Storage file not found at specified path!");
+        showLine();
     }
 
     /**
@@ -108,15 +109,14 @@ public class Ui {
      */
     public void showBye() {
         System.out.println("Bye. Hope to see you again soon!");
-        System.out.println(line);
+        System.out.println(LINE);
     }
 
     /**
      * Handles user interface for reading user commands.
      */
     public String readCommand() {
-        String command = scanner.nextLine();
-        return command;
+        return scanner.nextLine();
     }
 
     /**
