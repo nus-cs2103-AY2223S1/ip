@@ -1,13 +1,14 @@
+package duke;
+
 import duke.command.DukeCommandType;
 import duke.task.DukeTaskManager;
-import duke.ui.DukePrinter;
+import duke.ui.DukeUi;
 
-import java.util.Scanner;
 
 public class Duke {
 
-    private static Scanner sc;
     private static DukeTaskManager taskManager;
+    private static DukeUi dukeUi;
 
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -20,15 +21,15 @@ public class Duke {
     }
 
     private static void startService() {
-        DukePrinter.dukePrint("Hello! I'm Duke\nWhat can I do for you?\n");
-        sc = new Scanner(System.in);
+        dukeUi.dukePrint("Hello! I'm Duke \nWhat can I do for you?\n");
+        dukeUi = new DukeUi();
         taskManager = new DukeTaskManager(Storage.loadData());
         run();
     }
 
     private static void run() {
-        while (sc.hasNextLine()) {
-            String str = sc.nextLine().replaceAll("( )+", " ");
+        while(dukeUi.hasNextLine()) {
+            String str = dukeUi.getNextLine().replaceAll("( )+", " ");
             String command = str.split(" ")[0];
             DukeCommandType commandType = getCommandType(command);
             String args = str.replaceFirst(command, "").trim();
@@ -43,27 +44,29 @@ public class Duke {
             }
             case MARK:
             case UNMARK:
+                //Fallthrough
             case DELETE: {
                 taskManager.dukeUpdateTaskStatus(commandType, args);
                 break;
             }
             case TODO:
             case EVENT:
+                //Fallthrough
             case DEADLINE: {
                 taskManager.dukeAddTask(commandType, args);
                 break;
             }
             default: {
-                DukePrinter.dukePrint("Invalid Command. Please try again\n");
+                dukeUi.dukePrint("Invalid Command. Please try again\n");
             }
             }
         }
     }
 
     private static void endService() {
-        DukePrinter.dukePrint("Bye. Hope to see you again!\n");
+        dukeUi.dukePrint("Bye. Hope to see you again!\n");
         Storage.saveData(taskManager.getTasks());
-        sc.close();
+        dukeUi.endService();
         return;
     }
 

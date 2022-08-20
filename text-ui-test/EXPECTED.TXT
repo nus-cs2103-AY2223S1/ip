@@ -91,13 +91,13 @@ Nice! I've marked this task as done:
 
 ===========================================
 
-Error. duke.task.Task is not in the list
+Error. Task is not in the list
 
 ===========================================
 
 ===========================================
 
-Error. duke.task.Task is not in the list
+Error. Task is not in the list
 
 ===========================================
 

@@ -6,7 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import duke.command.DukeCommandType;
-import duke.ui.DukePrinter;
+import duke.ui.DukeUi;
 
 public class DukeTaskManager {
     private List<Task> dukeTasks;
@@ -25,7 +25,7 @@ public class DukeTaskManager {
 
     public void dukeAddTask(DukeCommandType type, String args) {
         if (args.isEmpty()) {
-            DukePrinter.dukePrint("Description cannot be empty\n");
+            DukeUi.dukePrint("Description cannot be empty\n");
             return;
         }
         switch (type) {
@@ -40,7 +40,7 @@ public class DukeTaskManager {
                 m.find();
                 dukeAddToList(new Deadline(m.group(1).trim(), m.group(2).trim()));
             } catch (IllegalStateException e) {
-                DukePrinter.dukePrint("Are you missing a /by ?\n");
+                DukeUi.dukePrint("Are you missing a /by ?\n");
             }
             break;
         }
@@ -51,7 +51,7 @@ public class DukeTaskManager {
                 m.find();
                 dukeAddToList(new Event(m.group(1).trim(), m.group(2).trim()));
             } catch (IllegalStateException e) {
-                DukePrinter.dukePrint("Are you missing a /at ?\n");
+                DukeUi.dukePrint("Are you missing a /at ?\n");
             }
             break;
         }
@@ -61,7 +61,8 @@ public class DukeTaskManager {
 
     private void dukeAddToList(Task task) {
         dukeTasks.add(task);
-        DukePrinter.dukePrint(String.format("Got it. I've added this task: \n %s\n %s\n",task.toString(), getNoOfTasks()));
+        DukeUi.dukePrint(String.format("Got it. I've added this task: \n %s\n %s\n",
+                task.toString(), getNoOfTasks()));
         return;
     }
 
@@ -79,16 +80,16 @@ public class DukeTaskManager {
         for (int i = 0; i < dukeTasks.size(); i++) {
             tasks += String.format("%d. %s\n", i + 1, dukeTasks.get(i));
         }
-        DukePrinter.dukePrint(tasks);
+        DukeUi.dukePrint(tasks);
     }
 
     private void dukeMarkTask(int i) {
         if ((0 <= i) && (i < dukeTasks.size())) {
             dukeTasks.get(i).markComplete();
             String str = dukeTasks.get(i).toString();
-            DukePrinter.dukePrint(String.format("Nice! I've marked this task as done:\n %s\n", str));
+            DukeUi.dukePrint(String.format("Nice! I've marked this task as done:\n %s\n", str));
         } else {
-            DukePrinter.dukePrint("Error. duke.task.Task is not in the list\n");
+            DukeUi.dukePrint("Error. duke.task.Task is not in the list\n");
         }
     }
 
@@ -96,9 +97,9 @@ public class DukeTaskManager {
         if ((0 <= i) && (i < dukeTasks.size())) {
             dukeTasks.get(i).markIncomplete();
             String str = dukeTasks.get(i).toString();
-            DukePrinter.dukePrint(String.format("OK, I've marked this task as not done yet:\n %s\n", str));
+            DukeUi.dukePrint(String.format("OK, I've marked this task as not done yet:\n %s\n", str));
         } else {
-            DukePrinter.dukePrint("Error. duke.task.Task is not in the list\n");
+            DukeUi.dukePrint("Error. Task is not in the list\n");
         }
     }
 
@@ -106,9 +107,9 @@ public class DukeTaskManager {
         if ((0 <= i) && (i < dukeTasks.size())) {
             Task remove = dukeTasks.remove(i);
             String str = remove.toString();
-            DukePrinter.dukePrint(String.format("OK, I've remove this task:\n %s\n %s", str, getNoOfTasks()));
+            DukeUi.dukePrint(String.format("OK, I've remove this task:\n %s\n %s", str, getNoOfTasks()));
         } else {
-            DukePrinter.dukePrint("Error. duke.task.Task is not in the list\n");
+            DukeUi.dukePrint("Error. Task is not in the list\n");
         }
     }
 
@@ -130,7 +131,7 @@ public class DukeTaskManager {
             }
             }
         } catch (NumberFormatException e) {
-            DukePrinter.dukePrint("Invalid index. Index is not a number\n");
+            DukeUi.dukePrint("Invalid index. Index is not a number\n");
         }
     }
 
