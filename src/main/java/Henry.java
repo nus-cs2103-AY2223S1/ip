@@ -1,6 +1,7 @@
 import exceptions.ImproperCommandSyntaxException;
 import exceptions.NoSuchCommandException;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -127,21 +128,35 @@ public class Henry {
         output("I'VE MARKED THIS TASK AS NOT DONE: \n" + tasks.get(index));
     }
 
+    private LocalDate parseDate(String date) {
+        String[] dateSplit = date.split("/");
+        int day = Integer.parseInt(dateSplit[0]);
+        int month = Integer.parseInt(dateSplit[1]);
+        int year = Integer.parseInt(dateSplit[2]);
+        return LocalDate.of(year, month, day);
+    }
+
     public void handleAddTask(String command) throws ImproperCommandSyntaxException {
         Task task;
         if (command.matches("deadline (.+) /by (.+)")) {
             int indexSlash = command.indexOf('/');
             String description = command.substring(0, indexSlash).replace("deadline", "").trim();
             String modifier = command.substring(indexSlash + 1).replace("by", "").trim();
-            task = new Task(description, modifier, Commands.DEADLINE);
+            String date = modifier.split(" ")[0];
+            String time = modifier.split(" ")[1];
+            LocalDate parsed = parseDate(date);
+            task = new Task(Commands.DEADLINE, description, parsed.atTime(Integer.parseInt(time) / 100, 0));
         } else if (command.matches("event (.+) /at (.+)")) {
             int indexSlash = command.indexOf('/');
             String description = command.substring(0, indexSlash).replace("event", "").trim();
             String modifier = command.substring(indexSlash + 1).replace("at", "").trim();
-            task = new Task(description, modifier, Commands.EVENT);
+            String date = modifier.split(" ")[0];
+            String time = modifier.split(" ")[1];
+            LocalDate parsed = parseDate(date);
+            task = new Task(Commands.EVENT, description, parsed.atTime(Integer.parseInt(time) / 100, 0));
         } else if (command.matches("todo (.+)")) {
             String description = command.replace("todo", "").trim();
-            task = new Task(description, "", Commands.TODO);
+            task = new Task(Commands.TODO, description, null);
         } else {
             throw new ImproperCommandSyntaxException();
         }
