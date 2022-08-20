@@ -9,10 +9,20 @@ public class Duke {
         System.out.println("Hello! I'm Duke\nWhat can I do for you?");
         Scanner scanner = new Scanner(System.in);
         UserInput: while (scanner.hasNextLine()) {
-            UserCommand command = UserCommand.valueOf(scanner.next().toUpperCase());
-            switch(command) {
+            UserCommand command;
+            try {
+                command = UserCommand.valueOf(scanner.next().toUpperCase());
+            } catch (IllegalArgumentException e) {
+                System.out.println("OOPS!!! I'm sorry, but I don't know what that means:-(");
+                continue;
+            }
+            switch (command) {
             case TODO:
                 String toDoDescription = scanner.nextLine().strip();
+                if (toDoDescription.isBlank()) {
+                    System.out.println("OOPS!!! The description of a todo cannot be empty.");
+                    continue;
+                }
                 ToDo toDoTask = new ToDo(toDoDescription);
                 storage.add(toDoTask);
                 System.out.println("Got it. I've added this task:\n" + toDoTask
