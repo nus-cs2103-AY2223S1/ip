@@ -7,6 +7,7 @@ import duke.command.ByeCommand;
 import duke.command.Command;
 import duke.command.DeadlineCommand;
 import duke.command.DeleteCommand;
+import duke.command.FindCommand;
 import duke.command.EventCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
@@ -15,7 +16,7 @@ import duke.command.UnmarkCommand;
 
 public class Parser {
     private enum CommandType {
-        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE
+        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, FIND
     }
 
     public static Command parse(String fullCommand) throws DukeException {
@@ -45,6 +46,8 @@ public class Parser {
                     throw new EmptyDescriptionException("an event");
                 case DELETE:
                     throw new EmptyIndexException("delete");
+                case FIND:
+                    throw new DukeException("Please provide a keyword to find.");
                 default:
                     return new ByeCommand();
                 }
@@ -71,6 +74,8 @@ public class Parser {
                     return new EventCommand(eventSplit[0], LocalDate.parse(eventSplit[1]));
                 case DELETE:
                     return new DeleteCommand(Integer.parseInt(info) - 1);
+                case FIND:
+                    return new FindCommand(info);
                 default:
                     throw new DukeException("Please re-enter the command only.");
                 }

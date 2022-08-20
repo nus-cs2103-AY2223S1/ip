@@ -72,6 +72,33 @@ public class TaskList {
         return deleted.toString();
     }
 
+    /**
+     * Finds the Tasks containing the given keyword.
+     *
+     * @param keyword Given keyword.
+     * @return String representation of the Tasks found.
+     */
+    public String findTasks(String keyword) {
+        ArrayList<String> foundTasks = new ArrayList<>();
+        for (Task task : tasks) {
+            if (task.hasKeyword(keyword)) {
+                foundTasks.add(task.toString());
+            }
+        }
+
+        int size = foundTasks.size();
+        if (size == 0) {
+            return "There are no matching tasks in your list.";
+        } else {
+            StringBuilder sb = new StringBuilder(String.format("Here %s the matching task%s in your list:",
+                    size > 1 ? "are" : "is", size > 1 ? "s" : ""));
+            for (int i = 1; i <= size; i++) {
+                sb.append(String.format("%n%d.%s", i, foundTasks.get(i - 1)));
+            }
+            return sb.toString();
+        }
+    }
+
     @Override
     public String toString() {
         if (size == 0) {
