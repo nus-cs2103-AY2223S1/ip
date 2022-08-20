@@ -27,7 +27,7 @@ public class Duke {
                     printResponse("which task would you like to mark as undone? (enter its number in the list!)");
                     index = reader.nextInt() - 1;
                     String undoneTask = taskList.markAsUndone(index);
-                    response = "Task marked as not done yet:\n" + undoneTask;
+                    response = "Task marked as undone:\n" + undoneTask;
                     printResponse(response);
                     // todo: handle code duplication (similar to mark)
                     break;
@@ -68,9 +68,12 @@ public class Duke {
     }
 
     private static void printResponse(String input) {
-        String indentedInput = input.replaceAll("(?m)^", "\t");
-        System.out.println("\t----------------------------------");
-        System.out.println(indentedInput);
-        System.out.println("\t----------------------------------");
+        // String indentedInput = input.replaceAll("(?m)^", "\t");
+        // System.out.println("\t----------------------------------");
+        System.out.println("----------------------------------");
+        // System.out.println(indentedInput);
+        System.out.println(input);
+        System.out.println("----------------------------------");
+        // System.out.println("\t----------------------------------");
     }
 }

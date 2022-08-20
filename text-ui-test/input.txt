@@ -1,0 +1,19 @@
+add
+todo
+CS2103 Quiz
+add
+deadline
+CS2105 Assignment 1
+Sunday 2359
+add
+event
+CS2102 Lecture 3
+Tuesday 2pm
+list
+mark
+2
+list
+unmark
+2
+list
+bye
