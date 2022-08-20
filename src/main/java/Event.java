@@ -1,13 +1,24 @@
-public class Event extends Task {
-    private final String timing;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.time.LocalDate;
 
-    public Event(String task, String timing) {
+public class Event extends Task {
+    private final LocalDate date;
+
+    public Event(String task, String date) {
         super(task, "event");
-        this.timing = timing;
+        String[] returnedArray = date.split(" ");
+        if (returnedArray.length == 1) {
+            this.date = LocalDate.parse(date);
+        } else {
+            this.date = LocalDate.parse(date,
+                    DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM));
+        }
     }
 
     @Override
     public String toString() {
-        return "[E] " + super.toString() + " (at: " + timing + ")";
+        return "[E] " + super.toString()
+                + " (at: " + date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)) + ")";
     }
 }
