@@ -1,7 +1,32 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
+Hello!, I'm Yiye.
+What can I do for you? ◠‿◠
+Got it, this task is added in your list:
+[E][ ] meeting (at: school)
+Now you have 1 task in your list.
+Got it, this task is added in your list:
+[D][ ] essay (by: Sunday)
+Now you have 2 tasks in your list.
+Got it, this task is added in your list:
+[T][ ] shopping
+Now you have 3 tasks in your list.
+Here are the tasks in your list:
+1.[E][ ] meeting (at: school)
+2.[D][ ] essay (by: Sunday)
+3.[T][ ] shopping
+Nice! I have marked this task as done:
+[E][X] meeting (at: school)
+This task is marked as not done:
+[E][ ] meeting (at: school)
+Nice! I have marked this task as done:
+[D][X] essay (by: Sunday)
+Here are the tasks in your list:
+1.[E][ ] meeting (at: school)
+2.[D][X] essay (by: Sunday)
+3.[T][ ] shopping
+Noted. I've removed this task:
+[E][ ] meeting (at: school)
+Now you have 2 tasks in your list.
+Here are the tasks in your list:
+1.[D][X] essay (by: Sunday)
+2.[T][ ] shopping
+Bye! Hope to see you again soon!

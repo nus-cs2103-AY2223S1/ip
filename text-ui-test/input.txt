@@ -1,0 +1,11 @@
+event meeting /at school
+deadline essay /by Sunday
+todo shopping
+list
+mark 1
+unmark 1
+mark 2
+list
+delete 1
+list
+bye
