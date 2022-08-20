@@ -30,4 +30,36 @@ public class Ui {
         System.out.println("Goodbye! Hope to see you soon!");
     }
     
+    public void showAddTask(Task task, TaskList tasks) {
+        System.out.println("Got it. I've added this task:");
+        this.showTask(task);
+        this.showNumTasks(tasks);
+    }
+    
+    public void showDeleteTask(Task task, TaskList tasks) {
+        System.out.println("Okie, I've deleted this task: ");
+        this.showTask(task);
+        this.showNumTasks(tasks);
+    }
+    
+    public void showMarkTask(Task task, TaskList tasks) {
+        System.out.println("Sure! I've marked this task as done: ");
+        this.showTask(task);
+        this.showNumTasks(tasks);
+    }
+    
+    public void showUnmarkTask(Task task, TaskList tasks) {
+        System.out.println("Sure! I've unmarked this task as done: ");
+        this.showTask(task);
+        this.showNumTasks(tasks);
+    }
+    
+    public void showNumTasks(TaskList tasks) {
+        System.out.println("You have " + tasks.size() + " tasks in the list");
+    }
+    
+    public void showTask(Task task) {
+        System.out.println("   " + task);
+    }
+    
 }

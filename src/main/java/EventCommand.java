@@ -17,9 +17,7 @@ public class EventCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task event = new Event(this.description, this.atDateTime);
         tasks.add(event);
-        System.out.println("Got it. I've added this task:");
-        System.out.println("   " + event);
-        System.out.println("Now, you have " + tasks.size() + " tasks in the list");
+        ui.showAddTask(event, tasks);
         storage.save(tasks);
     }
 

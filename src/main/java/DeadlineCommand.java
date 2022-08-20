@@ -17,9 +17,7 @@ public class DeadlineCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task deadline = new Deadline(this.description, this.byDateTime);
         tasks.add(deadline);
-        System.out.println("Got it. I've added this task:");
-        System.out.println("   " + deadline);
-        System.out.println("Now, you have " + tasks.size() + " tasks in the list");
+        ui.showAddTask(deadline, tasks);
         storage.save(tasks);
     }
 
