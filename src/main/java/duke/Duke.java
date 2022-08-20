@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+/**
+ * The main class of the Duke application.
+ */
 public class Duke {
     private static final Path PATH = Paths.get(
             System.getProperty("user.home"),
@@ -17,7 +20,7 @@ public class Duke {
     private final Storage storage;
     private final Ui ui;
 
-    private Duke(Path path) {
+    public Duke(Path path) {
         this.storage = new Storage(path);
         this.ui = new Ui();
         TaskList tasks;
@@ -33,6 +36,11 @@ public class Duke {
         new Duke(PATH).run();
     }
 
+    /**
+     * Runs the Duke application.
+     * The CLI is started and the user is prompted for commands.
+     * Stops the application when the user enters the command "bye".
+     */
     public void run() {
         ui.showWelcome();
         while (true) {

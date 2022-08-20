@@ -8,6 +8,10 @@ import duke.task.TaskList;
 
 import java.io.IOException;
 
+/**
+ * A command to add a deadline task to the task list.
+ * Usage: deadline <description> /by <date>
+ */
 public class DeadlineCommand extends Command {
     private final String description;
     private final String deadline;

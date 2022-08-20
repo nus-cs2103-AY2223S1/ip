@@ -6,6 +6,10 @@ import duke.task.TaskList;
 
 import java.io.IOException;
 
+/**
+ * Command to exit the program.
+ * Usage: bye
+ */
 public class ByeCommand extends Command {
     @Override
     public boolean isTerminal() {

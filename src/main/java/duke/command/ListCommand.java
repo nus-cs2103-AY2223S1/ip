@@ -6,6 +6,10 @@ import duke.task.TaskList;
 
 import java.io.IOException;
 
+/**
+ * A command to list all the tasks in the task list.
+ * Usage: list
+ */
 public class ListCommand extends Command {
     @Override
     public boolean isTerminal() {
