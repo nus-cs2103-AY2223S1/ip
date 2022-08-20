@@ -17,7 +17,19 @@ import duke.task.ToDo;
 import java.time.LocalDate;
 import java.util.Arrays;
 
+/**
+ * Deals with parsing the user input.
+ *
+ * @author Rama Aryasuta Pangestu
+ */
 public abstract class Parser {
+    /**
+     * Returns a <code>Command</code> equivalent to the user input.
+     *
+     * @param input the user input
+     * @return a <code>Command</code> equivalent to the user input
+     * @throws DukeException if the input format is invalid
+     */
     public static Command parse(String input) throws DukeException {
         String[] args = input.trim().split("\\s+");
         Command command;
@@ -29,7 +41,8 @@ public abstract class Parser {
             command = new ListCommand();
             break;
         case "find":
-            command = new FindCommand(Arrays.stream(args).skip(1).reduce("", (x, y) -> x + " " + y).trim());
+            command = new FindCommand(
+                    Arrays.stream(args).skip(1).reduce("", (x, y) -> x + " " + y).trim());
             break;
         case "mark":
             try {
@@ -73,7 +86,8 @@ public abstract class Parser {
                 if (timeArgument.length <= 1) {
                     throw new DukeException("OOPS!!! There is no /at argument for event :(");
                 }
-                command = new AddCommand(new Event(description, false, LocalDate.parse(timeArgument[1])));
+                command = new AddCommand(
+                        new Event(description, false, LocalDate.parse(timeArgument[1])));
             } catch (java.time.format.DateTimeParseException exception) {
                 throw new DukeException(
                         "OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.");
@@ -88,7 +102,8 @@ public abstract class Parser {
                 if (timeArgument.length <= 1) {
                     throw new DukeException("OOPS!!! There is no /by argument for deadline :(");
                 }
-                command = new AddCommand(new Deadline(description, false, LocalDate.parse(timeArgument[1])));
+                command = new AddCommand(
+                        new Deadline(description, false, LocalDate.parse(timeArgument[1])));
             } catch (java.time.format.DateTimeParseException exception) {
                 throw new DukeException(
                         "OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.");

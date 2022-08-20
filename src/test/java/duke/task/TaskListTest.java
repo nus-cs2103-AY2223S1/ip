@@ -1,5 +1,4 @@
 package duke.task;
-import duke.Duke;
 import duke.common.DukeException;
 
 import org.junit.jupiter.api.Test;
@@ -23,7 +22,7 @@ public class TaskListTest {
 
         try {
             Task task = new ToDo("todo", false);
-            taskList.addItem(task);
+            taskList.addTask(task);
             arrayList.add(task);
         } catch (Exception exception) {
             fail();
@@ -35,7 +34,7 @@ public class TaskListTest {
 
         try {
             Task task = new Deadline("deadline", true, LocalDate.parse("2022-12-12"));
-            taskList.addItem(task);
+            taskList.addTask(task);
             arrayList.add(task);
         } catch (Exception exception) {
             fail();
@@ -47,7 +46,7 @@ public class TaskListTest {
 
         try {
             Task task = new Event("event", true, LocalDate.parse("2012-12-12"));
-            taskList.addItem(task);
+            taskList.addTask(task);
             arrayList.add(task);
         } catch (Exception exception) {
             fail();
@@ -58,7 +57,7 @@ public class TaskListTest {
         assertEquals("1. [T][ ] todo\n2. [D][X] deadline (by: Dec 12, 2022)\n3. [E][X] event (at: Dec 12, 2012)\n", taskList.toString());
 
         try {
-            taskList.markItem(0);
+            taskList.markTask(0);
         } catch (Exception exception) {
             fail();
         }
@@ -68,7 +67,7 @@ public class TaskListTest {
         assertEquals("1. [T][X] todo\n2. [D][X] deadline (by: Dec 12, 2022)\n3. [E][X] event (at: Dec 12, 2012)\n", taskList.toString());
 
         try {
-            taskList.unMarkItem(2);
+            taskList.unMarkTask(2);
         } catch (Exception exception) {
             fail();
         }
@@ -82,7 +81,7 @@ public class TaskListTest {
         assertEquals("1. [T][X] todo\n2. [D][X] deadline (by: Dec 12, 2022)\n", taskList.filter(x -> x.getDescription().contains("d")).toString());
 
         try {
-            taskList.deleteItem(1);
+            taskList.deleteTask(1);
         } catch (Exception exception) {
             fail();
         }
@@ -91,7 +90,7 @@ public class TaskListTest {
         assertEquals("1. [T][X] todo\n2. [E][ ] event (at: Dec 12, 2012)\n", taskList.toString());
 
         try {
-            taskList.deleteItem(2);
+            taskList.deleteTask(2);
             fail();
         } catch (DukeException exception) {
             assertEquals("OOPS!!! No such task exists :(", exception.getMessage());
@@ -100,7 +99,7 @@ public class TaskListTest {
         }
 
         try {
-            taskList.markItem(-1);
+            taskList.markTask(-1);
             fail();
         } catch (DukeException exception) {
             assertEquals("OOPS!!! No such task exists :(", exception.getMessage());
@@ -109,7 +108,7 @@ public class TaskListTest {
         }
 
         try {
-            taskList.unMarkItem(1000000000);
+            taskList.unMarkTask(1000000000);
             fail();
         } catch (DukeException exception) {
             assertEquals("OOPS!!! No such task exists :(", exception.getMessage());
