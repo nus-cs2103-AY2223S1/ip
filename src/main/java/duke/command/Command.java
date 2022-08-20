@@ -1,5 +1,9 @@
-abstract class Command {
-    public static enum Commands {
+package duke.command;
+
+import duke.DukeException;
+
+public abstract class Command {
+    public enum Commands {
         bye, list, help, mark, unmark, delete, todo, deadline, event, invalid;
     }
     public abstract void execute() throws DukeException;

@@ -1,3 +1,10 @@
+package duke.command;
+
+import duke.DukeException;
+import duke.TaskList;
+import duke.task.ToDo;
+import duke.Ui;
+
 public class ToDoCommand extends Command {
     private String command;
     private TaskList tasks;
@@ -13,8 +20,8 @@ public class ToDoCommand extends Command {
     public void execute() throws DukeException {
         String[] returnedArray = command.split(" ");
         if (returnedArray.length == 1) {
-            throw new DukeException("your [todo] command is empty." +
-                    "\nPlease use the [help] command to check the proper usage of [todo].");
+            throw new DukeException("your [todo] duke.command is empty." +
+                    "\nPlease use the [help] duke.command to check the proper usage of [todo].");
         }
         ToDo toDo = new ToDo(command);
         tasks.add(toDo);

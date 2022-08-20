@@ -1,3 +1,10 @@
+package duke.command;
+
+import duke.DukeException;
+import duke.TaskList;
+import duke.task.Event;
+import duke.Ui;
+
 public class EventCommand extends Command {
     private String command;
     private TaskList tasks;
@@ -13,11 +20,11 @@ public class EventCommand extends Command {
     public void execute() throws DukeException {
         String[] returnedArray = command.split(" /at ");
         if (returnedArray.length <= 0) {
-            throw new DukeException("your command is incomplete." +
-                    "\nPlease use the [help] command to check the proper usage of [event].");
+            throw new DukeException("your duke.command is incomplete." +
+                    "\nPlease use the [help] duke.command to check the proper usage of [event].");
         } else if (returnedArray.length == 1) {
-            throw new DukeException("your command is missing the [/at] component, or the second half ot the command." +
-                    "\nPlease use the [help] command to check the proper usage of [event].");
+            throw new DukeException("your duke.command is missing the [/at] component, or the second half ot the duke.command." +
+                    "\nPlease use the [help] duke.command to check the proper usage of [event].");
         } else if (returnedArray.length > 2) {
             String secondHalf = "";
             for (int i = 1; i < returnedArray.length; i++) {
