@@ -1,8 +1,9 @@
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class Duke {
     private static ArrayList<Task> storage = new ArrayList<>();
-    private static int i = 0;
+    private static Formatting f = new Formatting();
     private static void mark(String userInput) throws DukeException{
         if (userInput.length() <= 5) {
             throw new DukeException("Mark which one??");
@@ -52,10 +53,9 @@ public class Duke {
         }
 
         storage.add(new ToDo(userInput.substring(5)));
-        i++;
         System.out.println("Got it. I've added this task:\n"
-                +storage.get(i-1).toString()
-                + "\nNow you have " + i + " tasks in the list.");
+                +storage.get(storage.size() - 1).toString()
+                + "\nNow you have " + storage.size() + " tasks in the list.");
     }
 
     private static void deadline(String userInput) throws DukeException {
@@ -68,10 +68,9 @@ public class Duke {
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new DukeException("Please follow the appropriate format for deadline!");
         }
-        i++;
         System.out.println("Got it. I've added this task:\n"
-                +storage.get(i-1).toString()
-                + "\nNow you have " + i + " tasks in the list.");
+                +storage.get(storage.size() - 1).toString()
+                + "\nNow you have " + storage.size() + " tasks in the list.");
     }
 
     private static void event(String userInput) throws DukeException {
@@ -85,10 +84,9 @@ public class Duke {
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new DukeException("Please follow the appropriate format for event!");
         }
-        i++;
         System.out.println("Got it. I've added this task:\n"
-                +storage.get(i-1).toString()
-                + "\nNow you have " + i + " tasks in the list.");
+                +storage.get(storage.size() - 1).toString()
+                + "\nNow you have " + storage.size() + " tasks in the list.");
     }
     private static void incomprehensible() throws DukeException {
         throw new DukeException("I'm sorry, but I don't know what that means :-(");
@@ -113,18 +111,21 @@ public class Duke {
 
     public static void main(String[] args) {
         System.out.println("Hey Dude here\n" + "What can I do for you?");
+        storage = FileManipulation.read("/Users/chinhongming/Documents/cs2103t/tasks.txt");
         Scanner sc = new Scanner(System.in);
         String userInput = sc.nextLine();
         while (!userInput.equals("bye")) {
             if (userInput.equals("mark") || userInput.startsWith("mark ")) {
                 try {
                     mark(userInput);
+                    FileManipulation.overwrite("/Users/chinhongming/Documents/cs2103t/tasks.txt", f.apply(storage));
                 } catch (DukeException e) {
                     System.out.println(e.toString());
                 }
             } else if (userInput.equals("unmark") || userInput.startsWith("unmark ")) {
                 try {
                     unmark(userInput);
+                    FileManipulation.overwrite("/Users/chinhongming/Documents/cs2103t/tasks.txt", f.apply(storage));
                 } catch (DukeException e) {
                     System.out.println(e.toString());
                 }
@@ -133,24 +134,28 @@ public class Duke {
             } else if (userInput.equals("todo") || userInput.startsWith("todo ")) {
                 try {
                     toDo(userInput);
+                    FileManipulation.overwrite("/Users/chinhongming/Documents/cs2103t/tasks.txt", f.apply(storage));
                 } catch (DukeException e) {
                     System.out.println(e.toString());
                 }
             } else if (userInput.equals("deadline") || userInput.startsWith("deadline ")) {
                 try {
                     deadline(userInput);
+                    FileManipulation.overwrite("/Users/chinhongming/Documents/cs2103t/tasks.txt", f.apply(storage));
                 } catch (DukeException e) {
                     System.out.println(e.toString());
                 }
             } else if (userInput.equals("event") || userInput.startsWith("event ")) {
                 try {
                     event(userInput);
+                    FileManipulation.overwrite("/Users/chinhongming/Documents/cs2103t/tasks.txt", f.apply(storage));
                 } catch (DukeException e) {
                     System.out.println(e.toString());
                 }
             } else if (userInput.startsWith("delete ")) {
                 try {
                     delete(userInput);
+                    FileManipulation.overwrite("/Users/chinhongming/Documents/cs2103t/tasks.txt", f.apply(storage));
                 } catch (DukeException e) {
                     System.out.println(e.toString());
                 }
@@ -164,6 +169,7 @@ public class Duke {
                 }
             }
             userInput = sc.nextLine();
+            FileManipulation.overwrite("/Users/chinhongming/Documents/cs2103t/tasks.txt", f.apply(storage));
         }
         sc.close();
         System.out.println("Bye. Hope to see you again soon!");
