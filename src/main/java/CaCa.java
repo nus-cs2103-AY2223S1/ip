@@ -42,12 +42,30 @@ public class CaCa {
 
     /**
      * Checks if task index is valid.
+     *
+     * @param taskIndex Task index entered by user.
+     * @throws InvalidTaskIndex If task index is invalid, i.e. out of range.
      */
     public static void isValid(int taskIndex) throws InvalidTaskIndex {
         if (taskIndex <= 0 || taskIndex > tasks.size()) {
             String MESSAGE = String.format("OOPS!!! You have entered an invalid task index. " +
                     "It should be between 1 and %d.", tasks.size());
             throw new InvalidTaskIndex(MESSAGE);
+        }
+    }
+
+    /**
+     * Checks if task description is empty or contains only white spaces.
+     *
+     * @param command User input with 1st element as command type, 2nd element as task description.
+     * @throws EmptyInputException If task description is empty or left blank.
+     */
+    public static void hasDescription(String[] command) throws EmptyInputException {
+        String commandType = command[0];
+        if (command.length == 1 || command[1].isBlank()) {
+            String MESSAGE = String.format("OOPS!!! The description of %s cannot be empty.",
+                    commandType);
+            throw new EmptyInputException(MESSAGE);
         }
     }
 
@@ -224,6 +242,7 @@ public class CaCa {
      */
     public static void main(String[] args) {
 
+        // Greets user.
         greet();
 
         // Solution below on getting user input is
@@ -254,20 +273,21 @@ public class CaCa {
                         || commandType.equals("deadline")
                         || commandType.equals("event")) {
 
-                    // Checks whether description is empty or contains only white spaces.
-                    if (command.length == 1 || command[1].isBlank()) {
-                        String message = String.format("OOPS!!! The description of %s cannot be empty.",
-                                commandType);
-                        throw new EmptyInputException(message);
+                    // Checks whether description is empty or blank before proceeding.
+                    hasDescription(command);
 
-                    } else if (commandType.equals("todo")) {
+                    if (commandType.equals("todo")) {
                         addToDo(command[1]);
 
                     } else if (commandType.equals("deadline")) {
                         addDeadline(command[1]);
 
-                    } else { // Event
+                    } else if (commandType.equals("event")) {
                         addEvent(command[1]);
+
+                    } else {
+                        // Invalid input.
+                        System.out.println("OOPS!!! Something went wrong. Please provide a valid input :-(");
                     }
 
                 } else if (commandType.equals("list")) {
