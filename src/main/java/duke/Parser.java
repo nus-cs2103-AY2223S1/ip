@@ -6,7 +6,7 @@ package duke;
 public class Parser {
 
     public enum userCommand {
-        BYE, LIST, UNMARK, MARK, TODO, DEADLINE, EVENT, DELETE
+        BYE, LIST, UNMARK, MARK, TODO, DEADLINE, EVENT, DELETE, FIND
     }
 
     /**
@@ -39,6 +39,8 @@ public class Parser {
             return new AddCommand(newListItem);
         case DELETE:
             return new DeleteCommand(getIntegerInUserInput(inputList));
+        case FIND:
+            return new FindCommand(getToDoDescription(inputList, input));
         }
         throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
     }
