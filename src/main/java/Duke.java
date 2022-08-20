@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 public class Duke {
-    protected static final String topWindow = "╔═══════════════════════════════════════════╗";
-    protected static final String bottomWindow = "╚═══════════════════════════════════════════╝";
+    protected static final String topWindow = "╔══════════════════════════════════════════════╗";
+    protected static final String bottomWindow = "╚══════════════════════════════════════════════╝";
     private static final String greeting = "Hi, I'm Ploopy! Nice to meet you!\n\tWhats up?";
     private static final String farewell = "Okay then, see ya later :)";
     private static final String completedTask = "Nice! You've completed this task. I'll mark it as done.";
@@ -44,27 +44,30 @@ public class Duke {
         System.out.println(bottomWindow);
     }
 
-    private static void markTask(int taskIndex) {
+    private static void markTask(int taskIndex) throws DukeException {
+        if (taskIndex > 0 && taskIndex <= totalTasks) {
         Task current = tasks.get(taskIndex - 1);
         current.markDone();
         System.out.println(messageFormatter(completedTask + "\n\t" + " " + current));
+    } else throw new DukeException(messageFormatter("That task number doesn't exist on your list!"));
     }
 
-    private static void unmarkTask(int taskIndex) {
-        Task current = tasks.get(taskIndex - 1);
-        current.unmark();
-        System.out.println(messageFormatter(incompleteTask + "\n\t" + " " + current));
+    private static void unmarkTask(int taskIndex) throws DukeException {
+        if (taskIndex > 0 && taskIndex <= totalTasks) {
+            Task current = tasks.get(taskIndex - 1);
+            current.unmark();
+            System.out.println(messageFormatter(incompleteTask + "\n\t" + " " + current));
+        } else throw new DukeException(messageFormatter("That task number doesn't exist on your list!"));
     }
 
-    private static void deleteTask(int taskNumber) {
+    private static void deleteTask(int taskNumber) throws DukeException {
         if (taskNumber > 0 && taskNumber <= totalTasks)  {
             totalTasks--;
             String message = "Deleted: " + tasks.get(taskNumber - 1) + "\n\tYou have "
                     + totalTasks + " task(s) remaining.";
             tasks.remove(taskNumber - 1);
             System.out.println(messageFormatter(message));
-        }
-
+        } else throw new DukeException(messageFormatter("That task number doesn't exist on your list!"));
     }
 
     private static void addTaskMessage(Task task) {
@@ -81,7 +84,7 @@ public class Duke {
 
     private static void createToDo(String input) throws DukeException {
         if (!isEmptyCommand(input, "todo".length())) {
-            Task newTask = Task.createTask(input.split("todo")[1].trim(), null,"todo");
+            Task newTask = Task.createTask(input, null,"todo");
             tasks.add(newTask);
             addTaskMessage(newTask);
         } else throw new DukeException(messageFormatter(EmptyCommandMessage + " todo"));
