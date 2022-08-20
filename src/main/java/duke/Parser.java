@@ -5,7 +5,17 @@ import duke.command.*;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
+/**
+ * A parser object can parse a command from a string,
+ * and determine which Command object should be used to execute it.
+ */
 public class Parser {
+    /**
+     * Parses a command from a string.
+     * 
+     * @param str the string to parse
+     * @return the Command object to execute
+     */
     public static Command parse(String str) {
         String[] arguments = Parser.getArguments(str);
         if (arguments.length == 0) {
@@ -64,6 +74,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Splits a string into an array of arguments, delimited by spaces.
+     * 
+     * @param command the string to split
+     * @return the array of arguments
+     */
     private static String[] getArguments(String command) {
         if (command.isBlank()) {
             return new String[0];
@@ -71,6 +87,14 @@ public class Parser {
         return command.split(" ");
     }
 
+    /**
+     * Returns the index of the first occurrence of a search string in an array of arguments.
+     * 
+     * @param arguments the array of arguments
+     * @param query the search string
+     * @return the index of the first occurrence of the search string
+     * @throws DukeException if the search string is not found
+     */
     private static int findArgumentIndex(String[] arguments, String query) {
         return IntStream.range(0, arguments.length)
                 .filter(i -> arguments[i].equals(query))
@@ -80,12 +104,30 @@ public class Parser {
                 )));
     }
 
+    /**
+     * Joins an array of arguments into a single string, with spaces between them.
+     * 
+     * @param arguments the array of arguments
+     * @param start the index of the first argument (inclusive)
+     * @param end the end index of the last argument (exclusive)
+     * @return the joined string
+     */
     private static String concatenateArguments(String[] arguments, int start, int end) {
         return Arrays.stream(arguments, start, end)
+                .map(str -> str + " ")
                 .collect(StringBuilder::new, StringBuilder::append, StringBuilder::append)
                 .toString();
     }
 
+    /**
+     * Joins an array of arguments into a single string, with spaces between them.
+     * Overloaded variant which concatenates all arguments from the start index,
+     * to the end of the array.
+     * 
+     * @param arguments the array of arguments
+     * @param start the index of the first argument (inclusive)
+     * @return the joined string
+     */
     private static String concatenateArguments(String[] arguments, int start) {
         return Arrays.stream(arguments, start, arguments.length)
                 .map(str -> str + " ")

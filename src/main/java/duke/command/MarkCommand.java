@@ -7,6 +7,11 @@ import duke.task.TaskList;
 
 import java.io.IOException;
 
+/**
+ * A command to mark a task in the task list as done.
+ * Usage: mark <index>
+ * Note that the index starts at 1.
+ */
 public class MarkCommand extends Command {
     public final int index;
 

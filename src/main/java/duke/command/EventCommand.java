@@ -8,6 +8,10 @@ import duke.task.TaskList;
 
 import java.io.IOException;
 
+/**
+ * A command to add an event task to the task list.
+ * Usage: event <description> /at <date>
+ */
 public class EventCommand extends Command {
     private final String description;
     private final String datetime;

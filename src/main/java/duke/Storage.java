@@ -9,6 +9,9 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Handles the storage of the task list, reading and/or writing to a file.
+ */
 public class Storage {
     private final Path path;
 

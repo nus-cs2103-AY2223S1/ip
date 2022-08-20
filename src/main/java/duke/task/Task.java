@@ -34,6 +34,8 @@ public abstract class Task {
 
     /**
      * Returns a task object from a serialized string.
+     * Subclasses should implement this method as well to deserialize the task
+     * and added below.
      * 
      * @param str the serialized task
      * @return the deserialized task object
