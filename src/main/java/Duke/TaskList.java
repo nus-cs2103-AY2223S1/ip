@@ -58,6 +58,23 @@ public class TaskList {
     }
 
     /**
+     * Returns list of Tasks with the corresponding name
+     *
+     * @param name
+     * @return List<Task>
+     */
+    public List<Task> findTask(String name) {
+        List<Task> foundTasks = new ArrayList<>();
+        for (int i = 0; i < lst.size(); i++) {
+            Task t = lst.get(i);
+            if (t.getTaskName().contains(name)) {
+                foundTasks.add(t);
+            }
+        }
+        return foundTasks;
+    }
+
+    /**
      * Gets the number of tasks in the taskList
      *
      * @return size of taskList
@@ -73,6 +90,18 @@ public class TaskList {
         System.out.println(Constants.list);
         for (int i = 0; i < lst.size(); i++) {
             System.out.println(String.format("%d.%s", i + 1, lst.get(i).toString()));
+        }
+    }
+
+    /**
+     * Prints the tasks in the given list
+     *
+     * @param list
+     */
+    public void printList(List<Task> list) {
+        System.out.println(Constants.find);
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(String.format("%d.%s", i + 1, list.get(i).toString()));
         }
     }
 

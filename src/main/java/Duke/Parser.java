@@ -4,6 +4,8 @@ import Commands.Command;
 import Commands.DeadlineCommand;
 import Commands.DeleteCommand;
 import Commands.ExitCommand;
+import Commands.EventCommand;
+import Commands.FindCommand;
 import Commands.ListCommand;
 import Commands.MarkCommand;
 import Commands.ToDoCommand;
@@ -40,6 +42,9 @@ public class Parser {
         case "delete":
             checkInputError(parse);
             return new DeleteCommand(parseInt(parse[1]));
+        case "find":
+            checkInputError(parse);
+            return new FindCommand(parse[1]);
         case "todo":
             checkInputError(parse);
             return new ToDoCommand(parse[1]);
@@ -52,7 +57,7 @@ public class Parser {
             checkInputError(parse);
             String[] parse3 = parse[1].split(" /at ");
             checkInputError(parse3);
-            return new DeadlineCommand(parse3[0], LocalDate.parse(parse3[1], formatter));
+            return new EventCommand(parse3[0], LocalDate.parse(parse3[1], formatter));
         default:
             throw new DukeException(Constants.invalid);
         }
