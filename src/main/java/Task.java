@@ -9,7 +9,6 @@ public class Task {
     public Task(String description) {
         this.description = description;
         this.isDone = false;
-        addTask(this);
     }
 
     public static void addTask(Task task) {
