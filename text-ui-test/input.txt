@@ -1,0 +1,9 @@
+todo borrow book
+todo exercise
+todo read book
+deadline return book /by Aug 31st
+event project meeting /at Aug 24th 9pm-11pm
+mark 1
+mark 4
+list
+bye

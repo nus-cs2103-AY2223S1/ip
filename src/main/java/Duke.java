@@ -8,12 +8,15 @@ public class Duke {
         Control dc = new Control();
         System.out.println("Hello! I'm Duke\n" + "What can I do for you?");
 
-        boolean hasnext = true;
+        String message = sc.nextLine();
 
-        while (hasnext) {
-            String message = sc.nextLine();
+        while (!message.equals("bye")) {
+
             dc.eval(message);
-
+            message = sc.nextLine();
             }
+
+        System.out.println("Bye. Hope to see you again soon!");
+        sc.close();
         }
     }

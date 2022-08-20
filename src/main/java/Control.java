@@ -38,7 +38,7 @@ public class Control {
                 case "event" :
                     this.evalEvent(subCmd);
                     break;
-                default :
+                default:
                     this.dir.add(new Task(cmd));
 
                     System.out.println(String.format("added: %s\n", cmd));
