@@ -39,6 +39,7 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
         while (true) {
             String userInput = sc.nextLine();
+            System.out.println("\t______________________________________________________");
             String[] arr = userInput.split(" ", 2);
 
             if (arr.length == 0) {
@@ -47,74 +48,55 @@ public class Duke {
 
             String command = arr[0].toLowerCase();
             if (command.equals(LIST)) {
-                System.out.println("\t______________________________________________________");
                 listTasks();
-                System.out.println("\t______________________________________________________\n");
             } else if (command.equals(MARK)) {
                 if (arr.length <= 1) {
-                    System.out.println("\t______________________________________________________");
                     System.out.println("\tMissing task number to mark!");
-                    System.out.println("\t______________________________________________________\n");
                 } else {
                     try {
                         int taskNumber = Integer.parseInt(arr[1]);
                         mark(taskNumber);
                     } catch (NumberFormatException e) {
-                        System.out.println("\t______________________________________________________");
                         System.out.println("\tInput is not a valid task number " + e.getMessage());
-                        System.out.println("\t______________________________________________________\n");
                     }
                 }
             } else if (command.equals(UNMARK)) {
                 if (arr.length <= 1) {
-                    System.out.println("\t______________________________________________________");
                     System.out.println("\tMissing task number to unmark!");
-                    System.out.println("\t______________________________________________________\n");
                 } else {
                     try {
                         int taskNumber = Integer.parseInt(arr[1]);
                         unmark(taskNumber);
                     } catch (NumberFormatException e) {
-                        System.out.println("\t______________________________________________________");
                         System.out.println("\tInput is not a valid task number " + e.getMessage());
-                        System.out.println("\t______________________________________________________\n");
                     }
                 }
             } else if (command.equals(TODO) || command.equals(DEADLINE) || command.equals(EVENT)) {
                 if (arr.length <= 1) {
-                    System.out.println("\t______________________________________________________");
                     System.out.println("\tMissing description after given command!");
-                    System.out.println("\t______________________________________________________\n");
                 } else {
                     userInput = arr[1];
                     Task t = addTasks(command, userInput);
-                    System.out.println("\t______________________________________________________");
                     System.out.println("\tGot it! I've added this task!");
                     System.out.println("\t\t" + t);
                     System.out.println("\tYou now have " + tasks.size() + " tasks in the list!");
-                    System.out.println("\t______________________________________________________\n");
                 }
 
             } else if (command.equals(DELETE)) {
                 if (arr.length <= 1) {
-                    System.out.println("\t______________________________________________________");
                     System.out.println("\tMissing task number to delete!");
-                    System.out.println("\t______________________________________________________\n");
                 } else {
                     try {
                         int taskNumber = Integer.parseInt(arr[1]);
                         delete(taskNumber);
                     } catch (NumberFormatException e) {
-                        System.out.println("\t______________________________________________________");
                         System.out.println("\tInput is not a valid task number " + e.getMessage());
-                        System.out.println("\t______________________________________________________\n");
                     }
                 }
             } else {
-                System.out.println("\t______________________________________________________");
                 System.out.println("\t'" + userInput + "'" + " not recognised!");
-                System.out.println("\t______________________________________________________\n");
             }
+            System.out.println("\t______________________________________________________\n");
         }
     }
 
@@ -146,27 +128,21 @@ public class Duke {
 
     public static void mark(int taskNumber) {
         tasks.get(taskNumber - 1).markAsDone();
-        System.out.println("\t______________________________________________________");
         System.out.println("\tAlright! Marked this task as done!");
         System.out.println("\t\t" + tasks.get(taskNumber - 1));
-        System.out.println("\t______________________________________________________\n");
     }
 
     public static void unmark(int taskNumber) {
         tasks.get(taskNumber - 1).markAsNotDone();
-        System.out.println("\t______________________________________________________");
         System.out.println("\tOkay! Unmarked this task!");
         System.out.println("\t\t" + tasks.get(taskNumber - 1));
-        System.out.println("\t______________________________________________________\n");
     }
 
     public static void delete(int taskNumber) {
         Task t = tasks.get(taskNumber - 1);
         tasks.remove(taskNumber - 1);
-        System.out.println("\t______________________________________________________");
         System.out.println("\tAlright! I've deleted this task!");
         System.out.println("\t\t" + t);
         System.out.println("\tYou now have " + tasks.size() + " tasks in the list!");
-        System.out.println("\t______________________________________________________\n");
     }
 }
