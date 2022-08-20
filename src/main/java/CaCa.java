@@ -31,12 +31,13 @@ public class CaCa {
     /**
      * A horizontal line to be displayed as separator for each activity with CaCa.
      */
-    private static String LINE = "____________________________________________________________\n";
+    private static final String LINE = "____________________________________________________________\n";
 
     /**
      * A class-level array to store all user inputs.
      */
-    private static List<Task> tasks = new ArrayList<>();
+    private static final List<Task> tasks = new ArrayList<>();
+
 
     /**
      * Checks if task index is valid.
@@ -79,10 +80,9 @@ public class CaCa {
 
     /**
      * Adds a ToDo task to user list.
-     * @param command User command with task type and task description.
+     * @param taskDescription Task description entered by user.
      */
-    public static void toDo(String command) {
-        String taskDescription = command;
+    public static void toDo(String taskDescription) {
         Task taskToAdd = new Todo(taskDescription);
         tasks.add(taskToAdd);
         System.out.println("Got it. I've added this task:");
@@ -93,8 +93,8 @@ public class CaCa {
 
     /**
      * Adds a Deadline task to user list.
-     * @param command User command with task type, task description and task date/time.
-     * @throws MissingDetailException
+     * @param command User command with command type, task description and task date/time.
+     * @throws MissingDetailException If task description or task date/time is missing.
      */
     public static void deadline(String[] command) throws MissingDetailException {
         String[] detailedCommand = command[1].split(" /by ", 2);
@@ -122,8 +122,8 @@ public class CaCa {
 
     /**
      * Adds an Event task to user list.
-     * @param command User command with task type, task description and task start & end time
-     * @throws MissingDetailException
+     * @param command User command with command type, task description and task start & end time
+     * @throws MissingDetailException If task description or task start & end time is missing.
      */
     public static void event(String[] command) throws MissingDetailException {
         String[] detailedCommand = command[1].split(" /at ", 2);
@@ -172,7 +172,7 @@ public class CaCa {
 
     /**
      * Marks a task as done as instructed by user.
-     * @param command User command with type of task and task description.
+     * @param command User command with command type and task description.
      * @throws InvalidTaskIndex If task index is invalid, i.e. out of range.
      */
     public static void markTask(String[] command) throws InvalidTaskIndex {
@@ -187,7 +187,7 @@ public class CaCa {
 
     /**
      * Marks a task as not done as instructed by user.
-     * @param command User command with type of task and task description.
+     * @param command User command with command type and task description.
      * @throws InvalidTaskIndex If task index is invalid, i.e. out of range.
      */
     public static void unmarkTask(String[] command) throws InvalidTaskIndex {
@@ -218,32 +218,32 @@ public class CaCa {
             // Reads user input.
             String input = sc.nextLine();
 
-            // Detect user command, where 1st element is the type of task to be done,
-            // 2nd element is the task description with or without date/time.
+            // Detect user command, where 1st element is the type of action to be done (command type),
+            // 2nd element is the task description, with or without date/time.
             String[] command = input.split(" ", 2);
-            String taskType = command[0];
+            String commandType = command[0];
 
             // Prints the line after each user input.
             System.out.print(LINE);
 
             try {
-                if (taskType.isBlank()) {
+                if (commandType.isBlank()) {
                     throw new EmptyInputException("OOPS!!! You have entered an empty input.");
 
-                } else if (taskType.equals("bye")) {
+                } else if (commandType.equals("bye")) {
                     bye();
                     break;
 
-                } else if (taskType.equals("list")) {
+                } else if (commandType.equals("list")) {
                     listTasks();
 
-                } else if (taskType.equals("mark")) {
+                } else if (commandType.equals("mark")) {
                     markTask(command);
 
-                } else if (taskType.equals("unmark")) {
+                } else if (commandType.equals("unmark")) {
                     unmarkTask(command);
 
-                } else if (taskType.equals("delete")) {
+                } else if (commandType.equals("delete")) {
                     int taskIndex = Integer.parseInt(command[1]);
                     isValid(taskIndex);
                     Task taskToMark = tasks.get(taskIndex - 1);
@@ -252,17 +252,17 @@ public class CaCa {
                     System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
                     System.out.println(LINE);
 
-                } else if (taskType.equals("todo") || taskType.equals("deadline") || taskType.equals("event")) {
+                } else if (commandType.equals("todo") || commandType.equals("deadline") || commandType.equals("event")) {
 
                     // Checks whether description is empty or contains only white spaces.
                     if (command.length == 1 || command[1].isBlank()) {
-                        String message = String.format("OOPS!!! The description of %s cannot be empty.", taskType);
+                        String message = String.format("OOPS!!! The description of %s cannot be empty.", commandType);
                         throw new EmptyInputException(message);
 
-                    } else if (taskType.equals("todo")) {
+                    } else if (commandType.equals("todo")) {
                         toDo(command[1]);
 
-                    } else if (taskType.equals("deadline")) {
+                    } else if (commandType.equals("deadline")) {
                         deadline(command);
 
                     } else { // event
