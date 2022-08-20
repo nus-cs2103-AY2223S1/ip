@@ -2,41 +2,45 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Duke is a Task Manager program that helps a user keep track of and manager their tasks.
+ * Duke is a Task Manager program that helps a user keep track of and manage their tasks.
  */
 public class Duke {
-    /**
-     * Takes in commands entered by the user.
-     */
-    private static final Scanner scanner = new Scanner(System.in);
-
-    /**
-     * Stores the list of tasks added by the user.
-     */
-    private static final ArrayList<Task> tasks = new ArrayList<>();
+    /** Stores the list of tasks added by the user. */
+    private final ArrayList<Task> tasks;
 
     /**
      * Points to the index of the tasks array to insert the next task in.
      * Also acts as a counter for the number of tasks in the tasks array.
      */
-    private static int pointer = 0;
+    private int pointer;
 
-    private static void speak(String message) {
+    private final Storage storage = new Storage("data/list.txt");
+
+    /**
+     * Constructor for a Duke bot.
+     */
+    public Duke() {
+        tasks = storage.load();
+        pointer = tasks.size();
+        greet();
+    }
+
+    private void speak(String message) {
         System.out.println("============================================================\n");
         System.out.println(message);
         System.out.println("============================================================");
     }
 
-    private static void greet() {
+    private void greet() {
         speak(" Greetings! My name is Alfred ^_^\n How may I be of service today?\n");
     }
 
-    private static void goodbye() {
+    private void goodbye() {
         speak(" Farewell!\n");
     }
 
-    private static void addTask(TaskType type, String task, String dateTime) {
-        Task newTask;
+    private void addTask(TaskType type, String task, String dateTime) {
+        Task newTask = null;
         switch (type) {
         case TODO:
             newTask = new Todo(task);
@@ -48,44 +52,50 @@ public class Duke {
             newTask = new Event(task, dateTime);
             break;
         default:
-            newTask = new Task(task);
         }
         tasks.add(newTask);
+        storage.addTask(newTask);
         pointer++;
         speak(" Understood. I have added the following task:\n"
             + "   " + newTask
-            + " You have a total of " + pointer + " task(s).\n");
+            + " You now have a total of " + pointer + " task(s).\n");
     }
 
-    private static void deleteTask(int taskNum) throws DukeException {
+    private void deleteTask(int taskNum) throws DukeException {
         if (taskNum <= pointer && taskNum > 0) {
             pointer--;
             speak(" Understood. I have removed the following task:\n"
                 + "   " + tasks.get(taskNum - 1)
-                + " You have a total of " + pointer + " task(s).\n");
+                + " You have a total of " + pointer + " task(s) left.\n");
             tasks.remove(taskNum - 1);
+            storage.deleteTask(taskNum - 1);
+        } else if (pointer == 0) {
+            throw new DukeException("You have no tasks to delete.");
         } else {
             throw new DukeException("Please indicate a task no. between 1 to " + pointer + ".");
         }
     }
 
-    private static void updateTask(TaskFunc func, int taskNum) throws DukeException {
+    private void updateTask(TaskAction func, int taskNum) throws DukeException {
         if (taskNum <= pointer && taskNum > 0) {
             switch (func) {
             case MARK:
-                speak(tasks.get(taskNum - 1).mark());
+                speak(tasks.get(taskNum - 1).setDone(true));
                 break;
             case UNMARK:
-                speak(tasks.get(taskNum - 1).unmark());
+                speak(tasks.get(taskNum - 1).setDone(false));
                 break;
             default:
             }
+            storage.updateTask(tasks.get(taskNum - 1), taskNum - 1);
+        } else if (pointer == 0) {
+            throw new DukeException("You have no tasks to mark or unmark.");
         } else {
             throw new DukeException("Please indicate a task no. between 1 to " + pointer + ".");
         }
     }
 
-    private static void listTasks() {
+    private void listTasks() {
         if (pointer == 0) {
             speak(" You have not added any tasks!\n");
         } else {
@@ -97,13 +107,14 @@ public class Duke {
         }
     }
 
-    private static void emptyList() {
+    private void emptyList() {
         tasks.clear();
+        storage.emptyList();
         pointer = 0;
         speak(" Understood. I have emptied your list of tasks.");
     }
 
-    private static void parseCommand(String cmd) throws DukeException {
+    private void parseCommand(String cmd) throws DukeException {
         String[] firstParse = cmd.split(" ", 2);
         String firstTerm = firstParse[0];
         boolean hasSecondTerm = firstParse.length > 1;
@@ -161,7 +172,7 @@ public class Duke {
                 String secondTerm = hasSecondTerm
                     ? firstParse[1].split(" ", 2)[0]
                     : "0";
-                updateTask(TaskFunc.MARK, Integer.parseInt(secondTerm));
+                updateTask(TaskAction.MARK, Integer.parseInt(secondTerm));
                 break;
             } catch (NumberFormatException e) {
                 throw new DukeException("Please indicate the task no. in digits.");
@@ -174,7 +185,7 @@ public class Duke {
                 String secondTerm = hasSecondTerm
                     ? firstParse[1].split(" ", 2)[0]
                     : "0";
-                updateTask(TaskFunc.UNMARK, Integer.parseInt(secondTerm));
+                updateTask(TaskAction.UNMARK, Integer.parseInt(secondTerm));
                 break;
             } catch (NumberFormatException e) {
                 throw new DukeException("Please indicate the task no. in digits.");
@@ -196,9 +207,8 @@ public class Duke {
     /**
      * Runs the Duke program until the user exits with the 'bye' command.
      */
-    public static void main(String[] args) {
-        greet();
-
+    public void run() {
+        Scanner scanner = new Scanner(System.in);
         String cmd = "";
         while (!cmd.equals("bye")) {
             cmd = scanner.nextLine().trim();
@@ -209,6 +219,14 @@ public class Duke {
                 speak(e.toString());
             }
         }
+        scanner.close();
+    }
+
+    /**
+     * Driver method for Duke.
+     */
+    public static void main(String[] args) {
+        new Duke().run();
     }
 
     enum TaskType {
@@ -217,7 +235,7 @@ public class Duke {
         EVENT
     }
 
-    enum TaskFunc {
+    enum TaskAction {
         MARK,
         UNMARK
     }
