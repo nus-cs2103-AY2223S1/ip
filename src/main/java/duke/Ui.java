@@ -1,26 +1,24 @@
 package duke;
 
-import duke.task.Task;
-
 import java.util.Scanner;
 
+import duke.task.Task;
+
 public class Ui {
-    private final static String lineBreakBefore //Line before duke.Duke is given a duke.command
-            = "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
+    private static final String lineBreakBefore =
+            "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
             + "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-";
-    private final static String lineBreakAfter //Line after duke.Duke is given a duke.command
-            = "______________________________________________________"
+    private static final String lineBreakAfter =
+            "______________________________________________________"
             + "______________________________________________________";
-    private final static String logo
-            = " ____        _\n"
+    private static final String logo =
+            " ____        _\n"
             + "|  _ \\ _   _| | _____\n"
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|";
-    private final static String greeting1
-            = "Hello! I'm duke.Duke.";
-    private final static String greeting2
-            = "What can I do for you?";
+    private static final String greeting1 = "Hello! I'm duke.Duke.";
+    private static final String greeting2 = "What can I do for you?";
 
     private Scanner commandInput;
 
@@ -39,13 +37,11 @@ public class Ui {
     }
 
     public void mark(Task task) {
-        System.out.println("Good Job! I will mark this duke.task as done:" +
-                "\n" + task);
+        System.out.println("Good Job! I will mark this duke.task as done:" + "\n" + task);
     }
 
     public void unmark(Task task) {
-        System.out.println("Alright, I will mark this duke.task as undone:" +
-                "\n" + task);
+        System.out.println("Alright, I will mark this duke.task as undone:" + "\n" + task);
     }
 
 
@@ -66,9 +62,8 @@ public class Ui {
     }
 
     public void delete(Task task, int size) {
-        System.out.println("Understood. I will purge this duke.task from your list:\n" +
-                task +
-                "\nCurrently, you have " + size + " tasks in your list.");
+        System.out.println("Understood. I will purge this duke.task from your list:\n" + task
+                + "\nCurrently, you have " + size + " tasks in your list.");
     }
 
     public String readCommand() {

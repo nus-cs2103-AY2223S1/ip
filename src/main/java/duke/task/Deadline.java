@@ -1,8 +1,8 @@
 package duke.task;
 
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
-import java.time.LocalDate;
 
 public class Deadline extends Task {
     private final LocalDate deadline;
@@ -20,7 +20,7 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return "[D] " + super.toString() + " (by: " +
-                deadline.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)) + ")";
+        return "[D] " + super.toString() + " (by: "
+                + deadline.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)) + ")";
     }
 }

@@ -1,15 +1,16 @@
 package duke;
 
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.ToDo;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.ToDo;
+
 
 public class Storage {
     private final String saveFilePath;
@@ -43,7 +44,8 @@ public class Storage {
 
     private Deadline loadDeadline(boolean taskWasDone, String taskDesc) {
         String[] deadlineSpecifics = taskDesc.split(" \\(by: ");
-        Deadline deadline = new Deadline(deadlineSpecifics[0], deadlineSpecifics[1].substring(0, deadlineSpecifics[1].length() - 1));
+        Deadline deadline = new Deadline(deadlineSpecifics[0],
+                deadlineSpecifics[1].substring(0, deadlineSpecifics[1].length() - 1));
         if (taskWasDone) {
             deadline.markDone();
         } else {
@@ -75,8 +77,8 @@ public class Storage {
         case "[E]":
             return loadEvent(taskWasDone, taskDesc);
         default:
-            throw new DukeException("I seem to forgotten what tasks you have asked me to remember." +
-                    "Do you know where I left my notes?");
+            throw new DukeException("I seem to forgotten what tasks you have asked me to remember."
+                    + "Do you know where I left my notes?");
         }
     }
 

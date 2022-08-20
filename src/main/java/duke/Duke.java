@@ -1,8 +1,8 @@
 package duke;
 
-import duke.command.Command;
-
 import java.io.IOException;
+
+import duke.command.Command;
 
 public class Duke {
     private final Storage storage;

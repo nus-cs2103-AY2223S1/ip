@@ -35,7 +35,7 @@ public abstract class Task {
 
     @Override
     public String toString() {
-        String box = isDone ?  "[X] " : "[ ] ";
+        String box = isDone ? "[X] " : "[ ] ";
         return box + task;
     }
 }
