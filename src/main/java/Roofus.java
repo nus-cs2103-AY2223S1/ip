@@ -14,7 +14,8 @@ import java.util.ArrayList;
 public class Roofus {
     static String LINESEP = "****************************************";
     
-    private static String STORAGEPATH = "./data/roofus.txt";
+    private static String STORAGEPATH = System.getProperty("user.home") +
+            "/data/roofus.txt";
     private File storage = new File(STORAGEPATH);
     
     private List<Task> tasks = new ArrayList<>();
@@ -53,6 +54,7 @@ public class Roofus {
     }
     
     void save() throws IOException {
+        new File(STORAGEPATH).getParentFile().mkdirs();
         FileWriter editor = new FileWriter(STORAGEPATH);
         for (Task t : tasks) {
             editor.write(t.writeString() + "\n");
@@ -116,7 +118,7 @@ public class Roofus {
         try {
             roofus.load();
         } catch (FileNotFoundException err) {
-            errMessage("Required file not found\nRoofus cannot load storage data");
+            errMessage("Required file not found\nRoofus did not load storage data");
         }
         roofus.greet();
         Scanner sc = new Scanner(System.in);
