@@ -7,6 +7,11 @@ public class Event extends Task{
     }
 
     @Override
+    public String parseTask() {
+        return "E" + super.parseTask() + "/" + this.date;
+    }
+
+    @Override
     public String toString(){
         return "[E]" + super.toString() + " (at: " + this.date + ")";
     }

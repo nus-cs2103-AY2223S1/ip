@@ -39,6 +39,11 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    public String parseTask() {
+        String done = this.getStatus() ? "Y" : "N" ;
+        return done + this.description;
+    };
+
     /**
      * Returns the string representation of the task, with the status in square brackets before the description.
      * @return string representation of the task
