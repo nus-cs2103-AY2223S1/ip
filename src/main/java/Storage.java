@@ -49,10 +49,7 @@ public class Storage {
             }
             fw.close();
         } catch (IOException ioe) {
-            throw new DukeException("foo");
+            throw new DukeException("Unable to write to file :(");
         }
-     
- 
-        
     }
 }
