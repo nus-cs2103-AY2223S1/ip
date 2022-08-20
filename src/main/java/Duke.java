@@ -1,6 +1,7 @@
 /**
  * Project done by Hong Jin.
  */
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 /**
@@ -26,6 +27,7 @@ public class Duke {
         Scanner scan = new Scanner(System.in);
         printMsg(initText);
         TaskList ls = new TaskList();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MM yyyy");
 
         while (true) {
             System.out.println("Say something: ");
