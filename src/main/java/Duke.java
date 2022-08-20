@@ -43,7 +43,7 @@ public class Duke {
             case LIST:
                 ui.list(taskList);
                 break;
-            case MARK
+            case MARK:
                 Commands.mark(userInput, taskList);
                 break;
             case UNMARK:
