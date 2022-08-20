@@ -1,0 +1,6 @@
+E|0|finish ip|the deadline
+E|1|go to school|5am
+E|0|some event|5-6pm
+T|0|a b c d e f g 123141534! /by /at test
+E|0|a b c d|e f g h
+E|0|1 2 3 4|5 6 7 8

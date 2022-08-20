@@ -1,4 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Duke {
@@ -10,10 +13,45 @@ public class Duke {
         tasks = new ArrayList<>();
     }
 
+    public ArrayList<Task> getTasks() {
+        return tasks;
+    }
+
     private static Duke startUp() {
-        Duke instance = new Duke();
+        Duke instance = SaveSystem.loadFile();
         instance.printStartupMessage();
         return instance;
+    }
+
+    public void LoadTasksFromSave(File f) throws FileNotFoundException {
+        Scanner s = new Scanner(f);
+        while (s.hasNext()) {
+            String line = s.nextLine();
+            loadTaskLineFromSave(line);
+        }
+        s.close();
+    }
+
+    public void loadTaskLineFromSave(String line) {
+        String[] temp = line.split("\\|");
+        String[] info = Arrays.copyOf(temp, 4);
+        String taskType = info[0];
+        int status = Integer.parseInt(info[1]);
+        String description = info[2];
+        String date = info[3];
+        switch (taskType) {
+        case "T":
+            tasks.add(new Todo(description, status));
+            break;
+        case "D":
+            tasks.add(new Deadline(description, status, date));
+            break;
+        case "E":
+            tasks.add(new Event(description, status, date));
+            break;
+        default:
+            System.out.println("Unknown task type");
+        }
     }
 
     private void printMessage(String msg) {
@@ -187,7 +225,9 @@ public class Duke {
         while (instance.isAcceptingInput) {
             String input = sc.nextLine();
             instance.processInput(input);
+            SaveSystem.saveFile(instance);
         }
+        sc.close();
     }
 
     public static void main(String[] args) {

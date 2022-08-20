@@ -1,0 +1,12 @@
+list
+delete 7
+list
+todo finish these test cases
+event cry /at 12345
+deadline something /by somedate
+list
+delete 7
+delete 7
+delete 7
+list
+bye
