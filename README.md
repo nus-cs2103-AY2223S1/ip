@@ -1,3 +1,31 @@
+# CaCa
+
+### _A personal assistant chatbot that helps users manage and track tasks._
+
+<hr>
+
+# CaCa Features
+
+Functions with respective commands are listed below as Function (description): `command`. e.g...
+- Greet user (triggered as soon as the chatbot is run)
+- Exit program (end chatbot): `bye`
+- Add tasks:
+    - ToDos (tasks without any date/time): `todo taskDescription`
+        - e.g.`todo borrow book`
+    - Deadlines (tasks to be done before date/time): `deadline taskDescription /by dateTime`
+        - e.g. `deadline return book /by Sunday`
+    - Events (tasks that start and end at a specific time): `event taskDescription /at dateTime`
+        - e.g. `event project meeting /at Mon 2-4pm`
+- List task (displays a list of all tasks stored): `list`
+- Mark task (marks task as done with a "X"): `mark taskIndex` 
+    - e.g. `mark 2`
+- Unmark task (marks task as not done and removes "X"): `unmark taskIndex`
+    - e.g. `unmark 2`
+- Delete task (deletes task from list): `delete taskIndex`
+    - e.g. `delete 3`
+
+<hr>
+
 # Duke project template
 
 This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
