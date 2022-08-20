@@ -1,27 +1,42 @@
 import java.util.Scanner;
+
+import command.CommandHandler;
+import command.CommandPair;
+
+import exception.CommandException;
+
 import parser.Parser;
-import printer.Printer;
+
+import ui.Ui;
 
 public class Duke {
-    public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        Printer.print(String.format("Hello from\n%s\nWait, I'm not Duke\n" +
-                "I'm Yem, your personal assistant\nWhat can I do for you master?", logo));
-        listenCommand();
+    private Ui ui;
+    private Parser parser;
+    private CommandHandler commandHandler;
+
+    public Duke() {
+        this.ui = new Ui();
+        this.parser = new Parser();
+        this.commandHandler = new CommandHandler(this.ui);
     }
 
-    private static void listenCommand() {
-        Parser parser = new Parser();
-        String currentText;
+    public static void main(String[] args) {
+        Duke duke = new Duke();
+        duke.listenCommand();
+    }
+
+    private void listenCommand() {
+        this.ui.printWelcomeMessage();
         Scanner sc = new Scanner(System.in);
 
-        while(parser.getIsListening()) {
-            currentText = sc.nextLine();
-            parser.parseText(currentText);
+        while(this.parser.getIsListening()) {
+            try {
+                String currentText = sc.nextLine();
+                CommandPair commandPair = this.parser.parseText(currentText);
+                this.commandHandler.handleCommand(commandPair);
+            } catch (CommandException error) {
+                this.ui.printError(error);
+            }
         }
 
         sc.close();

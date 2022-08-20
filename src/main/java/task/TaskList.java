@@ -1,7 +1,5 @@
 package task;
 
-import printer.Printer;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,34 +15,30 @@ public class TaskList {
         this.tasks = tasks;
     }
 
+    public int getTaskListSize() {
+        return this.tasks.size();
+    }
+
     public void addTask(Task newTask) {
         this.tasks.add(newTask);
-
-        Printer.print(String.format("This task is successfully added:\n %s\n"
-                        + "Now you have %d task(s) in the list",
-                newTask.toString(), this.tasks.size()));
     }
 
-    public void markTaskWithIndex(int index) {
+    public Task markTaskWithIndex(int index) {
         Task selectedTask = this.tasks.get(index);
         selectedTask.markAsFinished();
-        Printer.print(String.format("This task has been marked as done:\n %s",
-                selectedTask));
+        return selectedTask;
     }
 
-    public void unmarkTaskWithIndex(int index) {
+    public Task unmarkTaskWithIndex(int index) {
         Task selectedTask = this.tasks.get(index);
         selectedTask.markAsNotFinished();
-        Printer.print(String.format("This task has been marked as not done yet:\n %s",
-                selectedTask));
+        return selectedTask;
     }
 
-    public void removeTaskWithIndex(int index) {
+    public Task removeTaskWithIndex(int index) {
         Task selectedTask = this.tasks.get(index);
         this.tasks.remove(index);
-        Printer.print(String.format("Noted. I've removed this task:\n %s\n"
-                        + "Now you have %d task(s) in the list",
-                selectedTask, this.tasks.size()));
+        return selectedTask;
     }
 
     @Override
