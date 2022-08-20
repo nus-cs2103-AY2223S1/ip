@@ -14,6 +14,10 @@ public class Task {
                 this.toString());
         System.out.println(Roofus.LINESEP);
     }
+    
+    void setDone() {
+        this.isDone = true;
+    }
 
     void unmark() {
         isDone = false;
