@@ -23,6 +23,7 @@ import java.util.List;
  * <li>Delete task (deletes task from list): delete taskIndex. e.g. delete 3</li>
  * </ul>
  * </p>
+ *
  * @author Carrie Zheng Jiarui
  * @version CS2103T AY22/23 Semester 1, iP
  */
@@ -80,6 +81,7 @@ public class CaCa {
 
     /**
      * Adds a ToDo task to user list.
+     *
      * @param taskDescription Task description entered by user.
      */
     public static void addToDo(String taskDescription) {
@@ -92,6 +94,7 @@ public class CaCa {
 
     /**
      * Adds a Deadline task to user list.
+     *
      * @param taskInfo Task information with task description and task date/time.
      * @throws MissingDetailException If task description or task date/time is missing.
      */
@@ -120,6 +123,7 @@ public class CaCa {
 
     /**
      * Adds an Event task to user list.
+     *
      * @param taskInfo Task information with task description and task start & end time.
      * @throws MissingDetailException If task description or task start & end time is missing.
      */
@@ -164,6 +168,7 @@ public class CaCa {
 
     /**
      * Marks a task as done in task list.
+     *
      * @param index Task index entered by user.
      * @throws InvalidTaskIndex If task index is invalid, i.e. out of range.
      */
@@ -179,6 +184,7 @@ public class CaCa {
 
     /**
      * Marks a task as not done in task list.
+     *
      * @param index Task index entered by user.
      * @throws InvalidTaskIndex If task index is invalid, i.e. out of range.
      */
@@ -194,6 +200,7 @@ public class CaCa {
 
     /**
      * Deletes a task from task list.
+     *
      * @param index Task index entered by user.
      * @throws InvalidTaskIndex If task index is invalid, i.e. out of range.
      */
@@ -208,10 +215,12 @@ public class CaCa {
     }
 
     /**
-     * The main chatbot program greets user, reads and stores user input,
+     * The main chatbot program.
+     * It greets user, reads and stores user input,
      * allows user to update task status as done or undone, displays all tasks
      * with status when user inputs list and exits when user inputs bye.
-     * @param args Command line arguments
+     *
+     * @param args Command line arguments.
      */
     public static void main(String[] args) {
 
