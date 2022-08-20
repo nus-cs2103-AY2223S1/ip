@@ -10,8 +10,8 @@ public class Ui {
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
 
-    private Scanner scanner;
-    private PrintWriter writer;
+    private final Scanner scanner;
+    private final PrintWriter writer;
 
     public Ui() {
         scanner = new java.util.Scanner(System.in);
