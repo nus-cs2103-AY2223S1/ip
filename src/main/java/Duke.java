@@ -45,6 +45,29 @@ public class Duke {
         }
     }
 
+    private static void listItemsDueOn(String[] inputs) {
+        LocalDate date = LocalDate.parse(inputs[1]);
+        boolean hasEvent = false;
+        for (Task task : data) {
+            if (!task.getTaskType().equals("T")) {
+                if (task.getTaskType().equals("E")) {
+                    if (LocalDate.parse(((Event)task).getAt().split(" ")[0]).equals(date)) {
+                        System.out.println(task);
+                        hasEvent = true;
+                    }
+                } else if (task.getTaskType().equals("D")) {
+                    if (LocalDate.parse(((Deadline) task).getBy().split(" ")[0]).equals(date)) {
+                        System.out.println(task);
+                        hasEvent = true;
+                    }
+                }
+            }
+        }
+        if (!hasEvent) {
+            System.out.println("Looks like you have no tasks occurring on that day");
+        }
+    }
+
     private static void markItem(String[] inputs) {
         int index = Integer.parseInt(inputs[1]);
         data.get(index - 1).markAsDone();
@@ -135,23 +158,6 @@ public class Duke {
             fw.close();
         } catch (IOException e) {
             System.out.println(e.getMessage());
-        }
-    }
-
-    private static void listItemsDueOn(String[] inputs) {
-        LocalDate date = LocalDate.parse(inputs[1]);
-        for (Task task : data) {
-            if (!task.getTaskType().equals("T")) {
-                if (task.getTaskType().equals("E")) {
-                    if (LocalDate.parse(((Event)task).getAt()).equals(date)) {
-                        System.out.println(task);
-                    }
-                } else if (task.getTaskType().equals("D")) {
-                    if (LocalDate.parse(((Deadline) task).getBy()).equals(date)) {
-                        System.out.println(task);
-                    }
-                }
-            }
         }
     }
 

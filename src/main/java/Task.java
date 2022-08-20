@@ -1,4 +1,4 @@
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public abstract class Task {
@@ -50,8 +50,8 @@ public abstract class Task {
         return this.taskType;
     }
 
-    public static String parseDate(LocalDate date) {
-        return date.format(DateTimeFormatter.ofPattern("d MMM yyyy"));
+    public static String parseDateTime(LocalDateTime dateTime) {
+        return dateTime.format(DateTimeFormatter.ofPattern("dd MMM uuuu HHmm")) + "hrs";
     }
 
     /**
