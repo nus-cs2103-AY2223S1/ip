@@ -6,6 +6,10 @@ import duke.storage.StorageFile;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/**
+ * Entry point of the Duke application.
+ * Initialises the application and starts the interaction with the user.
+ */
 public class Duke {
 
     private Ui ui;
@@ -16,6 +20,7 @@ public class Duke {
         new Duke().run();
     }
 
+    /** Runs the program until termination */
     public void run() {
         start();
         runCommandLoop();
@@ -28,7 +33,7 @@ public class Duke {
      */
     private void start() {
         ui = new Ui();
-        storage = new StorageFile(StorageFile.DEFAULT_STORAGE_FILEPATH);
+        storage = new StorageFile(System.getProperty("user.home") + "/Desktop");
         taskList = new TaskList(storage.load());
         ui.showWelcome();
     }
@@ -41,6 +46,7 @@ public class Duke {
         System.exit(0);
     }
 
+    /** Reads the user command and executes it, until the user issues the exit command */
     public void runCommandLoop() {
         boolean isExit = false;
         do {

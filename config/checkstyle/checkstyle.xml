@@ -15,7 +15,7 @@
   </module>
 
   <module name="NewlineAtEndOfFile">
-    <!-- Accept LF, CR or CRLF to accomodate devs who prefer different line endings -->
+    <!-- Accept LF, CR or CRLF to accommodate devs who prefer different line endings -->
     <property name="lineSeparator" value="lf_cr_crlf"/>
   </module>
 

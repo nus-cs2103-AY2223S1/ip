@@ -5,13 +5,17 @@ import duke.storage.StorageFile;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/**
+ * Delete a task in the task list.
+ */
 public class DeleteCommand extends Command {
 
-    private final int targetIndex;
     public static final String COMMAND_WORD = "delete";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes a task from the list.\n"
             + "Example: " + COMMAND_WORD;
+
+    private final int targetIndex;
 
     public DeleteCommand(int targetIndex) {
         this.targetIndex = targetIndex;

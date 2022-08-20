@@ -2,7 +2,7 @@ plugins {
     id 'java'
     id 'application'
     id 'checkstyle'
-    id 'com.github.johnrengelman.shadow' version '5.1.0'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 
 checkstyle {
@@ -33,12 +33,13 @@ test {
 }
 
 application {
-    mainClassName = "seedu.duke.Duke"
+    mainClass = "duke.Duke"
 }
 
 shadowJar {
-    archiveBaseName = "duke"
-    archiveClassifier = null
+    archiveBaseName.set('duke')
+    archiveClassifier.set('')
+    archiveVersion.set('1.0.0')
 }
 
 run{

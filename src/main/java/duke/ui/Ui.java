@@ -3,6 +3,9 @@ package duke.ui;
 import java.io.PrintStream;
 import java.util.Scanner;
 
+/**
+ * Represents the ui used to interact with the user.
+ */
 public class Ui {
 
     private static final String DIVIDER = "────────────────────────────────────────────────────────────";
@@ -17,8 +20,8 @@ public class Ui {
     private static final String MESSAGE_WELCOME = "Hello! I'm Duke.\nWhat can I do for you?";
     private static final String MESSAGE_EXIT = "Bye. Hope to see you again soon!";
 
-    private final Scanner in;
     private static final PrintStream out = System.out;
+    private final Scanner in;
 
     public Ui() {
         in = new Scanner(System.in);
@@ -40,6 +43,9 @@ public class Ui {
         showMessages(MESSAGE_EXIT);
     }
 
+    /**
+     * Shows the user the specified list of messages.
+     */
     public void showMessages(String... messages) {
         showDivider();
         for (String m : messages) {

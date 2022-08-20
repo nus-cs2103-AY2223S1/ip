@@ -4,10 +4,19 @@ import java.time.LocalDate;
 
 import duke.common.Utils;
 
+/**
+ * Represents an Event.
+ */
 public class Event extends Task {
 
     private final LocalDate at;
 
+    /**
+     * Constructor for a new Event.
+     *
+     * @param description description of the event
+     * @param at time frame of the event
+     */
     public Event(String description, String at) {
         super(description);
         this.at = Utils.parseDate(at);
