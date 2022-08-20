@@ -1,6 +1,7 @@
+deadline submit report /by 10 dec 2022
 todo read book
-deadline submit project /by 18 august
-event project meeting /at 20 september
+deadline submit project /by 18/08/2022
+event project meeting /at 20/09/2022
 todo sweep the floor
 list
 mark 3
@@ -14,7 +15,7 @@ event
 deadline
 mark
 unmark
-deadline /by 5 july
+deadline /by 05/07/2022
 delete 10
 delete 1
 list
