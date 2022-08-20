@@ -6,56 +6,24 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Duke {
+    private Storage storage;
     private boolean isAcceptingInput;
     private ArrayList<Task> tasks;
 
-    public Duke() {
-        isAcceptingInput = true;
+    public Duke(String savePath, String saveName) {
+        this.storage = new Storage(savePath, saveName);
         tasks = new ArrayList<>();
+        storage.loadFile(this);
+        isAcceptingInput = true;
+        printStartupMessage();
     }
 
     public ArrayList<Task> getTasks() {
         return tasks;
     }
 
-    private static Duke startUp() {
-        Duke instance = SaveSystem.loadFile();
-        instance.printStartupMessage();
-        return instance;
-    }
-
-    public void LoadTasksFromSave(File f) throws FileNotFoundException {
-        Scanner s = new Scanner(f);
-        while (s.hasNext()) {
-            String line = s.nextLine();
-            loadTaskLineFromSave(line);
-        }
-        s.close();
-    }
-
-    public void loadTaskLineFromSave(String line) {
-        String[] temp = line.split("\\|");
-        String[] info = Arrays.copyOf(temp, 7);
-        String taskType = info[0];
-        int status = Integer.parseInt(info[1]);
-        String description = info[2];
-        String date1 = info[3];
-        String time1 = info[4];
-        String date2 = info[5];
-        String time2 = info[6];
-        switch (taskType) {
-        case "T":
-            tasks.add(new Todo(description, status));
-            break;
-        case "D":
-            tasks.add(new Deadline(description, status, date1, time1));
-            break;
-        case "E":
-            tasks.add(new Event(description, status, date1, time1, date2, time2));
-            break;
-        default:
-            System.out.println("Unknown task type");
-        }
+    public void loadTask(Task task) {
+        tasks.add(task);
     }
 
     private void printMessage(String msg) {
@@ -239,19 +207,19 @@ public class Duke {
         }
     }
 
-    private static void runDuke() {
-        Duke instance = startUp();
-
+    private void runDuke() {
         Scanner sc = new Scanner(System.in);
-        while (instance.isAcceptingInput) {
+        while (isAcceptingInput) {
             String input = sc.nextLine();
-            instance.processInput(input);
-            SaveSystem.saveFile(instance);
+            processInput(input);
+            storage.saveFile(this);
         }
         sc.close();
     }
 
     public static void main(String[] args) {
-        runDuke();
+        String savePath = "savedata/";
+        String saveName = "duke.txt";
+        new Duke(savePath, saveName).runDuke();
     }
 }
