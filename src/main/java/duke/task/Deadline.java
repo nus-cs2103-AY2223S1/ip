@@ -16,7 +16,6 @@ public class Deadline extends Task {
 
     private String parseDateTime(String originalString) {
         StringBuffer deadline = new StringBuffer(originalString.replace("/","-"));
-
         if (Pattern.compile("([0-9]{4})[-]([1][0-2]|0[1-9])[-](3[01]|[12][0-9]|0[1-9])\\s[0-2][0-9][0-6][0-9]")
                 .matcher(deadline).matches()) { //yyyy-mm-dd HHmm
             deadline.insert(deadline.length() - 2, ":");

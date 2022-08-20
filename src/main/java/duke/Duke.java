@@ -1,5 +1,6 @@
 package duke;
 
+import duke.command.Command;
 import duke.command.DukeCommandType;
 import duke.task.DukeTaskManager;
 import duke.ui.DukeUi;
@@ -9,6 +10,8 @@ public class Duke {
 
     private static DukeTaskManager taskManager;
     private static DukeUi dukeUi;
+    private static Parser parser;
+
 
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -21,18 +24,17 @@ public class Duke {
     }
 
     private static void startService() {
-        dukeUi.dukePrint("Hello! I'm Duke \nWhat can I do for you?\n");
         dukeUi = new DukeUi();
+        dukeUi.dukePrint("Hello! I'm Duke \nWhat can I do for you?\n");
         taskManager = new DukeTaskManager(Storage.loadData());
         run();
     }
 
     private static void run() {
         while(dukeUi.hasNextLine()) {
-            String str = dukeUi.getNextLine().replaceAll("( )+", " ");
-            String command = str.split(" ")[0];
-            DukeCommandType commandType = getCommandType(command);
-            String args = str.replaceFirst(command, "").trim();
+            Command command = Parser.getCommand(dukeUi.getNextLine());
+            DukeCommandType commandType = command.getCommandType();
+            String args = command.getArgs();
             switch (commandType) {
             case EXIT:{
                 endService();
@@ -68,32 +70,5 @@ public class Duke {
         Storage.saveData(taskManager.getTasks());
         dukeUi.endService();
         return;
-    }
-
-    private static DukeCommandType getCommandType(String command) {
-        switch(command) {
-        case "exit":
-        case "quit":
-            //Fallthrough
-        case "bye":
-            return DukeCommandType.EXIT;
-        case "list":
-            return DukeCommandType.LIST;
-        case "mark":
-            return DukeCommandType.MARK;
-        case "unmark":
-            return DukeCommandType.UNMARK;
-        case "delete":
-        case "remove":
-            return DukeCommandType.DELETE;
-        case "todo":
-            return DukeCommandType.TODO;
-        case "deadline":
-            return DukeCommandType.DEADLINE;
-        case "event":
-            return DukeCommandType.EVENT;
-        default:
-            return DukeCommandType.UNKNOWN;
-        }
     }
 }

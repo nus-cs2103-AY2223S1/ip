@@ -2,9 +2,8 @@ package duke.ui;
 
 import java.util.Scanner;
 
-
 public class DukeUi {
-    private Scanner sc;
+    private static Scanner sc;
 
     public DukeUi() {
         sc = new Scanner(System.in);
