@@ -18,41 +18,60 @@ import task.ToDo;
 import storage.Config;
 import storage.Storage;
 
-import printer.Printer;
+import ui.Ui;
 
 public class CommandHandler {
     private final Storage storage;
     private final TaskList taskList;
+    private final Ui ui;
 
-    public CommandHandler() {
+    public CommandHandler(Ui ui) {
         this.storage = new Storage(Config.DIRECTORY, Config.NAME);
         this.taskList = this.storage.loadTasksInStorage();
+        this.ui = ui;
     }
 
-    public void processSingleCommand(Command command) {
+    public void handleCommand(CommandPair commandPair) throws CommandException {
+        Command command = commandPair.getCommand();
+        String description = commandPair.getDescription();
+
+        if (command.equals(Command.BYE) || command.equals(Command.LIST)) {
+            this.processSingleCommand(command);
+        } else if (command.equals(Command.MARK) || command.equals(Command.UNMARK)
+                || command.equals(Command.DELETE)) {
+            this.editTask(command, description);
+        } else {
+            this.addTask(command, description);
+        }
+    }
+
+    private void processSingleCommand(Command command) {
         switch (command) {
         case BYE:
-            Printer.print("Bye. See you later master!");
+            this.ui.printFarewellMessage();
             break;
         case LIST:
-            Printer.print(this.taskList.toString());
+            this.ui.printTaskList(this.taskList);
             break;
         }
     }
 
-    public void editTask(Command command, String description) throws CommandException {
+    private void editTask(Command command, String description) throws CommandException {
         try {
             int selectedIndex = Integer.parseInt(description) - 1;
 
             switch (command) {
             case MARK:
-                this.taskList.markTaskWithIndex(selectedIndex);
+                Task markedTask = this.taskList.markTaskWithIndex(selectedIndex);
+                this.ui.printTaskMarkSuccessMessage(markedTask);
                 break;
             case UNMARK:
-                this.taskList.unmarkTaskWithIndex(selectedIndex);
+                Task unmarkedTask = this.taskList.unmarkTaskWithIndex(selectedIndex);
+                this.ui.printTaskUnmarkSuccessMessage(unmarkedTask);
                 break;
             case DELETE:
-                this.taskList.removeTaskWithIndex(selectedIndex);
+                Task deletedTask = this.taskList.removeTaskWithIndex(selectedIndex);
+                this.ui.printTaskDeletionSuccessMessage(deletedTask, this.taskList.getTaskListSize());
                 break;
             }
 
@@ -62,7 +81,7 @@ public class CommandHandler {
         }
     }
 
-    public void addTask(Command command, String description) throws CommandException {
+    private void addTask(Command command, String description) throws CommandException {
         Task newTask = null;
 
         switch(command) {
@@ -98,6 +117,7 @@ public class CommandHandler {
         }
 
         this.taskList.addTask(newTask);
+        this.ui.printTaskCreationSuccessMessage(newTask, this.taskList.getTaskListSize());
         this.storage.saveTasksInStorage(this.taskList.toStorageRepresentation());
     }
 }
