@@ -1,5 +1,10 @@
 package duke;
 
+/**
+ * Represents the Main Duke program which has-a Storage, TaskList and Ui.
+ *
+ * @author: Jonas Png
+ */
 public class Duke {
 
     private Storage storage;

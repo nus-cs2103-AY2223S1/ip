@@ -1,7 +1,7 @@
 package duke;
 
 /**
- * Encapsulate a Task that user adds to the list.
+ * Encapsulate a Task that user adds to the TaskList.
  *
  * @author: Jonas Png
  */
@@ -15,7 +15,6 @@ public abstract class Task {
      * Class constructor for ListItem.
      *
      * @param description name of item.
-     * @throws DukeException If user did not give description of task.
      */
     public Task(String description) {
         this.description = description;
@@ -60,7 +59,6 @@ public abstract class Task {
             return " | " + "1" + " | " + this.description;
         }
         return " | " + "0" + " | " + this.description;
-
     }
 
 }

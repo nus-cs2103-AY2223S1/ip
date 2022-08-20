@@ -1,29 +1,20 @@
 package duke;
 
 /**
- * Encapsulate the Response function of the chatbot.
+ * Represents a parser that parse user command.
  *
  * @author: Jonas Png
  */
 public class Parser {
-
-    private TaskList userList;
-
-    /**
-     * Class constructor for Response.
-     */
-    public Parser() {
-
-    }
 
     public enum userCommand {
         BYE, LIST, UNMARK, MARK, TODO, DEADLINE, EVENT, DELETE
     }
 
     /**
-     * Handles user's input into chatbot.
+     * Handles user's input into program.
      *
-     * @param input User input into chatbot.
+     * @param input User input into program
      */
     public static Command parse(String input) throws DukeException {
         String[] inputList = input.split(" ");
@@ -55,10 +46,10 @@ public class Parser {
     }
 
     /**
-     * gets the todo description from user input.
+     * Gets the todo description from user input.
      *
-     * @param inputList user input after spliting by " ".
-     * @param input user input.
+     * @param inputList user input after spliting by " "
+     * @param input user input
      */
     public static String getToDoDescription(String[] inputList, String input) {
         if (inputList.length >= 2) {
@@ -68,10 +59,10 @@ public class Parser {
     }
 
     /**
-     * gets the Deadline's description from user input.
+     * Gets the Deadline's description from user input.
      *
-     * @param inputList user input after spliting by " ".
-     * @param input user input.
+     * @param inputList user input after spliting by " "
+     * @param input user input
      */
     public static String getDeadlineDescription(String[] inputList, String input) {
         if (inputList.length >= 2) {
@@ -82,10 +73,10 @@ public class Parser {
     }
 
     /**
-     * gets the Deadline's by from user input.
+     * Gets the Deadline's by from user input.
      *
-     * @param inputList user input after spliting by " ".
-     * @param input user input.
+     * @param inputList user input after spliting by " "
+     * @param input user input
      */
     public static String getDeadlineBy(String[] inputList, String input) {
         if (inputList.length > 2) {
@@ -96,10 +87,10 @@ public class Parser {
     }
 
     /**
-     * gets the Event's description from user input.
+     * Gets the Event's description from user input.
      *
-     * @param inputList user input after spliting by " ".
-     * @param input user input.
+     * @param inputList user input after spliting by " "
+     * @param input user input
      */
     public static String getEventDescription(String[] inputList, String input) {
         if (inputList.length >= 2) {
@@ -111,10 +102,10 @@ public class Parser {
     }
 
     /**
-     * gets the Event's at from user input.
+     * Gets the Event's at from user input.
      *
-     * @param inputList user input after spliting by " ".
-     * @param input user input.
+     * @param inputList user input after spliting by " "
+     * @param input user input
      */
     public static String getEventAt(String[] inputList, String input) {
         if (inputList.length > 2) {
@@ -125,10 +116,10 @@ public class Parser {
     }
 
     /**
-     * gets the user integer input from user string input.
+     * Gets the user integer input from user string input.
      *
-     * @param inputList user input after spliting by " ".
-     * @throws DukeException if input list length > 2 or input list length < 2.
+     * @param inputList user input after spliting by " "
+     * @throws DukeException if input list length > 2 or input list length < 2
      */
     public static int getIntegerInUserInput(String[] inputList) throws DukeException{
         if (inputList.length > 2) {
@@ -146,8 +137,8 @@ public class Parser {
     /**
      * Converts string user input command into enum command to be used in switch.
      *
-     * @param userInputCommand string user input command.
-     * @throws DukeException if user input command is not any valid command.
+     * @param userInputCommand string user input command
+     * @throws DukeException if user input command is not any valid command
      */
     public static userCommand userInputToCommand(String userInputCommand) throws DukeException {
         try {

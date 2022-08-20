@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Encapsulate the Storage of the chatbot
+ * Encapsulate the Storage of the program.
  *
  * @author: Jonas Png
  */
@@ -19,6 +19,11 @@ public class Storage {
 
     private File dataFile;
 
+    /**
+     * Class Constructor of Storage class.
+     *
+     * @param filePath path to store data file
+     */
     public Storage(String filePath) {
         try {
             this.filePath = filePath;
@@ -33,6 +38,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Rewrites the list of tasks into the data file.
+     *
+     * @param taskList list of existing tasks
+     */
     public void update(ArrayList<Task> taskList) throws DukeException {
         try {
             FileWriter myWriter = new FileWriter(filePath + "/duke.txt");
@@ -45,6 +55,13 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads task list data from data file and returns a
+     * TaskList with all the task in the data file
+     *
+     * @return TaskList with all the saved tasks from previous session
+     * @throws DukeException if file not found
+     */
     public ArrayList<Task> load() throws DukeException {
         ArrayList<Task> memory = new ArrayList<>();
         Scanner myReader;
