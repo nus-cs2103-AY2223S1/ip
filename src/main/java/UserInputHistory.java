@@ -9,7 +9,7 @@ public class UserInputHistory {
 
     public static void createIfDoesntExist() throws IOException {
         String currDir = System.getProperty("user.dir");
-        Path path = Paths.get(currDir,"fruit.txt");
+        Path path = Paths.get(currDir,"userinputhistory.txt");
         if (!Files.exists(path)) {
             Files.createFile(path);
         }
@@ -20,11 +20,16 @@ public class UserInputHistory {
      * @param s String description to add to userInputHistory
      */
     public void addTaskToHistory(String s) {
-        Task newTask = new Task(s);
-        userInputHistory.add(newTask);
-        //echo request
-        System.out.printf("Noted down: %s\n There are %d items on your list now. \n", s, userInputHistory.size());
-        System.out.print(">>");
+        try {
+            createIfDoesntExist();
+            Task newTask = new Task(s);
+            userInputHistory.add(newTask);
+            //echo request
+            System.out.printf("Noted down: %s\n There are %d items on your list now. \n", s, userInputHistory.size());
+            System.out.print(">>");
+        } catch (IOException e) {
+            System.out.println("IOException: " + e);
+        }
     }
 
     /**
