@@ -20,6 +20,6 @@ public class RenException extends Exception {
      */
     @Override
     public String toString() {
-        return " ☹ Apologies! " + super.getMessage() + "\n";
+        return " >_< Apologies! " + super.getMessage() + "\n";
     }
 }
