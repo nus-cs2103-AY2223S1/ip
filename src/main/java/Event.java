@@ -1,13 +1,25 @@
-public class Event extends Task {
-    String time;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
-    public Event(String description, String time) {
+public class Event extends Task {
+    LocalDate start;
+    LocalDate end;
+
+    public Event(String description,String start, String end) {
         super(description);
-        this.time = time;
+        this.start = LocalDate.parse(start);
+        this.end = LocalDate.parse(end);
     }
 
     @Override
     public String toString() {
-        return String.format("[E]%s(at:%s)", super.toString(), this.time);
+        String startFormat = String.format("%s, %d %s, %s",
+                start.getDayOfWeek(), start.getDayOfMonth(),
+                start.getMonth(), start.getYear());
+        String endFormat = String.format("%s, %d %s, %s",
+                end.getDayOfWeek(), end.getDayOfMonth(),
+                end.getMonth(), end.getYear());
+        return String.format("[E] %s(at: %s to %s)", super.toString(), startFormat, endFormat);
     }
 }

@@ -1,13 +1,19 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+
 public class Deadline extends Task {
-    String time;
-
-    public Deadline(String description, String time) {
+    LocalDate date;
+    
+    public Deadline(String description, String date) {
         super(description);
-        this.time = time;
+        this.date = LocalDate.parse(date);
     }
-
+    
     @Override
     public String toString() {
-        return String.format("[D]%s(by:%s)", super.toString(), this.time);
+        return String.format("[D]%s (by: %s)", super.toString(), String.format("%s, %d %s, %s",
+                date.getDayOfWeek(), date.getDayOfMonth(),
+                date.getMonth(), date.getYear()));
     }
 }

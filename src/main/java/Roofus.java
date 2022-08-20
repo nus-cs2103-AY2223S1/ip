@@ -138,7 +138,7 @@ public class Roofus {
                 case DEADLINE:
                     try {
                         String details = sc2.nextLine();
-                        String[] separate = details.split("/by", 2);
+                        String[] separate = details.split(" /by ", 2);
                         roofus.addTask(new Deadline(separate[0], separate[1]));
                     } catch (ArrayIndexOutOfBoundsException err) {
                         errMessage("Oops! Your deadline task isn't clear.");
@@ -149,8 +149,9 @@ public class Roofus {
                 case EVENT:
                     try {
                         String details2 = sc2.nextLine();
-                        String[] separate = details2.split("/at", 2);
-                        roofus.addTask(new Event(separate[0], separate[1]));
+                        String[] separate = details2.split(" /at ", 2);
+                        String[] startEnd = separate[1].split(" to ");
+                        roofus.addTask(new Event(separate[0], startEnd[0], startEnd[1]));
                     } catch (ArrayIndexOutOfBoundsException err) {
                         errMessage("Oops! Your event task isn't clear.");
                     } catch (NoSuchElementException err) {
