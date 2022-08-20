@@ -1,21 +1,23 @@
+package ren;
+
 /**
- * Duke is a Task Manager program that helps a user keep track of and manage their tasks.
+ * Ren is a Task Manager program that helps a user keep track of and manage their tasks.
  */
-public class Duke {
+public class Ren {
     /** Stores the list of tasks added by the user. */
     private final TaskList tasks;
 
     private final Ui ui = new Ui();
 
     /**
-     * Constructor for a Duke bot.
+     * Constructor for a Ren bot.
      */
-    public Duke() {
+    public Ren() {
         tasks = new TaskList(new Storage("data/list.txt"));
     }
 
     /**
-     * Runs the Duke program until the user exits with the 'bye' command.
+     * Runs the Ren program until the user exits with the 'bye' command.
      */
     public void run() {
         ui.greet();
@@ -25,17 +27,17 @@ public class Duke {
 
             try {
                 ui.speak(Parser.parseCommand(cmd, this.tasks));
-            } catch (DukeException e) {
+            } catch (RenException e) {
                 ui.speak(e.toString());
             }
         }
     }
 
     /**
-     * Driver method for Duke.
+     * Driver method for Ren.
      */
     public static void main(String[] args) {
-        new Duke().run();
+        new Ren().run();
     }
 
     enum TaskType {

@@ -1,3 +1,5 @@
+package ren;
+
 import java.util.Scanner;
 
 /**
@@ -21,7 +23,7 @@ public class Ui {
      * Greets the user.
      */
     public void greet() {
-        speak(" Greetings! My name is Alfred ^_^\n How may I be of service today?\n");
+        speak(" Greetings! My name is Ren ^_^\n How may I be of service today?\n");
     }
 
     /**

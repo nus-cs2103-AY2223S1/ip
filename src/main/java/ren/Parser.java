@@ -1,3 +1,5 @@
+package ren;
+
 /**
  * Parser interprets user commands and executes them.
  */
@@ -8,9 +10,9 @@ public class Parser {
      * @param cmd Command to execute.
      * @param tasks TaskList to execute commands on.
      * @return String containing a message for the user.
-     * @throws DukeException If command is invalid.
+     * @throws RenException If command is invalid.
      */
-    public static String parseCommand(String cmd, TaskList tasks) throws DukeException {
+    public static String parseCommand(String cmd, TaskList tasks) throws RenException {
         String[] firstParse = cmd.split(" ", 2);
         String firstTerm = firstParse[0];
         boolean hasSecondTerm = firstParse.length > 1;
@@ -20,31 +22,31 @@ public class Parser {
             return Ui.goodbye();
         case "todo":
             if (hasSecondTerm) {
-                return tasks.addTask(Duke.TaskType.TODO, firstParse[1], "");
+                return tasks.addTask(Ren.TaskType.TODO, firstParse[1], "");
             } else {
-                throw new DukeException("Please provide a description for the todo.");
+                throw new RenException("Please provide a description for the todo.");
             }
         case "deadline":
             if (hasSecondTerm) {
                 String[] secondParse = firstParse[1].split("/by", 2);
                 if (secondParse.length > 1) {
-                    return tasks.addTask(Duke.TaskType.DEADLINE, secondParse[0], secondParse[1]);
+                    return tasks.addTask(Ren.TaskType.DEADLINE, secondParse[0], secondParse[1]);
                 } else {
-                    throw new DukeException("Please provide a date/time for the deadline.");
+                    throw new RenException("Please provide a date/time for the deadline.");
                 }
             } else {
-                throw new DukeException("Please provide a description for the deadline.");
+                throw new RenException("Please provide a description for the deadline.");
             }
         case "event":
             if (hasSecondTerm) {
                 String[] secondParse = firstParse[1].split("/at", 2);
                 if (secondParse.length > 1) {
-                    return tasks.addTask(Duke.TaskType.EVENT, secondParse[0], secondParse[1]);
+                    return tasks.addTask(Ren.TaskType.EVENT, secondParse[0], secondParse[1]);
                 } else {
-                    throw new DukeException("Please provide a date/time for the event.");
+                    throw new RenException("Please provide a date/time for the event.");
                 }
             } else {
-                throw new DukeException("Please provide a description for the event.");
+                throw new RenException("Please provide a description for the event.");
             }
         case "delete":
             try {
@@ -53,8 +55,8 @@ public class Parser {
                     : "0";
                 return tasks.deleteTask(Integer.parseInt(secondTerm));
             } catch (NumberFormatException e) {
-                throw new DukeException("Please indicate the task no. in digits.");
-            } catch (DukeException f) {
+                throw new RenException("Please indicate the task no. in digits.");
+            } catch (RenException f) {
                 return f.toString();
             }
         case "mark":
@@ -64,8 +66,8 @@ public class Parser {
                     : "0";
                 return tasks.updateTask(true, Integer.parseInt(secondTerm));
             } catch (NumberFormatException e) {
-                throw new DukeException("Please indicate the task no. in digits.");
-            } catch (DukeException f) {
+                throw new RenException("Please indicate the task no. in digits.");
+            } catch (RenException f) {
                 return f.toString();
             }
         case "unmark":
@@ -75,8 +77,8 @@ public class Parser {
                     : "0";
                 return tasks.updateTask(false, Integer.parseInt(secondTerm));
             } catch (NumberFormatException e) {
-                throw new DukeException("Please indicate the task no. in digits.");
-            } catch (DukeException f) {
+                throw new RenException("Please indicate the task no. in digits.");
+            } catch (RenException f) {
                 return f.toString();
             }
         case "list":
@@ -84,7 +86,7 @@ public class Parser {
         case "empty":
             return tasks.emptyList();
         default:
-            throw new DukeException("Please enter a supported command.");
+            throw new RenException("Please enter a supported command.");
         }
     }
 }

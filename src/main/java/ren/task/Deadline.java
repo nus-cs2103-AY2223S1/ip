@@ -1,3 +1,8 @@
+package ren.task;
+
+import ren.RenException;
+import ren.TimeStamp;
+
 /**
  * Deadline Task represents an action that needs to be done by a certain date or time.
  */
@@ -10,7 +15,7 @@ public class Deadline extends Task {
      * @param description the description of the Task
      * @param dateTime the deadline of the Task
      */
-    public Deadline(String description, String dateTime) throws DukeException {
+    public Deadline(String description, String dateTime) throws RenException {
         super(description);
         this.dateTime = TimeStamp.of(dateTime);
     }

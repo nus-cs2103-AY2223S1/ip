@@ -1,3 +1,8 @@
+package ren.task;
+
+import ren.RenException;
+import ren.TimeStamp;
+
 /**
  * Event Task represents an event that takes place between certain dates/time.
  */
@@ -11,7 +16,7 @@ public class Event extends Task {
      * @param description the description of the Event
      * @param dateTime the start and end dates/time of the Event
      */
-    public Event(String description, String dateTime) throws DukeException {
+    public Event(String description, String dateTime) throws RenException {
         super(description);
         String[] duration = dateTime.split(" ~ ", 2);
         this.start = TimeStamp.of(duration[0]);

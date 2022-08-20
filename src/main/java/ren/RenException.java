@@ -1,18 +1,20 @@
+package ren;
+
 /**
- * DukeExceptions represent errors in user input when using Alfred.
+ * RenExceptions represent errors in user input when using Ren.
  */
-public class DukeException extends Exception {
+public class RenException extends Exception {
     /**
-     * Constructor for a DukeException.
+     * Constructor for a RenException.
      *
      * @param message Error Message.
      */
-    public DukeException(String message) {
+    public RenException(String message) {
         super(message);
     }
 
     /**
-     * Returns the string representation of this DukeException.
+     * Returns the string representation of this RenException.
      *
      * @return String Representation.
      */

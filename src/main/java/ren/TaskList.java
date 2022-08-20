@@ -1,4 +1,12 @@
+package ren;
+
 import java.util.ArrayList;
+
+import ren.task.Deadline;
+import ren.task.Event;
+import ren.task.Task;
+import ren.task.Todo;
+
 
 /**
  * TaskList contains a list of Tasks as well methods to add, delete, update tasks.
@@ -27,9 +35,9 @@ public class TaskList {
      * @param task The information of the new Task.
      * @param dateTime The date and time information of the new Task.
      * @return String containing a message for the user.
-     * @throws DukeException If task or dateTime is invalid.
+     * @throws RenException If task or dateTime is invalid.
      */
-    public String addTask(Duke.TaskType type, String task, String dateTime) throws DukeException {
+    public String addTask(Ren.TaskType type, String task, String dateTime) throws RenException {
         Task newTask = null;
         switch (type) {
         case TODO:
@@ -55,9 +63,9 @@ public class TaskList {
      *
      * @param taskNum The index of the Task to remove.
      * @return String containing a message for the user.
-     * @throws DukeException If taskNum is invalid.
+     * @throws RenException If taskNum is invalid.
      */
-    public String deleteTask(int taskNum) throws DukeException {
+    public String deleteTask(int taskNum) throws RenException {
         if (taskNum <= tasks.size() && taskNum > 0) {
             Task removedTask = tasks.remove(taskNum - 1);
             storage.deleteTask(taskNum - 1);
@@ -65,9 +73,9 @@ public class TaskList {
                 + "   " + removedTask
                 + " You have a total of " + tasks.size() + " task(s) left.\n";
         } else if (tasks.size() == 0) {
-            throw new DukeException("You have no tasks to delete.");
+            throw new RenException("You have no tasks to delete.");
         } else {
-            throw new DukeException("Please indicate a task no. between 1 to " + tasks.size() + ".");
+            throw new RenException("Please indicate a task no. between 1 to " + tasks.size() + ".");
         }
     }
 
@@ -77,17 +85,17 @@ public class TaskList {
      * @param status The new status of the Task.
      * @param taskNum The index of the Task to update.
      * @return String containing a message for the user.
-     * @throws DukeException If taskNum is invalid.
+     * @throws RenException If taskNum is invalid.
      */
-    public String updateTask(boolean status, int taskNum) throws DukeException {
+    public String updateTask(boolean status, int taskNum) throws RenException {
         if (taskNum <= tasks.size() && taskNum > 0) {
             String message = tasks.get(taskNum - 1).setDone(status);
             storage.updateTask(tasks.get(taskNum - 1), taskNum - 1);
             return message;
         } else if (tasks.size() == 0) {
-            throw new DukeException("You have no tasks to mark or unmark.");
+            throw new RenException("You have no tasks to mark or unmark.");
         } else {
-            throw new DukeException("Please indicate a task no. between 1 to " + tasks.size() + ".");
+            throw new RenException("Please indicate a task no. between 1 to " + tasks.size() + ".");
         }
     }
 

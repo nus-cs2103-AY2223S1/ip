@@ -1,9 +1,16 @@
+package ren;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import ren.task.Deadline;
+import ren.task.Event;
+import ren.task.Task;
+import ren.task.Todo;
 
 /**
  * Storage handles the reading and writing of Tasks to a File.
