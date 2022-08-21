@@ -5,7 +5,20 @@ import duke.command.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Class for parsing input string into commands to execute.
+ *
+ * @author dexter-sim
+ * @version 0.1
+ */
 public class Parser {
+    /**
+     * Returns a command based on the specified user input.
+     *
+     * @param userInput Represents the user input into the system.
+     * @return A command based on the user input.
+     * @throws DukeException If user input is an invalid string command.
+     */
     public static Command parseInput(String userInput) throws DukeException {
         String[] split = userInput.split(" ");
         if (userInput.equals("bye") && split.length == 1) {

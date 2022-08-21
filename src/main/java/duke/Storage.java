@@ -15,10 +15,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Class for loading and saving tasks.
+ *
+ * @author dexter-sim
+ * @version 0.1
+ */
 public class Storage {
     private String filePath;
     private File file;
 
+    /**
+     * Creates a storage object of the specified file path.
+     *
+     * @param filePath Path from root directory to the file.
+     * @throws DukeException If unable to create file.
+     */
     public Storage(String filePath) throws DukeException {
         this.filePath = filePath;
         this.file = new File(this.filePath);
@@ -31,6 +43,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Returns a list of tasks from storage.
+     *
+     * @return A list of tasks.
+     * @throws DukeException If file is inaccessible.
+     */
     public List<Task> load() throws DukeException {
         List<Task> tasks = new ArrayList<>();
         try {
@@ -45,6 +63,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Saves specified list of tasks to local file.
+     *
+     * @param tasks
+     */
     public void save(List<Task> tasks) {
         List<String> data = new ArrayList<>();
         for (Task task : tasks) {
