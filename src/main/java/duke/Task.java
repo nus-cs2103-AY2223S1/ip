@@ -1,5 +1,8 @@
 package duke;
 
+/**
+ * Encapsulates a Task stored in Duke.
+ */
 public abstract class Task {
     protected String description;
     protected boolean isDone;
@@ -21,6 +24,11 @@ public abstract class Task {
         isDone = false;
     }
 
+    /**
+     * Returns deadline task into a savable format.
+     *
+     * @return A string representing the data stored in the task.
+     */
     public String parseToSaveData() {
         int isDoneNum = isDone ? 1 : 0;
         return isDoneNum + "|" + description;

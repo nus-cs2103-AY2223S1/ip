@@ -3,6 +3,10 @@ package duke;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
+/**
+ * Represents the main part of the Duke program and is in charge of coordinating all the various supporting classes in
+ * the duke package.
+ */
 public class Duke {
     private Ui ui;
     private Storage storage;
@@ -33,6 +37,11 @@ public class Duke {
         return taskIndex;
     }
 
+    /**
+     * Takes in a user input and processes it
+     *
+     * @param input A user input string.
+     */
     private void processInput(String input) {
         try {
             String[] parsedOutput = Parser.parseInput(input);
