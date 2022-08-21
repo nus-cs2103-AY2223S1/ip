@@ -25,6 +25,11 @@ public class Event extends Task {
     }
 
     @Override
+    public LocalDate getDate() {
+        return this.datetime;
+    }
+
+    @Override
     public String toString() {
         return String.format("%s (at: %s)", super.toString(), DukeFormatter.formatDate(this.datetime));
     }

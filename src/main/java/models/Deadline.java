@@ -25,6 +25,11 @@ public class Deadline extends Task {
     }
 
     @Override
+    public LocalDate getDate() {
+        return this.deadline;
+    }
+
+    @Override
     public String toString() {
         return String.format("%s (by: %s)", super.toString(), DukeFormatter.formatDate(this.deadline));
     }

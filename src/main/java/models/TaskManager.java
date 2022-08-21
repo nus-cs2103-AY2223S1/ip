@@ -1,7 +1,10 @@
 package models;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * Utility class to manage the list of tasks and provides augmenting operations to
@@ -19,6 +22,10 @@ public class TaskManager {
         this.taskList = new ArrayList<>();
     }
 
+    public TaskManager(List<Task> taskList) {
+        this.taskList = taskList;
+    }
+
     /**
      * Adds the received task into the task list
      *
@@ -26,6 +33,11 @@ public class TaskManager {
      */
     public void add(Task task) {
         this.taskList.add(task);
+    }
+
+    public TaskManager where(Predicate<? super Task> condition) {
+        List<Task> taskList = this.taskList.stream().filter(condition).collect(Collectors.toList());
+        return new TaskManager(taskList);
     }
 
     /**

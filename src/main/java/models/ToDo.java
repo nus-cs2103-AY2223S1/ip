@@ -1,5 +1,7 @@
 package models;
 
+import java.time.LocalDate;
+
 /**
  * Encapsulates a task without any date/time attached to it, e.g. visit new theme park
  *
@@ -14,5 +16,10 @@ public class ToDo extends Task {
     @Override
     public String getTaskTypeIcon() {
         return TaskType.TODO.toString();
+    }
+
+    @Override
+    public LocalDate getDate() {
+        return null;
     }
 }
