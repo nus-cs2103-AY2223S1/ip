@@ -133,11 +133,9 @@ public class Storage {
             }
             fileWriter.close();
         } catch (IOException ioException) {
-            throw new SkylarkException("IOException occurred when writing to file: "
-                    + ioException.getMessage());
+            throw new SkylarkException("IOException occurred when writing to file");
         } catch (SecurityException securityException) {
-            throw new SkylarkException("SecurityException occurred when writing to file: "
-                    + securityException.getMessage());
+            throw new SkylarkException("SecurityException occurred when writing to file");
         }
     }
 }
