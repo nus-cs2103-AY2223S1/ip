@@ -8,7 +8,14 @@ import duke.exception.InvalidTimeException;
 
 import java.time.format.DateTimeParseException;
 
+/**
+ * Class that parses user inputs in Duke to return an appropriate command object
+ */
 public class Parser {
+
+    /**
+     * Parse user input and returns a command
+     */
     public static Command parse(String fullCommand) throws InvalidInputException, InvalidIndexException,
             DateTimeParseException, InvalidDescriptionException, InvalidTimeException {
 

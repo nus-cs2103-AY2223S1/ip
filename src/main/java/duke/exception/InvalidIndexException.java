@@ -1,5 +1,8 @@
 package duke.exception;
 
+/**
+ * Represents an exception when input index is out of bounds
+ */
 public class InvalidIndexException extends Exception {
     public InvalidIndexException() {
         super("____________________________________________________________\n" +
