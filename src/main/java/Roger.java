@@ -1,8 +1,15 @@
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
 import java.lang.NumberFormatException;
 import java.lang.StringIndexOutOfBoundsException;
+import java.io.File;
+import java.io.FileWriter;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.Files;
+
 
 public class Roger {
     private List<Task> tasks = new ArrayList<>();
@@ -211,6 +218,60 @@ public class Roger {
         System.out.println("Uncle really don't understand.");
     }
 
+    private static List<Task> readTasksFromFile(Path path) throws IOException {
+        List<String> tasksFile;
+        tasksFile = Files.readAllLines(path);
+        List<Task> tasks = new ArrayList<>();
+        
+        for (String line : tasksFile) {
+            char type = line.charAt(0);
+            boolean isDone = line.charAt(4) == 1;
+            int nameDateSeparator = line.substring(7).indexOf('|');
+            if (nameDateSeparator <= 7) {
+                throw new IOException("Corrupted data file.");
+            }
+            String name = line.substring(7, nameDateSeparator - 1);
+            String date = line.substring(nameDateSeparator + 1);
+
+            Task task;
+            switch (type) {
+                case 'T':
+                    task = new ToDo(name);
+                    break;
+                case 'D':
+                    task = new Deadline(name, date);
+                    break;
+                case 'E':
+                    task = new Event(name, date);
+                    break;
+                default:
+                    throw new IOException("Corrupted data file.");
+            }
+            if (isDone) {
+                task.markAsDone();
+            }
+
+            tasks.add(task);
+        }
+        
+        return tasks;
+    }
+    
+    private static void writeTasksToFile(List<Task> tasks, Path path) throws IOException {
+        try {
+            Files.delete(path);
+        } catch (IOException ignored) {}
+
+        File file = new File(String.valueOf(path.toAbsolutePath()));
+        file.getParentFile().mkdirs();
+        file.createNewFile();
+        FileWriter fw = new FileWriter(file);
+        for (Task task : tasks) {
+            fw.append(task.toStorageFormat() + '\n');
+        }
+        fw.close();
+    }
+
     public static void main(String[] args) {
         /**
          * Logic for Roger program. Takes user input and matches it
@@ -221,6 +282,13 @@ public class Roger {
         Scanner scanner = new Scanner(System.in);
 
         roger.sayHello();
+
+        Path path = Paths.get("data/database.txt");
+        try {
+            roger.tasks = Roger.readTasksFromFile(path);
+        } catch (IOException e) {
+            roger.tasks = new ArrayList<>();
+        }
 
         while (true) {
             String input = scanner.nextLine();
@@ -250,6 +318,13 @@ public class Roger {
                 System.out.println(e.getMessage());
                 continue;
             }
+        }
+
+        try {
+            Roger.writeTasksToFile(roger.tasks, path);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Unable to write tasks to database. Check the path provided.");
         }
     }
 }
