@@ -6,46 +6,44 @@ import java.util.function.BiFunction;
 
 public class Duke {
     /**
-     * 'List' attribute to store inputs.
+     * Directory and filename path on disk to save task list.
      */
-    private static final TaskList taskList = new TaskList();
+    private static final String OUTPUT_DIRECTORY = "data";
+    private static final String OUTPUT_FILENAME = "list.txt";
 
     /**
-     * Boolean attribute to know if Duke is running.
+     * 'List' attribute to store inputs.
      */
-    private static Boolean runDuke = false;
+    private final TaskList taskList = new TaskList();
 
     /**
      * `Ui` object to handle user-interface.
      */
-    private static Ui ui;
+    private final Ui ui;
 
     /**
      * `Storage` object to handle reading and writing task list to disk.
      */
-    private static Storage storage;
+    private final Storage storage;
 
     /**
      * `Parser` object to parse and handle user inputs.
      */
-    private static Parser parser;
+    private final Parser parser;
 
-    /**
-     * Main function with program logic.
-     * @param args Command line arguments not used.
-     */
-    public static void main(String[] args) {
-        String OUTPUT_DIRECTORY = "data";
-        String OUTPUT_FILENAME = "list.txt";
-
-        runDuke = true;
+    private Duke(String directory, String filename) {
         ui = new Ui();
-        storage = new Storage(OUTPUT_DIRECTORY, OUTPUT_FILENAME, taskList);
+        storage = new Storage(directory, filename, taskList);
         parser = new Parser(taskList);
+    }
 
+    private void run() {
         // Create Scanner object for user inputs.
         Scanner sc = new Scanner(System.in);
         String userInput;
+
+        //Boolean attribute to know if Duke is running.
+        boolean runDuke = true;
 
         // Run Duke.
         while (runDuke && sc.hasNextLine()) {
@@ -55,10 +53,8 @@ public class Duke {
                 // are also made here.
                 BiFunction<TaskList, String, String> command =
                         parser.handleUserInputs(userInput);
-
                 // Apply command on input.
                 String output = command.apply(taskList, userInput);
-
                 // Print any output.
                 if (output.equals("exit sequence initiated")) {
                     runDuke = false;
@@ -67,7 +63,6 @@ public class Duke {
                 } else {
                     System.out.println(output);
                 }
-
                 // Write to disk.
                 storage.writeToFile(taskList);
             } catch (DukeException e) {
@@ -77,5 +72,13 @@ public class Duke {
             }
         }
         sc.close();
+    }
+
+    /**
+     * Main function with program logic.
+     * @param args Command line arguments not used.
+     */
+    public static void main(String[] args) {
+        new Duke(OUTPUT_DIRECTORY, OUTPUT_FILENAME).run();
     }
 }
