@@ -1,11 +1,4 @@
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
-import java.time.format.DateTimeParseException;
-import java.util.Locale;
-import java.util.Scanner;
 
 /**
  * Jude is a task tracker which appears like a command line interface. The name is a Beatles
