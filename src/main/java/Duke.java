@@ -1,13 +1,15 @@
-import java.time.format.DateTimeParseException;
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class Duke {
+    private Ui ui;
+    private Storage storage;
     private TaskList tasks;
+    private Parser parser;
     private boolean end;
 
     public Duke() {
         this.tasks = new TaskList(Storage.read());
+        this.parser = new Parser(tasks);
         this.end = false;
     }
 
@@ -19,51 +21,10 @@ public class Duke {
         while(!this.end) {
             command = sc.nextLine();
             try {
-                this.handler(command);
+                end = parser.handler(command);
             } catch (DukeException e) {
                 Ui.printException(e);
             }
-        }
-    }
-
-    // handler method handles user input and outputs accordingly
-    private void handler(String input) throws DukeException {
-        String[] args = input.split(" ", 2);
-
-        switch(args[0]) {
-            case "list":
-                tasks.list();
-                break;
-            case "todo":
-            case "deadline":
-            case "event":
-                try {
-                    tasks.listAdd(args[0], args[1]);
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    throw new DukeMissingInputException(args[0]);
-                }
-                break;
-            case "delete":
-                try {
-                    tasks.listDelete(args[1]);
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    throw new DukeMissingInputException(args[0]);
-                }
-                break;
-            // mark is implemented as a toggle. note this.
-            case "mark":
-                try {
-                    tasks.listToggle(args[1]);
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    throw new DukeMissingInputException(args[0]);
-                }
-                break;
-            case "bye":
-                this.end = true;
-                Ui.exit();
-                break;
-            default:
-                throw new DukeUnknownInputException(args[0]);
         }
     }
 
