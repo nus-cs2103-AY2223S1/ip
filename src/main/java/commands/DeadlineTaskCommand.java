@@ -7,7 +7,7 @@ import tasks.*;
 /**
  * DeadlineCommand which handles creation and message of Deadline
  */
-public class DeadlineCommand extends AddCommand {
+public class DeadlineTaskCommand extends TaskCommand {
 
   private String by;
 
@@ -16,7 +16,8 @@ public class DeadlineCommand extends AddCommand {
    * @param description Description of task
    * @param by When the task is required by
    */
-  public DeadlineCommand(String description) throws DukeException {
+  public DeadlineTaskCommand(String description) throws DukeException {
+    super(description);
     String[] eventlst = description.split("/by", 2);
     if (eventlst.length < 2) {
       throw new DukeException("Alamak! Fill in when the deadline is by...");

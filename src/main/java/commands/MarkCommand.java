@@ -7,7 +7,7 @@ import tasks.*;
 /**
  * MarkCommand used to mark tasks as done
  */
-public class MarkCommand extends Command {
+public class MarkCommand implements Command {
 
   private int index;
 

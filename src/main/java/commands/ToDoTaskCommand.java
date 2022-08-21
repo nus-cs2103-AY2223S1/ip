@@ -6,14 +6,16 @@ import tasks.*;
 
 /**
  * ToDoCommand that creates a new Todo and prints message to user
+ *
+ * @author Sharmaine Teo Hai Zhen
  */
-public class ToDoCommand extends AddCommand {
+public class ToDoTaskCommand extends TaskCommand {
 
   /**
    * Constructor for TodoCommand
    * @param description Description of Todo to be created
    */
-  public ToDoCommand(String description) throws DukeException {
+  public ToDoTaskCommand(String description) throws DukeException {
     super(description);
   }
 

@@ -7,7 +7,7 @@ import tasks.*;
 /**
  * Event command has an at field for the timing of the event
  */
-public class EventCommand extends AddCommand {
+public class EventTaskCommand extends TaskCommand {
 
   protected String at;
 
@@ -16,7 +16,8 @@ public class EventCommand extends AddCommand {
    * @param description Description of event
    * @param at When the event is at
    */
-  public EventCommand(String description) throws DukeException {
+  public EventTaskCommand(String description) throws DukeException {
+    super(description);
     String[] eventlst = description.split("/at", 2);
     if (eventlst.length < 2) {
       throw new DukeException("Alamak! Fill in when the event is at...");

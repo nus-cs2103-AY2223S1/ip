@@ -7,13 +7,11 @@ import tasks.*;
 /**
  * AddCommand class is the parent class for Todo, Deadline and Event
  */
-public class AddCommand extends Command {
+public class TaskCommand implements Command {
 
   protected String description;
 
-  public AddCommand() {}
-
-  public AddCommand(String description) throws DukeException {
+  public TaskCommand(String description) throws DukeException {
     String[] addlst = description.split(" ", 2);
     if (addlst.length < 2) {
       throw new DukeException("Task description missing!");

@@ -1,6 +1,6 @@
-package commands;
+package main;
 
-public enum Commands {
+public enum CommandManager {
   bye,
   list,
   mark,

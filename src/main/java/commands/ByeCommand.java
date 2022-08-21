@@ -7,7 +7,7 @@ import tasks.*;
 /**
  * ByeCommand says bye to user
  */
-public class ByeCommand extends Command {
+public class ByeCommand implements Command {
 
   @Override
   public void execute(ArrayList<Task> tasklist) throws DukeException {

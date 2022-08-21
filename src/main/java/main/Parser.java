@@ -18,17 +18,17 @@ public class Parser {
     String[] instructions = text.split(" ", 2);
     String command = instructions[0];
 
-    switch (Commands.valueOf(command)) {
+    switch (CommandManager.valueOf(command)) {
       case list:
         return new ListCommand();
       case bye:
         return new ByeCommand();
       case todo:
-        return new ToDoCommand(text);
+        return new ToDoTaskCommand(text);
       case deadline:
-        return new DeadlineCommand(text);
+        return new DeadlineTaskCommand(text);
       case event:
-        return new EventCommand(text);
+        return new EventTaskCommand(text);
       case mark:
         return new MarkCommand(instructions[1]);
       case unmark:

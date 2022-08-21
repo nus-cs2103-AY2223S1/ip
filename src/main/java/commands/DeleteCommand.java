@@ -7,7 +7,7 @@ import tasks.*;
 /**
  * DeleteCommand used to delete tasks
  */
-public class DeleteCommand extends Command {
+public class DeleteCommand implements Command {
 
   private int index;
 

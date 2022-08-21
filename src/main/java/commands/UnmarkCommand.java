@@ -4,7 +4,7 @@ import exception.*;
 import java.util.ArrayList;
 import tasks.*;
 
-public class UnmarkCommand extends Command {
+public class UnmarkCommand implements Command {
 
   private int index;
 

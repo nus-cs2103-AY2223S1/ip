@@ -1,6 +1,7 @@
 package main;
 
-import commands.*;
+import commands.ByeCommand;
+import commands.Command;
 import exception.DukeException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -76,5 +77,6 @@ public class Duke {
   public static void main(String[] args) {
     Duke duke = new Duke();
     duke.run();
+    duke.sc.close();
   }
 }

@@ -4,7 +4,7 @@ import exception.*;
 import java.util.ArrayList;
 import tasks.*;
 
-public class ListCommand extends Command {
+public class ListCommand implements Command {
 
   /**
    * Lists all tasks in tasklist or print default message if no tasks found
