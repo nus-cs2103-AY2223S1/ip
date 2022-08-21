@@ -42,8 +42,12 @@ public class TaskList {
     }
 
     public void markTaskDone(int index) {
-        Task selectedTask = tasks.get(index);
-        selectedTask.markAsDone();
+        try {
+            Task selectedTask = tasks.get(index);
+            selectedTask.markAsDone();
+        } catch (IndexOutOfBoundsException e) {
+            throw new InvalidIndexException("no tasks exist at this index");
+        }
     }
 
     public ArrayList<Task> getDueTasks(LocalDate time) {
@@ -56,7 +60,11 @@ public class TaskList {
         return tmp;
     }
     public void markTaskUndone(int index) {
-        Task selectedTask = tasks.get(index);
-        selectedTask.markUndone();
+        try {
+            Task selectedTask = tasks.get(index);
+            selectedTask.markUndone();
+        } catch (IndexOutOfBoundsException e) {
+            throw new InvalidIndexException("no tasks exist at this index");
+        }
     }
 }
