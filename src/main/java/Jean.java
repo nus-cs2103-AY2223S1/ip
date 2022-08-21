@@ -1,18 +1,23 @@
+import java.awt.desktop.SystemEventListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Jean {
 
     private static void bye() {
-        System.out.println("\tGoodbye! See you soon!" +
-                           "\n\tAu revoir! À tout à l'heure!");
+        System.out.println("\tGoodbye! See you soon!"
+                           + "\n\tAu revoir! À tout à l'heure!");
     }
 
     private static void checkTodo(String input, ArrayList<Task> taskList) {
         try {
             if (input.trim().length() == 4) {
-                throw new JeanException("The description must not be empty!" +
-                                        "\nVous devez donner une description!");
+                throw new JeanException("The description must not be empty!"
+                                        + "\nVous devez donner une description!");
             } else {
                 add(new Todo(input.substring(5)), taskList);
             }
@@ -25,11 +30,11 @@ public class Jean {
         int sep = input.indexOf("/by");
         try {
             if (sep == 9 || input.trim().length() == 8) {
-                throw new JeanException("The description must not be empty!" +
-                                        "\nVous devez donner une description!");
+                throw new JeanException("The description must not be empty!"
+                                        + "\nVous devez donner une description!");
             } else if (sep == -1) {
-                throw new JeanException("You must give a deadline!" +
-                                        "\nVous devez donner un délai!");
+                throw new JeanException("You must give a deadline!"
+                                        + "\nVous devez donner un délai!");
             } else {
                 add(new Deadline(input.substring(9, sep), input.substring(sep + 4)),
                         taskList);
@@ -43,11 +48,11 @@ public class Jean {
         int sep = input.indexOf("/at");
         try {
             if (sep == 6 || input.trim().length() == 5) {
-                throw new JeanException("The description must not be empty!" +
-                                        "\nVous devez donner une description!");
+                throw new JeanException("The description must not be empty!"
+                                        + "\nVous devez donner une description!");
             } else if (sep == -1) {
-                throw new JeanException("You must give a time!" +
-                                        "\nVous devez donner une heure!");
+                throw new JeanException("You must give a time!"
+                                        + "\nVous devez donner une heure!");
             } else {
                 add(new Event(input.substring(6, sep), input.substring(sep + 4)),
                         taskList);
@@ -59,10 +64,10 @@ public class Jean {
 
     private static void add(Task newTask, ArrayList<Task> taskList) {
         taskList.add(newTask);
-        System.out.println("\tadded / ajouté:" +
-                           "\n\t\t" + newTask.toString());
-        System.out.println("\tYou now have " + Task.numberOfTasks + " task(s)!" +
-                           "\n\tVous avez " + Task.numberOfTasks + " tâche(s)!");
+        System.out.println("\tadded / ajouté:"
+                           + "\n\t\t" + newTask.toString());
+        System.out.println("\tYou now have " + Task.numberOfTasks + " task(s)!"
+                           + "\n\tVous avez " + Task.numberOfTasks + " tâche(s)!");
     }
 
     private static void list(ArrayList<Task> taskList) {
@@ -74,14 +79,14 @@ public class Jean {
     private static void checkMark(String input, ArrayList<Task> taskList) {
         try {
             if (input.trim().length() == 4 || Integer.parseInt(input.substring(5)) < 1) {
-                throw new JeanException("You must name a valid task to mark!" +
-                                        "\nNom d'un valable tâche à marqué comme fait!");
+                throw new JeanException("You must name a valid task to mark!"
+                                        + "\nNom d'un valable tâche à marqué comme fait!");
             } else if (Integer.parseInt(input.substring(5)) > Task.numberOfTasks) {
-                throw new JeanException("There are only " + Task.numberOfTasks + " task(s)!" +
-                                        "\nIl y a seulement " + Task.numberOfTasks + " tâche(s)!");
+                throw new JeanException("There are only " + Task.numberOfTasks + " task(s)!"
+                                        + "\nIl y a seulement " + Task.numberOfTasks + " tâche(s)!");
             } else if (taskList.get(Integer.parseInt(input.substring(5)) - 1).isDone){
-                throw new JeanException("It is already marked!" +
-                                        "\nC'est déjaà fini!");
+                throw new JeanException("It is already marked!"
+                                        + "\nC'est déjaà fini!");
             } else {
                 mark(taskList, Integer.parseInt(input.substring(5)));
             }
@@ -93,22 +98,22 @@ public class Jean {
     private static void mark(ArrayList<Task> taskList, int taskIndex) {
         Task curr = taskList.get(taskIndex - 1);
         curr.setIsDone(true);
-        System.out.println("\tI have marked it as done:" +
-                           "\n\tJe l'ai marqué comme fait:" +
-                           "\n\t" + curr.toString());
+        System.out.println("\tI have marked it as done:"
+                           + "\n\tJe l'ai marqué comme fait:"
+                           + "\n\t" + curr.toString());
     }
 
     private static void checkUnmark(String input, ArrayList<Task> taskList) {
         try {
             if (input.trim().length() == 6 || Integer.parseInt(input.substring(7))  < 1) {
-                throw new JeanException("You must name a valid task to unmark!" +
-                                        "\nNom d'une valable tâche à marqué comme défait!");
+                throw new JeanException("You must name a valid task to unmark!"
+                                        + "\nNom d'une valable tâche à marqué comme défait!");
             } else if (Integer.parseInt(input.substring(7)) > Task.numberOfTasks) {
-                throw new JeanException("There are only " + Task.numberOfTasks + " task(s)!" +
-                                        "\nIl y a seulement " + Task.numberOfTasks + " tâche(s)!");
+                throw new JeanException("There are only " + Task.numberOfTasks + " task(s)!"
+                                        + "\nIl y a seulement " + Task.numberOfTasks + " tâche(s)!");
             } else if (!taskList.get(Integer.parseInt(input.substring(7)) - 1).isDone){
-                throw new JeanException("It is not marked!" +
-                                        "\nCe n'est pas encore fini!");
+                throw new JeanException("It is not marked!"
+                                        + "\nCe n'est pas encore fini!");
             } else {
                 unmark(taskList, Integer.parseInt(input.substring(7)));
             }
@@ -120,19 +125,19 @@ public class Jean {
     private static void unmark(ArrayList<Task> taskList, int taskIndex) {
         Task curr = taskList.get(taskIndex - 1);
         curr.setIsDone(false);
-        System.out.println("\tI have marked it as undone:" +
-                           "\n\tJe l'ai marqué comme défait:" +
-                           "\n\t" + curr.toString());
+        System.out.println("\tI have marked it as undone:"
+                           + "\n\tJe l'ai marqué comme défait:"
+                           + "\n\t" + curr.toString());
     }
 
     private static void checkDelete(String input, ArrayList<Task> taskList) {
         try {
             if (input.trim().length() == 6) {
-                throw new JeanException("You must name a task to delete!" +
-                                        "\nNom d'une tâche à supprimer!");
+                throw new JeanException("You must name a task to delete!"
+                                        + "\nNom d'une tâche à supprimer!");
             } else if (Integer.parseInt(input.substring(7)) < 0 || Integer.parseInt(input.substring(7)) > Task.numberOfTasks) {
-                throw new JeanException("It is not possible!" +
-                                        "\nC'est impossible!");
+                throw new JeanException("It is not possible!"
+                                        + "\nC'est impossible!");
             } else {
                 delete(taskList, Integer.parseInt(input.substring(7)) - 1);
             }
@@ -145,44 +150,105 @@ public class Jean {
         Task curr = taskList.get(taskIndex);
         Task.numberOfTasks -= 1;
         taskList.remove(taskIndex);
-        System.out.println("\tI have deleted the task:" +
-                           "\n\tJe l'ai supprimé:" +
-                           "\n\t" + curr.toString() +
-                           "\n\tYou now have " + Task.numberOfTasks + " tasks remaining!" +
-                           "\n\tIl vous reste maintenant " + Task.numberOfTasks + " tâches!");
+        System.out.println("\tI have deleted the task:"
+                           + "\n\tJe l'ai supprimé:"
+                           + "\n\t" + curr.toString()
+                           + "\n\tYou now have " + Task.numberOfTasks + " tasks remaining!"
+                           + "\n\tIl vous reste maintenant " + Task.numberOfTasks + " tâches!");
+    }
+
+    public static void initialiseStartup(ArrayList<Task> taskList) {
+        System.out.println("Hello! I'm Jean"
+                           + "\nHow can I help you?"
+                           + "\nBonjour! Je m'appelle Jean"
+                           + "\nVous désirez?");
+
+        File f = new File("data/list.txt");
+
+        try {
+            if (!f.createNewFile()) {
+                Scanner s = new Scanner(f);
+                while (s.hasNext()) {
+                    String[] info = s.nextLine().split("\\|");
+                    Task temp = null;
+
+                    switch (info[0]) {
+                    case "T":
+                        temp = new Todo(info[2]);
+                        break;
+                    case "D":
+                        temp = new Deadline(info[2], info[3]);
+                        break;
+                    case "E":
+                        temp = new Event(info[2], info[3]);
+                        break;
+                    }
+
+                    if (temp == null) {
+                        throw new JeanException("File is corrupted!"
+                                                + "\nLe fichier est corrompu!");
+                    }
+
+                    temp.setIsDone(info[1].equals("1"));
+                    taskList.add(temp);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Something went wrong: " + e.getMessage()
+                               + "\nQuelque chose a mal tourné: " + e.getMessage());
+        } catch (JeanException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void saveFile(ArrayList<Task> taskList) throws IOException {
+        FileWriter fw = new FileWriter("data/list.txt");
+        for (Task x : taskList) {
+            fw.write(x.getSaveData());
+            fw.write("\n");
+        }
+        fw.close();
+    }
+
+    public static boolean processInput(String input, ArrayList<Task> taskList) {
+        if (input.equals("bye")) {
+            bye();
+            try {
+                saveFile(taskList);
+            } catch (IOException e) {
+                System.out.println("Something went wrong: " + e.getMessage()
+                                   + "\nQuelque chose a mal tourné: " + e.getMessage());
+            }
+            return false;
+        } else if (input.equals("list")) {
+            list(taskList);
+        } else if (input.startsWith("mark")) {
+            checkMark(input, taskList);
+        } else if (input.startsWith("unmark")) {
+            checkUnmark(input, taskList);
+        } else if (input.startsWith("todo")) {
+            checkTodo(input, taskList);
+        } else if (input.startsWith("deadline")) {
+            checkDeadline(input, taskList);
+        } else if (input.startsWith("event")) {
+            checkEvent(input, taskList);
+        } else if (input.startsWith("delete")) {
+            checkDelete(input, taskList);
+        } else {
+            System.out.println("No such command!");
+        }
+        return true;
     }
 
     public static void main(String[] args) {
-        System.out.println("Hello! I'm Jean" +
-                           "\nHow can I help you?" +
-                           "\nBonjour! Je m'appelle Jean" +
-                           "\nVous désirez?");
+        ArrayList<Task> taskList = new ArrayList<>();
+        initialiseStartup(taskList);
 
         Scanner scanner = new Scanner(System.in);
-        ArrayList<Task> taskList = new ArrayList<>();
+        String input;
 
-        while(true) {
-            String input = scanner.nextLine();
-            if (input.equals("bye")) {
-                bye();
-                break;
-            } else if (input.equals("list")) {
-                list(taskList);
-            } else if (input.startsWith("mark")) {
-                checkMark(input, taskList);
-            } else if (input.startsWith("unmark")) {
-                checkUnmark(input, taskList);
-            } else if (input.startsWith("todo")) {
-                checkTodo(input, taskList);
-            } else if (input.startsWith("deadline")) {
-                checkDeadline(input, taskList);
-            } else if (input.startsWith("event")) {
-                checkEvent(input, taskList);
-            } else if (input.startsWith("delete")) {
-                checkDelete(input, taskList);
-            } else {
-                System.out.println("No such command!");
-            }
-        }
+        do {
+            input = scanner.nextLine();
+        } while (processInput(input.trim(), taskList));
     }
 }

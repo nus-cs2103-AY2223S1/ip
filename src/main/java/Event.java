@@ -6,6 +6,9 @@ public class Event extends Task{
         this.at = at;
         super.numberOfTasks += 1;
     }
+    public String getSaveData() {
+        return "E|" + (super.isDone ? 1 : 0) + "|" + super.description + "|" + this.at;
+    }
 
     @Override
     public String toString() {

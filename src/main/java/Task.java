@@ -16,6 +16,8 @@ public abstract class Task {
         this.isDone = isDone;
     }
 
+    public abstract String getSaveData();
+
     @Override
     public String toString() {
         return ("[" + this.getStatusIcon() + "] " + this.description);
