@@ -1,3 +1,5 @@
+import java.time.DateTimeException;
+import java.util.Date;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -122,6 +124,10 @@ public class Duke {
             } catch (InvalidFormatException e) {
                 System.out.println("----------------------");
                 System.out.println(e.toString());
+                System.out.println("----------------------");
+            } catch (DateTimeException e) {
+                System.out.println("----------------------");
+                System.out.println("Error! Date format incorrect (YYYY-MM-DD)");
                 System.out.println("----------------------");
             }
         }
