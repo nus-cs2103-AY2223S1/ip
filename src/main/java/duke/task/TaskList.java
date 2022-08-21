@@ -31,4 +31,12 @@ public class TaskList {
         return stringBuilder.toString();
     }
 
+    public String serialize() {
+        StringBuilder output = new StringBuilder();
+        for (Task task : tasks) {
+            output.append(task.serialize());
+            output.append("\n");
+        }
+        return output.toString();
+    }
 }

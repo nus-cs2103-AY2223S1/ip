@@ -15,6 +15,11 @@ public class Event extends Task {
     }
 
     @Override
+    public TaskType getTaskType() {
+        return TaskType.Event;
+    }
+
+    @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + details + ")";
     }

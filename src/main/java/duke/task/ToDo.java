@@ -9,6 +9,10 @@ import duke.task.Task;
 public class ToDo extends Task {
 
     @Override
+    public TaskType getTaskType() {
+        return TaskType.ToDo;
+    }
+    @Override
     public String toString() {
         return "[T]" + super.toString();
     }

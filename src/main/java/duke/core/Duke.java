@@ -3,8 +3,13 @@ package duke.core;
 import duke.commands.*;
 import duke.task.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Duke {
 
@@ -12,7 +17,9 @@ public class Duke {
     private final Parser parser;
     private final TaskList taskList = new TaskList();
 
-    public Duke() {
+    private final String fileName;
+
+    public Duke(String fileName) {
         this.parser = new Parser(new ArrayList<>(Arrays.asList(
             new Exit("bye", this.ui),
             new AddTaskCommand<>("todo", taskList, null, ToDo::new),
@@ -23,11 +30,38 @@ public class Duke {
             new MarkCommand("unmark", taskList, false),
             new DeleteTaskCommand("delete", taskList)
         )));
+        this.fileName = fileName;
     }
 
     public void run() {
-        ui.showWelcome();
+
+        File taskFile = new File(fileName);
+
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(taskFile);
+        } catch (FileNotFoundException e) {
+            ui.showMessage("No tasks found. Creating new...");
+            try {
+                taskFile.createNewFile();
+            } catch (IOException f) {
+                ui.showMessage("Unable to create new file for tasks.");
+            }
+        }
+
+        if (scanner != null) {
+            while (scanner.hasNextLine()) {
+                String serializedTask = scanner.nextLine();
+                Task t = Task.deserialize(serializedTask);
+                if (t != null) {
+                    taskList.addTask(t);
+                }
+            }
+        }
+
+            ui.showWelcome();
         boolean isExit = false;
+
         while (!isExit) {
             try {
                 String fullCommand = ui.readCommand();
@@ -39,10 +73,19 @@ public class Duke {
             } finally {
                 ui.showLine();
             }
+
+            FileWriter fileWriter = null;
+            try {
+                fileWriter = new FileWriter(fileName);
+                fileWriter.write(taskList.serialize());
+                fileWriter.close();
+            } catch (IOException e) {
+                ui.showMessage("Unable to write to file.");
+            }
         }
     }
 
     public static void main(String[] args) {
-        new Duke().run();
+        new Duke("duke.txt").run();
     }
 }

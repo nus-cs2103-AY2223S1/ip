@@ -14,6 +14,11 @@ public class Deadline extends Task {
     }
 
     @Override
+    public TaskType getTaskType() {
+        return TaskType.Deadline;
+    }
+
+    @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + details + ")";
     }
