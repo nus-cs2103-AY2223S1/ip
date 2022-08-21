@@ -1,11 +1,11 @@
 package duke.command;
 
+import duke.Storage;
+import duke.Ui;
 import duke.exception.InvalidDescriptionException;
 import duke.exception.InvalidTimeException;
-import duke.task.TaskList;
 import duke.task.Event;
-import duke.Ui;
-import duke.Storage;
+import duke.task.TaskList;
 
 public class EventCommand extends Command {
 
