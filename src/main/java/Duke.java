@@ -4,6 +4,18 @@ import java.util.ArrayList;
 public class Duke {
     private ArrayList<Task> storage = new ArrayList<Task>();
 
+    private static String logo = " ____        _        \n"
+            + "|  _ \\ _   _| | _____ \n"
+            + "| | | | | | | |/ / _ \\\n"
+            + "| |_| | |_| |   <  __/\n"
+            + "|____/ \\__,_|_|\\_\\___|\n";
+    private static String welcomeMessage = "Hello from\n" + logo
+            + "What can I do for you?";
+
+    private static void bootUpDuke() {
+        System.out.println(Duke.welcomeMessage);
+    }
+
     private void list() {
         if (this.storage.size() == 0) {
             System.out.println("List is currently empty");
@@ -177,13 +189,7 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What can I do for you?");
+        Duke.bootUpDuke();
         Duke chatBotInstance = new Duke();
         chatBotInstance.handleInput();
     }
