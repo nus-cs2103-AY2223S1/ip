@@ -70,7 +70,6 @@ public class Storage {
      */
     private static void addLineFromFile(String data, int lineNumberInFile,
                                         TaskList taskList) {
-        System.out.println(data);
         String[] dataArgs = data.split("\\|");
         if ((dataArgs[0].equals("deadline") && dataArgs.length == 4) ||
                 (dataArgs[0].equals("event") && dataArgs.length == 4) ||
