@@ -1,5 +1,6 @@
 package duke;
 
+import duke.command.Command;
 import duke.exception.DukeException;
 import duke.parser.Parser;
 import duke.storage.Storage;
@@ -27,17 +28,19 @@ public class Duke {
 
   void run() {
     ui.showGreeting();
-    while (true) {
+    boolean isExit = false;
+    while (!isExit) {
       ui.showInput();
       try {
-        boolean shouldExit = Parser.readCommand(ui, taskList);
-        if (shouldExit) {
-          ui.showGoodbye();
-          storage.save(taskList.getTaskList());
-          break;
-        }
+        String fullCommand = Parser.readCommand();
+        ui.showLine();
+        Command command = Parser.parse(fullCommand);
+        command.execute(taskList, ui, storage);
+        isExit = command.isExit();
       } catch (DukeException e) {
         ui.showError(e.getMessage());
+      } finally {
+        ui.showLine();
       }
     }
   }

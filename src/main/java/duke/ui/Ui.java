@@ -20,6 +20,10 @@ public class Ui {
     System.out.println("Goodbye!");
   }
 
+  public void showLine() {
+    System.out.println("----------------------------------------------------");
+  }
+
   public void showInput() {
     System.out.print("> ");
   }
