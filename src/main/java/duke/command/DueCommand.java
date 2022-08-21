@@ -1,11 +1,12 @@
 package duke.command;
 
-import duke.FileStorage;
-import duke.task.Task;
-import duke.task.TaskList;
-import duke.Ui;
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import duke.FileStorage;
+import duke.Ui;
+import duke.task.Task;
+import duke.task.TaskList;
 
 public class DueCommand extends Command {
     public static final String COMMAND_WORD = "due";

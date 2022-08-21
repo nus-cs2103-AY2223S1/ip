@@ -1,5 +1,11 @@
 package duke.parser;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.List;
+
 import duke.command.Command;
 import duke.command.DeadlineCommand;
 import duke.command.DeleteCommand;
@@ -19,11 +25,7 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.TaskType;
 import duke.task.ToDo;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class Parser {
 
@@ -110,10 +112,12 @@ public class Parser {
                 components = args.split("/at ", 2);
                 task = createTaskWithDate(components[0], components[1], type);
                 return new EventCommand(task);
+            default:
+                break;
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new InvalidInputException();
-        }  catch (DateTimeParseException e) {
+        } catch (DateTimeParseException e) {
             throw new InvalidDateException("Input valid date in the format YYYY-MM-DD "
                     + "HH:mm\nor YYYY-MM-DD for deadlines and YYYY-MM-DD HH:mm-HH:mm for events");
         }
@@ -143,6 +147,8 @@ public class Parser {
                 timeEnd = LocalTime.parse(duration[1]);
             }
             task = new Event(description, date, time, timeEnd, type);
+            break;
+        default:
             break;
         }
         return task;
