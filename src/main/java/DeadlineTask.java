@@ -4,6 +4,12 @@ public class DeadlineTask extends Task {
 
     protected LocalDate dateline;
 
+    /** Constructor for deadline task.
+     *
+     * @param description task description
+     * @param dateline by when this task has to be completed
+     * @return a new DeadlineTask
+     */
     public DeadlineTask(String description, String dateline) {
         super(description);
         this.dateline = LocalDate.parse(dateline);
