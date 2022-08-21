@@ -6,8 +6,8 @@ import managers.TaskManager;
 
 import java.util.function.Supplier;
 
-abstract public class AddTaskCommand implements DukeCommand{
-    private static final String ADD_TASK_MESSAGE = "Got it. I've added this task:";
+abstract public class AddTaskCommand implements Command {
+    public static final String ADD_TASK_MESSAGE = "Got it. I've added this task:";
 
     /**
      * Retrieve the task supplied by the caller and adds that task to the specified task manager.

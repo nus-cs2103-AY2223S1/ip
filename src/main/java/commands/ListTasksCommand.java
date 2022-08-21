@@ -10,7 +10,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ListTasksCommand implements DukeCommand {
+public class ListTasksCommand implements Command {
+    public static final String COMMAND_WORD = "list";
     private static final String ERROR_UNKNOWN_OPTION = "Unknown option provided! Use either a '/on' or\n" +
             "'/before' command together with a date in order to\n" +
             "filter the tasks by their date!";
@@ -23,11 +24,17 @@ public class ListTasksCommand implements DukeCommand {
     // For example: /before <date>
     private static final Pattern MATCH_TASKS_BEFORE = Pattern.compile("/before\\s(?<date>.+)");
 
+    private final String arguments;
+
+    public ListTasksCommand(String arguments) {
+        this.arguments = arguments;
+    }
+
     @Override
-    public String execute(TaskManager taskManager, String arguments) throws DukeException {
-        if (arguments.length() > 0) {
-            Matcher matchTasksOn = ListTasksCommand.MATCH_TASKS_ON.matcher(arguments);
-            if (matchTasksOn.find()) {
+    public String execute(TaskManager taskManager) throws DukeException {
+        if (this.arguments.length() > 0) {
+            Matcher matchTasksOn = ListTasksCommand.MATCH_TASKS_ON.matcher(this.arguments);
+            if (matchTasksOn.matches()) {
                 LocalDate date = DukeValidator.parseDate(matchTasksOn.group("date"));
                 List<Task> filteredList = taskManager.list(
                         task -> {
@@ -37,8 +44,8 @@ public class ListTasksCommand implements DukeCommand {
                 );
                 return TaskManager.display(filteredList);
             }
-            Matcher matchTasksBefore = ListTasksCommand.MATCH_TASKS_BEFORE.matcher(arguments);
-            if (matchTasksBefore.find()) {
+            Matcher matchTasksBefore = ListTasksCommand.MATCH_TASKS_BEFORE.matcher(this.arguments);
+            if (matchTasksBefore.matches()) {
                 LocalDate date = DukeValidator.parseDate(matchTasksBefore.group("date"));
                 List<Task> filteredList = taskManager.list(
                         task -> {

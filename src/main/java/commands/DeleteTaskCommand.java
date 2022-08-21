@@ -4,7 +4,8 @@ import exceptions.DukeException;
 import models.task.Task;
 import managers.TaskManager;
 
-public class DeleteTaskCommand implements DukeCommand {
+public class DeleteTaskCommand implements Command {
+    public static final String COMMAND_WORD = "delete";
     private static final String DELETE_TASK_MESSAGE = "Noted. I've removed this task:";
     private static final String MISSING_TASK_INDEX_ERROR = "You are missing a task number!\n" +
             "Use the 'list' command to view the tasks and their number.";
@@ -12,15 +13,21 @@ public class DeleteTaskCommand implements DukeCommand {
     private static final String TASK_NUMBER_IS_INVALID_ERROR = "The task number you provided is not valid!\n" +
             "Use the 'list' command to view the tasks and their number.";
 
+    private final String arguments;
+
+    public DeleteTaskCommand(String arguments) {
+        this.arguments = arguments;
+    }
+
     @Override
-    public String execute(TaskManager taskManager, String arguments) throws DukeException {
+    public String execute(TaskManager taskManager) throws DukeException {
         // Retrieve the task index (1-indexed) to delete the task
-        if (arguments.length() == 0) {
+        if (this.arguments.length() == 0) {
             throw new DukeException(DeleteTaskCommand.MISSING_TASK_INDEX_ERROR);
         }
         int taskNumber;
         try {
-            taskNumber = Integer.parseInt(arguments);
+            taskNumber = Integer.parseInt(this.arguments);
         } catch (NumberFormatException e) {
             throw new DukeException(DeleteTaskCommand.NAN_TASK_NUMBER_ERROR);
         }

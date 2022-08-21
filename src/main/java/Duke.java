@@ -1,9 +1,9 @@
+import commands.ByeCommand;
+import commands.Command;
 import exceptions.DukeException;
-import enums.CommandType;
-import commands.DukeCommand;
-import managers.CommandManager;
 import managers.StorageManager;
 import managers.TaskManager;
+import parser.Parser;
 import ui.Ui;
 
 /**
@@ -30,7 +30,6 @@ public class Duke {
         }
 
         TaskManager taskManager = new TaskManager(storageManager.getTaskStorage());
-        CommandManager commandManager = new CommandManager();
 
         // Greet the user
         ui.print(Duke.GREETING_MESSAGE);
@@ -40,27 +39,16 @@ public class Duke {
         while (!isExit) {
             // Receive the command entered by the user
             String fullCommand = ui.readCommand();
-            String[] input = fullCommand.split(" ");
-            String command = input[0];
-            String arguments = fullCommand.replaceFirst(command, "").strip();
+            Command command = Parser.parseCommand(fullCommand);
 
-            CommandType commandType;
             try {
-                commandType = CommandType.valueOf(command.toUpperCase());
-            } catch (IllegalArgumentException e) {
-                ui.print(Duke.UNKNOWN_COMMAND_ERROR);
-                continue;
-            }
-
-            DukeCommand dukeCommand = commandManager.get(commandType);
-            try {
-                String status = dukeCommand.execute(taskManager, arguments);
+                String status = command.execute(taskManager);
                 ui.print(status);
             } catch (DukeException e) {
                 ui.print(e.getMessage());
             }
 
-            isExit = commandManager.isTerminatingCommand(commandType);
+            isExit = ByeCommand.is(command);
         }
 
         ui.close();

@@ -20,7 +20,7 @@ abstract  public class Serializable<T> {
 
     public Serializable(String serializedString, Pattern regexMatch) throws DukeException {
         Matcher matcher = regexMatch.matcher(serializedString);
-        if (!matcher.find()) {
+        if (!matcher.matches()) {
             throw new DukeException(Serializable.ERROR_MATCHING_SERIALIZABLE_REGEX);
         }
         this.serialized = serializedString;

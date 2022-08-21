@@ -9,7 +9,8 @@ import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class AddEventTaskCommand extends AddTaskCommand implements DukeCommand {
+public class AddEventTaskCommand extends AddTaskCommand implements Command {
+    public static final String COMMAND_WORD = "event";
     private static final String INVALID_EVENT_TASK_ERROR = "Use the 'event' command together with the " +
             "task description and date\nFor example: 'event project meeting /at 2022-12-02'";
 
@@ -17,10 +18,16 @@ public class AddEventTaskCommand extends AddTaskCommand implements DukeCommand {
     // For example: <description> /at <date>
     private static final Pattern MATCH_EVENT_TASK = Pattern.compile("(?<taskDescription>.+?)\\s/at\\s(?<taskDate>.+)");
 
+    private final String arguments;
+
+    public AddEventTaskCommand(String arguments) {
+        this.arguments = arguments;
+    }
+
     @Override
-    public String execute(TaskManager taskManager, String arguments) throws DukeException {
-        Matcher matcher = AddEventTaskCommand.MATCH_EVENT_TASK.matcher(arguments);
-        if (!matcher.find()) {
+    public String execute(TaskManager taskManager) throws DukeException {
+        Matcher matcher = AddEventTaskCommand.MATCH_EVENT_TASK.matcher(this.arguments);
+        if (!matcher.matches()) {
             throw new DukeException(AddEventTaskCommand.INVALID_EVENT_TASK_ERROR);
         }
         String description = matcher.group("taskDescription").strip();
