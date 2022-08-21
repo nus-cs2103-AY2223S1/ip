@@ -19,7 +19,7 @@ public class Task {
      * @return a "X" or " " if task is completed or not respectively.
      */
     public String getStatusIcon() {
-        return (isDone ? "X" : " "); // mark done task with X
+        return (isDone ? "X" : "O"); // mark done task with X
     }
 
     /**
@@ -49,5 +49,9 @@ public class Task {
     public String toString() {
         String outputString = String.format("[%s] %s", getStatusIcon(), getDescription()); // format completion status and description String
         return outputString;
+    }
+
+    public String formatFileText() {
+        return null;
     }
 }

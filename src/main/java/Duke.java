@@ -1,5 +1,9 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.io.FileWriter;
 
 public class Duke {
 
@@ -34,6 +38,7 @@ public class Duke {
             int index = Integer.parseInt(parts[1]);
             Task task = inputList.get(index - 1);
             System.out.println(task.markAsDone());
+            writeToFile("./data", inputList);
         }
     }
 
@@ -57,6 +62,7 @@ public class Duke {
                     task.toString(),
                     inputList.size());
             System.out.println(output);
+            writeToFile("./data", inputList);
         }
      }
 
@@ -66,12 +72,13 @@ public class Duke {
      * @param task
      * @param inputList
      */
-    public static void taskAdd(Task task, ArrayList<Task> inputList) {
+    public static void taskAdd(Task task, ArrayList<Task> inputList) throws IOException {
         inputList.add(task);
         String output = String.format("Got it. I've added this task:\n%s\nNow you have %s tasks in the list.",
                 task.toString(),
                 inputList.size());
         System.out.println(output);
+        writeToFile("./data", inputList);
     }
 
     /**
@@ -128,9 +135,72 @@ public class Duke {
         }
     }
 
+    public static void writeToFile(String filePath, ArrayList<Task> inputList)  {
+        try {
+            File dir = new File(filePath);
+            if (!dir.exists()) dir.mkdirs();
+            File textFile = new File(filePath + "/duke.txt");
+            textFile.createNewFile();
+
+            FileWriter fw = new FileWriter(textFile);
+            for (int i = 0; i < inputList.size(); i++) {
+                String fileTextInput = inputList.get(i).formatFileText();
+                fw.write(fileTextInput);
+            }
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static ArrayList<Task> readFile(String filePath) throws FileNotFoundException, DukeException {
+        File f = new File(filePath);
+        ArrayList<Task> arrayInput = new ArrayList<>();
+        Scanner s = new Scanner(f); // create a Scanner using the File as the source
+        while (s.hasNext()) {
+            String[] task = s.nextLine().split(" \\| ",-1);
+            switch (task[0]) {
+                case "T": // create event task
+                    String taskString = String.format("todo %s", task[2]);
+                    Todo newTodo = createTodo(taskString);
+                    if (task[1] == "X") {
+                        newTodo.markAsDone();
+                    }
+                    arrayInput.add(newTodo);
+                    break;
+                case "D": // create deadline task
+                    String deadlineString = String.format("deadline %s/by %s", task[2], task[3]);
+                    Deadline newDeadline = createDeadline(deadlineString);
+                    if (task[1] == "X") {
+                        newDeadline.markAsDone();
+                    }
+                    arrayInput.add(newDeadline);
+                    break;
+                case "E": // create event task
+                    String eventString = String.format("event %s/at %s", task[2], task[3]);
+                    Event newEvent = createEvent(eventString);
+                    if (task[1] == "X") {
+                        newEvent.markAsDone();
+                    }
+                    arrayInput.add(newEvent);
+                    break;
+            }
+        }
+        return arrayInput;
+    }
+
     public static void main(String[] args) {
+
+        ArrayList<Task> inputList = new ArrayList<>();
+        try { // file found
+            inputList = readFile("./data/duke.txt");
+        } catch (FileNotFoundException e){ // no such file
+            inputList = new ArrayList<Task>();
+        } catch (DukeException e) { // will not reach here
+            e.printStackTrace();
+        }
+
         Scanner myObj = new Scanner(System.in);
-        ArrayList<Task> inputList = new ArrayList<Task>();
         System.out.println("Hello! I'm Duke\nWhat can I do for you?");
 
         String input = myObj.nextLine();
@@ -151,6 +221,8 @@ public class Duke {
                     taskAdd(todo, inputList);
                 } catch (DukeException e) {
                     System.out.println(e.getMessage());
+                } catch (IOException e) {
+                    System.out.println("Something went wrong: " + e.getMessage());
                 }
             } else if (parts[0].equals("deadline")) {
                 try {
@@ -158,6 +230,8 @@ public class Duke {
                     taskAdd(deadline, inputList);
                 } catch (DukeException e) {
                     System.out.println(e.getMessage());
+                } catch (IOException e) {
+                    System.out.println("Something went wrong: " + e.getMessage());
                 }
             } else if (parts[0].equals("event")) {
                 try {
@@ -165,6 +239,8 @@ public class Duke {
                     taskAdd(event, inputList);
                 } catch (DukeException e) {
                     System.out.println(e.getMessage());
+                } catch (IOException e) {
+                    System.out.println("Something went wrong: " + e.getMessage());
                 }
             } else if (parts[0].equals("delete")) {
                 try {

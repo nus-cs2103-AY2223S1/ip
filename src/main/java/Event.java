@@ -13,6 +13,12 @@ public class Event extends Task {
         this.at = at;
     }
 
+    @Override
+    public String formatFileText() {
+        String s = String.format("E | %s | %s | %s\n", super.getStatusIcon(), this.description, this.at);
+        return s;
+    }
+
     /**
      * Overrides the toString method of the superclass to add
      * the additional [E] tag.

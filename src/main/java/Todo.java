@@ -13,6 +13,13 @@ public class Todo extends Task {
      * the additional [T] tag.
      * @return String representation of this task.
      */
+
+    @Override
+    public String formatFileText() {
+        String s = String.format("T | %s | %s\n", super.getStatusIcon(), this.description);
+        return s;
+    }
+
     @Override
     public String toString() {
         return "[T]" + super.toString();

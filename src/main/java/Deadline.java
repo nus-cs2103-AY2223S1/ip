@@ -13,6 +13,12 @@ public class Deadline extends Task {
         this.by = by;
     }
 
+    @Override
+    public String formatFileText() {
+        String s = String.format("D | %s | %s | %s\n", super.getStatusIcon(), this.description, this.by);
+        return s;
+    }
+
     /**
      * Overrides the toString method of the superclass to add
      * the additional [D] tag.
