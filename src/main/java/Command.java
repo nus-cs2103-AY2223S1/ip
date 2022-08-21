@@ -9,29 +9,17 @@ public class Command {
     private CommandType commandType;
     private TaskList tasks;
     private String input;
+    private Ui ui;
 
-    Command(CommandType commandType, TaskList tasks, String input) {
+    Command(CommandType commandType, TaskList tasks, String input, Ui ui) {
         this.commandType = commandType;
         this.tasks = tasks;
         this.input = input;
+        this.ui = ui;
     }
 
-    private void printTaskCountMessage() {
-        System.out.printf("Boss, you got %s tasks now\n", this.tasks.getSize());
-    }
 
-    private void printStoredInputs() {
-        int numberOfTasks = this.tasks.getSize();
-        if (numberOfTasks > 0) {
-            System.out.println("Boss ah, this one your tasks:");
-            for (int i = 0; i < numberOfTasks; i++) {
-                System.out.println(i + 1 + ". " + tasks.taskStringAtIndex(i));
-            }
-            this.printTaskCountMessage();
-        } else if (numberOfTasks == 0) {
-            System.out.println("Boss, you got no task yet ah");
-        }
-    }
+
     private void addTask(Task input) {
         tasks.add(input);
     }
@@ -46,12 +34,16 @@ public class Command {
         return taskIndex - 1 < this.tasks.getSize() && taskIndex - 1 >= 0;
     }
 
+    public boolean isExit() {
+        return commandType == CommandType.BYE;
+    }
+
     public void run() throws DukeException {
         switch (this.commandType) {
         case BYE:
             break;
         case LIST:
-            printStoredInputs();
+            ui.printStoredInputs(tasks);
             break;
         case TODO:
             String todoDescription = input.substring(4).trim();
@@ -60,8 +52,8 @@ public class Command {
             } else {
                 Todo todo = new Todo(todoDescription, false);
                 this.addTask(todo);
-                printAddedTaskMessage(todo);
-                this.printTaskCountMessage();
+                ui.printAddedTaskMessage(todo);
+                ui.printTaskCountMessage(tasks);
             }
             break;
         case EVENT:
@@ -77,8 +69,8 @@ public class Command {
                 LocalDateTime eventDateTime = DateTimeParser.changeStringToParsingDateTime(splittedEvent[1].trim());
                 Event event = new Event(splittedEvent[0].trim(),false, eventDateTime);
                 this.addTask(event);
-                printAddedTaskMessage(event);
-                this.printTaskCountMessage();
+                ui.printAddedTaskMessage(event);
+                ui.printTaskCountMessage(tasks);
             }
             break;
         case DEADLINE:
@@ -95,8 +87,8 @@ public class Command {
                     LocalDateTime deadlineDateTime = stringToLocalDateTime(splittedDeadline[1].trim());
                     Deadline deadline = new Deadline(splittedDeadline[0].trim(), false, deadlineDateTime);
                     this.addTask(deadline);
-                    printAddedTaskMessage(deadline);
-                    this.printTaskCountMessage();
+                    ui.printAddedTaskMessage(deadline);
+                    ui.printTaskCountMessage(tasks);
                 } catch (DateTimeParseException e) {
                     throw new DukeException("Eh you never add a proper deadline date! \n" +
                             "Your deadline date should be like this lah: Jan 21 2023 04:10 AM");
@@ -148,8 +140,8 @@ public class Command {
                 if (!hasTaskIndex(taskIndex)) {
                     throw new DukeException("Eh, you got that task number meh?");
                 } else {
-                    tasks.remove(taskIndex - 1);
                     System.out.printf("Okay boss, this task I delete le:\n%s\n", tasks.taskStringAtIndex(taskIndex - 1));
+                    tasks.remove(taskIndex - 1);
                 }
             }
             catch (NumberFormatException e) {
@@ -161,7 +153,5 @@ public class Command {
         }
     }
 
-    private PrintStream printAddedTaskMessage(Task task) {
-        return System.out.printf("Swee lah! I added this task liao:\n%s\n", task);
-    }
+
 }

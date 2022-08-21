@@ -34,7 +34,7 @@ public class Storage {
             try {
                 tasks = parseFileToTasks(tasksFile);
             } catch (FileNotFoundException e) {
-                throw new DukeException("Eh something went wrong " + e);
+                throw new DukeException(e.getMessage());
             } finally {
                 return tasks;
             }
@@ -108,7 +108,7 @@ public class Storage {
         try {
             Files.createDirectories(dataDirectoryPath);
         } catch (IOException e) {
-            System.out.println("Eh something went wrong ah!");
+            throw new DukeException(e.getMessage());
         }
     }
 
@@ -140,7 +140,7 @@ public class Storage {
             fw.write(generateTasksToAdd(tasks));
             fw.close();
         } catch (IOException e) {
-            throw new DukeException("Something went wrong " + e.toString());
+            throw new DukeException(e.getMessage());
         }
     }
 }

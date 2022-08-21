@@ -3,25 +3,39 @@ import java.util.Scanner;
 public class Duke {
     private Storage storage;
     private TaskList tasks;
+    private Ui ui;
 
     public Duke(String folderPath, String filename) {
         storage = new Storage(folderPath, filename);
         tasks = new TaskList();
+        ui = new Ui();
     }
 
     private void startChatBot() {
+        ui.greet();
         try {
-            Scanner sc = new Scanner(System.in);
-            System.out.print("Eh hello, my name is Uncle Cheong. \n" +
-                    "What you want?\n");
             tasks = new TaskList(storage.readSavedTasks());
-            Parser parser = new Parser(sc, tasks);
-            parser.parseInputs();
-            storage.writeToFile(tasks);
         } catch (DukeException e) {
-            System.out.println(e);
+            ui.sayErrorMessage(e.getMessage());
         }
-        System.out.println("Eh you leaving me so soon?");
+        Parser parser = new Parser(tasks, ui);
+        boolean isExit = false;
+        while (!isExit) {
+            try {
+                String fullCommand = ui.readCommand();
+                Command command = parser.parse(fullCommand);
+                command.run();
+                isExit = command.isExit();
+            } catch (DukeException e) {
+               ui.sayErrorMessage(e.getMessage());
+            }
+        }
+        try {
+            storage.writeToFile(tasks);
+            ui.sayGoodbye();
+        } catch (DukeException e) {
+            ui.sayErrorMessage(e.getMessage());
+        }
     }
 
     public static void main(String[] args) {
