@@ -13,7 +13,7 @@ public class Deadline extends Task {
     private LocalDate date;
 
     /**
-     * Creates a new Deadline with the given description and date.
+     * Creates a Deadline with the given description and date.
      *
      * @param description The description for the Deadline.
      * @param date The date for the Deadline.
@@ -28,7 +28,15 @@ public class Deadline extends Task {
         }
     }
 
-    Deadline(String description, boolean isDone, String date) throws DwukeException {
+    /**
+     * Creates a Deadline with the given description, completion status, and date.
+     *
+     * @param description The description for the Deadline.
+     * @param isDone The completion status of the Deadline.
+     * @param date The date for the Deadline.
+     * @throws DwukeException If the description is empty, or if the format of the given date is wrong.
+     */
+    public Deadline(String description, boolean isDone, String date) throws DwukeException {
         super(description, isDone);
         try {
             this.date = Date.parse(date);
@@ -38,7 +46,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Returns a Deadline after decoding the String.
+     * Returns a Deadline after decoding the given String.
      *
      * @param s The String to decode.
      * @return The Deadline decoded from the String.
@@ -51,9 +59,9 @@ public class Deadline extends Task {
     }
 
     /**
-     * Encodes the Deadline into a String.
+     * Encodes this Deadline into a String.
      *
-     * @return The Deadline encoded as String.
+     * @return The String encoded from this Deadline.
      */
     @Override
     public String encode() {
@@ -61,9 +69,9 @@ public class Deadline extends Task {
     }
 
     /**
-     * Returns the String representation of this deadline.
+     * Returns the String representation of this Deadline.
      *
-     * @return A String representing this deadline.
+     * @return A String representing this Deadline.
      */
     @Override
     public String toString() {

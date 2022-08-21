@@ -16,15 +16,15 @@ import dwuke.task.Deadline;
 import dwuke.task.Event;
 
 /**
- * This class parses the user input into commands.
+ * This class parses the user input into Commands.
  */
 public class Parser {
     /**
-     * Parses the user input, and returns the appropriate command.
+     * Parses the given user input, and returns the appropriate Command.
      *
      * @param userInput The user input.
-     * @param taskList The task list to run the command in.
-     * @return The command corresponding to the input.
+     * @param taskList The TaskList to run the Command in.
+     * @return The Command corresponding to the user input.
      */
     public static Command parseInput(String userInput, TaskList taskList) {
         String[] words = userInput.split(" ", 2);

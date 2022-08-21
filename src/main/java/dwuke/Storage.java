@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 import dwuke.task.TaskList;
 
 /**
- * This class saves tasks to hard disk
+ * This class saves and retrieves Tasks to and fro the hard disk.
  */
 public class Storage {
     private Path filePath;

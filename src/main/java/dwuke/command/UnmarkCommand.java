@@ -29,13 +29,13 @@ public class UnmarkCommand extends Command {
     }
 
     /**
-     * Marks the task at the position of the task list as not done.
+     * Marks the Task at the position of the TaskList as not done.
      *
-     * @return A String signalling that the task has been marked as not done.
+     * @return A String signalling that the Task has been marked as not done.
      */
     @Override
     public String execute() {
-        Task task = this.taskList.unmark(this.pos);
+        Task task = this.taskList.mark(this.pos, false);
         return "okies, me've mawked dis task as not done yet:\n" + task;
     }
 }

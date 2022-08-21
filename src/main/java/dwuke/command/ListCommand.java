@@ -19,9 +19,9 @@ public class ListCommand extends Command {
     }
 
     /**
-     * Returns a String containing the given task list.
+     * Returns a String containing the given TaskList.
      *
-     * @return A String containing the task list.
+     * @return A String containing the TaskList.
      */
     @Override
     public String execute() {

@@ -9,7 +9,7 @@ public class Todo extends Task {
     public static final char SYMBOL = 'T';
 
     /**
-     * Creates a new To-do with the given description.
+     * Creates a To-do with the given description.
      *
      * @param description The description for the To-do.
      * @throws DwukeException If the description is empty.
@@ -18,6 +18,13 @@ public class Todo extends Task {
         super(description);
     }
 
+    /**
+     * Creates a To-do with the given description and completion status.
+     *
+     * @param description The description for the To-do.
+     * @param isDone The completion status of the To-do.
+     * @throws DwukeException If the description is empty.
+     */
     Todo(String description, boolean isDone) throws DwukeException {
         super(description, isDone);
     }
@@ -36,9 +43,9 @@ public class Todo extends Task {
     }
 
     /**
-     * Encodes the To-do into a String.
+     * Encodes this To-do into a String.
      *
-     * @return The To-do encoded as String.
+     * @return The String encoded from this To-do.
      */
     @Override
     public String encode() {
@@ -46,9 +53,9 @@ public class Todo extends Task {
     }
 
     /**
-     * Returns the String representation of this to-do.
+     * Returns the String representation of this To-do.
      *
-     * @return A String representing this to-do.
+     * @return A String representing this To-do.
      */
     @Override
     public String toString() {

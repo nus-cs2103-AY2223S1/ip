@@ -11,60 +11,47 @@ public class TaskList {
     private final List<Task> tasks;
 
     /**
-     * Creates a new empty TaskList
-     *
+     * Creates a new empty TaskList.
      */
     public TaskList() {
         tasks = new ArrayList<>();
     }
 
     /**
-     * Returns the number of tasks in this task list.
+     * Returns the number of Tasks in this TaskList.
      *
-     * @return The number of tasks in this task list.
+     * @return The number of Tasks in this TaskList.
      */
     public int size() {
         return this.tasks.size();
     }
 
     /**
-     * Adds the given task to the task list.
+     * Adds the given Task to this TaskList.
      *
-     * @param task the task to be added.
+     * @param task the Task to be added.
      */
     public void add(Task task) {
         this.tasks.add(task);
     }
 
     /**
-     * Marks the task at the specific position as done.
+     * Marks the Task at the specific position of this TaskList as done.
      *
-     * @param pos The position of the task in the list.
-     * @return The marked task.
+     * @param pos The position of the Task in this TaskList.
+     * @return The marked Task.
      */
-    public Task mark(int pos) {
+    public Task mark(int pos, boolean isDone) {
         Task task = this.tasks.get(pos);
-        task.markDone();
+        task.mark(isDone);
         return task;
     }
 
     /**
-     * Marks the task at the specific position as not done.
+     * Removes the Task at the specific position of this TaskList.
      *
-     * @param pos The position of the task in the list.
-     * @return The marked task.
-     */
-    public Task unmark(int pos) {
-        Task task = this.tasks.get(pos);
-        task.markUndone();
-        return task;
-    }
-
-    /**
-     * Removes the task at the specific position in the list.
-     *
-     * @param pos The position of the task in the list.
-     * @return The removed task.
+     * @param pos The position of the Task in this TaskList.
+     * @return The removed Task.
      */
     public Task remove(int pos) {
         Task task = this.tasks.remove(pos);
@@ -72,9 +59,9 @@ public class TaskList {
     }
 
     /**
-     * Returns an encoded String representation of this TaskList.
+     * Returns the encoded String representation of this TaskList.
      *
-     * @return An encoded String representation of this TaskList.
+     * @return An encoded String representing this TaskList.
      */
     public List<String> encode() {
         List<String> encodedTasks = new ArrayList<>();
@@ -85,11 +72,11 @@ public class TaskList {
     }
 
     /**
-     * Returns a decoded TaskList, to be used by Dwuke.
+     * Returns a decoded TaskList from the given list of Strings.
      *
-     * @param encodedTasks the encoded text used to store the TaskList.
-     * @return a TaskList based on the encoded text.
-     * @throws DwukeException If the text is empty, or if the format of the date(s) in the text is wrong.
+     * @param encodedTasks the list of Strings to be decoded.
+     * @return A TaskList decoded from the given list.
+     * @throws DwukeException If the text(s) in the list is empty, or the format of the date(s) in the list is wrong.
      */
     public static TaskList decode(List<String> encodedTasks) throws DwukeException {
         TaskList decodedTasks = new TaskList();
@@ -115,9 +102,9 @@ public class TaskList {
     }
 
     /**
-     * Returns the String representation of all tasks in the list.
+     * Returns the String representation of this TaskList.
      *
-     * @return A String representing all tasks in the list.
+     * @return A String representing this TaskList.
      */
     @Override
     public String toString() {

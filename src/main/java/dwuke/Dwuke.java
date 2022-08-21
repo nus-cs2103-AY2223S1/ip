@@ -13,7 +13,7 @@ public class Dwuke {
     private TaskList taskList;
 
     /**
-     * Constructor for Dwuke.
+     * Creates a new Dwuke to talk to.
      */
     public Dwuke() {
         this.ui = new Ui();

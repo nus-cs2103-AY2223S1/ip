@@ -22,9 +22,9 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Adds the task into the task list.
+     * Adds the Task into the TaskList.
      *
-     * @return A String signalling that the task has been added.
+     * @return A String signalling that the Task has been added.
      */
     @Override
     public String execute() {
