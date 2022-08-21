@@ -1,9 +1,9 @@
 package duke.command;
 
+import duke.Storage;
+import duke.Ui;
 import duke.exception.InvalidIndexException;
 import duke.task.TaskList;
-import duke.Ui;
-import duke.Storage;
 
 public class MarkCommand extends Command {
     private boolean isMark;

@@ -1,6 +1,15 @@
 package duke;
 
-import duke.command.*;
+import duke.command.Command;
+import duke.command.DeadlineCommand;
+import duke.command.DeleteCommand;
+import duke.command.EventCommand;
+import duke.command.ExitCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.NoCommand;
+import duke.command.TodoCommand;
+
 import duke.exception.InvalidDescriptionException;
 import duke.exception.InvalidIndexException;
 import duke.exception.InvalidInputException;

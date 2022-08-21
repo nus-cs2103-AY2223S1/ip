@@ -1,9 +1,8 @@
 package duke.task;
 
-import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-
 
 public class Event extends Task {
     String at;
@@ -14,8 +13,6 @@ public class Event extends Task {
         DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd MMM yyyy, h:mma");
         LocalDateTime dateTime = LocalDateTime.parse(at.trim(), inputFormatter);
         this.at = dateTime.format(outputFormatter);
-
-
     }
 
     public Event(String description, boolean isDone, String at) {
