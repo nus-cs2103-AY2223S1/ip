@@ -1,9 +1,7 @@
 import java.io.PrintStream;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.time.format.FormatStyle;
 import java.util.ArrayList;
 
 public class Command {
@@ -38,7 +36,7 @@ public class Command {
         tasks.add(input);
     }
 
-    private LocalDateTime deadlineStringToLocalDate(String deadline) {
+    private LocalDateTime stringToLocalDateTime(String deadline) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy hh:mm a");
         LocalDateTime deadlineDateTime = LocalDateTime.parse(deadline, formatter);
         return deadlineDateTime;
@@ -76,7 +74,8 @@ public class Command {
             } else if (isIncorrectEventRange) {
                 throw new DukeException("Eh you never added the event range");
             } else {
-                Event event = new Event(splittedEvent[0].trim(), splittedEvent[1].trim(), false);
+                LocalDateTime eventDateTime = DateTimeParser.changeStringToParsingDateTime(splittedEvent[1].trim());
+                Event event = new Event(splittedEvent[0].trim(),false, eventDateTime);
                 this.addTask(event);
                 printAddedTaskMessage(event);
                 this.printTaskCountMessage();
@@ -93,8 +92,7 @@ public class Command {
                 throw new DukeException("Eh you never added a deadline");
             } else {
                 try {
-                    LocalDateTime deadlineDateTime = deadlineStringToLocalDate(splittedDeadline[1].trim());
-                    System.out.println(deadlineDateTime);
+                    LocalDateTime deadlineDateTime = stringToLocalDateTime(splittedDeadline[1].trim());
                     Deadline deadline = new Deadline(splittedDeadline[0].trim(), false, deadlineDateTime);
                     this.addTask(deadline);
                     printAddedTaskMessage(deadline);

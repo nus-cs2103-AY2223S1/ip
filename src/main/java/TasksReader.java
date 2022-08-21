@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -52,7 +53,7 @@ public class TasksReader {
             throw new DukeException("Eh something wrong happened");
         }
         char taskSymbol = line.charAt(1);
-        boolean isDone = line.charAt(4) == 'x'
+        boolean isDone = line.charAt(4) == 'X'
                 ? true
                 : false;
         switch (taskSymbol) {
@@ -67,9 +68,24 @@ public class TasksReader {
         }
     }
 
-    private Event getTaskFromLine(String line, boolean isDone, String regex) {
-        String[] splittedEvent = line.substring(7).split(" \\(at: ", 3);
-        return new Event(splittedEvent[0], splittedEvent[1].substring(0, splittedEvent[1].length() - 1), isDone);
+    private String trimInputDateString(String str) {
+        return str.substring(0, str.length() - 1);
+    }
+
+    private Task getTaskFromLine(String line, boolean isDone, String regex) throws DukeException{
+        switch (regex) {
+        case " \\(at: ":
+            String[] splittedEvent = line.substring(7).split(" \\(at: ", 3);
+            String trimmedInputEventDateString = trimInputDateString(splittedEvent[1]);
+            LocalDateTime eventDateTime= DateTimeParser.changeStringToReadingDateTime(trimmedInputEventDateString);
+            return new Event(splittedEvent[0], isDone, eventDateTime);
+        case " \\(by: ":
+            String[] splittedDeadline = line.substring(7).split(" \\(by: ", 3);
+            String trimmedInputDeadlineDateString = trimInputDateString(splittedDeadline[1]);
+            LocalDateTime deadlineDateTime = DateTimeParser.changeStringToReadingDateTime(trimmedInputDeadlineDateString);
+            return new Deadline(splittedDeadline[0], isDone, deadlineDateTime);
+        }
+        throw new DukeException("Eh something wrong happened");
     }
 
     private Todo getTodoFromLine(String line) {

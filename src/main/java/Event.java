@@ -1,13 +1,15 @@
-public class Event extends Task {
-    protected String range;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-    public Event(String description, String range, boolean isDone) {
+public class Event extends Task {
+    protected LocalDateTime eventDateTime;
+    public Event(String description, boolean isDone, LocalDateTime eventDateTime) {
         super(description, isDone);
-        this.range = range;
+        this.eventDateTime = eventDateTime;
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + range + ")";
+        return "[E]" + super.toString() + " (at: " + DateTimeParser.changeDateTimeFormat(eventDateTime) + ")";
     }
 }

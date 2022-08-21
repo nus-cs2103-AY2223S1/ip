@@ -10,12 +10,8 @@ public class Deadline extends Task {
         this.deadlineDateTime = deadlineDateTime;
     }
 
-    private String changeDeadlineFormat() {
-       return deadlineDateTime.format(DateTimeFormatter.ofPattern("d-MMM-yyyy hh:mm a"));
-    }
-    
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + changeDeadlineFormat() + ")";
+        return "[D]" + super.toString() + " (by: " + DateTimeParser.changeDateTimeFormat(deadlineDateTime)+ ")";
     }
 }
