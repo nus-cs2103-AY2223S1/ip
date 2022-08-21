@@ -74,6 +74,19 @@ public class Ui {
         }
         printDivider();
     }
+
+
+    /**
+     * Prints the list of tasks found in the query.
+     * @param list The given list of found tasks.
+     */
+    public void printFoundTasks(ArrayList<Task> list) {
+        System.out.println("Here are the matching tasks in your list:");
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println((i + 1) + "." + list.get(i));
+        }
+        printDivider();
+    }
     private void printDivider() {
         System.out.println("_________________________________________________________________");
     }

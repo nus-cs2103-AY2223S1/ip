@@ -12,6 +12,7 @@ import duke.command.DeleteCommand;
 import duke.command.DueCommand;
 import duke.command.EventCommand;
 import duke.command.ExitCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.ToDoCommand;
@@ -50,6 +51,7 @@ public class Parser {
             case ToDoCommand.COMMAND_WORD:
             case EventCommand.COMMAND_WORD:
             case DeleteCommand.COMMAND_WORD:
+            case FindCommand.COMMAND_WORD:
                 throw new MissingDescriptionException(commandWord);
             default:
                 throw new InvalidInputException();
@@ -82,6 +84,10 @@ public class Parser {
             }
             case DueCommand.COMMAND_WORD: {
                 command = prepareDueCommand(str[1]);
+                break;
+            }
+            case FindCommand.COMMAND_WORD: {
+                command = new FindCommand(str[1].trim());
                 break;
             }
             default:

@@ -67,4 +67,14 @@ public class TaskList {
             throw new InvalidIndexException("no tasks exist at this index");
         }
     }
+
+    public ArrayList<Task> findTasks(String query) {
+        ArrayList<Task> tmp = new ArrayList<>();
+        for (Task task: this.tasks) {
+            if (task.isQueryPresent(query)) {
+                tmp.add(task);
+            }
+        }
+        return tmp;
+    }
 }
