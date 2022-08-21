@@ -6,6 +6,7 @@ import duke.TaskList;
 import duke.Ui;
 
 public abstract class Command {
+
     private CommandType type;
 
     public Command(CommandType type) {

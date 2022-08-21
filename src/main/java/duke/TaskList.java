@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class TaskList {
+
     private ArrayList<Task> data;
 
     public TaskList() {

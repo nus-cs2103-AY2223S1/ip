@@ -7,6 +7,7 @@ import duke.Ui;
 import java.util.Arrays;
 
 public class AddTodoCommand extends Command {
+
     private String taskDescription;
 
     public AddTodoCommand(String[] inputs) {

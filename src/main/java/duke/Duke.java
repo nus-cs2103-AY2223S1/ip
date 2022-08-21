@@ -6,6 +6,7 @@ import duke.command.SaveDataCommand;
 import duke.command.WelcomeCommand;
 
 public class Duke {
+
     private Storage storage;
     private TaskList tasks;
     private Ui ui;

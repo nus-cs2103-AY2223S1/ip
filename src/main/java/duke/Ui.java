@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Ui {
+
     private final Scanner sc = new Scanner(System.in);
 
     public void printWelcomeMessage() {

@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Storage {
+
     public void loadFileContents(String folderPath, String filePath, TaskList tasks) {
         try {
             File directory = new File(folderPath);

@@ -5,6 +5,7 @@ import duke.TaskList;
 import duke.Ui;
 
 public class WelcomeCommand extends Command {
+
     public WelcomeCommand() {
         super(CommandType.WELCOME);
     }

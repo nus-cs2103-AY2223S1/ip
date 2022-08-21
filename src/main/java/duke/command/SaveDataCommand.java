@@ -5,6 +5,7 @@ import duke.TaskList;
 import duke.Ui;
 
 public class SaveDataCommand extends Command {
+
     private String filePath;
 
     public SaveDataCommand(String filePath) {

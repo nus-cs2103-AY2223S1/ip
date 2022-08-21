@@ -7,6 +7,7 @@ import duke.Ui;
 import java.time.LocalDate;
 
 public class ListCommand extends Command {
+
     private boolean isDueListCommand;
     private LocalDate date;
 
