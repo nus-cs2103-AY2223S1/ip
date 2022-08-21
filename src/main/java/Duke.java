@@ -83,20 +83,18 @@ public class Duke {
         isRunning = false;
     }
 
-    public static void mark(int num) {
+    public static void markTask(int num) {
         try {
-            taskList.get(num - 1).setDone(true);
-            System.out.println("    " + taskList.get(num - 1));
+            taskList.get(num - 1).mark();
         } catch (IndexOutOfBoundsException e) {
             System.out.println("  Brilliant. You've asked me to mark an imaginary task as complete.\n"
                     + "  Task number " + num + " does not exist.");
         }
     }
 
-    public static void unmark(int num) {
+    public static void unmarkTask(int num) {
         try {
-            taskList.get(num - 1).setDone(false);
-            System.out.println("    " + taskList.get(num - 1));
+            taskList.get(num - 1).unmark();
         } catch (IndexOutOfBoundsException e) {
             System.out.println("  Brilliant. You've asked me to mark an imaginary task as incomplete.\n"
                     + "  Task number " + num + " does not exist.");
@@ -118,14 +116,14 @@ public class Duke {
                     throw new MissingTaskNumberException(commandGuide(keyword, Command.MARK));
                 }
                 int num = Integer.parseInt(parsed[1]);
-                mark(num);
+                markTask(num);
             } else if (keyword.compareTo("unmark") == 0) {
                 if (parsed.length < 2 || parsed[1].isBlank()) {
                     // replace messages using enums
                     throw new MissingTaskNumberException(commandGuide(keyword, Command.UNMARK));
                 }
                 int num = Integer.parseInt(parsed[1]);
-                unmark(num);
+                unmarkTask(num);
             } else if (keyword.compareTo("delete") == 0) {
                 if (parsed.length < 2 || parsed[1].isBlank()) {
                     throw new MissingTaskNumberException(commandGuide(keyword, Command.DELETE));
