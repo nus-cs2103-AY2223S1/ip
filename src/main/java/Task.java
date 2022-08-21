@@ -46,11 +46,11 @@ public abstract class Task {
     }
 
     void markDone() {
-        done = false;
+        done = true;
     }
 
     void markUndone() {
-        done = true;
+        done = false;
     }
 
     protected String getStringRepresentation(String label) {

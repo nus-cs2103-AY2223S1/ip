@@ -42,7 +42,7 @@ public class Duke {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < len; i++) {
             stringBuilder
-                    .append(i)
+                    .append(i + 1)
                     .append(". ")
                     .append(taskList.get(i))
                     .append('\n');
@@ -57,23 +57,6 @@ public class Duke {
         }
         taskList.add(newTask);
         return "added: " + newTask.toString();
-    }
-
-    private int getTaskIndexFromCommand(String input) {
-        int indexOfFirstWhiteSpace = CommandParser.getIndexOfFirstWhiteSpace(input);
-        String tailSubString = input.substring(indexOfFirstWhiteSpace, input.length());
-        tailSubString = tailSubString.replace(" ", "");
-        if (tailSubString.isEmpty()) {
-            return -1;
-        }
-        int taskIndex = -1;
-        try {
-            Integer.parseInt(tailSubString);
-        } catch (NumberFormatException ex) {
-            // No need to do anything, because the output will be -1
-            // which will be handled in the higher layer
-        }
-        return taskIndex;
     }
 
     private String markTaskDone(int index) {
@@ -125,7 +108,7 @@ public class Duke {
             boolean commandFetched = true;
 
             String firstWord = CommandParser.getFirstWord(nextLine);
-            int index = getTaskIndexFromCommand(nextLine);
+            int index = CommandParser.getTaskIndexFromCommand(nextLine);
             switch (firstWord) {
             case (MARK_DONE_COMMAND_STRING):
                 output = markTaskDone(index);

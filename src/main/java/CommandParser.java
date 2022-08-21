@@ -3,17 +3,24 @@ import java.util.Map;
 
 public class CommandParser {
 
+    private static final String DELIMITER = "/";
     private static final String BY_DATE_DELIMITER = "/by";
     private static final String AT_DATE_DELIMITER = "/at";
 
-    static int getIndexOfFirstWhiteSpace(String input) {
-        int indexOfFirstWhiteSpace = 0;
-        for (; indexOfFirstWhiteSpace < input.length(); indexOfFirstWhiteSpace++) {
-            if (input.charAt(indexOfFirstWhiteSpace) == ' ') {
-                break;
-            }
+    static int getIndexOfFirstOccurrence(String input, String pattern) {
+        int indexOfFirstOccurrence = input.indexOf(pattern);
+        if (indexOfFirstOccurrence == -1) {
+            indexOfFirstOccurrence = input.length();
         }
-        return indexOfFirstWhiteSpace;
+        return indexOfFirstOccurrence;
+    }
+
+    static int getIndexOfFirstWhiteSpace(String input) {
+        return getIndexOfFirstOccurrence(input, " ");
+    }
+
+    static int getIndexOfFirstDelimiter(String input) {
+        return getIndexOfFirstOccurrence(input, DELIMITER);
     }
 
     static String getFirstWord(String input) {
@@ -38,11 +45,28 @@ public class CommandParser {
     }
 
     static String getTaskTitle(String input) {
-        int indexOfFirstWhiteSpace = getIndexOfFirstWhiteSpace(input);
-        int indexOfSecondWhiteSpace = indexOfFirstWhiteSpace
-                + getIndexOfFirstWhiteSpace(input.substring(indexOfFirstWhiteSpace + 1, input.length()))
+        int indexOfStart = getIndexOfFirstWhiteSpace(input);
+        int indexOfEnd = indexOfStart
+                + getIndexOfFirstDelimiter(input.substring(indexOfStart + 1, input.length()))
                 + 1;
-        return input.substring(indexOfFirstWhiteSpace + 1, indexOfSecondWhiteSpace);
+        return input.substring(indexOfStart + 1, indexOfEnd);
+    }
+
+    static int getTaskIndexFromCommand(String input) {
+        int indexOfFirstWhiteSpace = CommandParser.getIndexOfFirstWhiteSpace(input);
+        String tailSubString = input.substring(indexOfFirstWhiteSpace, input.length());
+        tailSubString = tailSubString.replace(" ", "");
+        if (tailSubString.isEmpty()) {
+            return -1;
+        }
+        int taskIndex = -1;
+        try {
+            taskIndex = Integer.parseInt(tailSubString) - 1; // Minus 1 because user input indices start from 1
+        } catch (NumberFormatException ex) {
+            // No need to do anything, because the output will be -1
+            // which will be handled in the higher layer
+        }
+        return taskIndex;
     }
 
     private Map<String, CommandType> commandTypeMap;
