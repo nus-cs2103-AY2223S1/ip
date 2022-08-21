@@ -3,8 +3,15 @@ package duke.task;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Event class that inherits task
+ */
 public class Event extends Task {
 
+    /**
+     * Constructor of Event
+     * @param description what the task contains
+     */
     public Event(String description) {
         super(description);
     }
@@ -15,12 +22,20 @@ public class Event extends Task {
     private LocalDate date = LocalDate.parse(at, formatted);
 
 
+    /**
+     * Returns the string representation of event
+     * @return string that is representation of the event
+     */
     @Override
     public String toString() {
             return "[E]" + super.toString().substring(0, 4) + getSubstring()
                     +  "(at: " +  date.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
     }
 
+    /**
+     * Returns a string containing task to be done (ie. "Go shopping")
+     * @return string containing task to be done
+     */
     private String getSubstring() {
         int index = description.indexOf("/");
         if (index != - 1) {
@@ -28,11 +43,4 @@ public class Event extends Task {
         }
         return null;
     }
-
-    /*
-    @Override
-    public String saveString() {
-        return "D " + "| " + getStringStatusIcon() + " | " + getSubstring() + "|" + at + "\n";
-    }
-    */
 }

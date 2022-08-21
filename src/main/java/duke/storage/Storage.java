@@ -11,16 +11,28 @@ import duke.ui.Ui;
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * Storage class that is used to save and load files
+ */
 public class Storage {
 
     private File file;
 
-
+    /**
+     * Constructor of Storage class
+     * @param filePath it was meant to be used as the file path but I decided to hard code the path instead
+     */
     public Storage(String filePath) {
         String path = System.getProperty("user.dir") + "/data/duke.txt";
         file = new File(path);
     }
 
+    /**
+     * Loads /data/duke.txt and converts it to a command that is parsable, enters the commands line by line and
+     * returns ArrayList<Task>
+     * @return ArrayList<Task> filled with tasks that were previously saved
+     * @throws IOException
+     */
     public static ArrayList<Task> loadFile() throws IOException {
         ArrayList<Task> tasks = new ArrayList<>();
         String directory = System.getProperty("user.dir") + "/data/";
@@ -52,7 +64,8 @@ public class Storage {
                 } else if (line.startsWith("[D]")) {
                     String tempDeadline = "deadline"
                             + line.substring(line.lastIndexOf("]") + 1, line.lastIndexOf("("))
-                            + "/by " + Parser.parseLocalDate(line.substring(line.lastIndexOf(":") + 2, line.lastIndexOf(")")));
+                            + "/by "
+                            + Parser.parseLocalDate(line.substring(line.lastIndexOf(":") + 2, line.lastIndexOf(")")));
                     tasks.add(new Deadline(tempDeadline));
                     if (line.startsWith("[D][X]")) {
                         tasks.get(tasks.size() - 1).markAsDone();
@@ -60,7 +73,8 @@ public class Storage {
                 } else if (line.startsWith("[E]")) {
                     String tempEvent = "event"
                             + line.substring(line.lastIndexOf("]") + 1, line.lastIndexOf("("))
-                            + "/at " + Parser.parseLocalDate(line.substring(line.lastIndexOf(":") + 2, line.lastIndexOf(")")));
+                            + "/at "
+                            + Parser.parseLocalDate(line.substring(line.lastIndexOf(":") + 2, line.lastIndexOf(")")));
                     tasks.add(new Event(tempEvent));
                     if (line.startsWith("[E][X]")) {
                         tasks.get(tasks.size() - 1).markAsDone();
@@ -74,6 +88,10 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Saves the tasklist line by line in a duke.txt file
+     * @param taskList
+     */
     public static void saveFile(TaskList taskList) {
         String directory = System.getProperty("user.dir") + "/data/";
         String path = System.getProperty("user.dir") + "/data/duke.txt";

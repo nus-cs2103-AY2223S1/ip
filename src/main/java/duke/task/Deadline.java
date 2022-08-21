@@ -3,8 +3,15 @@ package duke.task;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Deadline class that inherits task
+ */
 public class Deadline extends Task {
 
+    /**
+     * Constructor of Deadline
+     * @param description what the task contains
+     */
     public Deadline(String description) {
         super(description);
     }
@@ -18,6 +25,10 @@ public class Deadline extends Task {
     private DateTimeFormatter formatted = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private LocalDate date = LocalDate.parse(by, formatted);
 
+    /**
+     * Returns the string representation of deadline
+     * @return string that is representation of the deadline
+     */
     @Override
     public String toString() {
         return "[D]" + super.toString().substring(0, 4) + getSubstring()
@@ -27,6 +38,11 @@ public class Deadline extends Task {
     // To return substring before "/"
     // Adapted from
     // https://stackoverflow.com/questions/7683448/in-java-how-to-get-substring-from-a-string-till-a-character-c
+
+    /**
+     * Returns a string containing task to be done (ie. "Go shopping")
+     * @return string containing task to be done
+     */
     private String getSubstring() {
         int index = description.indexOf("/");
         if (index != - 1) {
@@ -34,12 +50,5 @@ public class Deadline extends Task {
         }
         return null;
     }
-
-    /*
-    @Override
-    public String saveString() {
-        return "D " + "| " + getStringStatusIcon() + " | " + getSubstring() + "|" + by + "\n";
-    }
-    */
 }
 

@@ -1,2 +1,4 @@
 [T][ ] bye tile
-[T][ ] ms
+[T][X] ms
+[T][ ] explode tomorrow
+[D][ ] die (by: Aug 06 2018)
