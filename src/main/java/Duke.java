@@ -1,3 +1,7 @@
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -9,13 +13,20 @@ public class Duke {
     private ArrayList<Task> taskList;
 
     /**
-     * Contructor of chatbot class.
+     * Constructor of chatbot class.
      */
     public Duke() {
         this.taskList = new ArrayList<>();
     }
 
     private void chat() {
+        try {
+            loadData();
+        } catch (DukeException e) {
+            generateLine();
+            printFormatted(e.getMessage());
+            generateLine();
+        }
         greetUser();
         Scanner sc = new Scanner(System.in);
         while(!hasExited) {
@@ -49,6 +60,7 @@ public class Duke {
                 } else {
                     throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
+                saveTasksToDisk();
             } catch (DukeException exception) {
                 generateLine();
                 printFormatted(exception.getMessage());
@@ -56,6 +68,64 @@ public class Duke {
             }
         }
         exitMessage();
+    }
+
+    private void saveTasksToDisk() throws DukeException {
+        try {
+            File f = new File("./data/duke.txt");
+            File parent = f.getParentFile();
+            if (parent != null && !parent.exists() && !parent.mkdirs()) {
+                throw new IllegalStateException("Couldn't create dir: " + parent);
+            }
+            //FileWriter fw = new FileWriter("./data/duke.txt", true);
+            BufferedWriter fw = new BufferedWriter(new FileWriter(f));
+            for (Task t : this.taskList) {
+                fw.append(t.getFileFormat());
+                fw.append("\n");
+            }
+            fw.close();
+        } catch (IOException e) {
+            throw new DukeException("Error writing to file.");
+        }
+    }
+
+    private void loadData() throws DukeException {
+        try {
+            File f = new File("./data/duke.txt");
+            Scanner s = new Scanner(f);
+            while (s.hasNext()) {
+                String line = s.nextLine();
+                String[] words = line.split(" \\| ");
+                switch (words[0]) {
+                case "T":
+                    Todo t = new Todo(words[2]);
+                    if (Integer.parseInt(words[1]) == 1) {
+                        t.markAsDone();
+                    }
+                    this.taskList.add(t);
+                    break;
+                case "D":
+                    Deadline d = new Deadline(words[2], words[3]);
+                    if (Integer.parseInt(words[1]) == 1) {
+                        d.markAsDone();
+                    }
+                    this.taskList.add(d);
+                    break;
+                case "E":
+                    Event e = new Event(words[2], words[3]);
+                    if (Integer.parseInt(words[1]) == 1) {
+                        e.markAsDone();
+                    }
+                    this.taskList.add(e);
+                    break;
+                default:
+                    throw new DukeException("☹ Could not read file.");
+                }
+            }
+            s.close();
+        } catch (IOException e) {
+            throw new DukeException("☹ File not found or folder does not exist yet.");
+        }
     }
 
     private void markTaskAsDone(int index) {

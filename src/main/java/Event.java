@@ -17,6 +17,16 @@ public class Event extends Task {
     }
 
     /**
+     * Returns Event as a String formatted to be a line in file.
+     *
+     * @return String representing event.
+     */
+    @Override
+    public String getFileFormat() {
+        return String.format("E | %d | %s | %s", this.isDone ? 1 : 0, this.description, this.datetime);
+    }
+
+    /**
      * Returns a String that represents the Event.
      *
      * @return a String that represents the Event
