@@ -1,4 +1,4 @@
-package skylark;
+package skylark.utils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -6,6 +6,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import skylark.main.SkylarkException;
+import skylark.task.Deadline;
+import skylark.task.Event;
+import skylark.task.Task;
+import skylark.task.ToDo;
 
 /** Represents a Storage object used for file operations such as read and write. */
 public class Storage {

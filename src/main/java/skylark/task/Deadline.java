@@ -1,8 +1,10 @@
-package skylark;
+package skylark.task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import skylark.main.SkylarkException;
 
 /** Represents a Deadline Task. */
 public class Deadline extends Task {

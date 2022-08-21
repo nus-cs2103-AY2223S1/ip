@@ -1,4 +1,4 @@
-package skylark;
+package skylark.task;
 
 /** Represents a Task that is created by the user. */
 public abstract class Task {

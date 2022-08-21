@@ -1,7 +1,12 @@
-package skylark;
+package skylark.main;
 
 import java.io.File;
 import java.util.Scanner;
+
+import skylark.command.Command;
+import skylark.command.CommandList;
+import skylark.task.TaskList;
+import skylark.utils.Printer;
 
 /** Represents the main entry point of Skylark. */
 public class Skylark {

@@ -1,4 +1,4 @@
-package skylark;
+package skylark.task;
 
 /** Represents a ToDo Task. */
 public class ToDo extends Task {

@@ -1,4 +1,12 @@
-package skylark;
+package skylark.command;
+
+import skylark.main.SkylarkException;
+import skylark.task.Deadline;
+import skylark.task.Event;
+import skylark.task.Task;
+import skylark.task.TaskList;
+import skylark.task.ToDo;
+import skylark.utils.Printer;
 
 /**
  * Represents a command based on user input. <br><br>
@@ -24,7 +32,7 @@ public abstract class Command {
     public static Command createCommand(String command) {
         if (command.equals(CommandList.COMMAND_BYE.toString())) {
             return new ByeCommand(command);
-        } else if (command.equals(skylark.CommandList.COMMAND_LIST.toString())) {
+        } else if (command.equals(CommandList.COMMAND_LIST.toString())) {
             return new ListCommand(command);
         } else if (command.length() >= 4 && command.startsWith(CommandList.COMMAND_DONE.toString())) {
             return new DoneCommand(command);

@@ -33,14 +33,14 @@ test {
 }
 
 application {
-    mainClassName = "skylark.Skylark"
+    mainClassName = "skylark.main.Skylark"
 }
 
 shadowJar {
-    archiveBaseName = "skylark"
+    archiveBaseName = "Skylark"
     archiveClassifier = null
 }
 
-run{
+run {
     standardInput = System.in
 }

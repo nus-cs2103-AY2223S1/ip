@@ -1,4 +1,4 @@
-package skylark;
+package skylark.utils;
 
 /** Prints the input text into the System output. */
 public class Printer {

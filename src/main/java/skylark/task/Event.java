@@ -1,8 +1,10 @@
-package skylark;
+package skylark.task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import skylark.main.SkylarkException;
 
 /** Represents a Deadline Task. */
 public class Event extends Task {
@@ -16,7 +18,7 @@ public class Event extends Task {
     private final LocalDateTime timing;
 
     /**
-     * Returns a Event object.
+     * Returns an Event object.
      * Throws a SkylarkException if the timing is not parsable.
      *
      * @param description Description of the Task
