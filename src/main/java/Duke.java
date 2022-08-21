@@ -68,7 +68,7 @@ public class Duke {
             System.out.println("Sorry I do not understand what that means :(\n");
         }
         return true;
-    }
+    } //Move to Parser
 
     public static void Delete(String num) throws DukeException {
         try {
@@ -86,7 +86,7 @@ public class Duke {
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException(String.format("Index %d does not exist on the list.", Integer.parseInt(num)));
         }
-    }
+    } //TaskList
 
     public static void Marking(String name, String num) throws DukeException {
         try {
@@ -112,7 +112,7 @@ public class Duke {
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException(String.format("Index %s does not exist on the list.", num));
         }
-    }
+    } //TaskList
 
     public static void AddList(String[] input) throws DukeException {
         Task newTask;
@@ -149,8 +149,8 @@ public class Duke {
         } else {
             System.out.println("Now you have " + tasks.size() + " tasks in the list.\n");
         }
-    }
-    
+    } //TaskList
+
     public static void ListOut() throws DukeException {
         if (tasks.size() == 0) {
             throw new DukeException("You do not have any tasks in the list");
@@ -160,9 +160,9 @@ public class Duke {
             System.out.println(i + 1 + "." + tasks.get(i).toString());
         }
         System.out.println();
-    }
+    } //Ui
 
-    public static void Save() {
+    public static void Save() { //Move to storage
         try {
             FileWriter fw = new FileWriter("./data/Duke.txt");
             for (Task task : tasks) {
