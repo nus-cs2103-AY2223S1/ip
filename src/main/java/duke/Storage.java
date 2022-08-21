@@ -40,17 +40,17 @@ public class Storage {
                     char firstLetter = line.charAt(0);
                     Task task;
                     switch (firstLetter) {
-                        case 'T':
-                            task = Todo.fromFileRepresentation(line);
-                            break;
-                        case 'E':
-                            task = Event.fromFileRepresentation(line);
-                            break;
-                        case 'D':
-                            task = Deadline.fromFileRepresentation(line);
-                            break;
-                        default:
-                            throw new DukeException("Did you wrongly modify the file?");
+                    case 'T':
+                        task = Todo.fromFileRepresentation(line);
+                        break;
+                    case 'E':
+                        task = Event.fromFileRepresentation(line);
+                        break;
+                    case 'D':
+                        task = Deadline.fromFileRepresentation(line);
+                        break;
+                    default:
+                        throw new DukeException("Did you wrongly modify the file?");
                     }
                     taskList.add(task);
                 }

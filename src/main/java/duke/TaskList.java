@@ -1,10 +1,10 @@
 package duke;
 
+import static java.util.stream.Collectors.toCollection;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
-
-import static java.util.stream.Collectors.toCollection;
 
 /**
  * Represents a list of Tasks.
@@ -108,9 +108,9 @@ public class TaskList implements Iterable<Task> {
      * @return ArrayList of tasks on specified date
      */
     public ArrayList<Task> getTasksOn(LocalDate date) {
-        ArrayList<Task> filteredTaskList = this.taskArrayList.stream().
-                filter(task -> task.isOn(date)).
-                collect(toCollection(ArrayList::new));
+        ArrayList<Task> filteredTaskList = this.taskArrayList.stream()
+                .filter(task -> task.isOn(date))
+                .collect(toCollection(ArrayList::new));
         return filteredTaskList;
     }
 

@@ -6,7 +6,7 @@ import java.time.LocalDate;
  * Abstract class that all Tasks inherit from.
  */
 public abstract class Task {
-    String description;
+    private String description;
     private boolean done;
 
     public Task(String description) {

@@ -1,6 +1,10 @@
 package duke.command;
 
-import duke.*;
+import duke.DukeException;
+import duke.Storage;
+import duke.Task;
+import duke.TaskList;
+import duke.Ui;
 
 /**
  * Represents all commands related to adding all kinds of tasks (Todo, Event, Deadline).
