@@ -74,7 +74,7 @@ public class Actions { //actions that Duke does
                     System.out.println(unmarkTask);
                     break;
                 case "deadline": //can abstract this whole case to be generalized
-                    String[] temp = input.split("/by", 2);
+                    String[] temp = input.split("/by ", 2);
                     String by = temp[1];
                     String deadlineDesc = temp[0].split("deadline ")[1];
                     Deadline deadlineTask = new Deadline(deadlineDesc, by);
