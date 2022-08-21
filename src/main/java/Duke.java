@@ -1,6 +1,10 @@
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.List; 
+import java.util.List;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class Duke {
     private Scanner scanner;
@@ -139,12 +143,17 @@ public class Duke {
      * @throws DukeException Exception if deadline task has no description
      */
     public void deadlineTask(String[] input) throws DukeException {
-        String[] deadlineDetails = input[1].split(" /by ", 2);
+        try {
+            String[] deadlineDetails = input[1].split(" /by ", 2);
 
-        if (deadlineDetails.length == 2) {
-            Deadline deadline = new Deadline(deadlineDetails[0], deadlineDetails[1]);
-            addTask(deadline);
-        } else {
+            if (deadlineDetails.length == 2) {
+                Date date = parseDate(deadlineDetails[1]);
+                Deadline deadline = new Deadline(deadlineDetails[0], date);
+                addTask(deadline);
+            } else {
+                throw new DukeException("☹ OOPS!!! Please follow the syntax for an 'deadline' command: event [description] /by [date].");
+            }
+        } catch (IndexOutOfBoundsException e) {
             throw new DukeException("☹ OOPS!!! Please follow the syntax for an 'deadline' command: event [description] /by [date].");
         }
     }
@@ -155,14 +164,37 @@ public class Duke {
      * @throws DukeException Exception if event task has no description
      */
     public void eventTask(String[] input) throws DukeException {
-        String[] eventDetails = input[1].split(" /at ", 2);
+        try {
+            String[] eventDetails = input[1].split(" /at ", 2);
 
-        if (eventDetails.length == 2) {
-            Event event = new Event(eventDetails[0], eventDetails[1]);
-            addTask(event);
-        } else {
+            if (eventDetails.length == 2) {
+                Date date = parseDate(eventDetails[1]);
+                Event event = new Event(eventDetails[0], date);
+                addTask(event);
+            } else {
+                throw new DukeException("☹ OOPS!!! Please follow the syntax for an 'event' command: event [description] /at [date].");
+            } 
+        } catch (IndexOutOfBoundsException e) {
             throw new DukeException("☹ OOPS!!! Please follow the syntax for an 'event' command: event [description] /at [date].");
         }
+    }
+
+    /**
+     * Handles the parsing of dates for Deadlines/Events
+     * @param input String input of date
+     * @return Date object used to construct Deadline/Event
+     * @throws DukeException Exception if date format is wrong
+     */
+    public Date parseDate(String input) throws DukeException{
+        try {
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate parsed = LocalDate.parse(input, dtf);
+
+            return new Date(parsed);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("☹ OOPS!!! Please follow the Date and Time Format: yyyy-MM-dd [2000-01-01]");
+        }
+
     }
 
     /**
