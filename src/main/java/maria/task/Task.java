@@ -33,6 +33,15 @@ public abstract class Task {
     }
 
     /**
+     * Checks if the name of the task contains a string.
+     * @param s The string to be checked against
+     * @return If the name contains s
+     */
+    public boolean nameContainsString(String s) {
+        return this.name.contains(s);
+    }
+    
+    /**
      * Gets the string representation of the task.
      * @return The string representation of the task
      */
