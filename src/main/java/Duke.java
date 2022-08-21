@@ -2,6 +2,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -75,12 +79,30 @@ public class Duke {
                     if (userInputSpilt.length == 1) {
                         throw new MissingDescriptionException("deadline");
                     } else {
-                        String[] deadlineSpilt = userInputSpilt[1].split("/by", 2);
+                        String[] deadlineSpilt = userInputSpilt[1].split("/by ", 2);
                         if (deadlineSpilt.length == 1) {
                             throw new MissingDeadlineDescriptionException();
                         } else {
-                            Deadline currDeadline =  new Deadline(deadlineSpilt[0], deadlineSpilt[1]);
-                            AddToList(currDeadline);
+                            try {
+                                String[] deadlineDateTimeSpilt = deadlineSpilt[1].split(" ", 2);
+                                if (deadlineDateTimeSpilt.length == 1) {
+                                    LocalDate localDate = LocalDate.parse(deadlineDateTimeSpilt[0],
+                                            DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                                    Deadline currDeadline =  new Deadline(deadlineSpilt[0], localDate, null);
+                                    AddToList(currDeadline);
+                                } else {
+                                    LocalDate localDate = LocalDate.parse(deadlineDateTimeSpilt[0],
+                                            DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                                    LocalTime localTime = LocalTime.parse(deadlineDateTimeSpilt[1],
+                                            DateTimeFormatter.ofPattern("HHmm"));
+                                    Deadline currDeadline =  new Deadline(deadlineSpilt[0], localDate, localTime);
+                                    AddToList(currDeadline);
+                                }
+                            } catch (DateTimeException e) {
+                                System.out.println("OOPS! The date and time format for deadline is incorrect\n" +
+                                        "FORMAT: yyyy-MM-dd HHmm / yyyy-MM-dd");
+                            }
+
                         }
                     }
 
@@ -88,7 +110,7 @@ public class Duke {
                     if (userInputSpilt.length == 1) {
                         throw new MissingDescriptionException("event");
                     } else {
-                        String[] eventSpilt = userInputSpilt[1].split("/at", 2);
+                        String[] eventSpilt = userInputSpilt[1].split("/at ", 2);
                         if (eventSpilt.length == 1) {
                             throw new MissingEventDescriptionException();
                         } else {
@@ -143,8 +165,16 @@ public class Duke {
                 }
                 AddToListQuiet(currTodo);
             } else if (spiltCurrLine[0].equals("D")) {
-                String[] spiltCurrDeadline = spiltCurrLine[1].split(",", 3);
-                Deadline currDeadline = new Deadline(spiltCurrDeadline[1], spiltCurrDeadline[2]);
+                String[] spiltCurrDeadline = spiltCurrLine[1].split(",", 4);
+                LocalDate localDate = null;
+                LocalTime localTime = null;
+                if (spiltCurrDeadline.length == 4) {
+                    localDate = LocalDate.parse(spiltCurrDeadline[2]);
+                    localTime = LocalTime.parse(spiltCurrDeadline[3]);
+                } else {
+                    localDate = LocalDate.parse(spiltCurrDeadline[2]);
+                }
+                Deadline currDeadline = new Deadline(spiltCurrDeadline[1], localDate, localTime);
                 if (spiltCurrDeadline[0].equals("1")) {
                     currDeadline.markAsDone();
                 } else {
