@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 import jude.task.Deadline;
@@ -22,7 +23,10 @@ public class Storage {
             // https://stackoverflow.com/questions/3634853/how-to-create-a-directory-in-java
             // https://stackoverflow.com/questions/8197049/
             // how-to-get-just-the-parent-directory-name-of-a-specific-file
-            Files.createDirectories(Paths.get(filePath).getParent());
+            Path parentDirectory = Paths.get(filePath).getParent();
+            if (parentDirectory != null) {
+                Files.createDirectories(parentDirectory);
+            }
             File file = new File(filePath);
 
             // Solution below adapted from

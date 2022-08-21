@@ -35,9 +35,12 @@ public class Parser {
     // Time, if provided, should be given in 12 or 24-hour format, and provided after the date
     // string, which is not in ISO format.
     // This parser is not case-sensitive.
-    private String convertToDate(String date) {
+    String convertToDate(String date) {
         // Solution adapted from
         // https://nus-cs2103-ay2223s1.github.io/website/schedule/week3/project.html
+        if (date == null) {
+            throw new IllegalCommandException("Date cannot be empty.");
+        }
         LocalDateTime dateObject = null;
         try {
             dateObject = LocalDateTime.parse(date);
@@ -47,12 +50,12 @@ public class Parser {
                     "yyyy-MM-dd",
                     "yyyy-MM-dd H:mm",
                     "yyyy-MM-dd h:mm a",
-                    "dd MMM yyyy",
-                    "dd MMM yyyy H:mm",
-                    "dd MMM yyyy h:mm a",
-                    "MMM dd yyyy",
-                    "MMM dd yyyy H:mm",
-                    "MMM dd yyyy h:mm a",
+                    "d MMM yyyy",
+                    "d MMM yyyy H:mm",
+                    "d MMM yyyy h:mm a",
+                    "MMM d yyyy",
+                    "MMM d yyyy H:mm",
+                    "MMM d yyyy h:mm a",
             };
             boolean[] isDateFormats = { true, false, false, true, false, false, true, false, false };
             for (int i = 0; i < dateTimeFormats.length; i++) {
