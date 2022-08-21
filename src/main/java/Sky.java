@@ -2,9 +2,15 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.PatternSyntaxException;
 
 
 public class Sky {
@@ -83,14 +89,13 @@ public class Sky {
     public void addDeadLine(String userInput) {
         try {
             String taskDeadline = userInput.substring(9);
-            int indexOfSlash = -1;
-            for (int i = 0; i < taskDeadline.length(); i++) {
-                if (taskDeadline.charAt(i) == '/') {
-                    indexOfSlash = i;
-                }
+            String[] arrOfStrings = taskDeadline.split(" /by ");
+            if (arrOfStrings.length != 2) {
+                throw new TextNoMeaningException("  Make sure you specify \"/by\" exactly once.");
             }
-            String taskDescription = taskDeadline.substring(0, indexOfSlash - 1);
-            String taskBy = taskDeadline.substring(indexOfSlash + 1);
+            String taskDescription = arrOfStrings[0];
+            String taskByUserInput = arrOfStrings[1];
+            String taskBy = produceDateAndTimeForDeadline(taskByUserInput);
             Task task = new Deadline(taskDescription, taskBy);
             taskList.add(task);
             // Add task into data file.
@@ -102,20 +107,23 @@ public class Sky {
         } catch (IndexOutOfBoundsException e) {
             System.out.println("  You have either not entered any text after typing deadline, \n" +
                     "  or you have positioned your slash wrongly.");
+        } catch (PatternSyntaxException e) {
+            System.out.println("  There is a problem with the regex expression written by the dev.");
+        } catch (TextNoMeaningException e) {
+            System.out.println(e);
         }
     }
 
     public void addEvent(String userInput) {
         try {
             String taskEvent = userInput.substring(6);
-            int indexOfSlash = -1;
-            for (int i = 0; i < taskEvent.length(); i++) {
-                if (taskEvent.charAt(i) == '/') {
-                    indexOfSlash = i;
-                }
+            String[] arrOfStrings = taskEvent.split(" /at ");
+            if (arrOfStrings.length != 2) {
+                throw new TextNoMeaningException("  Make sure you specify \"/at\" exactly once.");
             }
-            String taskDescription = taskEvent.substring(0, indexOfSlash - 1);
-            String taskDuration = taskEvent.substring(indexOfSlash + 1);
+            String taskDescription = arrOfStrings[0];
+            String taskDurationUserInput = arrOfStrings[1];
+            String taskDuration = produceDateAndTimeForEvent(taskDurationUserInput);
             Task task = new Event(taskDescription, taskDuration);
             taskList.add(task);
             // Add task into data file
@@ -127,6 +135,10 @@ public class Sky {
         } catch (IndexOutOfBoundsException e) {
             System.out.println("  You have either not entered any text after typing event, \n" +
                     "  or you have positioned your slash wrongly.");
+        } catch (PatternSyntaxException e) {
+            System.out.println("  There is a problem with the regex expression written by the dev.");
+        } catch (TextNoMeaningException e) {
+            System.out.println(e);
         }
     }
 
@@ -234,7 +246,7 @@ public class Sky {
         }
         try {
             Scanner scanner = new Scanner(file);
-            while(scanner.hasNext()) {
+            while (scanner.hasNext()) {
                 String textLine = scanner.nextLine();
                 char taskType = textLine.charAt(1);
                 boolean isMarked = textLine.charAt(4) == 'X';
@@ -251,7 +263,7 @@ public class Sky {
                         }
                     }
                     String taskDescription = description.substring(0, indexOfBracket - 1);
-                    String taskBy = description.substring(indexOfBracket + 2, description.length() - 1);
+                    String taskBy = description.substring(indexOfBracket + 5, description.length() - 1);
                     Task task = new Deadline(taskDescription, taskBy);
                     taskList.add(task);
                 } else {
@@ -262,7 +274,7 @@ public class Sky {
                         }
                     }
                     String taskDescription = description.substring(0, indexOfBracket - 1);
-                    String taskDuration = description.substring(indexOfBracket + 2, description.length() - 1);
+                    String taskDuration = description.substring(indexOfBracket + 5, description.length() - 1);
                     Task task = new Event(taskDescription, taskDuration);
                     taskList.add(task);
                 }
@@ -275,6 +287,78 @@ public class Sky {
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Error parsing data from data file.");
         }
+    }
+
+    public String produceDateAndTimeForEvent(String s) throws TextNoMeaningException {
+        try {
+            String[] arrOfStrings = s.split(" ");
+            if (arrOfStrings.length != 2) {
+                throw new TextNoMeaningException("  Provide the date and time after \"/at\".");
+            }
+            String dateGiven = arrOfStrings[0].replaceAll("/", "-");
+            LocalDate d1 = LocalDate.parse(dateGiven);
+            String dateString = d1.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+
+            String timeGiven1 = arrOfStrings[1].substring(0, 2) + ":" + arrOfStrings[1].substring(2, 4);
+            String timeGiven2 = arrOfStrings[1].substring(5, 7) + ":" + arrOfStrings[1].substring(7);
+            LocalTime t1 = LocalTime.parse(timeGiven1);
+            LocalTime t2 = LocalTime.parse(timeGiven2);
+            String timeString1 = t1.format(DateTimeFormatter.ofPattern("h:mma"));
+            String timeString2 = t2.format(DateTimeFormatter.ofPattern("h:mma"));
+            String finalTimeString = timeString1 + "-" + timeString2;
+
+            return dateString + ", " + finalTimeString;
+        } catch (PatternSyntaxException e) {
+            System.out.println("  There is a problem with the regex expression written by the dev.");
+        } catch (TextNoMeaningException e) {
+            System.out.println(e);
+        } catch (DateTimeParseException e) {
+            System.out.println("  Date and/or time given cannot be parsed.");
+            System.out.println("  Provide date and time as: \"yyyy/mm/dd XXXX-XXXX\", where XXXX is time in 24-hours.");
+        } catch (DateTimeException e) {
+            System.out.println("  Unable to format date and/or time.");
+        } catch (IllegalArgumentException e) {
+            System.out.println("  Provide date and time as: \"yyyy/mm/dd XXXX-XXXX\", where XXXX is time in 24-hours.");
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("  Provide time as: XXXX-XXXX, in 24-hours standard.");
+        }
+        throw new TextNoMeaningException("  Are you that bad? Come on.");
+    }
+
+    public String produceDateAndTimeForDeadline(String s) throws TextNoMeaningException {
+        try {
+            String[] arrOfStrings = s.split(" ");
+            if (arrOfStrings.length != 1 && arrOfStrings.length !=2) {
+                throw new TextNoMeaningException("  Provide the date and time after \"/by\".");
+            }
+            String dateGiven = arrOfStrings[0].replaceAll("/", "-");
+            LocalDate d1 = LocalDate.parse(dateGiven);
+            String dateString = d1.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+
+            // If time is provided
+            if (arrOfStrings.length == 2) {
+                String timeGiven = arrOfStrings[1].substring(0, 2) + ":" + arrOfStrings[1].substring(2);
+                LocalTime t1 = LocalTime.parse(timeGiven);
+                String timeString = t1.format(DateTimeFormatter.ofPattern("h:mma"));
+
+                return dateString + ", " + timeString;
+            }
+            return dateString;
+        } catch (PatternSyntaxException e) {
+            System.out.println("  There is a problem with the regex expression written by the dev.");
+        } catch (TextNoMeaningException e) {
+            System.out.println(e);
+        } catch (DateTimeParseException e) {
+            System.out.println("  Date and/or time given cannot be parsed.");
+            System.out.println("  Provide date and time as: \"yyyy/mm/dd XXXX\", where XXXX is time in 24-hours.");
+        } catch (DateTimeException e) {
+            System.out.println("  Unable to format date and/or time.");
+        } catch (IllegalArgumentException e) {
+            System.out.println("  Provide date and time as: \"yyyy/mm/dd XXXX\", where XXXX is time in 24-hours.");
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("  Provide time as: XXXX, in 24-hours standard.");
+        }
+        throw new TextNoMeaningException("  Are you that bad? Come on.");
     }
 
     public static void main(String[] args) {
