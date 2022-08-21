@@ -41,6 +41,9 @@ public abstract class Task {
     public boolean isDateEqual(LocalDate date) {
         throw new UnsupportedOperationException();
     }
+    public boolean isQueryPresent(String query) {
+        return this.description.contains(query);
+    }
 
     @Override
     public String toString() {
