@@ -1,3 +1,4 @@
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -114,7 +115,7 @@ public class Duke {
                 SaveManager.Save(tasks);
                 break;
             case "deadline":
-                args = item.split("/by");
+                args = item.split("/by ");
                 try{
                     currTask = new Deadline(args[0], args[1]);
                     tasks.add(currTask);
@@ -124,11 +125,13 @@ public class Duke {
                             + DIVIDER);
                 } catch (ArrayIndexOutOfBoundsException e) {
                     throw new DukeMissingInputException(type);
+                } catch (DateTimeParseException e) {
+                    throw new DukeUnknownDateException(type);
                 }
                 SaveManager.Save(tasks);
                 break;
             case "event":
-                args = item.split("/at");
+                args = item.split("/at ");
                 try{
                     currTask = new Event(args[0], args[1]);
                     tasks.add(currTask);
@@ -138,6 +141,8 @@ public class Duke {
                             + "\n" + DIVIDER);
                 } catch (ArrayIndexOutOfBoundsException e) {
                     throw new DukeMissingInputException(type);
+                } catch (DateTimeParseException e) {
+                    throw new DukeUnknownDateException(type);
                 }
                 SaveManager.Save(tasks);
                 break;
