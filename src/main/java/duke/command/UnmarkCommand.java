@@ -2,7 +2,16 @@ package duke.command;
 
 import duke.*;
 
+/**
+ * Unmarks the specified Task in the StorageList.
+ */
 public class UnmarkCommand extends Command{
+  /**
+   * Executes the unmark command.
+   * @param ui the user interface
+   * @param storageList the storage list
+   * @throws DukeException if the command is invalid
+   */
   @Override
   public void execute(Ui ui, StorageList storageList) throws DukeException {
     int index = Parser.getIndex(ui.getLastInput());
