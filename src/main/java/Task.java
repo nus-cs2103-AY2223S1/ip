@@ -22,6 +22,10 @@ public abstract class Task {
         return "[" + status + "]" + " " + this.taskname;
     }
 
+    public String toSavedString() {
+        int i = this.isDone ? 1 : 0;
+        return "" + i + "#" + this.taskname;
+    }
 
 
 }

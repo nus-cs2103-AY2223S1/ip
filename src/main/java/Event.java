@@ -1,6 +1,7 @@
 public class Event extends Task {
 
     private String time;
+    private final char type = 'E';
 
     public Event(String taskname, String time) {
         super(taskname);
@@ -9,6 +10,12 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + this.time + ")";
+        return String.format("[%c] %s (at: %s)", this.type, super.toString(), this.time);
+        //return "[E]" + super.toString() + " (at: " + this.time + ")";
+    }
+
+    @Override
+    public String toSavedString() {
+        return "" + this.type + "#" + super.toSavedString() + "#" + this.time;
     }
 }
