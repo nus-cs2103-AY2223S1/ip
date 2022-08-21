@@ -12,7 +12,7 @@ public class Event extends Task {
 
     @Override
     public String toStorage() {
-        return "E | " + super.toStorage() + " | " + this.at;
+        return "E | " + super.toStorage() + " | " + this.at.format(Task.inputFormat);
     }
 
     @Override

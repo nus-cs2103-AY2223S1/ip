@@ -12,7 +12,7 @@ public class Deadline extends Task {
 
     @Override
     public String toStorage() {
-        return "D | " + super.toStorage() + " | " + this.by;
+        return "D | " + super.toStorage() + " | " + this.by.format(Task.inputFormat);
     }
 
     @Override
