@@ -1,3 +1,4 @@
+import java.time.format.DateTimeParseException;
 import java.util.*;
 
 public class Duke {
@@ -77,6 +78,9 @@ public class Duke {
             InsertTask(new Deadline(items[0], items[1]));
         } catch (StringIndexOutOfBoundsException | ArrayIndexOutOfBoundsException e) {
             System.out.println("description cannot be empty");
+        } catch (DateTimeParseException e) {
+            System.out.println("please enter a valid date format.");
+            System.out.println("date: dd/mm/YYYY");
         }
     }
 
@@ -86,6 +90,9 @@ public class Duke {
             InsertTask(new Event(items[0], items[1]));
         } catch (StringIndexOutOfBoundsException | ArrayIndexOutOfBoundsException e) {
             System.out.println("description cannot be empty");
+        } catch (DateTimeParseException e) {
+            System.out.println("please enter a valid date format.");
+            System.out.println("date and time: dd/mm/YYYY HH:mm:ss");
         }
     }
     private static void InsertTask(Task task) {
