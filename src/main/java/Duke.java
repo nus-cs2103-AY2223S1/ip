@@ -2,66 +2,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
-    public static class Task {
-        protected String description;
-        protected boolean isDone;
 
-        public Task(String description) {
-            this.description = description;
-            this.isDone = false;
-        }
 
-        public String getStatusIcon() {
-            return (isDone ? "X" : " "); // mark done task with X
-        }
 
-        public void mark() {
-            this.isDone = true;
-        }
-        public void unmark() {
-            this.isDone = false;
-        }
 
-        @Override
-        public String toString() {
-            String s = "[%s] %s";
-            return String.format(s, getStatusIcon(), description);
-        }
-    }
-    public static class Todo extends Task {
-        public Todo(String description) {
-            super(description);
-        }
-        @Override
-        public String toString() {
-            String s = super.toString();
-            return "[T]" + s;
-        }
-    }
-    public static class Deadline extends Task {
-        protected String time;
-        public Deadline(String description, String time) {
-            super(description);
-            this.time = time;
-        }
-        @Override
-        public String toString() {
-            String s = super.toString();
-            return "[D]" + s + " (by: " + time +")";
-        }
-    }
-    public static class Event extends Task {
-        protected String time;
-        public Event(String description, String time) {
-            super(description);
-            this.time = time;
-        }
-        @Override
-        public String toString() {
-            String s = super.toString();
-            return "[E]" + s + " (at: " + time +")";
-        }
-    }
     enum Command {
         list,
         bye,
@@ -158,9 +102,5 @@ public class Duke {
     }
 }
 
- class DukeException extends RuntimeException{
-    public DukeException(String message) {
-        super(message);
-    }
-}
+
 
