@@ -116,29 +116,39 @@ public class Duke {
         printLine();
     }
 
-    public static void showTasks(List<Task> Tasks) throws DanException {
-        if (Tasks.isEmpty()) {throw new DanException("Your list is empty!");}
+    public static void showTasks(List<Task> tasks) throws DanException {
+        if (tasks.isEmpty()) {throw new DanException("Your list is empty!");}
         printLine();
         printIndent("Here are the tasks in your list:");
-        for (int i =1; i <= Tasks.size(); i++) {
-            printIndent(i + "." + Tasks.get(i - 1));
+        for (int i =1; i <= tasks.size(); i++) {
+            printIndent(i + "." + tasks.get(i - 1));
         }
         printLine();
     }
 
-    public static void markTask(List<Task> Tasks, int index) throws DanException {
-        if (index >= Tasks.size()) {throw new DanException("This task number doesn't exist!");}
-        Task task = Tasks.get(index - 1);
+    public static void markTask(List<Task> tasks, int index) throws DanException {
+        if (index >= tasks.size()) {throw new DanException("This task number doesn't exist!");}
+        Task task = tasks.get(index - 1);
         task.setDone(true);
         printBlock(String.format("Hehe okay guess this is now done\n"
                 + "  %s", task));
     }
 
-    public static void unMarkTask(List<Task> Tasks, int index) throws DanException {
-        if (index >= Tasks.size()) {throw new DanException("This task number doesn't exist!");}
-        Task task = Tasks.get(index - 1);
+    public static void unMarkTask(List<Task> tasks, int index) throws DanException {
+        if (index >= tasks.size()) {throw new DanException("This task number doesn't exist!");}
+        Task task = tasks.get(index - 1);
         task.setDone(false);
         printBlock(String.format("Ooops, you haven't done this yet? Here ya go:\n"
                 + "  %s", task));
+    }
+
+    public static void deleteTask(List<Task> tasks, int index) throws DanException {
+        if (index >= tasks.size()) {throw new DanException("This task number doesn't exist!");}
+        printLine();
+        printIndent("Alright then, I'll remove this task from your list:");
+        printIndent(tasks.get(index - 1).toString());
+        tasks.remove(index - 1);
+        printIndent(String.format("You now have %d many tasks in your list", tasks.size()));
+        printLine();
     }
 }
