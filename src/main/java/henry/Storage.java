@@ -1,3 +1,7 @@
+package henry;
+
+import command.Commands;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -6,7 +10,6 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -40,9 +43,7 @@ public class Storage {
         List<Task> tasks = new ArrayList<>();
         while (s.hasNextLine()) {
             String line = s.nextLine();
-            System.out.println(line);
             String[] tokens = line.split("\\|");
-            System.out.println(Arrays.toString(tokens));
             Commands type;
             String description;
             LocalDateTime date = null;
@@ -85,15 +86,9 @@ public class Storage {
                         .atTime(Integer.parseInt(timeTokens[0]), Integer.parseInt(timeTokens[1]));
     }
 
-    private void appendToFile(String textToAdd) throws IOException {
-        FileWriter fw = new FileWriter(filePath);
+    public void appendToFile(String textToAdd) throws IOException {
+        FileWriter fw = new FileWriter(filePath, true);
         fw.write(textToAdd + "\n");
         fw.close();
-    }
-
-    public void close(List<Task> newTasks) throws IOException {
-        for (Task t : newTasks) {
-            appendToFile(t.toSimpleString());
-        }
     }
 }
