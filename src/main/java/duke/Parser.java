@@ -32,6 +32,8 @@ public class Parser {
                 return new DeleteCommand(parseInt(argsString));
             case "on":
                 return new TaskOnDateCommand(LocalDate.parse(argsString));
+        case "find":
+            return new FindCommand(argsString);
             default:
                 throw new DukeException("I don't know this command!");
         }

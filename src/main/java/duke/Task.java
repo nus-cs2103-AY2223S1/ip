@@ -30,6 +30,15 @@ public abstract class Task {
         return false;
     }
 
+    /**
+     * Return whether the description includes the search query
+     * @param searchQuery String to search.
+     * @return whether the description includes the search query
+     */
+    public boolean descriptionIncludes(String searchQuery) {
+        return description.contains(searchQuery);
+    }
+
     @Override
     public String toString() {
         char doneFlag = done ? 'X' : ' ';
