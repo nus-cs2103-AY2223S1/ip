@@ -1,10 +1,4 @@
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.StandardOpenOption;
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.nio.file.Path;
-import java.time.LocalDate;
+package duke;
 
 public class Duke {
 

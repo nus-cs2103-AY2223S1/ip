@@ -1,7 +1,10 @@
-import java.io.IOException;
-import java.nio.file.Files;
+package duke;
+
+import duke.tasks.Deadline;
+import duke.tasks.Event;
+import duke.tasks.Todo;
+
 import java.time.LocalDate;
-import java.util.Arrays;
 
 public class Parser {
     private Storage storage;
