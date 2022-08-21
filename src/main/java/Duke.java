@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Duke {
     private static final int MAX_TASK_SIZE = 100;
 
-    public static void main(String[] args) throws DanException {
+    public static void main(String[] args) {
         //start up sequence
         Scanner sc = new Scanner(System.in);
         List<Task> tasks = new ArrayList<>(MAX_TASK_SIZE);
@@ -41,7 +41,7 @@ public class Duke {
                     break;
 
                 default:
-                    throw new DanException("I don't really understand what do you mean by that :(");
+                    throw new DanException("I don't really understand what do you mean by that...");
                 }
             } catch (DanException e) {
                 printBlock(e.getMessage());
@@ -96,19 +96,17 @@ public class Duke {
             tasks.add(new ToDo(description));
         } else if (input.startsWith("deadline")) {
             String[] temp = input.replace("deadline","").strip().split("/by");
-            if (temp.length != 2) { throw new DanException("Please follow the following format:\n deadline <description >/by <due date>");}
+            if (temp.length != 2) { throw new DanException("Please follow the following format:\n deadline <description> /by <due date>");}
             description = temp[0].strip();
             dateString = temp[1].strip();
             if (description.isEmpty()) {throw new DanException("Please provide me a description for your deadline");}
-            if (dateString.isEmpty()) {throw new DanException("Please give me a timing for your deadline");}
             tasks.add(new Deadline(description, dateString));
         } else if (input.startsWith("event")) {
             String[] temp = input.replace("event", "").strip().split("/at");
-            if (temp.length != 2) { throw new DanException("Please follow the following format:\n event <description >/at <time/date>");}
+            if (temp.length != 2) { throw new DanException("Please follow the following format:\n event <description> /at <time/date>");}
             description = temp[0].strip();
             dateString = temp[1].strip();
             if (description.isEmpty()) {throw new DanException("Please provide me a description for your event");}
-            if (dateString.isEmpty()) {throw new DanException("Please give me a timing for your deadline");}
             tasks.add(new Event(description, dateString));
         }
         printLine();
@@ -118,21 +116,26 @@ public class Duke {
         printLine();
     }
 
-    public static void showTasks(List<Task> Tasks) {
-        printBlock("Here are the tasks in your list:");
+    public static void showTasks(List<Task> Tasks) throws DanException {
+        if (Tasks.isEmpty()) {throw new DanException("Your list is empty!");}
+        printLine();
+        printIndent("Here are the tasks in your list:");
         for (int i =1; i <= Tasks.size(); i++) {
             printIndent(i + "." + Tasks.get(i - 1));
         }
+        printLine();
     }
 
-    public static void markTask(List<Task> Tasks, int index) {
+    public static void markTask(List<Task> Tasks, int index) throws DanException {
+        if (index >= Tasks.size()) {throw new DanException("This task number doesn't exist!");}
         Task task = Tasks.get(index - 1);
         task.setDone(true);
         printBlock(String.format("Hehe okay guess this is now done\n"
                 + "  %s", task));
     }
 
-    public static void unMarkTask(List<Task> Tasks, int index) {
+    public static void unMarkTask(List<Task> Tasks, int index) throws DanException {
+        if (index >= Tasks.size()) {throw new DanException("This task number doesn't exist!");}
         Task task = Tasks.get(index - 1);
         task.setDone(false);
         printBlock(String.format("Ooops, you haven't done this yet? Here ya go:\n"
