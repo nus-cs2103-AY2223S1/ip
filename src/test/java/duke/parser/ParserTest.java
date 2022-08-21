@@ -2,6 +2,7 @@ package duke.parser;
 
 import duke.commands.Command;
 import duke.commands.ExitCommand;
+import duke.commands.FindCommand;
 import duke.commands.ListCommand;
 import duke.commands.MarkCommand;
 import duke.commands.UnmarkCommand;
@@ -65,6 +66,11 @@ public class ParserTest {
     @Test
     public void parseCommand_eventCommandMissingDate_errorMessage() {
         parseCommandAndExpectException("event abc", DukeException.class);
+    }
+
+    @Test
+    public void parseCommand_findCommand_parsedCorrectly() {
+        parseCommandAndAssert("find x", FindCommand.class);
     }
 
     @Test

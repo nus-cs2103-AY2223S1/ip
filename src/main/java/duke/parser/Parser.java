@@ -9,6 +9,7 @@ import duke.commands.DeleteCommand;
 import duke.commands.TodoCommand;
 import duke.commands.DeadlineCommand;
 import duke.commands.EventCommand;
+import duke.commands.FindCommand;
 import duke.exceptions.DukeException;
 
 import java.util.regex.Matcher;
@@ -58,6 +59,10 @@ public class Parser {
             }
             case EventCommand.COMMAND_WORD: {
                 command = new EventCommand(arguments);
+                break;
+            }
+            case FindCommand.COMMAND_WORD: {
+                command = new FindCommand(arguments);
                 break;
             }
             default:
