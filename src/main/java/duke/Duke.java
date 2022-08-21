@@ -1,3 +1,12 @@
+package duke;
+
+import duke.command.Command;
+import duke.exception.InvalidDescriptionException;
+import duke.exception.InvalidIndexException;
+import duke.exception.InvalidInputException;
+import duke.exception.InvalidTimeException;
+import duke.task.TaskList;
+
 import java.time.format.DateTimeParseException;
 
 public class Duke {

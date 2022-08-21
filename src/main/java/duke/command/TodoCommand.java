@@ -1,3 +1,11 @@
+package duke.command;
+
+import duke.exception.InvalidDescriptionException;
+import duke.task.TaskList;
+import duke.task.ToDo;
+import duke.Ui;
+import duke.Storage;
+
 public class TodoCommand extends Command {
     String desc;
 

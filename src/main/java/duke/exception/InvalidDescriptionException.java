@@ -1,3 +1,5 @@
+package duke.exception;
+
 public class InvalidDescriptionException extends Exception {
     public InvalidDescriptionException() {
         super("____________________________________________________________\n" +

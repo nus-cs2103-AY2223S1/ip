@@ -1,3 +1,5 @@
+package duke.exception;
+
 public class InvalidTimeException extends Exception {
     public InvalidTimeException() {
         super("____________________________________________________________\n" +

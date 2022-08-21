@@ -1,3 +1,10 @@
+package duke.command;
+
+import duke.exception.InvalidIndexException;
+import duke.task.TaskList;
+import duke.Ui;
+import duke.Storage;
+
 public class DeleteCommand extends Command {
     private int index;
 

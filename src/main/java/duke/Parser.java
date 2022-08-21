@@ -1,3 +1,11 @@
+package duke;
+
+import duke.command.*;
+import duke.exception.InvalidDescriptionException;
+import duke.exception.InvalidIndexException;
+import duke.exception.InvalidInputException;
+import duke.exception.InvalidTimeException;
+
 import java.time.format.DateTimeParseException;
 
 public class Parser {

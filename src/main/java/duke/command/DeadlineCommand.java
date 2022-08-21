@@ -1,3 +1,12 @@
+package duke.command;
+
+import duke.exception.InvalidDescriptionException;
+import duke.exception.InvalidTimeException;
+import duke.task.TaskList;
+import duke.task.Deadline;
+import duke.Ui;
+import duke.Storage;
+
 public class DeadlineCommand extends Command {
     String desc;
     String time;
