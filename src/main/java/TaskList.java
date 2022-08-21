@@ -51,8 +51,9 @@ public class TaskList {
     /**
      * Method to add String input to 'inputList'.
      * @param input String object to be added to 'inputList'.
+     * @return      String output to be shown to user.
      */
-    public void add(String input) {
+    public String add(String input) {
         String[] inputArr = input.split(" ");
 
         Task newTask = null;
@@ -70,32 +71,30 @@ public class TaskList {
 
         taskList.add(newTask);
         int size = this.getSize();
-        System.out.println("Got it. I've added this task:");
-        System.out.println("   " + newTask);
-        System.out.printf("Now you have %d task%s in the list.%n%n",
-                size, size == 1 ? "" : "s");
+        return String.format("Got it. I've added this task:%n   %s%n" +
+                "Now you have %d task%s in the list.%n",
+                newTask, size, size == 1 ? "" : "s");
     }
 
 
     /**
      * Method to delete a task.
      * @param input String user input command to delete a task.
+     * @return      String output to be shown to user.
      */
-    public void delete(String input) {
+    public String delete(String input) {
         int index = Integer.parseInt(input.split(" ")[1]) - 1;
         String taskToDelete = taskList.get(index).toString();
-
         taskList.remove(index);
         int size = this.getSize();
-
-        System.out.println("Got it. I've removed this task:");
-        System.out.println("   " + taskToDelete);
-        System.out.printf("Now you have %d task%s in the list.%n%n",
-                size, size == 1 ? "" : "s");
+        return String.format("Got it. I've removed this task:%n   %s%n" +
+                "Now you have %d task%s in the list.%n",
+                taskToDelete, size, size == 1 ? "" : "s");
     }
 
     /**
      * Override 'toString' method of 'TaskList' object.
+     * @return      String output to be shown to user.
      */
     @Override
     public String toString() {
@@ -110,21 +109,23 @@ public class TaskList {
     /**
      * Mark 'Task' at given index as done.
      * @param index Index of task to be done. 1 based indexing.
+     * @return      String output to be shown to user.
      */
-    public void markDone(int index) {
+    public String markDone(int index) {
         taskList.get(index - 1).markDone();
-        System.out.printf("Nice! I've marked this task as done:%n   %s%n%n",
+        return String.format("Nice! I've marked this task as done:%n   %s%n",
                 taskList.get(index - 1));
     }
 
     /**
      * Mark 'Task' at given index as undone.
      * @param index Index of task to be undone. 1 based indexing.
+     * @return      String output to be shown to user.
      */
-    public void markUnDone(int index) {
+    public String markUnDone(int index) {
         taskList.get(index - 1).markUnDone();
-        System.out.printf(
-                "OK, I've marked this task as not done yet:%n   %s%n%n",
+        return String.format(
+                "OK, I've marked this task as not done yet:%n   %s%n",
                 taskList.get(index - 1));
     }
 
