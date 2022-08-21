@@ -3,6 +3,8 @@ import java.util.ArrayList;
 public class Event extends Task {
 
     private String name;
+
+   
     private String type;
     private String status;
 
