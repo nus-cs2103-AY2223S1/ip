@@ -1,10 +1,10 @@
 todo read book
 todo
-deadline return book /by June 6th
+deadline return book /by 2022-08-22 1800
 deadline
 deadline description
 deadline /by when
-event project meeting /at Aug 6th 2-4pm
+event project meeting /at 2022-08-23 2-4pm
 event
 event description
 event /at when
@@ -26,4 +26,15 @@ list
 delete 2
 list
 blah
+deadline steal book /by 2022-08-22
+deadline sell book /by next week
+deadline eat book /by 2022-08-22 noon
+event sleep /at 2022-08-22 1940
+event sleep /at 3 am
+event sleep /at 2022-08-22 2500
+event sleep /at 2022-08-20
+on 2022-08-22
+on
+on 2022-08-26
+on invalid date
 bye

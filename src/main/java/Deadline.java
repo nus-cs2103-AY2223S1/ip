@@ -1,9 +1,15 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 /**
  * The Deadline class represents a task
  * that needs to be done by a specified date/time.
  */
 public class Deadline extends Task {
     private String by;
+    private LocalDate date;
 
     /**
      * Constructs a new Deadline task with a specified
@@ -14,7 +20,23 @@ public class Deadline extends Task {
      */
     public Deadline(String description, String by) {
         super(description);
-        this.by = by;
+        try {
+            LocalDateTime dateTime;
+            dateTime = LocalDateTime.parse(by, DateTimeFormatter.ofPattern("yyyy-M-d HHmm"));
+            date = dateTime.toLocalDate();
+            this.by = dateTime.format(DateTimeFormatter.ofPattern("MMM d yyyy, h.mma"));
+        } catch (DateTimeParseException e1) {
+            try {
+                String[] strings = by.split(" ");
+                date = LocalDate.parse(strings[0]);
+                this.by = date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+                if (strings.length > 1) {
+                    this.by += " " + by.substring(by.indexOf(" ") + 1);
+                }
+            } catch (DateTimeParseException e2) {
+                this.by = by;
+            }
+        }
     }
 
     /**
@@ -35,5 +57,18 @@ public class Deadline extends Task {
     @Override
     public String toData() {
         return "D | " + super.toData() + " | " + by + "\n";
+    }
+
+    /**
+     * Checks if the exact date by which a Deadline task should be done
+     * is a specified date.
+     *
+     * @param date The specified date to check.
+     * @return true if the specified date is the exact date by which
+     *     the Deadline task must be done.
+     */
+    @Override
+    public boolean onDate(LocalDate date) {
+        return date.equals(this.date);
     }
 }

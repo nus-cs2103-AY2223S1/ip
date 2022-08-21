@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 /**
  * The Todo class represents a task
  * without any date/time attached to it.
@@ -30,5 +32,16 @@ public class Todo extends Task {
     @Override
     public String toData() {
         return "T | " + super.toData() + "\n";
+    }
+
+    /**
+     * Checks if the Todo task should be done on a specific date.
+     *
+     * @param date The specified date to check.
+     * @return false.
+     */
+    @Override
+    public boolean onDate(LocalDate date) {
+        return false;
     }
 }
