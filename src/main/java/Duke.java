@@ -1,3 +1,4 @@
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -44,6 +45,17 @@ public class Duke {
     private void printErr(Exception e) {
         System.out.println("\n-----------------------------------------");
         System.out.println(e.getMessage());
+        System.out.println("-----------------------------------------\n");
+    }
+
+    /**
+     * Prints message.
+     *
+     * @param message The message to be printed.
+     */
+    private void printErr(String message) {
+        System.out.println("\n-----------------------------------------");
+        System.out.println(message);
         System.out.println("-----------------------------------------\n");
     }
 
@@ -174,6 +186,7 @@ public class Duke {
 
             String[] details = description.substring(1).split(" /by ");
             Deadline deadline = new Deadline(details[0], details[1]);
+            String deadlineStr = deadline.toString();
             tasks.add(deadline);
 
             System.out.println("\n-----------------------------------------");
@@ -181,8 +194,12 @@ public class Duke {
             System.out.println(deadline);
             System.out.println("Now you have " + tasks.size() + " tasks in the list.");
             System.out.println("-----------------------------------------\n");
-        } catch (DukeEmptyDeadlineException e) {
+        } catch (DukeEmptyDeadlineException | DukeInvalidTimeException e) {
             printErr(e);
+        } catch (DateTimeParseException e) {
+            printErr("Please enter Date in YYYY-MM-DD format");
+        } catch (Exception e) {
+            printErr("Please enter in format: Deadline Description /by YYYY-MM-DD 24hr");
         }
     }
 
@@ -208,8 +225,12 @@ public class Duke {
             System.out.println(event);
             System.out.println("Now you have " + tasks.size() + " tasks in the list.");
             System.out.println("-----------------------------------------\n");
-        } catch (DukeEmptyEventException e) {
+        } catch (DukeEmptyEventException | DukeInvalidTimeException e) {
             printErr(e);
+        } catch (DateTimeParseException e) {
+            printErr("Please enter Date in YYYY-MM-DD format");
+        } catch (Exception e) {
+            printErr("Please enter in format: Event Description /at YYYY-MM-DD 24hr");
         }
     }
 
