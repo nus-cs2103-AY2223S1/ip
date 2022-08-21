@@ -24,7 +24,9 @@ public class Duke {
      * @param args Optional command line arguments
      */
     public static void main(String[] args) {
-        String introduction = "Hello! I'm Duke\n" + "\tWhat can I do for you?";
+        String introduction = "Hello! I'm Duke\n" + "\tWhat can I do for you?\n"
+                + "\t(Please enter any datetime inputs in \n"
+                + "\t\"yyyy-mm-dd hhhh\" format)";
         Duke.echo(introduction);
 
         Scanner sc = new Scanner(System.in);

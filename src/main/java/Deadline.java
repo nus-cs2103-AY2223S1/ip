@@ -1,4 +1,6 @@
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class Deadline extends Task {
     /**
@@ -21,12 +23,24 @@ public class Deadline extends Task {
         this.dateTime = LocalDateTime.parse(date + "T" + time.substring(0, 2) + ":" + time.substring(2));
     }
 
+    private String getFormattedDateTime() {
+        String s = "";
+        s = s + this.dateTime.format(DateTimeFormatter.ofPattern("MMM d yyyy "));
+        String time = this.dateTime.toLocalTime().toString();
+        int hours = Integer.parseInt(time.substring(0, 2));
+        String meridiem = hours / 12 == 0 ? "am" : "pm";
+        hours = hours % 12;
+        s = s + hours + "." + time.substring(3) + meridiem;
+        return s;
+    }
+
     /**
      * Overrides the toString method in the parent class.
      * @return A string representing the current deadline.
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + this.by + ")";
+        // return "[D]" + super.toString() + " (by: " + this.by + ")";
+        return "[D]" + super.toString() + " (by: " + this.getFormattedDateTime() + ")";
     }
 }
