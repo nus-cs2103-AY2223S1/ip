@@ -14,8 +14,8 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        String formattedStartDateTime = this.startDateTime.format(DateTimeFormatter.ofPattern("MMM dd uuuu, HHmm").withResolverStyle(ResolverStyle.STRICT.STRICT));
-        String formattedEndDateTime = this.endDateTime.format(DateTimeFormatter.ofPattern("MMM dd uuuu, HHmm").withResolverStyle(ResolverStyle.STRICT.STRICT));
+        String formattedStartDateTime = this.startDateTime.format(DateTimeFormatter.ofPattern("MMM dd uuuu, HHmm").withResolverStyle(ResolverStyle.STRICT));
+        String formattedEndDateTime = this.endDateTime.format(DateTimeFormatter.ofPattern("MMM dd uuuu, HHmm").withResolverStyle(ResolverStyle.STRICT));
         return String.format("[E] %s (at: %s to %s)", super.toString(), formattedStartDateTime, formattedEndDateTime);
     }
 }

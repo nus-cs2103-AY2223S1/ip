@@ -1,6 +1,6 @@
 public class Task {
+    private final String taskDescription;
     private boolean isComplete = false; // Initialized to false by default
-    private String taskDescription;
 
     public Task(String taskDescription) {
         this.taskDescription = taskDescription;
@@ -15,7 +15,7 @@ public class Task {
     }
 
     public void setIsComplete(boolean completedStatus) {
-       this.isComplete = completedStatus;
+        this.isComplete = completedStatus;
     }
 
     @Override
