@@ -1,5 +1,8 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalTime;
 
 public class Duke {
     private static ArrayList<Task> TaskList = new ArrayList<>();
@@ -58,10 +61,21 @@ public class Duke {
                     }
             } else if (command.trim().startsWith("deadline")) {
                 int end = command.indexOf('/');
-                String name = command.substring(9, end );
-                String date = command.substring(end + 4);
-                Deadline deadline = new Deadline(name,date);
-                addTask(deadline);
+                String name = command.substring(9, end);
+                try {
+                    String dateTime = command.substring(end + 4);
+                    // an array containing a date and time respectively
+                    String[] arrOfStr = dateTime.split(" ");
+                    LocalDate date = LocalDate.parse(arrOfStr[0]);
+                    LocalTime time = LocalTime.of(Integer.parseInt(arrOfStr[1].substring(0,2)),
+                            Integer.parseInt(arrOfStr[1].substring(2)));
+                    Deadline deadline = new Deadline(name, date, time);
+                    addTask(deadline);
+                }
+                catch (Exception e){
+                    System.out.println("Invalid Input for date and time");
+                }
+
             } else if (command.trim().startsWith("event")) {
                 int end = command.indexOf('/');
                 String name = command.substring(6, end );
