@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.Test;
+import task.Deadline;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -12,7 +13,7 @@ public class DeadlineTest {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy hh:mm a");
         LocalDateTime deadlineDateTime = LocalDateTime.parse("Sep 2 2022 06:54 AM", formatter);
         Deadline deadline = new Deadline("", false, deadlineDateTime);
-        assertEquals("", deadline.description);
+        assertEquals("", deadline.getDescription());
     }
 
     @Test
@@ -22,10 +23,10 @@ public class DeadlineTest {
         Deadline deadline = new Deadline("test", false, deadlineDateTime);
 
         deadline.changeIsDone(true);
-        assertEquals(true, deadline.isDone);
+        assertEquals(true, deadline.getIsDone());
 
         deadline.changeIsDone(false);
-        assertEquals(false, deadline.isDone);
+        assertEquals(false, deadline.getIsDone());
     }
 
     @Test
@@ -61,7 +62,7 @@ public class DeadlineTest {
 
         assertEquals("[D][ ]  (by: 2-Sep-2022 06:54 AM)", deadline.toString());
 
-        deadline.description = "Eat food";
+        deadline.setDescription("Eat food");
 
         assertEquals("[D][ ] Eat food (by: 2-Sep-2022 06:54 AM)", deadline.toString());
 

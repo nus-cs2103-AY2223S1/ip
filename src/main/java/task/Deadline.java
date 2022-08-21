@@ -1,9 +1,11 @@
-import java.time.LocalDate;
+package task;
+
+import parser.DateTimeParser;
+
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
-    protected LocalDateTime deadlineDateTime;
+    private LocalDateTime deadlineDateTime;
 
     public Deadline(String description, boolean isDone, LocalDateTime deadlineDateTime) {
         super(description, isDone);

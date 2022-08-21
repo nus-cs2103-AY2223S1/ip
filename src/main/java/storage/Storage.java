@@ -1,3 +1,9 @@
+package storage;
+
+import exception.DukeException;
+import parser.DateTimeParser;
+import task.*;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -80,7 +86,7 @@ public class Storage {
         return str.substring(0, str.length() - 1);
     }
 
-    private Task getTaskFromLine(String line, boolean isDone, String regex) throws DukeException{
+    private Task getTaskFromLine(String line, boolean isDone, String regex) throws DukeException {
         switch (regex) {
         case " \\(at: ":
             String[] splittedEvent = line.substring(7).split(" \\(at: ", 3);

@@ -1,4 +1,10 @@
-import java.util.ArrayList;
+package parser;
+
+import command.Command;
+import command.CommandType;
+import task.TaskList;
+import ui.Ui;
+
 import java.util.Scanner;
 
 public class Parser {
@@ -6,7 +12,7 @@ public class Parser {
     private TaskList tasks;
     private Ui ui;
 
-    Parser(TaskList tasks, Ui ui) {
+    public Parser(TaskList tasks, Ui ui) {
         this.sc = new Scanner(System.in);
         this.tasks = tasks;
         this.ui = ui;

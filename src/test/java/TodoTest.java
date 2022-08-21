@@ -1,11 +1,13 @@
 import org.junit.jupiter.api.Test;
+import task.Todo;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TodoTest {
     @Test
     public void testEmptyDescription() {
         Todo todo = new Todo("", false);
-        assertEquals("", todo.description);
+        assertEquals("", todo.getDescription());
     }
 
     @Test
@@ -13,10 +15,10 @@ public class TodoTest {
         Todo todo = new Todo("test", false);
 
         todo.changeIsDone(true);
-        assertEquals(true, todo.isDone);
+        assertEquals(true, todo.getIsDone());
 
         todo.changeIsDone(false);
-        assertEquals(false, todo.isDone);
+        assertEquals(false, todo.getIsDone());
     }
 
     @Test
@@ -48,7 +50,7 @@ public class TodoTest {
 
         assertEquals("[T][ ] ", todo.toString());
 
-        todo.description = "Eat food";
+        todo.setDescription("Eat food") ;
 
         assertEquals("[T][ ] Eat food", todo.toString());
 

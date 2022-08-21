@@ -1,6 +1,8 @@
+package task;
+
 public class Task {
-    protected String description;
-    protected boolean isDone;
+    private String description;
+    private boolean isDone;
 
     public Task(String description, boolean isDone) {
         this.description = description;
@@ -21,6 +23,18 @@ public class Task {
 
     public void changeIsDone(boolean newIsDone){
         this.isDone = newIsDone;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String newDescription) {
+        this.description = newDescription;
+    }
+
+    public boolean getIsDone() {
+        return this.isDone;
     }
 
     @Override

@@ -1,8 +1,11 @@
+package task;
+
+import parser.DateTimeParser;
+
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class Event extends Task {
-    protected LocalDateTime eventDateTime;
+    private LocalDateTime eventDateTime;
     public Event(String description, boolean isDone, LocalDateTime eventDateTime) {
         super(description, isDone);
         this.eventDateTime = eventDateTime;

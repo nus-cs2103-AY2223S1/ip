@@ -1,6 +1,8 @@
+package exception;
+
 public class DukeException extends Exception {
     private String message;
-    DukeException(String message) {
+    public DukeException(String message) {
         super(message);
         this.message = message;
     }

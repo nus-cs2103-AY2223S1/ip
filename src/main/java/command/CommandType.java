@@ -1,3 +1,5 @@
+package command;
+
 public enum CommandType {
     BYE,
     LIST,

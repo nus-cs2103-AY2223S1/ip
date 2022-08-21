@@ -1,8 +1,13 @@
-import java.io.PrintStream;
+package command;
+
+import exception.DukeException;
+import parser.DateTimeParser;
+import task.*;
+import ui.Ui;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 
 public class Command {
 
@@ -11,7 +16,7 @@ public class Command {
     private String input;
     private Ui ui;
 
-    Command(CommandType commandType, TaskList tasks, String input, Ui ui) {
+    public Command(CommandType commandType, TaskList tasks, String input, Ui ui) {
         this.commandType = commandType;
         this.tasks = tasks;
         this.input = input;
