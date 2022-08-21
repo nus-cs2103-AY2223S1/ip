@@ -1,21 +1,20 @@
 package duke;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 class ParserTest {
 
     @Test
-    void parseInput_unknownInput_InvalidInputExceptionThrown() {
-        assertThrows(InvalidDukeInputException.class,
-                () -> Parser.parseInput("uselessInfo"));
+    void parseInput_unknownInput_invalidInputExceptionThrown() {
+        assertThrows(InvalidDukeInputException.class, () -> Parser.parseInput("uselessInfo"));
     }
 
     @Test
-    void parseInput_forbiddenCharacter_BannedExceptionThrown() {
-        assertThrows(BannedDukeCharacterException.class,
-                () -> Parser.parseInput("Something with | in it"));
+    void parseInput_forbiddenCharacter_bannedExceptionThrown() {
+        assertThrows(BannedDukeCharacterException.class, () -> Parser.parseInput("Something with | in it"));
     }
 
     @Test

@@ -33,6 +33,12 @@ public class TaskList {
         tasks.add(task);
     }
 
+    /**
+     * Returns an ArrayList of Tasks that contains the inputted string.
+     *
+     * @param s The string to be compared with.
+     * @return An ArrayList of Tasks that contains the inputted string.
+     */
     public ArrayList<Task> find(String s) {
         ArrayList<Task> result = new ArrayList<>();
         for (Task task : tasks) {

@@ -49,6 +49,11 @@ public class Ui {
         printMessage(enumerateTasks(tasks, reply));
     }
 
+    /**
+     * Prints the list of tasks that matches a certain requirement in Duke.
+     *
+     * @param tasks A list of tasks stored that matches a certain requirement.
+     */
     public void listFoundTasks(ArrayList<Task> tasks) {
         String reply = "Here are the matching tasks in your list:";
         printMessage(enumerateTasks(tasks, reply));
