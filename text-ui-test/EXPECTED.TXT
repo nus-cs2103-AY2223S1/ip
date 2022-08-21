@@ -10,23 +10,21 @@
 	____________________________________________________________
 	____________________________________________________________
 	Nice! I've marked this task as done:
-	  [D][X] return book (by: June 6th)
+	  [D][X] return book (by: Jun 30 2000)
 	____________________________________________________________
 	____________________________________________________________
 	Nice! I've marked this task as done:
-	  [E][X] project meeting (at: Aug 6th 2-4pm)
+	  [E][X] project meeting (at: Sep 1 2019)
 	____________________________________________________________
 	____________________________________________________________
 	OK, I've marked this task as not done yet:
-	  [D][ ] return book (by: June 6th)
+	  [D][ ] return book (by: Jun 30 2000)
 	____________________________________________________________
 	____________________________________________________________
 	1.[T][X] read book
-	2.[D][ ] return book (by: June 6th)
-	3.[E][X] project meeting (at: Aug 6th 2-4pm)
+	2.[D][ ] return book (by: Jun 30 2000)
+	3.[E][X] project meeting (at: Sep 1 2019)
 	4.[T][X] join sports club
-	5.[T][ ] test
-	6.[T][ ] test
 	____________________________________________________________
 	____________________________________________________________
 	Please enter the task number to mark!

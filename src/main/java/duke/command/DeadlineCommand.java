@@ -1,10 +1,16 @@
+package duke.command;
+
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
+
 import java.time.LocalDate;
 
-public class EventCommand extends Command{
+public class DeadlineCommand extends Command{
     private String description;
     private LocalDate date;
 
-    public EventCommand(String description, LocalDate date) {
+    public DeadlineCommand(String description, LocalDate date) {
         super(false);
         this.description = description;
         this.date = date;
@@ -12,7 +18,7 @@ public class EventCommand extends Command{
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-        tasks.addEvent(description, date);
+        tasks.addDeadline(description, date);
         int size = tasks.getSize();
         ui.showAdd(tasks.getTask(size - 1), size);
         storage.save(tasks.saveToStorage());
