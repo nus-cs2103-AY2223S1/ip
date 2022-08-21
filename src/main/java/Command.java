@@ -29,7 +29,7 @@ public class Command {
      * @return A Command object
      */
     public static Command parse(String str) {
-        String[] splitBySlash = str.split("/");
+        String[] splitBySlash = str.split("(?<=\\s)/");
         List<String> args = new ArrayList<>(List.of(splitBySlash[0].split(" ")));
 
         Map<String, String> kwargs = new HashMap<>();
