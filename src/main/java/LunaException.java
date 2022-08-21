@@ -1,8 +1,8 @@
-public class DukeException extends Exception {
+public class LunaException extends Exception {
     private String message;
     private static String sep = "\n✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨\n";
 
-    public DukeException(String message) {
+    public LunaException(String message) {
         this.message = message;
     }
 

@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class Duke {
+public class Luna {
     private static String sep = "\n✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨\n";
     private static Scanner sc;
 
@@ -47,20 +47,20 @@ public class Duke {
                     unmark(cmd);
                 } else if (cmd.startsWith("todo")) {
                     if (cmd.length() <= 5) {
-                        throw new DukeException("Please enter a task to do 🌷");
+                        throw new LunaException("Please enter a task to do 🌷");
                     }
                     Task curr = new Todo(cmd.substring(5));
 //                    print(curr);
                 } else if (cmd.startsWith("deadline")) {
                     if (cmd.length() <= 9) {
-                        throw new DukeException("Please enter a task and deadline 🌷");
+                        throw new LunaException("Please enter a task and deadline 🌷");
                     }
                     String[] cmds = cmd.split(" /by ");
                     Task curr = new Deadline(cmds[0], cmds[1]);
 //                    print(curr);
                 } else if (cmd.startsWith("event")) {
                     if (cmd.length() <= 6) {
-                        throw new DukeException("Please enter an event and date 🌷");
+                        throw new LunaException("Please enter an event and date 🌷");
                     }
                     String[] cmds = cmd.split(" /at ");
                     Task curr = new Event(cmds[0], cmds[1]);
@@ -69,9 +69,9 @@ public class Duke {
                     delete(cmd);
                 }
                 else if (!cmd.equals("bye")) {
-                    throw new DukeException("I'm not sure what that means 🥀");
+                    throw new LunaException("I'm not sure what that means 🥀");
                 }
-            } catch (DukeException e) {
+            } catch (LunaException e) {
                 System.out.println(e);
             }
             cmd = sc.nextLine();
