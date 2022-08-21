@@ -4,17 +4,29 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/** Represents a Storage object used for file operations such as read and write. */
 public class Storage {
+    /** File path of the text file used for storage. */
     private final String filePath;
 
+    /**
+     * Returns a Storage object.
+     *
+     * @param filePath File path of the text file used for storage.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Reads from the text file in the file path specified. <br><br>
+     * Creates the relevant Task objects based on the symbols.
+     *
+     * @return An ArrayList of Task objects.
+     */
     public ArrayList<Task> readFromFile() {
         ArrayList<Task> taskArrayList = new ArrayList<>();
 
@@ -91,6 +103,12 @@ public class Storage {
         return taskArrayList;
     }
 
+    /**
+     * Saves the current TaskList into the file path specified by the user.
+     *
+     * @param taskArrayList ArrayList of Task objects.
+     * @throws SkylarkException If an exception is thrown while performing file operations.
+     */
     public void saveToFile(ArrayList<Task> taskArrayList) throws SkylarkException {
         try {
             File file = new File(this.filePath);
