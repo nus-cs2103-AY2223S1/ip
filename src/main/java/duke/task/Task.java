@@ -1,3 +1,7 @@
+package duke.task;
+
+import duke.Parser;
+
 import java.time.LocalDateTime;
 
 public class Task {

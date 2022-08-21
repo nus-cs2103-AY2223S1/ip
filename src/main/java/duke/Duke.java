@@ -1,15 +1,16 @@
-import java.io.*;
-import java.nio.file.Paths;
-import java.time.DateTimeException;
-import java.util.List;
-import java.util.Scanner;
-import java.util.ArrayList;
+package duke;
 
-import java.nio.file.Path;
+import duke.command.Command;
+import duke.exception.DukeException;
+import duke.task.TaskList;
+
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 
 public class Duke {
-    private Ui ui;
-    private Storage storage;
+    private final Ui ui;
+    private final Storage storage;
     private TaskList tasks;
     
     public Duke(String pathString) {
@@ -31,7 +32,7 @@ public class Duke {
 
         boolean isExit = false;
 
-        while (!isExit && scanner.hasNext()) {
+        while (!isExit) {
             try {
                 this.ui.showPrompt();
                 String fullCommand = scanner.nextLine();

@@ -1,3 +1,8 @@
+package duke;
+
+import duke.task.Task;
+import duke.task.TaskList;
+
 public class Ui {
     public void showWelcome() {
         String logo = " ____        _        \n"
