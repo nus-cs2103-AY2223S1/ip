@@ -5,11 +5,23 @@ import duke.TaskList;
 import duke.task.Deadline;
 import duke.Ui;
 
+/**
+ * Command to execute adding a Deadline to a TaskList
+ * @author Nephelite
+ * @version 0.1
+ */
 public class DeadlineCommand extends Command {
     private String command;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Constructor of a DeadlineCommand
+     * @param command
+     * @param tasks TaskList Duke is using
+     * @param ui Ui Duke is using
+     * @since 0.1
+     */
     public DeadlineCommand(String command, TaskList tasks, Ui ui) {
         this.command = command;
         this.tasks = tasks;

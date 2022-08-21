@@ -11,34 +11,48 @@ import duke.command.MarkCommand;
 import duke.command.ToDoCommand;
 import duke.command.UnmarkCommand;
 
+/**
+ * Contains a single static method to read user inputs
+ * @author Nephelite
+ * @version
+ */
 public class Parser {
+    /**
+     * Static method to read a String command and return the corresponding Command object
+     * @param command in String form
+     * @param tasks the TaskList Duke is using
+     * @param ui the Ui Duke is using
+     * @return a Command that corresponds to the input String command
+     * @throws DukeException
+     * @since 0.1
+     */
     public static Command inputCommand(String command, TaskList tasks, Ui ui) throws DukeException {
         String[] returnedArray = command.split(" ");
         if (returnedArray.length == 0 || returnedArray[0] == null || returnedArray[0].equals("")) {
             throw new DukeException("Sorry, I am a bit hard of hearing.\nCould you please repeat yourself?"
                     + "\nIf unsure, please use duke.command [help] for the list of commands that I understand.");
         } else {
-            Command.Commands word = Command.checkEnums(returnedArray[0]);
+            Command.RecognisedCommand word = Command.checkEnums(returnedArray[0]);
             switch (word) {
-            case bye:
+            case BYE:
                 return new ExitCommand();
-            case list:
+            case LIST:
                 return new ListCommand(tasks, ui);
-            case help:
+            case HELP:
                 return new HelpCommand();
-            case mark:
+            case MARK:
                 return new MarkCommand(returnedArray, tasks, ui);
-            case unmark:
+            case UNMARK:
                 return new UnmarkCommand(returnedArray, tasks, ui);
-            case delete:
+            case DELETE:
                 return new DeleteCommand(returnedArray, tasks, ui);
-            case todo:
+            case TODO:
                 return new ToDoCommand(command, tasks, ui);
-            case deadline:
+            case DEADLINE:
                 return new DeadlineCommand(command, tasks, ui);
-            case event:
+            case EVENT:
                 return new EventCommand(command, tasks, ui);
-            case invalid: //Notice the control flow still reaches here even if [invalid] is input
+            case INVALID: //Notice the control flow still reaches here even if [invalid] is input
                 throw new DukeException("I don't understand your duke.command.\nCould you please repeat yourself?"
                         + "\nIf unsure, please use duke.command [help] for the list of commands that I understand.");
             default:

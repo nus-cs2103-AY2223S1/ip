@@ -1,14 +1,20 @@
 package duke.task;
 
+/**
+ * A Task
+ * @author Nephelite
+ * @version 0.1
+ */
 public abstract class Task {
     private final String task;
     private boolean isDone;
 
-    public Task(String task) {
-        this.task = task;
-        this.isDone = false;
-    }
-
+    /**
+     * Constructor for a Task
+     * @param task the task
+     * @param prefix the type of Event
+     * @since 0.1
+     */
     public Task(String task, String prefix) {
         String[] returnedArray = task.split(" ");
         String removedPrefix = "";

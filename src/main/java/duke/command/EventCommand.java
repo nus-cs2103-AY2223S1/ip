@@ -5,11 +5,23 @@ import duke.TaskList;
 import duke.task.Event;
 import duke.Ui;
 
+/**
+ * Command to execute adding an Event to a TaskList
+ * @author Nephelite
+ * @version 0.1
+ */
 public class EventCommand extends Command {
     private String command;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Constructor for an EventCommand
+     * @param command the command
+     * @param tasks TaskList Duke is using
+     * @param ui Ui Duke is using
+     * @since 0.1
+     */
     public EventCommand(String command, TaskList tasks, Ui ui) {
         this.command = command;
         this.tasks = tasks;
