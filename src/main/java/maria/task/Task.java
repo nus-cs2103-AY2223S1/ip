@@ -3,29 +3,29 @@ package maria.task;
 public abstract class Task {
 
     private final String name;
-    private boolean done;
+    private boolean isDone;
 
-    public Task(String name, boolean done) throws TaskNoNameException {
+    public Task(String name, boolean isDone) throws TaskNoNameException {
 
         if (name.isEmpty()) {
             throw new TaskNoNameException("The name for a task cannot be empty.");
         }
 
         this.name = name;
-        this.done = done;
+        this.isDone = isDone;
     }
 
     public void setDone(boolean done) {
-        this.done = done;
+        this.isDone = done;
     }
 
     @Override
     public String toString() {
-        return "[" + (this.done ? "X" : " ") + "] " + this.name;
+        return "[" + (this.isDone ? "X" : " ") + "] " + this.name;
     }
 
     public String toStorageString() {
-        return this.name + "|||" + this.done;
+        return this.name + "|||" + this.isDone;
     }
 
 }

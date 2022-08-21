@@ -9,8 +9,9 @@ public class TaskEvent extends Task{
     private LocalDate startTime;
     private LocalDate endTime;
 
-    public TaskEvent(String name, boolean done, LocalDate startTime, LocalDate endTime) throws TaskNoNameException {
-        super(name, done);
+    public TaskEvent(String name, boolean isDone, LocalDate startTime, LocalDate endTime)
+            throws TaskNoNameException {
+        super(name, isDone);
         this.startTime = startTime;
         this.endTime = endTime;
     }

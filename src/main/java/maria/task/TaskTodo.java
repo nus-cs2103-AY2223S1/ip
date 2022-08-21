@@ -2,8 +2,8 @@ package maria.task;
 
 public class TaskTodo extends Task{
 
-    public TaskTodo(String name, boolean done) throws TaskNoNameException {
-        super(name, done);
+    public TaskTodo(String name, boolean isDone) throws TaskNoNameException {
+        super(name, isDone);
     }
 
     @Override

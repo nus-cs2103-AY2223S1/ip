@@ -8,8 +8,8 @@ public class TaskDeadline extends Task{
 
     private LocalDate deadline;
 
-    public TaskDeadline(String name, boolean done, LocalDate deadline) throws TaskNoNameException {
-        super(name, done);
+    public TaskDeadline(String name, boolean isDone, LocalDate deadline) throws TaskNoNameException {
+        super(name, isDone);
         this.deadline = deadline;
     }
 
