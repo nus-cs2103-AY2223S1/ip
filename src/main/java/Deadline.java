@@ -10,9 +10,9 @@ public class Deadline extends Task {
 
     protected LocalDate by;
 
-    public Deadline(String description, LocalDate by) {
+    public Deadline(String description, String by) {
         super(description);
-        this.by = by;
+        this.by = LocalDate.parse(by);
     }
 
     /**
@@ -25,4 +25,9 @@ public class Deadline extends Task {
         return "[D]" + super.toString() + " (by: " +
                 by.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
     }
+
+    public String toFile() {
+        return "[D]" + super.toString() + " (by: " + by + ")";
+    }
+
 }

@@ -1,0 +1,4 @@
+[T][X] eat pasta
+[E][X] sports day (at: my house)
+[D][X] uptown drive (by: 2020-10-20)
+[T][ ] drink
