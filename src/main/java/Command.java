@@ -7,25 +7,25 @@ import java.util.ArrayList;
 public class Command {
 
     private CommandType commandType;
-    private ArrayList<Task> tasks;
+    private TaskList tasks;
     private String input;
 
-    Command(CommandType commandType, ArrayList<Task> tasks, String input) {
+    Command(CommandType commandType, TaskList tasks, String input) {
         this.commandType = commandType;
         this.tasks = tasks;
         this.input = input;
     }
 
     private void printTaskCountMessage() {
-        System.out.printf("Boss, you got %s tasks now\n", this.tasks.size());
+        System.out.printf("Boss, you got %s tasks now\n", this.tasks.getSize());
     }
 
     private void printStoredInputs() {
-        int numberOfTasks = this.tasks.size();
+        int numberOfTasks = this.tasks.getSize();
         if (numberOfTasks > 0) {
             System.out.println("Boss ah, this one your tasks:");
             for (int i = 0; i < numberOfTasks; i++) {
-                System.out.println(i + 1 + ". " + tasks.get(i));
+                System.out.println(i + 1 + ". " + tasks.taskStringAtIndex(i));
             }
             this.printTaskCountMessage();
         } else if (numberOfTasks == 0) {
@@ -43,7 +43,7 @@ public class Command {
     }
 
     private boolean hasTaskIndex(int taskIndex) {
-        return taskIndex - 1 < this.tasks.size() && taskIndex - 1 >= 0;
+        return taskIndex - 1 < this.tasks.getSize() && taskIndex - 1 >= 0;
     }
 
     public void run() throws DukeException {
@@ -148,8 +148,8 @@ public class Command {
                 if (!hasTaskIndex(taskIndex)) {
                     throw new DukeException("Eh, you got that task number meh?");
                 } else {
-                    Task deletedTask = tasks.remove(taskIndex - 1);
-                    System.out.printf("Okay boss, this task I delete le:\n%s\n", deletedTask);
+                    tasks.remove(taskIndex - 1);
+                    System.out.printf("Okay boss, this task I delete le:\n%s\n", tasks.taskStringAtIndex(taskIndex - 1));
                 }
             }
             catch (NumberFormatException e) {

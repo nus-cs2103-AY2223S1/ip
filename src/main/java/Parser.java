@@ -3,9 +3,9 @@ import java.util.Scanner;
 
 public class Parser {
     private Scanner sc;
-    private ArrayList<Task> tasks;
+    private TaskList tasks;
 
-    Parser(Scanner sc, ArrayList<Task> tasks) {
+    Parser(Scanner sc, TaskList tasks) {
         this.sc = sc;
         this.tasks = tasks;
     }

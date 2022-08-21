@@ -120,10 +120,11 @@ public class Storage {
         return Files.exists(savedTasksPath);
     }
 
-    private String generateTasksToAdd(ArrayList<Task> tasks) {
+    private String generateTasksToAdd(TaskList tasks) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (Task task : tasks) {
-            stringBuilder.append(task.toString() + System.lineSeparator());
+        int tasksSize = tasks.getSize();
+        for (int i = 0; i < tasksSize; i++) {
+            stringBuilder.append(tasks.taskStringAtIndex(i) + System.lineSeparator());
         }
         return stringBuilder.toString();
     }
@@ -133,7 +134,7 @@ public class Storage {
         return path.toAbsolutePath().toString();
     }
 
-    public void writeToFile(ArrayList<Task> tasks) throws DukeException {
+    public void writeToFile(TaskList tasks) throws DukeException {
         try {
             FileWriter fw = new FileWriter(relativePath());
             fw.write(generateTasksToAdd(tasks));

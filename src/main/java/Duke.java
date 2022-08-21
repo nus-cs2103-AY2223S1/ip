@@ -1,12 +1,12 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 public class Duke {
-    private ArrayList<Task> tasks;
     private Storage storage;
+    private TaskList tasks;
 
     public Duke(String folderPath, String filename) {
         storage = new Storage(folderPath, filename);
-        tasks = new ArrayList<Task>();
+        tasks = new TaskList();
     }
 
     private void startChatBot() {
@@ -14,7 +14,7 @@ public class Duke {
             Scanner sc = new Scanner(System.in);
             System.out.print("Eh hello, my name is Uncle Cheong. \n" +
                     "What you want?\n");
-            tasks = storage.readSavedTasks();
+            tasks = new TaskList(storage.readSavedTasks());
             Parser parser = new Parser(sc, tasks);
             parser.parseInputs();
             storage.writeToFile(tasks);
