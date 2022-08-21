@@ -1,3 +1,6 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Class to represent a parser.
  */
@@ -6,6 +9,7 @@ public class Parser {
     private enum Commands {
         BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE
     }
+    private final static DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     private static UI ui = new UI();
 
     /**
@@ -43,7 +47,7 @@ public class Parser {
      * @throws NoCommandException
      */
     public static Task addTask(String chat, TaskList tasklist) throws NoDescriptionException, NoCommandException,
-            NoTimeException {
+            NoTimeException, WrongTimeFormatException {
 
         Commands command = Parser.Commands.valueOf(chat.toUpperCase().split(" ")[0]);
         if (chat.split(" ").length != 1) {
@@ -60,8 +64,12 @@ public class Parser {
                     if (subString_deadline.split(" /by ").length == 1) {
                         throw new NoTimeException(command.name());
                     } else {
-                        return new Deadline(chat.substring(9).split(" /by ")[0], false,
-                                chat.substring(9).split(" /by ")[1]);
+                        try {
+                            return new Deadline(subString_deadline.split(" /by ")[0], false,
+                                    LocalDateTime.parse(subString_deadline.split(" /by ")[1], timeFormat));
+                        } catch (Exception e ) {
+                            throw new WrongTimeFormatException();
+                        }
                     }
 
                 case EVENT:
@@ -69,8 +77,12 @@ public class Parser {
                     if (subString_event.split(" /at ").length == 1) {
                         throw new NoTimeException(command.name());
                     } else {
-                        return new Event(chat.substring(6).split(" /at ")[0], false,
-                                chat.substring(6).split(" /at ")[1]);
+                        try{
+                            return new Event(subString_event.split(" /at ")[0], false,
+                                    LocalDateTime.parse(subString_event.split(" /at ")[1], timeFormat));
+                        } catch (Exception e) {
+                            throw new WrongTimeFormatException();
+                        }
                     }
 
                 default:
@@ -157,7 +169,7 @@ public class Parser {
 
             }
 
-        } catch (NoDescriptionException | NoCommandException | NoTimeException  e) {
+        } catch (NoDescriptionException | NoCommandException | NoTimeException | WrongTimeFormatException e) {
             e.printStackTrace();
             return null;
         }

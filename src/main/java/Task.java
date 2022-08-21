@@ -2,8 +2,8 @@
  * Class to represent the tasks.
  */
 public abstract class Task {
-    private String description;
-    private Boolean isDone;
+    protected String description;
+    protected Boolean isDone;
     protected Boolean isBye;
 
     /**
