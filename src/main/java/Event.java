@@ -1,11 +1,13 @@
+import java.time.format.DateTimeFormatter;
+
 public class Event extends Task {
 
-    /** Date of Event */
-    protected String at;
+    /** Event date of the task */
+    private String date;
 
-    public Event(String description, String at) {
+    public Event(String description, String at) throws DukeException {
         super(description);
-        this.at = at;
+        this.date = getDate(at).format(DateTimeFormatter.ofPattern("dd MM yyyy HH:mm a"));
     }
 
     /**
@@ -15,7 +17,6 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + at + ")";
+        return "[E]" + super.toString() + " (at: " + date + ")";
     }
-
 }

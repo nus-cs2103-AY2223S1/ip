@@ -1,20 +1,23 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.IOException;
+import java.io.FileWriter;
 
 public class Duke {
 
     /** ArrayList of type Task */
     private static ArrayList<Task> taskArray = new ArrayList<>();
 
-    public static void main(String[] args) throws MultipleTasksException, NullTaskException, InvalidCommandException {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("____________________________________________________________\n"
-                + " Hello! I'm Duke\n"
-                + " What can I do for you?\n"
-                + "____________________________________________________________");
+    public static void main(String[] args) throws DukeException{
         try {
-            while (sc.hasNextLine()) {
-                String strInput = sc.nextLine();
+            FileWriter fw = new FileWriter("data/duke.txt");
+            Scanner sc = new Scanner(System.in);
+            System.out.println("____________________________________________________________\n"
+                    + " Hello! I'm Duke\n"
+                    + " What can I do for you?\n"
+                    + "____________________________________________________________");
+            String strInput = sc.nextLine();
+            while (!strInput.equals("bye")) {
                 if ((strInput.equalsIgnoreCase("list"))) {
                     System.out.println("____________________________________________________________\n"
                             + " Here are the tasks in your list:"
@@ -41,28 +44,47 @@ public class Duke {
                 } else if (strInput.contains("mark") && strInput.substring(0,4).equals("mark")) {
                     markTheTask(Integer.parseInt(strInput.substring(5)));
                 } else {
-                    throw new InvalidCommandException("Cannot recognise the command.");
+                    throw new DukeException("Cannot recognise the command.");
                 }
+                strInput = sc.nextLine();
             }
-        } catch (MultipleTasksException e) {
-            System.out.println(e.toString());
-        } catch (NullTaskException e) {
-            System.out.println(e.toString());
-        } catch (InvalidCommandException e) {
-            System.out.println(e.toString());
+            updateFile(fw);
+        } catch (DukeException e) {
+            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
+    private static void updateFile(FileWriter fw) throws IOException {
+        try {
+            String s = "";
+            for (int i = 0; i < taskArray.size(); i++) {
+                Task task = taskArray.get(i);
+                s += task.toString().substring(1,2);
+                if (task.isDone) {
+                    s += " | 1 | ";
+                } else {
+                    s += " | 0 | ";
+                }
+                s += task.description + "\n";
+                fw.write(s);
+            }
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     /**
      * Checks if there is task description.
      *
      * @param description task description.
      * @param typeOfTask todo, deadline, or event.
-     * @throws NullTaskException if there is no task description.
+     * @throws DukeException if there is no task description.
      */
-    public static void checkForNullTask(String description, String typeOfTask) throws NullTaskException {
+    public static void checkForNullTask(String description, String typeOfTask) throws DukeException {
         if (description.isBlank()) {
-            throw new NullTaskException("No task description.", typeOfTask);
+            throw new DukeException("There must be a task description for " + typeOfTask);
         }
     }
 
@@ -70,11 +92,11 @@ public class Duke {
      * Checks if there are multiple tasks in one input.
      *
      * @param s user input.
-     * @throws MultipleTasksException if there are multiple tasks in one input.
+     * @throws DukeException if there are multiple tasks in one input.
      */
-    public static void checkForMultipleTasks(String s) throws MultipleTasksException {
+    public static void checkForMultipleTasks(String s) throws DukeException {
         if (s.contains("todo") ||s.contains("deadline") || s.contains("event")) {
-            throw new MultipleTasksException("Multiple task detected.");
+            throw new DukeException("Multiple task detected.");
         }
     }
 
