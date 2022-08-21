@@ -14,14 +14,18 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
         intro();
         while (!end) {
-            String line = sc.nextLine();
-            output(line);
+            try {
+                String line = sc.nextLine();
+                output(line);
+            } catch (DukeException e) {
+                printException(e);
+            }
         }
         sc.close();
         exit();
     }
 
-    private void output(String s) {
+    private void output(String s) throws DukeException {
         if (s.equals("bye")) {
             this.end = true;
         } else if (s.equals("list")) {
@@ -42,7 +46,7 @@ public class Duke {
             String[] eDes = s.replace("event", "").split(" /at ");
             addList(new Event(eDes[0], eDes[1]));
         } else {
-            addList(new Task(s));
+            throw new DukeException("I'm sorry, but I don't know what that means :-(");
         }
     }
 
@@ -106,6 +110,12 @@ public class Duke {
         printLine();
         print("OK, I've marked this task as not done yet:");
         print("  " + t.toString());
+        printLine();
+    }
+
+    private void printException(Exception e) {
+        printLine();
+        print(e.getMessage());
         printLine();
     }
 
