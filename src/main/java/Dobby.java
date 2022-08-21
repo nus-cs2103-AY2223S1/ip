@@ -198,45 +198,47 @@ public class Dobby {
     private static void dobbyStart() throws IOException {
         DobbyChat.sayHello();
         DobbyIO.load(dobbyList);
-        while(true) {
-            String command = scanner.nextLine();
 
-            if(command.equals("bye") || command.equals("end") || command.equals("quit")) {
-                DobbyIO.save(dobbyList);
-                DobbyChat.sayBye();
-                break;
-            } else if(command.equals("list")) {
-                toList(command);
-            } else if(command.startsWith("mark")) {
-                if(command.contains("all")) {
-                    toMark();
-                } else {
-                    toMark(command);
-                }
-            } else if(command.startsWith("unmark")) {
-                if(command.contains("all")) {
-                    toUnmark();
-                } else {
-                    toUnmark(command);
-                }
-            } else if(command.startsWith("delete") || command.startsWith("remove")) {
-//                delete all feature to be added
+//        //to be removed, changed to new method
+//        while(true) {
+//            String command = scanner.nextLine();
+//
+//            if(command.equals("bye") || command.equals("end") || command.equals("quit")) {
+//                DobbyIO.save(dobbyList);
+//                DobbyChat.sayBye();
+//                break;
+//            } else if(command.equals("list")) {
+//                toList(command);
+//            } else if(command.startsWith("mark")) {
 //                if(command.contains("all")) {
-//                    toDelete();
+//                    toMark();
 //                } else {
-//                    toDelete(command);
+//                    toMark(command);
 //                }
-                toDelete(command);
-            } else if(command.startsWith("todo")) {
-                toAddTodo(command);
-            } else if(command.startsWith("deadline")) {
-                toAddDeadline(command);
-            } else if(command.startsWith("event")) {
-                toAddEvent(command);
-            } else {
-                DobbyChat.unknown();
-            }
-        }
+//            } else if(command.startsWith("unmark")) {
+//                if(command.contains("all")) {
+//                    toUnmark();
+//                } else {
+//                    toUnmark(command);
+//                }
+//            } else if(command.startsWith("delete") || command.startsWith("remove")) {
+////                delete all feature to be added
+////                if(command.contains("all")) {
+////                    toDelete();
+////                } else {
+////                    toDelete(command);
+////                }
+//                toDelete(command);
+//            } else if(command.startsWith("todo")) {
+//                toAddTodo(command);
+//            } else if(command.startsWith("deadline")) {
+//                toAddDeadline(command);
+//            } else if(command.startsWith("event")) {
+//                toAddEvent(command);
+//            } else {
+//                DobbyChat.unknown();
+//            }
+//        }
     }
 
     public static void main(String[] args) throws IOException {
