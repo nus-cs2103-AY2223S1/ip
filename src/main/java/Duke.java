@@ -98,18 +98,24 @@ public class Duke {
                 throw new DanException("Please provide me a description for your todo item");
             }
             tasks.add(new ToDo(description));
+
         } else if (input.startsWith("deadline")) {
             String[] temp = input.replace("deadline","").strip().split("/by");
             if (temp.length != 2) { throw new DanException("Please follow the following format:\n deadline <description> /by <due date>");}
+
             description = temp[0].strip();
             dateString = temp[1].strip();
+
             if (description.isEmpty()) {throw new DanException("Please provide me a description for your deadline");}
             tasks.add(new Deadline(description, dateString));
+
         } else if (input.startsWith("event")) {
             String[] temp = input.replace("event", "").strip().split("/at");
             if (temp.length != 2) { throw new DanException("Please follow the following format:\n event <description> /at <time/date>");}
+
             description = temp[0].strip();
             dateString = temp[1].strip();
+            
             if (description.isEmpty()) {throw new DanException("Please provide me a description for your event");}
             tasks.add(new Event(description, dateString));
         }
