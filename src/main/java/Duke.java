@@ -7,7 +7,7 @@ public class Duke {
     private boolean end;
 
     public Duke() {
-        this.tasks = new TaskList();
+        this.tasks = new TaskList(Storage.read());
         this.end = false;
     }
 

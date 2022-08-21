@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Storage {
     private static final String FILENAME = "SaveData.txt";
 
-    public static void Save(ArrayList<Task> array) {
+    public static void save(ArrayList<Task> array) {
         try {
             FileOutputStream writeData = new FileOutputStream(FILENAME);
             ObjectOutputStream writeStream = new ObjectOutputStream(writeData);
@@ -17,7 +17,7 @@ public class Storage {
         }
     }
 
-    public static ArrayList<Task> Read() {
+    public static ArrayList<Task> read() {
         try {
             FileInputStream readData = new FileInputStream(FILENAME);
             ObjectInputStream readStream = new ObjectInputStream(readData);

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 public class TaskList {
     private ArrayList<Task> tasks;
 
-    public TaskList() {
-        this.tasks = Storage.Read();
+    public TaskList(ArrayList<Task> input) {
+        this.tasks = input;
     }
 
     public void list() {
@@ -22,7 +22,7 @@ public class TaskList {
                 currTask = new Todo(item);
                 tasks.add(currTask);
                 Ui.addTask("todo", currTask, tasks.size());
-                Storage.Save(tasks);
+                Storage.save(tasks);
                 break;
             case "deadline":
                 args = item.split("/by ");
@@ -30,7 +30,7 @@ public class TaskList {
                     currTask = new Deadline(args[0], args[1]);
                     tasks.add(currTask);
                     Ui.addTask("deadline", currTask, tasks.size());
-                    Storage.Save(tasks);
+                    Storage.save(tasks);
                 } catch (ArrayIndexOutOfBoundsException e) {
                     throw new DukeMissingInputException(type);
                 } catch (DateTimeParseException e) {
@@ -43,7 +43,7 @@ public class TaskList {
                     currTask = new Event(args[0], args[1]);
                     tasks.add(currTask);
                     Ui.addTask("event", currTask, tasks.size());
-                    Storage.Save(tasks);
+                    Storage.save(tasks);
                 } catch (ArrayIndexOutOfBoundsException e) {
                     throw new DukeMissingInputException(type);
                 } catch (DateTimeParseException e) {
@@ -66,7 +66,7 @@ public class TaskList {
         }
         Task currTask = tasks.remove(index);
         Ui.deleteTask(currTask, tasks.size());
-        Storage.Save(tasks);
+        Storage.save(tasks);
     }
 
     // breaks if no input is entered after mark, or input isn't int, or index out of range
@@ -83,6 +83,6 @@ public class TaskList {
         Task currTask = tasks.get(index);
         currTask.completeToggle();
         Ui.toggleTask(currTask);
-        Storage.Save(tasks);
+        Storage.save(tasks);
     }
 }
