@@ -1,12 +1,12 @@
 package duke;
 
-import duke.task.Task;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import duke.task.Task;
+
 public class StorageStub implements StorageInterface {
-    public List<Task> tasks;
+    private List<Task> tasks;
 
     public StorageStub(List<Task> tasks) {
         this.tasks = new ArrayList<>(tasks);
@@ -22,5 +22,9 @@ public class StorageStub implements StorageInterface {
 
     public void updateLine(int lineIndex, String updatedLine) throws DukeException {
 
+    }
+
+    public List<Task> getTasks() {
+        return this.tasks;
     }
 }

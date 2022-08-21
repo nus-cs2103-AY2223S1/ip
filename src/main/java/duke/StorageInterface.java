@@ -1,8 +1,8 @@
 package duke;
 
-import duke.task.Task;
-
 import java.util.List;
+
+import duke.task.Task;
 
 public interface StorageInterface {
 

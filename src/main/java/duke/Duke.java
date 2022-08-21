@@ -49,7 +49,7 @@ public class Duke {
 
     /**
      * Main function for the chatbot.
-     * 
+     *
      * @param args
      *            System arguments. Not used for this program.
      */
