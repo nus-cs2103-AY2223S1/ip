@@ -1,10 +1,20 @@
+package dwuke.task;
+
+import dwuke.DwukeException;
+
 /**
  * This class encapsulates a to-do set by the user.
  */
 public class Todo extends Task {
     public static final char SYMBOL = 'T';
 
-    Todo(String description) throws DwukeException {
+    /**
+     * Creates a new To-do with the given description.
+     *
+     * @param description The description for the To-do.
+     * @throws DwukeException If the description is empty.
+     */
+    public Todo(String description) throws DwukeException {
         super(description);
     }
 

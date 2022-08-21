@@ -1,3 +1,7 @@
+package dwuke.task;
+
+import dwuke.DwukeException;
+
 /**
  * This class encapsulates a task set by the user.
  */

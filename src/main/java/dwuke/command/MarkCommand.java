@@ -1,3 +1,9 @@
+package dwuke.command;
+
+import dwuke.task.Task;
+import dwuke.task.TaskList;
+import dwuke.DwukeException;
+
 /**
  * This class encapsulates a mark command from the user.
  */
@@ -6,7 +12,14 @@ public class MarkCommand extends Command {
     private TaskList taskList;
     private int pos;
 
-    MarkCommand(TaskList taskList, int pos) throws DwukeException {
+    /**
+     * Creates a MarkCommand with the given TaskList and position.
+     *
+     * @param taskList The TaskList.
+     * @param pos The position.
+     * @throws DwukeException If the position is not in the TaskList.
+     */
+    public MarkCommand(TaskList taskList, int pos) throws DwukeException {
         if (pos < 0 || pos > taskList.size() - 1) {
             throw new DwukeException("da wist doesn't have a task with da number :3");
         }

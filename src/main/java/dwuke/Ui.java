@@ -1,3 +1,5 @@
+package dwuke;
+
 import java.util.Scanner;
 
 /**

@@ -1,3 +1,5 @@
+package dwuke.command;
+
 /**
  * This class encapsulates an exit command from the user.
  */

@@ -1,3 +1,7 @@
+package dwuke.command;
+
+import dwuke.task.TaskList;
+
 /**
  * This class encapsulates a list command from the user.
  */
@@ -5,7 +9,12 @@ public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
     private TaskList taskList;
 
-    ListCommand(TaskList taskList) {
+    /**
+     * Creates a ListCommand with the given TaskList.
+     *
+     * @param taskList The TaskList.
+     */
+    public ListCommand(TaskList taskList) {
         this.taskList = taskList;
     }
 

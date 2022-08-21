@@ -1,10 +1,17 @@
+package dwuke.command;
+
 /**
  * This class encapsulates an invalid command from the user.
  */
 public class InvalidCommand extends Command {
     private String message;
 
-    InvalidCommand(String message) {
+    /**
+     * Creates an InvalidCommand with the given message.
+     *
+     * @param message The message.
+     */
+    public InvalidCommand(String message) {
         this.message = message;
     }
 

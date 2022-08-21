@@ -1,4 +1,9 @@
+package dwuke.task;
+
+import java.time.DateTimeException;
 import java.time.LocalDate;
+import dwuke.Date;
+import dwuke.DwukeException;
 
 /**
  * This class encapsulates an event set by the user.
@@ -7,14 +12,29 @@ public class Event extends Task {
     public static final char SYMBOL = 'E';
     private LocalDate date;
 
-    Event(String description, String date) throws DwukeException {
+    /**
+     * Creates a new Event with the given description and date.
+     *
+     * @param description The description for the Event.
+     * @param date The date for the Event.
+     * @throws DwukeException If the description is empty, or if the format of the given date is wrong.
+     */
+    public Event(String description, String date) throws DwukeException {
         super(description, false);
-        this.date = Date.parse(date);
+        try {
+            this.date = Date.parse(date);
+        } catch (DateTimeException e) {
+            throw new DwukeException("dats not a pwopew date");
+        }
     }
 
     Event(String description, boolean isDone, String date) throws DwukeException {
         super(description, isDone);
-        this.date = Date.parse(date);
+        try {
+            this.date = Date.parse(date);
+        } catch (DateTimeException e) {
+            throw new DwukeException("dats not a pwopew date");
+        }
     }
 
     /**
@@ -22,7 +42,7 @@ public class Event extends Task {
      *
      * @param s The String to decode.
      * @return The Event decoded from the String.
-     * @throws DwukeException If the String is empty.
+     * @throws DwukeException If the String is empty, or if the format of the date in the String is wrong.
      */
     public static Event decode(String s) throws DwukeException {
         String[] parts = s.split(";");

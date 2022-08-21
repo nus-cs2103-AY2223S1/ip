@@ -1,5 +1,8 @@
+package dwuke.task;
+
 import java.util.List;
 import java.util.ArrayList;
+import dwuke.DwukeException;
 
 /**
  * Stores a list of tasks entered by the user.
@@ -7,7 +10,11 @@ import java.util.ArrayList;
 public class TaskList {
     private final List<Task> tasks;
 
-    TaskList() {
+    /**
+     * Creates a new empty TaskList
+     *
+     */
+    public TaskList() {
         tasks = new ArrayList<>();
     }
 
@@ -78,10 +85,11 @@ public class TaskList {
     }
 
     /**
-     * Returns a decoded TaskList, to be used by Duke.
+     * Returns a decoded TaskList, to be used by Dwuke.
      *
      * @param encodedTasks the encoded text used to store the TaskList.
      * @return a TaskList based on the encoded text.
+     * @throws DwukeException If the text is empty, or if the format of the date(s) in the text is wrong.
      */
     public static TaskList decode(List<String> encodedTasks) throws DwukeException {
         TaskList decodedTasks = new TaskList();

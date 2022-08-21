@@ -1,3 +1,5 @@
+package dwuke.command;
+
 /**
  * This class encapsulates a command from the user.
  */
