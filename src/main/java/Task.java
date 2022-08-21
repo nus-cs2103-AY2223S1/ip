@@ -19,10 +19,10 @@ public abstract class Task implements Serializable {
     @Override
     public String toString() {
         if (completed) {
-            return "[X]" + item;
+            return "[X] " + item;
         }
 
-        return "[ ]" + item;
+        return "[ ] " + item;
     }
 
 }
