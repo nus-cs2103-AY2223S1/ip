@@ -63,7 +63,7 @@ public class DobbyChat {
     public static void noTaskNumber() {
         printChat("You need to tell Dobby the task number...");
     }
-    public static void noTask() {
+    public static void noTaskDesc() {
         printChat("You need to tell Dobby the task you wish to add...");
     }
     public static void noNumber() {

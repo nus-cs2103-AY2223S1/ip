@@ -5,6 +5,10 @@ public class Task {
         this.description = description;
         this.isDone = false;
     }
+    public Task(String desc, boolean isDone) {
+        this.description = desc;
+        this.isDone = isDone;
+    }
     public String getStatusIcon() {
         return (isDone ? "X" : " ");
     }
@@ -14,7 +18,7 @@ public class Task {
     public void unmark() {
         isDone = false;
     }
-    public Boolean isMarked() {
+    public Boolean isDone() {
         return isDone;
     }
     public String toPrint() {

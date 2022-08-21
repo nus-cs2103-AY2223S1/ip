@@ -8,180 +8,195 @@ public class Dobby {
     private static Scanner scanner = new Scanner(System.in);
     private static DobbyList dobbyList = new DobbyList();
 
-    private static String getDate(String s, String task) throws DateTimeParseException {
-        String dateFormatted = "";
-        try {
-            int i = s.indexOf(task == "deadline" ? "/by" : "/at");
-            if (i == -1) {
-                return "noDate";
-            }
-            String dateString = s.substring(i + 4);
-            DateTimeFormatter form = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
-            LocalDateTime date = LocalDateTime.parse(dateString, form);
-            dateFormatted = date.format(DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm"));
-            return dateFormatted;
-        } catch (DateTimeParseException e) {
-            DobbyChat.wrongDateFormat();
-        }
-        return "wrongDateFormat";
-    }
-    private static String getTask(String s, String task) {
+//    //DONE
+//    private static String getDate(String s, String task) throws DateTimeParseException {
+//        String dateFormatted = "";
+//        try {
+//            int i = s.indexOf(task == "deadline" ? "/by" : "/at");
+//            if (i == -1) {
+//                return "noDate";
+//            }
+//            String dateString = s.substring(i + 4);
+//            DateTimeFormatter form = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+//            LocalDateTime date = LocalDateTime.parse(dateString, form);
+//            dateFormatted = date.format(DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm"));
+//            return dateFormatted;
+//        } catch (DateTimeParseException e) {
+//            DobbyChat.wrongDateFormat();
+//        }
+//        return "wrongDateFormat";
+//    }
 
-        if(task == "todo") {
-            return s.substring(5);
-        } else {
-            int startIndex = task.length() + 1;
-            int endIndex = s.indexOf("/");
+//    //DONE
+//    private static String getTask(String s, String task) {
+//
+//        if(task == "todo") {
+//            return s.substring(5);
+//        } else {
+//            int startIndex = task.length() + 1;
+//            int endIndex = s.indexOf("/");
+//
+//            return s.substring(startIndex, endIndex);
+//        }
+//    }
 
-            return s.substring(startIndex, endIndex);
-        }
-    }
+//    //DONE
+//    private static void toList(String s) {
+//        if (dobbyList.isEmpty()) {
+//            DobbyChat.listEmpty();
+//        } else {
+//            DobbyChat.echo(dobbyList.toString());
+//        }
+//    }
 
-    private static void toList(String s) {
-        if (dobbyList.isEmpty()) {
-            DobbyChat.listEmpty();
-        } else {
-            DobbyChat.echo(dobbyList.toString());
-        }
-    }
-    private static void toMark(String s) {
-        try {
-            int toMark = Integer.parseInt(s.substring(5));
-            if(toMark <= 0) {
-                DobbyChat.wrongTaskNumber();
-            } else if(dobbyList.getTask(toMark).isMarked()) {
-                DobbyChat.alreadyMarked();
-            } else {
-                dobbyList.mark(toMark);
-                DobbyChat.marked(dobbyList.getTaskString(toMark - 1));
-            }
-        } catch(StringIndexOutOfBoundsException e) {
-            DobbyChat.noTaskNumber();
-        } catch(NumberFormatException e) {
-            DobbyChat.noNumber();
-        } catch(IndexOutOfBoundsException e) {
-            DobbyChat.tooLittleTasks();
-        }
-    }
-    private static void toMark() {
-        int listLen = dobbyList.getLength();
-        for(int i = 1; i <= listLen; i++) {
-            dobbyList.mark(i);
-        }
-        DobbyChat.allMarked();
-    }
-    private static void toUnmark(String s) {
-        try {
-            int toUnmark = Integer.parseInt(s.substring(7));
-            if(toUnmark <= 0) {
-                DobbyChat.wrongTaskNumber();
-            } else if(!(dobbyList.getTask(toUnmark).isMarked())) {
-                DobbyChat.alreadyUnmarked();
-            }else {
-                dobbyList.unmark(toUnmark);
-                DobbyChat.unmarked(dobbyList.getTaskString(toUnmark - 1));
-            }
-        } catch(StringIndexOutOfBoundsException e) {
-            DobbyChat.noTaskNumber();
-        } catch(NumberFormatException e) {
-            DobbyChat.noNumber();
-        } catch(IndexOutOfBoundsException e) {
-            DobbyChat.tooLittleTasks();
-        }
+//    //DONE
+//    private static void toMark(String s) {
+//        try {
+//            int toMark = Integer.parseInt(s.substring(5));
+//            if(toMark <= 0) {
+//                DobbyChat.wrongTaskNumber();
+//            } else if(dobbyList.getTask(toMark).isMarked()) {
+//                DobbyChat.alreadyMarked();
+//            } else {
+//                dobbyList.mark(toMark);
+//                DobbyChat.marked(dobbyList.getTaskString(toMark - 1));
+//            }
+//        } catch(StringIndexOutOfBoundsException e) {
+//            DobbyChat.noTaskNumber();
+//        } catch(NumberFormatException e) {
+//            DobbyChat.noNumber();
+//        } catch(IndexOutOfBoundsException e) {
+//            DobbyChat.tooLittleTasks();
+//        }
+//    }
+//    private static void toMark() {
+//        int listLen = dobbyList.getLength();
+//        for(int i = 1; i <= listLen; i++) {
+//            dobbyList.mark(i);
+//        }
+//        DobbyChat.allMarked();
+//    }
 
-    }
-    private static void toUnmark() {
-        int listLen = dobbyList.getLength();
-        for(int i = 1; i <= listLen; i++) {
-            dobbyList.unmark(i);
-        }
-        DobbyChat.allUnmarked();
-    }
-    private static void toDelete(String s) {
-        try {
-            int toDelete = Integer.parseInt(s.substring(7));
-            if(dobbyList.getLength() == 0) {
-                DobbyChat.noTaskToDelete();
-            } else if(toDelete > dobbyList.getLength()) {
-                DobbyChat.tooLittleTasks();
-            } else if(toDelete <= 0) {
-                DobbyChat.wrongTaskNumber();
-            } else {
-                DobbyChat.deleted(dobbyList.getTask(toDelete), dobbyList);
-                dobbyList.delete(toDelete);
-            }
-        } catch(StringIndexOutOfBoundsException e) {
-            DobbyChat.noTaskNumber();
-        } catch(NumberFormatException e) {
-            DobbyChat.noNumber();
-        }
-    }
-    //    //delete all feature to be added
+//    //done
+//    private static void toUnmark(String s) {
+//        try {
+//            int toUnmark = Integer.parseInt(s.substring(7));
+//            if(toUnmark <= 0) {
+//                DobbyChat.wrongTaskNumber();
+//            } else if(!(dobbyList.getTask(toUnmark).isDone())) {
+//                DobbyChat.alreadyUnmarked();
+//            }else {
+//                dobbyList.unmark(toUnmark);
+//                DobbyChat.unmarked(dobbyList.getTaskString(toUnmark - 1));
+//            }
+//        } catch(StringIndexOutOfBoundsException e) {
+//            DobbyChat.noTaskNumber();
+//        } catch(NumberFormatException e) {
+//            DobbyChat.noNumber();
+//        } catch(IndexOutOfBoundsException e) {
+//            DobbyChat.tooLittleTasks();
+//        }
+//
+//    }
+//    private static void toUnmark() {
+//        int listLen = dobbyList.getLength();
+//        for(int i = 1; i <= listLen; i++) {
+//            dobbyList.unmark(i);
+//        }
+//        DobbyChat.allUnmarked();
+//    }
+
+//    //DONE
+//    private static void toDelete(String s) {
+//        try {
+//            int toDelete = Integer.parseInt(s.substring(7));
+//            if(dobbyList.getLength() == 0) {
+//                DobbyChat.noTaskToDelete();
+//            } else if(toDelete > dobbyList.getLength()) {
+//                DobbyChat.tooLittleTasks();
+//            } else if(toDelete <= 0) {
+//                DobbyChat.wrongTaskNumber();
+//            } else {
+//                DobbyChat.deleted(dobbyList.getTask(toDelete), dobbyList);
+//                dobbyList.delete(toDelete);
+//            }
+//        } catch(StringIndexOutOfBoundsException e) {
+//            DobbyChat.noTaskNumber();
+//        } catch(NumberFormatException e) {
+//            DobbyChat.noNumber();
+//        }
+//    }
+//    //delete all feature to be added
 //    private static void toDelete() {
 //        int listLen = dobbyList.getLength();
 //        for(int i  = 1; i <= listLen; i++) {
 //            dobbyList.delete(i);
 //        }
 //    }
-    private static void toAddTodo(String s) {
-        try {
-            String task = getTask(s, "todo");
-            Todo newTodo = new Todo(task);
 
-            if(task.isBlank()) {
-                DobbyChat.noTask();
-            } else {
-                dobbyList.add(newTodo);
-                DobbyChat.added(newTodo, dobbyList);
-            }
-        } catch(StringIndexOutOfBoundsException e) {
-            DobbyChat.noTask();
-        }
-    }
-    private static void toAddDeadline(String s) {
-        try {
-            String task = getTask(s, "deadline");
-            String date = getDate(s, "deadline");
-            Deadline newDeadline = new Deadline(task, date);
+//    //DONE
+//    private static void toAddTodo(String s) {
+//        try {
+//            String task = getTask(s, "todo");
+//            Todo newTodo = new Todo(task);
+//
+//            if(task.isBlank()) {
+//                DobbyChat.noTaskDesc();
+//            } else {
+//                dobbyList.add(newTodo);
+//                DobbyChat.added(newTodo, dobbyList);
+//            }
+//        } catch(StringIndexOutOfBoundsException e) {
+//            DobbyChat.noTaskDesc();
+//        }
+//    }
+//    private static void toAddDeadline(String s) {
+//        try {
+//            String task = getTask(s, "deadline");
+//            String date = getDate(s, "deadline");
+//            Deadline newDeadline = new Deadline(task, date);
+//
+//            if(task.isBlank()) {
+//                DobbyChat.noTaskDesc();
+//            } else if(date == "wrongDateFormat") {
+//
+//            }else if(date == "noDate") {
+//                DobbyChat.noDeadlineDate();
+//            }  else {
+//                dobbyList.add(newDeadline);
+//                DobbyChat.added(newDeadline, dobbyList);
+//            }
+//            //only when there is no space behind "deadline", else is handled above
+//        } catch(StringIndexOutOfBoundsException e) {
+//            DobbyChat.noTaskDesc();
+//        }
+//    }
 
-            if(task.isBlank()) {
-                DobbyChat.noTask();
-            } else if(date == "wrongDateFormat") {
-
-            }else if(date == "noDate") {
-                DobbyChat.noDeadlineDate();
-            }  else {
-                dobbyList.add(newDeadline);
-                DobbyChat.added(newDeadline, dobbyList);
-            }
-            //only when there is no space behind "deadline", else is handled above
-        } catch(StringIndexOutOfBoundsException e) {
-            DobbyChat.noTask();
-        }
-    }
-    private static void toAddEvent(String s) {
-        try {
-            String task = getTask(s, "event");
-            String date = getDate(s, "event");
-            Event newEvent = new Event(task, date);
-
-            if(task.isEmpty()) {
-                DobbyChat.noTask();
-            } else if(date == "wrongDateFormat") {
-
-            } else if(date == "noDate") {
-                DobbyChat.noEventDate();
-            } else {
-                dobbyList.add(newEvent);
-                DobbyChat.added(newEvent, dobbyList);
-            }
-            //only when there is no space behind "deadline", else is handled above
-        } catch(StringIndexOutOfBoundsException e) {
-            DobbyChat.noTask();
-        }
-    }
+//    //solve getDate (solved)
+//    private static void toAddEvent(String s) {
+//        try {
+//            String task = getTask(s, "event");
+//            String date = getDate(s, "event");
+//            Event newEvent = new Event(task, date);
+//
+//            if(task.isEmpty()) {
+//                DobbyChat.noTaskDesc();
+//            } else if(date == "wrongDateFormat") {
+//
+//            } else if(date == "noDate") {
+//                DobbyChat.noEventDate();
+//            } else {
+//                dobbyList.add(newEvent);
+//                DobbyChat.added(newEvent, dobbyList);
+//            }
+//            //only when there is no space behind "deadline", else is handled above
+//        } catch(StringIndexOutOfBoundsException e) {
+//            DobbyChat.noTaskDesc();
+//        }
+//    }
 
     private static void dobbyStart() throws IOException {
+        DobbyChat.sayHello();
         DobbyIO.load(dobbyList);
         while(true) {
             String command = scanner.nextLine();
@@ -225,9 +240,6 @@ public class Dobby {
     }
 
     public static void main(String[] args) throws IOException {
-
-        DobbyChat.sayHello();
         dobbyStart();
-
     }
 }

@@ -4,11 +4,6 @@ import java.util.List;
 public class DobbyList {
     private static List<Task> dobbyList = new ArrayList<>();
 
-    //old add function without task differentiation, no longer used
-    public void add(String s) {
-        Task newTask = new Task(s);
-        dobbyList.add(newTask);
-    }
     public void add(Task newTask) {
         dobbyList.add(newTask);
     }
@@ -21,6 +16,8 @@ public class DobbyList {
     public void delete(int toDelete) {
         dobbyList.remove(toDelete - 1);
     }
+
+    //TODO Update methods to use parser
     public void addTask(String string) {
         String s = string.substring(5);
         boolean isDone = s.charAt(0) == 'X';
@@ -37,42 +34,37 @@ public class DobbyList {
             DobbyChat.wrongTaskFormat();
         }
     }
-    public void addTodo(String string, boolean isDone) {
-        Todo newTodo = new Todo(string);
 
-        if(isDone) {
-            newTodo.mark();
-            dobbyList.add(newTodo);
-        } else {
-            dobbyList.add(newTodo);
-        }
+    //to be updated then deleted
+    public void addTodo(String desc, boolean isDone) {
+        Todo newTodo = new Todo(desc, isDone);
+        dobbyList.add(newTodo);
     }
+    //to be updated then deleted
     public void addDeadline(String string, boolean isDone) {
         int endIndex = string.indexOf("|") - 2;
         String task = string.substring(0, endIndex);
         String date = string.substring(endIndex + 4);
-        Deadline newDeadline = new Deadline(task, date);
-
-        if(isDone) {
-            newDeadline.mark();
-            dobbyList.add(newDeadline);
-        } else {
-            dobbyList.add(newDeadline);
-        }
+        Deadline newDeadline = new Deadline(task, date, isDone);
     }
+    //to be updated then deleted
     public void addEvent(String string, boolean isDone) {
         int endIndex = string.indexOf("|") - 2;
         String task = string.substring(0, endIndex);
         String date = string.substring(endIndex + 4);
-        Event newEvent = new Event(task, date);
-
-        if(isDone) {
-            newEvent.mark();
-            dobbyList.add(newEvent);
-        } else {
-            dobbyList.add(newEvent);
-        }
+        Event newEvent = new Event(task, date, isDone);
     }
+
+//    //DONE
+//    public void addDeadline(String desc, String date, boolean isDone) {
+//        Deadline newDeadline = new Deadline(desc, date, isDone);
+//        dobbyList.add(newDeadline);
+//    }
+//    public void addEvent(String desc, String date, boolean isDone) {
+//        Event newEvent = new Event(desc, date, isDone);
+//        dobbyList.add(newEvent);
+//    }
+
     @Override
     public String toString() {
         String dobbyListString = "";
@@ -97,12 +89,6 @@ public class DobbyList {
         }
     }
     public String getTaskString(int i) {
-/*      Old method of getting individual task in string form
-
-        String task = dobbyList.get(i).toString();
-        String status = dobbyList.get(i).getStatusIcon();
-        return "\t[" + status + "] " + task;
- */
         return dobbyList.get(i).toString();
     }
     public Task getTask(int i) {
