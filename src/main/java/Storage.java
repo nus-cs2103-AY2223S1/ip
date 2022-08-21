@@ -2,7 +2,7 @@ import java.io.*;
 
 import java.util.ArrayList;
 
-public class SaveManager {
+public class Storage {
     private static final String FILENAME = "SaveData.txt";
 
     public static void Save(ArrayList<Task> array) {

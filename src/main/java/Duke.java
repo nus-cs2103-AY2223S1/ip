@@ -8,7 +8,7 @@ public class Duke {
     private boolean end;
 
     public Duke() {
-        this.tasks = SaveManager.Read();
+        this.tasks = Storage.Read();
         this.end = false;
     }
 
@@ -112,7 +112,7 @@ public class Duke {
                         + "  " + currTask + "\n"
                         + "Number of tasks in list: " + tasks.size() + "\n"
                         + DIVIDER);
-                SaveManager.Save(tasks);
+                Storage.Save(tasks);
                 break;
             case "deadline":
                 args = item.split("/by ");
@@ -123,7 +123,7 @@ public class Duke {
                             + "  " + currTask + "\n"
                             + "Number of tasks in list: " + tasks.size() + "\n"
                             + DIVIDER);
-                    SaveManager.Save(tasks);
+                    Storage.Save(tasks);
                 } catch (ArrayIndexOutOfBoundsException e) {
                     throw new DukeMissingInputException(type);
                 } catch (DateTimeParseException e) {
@@ -139,7 +139,7 @@ public class Duke {
                             + "  " + currTask + "\n"
                             + "Number of tasks in list: " + tasks.size() + "\n"
                             + "\n" + DIVIDER);
-                    SaveManager.Save(tasks);
+                    Storage.Save(tasks);
                 } catch (ArrayIndexOutOfBoundsException e) {
                     throw new DukeMissingInputException(type);
                 } catch (DateTimeParseException e) {
@@ -165,7 +165,7 @@ public class Duke {
                     + "  " + currTask + "\n"
                     + "Number of tasks in list: " + tasks.size() + "\n"
                     + DIVIDER);
-        SaveManager.Save(tasks);
+        Storage.Save(tasks);
     }
 
     // breaks if no input is entered after mark, or input isn't int, or index out of range
@@ -187,7 +187,7 @@ public class Duke {
             System.out.println(DIVIDER + "OK, I've marked this task as not done yet:\n"
                     + "  " + currTask + "\n" + DIVIDER);
         }
-        SaveManager.Save(tasks);
+        Storage.Save(tasks);
     }
 
     public static void main(String[] args) {

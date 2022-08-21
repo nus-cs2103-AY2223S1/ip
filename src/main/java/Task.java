@@ -16,6 +16,10 @@ public abstract class Task implements Serializable {
         return this.completed;
     }
 
+    public boolean isCompleted() {
+        return this.completed;
+    }
+
     @Override
     public String toString() {
         if (completed) {
