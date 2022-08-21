@@ -1,7 +1,5 @@
 public class Todo extends Task {
 
-    protected String by;
-
     public Todo(String description) throws DukeException {
         super(description);
         if (description.isBlank()) {

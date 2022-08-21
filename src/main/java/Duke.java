@@ -1,3 +1,6 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -28,7 +31,7 @@ public class Duke {
             try {
                 String line = sc.nextLine();
                 output(line);
-            } catch (DukeException e) {
+            } catch (DukeException | DateTimeParseException e) {
                 printException(e);
             }
         }
@@ -58,11 +61,11 @@ public class Duke {
             break;
         case EVENT:
             String[] eDes = s.replace("event", "").split(" /at ");
-            addList(new Event(eDes[0], eDes[1]));
+            addList(new Event(eDes[0], LocalDate.parse(eDes[1])));
             break;
         case DEADLINE:
             String[] dDes = s.replace("deadline", "").split(" /by ");
-            addList(new Deadline(dDes[0], dDes[1]));
+            addList(new Deadline(dDes[0], LocalDate.parse(dDes[1])));
             break;
         case DELETE:
             int delNum = Integer.parseInt(s.replace("delete ", ""));
