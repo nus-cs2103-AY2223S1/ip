@@ -4,7 +4,6 @@ import handlers.DukeCommand;
 import models.CommandManager;
 import models.DatabaseManager;
 import models.TaskManager;
-import utils.DukeErrorPrinter;
 import utils.DukePrinter;
 
 import java.util.Scanner;
@@ -29,7 +28,7 @@ public class Duke {
         try {
             databaseManager = new DatabaseManager();
         } catch (DukeException e) {
-            DukeErrorPrinter.print(e.getMessage());
+            DukePrinter.print(e.getMessage());
             return;
         }
 
@@ -50,7 +49,7 @@ public class Duke {
             try {
                 commandType = CommandType.valueOf(command.toUpperCase());
             } catch (IllegalArgumentException e) {
-                DukeErrorPrinter.print(Duke.UNKNOWN_COMMAND_ERROR);
+                DukePrinter.print(Duke.UNKNOWN_COMMAND_ERROR);
                 continue;
             }
 
@@ -59,7 +58,7 @@ public class Duke {
                 String status = dukeCommand.execute(taskManager, arguments);
                 DukePrinter.print(status);
             } catch (DukeException e) {
-                DukeErrorPrinter.print(e.getMessage());
+                DukePrinter.print(e.getMessage());
             }
 
             if (commandManager.isTerminatingCommand(commandType)) {
