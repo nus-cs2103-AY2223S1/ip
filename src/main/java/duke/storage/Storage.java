@@ -6,15 +6,30 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Handle load & save user's task list
+ *
+ * @author Pontakorn Prasertsuk
+ */
 public class Storage {
 
   private final String filePath;
 
+  /**
+   * Constructs a new Storage instance
+   *
+   * @param filePath the file path to be used
+   */
   public Storage(String filePath) {
     this.filePath = filePath;
   }
 
-  void createFileIfNotExist() throws DukeException {
+  /**
+   * Create a new file if it doesn't exist
+   *
+   * @throws DukeException if error occurs
+   */
+  private void createFileIfNotExist() throws DukeException {
     try {
       File file = new File(filePath);
       if (!file.getParentFile().exists()) {
@@ -28,6 +43,12 @@ public class Storage {
     }
   }
 
+  /**
+   * Load the task list from the file
+   *
+   * @return the task list
+   * @throws DukeException if error occurs
+   */
   public List<Task> load() throws DukeException {
     createFileIfNotExist();
 
@@ -49,6 +70,12 @@ public class Storage {
     }
   }
 
+  /**
+   * Save the task list to the file
+   *
+   * @param list the task list to be saved
+   * @throws DukeException if error occurs
+   */
   public void save(List<Task> list) throws DukeException {
     createFileIfNotExist();
 

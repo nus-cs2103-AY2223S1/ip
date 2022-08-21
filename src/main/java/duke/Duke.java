@@ -7,15 +7,25 @@ import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/**
+ * Main class of the application
+ *
+ * @author Pontakorn Prasertsuk
+ */
 public class Duke {
 
   private static final String FILE_PATH = "data/tasks.txt";
 
-  private Ui ui;
-  private Storage storage;
+  private final Ui ui;
+  private final Storage storage;
   private TaskList taskList;
 
-  Duke(String filePath) {
+  /**
+   * Constructs a new Duke instance.
+   *
+   * @param filePath the path to the file that stores the tasks
+   */
+  public Duke(String filePath) {
     ui = new Ui();
     storage = new Storage(filePath);
     try {
@@ -26,7 +36,10 @@ public class Duke {
     }
   }
 
-  void run() {
+  /**
+   * Runs the Duke application.
+   */
+  public void run() {
     ui.showGreeting();
     boolean isExit = false;
     while (!isExit) {

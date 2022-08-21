@@ -3,16 +3,33 @@ package duke.task;
 import duke.common.DukeException;
 import java.time.format.DateTimeParseException;
 
+/**
+ * A task for the application
+ *
+ * @author Pontakorn Prasertsuk
+ */
 public abstract class Task {
 
   protected final String title;
   protected boolean status;
 
+  /**
+   * Constructs a new Task instance
+   *
+   * @param title the name of the task
+   * @param status whether the task is completed or not
+   */
   Task(String title, boolean status) {
     this.title = title;
     this.status = status;
   }
 
+  /**
+   * Decode the string from the file
+   *
+   * @param line the string to be decoded
+   * @return the decoded task
+   */
   public static Task decode(String input) throws DukeException {
     String[] inputs = input.trim().split("\\s+\\|\\s+");
 
@@ -34,11 +51,22 @@ public abstract class Task {
     }
   }
 
+  /**
+   * Set task status
+   *
+   * @param status the status to be set
+   * @return the task after changing status
+   */
   Task setStatus(boolean status) {
     this.status = status;
     return this;
   }
 
+  /**
+   * Encode the task for saving into the file
+   *
+   * @return the string to be saved into the file
+   */
   public abstract String encode();
 
   @Override
