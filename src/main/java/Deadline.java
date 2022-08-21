@@ -1,11 +1,13 @@
+import java.time.format.DateTimeFormatter;
+
 public class Deadline extends Task {
 
     /** Deadline date of the task */
-    protected String by;
+    private String date;
 
-    public Deadline(String description, String by) {
+    public Deadline(String description, String by) throws DukeException {
         super(description);
-        this.by = by;
+        this.date = getDate(by).format(DateTimeFormatter.ofPattern("dd MM yyyy HH:mm a"));
     }
 
     /**
@@ -15,7 +17,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by + ")";
+        return "[D]" + super.toString() + " (by: " + date + ")";
     }
-
 }
