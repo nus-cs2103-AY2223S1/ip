@@ -347,6 +347,8 @@ public class Duke {
 
     public static void main(String[] args)  {
         try {
+            File dataDir = new File("data");
+            dataDir.mkdir();
             File newDuke = new File(FILE);
             newDuke.createNewFile();
             addDukeToList(FILE);
