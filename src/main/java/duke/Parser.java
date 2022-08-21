@@ -4,9 +4,9 @@ import java.util.Arrays;
 
 public class Parser {
     private static void fillNullElementsWithEmptyString(String[] arr) {
-        for (String i : arr) {
-            if (i == null) {
-                i = "";
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == null) {
+                arr[i] = "";
             }
         }
     }
