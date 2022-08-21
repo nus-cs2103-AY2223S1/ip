@@ -16,6 +16,11 @@ public class Duke {
     }
 
     public static void main(String[] args) {
+        try {
+            storedTasks = Storage.readFromFile();
+        } catch (DukeException e) {
+            System.out.println(e);
+        }
         System.out.println("Hello! I'm Duke\nWhat can I do for you?");
         while (isRunning) {
             try {
@@ -23,7 +28,11 @@ public class Duke {
                 Command command = Command.strToEnum(inputLine[0]);
                 switch (command) {
                 case BYE:
+                    System.out.println("Saving list...");
+                    Storage.writeToFile(storedTasks);
+                    System.out.println("Done!");
                     System.out.println("Bye! Hope to see you again soon");
+                    sc.close();
                     isRunning = false;
                     break;
                 case LIST:
@@ -77,7 +86,7 @@ public class Duke {
                         if (taskDescription.length() == 0) {
                             throw new DukeException("Exception: Empty task entry.");
                         }
-                        Task task = new Todo(taskDescription);
+                        Task task = new Todo(taskDescription.strip());
                         storedTasks.add(task);
                         System.out.printf("Got it! I stored this task:\n" + task +
                                 "\nNow you have %d tasks in the list.\n", storedTasks.size());
@@ -95,7 +104,7 @@ public class Duke {
                         if (descAndDateTime.length != 2) {
                             throw new DukeException("Exception: No date-time.");
                         }
-                        Task task = new Deadline(descAndDateTime[0], descAndDateTime[1]);
+                        Task task = new Deadline(descAndDateTime[0].strip(), descAndDateTime[1]);
                         storedTasks.add(task);
                         System.out.printf("Got it! I stored this task:\n" + task +
                                 "\nNow you have %d tasks in the list.\n", storedTasks.size());
@@ -113,7 +122,7 @@ public class Duke {
                         if (descAndDateTime.length != 2) {
                             throw new DukeException("Exception: No date-time.");
                         }
-                        Task task = new Event(descAndDateTime[0], descAndDateTime[1]);
+                        Task task = new Event(descAndDateTime[0].strip(), descAndDateTime[1]);
                         storedTasks.add(task);
                         System.out.printf("Got it! I stored this task:\n" + task +
                                 "\nNow you have %d tasks in the list.\n", storedTasks.size());

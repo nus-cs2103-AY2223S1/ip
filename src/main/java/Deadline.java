@@ -6,8 +6,12 @@ public class Deadline extends Task {
         this.dateTime = dateTime;
     }
 
+    public String getDateTime() {
+        return this.dateTime;
+    }
+
     @Override
     public String toString() {
-        return String.format("[%s] %s (by: %s)", super.getTaskIcon(), super.toString(), this.dateTime);
+        return String.format("[%s] %s (by: %s)", super.getTaskIcon(), super.toString(), this.getDateTime());
     }
 }

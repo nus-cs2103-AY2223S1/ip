@@ -9,6 +9,20 @@ public abstract class Task {
         private TaskType(String value) {
             this.value = value;
         }
+
+        public static TaskType parseTaskType(String str) throws DukeException {
+            switch (str) {
+            case "T":
+                return TODO;
+            case "D":
+                return DEADLINE;
+            case "E":
+                return EVENT;
+            default:
+                System.out.println(str);
+                throw new DukeException("Exception: Unknown task type.");
+            }
+        }
     }
     private String description;
     private TaskType type;
@@ -20,13 +34,17 @@ public abstract class Task {
         this.isDone = false;
     }
 
-//    public String getDescription() {
-//        return this.description;
-//    }
-//
-//    public boolean isDone() {
-//        return this.isDone;
-//    }
+    public String getDescription() {
+        return this.description;
+    }
+
+    public TaskType getType() {
+        return this.type;
+    }
+
+    public boolean isDone() {
+        return this.isDone;
+    }
 
     public String getTaskIcon() {
         return type.value;
