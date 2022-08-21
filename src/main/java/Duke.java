@@ -13,15 +13,37 @@ import static java.lang.Integer.parseInt;
 
 public class Duke {
 
-    private static ArrayList<Task> tasks = new ArrayList<>();
+    private Storage storage;
+    private TaskList tasks;
+    private Ui ui;
 
+    private Parser parser;
+
+    public Duke(String filePath) throws IOException {
+        ui = new Ui();
+        storage = new Storage(filePath);
+    }
+
+   // private static ArrayList<Task> tasks = new ArrayList<>();
+
+    public void run() throws DukeException, IOException {
+        ui.showGreetings();
+        tasks = new TaskList(storage.loadFile());
+        boolean isExit = false;
+        while (!isExit) {
+            try {
+                String fullCommand = ui.readCommand();
+                Command c = Parser.parse(fullCommand, tasks);
+                c.execute(tasks, ui, storage);
+                isExit = c.isExit();
+            } catch (DukeException e) {
+                ui.showError(e.getMessage());
+            }
+        }
+    }
     public static void main(String[] args) throws DukeException, IOException, FileNotFoundException {
-        String greetings = "_________________________________________________\nHello! I'm Duke"
-                + "\nWhat can I do for you?\n_________________________________________________";
-        System.out.println(greetings);
-
-        loadFile();
-
+        new Duke("data/duke.txt").run();
+/*
         Scanner sc = new Scanner(System.in);
         String echo = sc.nextLine();
         while (!Objects.equals(echo, "bye")) {
@@ -117,88 +139,8 @@ public class Duke {
             }
             echo = sc.nextLine();
         }
-        System.out.println("_________________________________________________\nBye. Hope to see you again soon!\n"
-                + "_________________________________________________\n");
-        saveFile();
-    }
+        storage.saveFile(tasks);
 
-    public static void saveFile() {
-        String directory = System.getProperty("user.dir") + "/data/";
-        String path = System.getProperty("user.dir") + "/data/duke.txt";
-        File directoryFolder = new File(directory);
-
-        if (!directoryFolder.exists()) {
-            System.out.println("Creating new /data/ directory folder.");
-            directoryFolder.mkdir();
-        }
-
-        try {
-            FileWriter filewriter = new FileWriter(path);
-            for (Task task : tasks) {
-                filewriter.write(task.toString() + "\n");
-            }
-            filewriter.flush();
-            filewriter.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.out.println("Saved successfully!");
-    }
-
-    public static void loadFile() throws IOException {
-        String directory = System.getProperty("user.dir") + "/data/";
-        String path = System.getProperty("user.dir") + "/data/duke.txt";
-        File directoryFolder = new File(directory);
-        File file = new File(path);
-
-        if (!directoryFolder.exists()) {
-            System.out.println("Creating new /data/ directory folder.");
-            directoryFolder.mkdir();
-        }
-
-        if (!file.exists()) {
-            file.createNewFile();
-            System.out.println("Creating new duke.txt file under /data/ directory folder.");
-        }
-
-        try {
-            FileReader filereader = new FileReader(path);
-            BufferedReader bufferedreader = new BufferedReader(filereader);
-            String line;
-            System.out.println("Loaded successfully!");
-            while ((line = bufferedreader.readLine()) != null) {
-                if (line.startsWith("[T]")) {
-                    tasks.add(new ToDo(line.substring(0, 5) + line.substring(7)));
-                    if (line.startsWith("[T][X]")) {
-                        tasks.get(tasks.size() - 1).markAsDone();
-                    }
-                } else if (line.startsWith("[D]")) {
-                    String tempDeadline = "deadline"
-                            + line.substring(line.lastIndexOf("]") + 1, line.lastIndexOf("("))
-                            + "/by " + parseLocalDate(line.substring(line.lastIndexOf(":") + 2, line.lastIndexOf(")")));
-                    tasks.add(new Deadline(tempDeadline));
-                    if (line.startsWith("[D][X]")) {
-                        tasks.get(tasks.size() - 1).markAsDone();
-                    }
-                } else if (line.startsWith("[E]")) {
-                    String tempEvent = "event"
-                            + line.substring(line.lastIndexOf("]") + 1, line.lastIndexOf("("))
-                            + "/at " + parseLocalDate(line.substring(line.lastIndexOf(":") + 2, line.lastIndexOf(")")));
-                    tasks.add(new Event(tempEvent));
-                    if (line.startsWith("[E][X]")) {
-                        tasks.get(tasks.size() - 1).markAsDone();
-                    }
-                }
-            }
-            bufferedreader.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static String parseLocalDate(String string) {
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("MMM dd yyyy");
-        LocalDate localdate = LocalDate.parse(string, format);
-        return localdate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+ */
     }
 }

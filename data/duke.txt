@@ -1,7 +1,3 @@
-[T][ ] ry
-[D][ ] die (by: Sep 09 2019)
-[T][X] cry
-[D][ ] kill soeul (by: May 05 2015)
-[T][X] ur
-[E][ ] crpao (at: Aug 06 2022)
-[D][ ] cry (by: Aug 08 2018)
+[T][ ] cry
+[T][ ] bye tile
+[T][X] ms
