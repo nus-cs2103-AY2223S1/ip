@@ -1,9 +1,10 @@
 import java.util.Scanner;
+
 /**
  * The user interface of Dwuke.
  */
 public class UI {
-    public static final int lineLength = 60;
+    private static final int lineLength = 60;
     private Scanner sc;
 
     UI() {
@@ -45,7 +46,7 @@ public class UI {
      */
     public void showGoodbyeMessage() {
         String line = "-".repeat(lineLength);
-        String goodbyeText = "Bwye. am hope to UwU u soon";
+        String goodbyeText = "bwye. am hope to UwU u soon";
         String indentedText = goodbyeText.replaceAll("(?m)^", "\t");
         System.out.println(line + "\n" + indentedText + "\n" + line);
     }

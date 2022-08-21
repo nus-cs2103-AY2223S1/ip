@@ -1,0 +1,5 @@
+T;0;this
+T;1;that
+E;1;those;mon 2
+D;0;die;wed 5
+D;1;hell;3

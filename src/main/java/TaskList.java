@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.ArrayList;
+
 /**
  * Stores a list of tasks entered by the user.
  */
@@ -50,6 +51,16 @@ public class TaskList {
         Task task = this.tasks.get(pos);
         task.markUndone();
         return task;
+    }
+
+    /**
+     * Returns the task at the specific position in the list.
+     *
+     * @param pos The position of the task in the list.
+     * @return The removed task.
+     */
+    public Task get(int pos) {
+        return this.tasks.get(pos);
     }
 
     /**

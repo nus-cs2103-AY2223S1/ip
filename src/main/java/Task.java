@@ -13,6 +13,14 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    Task(String description, boolean isDone) throws DwukeException {
+        if (description.equals("")) {
+            throw new DwukeException("da descwiption of a twask cannot be empty.");
+        }
+        this.description = description;
+        this.isDone = isDone;
+    }
+
     /**
      * Marks this task as done.
      */
@@ -37,6 +45,15 @@ public abstract class Task {
             throw new DwukeException("da descwiption of a twask cannot be empty.");
         }
         this.description = newDescription;
+    }
+
+    /**
+     * Encodes the Task into a String.
+     *
+     * @return The Task encoded as String.
+     */
+    public String encode() {
+        return (this.isDone ? "1" : "0") + ";" + this.description;
     }
 
     /**

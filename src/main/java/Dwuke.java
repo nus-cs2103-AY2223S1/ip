@@ -3,6 +3,7 @@
  */
 public class Dwuke {
     private UI ui;
+    private Storage storage;
     private TaskList taskList;
 
     /**
@@ -10,7 +11,8 @@ public class Dwuke {
      */
     public Dwuke() {
         this.ui = new UI();
-        this.taskList = new TaskList();
+        this.storage = new Storage();
+        this.taskList = storage.load();
     }
 
     /**
@@ -18,21 +20,25 @@ public class Dwuke {
      */
     public void run() {
         this.start();
-        this.runLoop();
+        this.loop();
         this.stop();
     }
 
     /**
      * Reads the user input and executes it, until the user issues the exit command.
      */
-    public void runLoop() {
+    public void loop() {
         String userInput = this.ui.getUserInput();
         while (true) {
             Command command = Parser.parseInput(userInput, this.taskList);
 
-            if (command instanceof ExitCommand) return;
+            if (command instanceof ExitCommand) {
+                return;
+            }
 
             this.ui.echo(command.execute());
+            this.storage.save(this.taskList);
+
             userInput = this.ui.getUserInput();
         }
     }
