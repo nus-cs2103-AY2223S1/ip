@@ -1,4 +1,12 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+
+
+
 public class Duke {
 
     public static void newTask(ArrayList<Task> lst, String input) throws DukeException {
@@ -33,6 +41,16 @@ public class Duke {
             lst.add(t);
         }
 
+        try {
+            writeToFile(lst);
+
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+
+        } catch (IOException e) {
+            System.out.println("Something went wrong: " + e.getMessage());
+        }
+
         System.out.println("Got it. I've added this task: \n" + lst.get(lst.size()-1) + "\nNow you have " + lst.size() + " tasks in the list.");
     }
 
@@ -53,6 +71,26 @@ public class Duke {
         System.out.println("Noted. I've removed this task: \n" + t + "\nNow you have " + lst.size() + " tasks in the list.");
     }
 
+    private static void writeToFile(ArrayList<Task> lst) throws IOException {
+        String directoryName = "data";
+        File directory = new File(directoryName);
+
+        if (!directory.exists()) {
+            directory.mkdir();
+            System.out.println("created new dir");
+        }
+
+        File file = new File(directoryName + "/duke.txt");
+
+        FileWriter fw = new FileWriter(file.getAbsoluteFile()); // create a FileWriter in append mode
+        String textToAppend = "Here are the tasks in your list: \n";
+        for (int i = 0; i < lst.size(); i++) {
+            String s =  (i + 1) + "." + lst.get(i) + "\n";
+            textToAppend += s;
+        }
+        fw.write(textToAppend);
+        fw.close();
+    }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
