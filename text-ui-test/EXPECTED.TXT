@@ -2,6 +2,10 @@
 Hello I'm Roofus
 What can I do for you?
 ****************************************
+Storage has been cleared :)
+****************************************
+"RANDOM" IS NOT A COMMAND!
+****************************************
 ****************************************
 Got it. I've added this task:
 [T][ ] read book
@@ -9,15 +13,15 @@ Now you have 1 tasks in the list.
 ****************************************
 ****************************************
 Got it. I've added this task:
-[D][ ] return book (by: June 6th)
+[D][ ] return book by: 2022-06-06
 Now you have 2 tasks in the list.
 ****************************************
 ****************************************
-Oops! Your deadline task isn't clear.
+WRONG FORMAT FOR DEADLINE!!
 ****************************************
 ****************************************
 Got it. I've added this task:
-[E][ ] project meeting (at: Aug 6th 2-4pm)
+[E][ ] project meeting at: 2019-09-25
 Now you have 3 tasks in the list.
 ****************************************
 ****************************************
@@ -35,11 +39,11 @@ Nice! I've marked this task as done:
 [T][X] read book
 ****************************************
 ****************************************
-Sorry could not understand you!
+HUH?! DELETE WHAT?
 ****************************************
 ****************************************
 Noted. I've removed this task:
-[E][ ] project meeting (at: Aug 6th 2-4pm)
+[T][ ] join sports club
 Now you have 4 tasks in the list.
 ****************************************
 ****************************************
@@ -47,7 +51,7 @@ OK, I've marked this task as not done yet:
 [T][ ] read book
 ****************************************
 ****************************************
-Hey! It's not even in this list!
+HEY! IT'S NOT EVEN IN THIS LIST!
 ****************************************
 ****************************************
 Nice! I've marked this task as done:
@@ -56,7 +60,7 @@ Nice! I've marked this task as done:
 ****************************************
 Here are the tasks in your list:
 1.[T][ ] read book
-2.[D][ ] return book (by: June 6th)
+2.[D][ ] return book by: 2022-06-06
 3.[T][ ] join sports club
 4.[T][X] borrow book
 ****************************************
