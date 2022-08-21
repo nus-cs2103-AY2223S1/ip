@@ -8,15 +8,32 @@ public abstract class Task {
     }
 
     /**
+     * Sets completion status of this task to true.
+     */
+    public void completeTask() {
+        this.isDone = true;
+    }
+
+    /**
      * Prints the completion status and the description of the task.
      *
      * @return The completion status and description of the task.
      */
     @Override
     public String toString() {
-        String status = isDone ? "X" : " ";
-        String line = String.format("[%s] %s", status, description);
+        String status = this.isDone ? "X" : " ";
+        String line = String.format("[%s] %s", status, this.description);
         return line;
+    }
+
+    /**
+     * Returns the command to be saved in the save file.
+     *
+     * @return The String representing the command of this task.
+     */
+    public String toCommand() {
+        String completionStatus = this.isDone ? "1" : "0";
+        return completionStatus + " | " + this.description;
     }
 
     /**
@@ -28,7 +45,7 @@ public abstract class Task {
             System.out.println("Duke: This task has already been marked as done.");
             return;
         }
-        this.isDone = true;
+        completeTask();
         System.out.println("Duke: Nice! I've marked this task as done:");
         System.out.println(this);
     }
