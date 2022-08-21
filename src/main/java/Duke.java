@@ -123,12 +123,12 @@ public class Duke {
                             + "  " + currTask + "\n"
                             + "Number of tasks in list: " + tasks.size() + "\n"
                             + DIVIDER);
+                    SaveManager.Save(tasks);
                 } catch (ArrayIndexOutOfBoundsException e) {
                     throw new DukeMissingInputException(type);
                 } catch (DateTimeParseException e) {
                     throw new DukeUnknownDateException(type);
                 }
-                SaveManager.Save(tasks);
                 break;
             case "event":
                 args = item.split("/at ");
@@ -139,12 +139,12 @@ public class Duke {
                             + "  " + currTask + "\n"
                             + "Number of tasks in list: " + tasks.size() + "\n"
                             + "\n" + DIVIDER);
+                    SaveManager.Save(tasks);
                 } catch (ArrayIndexOutOfBoundsException e) {
                     throw new DukeMissingInputException(type);
                 } catch (DateTimeParseException e) {
                     throw new DukeUnknownDateException(type);
                 }
-                SaveManager.Save(tasks);
                 break;
         }
     }
