@@ -143,7 +143,7 @@ public abstract class Command {
 
     public static class EventCommand extends Command {
         private static final int argCount = 2;
-        public static final String usage = "event <event description> /at <time>";
+        public static final String usage = "event <event description> /at <date>";
 
         EventCommand(String[] args) {
             super(args, argCount);
@@ -166,7 +166,7 @@ public abstract class Command {
 
     public static class DeadlineCommand extends Command {
         private static final int argCount = 2;
-        public static final String usage = "deadline <task description> /by <time>";
+        public static final String usage = "deadline <task description> /by <date>";
 
         DeadlineCommand(String[] args) {
             super(args, argCount);

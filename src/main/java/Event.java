@@ -1,13 +1,23 @@
+import java.time.LocalDate;
+
 public class Event extends Task {
-    String at;
-    Event(String description, boolean isDone, String at) {
+    private LocalDate at;
+
+    Event(String description, boolean isDone, LocalDate at) {
         super(description, isDone);
         this.at = at;
     }
 
-    Event(String description, String at) {
-        super(description);
-        this.at = at;
+    Event(String description, boolean isDone, String at) throws DukeException {
+        this(description, isDone, Parser.parseDate(at));
+    }
+
+    Event(String description, String at) throws DukeException {
+        this(description, false, Parser.parseDate(at));
+    }
+
+    String getFormattedDateString() {
+        return this.at.format(DATE_FORMATTER);
     }
 
     @Override
@@ -17,6 +27,6 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return String.format("[E]%s (at: %s)", super.toString(), this.at);
+        return "[E]" + super.toString() + " (at: " + this.getFormattedDateString() + ")";
     }
 }

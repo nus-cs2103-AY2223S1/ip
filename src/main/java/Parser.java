@@ -1,4 +1,7 @@
-abstract public class Parser {
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
+public class Parser {
     private static final String DEADLINE_INDICATOR = "\\s*/by\\s*";
     private static final String EVENT_INDICATOR = "\\s*/at\\s*";
 
@@ -67,5 +70,14 @@ abstract public class Parser {
             args[i] = args[i].strip();
         }
         return args;
+    }
+
+    public static LocalDate parseDate(String dateString) throws DukeException {
+        try {
+            return LocalDate.parse(dateString);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Invalid date format, please enter yyyy-mm-dd." +
+                    System.lineSeparator() + "Example: 2022-08-22, 2022-12-02");
+        }
     }
 }
