@@ -2,9 +2,9 @@ public abstract class Task {
     protected String description;
     protected boolean isDone;
 
-    public Task(String description) {
+    public Task(String description, boolean isDone) {
         this.description = description;
-        this.isDone = false;
+        this.isDone = isDone;
     }
 
     public String getStatus() {
@@ -26,4 +26,6 @@ public abstract class Task {
         String icon = this.getStatus();
         return String.format("[%s] %s", icon, this.description);
     }
+
+    public abstract String SaveString();
 }
