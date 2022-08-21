@@ -38,6 +38,13 @@ public class Task {
         return "[" + this.getStatusIcon() + "] " + this.description;
     }
 
+    /**
+     * Returns a LocalDateTime object.
+     *
+     * @param date String of the date with format dd/mm/yyyy 0000.
+     * @return LocalDateTime object.
+     * @throws DukeException
+     */
     public LocalDateTime getDate(String date) throws DukeException {
         if (checkValidDate(date)) {
             return LocalDateTime.of(year, month, day, hours, minutes);
@@ -46,6 +53,13 @@ public class Task {
         }
     }
 
+    /**
+     * Check for String format and validity of date.
+     *
+     * @param date String of the date with format dd/mm/yyyy 0000.
+     * @return boolean. True if is a valid date.
+     * @throws DukeException if invalid date.
+     */
     public boolean checkValidDate(String date) throws DukeException {
             if (date.length() == 15 && date.substring(2, 3).equals("/") && date.substring(5, 6).equals("/")) {
                 this.day = Integer.parseInt(date.substring(0, 2));

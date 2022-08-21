@@ -56,6 +56,12 @@ public class Duke {
         }
     }
 
+    /**
+     * Update the file to write to duke.txt.
+     *
+     * @param fw FileWriter object.
+     * @throws IOException e.
+     */
     private static void updateFile(FileWriter fw) throws IOException {
         try {
             String s = "";
