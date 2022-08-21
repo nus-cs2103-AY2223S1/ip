@@ -3,10 +3,13 @@ import java.util.ArrayList;
 
 public class Duke {
 
+    static Storage storage = new Storage("data/", "save.txt");
+    static ArrayList<Task> aList = new ArrayList<>();
+
+
     public static void chat(){
         Scanner myScan = new Scanner(System.in);
         String s;
-        ArrayList<Task> aList = new ArrayList<>();
 
         while (true) {
 
@@ -16,6 +19,7 @@ public class Duke {
                     System.out.println("----------------------");
                     System.out.println("Bye, hope to see you again!");
                     System.out.println("----------------------");
+                    storage.saveFile(aList);
                     break;
 
                 } else if (s.equals("list")) {
@@ -140,6 +144,7 @@ public class Duke {
         System.out.println("What can i do for you?");
         System.out.println("----------------------");
 
+        storage.loadFile(aList);
         chat();
     }
 }

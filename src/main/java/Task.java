@@ -31,6 +31,12 @@ public class Task {
         }
     }
 
+    public String toSaveData() {
+        int num = isDone ? 1 : 0;
+        return num + " | " + this.description;
+
+    }
+
     @Override
     public String toString() {
         return String.format("[%s] %s", this.getStatusIcon(), this.getDescription());
