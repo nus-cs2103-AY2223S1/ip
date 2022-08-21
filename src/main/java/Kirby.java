@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 /**
@@ -11,8 +12,23 @@ public class Kirby {
         EVENT,
         DEADLINE
     }
-    private ArrayList<Task> Tasks = new ArrayList<>();
-    private int taskCount = 0;
+
+    private ArrayList<Task> Tasks;
+    private int taskCount;
+    private File storeFile;
+
+    public Kirby() throws FileNotFoundException {
+        this.Tasks = new ArrayList<>();
+        // has previously stored
+        if (Save.checkIfCreated()) {
+            this.storeFile = Save.alreadyExist();
+            this.Tasks = Save.readFromFile();
+            assert Tasks != null;
+            this.taskCount = Tasks.size();
+        } else {
+            this.taskCount = 0;
+        }
+    }
 
     private void addTaskCount() {
         taskCount += 1;
@@ -35,8 +51,7 @@ public class Kirby {
     }
 
     private void goodbye() {
-        System.out.println("I loved talking to you ･ω･\n" +
-                "Hope to see you again!");
+        System.out.println("I loved talking to you ･ω･\n" + "Hope to see you again!");
     }
 
     private void showList(ArrayList<Task> Tasks) {
@@ -73,7 +88,7 @@ public class Kirby {
         System.out.println("Okay, I've marked " + currTask + " pending!");
     }
 
-    private void toDo(String inputString, ArrayList<Task> Tasks) throws KirbyMissingArgumentException {
+    private void toDo(String inputString, ArrayList<Task> Tasks) throws KirbyMissingArgumentException, IOException {
         if (inputString.length() <= 5) {
             throw new KirbyMissingArgumentException("todo");
         }
@@ -83,9 +98,14 @@ public class Kirby {
         System.out.println("Added into your bag of fabulous tasks: " + todo);
         addTaskCount();
         printTaskCount();
+        try {
+            Save.writeTask(this.Tasks, this.storeFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void deadline(String inputString, ArrayList<Task> Tasks) throws KirbyMissingArgumentException {
+    private void deadline(String inputString, ArrayList<Task> Tasks) throws KirbyMissingArgumentException, IOException {
         if (!inputString.contains("/by") || inputString.length() - 1 < inputString.indexOf("/by") + 4) {
             throw new KirbyMissingArgumentException("deadline");
         }
@@ -96,9 +116,14 @@ public class Kirby {
         System.out.println("Added into your bag of fabulous tasks: " + deadline);
         addTaskCount();
         printTaskCount();
+        try {
+            Save.writeTask(this.Tasks, this.storeFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void event(String inputString, ArrayList<Task> Tasks) throws KirbyMissingArgumentException {
+    private void event(String inputString, ArrayList<Task> Tasks) throws KirbyMissingArgumentException, IOException {
         if (!inputString.contains("/at") || inputString.length() - 1 < inputString.indexOf("/at") + 4) {
             throw new KirbyMissingArgumentException("event");
         }
@@ -109,6 +134,11 @@ public class Kirby {
         System.out.println("Added into your bag of fabulous tasks: " + event);
         addTaskCount();
         printTaskCount();
+        try {
+            Save.writeTask(this.Tasks, this.storeFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void notDefinedCommand() throws KirbyInvalidCommandException {
@@ -130,19 +160,14 @@ public class Kirby {
         printTaskCount();
     }
 
-    /**
-     * This is the main method to initialise the bot.
-     */
-    public static void main(String[] args) {
-        // Arraylist of Task to store all the tasks added.
+    public static void main(String[] args) throws FileNotFoundException {
         Kirby kirby = new Kirby();
         kirby.welcome();
         Scanner scanner = new Scanner(System.in);
-        // Keep taking in input
         while (scanner.hasNextLine()) {
-                TaskType taskType = null;
                 String inputString = scanner.nextLine();
                 try {
+                    TaskType taskType = null;
                     switch (inputString.split(" ")[0]) {
                     case "todo":
                         taskType = TaskType.TODO;
@@ -156,6 +181,10 @@ public class Kirby {
                     }
 
                     if (taskType != null) {
+                        // no stored file
+                        if (!Save.checkIfCreated()) {
+                            kirby.storeFile = Save.createDataFile();
+                        }
                         switch (taskType) {
                         case TODO:
                             try {
@@ -184,20 +213,18 @@ public class Kirby {
                                 break;
                             }
                         }
+
                     }
 
-                    // Bye
                     else if (inputString.equals("bye")) {
                         kirby.goodbye();
                         break;
                     }
 
-                    // List
                     else if (inputString.equals("list")) {
                         kirby.showList(kirby.Tasks);
                     }
 
-                    //Mark
                     else if (inputString.split(" ")[0].equals("mark")) {
                         try {
                             kirby.mark(inputString, kirby.Tasks);
@@ -206,7 +233,6 @@ public class Kirby {
                         }
                     }
 
-                    // Unmark
                     else if (inputString.split(" ")[0].equals("unmark")) {
                         try {
                             kirby.unmark(inputString, kirby.Tasks);
@@ -215,7 +241,6 @@ public class Kirby {
                         }
                     }
 
-                    // Delete
                     else if (inputString.split(" ")[0].equals("delete")) {
                         try {
                             kirby.delete(inputString, kirby.Tasks);
@@ -224,12 +249,13 @@ public class Kirby {
                         }
                     }
 
-                    // Undefined command
                     else {
                         kirby.notDefinedCommand();
                     }
                 } catch (KirbyInvalidCommandException e) {
                     System.out.println(e.getMessage());
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
         }
     }

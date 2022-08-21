@@ -43,4 +43,8 @@ public abstract class Task {
     public String getStatusIcon() {
         return (isDone ? "[X]" : "[ ]");
     }
+
+    public String toFileOutput() {
+        return null;
+    }
 }
