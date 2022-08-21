@@ -111,21 +111,21 @@ public class Duke {
 
     public static void main(String[] args) {
         System.out.println("Hey Dude here\n" + "What can I do for you?");
-        storage = FileManipulation.read("/Users/chinhongming/Documents/cs2103t/tasks.txt");
+        storage = FileManipulation.read("data/dude.txt");
         Scanner sc = new Scanner(System.in);
         String userInput = sc.nextLine();
         while (!userInput.equals("bye")) {
             if (userInput.equals("mark") || userInput.startsWith("mark ")) {
                 try {
                     mark(userInput);
-                    FileManipulation.overwrite("/Users/chinhongming/Documents/cs2103t/tasks.txt", f.apply(storage));
+                    FileManipulation.overwrite("data/dude.txt", f.apply(storage));
                 } catch (DukeException e) {
                     System.out.println(e.toString());
                 }
             } else if (userInput.equals("unmark") || userInput.startsWith("unmark ")) {
                 try {
                     unmark(userInput);
-                    FileManipulation.overwrite("/Users/chinhongming/Documents/cs2103t/tasks.txt", f.apply(storage));
+                    FileManipulation.overwrite("data/dude.txt", f.apply(storage));
                 } catch (DukeException e) {
                     System.out.println(e.toString());
                 }
@@ -134,28 +134,28 @@ public class Duke {
             } else if (userInput.equals("todo") || userInput.startsWith("todo ")) {
                 try {
                     toDo(userInput);
-                    FileManipulation.overwrite("/Users/chinhongming/Documents/cs2103t/tasks.txt", f.apply(storage));
+                    FileManipulation.overwrite("data/dude.txt", f.apply(storage));
                 } catch (DukeException e) {
                     System.out.println(e.toString());
                 }
             } else if (userInput.equals("deadline") || userInput.startsWith("deadline ")) {
                 try {
                     deadline(userInput);
-                    FileManipulation.overwrite("/Users/chinhongming/Documents/cs2103t/tasks.txt", f.apply(storage));
+                    FileManipulation.overwrite("data/dude.txt", f.apply(storage));
                 } catch (DukeException e) {
                     System.out.println(e.toString());
                 }
             } else if (userInput.equals("event") || userInput.startsWith("event ")) {
                 try {
                     event(userInput);
-                    FileManipulation.overwrite("/Users/chinhongming/Documents/cs2103t/tasks.txt", f.apply(storage));
+                    FileManipulation.overwrite("data/dude.txt", f.apply(storage));
                 } catch (DukeException e) {
                     System.out.println(e.toString());
                 }
             } else if (userInput.startsWith("delete ")) {
                 try {
                     delete(userInput);
-                    FileManipulation.overwrite("/Users/chinhongming/Documents/cs2103t/tasks.txt", f.apply(storage));
+                    FileManipulation.overwrite("data/dude.txt", f.apply(storage));
                 } catch (DukeException e) {
                     System.out.println(e.toString());
                 }
@@ -169,7 +169,7 @@ public class Duke {
                 }
             }
             userInput = sc.nextLine();
-            FileManipulation.overwrite("/Users/chinhongming/Documents/cs2103t/tasks.txt", f.apply(storage));
+            FileManipulation.overwrite("data/dude.txt", f.apply(storage));
         }
         sc.close();
         System.out.println("Bye. Hope to see you again soon!");
