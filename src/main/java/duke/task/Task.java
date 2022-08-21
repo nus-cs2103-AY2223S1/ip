@@ -1,3 +1,5 @@
+package duke.task;
+
 public abstract class Task {
     protected String description;
     protected boolean isDone;
@@ -77,10 +79,10 @@ public abstract class Task {
         }
 
         /**
-         * Returns the Task Type given its prefix.
+         * Returns the duke.task.Task Type given its prefix.
          *
          * @param prefix the prefix of the task type
-         * @return Task.Type
+         * @return duke.task.Task.Type
          * @throws IllegalArgumentException if none of the types match the prefix
          */
         public static Type decode(String prefix) throws IllegalArgumentException {

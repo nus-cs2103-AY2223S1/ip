@@ -1,3 +1,5 @@
+package duke;
+
 public enum Commands {
     TODO("todo"), EVENT("event"), DEADLINE("deadline"), MARK("mark"),
             UNMARK("unmark"), DELETE("delete"), LIST("list"), BYE("bye");
