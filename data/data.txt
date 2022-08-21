@@ -1,0 +1,4 @@
+T > eat > 1 > Not Applicable
+T > 3 > 0 > Not Applicable
+E > 4 > 0 > 5
+E > 2 > 1 > 3

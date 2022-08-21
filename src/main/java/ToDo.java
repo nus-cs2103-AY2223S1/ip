@@ -13,7 +13,17 @@ public class ToDo extends Task {
      * @param description Description of the Todo Task.
      */
     public ToDo(String description) {
-        super(description);
+        super(description, "T");
+    }
+
+    /**
+     * Constructor for Todo Task.
+     *
+     * @param description Description of the ToDo Task.
+     * @param done Completeness of ToDo Task.
+     */
+    public ToDo(String description, String done) {
+        super(description, done,"T");
     }
 
     /**
@@ -23,6 +33,6 @@ public class ToDo extends Task {
      */
     @Override
     public String toString() {
-        return "[T]" + super.toString();
+        return "[" + this.getType() + "]" + super.toString();
     }
 }
