@@ -1,0 +1,87 @@
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class Storage {
+    File log;
+    ArrayList<Task> list;
+    String filepath;
+
+    public Storage(String filepath) {
+        log = new File(filepath);
+        list = new ArrayList<>();
+        this.filepath = filepath;
+    }
+
+    public void createLog() {
+        log.mkdirs();
+        System.out.println("Save file created");
+    }
+
+    public ArrayList<Task> load() throws FileNotFoundException {
+        Scanner readFile = new Scanner(log);
+        while (readFile.hasNext()) {
+            String taskString = readFile.nextLine();
+            String[] split = taskString.split(" \\| ");
+            System.out.println(split[0] + split[1] + split[2]);
+            switch (split[0]) {
+                case "T": { // Checks for Todo
+                    list.add(new Todo(split[2]));
+                    break;
+                }
+                case "D": { // Checks for Deadline
+                    list.add(new Deadline(split[2], split[3]));
+                    break;
+                }
+                case "E": { // Checks for Event
+                    list.add(new Event(split[2], split[3]));
+                    break;
+                }
+            }
+            if (split[1] == "X") {
+                list.get(list.size() - 1).markAsDone();
+            }
+        }
+        return list;
+    }
+
+    public void writeToFile(TaskList list) {
+        String retString = "";
+        FileWriter copyTasks = null;
+        try {
+            copyTasks = new FileWriter(filepath);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        for (Task value : list.list) {
+            String logTask = "";
+            if (value instanceof Todo) {
+                Todo task = (Todo) value;
+                logTask = String.format("T | %s | %s", task.getStatusIcon(), task.getDescription());
+            } else if (value instanceof Deadline) {
+                Deadline task = (Deadline) value;
+                logTask = String.format("D | %s | %s | %s", task.getStatusIcon(), task.getDescription(), task.by);
+            } else {
+                Event task = (Event) value;
+                logTask = String.format("E | %s | %s | %s", task.getStatusIcon(), task.getDescription(), task.when);
+            }
+            retString = retString + logTask + System.lineSeparator();
+        }
+
+        try {
+            copyTasks.write(retString);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        try {
+            copyTasks.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
