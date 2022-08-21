@@ -26,7 +26,7 @@ public class Duke {
                         sc.close();
                         return false;
                     case list:
-                        listOut();
+                        ListOut();
                         return true;
                     case mark:
                     case unmark:
@@ -42,16 +42,16 @@ public class Duke {
             String[] input = userInput.split(" ", 2);
             switch (Instructions.valueOf(input[0])) {
                 case delete:
-                    delete(input[1]);
+                    Delete(input[1]);
                     return true;
                 case mark:
                 case unmark:
-                    marking(input[0], input[1]);
+                    Marking(input[0], input[1]);
                     return true;
                 case todo:
                 case deadline:
                 case event:
-                    addList(input);
+                    AddList(input);
                     return true;
             }
         } catch (DukeException e) {
@@ -62,7 +62,7 @@ public class Duke {
         return true;
     }
 
-    public static void delete(String num) throws DukeException {
+    public static void Delete(String num) throws DukeException {
         try {
             int index = Integer.parseInt(num);
             System.out.println("Noted. I've removed this task:");
@@ -76,7 +76,7 @@ public class Duke {
         }
     }
 
-    public static void marking(String name, String num) throws DukeException {
+    public static void Marking(String name, String num) throws DukeException {
         try {
             int index = Integer.parseInt(num);
             switch (Instructions.valueOf(name)) {
@@ -102,7 +102,7 @@ public class Duke {
         }
     }
 
-    public static void addList(String[] input) throws DukeException {
+    public static void AddList(String[] input) throws DukeException {
         Task newTask;
         switch (Instructions.valueOf(input[0])) {
             case todo:
@@ -139,7 +139,7 @@ public class Duke {
         }
     }
 
-    public static void listOut() throws DukeException {
+    public static void ListOut() throws DukeException {
         if (tasks.size() == 0) {
             throw new DukeException("You do not have any tasks in the list");
         }
