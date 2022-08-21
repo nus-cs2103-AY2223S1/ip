@@ -18,6 +18,12 @@ public class Parser {
         this.ui = ui;
     }
 
+    /**
+     * Returns the appropriate Command after parsing the input String.
+     *
+     * @param input String to be parsed.
+     * @return Command to be executed.
+     */
     public Command parse(String input) {
         if (input.equals("")) {
             return new Command(CommandType.EMPTY, tasks, input, ui);

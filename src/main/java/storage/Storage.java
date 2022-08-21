@@ -25,6 +25,13 @@ public class Storage {
         this.filename = filename;
     }
 
+    /**
+     * Returns an ArrayList of Tasks containing the saved Tasks, if they exist.
+     *
+     * @return ArrayList of Tasks
+     * @throws DukeException if an error is encountered when the file
+     * is unable to be read.
+     */
     public ArrayList<Task> readSavedTasks() throws DukeException {
         Path dataDirectoryPath = Paths.get(userDirectory, folderPath);
         Path savedTasksPath = Paths.get(userDirectory, folderPath, filename);
@@ -64,7 +71,7 @@ public class Storage {
 
     private Task parseLineToTask(String line) throws DukeException {
         if (line.length() <= 7) {
-            throw new DukeException("Eh something wrong happened");
+            throw new DukeException("");
         }
         char taskSymbol = line.charAt(1);
         boolean isDone = line.charAt(4) == 'X'
@@ -78,7 +85,7 @@ public class Storage {
         case 'E':
             return getTaskFromLine(line, isDone, " \\(at: ");
         default:
-            throw new DukeException("Eh something wrong happened");
+            throw new DukeException("");
         }
     }
 
@@ -99,7 +106,7 @@ public class Storage {
             LocalDateTime deadlineDateTime = DateTimeParser.changeStringToReadingDateTime(trimmedInputDeadlineDateString);
             return new Deadline(splittedDeadline[0], isDone, deadlineDateTime);
         }
-        throw new DukeException("Eh something wrong happened");
+        throw new DukeException("");
     }
 
     private Todo getTodoFromLine(String line) {
@@ -140,6 +147,12 @@ public class Storage {
         return path.toAbsolutePath().toString();
     }
 
+    /**
+     * Writes the saved tasks to the output file.
+     *
+     * @param tasks TaskList to be written from.
+     * @throws DukeException if an exception is encountered.
+     */
     public void writeToFile(TaskList tasks) throws DukeException {
         try {
             FileWriter fw = new FileWriter(relativePath());

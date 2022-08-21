@@ -8,21 +8,37 @@ import java.util.Scanner;
 public class Ui {
     Scanner sc = new Scanner(System.in);
 
+    /**
+     * Prints the greeting text by the Chatbot.
+     */
     public void greet() {
         System.out.print("Eh hello, my name is Uncle Cheong. \n" +
                 "What you want?\n");
     }
 
+    /**
+     * Prints the concluding text by the Chatbot.
+     */
     public void sayGoodbye() {
         System.out.print("Eh you leaving me so soon?\n");
     }
 
+    /**
+     * Returns the next command by the user as a String.
+     *
+     * @return String containing the input by the user.
+     */
     public String readCommand() {
         return this.sc.nextLine();
     }
 
-    public String sayErrorMessage(String error) {
-        return "Eh something went wrong " + error;
+    /**
+     * Prints the Error message.
+     *
+     * @param error the error message.
+     */
+    public void sayErrorMessage(String error) {
+        System.out.println("Eh something went wrong! " + error);
     }
 
     public void printTasks(TaskList tasks, String notEmptyMessage, String emptyMessage) {
