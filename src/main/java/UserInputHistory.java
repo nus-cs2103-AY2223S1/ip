@@ -7,11 +7,20 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Manages all direct interactions between DukeToStorage and file storage.
+ */
 public class UserInputHistory {
-    private ArrayList<Task> userInputHistory = new ArrayList<>();
     private Path path;
 
+    public UserInputHistory() {
+        createIfDoesntExist();
+    }
+
+    /**
+     * Gets location of disk storage file.
+     * @throws DukeException when Duke program run outside of Duke folder.
+     */
     private void getPath() throws DukeException {
         String pathString = System.getProperty("user.dir");
                 if (pathString.contains("ip")) {
@@ -22,7 +31,10 @@ public class UserInputHistory {
                 }
     }
 
-    private void createIfDoesntExist() {
+    /**
+     * Creates file at path for disk storage.
+     */
+    public void createIfDoesntExist() {
         try {
             getPath();
             if (!Files.exists(path)) {
@@ -35,23 +47,29 @@ public class UserInputHistory {
         }
     }
 
-    private void appendToFile(String s)  {
-        createIfDoesntExist();
+    /**
+     * Appends line to file and returns true if operation completed successfully.
+     * @param s line to be appended.
+     * @return true if appended successfully.
+     */
+    public boolean appendLine(String s)  {
         try {
             Files.write(path, s.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
+            return true;
         } catch (IOException e) {
             System.out.println("IOException: " + e);
         }
+        return false;
     }
 
     /**
      * Removes everything from file at path.
-     * Rewrites to file from userInputHistory arraylist.
-     * @param index index of line to delete (1-indexed)
+     * Rewrites to file from userInputHistory arraylist in DukeToStorage class.
+     * @param index index of line to delete (1-indexed).
+     * @return true if line deleted successfully.
      */
-    private void deleteLine(int index) {
+    public boolean deleteLine(int index) {
         try {
-            createIfDoesntExist();
             String temp = "";
             List<String> history = Files.readAllLines(path);
             Files.write(path, temp.getBytes(StandardCharsets.UTF_8));
@@ -62,111 +80,36 @@ public class UserInputHistory {
                     Files.write(path, temp.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
                 }
             }
+            return true;
         } catch (IOException e) {
             System.out.println("IOException: " + e);
         }
+        return false;
     }
 
     /**
-     * Method to add Task to history
-     * @param s String description to add to userInputHistory
+     * Changes line at index (index - 1) in storage file, by:
+     * 1. deleting line at index - 1,
+     * 2. appending newString to end of file.
+     * @param index line to be changed.
+     * @param newString new string to be added instead.
+     * @return true if changed successfully.
      */
-    public void addTaskToHistory(String s) {
-            Task newTask = new Task(s);
-            appendToFile(newTask.toString() + "\n");
-            userInputHistory.add(newTask);
-            System.out.printf("Noted down: %s\n There are %d items on your list now. \n", s, userInputHistory.size());
-            System.out.print(">>");
+    public boolean changeLine(int index, String newString) {
+        return deleteLine(index) & appendLine(newString);
     }
 
     /**
-     * Method to add Event to userInputHistory
-     * @param description
-     * @param at
+     * Return contents of file history.
+     * @return arraylist containing all the lines in the file.
      */
-    public void addEventToHistory(String description, String at) {
-            Event newEvent = new Event(description, at);
-            appendToFile(newEvent.toString() + "\n");
-            userInputHistory.add(newEvent);
-            //echo request
-            System.out.printf("Noted down: %s\n There are %d items on your list now. \n", description, userInputHistory.size());
-            System.out.print(">>");
-    }
-
-    /**
-     * Method to add Event to userInputHistory
-     * @param description
-     * @param by
-     */
-    public void addDeadlineToHistory(String description, String by) {
-            Deadline newDeadline = new Deadline(description, by);
-            appendToFile(newDeadline.toString() + "\n");
-            userInputHistory.add(newDeadline);
-            //echo request
-            System.out.printf("Noted down: %s\n There are %d items on your list now. \n", description, userInputHistory.size());
-            System.out.print(">>");
-    }
-
-    /**
-     * Method to show history
-     */
-    public void showHistory() throws IOException{
-        createIfDoesntExist();
-        int count = 1;
-        System.out.print("______\n");
-        System.out.println("Tasks in your list are: ");
-
-            List<String> history = Files.readAllLines(path);
-            for (String s: history) {
-                System.out.printf("%d. %s\n", count, s);
-                count++;
-            }
-        System.out.printf("Total: %d\n", userInputHistory.size());
-        System.out.print("______\n");
-        System.out.print(">>");
-    }
-
-    /**
-     *
-     * @param n index to retrieve
-     * @return task at index n - 1 in the userInputHistory arraylist
-     */
-    public Task getTask(int n)  {
-            return userInputHistory.get(n - 1);
-    }
-
-    /**
-     * Delete task at index n in userInputHistory
-     * @param n index to be deleted
-     */
-    public void deleteTask(int n)  {
-            Task taskToModify = userInputHistory.get(n - 1);
-            userInputHistory.remove(n - 1);
-            deleteLine(n);
-            System.out.printf("Task removed: \n%s\n", taskToModify);
-            System.out.printf("Total: %d\n", userInputHistory.size());
-            System.out.print("______\n");
-            System.out.print(">>");
-    }
-
-    /**
-     * Extract task number from string input
-     * @param s extracts task number from user input
-     * @return index of the task in the list plus one
-     */
-    public int getTaskNumber(String s) throws DukeException{
-        // credit: https://stackoverflow.com/questions/14974033/extract-digits-from-string-stringutils-java
-        String numberOnly= s.replaceAll("[^0-9]", "");
-        int n;
-        if (numberOnly.length() <= 0) {
-            throw new DukeException("no number given\n>>");
-        } else {
-            n = Integer.parseInt(numberOnly);
-            if (n > userInputHistory.size()) {
-                throw new DukeException("task does not exist is list\n>>");
-            } else {
-                return n;
-            }
+    public List<String> getAllLines() {
+        List<String> list = new ArrayList<>();
+        try {
+            return Files.readAllLines(path);
+        } catch (IOException e) {
+            System.out.println("IOException: " + e);
         }
+        return list;
     }
 }

@@ -1,6 +1,6 @@
-[T][ ] home
-[E][ ] Welcome Tea (at: 2oclock)
-[D][ ] CS2103T Week 2 iP (by: 2103T Week 2 iP)
+[D][ ] CS2103T Week 2 iP (by: next tutorial)
 [T][ ] buy milk
-[D][ ] send email (by: nd email)
+[T][✓]  home[D][ ] send email (by: afternoon)
 [T][ ] have lunch
+[E][✓]  Welcome Tea 
+[E][ ]  Welcome Tea  (at: (at: 2oclock))
