@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -20,11 +21,10 @@ public class Duke {
     private static final String DELETE_OUTPUT_STRING = "Sure, I have removed this task from the list: ";
 
 
-    private CommandParser commandParser;
     List<Task> taskList;
 
     Duke() {
-        this.commandParser = new CommandParser();
+        this.taskList = new ArrayList<>();
     }
 
     public static void main(String[] args) {

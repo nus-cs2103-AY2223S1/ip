@@ -53,12 +53,13 @@ public abstract class Task {
         done = true;
     }
 
-    @Override
-    public String toString() {
+    protected String getStringRepresentation(String label) {
         return "["
                 + (done ? "X" : " ")
-                + "]"
-                + " "
+                + "] "
+                + "["
+                + label
+                + "] "
                 + taskTitle;
     }
 }
