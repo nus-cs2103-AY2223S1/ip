@@ -1,3 +1,4 @@
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -82,8 +83,9 @@ public class Duke {
      *
      * @param userInput The description of the task, and deadline, preceded by an empty space.
      * @throws DukeException If userInput is not in the form "description /by deadline".
+     * @throws DateTimeParseException If deadline date given by user cannot be casted to a date (require "yyyy-mm-dd")
      */
-    private static void createDeadline(String userInput) throws DukeException {
+    private static void createDeadline(String userInput) throws DukeException, DateTimeParseException {
         String trimmedInput = userInput.trim();
         if (trimmedInput.length() == 0) {
             throw new DukeException("The description of a deadline cannot be empty");
@@ -94,7 +96,7 @@ public class Duke {
             throw new DukeException("Usage description /by deadline");
         }
 
-        Duke.tasks.add(new Deadline(detailsFragments[0], detailsFragments[1]));
+        Duke.tasks.add(new Deadline(detailsFragments[0], detailsFragments[1].trim()));
 
         System.out.println(Duke.formatText("Got it. I've added this task:\n" + "  " +
                 Duke.tasks.get(Duke.tasks.size() - 1) + "\n" +
@@ -107,7 +109,7 @@ public class Duke {
      * @param userInput The description of the task, and event time, preceded by an empty space.
      * @throws DukeException If userInput is not in the form "description /at time".
      */
-    private static void createEvent(String userInput) throws DukeException {
+    private static void createEvent(String userInput) throws DukeException, DateTimeParseException {
         String trimmedInput = userInput.trim();
         if (trimmedInput.length() == 0) {
             throw new DukeException("The description of an event cannot be empty");
@@ -118,7 +120,7 @@ public class Duke {
             throw new DukeException("Usage description /at time");
         }
 
-        Duke.tasks.add(new Event(detailsFragments[0], detailsFragments[1]));
+        Duke.tasks.add(new Event(detailsFragments[0], detailsFragments[1].trim()));
 
         System.out.println(Duke.formatText("Got it. I've added this task:\n" + "  " +
                 Duke.tasks.get(Duke.tasks.size() - 1) + "\n" +
@@ -208,19 +210,21 @@ public class Duke {
 
             // Add item to tasks.
             try {
-                if (userInput.startsWith("todo ")) {
-                    Duke.createToDoTask(userInput.substring(4));
-                } else if (userInput.startsWith("deadline ")) {
-                    Duke.createDeadline(userInput.substring(8));
-                } else if (userInput.startsWith("event ")) {
-                    Duke.createEvent(userInput.substring(5));
-                } else if (userInput.equals("todo") || userInput.equals("deadline") || userInput.equals("event")) {
+                if (userInput.equals("todo") || userInput.equals("deadline") || userInput.equals("event")) {
                     throw new DukeException("The description of a " + userInput + " cannot be empty.");
+                } else if (userInput.startsWith("todo ")) {
+                    Duke.createToDoTask(userInput.substring(5));
+                } else if (userInput.startsWith("deadline ")) {
+                    Duke.createDeadline(userInput.substring(9));
+                } else if (userInput.startsWith("event ")) {
+                    Duke.createEvent(userInput.substring(6));
                 } else {
                     throw new DukeException("I'm sorry, but I don't know what that means :-(");
                 }
             } catch (DukeException e) {
                 System.out.println(e.getMessage());
+            } catch (DateTimeParseException e) {
+                System.out.println("Your date format has to be in the form 'yyyy-mm-dd'");
             }
         }
     }
