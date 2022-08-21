@@ -40,8 +40,14 @@ public class FindCommand extends Command {
             }
         }
 
-        String tasksString = String.join("\n", foundTasks);
-        String userMessage = String.format(USER_MESSAGE_FORMAT, tasksString);
+        String userMessage;
+        if (foundTasks.isEmpty()) {
+            userMessage = "No tasks found!";
+        } else {
+            String tasksString = String.join("\n", foundTasks);
+            userMessage = String.format(USER_MESSAGE_FORMAT, tasksString);
+        }
+
         return new CommandResult(userMessage, false, false);
     }
 }
