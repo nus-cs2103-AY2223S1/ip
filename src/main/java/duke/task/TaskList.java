@@ -12,12 +12,14 @@ public class TaskList extends ArrayList<Task> {
 
     public TaskList(Storage storage) {
         super(100);
-        this.storage = storage;
-        try {
-            this.addAll(this.storage.loadTasks());
-        } catch (DukeException e) {
-            // initialize with no tasks.
+        if (storage != null) {
+            try {
+                this.addAll(storage.loadTasks());
+            } catch (DukeException e) {
+                // initialize with no tasks.
+            }
         }
+        this.storage = storage;
     }
 
 

@@ -11,30 +11,32 @@ import java.util.stream.IntStream;
 
 public class Duke {
     private final TaskList tasks;
+    private final Ui ui;
 
-    public Duke(String name) {
-        String fileName = "tasks.txt";
+    public Duke(String fileName) {
+        this.ui = new Ui();
 
         Storage storage;
         try {
             storage = new Storage(fileName);
         } catch (DukeException e) {
-            this.speak("Unable to save tasks to disk.");
+            ui.showLoadingError();
             storage = null;
         }
         this.tasks = new TaskList(storage);
-
-        speak("Hello! I'm %s\nWhat do you need to do?", name);
     }
 
     public static void main(String[] args) {
-        Duke duke = new Duke("Duke");
+        new Duke("tasks.txt").run();
+    }
 
+    public void run() {
+        ui.showWelcome();
         Scanner sc = new Scanner(System.in);
         while (true) {
             String command = sc.next();
             String arguments = sc.nextLine();
-            if (!duke.callback(command, arguments)) {
+            if (!callback(command, arguments)) {
                 break;
             }
         }
@@ -53,7 +55,7 @@ public class Duke {
             try {
                 switch (Commands.getCommand(command)) {
                     case BYE:
-                        goodbye();
+                        ui.showGoodbye();
                         return false;
                     case LIST:
                         listHistory();
@@ -81,7 +83,7 @@ public class Duke {
                 throw new DukeException("I'm sorry, but I don't know what that means :-(");
             }
         } catch (DukeException e) {
-            speak(e.getMessage());
+            ui.displayText(e.getMessage());
         }
         return true;
     }
@@ -95,9 +97,9 @@ public class Duke {
     private void addTodo(String input) throws DukeException {
         ToDo todo = new ToDo(input);
         if (tasks.addTask(todo)) {
-            speak("Got it. I've added this todo:\n  %s\nNow you have %d tasks in your list", todo, tasks.size());
+            ui.displayText("Got it. I've added this todo:\n  %s\nNow you have %d tasks in your list", todo, tasks.size());
         } else {
-            speak("Unable to add task.");
+            ui.displayText("Unable to add task.");
         }
     }
 
@@ -113,7 +115,7 @@ public class Duke {
             String[] parts = input.split(" /at ");
             Event event = new Event(parts[0].strip(), parts[1].strip());
             tasks.add(event);
-            speak("Got it. I've added this event:\n  %s\nNow you have %d tasks in your list", event, tasks.size());
+            ui.displayText("Got it. I've added this event:\n  %s\nNow you have %d tasks in your list", event, tasks.size());
         } else {
             throw new DukeException("Invalid event format");
         }
@@ -130,7 +132,8 @@ public class Duke {
             String[] parts = input.split(" /by ");
             Deadline deadline = new Deadline(parts[0].strip(), parts[1].strip());
             tasks.add(deadline);
-            speak("Got it. I've added this deadline:\n  %s\nNow you have %d tasks in your list", deadline, tasks.size());
+            ui.displayText("Got it. I've added this deadline:\n  %s\nNow you have %d tasks in your list",
+                    deadline, tasks.size());
         } else {
             throw new DukeException("Invalid event format");
         }
@@ -146,9 +149,9 @@ public class Duke {
     private void setTaskCompletionStatus(String input, boolean completed) throws DukeException {
         Task task = tasks.setCompletion(input, completed);
         if (completed) {
-            speak("Nice! I've marked this task as done:\n  %s", task);
+            ui.displayText("Nice! I've marked this task as done:\n  %s", task);
         } else {
-            speak("Ok, I've marked this task as not done yet:\n  %s", task);
+            ui.displayText("Ok, I've marked this task as not done yet:\n  %s", task);
         }
     }
 
@@ -160,29 +163,7 @@ public class Duke {
      */
     private void delete(String input) throws DukeException {
         Task task = tasks.removeTask(input);
-        speak("Noted. I've removed this task:\n  %s\nNow you have %d tasks in your list", task, tasks.size());
-    }
-
-    /**
-     * Get Duke to speak the given text.
-     *
-     * @param text The text to speak.
-     */
-    private void speak(String text) {
-        String line = "_".repeat(20) + '\n';
-        System.out.println(line);
-        System.out.println(text);
-        System.out.println(line);
-    }
-
-    /**
-     * Speaks the specified text defined by its format and arguments.
-     *
-     * @param format A format string
-     * @param args   Arguments referenced by the format specifiers in the format string.
-     */
-    private void speak(String format, Object... args) {
-        speak(String.format(format, args));
+        ui.displayText("Noted. I've removed this task:\n  %s\nNow you have %d tasks in your list", task, tasks.size());
     }
 
     /**
@@ -192,10 +173,6 @@ public class Duke {
         StringBuilder output = new StringBuilder();
         output.append("Here are the tasks in your list:\n");
         IntStream.range(0, tasks.size()).forEach(i -> output.append(String.format("%d. %s%n", i + 1, tasks.get(i))));
-        speak(output.toString());
-    }
-
-    private void goodbye() {
-        speak("Bye. Hope to see you again soon!");
+        ui.displayText(output.toString());
     }
 }
