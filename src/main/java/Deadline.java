@@ -1,6 +1,9 @@
+import java.time.LocalDateTime;
+
 public class Deadline extends Task {
     /** The deadline of the task. **/
-    protected String by;
+//    protected String by;
+    protected LocalDateTime by;
 
     /**
      * The class constructor, which utilizes the superclass
@@ -8,9 +11,36 @@ public class Deadline extends Task {
      * @param description the description of the task
      * @param by the deadline of the task
      */
-    public Deadline(String description, String by) {
+    public Deadline(String description, String by) throws DukeException {
         super(description);
-        this.by = by;
+        if (by.trim().matches("(\\d{4})-(\\d{2})-(\\d{2}) (\\d{2}):(\\d{2})")) {
+            String preDate = by.split(" ", 2)[0];
+            String preTime = by.split(" ", 2)[1];
+            String[] dates = preDate.split("-", 3);
+            String[] time = preTime.split(":", 2);
+
+            LocalDateTime deadline = LocalDateTime.of(Integer.parseInt(dates[0]), Integer.parseInt(dates[1]),
+                    Integer.parseInt(dates[2]), Integer.parseInt(time[0]), Integer.parseInt(time[1]));
+            this.by = deadline;
+        } else {
+            throw new DukeException("Invalid Date Format (YYYY-MM-DD HH:MM required).");
+        }
+    }
+
+    /**
+     * Formats the deadline to be displayed as MONTH DATE YEAR i.e. MARCH 19 2022.
+     * @return String of the deadline to be displayed.
+     */
+    public String formatTime() {
+        if (this.by.getMinute() < 10) {
+            String minute = String.format("%02d", this.by.getMinute());
+            String s = String.format("%s %s %s %s:%s", this.by.getMonth(), this.by.getDayOfMonth(),
+                    this.by.getYear(), this.by.getHour(), minute);
+            return s;
+        }
+        String s = String.format("%s %s %s %s:%s", this.by.getMonth(), this.by.getDayOfMonth(),
+                this.by.getYear(), this.by.getHour(), this.by.getMinute());
+        return s;
     }
 
     /**
@@ -20,7 +50,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + "(by: " + this.by + ")";
+        return "[D]" + super.toString() + "(by: " + formatTime() + ")";
     }
 
 }
