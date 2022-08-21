@@ -38,7 +38,7 @@ public class Ui {
      * @param error the error message.
      */
     public void sayErrorMessage(String error) {
-        System.out.println("Eh something went wrong " + error);
+        System.out.println("Eh something went wrong! " + error);
     }
 
     public void printStoredInputs(TaskList tasks) {

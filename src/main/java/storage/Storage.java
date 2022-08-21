@@ -71,7 +71,7 @@ public class Storage {
 
     private Task parseLineToTask(String line) throws DukeException {
         if (line.length() <= 7) {
-            throw new DukeException("Eh something wrong happened");
+            throw new DukeException("");
         }
         char taskSymbol = line.charAt(1);
         boolean isDone = line.charAt(4) == 'X'
@@ -85,7 +85,7 @@ public class Storage {
         case 'E':
             return getTaskFromLine(line, isDone, " \\(at: ");
         default:
-            throw new DukeException("Eh something wrong happened");
+            throw new DukeException("");
         }
     }
 
@@ -106,7 +106,7 @@ public class Storage {
             LocalDateTime deadlineDateTime = DateTimeParser.changeStringToReadingDateTime(trimmedInputDeadlineDateString);
             return new Deadline(splittedDeadline[0], isDone, deadlineDateTime);
         }
-        throw new DukeException("Eh something wrong happened");
+        throw new DukeException("");
     }
 
     private Todo getTodoFromLine(String line) {
