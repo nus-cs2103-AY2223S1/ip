@@ -3,76 +3,7 @@ import java.util.ArrayList;
 
 public class Duke {
 
-    public class Task {
-        protected String description;
-        protected boolean isDone;
-
-        public Task(String description) {
-            this.description = description;
-            this.isDone = false;
-        }
-
-        public String getStatusIcon() {
-            return (isDone ? "X" : " "); // mark done task with X
-        }
-
-        public void markAsDone() {
-            this.isDone = true;
-        }
-
-        public void markAsUndone() {
-            this.isDone = false;
-        }
-
-        public String toString() {
-            return "[" + getStatusIcon() + "] " + description;
-        }
-
-    }
-
-    public class ToDo extends Task {
-
-        public ToDo(String description) {
-            super(description);
-        }
-
-        @Override
-        public String toString() {
-            return "[T]" + super.toString();
-        }
-    }
-
-    public class Event extends Task {
-
-        protected String time;
-
-        public Event(String description, String time) {
-            super(description);
-            this.time = time;
-        }
-
-        @Override
-        public String toString() {
-            return "[E]" + super.toString() + " (" + time + ")";
-        }
-    }
-
-    public class Deadline extends Task {
-
-        protected String by;
-
-        public Deadline(String description, String by) {
-            super(description);
-            this.by = by;
-        }
-
-        @Override
-        public String toString() {
-            return "[D]" + super.toString() + " ("+ by + ")";
-        }
-    }
-
-    private void run() {
+    private void run() throws DukeException {
         Scanner sc = new Scanner(System.in);
         System.out.println("Hello! I am a ToDos, Events, Deadlines and Talk Bot, otherwise known as TEDTalk\n" +
                 "What can I do for you today?");
@@ -81,62 +12,52 @@ public class Duke {
 
         while (true) {
 
-            if (sc.hasNext("mark")) {
-                sc.next();
-                int num = Integer.parseInt(sc.next());
-                store.get(num - 1).markAsDone();
-                System.out.println("Task successfully completed!\n" + store.get(num - 1));
-                sc.nextLine();
-            } else if (sc.hasNext("unmark")) {
-                sc.next();
-                int num = Integer.parseInt(sc.next());
-                store.get(num - 1).markAsUndone();
-                System.out.println("Task incomplete.\n" + store.get(num - 1));
-                sc.nextLine();
-            } else if (sc.hasNext("bye")) {
+            String next = sc.nextLine();
+            Input input = new Input(next);
+            String cmd = input.getCmd();
+
+            if (cmd.equals("mark")) {
+                int TaskNo = input.getTaskNumber();
+                store.get(TaskNo).markAsDone();
+                System.out.println("Task successfully completed!\n" + store.get(TaskNo));
+            } else if (cmd.equals("unmark")) {
+                int TaskNo = input.getTaskNumber();
+                store.get(TaskNo).markAsUndone();
+                System.out.println("Task incomplete.\n" + store.get(TaskNo));
+            } else if (cmd.equals("bye")) {
                 System.out.println("Bye bye! Hope to see you soon!");
                 break;
-            } else if (sc.hasNext("list")) {
-                sc.nextLine();
-                System.out.println("Here are your tasks:/n");
+            } else if (cmd.equals("list")) {
+                System.out.println("Here are your tasks:");
                 for (int i = 0; i < store.size(); i++) {
                     System.out.println(i + 1 + ". " + store.get(i));
                 }
-            } else if (sc.hasNext("todo")) {
-                sc.next();
-                String next = sc.nextLine();
-                Task newTask = new ToDo(next);
+            } else if (cmd.equals("todo")) {
+                Task newTask = new ToDo(input.getToDoTask());
                 store.add(newTask);
                 System.out.println("Successfully added new task:\n" + newTask +
                         "\nYou have " + store.size() + " task(s) in the list.");
-            } else if (sc.hasNext("event")) {
-                sc.next();
-                String next = sc.nextLine();
-                String[] split = next.split("/");
-                Task newTask = new Event(split[0], split[1]);
+            } else if (cmd.equals("event")) {
+                Task newTask = new Event(input.getEventTask(), input.getEventTime());
                 store.add(newTask);
                 System.out.println("Successfully added new task:\n" + newTask +
                         "\nYou have " + store.size() + " task(s) in the list.");
-            } else if (sc.hasNext("deadline")) {
-                sc.next();
-                String next = sc.nextLine();
-                String[] split = next.split("/");
-                Task newTask = new Deadline(split[0], split[1]);
+            } else if (cmd.equals("deadline")) {
+                Task newTask = new Deadline(input.getDeadlineTask(), input.getDeadlineTime());
                 store.add(newTask);
                 System.out.println("Successfully added new task:\n" + newTask +
                         "\nYou have " + store.size() + " task(s) in the list.");
-            }
-            else {
-                String next = sc.nextLine();
-                Task newTask = new Task(next);
-                store.add(newTask);
-                System.out.println("Successfully added new task:\n" + newTask +
-                        "\nYou have " + store.size() + " task(s) in the list.");
+            } else {
+                throw new DukeException("Unknown command. Please enter a valid command");
             }
         }
     }
 
     public static void main(String[] args) {
-        new Duke().run();
+        try {
+            new Duke().run();
+        } catch (DukeException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
