@@ -1,8 +1,8 @@
 todo read book
 todo
-deadline return book /by June 6th
+deadline return book /by 2022-06-06
 fake command
-event project meeting /at Aug 6th 2-4pm
+event project meeting /at 2022-08-06
 todo join sport club
 mark 1
 mark foo
@@ -12,6 +12,6 @@ todo borrow book
 list
 mark 2
 delete 3
-deadline return book /by Sunday
-event project meeting /at Mon 2-4pm
+deadline return book /by 2022-04-20
+event project meeting /at 2022-08-09
 bye
