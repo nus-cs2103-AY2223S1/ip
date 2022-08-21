@@ -1,3 +1,5 @@
+package jean.ui;
+
 import java.util.Scanner;
 
 public class Ui {
@@ -25,9 +27,9 @@ public class Ui {
     }
 
     public void greet() {
-        System.out.println("Hello! I'm Jean"
+        System.out.println("Hello! I'm jean.Jean"
                            + "\nHow can I help you?"
-                           + "\nBonjour! Je m'appelle Jean"
+                           + "\nBonjour! Je m'appelle jean.Jean"
                            + "\nVous désirez?");
     }
 

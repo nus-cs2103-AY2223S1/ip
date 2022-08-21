@@ -1,3 +1,8 @@
+package jean.storage;
+
+import jean.exception.JeanException;
+import jean.task.*;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;

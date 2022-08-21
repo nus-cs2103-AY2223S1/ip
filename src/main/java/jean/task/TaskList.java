@@ -1,6 +1,5 @@
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
+package jean.task;
+
 import java.util.ArrayList;
 
 public class TaskList {
@@ -12,6 +11,9 @@ public class TaskList {
 
     public TaskList(ArrayList<Task> taskList) {
         this.taskList = taskList;
+    }
+    public int getNumberOfTasks() {
+        return this.taskList.size();
     }
 
     public ArrayList<Task> getTaskList() {

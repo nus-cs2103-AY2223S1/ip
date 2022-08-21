@@ -1,3 +1,5 @@
+package jean.task;
+
 public abstract class Task {
     protected String description;
     protected boolean isDone;
@@ -10,6 +12,10 @@ public abstract class Task {
 
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
+    }
+
+    public boolean getIsDone() {
+        return isDone;
     }
 
     public void setIsDone(boolean isDone) {

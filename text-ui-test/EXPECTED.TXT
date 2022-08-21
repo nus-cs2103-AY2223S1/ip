@@ -1,6 +1,6 @@
-Hello! I'm Jean
+Hello! I'm jean.Jean
 How can I help you?
-Bonjour! Je m'appelle Jean
+Bonjour! Je m'appelle jean.Jean
 Vous désirez?
 The description must not be empty!
 Vous devez donner une description!
