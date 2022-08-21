@@ -17,11 +17,11 @@ public class Deadline extends Task {
 
     @Override
     public String getInfo() {
-        return (getSymbol() + " " + getStatusIcon() + " " + getDescription() + getDate());
+        return (super.getInfo() + "--" + getDate());
     }
 
     @Override
     public String toString() {
-        return SYMBOL + super.toString() + "(by: " + dateStr + ")";
+        return SYMBOL + super.toString() + " (by: " + dateStr + ")";
     }
 }

@@ -9,25 +9,17 @@ public class Duke {
      * Main class used to handle inputs
      */
     private TaskList list;
+    private Storage storage;
+
     public Duke(String filePath) {
-        try {
-            Files.createDirectories(Paths.get(filePath));
-            File file = new File(filePath+ "/duke.txt");
-
-            if (!file.exists()) {
-                boolean result = file.createNewFile();
-            }
-        }
-
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+        storage = new Storage(filePath);
+        list = new TaskList(storage.load());
     }
-    public static void main(String[] args) {
+
+    public void run() {
         Ui.welcome();
 
         String in = "";
-        TaskList list = new TaskList();
         Scanner sc = new Scanner(System.in);
 
         while (true) {
@@ -88,10 +80,13 @@ public class Duke {
                     System.out.println(e.toString());
                 }
             }
-            System.out.println("-------------------------------------------");
+            Ui.line();
 
             FileWriting.update("./data/duke.txt", list);
         }
         Ui.bye();
+    }
+    public static void main(String[] args) {
+        new Duke("./data").run();
     }
 }

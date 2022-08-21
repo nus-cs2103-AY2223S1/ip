@@ -33,4 +33,8 @@ public class Ui {
     public static void countTasks(TaskList list) {
         System.out.println("We now have " + list.getSize() + " tasks left.");
     }
+
+    public static void line() {
+        System.out.println("-------------------------------------------");
+    }
 }

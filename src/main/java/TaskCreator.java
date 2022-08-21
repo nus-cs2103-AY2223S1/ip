@@ -49,35 +49,70 @@ public class TaskCreator {
             if (indexOfSplit == -1) {
                 return new ErrorTask("");
             }
+            try {
+                description = info.substring(0, indexOfSplit - 1);
+                String[] dateTimeDeadline = info.substring(indexOfSplit + SIZEOFPREPOSITION).split(" ");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-M-d");
+                DateTimeConverter converter = new DateTimeConverter(formatter);
+                String date;
 
-            description = info.substring(0,indexOfSplit);
-            String[] dateTimeDeadline = info.substring(indexOfSplit + SIZEOFPREPOSITION).split(" ");
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-M-d");
-            DateTimeConverter converter = new DateTimeConverter(formatter);
-            String date;
+                if (converter.isValidDate(dateTimeDeadline[0])) {
+                    date = converter.convert(dateTimeDeadline);
+                    task = new Deadline(description, date, LocalDate.parse(dateTimeDeadline[0], formatter));
+                } else {
+                    date = info.substring(indexOfSplit + SIZEOFPREPOSITION);
+                    task = new Deadline(description, date, null);
+                }
 
-            if (converter.isValidDate(dateTimeDeadline[0])) {
-                date = converter.convert(dateTimeDeadline);
-                task = new Deadline(description, date, LocalDate.parse(dateTimeDeadline[0], formatter));
-            } else {
-                date = info.substring(indexOfSplit + SIZEOFPREPOSITION);
-                task = new Deadline(description, date, null);
+                break;
             }
 
-            break;
+            catch (StringIndexOutOfBoundsException e) {
+                return new Task("","[]");
+            }
 
         case EVENT:
-            indexOfSplit = info.indexOf("/at");
-            if (indexOfSplit == -1) {
-                return new ErrorTask("");
+            try {
+                indexOfSplit = info.indexOf("/at");
+                if (indexOfSplit == -1) {
+                    return new ErrorTask("");
+                }
+
+                description = info.substring(0, indexOfSplit - 1);
+                String dateTimeEvent = info.substring(indexOfSplit + SIZEOFPREPOSITION);
+
+                task = new Event(description, dateTimeEvent);
+                break;
             }
 
-            description = info.substring(0,indexOfSplit);
-            String dateTimeEvent = info.substring(indexOfSplit + SIZEOFPREPOSITION);
-
-            task = new Event(description, dateTimeEvent);
-            break;
+            catch (StringIndexOutOfBoundsException e) {
+                return new Task("","[]");
+            }
         }
+        return task;
+    }
+
+    public static Task createFromStorage(String line) {
+        String[] lineParts = line.split("--");
+        String info = "";
+
+        if (lineParts[0].equals("[T]")) {
+            info += "todo";
+            info += (" " + lineParts[2]);
+        } else if (lineParts[0].equals("[D]")) {
+            info += "deadline";
+            info += (" " + lineParts[2] + " /by " + lineParts[3]);
+        } else {
+            info += "event";
+            info += (" " + lineParts[2] + " /at " + lineParts[3]);
+        }
+
+        Task task = CreateTask(info);
+
+        if (!lineParts[1].equals("[ ]")) {
+            task.isDone = true;
+        }
+
         return task;
     }
 }
