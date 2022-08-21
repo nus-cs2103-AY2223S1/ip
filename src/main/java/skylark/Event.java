@@ -20,9 +20,8 @@ public class Event extends Task {
     }
 
     @Override
-    public String toString() {
-        // Oct 15 2019
-        String outputFormat = "MMM dd yyyy";
+    public String toString()  {
+        String outputFormat = "MMM dd yyyy"; // Oct 15 2019
         return String.format("[%c] %s (at: %s)", SYMBOL,
                 super.toString(), this.timing.format(DateTimeFormatter.ofPattern(outputFormat)));
     }
