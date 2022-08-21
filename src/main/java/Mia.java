@@ -11,6 +11,10 @@ public class Mia {
         window.printResponse(new Span(message));
     }
 
+    public TaskManager getTasks() {
+        return tasksManager;
+    }
+
     public void run() {
         System.out.println(logo);
 
