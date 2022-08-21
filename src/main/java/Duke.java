@@ -30,6 +30,7 @@ public class Duke {
     public static void main(String[] args) {
         String introduction = "Hello! I'm Duke\n" + "\tWhat can I do for you?";
         Duke.echo(introduction);
+        Duke.load();
 
         Scanner sc = new Scanner(System.in);
         while (sc.hasNext()) {
@@ -200,7 +201,7 @@ public class Duke {
      */
     private static void list() {
         if (items.size() == 0) {
-            Duke.echo("no items stored");
+            Duke.echo("No items stored");
         } else {
             String s = "Here are the tasks in your list:\n";
             for (int i = 0; i < items.size(); i++) {
@@ -268,7 +269,47 @@ public class Duke {
 
     private static void load() {
         // Check if directory and file exists
-
-        // Load the data into the task array
+        File file = new File("./../../../data/duke.txt");
+        try {
+            // Load the data into the task array
+            Scanner sc = new Scanner(file);
+            while (sc.hasNext()) {
+                String[] taskData = sc.nextLine().split(" \\| ");
+                String taskType = taskData[0];
+                boolean isDone = taskData[1].equals("d");
+                String desc = taskData[2];
+                String remarks = "";
+                if (taskData.length == 4) {
+                    remarks = taskData[3];
+                }
+                switch (taskType) {
+                case "todo":
+                    Todo t = new Todo(desc);
+                    if (isDone) {
+                        t.markAsDone();
+                    }
+                    items.add(t);
+                    break;
+                case "event":
+                    Event e = new Event(desc, remarks);
+                    if (isDone) {
+                        e.markAsDone();
+                    }
+                    items.add(e);
+                    break;
+                case "deadline":
+                    Deadline d = new Deadline(desc, remarks);
+                    if (isDone) {
+                        d.markAsDone();
+                    }
+                    items.add(d);
+                    break;
+                default:
+                    break;
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
