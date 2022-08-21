@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Duke {
     private static final int MAX_TASK_SIZE = 100;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DanException {
         //start up sequence
         Scanner sc = new Scanner(System.in);
         List<Task> tasks = new ArrayList<>(MAX_TASK_SIZE);
@@ -14,33 +14,37 @@ public class Duke {
         while (true) {
             String input = sc.nextLine().strip();
             String action = input.split(" ")[0];
-            switch (action) {
-            case "bye":
-                sayonara();
-                return;
+            try {
+                switch (action) {
+                case "bye":
+                    sayonara();
+                    return;
 
-            case "list":
-                showTasks(tasks);
-                break;
+                case "list":
+                    showTasks(tasks);
+                    break;
 
-            case "mark":
-                markTask(tasks, Integer.parseInt(input.split(" ")[1]));
-                break;
+                case "mark":
+                    markTask(tasks, Integer.parseInt(input.split(" ")[1]));
+                    break;
 
-            case "unmark":
-                unMarkTask(tasks, Integer.parseInt(input.split(" ")[1]));
-                break;
-                
-            case "todo":
-                //fall through
-            case "deadline":
-                //fall through
-            case "event":
-                addTask(tasks, input);
-                break;
+                case "unmark":
+                    unMarkTask(tasks, Integer.parseInt(input.split(" ")[1]));
+                    break;
 
-            default:
-                System.out.println("I don't really understand what do you mean by that :(");
+                case "todo":
+                    //fall through
+                case "deadline":
+                    //fall through
+                case "event":
+                    addTask(tasks, input);
+                    break;
+
+                default:
+                    throw new DanException("I don't really understand what do you mean by that :(");
+                }
+            } catch (DanException e) {
+                printBlock(e.getMessage());
             }
         }
     }
@@ -81,27 +85,32 @@ public class Duke {
         printBlock("Boo! Bye bye... :(");
     }
 
-    public static void addTask(List<Task> tasks, String input) {
+    public static void addTask(List<Task> tasks, String input) throws DanException {
         String description;
         String dateString;
         if (input.startsWith("todo")) {
             description = input.replace("todo", "").strip();
-            ToDo task = new ToDo(description);
-            tasks.add(task);
+            if (description.isEmpty()) {
+                throw new DanException("Please provide me a description for your todo item");
+            }
+            tasks.add(new ToDo(description));
         } else if (input.startsWith("deadline")) {
             String[] temp = input.replace("deadline","").strip().split("/by");
+            if (temp.length != 2) { throw new DanException("Please follow the following format:\n deadline <description >/by <due date>");}
             description = temp[0].strip();
             dateString = temp[1].strip();
-            Deadline task = new Deadline(description, dateString);
-            tasks.add(task);
+            if (description.isEmpty()) {throw new DanException("Please provide me a description for your deadline");}
+            if (dateString.isEmpty()) {throw new DanException("Please give me a timing for your deadline");}
+            tasks.add(new Deadline(description, dateString));
         } else if (input.startsWith("event")) {
             String[] temp = input.replace("event", "").strip().split("/at");
+            if (temp.length != 2) { throw new DanException("Please follow the following format:\n event <description >/at <time/date>");}
             description = temp[0].strip();
             dateString = temp[1].strip();
-            Event task = new Event(description, dateString);
-            tasks.add(task);
+            if (description.isEmpty()) {throw new DanException("Please provide me a description for your event");}
+            if (dateString.isEmpty()) {throw new DanException("Please give me a timing for your deadline");}
+            tasks.add(new Event(description, dateString));
         }
-        //create the appropriate task for each Task type
         printLine();
         printIndent("Okay okay, I'll add this task then:");
         printIndent(tasks.get(tasks.size() -1).toString());
