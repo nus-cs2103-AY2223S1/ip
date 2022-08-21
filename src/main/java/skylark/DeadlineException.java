@@ -1,6 +1,6 @@
 package skylark;
 
-public class DeadlineException extends SkylarkException{
+public class DeadlineException extends SkylarkException {
 
     private final String description;
 

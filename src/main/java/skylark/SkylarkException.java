@@ -1,6 +1,6 @@
 package skylark;
 
-public class SkylarkException extends Exception{
+public class SkylarkException extends Exception {
 
     private final String description;
 

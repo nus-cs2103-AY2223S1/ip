@@ -135,8 +135,8 @@ public abstract class Command {
             String desc = command.substring(9, slashIndex - 1);
             String endDate = command.substring(slashIndex + 4);
             if (desc.isEmpty() || endDate.isEmpty()) {
-                throw new DeadlineException("☹ OOPS!!! " +
-                        "The description or end date of a deadline cannot be empty.");
+                throw new DeadlineException("☹ OOPS!!! "
+                        + "The description or end date of a deadline cannot be empty.");
             }
             Deadline deadlineTask = new Deadline(desc, endDate);
             taskList.add(deadlineTask);
@@ -159,8 +159,8 @@ public abstract class Command {
             String desc = command.substring(6, slashIndex - 1);
             String timing = command.substring(slashIndex + 4);
             if (desc.isEmpty() || timing.isEmpty()) {
-                throw new EventException("☹ OOPS!!! " +
-                        "The description or timing of an event cannot be empty.");
+                throw new EventException("☹ OOPS!!! "
+                        + "The description or timing of an event cannot be empty.");
             }
             Event eventTask = new Event(desc, timing);
             taskList.add(eventTask);

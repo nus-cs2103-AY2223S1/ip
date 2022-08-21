@@ -1,6 +1,6 @@
 package skylark;
 
-public class EventException extends SkylarkException{
+public class EventException extends SkylarkException {
 
     private final String description;
 

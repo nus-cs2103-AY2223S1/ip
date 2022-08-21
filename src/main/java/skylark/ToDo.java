@@ -1,6 +1,6 @@
 package skylark;
 
-public class ToDo extends Task{
+public class ToDo extends Task {
     private final char SYMBOL = 'T';
 
     public ToDo(String description) {
