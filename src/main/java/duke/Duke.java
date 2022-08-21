@@ -1,6 +1,7 @@
 package duke;
 
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -53,6 +54,11 @@ public class Duke {
             case "list":
                 ui.listTasks(tasks.getTasks());
                 break;
+            case "find": {
+                ArrayList<Task> foundTasks = tasks.find(parsedOutput[1]);
+                ui.listFoundTasks(foundTasks);
+                break;
+            }
             case "mark": {
                 int taskIndex = getTaskIndexFromParsedOutput(parsedOutput, cmd);
                 Task markedTask = tasks.markTask(taskIndex);

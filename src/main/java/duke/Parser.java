@@ -52,6 +52,7 @@ public class Parser {
             parsedOutput[0] = cmd;
 
             switch (cmd) {
+            case "find":
             case "mark":
             case "unmark":
             case "delete":

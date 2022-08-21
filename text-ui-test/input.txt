@@ -37,4 +37,8 @@ deadline bad date /by 2000-88-88
 deadline wrongFormat /by 01-01-2000
 event wrongFormat /at 2000-12-34
 list
+find finish
+find e ip ip ip
+find 1
+list
 bye

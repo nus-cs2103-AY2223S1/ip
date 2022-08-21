@@ -16,6 +16,10 @@ public abstract class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
+    public boolean contains(String s) {
+        return description.contains(s);
+    }
+
     public void markAsDone() {
         isDone = true;
     }

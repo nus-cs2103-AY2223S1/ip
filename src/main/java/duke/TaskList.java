@@ -33,6 +33,16 @@ public class TaskList {
         tasks.add(task);
     }
 
+    public ArrayList<Task> find(String s) {
+        ArrayList<Task> result = new ArrayList<>();
+        for (Task task : tasks) {
+            if (task.contains(s)) {
+                result.add(task);
+            }
+        }
+        return result;
+    }
+
     /**
      * Returns the Task selected after marking it as complete.
      *
