@@ -163,7 +163,7 @@ public class TypeConverter {
                 return LocalDate.parse(date);
             }
         } catch (DateTimeParseException dtpe) {
-            throw new DukeException("Date is not valid");
+            throw new DukeException("Date is not valid\n>>");
         }
     }
 
@@ -174,7 +174,6 @@ public class TypeConverter {
             int DATE_LENGTH = 10;
             int startOfDateIndex = line.indexOf(compareString) + NUM_CHARACTERS_TO_CHECK;
             date = line.substring(startOfDateIndex, startOfDateIndex + DATE_LENGTH).trim();
-            System.out.println(date);
             return LocalDate.parse(date);
         } catch (DateTimeParseException dtpe) {
             throw new DukeException("Date in storage is invalid\n>>");

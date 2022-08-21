@@ -24,6 +24,15 @@ public class Task {
         }
         return status;
     }
+    public String longDescription() {
+        String status;
+        if (this.isDone) {
+            status = String.format("Task %s", this.description);
+        } else {
+            status = String.format("Task %s", this.description);
+        }
+        return status;
+    }
 
     public void markAsDone() {
         this.isDone = true;
@@ -31,5 +40,9 @@ public class Task {
 
     public void markAsNotDone() {
         this.isDone = false;
+    }
+
+    public boolean isToday() {
+        return true;
     }
 }

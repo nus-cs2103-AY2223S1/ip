@@ -3,7 +3,7 @@ import java.time.LocalDate;
 /**
  * Event class has a date field.
  */
-public class Event extends Task implements DateableTask{
+public class Event extends Task{
     protected LocalDate date;
 
     public Event(String description, LocalDate date) {
@@ -23,7 +23,18 @@ public class Event extends Task implements DateableTask{
     }
 
     @Override
-    public int numOfDaysLeft() {
-        return date.compareTo(LocalDate.now());
+    public boolean isToday() {
+        return date.isEqual(LocalDate.now());
+    }
+
+    @Override
+    public String longDescription() {
+        String status;
+        String done = this.isDone? "was": "is";
+        status = String.format("Event %s %s at %s %d %s %d",
+                this.description, done, this.date.getDayOfWeek(),
+                this.date.getDayOfMonth() , this.date.getMonth(),
+                this.date.getYear());
+        return status;
     }
 }
