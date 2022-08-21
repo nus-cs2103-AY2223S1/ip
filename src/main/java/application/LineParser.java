@@ -1,12 +1,14 @@
-import DataStructures.Pair;
-import Exceptions.InvalidInputException;
+package application;
+
+import datastructure.Pair;
+import exception.InvalidInputException;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class LineParser {
     public static Pair<Case, ArrayList<String>> parse(String line) throws InvalidInputException {
-        if (!(line instanceof String)) {
+        if (line == null) {
             throw new InvalidInputException();
         } else if (line.equals("bye")) {
             return Pair.of(Case.BYE, null);

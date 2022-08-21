@@ -1,6 +1,15 @@
-import DataStructures.Pair;
-import Exceptions.*;
-import Task.*;
+package application;
+
+import datastructure.Pair;
+
+import exception.InvalidCaseException;
+import exception.InvalidInputException;
+
+import task.Deadline;
+import task.Task;
+import task.TaskList;
+import task.ToDo;
+import task.Event;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -15,20 +24,18 @@ public class ChatBot {
     }
 
     private void handleGreet() {
-        String logo =
-                  "\t" + " ,-----.,--.               ,--.    ,--.                  " + "\n"
+        String logo = "\t" + " ,-----.,--.               ,--.    ,--.                  " + "\n"
                 + "\t" + "'  .--./|  ,---.  ,--,--.,-'  '-.,-'  '-.,--.,--. ,---.  " + "\n"
                 + "\t" + "|  |    |  .-.  |' ,-.  |'-.  .-''-.  .-'|  ||  |(  .-'  " + "\n"
                 + "\t" + "'  '--'\\|  | |  |\\ '-'  |  |  |    |  |  '  ''  '.-'  `) " + "\n"
                 + "\t" + " `-----'`--' `--' `--`--'  `--'    `--'   `----' `----'  " + "\n";
         String message = "\n\t" + "Hello! My name is Chattus" + "."
-                       + "\n\t" + "What can I do for you? :)" + "\n";
+                + "\n\t" + "What can I do for you? :)" + "\n";
         this.displayMessage(logo + message);
     }
 
     private void handleBye() {
-        String message = "\t" + "Bye! Till we next meet!" + "\n";
-        this.displayMessage(message);
+        this.displayMessage("\t" + "Bye! Till we next meet!" + "\n");
     }
 
     private void handleAddTask(Case cs, ArrayList<String> parsedLine) {
@@ -55,7 +62,7 @@ public class ChatBot {
 
     private void handleDeleteTask(ArrayList<String> parsedLine) throws InvalidInputException {
         int entry = Integer.parseInt(parsedLine.get(0));
-        if (this.taskList.inRange(entry)) {
+        if (this.taskList.isInRange(entry)) {
             Task removed = this.taskList.remove(entry);
             this.displayMessage("\t" + "Noted. I've removed this task:" + "\n\t\t"
                               + "\t" + removed + "\n"
@@ -71,7 +78,7 @@ public class ChatBot {
 
     private void handleMark(ArrayList<String> parsedLine) throws InvalidInputException {
         int entry = Integer.parseInt(parsedLine.get(0));
-        if (this.taskList.inRange(entry)) {
+        if (this.taskList.isInRange(entry)) {
             Task task = this.taskList.get(entry);
             this.taskList.markTask(entry);
             this.displayMessage("\t" + "Great! I've marked this task." + "\n\t\t" + task + "\n");
@@ -82,7 +89,7 @@ public class ChatBot {
 
     private void handleUnmark(ArrayList<String> parsedLine) throws InvalidInputException {
         int entry = Integer.parseInt(parsedLine.get(0));
-        if (this.taskList.inRange(entry)) {
+        if (this.taskList.isInRange(entry)) {
             Task task = this.taskList.get(entry);
             this.taskList.unmarkTask(entry);
             this.displayMessage("\t" + "Ok, I've unmarked this task." + "\n\t\t" + task + "\n");
@@ -103,8 +110,8 @@ public class ChatBot {
         while(true) {
             try {
                 Pair<Case, ArrayList<String>> parsed = LineParser.parse(input.nextLine());
-                Case cs = parsed.left();
-                ArrayList<String> parsedLine = parsed.right();
+                Case cs = parsed.getLeft();
+                ArrayList<String> parsedLine = parsed.getRight();
 
                 switch (cs) {
                     case BYE:

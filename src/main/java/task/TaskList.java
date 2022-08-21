@@ -1,11 +1,11 @@
-package Task;
+package task;
 
 import java.util.ArrayList;
 
 public class TaskList extends ArrayList<Task> {
     @Override
     public Task get(int entry) {
-        if (this.inRange(entry)) {
+        if (this.isInRange(entry)) {
             return super.get(entry - 1);
         }
         return null;
@@ -13,24 +13,24 @@ public class TaskList extends ArrayList<Task> {
 
     @Override
     public Task remove(int entry) {
-        if (this.inRange(entry)) {
+        if (this.isInRange(entry)) {
             return super.remove(entry - 1);
         }
         return null;
     }
 
-    public boolean inRange(int entry) {
+    public boolean isInRange(int entry) {
         return entry > 0 && entry <= this.size();
     }
 
     public void markTask(int entry) {
-        if (this.inRange(entry)) {
+        if (this.isInRange(entry)) {
             this.get(entry).mark();
         }
     }
 
     public void unmarkTask(int entry) {
-        if (this.inRange(entry)) {
+        if (this.isInRange(entry)) {
             this.get(entry).unmark();
         }
     }

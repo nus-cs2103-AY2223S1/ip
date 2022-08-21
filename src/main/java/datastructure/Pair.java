@@ -1,4 +1,4 @@
-package DataStructures;
+package datastructure;
 
 public class Pair<S, T> {
     private final S left;
@@ -13,11 +13,11 @@ public class Pair<S, T> {
         return new Pair<>(left, right);
     }
 
-    public S left() {
+    public S getLeft() {
         return this.left;
     }
 
-    public T right() {
+    public T getRight() {
         return this.right;
     }
 }
