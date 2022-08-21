@@ -1,3 +1,5 @@
+package jude;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -5,6 +7,10 @@ import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Scanner;
+import jude.task.Deadline;
+import jude.task.Event;
+import jude.task.Task;
+import jude.task.Todo;
 
 public class Storage {
     private String filePath;

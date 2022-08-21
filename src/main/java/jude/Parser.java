@@ -1,3 +1,10 @@
+package jude;
+
+import jude.task.Deadline;
+import jude.task.Event;
+import jude.task.Task;
+import jude.task.Todo;
+
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;

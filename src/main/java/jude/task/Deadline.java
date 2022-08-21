@@ -1,3 +1,5 @@
+package jude.task;
+
 /**
  * A Deadline object is a Task object that has an associated deadline by which the task should be
  * completed.
@@ -50,7 +52,7 @@ public class Deadline extends Task {
     }
 
     @Override
-    String toFileSaveString() {
+    public String toFileSaveString() {
         return String.format("%s%s\n", super.toFileSaveString(), deadline);
     }
 }

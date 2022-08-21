@@ -1,3 +1,5 @@
+package jude.task;
+
 /**
  * The Task class models a task. A task has a description and an indicator depicting whether it has
  * been done.
@@ -92,7 +94,7 @@ public abstract class Task {
 
     // Internal method used to save a task as a string in a file.
     // This should be consistent with the documentation of loadFile in Main class.
-    String toFileSaveString() {
+    public String toFileSaveString() {
         return String.format("%s\n%s\n%d\n", getTaskTypeCode(), description, isDone ? 1 : 0);
     }
 }

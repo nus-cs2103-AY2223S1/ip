@@ -1,3 +1,5 @@
+package jude;
+
 import java.util.Scanner;
 
 public class Ui {

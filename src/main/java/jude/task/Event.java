@@ -1,3 +1,5 @@
+package jude.task;
+
 /**
  * An Event object is a Task which has a start time and an end time.
  */
@@ -49,7 +51,7 @@ public class Event extends Task {
     }
 
     @Override
-    String toFileSaveString() {
+    public String toFileSaveString() {
         return String.format("%s%s\n", super.toFileSaveString(), when);
     }
 }

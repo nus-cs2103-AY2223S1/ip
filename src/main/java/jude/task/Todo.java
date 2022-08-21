@@ -1,3 +1,5 @@
+package jude.task;
+
 /**
  * A Todo is a Task without an associated date/time.
  */
@@ -24,7 +26,7 @@ public class Todo extends Task {
     }
 
     @Override
-    String toFileSaveString() {
+    public String toFileSaveString() {
         return super.toFileSaveString();
     }
 }
