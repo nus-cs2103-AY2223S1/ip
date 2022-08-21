@@ -1,5 +1,8 @@
 package duke;
 
+/**
+ * Represents an Todo task, with no date or time.
+ */
 public class Todo extends Task {
     public Todo(String description) {
         super(description);
@@ -10,6 +13,9 @@ public class Todo extends Task {
         isDone = status == 1;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String parseToSaveData() {
         return "T" + "|" + super.parseToSaveData();

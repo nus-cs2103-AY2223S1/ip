@@ -5,6 +5,9 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Represents a deadline task with an end date and time.
+ */
 public class Deadline extends Task {
     private LocalDate date;
     private LocalTime time;
@@ -28,6 +31,9 @@ public class Deadline extends Task {
         return time.format(DateTimeFormatter.ofPattern("hh:mm a"));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String parseToSaveData() {
         return "D" + "|" + super.parseToSaveData() + "|" + date + "|" + time;

@@ -5,6 +5,9 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Represents an event task with a start date and time, as well as an end date and time.
+ */
 public class Event extends Task {
     LocalDate dateStart;
     LocalTime timeStart;
@@ -37,6 +40,9 @@ public class Event extends Task {
         return time.format(DateTimeFormatter.ofPattern("hh:mm a"));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String parseToSaveData() {
         return "E" + "|" + super.parseToSaveData() + "|"

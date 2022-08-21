@@ -2,6 +2,9 @@ package duke;
 
 import java.util.Arrays;
 
+/**
+ * Deals with making sense of the user command and converting input into a format understandable by the Duke program.
+ */
 public class Parser {
     private static void fillNullElementsWithEmptyString(String[] arr) {
         for (int i = 0; i < arr.length; i++) {
@@ -11,6 +14,15 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses an input string into a format that Duke can understand (An array of String).
+     *
+     * @param input A user input string.
+     * @return A String array containing the parsed user input.
+     * @throws BannedDukeCharacterException If input contains a '|' character.
+     * @throws InvalidDukeInputException If input does not contain a recognised Duke command.
+     * @throws MissingDukeInputException If input contains a command that is lacking supporting information.
+     */
     public static String[] parseInput(String input)
             throws BannedDukeCharacterException,
             InvalidDukeInputException,

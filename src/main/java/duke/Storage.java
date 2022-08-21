@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
+/**
+ * Deals with saving Duke tasks as well as loading them from a file.
+ */
 public class Storage {
     private File saveFolder;
     private File saveFile;
@@ -16,6 +19,11 @@ public class Storage {
         this.saveFile = new File(savePath + saveName);
     }
 
+    /**
+     * Saves a list of tasks into the save location.
+     *
+     * @param tasks A TaskList of tasks to be saved.
+     */
     public void saveFile(TaskList tasks) {
         try {
             if (!saveFolder.exists()) {
@@ -32,6 +40,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads a list of tasks from the save location.
+     *
+     * @param tasks The destination for tasks to be loaded to.
+     */
     public void loadFile(TaskList tasks) {
         try {
             if (saveFile.exists()) {
@@ -47,6 +60,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Load one task into a TaskList.
+     *
+     * @param tasks The destination for the task to be loaded to.
+     * @param line The task to be loaded which is stored in a String format.
+     */
     private void loadTaskLineTo(TaskList tasks, String line) {
         String[] temp = line.split("\\|");
         String[] info = Arrays.copyOf(temp, 7);
