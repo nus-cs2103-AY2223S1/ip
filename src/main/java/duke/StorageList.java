@@ -8,13 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * duke.StorageList is a class that stores a list of strings
+ * StorageList is a class that stores a list of strings and
+ * provides methods to manipulate the list.
  */
 public class StorageList {
   private final List<Task> list = new ArrayList<>();
 
   /**
-   * Adds a string to the list
+   * Adds a string to the list.
    * @param t duke.task.Task to be added to the list
    */
   public void add(Task t) {
@@ -22,7 +23,7 @@ public class StorageList {
   }
 
   /**
-   * Returns the duke.task.Task at the specified index
+   * Returns the Task at the specified index.
    * @param index Index of the duke.task.Task to be returned
    * @return duke.task.Task at the specified index
    * @throws DukeException Thrown when the index is out of bounds
@@ -36,7 +37,7 @@ public class StorageList {
   }
 
   /**
-   * Marks the duke.task.Task at the specified index as completed
+   * Marks the Task at the specified index as completed.
    * @param i Index of the duke.task.Task to be marked as completed
    * @throws DukeException Thrown when the index is out of bounds
    */
@@ -49,7 +50,7 @@ public class StorageList {
   }
 
   /**
-   * Unmarks the duke.task.Task at the specified index as completed
+   * Unmarks the Task at the specified index as completed.
    * @param i Index of the duke.task.Task to be unmarked as completed
    * @throws DukeException Thrown when the index is out of bounds
    */
@@ -62,7 +63,7 @@ public class StorageList {
   }
 
   /**
-   * Returns the size of the list
+   * Returns the size of the list.
    * @return Size of the list
    */
   public int getSize() {
@@ -70,7 +71,7 @@ public class StorageList {
   }
   
   /**
-   * Deletes the duke.task.Task at the specified index
+   * Deletes the Task at the specified index.
    * @param i Index of the duke.task.Task to be deleted
    * @throws DukeException Thrown when the index is out of bounds
    */
@@ -83,7 +84,7 @@ public class StorageList {
   }
 
   /**
-   * Resets the list of tasks
+   * Resets the list of tasks.
    */
   public void reset() {
     list.clear();
@@ -92,7 +93,7 @@ public class StorageList {
   /**
    * An overloaded method that return the String representation of the list of task in which the date is matched.
    * @param date Date to be matched
-   * @return String representation of the list of task with correct date.
+   * @return String representation of the list of task with correct date
    */
   public String toString(LocalDateTime date) {
     StringBuilder sb = new StringBuilder();
@@ -107,7 +108,7 @@ public class StorageList {
   }
 
   /**
-   * Returns the list of strings
+   * Returns the list of strings.
    * @return String representation of the list of strings
    */
   @Override

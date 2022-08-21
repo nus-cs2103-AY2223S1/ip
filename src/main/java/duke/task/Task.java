@@ -3,20 +3,24 @@ package duke.task;
 import java.time.LocalDateTime;
 
 /**
- * A-Class to represent a task containing description and completion status.
+ * A class to represent a task containing description and completion status.
  */
 public class Task {
   protected final String description;
   protected boolean isDone;
   protected LocalDateTime dateTime;
-
+  
+  /**
+   * Constructs a task with a description.
+   * @param description the description of the task.
+   */
   public Task(String description) {
     this.description = description;
     this.isDone = false;
   }
 
   /**
-   * Returns the completion status of the task
+   * Returns the completion status of the task.
    * @return String representation of the completion status of the task
    */
   public String getStatusIcon() {
@@ -26,21 +30,21 @@ public class Task {
   }
 
   /**
-   * Marks the task as completed
+   * Marks the task as completed.
    */
   public void mark() {
     isDone = true;
   }
 
   /**
-   * Unmarks the task as not completed
+   * Unmarks the task as not completed.
    */
   public void unmark() {
     isDone = false;
   }
 
   /**
-   * Returns the dateTime of the task
+   * Returns the dateTime of the task.
    * @return DateTime of the task
    */
   public LocalDateTime getDateTime() {
@@ -49,7 +53,7 @@ public class Task {
 
   /**
    * Returns the description of the task.
-   * @return Description of the task.
+   * @return Description of the task
    */
   @Override
   public String toString() {

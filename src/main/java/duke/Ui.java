@@ -4,7 +4,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 /**
- * This class deals with interactions with the user
+ * This class deals with interactions with the user.
  */
 public class Ui {
   private static final DateTimeFormatter INPUT_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
@@ -19,7 +19,7 @@ public class Ui {
   }
   
   /**
-   * Handles the user input and calls the appropriate method
+   * Handles the user input and calls the appropriate method.
    */
   public String readCommand() {
     String input = SCANNER.nextLine();
@@ -31,29 +31,49 @@ public class Ui {
 
 
   /**
-   * Return the formatter for the DateTime
+   * Return the formatter for the DateTime input.
    * @return DateTimeFormatter
    */
   public static DateTimeFormatter getInputFormatter() {
     return INPUT_FORMATTER;
   }
-  
+
+  /**
+   * Return the formatter for the DateTime output.
+   * @return DateTimeFormatter
+   */
   public static DateTimeFormatter getOutputFormatter() {
     return OUTPUT_FORMATTER;
   }
   
+  /**
+   * Returns the last input.
+   * @return last input
+   */
   public String getLastInput() {
     return lastInput;
   }
   
+  /**
+   * Returns the last command.
+   * @return last command
+   */
   public String getLastCommand() {
     return lastCommand;
   }
   
+  /**
+   * Sets the last input.
+   * @param lastInput last input
+   */
   public void setLastInput(String lastInput) {
     this.lastInput = lastInput;
   }
-  
+
+  /**
+   * Sets the last command.
+   * @param lastCommand last command
+   */
   public void setLastCommand(String lastCommand) {
     this.lastCommand = lastCommand;
   }

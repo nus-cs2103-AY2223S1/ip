@@ -28,7 +28,7 @@ public enum Output{
   private String output = "";
 
   /**
-   * Constructor for the Enums
+   * Constructor for the Enums.
    * @param s String that is to be initialised in the enum
    */
   Output(String s){
@@ -36,14 +36,14 @@ public enum Output{
   }
 
   /**
-   * Prints the enum output with the specified format
+   * Prints the enum output with the specified format.
    */
   public void print() {
     echo(this.output);
   }
 
   /**
-   * Prints the format when a change of status has occurred
+   * Prints the format when a change of status has occurred.
    * @param task The task where the change of status occurred
    */
   public void changeStatus(Task task) {
@@ -51,7 +51,7 @@ public enum Output{
   }
 
   /**
-   * Prints the format when a new duke.task.Task is modified
+   * Prints the format when a new duke.task.Task is modified.
    * @param task duke.task.Task to be modified
    * @param list List where the task is modified
    */
@@ -60,7 +60,7 @@ public enum Output{
   }
 
   /**
-   * Returns the String representation of the number of tasks in the list
+   * Returns the String representation of the number of tasks in the list.
    * @param list List where the tasks are stored
    * @return String representation of the number of tasks in the list
    */
@@ -69,7 +69,7 @@ public enum Output{
   }
 
   /**
-   * Prints the String format of the list
+   * Prints the String format of the list.
    * @param list List to be printed
    */
   public void list(StorageList list) {
@@ -77,7 +77,7 @@ public enum Output{
   }
 
   /**
-   * Prints the String representation of the list of tasks that matches the specified date
+   * Prints the String representation of the list of tasks that matches the specified date.
    * @param list List of tasks to be printed
    * @param date Date to be matched
    */
@@ -86,7 +86,7 @@ public enum Output{
   }
 
   /**
-   * Prints the specified output format
+   * Prints the specified output format.
    * @param s String to be printed out
    */
   public static void echo(String s) {
@@ -94,7 +94,7 @@ public enum Output{
   }
 
   /**
-   * Wraps the String with the specified format
+   * Wraps the String with the specified format.
    * @param s String to be wrapped
    * @return Wrapped String
    */

@@ -6,7 +6,16 @@ import duke.Ui;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
-public class Deadline extends Task{
+/**
+ * This class represents a deadline which is {@code by} a certain date.
+ */ 
+public class Deadline extends Task {
+  /**
+   * Constructs a deadline with a description and a date.
+   * @param description the description of the deadline
+   * @param by the date of the deadline
+   * @throws DukeException if the date is of invalid format
+   */
   public Deadline(String description, String by) throws DukeException {
     super(description);
     try {
@@ -21,8 +30,8 @@ public class Deadline extends Task{
   }
 
   /**
-   * Returns the description of the task, with a duke.task.Deadline tag
-   * @return Description of the task.
+   * Returns the description of the task, with a Deadline tag.
+   * @return Description of the task
    */
   @Override
   public String toString() {

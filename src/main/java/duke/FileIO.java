@@ -7,9 +7,12 @@ import duke.task.Todo;
 
 import java.io.*;
 
+/**
+ * FileIO handles the loading and saving tasks in the file.
+ */
 public class FileIO {
   /**
-   * Save the list of tasks to a file
+   * Save the list of tasks to a file.
    * @param list List of tasks to save
    * @param filePath The path of the file to save to
    */
@@ -31,7 +34,7 @@ public class FileIO {
   }
 
   /**
-   * Loads the tasks from the file
+   * Loads the tasks from the file.
    * @param list List of tasks to load into
    * @param filePath The path of the file to load from
    */
@@ -56,7 +59,7 @@ public class FileIO {
   }
 
   /**
-   * Parses a line of text and adds the task to the list
+   * Parses a line of text and adds the task to the list.
    * @param line The line of text to parse
    * @param list The list to add the task to
    */
@@ -81,7 +84,7 @@ public class FileIO {
   }
 
   /**
-   * Returns the description of the task
+   * Returns the description of the task.
    * @param line The line of text to parse
    * @return The description of the task
    */
@@ -94,7 +97,7 @@ public class FileIO {
   }
 
   /**
-   * Returns the additional information of the task
+   * Returns the additional information of the task.
    * @param line The line of text to parse
    * @return The additional information of the task
    */
@@ -105,7 +108,12 @@ public class FileIO {
       return line.substring(line.indexOf(":") + 2, line.indexOf(")"));
     }
   }
-  
+
+  /**
+   * Creates the file if it doesn't exist.
+   * @param filePath The path of the file to create
+   * @throws IOException If the file cannot be created
+   */
   private static void createFile(String filePath) throws IOException {
     new File(filePath).createNewFile();
   }

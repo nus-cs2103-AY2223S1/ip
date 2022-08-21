@@ -7,9 +7,16 @@ import duke.task.Task;
 import duke.task.Todo;
 
 /**
- * Deals with making sense of the user command
+ * Deals with making sense of the user command.
  */
 public class Parser {
+  /**
+   * Parses the user command and returns the corresponding command object.
+   * @param command The user command
+   * @return The corresponding command object
+   *
+   * @throws DukeException if the command is invalid
+   */
   public static Command parse(String command) throws DukeException {
     switch (command) {
       case "bye":
@@ -37,7 +44,7 @@ public class Parser {
     }
   }
   /**
-   * Finds the String between first command and second command (if exist)
+   * Finds the String between first command and second command (if exist).
    * @param input User input
    * @param command First command
    * @return String between first command and second command (if exist)
@@ -54,7 +61,7 @@ public class Parser {
   }
 
   /**
-   * Finds the String between second command (if exist) and end
+   * Finds the String between second command (if exist) and end.
    * @param input User input
    * @param command Second command
    * @return String between second command (if exist) and end
@@ -66,7 +73,7 @@ public class Parser {
   }
 
   /**
-   * Parses the user input and creates a duke.task.Task object
+   * Parses the user input and creates a Task object.
    * @param input User input
    * @param command duke.commands.Command that the user inputs
    * @param storageList duke.StorageList object
@@ -94,9 +101,9 @@ public class Parser {
   }
 
   /**
-   * Adds a duke.task.Task to the duke.StorageList, print out the appropriate String
-   * @param task duke.task.Task to be added to the duke.StorageList
-   * @param storageList duke.StorageList to be added to
+   * Adds a Task to the StorageList, print out the appropriate String.
+   * @param task Task to be added to the StorageList
+   * @param storageList StorageList to be added to
    */
   private static void addTask(Task task, StorageList storageList) {
     storageList.add(task);
@@ -104,9 +111,9 @@ public class Parser {
   }
 
   /**
-   * Finds the index of the duke.task.Task that the user wants to mark/unmark/delete
+   * Finds the index of the Task that the user wants to mark/unmark/delete.
    * @param input User input
-   * @return Index of the duke.task.Task
+   * @return Index of the Task
    */
   public static int getIndex(String input) {
     return Integer.parseInt(input.split(" ")[1]) - 1;

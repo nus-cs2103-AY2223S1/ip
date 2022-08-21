@@ -2,7 +2,16 @@ package duke.command;
 
 import duke.*;
 
-public class SaveCommand extends Command{
+/**
+ * Saves the StorageList to a file.
+ */
+public class SaveCommand extends Command {
+  /**
+   * Executes the save command.
+   * @param ui the user interface
+   * @param storageList the storage list
+   * @throws DukeException if the command is invalid
+   */
   @Override
   public void execute(Ui ui, StorageList storageList) throws DukeException {
     String filename = Duke.getDefaultFileName();
