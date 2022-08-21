@@ -1,14 +1,16 @@
 package DukeProgram;
 
+import java.awt.*;
+import java.io.IOException;
 import java.util.*;
+import java.util.List;
 import java.util.stream.Stream;
 
 public class Duke {
     private static final String DECORATOR = "\t" + "-".repeat(50);
-
     private static final Scanner scanner = new Scanner(System.in);
-
     private static final List<Job> toDoList = new ArrayList<Job>();
+    private static String userName;
 
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -18,9 +20,78 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
 
-        Checklist.Use();
+        if (SaveManager.deserialize()) {
+            loadCurrentUser();
+        } else {
+            beginNewUser();
+        }
+
+        requestCommands();
 
         printInStyle("Goodbye! Hope to see you again soon!");
+
+        try {
+            SaveManager.serialize();
+        } catch (IOException e) {
+            printInStyle(e.getMessage());
+        }
+    }
+
+    private static void requestCommands() {
+        while (true) {
+            switch (askForInput("What would you like to do?")) {
+            case "checklist":
+                Checklist.use();
+                break;
+
+            case "factory reset":
+                factoryReset();
+                break;
+
+            case "exit":
+                return;
+            }
+        }
+    }
+
+
+    private static void factoryReset() {
+        printInStyle(
+                String.format("If you are sure you want to do this, " +
+                        "%s, please input the following numbers...", userName));
+
+        int key = new Random()
+                .nextInt((50000 - 10000) + 1) + 10000;
+        try {
+            if (key == Integer.parseInt(askForInput(String.format("Type in %d", key)))) {
+                printInStyle(String.format("Goodbye %s", userName));
+                if (SaveManager.wipeData()) {
+                    System.exit(0);
+                } else {
+                    printInStyle("I couldn't delete the file.");
+                }
+            } else {
+                printInStyle("Terminating last command...");
+            }
+        } catch (NumberFormatException e) {
+            printInStyle("Terminating last command...");
+        }
+    }
+
+    private static void beginNewUser() {
+        printInStyle("This is the first time we've met!");
+        userName = askForInput("Why don't you start by introducing yourself, what is your name?");
+        printInStyle(String.format("Nice to meet you %s", userName));
+        SaveManager.save("userName", userName);
+    }
+
+    private static void loadCurrentUser() {
+        try {
+            userName = SaveManager.load("userName");
+            printInStyle(String.format("Welcome back %s", userName));
+        } catch (KeyNotFoundException e) {
+            printInStyle(e.getMessage());
+        }
     }
 
     /**
@@ -77,6 +148,24 @@ public class Duke {
         System.out.print(prompt + " ");
         if (scanner.hasNextLine()) {
             return scanner.nextLine();
+        } else {
+            return "bye";
+        }
+    }
+
+    /**
+     * Requests user for input using the scanner
+     * @param prompt the prompt to show the user
+     * @return the given input from the user
+     */
+    public static String askForInput(String prompt, boolean noLinebreak) {
+        if (!noLinebreak) {
+            return askForInput(prompt);
+        }
+
+        System.out.print(prompt + " ");
+        if (scanner.hasNext()) {
+            return scanner.next();
         } else {
             return "bye";
         }

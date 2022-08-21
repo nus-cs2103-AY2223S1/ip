@@ -1,6 +1,8 @@
 package DukeProgram;
 
-public class Job {
+import java.io.Serializable;
+
+public class Job implements Serializable {
     public enum JobState {
         Done,
         NotDone

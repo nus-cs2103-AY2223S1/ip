@@ -2,53 +2,77 @@ package DukeProgram;
 
 import Utilities.StringUtilities;
 
+import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static DukeProgram.Duke.*;
 
-public class Checklist {
+public class Checklist implements Serializable {
     private static final int ALL = -1;
-    private static final ArrayList<Job> checklist = new ArrayList<>(100);
+    private static List<Job> checklist;
+    private static final String HEADER = "checklist";
 
     /***
      * Provides functionality to use a checklist in Duke.
      */
-    public static void Use() {
+    public static void use() {
+        try {
+            checklist = SaveManager.load(HEADER);
+
+            printInStyle("I've loaded your checklist!");
+
+        } catch(KeyNotFoundException e) {
+            checklist = new ArrayList<>(100);
+        }
+
+        listChecklist();
+
         String[] input = askForInput("").split(" ");
 
         while (!input[0].toLowerCase(Locale.ROOT).equals("bye")) {
             switch (input[0]) {
-                case "list":
-                    listChecklist();
-                    break;
+            case "list":
+                listChecklist();
+                break;
 
-                case "mark": case "unmark":
-                    markChecklist(input);
-                    break;
+            case "mark": case "unmark":
+                markChecklist(input);
+                break;
 
-                case "delete":
-                    deleteFromChecklist(input);
-                    break;
+            case "delete":
+                deleteFromChecklist(input);
+                break;
 
-                default:
-                    try {
-                        addToChecklist(input);
-                    } catch (InvalidJobException ex) {
-                        printInStyle(ex.getMessage());
-                    }
+            case "exit":
+                saveChecklist();
+                return;
+
+            default:
+                try {
+                    addToChecklist(input);
+                } catch (InvalidJobException ex) {
+                    printInStyle(ex.getMessage());
+                }
             }
             input = askForInput("").split(" ");
         }
     }
 
+    private static void saveChecklist() {
+        SaveManager.save(HEADER, (Serializable) checklist);
+    }
+
     private static void listChecklist() {
         printInStyle(IntStream
                 .range(0, checklist.size())
-                .mapToObj(i -> String.format("%d: %s", i + 1, checklist.get(i).toString()))
+                .mapToObj(i -> String.format("%d: %s", i + 1, checklist.get(i).toString())),
+                String.format("You presently have %d tasks", checklist.size())
         );
     }
 
@@ -212,6 +236,7 @@ public class Checklist {
                 job.toString(),
                 String.format("Now you have %d tasks in the list", checklist.size()));
     }
+
 
     /**
      * A helper method to concat a string array given in the format from System.in
