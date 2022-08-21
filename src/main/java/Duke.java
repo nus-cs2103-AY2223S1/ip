@@ -133,7 +133,7 @@ public class Duke {
             System.out.println("description cannot be empty");
         } catch (DateTimeParseException e) {
             System.out.println("please enter a valid date format.");
-            System.out.println("date and time: dd/mm/YYYY HH:mm:ss");
+            System.out.println("date and time: dd/mm/YYYY hh:mm");
         }
     }
 
