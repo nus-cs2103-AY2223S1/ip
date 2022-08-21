@@ -1,7 +1,7 @@
 package duke.command;
 
 public class ByeCommand extends Command {
-    ByeCommand() {
+    public ByeCommand() {
         super.isExit = true;
     }
 
