@@ -1,2 +1,0 @@
-T|1|eat|
-D|0|wake|7am

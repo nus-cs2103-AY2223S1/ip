@@ -5,27 +5,30 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A SaveFile class that stores the task in task list.
+ * A Storage class that stores the task in task list.
  *
  * CS2103T iP
  * AY22/23 Semester 1
  * @author Tan Jia Rong
  */
-public class SaveFile {
+public class Storage {
     /** Save location of task list */
-    private static final String SAVE_LOCATION = "./data/data.txt";
+    File file;
+
+    public Storage(String filePath) {
+        this.file = new File(filePath);
+    }
 
     /**
-     * Writes Tasks into save file.
+     * Saves Tasks into save file.
      *
      * @param tasks The List of Task to write from.
      */
-    public void writeToSaveFile(List<Task> tasks) {
-        File file = new File(SAVE_LOCATION);
-
+    public void save(TaskList tasks) {
         // Create Directory or File if it does not exist
         try {
             if (!file.exists()) {
@@ -38,20 +41,20 @@ public class SaveFile {
                 file.createNewFile();
             }
         } catch (IOException e) {
-            System.out.println("Exception Occurred: " + e.toString());
+            System.out.println("Exception Occurred: " + e.getMessage());
         }
 
         // Write into File
         try {
-            String line = "";
+            String line;
             String type;
             String done;
             String desc;
             String date;
-            FileWriter fileWriter = new FileWriter(file.getAbsoluteFile());
+            FileWriter fileWriter = new FileWriter(file.getAbsoluteFile(), false);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-            for (Task task : tasks) {
+            for (Task task : tasks.getTaskList()) {
                 type = task.getType();
                 desc = task.getDescription();
                 done = task.isDone ? "1" : "0";
@@ -69,16 +72,14 @@ public class SaveFile {
     }
 
     /**
-     * Reads Tasks from save file.
-     *
-     * @param tasks The List of Task to read into.
+     * Loads Tasks from save file.
      */
-    public void readFromFile(List<Task> tasks) {
-        File file = new File(SAVE_LOCATION);
+    public List<Task> load() {
+        List<Task> tasks = new ArrayList<>();
 
         if (!file.exists()) {
             System.out.println("Save file does not exist");
-            return;
+            return tasks;
         }
 
         try {
@@ -92,15 +93,15 @@ public class SaveFile {
                 String[] arr = line.split(" > ");
                 String type = arr[0];
                 switch (type) {
-                case "T" :
-                    tasks.add(new ToDo(arr[1], arr[2]));
-                    break;
-                case "E" :
-                    tasks.add(new Event(arr[1], arr[2], arr[3]));
-                    break;
-                case "D" :
-                    tasks.add(new Deadline(arr[1], arr[2], arr[3]));
-                    break;
+                    case "T" :
+                        tasks.add(new ToDo(arr[1], arr[2]));
+                        break;
+                    case "E" :
+                        tasks.add(new Event(arr[1], arr[2], arr[3]));
+                        break;
+                    case "D" :
+                        tasks.add(new Deadline(arr[1], arr[2], arr[3]));
+                        break;
                 }
 
                 line = bufferedReader.readLine();
@@ -109,6 +110,6 @@ public class SaveFile {
         } catch (IOException | DukeInvalidTimeException e) {
             System.out.println(e.getMessage());
         }
+        return tasks;
     }
-
 }

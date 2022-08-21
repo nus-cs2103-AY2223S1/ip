@@ -1,15 +1,15 @@
 todo eat
-event sleep /at 12am
-deadline wake /by 7am
+event sleep /at 2012-12-12 1200
+deadline wake /by 2012-12-12 0000
 mark 1
 mark 2
-list
 unmark 2
 list
-mark 5
-delete 2
-delete 7
-sewy
+help
+delete 1
+delete 1
+delete 1
 todo
-todo
+deadline
+event
 bye
