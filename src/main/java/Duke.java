@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.time.LocalDate;
 
 public class Duke {
 
@@ -86,7 +87,7 @@ public class Duke {
                     break;
                 case deadline:
                     String[] dl = command[1].split("/by", 2);
-                    list.add(new Deadline(command[0], dl[1]));
+                    list.add(new Deadline(dl[0], LocalDate.parse(dl[1])));
                     count = list.size();
                     System.out.println("Added Task");
                     System.out.println(list.get(count - 1));
