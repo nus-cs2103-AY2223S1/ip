@@ -10,7 +10,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class Command {
-
     private CommandType commandType;
     private TaskList tasks;
     private String input;
@@ -22,8 +21,6 @@ public class Command {
         this.input = input;
         this.ui = ui;
     }
-
-
 
     private void addTask(Task input) {
         tasks.add(input);
@@ -39,11 +36,22 @@ public class Command {
         return taskIndex - 1 < this.tasks.getSize() && taskIndex - 1 >= 0;
     }
 
+    /**
+     * Returns a boolean describing whether the CommandType is a "Bye" Command.
+     *
+     * @return boolean describing whether the CommandType is a "Bye" Command.
+     */
     public boolean isExit() {
         return commandType == CommandType.BYE;
     }
 
-    public void run() throws DukeException {
+    /**
+     * Executes the Command based on the CommandType.
+     *
+     * @throws DukeException If an exception is encountered or if
+     * an the input is invalid.
+     */
+    public void execute() throws DukeException {
         switch (this.commandType) {
         case BYE:
             break;

@@ -25,6 +25,13 @@ public class Storage {
         this.filename = filename;
     }
 
+    /**
+     * Returns an ArrayList of Tasks containing the saved Tasks, if they exist.
+     *
+     * @return ArrayList of Tasks
+     * @throws DukeException if an error is encountered when the file
+     * is unable to be read.
+     */
     public ArrayList<Task> readSavedTasks() throws DukeException {
         Path dataDirectoryPath = Paths.get(userDirectory, folderPath);
         Path savedTasksPath = Paths.get(userDirectory, folderPath, filename);
@@ -140,6 +147,12 @@ public class Storage {
         return path.toAbsolutePath().toString();
     }
 
+    /**
+     * Writes the saved tasks to the output file.
+     *
+     * @param tasks TaskList to be written from.
+     * @throws DukeException if an exception is encountered.
+     */
     public void writeToFile(TaskList tasks) throws DukeException {
         try {
             FileWriter fw = new FileWriter(relativePath());
