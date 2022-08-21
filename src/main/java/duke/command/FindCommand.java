@@ -1,14 +1,14 @@
 package duke.command;
 
+import java.util.ArrayList;
+
 import duke.FileStorage;
 import duke.Ui;
 import duke.task.Task;
 import duke.task.TaskList;
 
-import java.util.ArrayList;
-
 /**
- * Find the tasks that matches the query in the taskList.
+ * Command used to query tasks that matches the keyword in the taskList.
  */
 public class FindCommand extends Command {
 
@@ -17,6 +17,14 @@ public class FindCommand extends Command {
     public FindCommand(String query) {
         this.query = query;
     }
+
+    /**
+     * Finds the matching tasks from the taskList.
+     *     and prints out the corresponding message to the user.
+     * @param list The taskList of Duke.
+     * @param storage The fileStorage of Duke.
+     * @param ui The Ui of Duke.
+     */
     @Override
     public void execute(TaskList list, FileStorage storage, Ui ui) {
         ArrayList<Task> foundTasks = list.findTasks(query);
