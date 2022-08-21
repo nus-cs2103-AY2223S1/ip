@@ -1,7 +1,7 @@
 package duke.task;
 
 /**
- * Task is a representation of a task in Duke.
+ * Represents a task in the Duke application.
  */
 public abstract class Task {
     /** Description of the task. */
@@ -10,12 +10,12 @@ public abstract class Task {
     private boolean isDone;
 
     /**
-     * Constructor for a Task, with a description.
+     * Constructor for a Task that takes in description.
      * Task is set as "not done" when created.
      *
      * @param description Description of a task.
      */
-    public Task(String description) {
+    protected Task(String description) {
         this.description = description;
         this.isDone = false;
     }

@@ -11,12 +11,19 @@ import duke.ui.Ui;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Main entry point of the Duke application.
+ * Initializes the application and is responsible for user interaction.
+ */
 public class Duke {
     private final Parser parser;
     private final Storage storage;
     private final Ui ui;
     private final TaskList tasks;
 
+    /**
+     * Constructor for a Duke application instance.
+     */
     public Duke() {
         this.parser = new Parser();
         this.storage = new Storage("data", "data/tasks");
@@ -34,6 +41,9 @@ public class Duke {
         this.tasks = tasks;
     }
 
+    /**
+     * Runs the Duke application and handles user interaction.
+     */
     public void run() {
         Scanner scanner = new Scanner(System.in);
         this.ui.showWelcomeMessage();
@@ -67,6 +77,11 @@ public class Duke {
         scanner.close();
     }
 
+    /**
+     * Entry point of the application.
+     *
+     * @param args Args is ignored.
+     */
     public static void main(String[] args) {
         new Duke().run();
     }

@@ -6,9 +6,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
+ * Represents a deadline task in the Duke application.
  * Deadline is a Task that needs to be done before a specific date/time.
  */
 public class Deadline extends Task {
+    /** Exception due to wrong deadline format. */
     public final static DukeException wrongFormat =
         new DukeException("Wrong format for Deadline!\nShould be 'deadline <description> /by YYYY-MM-DD'.");
 
@@ -16,7 +18,7 @@ public class Deadline extends Task {
     private final LocalDate deadline;
 
     /**
-     * Constructor for a deadline, with a description and deadline.
+     * Constructor for a deadline that takes in description and deadline.
      * Deadline is set as "not done" when created.
      *
      * @param description Description of a deadline.
@@ -28,12 +30,11 @@ public class Deadline extends Task {
     }
 
     /**
-     * Factory method for a Deadline, with done and description and date.
+     * Factory method for a Deadline that takes in done, description and date.
      *
-     * @param done Whether the Deadline is done.
+     * @param done        Whether the Deadline is done.
      * @param description Description of Deadline.
-     * @param date Date of Deadline.
-     *
+     * @param date        Date of Deadline.
      * @return Deadline object with the given parameters.
      */
     public static Deadline create(String done, String description, String date) {
@@ -45,18 +46,18 @@ public class Deadline extends Task {
     }
 
     /**
-     * Gets the string representation of a Deadline.
+     * Gets the Deadline in a format for file saving.
      *
-     * @return String representation of a Deadline.
+     * @return Deadline in file saving format.
      */
     public String getFileFormat() {
         return String.format("D | %s | %s", super.getFileFormat(), this.deadline);
     }
 
     /**
-     * Gets the string representation of a deadline.
+     * Gets the string representation of a Deadline.
      *
-     * @return String representation of a deadline.
+     * @return String representation of a Deadline.
      */
     @Override
     public String toString() {

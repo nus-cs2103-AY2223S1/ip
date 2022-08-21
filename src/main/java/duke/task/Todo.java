@@ -3,13 +3,15 @@ package duke.task;
 import duke.exceptions.DukeException;
 
 /**
+ * Represents a todo task in the Duke application.
  * Todo is a Task without any date/time attached to it.
  */
 public class Todo extends Task {
+    /** Exception due to empty todo description. */
     public final static DukeException emptyDescription = new DukeException("Description of Todo cannot be empty!");
 
     /**
-     * Constructor for a Todo, with a description.
+     * Constructor for a Todo that takes in description.
      * Todo is set as "not done" when created.
      *
      * @param description Description of a todo.
@@ -19,11 +21,10 @@ public class Todo extends Task {
     }
 
     /**
-     * Factory method for a Todo, with done and description.
+     * Factory method for a Todo that takes in done and description.
      *
-     * @param done Whether the Todo is done.
+     * @param done        Whether the Todo is done.
      * @param description Description of Todo.
-     *
      * @return Todo object with the given parameters.
      */
     public static Todo create(String done, String description) {
@@ -35,18 +36,18 @@ public class Todo extends Task {
     }
 
     /**
-     * Gets the string representation of a Todo.
+     * Gets the Todo in a format for file saving.
      *
-     * @return String representation of a Todo.
+     * @return Todo in file saving format.
      */
     public String getFileFormat() {
         return String.format("T | %s", super.getFileFormat());
     }
 
     /**
-     * Gets the string representation of a todo.
+     * Gets the string representation of a Todo.
      *
-     * @return String representation of a todo.
+     * @return String representation of a Todo.
      */
     @Override
     public String toString() {

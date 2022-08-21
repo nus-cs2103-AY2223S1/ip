@@ -6,9 +6,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
+ * Represents an event task in the Duke application.
  * Event is a Task that starts at a specific time and ends at a specific time.
  */
 public class Event extends Task {
+    /** Exception due to wrong event format. */
     public final static DukeException wrongFormat =
             new DukeException("Wrong format for Event!\nShould be 'event <description> /at YYYY-MM-DD'.");
 
@@ -16,7 +18,7 @@ public class Event extends Task {
     private final LocalDate date;
 
     /**
-     * Constructor for an event, with a description and date.
+     * Constructor for an event that takes in description and date.
      * Event is set as "not done" when created.
      *
      * @param description Description of an event.
@@ -28,12 +30,11 @@ public class Event extends Task {
     }
 
     /**
-     * Factory method for an Event, with done and description and date.
+     * Factory method for an Event that takes in done, description and date.
      *
-     * @param done Whether the Event is done.
+     * @param done        Whether the Event is done.
      * @param description Description of Event.
-     * @param date Date of Event.
-     *
+     * @param date        Date of Event.
      * @return Event object with the given parameters.
      */
     public static Event create(String done, String description, String date) {
@@ -45,18 +46,18 @@ public class Event extends Task {
     }
 
     /**
-     * Gets the string representation of an Event.
+     * Gets the Event in a format for file saving.
      *
-     * @return String representation of an Event.
+     * @return Event in file saving format.
      */
     public String getFileFormat() {
         return String.format("E | %s | %s", super.getFileFormat(), this.date);
     }
 
     /**
-     * Gets the string representation of an event.
+     * Gets the string representation of an Event.
      *
-     * @return String representation of an event
+     * @return String representation of an Event.
      */
     @Override
     public String toString() {
