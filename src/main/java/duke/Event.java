@@ -6,11 +6,11 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class Event extends Task {
-    LocalDate dateStart;
-    LocalTime timeStart;
+    private LocalDate dateStart;
+    private LocalTime timeStart;
 
-    LocalDate dateEnd;
-    LocalTime timeEnd;
+    private LocalDate dateEnd;
+    private LocalTime timeEnd;
 
     public Event(String description,
                     String dateStart, String timeStart,

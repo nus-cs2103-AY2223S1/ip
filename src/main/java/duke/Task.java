@@ -28,6 +28,6 @@ public abstract class Task {
 
     @Override
     public String toString() {
-        return "[" + getStatusIcon() + "] " +  description;
+        return "[" + getStatusIcon() + "] " + description;
     }
 }

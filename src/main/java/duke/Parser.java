@@ -28,13 +28,13 @@ public class Parser {
         default:
             String[] str = input.split(" ", 2);
             String cmd = str[0];
-            if (str.length == 1 &&
-                    (cmd.equals("mark")
-                            || cmd.equals("unmark")
-                            || cmd.equals("delete")
-                            || cmd.equals("todo")
-                            || cmd.equals("deadline")
-                            || cmd.equals("event"))) {
+            if (str.length == 1
+                    && (cmd.equals("mark")
+                    || cmd.equals("unmark")
+                    || cmd.equals("delete")
+                    || cmd.equals("todo")
+                    || cmd.equals("deadline")
+                    || cmd.equals("event"))) {
                 throw new MissingDukeInputException(cmd);
             }
             parsedOutput[0] = cmd;
