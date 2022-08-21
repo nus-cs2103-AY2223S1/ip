@@ -1,5 +1,9 @@
 import exceptions.*;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -59,6 +63,36 @@ public class Duke {
         System.out.println("Removed the task \n" + task.toString());
         taskList.remove(index);
     }
+
+    private void save() {
+        String filePath = "data/tasks.txt";
+        try {
+            FileWriter fw = new FileWriter(filePath);
+            for (Task tsk : taskList) {
+                fw.write(tsk.toString());
+                fw.write(System.lineSeparator());
+            }
+        } catch (IOException e) {
+            System.out.println("Something's wrong, I can feel it. Its: " + e.getMessage());
+        }
+    }
+
+    private void load() throws IOException {
+        String directoryPath = "data";
+        String filePath =  "data/tasks.txt";
+        File directory = new File(directoryPath);
+        File file = new File(filePath);
+        if (!directory.exists()) {
+            directory.mkdirs();
+            file.createNewFile();
+        }
+
+        Scanner sc = new Scanner(file);
+
+        while (sc.hasNext());
+
+    }
+
 
     public static void main(String[] args) {
 
@@ -201,6 +235,7 @@ public class Duke {
                 case "bye":
                     System.out.println(SEPARATOR);
 
+                    duke.save();
                     System.out.println("See you later :)");
                     System.exit(0);
 
