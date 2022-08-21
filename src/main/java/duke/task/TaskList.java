@@ -44,8 +44,8 @@ public class TaskList {
   @Override
   public String toString() {
     String ret = "";
-    for (Task task : list) {
-      ret += task.toString() + "\n";
+    for (int i = 0; i < list.size(); i++) {
+      ret += (i + 1) + ") " + list.get(i).toString() + "\n";
     }
     return ret;
   }
