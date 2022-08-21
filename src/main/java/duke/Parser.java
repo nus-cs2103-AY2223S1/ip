@@ -4,7 +4,16 @@ import duke.command.*;
 
 import java.time.LocalDate;
 
+/**
+ * Represents all command parsing logic.
+ */
 public class Parser {
+    /**
+     * Parse user command into Command instance to execute.
+     * @param fullCommand String representing the command input of the user.
+     * @return Command to be executed.
+     * @throws DukeException If the fullCommand is not valid.
+     */
     public static Command parse(String fullCommand) throws DukeException {
         String[] inputArray = fullCommand.split(" +", 2);
         String firstWord = inputArray[0];
@@ -37,6 +46,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Parse description into Todo instance
+     * @param description Description of Todo
+     * @return Todo instance
+     * @throws DukeException If description is empty.
+     */
     public static Todo parseTodo(String description) throws DukeException {
         if (description.length() == 0) {
             throw new DukeException("The description of a todo cannot be empty.");
@@ -44,6 +59,12 @@ public class Parser {
         return new Todo(description);
     }
 
+    /**
+     * Parse argsString into Deadline instance
+     * @param argsString String of format "description /by date"
+     * @return Deadline instance.
+     * @throws DukeException If argsString format is wrong.
+     */
     public static Deadline parseDeadline(String argsString) throws DukeException {
         String[] args = argsString.split(" */by *");
         if (args.length != 2) {
@@ -59,6 +80,12 @@ public class Parser {
         return new Deadline(description, byDate);
     }
 
+    /**
+     * Parse argsString into Event instance.
+     * @param argsString String of format "description /at date"
+     * @return Event instance
+     * @throws DukeException If argsString format is wrong.
+     */
     public static Event parseEvent(String argsString) throws DukeException {
         String[] args = argsString.split(" */at *");
         if (args.length != 2) {
@@ -73,6 +100,12 @@ public class Parser {
         return new Event(description, atDate);
     }
 
+    /**
+     * Parse String to Integer
+     * @param number String representation of integer.
+     * @return Integer with value integer.
+     * @throws DukeException If number is not of number format.
+     */
     public static int parseInt(String number) throws DukeException {
         try {
             return Integer.parseInt(number);

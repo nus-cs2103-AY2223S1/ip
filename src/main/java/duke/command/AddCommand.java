@@ -2,6 +2,9 @@ package duke.command;
 
 import duke.*;
 
+/**
+ * Represents all commands related to adding all kinds of tasks (Todo, Event, Deadline).
+ */
 public class AddCommand extends Command {
     private Task task;
 
@@ -9,6 +12,14 @@ public class AddCommand extends Command {
         this.task = task;
     }
 
+    /**
+     * Adds task to list and prints the task and task count.
+     * Also saves the updated taskList to storage.
+     * @param taskList List of tasks.
+     * @param ui Ui interface for input and output.
+     * @param storage Storage for Duke's file operations.
+     * @throws DukeException
+     */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         taskList.addTask(task);
