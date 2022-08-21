@@ -2,8 +2,8 @@ package duke.command;
 
 import duke.DukeException;
 import duke.TaskList;
-import duke.task.ToDo;
 import duke.Ui;
+import duke.task.ToDo;
 
 public class ToDoCommand extends Command {
     private String command;
@@ -17,7 +17,7 @@ public class ToDoCommand extends Command {
     }
 
     @Override
-    public boolean equals(Object obj){
+    public boolean equals(Object obj) {
         if (obj == null) {
             return false;
         }
@@ -32,8 +32,8 @@ public class ToDoCommand extends Command {
     public void execute() throws DukeException {
         String[] returnedArray = command.split(" ");
         if (returnedArray.length == 1) {
-            throw new DukeException("your [todo] duke.command is empty." +
-                    "\nPlease use the [help] duke.command to check the proper usage of [todo].");
+            throw new DukeException("your [todo] duke.command is empty."
+                    + "\nPlease use the [help] duke.command to check the proper usage of [todo].");
         }
         ToDo toDo = new ToDo(command);
         tasks.add(toDo);

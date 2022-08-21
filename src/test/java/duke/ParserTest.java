@@ -6,11 +6,10 @@ import duke.command.ToDoCommand;
 import org.junit.jupiter.api.Test;
 
 import duke.command.Command;
-import duke.task.ToDo;
 
 public class ParserTest {
     @Test
-    public void testInputToDo1() {
+    public void inputToDo_toDoHello_toDoCommandReturned() {
         Command received = null;
         TaskList taskList = new TaskList();
         Ui ui = new Ui();
@@ -23,7 +22,7 @@ public class ParserTest {
     }
 
     @Test
-    public void testInputToDo2() {
+    public void inputToDo_toDoToDo_toDoCommandReturned() {
         Command received = null;
         TaskList taskList = new TaskList();
         Ui ui = new Ui();

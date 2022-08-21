@@ -25,11 +25,11 @@ public abstract class Task {
         this.isDone = false;
     }
 
-    public void markDone() {
+    public void setDone() {
         isDone = true;
     }
 
-    public void markUndone() {
+    public void setUndone() {
         isDone = false;
     }
 
