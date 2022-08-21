@@ -1,27 +1,25 @@
 package duke;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.Scanner;
 
 import duke.task.Task;
-
-import java.util.Optional;
-import java.util.List;
-import java.util.ArrayList;
-
-import java.util.NoSuchElementException;
 
 /**
  * Class that handles input and output between the user.
  */
 public class Ui {
     public static final String DIVIDER = "    ____________________________________________________________";
-    private Scanner scanner;
     private static final String LOGO = " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
     private static final String PADDING = "  ";
+    private Scanner scanner;
 
     /**
      * Constructor for Ui. Initialises input.

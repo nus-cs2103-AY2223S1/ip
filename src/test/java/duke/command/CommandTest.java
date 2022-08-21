@@ -39,13 +39,13 @@ public class CommandTest {
 
     @Test
     void execute_addCommand() throws DukeException {
-        assertEquals(storageStub.tasks.size(), 0);
+        assertEquals(storageStub.getTasks().size(), 0);
 
         Task task = new Todo("Test task");
         Command command = new AddCommand(task);
         command.execute();
 
-        assertEquals(storageStub.tasks.size(), 1);
+        assertEquals(storageStub.getTasks().size(), 1);
         assertEquals(taskList.size(), 1);
     }
 

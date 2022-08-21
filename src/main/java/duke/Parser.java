@@ -1,9 +1,13 @@
 package duke;
 
-import java.util.Scanner;
-import java.util.Optional;
-import java.util.Map;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.AbstractMap.SimpleEntry;
+import java.util.InputMismatchException;
+import java.util.Map;
+import java.util.NoSuchElementException;
+import java.util.Optional;
+import java.util.Scanner;
 
 import duke.command.AddCommand;
 import duke.command.ByeCommand;
@@ -17,11 +21,6 @@ import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
-import java.util.InputMismatchException;
-import java.util.NoSuchElementException;
 
 /**
  * Class used to parse user inputs.

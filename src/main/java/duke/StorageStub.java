@@ -1,15 +1,15 @@
 package duke;
 
-import duke.task.Task;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import duke.task.Task;
 
 /**
  * Stub implementation for StorageInterface for testing.
  */
 public class StorageStub implements StorageInterface {
-    public List<Task> tasks;
+    private List<Task> tasks;
 
     /**
      * Constructor for Storge stub
@@ -32,5 +32,9 @@ public class StorageStub implements StorageInterface {
 
     @Override
     public void updateLine(int lineIndex, String updatedLine) throws DukeException {
+    }
+
+    public List<Task> getTasks() {
+        return this.tasks;
     }
 }

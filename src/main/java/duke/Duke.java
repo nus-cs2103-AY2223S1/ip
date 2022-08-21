@@ -61,9 +61,10 @@ public class Duke {
     }
 
     /**
-     * Entry point to applicaiton.
+     * Main function for the chatbot.
      * 
-     * @param args System arguments.
+     * @param args
+     *            System arguments. Not used for this program.
      */
 
     public static void main(String[] args) {
