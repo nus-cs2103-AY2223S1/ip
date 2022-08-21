@@ -26,15 +26,30 @@ public class Duke extends Chatbot {
                 if (action.equals(KeywordChecker.EXACT_KEYWORD_BYE)) {
                     break;
                 }
-            } else if (KeywordChecker.containsNonexactKeyword(action)) {
+            } else if (KeywordChecker.containsMarkKeyword(action)) {
                 switch (KeywordChecker.getNonexactKeyword(action)) {
-                    case KeywordChecker.NONEXACT_KEYWORD_MARK:
+                    case KeywordChecker.MARK_KEYWORD_MARK:
                         duke.markTask(duke, KeywordChecker.getSpecifier(action));
                         break;
-                    case KeywordChecker.NONEXACT_KEYWORD_UNMARK:
+                    case KeywordChecker.MARK_KEYWORD_UNMARK:
                         duke.unmarkTask(duke, KeywordChecker.getSpecifier(action));
                         break;
                 }
+            } else if (KeywordChecker.containsTaskKeyword(action)) {
+                switch (KeywordChecker.getNonexactKeyword(action)) {
+                    case KeywordChecker.TASK_KEYWORD_TODO:
+                        duke.tasks.add(new Todo(action));
+                        break;
+                    case KeywordChecker.TASK_KEYWORD_DEADLINE:
+                        duke.tasks.add(new Deadline(action));
+                        break;
+                    case KeywordChecker.TASK_KEYWORD_EVENT:
+                        duke.tasks.add(new Event(action));
+                        break;
+                }
+
+                duke.echo("added the task:" +
+                        duke.tasks.getLast().printTask());
             } else {
                 duke.tasks.add(new Task(action));
                 duke.echo(String.format("added: %s", action));
@@ -44,10 +59,9 @@ public class Duke extends Chatbot {
 
     public void listTasks(Duke interaction) {
         interaction.tasks.forEach(
-                task -> { System.out.println(String.format("%d.[%s] %s",
+                task -> { System.out.println(String.format("%d.%s",
                         tasks.indexOf(task) + 1,
-                        task.getStatus() ? "X" : " ",
-                        task.getDescription()));
+                        task.printTask()));
                 });
     }
 

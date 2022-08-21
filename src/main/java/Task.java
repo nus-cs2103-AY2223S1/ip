@@ -1,6 +1,6 @@
 public class Task {
     private Boolean isDone;
-    private String description;
+    private final String description;
 
     public Task(String description) {
         this.description = description;
@@ -21,5 +21,11 @@ public class Task {
 
     public Boolean getStatus() {
         return this.isDone;
+    }
+
+    public String printTask() {
+        return String.format("[%s] %s",
+                this.getStatus() ? "X" : " ",
+                this.getDescription());
     }
 }
