@@ -1,3 +1,4 @@
+package duke;
 import java.util.Scanner;
 
 public class Duke {
@@ -8,8 +9,10 @@ public class Duke {
     private boolean end;
 
     public Duke() {
+        this.ui = new Ui();
+        this.storage = new Storage();
         this.tasks = new TaskList(Storage.read());
-        this.parser = new Parser(tasks);
+        this.parser = new Parser(ui, storage, tasks);
         this.end = false;
     }
 

@@ -1,7 +1,13 @@
-public class Parser {
-    TaskList tasks;
+package duke;
 
-    public Parser(TaskList tl) {
+public class Parser {
+    private Ui ui;
+    private Storage sto;
+    private TaskList tasks;
+
+    public Parser(Ui ui, Storage sto, TaskList tl) {
+        this.ui = ui;
+        this.sto = sto;
         this.tasks = tl;
     }
 
@@ -39,7 +45,7 @@ public class Parser {
                 break;
             case "bye":
                 end = true;
-                Ui.exit();
+                ui.exit();
                 break;
             default:
                 throw new DukeUnknownInputException(args[0]);
