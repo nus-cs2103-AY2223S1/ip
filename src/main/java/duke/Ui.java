@@ -1,5 +1,6 @@
 package duke;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import duke.task.Task;
@@ -132,5 +133,12 @@ public class Ui {
         String command = commandInput.nextLine();
         System.out.println(LINE_BREAK_AFTER);
         return command;
+    }
+
+    public void readList(ArrayList<Task> tasks) {
+        list();
+        for (int i = 0; i < tasks.size(); i++) {
+            System.out.println((i + 1) + ". " + tasks.get(i));
+        }
     }
 }

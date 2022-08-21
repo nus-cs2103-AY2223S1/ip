@@ -60,11 +60,16 @@ public class TaskList {
         tasks.remove(taskId);
     }
 
-    /**
-     * Method to add a task to taskList
-     * @param task Task to insert at the end of taskList
-     * @since 0.1
-     */
+    public ArrayList<Task> find(String word) {
+        ArrayList<Task> matches = new ArrayList<>();
+        for (int i = 0; i < taskList.size(); i++) {
+            if (taskList.get(i).isTaskAndWordMatch(word)) {
+                matches.add(taskList.get(i));
+            }
+        }
+        return matches;
+    }
+
     public void add(Task task) {
         tasks.add(task);
     }
