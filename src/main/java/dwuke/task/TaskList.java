@@ -60,6 +60,22 @@ public class TaskList {
     }
 
     /**
+     * Finds all Tasks in this TaskList that contains the given keyword.
+     *
+     * @param keyword The keyword to search.
+     * @return A TaskList containing all matching Tasks.
+     */
+    public TaskList findTasks(String keyword) {
+        TaskList matchingTasks = new TaskList();
+        for (Task task : this.tasks) {
+            if (task.getDescription().contains(keyword)) {
+                matchingTasks.add(task);
+            }
+        }
+        return matchingTasks;
+    }
+
+    /**
      * Returns the encoded String representation of this TaskList.
      *
      * @return An encoded String representing this TaskList.
@@ -73,7 +89,7 @@ public class TaskList {
     }
 
     /**
-     * Returns a decoded TaskList from the given list of Strings.
+     * Returns the decoded TaskList from the given list of Strings.
      *
      * @param encodedTasks the list of Strings to be decoded.
      * @return A TaskList decoded from the given list.

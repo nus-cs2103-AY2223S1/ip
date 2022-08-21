@@ -57,7 +57,16 @@ public abstract class Task {
     }
 
     /**
-     * Returns a String representation of this Task.
+     * Returns the description of this Task.
+     *
+     * @return The description of this Task.
+     */
+    public String getDescription() {
+        return this.description;
+    }
+
+    /**
+     * Returns the String representation of this Task.
      *
      * @return A String representing this Task.
      */
