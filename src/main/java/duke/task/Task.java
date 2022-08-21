@@ -2,12 +2,17 @@ package duke.task;
 
 import java.time.LocalDate;
 
-public class Task {
+/**
+ * The abstract superclass of all types of tasks the user can input.
+ */
+public abstract class Task {
+    /**
+     * Represents the type of task it is.
+     */
+    public final TaskType type;
     protected String description;
     protected boolean isDone;
-    public final TaskType type;
-
-    public Task(String description, TaskType type) {
+    protected Task(String description, TaskType type) {
         this.description = description;
         this.isDone = false;
         this.type = type;

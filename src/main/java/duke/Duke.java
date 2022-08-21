@@ -5,12 +5,19 @@ import duke.exception.DukeException;
 import duke.parser.Parser;
 import duke.task.TaskList;
 
+/**
+ * Represents the chatbot Duke.
+ */
 public class Duke {
     private TaskList listOfTasks;
     private FileStorage taskStorage;
     private Ui ui;
     private Parser parser;
 
+    /**
+     * Creates a Duke object.
+     * @param home The string for the OS of the user.
+     */
     private Duke(String home) {
         ui = new Ui();
         taskStorage = new FileStorage(home);
@@ -23,6 +30,10 @@ public class Duke {
             listOfTasks = new TaskList();
         }
     }
+
+    /**
+     * Runs the chat session with the user until the user exits.
+     */
     private void run() {
         ui.printIntro();
         while (ui.isScannerActive()) {
@@ -36,6 +47,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Creates the file and directory to store the taskList data.
+     */
     private void initializeDataFile() {
         if (!taskStorage.isDirectoryPresent()) {
             taskStorage.createDirectory();

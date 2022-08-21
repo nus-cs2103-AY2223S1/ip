@@ -4,6 +4,9 @@ import duke.exception.InvalidIndexException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * Encapsulates the various commands and operations for tasks.
+ */
 public class TaskList {
     private ArrayList<Task> tasks;
 
@@ -13,14 +16,19 @@ public class TaskList {
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
-
     public ArrayList<Task> getList() {
         return this.tasks;
     }
-
     public int getListSize() {
         return this.tasks.size();
     }
+
+    /**
+     * Returns the task located at the given index.
+     * @param index The given index for the ArrayList.
+     * @return The task located at the index of the ArrayList.
+     * @throws InvalidIndexException The exception that occurs when the index given is invalid.
+     */
     public Task retrieveTask(int index) {
         try {
             return this.tasks.get(index);
@@ -28,11 +36,15 @@ public class TaskList {
             throw new InvalidIndexException("no tasks exist at this index");
         }
     }
-
     public void addTask(Task task) {
         this.tasks.add(task);
     }
 
+    /**
+     * Deletes the task located at the given index.
+     * @param index The given index for the ArrayList.
+     * @throws InvalidIndexException The exception that occurs when the index given is invalid.
+     */
     public void deleteTask(int index) {
         try {
             this.tasks.remove(index);
@@ -41,6 +53,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Marks the task located at the given index as completed.
+     * @param index The given index for the ArrayList.
+     * @throws InvalidIndexException The exception that occurs when the index given is invalid.
+     */
     public void markTaskDone(int index) {
         try {
             Task selectedTask = tasks.get(index);
@@ -50,6 +67,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Returns the list of tasks due/occurring at a given date.
+     * @param time The given date.
+     * @return An arraylist containing the tasks that matches the criteria.
+     */
     public ArrayList<Task> getDueTasks(LocalDate time) {
         ArrayList<Task> tmp = new ArrayList<>();
         for (Task task : this.tasks) {
@@ -59,6 +81,11 @@ public class TaskList {
         }
         return tmp;
     }
+    /**
+     * Marks the task located at the given index as uncompleted.
+     * @param index The given index for the ArrayList.
+     * @throws InvalidIndexException The exception that occurs when the index given is invalid.
+     */
     public void markTaskUndone(int index) {
         try {
             Task selectedTask = tasks.get(index);

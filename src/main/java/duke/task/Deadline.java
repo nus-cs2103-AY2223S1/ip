@@ -4,10 +4,21 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents a task that is to be done by a certain date and time.
+ */
 public class Deadline extends Task {
     protected LocalDate by;
     protected LocalTime time;
 
+    /**
+     * Creates a deadline object upon receiving a deadline command from the user.
+     *
+     * @param description The description of the deadline.
+     * @param by The due date of the deadline.
+     * @param time The time the deadline is due, if applicable.
+     * @param type The type of task created.
+     */
     public Deadline(String description, LocalDate by, LocalTime time, TaskType type) {
         super(description, type);
         this.by = by;

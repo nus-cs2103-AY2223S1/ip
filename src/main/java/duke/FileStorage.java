@@ -11,10 +11,18 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A component of the chatBot Duke that handles reading and writing of data.
+ */
 public class FileStorage {
     private Path directoryPath;
     private Path filePath;
     private Parser parser;
+
+    /**
+     * Creates a fileStorage object with the given OS path.
+     * @param home The string for the OS of the user.
+     */
     public FileStorage(String home) {
         this.parser = new Parser();
         this.directoryPath = Paths.get(home, "dukeData");
@@ -29,6 +37,10 @@ public class FileStorage {
         return Files.exists(filePath);
     }
 
+    /**
+     * Creates a directory using the directoryPath.
+     * @throws DukeFileException The exception that occurs when the directory can't be created.
+     */
     public void createDirectory() {
         try {
             Files.createDirectory(directoryPath);
@@ -37,6 +49,10 @@ public class FileStorage {
         }
     }
 
+    /**
+     * Creates a file using the filePath.
+     * @throws DukeFileException The exception that occurs when the file can't be created.
+     */
     public void createFile() {
         try {
             Files.createFile(filePath);
@@ -45,6 +61,10 @@ public class FileStorage {
         }
     }
 
+    /**
+     * Retrieves the data of the file, converting and returning an arraylist of the saved tasks.
+     * @return An arraylist consisting of saved tasks from a past session.
+     */
     public ArrayList<Task> retrieveFileContents() {
         ArrayList<Task> listOfTasks;
         try {
@@ -56,6 +76,10 @@ public class FileStorage {
         return listOfTasks;
     }
 
+    /**
+     * Converts the given taskList into data that is to be written into the file.
+     * @param taskList The given taskList with tasks to be written and saved.
+     */
     public void writeToFile(ArrayList<Task> taskList) {
         try {
             ArrayList<String> list = parser.writeFileContents(taskList);

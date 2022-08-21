@@ -8,6 +8,7 @@ import duke.exception.DukeException;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.task.TaskType;
+import duke.task.ToDo;
 
 
 
@@ -15,7 +16,7 @@ public class TaskListTest {
 
     private TaskList initializeTaskList() {
         TaskList list = new TaskList();
-        Task task = new Task("", TaskType.TASK);
+        Task task = new ToDo("", TaskType.TASK);
         for (int i = 0; i < 3; i++) {
             list.addTask(task);
         }
@@ -33,7 +34,7 @@ public class TaskListTest {
             TaskList list = initializeTaskList();
             list.markTaskDone(3);
         } catch (DukeException e) {
-            assertEquals("☹ OOPS!!! I'm sorry, no tasks exist at this index :-(", e.getMessage());
+            assertEquals("OOPS!!! I'm sorry, no tasks exist at this index :-(", e.getMessage());
         }
     }
 }
