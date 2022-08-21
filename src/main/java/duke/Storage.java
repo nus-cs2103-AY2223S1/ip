@@ -13,15 +13,27 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
+/**
+ * Class that handles saving and loading
+ * tasks in a file on the hard drive
+ */
 public class Storage {
     private String fileLocation;
     private static final int ISDONE_MARKER = 4;
     private static final int DESC_MARKER = 8;
 
+    /**
+     * Creates a storage object
+     */
     public Storage(String filePath) {
         this.fileLocation = filePath;
     }
 
+    /**
+     * Loads tasks from a task file
+     * into an ArrayList of tasks
+     */
     public ArrayList<Task> loadTaskFile() {
         File taskFile = new File(fileLocation);
         ArrayList<Task> tasks = new ArrayList<Task>();
@@ -74,6 +86,11 @@ public class Storage {
         return tasks;
     }
 
+
+    /**
+     * Saves the ArrayList of tasks from
+     * a taskList object into a task file
+     */
     public void saveTaskFile(TaskList taskList) {
         ArrayList<Task> tasks = taskList.getTasks();
         try {

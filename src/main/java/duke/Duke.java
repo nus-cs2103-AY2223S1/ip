@@ -9,18 +9,27 @@ import duke.task.TaskList;
 
 import java.time.format.DateTimeParseException;
 
+/**
+ * Duke ChatBot that is able to manage a list of tasks
+ */
 public class Duke {
 
     private Storage storage;
     private TaskList taskList;
     private Ui ui;
 
+    /**
+     * Creates a Duke object
+     */
     public Duke(String filePath) {
         storage = new Storage(filePath);
         taskList = new TaskList(storage.loadTaskFile());
         ui = new Ui();
     }
 
+    /**
+     * Runs the Duke object
+     */
     public void run() {
         ui.welcome();
         boolean isExit = false;
