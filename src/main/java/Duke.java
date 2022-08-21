@@ -7,7 +7,7 @@ public class Duke {
     private boolean end;
 
     public Duke() {
-        this.tasks = new ArrayList<Task>();
+        this.tasks = SaveManager.Read();
         this.end = false;
     }
 
@@ -111,6 +111,7 @@ public class Duke {
                         + "  " + currTask + "\n"
                         + "Number of tasks in list: " + tasks.size() + "\n"
                         + DIVIDER);
+                SaveManager.Save(tasks);
                 break;
             case "deadline":
                 args = item.split("/by");
@@ -124,6 +125,7 @@ public class Duke {
                 } catch (ArrayIndexOutOfBoundsException e) {
                     throw new DukeMissingInputException(type);
                 }
+                SaveManager.Save(tasks);
                 break;
             case "event":
                 args = item.split("/at");
@@ -137,6 +139,7 @@ public class Duke {
                 } catch (ArrayIndexOutOfBoundsException e) {
                     throw new DukeMissingInputException(type);
                 }
+                SaveManager.Save(tasks);
                 break;
         }
     }
@@ -157,6 +160,7 @@ public class Duke {
                     + "  " + currTask + "\n"
                     + "Number of tasks in list: " + tasks.size() + "\n"
                     + DIVIDER);
+        SaveManager.Save(tasks);
     }
 
     // breaks if no input is entered after mark, or input isn't int, or index out of range
@@ -178,6 +182,7 @@ public class Duke {
             System.out.println(DIVIDER + "OK, I've marked this task as not done yet:\n"
                     + "  " + currTask + "\n" + DIVIDER);
         }
+        SaveManager.Save(tasks);
     }
 
     public static void main(String[] args) {
