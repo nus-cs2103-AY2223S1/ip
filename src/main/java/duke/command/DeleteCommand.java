@@ -18,8 +18,9 @@ public class DeleteCommand extends Command {
     private boolean isNumber(String string) {
         char[] numberArray = string.toCharArray();
         for (char c : numberArray) {
-            if (c < 48 || c > 57)
+            if (c < 48 || c > 57) {
                 return false;
+            }
         }
         return true;
     }
@@ -27,23 +28,23 @@ public class DeleteCommand extends Command {
     @Override
     public void execute() throws DukeException { //TODO: ui components
         if (splitCommands.length == 1) {
-            throw new DukeException("your duke.command is incomplete." +
-                    "\nPlease use the [help] duke.command to check the proper usage of [delete].");
+            throw new DukeException("your duke.command is incomplete."
+                    + "\nPlease use the [help] duke.command to check the proper usage of [delete].");
         } else if (splitCommands.length > 2) {
-            throw new DukeException("your duke.command has too many arguments." +
-                    "\nPlease use the [help] duke.command to check the proper usage of [delete].");
+            throw new DukeException("your duke.command has too many arguments."
+                    + "\nPlease use the [help] duke.command to check the proper usage of [delete].");
         } else if (isNumber(splitCommands[1])) {
             int taskId = Integer.parseInt(splitCommands[1]) - 1;
             if (tasks.size() <= taskId || taskId < 0) {
-                throw new DukeException("that duke.task you want to delete does not exist." +
-                        "\nUse the [list] duke.command to check what tasks are available.");
+                throw new DukeException("that duke.task you want to delete does not exist."
+                        + "\nUse the [list] duke.command to check what tasks are available.");
             } else {
                 ui.delete(tasks.getTask(taskId), (tasks.size() - 1));
                 tasks.remove(taskId);
             }
         } else {
-            throw new DukeException("your duke.command is incorrect." +
-                    "\nPlease use the [help] duke.command to check the proper usage of [delete].");
+            throw new DukeException("your duke.command is incorrect."
+                    + "\nPlease use the [help] duke.command to check the proper usage of [delete].");
         }
     }
 

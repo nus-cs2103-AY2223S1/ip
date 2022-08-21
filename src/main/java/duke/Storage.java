@@ -16,9 +16,11 @@ public class Storage {
     private final String saveFilePath;
 
     public Storage() {
-        this.saveFilePath = System.getProperty("user.dir") + "\\data\\saves\\tasks.txt";
+        this.saveFilePath = locateHomeDir();
     }
-
+    public String locateHomeDir() {
+        return System.getProperty("user.dir") + "\\data\\saves\\tasks.txt";
+    }
     public void saveDuke(TaskList tasks) throws IOException {
         File save = new File(saveFilePath);
         FileWriter saveWriter = new FileWriter(save);
@@ -35,9 +37,9 @@ public class Storage {
     private ToDo loadToDo(boolean taskWasDone, String taskDesc) {
         ToDo todo = new ToDo("todo " + taskDesc);
         if (taskWasDone) {
-            todo.markDone();
+            todo.setDone();
         } else {
-            todo.markUndone();
+            todo.setUndone();
         }
         return todo;
     }
@@ -47,9 +49,9 @@ public class Storage {
         Deadline deadline = new Deadline(deadlineSpecifics[0],
                 deadlineSpecifics[1].substring(0, deadlineSpecifics[1].length() - 1));
         if (taskWasDone) {
-            deadline.markDone();
+            deadline.setDone();
         } else {
-            deadline.markUndone();
+            deadline.setUndone();
         }
         return deadline;
     }
@@ -58,9 +60,9 @@ public class Storage {
         String[] eventSpecifics = taskDesc.split(" \\(at: ");
         Event event = new Event(eventSpecifics[0], eventSpecifics[1].substring(0, eventSpecifics[1].length() - 1));
         if (taskWasDone) {
-            event.markDone();
+            event.setDone();
         } else {
-            event.markUndone();
+            event.setUndone();
         }
         return event;
     }

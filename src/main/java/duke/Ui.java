@@ -5,20 +5,20 @@ import java.util.Scanner;
 import duke.task.Task;
 
 public class Ui {
-    private static final String lineBreakBefore =
+    private static final String LINE_BREAK_BEFORE =
             "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
             + "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-";
-    private static final String lineBreakAfter =
+    private static final String LINE_BREAK_AFTER =
             "______________________________________________________"
             + "______________________________________________________";
-    private static final String logo =
+    private static final String LOGO =
             " ____        _\n"
             + "|  _ \\ _   _| | _____\n"
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|";
-    private static final String greeting1 = "Hello! I'm duke.Duke.";
-    private static final String greeting2 = "What can I do for you?";
+    private static final String GREETING_ONE = "Hello! I'm duke.Duke.";
+    private static final String GREETING_TWO = "What can I do for you?";
 
     private Scanner commandInput;
 
@@ -28,8 +28,8 @@ public class Ui {
 
 
     public void greet() {
-        System.out.println(logo + "\n" + greeting1);
-        System.out.println(greeting2);
+        System.out.println(LOGO + "\n" + GREETING_ONE);
+        System.out.println(GREETING_TWO);
     }
 
     public void list() {
@@ -67,9 +67,9 @@ public class Ui {
     }
 
     public String readCommand() {
-        System.out.println(lineBreakBefore);
+        System.out.println(LINE_BREAK_BEFORE);
         String command = commandInput.nextLine();
-        System.out.println(lineBreakAfter);
+        System.out.println(LINE_BREAK_AFTER);
         return command;
     }
 }

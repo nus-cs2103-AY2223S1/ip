@@ -6,13 +6,13 @@ import org.junit.jupiter.api.Test;
 
 public class ToDoTest {
     @Test
-    public void testNormal1() {
+    public void inputCommand_normalToDo_toDoReturned() {
         ToDo todo = new ToDo("todo test todo");
         assertEquals(todo.toString(), "[T] [ ] test todo");
     }
 
     @Test
-    public void testNormal2() {
+    public void inputCommand_toDoWithNumberOnly_toDoReturned() {
         ToDo todo = new ToDo("todo 1");
         assertEquals(todo.toString(), "[T] [ ] 1");
     }

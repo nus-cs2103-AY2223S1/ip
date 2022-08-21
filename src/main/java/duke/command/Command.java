@@ -12,8 +12,9 @@ public abstract class Command {
 
     public static Commands checkEnums(String command) {
         for (Commands e : Commands.values()) {
-            if (e.name().equals(command))
+            if (e.name().equals(command)) {
                 return e;
+            }
         }
         return Commands.invalid;
     }
