@@ -1,3 +1,7 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -10,6 +14,7 @@ import java.util.List;
 import java.util.Scanner;
 import dukeExceptions.MissingDescriptionException;
 import dukeExceptions.UnknownCommandException;
+import dukeExceptions.WrongDatetimeFormatException;
 
 enum COMMANDS {
     BYE,
@@ -23,6 +28,10 @@ enum COMMANDS {
 }
 
 public class Duke {
+    static final String DEADLINE_DATETIME_FORMAT = "d/MM/uuuu HHmm";
+    static final String EVENT_DATETIME_START_OR_END_FORMAT = "d/MM/uuuu HHmm";
+    static final String EVENT_DATETIME_INPUT_FORMAT = "d/MM/uuuu HHmm - d/MM/uuuu HHmm";
+
     public static void main(String[] args) {
         List<Task> userData = new ArrayList<>();
 
@@ -67,7 +76,6 @@ public class Duke {
                         if (userInputs.length == 0) {
                            throw new MissingDescriptionException("todo");
                         }
-
                         ToDo newToDo = new ToDo(String.join(" ", userInputs));
                         userData.add(newToDo);
                         System.out.format("Got it. I've added this task:\n  %s\nNow you have %s %s in the list.\n", newToDo, userData.size(), userData.size() != 1 ? "tasks" : "task");
@@ -83,10 +91,13 @@ public class Duke {
                         }
 
                         // ERROR HANDLING: Check for missing "by" deadline
-                        String deadline = splitArrayIntoSubstrings(userInputs, "/by").get(1);
-                        System.out.println(deadline);
+                        String unparsedDatetime = splitArrayIntoSubstrings(userInputs, "/by").get(1);
 
-                        Deadline newDeadline = new Deadline(description, deadline);
+                        if (!isValidDatetime(unparsedDatetime, DEADLINE_DATETIME_FORMAT)) {
+                            throw new WrongDatetimeFormatException(DEADLINE_DATETIME_FORMAT);
+                        }
+                        LocalDateTime todoDeadline = LocalDateTime.parse(unparsedDatetime, DateTimeFormatter.ofPattern(DEADLINE_DATETIME_FORMAT).withResolverStyle(ResolverStyle.STRICT.STRICT));
+                        Deadline newDeadline = new Deadline(description, todoDeadline);
                         userData.add(newDeadline);
                         System.out.format("Got it. I've added this task:\n  %s\nNow you have %s %s in the list.\n", newDeadline, userData.size(), userData.size() != 1 ? "tasks" : "task");
                         break;
@@ -100,9 +111,17 @@ public class Duke {
                         if (description.equalsIgnoreCase("")) {
                             throw new MissingDescriptionException("event");
                         }
-                        String timeRange = splitArrayIntoSubstrings(userInputs, "/at").get(1);
+                        String unparsedTimeRange = splitArrayIntoSubstrings(userInputs, "/at").get(1);
+                        String unparsedStartDateTime = unparsedTimeRange.split("-")[0].strip();
+                        String unparsedEndDateTime = unparsedTimeRange.split("-")[1].strip();
 
-                        Event newEvent = new Event(description, timeRange);
+                        if (!isValidDatetime(unparsedStartDateTime, EVENT_DATETIME_START_OR_END_FORMAT) || !isValidDatetime(unparsedEndDateTime, EVENT_DATETIME_START_OR_END_FORMAT)) {
+                            throw new WrongDatetimeFormatException(EVENT_DATETIME_INPUT_FORMAT);
+                        }
+                        LocalDateTime startTimeRange = LocalDateTime.parse(unparsedStartDateTime, DateTimeFormatter.ofPattern(EVENT_DATETIME_START_OR_END_FORMAT).withResolverStyle(ResolverStyle.STRICT.STRICT));
+                        LocalDateTime endTimeRange = LocalDateTime.parse(unparsedEndDateTime, DateTimeFormatter.ofPattern(EVENT_DATETIME_START_OR_END_FORMAT).withResolverStyle(ResolverStyle.STRICT.STRICT));
+
+                        Event newEvent = new Event(description, startTimeRange, endTimeRange);
                         userData.add(newEvent);
                         System.out.format("Got it. I've added this task:\n  %s\nNow you have %s %s in the list.\n", newEvent, userData.size(), userData.size() != 1 ? "tasks" : "task");
                         break;
@@ -136,6 +155,9 @@ public class Duke {
                 System.out.println("-----------------------------------");
             } catch (IOException err) {
                 System.out.printf("Error writing to file: %s\n", err);
+            } catch (WrongDatetimeFormatException err) {
+                System.out.println(err);
+                System.out.println("-----------------------------------");
             }
         }
     }
@@ -168,6 +190,12 @@ public class Duke {
         return res;
     }
 
+    /**
+     * Given a string, return true if it is a valid COMMANDS enum.
+     *
+     * @param str
+     * @return
+     */
     public static boolean validCommandEnum(String str) {
         for (COMMANDS cmd : COMMANDS.values()) {
             if (str.equalsIgnoreCase(cmd.name())) {
@@ -175,6 +203,24 @@ public class Duke {
             }
         }
         return false;
+    }
+
+    /**
+     * Given a string and a DateTime format, validate if the given string
+     * follows the DateTime format.
+     *
+     * @param str The string to be validated against.
+     * @param format The format the string should follow.
+     * @return Boolean representing if str follows the specified format.
+     */
+    public static boolean isValidDatetime(String str, String format) {
+        try {
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern(format);
+            dtf.parse(str);
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+        return true;
     }
 
     /**
