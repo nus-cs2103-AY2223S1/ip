@@ -1,4 +1,4 @@
-package main.java;
+package main.java.duke;
 
 import java.io.IOException;
 import java.util.Scanner;

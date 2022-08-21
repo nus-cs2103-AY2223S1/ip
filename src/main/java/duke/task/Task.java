@@ -1,4 +1,4 @@
-package main.java;
+package main.java.duke.task;
 
 public abstract class Task {
     /**
