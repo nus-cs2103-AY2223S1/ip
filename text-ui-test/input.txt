@@ -5,6 +5,7 @@ todo task2
 list
 todo task3
 deadline task4 /by Monday
+deadline task4 /by 2022-08-22
 event task5 /at Monday 4pm-5pm
 mark 1
 list
@@ -44,6 +45,7 @@ event /at t
 deadline   /by t
 event   /at t
 deadline   Task 6 /by  Tuesday
+deadline   Task 6 /by  23 Aug 2022
 event   Task 7 /at  Tuesday 1am-2am
 list
 mark 2
