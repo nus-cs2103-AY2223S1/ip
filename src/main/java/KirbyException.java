@@ -4,10 +4,6 @@
  * @author Sheryl-Lynn Tan (G11)
  */
 public class KirbyException extends Exception {
-    /**
-     * Constructor for KirbyException.
-     * @param message to print.
-     */
     KirbyException(String message) {
         super(message);
     }

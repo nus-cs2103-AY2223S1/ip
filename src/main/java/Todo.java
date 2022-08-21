@@ -8,6 +8,11 @@ public class Todo extends Task {
     }
 
     @Override
+    public int[] getDate() {
+        return new int[]{-1, -1, -1};
+    }
+
+    @Override
     public String toString() {
         return "[T] " + this.getStatusIcon() + " " + this.description ;
     }
