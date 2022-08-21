@@ -1,3 +1,4 @@
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -18,6 +19,34 @@ public class Duke {
         if (!logDir.exists()) {
             logDir.mkdirs();
             System.out.println("data folder created");
+        }
+
+        try {
+            Scanner readFile = new Scanner(taskLog);
+            while (readFile.hasNext()) {
+                String taskString = readFile.nextLine();
+                String[] split = taskString.split(" \\| ");
+                System.out.println(split[0] + split[1] + split[2]);
+                switch (split[0]) {
+                    case "T": { // Checks for Todo
+                        list.add(new Todo(split[2]));
+                        break;
+                    }
+                    case "D": { // Checks for Deadline
+                        list.add(new Deadline(split[2], split[3]));
+                        break;
+                    }
+                    case "E": { // Checks for Event
+                        list.add(new Event(split[2], split[3]));
+                        break;
+                    }
+                }
+                if (split[1] == "X") {
+                    list.get(list.size() - 1).markAsDone();
+                }
+            }
+        } catch (FileNotFoundException e) {
+
         }
 
         System.out.println("Hello! I'm Duke" + "\n" + "What can I do for you?");
