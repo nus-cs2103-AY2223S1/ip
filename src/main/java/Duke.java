@@ -18,51 +18,47 @@ public class Duke {
         while (true) {
             Task newTask = null;
             String userText = userInput.nextLine();
-            boolean understood = false;
-            if (userText.equals("bye")) {
+            boolean understood = true;
+
+            String commandWord = userText.split(" ", 2)[0];
+
+            if (commandWord.equals("bye")) {
                 System.out.println(reply("Bye. Hope to see you again soon!"));
                 break;
-            } else if (userText.equals("list")) {
+            } else if (commandWord.equals("list")) {
                 System.out.println(reply(getList(list)));
-                understood = true;
-            } else if (userText.length() >= 4 ) {
-                String commandWord = userText.substring(0,4);
-                if (commandWord.equals("mark")) {
+            } else if (commandWord.equals("mark")) {
+                try {
                     Task selectedTask = list.get(Integer.valueOf(userText.substring(5)) - 1);
                     selectedTask.markAsDone();
                     System.out.println(reply("Nice! I've marked this task as done:\n" + selectedTask.getStatus()));
-                    understood = true;
-                } else if (commandWord.equals("todo")) {
-                    newTask = new ToDo();
-                    understood = true;
+                } catch (Exception e) {
+                    System.out.println(reply("Please input a valid number"));
                 }
-
-                if (userText.length() >= 6 && userText.substring(0, 6).equals("unmark")) {
-
+            } else if (commandWord.equals("unmark")) {
+                try {
                     Task selectedTask = list.get(Integer.valueOf(userText.substring(7)) - 1);
                     selectedTask.markAsUndone();
                     System.out.println(reply("OK, I've marked this task as not done yet:\n" + selectedTask.getStatus()));
-                    understood = true;
+                } catch (Exception e) {
+                    System.out.println(reply("Please input a valid number"));
                 }
-
-                if (userText.length() >= 8 && userText.substring(0, 8).equals("deadline")) {
-                    newTask = new DeadLine();
-                    understood = true;
-                }
-
-                if (userText.length() >= 5 && userText.substring(0, 5).equals("event")) {
-                    newTask = new Event();
-                    understood = true;
-                }
-
-                if (userText.length() >= 6 && userText.substring(0, 6).equals("delete")) {
+            } else if (commandWord.equals("todo")) {
+                newTask = new ToDo();
+            } else if (commandWord.equals("deadline")) {
+                newTask = new DeadLine();
+            } else if (commandWord.equals("event")) {
+                newTask = new Event();
+            } else if (commandWord.equals("delete")) {
+                try {
                     Task selectedTask = list.remove(Integer.valueOf(userText.substring(7)) - 1);
                     System.out.println(reply("Noted. I've removed this task:\n" + selectedTask.getStatus()
                             + String.format("\nNow you have %d tasks in the list.", list.size())));
-                    understood = true;
+                } catch (Exception e) {
+                    System.out.println(reply("Please input a valid number"));
                 }
-
-
+            } else {
+                understood = false;
             }
 
             if (understood == false) {
