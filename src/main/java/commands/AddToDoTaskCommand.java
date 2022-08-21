@@ -2,8 +2,8 @@ package commands;
 
 import exceptions.DukeException;
 import managers.TaskManager;
-import models.task.ToDo;
 import managers.UiManager;
+import models.task.ToDo;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

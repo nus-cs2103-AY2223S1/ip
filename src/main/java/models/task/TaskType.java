@@ -1,4 +1,4 @@
-package enums;
+package models.task;
 
 /**
  * List of valid task types

@@ -1,8 +1,8 @@
 package commands;
 
 import exceptions.DukeException;
-import models.task.Task;
 import managers.TaskManager;
+import models.task.Task;
 
 import java.util.function.Supplier;
 

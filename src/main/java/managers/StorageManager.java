@@ -2,7 +2,7 @@ package managers;
 
 import exceptions.DukeException;
 import storage.Storage;
-import enums.StorageType;
+import storage.StorageType;
 import storage.TaskStorage;
 
 import java.util.HashMap;

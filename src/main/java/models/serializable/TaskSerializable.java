@@ -1,6 +1,6 @@
 package models.serializable;
 
-import enums.TaskType;
+import models.task.TaskType;
 import exceptions.DukeException;
 import models.task.*;
 import utils.DukeValidator;

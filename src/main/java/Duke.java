@@ -16,8 +16,6 @@ public class Duke {
     // The greeting message used by the chatbot when the program starts
     private static final String GREETING_MESSAGE = String.format("Hello! I'm %s\nWhat can I do for you?", Duke.NAME);
 
-    private static final String UNKNOWN_COMMAND_ERROR = "I do not understand your command!";
-
     public static void main(String[] args) {
         UiManager ui = new UiManager();
         StorageManager storageManager;

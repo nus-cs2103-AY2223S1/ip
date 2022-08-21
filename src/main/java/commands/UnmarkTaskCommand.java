@@ -2,8 +2,8 @@ package commands;
 
 import exceptions.DukeException;
 import managers.TaskManager;
-import models.task.Task;
 import managers.UiManager;
+import models.task.Task;
 
 public class UnmarkTaskCommand implements Command {
     public static final String COMMAND_WORD = "unmark";

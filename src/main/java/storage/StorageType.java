@@ -1,4 +1,4 @@
-package enums;
+package storage;
 
 public enum StorageType {
     TASK

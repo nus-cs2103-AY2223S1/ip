@@ -1,9 +1,9 @@
 package commands;
 
 import exceptions.DukeException;
-import models.task.Deadline;
 import managers.TaskManager;
 import managers.UiManager;
+import models.task.Deadline;
 import utils.DukeValidator;
 
 import java.time.LocalDate;
