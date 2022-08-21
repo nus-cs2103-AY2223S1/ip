@@ -1,5 +1,8 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class DeadLine extends Task {
-    String byWhen = null;
+    LocalDate byWhen = null;
 
     public DeadLine() {
         super();
@@ -14,7 +17,8 @@ public class DeadLine extends Task {
             throw new DukeException("☹ OOPS!!! Please indicate when the deadline is due with '/by'.");
         }
         super.addName(userInput.substring(9, index));
-        this.byWhen = userInput.substring(index + 5);
+
+        this.byWhen = LocalDate.parse(userInput.substring(index + 5).replace('/', '-'));;
     }
 
     @Override
@@ -24,6 +28,6 @@ public class DeadLine extends Task {
 
     @Override
     public String getStatus() {
-        return String.format("[D]%s (by: %s)", super.getStatus(), this.byWhen);
+        return String.format("[D]%s (by: %s)", super.getStatus(), this.byWhen.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
     }
 }
