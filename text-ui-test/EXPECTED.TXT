@@ -4,13 +4,13 @@ Got it. I've added this task:
 [T][ ] borrow book
 Now you have 1 tasks in the list
 Got it. I've added this task:
-[D][ ] return book (by: 1 Sep 2022)
+[D][ ] return book (by: 01 Sep 2022 1500hrs)
 Now you have 2 tasks in the list
 Got it. I've added this task:
-[E][ ] project meeting (at: 2 Sep 2022)
+[E][ ] project meeting (at: 02 Sep 2022 1300hrs)
 Now you have 3 tasks in the list
 Nice! I've marked this task as done:
-[D][X] return book (by: 1 Sep 2022)
+[D][X] return book (by: 01 Sep 2022 1500hrs)
 OK, I've marked this task as not done yet:
-[D][ ] return book (by: 1 Sep 2022)
+[D][ ] return book (by: 01 Sep 2022 1500hrs)
 Bye. Hope to see you again soon!
