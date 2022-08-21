@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -38,11 +39,24 @@ public class Duke {
                     }
                     addTodo(t);
                 } else if (input.startsWith("deadline")) {
+                    // sample input: deadline return book /by 2/12/2019 1800
                     String[] deadlineInfo = input.replace("deadline ", "").split(" /by ");
-                    addDeadline(deadlineInfo[0], deadlineInfo[1]);
+                    String dateAndTime = deadlineInfo[1];
+                    if (isSpecificDateFormat(dateAndTime)) {
+                        LocalDate localDate = convertFormattedStringToDate(dateAndTime);
+                        addDeadline(deadlineInfo[0], localDate);
+                    } else {
+                        addDeadline(deadlineInfo[0], dateAndTime);
+                    }
                 } else if (input.startsWith("event")) {
                     String[] eventInfo = input.replace("event ", "").split(" /at ");
-                    addEvent(eventInfo[0], eventInfo[1]);
+                    String dateAndTime = eventInfo[1];
+                    if (isSpecificDateFormat(dateAndTime)) {
+                        LocalDate ld = convertFormattedStringToDate(dateAndTime);
+                        addEvent(eventInfo[0], ld);
+                    } else {
+                        addEvent(eventInfo[0], eventInfo[1]);
+                    }
                 } else if (input.startsWith("delete")) {
                     int deleteIdx = Integer.parseInt(input.replace("delete", "").trim());
                     deleteTask(deleteIdx);
@@ -56,6 +70,33 @@ public class Duke {
             }
         }
         exitMessage();
+    }
+
+    private LocalDate convertFormattedStringToDate(String s) {
+        String date = s.split(" ")[0];
+        return LocalDate.parse(date);
+    }
+
+    private boolean isSpecificDateFormat(String dateInfo) {
+        String[] dateAndTime = dateInfo.split(" ");
+        String time = dateAndTime[1];
+        if (!isNumeric(time)) {
+            return false;
+        }
+        String[] dayMonthYear = dateAndTime[0].split("-");
+        return isNumeric(dayMonthYear[0]) && isNumeric(dayMonthYear[1]) && isNumeric(dayMonthYear[2]);
+    }
+
+    public static boolean isNumeric(String strNum) {
+        if (strNum == null || strNum.equals("")) {
+            return false;
+        }
+        try {
+            int intValue = Integer.parseInt(strNum);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
     }
 
     private void markTaskAsDone(int index) {
@@ -90,7 +131,19 @@ public class Duke {
         printAddTask(d);
     }
 
+    private void addDeadline(String input, LocalDate ld) {
+        Deadline d = new Deadline(input, ld);
+        this.taskList.add(d);
+        printAddTask(d);
+    }
+
     private void addEvent(String input, String datetime) {
+        Event event = new Event(input, datetime);
+        this.taskList.add(event);
+        printAddTask(event);
+    }
+
+    private void addEvent(String input, LocalDate datetime) {
         Event event = new Event(input, datetime);
         this.taskList.add(event);
         printAddTask(event);
