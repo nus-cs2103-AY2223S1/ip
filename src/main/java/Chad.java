@@ -32,6 +32,10 @@ public class Chad {
                 int taskID = Integer.parseInt(userInput.split(" ")[1]) - 1;
                 unmarkTask(userInputArray, taskID);
 
+            } else if (userInput.startsWith("delete")) {
+                int taskID = Integer.parseInt(userInput.split(" ")[1]) - 1;
+                deleteTask(userInputArray, taskID);
+
             } else {
                 try {
                     if(Arrays.asList(taskTypes).contains(firstWord)) {
@@ -90,6 +94,16 @@ public class Chad {
         System.out.println(formatText(outputText));
     }
 
+    public static void deleteTask(ArrayList<Task> tasks, int taskID) {
+        String outputText = "Noted. I've removed this task:\n";
+        Task currentTask = tasks.get(taskID);
+        outputText += " " + currentTask.toString() + "\n";
+        tasks.remove(taskID);
+        outputText += "Now you have " + tasks.size() + " tasks in the list.";
+        outputText= formatText(outputText);
+        System.out.println(outputText);
+    }
+
     public static void addTodoTask(ArrayList<Task> tasks, String userInput) throws ChadException {
         String outputText = "Got it. I've added this task:\n";
         String taskDescription = userInput.replaceFirst("todo","").strip();
@@ -107,6 +121,7 @@ public class Chad {
 
     public static void addDeadlineTask(ArrayList<Task> tasks, String userInput) throws ChadException {
         String outputText = "Got it. I've added this task:\n";
+
         String[] temp = userInput.replaceFirst("deadline","").strip().split("/by");
         String taskDescription = temp[0].strip();
         String byDate = temp[1].strip();
