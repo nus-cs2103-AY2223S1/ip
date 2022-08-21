@@ -17,7 +17,6 @@ public class Event extends Task {
         this.at = at;
     }
 
-
     /**
      * Returns the string representation of an event.
      *

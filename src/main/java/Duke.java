@@ -49,12 +49,12 @@ public class Duke {
      * Starts Duke by greeting the user and loading data from the hard disk.
      */
     private static void startDuke() {
-            System.out.println(INDENTATION + "Hello from\n" + LOGO);
-            printLine();
-            System.out.println(INDENTATION + "Hello! I'm Duke\n"
-                    + INDENTATION + "What can I do for you?");
-            printLine();
-            loadList();
+        System.out.println(INDENTATION + "Hello from\n" + LOGO);
+        printLine();
+        System.out.println(INDENTATION + "Hello! I'm Duke\n"
+                + INDENTATION + "What can I do for you?");
+        printLine();
+        loadList();
     }
 
     /**
