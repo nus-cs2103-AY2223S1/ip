@@ -1,8 +1,8 @@
 package dwuke;
 
-import dwuke.task.TaskList;
 import dwuke.command.Command;
 import dwuke.command.ExitCommand;
+import dwuke.task.TaskList;
 
 /**
  * Driver class of Dwuke.
@@ -70,6 +70,11 @@ public class Dwuke {
         System.exit(0);
     }
 
+    /**
+     * Runs Dwuke from here.
+     *
+     * @param args Ignore.
+     */
     public static void main(String[] args) {
         Dwuke dwuke = new Dwuke();
         dwuke.run();

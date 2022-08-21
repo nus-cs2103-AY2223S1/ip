@@ -1,7 +1,7 @@
 package dwuke;
 
-import java.time.LocalDate;
 import java.time.DateTimeException;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -23,6 +23,7 @@ public class Date {
     /**
      * Converts the given LocalDate object into a String for display, in `d MMM yyy` format.
      *
+     * @param localDate The LocalDate object to convert.
      * @return A String representing the LocalDate.
      */
     public static String displayFormat(LocalDate localDate) {
@@ -33,6 +34,7 @@ public class Date {
     /**
      * Converts the given LocalDate object into a String for storage, in `dd-MM-yyyy` format.
      *
+     * @param localDate The LocalDate object to convert.
      * @return A String representing the LocalDate.
      */
     public static String storageFormat(LocalDate localDate) {

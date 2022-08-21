@@ -1,7 +1,8 @@
 package dwuke.task;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
+
 import dwuke.DwukeException;
 
 /**
@@ -84,18 +85,18 @@ public class TaskList {
             Character taskType = s.charAt(0);
             String content = s.substring(2);
 
-            switch(taskType) {
-                case Todo.SYMBOL:
-                    decodedTasks.add(Todo.decode(content));
-                    break;
-                case Deadline.SYMBOL:
-                    decodedTasks.add(Deadline.decode(content));
-                    break;
-                case Event.SYMBOL:
-                    decodedTasks.add(Event.decode(content));
-                    break;
-                default:
-                    break;
+            switch (taskType) {
+            case Todo.SYMBOL:
+                decodedTasks.add(Todo.decode(content));
+                break;
+            case Deadline.SYMBOL:
+                decodedTasks.add(Deadline.decode(content));
+                break;
+            case Event.SYMBOL:
+                decodedTasks.add(Event.decode(content));
+                break;
+            default:
+                break;
             }
         }
         return decodedTasks;
