@@ -2,6 +2,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
 
+/**
+ * Event represents a Task with a start and end datetime. These are represented as
+ * LocalDateTime objects.
+ * Inherits from Task.
+ */
 public class Event extends Task {
     protected LocalDateTime startDateTime;
     protected LocalDateTime endDateTime;

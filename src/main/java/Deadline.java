@@ -2,6 +2,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
 
+/**
+ * Deadline represents a Task with a deadline represented as a single LocalDateTime object.
+ * Inherits from Task.
+ */
 public class Deadline extends Task {
     protected LocalDateTime by;
 

@@ -33,6 +33,28 @@ public class Duke {
     static final String EVENT_DATETIME_START_OR_END_FORMAT = "d/MM/uuuu HHmm";
     static final String EVENT_DATETIME_INPUT_FORMAT = "d/MM/uuuu HHmm - d/MM/uuuu HHmm";
 
+    /**
+     * Driver code to run Duke.
+     * <p>
+     * Duke is a CLI-tool that performs CRUD operations on Task objects. Users interact with
+     * Duke by entering commands in the command-line, following a general format:
+     * (command) (arguments, if any)
+     * <p>
+     * The arguments depend on the command. A list of commands is as follows:
+     * - bye: Exits program
+     * - list: Lists saved user data
+     * - mark (index): Marks a Task as done
+     * - unmark (index): Unmarks a Task
+     * - todo (todo description): Creates a ToDo object and saves it to user data
+     * - deadline (deadline description) (deadline datetime): Creates a deadline object and saves it to user data.
+     * - event (deadline description) (deadline datetime start and end): Creates a event object and saves it to user data
+     * - delete (index): Deletes a Task
+     * <p>
+     * Deadline datetime format: d/MM/uuuu HHmm
+     * Event datetime format: d/MM/uuuu HHmm - d/MM/uuuu HHmm
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         List<Task> userData = new ArrayList<>();
 
