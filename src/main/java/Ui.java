@@ -73,8 +73,9 @@ public class Ui {
                 + s + "\" is missing or incomplete!!");
     }
 
-    public void printInputIndexOutOfBoundsResponse(String s) {
-        printMessage("☹ OOPS!!! You tried to " + s + " but it doesn't exist in the list!");
+    public void printInputIndexOutOfBoundsResponse(String cmd, String inputNum) {
+        printMessage("☹ OOPS!!! You tried to " + cmd + " task " + inputNum
+                + " but it doesn't exist in the list!");
     }
 
     public void printDateTimeErrorResponse() {
