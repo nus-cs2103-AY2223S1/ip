@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Duke {
 
-    private static int index = 1;
+    private static int index = 0;
     private final static ArrayList<Task> listOfTasks = new ArrayList<>();
 
     public static void main(String[] args) {
@@ -17,8 +17,8 @@ public class Duke {
 
     private static void getList() {
         System.out.println("Here are the tasks in your list: ");
-        for (int i = 1; i < index; i++) {
-            System.out.println(i + "." + listOfTasks.get(i - 1));
+        for (int i = 0; i < index; i++) {
+            System.out.println(i + 1 + "." + listOfTasks.get(i));
         }
     }
     
@@ -46,6 +46,8 @@ public class Duke {
                     mark(words);
                 } else if (keyword.equals("unmark")) {
                     unmark(words);
+                } else if (keyword.equals("delete")) {
+                    deleteTask(words);
                 } else {
                     throw new DukeInvalidException();
                 }
@@ -84,8 +86,8 @@ public class Duke {
     }
     
     private void newTaskAdded() {
-        System.out.println("Got it. I've added this task: \n" + listOfTasks.get(index -1) + "\n" + numberOfTasks());
         index++;
+        System.out.println("Got it. I've added this task: \n" + listOfTasks.get(index - 1) + "\n" + numberOfTasks());
     }
     
     private void createToDos(String[] currInput) throws DukeException{
@@ -128,5 +130,18 @@ public class Duke {
             throw new DukeIndexOutOfBoundsException(listOfTasks.size());
         }
     }
-
+    
+    private void deleteTask(String[] currInput) throws DukeException {
+        if (currInput.length < 2) {
+            throw new DukeEmptyException(currInput[0]);
+        }
+        try {
+            int taskIndex = Integer.parseInt(currInput[1]) - 1;
+            Task deletedTask = listOfTasks.remove(taskIndex);
+            index--;
+            System.out.println("Noted. I've removed this task: \n" + deletedTask + "\n" + numberOfTasks());
+        } catch (NumberFormatException | IndexOutOfBoundsException ex) {
+            throw new DukeIndexOutOfBoundsException(listOfTasks.size());
+        }
+    }
 }
