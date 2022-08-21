@@ -15,8 +15,7 @@ import java.util.Scanner;
  * @author Tan Jia Rong
  */
 public class Duke {
-    // Name of Bot
-    private static final String BOT_NAME = "duke";
+    // Location of save file
     private static final String SAVE_LOCATION = "./data/data.txt";
 
     // Initialise variables
@@ -30,7 +29,7 @@ public class Duke {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
         this.tasks = new TaskList(this.storage.load(), this.ui);
-        this.parser = new Parser(ui);
+        this.parser = new Parser(this.ui);
     }
 
     public void run() {

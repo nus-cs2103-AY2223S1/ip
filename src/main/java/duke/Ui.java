@@ -77,8 +77,8 @@ public class Ui {
      * @param tasks The list of tasks.
      */
     public void listTasks(TaskList tasks) {
-        System.out.println("\n-----------------------------------------");
         int counter = 0;
+        System.out.println("\n-----------------------------------------");
         System.out.println("Here are the tasks in your list");
         for (Task task : tasks.getTaskList()) {
             System.out.println(++counter + "." + task);
@@ -120,23 +120,23 @@ public class Ui {
         System.out.println("List: List all tasks");
         System.out.println("Command: list\n");
 
-        System.out.println("Mark: marks selected task as completed");
+        System.out.println("Mark: Set selected task as completed");
         System.out.println("Command: mark (index of task)\n");
 
-        System.out.println("Unmark: unmarks selected task as not completed");
+        System.out.println("Unmark: Set selected task as not completed");
         System.out.println("Command: unmark (index of task)\n");
 
         System.out.println("Delete: Delete selected task");
         System.out.println("Command: delete (index of task)\n");
 
-        System.out.println("Duke.Task.ToDo: adds a Todo Duke.Task.Task");
+        System.out.println("ToDo: adds a Todo Task");
         System.out.println("Command: Todo (description)\n");
 
-        System.out.println("Duke.Task.Deadline: adds a Duke.Task.Deadline Duke.Task.Task");
-        System.out.println("Command: Duke.Task.Deadline (description) /by (YYYY-MM-DD 24hr)\n");
+        System.out.println("Deadline: adds a Deadline Task");
+        System.out.println("Command: Deadline (description) /by (YYYY-MM-DD 24hr)\n");
 
-        System.out.println("Duke.Task.Deadline: adds a Duke.Task.Event Duke.Task.Task");
-        System.out.println("Command: Duke.Task.Event (description) /at (YYYY-MM-DD 24hr)\n");
+        System.out.println("Deadline: adds a Event Task");
+        System.out.println("Command: Event (description) /at (YYYY-MM-DD 24hr)");
         System.out.println("-----------------------------------------\n");
     }
 }

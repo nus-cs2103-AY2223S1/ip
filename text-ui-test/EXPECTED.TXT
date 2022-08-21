@@ -1,6 +1,6 @@
 
 -----------------------------------------
-Hello! I'm the Magical ChatBot, Duke!
+Hello! I'm the Magical ChatBot, duke.duke!
 What can I help you with today?
 -----------------------------------------
 
@@ -66,14 +66,14 @@ Command: unmark (index of task)
 Delete: Delete selected task
 Command: delete (index of task)
 
-ToDo: adds a Todo Task
+duke.task.ToDo: adds a Todo duke.task.Task
 Command: Todo (description)
 
-Deadline: adds a Deadline Task
-Command: Deadline (description) /by (YYYY-MM-DD 24hr)
+duke.task.Deadline: adds a duke.task.Deadline duke.task.Task
+Command: duke.task.Deadline (description) /by (YYYY-MM-DD 24hr)
 
-Deadline: adds a Event Task
-Command: Event (description) /at (YYYY-MM-DD 24hr)
+duke.task.Deadline: adds a duke.task.Event duke.task.Task
+Command: duke.task.Event (description) /at (YYYY-MM-DD 24hr)
 
 -----------------------------------------
 
