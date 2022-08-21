@@ -6,11 +6,25 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Represents all of Duke's file operations.
+ */
 public class Storage {
     private String filePath;
+
+    /**
+     * Initialise Storage with filePath.
+     * @param filePath filePath of data file.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
+
+    /**
+     * Load the data from the specified filePath. Creates an empty file if not found.
+     * @return ArrayList<Task> used to initialise TaskList
+     * @throws DukeException if file was wrongly modified, causing errors in reading the file.
+     */
     public ArrayList<Task> loadFile() throws DukeException {
         ArrayList<Task> taskList = new ArrayList<>();;
         File dataDirectory = new File("data");
@@ -49,6 +63,11 @@ public class Storage {
         return taskList;
     }
 
+    /**
+     * Save taskList to specified filepath.
+     * @param taskList List of tasks.
+     * @throws DukeException if Duke has insufficient permissions to write to file.
+     */
     public void saveFile(TaskList taskList) throws DukeException {
         try {
             File dataFolder = new File("data");

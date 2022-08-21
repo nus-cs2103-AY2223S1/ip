@@ -2,12 +2,19 @@ package duke;
 
 import duke.command.Command;
 
+/**
+ * Main class of Duke.
+ */
 public class Duke {
     // For adding some colour
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Create a new instance of Duke.
+     * @param filePath File path of the data file.
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -19,6 +26,10 @@ public class Duke {
         }
     }
 
+    /**
+     * Loop that runs until user enters the exit command.
+     * DukeExceptions are caught here and printed with Ui.
+     */
     public void run() {
         ui.greet();
         boolean isExit = false;
