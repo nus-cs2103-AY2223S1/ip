@@ -15,20 +15,6 @@ import java.util.function.Consumer;
 
 public class Duke {
     /**
-     * Available commands
-     */
-    private static final String AVAILABLE_COMMANDS =
-            "Available commands:\n" +
-            "   deadline [TASK DESCRIPTION] /by [DUE DATE]\n" +
-            "   event    [TASK DESCRIPTION] /at [VENUE]\n" +
-            "   todo     [TASK DESCRIPTION]\n" +
-            "   delete   [TASK NUMBER]\n" +
-            "   mark     [TASK NUMBER]\n" +
-            "   unmark   [TASK NUMBER]\n" +
-            "   list\n" +
-            "   bye\n";
-
-    /**
      * 'List' attribute to store inputs.
      */
     private static final TaskList taskList = new TaskList();
@@ -37,6 +23,11 @@ public class Duke {
      * Boolean attribute to know if Duke is running.
      */
     private static Boolean runDuke = false;
+
+    /**
+     * `Ui` object of `Duke` to handle user-interface.
+     */
+    private static Ui ui;
 
     /**
      * 'java.util.function' to add task to 'taskList'.
@@ -240,8 +231,8 @@ public class Duke {
         default: {
             // Case where no commands are matched.
             throw new DukeException("Sorry, I did not quite get that! " +
-                    String.format("(%s)\n%s",
-                            userInput, AVAILABLE_COMMANDS));
+                    String.format("(%s)\n",
+                            userInput));
         }
 
         }
@@ -288,12 +279,7 @@ public class Duke {
      */
     public static void main(String[] args) {
         runDuke = true;
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo + AVAILABLE_COMMANDS);
+        ui = new Ui();
 
         // Create Scanner object for user inputs.
         Scanner sc1 = new Scanner(System.in);
