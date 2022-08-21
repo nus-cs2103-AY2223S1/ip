@@ -3,17 +3,19 @@ import java.util.Scanner;
 public class Duke {
     private static GreetingResponse greetResponse = new GreetingResponse();
     private static GoodbyeResponse byeResponse = new GoodbyeResponse();
+    private static String TASKS_STORAGE_PATH = "./data/duke.txt";
     private TaskList taskList;
 
     public Duke() {
-        this.taskList = new TaskList();
+        this.taskList = new TaskList(TASKS_STORAGE_PATH);
     }
+
     public void run() {
-        boolean notEnded = true;
+        boolean hasEnded = false;
         Scanner scanner = new Scanner(System.in);
         greetResponse.action();
 
-        while (notEnded) {
+        while (!hasEnded) {
             try {
                 String input = scanner.nextLine();
                 String [] inputArr = input.split(" ", 2);
@@ -22,7 +24,7 @@ public class Duke {
                     case BYE:
                         scanner.close();
                         byeResponse.action();
-                        notEnded = false;
+                        hasEnded = true;
                         break;
                     case LIST:
                         ListResponse listResponse = new ListResponse(taskList);
@@ -55,11 +57,11 @@ public class Duke {
                         break;
                     }
                 }
+                taskList.saveTasks();
             } catch (DukeException e){
                 InvalidResponse invalidResponse = new InvalidResponse(e.getMessage());
                 invalidResponse.action();
             }
-
         }
     }
     public static void main(String[] args) {
