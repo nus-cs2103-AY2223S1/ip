@@ -11,9 +11,11 @@ public class Todo extends Task {
         super(description);
     }
 
-    /**
-     * This method returns the string of a Todo.
-     */
+    @Override
+    public int[] getDate() {
+        return new int[]{-1, -1, -1};
+    }
+
     @Override
     public String toString() {
         return "[T] " + this.getStatusIcon() + " " + this.description ;

@@ -1,28 +1,33 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+
 /**
  * The Deadline class contains information of a Deadline task.
  * @author Sheryl-Lynn Tan (G11)
  */
 public class Deadline extends Task {
-    /**
-     * Specified deadline time of a Deadline.
-     */
     protected String by;
+    private LocalDate localDate = null;
 
-    /**
-     * Constructor for Deadline.
-     * @param description of task name.
-     */
     public Deadline(String description, String by) {
         super(description);
         this.by = by;
+        if (HandleTime.isValidDate(by)) {
+            this.localDate = LocalDate.parse(by);
+        }
+    }
+    @Override
+    public int[] getDate() {
+        return HandleTime.fromStringToDate(by);
     }
 
-    /**
-     * This method returns the string of a Deadline.
-     */
     @Override
     public String toString() {
-        return "[D] " + this.getStatusIcon() + " " + this.description + " (by: " + by + ")";
+        if (localDate != null) {
+            return "[D] " + this.getStatusIcon() + " " + this.description + " (by: " + localDate.format(DateTimeFormatter.ofPattern("MMM d yyyy)"));
+        } else {
+            return "[D] " + this.getStatusIcon() + " " + this.description + " (by: " + by + ")";
+        }
     }
-
 }

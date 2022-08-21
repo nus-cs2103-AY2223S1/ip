@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.Scanner;
 import java.util.ArrayList;
 /**
@@ -86,7 +87,7 @@ public class Kirby {
     }
 
     private void deadline(String inputString, ArrayList<Task> Tasks) throws KirbyMissingArgumentException {
-        if (!inputString.contains("/by") || inputString.length() - 1 < inputString.indexOf("/by") + 4) {
+        if (!inputString.contains("/by") || inputString.length() - 1 < inputString.indexOf("/by") + 4 || inputString.indexOf(" /by") <= inputString.indexOf("deadline") + 9) {
             throw new KirbyMissingArgumentException("deadline");
         }
         String taskName = inputString.substring(inputString.indexOf("deadline") + 9, inputString.indexOf(" /by"));
@@ -99,7 +100,7 @@ public class Kirby {
     }
 
     private void event(String inputString, ArrayList<Task> Tasks) throws KirbyMissingArgumentException {
-        if (!inputString.contains("/at") || inputString.length() - 1 < inputString.indexOf("/at") + 4) {
+        if (!inputString.contains("/at") || inputString.length() - 1 < inputString.indexOf("/at") + 4 || inputString.indexOf(" /at") <= inputString.indexOf("event") + 6) {
             throw new KirbyMissingArgumentException("event");
         }
         String taskName = inputString.substring(inputString.indexOf("event") + 6, inputString.indexOf(" /at"));
@@ -130,15 +131,25 @@ public class Kirby {
         printTaskCount();
     }
 
-    /**
-     * This is the main method to initialise the bot.
-     */
+    private void getADate(String inputString, ArrayList<Task> Tasks) throws KirbyMissingArgumentException {
+        if (inputString.split(" ").length != 2) {
+            throw new KirbyMissingArgumentException("get");
+        }
+        String inputDate = inputString.split(" ")[1];
+
+        if (!HandleTime.isValidDate(inputDate)) {
+            throw new KirbyMissingArgumentException("get");
+        }
+        ArrayList<Task> res = HandleTime.getDate(Tasks, inputDate);
+        for (Task re : res) {
+            System.out.println(re.toString());
+        }
+    }
+
     public static void main(String[] args) {
-        // Arraylist of Task to store all the tasks added.
         Kirby kirby = new Kirby();
         kirby.welcome();
         Scanner scanner = new Scanner(System.in);
-        // Keep taking in input
         while (scanner.hasNextLine()) {
                 TaskType taskType = null;
                 String inputString = scanner.nextLine();
@@ -186,18 +197,15 @@ public class Kirby {
                         }
                     }
 
-                    // Bye
                     else if (inputString.equals("bye")) {
                         kirby.goodbye();
                         break;
                     }
 
-                    // List
                     else if (inputString.equals("list")) {
                         kirby.showList(kirby.Tasks);
                     }
 
-                    //Mark
                     else if (inputString.split(" ")[0].equals("mark")) {
                         try {
                             kirby.mark(inputString, kirby.Tasks);
@@ -206,7 +214,6 @@ public class Kirby {
                         }
                     }
 
-                    // Unmark
                     else if (inputString.split(" ")[0].equals("unmark")) {
                         try {
                             kirby.unmark(inputString, kirby.Tasks);
@@ -215,7 +222,6 @@ public class Kirby {
                         }
                     }
 
-                    // Delete
                     else if (inputString.split(" ")[0].equals("delete")) {
                         try {
                             kirby.delete(inputString, kirby.Tasks);
@@ -224,7 +230,14 @@ public class Kirby {
                         }
                     }
 
-                    // Undefined command
+                    else if (inputString.split(" ")[0].equals("get")) {
+                        try {
+                            kirby.getADate(inputString, kirby.Tasks);
+                        } catch (KirbyMissingArgumentException e) {
+                            System.out.println(e.getMessage());
+                        }
+                    }
+
                     else {
                         kirby.notDefinedCommand();
                     }
