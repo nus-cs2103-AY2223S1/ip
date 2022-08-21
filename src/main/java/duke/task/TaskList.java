@@ -65,6 +65,11 @@ public class TaskList {
         TaskList.tasks.remove(index);
     }
 
+    /**
+     * Returns a string containing
+     * tasks that have been found
+     * after searching using text
+     */
     public String findTask(String text) {
         String tasks = "";
         int counter = 0;
