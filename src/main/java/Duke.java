@@ -78,6 +78,7 @@ public class Duke {
                             duke.tasks.getTasks(message);
                     }
                 } catch (IllegalArgumentException e) {
+                    scanner.nextLine(); // to clear the scanner buffer
                     throw new DukeException("I don't know what this means :(");
                 }
             } catch (DukeException e) {
