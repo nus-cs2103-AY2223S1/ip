@@ -1,7 +1,4 @@
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Deku {
     private BotList botList;
@@ -42,30 +39,31 @@ public class Deku {
     private String parseReply(String input) {
         String reply = input;
         List<String> separate = new LinkedList<>(Arrays.asList(input.split("\\s+")));
+        Optional<KeyPhrases> keyPhrase = KeyPhrases.get(separate.remove(0));
         try {
-            switch (separate.remove(0)) {
-                case ("bye"):
+            switch (keyPhrase.get()) {
+                case BYE:
                     reply = "Bye! Until next time!";
                     break;
-                case ("list"):
+                case LIST:
                     reply = this.botList.toString();
                     break;
-                case ("mark"):
+                case MARK:
                     reply = this.botList.mark(Integer.parseInt(separate.get(0)));
                     break;
-                case ("unmark"):
+                case UNMARK:
                     reply = this.botList.unmark(Integer.parseInt(separate.get(0)));
                     break;
-                case ("delete"):
+                case DELETE:
                     reply = this.botList.delete(Integer.parseInt(separate.get(0)));
                     break;
-                case ("deadline"):
+                case DEADLINE:
                     reply = this.botList.add(new Deadline(separate));
                     break;
-                case ("event"):
+                case EVENT:
                     reply = this.botList.add(new Event(separate));
                     break;
-                case ("todo"):
+                case TODO:
                     reply = this.botList.add(new ToDo(separate));
                     break;
 
