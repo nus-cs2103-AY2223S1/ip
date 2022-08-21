@@ -1,3 +1,11 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -9,6 +17,9 @@ import java.util.Scanner;
  * @author Alvin Tan Fu Long
  */
 public class Tako {
+    private static List<Task> tasks = new ArrayList<>();
+    private static Path tasksPath;
+
     private enum Command {
         BYE, LIST, MARK, TODO, DEADLINE, EVENT, DELETE;
 
@@ -22,9 +33,77 @@ public class Tako {
         }
     }
 
+    private static void save() {
+        try {
+            BufferedWriter bw = Files.newBufferedWriter(tasksPath);
+            for (Task task : tasks) {
+                String s = task.toString();
+                char taskType = s.charAt(1);
+                int isDone = s.charAt(4) == ' ' ? 0 : 1;
+                String description = s.substring(7);
+                if (taskType == 'D' || taskType == 'E') {
+                    description = description.substring(0, description.length() - 1);
+                    description = taskType == 'D'
+                            ? description.replaceFirst("\\(by:", "|")
+                            : description.replaceFirst("\\(at:", "|");
+                }
+                bw.write(String.format("%c | %d | %s", taskType, isDone, description));
+                bw.newLine();
+            }
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void load() {
+        try {
+            String home = System.getProperty("user.home");
+            Path dataDir = Paths.get(home, "Tako","Data");
+            if (!Files.isDirectory(dataDir)) {
+                Files.createDirectories(dataDir);
+            }
+            tasksPath = Paths.get(dataDir.toString(), "Tako.txt");
+            if (!Files.isRegularFile(tasksPath)) {
+                Files.createFile(tasksPath);
+            }
+
+            BufferedReader br = Files.newBufferedReader(tasksPath);
+            String line = br.readLine();
+            while (line != null) {
+                String[] splitLine = line.split(" \\| ");
+                String taskType = splitLine[0];
+                Task task = null;
+                switch (taskType) {
+                case "T":
+                    task = new Todo(splitLine[2]);
+                    break;
+                case "D":
+                    task = new Deadline(splitLine[2], splitLine[3]);
+                    break;
+                case "E":
+                    task = (new Event(splitLine[2], splitLine[3]));
+                    break;
+                default:
+                    break;
+                }
+                if (task != null) {
+                    if (splitLine[1].equals("1")) {
+                        task.markAsDone();
+                    }
+                    tasks.add(task);
+                }
+                line = br.readLine();
+            }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
         System.out.println("Hello! I'm Tako.\nWhat do you want?");
-        List<Task> tasks = new ArrayList<>();
+        load();
 
         Scanner sc = new Scanner(System.in);
         while (sc.hasNext()) {
@@ -69,6 +148,7 @@ public class Tako {
                             }
                             Task task = tasks.get(taskNumber);
                             task.markAsDone();
+                            save();
                             System.out.println("marked: " + task);
                         }
                     } catch (NumberFormatException e) {
@@ -85,6 +165,7 @@ public class Tako {
                     }
                     Todo todo = new Todo(splitInput[1]);
                     tasks.add(todo);
+                    save();
                     System.out.println("added: " + todo);
                     System.out.println("Total tasks: " + tasks.size());
                     break;
@@ -96,6 +177,7 @@ public class Tako {
                     if (splitDeadline.length == 2) {
                         Deadline deadline = new Deadline(splitDeadline[0], splitDeadline[1]);
                         tasks.add(deadline);
+                        save();
                         System.out.println("added: " + deadline);
                         System.out.println("Total tasks: " + tasks.size());
                     } else {
@@ -110,6 +192,7 @@ public class Tako {
                     if (splitEvent.length == 2) {
                         Event event = new Event(splitEvent[0], splitEvent[1]);
                         tasks.add(event);
+                        save();
                         System.out.println("added: " + event);
                         System.out.println("Total tasks: " + tasks.size());
                     } else {
@@ -126,6 +209,7 @@ public class Tako {
                                 throw new InvalidRangeException();
                             }
                             Task task = tasks.remove(taskNumber);
+                            save();
                             System.out.println("deleted: " + task);
                             System.out.println("Total tasks: " + tasks.size());
                         }
