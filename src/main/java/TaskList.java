@@ -25,7 +25,7 @@ public class TaskList {
     // checks if the index range is out of bounds
     private void checkIndex(int index) {
         if (index <= 0 || index > tasks.size()) {
-            throw new IllegalArgumentException("Invalid index");
+            throw new IllegalCommandException("Invalid index");
         }
     }
 
@@ -33,7 +33,7 @@ public class TaskList {
      * Deletes a task at a particular index (1-based).
      *
      * @param index The index
-     * @throws IllegalArgumentException If index range is out of bounds.
+     * @throws IllegalCommandException If index range is out of bounds.
      */
     public void delete(int index) {
         checkIndex(index);
