@@ -23,8 +23,6 @@ public class Command {
         this.ui = ui;
     }
 
-
-
     private void addTask(Task input) {
         tasks.add(input);
     }
