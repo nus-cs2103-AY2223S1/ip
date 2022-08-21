@@ -93,7 +93,7 @@ public class SaveFile {
                 String type = arr[0];
                 switch (type) {
                 case "T" :
-                    tasks.add(new ToDo(arr[1],arr[2]));
+                    tasks.add(new ToDo(arr[1], arr[2]));
                     break;
                 case "E" :
                     tasks.add(new Event(arr[1], arr[2], arr[3]));
@@ -106,7 +106,7 @@ public class SaveFile {
                 line = bufferedReader.readLine();
             }
             bufferedReader.close();
-        } catch (IOException e) {
+        } catch (IOException | DukeInvalidTimeException e) {
             System.out.println(e.getMessage());
         }
     }
