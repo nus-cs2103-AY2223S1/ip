@@ -1,15 +1,20 @@
-public class MarkCommand extends Command{
+package dobby.commands;
+
+import dobby.tasks.*;
+import dobby.*;
+
+public class UnmarkCommand extends Command{
     @Override
     public void execute(DobbyList dl, UserInput ui) {
         try {
-            int toMark = ui.getInd();
-            if(toMark <= 0) {
+            int toUnmark = ui.getInd();
+            if(toUnmark <= 0) {
                 DobbyChat.wrongTaskNumber();
-            } else if(dl.getTask(toMark).isDone()) {
-                DobbyChat.alreadyMarked();
+            } else if(!(dl.getTask(toUnmark).isDone())) {
+                DobbyChat.alreadyUnmarked();
             } else {
-                dl.mark(toMark);
-                DobbyChat.marked(dl.getTaskString(toMark));
+                dl.unmark(toUnmark);
+                DobbyChat.unmarked(dl.getTaskString(toUnmark));
             }
         } catch(StringIndexOutOfBoundsException e) {
             DobbyChat.noTaskNumber();
@@ -19,5 +24,4 @@ public class MarkCommand extends Command{
             DobbyChat.tooLittleTasks();
         }
     }
-
 }

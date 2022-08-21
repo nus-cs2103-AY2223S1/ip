@@ -1,3 +1,8 @@
+package dobby;
+
+import dobby.commands.*;
+import dobby.tasks.*;
+
 import java.util.Scanner;
 
 public class UserInput {

@@ -1,3 +1,8 @@
+package dobby;
+
+import dobby.commands.*;
+import dobby.tasks.*;
+
 public class DobbyChat {
     private static final String hello = "Hello! I'm Dobby\n" +
                            "\t" + "How can I help you?";

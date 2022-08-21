@@ -1,3 +1,8 @@
+package dobby;
+
+import dobby.commands.*;
+import dobby.tasks.*;
+
 import java.io.*;
 import java.util.Scanner;
 import java.io.BufferedReader;

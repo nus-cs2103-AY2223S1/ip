@@ -1,3 +1,8 @@
+package dobby.tasks;
+
+import dobby.commands.*;
+import dobby.*;
+
 public class Event extends Task {
     private String date;
 

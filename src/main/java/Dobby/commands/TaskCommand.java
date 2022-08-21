@@ -1,3 +1,8 @@
+package dobby.commands;
+
+import dobby.tasks.*;
+import dobby.*;
+
 import java.util.Objects;
 
 public class TaskCommand extends Command{

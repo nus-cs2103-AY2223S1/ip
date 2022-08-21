@@ -1,3 +1,8 @@
+package dobby;
+
+import dobby.commands.*;
+import dobby.tasks.*;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
