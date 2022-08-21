@@ -20,6 +20,7 @@ public class Storage {
 
     /**
      * Constructor of Storage class
+     *
      * @param filePath it was meant to be used as the file path but I decided to hard code the path instead
      */
     public Storage(String filePath) {
@@ -30,6 +31,7 @@ public class Storage {
     /**
      * Loads /data/duke.txt and converts it to a command that is parsable, enters the commands line by line and
      * returns ArrayList<Task>
+     *
      * @return ArrayList<Task> filled with tasks that were previously saved
      * @throws IOException
      */
@@ -90,6 +92,7 @@ public class Storage {
 
     /**
      * Saves the tasklist line by line in a duke.txt file
+     *
      * @param taskList
      */
     public static void saveFile(TaskList taskList) {

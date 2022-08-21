@@ -13,6 +13,7 @@ public class UnmarkCommand extends Command {
 
      /**
       * Constructor for MarkCommand class
+      *
       * @param integer integer that determines which item is to be marked as not done
       */
     public UnmarkCommand(int integer) {
@@ -21,6 +22,7 @@ public class UnmarkCommand extends Command {
 
      /**
       * Returns false to indicate this command does not cause Duke to exit
+      *
       * @return the boolean false
       */
     @Override
@@ -30,6 +32,7 @@ public class UnmarkCommand extends Command {
 
      /**
       * Marks tasks in taskList, saves the taskList to Duke.txt file, and displays Ui to show update to taskList.
+      *
       * @param taskList tasklist that contains tasks to be marked as done
       * @param ui ui that displays results of marking tasks in taskList
       * @param storage storage that saves the taskList

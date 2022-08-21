@@ -10,6 +10,7 @@ import duke.ui.Ui;
 public class ExitCommand extends Command {
      /**
       * Returns true to tell that this command makes Duke exit.
+      *
       * @return true
       */
     @Override
@@ -19,6 +20,7 @@ public class ExitCommand extends Command {
 
      /**
       * Shows the exit message.
+      *
       * @param taskList tasklist that contains tasks to be modified, added, or removed
       * @param ui ui that displays results of user commands
       * @param storage storage that saves or loads the taskList

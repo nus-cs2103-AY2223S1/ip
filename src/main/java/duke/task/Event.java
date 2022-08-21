@@ -10,6 +10,7 @@ public class Event extends Task {
 
     /**
      * Constructor of Event
+     *
      * @param description what the task contains
      */
     public Event(String description) {
@@ -24,6 +25,7 @@ public class Event extends Task {
 
     /**
      * Returns the string representation of event
+     *
      * @return string that is representation of the event
      */
     @Override
@@ -34,6 +36,7 @@ public class Event extends Task {
 
     /**
      * Returns a string containing task to be done (ie. "Go shopping")
+     *
      * @return string containing task to be done
      */
     private String getSubstring() {

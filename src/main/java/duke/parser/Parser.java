@@ -20,6 +20,7 @@ public class Parser {
 
     /**
      * Turns date from MMM dd yyyy format to yyyy-MM-dd format
+     *
      * @param string of a MMM dd yyyy format
      * @return string of a yyyy-MM-dd format
      */
@@ -31,6 +32,7 @@ public class Parser {
 
     /**
      * Checks what the user types and calls whatever command that the user types corresponds with
+     *
      * @param fullCommand input from user to be checked against available commands
      * @param taskList the taskList to be modified with tasks depending on command
      * @return a command that does different tasks depending on user input

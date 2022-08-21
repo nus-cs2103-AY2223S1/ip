@@ -11,6 +11,7 @@ public class ListCommand extends Command {
 
      /**
       * Returns false to indicate this command does not cause Duke to exit
+      *
       * @return the boolean false
       */
     @Override
@@ -20,6 +21,7 @@ public class ListCommand extends Command {
 
      /**
       * Shows tasks in taskList
+      *
       * @param taskList tasklist that contains tasks to be modified, added, or removed
       * @param ui ui that displays results of user commands
       * @param storage storage that saves or loads the taskList

@@ -13,6 +13,7 @@ public class DeleteCommand extends Command {
 
      /**
       * Constructor for DeleteCommand class
+      *
       * @param integer integer that determines which item is to be deleted
       */
     public DeleteCommand(int integer) {
@@ -21,6 +22,7 @@ public class DeleteCommand extends Command {
 
      /**
       * Returns false to indicate this command does not cause Duke to exit
+      *
       * @return the boolean false
       */
     @Override
@@ -30,6 +32,7 @@ public class DeleteCommand extends Command {
 
      /**
       * Removes tasks from taskList, saves the taskList to Duke.txt file, and displays Ui to show update to taskList.
+      *
       * @param taskList tasklist that tasks are removed from
       * @param ui ui that displays results of user commands
       * @param storage storage that saves the taskList

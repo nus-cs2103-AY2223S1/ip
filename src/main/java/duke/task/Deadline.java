@@ -10,6 +10,7 @@ public class Deadline extends Task {
 
     /**
      * Constructor of Deadline
+     *
      * @param description what the task contains
      */
     public Deadline(String description) {
@@ -27,6 +28,7 @@ public class Deadline extends Task {
 
     /**
      * Returns the string representation of deadline
+     *
      * @return string that is representation of the deadline
      */
     @Override
@@ -41,6 +43,7 @@ public class Deadline extends Task {
 
     /**
      * Returns a string containing task to be done (ie. "Go shopping")
+     *
      * @return string containing task to be done
      */
     private String getSubstring() {

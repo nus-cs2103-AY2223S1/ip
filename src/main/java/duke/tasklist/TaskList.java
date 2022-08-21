@@ -19,6 +19,7 @@ public class TaskList {
 
     /**
      * Constructor that initializes tasks
+     *
      * @param tasks takes in tasks and stores it here
      */
     public TaskList(ArrayList<Task> tasks) {
@@ -27,6 +28,7 @@ public class TaskList {
 
     /**
      * Getter that gets tasks
+     *
      * @return tasks
      */
     public ArrayList<Task> getArray() {
@@ -35,6 +37,7 @@ public class TaskList {
 
     /**
      * Adds tasks
+     *
      * @param task the task to be added to tasks
      */
     public void add(Task task) {
@@ -43,6 +46,7 @@ public class TaskList {
 
     /**
      * Removes tasks
+     *
      * @param integer the index of the item that is to be removed
      */
     public void remove(int integer) {
@@ -51,6 +55,7 @@ public class TaskList {
 
     /**
      * Returns the last task
+     *
      * @return the last task in the tasks arraylist
      */
     public Task latestTask() {
@@ -59,6 +64,7 @@ public class TaskList {
 
     /**
      * Returns the size of the taskList
+     *
      * @return the size of the taskList
      */
     public int taskListSize() {
@@ -67,6 +73,7 @@ public class TaskList {
 
     /**
      * Gets the task indexed at integer
+     *
      * @param integer gets the task indexed here
      * @return the task indexed at integer
      */
@@ -76,6 +83,7 @@ public class TaskList {
 
     /**
      * Checks if the task array is empty
+     *
      * @return true if the task array is empty
      */
     public boolean isEmpty() {
@@ -84,6 +92,7 @@ public class TaskList {
 
     /**
      * Marks task indexed at integer to be done
+     *
      * @param integer the task array index
      */
     public void markAsDone(int integer) {
@@ -92,6 +101,7 @@ public class TaskList {
 
     /**
      * Marks task indexed at integer to be not done
+     * 
      * @param integer the task array index
      */
     public void markAsNotDone(int integer) {

@@ -9,6 +9,7 @@ public class DukeException extends Exception {
 
     /**
      * Constructor for DukeException class
+     *
      * @param string shows the different types of exceptions possible
      */
     public DukeException(String string) {
@@ -18,6 +19,7 @@ public class DukeException extends Exception {
 
     /**
      * A getter function
+     *
      * @return message an error message
      */
     public String getMessage() {

@@ -9,6 +9,7 @@ public class Task {
 
     /**
      * Constructor of Task
+     *
      * @param description what the task contains
      */
     public Task(String description) {
@@ -18,6 +19,7 @@ public class Task {
 
     /**
      * Marks done task with X
+     *
      * @return String that contains a mark if the task is done
      */
     public String getStatusIcon() {
@@ -26,6 +28,7 @@ public class Task {
 
     /**
      * Returns the string representation of task
+     *
      * @return string that is representation of the task
      */
     @Override

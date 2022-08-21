@@ -11,6 +11,7 @@ public abstract class Command {
 
       /**
        * Abstract method with different implementations for other commands
+       *
        * @param taskList tasklist that contains tasks to be modified, added, or removed
        * @param ui ui that displays results of user commands
        * @param storage storage that saves or loads the taskList
@@ -19,6 +20,7 @@ public abstract class Command {
 
       /**
        * Abstract method that determines if the commands will end the program.
+       *
        * @return true if the command ends the program and vice versa
        */
     public abstract boolean isExit();

@@ -14,6 +14,7 @@ public class AddCommand extends Command {
 
     /**
      * Constructor for AddCommand class
+     *
      * @param task the task to be added to constructor
      */
     public AddCommand(Task task) {
@@ -22,6 +23,7 @@ public class AddCommand extends Command {
 
     /**
      * Returns false to indicate this command does not cause Duke to exit
+     *
      * @return the boolean false
      */
     @Override
@@ -31,6 +33,7 @@ public class AddCommand extends Command {
 
     /**
      * Adds tasks to taskList, saves the taskList to Duke.txt file, and displays Ui to show update to taskList.
+     *
      * @param taskList tasklist that tasks are added to
      * @param ui ui that displays results of user commands
      * @param storage storage that saves the taskList

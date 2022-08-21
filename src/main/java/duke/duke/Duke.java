@@ -19,6 +19,7 @@ public class Duke {
 
      /**
       * Constructor for Duke that initializes Ui and storage
+      *
       * @param filePath file path that storage uses to know location of Duke.txt
       */
     public Duke(String filePath) {
@@ -28,7 +29,8 @@ public class Duke {
 
      /**
       * Method run() that greets the user, loads tasklist from Duke.txt, and continues program until
-       * isExit() returns false through one of the commands
+      * isExit() returns false through one of the commands
+      *
       * @throws IOException
       */
     public void run() throws IOException {
@@ -49,6 +51,7 @@ public class Duke {
 
      /**
       * Creates new Duke instance and runs it
+      *
       * @param args needed for main to run
       * @throws IOException
       */
