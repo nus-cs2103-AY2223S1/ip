@@ -12,7 +12,6 @@ public class Task {
 
     /**
      * String encapsulates Task description and isDone status.
-     *
      * @return String representing Task object
      */
     @Override
