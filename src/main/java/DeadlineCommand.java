@@ -1,8 +1,10 @@
+import java.time.LocalDate;
+
 public class DeadlineCommand extends Command{
     private String description;
-    private String date;
+    private LocalDate date;
 
-    public DeadlineCommand(String description, String date) {
+    public DeadlineCommand(String description, LocalDate date) {
         super(false);
         this.description = description;
         this.date = date;

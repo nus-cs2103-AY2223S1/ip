@@ -1,3 +1,6 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 public class Parser {
 
     private enum CommandTag {
@@ -39,7 +42,7 @@ public class Parser {
                     if (splitDescriptionArray.length == 1) {
                         throw new DukeException("\t☹ OOPS!!! The date of a deadline cannot be empty.");
                     }
-                    return new DeadlineCommand(splitDescriptionArray[0], splitDescriptionArray[1]);
+                    return new DeadlineCommand(splitDescriptionArray[0], LocalDate.parse(splitDescriptionArray[1]));
                 }
             case EVENT:
                 if (splitInputCommand.length == 1) {
@@ -49,7 +52,7 @@ public class Parser {
                     if (splitDescriptionArray.length == 1) {
                         throw new DukeException("\t☹ OOPS!!! The date of an event cannot be empty.");
                     }
-                    return new EventCommand(splitDescriptionArray[0], splitDescriptionArray[1]);
+                    return new EventCommand(splitDescriptionArray[0], LocalDate.parse(splitDescriptionArray[1]));
                 }
             case DELETE:
                 if (splitInputCommand.length == 1) {
@@ -62,6 +65,8 @@ public class Parser {
             }
         } catch (IllegalArgumentException e) {
             throw new DukeException("\t☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+        } catch (DateTimeParseException e) {
+            throw new DukeException("\t☹ OOPS!!! Please enter your date in the format yyyy-mm-dd!");
         }
     }
 }

@@ -1,4 +1,5 @@
 import java.io.FileNotFoundException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class TaskList {
@@ -40,12 +41,12 @@ public class TaskList {
         tasks.add(toDo);
     }
 
-    public void addDeadline(String description, String date) {
+    public void addDeadline(String description, LocalDate date) {
         Deadline deadline = new Deadline(description, false, date);
         tasks.add(deadline);
     }
 
-    public void addEvent(String description, String date) {
+    public void addEvent(String description, LocalDate date) {
         Event event = new Event(description, false, date);
         tasks.add(event);
     }
