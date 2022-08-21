@@ -47,18 +47,17 @@ public class Hazell {
                     reply(String.format("OK, I've marked this task as not done yet:\n\t%s", task.toString()));
                 } else if (command.startsWith("todo")) {
                     String description = String.join(" ", command.getTrailingArgs());
-                    new ToDo(description);
-                    String response = taskStore.addTask(new ToDo(description));
+                    String response = taskStore.addTask(ToDo.create(description));
                     reply(response);
                 } else if (command.startsWith("deadline")) {
                     String description = String.join(" ", command.getTrailingArgs());
                     String time = command.getKwarg("by");
-                    String response = taskStore.addTask(new Deadline(description, time));
+                    String response = taskStore.addTask(Deadline.create(description, time));
                     reply(response);
                 } else if (command.startsWith("event")) {
                     String description = String.join(" ", command.getTrailingArgs());
                     String time = command.getKwarg("at");
-                    String response = taskStore.addTask(new Event(description, time));
+                    String response = taskStore.addTask(Event.create(description, time));
                     reply(response);
                 } else if (command.startsWith("delete")) {
                     int index = Integer.parseInt(command.getTrailingArgs().get(0)) - 1;

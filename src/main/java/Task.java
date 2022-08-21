@@ -4,10 +4,10 @@ public abstract class Task {
     private String description;
     private boolean isDone;
 
-    public Task(String description) throws TaskDescriptionEmpty {
+    protected Task(boolean isDone, String description) throws TaskDescriptionEmpty {
         if (description.equals("")) throw new TaskDescriptionEmpty();
+        this.isDone = isDone;
         this.description = description;
-        this.isDone = false;
     }
 
     public String getDescription() {
