@@ -19,6 +19,8 @@ public abstract class Task {
         this.isDone = false; // mark task as undone
     }
 
+    public abstract String savedString();
+
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;
