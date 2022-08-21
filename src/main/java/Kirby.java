@@ -2,8 +2,7 @@ import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 /**
- * The Kirby class implements the main method of the bot
- * with all the relevant commands.
+ * The Kirby class implements the main method of the bot.
  * @author Sheryl-Lynn Tan (G11)
  */
 public class Kirby {

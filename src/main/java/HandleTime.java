@@ -1,14 +1,12 @@
 import java.text.ParseException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.time.temporal.ChronoUnit;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-
+/**
+ * The HandleTime class contains methods to deal with time and dates.
+ * @author Sheryl-Lynn Tan (G11)
+ */
 public class HandleTime {
-
     public static boolean isValidDate(String inDate) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         dateFormat.setLenient(false);
@@ -27,7 +25,7 @@ public class HandleTime {
         int year = Integer.parseInt(parts[0]);
         return new int[]{date, month, year};
     }
-    // get date
+
     public static ArrayList<Task> getDate(ArrayList<Task> arr, String input) {
         int[] toCompare = fromStringToDate(input);
         ArrayList<Task> result = new ArrayList<>();

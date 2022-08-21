@@ -1,6 +1,5 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
 /**
  * The Event class contains information of an Event task.
  * @author Sheryl-Lynn Tan (G11)

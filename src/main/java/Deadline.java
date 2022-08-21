@@ -1,7 +1,5 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-
 /**
  * The Deadline class contains information of a Deadline task.
  * @author Sheryl-Lynn Tan (G11)
