@@ -25,16 +25,15 @@ public class Ui {
         return "Eh something went wrong " + error;
     }
 
-    public void printStoredInputs(TaskList tasks) {
+    public void printTasks(TaskList tasks, String notEmptyMessage, String emptyMessage) {
         int numberOfTasks = tasks.getSize();
         if (numberOfTasks > 0) {
-            System.out.println("Boss ah, this one your tasks:");
+            System.out.println(notEmptyMessage);
             for (int i = 0; i < numberOfTasks; i++) {
                 System.out.println(i + 1 + ". " + tasks.taskStringAtIndex(i));
             }
-            this.printTaskCountMessage(tasks);
         } else if (numberOfTasks == 0) {
-            System.out.println("Boss, you got no task yet ah");
+            System.out.println(emptyMessage);
         }
     }
 
@@ -44,5 +43,17 @@ public class Ui {
 
     public void printAddedTaskMessage(Task task) {
          System.out.printf("Swee lah! I added this task liao:\n%s\n", task);
+    }
+
+    public void printDeletedTaskMessage(String taskString) {
+        System.out.printf("Okay boss, this task I delete le:\n%s\n", taskString);
+    }
+
+    public void printMarkedMessage(Task task) {
+        System.out.println("Swee lah! Your task done liao: \n" + task);
+    }
+
+    public void printUnmarkedMessage(Task task) {
+        System.out.println("Eh? Not done yet? Okay I change liao: \n" + task);
     }
 }

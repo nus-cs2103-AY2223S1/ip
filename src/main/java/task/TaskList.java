@@ -34,4 +34,13 @@ public class TaskList {
     public Task get(int index) {
         return tasks.get(index);
     }
+
+    public boolean containsKeyword(int index, String keyword) {
+        for (String word : tasks.get(index).getDescription().split(" ")) {
+            if (word.equals(keyword)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

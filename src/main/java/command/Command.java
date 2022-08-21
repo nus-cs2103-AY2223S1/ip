@@ -23,7 +23,15 @@ public class Command {
         this.ui = ui;
     }
 
-
+    private TaskList getMatchingTasks(String keyword) {
+        TaskList newTaskList = new TaskList();
+        for (int i = 0; i < tasks.getSize(); i++) {
+            if (tasks.containsKeyword(i, keyword)) {
+                newTaskList.add(tasks.get(i));
+            }
+        }
+        return newTaskList;
+    }
 
     private void addTask(Task input) {
         tasks.add(input);
@@ -48,7 +56,8 @@ public class Command {
         case BYE:
             break;
         case LIST:
-            ui.printStoredInputs(tasks);
+            ui.printTasks(tasks, "Boss ah, this one your tasks:",
+                    "Boss, you got no task yet ah");
             break;
         case TODO:
             String todoDescription = input.substring(4).trim();
@@ -111,7 +120,7 @@ public class Command {
                 }
                 if (this.tasks.get(taskIndex - 1).canChangeIsDone(true)) {
                     this.tasks.get(taskIndex - 1).changeIsDone(true);
-                    System.out.println("Swee lah! Your task done liao: \n" + this.tasks.get(taskIndex - 1));
+                    ui.printMarkedMessage(this.tasks.get(taskIndex - 1));
                 } else {
                     throw new DukeException("Eh, you done that task alr lah");
                 }
@@ -129,7 +138,7 @@ public class Command {
                 }
                 if (this.tasks.get(taskIndex - 1).canChangeIsDone(false)) {
                     this.tasks.get(taskIndex - 1).changeIsDone(false);
-                    System.out.println("Eh? Not done yet? Okay I change liao: \n" + this.tasks.get(taskIndex - 1));
+                    ui.printUnmarkedMessage(this.tasks.get(taskIndex - 1));
                 } else {
                     throw new DukeException("Eh, your task alr not done lah");
                 }
@@ -145,7 +154,7 @@ public class Command {
                 if (!hasTaskIndex(taskIndex)) {
                     throw new DukeException("Eh, you got that task number meh?");
                 } else {
-                    System.out.printf("Okay boss, this task I delete le:\n%s\n", tasks.taskStringAtIndex(taskIndex - 1));
+                    ui.printDeletedTaskMessage(tasks.taskStringAtIndex(taskIndex - 1));
                     tasks.remove(taskIndex - 1);
                 }
             }
@@ -153,10 +162,17 @@ public class Command {
                 throw new DukeException("Eh, you enter your task number correctly anot?");
             }
             break;
+        case FIND:
+            String keyword = input.substring(4).trim();
+            TaskList newTaskList = getMatchingTasks(keyword);
+            ui.printTasks(newTaskList, "Boss ah, this one all your tasks matching '" + keyword + "' : ",
+                    "Boss, no matching tasks ah");
+            if (keyword.equals("")) {
+                throw new DukeException("Eh your keyword cannot be empty lah!");
+            }
+
         default:
             throw new DukeException("What talking you");
         }
     }
-
-
 }
