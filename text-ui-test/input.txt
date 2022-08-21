@@ -1,7 +1,3 @@
-todo borrow book
-deadline return book /by Sunday
-event project meeting /at Mon 2-4pm
-deadline do homework /by no idea :-p
 mark 2
 mark 3
 unmark 2
@@ -15,7 +11,6 @@ unmark test
 deadline
 deadline test
 todo
-todo test
 event
 event test
 bye
