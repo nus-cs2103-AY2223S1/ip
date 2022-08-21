@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -57,90 +61,92 @@ public class Duke {
         } else {
             int i;
             switch (arr[0]) {
-                case "mark":
+            case "mark":
+                if (arr.length <= 1) {
+                    throw new DukeException("Error. Please enter an argument after \"mark\".");
+                }
+                try {
+                    i = Integer.parseInt(arr[1]) - 1;
+                    if (i >= 0 && i < items.size()) {
+                        Task t = items.get(i);
+                        t.markAsDone();
+                        Duke.save();
+                        Duke.echo("Nice! I've marked this task as done:\n" +
+                                "\t  " + t);
+                    } else {
+                        Duke.echo("Please enter an integer within range.");
+                    }
+                } catch (NumberFormatException e) {
+                    Duke.echo("Please enter an integer id after \"mark\"");
+                }
+                break;
+            case "unmark":
+                if (arr.length <= 1) {
+                    throw new DukeException("Error. Please enter an argument after \"unmark\".");
+                }
+                try {
+                    i = Integer.parseInt(arr[1]) - 1;
+                    if (i >= 0 && i < items.size()) {
+                        Task t = items.get(i);
+                        t.markAsUndone();
+                        Duke.save();
+                        Duke.echo("OK! I've marked this task as not done yet:\n" +
+                                "\t  " + t);
+                    } else {
+                        Duke.echo("Please enter an integer within range.");
+                    }
+                } catch (NumberFormatException e) {
+                    Duke.echo("Please enter an integer id after \"ummark\"");
+                }
+                break;
+            case "delete":
+                try {
                     if (arr.length <= 1) {
-                        throw new DukeException("Error. Please enter an argument after \"mark\".");
+                        throw new DukeException("Error. Please enter an argument after \"delete\".");
                     }
-                    try {
-                        i = Integer.parseInt(arr[1]) - 1;
-                        if (i >= 0 && i < items.size()) {
-                            Task t = items.get(i);
-                            t.markAsDone();
-                            Duke.echo("Nice! I've marked this task as done:\n" +
-                                    "\t  " + t);
-                        } else {
-                            Duke.echo("Please enter an integer within range.");
-                        }
-                    } catch (NumberFormatException e) {
-                        Duke.echo("Please enter an integer id after \"mark\"");
+                    i = Integer.parseInt(arr[1]) - 1;
+                    if (i >= 0 && i < items.size()) {
+                        Task t = items.get(i);
+                        Duke.delete(i);
+                        Duke.echo("Noted. I've removed this task:\n" +
+                                "\t  " + t + "\n\tNow you have " + (items.size())
+                                + (items.size() == 1 ? " task" : " tasks") + " in the list.");
+                    } else {
+                        Duke.echo("Please enter an integer within range.");
                     }
-                    break;
-                case "unmark":
-                    if (arr.length <= 1) {
-                        throw new DukeException("Error. Please enter an argument after \"unmark\".");
-                    }
-                    try {
-                        i = Integer.parseInt(arr[1]) - 1;
-                        if (i >= 0 && i < items.size()) {
-                            Task t = items.get(i);
-                            t.markAsUndone();
-                            Duke.echo("OK! I've marked this task as not done yet:\n" +
-                                    "\t  " + t);
-                        } else {
-                            Duke.echo("Please enter an integer within range.");
-                        }
-                    } catch (NumberFormatException e) {
-                        Duke.echo("Please enter an integer id after \"ummark\"");
-                    }
-                    break;
-                case "delete":
-                    try {
-                        if (arr.length <= 1) {
-                            throw new DukeException("Error. Please enter an argument after \"delete\".");
-                        }
-                        i = Integer.parseInt(arr[1]) - 1;
-                        if (i >= 0 && i < items.size()) {
-                            Task t = items.get(i);
-                            Duke.delete(i);
-                            Duke.echo("Noted. I've removed this task:\n" +
-                                    "\t  " + t + "\n\tNow you have " + (items.size())
-                                    + (items.size() == 1 ? " task" : " tasks") + " in the list.");
-                        } else {
-                            Duke.echo("Please enter an integer within range.");
-                        }
-                    } catch (NumberFormatException e) {
-                        Duke.echo("Please enter an integer id after \"delete\"");
-                    }
-                    break;
-                case "todo":
-                    if (arr.length == 1) {
-                        throw new DukeException("Error. The description of a todo cannot be empty.");
-                    }
-                    String todo = s.substring(4).trim();
-                    Duke.add(todo, TaskType.TODO, "");
-                    break;
-                case "deadline":
-                    String[] deadlineBy = s.substring(8).trim().split("/by");
-                    if (deadlineBy.length <= 1) {
-                        throw new DukeException("Error. The description and due date of a deadline\n\tshould be separated" +
-                                " by a \"/by\".");
-                    }
-                    String deadline = deadlineBy[0].trim();
-                    String by = deadlineBy[1].trim();
-                    Duke.add(deadline, TaskType.DEADLINE, by);
-                    break;
-                case "event":
-                    String[] eventAt = s.substring(5).trim().split("/at");
-                    if (eventAt.length <= 1) {
-                        throw new DukeException("Error. The description and time of an event\n\tshould be separated" +
-                                " by a \"/at\".");
-                    }
-                    String event = eventAt[0].trim();
-                    String at = eventAt[1].trim();
-                    Duke.add(event, TaskType.EVENT, at);
-                    break;
-                default:
-                    throw new DukeException("Error. Sorry, but I don't know what that means.");
+                } catch (NumberFormatException e) {
+                    Duke.echo("Please enter an integer id after \"delete\"");
+                }
+                break;
+            case "todo":
+                if (arr.length == 1) {
+                    throw new DukeException("Error. The description of a todo cannot be empty.");
+                }
+                String todo = s.substring(4).trim();
+                Duke.add(todo, TaskType.TODO, "");
+                break;
+            case "deadline":
+                String[] deadlineBy = s.substring(8).trim().split("/by");
+                if (deadlineBy.length <= 1) {
+                    throw new DukeException("Error. The description and due date of a deadline\n\tshould be separated" +
+                            " by a \"/by\".");
+                }
+                String deadline = deadlineBy[0].trim();
+                String by = deadlineBy[1].trim();
+                Duke.add(deadline, TaskType.DEADLINE, by);
+                break;
+            case "event":
+                String[] eventAt = s.substring(5).trim().split("/at");
+                if (eventAt.length <= 1) {
+                    throw new DukeException("Error. The description and time of an event\n\tshould be separated" +
+                            " by a \"/at\".");
+                }
+                String event = eventAt[0].trim();
+                String at = eventAt[1].trim();
+                Duke.add(event, TaskType.EVENT, at);
+                break;
+            default:
+                throw new DukeException("Error. Sorry, but I don't know what that means.");
             }
         }
     }
@@ -186,6 +192,7 @@ public class Duke {
         int size = items.size();
         s = s + "\n\tNow you have " + (size) + (size == 1 ? " task" : " tasks") + " in the list.";
         Duke.echo(s);
+        Duke.save();
     }
 
     /**
@@ -210,5 +217,58 @@ public class Duke {
      */
     private static void delete(int index) {
         items.remove(index);
+        Duke.save();
+    }
+
+    private static void save() {
+        // Create directory if it doesn't exist
+        File dir = new File("./../../../data");
+        if (!dir.exists()) {
+            dir.mkdir();
+        }
+        // Create file if it doesn't exist
+        File file = new File("./../../../data/duke.txt");
+        if (dir.exists() && !file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        // Overwrite file contents with latest task data
+        try {
+            FileWriter fw = new FileWriter(file.getPath());
+            String data = "";
+            for (Task t : items) {
+                String s = "";
+                String taskType = t.getClass().toString().split(" ")[1];
+                String status = t.isDone ? "d" : "nd";
+                String desc = t.description;
+                String remarks = "";
+                int index;
+                if (taskType.equals("Event")) {
+                    index = t.toString().indexOf("at: ") + 4;
+                    remarks = t.toString().substring(index, t.toString().length() - 1);
+                } else if (taskType.equals("Deadline")) {
+                    index = t.toString().indexOf("by: ") + 4;
+                    remarks = t.toString().substring(index, t.toString().length() - 1);
+                }
+                s = s + taskType.toLowerCase() + " | " + status + " | " + desc;
+                if (!remarks.equals("")) {
+                    s = s + " | " + remarks;
+                }
+                data = data + s + "\n";
+            }
+            fw.write(data);
+            fw.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void load() {
+        // Check if directory and file exists
+
+        // Load the data into the task array
     }
 }
