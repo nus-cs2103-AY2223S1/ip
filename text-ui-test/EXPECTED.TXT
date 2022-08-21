@@ -2,6 +2,8 @@
 Hello from Phil
 How may I assist you on this fine day?
 -------------------------------------------
+The list has been successfully cleared!
+-------------------------------------------
 added: [T][ ] borrow book
 -------------------------------------------
 added: [D][ ] return book (by: Sunday)

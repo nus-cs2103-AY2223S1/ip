@@ -1,3 +1,3 @@
-1.[D][ ] return book (by: Sunday)
-2.[D][ ] watch lecture (by: Aug 30 2022)
-3.[D][ ] submit quiz (by: Aug 23 2022 11:59 PM)
+[D]--[ ]--return book--Sunday
+[D]--[ ]--watch lecture--Aug 30 2022
+[D]--[ ]--submit quiz--Aug 23 2022 11:59 PM
