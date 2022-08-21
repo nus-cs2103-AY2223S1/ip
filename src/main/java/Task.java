@@ -8,11 +8,7 @@ public class Task {
     }
 
     void mark() {
-        isDone = true;
-        System.out.println(Roofus.LINESEP);
-        System.out.println("Nice! I've marked this task as done:\n" +
-                this.toString());
-        System.out.println(Roofus.LINESEP);
+        isDone = true;;
     }
     
     void setDone() {
@@ -21,14 +17,6 @@ public class Task {
 
     void unmark() {
         isDone = false;
-        System.out.println(Roofus.LINESEP);
-        System.out.println("OK, I've marked this task as not done yet:\n" +
-                this.toString());
-        System.out.println(Roofus.LINESEP);
-    }
-
-    String getDescription() {
-        return this.description;
     }
     
     public String writeString() {
@@ -38,9 +26,9 @@ public class Task {
     @Override
     public String toString() {
         if (isDone) {
-            return "[X]"  + description;
+            return "[X] "  + description;
         } else {
-            return "[ ]" + description;
+            return "[ ] " + description;
         }
     }
 }

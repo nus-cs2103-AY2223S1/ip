@@ -1,0 +1,67 @@
+public class Parser {
+    private enum CommandList {
+        BYE, LIST, TODO, EVENT, DEADLINE,
+        MARK, UNMARK, DELETE, CLEAR
+    }
+    
+    public static Command parse(String fullCommand) 
+            throws RoofusException {
+        String[] split = fullCommand.split(" ", 2);
+        String firstWord = split[0];
+        try {
+            CommandList command = CommandList.valueOf(firstWord.toUpperCase());
+            switch (command) {
+                case BYE:
+                    return new ByeCommand();
+                case LIST:
+                    return new ListCommand();
+                case DELETE:
+                    if (split.length < 2) {
+                        throw new RoofusException("Huh?! Delete what?");
+                    }
+                    int index = Integer.parseInt(split[1]);
+                    return new DeleteCommand(index);
+                case MARK:
+                    int index2 = Integer.parseInt(split[1]);
+                    return new MarkCommand(index2);
+                case UNMARK:
+                    int index3 = Integer.parseInt(split[1]);
+                    return new UnmarkCommand(index3);
+                case TODO:
+                    if (split.length < 2) {
+                        throw new RoofusException("To do what??");
+                    }
+                    return new ToDoCommand(new ToDo(split[1]));
+                case DEADLINE:
+                    if (split.length < 2) {
+                        throw new RoofusException("What deadline are you talking about?");
+                    }
+                    String details = split[1];
+                    String[] separate = details.split(" /by ", 2);
+                    if (separate.length < 2) {
+                        throw new RoofusException("Wrong format for deadline!!");
+                    }
+                    return new DeadlineCommand(new Deadline(separate[0], separate[1]));
+                case EVENT:
+                    if (split.length < 2) {
+                        throw new RoofusException("What event are you talking about?");
+                    }
+                    String details2 = split[1];
+                    String[] separate2 = details2.split(" /at ", 2);
+                    if (separate2.length < 2) {
+                        throw new RoofusException("Wrong format for event!!");
+                    }
+                    return new EventCommand(new Event(separate2[0], separate2[1]));
+                case CLEAR:
+                    try {
+                        return new ClearCommand();
+                    } catch (Exception err) {
+                        throw new RoofusException(err.getMessage());
+                    }
+            }
+        } catch (IllegalArgumentException err) {
+            throw new RoofusException("\"" + split[0] + "\" is not a command!");
+        }
+        throw new RoofusException("Not sure what the error is");
+    }    
+}
