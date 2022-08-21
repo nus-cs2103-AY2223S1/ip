@@ -1,8 +1,8 @@
-package handlers;
+package commands;
 
 import exceptions.DukeException;
-import models.Event;
-import models.TaskManager;
+import models.task.Event;
+import managers.TaskManager;
 import utils.DukeValidator;
 
 import java.time.LocalDate;

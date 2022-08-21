@@ -1,8 +1,8 @@
-package handlers;
+package commands;
 
 import exceptions.DukeException;
-import models.TaskManager;
-import models.ToDo;
+import managers.TaskManager;
+import models.task.ToDo;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

@@ -1,9 +1,9 @@
 import exceptions.DukeException;
-import handlers.CommandType;
-import handlers.DukeCommand;
-import models.CommandManager;
-import models.DatabaseManager;
-import models.TaskManager;
+import enums.CommandType;
+import commands.DukeCommand;
+import managers.CommandManager;
+import managers.StorageManager;
+import managers.TaskManager;
 import utils.DukePrinter;
 
 import java.util.Scanner;
@@ -23,16 +23,16 @@ public class Duke {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        DatabaseManager databaseManager;
+        StorageManager storageManager;
 
         try {
-            databaseManager = new DatabaseManager();
+            storageManager = new StorageManager();
         } catch (DukeException e) {
             DukePrinter.print(e.getMessage());
             return;
         }
 
-        TaskManager taskManager = new TaskManager(databaseManager.getTaskDatabase());
+        TaskManager taskManager = new TaskManager(storageManager.getTaskStorage());
         CommandManager commandManager = new CommandManager();
 
         // Greet the user

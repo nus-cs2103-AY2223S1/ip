@@ -1,11 +1,11 @@
-package handlers;
+package commands;
 
 import exceptions.DukeException;
-import models.TaskManager;
-import models.Task;
+import managers.TaskManager;
+import models.task.Task;
 
-public class MarkTaskCommand implements DukeCommand {
-    private static final String MARK_TASK_AS_DONE_MESSAGE = "Nice! I've marked this task as done:";
+public class UnmarkTaskCommand implements DukeCommand {
+    private static final String MARK_TASK_AS_UNDONE_MESSAGE = "OK, I've marked this task as not done yet:";
     private static final String MISSING_TASK_INDEX_ERROR = "You are missing a task number!\n" +
             "Use the 'list' command to view the tasks and their number.";
     private static final String NAN_TASK_NUMBER_ERROR = "The task number you provided is not a number!";
@@ -14,22 +14,24 @@ public class MarkTaskCommand implements DukeCommand {
 
     @Override
     public String execute(TaskManager taskManager, String arguments) throws DukeException {
-        // Retrieve the task index (1-indexed) to mark the task as done
+        // Retrieve the task index (1-indexed) to mark the task as undone
         if (arguments.length() == 0) {
-            throw new DukeException(MarkTaskCommand.MISSING_TASK_INDEX_ERROR);
+            throw new DukeException(UnmarkTaskCommand.MISSING_TASK_INDEX_ERROR);
         }
         int taskNumber;
         try {
             taskNumber = Integer.parseInt(arguments);
         } catch (NumberFormatException e) {
-            throw new DukeException(MarkTaskCommand.NAN_TASK_NUMBER_ERROR);
+            throw new DukeException(UnmarkTaskCommand.NAN_TASK_NUMBER_ERROR);
         }
 
         try {
             Task task = taskManager.get(taskNumber);
-            task.markAsDone();
+            task.markAsUndone();
             Task updatedTask = taskManager.update(taskNumber, task);
-            return String.format("%s\n\t%s", MarkTaskCommand.MARK_TASK_AS_DONE_MESSAGE, updatedTask);
+            return String.format("%s\n\t%s", UnmarkTaskCommand.MARK_TASK_AS_UNDONE_MESSAGE, updatedTask);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(UnmarkTaskCommand.TASK_NUMBER_IS_INVALID_ERROR);
         } catch (DukeException e) {
             return e.getMessage();
         }

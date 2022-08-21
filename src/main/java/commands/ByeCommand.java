@@ -1,6 +1,6 @@
-package handlers;
+package commands;
 
-import models.TaskManager;
+import managers.TaskManager;
 
 public class ByeCommand implements DukeCommand{
     private static final String GOODBYE_MESSAGE = "Bye. Hope to see you again soon!";

@@ -1,13 +1,11 @@
-package models;
+package managers;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import database.TaskDatabase;
+import models.task.Task;
+import storage.TaskStorage;
 import exceptions.DukeException;
 
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 /**
  * Utility class to manage the list of tasks and provides augmenting operations to
@@ -21,10 +19,10 @@ public class TaskManager {
     private static final String TASK_LIST_STATUS_MESSAGE = "Now you have %s task(s) in the list.";
     private static final String TASK_LIST_CANNOT_READ_STATUS_MESSAGE = "Uh oh, I cannot read the tasks in the list!";
 
-    private final TaskDatabase taskDatabase;
+    private final TaskStorage taskStorage;
 
-    public TaskManager(TaskDatabase taskDatabase) {
-        this.taskDatabase = taskDatabase;
+    public TaskManager(TaskStorage taskDatabase) {
+        this.taskStorage = taskDatabase;
     }
 
     /**
@@ -34,7 +32,7 @@ public class TaskManager {
      * @throws DukeException If the task cannot be added
      */
     public Task add(Task task) throws DukeException {
-        return this.taskDatabase.addTask(task);
+        return this.taskStorage.addTask(task);
     }
 
     /**
@@ -45,7 +43,7 @@ public class TaskManager {
      * @throws DukeException If the task cannot be updated
      */
     public Task update(int taskNumber, Task task) throws DukeException {
-        return this.taskDatabase.updateTask(taskNumber - 1, task);
+        return this.taskStorage.updateTask(taskNumber - 1, task);
     }
 
     /**
@@ -56,7 +54,7 @@ public class TaskManager {
      * @throws DukeException If the task cannot be deleted
      */
     public Task delete(int taskNumber) throws DukeException {
-        return this.taskDatabase.deleteTask(taskNumber - 1);
+        return this.taskStorage.deleteTask(taskNumber - 1);
     }
 
     /**
@@ -67,7 +65,7 @@ public class TaskManager {
      * @throws DukeException If the task cannot be read
      */
     public Task get(int taskNumber) throws DukeException {
-        return this.taskDatabase.findTask(taskNumber - 1);
+        return this.taskStorage.findTask(taskNumber - 1);
     }
 
     /**
@@ -77,7 +75,7 @@ public class TaskManager {
      * @throws DukeException If the tasks cannot be read
      */
     private int count() throws DukeException {
-        return this.taskDatabase.count();
+        return this.taskStorage.count();
     }
 
     /**
@@ -93,22 +91,22 @@ public class TaskManager {
     }
 
     /**
-     * Returns the list of tasks in the database
+     * Returns the list of tasks in the storage
      * @return List of tasks
      * @throws DukeException If the tasks cannot be read
      */
     public List<Task> list() throws DukeException {
-        return this.taskDatabase.readAllTasks();
+        return this.taskStorage.readAllTasks();
     }
 
     /**
-     * Returns the filtered list of tasks in the database based on the predicate
+     * Returns the filtered list of tasks in the storage based on the predicate
      * @param condition The predicate to test if the task should be returned
      * @return List of tasks
      * @throws DukeException If the tasks cannot be read
      */
     public List<Task> list(Predicate<? super Task> condition) throws DukeException {
-        return this.taskDatabase.filter(condition);
+        return this.taskStorage.filter(condition);
     }
 
     /**

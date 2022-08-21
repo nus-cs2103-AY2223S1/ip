@@ -1,11 +1,12 @@
-package models;
+package models.serializable;
 
+import enums.TaskType;
 import exceptions.DukeException;
+import models.task.*;
 import utils.DukeValidator;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.regex.Pattern;
 
 public class TaskSerializable extends Serializable<Task>{

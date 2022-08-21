@@ -1,4 +1,4 @@
-package models;
+package enums;
 
 /**
  * List of valid task types

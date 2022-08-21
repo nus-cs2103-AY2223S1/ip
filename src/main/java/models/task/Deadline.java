@@ -1,5 +1,7 @@
-package models;
+package models.task;
 
+import enums.TaskType;
+import models.serializable.TaskSerializable;
 import utils.DukeFormatter;
 
 import java.time.LocalDate;

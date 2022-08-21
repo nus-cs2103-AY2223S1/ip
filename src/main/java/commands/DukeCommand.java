@@ -1,7 +1,7 @@
-package handlers;
+package commands;
 
 import exceptions.DukeException;
-import models.TaskManager;
+import managers.TaskManager;
 
 /**
  * Encapsulates an executable command

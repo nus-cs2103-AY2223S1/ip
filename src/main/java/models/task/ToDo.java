@@ -1,4 +1,7 @@
-package models;
+package models.task;
+
+import enums.TaskType;
+import models.serializable.TaskSerializable;
 
 import java.time.LocalDate;
 

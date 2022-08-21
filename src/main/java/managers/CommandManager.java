@@ -1,7 +1,7 @@
-package models;
+package managers;
 
-import exceptions.DukeException;
-import handlers.*;
+import enums.CommandType;
+import commands.*;
 
 import java.util.HashMap;
 

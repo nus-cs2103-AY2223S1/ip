@@ -1,4 +1,4 @@
-package handlers;
+package enums;
 
 /**
  * List of valid commands for the user
