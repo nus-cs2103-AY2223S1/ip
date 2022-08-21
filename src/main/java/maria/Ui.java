@@ -25,6 +25,7 @@ public class Ui {
         System.out.println("Type 'mark <index>' to complete a task.");
         System.out.println("Type 'unmark <index>' to un-complete a task.");
         System.out.println("Type 'delete <index>' to remove a task.");
+        System.out.println("Type 'find <search_string>' to find a task.");
         System.out.println("Type 'bye' to finish the conversation.");
         System.out.println("==========================");
 

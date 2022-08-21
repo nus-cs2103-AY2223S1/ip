@@ -19,6 +19,10 @@ public abstract class Task {
         this.done = done;
     }
 
+    public boolean nameContainsString(String s) {
+        return this.name.contains(s);
+    }
+
     @Override
     public String toString() {
         return "[" + (this.done ? "X" : " ") + "] " + this.name;

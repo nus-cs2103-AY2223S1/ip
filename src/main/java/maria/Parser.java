@@ -48,6 +48,10 @@ public class Parser {
                     int index = Integer.parseInt(commandStrArr[1]);
                     return new CommandRemoveTask(index);
                 }
+                case "find": {
+                    String searchString = commandStrArr[1];
+                    return new CommandFindTask(searchString);
+                }
                 default:
                     return new CommandUnknown();
             }

@@ -13,7 +13,6 @@ public class TaskList extends ArrayList<Task> {
     public TaskList(Storage storage) {
         super();
         this.storage = storage;
-
     }
 
     private void syncStorageState() {
