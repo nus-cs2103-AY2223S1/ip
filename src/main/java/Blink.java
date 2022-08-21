@@ -2,10 +2,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.time.DateTimeException;
 
 public class Blink {
 
@@ -27,7 +27,7 @@ public class Blink {
     }
 
     enum Command {
-        BYE, DEADLINE, DELETE, EVENT, LIST, MARK, TODO, UNMARK
+        BYE, DEADLINE, DELETE, EVENT, LIST, MARK, RETRIEVE, TODO, UNMARK
     }
 
     private void readSaveFile() throws FileNotFoundException, BlinkException {
@@ -194,6 +194,26 @@ public class Blink {
         writeSaveFile();
     }
 
+    private void retrieve(String input) {
+        LocalDate date = LocalDate.parse(input);
+        ArrayList<Task> sameDate = new ArrayList<>();
+        for (int x = 0; x < this.store.size(); x++) {
+            Task temp = this.store.get(x);
+            if (temp.checkDate(date)) {
+                sameDate.add(temp);
+            }
+        }
+        if (sameDate.size() == 0) {
+            System.out.println("No task found on " + date.toString());
+        } else {
+            System.out.println(sameDate.size() + ((sameDate.size() == 1)? " task": " tasks") +
+                    " found");
+            for (int y = 0; y < sameDate.size(); y++) {
+                System.out.println(sameDate.get(y));
+            }
+        }
+    }
+
     private void start(Scanner sc) {
         this.welcome();
 
@@ -230,6 +250,9 @@ public class Blink {
                     case DELETE:
                         this.deleteTask(input);
                         break;
+                    case RETRIEVE:
+                        this.retrieve(input[1]);
+                        break;
                 }
             } catch (BlinkException e) {
                 System.out.println(e.getMessage());
@@ -237,6 +260,8 @@ public class Blink {
                 System.out.println("Invalid input. Number is expected");
             } catch (IllegalArgumentException e) {
                 System.out.println("Unknown command input");
+            } catch (DateTimeException e) {
+                System.out.println("Incorrect date format input");
             }
             System.out.println(Blink.SPACING);
             if (this.endSession) {

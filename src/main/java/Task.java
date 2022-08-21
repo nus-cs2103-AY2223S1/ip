@@ -1,4 +1,6 @@
-abstract class Task {
+import java.time.LocalDate;
+
+abstract public class Task {
     protected String description;
     protected boolean isDone;
 
@@ -35,4 +37,6 @@ abstract class Task {
     }
 
     abstract String saveString();
+
+    abstract boolean checkDate(LocalDate anoDate);
 }
