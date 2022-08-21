@@ -1,8 +1,11 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Event extends Task {
-    private String time;
+    private LocalDate time;
 
     private static final String metaPattern = "(^.+)(\\s?+/at\\s?+)(.+)?$";
     private static String extractDescription(String meta) throws DukeException {
@@ -21,7 +24,11 @@ public class Event extends Task {
         }
         String time = m.group(3);
         if (time == null) throw new DukeException("You didn't specify the time.");
-        this.time = time;
+        try {
+            this.time = LocalDate.parse(time);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Invalid date/time format");
+        }
     }
 
     @Override
@@ -31,6 +38,6 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + this.time + ")";
+        return "[E]" + super.toString() + " (at: " + this.time.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 }
