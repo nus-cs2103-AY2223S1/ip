@@ -1,7 +1,10 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Chad {
+    private static final String[] taskTypes = {"todo", "deadline", "event"};
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         ArrayList<Task> userInputArray = new ArrayList<>();
@@ -13,7 +16,7 @@ public class Chad {
 
         while (true) {
             String userInput = sc.nextLine();
-
+            String firstWord = userInput.split(" ")[0];
             if (userInput.equals("bye")) {
                 byeChat(exitChat);
                 break;
@@ -30,16 +33,26 @@ public class Chad {
                 unmarkTask(userInputArray, taskID);
 
             } else {
-                if (userInput.startsWith("todo")) {
-                    addTodoTask(userInputArray, userInput);
+                try {
+                    if(Arrays.asList(taskTypes).contains(firstWord)) {
+                        if (userInput.startsWith("todo")) {
+                            addTodoTask(userInputArray, userInput);
 
-                } else if (userInput.startsWith("deadline")) {
-                    addDeadlineTask(userInputArray, userInput);
+                        } else if (userInput.startsWith("deadline")) {
+                            addDeadlineTask(userInputArray, userInput);
 
-                } else if (userInput.startsWith("event")) {
-                    addEventTask(userInputArray, userInput);
+                        } else if (userInput.startsWith("event")) {
+                            addEventTask(userInputArray, userInput);
+                        }
+                    } else {
+                        throw new ChadException("I'm sorry, but I don't know what that means :-(");
+                    }
 
+                } catch (ChadException ce) {
+                    String err = formatText(ce.getMessage());
+                    System.out.println(err);
                 }
+
             }
         }
     }
@@ -77,9 +90,12 @@ public class Chad {
         System.out.println(formatText(outputText));
     }
 
-    public static void addTodoTask(ArrayList<Task> tasks, String userInput) {
+    public static void addTodoTask(ArrayList<Task> tasks, String userInput) throws ChadException {
         String outputText = "Got it. I've added this task:\n";
         String taskDescription = userInput.replaceFirst("todo","").strip();
+        if (taskDescription.isEmpty()) {
+            throw new ChadException("The description of a todo cannot be empty.");
+        }
         Task newTask = new Todo(taskDescription);
         tasks.add(newTask);
         outputText += " " + newTask.toString() + "\n";
@@ -89,11 +105,20 @@ public class Chad {
 
     }
 
-    public static void addDeadlineTask(ArrayList<Task> tasks, String userInput) {
+    public static void addDeadlineTask(ArrayList<Task> tasks, String userInput) throws ChadException {
         String outputText = "Got it. I've added this task:\n";
         String[] temp = userInput.replaceFirst("deadline","").strip().split("/by");
         String taskDescription = temp[0].strip();
         String byDate = temp[1].strip();
+
+        if (taskDescription.isEmpty()) {
+            throw new ChadException("The description of a deadline cannot be empty.");
+        }
+
+        if (byDate.isEmpty()) {
+            throw new ChadException("The date of a deadline cannot be empty.");
+        }
+
         Task newTask = new Deadline(taskDescription, byDate);
         tasks.add(newTask);
         outputText += " " + newTask.toString() + "\n";
@@ -102,11 +127,20 @@ public class Chad {
         System.out.println(outputText);
     }
 
-    public static void addEventTask(ArrayList<Task> tasks, String userInput) {
+    public static void addEventTask(ArrayList<Task> tasks, String userInput) throws ChadException {
         String outputText = "Got it. I've added this task:\n";
         String[] temp = userInput.replaceFirst("event","").strip().split("/at");
         String taskDescription = temp[0].strip();
         String byDateTime = temp[1].strip();
+
+        if (taskDescription.isEmpty()) {
+            throw new ChadException("The description of a event cannot be empty.");
+        }
+
+        if (byDateTime.isEmpty()) {
+            throw new ChadException("The datetime of a event cannot be empty.");
+        }
+
         Task newTask = new Event(taskDescription, byDateTime);
         tasks.add(newTask);
         outputText += " " + newTask.toString() + "\n";
