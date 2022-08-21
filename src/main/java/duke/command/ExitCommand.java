@@ -7,15 +7,16 @@ import duke.Ui;
 /**
  * Exit Duke.
  */
-public class ExitCommand extends Command{
-  /**
-   * Executes the exit command.
-   * @param ui the user interface
-   * @param storageList the storage list
-   */
-  @Override
-  public void execute(Ui ui, StorageList storageList) {
-    Output.GOODBYE.print();
-    isExit = true;
-  }
+public class ExitCommand extends Command {
+    /**
+     * Executes the exit command.
+     *
+     * @param ui the user interface
+     * @param storageList the storage list
+     */
+    @Override
+    public void execute(Ui ui, StorageList storageList) {
+        Output.GOODBYE.print();
+        isExit = true;
+    }
 }

@@ -6,20 +6,13 @@ import duke.command.Command;
  * Duke is a personal assistant Chat-bot that aims to help users to keep track of various things.
  */
 public class Duke {
+    private static final String DEFAULT_FILE_NAME = "default.txt";
     private StorageList storageList;
     private Ui ui;
-    private static final String DEFAULT_FILE_NAME = "default.txt";
-    
-    /**
-     * Main method that runs the program.
-     * @param args Arguments passed to the program
-     */
-    public static void main(String[] args) {
-        new Duke(DEFAULT_FILE_NAME).run();
-    }
-    
+
     /**
      * Constructor for the Duke class.
+     *
      * @param filePath Path of the file to be used for the storage list
      */
     public Duke(String filePath) {
@@ -30,6 +23,16 @@ public class Duke {
         } catch (DukeException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+
+    /**
+     * Main method that runs the program
+     *
+     * @param args Arguments passed to the program
+     */
+    public static void main(String[] args) {
+        new Duke(DEFAULT_FILE_NAME).run();
     }
 
     /**
@@ -52,9 +55,10 @@ public class Duke {
             }
         }
     }
-    
+
     /**
      * Returns the Default file name.
+     *
      * @return the DEFAULT_FILE_NAME
      */
     public static String getDefaultFileName() {
