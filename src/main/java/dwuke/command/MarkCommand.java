@@ -29,13 +29,13 @@ public class MarkCommand extends Command {
     }
 
     /**
-     * Marks the task at the position of the given task list as done.
+     * Marks the Task at the position of the TaskList as done.
      *
-     * @return A String signalling that the task has been marked as done.
+     * @return A String signalling that the Task has been marked as done.
      */
     @Override
     public String execute() {
-        Task task = this.taskList.mark(this.pos);
+        Task task = this.taskList.mark(this.pos, true);
         return "nwice! me've mawked dis task as done:\n" + task;
     }
 }

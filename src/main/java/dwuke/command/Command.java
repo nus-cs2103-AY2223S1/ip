@@ -5,9 +5,9 @@ package dwuke.command;
  */
 public abstract class Command {
     /**
-     * Executes the command and returns the result.
+     * Executes the Command and returns the result.
      *
-     * @return A String signalling that the command has been executed successfully.
+     * @return A String signalling that the Command has been executed.
      */
     public abstract String execute();
 }

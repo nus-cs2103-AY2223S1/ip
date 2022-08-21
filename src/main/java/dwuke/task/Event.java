@@ -13,7 +13,7 @@ public class Event extends Task {
     private LocalDate date;
 
     /**
-     * Creates a new Event with the given description and date.
+     * Creates an Event with the given description and date.
      *
      * @param description The description for the Event.
      * @param date The date for the Event.
@@ -28,7 +28,15 @@ public class Event extends Task {
         }
     }
 
-    Event(String description, boolean isDone, String date) throws DwukeException {
+    /**
+     * Creates an Event with the given description, completion status, and date.
+     *
+     * @param description The description for the Event.
+     * @param isDone The completion status of the Event.
+     * @param date The date for the Event.
+     * @throws DwukeException If the description is empty, or if the format of the given date is wrong.
+     */
+    public Event(String description, boolean isDone, String date) throws DwukeException {
         super(description, isDone);
         try {
             this.date = Date.parse(date);
@@ -51,9 +59,9 @@ public class Event extends Task {
     }
 
     /**
-     * Encodes the Event into a String.
+     * Encodes this Event into a String.
      *
-     * @return The Event encoded as String.
+     * @return The String encoded from this Event.
      */
     @Override
     public String encode() {
@@ -61,9 +69,9 @@ public class Event extends Task {
     }
 
     /**
-     * Returns the String representation of this event.
+     * Returns the String representation of this Event.
      *
-     * @return A String representing this event.
+     * @return A String representing this Event.
      */
     @Override
     public String toString() {

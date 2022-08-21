@@ -28,9 +28,9 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * Deletes the task at the position of the task list.
+     * Deletes the Task at the position of the TaskList.
      *
-     * @return A String signalling that the task has been deleted.
+     * @return A String signalling that the Task has been deleted.
      */
     @Override
     public String execute() {

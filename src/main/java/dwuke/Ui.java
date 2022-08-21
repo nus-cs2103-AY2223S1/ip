@@ -16,14 +16,14 @@ public class Ui {
     /**
      * Returns the input entered by the user.
      *
-     * @return A String representing the user input.
+     * @return The user input as a String.
      */
     public String getUserInput() {
         return sc.nextLine();
     }
 
     /**
-     * Prints a line.
+     * Prints a long straight line.
      */
     public void showLine() {
         String line = "-".repeat(lineLength);
@@ -68,7 +68,7 @@ public class Ui {
     }
 
     /**
-     * Prints an error message from the given Exception.
+     * Prints the error message from the given Exception.
      *
      * @param e The Exception which message to print.
      */
