@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Duke {
@@ -25,17 +26,27 @@ public class Duke {
     }
 
     public String addTaskMessage(String taskString) {
-        return horizontalBorder + "added: " + taskString + "\n" + horizontalBorder;
+        return horizontalBorder +  "Got it. I've added this task:\n" + taskString + "\n" + "Now you have " + this.tasklist.getCount() + " tasks in the list.\n" + horizontalBorder;
     }
 
     private String markDoneMessage(int position){
-        Task currentTask = this.tasklist.getTask(position);
-        return  horizontalBorder + "Nice! I've marked this task as done: \n" + currentTask + "\n" + horizontalBorder;
+        boolean isTaskMarked = this.tasklist.markTaskAtPos(position);
+        if (isTaskMarked) {
+            Task currentTask = this.tasklist.getTask(position);
+            return horizontalBorder + "Nice! I've marked this task as done: \n" + currentTask + "\n" + horizontalBorder;
+        } else {
+            return horizontalBorder + "Task does not exist. Try another number between 1 and " + this.tasklist.getCount() + " or initialise a task first.\n" + horizontalBorder ;
+        }
     }
 
     private String unmarkDoneMessage(int position){
-        Task currentTask = this.tasklist.getTask(position);
-        return  horizontalBorder + "OK, I've marked this task as not done yet: \n"  + currentTask + "\n" + horizontalBorder;
+        boolean isTaskUnmarked = this.tasklist.unmarkTaskAtPos(position);
+        if (isTaskUnmarked) {
+            Task currentTask = this.tasklist.getTask(position);
+            return horizontalBorder + "OK, I've marked this task as not done yet: \n" + currentTask + "\n" + horizontalBorder;
+        } else {
+            return horizontalBorder + "Task does not exist. Try another number between 1 and " + this.tasklist.getCount() + " or initialise a task first.\n" + horizontalBorder;
+        }
     }
 
     private boolean isInteger(String value) {
@@ -47,37 +58,66 @@ public class Duke {
         }
     }
 
+    private String makeToDoFromInput(String input){
+        String description = input.substring("todo".length()).strip();
+        if (!description.equals("")){
+            ToDo newToDo = new ToDo(description);
+            this.tasklist.add(newToDo);
+            return addTaskMessage(newToDo.toString());
+        } else {
+            return horizontalBorder + "Please use proper todo formatting: todo {task}\n" + horizontalBorder;
+        }
+    }
+
+    private String makeDeadlineFromInput(String input){
+        String[] stringArray = input.substring("deadline".length()).strip().split("/by");
+        if (stringArray.length > 1) {
+            Deadline newDeadline = new Deadline(stringArray[0].strip(), stringArray[1].strip());
+            this.tasklist.add(newDeadline);
+            return addTaskMessage(newDeadline.toString());
+        } else {
+            return horizontalBorder + "Please use proper deadline formatting: deadline {task} /by {time}\n" + horizontalBorder;
+        }
+    }
+
+    private String makeEventFromInput(String input){
+        String[] stringArray = input.substring("event".length()).strip().split("/at");
+        if (stringArray.length > 1) {
+            Event newEvent = new Event(stringArray[0].strip(), stringArray[1].strip());
+            this.tasklist.add(newEvent);
+            return addTaskMessage(newEvent.toString());
+        } else {
+            return horizontalBorder + "Please use proper event formatting: event {task} /at {time}\n" + horizontalBorder;
+        }
+    }
+
     public String run(){
         System.out.println(welcomeMessage());
         while(true) {
             Scanner scan = new Scanner(System.in);
             String s = scan.nextLine();
             String[] commandList = s.strip().split(" ");
-            String command = commandList[0];
-            if (command.toLowerCase().equals("bye") && commandList.length == 1) {
-                System.out.println(byeMessage());
-            } else if (command.toLowerCase().equals("list") && commandList.length == 1) {
+            String command = commandList[0].toLowerCase();
+            if (command.equals("bye") && commandList.length == 1) {
+                return byeMessage();
+            } else if (command.equals("list") && commandList.length == 1) {
                 System.out.println(listContents());
-            } else if ((command.toLowerCase().equals("mark") || command.toLowerCase().equals("unmark")) && commandList.length > 1 && isInteger(commandList[1])) {
-                String taskIndex = commandList[1];
-                int taskIndexNum = Integer.parseInt(taskIndex);
-                if (command.toLowerCase().equals("mark")) {
-                    boolean isTaskMarked = this.tasklist.markTaskAtPos(taskIndexNum);
-                    if (isTaskMarked){
-                        System.out.println(markDoneMessage(taskIndexNum));
-                    }
-                } else {
-                    boolean isTaskUnmarked = this.tasklist.unmarkTaskAtPos(taskIndexNum);
-                    if (isTaskUnmarked) {
-                        System.out.println(unmarkDoneMessage(taskIndexNum));
-                    }
-                }
+            } else if (command.equals("mark") && commandList.length > 1 && isInteger(commandList[1])) {
+                int taskIndexNum = Integer.parseInt(commandList[1]);
+                System.out.println(markDoneMessage(taskIndexNum));
+            } else if (command.equals("unmark") && commandList.length > 1 && isInteger(commandList[1])) {
+                int taskIndexNum = Integer.parseInt(commandList[1]);
+                System.out.println(unmarkDoneMessage(taskIndexNum));
+            } else if (command.equals("deadline")) {
+                System.out.println(makeDeadlineFromInput(s));
+            } else if (command.equals("event")) {
+                System.out.println(makeEventFromInput(s));
+            } else if (command.equals("todo")) {
+                System.out.println(makeToDoFromInput(s));
             } else if (!s.strip().equals("")) {
-                tasklist.add(new Task(s));
-                System.out.println(addTaskMessage(s));
+                System.out.println(horizontalBorder + "Please use one of these keywords: {deadline, event, todo} followed by \\\"by\\\" and \\\"at\\\" for deadline and event tasks respectively.\n" + horizontalBorder);
             }
         }
-
     }
 
     public static void main(String[] args) {

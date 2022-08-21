@@ -15,13 +15,16 @@ public class Tasklist {
         return taskArray[position - 1];
     }
 
+    public int getCount(){
+        return this.count;
+    }
+
     public boolean markTaskAtPos(int position){
         try {
             Task currTask = getTask(position);
             currTask.markAsDone();
             return true;
         } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
-            System.out.println("Task does not exist. Try another number between 0 and " + count + ".");
             return false;
         }
     }
@@ -32,7 +35,6 @@ public class Tasklist {
             currTask.unmark();
             return true;
         } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
-            System.out.println("Task does not exist. Try another number between 0 and " + count + ".");
             return false;
         }
     }
