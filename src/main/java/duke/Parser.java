@@ -5,6 +5,7 @@ import duke.command.Command;
 import duke.command.DeadlineCommand;
 import duke.command.DeleteCommand;
 import duke.command.EventCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.ToDoCommand;
@@ -16,7 +17,7 @@ import java.time.format.DateTimeParseException;
 public class Parser {
 
     private enum CommandTag {
-        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE
+        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, FIND
     }
 
     public static Command parse(String inputCommand) throws DukeException {
@@ -71,6 +72,12 @@ public class Parser {
                     throw new DukeException("\tPlease enter the task number to delete!");
                 } else {
                     return new DeleteCommand(Integer.parseInt(splitInputCommand[1].trim()) - 1);
+                }
+            case FIND:
+                if (splitInputCommand.length == 1) {
+                    throw new DukeException("\tPlease enter a keyword!");
+                } else {
+                    return new FindCommand(splitInputCommand[1]);
                 }
             default:
                 throw new DukeException("\tERROR...ERROR...WHAT ARE YOU DOING HERE?!");

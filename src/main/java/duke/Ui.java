@@ -2,6 +2,7 @@ package duke;
 
 import duke.task.Task;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ui {
@@ -56,6 +57,19 @@ public class Ui {
     public void showDelete(Task task, int size) {
         System.out.printf("%s%s%s%s%s", "\tNoted. I've removed this task:\n\t  ", task, "\n\tNow you have ",
                 size, " task(s) in the list.\n");
+    }
+
+    public void showFind(ArrayList<Task> foundTasks) {
+        String lst = "";
+        int size = foundTasks.size();
+        for (int i = 0; i < size; i++) {
+            if (i == size - 1) {
+                lst += String.format("\t%d.%s", i + 1, foundTasks.get(i));
+            } else {
+                lst += String.format("\t%d.%s\n", i + 1, foundTasks.get(i));
+            }
+        }
+        System.out.println(lst);
     }
 
     public void showLoadingError() {

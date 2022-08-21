@@ -29,6 +29,10 @@ public class Task {
         this.isDone = false;
     }
 
+    public boolean hasKeyword(String keyword) {
+        return description.contains(keyword);
+    }
+
     public static Task loadToTaskList(String data) throws DukeException {
         String[] dataSplit = data.split(" \\| ", 4);
         char typeOfTask = dataSplit[0].trim().charAt(0);
