@@ -17,7 +17,7 @@ public abstract class Task {
         this.isFinished = false;
     }
 
-    private String getStatusIcon() {
+    protected String getStatusIcon() {
         return this.isFinished ? "X" : " ";
     }
 
