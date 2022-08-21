@@ -1,8 +1,27 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Duke {
-    private static ArrayList<Task> TaskList = new ArrayList<>();
+    private static final ArrayList<Task> TaskList = new ArrayList<>();
+    private static final String folderPath = "data";
+    private static final String filePath = "data/duke.txt";
+
+    public static void writeToFile() {
+        try {
+            FileWriter fw = new FileWriter(filePath);
+            String textToAdd = listToString();
+            fw.write(textToAdd);
+            fw.close();
+        }
+        catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+
 
     public static void addTask(Task task) {
         TaskList.add(task);
@@ -10,6 +29,7 @@ public class Duke {
         String printLine = "Got it. I've added this task:\n" + "  " + task.toString() + "\n" + "Now you have " + total
                 + " tasks in the list.\n";
         System.out.println(printLine);
+        writeToFile();
     }
 
     public static void mark(int number) {
@@ -17,6 +37,7 @@ public class Duke {
         task.setCompleted();
         String taskCompletion = "Nice! I've marked this task as done:\n" + "  " + task.toString() + "\n";
         System.out.println(taskCompletion);
+        writeToFile();
     }
 
     public static void unmark(int number) {
@@ -24,6 +45,7 @@ public class Duke {
         task.setUncompleted();
         String taskUnCompletion = "Ok, I've marked this task as not done yet:\n" + "  " + task.toString() + "\n";
         System.out.println(taskUnCompletion);
+        writeToFile();
     }
 
     public static void delete(int number) {
@@ -33,6 +55,17 @@ public class Duke {
         String message = "Noted. I've removed this task:\n" + " " + task.toString() + "\n" + "Now you have " + total
                 + " tasks in the list.\n";
         System.out.println(message);
+        writeToFile();
+    }
+
+    public static String listToString() {
+        String newList = "";
+        int count = 1;
+        for (Task item: TaskList) {
+            newList += (count + "." + item.toString() + "\n");
+            count++;
+        }
+        return newList;
     }
 
     public static void echo(String command) throws DukeException {
@@ -41,11 +74,7 @@ public class Duke {
             System.out.println(bye);
         } else if (command.trim().equals("list")) {
             String newList = "Here are the tasks in your list:\n";
-            int count = 1;
-            for (Task item: TaskList) {
-                newList += (count + "." + item.toString() + "\n");
-                count++;
-            }
+            newList += listToString();
             System.out.println(newList);
 
         } else {
@@ -84,6 +113,31 @@ public class Duke {
                 "____________________________________________________________\n";
         System.out.println(logo);
         Scanner myScanner = new Scanner(System.in);
+
+        // Folder data
+        File newFolder = new File(folderPath);
+        // File duke.txt
+        File newFile = new File(filePath);
+
+        if (!newFolder.exists()) {
+            boolean result = newFolder.mkdir();
+            if (result) {
+                System.out.println("New directory created since no folder data is found");
+            }
+        }
+
+        if (!newFile.exists()) {
+            try {
+                boolean result = newFile.createNewFile();
+                if (result) {
+                    System.out.println("New file created since no duke.txt is found");
+                }
+
+            }
+            catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
         while (true) {
             try {
