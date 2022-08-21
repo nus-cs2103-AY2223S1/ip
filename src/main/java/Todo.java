@@ -21,4 +21,14 @@ public class Todo extends Task {
     public String toString() {
         return "[T]" + super.toString();
     }
+
+    /**
+     * Returns the representation of a Todo task when stored in a data file on the hard disk.
+     *
+     * @return a string representing the Todo task as it is stored on a data file on the hard disk.
+     */
+    @Override
+    public String toData() {
+        return "T | " + super.toData() + "\n";
+    }
 }

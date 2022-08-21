@@ -26,4 +26,14 @@ public class Event extends Task {
     public String toString() {
         return "[E]" + super.toString() + " (at: " + at + ")";
     }
+
+    /**
+     * Returns the representation of an Event when stored in a data file on the hard disk.
+     *
+     * @return a string representing the Event as it is stored on a data file on the hard disk.
+     */
+    @Override
+    public String toData() {
+        return "E | " + super.toData() + " | " + at + "\n";
+    }
 }
