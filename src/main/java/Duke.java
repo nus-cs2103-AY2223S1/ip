@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -22,13 +26,20 @@ public class Duke {
     }
 
     private void run() {
+        try {
+            loadFile();
+        } catch (IOException | DukeException e) {
+            printException(e);
+        }
+
         Scanner sc = new Scanner(System.in);
         intro();
         while (!end) {
             try {
                 String line = sc.nextLine();
                 output(line);
-            } catch (DukeException e) {
+                writeFile();
+            } catch (IOException | DukeException e) {
                 printException(e);
             }
         }
@@ -173,6 +184,77 @@ public class Duke {
             return Inputs.ELSE;
         }
     }
+
+    private void loadFile() throws IOException, DukeException {
+        File directory = new File("data/");
+        if (!directory.exists()) {
+            directory.mkdir();
+        }
+
+        File file = new File("data/duke.txt");
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+
+        Scanner sc = new Scanner(file);
+
+        while (sc.hasNext()) {
+            String curr = sc.nextLine();
+            String[] info = curr.split("\\|");
+            switch (info[0]) {
+            case "T":
+                Task addTodo = new Todo(info[2], (info[1].equals("1")));
+                l.add(addTodo);
+                break;
+            case "E":
+                Task addEvent = new Event(info[2], info[3], info[1].equals("1"));
+                l.add(addEvent);
+                break;
+            case "D":
+                Task addDeadline = new Deadline(info[2], info[3], info[1].equals("1"));
+                l.add(addDeadline);
+                break;
+            default:
+                throw new IOException("Error in reading file");
+            }
+        }
+    }
+
+    private void writeFile() throws IOException {
+        FileWriter fw = new FileWriter("data/duke.txt");
+        StringBuilder sb = new StringBuilder();
+        for (Task t : l) {
+            if (t instanceof Todo) {
+                sb.append("T")
+                        .append("|")
+                        .append(t.isDone ? "1" : "0")
+                        .append("|")
+                        .append(t.description)
+                        .append(System.lineSeparator());
+            } else if (t instanceof Deadline) {
+                sb.append("D")
+                        .append("|")
+                        .append(t.isDone ? "1" : "0")
+                        .append("|")
+                        .append(t.description)
+                        .append("|")
+                        .append(((Deadline) t).by)
+                        .append(System.lineSeparator());
+            } else {
+                sb.append("E")
+                        .append("|")
+                        .append(t.isDone ? "1" : "0")
+                        .append("|")
+                        .append(t.description)
+                        .append("|")
+                        .append(((Event) t).at)
+                        .append(System.lineSeparator());
+            }
+        }
+        fw.write(sb.toString());
+        fw.close();
+    }
+
 
     public static void main(String[] args) {
         Duke d = new Duke();
