@@ -3,7 +3,7 @@ package commands;
 import exceptions.DukeException;
 import models.task.Event;
 import managers.TaskManager;
-import ui.Ui;
+import managers.UiManager;
 import utils.DukeValidator;
 
 import java.time.LocalDate;
@@ -26,7 +26,7 @@ public class AddEventTaskCommand extends AddTaskCommand implements Command {
     }
 
     @Override
-    public void execute(TaskManager taskManager, Ui ui) throws DukeException {
+    public void execute(TaskManager taskManager, UiManager uiManager) throws DukeException {
         Matcher matcher = AddEventTaskCommand.MATCH_EVENT_TASK.matcher(this.arguments);
         if (!matcher.matches()) {
             throw new DukeException(AddEventTaskCommand.INVALID_EVENT_TASK_ERROR);
@@ -34,6 +34,6 @@ public class AddEventTaskCommand extends AddTaskCommand implements Command {
         String description = matcher.group("taskDescription").strip();
         String dateString = matcher.group("taskDate").strip();
         LocalDate date = DukeValidator.parseDate(dateString);
-        ui.print(this.addTask(taskManager, () -> new Event(description, date)));
+        uiManager.print(this.addTask(taskManager, () -> new Event(description, date)));
     }
 }

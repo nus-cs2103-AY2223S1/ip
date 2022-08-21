@@ -3,7 +3,7 @@ package commands;
 import exceptions.DukeException;
 import managers.TaskManager;
 import models.task.Task;
-import ui.Ui;
+import managers.UiManager;
 
 public class UnmarkTaskCommand implements Command {
     public static final String COMMAND_WORD = "unmark";
@@ -19,7 +19,7 @@ public class UnmarkTaskCommand implements Command {
     }
 
     @Override
-    public void execute(TaskManager taskManager, Ui ui) throws DukeException {
+    public void execute(TaskManager taskManager, UiManager uiManager) throws DukeException {
         // Retrieve the task index (1-indexed) to mark the task as undone
         if (this.arguments.length() == 0) {
             throw new DukeException(UnmarkTaskCommand.MISSING_TASK_INDEX_ERROR);
@@ -34,6 +34,6 @@ public class UnmarkTaskCommand implements Command {
         Task task = taskManager.get(taskNumber);
         task.markAsUndone();
         Task updatedTask = taskManager.update(taskNumber, task);
-        ui.print(String.format("%s\n\t%s", UnmarkTaskCommand.MARK_TASK_AS_UNDONE_MESSAGE, updatedTask));
+        uiManager.print(String.format("%s\n\t%s", UnmarkTaskCommand.MARK_TASK_AS_UNDONE_MESSAGE, updatedTask));
     }
 }

@@ -3,8 +3,8 @@ import commands.Command;
 import exceptions.DukeException;
 import managers.StorageManager;
 import managers.TaskManager;
-import parser.Parser;
-import ui.Ui;
+import managers.ParserManager;
+import managers.UiManager;
 
 /**
  * @author Emily Ong Hui Qi
@@ -19,7 +19,7 @@ public class Duke {
     private static final String UNKNOWN_COMMAND_ERROR = "I do not understand your command!";
 
     public static void main(String[] args) {
-        Ui ui = new Ui();
+        UiManager ui = new UiManager();
         StorageManager storageManager;
 
         try {
@@ -30,6 +30,7 @@ public class Duke {
         }
 
         TaskManager taskManager = new TaskManager(storageManager.getTaskStorage());
+        ParserManager parserManager = new ParserManager();
 
         // Greet the user
         ui.print(Duke.GREETING_MESSAGE);
@@ -40,7 +41,7 @@ public class Duke {
             try {
                 // Receive the command entered by the user
                 String fullCommand = ui.readCommand();
-                Command command = Parser.parseCommand(fullCommand);
+                Command command = parserManager.parseCommand(fullCommand);
                 command.execute(taskManager, ui);
                 isExit = ByeCommand.is(command);
             } catch (DukeException e) {

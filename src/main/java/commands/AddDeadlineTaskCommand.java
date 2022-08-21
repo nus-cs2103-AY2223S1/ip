@@ -3,7 +3,7 @@ package commands;
 import exceptions.DukeException;
 import models.task.Deadline;
 import managers.TaskManager;
-import ui.Ui;
+import managers.UiManager;
 import utils.DukeValidator;
 
 import java.time.LocalDate;
@@ -26,7 +26,7 @@ public class AddDeadlineTaskCommand extends AddTaskCommand implements Command {
     }
 
     @Override
-    public void execute(TaskManager taskManager, Ui ui) throws DukeException {
+    public void execute(TaskManager taskManager, UiManager uiManager) throws DukeException {
         Matcher matcher = AddDeadlineTaskCommand.MATCH_DEADLINE_TASK.matcher(this.arguments);
         if (!matcher.matches()) {
             throw new DukeException(AddDeadlineTaskCommand.INVALID_DEADLINE_TASK_ERROR);
@@ -35,6 +35,6 @@ public class AddDeadlineTaskCommand extends AddTaskCommand implements Command {
         String description = matcher.group("taskDescription").strip();
         String datelineString = matcher.group("taskDeadline").strip();
         LocalDate dateline = DukeValidator.parseDate(datelineString);
-        ui.print(this.addTask(taskManager, () -> new Deadline(description, dateline)));
+        uiManager.print(this.addTask(taskManager, () -> new Deadline(description, dateline)));
     }
 }

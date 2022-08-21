@@ -2,7 +2,7 @@ package commands;
 
 import exceptions.DukeException;
 import managers.TaskManager;
-import ui.Ui;
+import managers.UiManager;
 
 /**
  * Encapsulates an executable command
@@ -17,7 +17,7 @@ public interface Command {
      * not result in a modification of the task manager object
      *
      * @param taskManager Task Manager object to manage the list of tasks
-     * @param ui The UI object in charge of display operations and user interactions
+     * @param uiManager The UI Manager in charge of display operations and user interactions
      */
-    void execute(TaskManager taskManager, Ui ui) throws DukeException;
+    void execute(TaskManager taskManager, UiManager uiManager) throws DukeException;
 }

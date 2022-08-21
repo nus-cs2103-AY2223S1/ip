@@ -1,15 +1,15 @@
-package parser;
+package managers;
 
 import commands.*;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Parser {
+public class ParserManager {
     public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)?");
 
-    public static Command parseCommand(String fullCommand) {
-        Matcher matcher = Parser.BASIC_COMMAND_FORMAT.matcher(fullCommand);
+    public Command parseCommand(String fullCommand) {
+        Matcher matcher = ParserManager.BASIC_COMMAND_FORMAT.matcher(fullCommand);
         if (!matcher.matches()) {
             return new IncorrectCommand();
         }
