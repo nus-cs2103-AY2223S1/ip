@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class Event extends Task {
-    private final char SYMBOL = 'E';
+    private static final char SYMBOL = 'E';
 
     private final String inputFormat = "yyyy-MM-dd HHmm"; // 2019-10-15 1800
     private final LocalDateTime timing;
@@ -20,7 +20,7 @@ public class Event extends Task {
     }
 
     @Override
-    public String toString()  {
+    public String toString() {
         String outputFormat = "MMM dd yyyy"; // Oct 15 2019
         return String.format("[%c] %s (at: %s)", SYMBOL,
                 super.toString(), this.timing.format(DateTimeFormatter.ofPattern(outputFormat)));

@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class Deadline extends Task {
-    private final char SYMBOL = 'D';
+    private static final char SYMBOL = 'D';
 
     private final String inputFormat = "yyyy-MM-dd HHmm"; // 2019-10-15 1800
     private final LocalDateTime endDate;

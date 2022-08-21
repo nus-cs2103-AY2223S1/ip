@@ -1,7 +1,7 @@
 package skylark;
 
 public class ToDo extends Task {
-    private final char SYMBOL = 'T';
+    private static final char SYMBOL = 'T';
 
     public ToDo(String description) {
         super(description);

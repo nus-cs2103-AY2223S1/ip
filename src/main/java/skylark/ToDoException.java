@@ -1,6 +1,6 @@
 package skylark;
 
-public class ToDoException extends SkylarkException{
+public class ToDoException extends SkylarkException {
 
     private final String description;
 
