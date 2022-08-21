@@ -136,7 +136,7 @@ public class TaskDatabase extends Database {
         try {
             // Set the 'append' flag to true to avoid overwriting existing file entries
             FileWriter fileWriter = new FileWriter(database, true);
-            fileWriter.write(task.serialize().toString());
+            fileWriter.write(task.serialize().toString() + "\n");
             fileWriter.close();
         } catch (IOException e) {
             throw new DukeException(TaskDatabase.ERROR_ADDING_TASK_TO_DATABASE);
