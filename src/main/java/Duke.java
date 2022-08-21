@@ -36,23 +36,32 @@ public class Duke extends Chatbot {
                         break;
                 }
             } else if (KeywordChecker.containsTaskKeyword(action)) {
-                switch (KeywordChecker.getNonexactKeyword(action)) {
-                    case KeywordChecker.TASK_KEYWORD_TODO:
-                        duke.tasks.add(new Todo(action));
-                        break;
-                    case KeywordChecker.TASK_KEYWORD_DEADLINE:
-                        duke.tasks.add(new Deadline(action));
-                        break;
-                    case KeywordChecker.TASK_KEYWORD_EVENT:
-                        duke.tasks.add(new Event(action));
-                        break;
-                }
+                try {
+                    switch (KeywordChecker.getNonexactKeyword(action)) {
+                        case KeywordChecker.TASK_KEYWORD_TODO:
+                            duke.tasks.add(new Todo(action));
+                            break;
+                        case KeywordChecker.TASK_KEYWORD_DEADLINE:
+                            if (!action.contains(Deadline.DELIMITER)) {
+                                throw new DukeException("Missing Deadline delimiter!");
+                            }
+                            duke.tasks.add(new Deadline(action));
+                            break;
+                        case KeywordChecker.TASK_KEYWORD_EVENT:
+                            if (!action.contains(Event.DELIMITER)) {
+                                throw new DukeException("Missing Event delimiter!");
+                            }
+                            duke.tasks.add(new Event(action));
+                            break;
+                    }
 
-                duke.echo("Added task:" +
-                        duke.tasks.getLast().printTask());
+                    duke.echo("Added task:" +
+                            duke.tasks.getLast().printTask());
+                } catch (DukeException ex) {
+                    duke.echo("Incorrect use of " + KeywordChecker.getNonexactKeyword(action));
+                }
             } else {
-                duke.tasks.add(new Task(action));
-                duke.echo(String.format("Added: %s", action));
+                duke.echo("I can't understand. Please enter a proper command, friend!");
             }
         }
     }
