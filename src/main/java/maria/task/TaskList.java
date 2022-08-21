@@ -24,13 +24,23 @@ public class TaskList extends ArrayList<Task> {
         }
     }
 
+    /**
+     * Adds a task as per the standard library List, and syncs with the storage file.
+     * @param task The task to be added
+     * @return Always true
+     */
     @Override
     public boolean add(Task task) {
-        super.add(task);
+        boolean res = super.add(task);
         syncStorageState();
-        return true;
+        return res;
     }
 
+    /**
+     * Removes a task as per the standard library List, and syncs with the storage file.
+     * @param index The index of the task to be removed
+     * @return The removed task
+     */
     @Override
     public Task remove(int index) {
         Task t = super.remove(index);
@@ -38,6 +48,11 @@ public class TaskList extends ArrayList<Task> {
         return t;
     }
 
+    /**
+     * Represents a method to be called to sync the storage file.
+     *
+     * This method should be called after the internal state of a Task has been modified.
+     */
     public void mutatedTask() {
         syncStorageState();
     }

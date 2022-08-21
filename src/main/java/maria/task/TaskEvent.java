@@ -4,17 +4,32 @@ import maria.util.DukeDateTimeFormatter;
 
 import java.time.LocalDate;
 
+/**
+ * Represents a Task of type Event.
+ */
 public class TaskEvent extends Task{
 
     private LocalDate startTime;
     private LocalDate endTime;
 
+    /**
+     * Creates an Event Task.
+     * @param name The name of the task
+     * @param done Whether the task is completed
+     * @param startTime The starting time for the event
+     * @param endTime The ending time for the event
+     * @throws TaskNoNameException If the name is empty
+     */
     public TaskEvent(String name, boolean done, LocalDate startTime, LocalDate endTime) throws TaskNoNameException {
         super(name, done);
         this.startTime = startTime;
         this.endTime = endTime;
     }
 
+    /**
+     * Gets the string representation of the task.
+     * @return The string representation of the task
+     */
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (from " +
@@ -22,6 +37,10 @@ public class TaskEvent extends Task{
                 DukeDateTimeFormatter.formatDisplay(this.endTime) + ")";
     }
 
+    /**
+     * Gets the storage string representation of the task.
+     * @return The storage string representation of the task
+     */
     @Override
     public String toStorageString() {
         return super.toStorageString() + "|||" + "event" + "|||" +

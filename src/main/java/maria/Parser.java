@@ -4,8 +4,16 @@ import maria.command.*;
 
 import java.time.LocalDate;
 
+/**
+ * Parses commands.
+ */
 public class Parser {
 
+    /**
+     * Parses the command given by the user.
+     * @param commandStr The command given by the user
+     * @return A Command object that can be executed
+     */
     public static Command parse(String commandStr) {
 
         try {
@@ -59,6 +67,11 @@ public class Parser {
 
     }
 
+    /**
+     * Parses the string given by the storage file.
+     * @param storageStr The storage string read from file
+     * @return A Command object that can be executed
+     */
     public static Command parseStorage(String storageStr) {
 
         try {

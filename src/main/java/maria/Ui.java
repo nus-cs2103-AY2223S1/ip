@@ -2,18 +2,31 @@ package maria;
 
 import java.util.Scanner;
 
+/**
+ * Represents the object for the user to interact with the chatbot.
+ */
 public class Ui {
 
     private Scanner scanner;
 
+    /**
+     * Creates a user interface object.
+     */
     public Ui() {
         this.scanner = new Scanner(System.in);
     }
 
+    /**
+     * Displays the text to the user.
+     * @param text The text to be shown
+     */
     public void showText(String text) {
         System.out.println(text);
     }
 
+    /**
+     * Displays the instructions for the user to know how to use the chatbot.
+     */
     public void showInstructions() {
 
         System.out.println("==========================");
@@ -30,14 +43,24 @@ public class Ui {
 
     }
 
+    /**
+     * Displays a new line.
+     */
     public void showNewLine() {
         System.out.println();
     }
 
+    /**
+     * Displays a divider.
+     */
     public void showDivider() {
         System.out.println("=========================");
     }
 
+    /**
+     * Prompts the user to give Maria a command, and returns the command string.
+     * @return The command string
+     */
     public String readCommand() {
         System.out.print("Type in your command for Maria: ");
         return this.scanner.nextLine();
