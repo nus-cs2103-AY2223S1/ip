@@ -15,7 +15,10 @@ public class Duke {
             throw new DukeException("\t☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
     }
+
     public static void main(String[] args) {
+        Storage.loadTasks();
+
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -25,7 +28,7 @@ public class Duke {
 
         System.out.println("What can I do for you?");
         Scanner scanner = new Scanner(System.in);
-        Keyword keyword = null;
+        Keyword keyword;
 
         while (true) {
             try {
@@ -51,21 +54,24 @@ public class Duke {
                         break;
                     case TODO:
                         String description = scanner.nextLine();
+                        if (description.length() > 0) {
+                            description = description.substring(1);
+                        }
                         try {
-                            Todo todo = new Todo(description);
+                            Todo todo = new Todo(description, false);
                             todo.add();
                         } catch (DukeException e) {
                             System.out.println(e.getMessage());
                         }
                         break;
                     case DEADLINE:
-                        String[] deadlineSection = scanner.nextLine().split("/by");
-                        Deadline deadline = new Deadline(deadlineSection[0], deadlineSection[1]);
+                        String[] deadlineSection = scanner.nextLine().split(" /by ");
+                        Deadline deadline = new Deadline(deadlineSection[0].substring(1), false, deadlineSection[1]);
                         deadline.add();
                         break;
                     case EVENT:
-                        String[] eventSections = scanner.nextLine().split("/at");
-                        Event event = new Event(eventSections[0], eventSections[1]);
+                        String[] eventSections = scanner.nextLine().split(" /at ");
+                        Event event = new Event(eventSections[0].substring(1), false, eventSections[1]);
                         event.add();
                         break;
                     case DELETE:
@@ -77,6 +83,7 @@ public class Duke {
                 break;
             }
         }
+        Storage.updateTasks(Task.getList());
         System.out.println("Bye. Hope to see you again soon!");
     }
 }

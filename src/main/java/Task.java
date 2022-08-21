@@ -7,9 +7,9 @@ public abstract class Task {
     private static int count = 0;
     private static List<Task> list= new ArrayList<Task>();
 
-    public Task(String description) {
+    public Task(String description, boolean isDone) {
         this.description = description;
-        this.isDone = false;
+        this.isDone = isDone;
     }
 
     public static void mark(int index) {
@@ -24,6 +24,10 @@ public abstract class Task {
         task.setDone(false);
         System.out.println("\tOK, I've marked this task as not done yet:");
         System.out.println("\t\t" + task);
+    }
+
+    public static List<Task> getList() {
+        return list;
     }
 
     public String getStatusIcon() {
@@ -75,8 +79,10 @@ public abstract class Task {
         }
     }
 
+    public abstract String getStorageString();
+
     @Override
     public String toString() {
-        return "[" + this.getStatusIcon() + "]" + this.getDescription();
+        return "[" + this.getStatusIcon() + "] " + this.getDescription();
     }
 }
