@@ -1,11 +1,13 @@
 package duke.task;
 
+import java.time.LocalDate;
+
 public class Deadline extends Task {
-    protected String by;
+    protected LocalDate by;
 
     public Deadline(String description, String by) {
         super(description);
-        this.by = by;
+        this.by = LocalDate.parse(by, Task.inputFormat);
     }
 
     @Override
@@ -15,6 +17,6 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + this.by + ")";
+        return "[D]" + super.toString() + " (by: " + this.by.format(Task.outputFormat) + ")";
     }
 }
