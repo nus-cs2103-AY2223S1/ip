@@ -1,3 +1,4 @@
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -123,6 +124,8 @@ public class Duke {
                             + DIVIDER);
                 } catch (ArrayIndexOutOfBoundsException e) {
                     throw new DukeMissingInputException(type);
+                } catch (DateTimeParseException e) {
+                    throw new DukeUnknownDateException(type);
                 }
                 break;
             case "event":
@@ -136,6 +139,8 @@ public class Duke {
                             + "\n" + DIVIDER);
                 } catch (ArrayIndexOutOfBoundsException e) {
                     throw new DukeMissingInputException(type);
+                } catch (DateTimeParseException e) {
+                    throw new DukeUnknownDateException(type);
                 }
                 break;
         }
