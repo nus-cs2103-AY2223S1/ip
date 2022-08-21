@@ -34,8 +34,8 @@ public class Event extends Task {
      * Creates an Event with the given description, completion status, and date.
      *
      * @param description The description for the Event.
-     * @param isDone The completion status of the Event.
-     * @param date The date for the Event.
+     * @param isDone      The completion status of the Event.
+     * @param date        The date for the Event.
      * @throws DwukeException If the description is empty, or if the format of the given date is wrong.
      */
     public Event(String description, boolean isDone, String date) throws DwukeException {

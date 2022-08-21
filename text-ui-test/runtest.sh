@@ -12,15 +12,24 @@ then
     rm ACTUAL.TXT
 fi
 
+# delete output from previous run
+if [ -e "./data/dwuke.txt" ]
+then
+    rm data/dwuke.txt
+fi
+
 # compile the code into the bin folder, terminates if error occurred
-if ! javac -cp ../src/main/java -Xlint:none -d ../bin ../src/main/java/dwuke/*.java ../src/main/java/dwuke/task/*.java ../src/main/java/dwuke/command/*.java
+if
+! javac -cp ../src/main/java -Xlint:none -d ../bin ../src/main/java/dwuke/*.java
+! javac -cp ../src/main/java -Xlint:none -d ../bin ../src/main/java/dwuke/command/*.java
+! javac -cp ../src/main/java -Xlint:none -d ../bin ../src/main/java/dwuke/*.java
 then
     echo "********** BUILD FAILURE **********"
     exit 1
 fi
 
 # run the program, feed commands from input.txt file and redirect the output to the ACTUAL.TXT
-java -classpath ../bin Dwuke < input.txt > ACTUAL.TXT
+java -classpath ../bin dwuke/Dwuke < input.txt > ACTUAL.TXT
 
 # convert to UNIX format
 cp EXPECTED.TXT EXPECTED-UNIX.TXT

@@ -33,8 +33,8 @@ public class Deadline extends Task {
      * Creates a Deadline with the given description, completion status, and date.
      *
      * @param description The description for the Deadline.
-     * @param isDone The completion status of the Deadline.
-     * @param date The date for the Deadline.
+     * @param isDone      The completion status of the Deadline.
+     * @param date        The date for the Deadline.
      * @throws DwukeException If the description is empty, or if the format of the given date is wrong.
      */
     public Deadline(String description, boolean isDone, String date) throws DwukeException {

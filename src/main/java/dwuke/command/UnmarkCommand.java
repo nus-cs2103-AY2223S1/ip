@@ -35,7 +35,7 @@ public class UnmarkCommand extends Command {
      */
     @Override
     public String execute() {
-        Task task = this.taskList.mark(this.pos, false);
+        Task task = this.taskList.setIsDone(this.pos, false);
         return "okies, me've mawked dis task as not done yet:\n" + task;
     }
 }

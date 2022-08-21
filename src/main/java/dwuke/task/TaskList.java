@@ -30,21 +30,23 @@ public class TaskList {
     /**
      * Adds the given Task to this TaskList.
      *
-     * @param task the Task to be added.
+     * @param task The Task to be added.
      */
     public void add(Task task) {
         this.tasks.add(task);
     }
 
     /**
-     * Marks the Task at the specific position of this TaskList as done.
+     * Changes the isDone status of the Task at the specific position of this TaskList,
+     * according to the given boolean.
      *
      * @param pos The position of the Task in this TaskList.
-     * @return The marked Task.
+     * @param isDone The new isDone status of the Task.
+     * @return The Task with its new status.
      */
-    public Task mark(int pos, boolean isDone) {
+    public Task setIsDone(int pos, boolean isDone) {
         Task task = this.tasks.get(pos);
-        task.mark(isDone);
+        task.setIsDone(isDone);
         return task;
     }
 

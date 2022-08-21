@@ -14,7 +14,7 @@ public class FindCommand extends Command {
      * Creates a FindCommand with the given TaskList and keyword.
      *
      * @param taskList The TaskList.
-     * @param keyword The keyword.
+     * @param keyword  The keyword.
      */
     public FindCommand(TaskList taskList, String keyword) {
         this.taskList = taskList;

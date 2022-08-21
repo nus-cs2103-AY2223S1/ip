@@ -22,7 +22,7 @@ public class Todo extends Task {
      * Creates a To-do with the given description and completion status.
      *
      * @param description The description for the To-do.
-     * @param isDone The completion status of the To-do.
+     * @param isDone      The completion status of the To-do.
      * @throws DwukeException If the description is empty.
      */
     Todo(String description, boolean isDone) throws DwukeException {

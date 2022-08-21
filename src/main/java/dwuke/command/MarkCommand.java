@@ -35,7 +35,7 @@ public class MarkCommand extends Command {
      */
     @Override
     public String execute() {
-        Task task = this.taskList.mark(this.pos, true);
+        Task task = this.taskList.setIsDone(this.pos, true);
         return "nwice! me've mawked dis task as done:\n" + task;
     }
 }

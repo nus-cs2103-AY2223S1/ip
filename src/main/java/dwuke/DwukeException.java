@@ -5,7 +5,7 @@ package dwuke;
  */
 public class DwukeException extends Exception {
     /**
-     * Creates a DwukeException with the given message appended with "oops!!!".
+     * Creates a DwukeException with the given message, appended with "oops!!!" at the start.
      *
      * @param message The message for the DwukeException.
      */

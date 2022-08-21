@@ -27,7 +27,7 @@ public abstract class Task {
      * Creates a Task with the given description and completion status.
      *
      * @param description The description for the Task.
-     * @param isDone The completion status of the Task.
+     * @param isDone      The completion status of the Task.
      * @throws DwukeException If the description is empty.
      */
     Task(String description, boolean isDone) throws DwukeException {
@@ -39,21 +39,12 @@ public abstract class Task {
     }
 
     /**
-     * Marks this Task as done or not done, depending on the given boolean.
+     * Changes the isDone status of this Task according to the given boolean.
      *
-     * @param isDone The new completion status of this Task.
+     * @param isDone The new isDone status of this Task.
      */
-    public void mark(boolean isDone) {
+    public void setIsDone(boolean isDone) {
         this.isDone = isDone;
-    }
-
-    /**
-     * Encodes this Task into a String.
-     *
-     * @return The String encoded from this Task.
-     */
-    public String encode() {
-        return (this.isDone ? "1" : "0") + ";" + this.description;
     }
 
     /**
@@ -63,6 +54,15 @@ public abstract class Task {
      */
     public String getDescription() {
         return this.description;
+    }
+
+    /**
+     * Encodes this Task into a String.
+     *
+     * @return The String encoded from this Task.
+     */
+    public String encode() {
+        return (this.isDone ? "1" : "0") + ";" + this.description;
     }
 
     /**

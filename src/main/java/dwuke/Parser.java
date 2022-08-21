@@ -24,13 +24,13 @@ public class Parser {
      * Parses the given user input, and returns the appropriate Command.
      *
      * @param userInput The user input.
-     * @param taskList The TaskList to run the Command in.
+     * @param taskList  The TaskList to run the Command in.
      * @return The Command corresponding to the user input.
      */
     public static Command parseInput(String userInput, TaskList taskList) {
         String[] words = userInput.split(" ", 2);
         String commandWord = words[0];
-        String argument = words[words.length - 1];
+        String argument = words.length > 1 ? words[1] : "";
         String[] arguments;
 
         try {
