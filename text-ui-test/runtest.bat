@@ -3,6 +3,9 @@
 REM create bin directory if it doesn't exist
 if not exist ..\bin mkdir ..\bin
 
+REM delete saved txt from previous run
+if exist ..\data\tasks.txt del ..\data\tasks.txt
+
 REM delete output from previous run
 if exist ACTUAL.TXT del ACTUAL.TXT
 
