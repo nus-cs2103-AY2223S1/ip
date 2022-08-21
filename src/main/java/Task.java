@@ -205,7 +205,7 @@ abstract class Task {
          */
         @Override
         public String textFileMessage() {
-            return craftStringForFile(new String[]{"D", completionStatusForFile(), this.todo, this.date});
+            return craftStringForFile(new String[]{"D", completionStatusForFile(), this.todo, String.valueOf(this.date)});
         }
     }
 
@@ -263,7 +263,7 @@ abstract class Task {
          */
         @Override
         public String textFileMessage() {
-            return craftStringForFile(new String[]{"E", completionStatusForFile(), this.todo, this.date});
+            return craftStringForFile(new String[]{"E", completionStatusForFile(), this.todo, String.valueOf(this.date)});
         }
     }
 
