@@ -1,10 +1,12 @@
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Deadline extends Task {
     /**
      * The due date or time of the Deadline instance.
      */
-    protected LocalDate by;
+    protected String by;
+
+    protected LocalDateTime dateTime;
 
     /**
      * Constructor for a Deadline instance.
@@ -14,6 +16,9 @@ public class Deadline extends Task {
     public Deadline(String description, String by) {
         super(description);
         this.by = by;
+        String date = by.split(" ")[0].trim();
+        String time = by.split(" ")[1].trim();
+        this.dateTime = LocalDateTime.parse(date + "T" + time.substring(0, 2) + ":" + time.substring(2));
     }
 
     /**
