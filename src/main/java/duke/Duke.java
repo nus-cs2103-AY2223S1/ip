@@ -1,3 +1,10 @@
+package duke;
+
+import duke.command.Command;
+import duke.command.LoadDataCommand;
+import duke.command.SaveDataCommand;
+import duke.command.WelcomeCommand;
+
 public class Duke {
     private Storage storage;
     private TaskList tasks;

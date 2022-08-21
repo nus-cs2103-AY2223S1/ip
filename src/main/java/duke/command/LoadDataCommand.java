@@ -1,3 +1,9 @@
+package duke.command;
+
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
+
 public class LoadDataCommand extends Command {
     private String folderPath;
     private String filePath;
