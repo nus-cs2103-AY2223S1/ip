@@ -27,6 +27,16 @@ public class TaskList {
         taskList.remove(taskId);
     }
 
+    public ArrayList<Task> find(String word) {
+        ArrayList<Task> matches = new ArrayList<>();
+        for (int i = 0; i < taskList.size(); i++) {
+            if (taskList.get(i).isTaskAndWordMatch(word)) {
+                matches.add(taskList.get(i));
+            }
+        }
+        return matches;
+    }
+
     public void add(Task task) {
         taskList.add(task);
     }

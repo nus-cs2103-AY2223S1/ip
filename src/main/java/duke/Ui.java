@@ -1,5 +1,6 @@
 package duke;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import duke.task.Task;
@@ -44,8 +45,6 @@ public class Ui {
         System.out.println("Alright, I will mark this duke.task as undone:" + "\n" + task);
     }
 
-
-
     public void showDukeException(String exception) {
         System.out.println(exception);
     }
@@ -71,5 +70,12 @@ public class Ui {
         String command = commandInput.nextLine();
         System.out.println(lineBreakAfter);
         return command;
+    }
+
+    public void readList(ArrayList<Task> tasks) {
+        list();
+        for (int i = 0; i < tasks.size(); i++) {
+            System.out.println((i + 1) + ". " + tasks.get(i));
+        }
     }
 }

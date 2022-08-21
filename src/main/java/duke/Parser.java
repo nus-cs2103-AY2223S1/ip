@@ -1,15 +1,6 @@
 package duke;
 
-import duke.command.Command;
-import duke.command.DeadlineCommand;
-import duke.command.DeleteCommand;
-import duke.command.EventCommand;
-import duke.command.ExitCommand;
-import duke.command.HelpCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
-import duke.command.ToDoCommand;
-import duke.command.UnmarkCommand;
+import duke.command.*;
 
 public class Parser {
     public static Command inputCommand(String command, TaskList tasks, Ui ui) throws DukeException {
@@ -38,12 +29,18 @@ public class Parser {
                 return new DeadlineCommand(command, tasks, ui);
             case event:
                 return new EventCommand(command, tasks, ui);
+            case find:
+                if (returnedArray.length > 2) {
+                    throw new DukeException("this <find> command is invalid.\n"
+                            + " Please use command [help] for documentation on proper use.");
+                }
+                return new FindCommand(returnedArray[1], tasks, ui);
             case invalid: //Notice the control flow still reaches here even if [invalid] is input
                 throw new DukeException("I don't understand your duke.command.\nCould you please repeat yourself?"
-                        + "\nIf unsure, please use duke.command [help] for the list of commands that I understand.");
+                        + "\nIf unsure, please use command [help] for the list of commands that I understand.");
             default:
                 throw new DukeException("please do not mess with my software. This message should never"
-                        + "pop up.");
+                        + " pop up.");
             }
         }
     }

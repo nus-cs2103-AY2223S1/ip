@@ -33,6 +33,21 @@ public abstract class Task {
         isDone = false;
     }
 
+    /**
+     * Checks if the task contains the given word
+     * @param word the word to check
+     * @return true if the word is contained in the task. Otherwise, false
+     */
+    public boolean isTaskAndWordMatch(String word) {
+        String[] wordsToCheck = task.split(" ");
+        for (int i = 0; i < wordsToCheck.length; i++) {
+            if (wordsToCheck[i].equals(word)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         String box = isDone ? "[X] " : "[ ] ";

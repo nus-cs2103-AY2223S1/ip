@@ -4,7 +4,7 @@ import duke.DukeException;
 
 public abstract class Command {
     public enum Commands {
-        bye, list, help, mark, unmark, delete, todo, deadline, event, invalid;
+        bye, list, help, mark, unmark, delete, todo, deadline, event, find, invalid;
     }
 
     public abstract void execute() throws DukeException;
