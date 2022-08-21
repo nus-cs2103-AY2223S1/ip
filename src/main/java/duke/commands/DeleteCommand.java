@@ -13,7 +13,7 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes a task from the list.\n"
-            + "Example: " + COMMAND_WORD;
+            + "\tEx.: " + COMMAND_WORD + " <number>";
 
     private final int targetIndex;
 

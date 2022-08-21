@@ -25,10 +25,6 @@ public class TaskList {
         ui = new Ui();
     }
 
-    private Task getTask(int index) {
-        return tasks.get(index);
-    }
-
     /**
      * Creates a new to-do and add it to the task list.
      *
@@ -95,11 +91,16 @@ public class TaskList {
      * @param inputIndex visible index of the task
      */
     public void markTask(int inputIndex) throws DukeException {
-        int targetIndex = checkIndex(inputIndex);
-        tasks.get(targetIndex).mark();
+        Task targetTask = getTask(checkIndex(inputIndex));
+
+        if (targetTask.isDone()) {
+            throw new DukeException(Messages.MESSAGE_TASK_ALREADY_MARKED);
+        }
+
+        targetTask.mark();
         ui.showMessages(
                 String.format(Messages.MESSAGE_TASK_UPDATE_STATUS, "done"),
-                "  " + getTask(targetIndex));
+                "  " + targetTask);
     }
 
     /**
@@ -108,11 +109,16 @@ public class TaskList {
      * @param inputIndex visible index of the task
      */
     public void unmarkTask(int inputIndex) throws DukeException {
-        int targetIndex = checkIndex(inputIndex);
-        tasks.get(targetIndex).unmark();
+        Task targetTask = getTask(checkIndex(inputIndex));
+
+        if (!targetTask.isDone()) {
+            throw new DukeException(Messages.MESSAGE_TASK_ALREADY_UNMARKED);
+        }
+
+        targetTask.unmark();
         ui.showMessages(
                 String.format(Messages.MESSAGE_TASK_UPDATE_STATUS, "not done"),
-                "  " + getTask(targetIndex));
+                "  " + targetTask);
     }
 
     /**
@@ -122,7 +128,7 @@ public class TaskList {
         AtomicInteger index = new AtomicInteger(1);
         tasks.stream()
                 .filter(t -> t.toString().contains(keyword))
-                .forEach(t -> System.out.println(index.getAndIncrement() + "." + t));
+                .forEach(t -> ui.showWithCurrentColour(index.getAndIncrement() + "." + t));
     }
 
     /**
@@ -134,6 +140,10 @@ public class TaskList {
             sb.append(t.encodeToString()).append("\n");
         }
         return sb.toString();
+    }
+
+    private Task getTask(int index) {
+        return tasks.get(index);
     }
 
     private int checkIndex(int inputIndex) throws DukeException {

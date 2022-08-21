@@ -12,14 +12,15 @@ public class EventCommand extends Command {
 
     public static final String COMMAND_WORD = "event";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Creates a new Event task.\n"
-            + "Example: " + COMMAND_WORD;
+            + ": Creates a new Event.\n"
+            + "\tEx.: " + COMMAND_WORD + " <description> /at <date/time>";
 
     private final String description;
     private final String at;
 
     /**
      * Constructor for EventCommand.
+     *
      * @param description description of the new event
      * @param at time frame of the event (date, time, etc.)
      */

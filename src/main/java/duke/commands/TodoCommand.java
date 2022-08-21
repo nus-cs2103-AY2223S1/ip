@@ -12,8 +12,8 @@ public class TodoCommand extends Command {
 
     public static final String COMMAND_WORD = "todo";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Creates a new Todo task.\n"
-            + "Example: " + COMMAND_WORD;
+            + ": Creates a new Todo.\n"
+            + "\tEx.: " + COMMAND_WORD + " <description>";
 
     private final String description;
 

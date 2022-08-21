@@ -40,7 +40,7 @@ application {
 shadowJar {
     archiveBaseName.set('duke')
     archiveClassifier.set('')
-    archiveVersion.set('1.0.1')
+    archiveVersion.set('1.0.2')
 }
 
 run{

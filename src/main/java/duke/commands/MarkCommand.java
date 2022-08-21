@@ -13,7 +13,7 @@ public class MarkCommand extends Command {
     public static final String COMMAND_WORD = "mark";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks a task as done.\n"
-            + "Example: " + COMMAND_WORD;
+            + "\tEx.: " + COMMAND_WORD + " <number>";
 
     private final int targetIndex;
 

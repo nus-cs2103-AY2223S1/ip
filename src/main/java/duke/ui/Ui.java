@@ -34,9 +34,36 @@ public class Ui {
     public String getUserCommand() {
         out.print("Enter command: ");
         String inputLine = in.nextLine();
-        showWithColour(PREFIX + inputLine);
+        showWithColour("MAGENTA", PREFIX + inputLine);
 
         return inputLine;
+    }
+
+    /**
+     * Shows the user the specified list of messages.
+     */
+    public void showMessages(String... messages) {
+        showDivider();
+        for (String m : messages) {
+            showWithCurrentColour(m);
+        }
+        showDivider();
+    }
+
+    public void showWithCurrentColour(String message) {
+        out.println(ansi().fg(currentColour).a(message).reset());
+    }
+
+    public void showWithColour(String inputColour, String message) {
+        out.println(ansi().fg(Ansi.Color.valueOf(inputColour.toUpperCase())).a(message).reset());
+    }
+
+    public void unloadJansi() {
+        AnsiConsole.systemUninstall();
+    }
+
+    public void setOutputColor(String inputColour) {
+        currentColour = Ansi.Color.valueOf(inputColour);
     }
 
     public void showWelcome() {
@@ -47,30 +74,9 @@ public class Ui {
         showMessages(MESSAGE_EXIT);
     }
 
-    /**
-     * Shows the user the specified list of messages.
-     */
-    public void showMessages(String... messages) {
-        showDivider();
-        for (String m : messages) {
-            showWithColour(m);
-        }
-        showDivider();
-    }
-
     private void showDivider() {
-        showWithColour(DIVIDER);
+        showWithCurrentColour(DIVIDER);
     }
 
-    public void showWithColour(String message) {
-        out.println(ansi().eraseScreen().fg(currentColour).a(message).reset());
-    }
 
-    public void unloadJansi() {
-        AnsiConsole.systemUninstall();
-    }
-
-    public void setOutputColor(String inputColour) {
-        currentColour = Ansi.Color.valueOf(inputColour);
-    }
 }

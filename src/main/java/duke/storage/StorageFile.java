@@ -61,7 +61,7 @@ public class StorageFile {
 
     /**
      * Loads the {@code TaskList} data from the storage file and return it.
-     * Returns an empty arraylist of task if the file does not exist.
+     * Returns an empty arraylist of Task if the file does not exist.
      */
     public List<Task> load() {
         List<Task> tasks = new ArrayList<>();

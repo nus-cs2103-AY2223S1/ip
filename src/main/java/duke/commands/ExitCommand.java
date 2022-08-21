@@ -10,13 +10,13 @@ import duke.ui.Ui;
 public class ExitCommand extends Command {
 
     public static final String COMMAND_WORD = "exit";
+    public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting Duke as requested...";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Exits Duke.\n"
-            + "Example: " + COMMAND_WORD;
-    public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting Duke as requested...";
+            + "\tEx.: " + COMMAND_WORD;
 
     @Override
     public void execute(TaskList taskList, Ui ui, StorageFile storage) {
-        ui.showWithColour(MESSAGE_EXIT_ACKNOWLEDGEMENT);
+        ui.showWithCurrentColour(MESSAGE_EXIT_ACKNOWLEDGEMENT);
     }
 }

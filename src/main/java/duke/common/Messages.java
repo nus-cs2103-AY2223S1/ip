@@ -11,12 +11,13 @@ public class Messages {
     public static final String MESSAGE_TASK_NUMBER = "Now you have %d tasks in the list.";
     public static final String MESSAGE_TASK_LIST = "Here are the tasks in your list:";
 
-    public static final String MESSAGE_INVALID_COMMAND_FORMAT = "☹ OOPS!!! Command not found.";
+    public static final String MESSAGE_INVALID_COMMAND = "☹ OOPS!!! Command not found. Please do help command.";
     public static final String MESSAGE_EMPTY_DESCRIPTION = "☹ OOPS!!! The description of a %s cannot be empty.";
     public static final String MESSAGE_TASK_NOT_SPECIFIED = "☹ OOPS!!! Please specify the task number (check list).";
     public static final String MESSAGE_INVALID_NUMBER = "☹ OOPS!!! The task number you have specified is invalid.";
-    public static final String ERROR_INVALID_ARGUMENTS = "☹ OOPS!!! Incorrect number of arguments. "
-            + "Please check command list.";
-    public static final String ERROR_EMPTY_DESCRIPTION_TIME = "☹ OOPS!!! Time and description cannot be empty.";
-    public static final String ERROR_MISSING_SEPARATOR = "☹ OOPS!!! Missing %s. Check commands list.";
+    public static final String MESSAGE_INVALID_ARGUMENTS = "☹ OOPS!!! Incorrect number of arguments.";
+    public static final String MESSAGE_EMPTY_DESCRIPTION_TIME = "☹ OOPS!!! Time and description cannot be empty.";
+    public static final String MESSAGE_MISSING_SEPARATOR = "☹ OOPS!!! Missing %s. Check commands list.";
+    public static final String MESSAGE_TASK_ALREADY_MARKED = "The task is already marked as done.";
+    public static final String MESSAGE_TASK_ALREADY_UNMARKED = "The task is already unmarked.";
 }

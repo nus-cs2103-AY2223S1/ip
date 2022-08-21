@@ -12,8 +12,8 @@ public class UnmarkCommand extends Command {
 
     public static final String COMMAND_WORD = "unmark";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Unmark a task.\n"
-            + "Example: " + COMMAND_WORD;
+            + ": Unmark a task (not done).\n"
+            + "\tEx.: " + COMMAND_WORD + " <number>";
 
     private final int targetIndex;
 

@@ -12,8 +12,8 @@ public class DeadlineCommand extends Command {
 
     public static final String COMMAND_WORD = "deadline";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Creates a new Deadline task.\n"
-            + "Example: " + COMMAND_WORD;
+            + ": Creates a new Deadline.\n"
+            + "\tEx.: " + COMMAND_WORD + " <description> /by <date/time>";
 
     private final String description;
     private final String by;
