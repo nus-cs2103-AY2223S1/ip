@@ -6,14 +6,32 @@ import duke.task.Task;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/**
+ * Command to add a task to the task list
+ *
+ * @author Pontakorn Prasertsuk
+ */
 public class AddCommand extends Command {
 
   private Task task;
 
+  /**
+   * Constructs a new AddCommand instance
+   *
+   * @param task the task to be added
+   */
   public AddCommand(Task task) {
     this.task = task;
   }
 
+  /**
+   * Executes the AddCommand.
+   *
+   * @param taskList the task list to be added to
+   * @param ui the user interface to be used
+   * @param storage the storage to be used
+   * @throws DukeException if an error occurs
+   */
   @Override
   public void execute(TaskList taskList, Ui ui, Storage storage)
     throws DukeException {
@@ -23,6 +41,11 @@ public class AddCommand extends Command {
     storage.save(taskList.getTaskList());
   }
 
+  /**
+   * Returns false as this is not the exit command
+   *
+   * @return false
+   */
   @Override
   public boolean isExit() {
     return false;

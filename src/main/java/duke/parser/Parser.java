@@ -6,14 +6,31 @@ import duke.task.*;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
+/**
+ * Read user inputs & parse into commands
+ *
+ * @author Pontakorn Prasertsuk
+ */
 public class Parser {
 
   private static final Scanner scanner = new Scanner(System.in);
 
+  /**
+   * Read user input
+   *
+   * @return the user input
+   */
   public static String readCommand() {
     return scanner.nextLine();
   }
 
+  /**
+   * Parse the user input into a command
+   *
+   * @param fullCommand the user input
+   * @return the parsed command
+   * @throws DukeException if an error occurs
+   */
   public static Command parse(String fullCommand) throws DukeException {
     String[] inputs = fullCommand.trim().split("\\s+", 2);
 
