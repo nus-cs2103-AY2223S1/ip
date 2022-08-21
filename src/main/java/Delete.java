@@ -18,8 +18,9 @@ public class Delete extends Task {
      * @param ui
      */
     @Override
-    public void execute(TaskList task, UI ui) {
+    public void execute(TaskList task, UI ui, Storage storage) {
         Task taskDeleted = task.delete(num);
         ui.showDeleteTask(task, taskDeleted);
+        storage.write(task.getTasks());
     }
 }

@@ -35,6 +35,15 @@ public class Event extends Task {
     }
 
     /**
+     * The method to change the tasklist format to write in tasks.txt
+     * @return String
+     */
+    public String formatChange() {
+        String mark = isDone ? "1" : "0";
+        return "E | " + mark + " | " + this.description + " | " + this.time;
+    }
+
+    /**
      * Overridden toString method for Event task details
      * @return String
      */
@@ -49,8 +58,9 @@ public class Event extends Task {
      * @param ui
      */
     @Override
-    public void execute(TaskList task, UI ui) {
+    public void execute(TaskList task, UI ui, Storage storage) {
         task.add(this);
         ui.showAddOnTask(task, (task.size() - 1));
+        storage.write(task.getTasks());
     }
 }

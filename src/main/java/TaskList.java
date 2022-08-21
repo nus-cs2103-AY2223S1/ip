@@ -14,6 +14,14 @@ public class TaskList {
     }
 
     /**
+     * The constructor with input ArrayList
+     * @param task
+     */
+    public TaskList(ArrayList<Task> task) {
+        this.task = task;
+    }
+
+    /**
      * Method to add a task.
      * @param t
      */

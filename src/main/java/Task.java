@@ -2,8 +2,8 @@
  * Class to represent the tasks.
  */
 public abstract class Task {
-    private String description;
-    private Boolean isDone;
+    protected String description;
+    protected Boolean isDone;
     protected Boolean isBye;
 
     /**
@@ -52,6 +52,15 @@ public abstract class Task {
     }
 
     /**
+     * The method to change the tasklist format to write in tasks.txt
+     * @return String
+     */
+    public String formatChange() {
+        String mark = isDone ? "1" : "0";
+        return "|" + mark + "0" + this.description;
+    }
+
+    /**
      * Overridden toString method for task details
      * @return String
      */
@@ -65,7 +74,7 @@ public abstract class Task {
      * @param task
      * @param ui
      */
-    public void execute(TaskList task, UI ui) {
+    public void execute(TaskList task, UI ui, Storage storage) {
 
     };
 }

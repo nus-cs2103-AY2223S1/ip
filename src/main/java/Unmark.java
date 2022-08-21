@@ -18,8 +18,9 @@ public class Unmark extends Task {
      * @param ui
      */
     @Override
-    public void execute(TaskList task, UI ui) {
+    public void execute(TaskList task, UI ui, Storage storage) {
         task.markUndone(num);
         ui.showUndoneTask(task, num);
+        storage.write(task.getTasks());
     }
 }
