@@ -23,7 +23,7 @@ public class TaskCreator {
 
         String[] inArr = in.split(" ", 2);
         if (inArr.length < 2) {
-            return new Task("");
+            return new Task("", "[]");
         }
 
         String info = inArr[1];

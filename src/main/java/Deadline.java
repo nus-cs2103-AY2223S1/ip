@@ -8,9 +8,16 @@ public class Deadline extends Task {
     protected String dateStr;
     protected LocalDate dateTime;
     public Deadline(String description, String dateStr, LocalDate dateTime) {
-        super(description);
+        super(description, SYMBOL);
         this.dateStr = dateStr;
         this.dateTime = dateTime;
+    }
+
+    public String getDate() { return this.dateStr; }
+
+    @Override
+    public String getInfo() {
+        return (getSymbol() + " " + getStatusIcon() + " " + getDescription() + getDate());
     }
 
     @Override

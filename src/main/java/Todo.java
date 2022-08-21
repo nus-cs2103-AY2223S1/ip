@@ -4,7 +4,7 @@ public class Todo extends Task {
      */
     private static final String SYMBOL = "[T]";
     public Todo(String description) {
-        super(description);
+        super(description, SYMBOL);
     }
 
     @Override

@@ -1,4 +1,4 @@
-public class Messages {
+public class Ui {
     /**
      * Child containing default messages
      */

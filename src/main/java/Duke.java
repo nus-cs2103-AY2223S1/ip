@@ -8,16 +8,11 @@ public class Duke {
     /**
      * Main class used to handle inputs
      */
-    public static void main(String[] args) {
-        Messages.welcome();
-
-        String in = "";
-        TaskList list = new TaskList();
-        Scanner sc = new Scanner(System.in);
-
+    private TaskList list;
+    public Duke(String filePath) {
         try {
-            Files.createDirectories(Paths.get("./data"));
-            File file = new File("./data/duke.txt");
+            Files.createDirectories(Paths.get(filePath));
+            File file = new File(filePath+ "/duke.txt");
 
             if (!file.exists()) {
                 boolean result = file.createNewFile();
@@ -27,6 +22,13 @@ public class Duke {
         catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public static void main(String[] args) {
+        Ui.welcome();
+
+        String in = "";
+        TaskList list = new TaskList();
+        Scanner sc = new Scanner(System.in);
 
         while (true) {
             in = sc.nextLine();
@@ -50,9 +52,9 @@ public class Duke {
                     }
 
                     Task task = list.getTask(index);
-                    Messages.delete(task);
+                    Ui.delete(task);
                     list.delete(index);
-                    Messages.countTasks(list);
+                    Ui.countTasks(list);
                 }
 
                 catch (InvalidCommandException e) {
@@ -70,7 +72,7 @@ public class Duke {
                         throw new NoDescriptionException();
                     } else {
                         list.add(task);
-                        Messages.add(task);
+                        Ui.add(task);
                     }
                 }
 
@@ -90,6 +92,6 @@ public class Duke {
 
             FileWriting.update("./data/duke.txt", list);
         }
-        Messages.bye();
+        Ui.bye();
     }
 }

@@ -4,7 +4,15 @@ public class TaskList {
     /**
      * Class to store the list of Tasks
      */
-    private ArrayList<Task> taskList = new ArrayList<>();
+    private ArrayList<Task> taskList;
+
+    public TaskList(ArrayList<Task> taskList) {
+        this.taskList = taskList;
+    }
+
+    public TaskList() {
+        this.taskList = new ArrayList<>();
+    }
 
     public void add(Task task) { taskList.add(task); }
 
@@ -32,7 +40,7 @@ public class TaskList {
         String result = "";
         while (index < taskList.size()) {
             item = taskList.get(index);
-            result += ((index + 1) + "." + item.toString() + "\n");
+            result += (item.getInfo() + "\n");
             index++;
         }
         return result;
@@ -40,11 +48,11 @@ public class TaskList {
 
     public void mark(int index) {
         taskList.get(index).markAsDone();
-        Messages.mark();
+        Ui.mark();
     }
 
     public void unmark(int index) {
         taskList.get(index).markAsUndone();
-        Messages.unmark();
+        Ui.unmark();
     }
 }

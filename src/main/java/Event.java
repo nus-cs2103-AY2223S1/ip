@@ -5,8 +5,15 @@ public class Event extends Task {
     private static final String SYMBOL = "[E]";
     protected String dateTime;
     public Event(String description, String dateTime) {
-        super(description);
+        super(description, SYMBOL);
         this.dateTime = dateTime;
+    }
+
+    public String getDate() { return this.dateTime; }
+
+    @Override
+    public String getInfo() {
+        return (getSymbol() + " " + getStatusIcon() + " " + getDescription() + getDate());
     }
 
     @Override
