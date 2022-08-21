@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
+
 /**
  * A chatbot named Tako that
  * supports various tasks.
@@ -49,11 +52,11 @@ public class Tako {
     }
 
     private static void saveToFile(Task task) throws IOException {
-       FileWriter fw = new FileWriter(tasksPath.toString(), true);
-       BufferedWriter bw = new BufferedWriter(fw);
-       bw.write(taskToFileFormat(task));
-       bw.newLine();
-       bw.close();
+        FileWriter fw = new FileWriter(tasksPath.toString(), true);
+        BufferedWriter bw = new BufferedWriter(fw);
+        bw.write(taskToFileFormat(task));
+        bw.newLine();
+        bw.close();
     }
 
     private static void saveTasksToFile() throws IOException {
@@ -74,10 +77,14 @@ public class Tako {
             task = new Todo(splitLine[2]);
             break;
         case "D":
-            task = new Deadline(splitLine[2], splitLine[3]);
+            LocalDateTime deadlineDateTime = LocalDateTime.parse(
+                    splitLine[3].replace(' ', 'T'));
+            task = new Deadline(splitLine[2], deadlineDateTime);
             break;
         case "E":
-            task = (new Event(splitLine[2], splitLine[3]));
+            LocalDateTime eventDateTime = LocalDateTime.parse(
+                    splitLine[3].replace(' ', 'T'));
+            task = (new Event(splitLine[2], eventDateTime));
             break;
         default:
             break;
@@ -92,7 +99,7 @@ public class Tako {
 
     private static void load() throws IOException {
         String home = System.getProperty("user.home");
-        Path dataDir = Paths.get(home, "Tako","Data");
+        Path dataDir = Paths.get(home, "Tako", "Data");
         if (!Files.isDirectory(dataDir)) {
             Files.createDirectories(dataDir);
         }
@@ -183,7 +190,9 @@ public class Tako {
                     }
                     String[] splitDeadline = splitInput[1].split(" /by ", 2);
                     if (splitDeadline.length == 2) {
-                        Deadline deadline = new Deadline(splitDeadline[0], splitDeadline[1]);
+                        LocalDateTime dateTime = LocalDateTime.parse(
+                                splitDeadline[1].replace(' ', 'T'));
+                        Deadline deadline = new Deadline(splitDeadline[0], dateTime);
                         tasks.add(deadline);
                         saveToFile(deadline);
                         System.out.println("added: " + deadline);
@@ -198,7 +207,9 @@ public class Tako {
                     }
                     String[] splitEvent = splitInput[1].split(" /at ", 2);
                     if (splitEvent.length == 2) {
-                        Event event = new Event(splitEvent[0], splitEvent[1]);
+                        LocalDateTime dateTime = LocalDateTime.parse(
+                                splitEvent[1].replace(' ', 'T'));
+                        Event event = new Event(splitEvent[0], dateTime);
                         tasks.add(event);
                         saveToFile(event);
                         System.out.println("added: " + event);
@@ -235,6 +246,10 @@ public class Tako {
             }
         } catch (EmptyDescriptionException | InvalidInputException | IOException e) {
             System.out.println(e.getMessage());
+        } catch (DateTimeParseException e) {
+            System.out.println("Invalid date and time.\n"
+                    + "Date and time should be of the format: yyyy-mm-dd hh:mm\n"
+                    + "For example: 2019-10-15 10:30");
         }
     }
 }
