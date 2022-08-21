@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -8,12 +9,19 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class TasksReader {
+public class Storage {
+    private String folderPath;
+    private String filename;
     private String userDirectory = System.getProperty("user.dir");
 
+    public Storage(String folderPath, String filename) {
+        this.folderPath = folderPath;
+        this.filename = filename;
+    }
+
     public ArrayList<Task> readSavedTasks() throws DukeException {
-        Path dataDirectoryPath = Paths.get(userDirectory, "data");
-        Path savedTasksPath = Paths.get(userDirectory, "data", "duke.txt");
+        Path dataDirectoryPath = Paths.get(userDirectory, folderPath);
+        Path savedTasksPath = Paths.get(userDirectory, folderPath, filename);
         if (!hasDataDirectory(dataDirectoryPath)) {
             createDataDirectory(dataDirectoryPath);
             return new ArrayList<>();
@@ -110,5 +118,28 @@ public class TasksReader {
 
     private boolean hasSavedTasks(Path savedTasksPath) {
         return Files.exists(savedTasksPath);
+    }
+
+    private String generateTasksToAdd(ArrayList<Task> tasks) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Task task : tasks) {
+            stringBuilder.append(task.toString() + System.lineSeparator());
+        }
+        return stringBuilder.toString();
+    }
+
+    private String relativePath() {
+        Path path = Paths.get(userDirectory, "data", "duke.txt");
+        return path.toAbsolutePath().toString();
+    }
+
+    public void writeToFile(ArrayList<Task> tasks) throws DukeException {
+        try {
+            FileWriter fw = new FileWriter(relativePath());
+            fw.write(generateTasksToAdd(tasks));
+            fw.close();
+        } catch (IOException e) {
+            throw new DukeException("Something went wrong " + e.toString());
+        }
     }
 }

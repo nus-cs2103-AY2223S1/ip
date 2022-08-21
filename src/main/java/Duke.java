@@ -2,8 +2,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 public class Duke {
     private ArrayList<Task> tasks;
+    private Storage storage;
 
-    Duke() {
+    public Duke(String folderPath, String filename) {
+        storage = new Storage(folderPath, filename);
         tasks = new ArrayList<Task>();
     }
 
@@ -12,12 +14,10 @@ public class Duke {
             Scanner sc = new Scanner(System.in);
             System.out.print("Eh hello, my name is Uncle Cheong. \n" +
                     "What you want?\n");
-            TasksReader tasksReader = new TasksReader();
-            tasks = tasksReader.readSavedTasks();
+            tasks = storage.readSavedTasks();
             Parser parser = new Parser(sc, tasks);
             parser.parseInputs();
-            TasksWriter tasksWriter = new TasksWriter(tasks);
-            tasksWriter.writeToFile();
+            storage.writeToFile(tasks);
         } catch (DukeException e) {
             System.out.println(e);
         }
@@ -25,7 +25,7 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        Duke uncleCheong = new Duke();
+        Duke uncleCheong = new Duke("data", "duke.txt");
         uncleCheong.startChatBot();
     }
 }
