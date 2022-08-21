@@ -109,14 +109,12 @@ public class Actions { //actions that Duke does
                     ls.add(curr);
                     System.out.println("added: " + input);
             }
-            input = sc.nextLine();
         } catch (EmptyDescriptionException e) {
                 System.out.println("Description cannot be empty, try again!");
-                continue;
             } catch (InvalidCommandException | IndexOutOfBoundsException e) {
                 System.out.println("Invalid input, try again!");
-                continue;
             }
+            input = sc.nextLine(); //gets input again before checking while condition
         } //end of while loop, means input is bye
         System.out.println("See ya! Come again~"); //end of bot
     }
