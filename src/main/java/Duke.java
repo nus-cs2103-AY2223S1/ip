@@ -1,13 +1,24 @@
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.io.File;
+import java.io.FileWriter;
 
 public class Duke {
     /** List of items. */
     private static final ArrayList<Task> tasks = new ArrayList<>();
+
+    /** Path to directory where file that stores tasks is at */
+    private static final Path dirPath = Paths.get(System.getProperty("user.dir"), "src", "data");
+
+    /** Path to file where tasks are stored. */
+    private static final Path filePath = Paths.get(System.getProperty("user.dir"), "src", "data", "duke.txt");
+
+    /** File reference where tasks are stored. */
+    private static final File file = new File(Duke.filePath.toString());
 
     /**
      * Startup message (When program is first booted).
@@ -145,12 +156,8 @@ public class Duke {
      * @throws FileNotFoundException If file cannot be opened by Scanner.
      */
     private static void preloadTasks() throws FileNotFoundException {
-        String rootDir = System.getProperty("user.dir");
-        Path filePath = Paths.get(rootDir, "src", "data", "duke.txt");
-        File file = new File(filePath.toString());
-
-        if (file.exists() && !file.isDirectory()) {
-            Scanner fileScanner = new Scanner(file);
+        if (Duke.file.exists() && !Duke.file.isDirectory()) {
+            Scanner fileScanner = new Scanner(Duke.file);
             while (fileScanner.hasNext()) {
                 String line = fileScanner.nextLine();
                 String[] details = line.split(" \\| ");
@@ -170,7 +177,51 @@ public class Duke {
                     System.out.println(e.getMessage());
                 }
             }
+
+            try {
+                Duke.writeToFile("", true);
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
         }
+    }
+
+    /**
+     * Saves tasks into a duke.txt file.
+     *
+     */
+    private static void saveTasksToFile() {
+        for (Task t : Duke.tasks) {
+            // 1 denotes task is done, 0 denotes task is not done.
+            String taskDone = t.isDone ? "1" : "0";
+            try {
+                if (t instanceof ToDo) {
+                    Duke.writeToFile("T | " + taskDone + " | " + t.taskName + "\n", false);
+                } else if (t instanceof Deadline) {
+                    Duke.writeToFile("D | " + taskDone + " | " + t.taskName + " | " +
+                            ((Deadline) t).date + "\n", false);
+                } else if (t instanceof Event) {
+                    Duke.writeToFile("E | " + taskDone + " | " + t.taskName + " | " +
+                            ((Event) t).date + "\n", false);
+                }
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    /**
+     * Writes to file that contains all the tasks.
+     *
+     * @param textToAdd The text to be added to the file.
+     * @throws IOException If there are errors in input/output to the file.
+     */
+    private static void writeToFile(String textToAdd, boolean isOverwrite) throws IOException {
+        FileWriter fw = isOverwrite
+                ? new FileWriter(Duke.filePath.toString())
+                : new FileWriter(Duke.filePath.toString(), true);
+        fw.write(textToAdd);
+        fw.close();
     }
 
     /**
@@ -246,6 +297,8 @@ public class Duke {
                 System.out.println(e.getMessage());
             }
         }
+
+        Duke.saveTasksToFile();
     }
 
     /**
@@ -269,6 +322,22 @@ public class Duke {
     public static void main(String[] args) {
         Duke.greetUser();
 
+        // Create folders to store data file if it does not exist yet.
+        File dir = new File(Duke.dirPath.toString());
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+
+        // Create empty text file that stores the tasks if it does not exist.
+        if (!Duke.file.exists()) {
+            try {
+                Duke.writeToFile("", true);
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        // Preload tasks into array list from the file.
         try {
             Duke.preloadTasks();
         } catch (FileNotFoundException e) {
