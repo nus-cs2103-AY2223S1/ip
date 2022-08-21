@@ -2,6 +2,7 @@ package dwuke.task;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
+
 import dwuke.Date;
 import dwuke.DwukeException;
 
@@ -16,7 +17,7 @@ public class Deadline extends Task {
      * Creates a new Deadline with the given description and date.
      *
      * @param description The description for the Deadline.
-     * @param date The date for the Deadline.
+     * @param date        The date for the Deadline.
      * @throws DwukeException If the description is empty, or if the format of the given date is wrong.
      */
     public Deadline(String description, String date) throws DwukeException {

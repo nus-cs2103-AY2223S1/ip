@@ -1,9 +1,11 @@
 package dwuke.task;
 
-import dwuke.Date;
-import dwuke.DwukeException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
+
+import dwuke.Date;
+import dwuke.DwukeException;
+
 
 /**
  * This class encapsulates an event set by the user.
@@ -16,7 +18,7 @@ public class Event extends Task {
      * Creates a new Event with the given description and date.
      *
      * @param description The description for the Event.
-     * @param date The date for the Event.
+     * @param date        The date for the Event.
      * @throws DwukeException If the description is empty, or if the format of the given date is wrong.
      */
     public Event(String description, String date) throws DwukeException {

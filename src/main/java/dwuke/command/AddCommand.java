@@ -1,7 +1,7 @@
 package dwuke.command;
 
-import dwuke.task.TaskList;
 import dwuke.task.Task;
+import dwuke.task.TaskList;
 
 /**
  * This class encapsulates an add command from the user.
@@ -14,7 +14,7 @@ public class AddCommand extends Command {
      * Creates an AddCommand with the given TaskList and Task.
      *
      * @param taskList The TaskList.
-     * @param task The Task.
+     * @param task     The Task.
      */
     public AddCommand(TaskList taskList, Task task) {
         this.taskList = taskList;

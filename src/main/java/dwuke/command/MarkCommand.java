@@ -1,8 +1,8 @@
 package dwuke.command;
 
+import dwuke.DwukeException;
 import dwuke.task.Task;
 import dwuke.task.TaskList;
-import dwuke.DwukeException;
 
 /**
  * This class encapsulates a mark command from the user.
@@ -16,7 +16,7 @@ public class MarkCommand extends Command {
      * Creates a MarkCommand with the given TaskList and position.
      *
      * @param taskList The TaskList.
-     * @param pos The position.
+     * @param pos      The position.
      * @throws DwukeException If the position is not in the TaskList.
      */
     public MarkCommand(TaskList taskList, int pos) throws DwukeException {

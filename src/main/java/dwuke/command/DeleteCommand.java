@@ -1,8 +1,8 @@
 package dwuke.command;
 
+import dwuke.DwukeException;
 import dwuke.task.Task;
 import dwuke.task.TaskList;
-import dwuke.DwukeException;
 
 /**
  * This class encapsulates a delete command from the user.
@@ -16,7 +16,7 @@ public class DeleteCommand extends Command {
      * Creates a DeleteCommand with the given TaskList and position.
      *
      * @param taskList The TaskList.
-     * @param pos The position.
+     * @param pos      The position.
      * @throws DwukeException If the position is not in the TaskList.
      */
     public DeleteCommand(TaskList taskList, int pos) throws DwukeException {
