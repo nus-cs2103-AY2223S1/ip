@@ -42,7 +42,7 @@ public class Task {
         case 'E':
             return new Event(description, isDone, LocalDate.parse(dataSplit[3]));
         default:
-            throw new DukeException("☹ OOPS!!! Unrecognised task type!");
+            throw new DukeException("OOPS!!! Unrecognised task type!");
         }
     }
 

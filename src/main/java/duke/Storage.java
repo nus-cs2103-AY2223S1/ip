@@ -23,7 +23,7 @@ public class Storage {
             }
             fw.close();
         } catch (IOException e) {
-            System.out.println("\n\t☹ OOPS!!! I'm sorry, but I'm unable to write to file due to: " + e.getMessage());
+            System.out.println("\n\tOOPS!!! I'm sorry, but I'm unable to write to file due to: " + e.getMessage());
         }
     }
 

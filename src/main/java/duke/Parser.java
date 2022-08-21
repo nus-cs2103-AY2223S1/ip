@@ -42,27 +42,27 @@ public class Parser {
                 }
             case TODO:
                 if (splitInputCommand.length == 1) {
-                    throw new DukeException("\t☹ OOPS!!! The description of a todo cannot be empty.");
+                    throw new DukeException("\tOOPS!!! The description of a todo cannot be empty.");
                 } else {
                     return new ToDoCommand(splitInputCommand[1]);
                 }
             case DEADLINE:
                 if (splitInputCommand.length == 1) {
-                    throw new DukeException("\t☹ OOPS!!! The description of a deadline cannot be empty.");
+                    throw new DukeException("\tOOPS!!! The description of a deadline cannot be empty.");
                 } else {
                     String[] splitDescriptionArray = splitInputCommand[1].split(" /by ");
                     if (splitDescriptionArray.length == 1) {
-                        throw new DukeException("\t☹ OOPS!!! The date of a deadline cannot be empty.");
+                        throw new DukeException("\tOOPS!!! The date of a deadline cannot be empty.");
                     }
                     return new DeadlineCommand(splitDescriptionArray[0], LocalDate.parse(splitDescriptionArray[1]));
                 }
             case EVENT:
                 if (splitInputCommand.length == 1) {
-                    throw new DukeException("\t☹ OOPS!!! The description of an event cannot be empty.");
+                    throw new DukeException("\tOOPS!!! The description of an event cannot be empty.");
                 } else {
                     String[] splitDescriptionArray = splitInputCommand[1].split(" /at ");
                     if (splitDescriptionArray.length == 1) {
-                        throw new DukeException("\t☹ OOPS!!! The date of an event cannot be empty.");
+                        throw new DukeException("\tOOPS!!! The date of an event cannot be empty.");
                     }
                     return new EventCommand(splitDescriptionArray[0], LocalDate.parse(splitDescriptionArray[1]));
                 }
@@ -76,9 +76,9 @@ public class Parser {
                 throw new DukeException("\tERROR...ERROR...WHAT ARE YOU DOING HERE?!");
             }
         } catch (IllegalArgumentException e) {
-            throw new DukeException("\t☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+            throw new DukeException("\tOOPS!!! I'm sorry, but I don't know what that means :-(");
         } catch (DateTimeParseException e) {
-            throw new DukeException("\t☹ OOPS!!! Please enter your date in the format yyyy-mm-dd!");
+            throw new DukeException("\tOOPS!!! Please enter your date in the format yyyy-mm-dd!");
         }
     }
 }
