@@ -4,9 +4,7 @@ import commands.DukeCommand;
 import managers.CommandManager;
 import managers.StorageManager;
 import managers.TaskManager;
-import utils.DukePrinter;
-
-import java.util.Scanner;
+import ui.Ui;
 
 /**
  * @author Emily Ong Hui Qi
@@ -21,14 +19,13 @@ public class Duke {
     private static final String UNKNOWN_COMMAND_ERROR = "I do not understand your command!";
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
+        Ui ui = new Ui();
         StorageManager storageManager;
 
         try {
             storageManager = new StorageManager();
         } catch (DukeException e) {
-            DukePrinter.print(e.getMessage());
+            ui.print(e.getMessage());
             return;
         }
 
@@ -36,36 +33,36 @@ public class Duke {
         CommandManager commandManager = new CommandManager();
 
         // Greet the user
-        DukePrinter.print(Duke.GREETING_MESSAGE);
+        ui.print(Duke.GREETING_MESSAGE);
 
-        while (scanner.hasNextLine()) {
+        boolean isExit = false;
+
+        while (!isExit) {
             // Receive the command entered by the user
-            String inputLine = scanner.nextLine();
-            String[] input = inputLine.split(" ");
+            String fullCommand = ui.readCommand();
+            String[] input = fullCommand.split(" ");
             String command = input[0];
-            String arguments = inputLine.replaceFirst(command, "").strip();
+            String arguments = fullCommand.replaceFirst(command, "").strip();
 
             CommandType commandType;
             try {
                 commandType = CommandType.valueOf(command.toUpperCase());
             } catch (IllegalArgumentException e) {
-                DukePrinter.print(Duke.UNKNOWN_COMMAND_ERROR);
+                ui.print(Duke.UNKNOWN_COMMAND_ERROR);
                 continue;
             }
 
             DukeCommand dukeCommand = commandManager.get(commandType);
             try {
                 String status = dukeCommand.execute(taskManager, arguments);
-                DukePrinter.print(status);
+                ui.print(status);
             } catch (DukeException e) {
-                DukePrinter.print(e.getMessage());
+                ui.print(e.getMessage());
             }
 
-            if (commandManager.isTerminatingCommand(commandType)) {
-                break;
-            }
+            isExit = commandManager.isTerminatingCommand(commandType);
         }
 
-        scanner.close();
+        ui.close();
     }
 }
