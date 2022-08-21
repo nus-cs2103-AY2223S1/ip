@@ -1,9 +1,13 @@
 public class Event extends Task {
     String time;
 
-    public Event (TaskType type, String name, String time) {
-        super(type, name);
+    public Event (TaskType type, String name, boolean marked, String time) {
+        super(type, name, marked);
         this.time = time;
+    }
+
+    public String getTime() {
+        return time;
     }
 
     @Override

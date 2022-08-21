@@ -1,15 +1,24 @@
 public class Task {
-    private String name;
     private TaskType type;
+    private String name;
     private boolean marked = false;
 
-    public Task(TaskType type, String name) {
+    public Task(TaskType type, String name, boolean marked) {
         this.type = type;
         this.name = name;
+        this.marked = marked;
     }
 
-    public void getName() {
-        System.out.println(name);
+    public TaskType getTaskType() {
+        return type;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public boolean isMarked() {
+        return marked;
     }
 
     public void markT() {

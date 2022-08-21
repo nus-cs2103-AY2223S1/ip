@@ -1,3 +1,6 @@
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ExitCmd extends Command {
@@ -10,6 +13,5 @@ public class ExitCmd extends Command {
     public void execute (String str, ArrayList<Task> tasks) throws DukeException {
         String out = "Bye. Hope to see you again soon!";
         System.out.println(out);
-        System.exit(0);
     }
 }

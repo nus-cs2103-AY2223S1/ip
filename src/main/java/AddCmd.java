@@ -5,20 +5,23 @@ public class AddCmd extends Command {
     public AddCmd (String name){
         super(name);
     }
-    private static int cnt = 0;
+    private int cnt;
 
     @Override
     public void execute(String name, ArrayList<Task> tasks) throws DukeException {
+        cnt = tasks.size();
+
         Task newT;
         String str;
         String[] splitS;
+
         if (name.startsWith("todo")) {
             if (name.length() <= "todo ".length()) {
                 throw new DukeException("The description of a todo cannot be empty.");
             }
 
             str = name.substring("todo".length() + 1);
-            newT = new Todo(TaskType.TODO, str);
+            newT = new Todo(TaskType.TODO, str, false);
 
         } else if (name.startsWith("deadline")) {
             if (name.length() <= "deadline ".length()) {
@@ -36,7 +39,7 @@ public class AddCmd extends Command {
                 throw new DukeException("The deadline of a task cannot be empty.");
             }
 
-            newT = new Deadline(TaskType.DEADLINE, splitS[0], splitS[1]);
+            newT = new Deadline(TaskType.DEADLINE, splitS[0], false, splitS[1]);
 
         } else if (name.startsWith("event")) {
             if (name.length() <= "event ".length()) {
@@ -54,7 +57,7 @@ public class AddCmd extends Command {
                 throw new DukeException("The time of an event cannot be empty.");
             }
 
-            newT = new Event(TaskType.EVENT, splitS[0], splitS[1]);
+            newT = new Event(TaskType.EVENT, splitS[0], false, splitS[1]);
 
         } else {
             throw new DukeException("I'm sorry, but I don't know what that means :-(");

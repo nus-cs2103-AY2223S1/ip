@@ -1,7 +1,7 @@
 public class Todo extends Task {
 
-    public Todo (TaskType type, String name) {
-        super(type, name);
+    public Todo (TaskType type, String name, boolean marked) {
+        super(type, name, marked);
     }
 
     @Override

@@ -14,6 +14,7 @@ public class Echo {
         if (str.equals("bye")) {
             cmd = new ExitCmd(str);
             cmd.execute(str, tasks);
+            return;
         } else if (str.equals("list")) {
             cmd = new ListCmd(str);
             cmd.execute(str, tasks);
