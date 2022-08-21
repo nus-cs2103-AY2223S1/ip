@@ -1,7 +1,4 @@
 import java.io.IOException;
-import java.util.Scanner;
-import java.io.FileWriter;
-import java.io.File;
 
 /**
  * Represents a Duke class
@@ -12,15 +9,56 @@ import java.io.File;
 public class Duke {
 
     /**
-     * Represents a string representation of the greeting message.
+     * Represents a storage for texts.
      */
-    private final static String greeting_message = "Hello! I'm Duke\n" +
-            "     What can I do for you?";
+    private final Storage storage;
 
     /**
-     * Represents a string representation of the bye message.
+     * Represents a list of tasks.
      */
-    private final static String bye_message = "Bye. Hope to see you again soon!";
+    private final TaskManager taskManager;
+
+    /**
+     * Represents a User interface.
+     */
+    private final Ui ui;
+
+    /**
+     * Represents a constructor method for Duke class
+     * @param filepath
+     */
+    public Duke(String filepath) {
+        this.ui = new Ui();
+        this.storage = new Storage(filepath);
+        try {
+            this.taskManager = new TaskManager(storage.load());
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    /**
+     * Runs the duke program.
+     */
+    public void run() {
+        ui.showWelcome();
+        boolean isExit = false;
+        while (!isExit) {
+            try {
+                String fullCommand = ui.readCommand();
+                ui.showLine(); // show the divider line ("_______")
+                Command c = Parser.parse(fullCommand);
+                c.execute(taskManager, ui, storage);
+                isExit = c.isExit();
+            } catch (DukeException e) {
+                ui.showError(e.toString());
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                ui.showLine();
+            }
+        }
+    }
 
     /**
      * Main method.
@@ -29,46 +67,7 @@ public class Duke {
      */
     public static void main(String[] args) {
 
-        File dataFile = new File("data");
-        File txtFile = new File("data/duke.txt");
-        FileWriter fw = null;
-        try {
-            dataFile.mkdir();
-            txtFile.createNewFile();
-            fw = new FileWriter("data/duke.txt", false);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        new Duke("data/tasks.txt").run();
 
-        TaskManager manager = new TaskManager(100);
-
-        Scanner scan = new Scanner(System.in);
-        System.out.println(TaskManager.reply(greeting_message));
-        boolean conversation = true;
-
-        while (conversation) {
-            String response = scan.nextLine();
-
-            if (response.equals("bye")) {
-                System.out.println(TaskManager.reply(bye_message));
-                String message = manager.craftTextMessage();
-                try {
-                    fw.write(message);
-                    fw.close();
-                } catch (NullPointerException | IOException e) {
-                    e.printStackTrace();
-                }
-                conversation = false;
-            } else {
-                try {
-                    System.out.println(TaskManager.reply(manager.errorCheckerThanHandle(response)));
-
-                } catch (DukeException e) {
-                    System.out.println(TaskManager.reply(e.toString()));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
     }
 }
