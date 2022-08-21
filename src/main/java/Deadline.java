@@ -1,8 +1,10 @@
+import java.time.LocalDate;
+
 public class Deadline extends Task {
     /**
      * The due date or time of the Deadline instance.
      */
-    protected String by;
+    protected LocalDate by;
 
     /**
      * Constructor for a Deadline instance.
