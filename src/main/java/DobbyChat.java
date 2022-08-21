@@ -18,10 +18,6 @@ public class DobbyChat {
     public static void sayBye() {
         printChat(bye);
     }
-    //old added method when tasks were in string form
-    public static void added(String s) {
-        printChat("Dobby has added: " + s + " to the list");
-    }
     public static void marked(String s) {
         String marked = "Well done master! Dobby has marked the following task as done: \n\t";
         String toPrint = marked + s;
@@ -40,7 +36,7 @@ public class DobbyChat {
 
             String deleted = "Task deleted! Less work for master! Dobby is HAAAAAPPY!\n\n\t"
                     + "Dobby has removed this task: \n\t";
-            String length = "You now have " + (list.getLength() - 1) + " tasks in the list.\n";
+            String length = "\n\tYou now have " + (list.getLength() - 1) + " task(s) in the list.\n";
             printChat(deleted + taskString + length);
         }
     }
@@ -54,7 +50,7 @@ public class DobbyChat {
         String taskString = task.toString() + "\n\t";
 
         String accept = "Yes master, Dobby will add the following to the list: \n\t";
-        String length = "You now have " + list.getLength()+ " tasks left.\n";
+        String length = "\n\tYou now have " + list.getLength()+ " task(s) left.\n";
         printChat(accept + taskString + length);
     }
     public static void unknown() {
@@ -89,9 +85,6 @@ public class DobbyChat {
     }
     public static void allUnmarked() {
         printChat("All tasks unmarked, master!");
-    }
-    public static void noFileFound() {
-        printChat("Dobby can't find this file, master!");
     }
     public static void wrongTaskFormat() {
         printChat("Dobby doesn't understand what's written here..." );

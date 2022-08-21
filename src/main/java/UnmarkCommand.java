@@ -6,10 +6,10 @@ public class UnmarkCommand extends Command{
             if(toUnmark <= 0) {
                 DobbyChat.wrongTaskNumber();
             } else if(!(dl.getTask(toUnmark).isDone())) {
-                DobbyChat.alreadyMarked();
+                DobbyChat.alreadyUnmarked();
             } else {
-                dl.mark(toUnmark);
-                DobbyChat.marked(dl.getTaskString(toUnmark));
+                dl.unmark(toUnmark);
+                DobbyChat.unmarked(dl.getTaskString(toUnmark));
             }
         } catch(StringIndexOutOfBoundsException e) {
             DobbyChat.noTaskNumber();

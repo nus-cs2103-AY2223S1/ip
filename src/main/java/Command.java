@@ -1,7 +1,7 @@
 import java.io.IOException;
 
 public abstract class Command {
-    private boolean isBye;
+    protected boolean isBye;
 
     public boolean isBye() {
         return isBye;

@@ -11,16 +11,16 @@ public class DobbyIO {
         bw.write(dl.toPrint());
         bw.close();
     }
-    public static void load(DobbyList dl) throws FileNotFoundException{
+    public static void load(DobbyList dl, String filePath) throws FileNotFoundException{
         try {
-            BufferedReader br = new BufferedReader(new FileReader("./src/main/dobbyList.txt"));
+            BufferedReader br = new BufferedReader(new FileReader(filePath));
             String task;
             while ((task = br.readLine())!= null) {
-                dl.addTask(task);
+                if (!task.equals("")){
+                    dl.addTask(task);
+                }
             }
             br.close();
-        } catch (FileNotFoundException e) {
-            DobbyChat.noFileFound();
         } catch (IOException e) {
             e.printStackTrace();
         }

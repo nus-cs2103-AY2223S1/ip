@@ -5,32 +5,27 @@ public class UserInput {
 
     private String cmd;
     private String rest;
-    private int ind = -1;
-    private String desc = "";
-    private String date = "";
+    private int ind;
+    private String desc;
+    private String date;
 
-    private String readCommand() {
+    public String readCommand() {
         String input = scanner.nextLine();
-        cmd = Parser.getCmd(input);
-        rest = Parser.getRest(input);
-        updator();
-
-        return cmd;
-    }
-
-    private void updator() {
-        switch(cmd) {
-        case "mark":
-        case "unmark":
-        case "delete":
-            ind = Integer.parseInt(rest);
-        case "todo":
-            desc = rest;
-        case "event":
-        case "deadline":
-            desc = Parser.getDesc(rest);
-            date = Parser.getDate(rest);
+        if(!input.contains(" ")) {
+            cmd = input;
+        } else {
+            cmd = Parser.getCmd(input);
+            rest = Parser.getRest(input);
+            if(cmd.equals("mark") || cmd.equals("unmark") || cmd.equals("delete") ) {
+                ind = Integer.parseInt(rest);
+            } else if(cmd.equals("todo")) {
+                desc = rest;
+            } else if (cmd.equals("deadline") || cmd.equals("event")){
+                date = Parser.getDate(rest);
+                desc = Parser.getDesc(rest);
+            }
         }
+        return cmd;
     }
     public int getInd() {
         return ind;
