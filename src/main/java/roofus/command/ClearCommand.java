@@ -1,5 +1,8 @@
-import java.io.File;
-import java.io.FileNotFoundException;
+package roofus.command;
+
+import roofus.Storage;
+import roofus.TaskList;
+import roofus.Ui;
 
 public class ClearCommand extends Command {
 

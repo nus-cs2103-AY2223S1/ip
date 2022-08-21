@@ -1,3 +1,7 @@
+package roofus;
+
+import roofus.command.Command;
+
 import java.io.FileNotFoundException;
 
 public class Roofus {

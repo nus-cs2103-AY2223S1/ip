@@ -1,3 +1,10 @@
+package roofus;
+
+import roofus.task.Deadline;
+import roofus.task.Event;
+import roofus.task.Task;
+import roofus.task.ToDo;
+
 import java.util.List;
 import java.util.ArrayList;
 
@@ -33,15 +40,15 @@ public class TaskList {
         tasks.add(task);
     }
 
-    void mark(int index) {
+    public  void mark(int index) {
         tasks.get(index - 1).mark();
     }
 
-    void unMark(int index) {
+    public void unMark(int index) {
         tasks.get(index - 1).unmark();
     }
 
-    void delete(int index) {
+    public void delete(int index) {
         Task task = tasks.get(index - 1);
         tasks.remove(index - 1);
     }

@@ -1,3 +1,10 @@
+package roofus.command;
+
+import roofus.Storage;
+import roofus.TaskList;
+import roofus.Ui;
+import roofus.task.Deadline;
+
 public class DeadlineCommand extends Command {
     private Deadline task;
     

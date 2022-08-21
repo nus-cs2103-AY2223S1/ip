@@ -1,5 +1,7 @@
+package roofus;
+
 public class RoofusException extends Exception {
-    RoofusException(String errMessage) {
+    public RoofusException(String errMessage) {
         super(errMessage);
     }
 }

@@ -1,7 +1,14 @@
-public class EventCommand extends Command {
-    private Event task;
+package roofus.command;
+
+import roofus.Storage;
+import roofus.TaskList;
+import roofus.Ui;
+import roofus.task.ToDo;
+
+public class ToDoCommand extends Command {
+    private ToDo task;
     
-    public EventCommand(Event task) {
+    public ToDoCommand(ToDo task) {
         this.task = task;
     }
     
@@ -11,7 +18,7 @@ public class EventCommand extends Command {
         taskList.addTask(task);
         ui.addTask(task, taskList.length());
     }
-    
+
     @Override
     public boolean isRunning() {
         return true;

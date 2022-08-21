@@ -1,3 +1,10 @@
+package roofus.command;
+
+import roofus.RoofusException;
+import roofus.Storage;
+import roofus.TaskList;
+import roofus.Ui;
+
 public class UnmarkCommand extends Command {
     private int index;
 

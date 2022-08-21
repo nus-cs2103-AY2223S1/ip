@@ -1,3 +1,10 @@
+package roofus;
+
+import roofus.command.*;
+import roofus.task.Deadline;
+import roofus.task.Event;
+import roofus.task.ToDo;
+
 public class Parser {
     private enum CommandList {
         BYE, LIST, TODO, EVENT, DEADLINE,

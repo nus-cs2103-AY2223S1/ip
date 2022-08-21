@@ -1,3 +1,5 @@
+package roofus.task;
+
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -7,15 +9,15 @@ public class Task {
         this.isDone = false;
     }
 
-    void mark() {
+    public void mark() {
         isDone = true;;
     }
     
-    void setDone() {
+    public void setDone() {
         this.isDone = true;
     }
 
-    void unmark() {
+    public void unmark() {
         isDone = false;
     }
     
