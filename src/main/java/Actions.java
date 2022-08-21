@@ -1,4 +1,9 @@
-import java.util.*;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.io.File;  // Import the File class
+import java.io.IOException;  // Import the IOException class to handle errors
+import java.io.FileWriter;
 
 public class Actions { //actions that Duke does
 
@@ -40,12 +45,46 @@ public class Actions { //actions that Duke does
         }
     }
 
+    public static void createFile(File fileToCreate) {
+        try {
+            fileToCreate.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     /**
-     * The current chat bot functionality which takes in user input and reacts accordingly to the input.
+     * The current chatbot functionality which takes in user input and reacts accordingly to the input.
      */
     public static void toDoList() {
         ArrayList<Task> ls = new ArrayList<>();
-        String input = "";
+        File taskList = new File("./src/main/data/duke.txt");
+        try {
+            Scanner myReader = new Scanner(taskList);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                char key = data.charAt(1);
+                System.out.println(key);
+                String temp = data.substring(7);
+                if (key == 'T') { //todo
+                    Todo task = new Todo(temp);
+                    ls.add(task);
+                }
+                else if (key == 'D') { //deadline
+                    String parts[] = temp.split(" \\(by: ", 2);
+                    Deadline task = new Deadline(parts[0], parts[1].substring(0, parts[1].length() - 1)); //to handle the ) at the end
+                    ls.add(task);
+                }
+                else { //event
+                    String parts[] = temp.split(" \\(at: ", 2);
+                    Event task = new Event(parts[0], parts[1].substring(0, parts[1].length() - 1)); //to handle the ) at the end
+                    ls.add(task);
+                }
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            createFile(taskList);
+        }
+        String input;
         System.out.println("Hello! I'm Duke, what's up today?");
         Scanner sc = new Scanner(System.in);
         input = sc.nextLine();
@@ -64,17 +103,17 @@ public class Actions { //actions that Duke does
                 case "mark": //command is mark 2
                     Task currTask = ls.get(Integer.parseInt(parts[1]) - 1); //the arraylist is 0 indexed, so task 1 is actually 0 index
                     currTask.setDone();
-                    System.out.println("Let's go! I've marked this task as done: ");
+                    System.out.println("Let's go! I've marked this task as done:");
                     System.out.println(currTask);
                     break;
                 case "unmark":
                     Task unmarkTask = ls.get(Integer.parseInt(parts[1]) - 1); //the arraylist is 0 indexed, so task 1 is actually 0 index
                     unmarkTask.setUndone();
-                    System.out.println("Oh man! I've marked this task as undone: ");
+                    System.out.println("Oh man! I've marked this task as undone:");
                     System.out.println(unmarkTask);
                     break;
                 case "deadline": //can abstract this whole case to be generalized
-                    String[] temp = input.split("/by", 2);
+                    String[] temp = input.split(" /by ", 2);
                     String by = temp[1];
                     String deadlineDesc = temp[0].split("deadline ")[1];
                     Deadline deadlineTask = new Deadline(deadlineDesc, by);
@@ -83,9 +122,9 @@ public class Actions { //actions that Duke does
                     taskNumberMessage(ls);
                     break;
                 case "event": //can abstract this whole case to be generalized
-                    String[] temp1 = input.split("/at ", 2);
+                    String[] temp1 = input.split(" /at ", 2);
                     String at = temp1[1];
-                    String eventDesc = temp1[0].split("event ")[1];
+                    String eventDesc = temp1[0].split("event ", 2)[1];
                     Event eventTask = new Event(eventDesc, at);
                     ls.add(eventTask);
                     eventTask.addTaskMessage();
@@ -109,12 +148,25 @@ public class Actions { //actions that Duke does
                     ls.add(curr);
                     System.out.println("added: " + input);
             }
-        } catch (EmptyDescriptionException e) {
+
+            FileWriter myWriter = new FileWriter("./src/main/data/duke.txt");
+            for (Task curr: ls) {
+                System.out.println("writing");
+                myWriter.write(curr.toString());
+                myWriter.write("\n");
+            }
+            myWriter.close();
+            } catch (EmptyDescriptionException e) {
                 System.out.println("Description cannot be empty, try again!");
             } catch (InvalidCommandException | IndexOutOfBoundsException e) {
                 System.out.println("Invalid input, try again!");
             }
-            input = sc.nextLine(); //gets input again before checking while condition
+
+            catch (IOException e){
+                System.out.println("Cannot write to file!");
+            }
+            input = sc.nextLine();
+
         } //end of while loop, means input is bye
         System.out.println("See ya! Come again~"); //end of bot
     }
