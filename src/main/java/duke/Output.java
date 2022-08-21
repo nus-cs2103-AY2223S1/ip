@@ -8,14 +8,14 @@ import java.time.LocalDateTime;
  * Enum for the various different outputs that the Chat-bot can give.
  */
 public enum Output{
-  GREETINGS (" ____        _        \n\t "
+  GREETINGS(" ____        _        \n\t "
           + "|  _ \\ _   _| | _____ \n\t "
           + "| | | | | | | |/ / _ \\\n\t "
           + "| |_| | |_| |   <  __/\n\t "
           + "|____/ \\__,_|_|\\_\\___|\n\n\t "
           + "Hello! I'm Duke\n\t "
           + "What can I do for you?\n"),
-  GOODBYE ("Bye. Hope to see you again soon!\n"),
+  GOODBYE("Bye. Hope to see you again soon!\n"),
   LIST("Here are the task(s) in your list:\n"),
   MARK("Nice! I've marked this task as done:\n"),
   UNMARK("OK, I've marked this task as not done yet:\n"),
@@ -23,7 +23,8 @@ public enum Output{
   DELETE("Noted. I've removed this task:\n"),
   SAVE("Saving...\n"),
   LOAD("Loading...\n"),
-  DATE("These tasks matches the date:\n");
+  DATE("These tasks matches the date:\n"),
+  FIND("Here are the matching tasks in your list:\n");
 
   private String output = "";
 
@@ -84,7 +85,15 @@ public enum Output{
   public void listMatches(StorageList list, LocalDateTime date) {
     echo(this.output + list.toString(date));
   }
-
+  
+  /**
+   * Prints the String representation of the list of tasks that matches the specified regex
+   * @param list List of tasks to be printed
+   * @param regex Regular expression to be matched
+   */
+  public void listMatches(StorageList list, String regex) {
+    echo(this.output + list.toString(regex));
+  }
   /**
    * Prints the specified output format.
    * @param s String to be printed out
