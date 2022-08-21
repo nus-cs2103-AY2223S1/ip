@@ -47,7 +47,7 @@ public class TaskList {
         String command = splitInputArray[0];
         boolean isToDo = command.equals("todo");
         if (splitInputArray.length < 2) {
-            throw new DukeException("Please provide a task description" + (isToDo ? "!" : " and a date / time!"));
+            throw new DukeException("Please provide a task description" + (isToDo ? "!" : " and a date!"));
         }
 
         Task task;
@@ -59,10 +59,10 @@ public class TaskList {
             int pos = details.indexOf(isDeadline ? " /by " : " /at ");
             if (pos > 0 && details.length() > pos + 5) {
                 String description = details.substring(0, pos);
-                String when = details.substring(pos + 5);
-                task = isDeadline ? new Deadline(description, when) : new Event(description, when);
+                String date = details.substring(pos + 5);
+                task = isDeadline ? new Deadline(description, date) : new Event(description, date);
             } else {
-                throw new DukeException("Please provide a task description and a date / time!");
+                throw new DukeException("Please provide a task description and date!");
             }
         }
         tasks.add(task);
