@@ -11,18 +11,25 @@ public class Task {
         return isDone ? "X" : " ";
     }
 
-    public void setDone(boolean status) {
-        if (this.isDone == true && status == true) {
+    public void mark() {
+        if (this.isDone) {
             System.out.println("  You can't finish the same task twice, genius.");
-        } else if (this.isDone == false && status == false) {
+        } else {
+            System.out.println("  You really took your time with this one, didn't you?");
+            this.isDone = true;
+        }
+        System.out.println("    " + this);
+    }
+
+    public void unmark() {
+        if (!this.isDone) {
             System.out.println("  You're trying to unmark a task you haven't done.\n"
                     + "  Let that sink in for a moment.");
-        } else if (status) {
-            System.out.println("  You really took your time with this one, didn't you?");
         } else {
             System.out.println("  And here I was thinking you were getting somewhere...");
+            this.isDone = false;
         }
-        this.isDone = status;
+        System.out.println("    " + this);
     }
 
     @Override
