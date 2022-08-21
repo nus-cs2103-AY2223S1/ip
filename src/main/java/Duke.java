@@ -32,7 +32,7 @@ public class Duke {
     }
 
     /**
-     * use todo, event, deadlines
+     * use todo, event, deadlines for list
      *
      * @param tasks
      * @param str
