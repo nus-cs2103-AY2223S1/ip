@@ -39,9 +39,9 @@ public class Deku {
     private String parseReply(String input) {
         String reply = input;
         List<String> separate = new LinkedList<>(Arrays.asList(input.split("\\s+")));
-        Optional<KeyPhrases> keyPhrase = KeyPhrases.get(separate.remove(0));
+        KeyPhrases keyPhrase = KeyPhrases.get(separate.remove(0));
         try {
-            switch (keyPhrase.get()) {
+            switch (keyPhrase) {
                 case BYE:
                     reply = "Bye! Until next time!";
                     break;
@@ -66,7 +66,6 @@ public class Deku {
                 case TODO:
                     reply = this.botList.add(new ToDo(separate));
                     break;
-
                 default:
                     throw new DekuExceptions("I have no idea what that means. (T _ T)");
             }

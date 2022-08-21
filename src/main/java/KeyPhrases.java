@@ -8,7 +8,8 @@ public enum KeyPhrases {
     DELETE("delete"),
     DEADLINE("deadline"),
     EVENT("event"),
-    TODO("todo");
+    TODO("todo"),
+    OTHERS("");
 
     private String commandPhrase;
 
@@ -16,9 +17,12 @@ public enum KeyPhrases {
         this.commandPhrase = commandPhrase;
     }
 
-    public static Optional<KeyPhrases> get(String commandPhrase) {
-        return Arrays.stream(KeyPhrases.values())
-                .filter(phrase -> phrase.commandPhrase.equals(commandPhrase))
-                .findFirst();
+    public static KeyPhrases get(String commandPhrase) {
+        for (KeyPhrases phrase: KeyPhrases.values()) {
+            if (phrase.commandPhrase.equals(commandPhrase)) {
+                return phrase;
+            }
+        }
+        return OTHERS;
     }
 }
