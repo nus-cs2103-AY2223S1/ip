@@ -1,3 +1,9 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -108,6 +114,19 @@ public class Duke {
                         break;
                     }
                 }
+                Path filePath = Paths.get("data" + File.separator + "duke.txt");
+                Path dirPath = Paths.get("data");
+
+                if (!Files.exists(dirPath)) {
+                    Files.createDirectory(dirPath);
+                    System.out.println("Creating new directory 'data' to store data...");
+                }
+                if (!Files.exists(filePath)) {
+                    Files.createFile(filePath);
+                    System.out.println("Creating new file 'duke.txt' to store data...");
+                }
+                System.out.println("Saving...");
+                writeEventsToFile(filePath.toString(), userData);
                 System.out.println("-----------------------------------");
             } catch (UnknownCommandException err) {
                 System.out.println(err);
@@ -115,12 +134,19 @@ public class Duke {
             } catch (MissingDescriptionException err) {
                 System.out.println(err);
                 System.out.println("-----------------------------------");
+            } catch (IOException err) {
+                System.out.printf("Error writing to file: %s\n", err);
             }
         }
     }
 
     /**
-     * Splits an array into subarrays at a given delimiter, and concatenates the substrings
+     * Splits an array into subarrays at a given delimiter, and concatenates the substrings.
+     *
+     * For example, given ['a', 'b', '\n', 'c', 'd'], with the delimiter specified to be '\n',
+     * the function splits the array at '\n' and concatenates the split subarrays to return
+     * ['ab', 'cd']
+     *
      * @param arr Array of strings to be split
      * @param delimiter Array is split into two subarrays at the delimiter,
      *                  and each subarray's elements are concatenated with a " " between each element
@@ -130,12 +156,12 @@ public class Duke {
         StringBuilder builder = new StringBuilder();
         List<String> res = new ArrayList<>();
 
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i].equalsIgnoreCase(delimiter)) {
+        for (String s : arr) {
+            if (s.equalsIgnoreCase(delimiter)) {
                 res.add(builder.toString().trim());
                 builder = new StringBuilder();
             } else {
-                builder.append(arr[i]).append(" ");
+                builder.append(s).append(" ");
             }
         }
         res.add(builder.toString().trim());
@@ -149,5 +175,22 @@ public class Duke {
             }
         }
         return false;
+    }
+
+    /**
+     * Given a list of events, write to an external .txt file with a specified format.
+     *
+     * This function overwrites the specified file everytime it is called.
+     *
+     * @param path The path to the specified .txt file
+     * @param taskList The list of tasks to be written to the .txt file
+     * @throws IOException
+     */
+    public static void writeEventsToFile(String path, List<Task> taskList) throws IOException {
+        FileWriter fw = new FileWriter(path);
+        for (Task task : taskList) {
+            fw.write(task.toString() + "\n");
+        }
+        fw.close();
     }
 }
