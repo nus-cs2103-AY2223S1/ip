@@ -1,6 +1,7 @@
 import exceptions.HazellException;
 import exceptions.UnknownCommand;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Hazell {
@@ -22,7 +23,14 @@ public class Hazell {
                 + " |_|  |_|\\__,_/___\\___|_|_|\n";
         System.out.println(logo);
 
-        TaskStore taskStore = new TaskStore();
+        TaskStore taskStore;
+        try {
+            taskStore = TaskStore.createFromFile();
+        } catch (IOException e) {
+            taskStore = new TaskStore();
+            reply("Looks like this is the first time you started me up."
+                    + "I'll be saving your tasks to data/hazell.txt!");
+        }
 
         reply("Hello, I am Hazell!\nWhat can I do for you?");
         Scanner scanner = new Scanner(System.in);
@@ -37,28 +45,25 @@ public class Hazell {
                     reply(String.format("Here are the tasks in your list:\n%s", taskStore.toString()));
                 } else if (command.startsWith("mark")) {
                     int index = Integer.parseInt(command.getTrailingArgs().get(0)) - 1;
-                    Task task = taskStore.getTask(index);
-                    task.markAsDone();
-                    reply(String.format("Nice! I've marked this task as done:\n\t%s", task.toString()));
+                    String response = taskStore.markTaskAsDone(index);
+                    reply(response);
                 } else if (command.startsWith("unmark")) {
                     int index = Integer.parseInt(command.getTrailingArgs().get(0)) - 1;
-                    Task task = taskStore.getTask(index);
-                    task.markAsUndone();
-                    reply(String.format("OK, I've marked this task as not done yet:\n\t%s", task.toString()));
+                    String response = taskStore.markTaskAsUndone(index);
+                    reply(response);
                 } else if (command.startsWith("todo")) {
                     String description = String.join(" ", command.getTrailingArgs());
-                    new ToDo(description);
-                    String response = taskStore.addTask(new ToDo(description));
+                    String response = taskStore.addTask(ToDo.create(description));
                     reply(response);
                 } else if (command.startsWith("deadline")) {
                     String description = String.join(" ", command.getTrailingArgs());
                     String time = command.getKwarg("by");
-                    String response = taskStore.addTask(new Deadline(description, time));
+                    String response = taskStore.addTask(Deadline.create(description, time));
                     reply(response);
                 } else if (command.startsWith("event")) {
                     String description = String.join(" ", command.getTrailingArgs());
                     String time = command.getKwarg("at");
-                    String response = taskStore.addTask(new Event(description, time));
+                    String response = taskStore.addTask(Event.create(description, time));
                     reply(response);
                 } else if (command.startsWith("delete")) {
                     int index = Integer.parseInt(command.getTrailingArgs().get(0)) - 1;
