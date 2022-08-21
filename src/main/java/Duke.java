@@ -48,11 +48,11 @@ public class Duke extends Chatbot {
                         break;
                 }
 
-                duke.echo("added the task:" +
+                duke.echo("Added task:" +
                         duke.tasks.getLast().printTask());
             } else {
                 duke.tasks.add(new Task(action));
-                duke.echo(String.format("added: %s", action));
+                duke.echo(String.format("Added: %s", action));
             }
         }
     }
