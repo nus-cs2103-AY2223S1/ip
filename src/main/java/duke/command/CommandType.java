@@ -15,4 +15,5 @@ public enum CommandType {
     EVENT,
     LOAD,
     SAVE,
+    FIND,
 }

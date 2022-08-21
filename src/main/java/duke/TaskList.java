@@ -138,4 +138,17 @@ public class TaskList {
     public void unMarkItem(int index) {
         data.get(index).markAsNotDone();
     }
+
+    /**
+     * Finds and prints tasks which contain the specified keyword.
+     *
+     * @param keyword keyword to search for.
+     */
+    public void find(String keyword) {
+        for (Task task : data) {
+            if (task.getDescription().contains(keyword)) {
+                System.out.println(task);
+            }
+        }
+    }
 }

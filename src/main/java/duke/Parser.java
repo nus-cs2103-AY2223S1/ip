@@ -6,6 +6,7 @@ import duke.command.AddTodoCommand;
 import duke.command.ByeCommand;
 import duke.command.Command;
 import duke.command.DeleteCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkItemCommand;
 import duke.command.UnMarkItemCommand;
@@ -48,6 +49,8 @@ public class Parser {
                 return new DeleteCommand(Integer.parseInt(inputs[1]));
             } else if (inputs[0].equals("list")) {
                 return new ListCommand(true, LocalDate.parse(inputs[1]));
+            } else if (inputs[0].equals("find")) {
+                return new FindCommand(inputs);
             }
         } else {
             switch (inputs[0]) {

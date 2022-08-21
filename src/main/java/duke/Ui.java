@@ -134,4 +134,11 @@ public class Ui {
     public void showError(String message) {
         System.out.printf("Seems like something went wrong\n%s", message);
     }
+
+    /**
+     * Prints entry message for finding tasks.
+     */
+    public void printFindMessage() {
+        System.out.println("Here are the matching tasks in your list:");
+    }
 }
