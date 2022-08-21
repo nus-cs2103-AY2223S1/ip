@@ -46,6 +46,13 @@ abstract public class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
+    /**
+     * Returns a serializable format of the task
+     *
+     * @return Serializable format of the task
+     */
+    abstract public Serializable serialize();
+
     public String toString() {
         return String.format("[%s] [%s] %s", this.getTaskTypeIcon(), this.getStatusIcon(), this.description);
     }

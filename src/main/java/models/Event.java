@@ -8,6 +8,7 @@ package models;
  */
 
 public class Event extends Task {
+    private static final TaskType taskType = TaskType.EVENT;
     protected String datetime;
 
     public Event(String description, String datetime) {
@@ -17,7 +18,14 @@ public class Event extends Task {
 
     @Override
     public String getTaskTypeIcon() {
-        return TaskType.EVENT.toString();
+        return Event.taskType.toString();
+    }
+
+    @Override
+    public Serializable serialize() {
+        String isDone = super.isDone ? "1" : "0";
+        String[] data = {Event.taskType.toString(), isDone, super.description, this.datetime};
+        return new Serializable(data);
     }
 
     @Override
