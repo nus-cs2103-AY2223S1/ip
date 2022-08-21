@@ -1,0 +1,4 @@
+T > 0 > todo borrow book
+T > 0 > todo borrow book
+D > 0 > deadline return book > Sunday
+E > 0 > event project meeting > Mon 2-4pm

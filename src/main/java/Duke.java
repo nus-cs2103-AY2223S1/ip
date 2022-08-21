@@ -8,6 +8,8 @@ public class Duke {
     private static String[] segments;
     private static ArrayList<Task> tasks = new ArrayList<Task>();
 
+    private static SaveFile saveFile = new SaveFile();
+
     public static void printMessage(String message) {
         System.out.println(LINE + message + LINE);
     }
@@ -47,7 +49,7 @@ public class Duke {
 
     }
 
-    public static void createOtherTask(ArrayList<Task> tasks, String input, String keyword, String description) {
+    public static void createOtherTask(ArrayList<Task> tasks, String input, String keyword, String description) throws DukeException {
         Task t;
         if (keyword.equals("deadline")) {
             description = description.replace("by ", "");
@@ -59,13 +61,15 @@ public class Duke {
         }
         tasks.add(t);
         printMessage("Got it. I've added this task:\n" + t + "\nNow you have " + tasks.size() + " tasks in the list.\n");
+        saveFile.writeFile(tasks);
     }
 
-    public static void createTodoTask(ArrayList<Task> tasks, String input) {
+    public static void createTodoTask(ArrayList<Task> tasks, String input) throws DukeException {
         Task t;
         t = new Todo(input);
         tasks.add(t);
         printMessage("Got it. I've added this task:\n" + t + "\nNow you have " + tasks.size() + " tasks in the list.\n");
+        saveFile.writeFile(tasks);
     }
 
     public static void deleteTask(ArrayList<Task> tasks, String description) throws DukeException {
@@ -74,12 +78,14 @@ public class Duke {
             Task t = tasks.get(index - 1);
             tasks.remove(t);
             printMessage("Noted. I've removed this task: \n" + t + "\nNow you have " + tasks.size() + " tasks in the list.\n");
+            saveFile.writeFile(tasks);
         }
         else
             throw new NoSuchTaskException();
     }
 
     public static void main(String[] args) {
+        saveFile.readFile(tasks);
         String input;
         Scanner sc= new Scanner(System.in);
         printMessage("Hello! I'm " + NAME + "\nWhat can I do for you?\n");
