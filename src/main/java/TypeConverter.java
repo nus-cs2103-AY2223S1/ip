@@ -1,3 +1,6 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 /**
  * Utility class to manage type conversions required in all Duke classes
  */
@@ -9,10 +12,10 @@ public class TypeConverter {
      * @return Task object.
      */
     public static Task fileLineToTask(String line) throws DukeException{
-        String taskType, description, date;
-        boolean marked = false;
+        String taskType, description;
+        boolean marked;
         taskType = line.substring(1,2);
-        marked =  line.substring(4, 5).equals(" ");
+        marked =  line.charAt(4) == ' ';
         switch(taskType) {
         case "T":
             description = line.substring(6);
@@ -23,16 +26,14 @@ public class TypeConverter {
             return t;
         case "D":
             description = line.substring(6, line.indexOf("("));
-            date = line.substring(line.indexOf("("));
-            Deadline d = new Deadline(description, date);
+            Deadline d = new Deadline(description, getDateFromStorage(line, "by: "));
             if (marked) {
                 d.markAsDone();
             }
             return d;
         case "E":
             description = line.substring(6, line.indexOf("("));
-            date = line.substring(line.indexOf("("));
-            Event e = new Event(description, date);
+            Event e = new Event(description, getDateFromStorage(line, "at: "));
             if (marked) {
                 e.markAsDone();
             }
@@ -50,15 +51,16 @@ public class TypeConverter {
      */
     public static Task stringToTask(String str) throws DukeException{
         Duke.CommandType command = getCommand(str);
-        String description = getDescription(str, command.toString().toLowerCase()), date;
+        String description = getDescription(str, command.toString().toLowerCase());
+        LocalDate date;
         switch (command) {
         case TODO:
             return new Task(description);
         case DEADLINE:
-            date = getDate(str);
+            date = getDateFromUserInput(str);
             return new Deadline(description, date);
         case EVENT:
-            date = getDate(str);
+            date = getDateFromUserInput(str);
             return new Event(description, date);
         }
         throw new DukeException("Cannot create task object");
@@ -72,9 +74,8 @@ public class TypeConverter {
      */
     public static Deadline stringToDeadline(String str) throws DukeException{
         Duke.CommandType command = getCommand(str);
-        String description = getDescription(str, command.toString().toLowerCase()), date;
-            date = getDate(str);
-            return new Deadline(description, date);
+        String description = getDescription(str, command.toString().toLowerCase());
+        return new Deadline(description, getDateFromUserInput(str));
     }
 
     /**
@@ -85,9 +86,8 @@ public class TypeConverter {
      */
     public static Event stringToEvent(String str) throws DukeException{
         Duke.CommandType command = getCommand(str);
-        String description = getDescription(str, command.toString().toLowerCase()), date;
-            date = getDate(str);
-            return new Event(description, date);
+        String description = getDescription(str, command.toString().toLowerCase());
+        return new Event(description, getDateFromUserInput(str));
     }
 
 
@@ -143,24 +143,42 @@ public class TypeConverter {
     }
 
     /**
-     * Grabs date from string which is expected to have format:
-     * ... /<at/by> <date in HH:MM DD:MM:YYYY>.
+     * Grabs date from user input string which is expected to have format:
+     * ... /<at/by> <date in YYYY-MM-DD>.
      * @param command is the string to extract date from.
      * @return <date> component of command.
      * @throws DukeException when date format is not followed or date is empty.
      */
-    private static String getDate(String command) throws DukeException{
-        String date = "";
-        int startDateIndex = command.indexOf("/") + 3;
-        if (startDateIndex < 0) {
-            throw new DukeException("Command does not follow pattern ... /<at/by> <date in HH:MM DD:MM:YYYY>\n>>");
-        } else {
-            date = command.substring(startDateIndex).trim();
+    private static LocalDate getDateFromUserInput(String command) throws DukeException{
+        try {
+            String date = "";
+            int startDateIndex = command.indexOf("/") + 3;
+            if (startDateIndex < 0) {
+                throw new DukeException("Command does not follow pattern ... /<at/by> <YYYY-MM-DD>\n>>");
+            } else {
+                date = command.substring(startDateIndex).trim();
+                if (date.equals("")) {
+                    throw new DukeException("Empty date field\n>>");
+                }
+                return LocalDate.parse(date);
+            }
+        } catch (DateTimeParseException dtpe) {
+            throw new DukeException("Date is not valid");
         }
-        if (date.equals("")) {
-            throw new DukeException("Empty date field\n>>");
+    }
+
+    public static LocalDate getDateFromStorage(String line, String compareString) throws DukeException, DateTimeParseException {
+        try {
+            String date = "";
+            int NUM_CHARACTERS_TO_CHECK = compareString.length();
+            int DATE_LENGTH = 10;
+            int startOfDateIndex = line.indexOf(compareString) + NUM_CHARACTERS_TO_CHECK;
+            date = line.substring(startOfDateIndex, startOfDateIndex + DATE_LENGTH).trim();
+            System.out.println(date);
+            return LocalDate.parse(date);
+        } catch (DateTimeParseException dtpe) {
+            throw new DukeException("Date in storage is invalid\n>>");
         }
-        return date;
     }
 
     /**
@@ -172,7 +190,6 @@ public class TypeConverter {
     public static Duke.CommandType getCommand(String userInput) throws DukeException{
         int firstWhiteSpace = userInput.trim().indexOf(" ");
         String command;
-        Duke.CommandType commandGiven;
         command = firstWhiteSpace < 0 ? userInput: userInput.trim().substring(0, firstWhiteSpace);
         if (command.equals("")) {
             throw new DukeException("no command given\n>>");

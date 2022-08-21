@@ -63,6 +63,7 @@ public class Duke {
             case EVENT:
                 Event e = TypeConverter.stringToEvent(userInput);
                 dukeToStorage.addEventToHistory(e);
+                break;
             case DEADLINE:
                 Deadline d = TypeConverter.stringToDeadline(userInput);
                 dukeToStorage.addDeadlineToHistory(d);
@@ -82,8 +83,6 @@ public class Duke {
 
         }
     }
-
-
 
     public static void main(String[] args) {
         Duke dukeProgram = new Duke();

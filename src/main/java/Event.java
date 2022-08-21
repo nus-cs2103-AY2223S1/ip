@@ -1,10 +1,12 @@
+import java.time.LocalDate;
+
 /**
  * Event class has a date field.
  */
 public class Event extends Task{
-    protected String date;
+    protected LocalDate date;
 
-    public Event(String description, String date) {
+    public Event(String description, LocalDate date) {
         super(description);
         this.date = date;
     }
