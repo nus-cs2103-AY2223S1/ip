@@ -20,7 +20,7 @@ ____________________
 ____________________
 
 Got it. I've added this deadline:
-  [D][ ] return book (by: Sunday)
+  [D][ ] return book (by: Jan 15 2020)
 Now you have 2 tasks in your list
 ____________________
 
@@ -33,9 +33,7 @@ ____________________
 
 ____________________
 
-Got it. I've added this deadline:
-  [D][ ] do homework (by: no idea :-p)
-Now you have 4 tasks in your list
+☹ OOPS!!! no idea :-p does not match the required dd/MM/yyyy HH:mm format
 ____________________
 
 ____________________
@@ -47,7 +45,7 @@ ____________________
 ____________________
 
 Nice! I've marked this task as done:
-  [D][X] return book (by: Sunday)
+  [D][X] return book (by: Jan 15 2020)
 ____________________
 
 ____________________
@@ -71,14 +69,14 @@ ____________________
 
 Noted. I've removed this task:
   [E][X] project meeting (at: Mon 2-4pm)
-Now you have 3 tasks in your list
+Now you have 2 tasks in your list
 ____________________
 
 ____________________
 
 Noted. I've removed this task:
-  [D][X] return book (by: Sunday)
-Now you have 2 tasks in your list
+  [D][X] return book (by: Jan 15 2020)
+Now you have 1 tasks in your list
 ____________________
 
 ____________________
@@ -90,7 +88,6 @@ ____________________
 
 Here are the tasks in your list:
 1. [T][ ] borrow book
-2. [D][ ] do homework (by: no idea :-p)
 
 ____________________
 
