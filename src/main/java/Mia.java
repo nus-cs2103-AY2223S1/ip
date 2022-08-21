@@ -1,4 +1,3 @@
-import java.util.Scanner;
 
 public class Mia {
     private static final TaskManager tasksManager = new TaskManager();
@@ -11,11 +10,9 @@ public class Mia {
         final ChatWindow window = new ChatWindow(50);
 
         window.printResponse(new Span("Hello there!"));
-        final Scanner sc = new Scanner(System.in);
 
-        System.out.print("Enter a command: ");
-        while (sc.hasNextLine()) {
-            final String line = sc.nextLine().strip();
+        while (true) {
+            final String line = window.prompt("Enter a command: ");
 
             // Replaces the entered command (previous line) with a bubble
             System.out.print("\u001B[1A\u001B[K");
@@ -26,7 +23,6 @@ public class Mia {
                 break;
             } else if (line.equals("list")) {
                 window.printResponse(new Span(tasksManager.toString()));
-                System.out.print("Enter a command: ");
                 continue;
             } else if (line.startsWith("delete ")) {
                 final int number = Integer.parseInt(line.substring(7));
@@ -37,7 +33,6 @@ public class Mia {
                             "Something went wrong when deleting task %d! Likely, you specified an invalid task number.",
                             number)));
                 }
-                System.out.print("Enter a command: ");
                 continue;
             } else if (line.startsWith("mark ")) {
                 final int number = Integer.parseInt(line.substring(5));
@@ -48,7 +43,6 @@ public class Mia {
                             "Task not modified! Either the task is already done, or you specified an invalid task number %d.",
                             number)));
                 }
-                System.out.print("Enter a command: ");
                 continue;
             } else if (line.startsWith("unmark ")) {
                 final int number = Integer.parseInt(line.substring(7));
@@ -59,7 +53,6 @@ public class Mia {
                             "Task not modified! Either the task is still not done, or you specified an invalid task number %d.",
                             number)));
                 }
-                System.out.print("Enter a command: ");
                 continue;
             } else if (line.startsWith("todo ")) {
                 final Task todo = new Todo(line.substring(5));
@@ -88,9 +81,8 @@ public class Mia {
                 continue;
             }
             window.printResponse(new Span("Sorry boss, I don't know what you are trying to say 😟"));
-            System.out.print("Enter a command: ");
         }
-        sc.close();
+        window.dispose();
     }
 
 }

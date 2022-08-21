@@ -1,10 +1,22 @@
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class ChatWindow {
     private final int windowWidth;
+    private final Scanner sc;
 
     public ChatWindow(int windowWidth) {
         this.windowWidth = windowWidth;
+        sc = new Scanner(System.in);
+    }
+
+    public void dispose() {
+        sc.close();
+    }
+
+    public String prompt(String helperText) {
+        System.out.print(helperText);
+        return sc.nextLine().strip();
     }
 
     private static Text[] breakLines(Text data) {
