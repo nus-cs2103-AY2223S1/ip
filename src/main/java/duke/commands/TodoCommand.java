@@ -20,7 +20,7 @@ public class TodoCommand extends Command {
      */
     public TodoCommand(String arguments) throws DukeException {
         if (arguments.length() < 1) {
-            throw Todo.emptyDescription;
+            throw Todo.EMPTY_DESCRIPTION;
         }
 
         this.todo = new Todo(arguments);

@@ -8,7 +8,7 @@ import duke.exceptions.DukeException;
  */
 public class Todo extends Task {
     /** Exception due to empty todo description. */
-    public final static DukeException emptyDescription = new DukeException("Description of Todo cannot be empty!");
+    public static final DukeException EMPTY_DESCRIPTION = new DukeException("Description of Todo cannot be empty!");
 
     /**
      * Constructor for a Todo that takes in description.

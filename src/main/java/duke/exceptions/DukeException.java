@@ -5,11 +5,11 @@ package duke.exceptions;
  */
 public class DukeException extends Exception {
     /** Exception due to an invalid index. */
-    public final static DukeException invalidIndex = new DukeException("Invalid index!");
+    public static final DukeException INVALID_INDEX = new DukeException("Invalid index!");
     /** Exception due to an invalid date. */
-    public final static DukeException invalidDate = new DukeException("Invalid date!");
+    public static final DukeException INVALID_DATE = new DukeException("Invalid date!");
     /** Exception due to bad tasks data. */
-    public final static DukeException badData = new DukeException("Bad tasks data!");
+    public static final DukeException BAD_DATA = new DukeException("Bad tasks data!");
 
     /**
      * Constructor for a Duke Exception that takes in a message.

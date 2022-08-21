@@ -31,7 +31,7 @@ public class DeleteCommand extends Command {
     public CommandResult execute() throws DukeException {
         // Check if index is out of bounds.
         if (this.index <= 0 || this.index > this.tasks.size()) {
-            throw DukeException.invalidIndex;
+            throw DukeException.INVALID_INDEX;
         }
         // Subtract 1 to account for 0-index data structure.
         Task task = this.tasks.getTask(this.index - 1);

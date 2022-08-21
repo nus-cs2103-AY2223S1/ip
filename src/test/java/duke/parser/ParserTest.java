@@ -1,20 +1,21 @@
 package duke.parser;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
 import duke.commands.Command;
+import duke.commands.DeadlineCommand;
+import duke.commands.DeleteCommand;
+import duke.commands.EventCommand;
 import duke.commands.ExitCommand;
 import duke.commands.ListCommand;
 import duke.commands.MarkCommand;
-import duke.commands.UnmarkCommand;
-import duke.commands.DeleteCommand;
 import duke.commands.TodoCommand;
-import duke.commands.DeadlineCommand;
-import duke.commands.EventCommand;
+import duke.commands.UnmarkCommand;
 import duke.exceptions.DukeException;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ParserTest {
     @Test

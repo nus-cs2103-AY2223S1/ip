@@ -50,7 +50,7 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        String doneIcon = this.isDone ? "X" : " " ;
+        String doneIcon = this.isDone ? "X" : " ";
         return String.format("[%s] %s", doneIcon, this.description);
     }
 }

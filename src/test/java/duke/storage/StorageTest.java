@@ -1,9 +1,10 @@
 package duke.storage;
 
-import duke.task.TaskList;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import duke.task.TaskList;
 
 public class StorageTest {
     private static final String directoryPath = "data";
