@@ -5,6 +5,10 @@ public abstract class Task {
     protected String description;
     protected boolean isDone;
 
+    /**
+     * Abstract constructor for Task
+     * @param description Description for Task
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;

@@ -2,6 +2,10 @@
  * @author Silas Tay A0233425M
  */
 public class Todo extends Task {
+    /**
+     * Constructor for Todo task.
+     * @param description Description for todo
+     */
     public Todo(String description) {
         super(description);
     }
