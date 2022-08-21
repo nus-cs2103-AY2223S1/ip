@@ -15,10 +15,20 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
+/**
+ * Represents a storage in the Duke application.
+ * Responsible for loading and saving tasks to the file system.
+ */
 public class Storage {
     private final String directoryPath;
     private final String filePath;
 
+    /**
+     * Constructor for a storage that takes in directory path and file path of the storage.
+     *
+     * @param directoryPath Directory path that the storage file is located in.
+     * @param filePath      File path of the storage file.
+     */
     public Storage(String directoryPath, String filePath) {
         this.directoryPath = directoryPath;
         this.filePath = filePath;
@@ -28,6 +38,7 @@ public class Storage {
      * Load tasks from file.
      *
      * @return The tasks loaded from the file.
+     * @throws DukeException Exception that occurred during the loading of the tasks.
      */
     public TaskList load() throws DukeException {
         Path directoryPath = Paths.get(this.directoryPath);
@@ -81,7 +92,8 @@ public class Storage {
     /**
      * Save tasks to file.
      *
-     * @param tasks The tasks to be saved to the file.
+     * @param tasks        Tasks to be saved to the file.
+     * @throws IOException Exception that occurred during the saving of the tasks.
      */
     public void save(TaskList tasks) throws IOException {
         Path filePath = Paths.get(this.filePath);
