@@ -1,5 +1,9 @@
 package duke;
 
+import duke.exceptions.DukeException;
+import duke.exceptions.DukeMissingInputException;
+import duke.exceptions.DukeUnknownInputException;
+
 public class Parser {
     private Ui ui;
     private Storage sto;

@@ -1,6 +1,4 @@
-package duke;
-
-import duke.DukeException;
+package duke.exceptions;
 
 public class DukeMissingInputException extends DukeException {
     private static final String MSG = "The additional argument for %s cannot be empty.\n";

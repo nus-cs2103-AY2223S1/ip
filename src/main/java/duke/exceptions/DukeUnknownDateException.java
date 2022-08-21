@@ -1,11 +1,9 @@
-package duke;
-
-import duke.DukeException;
+package duke.exceptions;
 
 public class DukeUnknownDateException extends DukeException {
     private static final String MSG = "The additional argument for %s is of invalid format\n";
 
-    DukeUnknownDateException(String command) {
+    public DukeUnknownDateException(String command) {
         super(String.format(MSG, command));
     }
 }

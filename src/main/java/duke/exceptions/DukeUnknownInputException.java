@@ -1,6 +1,4 @@
-package duke;
-
-import duke.DukeException;
+package duke.exceptions;
 
 public class DukeUnknownInputException extends DukeException {
     private static final String MSG = "I'm sorry, I don't understand the command %s :(\n";

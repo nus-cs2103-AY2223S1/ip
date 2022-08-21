@@ -1,6 +1,4 @@
-package duke;
-
-import duke.DukeException;
+package duke.exceptions;
 
 public class DukeWrongInputException extends DukeException {
     private static final String MSG = "The additional argument for %s is of the wrong data type.\n";
