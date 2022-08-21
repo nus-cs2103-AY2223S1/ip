@@ -2,7 +2,7 @@ package duke;
 
 import java.time.LocalDate;
 public abstract class Task {
-    String description;
+    private String description;
     private boolean done;
 
     public Task(String description) {

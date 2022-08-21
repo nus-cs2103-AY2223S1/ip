@@ -1,8 +1,15 @@
 package duke;
 
-import duke.command.*;
-
 import java.time.LocalDate;
+
+import duke.command.AddCommand;
+import duke.command.Command;
+import duke.command.DeleteCommand;
+import duke.command.ExitCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.TaskOnDateCommand;
+import duke.command.UnmarkCommand;
 
 public class Parser {
     public static Command parse(String fullCommand) throws DukeException {
@@ -12,29 +19,42 @@ public class Parser {
         if (inputArray.length == 2) {
             argsString = inputArray[1];
         }
+
+        Command resultCommand;
         // commands
         switch (firstWord) {
-            case "bye":
-                return new ExitCommand();
-            case "list":
-                return new ListCommand();
-            case "mark":
-                return new MarkCommand(parseInt(argsString));
-            case "unmark":
-                return new UnmarkCommand(parseInt(argsString));
-            case "todo":
-                return new AddCommand(parseTodo(argsString));
-            case "deadline":
-                return new AddCommand(parseDeadline(argsString));
-            case "event":
-                return new AddCommand(parseEvent(argsString));
-            case "delete":
-                return new DeleteCommand(parseInt(argsString));
-            case "on":
-                return new TaskOnDateCommand(LocalDate.parse(argsString));
-            default:
-                throw new DukeException("I don't know this command!");
+        case "bye":
+            resultCommand = new ExitCommand();
+            break;
+        case "list":
+            resultCommand = new ListCommand();
+            break;
+        case "mark":
+            resultCommand = new MarkCommand(parseInt(argsString));
+            break;
+        case "unmark":
+            resultCommand = new UnmarkCommand(parseInt(argsString));
+            break;
+        case "todo":
+            resultCommand = new AddCommand(parseTodo(argsString));
+            break;
+        case "deadline":
+            resultCommand = new AddCommand(parseDeadline(argsString));
+            break;
+        case "event":
+            resultCommand = new AddCommand(parseEvent(argsString));
+            break;
+        case "delete":
+            resultCommand = new DeleteCommand(parseInt(argsString));
+            break;
+        case "on":
+            resultCommand = new TaskOnDateCommand(LocalDate.parse(argsString));
+            break;
+        default:
+            throw new DukeException("I don't know this command!");
         }
+
+        return resultCommand;
     }
 
     public static Todo parseTodo(String description) throws DukeException {
