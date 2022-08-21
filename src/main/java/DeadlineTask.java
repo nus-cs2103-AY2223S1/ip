@@ -1,6 +1,7 @@
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * The  DeadlineTask class is a Task that takes a deadline.
@@ -16,9 +17,12 @@ public class DeadlineTask extends Task {
      * @param description    Name of the task.
      * @param by             Date of the deadline.
      */
-    public DeadlineTask(String description, String by) {
+    public DeadlineTask(String description, String by) throws DukeException {
         super(description);
         String[] dateParts = by.split(" ");
+        if (dateParts.length != 2) {
+            throw new DukeException("Deadline Date and Time is specified wrongly");
+        }
         this.date = LocalDate.parse(dateParts[0]);
         String temp = "";
         for (int i = 0; i < dateParts[1].length(); i++) {
@@ -28,6 +32,10 @@ public class DeadlineTask extends Task {
             }
         }
         this.time = LocalTime.parse(temp);
+    }
+
+    public String dateTimeString() {
+        return this.date.toString() + " " + this.time.toString().replace(":", "");
     }
 
     @Override

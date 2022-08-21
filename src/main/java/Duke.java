@@ -1,3 +1,4 @@
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
@@ -54,29 +55,35 @@ public class Duke {
     }
 
     private static String fileFormatString(Task task) {
+        boolean temp = task.getStatusIcon().equals("X") ? true : false;
         if (task instanceof DeadlineTask) {
             DeadlineTask deadlineTask = (DeadlineTask) task;
-            return "D | " + deadlineTask.isDone + " | " + deadlineTask.getDescription() + " | " + deadlineTask.by;
+            return "D | " + temp + " | "
+                    + deadlineTask.getDescription() + " | " + deadlineTask.dateTimeString();
         } else if (task instanceof EventTask) {
             EventTask eventTask = (EventTask) task;
-            return "E | " + eventTask.isDone + " | " + eventTask.getDescription() + " | " + eventTask.at;
+            return "E | " + temp + " | "
+                    + eventTask.getDescription() + " | " + eventTask.dateTimeString();
         } else {
             TodoTask todoTask = (TodoTask) task;
-            return "T | " + todoTask.isDone + " | " + todoTask.getDescription();
+            return "T | " + temp + " | " + todoTask.getDescription();
         }
     }
 
-    private static void addDukeToList(String filePath) throws FileNotFoundException {
+    private static void addDukeToList(String filePath) throws FileNotFoundException, DukeException {
         File file = new File(filePath); // create a File for the given file path
         Scanner scanner = new Scanner(file); // create a Scanner using the File as the source
         while (scanner.hasNext()) {
             String line = scanner.nextLine();
-            String lineWithNoSpaces = line.replaceAll(" ","");
-            String[] keywords = lineWithNoSpaces.split("\\|", 4);
+//            String lineWithNoSpaces = line.replaceAll(" ","");
+            String[] keywords = line.split(" \\| ", 4);
             switch (keywords[0]) {
             case "D":
+                if (keywords.length != 4) {
+                    throw new DukeException("Incorrect information for deadline from input or file");
+                }
                 DeadlineTask deadlineTask = new DeadlineTask(keywords[2], keywords[3]);
-                if(Boolean.parseBoolean(keywords[1])) {
+                if(keywords[1].equals("X")) {
                     deadlineTask.mark();
                 } else {
                     deadlineTask.unMark();
@@ -84,6 +91,9 @@ public class Duke {
                 storage.add(deadlineTask);
                 break;
             case "E":
+                if (keywords.length != 4) {
+                    throw new DukeException("Incorrect information for event from input or file");
+                }
                 EventTask eventTask = new EventTask(keywords[2], keywords[3]);
                 if(Boolean.parseBoolean(keywords[1])) {
                     eventTask.mark();
@@ -93,6 +103,9 @@ public class Duke {
                 storage.add(eventTask);
                 break;
             case "T":
+                if (keywords.length != 3) {
+                    throw new DukeException("Incorrect information for todo class from. input or file");
+                }
                 TodoTask todoTask = new TodoTask(keywords[2]);
                 if(Boolean.parseBoolean(keywords[1])) {
                     todoTask.mark();
@@ -220,6 +233,9 @@ public class Duke {
             }
             part2 = parts[1];
             String[] deadlineParts =  part2.split("/by ", 2);
+            if (deadlineParts[0].equals("")){
+                throw new DukeException("There's no deadline task!");
+            }
             /** no declaration of deadline time */
             if (deadlineParts.length <= 1) {
                 throw new DukeException("You didn't specify the deadline! Please use /by.");
@@ -245,6 +261,9 @@ public class Duke {
             }
             part2 = parts[1];
             String[] eventParts = part2.split("/at ", 2);
+            if (eventParts[0].equals("")){
+                throw new DukeException("There's no event task!");
+            }
             /** no declaration of event time */
             if (eventParts.length <= 1) {
                 throw new DukeException("You didn't specify the event time! Please use /at.");
@@ -352,13 +371,9 @@ public class Duke {
             File newDuke = new File(FILE);
             newDuke.createNewFile();
             addDukeToList(FILE);
-        } catch (IOException e) {
-            System.out.println("Something went wrong: " + e.getMessage());
-        }
-        System.out.println("Hello! I'm Duke\nWhat can I do for you?\n" );
-        String response;
-        isDone = false;
-        try {
+            System.out.println("Hello! I'm Duke\nWhat can I do for you?\n" );
+            String response;
+            isDone = false;
             while (!isDone) {
                 try {
                     response = echo.nextLine();
@@ -371,6 +386,10 @@ public class Duke {
             }
         } catch (IOException e) {
             System.out.println("Something went wrong: " + e.getMessage());
+        } catch (DateTimeParseException e) {
+            System.out.println("Date and Time format error: check input or file, " + e);
+        } catch (DukeException e) {
+            System.out.println(e);
         }
     }
 }

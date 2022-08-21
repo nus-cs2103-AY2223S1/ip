@@ -1,6 +1,7 @@
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * The EventTask is a Task that has at event time.
@@ -17,9 +18,12 @@ public class EventTask extends Task {
      * @param description      Name of the task
      * @param at               Date of the event.
      */
-    public EventTask(String description, String at) {
+    public EventTask(String description, String at) throws DukeException {
         super(description);
         String[] dateParts = at.split(" ");
+        if (dateParts.length != 2) {
+            throw new DukeException("Event Date and Time is specified wrongly");
+        }
         this.date = LocalDate.parse(dateParts[0]);
         String temp = "";
         for (int i = 0; i < dateParts[1].length(); i++) {
@@ -31,6 +35,9 @@ public class EventTask extends Task {
         this.time = LocalTime.parse(temp);
     }
 
+    public String dateTimeString() {
+        return this.date.toString() + " " + this.time.toString().replace(":", "");
+    }
     @Override
     public String toString() {
         DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("MMM dd yyyy");
