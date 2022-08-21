@@ -1,9 +1,22 @@
 public abstract class Task {
+    public enum TaskType {
+        TODO("T"),
+        DEADLINE("D"),
+        EVENT("E");
+
+        public final String value;
+
+        private TaskType(String value) {
+            this.value = value;
+        }
+    }
     private String description;
+    private TaskType type;
     private boolean isDone;
 
-    public Task(String description) {
+    public Task(String description, TaskType type) {
         this.description = description;
+        this.type = type;
         this.isDone = false;
     }
 
@@ -14,6 +27,10 @@ public abstract class Task {
 //    public boolean isDone() {
 //        return this.isDone;
 //    }
+
+    public String getTaskIcon() {
+        return type.value;
+    }
 
     public String getStatusIcon() {
         return this.isDone ? "x" : " ";
