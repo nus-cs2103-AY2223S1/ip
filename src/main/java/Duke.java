@@ -1,6 +1,10 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Duke {
     //ArrayList to store tasks
@@ -9,10 +13,11 @@ public class Duke {
     private Scanner input;
     //Constant string to represent a line break
     private final String LINE_BREAK = "____________________________________________________________";
+    //File to store the list of tasks inputted by user
+    private static File listOfTasks = new File("tasks.txt");
 
     public Duke() {
         this.lst = new ArrayList<>();
-        this.input = new Scanner(System.in);
     }
 
     public static void main(String[] args) {
@@ -34,15 +39,65 @@ public class Duke {
         System.out.println(LINE_BREAK + "\n\tBye! Hope to see you again soon!\n" + LINE_BREAK);
     }
 
-    private void run() {
+    public void run() {
+        if (listOfTasks.exists()) {
+            load();
+        } else {
+            start();
+        }
+    }
+
+    public void load() {
+        try {
+            input = new Scanner(listOfTasks);
+            while (input.hasNextLine()) {
+                String taskInString = input.nextLine();
+                String[] taskInArray = taskInString.split(" \\| ");
+                String taskType = taskInArray[0];
+                switch (taskType) {
+                case "T" : {
+                    Task task= new Todo(taskInArray[2]);
+                    lst.add(task);
+                    if (taskInArray[1].equals("1")) {
+                        task.markAsDone();
+                    }
+                    break;
+                }
+                case "D" : {
+                    Task task = new Deadline(taskInArray[2], taskInArray[3]);
+                    lst.add(task);
+                    if (taskInArray[1].equals("1")) {
+                        task.markAsDone();
+                    }
+                    break;
+                }
+                case "E" : {
+                    Task task = new Event(taskInArray[2], taskInArray[3]);
+                    lst.add(task);
+                    if (taskInArray[1].equals("1")) {
+                        task.markAsDone();
+                    }
+                    break;
+                }
+                }
+            }
+            start();
+        } catch (FileNotFoundException e) {
+            System.out.println("OOPS! Your file cannot be found.");
+        }
+    }
+
+    private void start() {
+        input = new Scanner(System.in);
         String text = input.next();
         while (!text.equals("bye")) {
             try {
                 switch (text) {//Handle case when task aTodo
-                    
+
                 case "todo" :
                     String tDescription = input.nextLine();
                     printTodo(tDescription);
+                    save(lst);
                     break;
 
                 //Handle case when task is a deadline
@@ -51,6 +106,7 @@ public class Duke {
                     String dDescription = str.substring(0, str.indexOf('/') - 1);
                     String dBy = str.substring(str.indexOf('/') + 4);
                     printDeadline(dDescription, dBy);
+                    save(lst);
                     break;
                 }
 
@@ -60,6 +116,7 @@ public class Duke {
                     String eDescription = str.substring(0, str.indexOf('/') - 1);
                     String eAt = str.substring(str.indexOf('/') + 4);
                     printEvent(eDescription, eAt);
+                    save(lst);
                     break;
                 }
 
@@ -73,6 +130,7 @@ public class Duke {
                     //-1 to get index in 0 indexing
                     int index = input.nextInt() - 1;
                     markTask(index);
+                    save(lst);
                     break;
                 }
 
@@ -81,6 +139,7 @@ public class Duke {
                     //-1 to get index in 0 indexing
                     int index = input.nextInt() - 1;
                     unmarkTask(index);
+                    save(lst);
                     break;
                 }
 
@@ -89,6 +148,7 @@ public class Duke {
                     //-1 to get in 0 indexing
                     int index = input.nextInt() - 1;
                     deleteTask(index);
+                    save(lst);
                     break;
                 }
 
@@ -218,6 +278,18 @@ public class Duke {
                             + LINE_BREAK + "\n",
                     taskToBeDeleted, newSize);
         }
+    }
+
+    public void save(List<Task> lst) {
+        try {
+            FileWriter fw = new FileWriter(listOfTasks.getPath());
+            for (Task task : lst) {
+                fw.write(task.savedString() + System.lineSeparator());
+            }
+            fw.close();
+        } catch(IOException e) {
+            System.out.println("OOPS! I cant seem to save your tasks in the file. ");
+        };
     }
 }
 
