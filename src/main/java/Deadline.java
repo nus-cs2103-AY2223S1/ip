@@ -22,7 +22,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D] " + this.getStatusIcon() + " " + this.description + "(by: " + by + ")";
+        return "[D] " + this.getStatusIcon() + " " + this.description + " (by: " + by + ")";
     }
 
 }
