@@ -51,6 +51,9 @@ public class Duke {
                         break;
                     case TODO:
                         String description = scanner.nextLine();
+                        if (description.length() > 0) {
+                            description = description.substring(1);
+                        }
                         try {
                             Todo todo = new Todo(description);
                             todo.add();
@@ -59,13 +62,13 @@ public class Duke {
                         }
                         break;
                     case DEADLINE:
-                        String[] deadlineSection = scanner.nextLine().split("/by");
-                        Deadline deadline = new Deadline(deadlineSection[0], deadlineSection[1]);
+                        String[] deadlineSection = scanner.nextLine().split(" /by ");
+                        Deadline deadline = new Deadline(deadlineSection[0].substring(1), deadlineSection[1]);
                         deadline.add();
                         break;
                     case EVENT:
-                        String[] eventSections = scanner.nextLine().split("/at");
-                        Event event = new Event(eventSections[0], eventSections[1]);
+                        String[] eventSections = scanner.nextLine().split(" /at ");
+                        Event event = new Event(eventSections[0].substring(1), eventSections[1]);
                         event.add();
                         break;
                     case DELETE:
