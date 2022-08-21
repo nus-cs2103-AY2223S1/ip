@@ -139,7 +139,6 @@ public class Duke {
         }
     }
 
-
     public static void listOut() throws DukeException {
         if (tasks.size() == 0) {
             throw new DukeException("You do not have any tasks in the list");

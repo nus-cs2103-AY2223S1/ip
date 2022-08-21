@@ -1,9 +1,11 @@
-public class Events extends Task {
-    private String timing;
+import java.time.LocalDateTime;
 
-    public Events(String task, String timing) {
+public class Events extends Task {
+    private LocalDateTime timing;
+
+    public Events(String task, String timing) throws DukeException {
         super(task);
-        this.timing = timing;
+        this.timing = ConvertDateTime(timing);
     }
 
     @Override
