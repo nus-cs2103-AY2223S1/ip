@@ -90,6 +90,8 @@ public class Parser {
         case "event":
         case "deadline":
             return new TaskCommand();
+        case "find":
+            return new FindCommand();
         default:
             return new ErrorCommand();
         }

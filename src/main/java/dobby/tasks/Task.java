@@ -23,11 +23,15 @@ public class Task {
     public void unmark() {
         isDone = false;
     }
-    public Boolean isDone() {
+    public boolean isDone() {
         return isDone;
     }
     public String toPrint() {
         return " | " + "[" + getStatusIcon() + "] | " + description;
+    }
+    public boolean isPresent(String toFind) {
+        boolean isPresent = description.contains(toFind);
+        return isPresent;
     }
     @Override
     public String toString() {

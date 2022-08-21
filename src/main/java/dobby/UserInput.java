@@ -23,7 +23,7 @@ public class UserInput {
             rest = Parser.getRest(input);
             if(cmd.equals("mark") || cmd.equals("unmark") || cmd.equals("delete") ) {
                 ind = Integer.parseInt(rest);
-            } else if(cmd.equals("todo")) {
+            } else if(cmd.equals("todo") || cmd.equals("find")) {
                 desc = rest;
             } else if (cmd.equals("deadline") || cmd.equals("event")){
                 date = Parser.getDate(rest);

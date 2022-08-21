@@ -51,7 +51,7 @@ public class DobbyList {
     @Override
     public String toString() {
         String dobbyListString = "";
-        String intro = "Here are the tasks in your list: " + "\n\t";
+        String intro = "Here are the tasks in your list:\n\t";
 
         int i = 0;
         for(Task dobbyTask : dobbyList) {
@@ -59,6 +59,21 @@ public class DobbyList {
             i++;
         }
         return intro + dobbyListString;
+    }
+    public String toFind(String toFind) {
+        String foundListString = "";
+        String intro = "Here are the matching tasks in your list:\n\t";
+
+        int i = 0;
+        for(Task dobbyTask : dobbyList) {
+            if(dobbyTask.isPresent(toFind)) {
+                foundListString += (i+1) + "." + dobbyTask.toString() + "\n\t";
+                i++;
+            } else {
+                continue;
+            }
+        }
+        return intro + foundListString;
     }
     public String toPrint() {
         if(getLength() == 0) {
