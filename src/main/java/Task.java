@@ -1,14 +1,18 @@
 public class Task {
-    protected String description;
-    protected boolean isDone;
+    private String description;
+    private boolean isDone;
 
-    public Task(String description) {
+    public Task(String description, boolean isDone) {
         this.description = description;
-        this.isDone = false;
+        this.isDone = isDone;
     }
 
     public String getStatusIcon() {
         return (isDone ? "X" : " ");
+    }
+
+    public int isDoneToInt() {
+        return isDone ? 1 : 0;
     }
 
     public void markAsDone() {
@@ -19,8 +23,29 @@ public class Task {
         this.isDone = false;
     }
 
+    public static Task loadToTaskList(String data) throws DukeException {
+        String[] dataSplit = data.split(" \\| ", 4);
+        char typeOfTask = dataSplit[0].trim().charAt(0);
+        boolean isDone = dataSplit[1].equals("1");
+        String description = dataSplit[2];
+        switch (typeOfTask) {
+        case 'T':
+            return new ToDo(description, isDone);
+        case 'D':
+            return new Deadline(description, isDone, dataSplit[3]);
+        case 'E':
+            return new Event(description, isDone, dataSplit[3]);
+        default:
+            throw new DukeException("☹ OOPS!!! Unrecognised task type!");
+        }
+    }
+
+    public String saveStringFormat() {
+        return String.format("%d | %s", isDoneToInt(), description);
+    }
+
     @Override
     public String toString() {
-        return String.format("[%s]%s", this.getStatusIcon(), this.description);
+        return String.format("[%s] %s", this.getStatusIcon(), description);
     }
 }

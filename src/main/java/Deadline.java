@@ -1,10 +1,15 @@
 public class Deadline extends Task {
 
-    protected String by;
+    private String by;
 
-    public Deadline(String description, String by) {
-        super(description);
+    public Deadline(String description, boolean isDone, String by) {
+        super(description, isDone);
         this.by = by;
+    }
+
+    @Override
+    public String saveStringFormat() {
+        return String.format("D | %s | %s", super.saveStringFormat(), by);
     }
 
     @Override
