@@ -1,19 +1,22 @@
+import java.time.LocalDate;
+import java.time.DateTimeException;
+
 /**
  * This class encapsulates an event set by the user.
  */
 public class Event extends Task {
-    private String date;
+    private LocalDate date;
 
-    Event(String str) throws DwukeException {
+    Event(String str) throws DwukeException, DateTimeException {
         super(str);
         String[] arguments = getArguments(str);
         this.changeDescription(arguments[0]);
-        this.date = arguments[1];
+        this.date = Date.parse(arguments[1]);
     }
 
     Event(String description, boolean isDone, String date) throws DwukeException {
         super(description, isDone);
-        this.date = date;
+        this.date = Date.parse(date);
     }
 
     private static String[] getArguments(String str) throws DwukeException {
@@ -60,7 +63,7 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + this.date + ")";
+        return "[E]" + super.toString() + " (at: " + Date.format(this.date) + ")";
     }
 }
 
