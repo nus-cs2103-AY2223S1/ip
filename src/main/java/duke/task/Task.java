@@ -15,9 +15,6 @@ public abstract class Task {
 
   public static Task decode(String input) throws DukeException {
     String[] inputs = input.trim().split("\\s+\\|\\s+");
-    if (inputs.length != 3) {
-      throw new DukeException("Invalid task format!");
-    }
 
     try {
       switch (inputs[0]) {
@@ -30,6 +27,8 @@ public abstract class Task {
         default:
           throw new DukeException("Invalid task format!");
       }
+    } catch (IndexOutOfBoundsException e) {
+      throw new DukeException("Invalid task format!");
     } catch (DateTimeParseException e) {
       throw new DukeException("Invalid date format!");
     }
