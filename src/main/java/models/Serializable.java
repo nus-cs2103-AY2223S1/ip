@@ -31,7 +31,7 @@ abstract  public class Serializable<T> {
      * Supports the deserialization operation of the serializable object
      * @return The deserialized object
      */
-    abstract public T deserialize();
+    abstract public T deserialize() throws DukeException;
 
     /**
      * Returns the original data passed into the Serializable constructor ie the inverse

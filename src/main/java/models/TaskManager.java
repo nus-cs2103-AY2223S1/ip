@@ -1,9 +1,13 @@
 package models;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import database.TaskDatabase;
 import exceptions.DukeException;
 
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * Utility class to manage the list of tasks and provides augmenting operations to
@@ -27,6 +31,7 @@ public class TaskManager {
      * Adds the received task into the task list
      *
      * @param task Task received from the caller
+     * @throws DukeException If the task cannot be added
      */
     public Task add(Task task) throws DukeException {
         return this.taskDatabase.addTask(task);
@@ -48,6 +53,7 @@ public class TaskManager {
      *
      * @param taskNumber The 1-based task number, possibly corresponding to a particular task
      * @return The deleted task
+     * @throws DukeException If the task cannot be deleted
      */
     public Task delete(int taskNumber) throws DukeException {
         return this.taskDatabase.deleteTask(taskNumber - 1);
@@ -58,6 +64,7 @@ public class TaskManager {
      *
      * @param taskNumber An index (1-index) corresponding to a particular task
      * @return Task corresponding to the particular task number
+     * @throws DukeException If the task cannot be read
      */
     public Task get(int taskNumber) throws DukeException {
         return this.taskDatabase.findTask(taskNumber - 1);
@@ -67,6 +74,7 @@ public class TaskManager {
      * Returns the number of tasks in the task manager list
      *
      * @return Number of tasks in the task manager list
+     * @throws DukeException If the tasks cannot be read
      */
     private int count() throws DukeException {
         return this.taskDatabase.count();
@@ -84,22 +92,40 @@ public class TaskManager {
         }
     }
 
-    @Override
-    public String toString() {
-        List<Task> allTasks;
-        try {
-            allTasks = this.taskDatabase.readAllTasks();
-            if (allTasks.size() == 0) {
-                return TaskManager.NO_TASKS_AVAILABLE;
-            }
-        } catch (DukeException e) {
+    /**
+     * Returns the list of tasks in the database
+     * @return List of tasks
+     * @throws DukeException If the tasks cannot be read
+     */
+    public List<Task> list() throws DukeException {
+        return this.taskDatabase.readAllTasks();
+    }
+
+    /**
+     * Returns the filtered list of tasks in the database based on the predicate
+     * @param condition The predicate to test if the task should be returned
+     * @return List of tasks
+     * @throws DukeException If the tasks cannot be read
+     */
+    public List<Task> list(Predicate<? super Task> condition) throws DukeException {
+        return this.taskDatabase.filter(condition);
+    }
+
+    /**
+     * Displays the list of tasks in numerical order by implicitly invoking the string representation
+     * of the tasks
+     * @param tasks The tasks to be displayed
+     * @return String representation of the tasks
+     */
+    public static String display(List<Task> tasks) {
+        if (tasks.size() == 0) {
             return TaskManager.NO_TASKS_AVAILABLE;
         }
 
         StringBuilder taskManagerDisplay = new StringBuilder();
-        for (int i = 0; i < allTasks.size(); i++) {
+        for (int i = 0; i < tasks.size(); i++) {
             // Implicitly invoke the display of the task defined in the Task class
-            taskManagerDisplay.append(String.format("%d. %s\n", i + 1, allTasks.get(i)));
+            taskManagerDisplay.append(String.format("%d. %s\n", i + 1, tasks.get(i)));
         }
         return taskManagerDisplay.toString();
     }

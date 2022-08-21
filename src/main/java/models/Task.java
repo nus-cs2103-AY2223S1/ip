@@ -1,5 +1,7 @@
 package models;
 
+import java.time.LocalDate;
+
 /**
  * Encapsulates a task containing a description and a completion status
  *
@@ -40,6 +42,12 @@ abstract public class Task {
      * @return Task type icon of the task
      */
     abstract public String getTaskTypeIcon();
+
+    /**
+     * Return the date of the current task, or null if there is no associated date
+     * @return Date of the current task, or null if there is no associated date
+     */
+    abstract public LocalDate getDate();
 
     /**
      * Return the status icon of the current task, where a task that is done is marked with

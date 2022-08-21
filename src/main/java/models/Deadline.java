@@ -1,5 +1,9 @@
 package models;
 
+import utils.DukeFormatter;
+
+import java.time.LocalDate;
+
 /**
  * Encapsulates a task that needs to be done before a specific date/time,
  * e.g., submit report by 11/10/2019 5pm
@@ -8,15 +12,15 @@ package models;
  */
 
 public class Deadline extends Task {
+    protected LocalDate deadline;
     private static final TaskType taskType = TaskType.DEADLINE;
-    protected String deadline;
 
-    public Deadline(String description, String deadline) {
+    public Deadline(String description, LocalDate deadline) {
         super(description);
         this.deadline = deadline;
     }
 
-    public Deadline(String description, String deadline, boolean isDone) {
+    public Deadline(String description, LocalDate deadline, boolean isDone) {
         super(description, isDone);
         this.deadline = deadline;
     }
@@ -32,7 +36,12 @@ public class Deadline extends Task {
     }
 
     @Override
+    public LocalDate getDate() {
+        return this.deadline;
+    }
+
+    @Override
     public String toString() {
-        return String.format("%s (by: %s)", super.toString(), this.deadline);
+        return String.format("%s (by: %s)", super.toString(), DukeFormatter.formatDate(this.deadline));
     }
 }

@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class TaskDatabase extends Database {
     private static final String TASK_FILE_NAME = "duke.txt";
@@ -92,6 +94,16 @@ public class TaskDatabase extends Database {
     public int count() throws DukeException {
         List<Task> allTasks = this.readAllTasks();
         return allTasks.size();
+    }
+
+    /**
+     * Returns a filtered task list based on the provided predicate
+     * @param condition Predicate provided for the filter operation
+     * @return Filtered task list
+     * @throws DukeException If the tasks cannot be read
+     */
+    public List<Task> filter(Predicate<? super Task> condition) throws DukeException {
+        return this.readAllTasks().stream().filter(condition).collect(Collectors.toList());
     }
 
     /**

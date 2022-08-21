@@ -1,7 +1,9 @@
 package models;
 
 import exceptions.DukeException;
+import utils.DukeValidator;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.regex.Pattern;
@@ -13,6 +15,8 @@ public class TaskSerializable extends Serializable<Task>{
     private final Object taskMetaData;
 
     private static final Pattern MATCH_TASK_DATA = Pattern.compile("(?<taskType>[TDE])\\s\\|\\s(?<taskCompleted>[01])\\s\\|\\s(?<taskDescription>(.+))(\\s\\|\\s(?<taskMeta>(.+)))?");
+
+    private static final String ERROR_UNKNOWN_TASK_TYPE = "Unknown task type %s!";
 
     public TaskSerializable(
             TaskType taskType,
@@ -61,17 +65,17 @@ public class TaskSerializable extends Serializable<Task>{
     }
 
     @Override
-    public Task deserialize() {
+    public Task deserialize() throws DukeException {
         switch (this.taskType) {
             case TODO:
                 return new ToDo(this.taskDescription, this.taskIsDone);
             case DEADLINE:
-                String deadline = this.taskMetaData.toString();
+                LocalDate deadline = DukeValidator.parseDate(this.taskMetaData.toString());
                 return new Deadline(this.taskDescription, deadline, this.taskIsDone);
             case EVENT:
-                String datetime = this.taskMetaData.toString();
-                return new Event(this.taskDescription, datetime, this.taskIsDone);
+                LocalDate date = DukeValidator.parseDate(this.taskMetaData.toString());
+                return new Event(this.taskDescription, date, this.taskIsDone);
         }
-        return null;
+        throw new DukeException(String.format(TaskSerializable.ERROR_UNKNOWN_TASK_TYPE, this.taskType));
     }
 }
