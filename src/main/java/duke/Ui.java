@@ -1,3 +1,5 @@
+package duke;
+
 import java.util.ArrayList;
 
 public class Ui {
@@ -14,7 +16,7 @@ public class Ui {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
 
-        String startupMsg = "Hello! I'm Duke\n" + "What can I do for you?";
+        String startupMsg = "Hello! I'm duke.Duke\n" + "What can I do for you?";
         printMessage(startupMsg);
     }
 
