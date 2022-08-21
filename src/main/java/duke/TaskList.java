@@ -14,11 +14,11 @@ import duke.task.Task;
 public class TaskList {
     private final List<Task> logs;
 
-    TaskList(List<Task> log) {
+    public TaskList(List<Task> log) {
         this.logs = new ArrayList<>(log);
     }
 
-    TaskList() {
+    public TaskList() {
         this(new ArrayList<>());
     }
 

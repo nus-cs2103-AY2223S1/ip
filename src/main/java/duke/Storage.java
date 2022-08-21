@@ -1,9 +1,8 @@
 package duke;
 
-import java.util.List;
-
 import duke.task.Task;
 
+import java.util.List;
 import java.util.ArrayList;
 
 import java.nio.file.Path;
@@ -14,7 +13,7 @@ import java.nio.charset.StandardCharsets;
 
 import java.io.IOException;
 
-public class Storage {
+public class Storage implements StorageInterface {
     private Path filePath;
 
     public Storage(Path filePath) {
@@ -29,7 +28,7 @@ public class Storage {
         return Files.exists(filePath);
     }
 
-    List<Task> readFile() throws DukeException {
+    public List<Task> readFile() throws DukeException {
         if (!isFileExist()) {
             throw new DukeException("Storage file is empty!");
         }

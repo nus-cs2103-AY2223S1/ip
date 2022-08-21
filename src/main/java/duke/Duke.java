@@ -9,7 +9,7 @@ public class Duke {
     private static final String STORAGE_PATH = "data/duke.txt";
 
     private Ui ui;
-    private Storage storage;
+    private StorageInterface storage;
     private TaskList taskList;
 
     Duke(String storagePath) {

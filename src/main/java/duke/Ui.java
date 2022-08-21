@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
 public class Ui {
+    public static final String DIVIDER = "    ____________________________________________________________";
     private Scanner scanner;
     private static final String LOGO = " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
@@ -18,9 +19,8 @@ public class Ui {
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
     private static final String PADDING = "  ";
-    private static final String DIVIDER = "    ____________________________________________________________";
 
-    Ui() {
+    public Ui() {
         this.scanner = new Scanner(System.in);
     }
 
