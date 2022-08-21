@@ -38,6 +38,7 @@ public class Duke {
                 String fullCommand = scanner.nextLine();
                 Command command = Parser.parse(fullCommand);
                 command.execute(this.tasks, this.ui, this.storage);
+                isExit = command.isExit();
             } catch (DukeException de) {
                 ui.showError(de.getMessage());
             }
