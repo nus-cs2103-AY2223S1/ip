@@ -27,13 +27,26 @@ public class Duke extends Chatbot {
                     break;
                 }
             } else if (KeywordChecker.containsMarkKeyword(action)) {
-                switch (KeywordChecker.getNonexactKeyword(action)) {
-                    case KeywordChecker.MARK_KEYWORD_MARK:
-                        duke.markTask(duke, KeywordChecker.getSpecifier(action));
-                        break;
-                    case KeywordChecker.MARK_KEYWORD_UNMARK:
-                        duke.unmarkTask(duke, KeywordChecker.getSpecifier(action));
-                        break;
+                try {
+                    int id = KeywordChecker.getSpecifier(action);
+
+                    if (id > duke.tasks.size() || id < 1) {
+                        throw new DukeException("Out of bounds index!");
+                    }
+
+                    switch (KeywordChecker.getNonexactKeyword(action)) {
+                        case KeywordChecker.MARK_KEYWORD_MARK:
+                            duke.markTask(duke, id);
+                            break;
+                        case KeywordChecker.MARK_KEYWORD_UNMARK:
+                            duke.unmarkTask(duke, id);
+                            break;
+                        case KeywordChecker.MARK_KEYWORD_DELETE:
+                            duke.deleteTask(duke, id);
+                            break;
+                    }
+                } catch (DukeException ex) {
+                    duke.echo("Index is out of bounds!");
                 }
             } else if (KeywordChecker.containsTaskKeyword(action)) {
                 try {
@@ -77,7 +90,7 @@ public class Duke extends Chatbot {
     public void markTask(Duke interaction, int id) {
         Task task = interaction.tasks.get(id - 1);
         task.markAsDone();
-        this.echo(String.format("Task %d: [%s] marked as done!",
+        interaction.echo(String.format("Task %d: [%s] marked as done!",
                 id,
                 task.getDescription()));
     }
@@ -85,7 +98,15 @@ public class Duke extends Chatbot {
     public void unmarkTask(Duke interaction, int id) {
         Task task  = interaction.tasks.get(id - 1);
         task.markAsNotDone();
-        this.echo(String.format("Task %d [%s] marked as not done!",
+        interaction.echo(String.format("Task %d [%s] marked as not done!",
+                id,
+                task.getDescription()));
+    }
+
+    public void deleteTask(Duke interaction, int id) {
+        Task task = interaction.tasks.get(id - 1);
+        interaction.tasks.remove(task);
+        interaction.echo(String.format("Task %d [%s] removed.",
                 id,
                 task.getDescription()));
     }

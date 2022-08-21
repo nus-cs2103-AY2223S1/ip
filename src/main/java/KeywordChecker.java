@@ -9,6 +9,7 @@ public class KeywordChecker {
     public static final String TASK_KEYWORD_TODO = "todo ";
     public static final String TASK_KEYWORD_DEADLINE = "deadline ";
     public static final String TASK_KEYWORD_EVENT = "event ";
+    public static final String MARK_KEYWORD_DELETE = "delete ";
     private static final LinkedList<String> listOfExactKeywords = new LinkedList<>(
             List.of(KeywordChecker.EXACT_KEYWORD_BYE,
                     KeywordChecker.EXACT_KEYWORD_LIST)
@@ -24,6 +25,8 @@ public class KeywordChecker {
         if (userInput.startsWith(KeywordChecker.MARK_KEYWORD_MARK)) {
             hasMarkKeyword = true;
         } else if (userInput.startsWith(KeywordChecker.MARK_KEYWORD_UNMARK)) {
+            hasMarkKeyword = true;
+        } else if (userInput.startsWith(KeywordChecker.MARK_KEYWORD_DELETE)) {
             hasMarkKeyword = true;
         }
 
@@ -51,6 +54,8 @@ public class KeywordChecker {
             nonexactKeyword = KeywordChecker.MARK_KEYWORD_MARK;
         } else if (userInput.startsWith(KeywordChecker.MARK_KEYWORD_UNMARK)) {
             nonexactKeyword = KeywordChecker.MARK_KEYWORD_UNMARK;
+        } else if (userInput.startsWith(KeywordChecker.MARK_KEYWORD_DELETE)) {
+            nonexactKeyword = KeywordChecker.MARK_KEYWORD_DELETE;
         } else if (userInput.startsWith(KeywordChecker.TASK_KEYWORD_TODO)) {
             nonexactKeyword = KeywordChecker.TASK_KEYWORD_TODO;
         } else if (userInput.startsWith(KeywordChecker.TASK_KEYWORD_DEADLINE)) {
@@ -70,6 +75,7 @@ public class KeywordChecker {
                 specifier = Integer.parseInt(userInput.substring(5));
                 break;
             case KeywordChecker.MARK_KEYWORD_UNMARK:
+            case KeywordChecker.MARK_KEYWORD_DELETE:
                 specifier = Integer.parseInt(userInput.substring(7));
                 break;
             default:
