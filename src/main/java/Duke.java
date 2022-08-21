@@ -1,5 +1,6 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.nio.file.Path;
@@ -91,14 +92,16 @@ public class Duke {
      *
      * @param userInput The description of the task, and deadline.
      * @throws DukeException If userInput is not in the form "description /by deadline".
+     * @throws DateTimeParseException If deadline date given by user cannot be casted to a date (require "yyyy-mm-dd")
      */
-    private static void createDeadline(String userInput) throws DukeException {
+    private static void createDeadline(String userInput) throws DukeException, DateTimeParseException {
         String[] detailsFragments = userInput.split(" /by");
+
         if (detailsFragments.length != 2) {
             throw new DukeException("Usage description /by deadline");
         }
 
-        Duke.tasks.add(new Deadline(detailsFragments[0], detailsFragments[1]));
+        Duke.tasks.add(new Deadline(detailsFragments[0], detailsFragments[1].trim()));
 
         System.out.println(Duke.formatText("Got it. I've added this task:\n" + "  " +
                 Duke.tasks.get(Duke.tasks.size() - 1) + "\n" +
@@ -111,13 +114,14 @@ public class Duke {
      * @param userInput The description of the task, and event time.
      * @throws DukeException If userInput is not in the form "description /at time".
      */
-    private static void createEvent(String userInput) throws DukeException {
+    private static void createEvent(String userInput) throws DukeException, DateTimeParseException {
         String[] detailsFragments = userInput.split(" /at");
+
         if (detailsFragments.length != 2) {
             throw new DukeException("Usage description /at time");
         }
 
-        Duke.tasks.add(new Event(detailsFragments[0], detailsFragments[1]));
+        Duke.tasks.add(new Event(detailsFragments[0], detailsFragments[1].trim()));
 
         System.out.println(Duke.formatText("Got it. I've added this task:\n" + "  " +
                 Duke.tasks.get(Duke.tasks.size() - 1) + "\n" +
@@ -281,8 +285,7 @@ public class Duke {
 
             // Add item to tasks.
             try {
-                if (userInput.trim().equals("todo") || userInput.trim().equals("deadline") ||
-                        userInput.trim().equals("event")) {
+                if (userInput.equals("todo") || userInput.equals("deadline") || userInput.equals("event")) {
                     throw new DukeException("The description of a " + userInput + " cannot be empty.");
                 } else if (userInput.startsWith("todo ")) {
                     Duke.createToDoTask(userInput.substring(5));
@@ -295,6 +298,8 @@ public class Duke {
                 }
             } catch (DukeException e) {
                 System.out.println(e.getMessage());
+            } catch (DateTimeParseException e) {
+                System.out.println("Your date format has to be in the form 'yyyy-mm-dd'");
             }
         }
 
