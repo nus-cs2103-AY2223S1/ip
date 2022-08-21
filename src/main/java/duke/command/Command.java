@@ -1,3 +1,11 @@
+package duke.command;
+
+import duke.exception.DukeException;
+import duke.storage.Storage;
+import duke.task.Task;
+import duke.task.TaskManager;
+import duke.ui.Ui;
+
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -8,7 +16,7 @@ import java.time.format.DateTimeParseException;
  * @author Khor Jun Wei
  * @version CS2103T AY22/23 Sem 1
  */
-abstract class Command {
+public abstract class Command {
 
     /**
      * Represents whether commands can still be made.
@@ -18,7 +26,7 @@ abstract class Command {
     /**
      * Represents the type of commands the class understands.
      */
-    enum Action_keyword {
+    public enum Action_keyword {
         DEADLINE,
         DELETE,
         EVENT,
@@ -312,7 +320,7 @@ abstract class Command {
      * @throws DukeException if it is found
      * @throws IOException if there is such an exception
      */
-    abstract void execute(TaskManager tasks, Ui ui, Storage storage) throws DukeException, IOException;
+    public abstract void execute(TaskManager tasks, Ui ui, Storage storage) throws DukeException, IOException;
 
     /**
      * Checks if one can still give more commands

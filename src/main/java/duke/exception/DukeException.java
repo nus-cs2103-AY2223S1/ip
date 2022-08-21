@@ -1,3 +1,5 @@
+package duke.exception;
+
 /**
  * Represents a DukeException class
  *
@@ -15,7 +17,7 @@ public class DukeException extends Exception {
      * Constructor for DukeException.
      * @param message message to determine the error
      */
-    DukeException(String message) {
+    public DukeException(String message) {
         if (message.equals("todo")) {
             this.msg = "OOPS!!! The description of a todo cannot be empty.";
         } else if (message.equals("deadline")) {

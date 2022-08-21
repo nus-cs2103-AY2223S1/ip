@@ -1,3 +1,8 @@
+package duke.parser;
+
+import duke.command.Command;
+import duke.exception.DukeException;
+
 /**
  * Represents a Parser class
  *

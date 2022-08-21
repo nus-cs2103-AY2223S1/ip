@@ -1,3 +1,5 @@
+package duke.task;
+
 import java.time.LocalDate;
 
 /**
@@ -6,12 +8,12 @@ import java.time.LocalDate;
  * @author Khor Jun Wei
  * @version CS2103T AY22/23 Sem 1
  */
-abstract class Task {
+public abstract class Task {
 
     /**
      * Represents the different action types the Task class can handle
      */
-    enum Task_type {
+    public enum Task_type {
         TODO,
         DEADLINE,
         EVENT

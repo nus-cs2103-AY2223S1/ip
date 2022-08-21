@@ -1,4 +1,9 @@
+package duke.ui;
+
 import java.util.Scanner;
+
+import duke.command.Command;
+import duke.task.Task;
 
 /**
  * Represents a User interface class
