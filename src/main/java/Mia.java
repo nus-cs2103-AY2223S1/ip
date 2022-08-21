@@ -23,7 +23,6 @@ public class Mia {
                 break;
             } else if (line.equals("list")) {
                 window.printResponse(new Span(tasksManager.toString()));
-                continue;
             } else if (line.startsWith("delete ")) {
                 final int number = Integer.parseInt(line.substring(7));
                 if (tasksManager.deleteTask(number)) {
@@ -33,7 +32,6 @@ public class Mia {
                             "Something went wrong when deleting task %d! Likely, you specified an invalid task number.",
                             number)));
                 }
-                continue;
             } else if (line.startsWith("mark ")) {
                 final int number = Integer.parseInt(line.substring(5));
                 if (tasksManager.checkTask(number)) {
@@ -43,7 +41,6 @@ public class Mia {
                             "Task not modified! Either the task is already done, or you specified an invalid task number %d.",
                             number)));
                 }
-                continue;
             } else if (line.startsWith("unmark ")) {
                 final int number = Integer.parseInt(line.substring(7));
                 if (tasksManager.uncheckTask(number)) {
@@ -53,12 +50,10 @@ public class Mia {
                             "Task not modified! Either the task is still not done, or you specified an invalid task number %d.",
                             number)));
                 }
-                continue;
             } else if (line.startsWith("todo ")) {
                 final Task todo = new Todo(line.substring(5));
                 tasksManager.addTask(todo);
                 window.printResponse(new Span(String.format("Added todo \"%s\" to tasks list!", todo.getTitle())));
-                continue;
             } else if (line.startsWith("deadline ")) {
                 final String[] data = line.substring(9).split("/by", 2);
                 if (data.length == 2) {
@@ -68,7 +63,6 @@ public class Mia {
                 } else {
                     window.printResponse(new Span("Incorrect format of deadline command!"));
                 }
-                continue;
             } else if (line.startsWith("event ")) {
                 final String[] data = line.substring(6).split("/at", 2);
                 if (data.length == 2) {
@@ -78,9 +72,9 @@ public class Mia {
                 } else {
                     window.printResponse(new Span("Incorrect format of event command!"));
                 }
-                continue;
+            } else {
+                window.printResponse(new Span("Sorry boss, I don't know what you are trying to say 😟"));
             }
-            window.printResponse(new Span("Sorry boss, I don't know what you are trying to say 😟"));
         }
         window.dispose();
     }
