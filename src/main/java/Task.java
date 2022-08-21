@@ -46,4 +46,13 @@ public abstract class Task {
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;
     }
+
+    /**
+     * Returns the representation of a task when stored in a data file on the hard disk.
+     *
+     * @return a string representing the task as it is stored on a data file on the hard disk.
+     */
+    public String toData() {
+        return getStatusIcon() + " | " + description;
+    }
 }

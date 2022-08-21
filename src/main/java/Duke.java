@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -13,6 +16,8 @@ public class Duke {
             + INDENTATION + "| | | | | | | |/ / _ \\\n"
             + INDENTATION + "| |_| | |_| |   <  __/\n"
             + INDENTATION + "|____/ \\__,_|_|\\_\\___|";
+
+    private static final String DATA_FILE = "./data/duke.txt";
 
     private static ArrayList<Task> tasks = new ArrayList<>();
     private static int taskCount = 0;
@@ -41,14 +46,15 @@ public class Duke {
     }
 
     /**
-     * Prints the first message from Duke when it starts running.
+     * Starts Duke by greeting the user and loading data from the hard disk.
      */
-    private static void printStart() {
-        System.out.println(INDENTATION + "Hello from\n" + LOGO);
-        printLine();
-        System.out.println(INDENTATION + "Hello! I'm Duke\n"
-                + INDENTATION + "What can I do for you?");
-        printLine();
+    private static void startDuke() {
+            System.out.println(INDENTATION + "Hello from\n" + LOGO);
+            printLine();
+            System.out.println(INDENTATION + "Hello! I'm Duke\n"
+                    + INDENTATION + "What can I do for you?");
+            printLine();
+            loadList();
     }
 
     /**
@@ -151,6 +157,71 @@ public class Duke {
     }
 
     /**
+     * Loads the list of tasks for Duke from the hard disk.
+     */
+    private static void loadList() {
+        try {
+            File f = new File(DATA_FILE);
+            if (!f.exists()) {
+                f.getParentFile().mkdir();
+                f.createNewFile();
+            }
+            Scanner sc = new Scanner(f);
+            while (sc.hasNextLine()) {
+                addToList(sc.nextLine());
+            }
+        } catch (IOException e) {
+            printError("Unable to create data file to save tasks in hard disk.");
+        } catch (DukeException | ArrayIndexOutOfBoundsException e) {
+            printError("Error detected in data file loaded from hard disk.\n" +
+                    INDENTATION + "List contains information until the error was detected.");
+        }
+    }
+
+    /**
+     * Adds tasks read from the hard disk to the list in Duke.
+     *
+     * @param s The string read from the Duke data file.
+     * @throws DukeException when the string in the data file is invalid.
+     */
+    private static void addToList(String s) throws DukeException {
+        String[] strings = s.split(" \\| ");
+        Task task;
+
+        switch (strings[0]) {
+        case "T":
+            if (strings.length > 3) {
+                throw new DukeException();
+            }
+            task = new Todo(strings[2]);
+            break;
+        case "D":
+            if (strings.length > 4) {
+                throw new DukeException();
+            }
+            task = new Deadline(strings[2], strings[3]);
+            break;
+        case "E":
+            if (strings.length > 4) {
+                throw new DukeException();
+            }
+            task = new Event(strings[2], strings[3]);
+            break;
+        default:
+            throw new DukeException();
+        }
+
+        if (strings[1].equals("X")) {
+            task.markAsDone();
+        } else if (!strings[1].equals(" ")) {
+            throw new DukeException();
+        }
+
+        tasks.add(task);
+        taskCount++;
+    }
+
+    /**
      * Marks a task as done.
      *
      * @param input The command specified to Duke.
@@ -165,6 +236,7 @@ public class Duke {
         int n = Integer.parseInt(input);
         Task specifiedTask = tasks.get(n - 1);
         specifiedTask.markAsDone();
+        writeToFile();
 
         printLine();
         System.out.println(INDENTATION + "Nice! I've marked this task as done:\n"
@@ -187,6 +259,7 @@ public class Duke {
         int n = Integer.parseInt(input);
         Task specifiedTask = tasks.get(n - 1);
         specifiedTask.unmarkAsDone();
+        writeToFile();
 
         printLine();
         System.out.println(INDENTATION + "OK, I've marked this task as not done yet:\n"
@@ -203,6 +276,8 @@ public class Duke {
     private static void addTask(Task task) {
         tasks.add(task);
         taskCount++;
+        writeToFile();
+
         printLine();
         System.out.println(INDENTATION + "Got it. I've added this task:\n"
                 + INDENTATION + "  " + task);
@@ -212,6 +287,21 @@ public class Duke {
             System.out.println(INDENTATION + "Now you have " + taskCount + " tasks in your list.");
         }
         printLine();
+    }
+
+    /**
+     * Saves the task list as data in a data file on the hard disk.
+     */
+    private static void writeToFile() {
+        try {
+            FileWriter fw = new FileWriter(DATA_FILE);
+            for (int i = 0; i < taskCount; i++) {
+                fw.write(tasks.get(i).toData());
+            }
+            fw.close();
+        } catch (IOException e) {
+            printError("Unable to write data to hard disk.");
+        }
     }
 
     /**
@@ -270,6 +360,7 @@ public class Duke {
         int n = Integer.parseInt(input);
         Task specifiedTask = tasks.remove(n - 1);
         taskCount--;
+        writeToFile();
 
         printLine();
         System.out.println(INDENTATION + "Noted. I've removed this task:\n"
@@ -289,7 +380,7 @@ public class Duke {
      */
     public static void main(String[] args) {
         isBye = false;
-        printStart();
+        startDuke();
         Scanner sc = new Scanner(System.in);
         while (!isBye) {
             try {

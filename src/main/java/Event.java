@@ -17,6 +17,7 @@ public class Event extends Task {
         this.at = at;
     }
 
+
     /**
      * Returns the string representation of an event.
      *
@@ -25,5 +26,15 @@ public class Event extends Task {
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + at + ")";
+    }
+
+    /**
+     * Returns the representation of an Event when stored in a data file on the hard disk.
+     *
+     * @return a string representing the Event as it is stored on a data file on the hard disk.
+     */
+    @Override
+    public String toData() {
+        return "E | " + super.toData() + " | " + at + "\n";
     }
 }

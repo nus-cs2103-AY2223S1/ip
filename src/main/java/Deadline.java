@@ -26,4 +26,14 @@ public class Deadline extends Task {
     public String toString() {
         return "[D]" + super.toString() + " (by: " + by + ")";
     }
+
+    /**
+     * Returns the representation of a Deadline task when stored in a data file on the hard disk.
+     *
+     * @return a string representing the Deadline task as it is stored on a data file on the hard disk.
+     */
+    @Override
+    public String toData() {
+        return "D | " + super.toData() + " | " + by + "\n";
+    }
 }
