@@ -15,6 +15,10 @@ public class Task {
         this.isDone = false;
     }
 
+    public String saveText() {
+        return String.format("Task|%d|%s", this.isDone ? 1 : 0, this.description);
+    }
+
     @Override
     public String toString() {
         char statusIcon = this.isDone ? 'X' : ' ';
