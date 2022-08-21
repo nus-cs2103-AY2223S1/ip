@@ -2,6 +2,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -39,7 +42,7 @@ public class Duke {
                 String line = sc.nextLine();
                 output(line);
                 writeFile();
-            } catch (IOException | DukeException e) {
+            } catch (IOException | DukeException | DateTimeParseException e) {
                 printException(e);
             }
         }
@@ -69,11 +72,11 @@ public class Duke {
             break;
         case EVENT:
             String[] eDes = s.replace("event", "").split(" /at ");
-            addList(new Event(eDes[0], eDes[1]));
+            addList(new Event(eDes[0], LocalDate.parse(eDes[1])));
             break;
         case DEADLINE:
             String[] dDes = s.replace("deadline", "").split(" /by ");
-            addList(new Deadline(dDes[0], dDes[1]));
+            addList(new Deadline(dDes[0], LocalDate.parse(dDes[1])));
             break;
         case DELETE:
             int delNum = Integer.parseInt(s.replace("delete ", ""));
@@ -207,11 +210,11 @@ public class Duke {
                 l.add(addTodo);
                 break;
             case "E":
-                Task addEvent = new Event(info[2], info[3], info[1].equals("1"));
+                Task addEvent = new Event(info[2], LocalDate.parse(info[3]), info[1].equals("1"));
                 l.add(addEvent);
                 break;
             case "D":
-                Task addDeadline = new Deadline(info[2], info[3], info[1].equals("1"));
+                Task addDeadline = new Deadline(info[2], LocalDate.parse(info[3]), info[1].equals("1"));
                 l.add(addDeadline);
                 break;
             default:
