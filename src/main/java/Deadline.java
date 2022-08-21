@@ -7,6 +7,16 @@ public class Deadline extends Task {
     }
 
     @Override
+    public DukeCommand getTaskType() {
+        return DukeCommand.DEADLINE;
+    }
+
+    @Override
+    public String getOtherData() {
+        return this.by;
+    }
+
+    @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + by + ")";
     }

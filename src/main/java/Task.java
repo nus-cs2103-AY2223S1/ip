@@ -11,6 +11,14 @@ public class Task {
         return isDone ? "X" : " ";
     }
 
+    public DukeCommand getTaskType() {
+        return DukeCommand.UNKNOWN;
+    }
+
+    public String getOtherData() {
+        return "";
+    }
+
     public void markAsDone() {
         this.isDone = true;
     }

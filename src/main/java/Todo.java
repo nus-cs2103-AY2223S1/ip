@@ -4,6 +4,11 @@ public class Todo extends Task {
     }
 
     @Override
+    public DukeCommand getTaskType() {
+        return DukeCommand.TODO;
+    }
+
+    @Override
     public String toString() {
         return "[T]" + super.toString();
     }
