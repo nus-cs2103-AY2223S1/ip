@@ -62,7 +62,7 @@ public class Duke {
                 // Print any output.
                 if (output.equals("exit sequence initiated")) {
                     runDuke = false;
-                    System.out.println("Bye. Hope to see you again soon!");
+                    ui.showUser("Bye. Hope to see you again soon!");
                     break;
                 } else {
                     System.out.println(output);
@@ -71,9 +71,9 @@ public class Duke {
                 // Write to disk.
                 storage.writeToFile(taskList);
             } catch (DukeException e) {
-                System.out.println(e.getMessage());
+                ui.showUser(e.getMessage());
             } catch (IOException e) {
-                System.out.println("Error writing to file: " + e.getMessage());
+                ui.showUser("Error writing to file: " + e.getMessage());
             }
         }
         sc.close();

@@ -41,4 +41,11 @@ public class Ui {
         System.out.print(AVAILABLE_COMMANDS);
     }
 
+    /**
+     * Show given String to user.
+     */
+    public void showUser(String string) {
+        System.out.println(string);
+    }
+
 }
