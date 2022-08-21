@@ -1,8 +1,8 @@
 package duke.command;
 
-import duke.DukeException;
-
 import java.util.Locale;
+
+import duke.DukeException;
 
 /**
  * RecognisedCommand that Duke can execute
@@ -14,7 +14,7 @@ public abstract class Command {
      * All commands recognised by Duke
      */
     public enum RecognisedCommand {
-        BYE, LIST, HELP, MARK, UNMARK, DELETE, TODO, DEADLINE, EVENT, INVALID;
+        BYE, LIST, HELP, MARK, UNMARK, DELETE, TODO, DEADLINE, EVENT, FIND, INVALID;
     }
 
     /**
@@ -41,7 +41,6 @@ public abstract class Command {
         for (RecognisedCommand e : RecognisedCommand.values()) {
             if (e.name().equals(command.toUpperCase(Locale.ROOT))) {
                 return e;
-            }
             }
         }
         return RecognisedCommand.INVALID;

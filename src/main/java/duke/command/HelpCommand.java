@@ -46,6 +46,10 @@ public class HelpCommand extends Command {
                         + "\nI will add the <duke.task> to the list of tasks."
                         + "\nThe <duke.task> will also display the <time/date> the duke.task should be done.");
                 break;
+            case FIND:
+                System.out.println("Format: find <keyword>"
+                        + "\nI will search for all tasks that possesses the <keyword>");
+                break;
             default:
                 break;
             }

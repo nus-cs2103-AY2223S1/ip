@@ -13,7 +13,7 @@ public class TaskList {
     /**
      * The ArrayList of Tasks that Duke uses to track the user's input tasks
      */
-    private ArrayList<Task> taskList;
+    private ArrayList<Task> tasks;
 
     /**
      * Constructor for a TaskList object, if there was a prior saved ArrayList
@@ -33,7 +33,7 @@ public class TaskList {
     }
 
     /**
-     * Method to obtain the size of taskList
+     * Method to obtain the size of tasks
      * @return the size of taskList
      * @since 0.1
      */
@@ -42,17 +42,17 @@ public class TaskList {
     }
 
     /**
-     * Method to retrieve the task of an index from taskList
+     * Method to retrieve the task of an index from tasks
      * @param taskId index of the desired task
      * @return the task at index in taskList
      * @since 0.1
      */
     public Task getTask(int taskId) {
-        return taskList.get(taskId);
+        return tasks.get(taskId);
     }
 
     /**
-     * Method to reemove the task of an index from taskList
+     * Method to remove the task of an index from tasks
      * @param taskId index of the desired task
      * @since 0.1
      */
@@ -60,22 +60,33 @@ public class TaskList {
         tasks.remove(taskId);
     }
 
+    /**
+     * Finds all the tasks in tasks that possesses the input word
+     * @param word String to check
+     * @return ArrayList of all matching tasks
+     * @since 0.1
+     */
     public ArrayList<Task> find(String word) {
         ArrayList<Task> matches = new ArrayList<>();
-        for (int i = 0; i < taskList.size(); i++) {
-            if (taskList.get(i).isTaskAndWordMatch(word)) {
-                matches.add(taskList.get(i));
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.get(i).isTaskAndWordMatch(word)) {
+                matches.add(tasks.get(i));
             }
         }
         return matches;
     }
 
+    /**
+     * Method to add a task to tasks
+     * @param task Task to add
+     * @since 0.1
+     */
     public void add(Task task) {
         tasks.add(task);
     }
 
     /**
-     * Method to print out the string representations of all tasks in taskList,
+     * Method to print out the string representations of all tasks in tasks,
      * with a 1-indexed numbering system.
      * @since 0.1
      */

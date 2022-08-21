@@ -5,23 +5,28 @@ import java.util.Scanner;
 
 import duke.task.Task;
 
+/**
+ * The program that manages Duke's communications with the user
+ * @author Nephelite
+ * @version 0.1
+ */
 public class Ui {
     /**
      * Line break before Duke receives a command
      */
-    private static final String lineBreakBefore =
+    private static final String LINE_BREAK_BEFORE =
             "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
             + "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-";
     /**
      * Line break after Duke receives a command
      */
-    private static final String lineBreakAfter =
+    private static final String LINE_BREAK_AFTER =
             "______________________________________________________"
             + "______________________________________________________";
     /**
      * Duke's logo
      */
-    private static final String logo =
+    private static final String LOGO =
             " ____        _\n"
             + "|  _ \\ _   _| | _____\n"
             + "| | | | | | | |/ / _ \\\n"
@@ -30,11 +35,11 @@ public class Ui {
     /**
      * First line of Duke's greeting
      */
-    private static final String greeting1 = "Hello! I'm duke.Duke.";
+    private static final String GREETING_ONE = "Hello! I'm duke.Duke.";
     /**
      * Second line of Duke's greeting
      */
-    private static final String greeting2 = "What can I do for you?";
+    private static final String GREETING_TWO = "What can I do for you?";
 
     /**
      * Scanner object that Ui will use to read user inputs
@@ -135,6 +140,10 @@ public class Ui {
         return command;
     }
 
+    /**
+     * Reads a given list
+     * @param tasks
+     */
     public void readList(ArrayList<Task> tasks) {
         list();
         for (int i = 0; i < tasks.size(); i++) {
