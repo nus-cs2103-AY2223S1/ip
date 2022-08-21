@@ -11,14 +11,11 @@ public class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
-    public void markAsDone() {
-        isDone = true;
-        System.out.println("Task marked as done:\n\t" + this);
-    }
-
-    public void markAsNotDone() {
-        isDone = false;
-        System.out.println("Task marked as not done:\n\t" + this);
+    public void changeStatus(boolean isTaskDone, boolean showMessage) {
+        isDone = isTaskDone;
+        if (showMessage) {
+            System.out.println("Task marked as " + (isTaskDone ? "" : "not ") + "done:\n\t" + this);
+        }
     }
 
     @Override
