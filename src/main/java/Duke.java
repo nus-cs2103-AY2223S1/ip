@@ -3,10 +3,10 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Duke {
-    private static final String name = "Duke";
-    private static final ArrayList<Task> tasks = new ArrayList<>();
+    private static final String NAME = "Duke";
+    private static final ArrayList<Task> TASKS = new ArrayList<>();
     private static boolean isDone = false;
-    private static final Map<String, TaskNames> stringTaskNamesHashMap = Map.of(
+    private static final Map<String, TaskNames> STRING_TASK_NAMES_MAP = Map.of(
         "todo", TaskNames.TODO,
         "deadline", TaskNames.DEADLINE,
         "event", TaskNames.EVENT
@@ -23,7 +23,7 @@ public class Duke {
     }
 
     private static void greet() {
-        System.out.printf("Hello! I'm %s\n", name);
+        System.out.printf("Hello! I'm %s\n", NAME);
         System.out.println("What can I do for you?");
     }
 
@@ -33,67 +33,75 @@ public class Duke {
         String userCommand = userInput[0].toLowerCase();
 
         try {
-            if (userCommand.equals("bye")) {
-                goodbye();
-            } else if (userCommand.equals("list")) {
+            switch (userCommand) {
+            case "bye":
+                sayGoodbye();
+                break;
+            case "list":
                 listTasks();
-            } else if (userCommand.equals("mark")) {
+                break;
+            case "mark":
                 getTask(userInput).markAsDone();
-            } else if (userCommand.equals("unmark")) {
+                break;
+            case "unmark":
                 getTask(userInput).markAsNotDone();
-            } else if (userCommand.equals("delete")) {
+                break;
+            case "delete":
                 deleteTask(userInput);
-            } else {
+                break;
+            default:
                 validateTask(userCommand);
                 String taskDescription = getDescription(userInput);
                 Task task = createTask(userCommand, taskDescription);
                 addTask(task);
+                break;
             }
         } catch (DukeException de) {
             System.out.println(de);
         }
     }
 
-    private static void goodbye() {
+    private static void sayGoodbye() {
         isDone = true;
         System.out.println("Bye. Hope to see you again soon!");
     }
 
     private static void listTasks() {
         System.out.println("Here are the tasks in your list:");
-        for (int i = 0; i < tasks.size(); i++) {
-            System.out.printf("%d. %s\n", i + 1, tasks.get(i));
+        for (int i = 0; i < TASKS.size(); i++) {
+            System.out.printf("%d. %s\n", i + 1, TASKS.get(i));
         }
     }
 
     private static void addTask(Task task) {
-        tasks.add(task);
+        TASKS.add(task);
         System.out.printf("Got it. I've added this task:\n %s\n", task);
-        sayTasks();
+        sayTasksCount();
     }
 
     private static Task getTask(String[] userInput) throws DukeException {
-        return tasks.get(Integer.parseInt(getDescription(userInput)) - 1);
+        return TASKS.get(Integer.parseInt(getDescription(userInput)) - 1);
     }
 
     private static Task createTask(String taskName, String taskDescription) {
 
         String[] temp = taskDescription.split(" /");
 
-        switch (stringTaskNamesHashMap.get(taskName)) {
-            case TODO:
-                return new Todo(taskDescription);
-            case EVENT:
-                return new Event(temp[0], temp[1].split(" ", 2)[1]);
-            case DEADLINE:
-                return new Deadline(temp[0], temp[1].split(" ", 2)[1]);
-            default:
-                return null;
+        switch (STRING_TASK_NAMES_MAP.get(taskName)) {
+        case TODO:
+            return new Todo(taskDescription);
+        case EVENT:
+            return new Event(temp[0], temp[1].split(" ", 2)[1]);
+        case DEADLINE:
+            return new Deadline(temp[0], temp[1].split(" ", 2)[1]);
+        default:
+            // should not reach this part
+            return null;
         }
     }
 
     private static void validateTask(String userCommand) throws DukeException {
-        if (!stringTaskNamesHashMap.containsKey(userCommand)) {
+        if (!STRING_TASK_NAMES_MAP.containsKey(userCommand)) {
             throw new DukeException("I'm sorry, but I don't know what that means.");
         }
     }
@@ -109,13 +117,13 @@ public class Duke {
 
     private static void deleteTask(String[] userInput) throws DukeException {
         Task task = getTask(userInput);
-        tasks.remove(task);
+        TASKS.remove(task);
         System.out.printf("Noted. I've removed this task:\n %s\n", task);
-        sayTasks();
+        sayTasksCount();
     }
 
-    private static void sayTasks() {
-        System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
+    private static void sayTasksCount() {
+        System.out.printf("Now you have %d tasks in the list.\n", TASKS.size());
     }
 
 }
