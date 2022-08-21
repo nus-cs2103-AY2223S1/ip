@@ -45,6 +45,9 @@ public class Duke {
         } else if (s.startsWith("event")) {
             String[] eDes = s.replace("event", "").split(" /at ");
             addList(new Event(eDes[0], eDes[1]));
+        } else if (s.startsWith("delete")) {
+            int delNum = Integer.parseInt(s.replace("delete ", ""));
+            delete(delNum);
         } else {
             throw new DukeException("I'm sorry, but I don't know what that means :-(");
         }
@@ -116,6 +119,16 @@ public class Duke {
     private void printException(Exception e) {
         printLine();
         print(e.getMessage());
+        printLine();
+    }
+
+    private void delete(int i) {
+        Task t = this.l.get(i - 1);
+        this.l.remove(i - 1);
+        printLine();
+        print("Noted. I've removed this task:");
+        print("  " + t.toString());
+        print("Now you have " + l.size() + " tasks in the list.");
         printLine();
     }
 
