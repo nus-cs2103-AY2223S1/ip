@@ -10,10 +10,12 @@ public class Duke {
      */
     private TaskList list;
     private Storage storage;
+    private String filePath;
 
     public Duke(String filePath) {
         storage = new Storage(filePath);
         list = new TaskList(storage.load());
+        this.filePath = filePath;
     }
 
     public void run() {
@@ -27,6 +29,8 @@ public class Duke {
 
             if (in.equals("bye")) {
                 break;
+            } else if (in.equals("clear")) {
+                list.clear();
             } else if (in.equals("list")) {
                 list.printTasks();
             } else if (in.startsWith("mark")) {
@@ -87,6 +91,6 @@ public class Duke {
         Ui.bye();
     }
     public static void main(String[] args) {
-        new Duke("./data").run();
+        new Duke("./data/duke.txt").run();
     }
 }

@@ -11,10 +11,10 @@ public class Storage {
 
     public Storage(String filePath) {
         try {
-            Files.createDirectories(Paths.get(filePath));
-            this.file = new File(filePath+ "/duke.txt");
+            this.file = new File(filePath);
 
             if (!file.exists()) {
+                Files.createDirectories(Paths.get(filePath));
                 boolean result = file.createNewFile();
             }
         }

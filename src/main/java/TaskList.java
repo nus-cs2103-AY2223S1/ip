@@ -24,6 +24,11 @@ public class TaskList {
 
     public int getSize() { return taskList.size(); }
 
+    public void clear() {
+        taskList.clear();
+        Ui.clear();
+    }
+
     public void printTasks() {
         int index = 0;
         Task item;

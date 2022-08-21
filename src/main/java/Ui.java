@@ -34,6 +34,10 @@ public class Ui {
         System.out.println("We now have " + list.getSize() + " tasks left.");
     }
 
+    public static void clear() {
+        System.out.println("The list has been successfully cleared!");
+    }
+
     public static void line() {
         System.out.println("-------------------------------------------");
     }

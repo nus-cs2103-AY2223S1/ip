@@ -16,4 +16,8 @@ public class FileWriting {
             e.printStackTrace();
         }
     }
+
+    public static void clear(String filePath) {
+        update(filePath, new TaskList());
+    }
 }
