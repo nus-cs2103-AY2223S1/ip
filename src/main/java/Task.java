@@ -1,4 +1,6 @@
-public class Task {
+import java.time.LocalDate;
+
+abstract public class Task {
     protected String description;
     protected boolean isDone;
 
@@ -33,4 +35,6 @@ public class Task {
     public String toString() {
         return "[" + this.getStatusIcon() + "] " + this.description;
     }
+
+    abstract boolean checkDate(LocalDate anoDate);
 }

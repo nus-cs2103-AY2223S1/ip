@@ -1,14 +1,29 @@
+import java.time.LocalDate;
+
 public class Events extends Task{
 
-    protected String at;
+    protected LocalDate date;
 
     public Events(String description, String at) {
         super(description);
-        this.at = at;
+        LocalDate date = LocalDate.parse(at);
+        this.date = date;
+    }
+
+    private String dateString() {
+        String month = this.date.getMonth().toString();
+        int year = this.date.getYear();
+        int day = this.date.getDayOfMonth();
+        return month + " " + day + " " + year + " " + this.date.getDayOfWeek().toString();
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: "+ this.at + ")";
+        return "[E]" + super.toString() + " (at: "+ this.dateString() + ")";
+    }
+
+    @Override
+    public boolean checkDate(LocalDate anoDate) {
+        return anoDate.equals(this.date);
     }
 }

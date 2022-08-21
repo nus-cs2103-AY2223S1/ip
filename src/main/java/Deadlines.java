@@ -1,14 +1,29 @@
+import java.time.LocalDate;
+
 public class Deadlines extends Task {
 
-    protected String by;
+    protected LocalDate date;
 
     public Deadlines(String description, String by) {
         super(description);
-        this.by = by;
+        LocalDate date = LocalDate.parse(by);
+        this.date = date;
+    }
+
+    private String dateString() {
+        String month = this.date.getMonth().toString();
+        int year = this.date.getYear();
+        int day = this.date.getDayOfMonth();
+        return month + " " + day + " " + year + " " + this.date.getDayOfWeek().toString();
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: "+ this.by + ")";
+        return "[D]" + super.toString() + " (by: "+ this.dateString() + ")";
+    }
+
+    @Override
+    public boolean checkDate(LocalDate anoDate) {
+        return anoDate.equals(this.date);
     }
 }
