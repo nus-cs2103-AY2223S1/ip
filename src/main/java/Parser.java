@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class InputParser {
+public class Parser {
     private Scanner sc;
     private ArrayList<Task> tasks;
 
-    InputParser(Scanner sc, ArrayList<Task> tasks) {
+    Parser(Scanner sc, ArrayList<Task> tasks) {
         this.sc = sc;
         this.tasks = tasks;
     }

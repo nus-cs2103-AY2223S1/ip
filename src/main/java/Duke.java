@@ -14,8 +14,8 @@ public class Duke {
                     "What you want?\n");
             TasksReader tasksReader = new TasksReader();
             tasks = tasksReader.readSavedTasks();
-            InputParser inputParser = new InputParser(sc, tasks);
-            inputParser.parseInputs();
+            Parser parser = new Parser(sc, tasks);
+            parser.parseInputs();
             TasksWriter tasksWriter = new TasksWriter(tasks);
             tasksWriter.writeToFile();
         } catch (DukeException e) {
