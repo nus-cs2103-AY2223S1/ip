@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -19,7 +21,7 @@ public class Duke {
     private static boolean isBye;
 
     private enum Command {
-        BYE, LIST, MARK, UNMARK, DELETE, TODO, DEADLINE, EVENT;
+        BYE, LIST, MARK, UNMARK, DELETE, TODO, DEADLINE, EVENT, ON;
     }
 
     /**
@@ -133,6 +135,14 @@ public class Duke {
                 printError("The specified task does not exist.");
             } catch (NumberFormatException | DukeException e) {
                 printError("Specify which task to delete with a single integer.");
+            }
+            break;
+
+        case ON:
+            try {
+                findTasksOn(input);
+            } catch (DateTimeParseException | DukeException e) {
+                printError("Specify the date to check with yyyy-MM-dd.");
             }
             break;
         }
@@ -278,6 +288,35 @@ public class Duke {
             System.out.println(INDENTATION + "Now you have 1 task in your list.");
         } else {
             System.out.println(INDENTATION + "Now you have " + taskCount + " tasks in your list.");
+        }
+        printLine();
+    }
+
+    /**
+     * Finds the tasks that occur by/at a date.
+     *
+     * @param input The command specified to Duke.
+     * @throws DukeException when the command is just "on".
+     */
+    private static void findTasksOn(String input) throws DukeException {
+        if (input.length() == 2) {
+            throw new DukeException();
+        }
+
+        input = input.substring(3);
+        LocalDate date = LocalDate.parse(input);
+        int matchingCount = 0;
+
+        printLine();
+        System.out.println(INDENTATION + "Here are the tasks in your list on this date:");
+        for (int i = 0; i < taskCount; i++) {
+            Task task = tasks.get(i);
+            if (task.onDate(date)) {
+                System.out.println(INDENTATION + ++matchingCount + "." + task);
+            }
+        }
+        if (matchingCount == 0) {
+            System.out.println(INDENTATION + "You have no tasks on this date!");
         }
         printLine();
     }
