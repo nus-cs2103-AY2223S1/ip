@@ -3,7 +3,7 @@ import java.time.LocalDate;
 /**
  * Deadline class has a by field
  */
-public class Deadline extends Task {
+public class Deadline extends Task implements DateableTask{
     protected LocalDate by;
 
     public Deadline(String description, LocalDate by) {
@@ -20,5 +20,10 @@ public class Deadline extends Task {
             status = String.format("[D][ ] %s (by: %s)", this.description, by);
         }
         return status;
+    }
+
+    @Override
+    public int numOfDaysLeft() {
+        return by.compareTo(LocalDate.now());
     }
 }
