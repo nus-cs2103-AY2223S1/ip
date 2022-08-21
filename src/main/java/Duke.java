@@ -30,9 +30,17 @@ public class Duke {
             case "unmark":
                 unMarkTask(tasks, Integer.parseInt(input.split(" ")[1]));
                 break;
+                
+            case "todo":
+                //fall through
+            case "deadline":
+                //fall through
+            case "event":
+                addTask(tasks, input);
+                break;
 
             default:
-                addTask(tasks, input);
+                System.out.println("I don't really understand what do you mean by that :(");
             }
         }
     }
@@ -74,11 +82,31 @@ public class Duke {
     }
 
     public static void addTask(List<Task> tasks, String input) {
-        Task task = new Task(input);
-        tasks.add(task);
-        printBlock("Okay okay, I'll add this task then: \n"
-                + task
-                + String.format("You now have %d many tasks in your list", tasks.size()));
+        String description;
+        String dateString;
+        if (input.startsWith("todo")) {
+            description = input.replace("todo", "").strip();
+            ToDo task = new ToDo(description);
+            tasks.add(task);
+        } else if (input.startsWith("deadline")) {
+            String[] temp = input.replace("deadline","").strip().split("/by");
+            description = temp[0].strip();
+            dateString = temp[1].strip();
+            Deadline task = new Deadline(description, dateString);
+            tasks.add(task);
+        } else if (input.startsWith("event")) {
+            String[] temp = input.replace("event", "").strip().split("/at");
+            description = temp[0].strip();
+            dateString = temp[1].strip();
+            Event task = new Event(description, dateString);
+            tasks.add(task);
+        }
+        //create the appropriate task for each Task type
+        printLine();
+        printIndent("Okay okay, I'll add this task then:");
+        printIndent(tasks.get(tasks.size() -1).toString());
+        printIndent(String.format("You now have %d many tasks in your list", tasks.size()));
+        printLine();
     }
 
     public static void showTasks(List<Task> Tasks) {
