@@ -16,16 +16,19 @@ public class Deadline extends Task {
         this.deadline = deadline;
     }
 
+    public Deadline(String description, String deadline, boolean isDone) {
+        super(description, isDone);
+        this.deadline = deadline;
+    }
+
     @Override
     public String getTaskTypeIcon() {
         return Deadline.taskType.toString();
     }
 
     @Override
-    public Serializable serialize() {
-        String isDone = super.isDone ? "1" : "0";
-        String[] data = {Deadline.taskType.toString(), isDone, super.description, this.deadline};
-        return new Serializable(data);
+    public TaskSerializable serialize() {
+        return new TaskSerializable(Deadline.taskType, super.description, super.isDone, this.deadline);
     }
 
     @Override

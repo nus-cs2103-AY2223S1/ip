@@ -16,16 +16,19 @@ public class Event extends Task {
         this.datetime = datetime;
     }
 
+    public Event(String description, String datetime, boolean isDone) {
+        super(description, isDone);
+        this.datetime = datetime;
+    }
+
     @Override
     public String getTaskTypeIcon() {
         return Event.taskType.toString();
     }
 
     @Override
-    public Serializable serialize() {
-        String isDone = super.isDone ? "1" : "0";
-        String[] data = {Event.taskType.toString(), isDone, super.description, this.datetime};
-        return new Serializable(data);
+    public TaskSerializable serialize() {
+        return new TaskSerializable(Event.taskType, super.description, super.isDone, this.datetime);
     }
 
     @Override

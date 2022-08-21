@@ -13,15 +13,17 @@ public class ToDo extends Task {
         super(description);
     }
 
-    @Override
-    public String getTaskTypeIcon() {
-        return ToDo.taskType.toString();
+    public ToDo(String description, boolean isDone) {
+        super(description, isDone);
     }
 
     @Override
-    public Serializable serialize() {
-        String isDone = super.isDone ? "1" : "0";
-        String[] data = {ToDo.taskType.toString(), isDone, super.description};
-        return new Serializable(data);
+    public TaskSerializable serialize() {
+        return new TaskSerializable(ToDo.taskType, super.description, super.isDone, null);
+    }
+
+    @Override
+    public String getTaskTypeIcon() {
+        return ToDo.taskType.toString();
     }
 }

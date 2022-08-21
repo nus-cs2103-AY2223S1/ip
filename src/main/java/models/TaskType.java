@@ -23,5 +23,18 @@ public enum TaskType {
         public String toString() {
             return "E";
         }
+    };
+
+    public static TaskType fromString(String s) {
+        if (s.equals(TODO.toString())) {
+            return TODO;
+        }
+        if (s.equals(DEADLINE.toString())) {
+            return DEADLINE;
+        }
+        if (s.equals(EVENT.toString())) {
+            return EVENT;
+        }
+        return null;
     }
 }
