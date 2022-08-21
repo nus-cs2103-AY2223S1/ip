@@ -7,6 +7,11 @@ public abstract class Task {
         this.done = false;
     }
 
+    public Task(String task, boolean done) {
+        this.task = task;
+        this.done = done;
+    }
+
     public void markTask() {
         done = true;
         System.out.println("Nice! I've marked this task as done:\n" + toString() + "\n");
@@ -27,5 +32,10 @@ public abstract class Task {
             return "[X] " + task;
         }
         return "[ ] " + task;
+    }
+
+    public String toSaveString() {
+        int d = done ? 1 : 0;
+        return String.format("%d %s", d, task);
     }
 }
