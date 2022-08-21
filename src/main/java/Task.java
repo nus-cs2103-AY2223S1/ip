@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 public class Task {
     private String description;
     private boolean isDone;
@@ -32,9 +34,9 @@ public class Task {
         case 'T':
             return new ToDo(description, isDone);
         case 'D':
-            return new Deadline(description, isDone, dataSplit[3]);
+            return new Deadline(description, isDone, LocalDate.parse(dataSplit[3]));
         case 'E':
-            return new Event(description, isDone, dataSplit[3]);
+            return new Event(description, isDone, LocalDate.parse(dataSplit[3]));
         default:
             throw new DukeException("☹ OOPS!!! Unrecognised task type!");
         }

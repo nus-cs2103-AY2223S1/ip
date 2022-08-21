@@ -1,8 +1,10 @@
+import java.time.LocalDate;
+
 public class EventCommand extends Command{
     private String description;
-    private String date;
+    private LocalDate date;
 
-    public EventCommand(String description, String date) {
+    public EventCommand(String description, LocalDate date) {
         super(false);
         this.description = description;
         this.date = date;
