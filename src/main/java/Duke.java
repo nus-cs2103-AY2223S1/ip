@@ -7,9 +7,13 @@ enum Commands {
     DELETE
 }
 public class Duke {
-    public static void main(String[] args) throws DukeException {
-        Scanner scanner = new Scanner(System.in);
+
+    public static void greet() {
         System.out.println("Hello! I'm Duke\nWhat can I do for you?");
+    }
+    public static void main(String[] args) throws DukeException {
+        greet();
+        Scanner scanner = new Scanner(System.in);
         String input = "";
         ArrayList<Task> list = new ArrayList<>();
         while (true) {
