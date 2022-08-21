@@ -1,7 +1,7 @@
 list
 todo test1
-deadline test2 /by 2359
-event test3 /at 0800
+deadline test2 /by 2000-01-01
+event test3 /at 2022-02-20
 list
 mark 1
 mark 2

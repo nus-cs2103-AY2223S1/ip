@@ -11,9 +11,8 @@ public abstract class Task implements Serializable {
     }
 
     // this is implemented as a toggle; could be problematic in future
-    public boolean completeToggle() {
+    public void completeToggle() {
         this.completed = !this.completed;
-        return this.completed;
     }
 
     public boolean isCompleted() {

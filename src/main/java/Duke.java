@@ -3,7 +3,6 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Duke {
-    private static final String DIVIDER = "-------------------------------------\n";
     private ArrayList<Task> tasks;
     private boolean end;
 
@@ -16,29 +15,15 @@ public class Duke {
         String command;
         Scanner sc = new Scanner(System.in);
 
-        this.greet();
+        Ui.greet();
         while(!this.end) {
             command = sc.nextLine();
             try {
                 this.handler(command);
             } catch (DukeException e) {
-                System.out.println(e.getMessage());
+                Ui.printException(e);
             }
         }
-    }
-
-    // greet method contains the greeting message
-    private void greet() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-
-        String message = "Hello! I'm Duke\n"
-                + "What can I do for you?\n";
-        System.out.println(DIVIDER + message + DIVIDER);
     }
 
     // handler method handles user input and outputs accordingly
@@ -74,7 +59,8 @@ public class Duke {
                 }
                 break;
             case "bye":
-                exit();
+                this.end = true;
+                Ui.exit();
                 break;
             default:
                 throw new DukeUnknownInputException(args[0]);
@@ -82,21 +68,10 @@ public class Duke {
     }
 
     // sub methods associated with handler() for each user input case
-    private void exit() {
-        end = true;
-        System.out.println(DIVIDER + "Bye. Hope to see you again soon!\n" + DIVIDER);
-    }
+
 
     private void list() {
-        if (tasks.isEmpty()) {
-            System.out.println(DIVIDER + "List is empty\n" + DIVIDER);
-        } else {
-            System.out.print(DIVIDER);
-            for (int i = 0; i < tasks.size(); i++) {
-                System.out.println((i+1) + ". " + tasks.get(i));
-            }
-            System.out.println(DIVIDER);
-        }
+        Ui.listPrint(tasks);
     }
 
     // atodo, deadline and event breaks if no input is entered after each command (1 for atodo, 2 for others)
@@ -108,10 +83,7 @@ public class Duke {
             case "todo":
                 currTask = new Todo(item);
                 tasks.add(currTask);
-                System.out.println(DIVIDER + "OK, I've added this todo:\n"
-                        + "  " + currTask + "\n"
-                        + "Number of tasks in list: " + tasks.size() + "\n"
-                        + DIVIDER);
+                Ui.addTask("todo", currTask, tasks.size());
                 Storage.Save(tasks);
                 break;
             case "deadline":
@@ -119,10 +91,7 @@ public class Duke {
                 try{
                     currTask = new Deadline(args[0], args[1]);
                     tasks.add(currTask);
-                    System.out.println(DIVIDER + "OK, I've added this deadline:\n"
-                            + "  " + currTask + "\n"
-                            + "Number of tasks in list: " + tasks.size() + "\n"
-                            + DIVIDER);
+                    Ui.addTask("deadline", currTask, tasks.size());
                     Storage.Save(tasks);
                 } catch (ArrayIndexOutOfBoundsException e) {
                     throw new DukeMissingInputException(type);
@@ -135,10 +104,7 @@ public class Duke {
                 try{
                     currTask = new Event(args[0], args[1]);
                     tasks.add(currTask);
-                    System.out.println(DIVIDER + "OK, I've added this event:\n"
-                            + "  " + currTask + "\n"
-                            + "Number of tasks in list: " + tasks.size() + "\n"
-                            + "\n" + DIVIDER);
+                    Ui.addTask("event", currTask, tasks.size());
                     Storage.Save(tasks);
                 } catch (ArrayIndexOutOfBoundsException e) {
                     throw new DukeMissingInputException(type);
@@ -161,10 +127,7 @@ public class Duke {
             throw new DukeListOOBException(index + 1);
         }
         Task currTask = tasks.remove(index);
-        System.out.println(DIVIDER + "OK, I've removed this task:\n"
-                    + "  " + currTask + "\n"
-                    + "Number of tasks in list: " + tasks.size() + "\n"
-                    + DIVIDER);
+        Ui.deleteTask(currTask, tasks.size());
         Storage.Save(tasks);
     }
 
@@ -180,13 +143,8 @@ public class Duke {
             throw new DukeListOOBException(index + 1);
         }
         Task currTask = tasks.get(index);
-        if(currTask.completeToggle()) {
-            System.out.println(DIVIDER + "Nice! I've marked this task as done:\n"
-                    + "  " + currTask + "\n" + DIVIDER);
-        } else {
-            System.out.println(DIVIDER + "OK, I've marked this task as not done yet:\n"
-                    + "  " + currTask + "\n" + DIVIDER);
-        }
+        currTask.completeToggle();
+        Ui.toggleTask(currTask);
         Storage.Save(tasks);
     }
 
