@@ -3,7 +3,7 @@ package skylark;
 enum CommandList {
     COMMAND_BYE, COMMAND_LIST, COMMAND_DONE,
     COMMAND_UNDONE, COMMAND_DEADLINE,
-    COMMAND_TODO, COMMAND_EVENT, COMMAND_DELETE;
+    COMMAND_TODO, COMMAND_EVENT, COMMAND_DELETE, COMMAND_FIND;
 
     @Override
     public String toString() {
@@ -24,6 +24,8 @@ enum CommandList {
             return "event";
         case COMMAND_DELETE:
             return "delete";
+        case COMMAND_FIND:
+            return "find";
         default:
             throw new IllegalArgumentException();
         }

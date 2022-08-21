@@ -25,6 +25,8 @@ public abstract class Command {
             return new EventCommand(command);
         } else if (command.length() >= 6 && command.startsWith(CommandList.COMMAND_DELETE.toString())) {
             return new DeleteCommand(command);
+        } else if (command.length() >= 5 && command.startsWith(CommandList.COMMAND_FIND.toString())) {
+            return new FindCommand(command);
         } else {
             return new UnknownCommand(command);
         }
@@ -189,6 +191,31 @@ public abstract class Command {
                 taskList.saveToFile();
             } else {
                 throw new SkylarkException("Sorry, index does not exist!");
+            }
+        }
+    }
+
+    private static class FindCommand extends Command {
+        public FindCommand(String input) {
+            super(input);
+        }
+
+        @Override
+        public void run(TaskList taskList) throws SkylarkException {
+            String command = super.getInput();
+            String query = command.substring(5);
+            if (query.isEmpty()) {
+                throw new SkylarkException("☹ OOPS!!! "
+                        + "The find query cannot be empty.");
+            }
+            Printer.printText("Here are the matching tasks in your list:");
+            int count = 1;
+            for (int i = 0; i < taskList.size(); i++) {
+                Task currentTask = taskList.get(i);
+                if (currentTask.toString().contains(query)) {
+                    Printer.printText((count) + ". " + currentTask);
+                    count += 1;
+                }
             }
         }
     }
