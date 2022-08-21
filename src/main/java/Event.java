@@ -18,6 +18,18 @@ public class Event extends Task {
         this.date = date;
     }
 
+    /**
+     * Constructor of Event.
+     *
+     * @param taskName The name of the event.
+     * @param date The date and time when the Event will happen.
+     * @param isDone True if the event is done, false otherwise.
+     */
+    public Event(String taskName, String date, boolean isDone) {
+        super(taskName, isDone);
+        this.date = date;
+    }
+
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at:" + this.date + ")";

@@ -1,0 +1,3 @@
+T | 0 | Finish up this IP
+D | 1 | this ip |  next thursday
+E | 0 | career fair |  31 august

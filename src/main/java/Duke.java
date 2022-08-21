@@ -1,9 +1,24 @@
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.io.File;
+import java.io.FileWriter;
 
 public class Duke {
     /** List of items. */
     private static final ArrayList<Task> tasks = new ArrayList<>();
+
+    /** Path to directory where file that stores tasks is at */
+    private static final Path dirPath = Paths.get(System.getProperty("user.dir"), "src", "data");
+
+    /** Path to file where tasks are stored. */
+    private static final Path filePath = Paths.get(System.getProperty("user.dir"), "src", "data", "duke.txt");
+
+    /** File reference where tasks are stored. */
+    private static final File file = new File(Duke.filePath.toString());
 
     /**
      * Startup message (When program is first booted).
@@ -61,15 +76,9 @@ public class Duke {
     /**
      * Creates one To Do task and adds it to the array list.
      *
-     * @param userInput The task description, preceded by an empty space.
-     * @throws DukeException If description is empty.
+     * @param description The task description.
      */
-    private static void createToDoTask(String userInput) throws DukeException {
-        String description = userInput.trim();
-        if (description.length() == 0) {
-            throw new DukeException("The description of a To Do task cannot by empty.");
-        }
-
+    private static void createToDoTask(String description) {
         Duke.tasks.add(new ToDo(description));
 
         System.out.println(Duke.formatText("Got it. I've added this task:\n" + "  " +
@@ -80,16 +89,11 @@ public class Duke {
     /**
      * Creates one Deadline and adds it to the array list.
      *
-     * @param userInput The description of the task, and deadline, preceded by an empty space.
+     * @param userInput The description of the task, and deadline.
      * @throws DukeException If userInput is not in the form "description /by deadline".
      */
     private static void createDeadline(String userInput) throws DukeException {
-        String trimmedInput = userInput.trim();
-        if (trimmedInput.length() == 0) {
-            throw new DukeException("The description of a deadline cannot be empty");
-        }
-
-        String[] detailsFragments = trimmedInput.split(" /by");
+        String[] detailsFragments = userInput.split(" /by");
         if (detailsFragments.length != 2) {
             throw new DukeException("Usage description /by deadline");
         }
@@ -104,16 +108,11 @@ public class Duke {
     /**
      * Creates one Event and adds it to the array list.
      *
-     * @param userInput The description of the task, and event time, preceded by an empty space.
+     * @param userInput The description of the task, and event time.
      * @throws DukeException If userInput is not in the form "description /at time".
      */
     private static void createEvent(String userInput) throws DukeException {
-        String trimmedInput = userInput.trim();
-        if (trimmedInput.length() == 0) {
-            throw new DukeException("The description of an event cannot be empty");
-        }
-
-        String[] detailsFragments = trimmedInput.split(" /at");
+        String[] detailsFragments = userInput.split(" /at");
         if (detailsFragments.length != 2) {
             throw new DukeException("Usage description /at time");
         }
@@ -149,6 +148,80 @@ public class Duke {
                 "Now you have " + (Duke.tasks.size() - 1) + " tasks in the list"));
 
         Duke.tasks.remove(deleteIndex - 1);
+    }
+
+    /**
+     * Preloads tasks from data/duke.txt file.
+     *
+     * @throws FileNotFoundException If file cannot be opened by Scanner.
+     */
+    private static void preloadTasks() throws FileNotFoundException {
+        if (Duke.file.exists() && !Duke.file.isDirectory()) {
+            Scanner fileScanner = new Scanner(Duke.file);
+            while (fileScanner.hasNext()) {
+                String line = fileScanner.nextLine();
+                String[] details = line.split(" \\| ");
+
+                // Loads tasks into array list.
+                try {
+                    if (details[0].equals("T")) {
+                        Duke.tasks.add(new ToDo(details[2], details[1].equals("1")));
+                    } else if (details[0].equals("D")) {
+                        Duke.tasks.add(new Deadline(details[2], details[3], details[1].equals("1")));
+                    } else if (details[0].equals("E")) {
+                        Duke.tasks.add(new Event(details[2], details[3], details[1].equals("1")));
+                    } else {
+                        throw new DukeException("File contains lines that cannot be validated as a Task.");
+                    }
+                } catch (DukeException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+
+            try {
+                Duke.writeToFile("", true);
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    /**
+     * Saves tasks into a duke.txt file.
+     *
+     */
+    private static void saveTasksToFile() {
+        for (Task t : Duke.tasks) {
+            // 1 denotes task is done, 0 denotes task is not done.
+            String taskDone = t.isDone ? "1" : "0";
+            try {
+                if (t instanceof ToDo) {
+                    Duke.writeToFile("T | " + taskDone + " | " + t.taskName + "\n", false);
+                } else if (t instanceof Deadline) {
+                    Duke.writeToFile("D | " + taskDone + " | " + t.taskName + " | " +
+                            ((Deadline) t).date + "\n", false);
+                } else if (t instanceof Event) {
+                    Duke.writeToFile("E | " + taskDone + " | " + t.taskName + " | " +
+                            ((Event) t).date + "\n", false);
+                }
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    /**
+     * Writes to file that contains all the tasks.
+     *
+     * @param textToAdd The text to be added to the file.
+     * @throws IOException If there are errors in input/output to the file.
+     */
+    private static void writeToFile(String textToAdd, boolean isOverwrite) throws IOException {
+        FileWriter fw = isOverwrite
+                ? new FileWriter(Duke.filePath.toString())
+                : new FileWriter(Duke.filePath.toString(), true);
+        fw.write(textToAdd);
+        fw.close();
     }
 
     /**
@@ -208,14 +281,15 @@ public class Duke {
 
             // Add item to tasks.
             try {
-                if (userInput.startsWith("todo ")) {
-                    Duke.createToDoTask(userInput.substring(4));
-                } else if (userInput.startsWith("deadline ")) {
-                    Duke.createDeadline(userInput.substring(8));
-                } else if (userInput.startsWith("event ")) {
-                    Duke.createEvent(userInput.substring(5));
-                } else if (userInput.equals("todo") || userInput.equals("deadline") || userInput.equals("event")) {
+                if (userInput.trim().equals("todo") || userInput.trim().equals("deadline") ||
+                        userInput.trim().equals("event")) {
                     throw new DukeException("The description of a " + userInput + " cannot be empty.");
+                } else if (userInput.startsWith("todo ")) {
+                    Duke.createToDoTask(userInput.substring(5));
+                } else if (userInput.startsWith("deadline ")) {
+                    Duke.createDeadline(userInput.substring(9));
+                } else if (userInput.startsWith("event ")) {
+                    Duke.createEvent(userInput.substring(6));
                 } else {
                     throw new DukeException("I'm sorry, but I don't know what that means :-(");
                 }
@@ -223,6 +297,8 @@ public class Duke {
                 System.out.println(e.getMessage());
             }
         }
+
+        Duke.saveTasksToFile();
     }
 
     /**
@@ -245,6 +321,29 @@ public class Duke {
 
     public static void main(String[] args) {
         Duke.greetUser();
+
+        // Create folders to store data file if it does not exist yet.
+        File dir = new File(Duke.dirPath.toString());
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+
+        // Create empty text file that stores the tasks if it does not exist.
+        if (!Duke.file.exists()) {
+            try {
+                Duke.writeToFile("", true);
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        // Preload tasks into array list from the file.
+        try {
+            Duke.preloadTasks();
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+
         Duke.startService();
     }
 }
