@@ -8,7 +8,7 @@ import duke.task.Task;
  */
 public class UnmarkCommand extends Command {
     public static final String COMMAND_WORD = "unmark";
-    private static final String userMessageFormat = "Marked task %d as not done!\n  %s";
+    private static final String USER_MESSAGE_FORMAT = "Marked task %d as not done!\n  %s";
     private final int index;
 
     /**
@@ -35,7 +35,7 @@ public class UnmarkCommand extends Command {
         // Subtract 1 to account for 0-index data structure.
         Task task = this.tasks.getTask(this.index - 1);
         task.markAsUndone();
-        String userMessage = String.format(userMessageFormat, this.index, task);
+        String userMessage = String.format(USER_MESSAGE_FORMAT, this.index, task);
         return new CommandResult(userMessage, true, false);
     }
 }

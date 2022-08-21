@@ -9,7 +9,7 @@ import duke.task.Todo;
 public class TodoCommand extends Command {
     /** Command word of the todo command. */
     public static final String COMMAND_WORD = "todo";
-    private static final String userMessageFormat = "Added this todo!\n  %s\nNow you have %d tasks.";
+    private static final String USER_MESSAGE_FORMAT = "Added this todo!\n  %s\nNow you have %d tasks.";
     private final Todo todo;
 
     /**
@@ -35,7 +35,7 @@ public class TodoCommand extends Command {
     public CommandResult execute() {
         this.tasks.addTask(this.todo);
         int numberOfTasks = this.tasks.size();
-        String userMessage = String.format(userMessageFormat, this.todo, numberOfTasks);
+        String userMessage = String.format(USER_MESSAGE_FORMAT, this.todo, numberOfTasks);
         return new CommandResult(userMessage, true, false);
     }
 }

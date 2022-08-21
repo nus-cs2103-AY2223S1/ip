@@ -16,7 +16,7 @@ public class DeadlineCommand extends Command {
     public static final String COMMAND_WORD = "deadline";
     private static final Pattern ARGUMENTS_FORMAT =
         Pattern.compile("(?<description>.+)\\s+/by\\s+(?<deadline>\\d{4}-\\d{2}-\\d{2})");
-    private static final String userMessageFormat = "Added this deadline!\n  %s\nNow you have %d tasks.";
+    private static final String USER_MESSAGE_FORMAT = "Added this deadline!\n  %s\nNow you have %d tasks.";
     private final Deadline deadline;
 
     /**
@@ -55,7 +55,7 @@ public class DeadlineCommand extends Command {
     public CommandResult execute() {
         this.tasks.addTask(this.deadline);
         int numberOfTasks = this.tasks.size();
-        String userMessage = String.format(userMessageFormat, this.deadline, numberOfTasks);
+        String userMessage = String.format(USER_MESSAGE_FORMAT, this.deadline, numberOfTasks);
         return new CommandResult(userMessage, true, false);
     }
 }

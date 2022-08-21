@@ -16,7 +16,7 @@ public class EventCommand extends Command {
     public static final String COMMAND_WORD = "event";
     private static final Pattern ARGUMENTS_FORMAT =
         Pattern.compile("(?<description>.+)\\s+/at\\s+(?<date>\\d{4}-\\d{2}-\\d{2})");
-    private static final String userMessageFormat = "Added this event!\n  %s\nNow you have %d tasks.";
+    private static final String USER_MESSAGE_FORMAT = "Added this event!\n  %s\nNow you have %d tasks.";
     private final Event event;
 
     /**
@@ -55,7 +55,7 @@ public class EventCommand extends Command {
     public CommandResult execute() {
         this.tasks.addTask(this.event);
         int numberOfTasks = this.tasks.size();
-        String userMessage = String.format(userMessageFormat, this.event, numberOfTasks);
+        String userMessage = String.format(USER_MESSAGE_FORMAT, this.event, numberOfTasks);
         return new CommandResult(userMessage, true, false);
     }
 }

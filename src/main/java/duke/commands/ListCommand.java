@@ -6,7 +6,7 @@ package duke.commands;
 public class ListCommand extends Command {
     /** Command word of the list command. */
     public static final String COMMAND_WORD = "list";
-    private static final String lineFormat = "%d: %s";
+    private static final String LINE_FORMAT = "%d: %s";
 
     /**
      * Executes the command.
@@ -18,7 +18,7 @@ public class ListCommand extends Command {
         String[] lines = new String[this.tasks.size()];
 
         for (int i = 0; i < tasks.size(); i++) {
-            lines[i] = String.format(lineFormat, i + 1, this.tasks.getTask(i));
+            lines[i] = String.format(LINE_FORMAT, i + 1, this.tasks.getTask(i));
         }
 
         String userMessage = String.join("\n", lines);

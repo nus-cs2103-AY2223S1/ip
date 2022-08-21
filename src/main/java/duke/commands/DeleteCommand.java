@@ -9,7 +9,7 @@ import duke.task.Task;
 public class DeleteCommand extends Command {
     /** Command word of the delete command. */
     public static final String COMMAND_WORD = "delete";
-    private static final String userMessageFormat = "Removing this task!\n  %s\nNow you have %d tasks left.";
+    private static final String USER_MESSAGE_FORMAT = "Removing this task!\n  %s\nNow you have %d tasks left.";
     private final int index;
 
     /**
@@ -37,7 +37,7 @@ public class DeleteCommand extends Command {
         Task task = this.tasks.getTask(this.index - 1);
         this.tasks.removeTask(this.index - 1);
         int numberOfTasks = this.tasks.size();
-        String userMessage = String.format(userMessageFormat, task, numberOfTasks);
+        String userMessage = String.format(USER_MESSAGE_FORMAT, task, numberOfTasks);
         return new CommandResult(userMessage, true, false);
     }
 }
