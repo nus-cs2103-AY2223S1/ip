@@ -1,4 +1,4 @@
-public class Task {
+public abstract class Task {
     protected String description;
     protected boolean isDone;
 
@@ -41,4 +41,10 @@ public class Task {
     public String toString() {
         return "[" + this.getStatusIcon() + "] " + this.description;
     }
+
+    /**
+     * Rewrites this event task into the save file format
+     * @return String to be stored in save file
+     */
+    public abstract String saveData();
 }

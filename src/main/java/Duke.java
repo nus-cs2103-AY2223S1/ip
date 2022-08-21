@@ -1,10 +1,15 @@
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.List; 
+import java.util.List;
 
 public class Duke {
     private Scanner scanner;
     private List<Task> list;
+    private final String PATH_FILE = "src/data/duke.txt";
+    private final String PATH_DIRECTORY = "src/data";
 
     private final String logo =   "        / \\     |_   _| | |  / _|                   | |\n"
                                 + "       /   \\      | |   | | | |_   _ __    ___    __| |\n"
@@ -22,12 +27,111 @@ public class Duke {
     /**
      * Initializing the application 
      */
-    public void initialize() throws DukeException{
+    public void initialize() throws DukeException, IOException {
         list = new ArrayList<>(100);
         scanner = new Scanner(System.in);
         System.out.println(greeting);
 
+        File file = new File(PATH_FILE);
+        File directory = new File(PATH_DIRECTORY);
+
+        try {
+            if (directory.exists()) {
+                System.out.println("Directory located... \n");
+            } else {
+                System.out.println("Creating a directory to store save file... \n");
+                Files.createDirectories(Path.of(PATH_DIRECTORY));
+            }
+
+            if (file.createNewFile()) {
+                System.out.println("Creating a new save file...");
+            } else {
+                System.out.println("Previous save file located, loading contents of save file...");
+                load(file);
+            }
+
+        } catch (IOException e) {
+            throw new IOException("Something went wrong: " + e.getMessage());
+        } catch (DukeException e) {
+            throw new DukeException("Something went wrong: " + e.getMessage());
+        }
+
         listen();
+    }
+
+    /**
+     * Parses the save file to load previously saved contents
+     * @param file File to be parsed
+     * @throws DukeException Thrown if any input in save file is wrong
+     * @throws IOException Thrown if Buffered reader fails the reading of data
+     */
+    public void load(File file) throws DukeException, IOException {
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        String data = br.readLine();
+
+        while (data != null) {
+            String[] dataDetails = data.split(" \\| ");
+            String command = dataDetails[0];
+            boolean marked; // 1 = marked, 0 = unmarked
+            String description = dataDetails[2];
+            Task task;
+
+            if (!dataDetails[1].equals("1")) {
+                if (!dataDetails[1].equals("0")) {
+                    throw new DukeException("☹ OOPS!!! The save file is corrupted, please delete the file and retry!");
+                } else {
+                    marked = false;
+                }
+            } else {
+                marked = true;
+            }
+
+            switch (command) {
+            case("T"):
+                task = new Todo(description);
+                break;
+            case("D"):
+                if (dataDetails.length != 4) {
+                    throw new DukeException("☹ OOPS!!! A Deadline task is corrupted!");
+                }
+                task = new Deadline(description, dataDetails[3]);
+                break;
+            case("E"):
+                if (dataDetails.length != 4) {
+                    throw new DukeException("☹ OOPS!!! An Event task is corrupted!");
+                }
+                task = new Event(description, dataDetails[3]);
+                break;
+            default:
+                throw new DukeException("☹ OOPS!!! The save file is corrupted, please delete the file and retry!");
+            }
+
+            if (marked) {
+                task.markAsDone();
+            }
+            addTask(task);
+
+            data = br.readLine();
+        }
+
+        System.out.println("I have reloaded your saved file ☺!");
+    }
+
+    /**
+     * Writes all current tasks on the save file
+     */
+    public void saveData() throws IOException {
+        System.out.println("☺ Saving your data before you go...");
+        FileWriter fw = new FileWriter(PATH_FILE);
+        try {
+            for (Task task : list) {
+                String data = task.saveData();
+                fw.write(data + System.lineSeparator());
+            }
+            fw.close();
+        } catch (IOException e) {
+            throw new IOException("Something went wrong: " + e.getMessage());
+        }
     }
 
     /**
@@ -168,7 +272,7 @@ public class Duke {
     /**
      * Listens to System.in for input
      */
-    public void listen() throws DukeException {
+    public void listen() throws DukeException, IOException {
         String input; // initializing the input
 
         // Reading user inputs
@@ -179,6 +283,7 @@ public class Duke {
 
             switch (command) {
                 case ("bye"):
+                    saveData();
                     System.out.println(goodbye);
                     System.exit(0);
                     break;
