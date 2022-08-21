@@ -26,9 +26,19 @@ import duke.task.Task;
 import duke.task.TaskType;
 import duke.task.ToDo;
 
-
+/**
+ * A component of the chatBot Duke that deciphers the user inputs.
+ */
 public class Parser {
 
+    /**
+     * Parses the user input and returns a command if the input is valid.
+     * @param input The given user input.
+     * @return The specified command of the user.
+     * @throws MissingDescriptionException The exception that occurs.
+     *     when the user did not input the command fully.
+     * @throws InvalidInputException The exception that occurs when the user did not input any valid command.
+     */
     public Command parse(String input) {
         String[] str = input.split(" ", 2);
         String commandWord = str[0];
@@ -90,7 +100,6 @@ public class Parser {
         }
         return command;
     }
-
     private int parseIntegerString(String string) {
         try {
             return Integer.parseInt(string);
@@ -163,6 +172,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the data from the file into an arraylist containing the saved tasks.
+     * @param contents The list of strings that is read from the file.
+     * @return An arraylist containing the saved tasks.
+     */
     public ArrayList<Task> parseFileContents(List<String> contents) {
         ArrayList<Task> listOfTasks = new ArrayList<>();
         for (String content : contents) {
@@ -191,6 +205,11 @@ public class Parser {
         return listOfTasks;
     }
 
+    /**
+     * Converts the given taskList into a list of strings to be written into a file.
+     * @param taskList The given taskList containing tasks to be saved.
+     * @return An arraylist of strings to be written.
+     */
     public ArrayList<String> writeFileContents(ArrayList<Task> taskList) {
         ArrayList<String> list = new ArrayList<>();
         String string = "";
