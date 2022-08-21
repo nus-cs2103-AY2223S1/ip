@@ -26,13 +26,22 @@ public class Ui {
     }
 
     public void listTasks(ArrayList<Task> tasks) {
-        int pointer = 1;
         String reply = "Here are the tasks in your list:";
+        printMessage(enumerateTasks(tasks, reply));
+    }
+
+    public void listFoundTasks(ArrayList<Task> tasks) {
+        String reply = "Here are the matching tasks in your list:";
+        printMessage(enumerateTasks(tasks, reply));
+    }
+
+    private String enumerateTasks(ArrayList<Task> tasks, String str) {
+        int pointer = 1;
         for (Task task : tasks) {
-            reply += "\n" + pointer + "." + task;
+            str += "\n" + pointer + "." + task;
             pointer++;
         }
-        printMessage(reply);
+        return str;
     }
 
     public void printMarkedTask(Task task) {
