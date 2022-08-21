@@ -4,8 +4,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 /**
@@ -20,7 +26,9 @@ import java.util.Scanner;
  * Here are the list of commands:
  * todo (description) - adds a todo task with some description
  * deadline (description) /by (deadline) - adds a deadline task with the specified description and
- *   deadline
+ *   deadline. The deadline needs to be a valid date (e.g., 21 Aug 2022, Aug 21 2022 or
+ *   2022-08-21), with time optional. If time is provided, it must be provided after the date,
+ *   with exactly one space in between.
  * event (description) /at (daterange) - adds an event task with start time and end time as part of
  *   daterange parameter
  * list - lists all tasks
@@ -96,6 +104,62 @@ public class Jude {
         }
     }
 
+    // Parses date in ISO 8601 format or DD MMM YYYY format (e.g. 21 Aug 2022) or MMM DD YYYY
+    // format (e.g. Aug 21 2022) and returns a string in DD MMM YYYY format. If date parse fails,
+    // throws IllegalArgumentException.
+    // Time, if provided, should be given in 12 or 24-hour format, and provided after the date
+    // string, which is not in ISO format.
+    // This parser is not case-sensitive.
+    private static String convertToDate(String date) {
+        // Solution adapted from
+        // https://nus-cs2103-ay2223s1.github.io/website/schedule/week3/project.html
+        LocalDateTime dateObject = null;
+        try {
+            dateObject = LocalDateTime.parse(date);
+        } catch (DateTimeParseException ex) {
+            boolean valid = false;
+            String[] dateTimeFormats = {
+                    "yyyy-MM-dd",
+                    "yyyy-MM-dd H:mm",
+                    "yyyy-MM-dd h:mm a",
+                    "dd MMM yyyy",
+                    "dd MMM yyyy H:mm",
+                    "dd MMM yyyy h:mm a",
+                    "MMM dd yyyy",
+                    "MMM dd yyyy H:mm",
+                    "MMM dd yyyy h:mm a",
+            };
+            boolean[] isDateFormats = { true, false, false, true, false, false, true, false, false };
+            for (int i = 0; i < dateTimeFormats.length; i++) {
+                // Solution below adapted from
+                // https://stackoverflow.com/questions/44925840/
+                // java-time-format-datetimeparseexception-text-could-not-be-parsed-at-index-3
+                DateTimeFormatter dateFormat = new DateTimeFormatterBuilder()
+                        .parseCaseInsensitive()
+                        .appendPattern(dateTimeFormats[i])
+                        .toFormatter(Locale.ENGLISH);
+                try {
+                    if (isDateFormats[i]) {
+                        // Solution below adapted from
+                        // https://stackoverflow.com/questions/27454025/
+                        // unable-to-obtain-localdatetime-from-temporalaccessor-when-parsing-localdatetime
+                        dateObject = LocalDate.parse(date, dateFormat).atStartOfDay();
+                    } else {
+                        dateObject = LocalDateTime.parse(date, dateFormat);
+                    }
+                    valid = true;
+                    break;
+                } catch (DateTimeParseException ex2) {
+                }
+            }
+            if (!valid) {
+                throw new IllegalArgumentException("Please input a valid date, e.g. 21 Aug 2022, " +
+                        "Aug 21 2022 or 2022-08-21.");
+            }
+        }
+        return dateObject.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm"));
+    }
+
     /**
      * Runs the task tracker.
      *
@@ -146,6 +210,7 @@ public class Jude {
                                 throw new IllegalArgumentException("A deadline task must have a " +
                                         "deadline.");
                             }
+                            deadline = convertToDate(deadline);
                             taskAdded = new Deadline(description, false, deadline);
                         } else {
                             throw new IllegalArgumentException("A deadline task must have a " +
