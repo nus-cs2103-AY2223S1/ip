@@ -2,14 +2,51 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaskList {
-    private List<Task> taskList = new ArrayList<>();
+    private List<Task> taskList;
+    private final Storage storage;
+
+
+    public TaskList(String path) {
+        this.storage = new Storage(path);
+        this.taskList = this.getSavedTasks();
+    }
+
+    private List<Task> getSavedTasks() {
+        String storageTasks= this.storage.read();
+        return this.parse(storageTasks);
+    }
+
+    private List<Task> parse(String string) {
+        if (string == null) {
+            return new ArrayList<>();
+        }
+
+        String[] taskStrings = string.split(System.lineSeparator());
+        List<Task> taskList = new ArrayList<>();
+
+        for (String taskString : taskStrings) {
+            Task task = Task.fromStorageString(taskString);
+            taskList.add(task);
+        }
+
+        return taskList;
+    }
+
+    public void saveTasks() {
+        StringBuilder storageTasks = new StringBuilder();
+
+        for (int i = 0; i < this.taskList.size(); i++) {
+            if (i > 0) {
+                storageTasks.append(System.lineSeparator());
+            }
+            storageTasks.append(this.taskList.get(i).toStorageString());
+        }
+
+        this.storage.write(storageTasks.toString());
+    }
 
     public void addTask(Task task) {
         this.taskList.add(task);
-    }
-
-    private Task getTask(int index) {
-        return this.taskList.get(index);
     }
 
     public Task deleteTask(int index) throws DukeException{
@@ -30,7 +67,7 @@ public class TaskList {
         if (index < 0 || index >= this.getSize()) {
             throw new DukeException("Invalid task number.");
         } else {
-            Task task = this.getTask(index);
+            Task task = this.taskList.get(index);
             task.markDone();
             return task;
         }
@@ -40,7 +77,7 @@ public class TaskList {
         if (index < 0 || index >= this.getSize()) {
             throw new DukeException("Invalid task number.");
         } else {
-            Task task = this.getTask(index);
+            Task task = this.taskList.get(index);
             task.markUndone();
             return task;
         }
@@ -50,7 +87,7 @@ public class TaskList {
     public String toString() {
         String[] stringList = new String[this.taskList.size()];
         for (int i = 0; i < this.taskList.size(); i++) {
-            stringList[i] = (i + 1) + ". " + this.getTask(i) + "\n";
+            stringList[i] = (i + 1) + ". " + this.taskList.get(i) + "\n";
         }
         return String.join("", stringList);
     }

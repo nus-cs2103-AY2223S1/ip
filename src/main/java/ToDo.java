@@ -7,4 +7,11 @@ public class ToDo extends Task{
     public String toString() {
         return ("[T]" + super.toString());
     }
+
+    @Override
+    public String toStorageString() {
+        String doneDescriptionString = super.toStorageString();
+        return "T" + Task.STORAGE_DELIMITER
+                + doneDescriptionString;
+    }
 }

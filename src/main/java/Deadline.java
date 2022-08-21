@@ -9,4 +9,12 @@ public class Deadline extends Task{
     public String toString() {
         return ("[D]" + super.toString() + " (by: " + this.date + ")");
     }
+
+    @Override
+    public String toStorageString() {
+        String doneDescriptionString = super.toStorageString();
+        return "D" + Task.STORAGE_DELIMITER
+                + doneDescriptionString + Task.STORAGE_DELIMITER
+                + this.date;
+    }
 }
