@@ -108,7 +108,7 @@ public class Duke {
                 Task newTask = new ToDo(next);
                 store.add(newTask);
                 System.out.println("Successfully added new task:\n" + newTask +
-                        "\nYou have " + store.size() + " tasks in the list.");
+                        "\nYou have " + store.size() + " task(s) in the list.");
             } else if (sc.hasNext("event")) {
                 sc.next();
                 String next = sc.nextLine();
@@ -116,7 +116,7 @@ public class Duke {
                 Task newTask = new Event(split[0], split[1]);
                 store.add(newTask);
                 System.out.println("Successfully added new task:\n" + newTask +
-                        "\nYou have " + store.size() + " tasks in the list.");
+                        "\nYou have " + store.size() + " task(s) in the list.");
             } else if (sc.hasNext("deadline")) {
                 sc.next();
                 String next = sc.nextLine();
@@ -124,14 +124,14 @@ public class Duke {
                 Task newTask = new Deadline(split[0], split[1]);
                 store.add(newTask);
                 System.out.println("Successfully added new task:\n" + newTask +
-                        "\nYou have " + store.size() + " tasks in the list.");
+                        "\nYou have " + store.size() + " task(s) in the list.");
             }
             else {
                 String next = sc.nextLine();
                 Task newTask = new Task(next);
                 store.add(newTask);
                 System.out.println("Successfully added new task:\n" + newTask +
-                        "\nYou have " + store.size() + " tasks in the list.");
+                        "\nYou have " + store.size() + " task(s) in the list.");
             }
         }
     }
