@@ -1,17 +1,20 @@
+import java.time.LocalDate;
+import java.time.DateTimeException;
+
 /**
  * This class encapsulates a deadline set by the user.
  */
 public class Deadline extends Task {
-    private String date;
+    private LocalDate date;
 
-    Deadline(String str) throws DwukeException {
+    Deadline(String str) throws DwukeException, DateTimeException {
         super(str);
         String[] arguments = getArguments(str);
         this.changeDescription(arguments[0]);
-        this.date = arguments[1];
+        this.date = Date.parse(arguments[1]);
     }
 
-    private static String[] getArguments(String str) throws DwukeException {
+    private static String[] getArguments(String str) throws DwukeException, DateTimeException {
         int index = str.indexOf("/by");
 
         if (index == -1) throw new DwukeException("'/by' not fwound");
@@ -32,6 +35,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + this.date + ")";
+        return "[D]" + super.toString() + " (by: " + Date.format(this.date) + ")";
     }
 }

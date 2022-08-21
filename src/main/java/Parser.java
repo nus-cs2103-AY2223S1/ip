@@ -1,3 +1,5 @@
+import java.time.DateTimeException;
+
 /**
  * This class parses the user input into commands.
  */
@@ -39,6 +41,8 @@ public class Parser {
             return new InvalidCommand(e.getMessage());
         } catch (NumberFormatException e) {
             return new InvalidCommand("oops!!! dats not a pwopew numbew");
+        } catch (DateTimeException e) {
+            return new InvalidCommand("oops!!! dats not a pwopew date");
         }
     }
 }
