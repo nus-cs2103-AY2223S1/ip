@@ -66,54 +66,88 @@ class Duke {
           }
             break;
           case "mark": {
-            Task task = taskList.get(Integer.parseInt(inputArray[1]) - 1);
-            task.markAsDone();
-            Duke.printMessage(String.format("Nice! I've marked this task as done:\n\t\t %s", task.toString()));
+            try {
+              Task task = taskList.get(Integer.parseInt(inputArray[1]) - 1);
+              task.markAsDone();
+              Duke.printMessage(String.format("Nice! I've marked this task as done:\n\t\t %s", task.toString()));
+            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+              Duke.printMessage("Please use the format: mark <integer>");
+            } catch (IndexOutOfBoundsException e) {
+              Duke.printMessage("Invalid task index");
+            }
           }
             break;
           case "unmark": {
-            Task task = taskList.get(Integer.parseInt(inputArray[1]) - 1);
-            task.markNotDone();
-            Duke.printMessage(String.format("OK, I've marked this task as not done yet:\n\t\t %s", task.toString()));
+            try {
+              Task task = taskList.get(Integer.parseInt(inputArray[1]) - 1);
+              task.markNotDone();
+              Duke.printMessage(String.format("OK, I've marked this task as not done yet:\n\t\t %s", task.toString()));
+            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+              Duke.printMessage("Please use the format: unmark <integer>");
+            } catch (IndexOutOfBoundsException e) {
+              Duke.printMessage("Invalid task index");
+            }
           }
             break;
           case "todo": {
-            if (inputArray.length == 1) {
-              Duke.printMessage("☹ OOPS!!! The description of a todo cannot be empty.");
-              break;
+            try {
+              String withoutPrefix = inputArray[1];
+              Todo todo = new Todo(withoutPrefix);
+              taskList.add(todo);
+              Duke.printMessage(wrapMessage("Got it. I've added this task:", todo.toString()));
+            } catch (ArrayIndexOutOfBoundsException e) {
+              Duke.printMessage("The description of a todo cannot be empty.");
             }
-            String withoutPrefix = inputArray[1];
-            Todo todo = new Todo(withoutPrefix);
-            taskList.add(todo);
-            Duke.printMessage(wrapMessage("Got it. I've added this task:", todo.toString()));
           }
             break;
           case "deadline": {
-            String withoutPrefix = inputArray[1];
-            String[] strArray = withoutPrefix.split("/");
-            Deadline deadline = new Deadline(strArray[0].strip(), strArray[1].split(" ", 2)[1]);
-            taskList.add(deadline);
-            Duke.printMessage(wrapMessage("Got it. I've added this task:", deadline.toString()));
+            try {
+              String withoutPrefix = inputArray[1];
+              String[] strArray = withoutPrefix.split("/");
+              Deadline deadline = new Deadline(strArray[0].strip(), strArray[1].split(" ", 2)[1]);
+              taskList.add(deadline);
+              Duke.printMessage(wrapMessage("Got it. I've added this task:", deadline.toString()));
+            } catch (ArrayIndexOutOfBoundsException e) {
+              if (inputArray.length == 1) {
+                Duke.printMessage("The description of a deadline cannot be empty.");
+              } else {
+                Duke.printMessage("Please specify a day, date, or time");
+              }
+            }
           }
             break;
           case "event": {
-            String withoutPrefix = inputArray[1];
-            String[] strArray = withoutPrefix.split("/");
-            Event event = new Event(strArray[0].strip(), strArray[1].split(" ", 2)[1]);
-            taskList.add(event);
-            Duke.printMessage(wrapMessage("Got it. I've added this task:", event.toString()));
+            try {
+              String withoutPrefix = inputArray[1];
+              String[] strArray = withoutPrefix.split("/");
+              Event event = new Event(strArray[0].strip(), strArray[1].split(" ", 2)[1]);
+              taskList.add(event);
+              Duke.printMessage(wrapMessage("Got it. I've added this task:", event.toString()));
+            } catch (ArrayIndexOutOfBoundsException e) {
+              if (inputArray.length == 1) {
+                Duke.printMessage("The description of a event cannot be empty.");
+              } else {
+                Duke.printMessage("Please specify a day, date, or time");
+              }
+            }
           }
             break;
           case "delete": {
-            String withoutPrefix = inputArray[1];
-            int index = Integer.parseInt(withoutPrefix);
-            Task task = taskList.get(index - 1);
-            taskList.remove(index - 1);
-            Duke.printMessage(wrapMessage("Noted. I've removed this task:", task.toString()));
+            try {
+              String withoutPrefix = inputArray[1];
+              int index = Integer.parseInt(withoutPrefix);
+              Task task = taskList.get(index - 1);
+              taskList.remove(index - 1);
+              Duke.printMessage(wrapMessage("Noted. I've removed this task:", task.toString()));
+            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+              Duke.printMessage("Please use the format: delete <integer>");
+            } catch (IndexOutOfBoundsException e) {
+              Duke.printMessage("Invalid task index");
+            }
           }
             break;
           default:
-            Duke.printMessage("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+            Duke.printMessage("I'm sorry, but I don't know what that means :-(");
         }
       } catch (IOException e) {
       }
