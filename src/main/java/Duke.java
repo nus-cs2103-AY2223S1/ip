@@ -32,6 +32,10 @@ public class Duke {
                     unMarkTask(tasks, Integer.parseInt(input.split(" ")[1]));
                     break;
 
+                case "delete":
+                    deleteTask(tasks, Integer.parseInt(input.split(" ")[1]));
+                    break;
+
                 case "todo":
                     //fall through
                 case "deadline":
