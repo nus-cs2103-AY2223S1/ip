@@ -11,7 +11,17 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
+/**
+ * Represents a storage to handle file loading and saving.
+ */
 public class Storage {
+    /**
+     * Loads the file contents located in the file path.
+     *
+     * @param folderPath folder path of the data file.
+     * @param filePath file path of the data file.
+     * @param tasks task list to handle task related functionalities.
+     */
     public void loadFileContents(String folderPath, String filePath, TaskList tasks) {
         try {
             File directory = new File(folderPath);
@@ -50,6 +60,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Save the tasks in the task list into the data file located in the specified file path.
+     *
+     * @param filePath file path of the data file.
+     * @param tasks task list containing tasks to be saved.
+     */
     public void saveFileContents(String filePath, TaskList tasks) {
         try {
             FileWriter fw = new FileWriter(filePath);

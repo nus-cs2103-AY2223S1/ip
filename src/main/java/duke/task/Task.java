@@ -10,7 +10,9 @@ public abstract class Task {
 
     /**
      * Creates a task
+     *
      * @param description description of the task
+     * @param taskType the type of the task
      */
     public Task(String description, String taskType) {
         this.description = description;
@@ -20,6 +22,7 @@ public abstract class Task {
 
     /**
      * Gets the description of the task
+     *
      * @return description of the task
      */
     public String getDescription() {
@@ -28,6 +31,7 @@ public abstract class Task {
 
     /**
      * Gets the status of the task
+     *
      * @return status of the task
      */
     public String getStatusIcon() {
@@ -57,7 +61,7 @@ public abstract class Task {
     }
 
     /**
-     * @return String representation of the task
+     * @return String representation of the task.
      */
     @Override
     public String toString() {
