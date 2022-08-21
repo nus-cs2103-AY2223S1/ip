@@ -36,7 +36,7 @@ public class Duke {
         switch (type) {
             case "todo":
                 if (arr.length == 1) {
-                    throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+                    throw new DukeException(" OOPS!!! The description of a todo cannot be empty.");
                 }
                 String todoName = arr[1].trim();
                 Task newTodo = new Todo(todoName);
@@ -57,7 +57,7 @@ public class Duke {
                 tasks.add(newEvent);
                 break;
             default:
-                DukeException e = new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                DukeException e = new DukeException(" OOPS!!! I'm sorry, but I don't know what that means :-(");
                 throw e;
         }
 
@@ -88,8 +88,8 @@ public class Duke {
         printLine();
         Task removedTask = tasks.get(num - 1);
         tasks.remove(num - 1);
-        System.out.println("Noted. I've removed this task:" + "\n" + tasks.toString()
-        + "Now you have " + tasks.size() + " tasks in the list.");
+        System.out.println("Noted. I've removed this task:" + "\n" + tasks.get(num - 1).toString()
+                + "Now you have " + tasks.size() + " tasks in the list.");
         printLine();
     }
 
@@ -100,7 +100,7 @@ public class Duke {
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+        //System.out.println("Hello from\n" + logo);
 
         greetings();
         Scanner sc = new Scanner(System.in);
