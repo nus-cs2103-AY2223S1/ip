@@ -1,4 +1,4 @@
-abstract public class CommandParser {
+abstract public class Parser {
     private static final String DEADLINE_INDICATOR = "\\s*/by\\s*";
     private static final String EVENT_INDICATOR = "\\s*/at\\s*";
 

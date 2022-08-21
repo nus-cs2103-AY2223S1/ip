@@ -28,7 +28,7 @@ public class Duke {
         while (!isExit && Ui.in.hasNextLine()) {
             try {
                 String input = Ui.in.nextLine();
-                Command c = CommandParser.parse(input);
+                Command c = Parser.parse(input);
                 c.execute(taskList);
                 StorageOperation.writeTaskListToStorage(taskList);
                 isExit = c.isExit();
