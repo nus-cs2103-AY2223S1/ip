@@ -1,7 +1,7 @@
 package duke.parser;
 
 import duke.command.*;
-import duke.exception.DukeException;
+import duke.common.DukeException;
 import duke.task.*;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;

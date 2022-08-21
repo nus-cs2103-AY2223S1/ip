@@ -1,6 +1,6 @@
 package duke.task;
 
-import duke.exception.DukeException;
+import duke.common.DukeException;
 import java.time.format.DateTimeParseException;
 
 public abstract class Task {

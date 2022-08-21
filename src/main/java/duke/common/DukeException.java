@@ -1,4 +1,4 @@
-package duke.exception;
+package duke.common;
 
 public class DukeException extends Exception {
 
