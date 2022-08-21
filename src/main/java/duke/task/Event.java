@@ -1,55 +1,57 @@
+package duke.task;
+
+import duke.exception.DukeInvalidTimeException;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Deadline class that stores the Description and State of Deadline.
+ * Event class that stores the Description and State of Event.
  *
  * CS2103T IP
  * AY22/23 Semester 1
  * @author Tan Jia Rong
  */
-public class Deadline extends Task {
-    /** Stores the due date of the Deadline. */
-    protected String by;
-
-    /** Stores the due date of the Deadline in dateTime format. */
+public class Event extends Task {
+    /** Stores the timing of the event */
+    protected String at;
     protected String dateTime;
 
     /**
-     * Constructor for Deadline.
+     * Constructor for Event.
      *
-     * @param description Description of the Deadline task.
-     * @param by The due date of the Deadline.
+     * @param description Description of the Event.
+     * @param at The timing of the Event.
      */
-    public Deadline(String description, String by) throws DukeInvalidTimeException  {
-        super(description, "D");
-        this.by = by;
+    public Event(String description, String at) throws DukeInvalidTimeException {
+        super(description, "E");
+        this.at = at;
         this.dateTime = this.getDateTime();
     }
 
     /**
-     * Constructor for Deadline.
+     * Constructor for Event.
      *
-     * @param description Description of the Deadline.
-     * @param done Completeness of Deadline.
-     * @param by The due date of the Deadline.
+     * @param description Description of the Event.
+     * @param done Completeness of Event.
+     * @param at The timing of the Event.
      */
-    public Deadline(String description, String done, String by) throws DukeInvalidTimeException {
+    public Event(String description, String done, String at) throws DukeInvalidTimeException {
         super(description, done,"E");
-        this.by = by;
+        this.at = at;
         this.dateTime = this.getDateTime();
     }
 
     /**
-     * Returns the Date and Time of Task
+     * Returns the Date and Time of Duke.Task.Task
      *
-     * @return Date and Time of Task
+     * @return Date and Time of Duke.Task.Task
      * @throws DukeInvalidTimeException Exception when input time is not of valid Format
      */
     public String getDateTime() throws DukeInvalidTimeException {
         String dateStr;
         String timeStr;
-        String[] input = this.by.split(" ");
+        String[] input = this.at.split(" ");
 
         // get Date
         LocalDate date = LocalDate.parse(input[0]);
@@ -82,21 +84,21 @@ public class Deadline extends Task {
     }
 
     /**
-     * Gets due date of Deadline.
+     * Gets timing of Event.
      *
-     * @return Due date of Deadline.
+     * @return Timing of Event.
      */
     public String getDate() {
-        return this.by;
+        return this.at;
     }
 
     /**
-     * Returns the string representation of a Deadline.
+     * Returns the string representation of the Event.
      *
-     * @return String representation of a Deadline.
+     * @return String representation of the Event.
      */
     @Override
     public String toString() {
-        return "[" + this.getType() + "]" + super.toString()  + " (by: " + this.dateTime + ")";
+        return "[" + this.getType() + "]" + super.toString()  + " (at: " + this.dateTime + ")";
     }
 }

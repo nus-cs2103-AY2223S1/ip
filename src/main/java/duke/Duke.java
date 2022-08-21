@@ -1,9 +1,13 @@
+package duke;
+
+import duke.task.TaskList;
+
 import java.util.Scanner;
 
 /**
- * The Duke class that instantiates instances of duke.
+ * The Duke.Duke class that instantiates instances of duke.
  *
- * Duke is a ChatBot that performs different actions
+ * Duke.Duke is a ChatBot that performs different actions
  * based on commands provided by user.
  *
  * CS2103T IP
@@ -12,7 +16,7 @@ import java.util.Scanner;
  */
 public class Duke {
     // Name of Bot
-    private static final String BOT_NAME = "Duke";
+    private static final String BOT_NAME = "duke";
     private static final String SAVE_LOCATION = "./data/data.txt";
 
     // Initialise variables
@@ -36,7 +40,7 @@ public class Duke {
         String command = this.sc.next();
         String description = this.sc.nextLine();
 
-        while (!command.toLowerCase().equals("bye")) {
+        while (!command.equalsIgnoreCase("bye")) {
             parser.execute(command, description, tasks);
 
             command = sc.next();
@@ -48,7 +52,7 @@ public class Duke {
     }
 
     /**
-     * Returns the Duke ChatBot.
+     * Returns the Duke.Duke ChatBot.
      *
      * @param args arguments (if any).
      */

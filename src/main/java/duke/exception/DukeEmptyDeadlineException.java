@@ -1,3 +1,5 @@
+package duke.exception;
+
 /**
  * DukeEmptyDeadlineException Class.
  * Exception when Deadline description is empty.

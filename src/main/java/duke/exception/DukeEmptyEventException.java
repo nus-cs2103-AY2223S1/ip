@@ -1,3 +1,5 @@
+package duke.exception;
+
 /**
  * DukeEmptyEventException Class.
  * Exception when Event description is empty.

@@ -1,3 +1,8 @@
+package duke.task;
+
+import duke.exception.DukeOutOfBoundException;
+import duke.Ui;
+
 import java.util.List;
 
 public class TaskList {

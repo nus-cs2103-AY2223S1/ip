@@ -1,3 +1,5 @@
+package duke.exception;
+
 /**
  * DukeOutOfBoundException Class.
  * Exception when index provided is outside the size of a list.

@@ -1,3 +1,5 @@
+package duke.task;
+
 /**
  * ToDo class that stores the Description and State of the ToDo Task.
  *
@@ -19,17 +21,17 @@ public class ToDo extends Task {
     /**
      * Constructor for Todo Task.
      *
-     * @param description Description of the ToDo Task.
-     * @param done Completeness of ToDo Task.
+     * @param description Description of the Duke.Task.ToDo Task.
+     * @param done Completeness of Duke.Task.ToDo Task.
      */
     public ToDo(String description, String done) {
         super(description, done,"T");
     }
 
     /**
-     * Returns string representation of a ToDo Task.
+     * Returns string representation of a Duke.Task.ToDo Task.
      *
-     * @return String Representation of a ToDo Task.
+     * @return String Representation of a Duke.Task.ToDo Task.
      */
     @Override
     public String toString() {

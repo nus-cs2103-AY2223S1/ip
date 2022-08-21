@@ -1,3 +1,13 @@
+package duke;
+
+import duke.exception.DukeInvalidTimeException;
+
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.ToDo;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -9,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A Storage class that stores the task in task list.
+ * A Duke.Storage class that stores the task in task list.
  *
  * CS2103T iP
  * AY22/23 Semester 1
@@ -26,7 +36,7 @@ public class Storage {
     /**
      * Saves Tasks into save file.
      *
-     * @param tasks The List of Task to write from.
+     * @param tasks The List of Duke.Task.Task to write from.
      */
     public void save(TaskList tasks) {
         // Create Directory or File if it does not exist
@@ -57,7 +67,7 @@ public class Storage {
             for (Task task : tasks.getTaskList()) {
                 type = task.getType();
                 desc = task.getDescription();
-                done = task.isDone ? "1" : "0";
+                done = task.getIsDone() ? "1" : "0";
                 date = task.getDate();
 
                 line = type + " > " + desc + " > " + done + " > " + date;
@@ -67,7 +77,7 @@ public class Storage {
             }
             bufferedWriter.close();
         } catch (IOException e) {
-            System.out.println("Hmm... Error while saving Task to file");
+            System.out.println("Hmm... Error while saving Duke.Task.Task to file");
         }
     }
 

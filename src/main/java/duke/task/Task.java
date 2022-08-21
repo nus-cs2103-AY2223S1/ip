@@ -1,3 +1,5 @@
+package duke.task;
+
 /**
  * A Task class that stores the Description and State of the Task.
  *
@@ -43,15 +45,24 @@ public class Task {
     }
 
     /**
-     * Gets Status of the Task.
+     * Gets StatusIcon of the Task.
      * If task is done, return "X".
      * Else, " ".
      *
-     * @return Status of the task: "X" for Done, else " ".
+     * @return Status Icon of the task: "X" for Done, else " ".
      */
     public String getStatusIcon() {
         // mark done task with X
         return (isDone ? "X" : " ");
+    }
+
+    /**
+     * Gets status of the Task.
+     *
+     * @return Status of the Task.
+     */
+    public boolean getIsDone() {
+        return this.isDone;
     }
 
     /**

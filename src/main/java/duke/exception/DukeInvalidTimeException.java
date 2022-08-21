@@ -1,3 +1,5 @@
+package duke.exception;
+
 /**
  * DukeInvalidDeadlineException Class.
  * Exception when Time provided is of invalid format

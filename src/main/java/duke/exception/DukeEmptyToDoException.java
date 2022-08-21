@@ -1,3 +1,5 @@
+package duke.exception;
+
 /**
  * DukeEmptyToDoException Class.
  * Exception when ToDo description is empty.
