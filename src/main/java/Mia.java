@@ -3,11 +3,11 @@ import java.util.Scanner;
 
 public class Mia {
     private static final TaskManager tasksManager = new TaskManager();
+    private static final String logo = "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━┓\n" +
+                                       "┃ You are talking to MIA... ┃\n" +
+                                       "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n";
 
-    public static void main(String[] args) {
-        final String logo = "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━┓\n" +
-                            "┃ You are talking to MIA... ┃\n" +
-                            "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n";
+    public void run() {
         System.out.println(logo);
 
         final int windowWidth = 50;
@@ -121,7 +121,7 @@ public class Mia {
         }
         sb.append(" ".repeat(paddingLength))
                 .append("╰").append("─".repeat(maxLength)).append("╮┬╯\n")
-                .append(" ".repeat(windowWidth-7)).append("MIA ╰╯ \n");
+                .append(" ".repeat(windowWidth - 7)).append("MIA ╰╯ \n");
         System.out.printf(sb.toString());
     }
 
@@ -140,7 +140,7 @@ public class Mia {
             sb.append("│ ").append(String.format(formatString, lines[i])).append(" │\n");
         }
         sb.append("╰┬╭").append("─".repeat(maxLength)).append("╯\n")
-                .append(" ╰╯ You").append(" ".repeat(maxLength-3)).append("\n");
+                .append(" ╰╯ You").append(" ".repeat(maxLength - 3)).append("\n");
         System.out.printf(sb.toString());
     }
 }
