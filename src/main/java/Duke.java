@@ -37,32 +37,32 @@ public class Duke {
                 // convert ASCII character of integer to int
                 int taskNumber =  charOfInt - '0';
                 switch (firstWord) {
-                    case "bye":
-                        Duke.exit();
-                        break;
-                    case "unmark":
-                        Duke.unmarkTask(taskNumber, taskDescription);
-                        break;
-                    case "mark":
-                        Duke.markTask(taskNumber, taskDescription);
-                        break;
-                    case "list":
-                        Duke.displayList();
-                        break;
-                    case "deadline":
-                        Duke.addDeadline(taskDescription, time);
-                        break;
-                    case "todo":
-                        Duke.addTodo(taskDescription);
-                        break;
-                    case "event":
-                        Duke.addEvent(taskDescription, time);
-                        break;
-                    case "delete":
-                        Duke.removeTask(taskNumber, taskDescription);
-                        break;
-                    default:
-                        throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
+                case "bye":
+                    Duke.exit();
+                    break;
+                case "unmark":
+                    Duke.unmarkTask(taskNumber, taskDescription);
+                    break;
+                case "mark":
+                    Duke.markTask(taskNumber, taskDescription);
+                    break;
+                case "list":
+                    Duke.displayList();
+                    break;
+                case "deadline":
+                    Duke.addDeadline(taskDescription, time);
+                    break;
+                case "todo":
+                    Duke.addTodo(taskDescription);
+                    break;
+                case "event":
+                    Duke.addEvent(taskDescription, time);
+                    break;
+                case "delete":
+                    Duke.removeTask(taskNumber, taskDescription);
+                    break;
+                default:
+                    throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
             } catch (DukeException e) {
                 Duke.lineFormat();
