@@ -13,6 +13,7 @@ import java.util.ArrayList;
  * current tasks.
  */
 public class TaskList {
+
     /** List of all the tasks */;
     private ArrayList<Task> data;
 

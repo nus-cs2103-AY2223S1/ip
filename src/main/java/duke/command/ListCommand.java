@@ -11,6 +11,7 @@ import java.time.LocalDate;
  * given date.
  */
 public class ListCommand extends Command {
+
     /** Boolean value indicating if a date is provided */
     private boolean isDueListCommand;
     /** Date provided by the user */

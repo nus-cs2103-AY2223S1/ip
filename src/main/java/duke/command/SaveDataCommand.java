@@ -8,6 +8,7 @@ import duke.Ui;
  * Represents a save data command. A SaveDataCommand object contains the file path of the data file.
  */
 public class SaveDataCommand extends Command {
+
     /** File path of the data file */
     private String filePath;
 

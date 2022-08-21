@@ -9,6 +9,7 @@ import duke.Ui;
  * Represents a command.
  */
 public abstract class Command {
+
     /** Type of the command */
     private CommandType type;
 

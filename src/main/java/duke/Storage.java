@@ -15,6 +15,7 @@ import java.util.Scanner;
  * Represents a storage to handle file loading and saving.
  */
 public class Storage {
+
     /**
      * Loads the file contents located in the file path.
      *

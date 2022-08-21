@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Tests to test the TaskList class.
  */
 public class TaskListTest {
+
     /**
      * Tests if the getTask function works as intended, which should return the task at the specified index.
      */

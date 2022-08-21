@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
  * Represents an Event task. An Event object contains the start time of the event.
  */
 public class Event extends Task {
+
     /** Start time of the event */
     protected LocalDateTime at;
 

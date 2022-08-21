@@ -9,6 +9,7 @@ import duke.task.Task;
  * Represents a Delete Task Command. A DeleteCommand object contains the index of the task to be deleted.
  */
 public class DeleteCommand extends Command {
+
     /** Index of the task to be deleted */
     private int index;
 

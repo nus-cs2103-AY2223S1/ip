@@ -8,6 +8,7 @@ import duke.Ui;
  * Represents a mark item command. A MarkItemCommand contains the index of the task to be marked.
  */
 public class MarkItemCommand extends Command {
+
     /** Index of the task to be marked */
     private int index;
 

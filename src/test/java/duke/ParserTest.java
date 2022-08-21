@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * Tests to test the Parser class.
  */
 public class ParserTest {
+
     /** Parser object used in the tests */
     Parser parser = new Parser();
 

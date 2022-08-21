@@ -8,6 +8,7 @@ import duke.Ui;
  * Represents a load data command. A LoadDataCommand contains the folder path and file path.
  */
 public class LoadDataCommand extends Command {
+
     /** Folder path of the data file */
     private String folderPath;
     /** File path of the data file */

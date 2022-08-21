@@ -10,6 +10,7 @@ import java.util.Arrays;
  * Represents an add Todo Task command. An AddTodoCommand object contains the task description.
  */
 public class AddTodoCommand extends Command {
+
     /** Description of the task */
     private String taskDescription;
 

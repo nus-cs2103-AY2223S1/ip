@@ -9,6 +9,7 @@ import duke.command.WelcomeCommand;
  * Represents a Duke bot. A Duke object contains its storage, task list, ui, parser, folder path and file path.
  */
 public class Duke {
+
     /** Storage to handle file loading and saving */
     private Storage storage;
     /** Task list to handle task related functionalities */

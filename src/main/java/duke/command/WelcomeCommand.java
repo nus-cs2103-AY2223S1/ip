@@ -8,6 +8,7 @@ import duke.Ui;
  * Represents a welcome command.
  */
 public class WelcomeCommand extends Command {
+
     /**
      * Creates a WelcomeCommand object.
      */

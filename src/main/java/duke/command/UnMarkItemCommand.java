@@ -8,6 +8,7 @@ import duke.Ui;
  * Represents a un-mark item command. A UnMarkItemCommand contains the index of the task to be un-marked.
  */
 public class UnMarkItemCommand extends Command {
+
     /** Index of the task to be un-marked */
     private int index;
 

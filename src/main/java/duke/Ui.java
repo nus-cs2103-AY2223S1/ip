@@ -9,6 +9,7 @@ import java.util.Scanner;
  * Represents a Ui to handle user interactions. A Ui object contains a scanner to read in user inputs.
  */
 public class Ui {
+
     /** Scanner to read in user inputs */
     private final Scanner sc = new Scanner(System.in);
 
