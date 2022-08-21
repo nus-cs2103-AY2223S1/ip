@@ -3,12 +3,14 @@ import exceptions.TaskDescriptionEmpty;
 public class ToDo extends Task {
     private static final String typeIcon = "T";
 
-    protected ToDo(boolean isDone, String description) throws TaskDescriptionEmpty {
+    protected ToDo(boolean isDone, String description) {
         super(isDone, description);
     }
 
     public static ToDo create(String description) throws TaskDescriptionEmpty {
-        return new ToDo(false, description);
+        ToDo todo = new ToDo(false, description);
+        todo.validate();
+        return todo;
     }
 
     @Override

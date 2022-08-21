@@ -4,10 +4,17 @@ public abstract class Task {
     private String description;
     private boolean isDone;
 
-    protected Task(boolean isDone, String description) throws TaskDescriptionEmpty {
-        if (description.equals("")) throw new TaskDescriptionEmpty();
+    protected Task(boolean isDone, String description) {
         this.isDone = isDone;
         this.description = description;
+    }
+
+    /**
+     * Checks whether fields are valid. To be called when creating Task via factory methods.
+     * @throws TaskDescriptionEmpty
+     */
+    protected void validate() throws TaskDescriptionEmpty {
+        if (description.equals("")) throw new TaskDescriptionEmpty();
     }
 
     public String getDescription() {

@@ -4,13 +4,15 @@ public class Deadline extends Task {
     private static final String typeIcon = "D";
     private String time;
 
-    protected Deadline(boolean isDone, String description, String time) throws TaskDescriptionEmpty {
+    protected Deadline(boolean isDone, String description, String time) {
         super(isDone, description);
         this.time = time;
     }
 
     public static Deadline create(String description, String time) throws TaskDescriptionEmpty {
-        return new Deadline(false, description, time);
+        Deadline deadline = new Deadline(false, description, time);
+        deadline.validate();
+        return deadline;
     }
 
     @Override
