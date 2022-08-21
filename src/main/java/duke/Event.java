@@ -9,11 +9,11 @@ import java.time.format.DateTimeParseException;
  * Represents an event task with a start date and time, as well as an end date and time.
  */
 public class Event extends Task {
-    LocalDate dateStart;
-    LocalTime timeStart;
+    private LocalDate dateStart;
+    private LocalTime timeStart;
 
-    LocalDate dateEnd;
-    LocalTime timeEnd;
+    private LocalDate dateEnd;
+    private LocalTime timeEnd;
 
     public Event(String description,
                     String dateStart, String timeStart,
