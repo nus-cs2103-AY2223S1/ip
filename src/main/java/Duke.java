@@ -30,8 +30,17 @@ public class Duke {
             int markNum = Integer.parseInt(s.replace("mark ", ""));
             mark(markNum);
         } else if (s.startsWith("unmark")) {
-            int unmarkNum = Integer.parseInt(s.replace("unmark ", ""));
-            unmark(unmarkNum);
+            int unMarkNum = Integer.parseInt(s.replace("unmark ", ""));
+            unMark(unMarkNum);
+        } else if (s.startsWith("todo")) {
+            String tDes = s.replace("todo", "");
+            addList(new Todo(tDes));
+        } else if (s.startsWith("deadline")) {
+            String[] dDes = s.replace("deadline", "").split(" /by ");
+            addList(new Deadline(dDes[0], dDes[1]));
+        } else if (s.startsWith("event")) {
+            String[] eDes = s.replace("event", "").split(" /at ");
+            addList(new Event(eDes[0], eDes[1]));
         } else {
             addList(new Task(s));
         }
@@ -66,8 +75,9 @@ public class Duke {
 
     private void printList() {
         printLine();
+        print("Here are the tasks in your list:");
         for (int i = 0; i < l.size(); i++) {
-            print(String.format("%d.%s", i + 1, this.l.get(i)));
+            print(String.format("%d. %s", i + 1, this.l.get(i)));
         }
         printLine();
     }
@@ -75,7 +85,9 @@ public class Duke {
     private void addList(Task t) {
         this.l.add(t);
         printLine();
-        print("added: " + t.description);
+        print("Got it. I've added this task:");
+        print("  " + t.toString());
+        print("Now you have " + l.size() + " tasks in the list.");
         printLine();
     }
 
@@ -88,7 +100,7 @@ public class Duke {
         printLine();
     }
 
-    private void unmark(int i) {
+    private void unMark(int i) {
         Task t = this.l.get(i - 1);
         t.unmarkDone();
         printLine();
