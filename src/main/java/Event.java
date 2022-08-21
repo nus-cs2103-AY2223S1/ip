@@ -25,6 +25,11 @@ public class Event extends Task {
     }
 
     @Override
+    public String saveText() {
+        return String.format("E|%d|%s /at %s", this.isDone ? 1 : 0, this.description, this.time);
+    }
+
+    @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + this.time + ")";
     }
