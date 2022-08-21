@@ -1,6 +1,5 @@
 package duke;
 
-
 import duke.command.Command;
 import duke.command.DukeCommandType;
 
@@ -9,7 +8,7 @@ public class Parser {
     public static Command getCommand(String line) {
         String parsedCommand = parseCommand(line);
         String command = parsedCommand.split(" ")[0];
-        String args = line.replaceFirst(command, "").trim();
+        String args = parsedCommand.replaceFirst(command, "").trim();
         DukeCommandType commandType = getCommandType(command);
         return new Command(commandType, args);
     }
