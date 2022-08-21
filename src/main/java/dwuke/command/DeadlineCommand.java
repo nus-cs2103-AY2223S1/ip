@@ -1,7 +1,7 @@
 package dwuke.command;
 
-import dwuke.task.TaskList;
 import dwuke.task.Deadline;
+import dwuke.task.TaskList;
 
 /**
  * This class encapsulates a deadline command from the user.
