@@ -2,9 +2,9 @@
  * The Task class represents a task
  * added to the storage.
  */
-public class Task {
-    private String description;
-    private Boolean isDone;
+public abstract class Task {
+    public String description;
+    public Boolean isDone;
 
     /**
      * Construct a Task object.
@@ -36,6 +36,8 @@ public class Task {
     public String getStatusIcon() {
         return this.isDone ? "X" : " ";
     }
+
+    public abstract String toStore();
 
     /**
      * Overriding method of toString() for Task.

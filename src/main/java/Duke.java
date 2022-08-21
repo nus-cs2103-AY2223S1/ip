@@ -1,4 +1,8 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
+
 
 /**
  * The Duke is a personalized chatbot.
@@ -13,6 +17,8 @@ public class Duke {
 
     private static boolean terminate = false;
     private static Storage myStorage = new Storage();
+
+    public static final String LOCALSTORAGE = "./data/duke.txt";
 
     /**
      * Displays error message.
@@ -32,62 +38,62 @@ public class Duke {
         Command cmd = Command.valueOf(Strings[0].toUpperCase());
 
         switch (cmd) {
-            case BYE:
-                terminate = true;
-                break;
-            case LIST:
-                myStorage.printStorage();
-                break;
-            case MARK:
-                try {
-                    mark(userInput);
-                } catch (IndexOutOfBoundsException e) {
-                    displayError("Please enter a valid index to mark.");
-                }
-                break;
-            case UNMARK:
-                try {
-                    unmark(userInput);
-                } catch (IndexOutOfBoundsException e) {
-                    displayError("Please enter a valid index to unmark.");
-                }
-                break;
+        case BYE:
+            terminate = true;
+            break;
+        case LIST:
+            myStorage.printStorage();
+            break;
+        case MARK:
+        try {
+                mark(userInput);
+            } catch (IndexOutOfBoundsException e) {
+                displayError("Please enter a valid index to mark.");
+            }
+            break;
+        case UNMARK:
+            try {
+                unmark(userInput);
+            } catch (IndexOutOfBoundsException e) {
+                displayError("Please enter a valid index to unmark.");
+            }
+            break;
 
-            case TODO:
-                try {
-                    todo(userInput);
-                } catch (StringIndexOutOfBoundsException e) {
-                    displayError("Please enter a task todo.");
-                }
-                break;
-            case EVENT:
-                try {
-                    event(userInput);
-                } catch (StringIndexOutOfBoundsException e) {
-                    displayError("Please enter a event.");
-                } catch (DukeException e) {
-                    displayError("Please only enter one event.");
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    displayError("Please use /at to specify event time.");
-                }
-                break;
-            case DEADLINE:
-                try {
-                   deadline(userInput);
-                } catch (StringIndexOutOfBoundsException e) {
-                    displayError("Please enter a deadline.");
-                } catch (DukeException e) {
-                    displayError("Please only enter one deadline.");
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    displayError("Please use /by to specify deadline time.");
-                }
-                break;
-            case DELETE:
-                try {
-                    delete(userInput);
-                } catch (IndexOutOfBoundsException e) {
-                    displayError("Sorry. Task does not exist.");
-                }
+        case TODO:
+            try {
+                todo(userInput);
+            } catch (StringIndexOutOfBoundsException e) {
+                displayError("Please enter a task todo.");
+            }
+            break;
+        case EVENT:
+            try {
+                event(userInput);
+            } catch (StringIndexOutOfBoundsException e) {
+                displayError("Please enter a event.");
+            } catch (DukeException e) {
+                displayError("Please only enter one event.");
+            } catch (ArrayIndexOutOfBoundsException e) {
+                displayError("Please use /at to specify event time.");
+            }
+            break;
+        case DEADLINE:
+            try {
+               deadline(userInput);
+            } catch (StringIndexOutOfBoundsException e) {
+                displayError("Please enter a deadline.");
+            } catch (DukeException e) {
+                displayError("Please only enter one deadline.");
+            } catch (ArrayIndexOutOfBoundsException e) {
+                displayError("Please use /by to specify deadline time.");
+            }
+            break;
+        case DELETE:
+            try {
+                delete(userInput);
+            } catch (IndexOutOfBoundsException e) {
+                displayError("Sorry. Task does not exist.");
+            }
         }
     }
 
@@ -133,11 +139,11 @@ public class Duke {
      */
     private static void event(String userInput) throws DukeException {
         userInput = userInput.substring(6);
-        String[] Strings = userInput.split("/at");
-        if (Strings.length > 2) {
+        String[] strings = userInput.split("/at");
+        if (strings.length > 2) {
             throw new DukeException();
         }
-        myStorage.addTask(new Event(Strings[0], Strings[1]));
+        myStorage.addTask(new Event(strings[0], strings[1]));
     }
 
     /**
@@ -147,12 +153,14 @@ public class Duke {
      */
     private static void deadline(String userInput) throws DukeException {
         userInput = userInput.substring(9);
-        String[] Strings = userInput.split("/by");
-        if (Strings.length > 2) {
+        String[] strings = userInput.split("/by");
+        if (strings.length > 2) {
             throw new DukeException();
         }
-        myStorage.addTask(new Deadline(Strings[0], Strings[1]));
+        myStorage.addTask(new Deadline(strings[0], strings[1]));
     }
+
+
 
     /**
      * The main program for Duke.
@@ -166,6 +174,18 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
 
+        try {
+            myStorage.loadLocalStorage();
+        } catch (FileNotFoundException e) {
+            displayError("File not found.");
+            File localStorage = new File(LOCALSTORAGE);
+            try {
+                localStorage.createNewFile();
+            } catch (IOException e2) {
+                localStorage.getParentFile().mkdirs();
+            }
+
+        }
 
         Scanner sc = new Scanner(System.in);
         System.out.println("Hello! I'm Duke \nWhat can I do for you?");
@@ -179,6 +199,7 @@ public class Duke {
             }
 
         }
+        sc.close();
         System.out.println("Bye. Hope to see you again soon!");
     }
 }

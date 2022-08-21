@@ -15,6 +15,21 @@ public class Deadline extends Task {
         this.deadline = deadline;
     }
 
+    public Deadline(int i, String description, String deadline) {
+        super(description);
+        this.deadline = deadline;
+        if (i == 1) {
+            this.markDone();
+        }
+    }
+
+    @Override
+    public String toStore() {
+        String status = super.isDone ? "1" : "0";
+        String temp = "D" + " | " + status + " | " + super.description + " | " + this.deadline;
+        return temp;
+    }
+
     /**
      * Overriding method of toString() for Deadline.
      * @return the string representing Deadline task.

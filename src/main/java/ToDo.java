@@ -11,6 +11,20 @@ public class ToDo extends Task {
         super(description);
     }
 
+    public ToDo(int i, String description) {
+        super(description);
+        if (i == 1) {
+            this.markDone();
+        }
+    }
+
+    @Override
+    public String toStore() {
+        String status = super.isDone ? "1" : "0";
+        String temp = "T" + " | " + status + " | " + super.description;
+        return temp;
+    }
+
     /**
      * Overriding method of toString() for ToDo.
      * @return the string representing ToDo task.

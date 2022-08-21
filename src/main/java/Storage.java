@@ -1,4 +1,9 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * The Storage Class represents the
@@ -6,6 +11,37 @@ import java.util.ArrayList;
  */
 public class Storage {
     private ArrayList<Task> storage = new ArrayList<>();
+
+    private void save() {
+        try {
+            FileWriter fw = new FileWriter(Duke.LOCALSTORAGE);
+            for (Task t : storage) {
+                fw.write(t.toStore());
+                fw.write("\n");
+            }
+            fw.close();
+        } catch (IOException e) {
+            System.out.println("Unable to save file.");
+        }
+    }
+
+    public void loadLocalStorage() throws FileNotFoundException {
+        File localStorage = new File(Duke.LOCALSTORAGE);
+        Scanner sc = new Scanner(localStorage);
+        while (sc.hasNext()) {
+            String[] strings = sc.nextLine().split(" \\| ");
+            if (strings[0].equals("T")) {
+                storage.add(new ToDo(Integer.parseInt(strings[1]),
+                        strings[2]));
+            } else if (strings[0].equals("E")) {
+                storage.add(new Event(Integer.parseInt(strings[1]),
+                        strings[2], strings[3]));
+            } else if (strings[0].equals("D")) {
+                storage.add(new Deadline(Integer.parseInt(strings[1]),
+                        strings[2], strings[3]));
+            }
+        }
+    }
 
     /**
      * Prints current tasks in the storage to user.
@@ -26,6 +62,7 @@ public class Storage {
         storage.get(i - 1).markDone();
         System.out.println("Nice! I've marked this task as done:");
         System.out.println(storage.get(i - 1).toString());
+        save();
     }
 
     /**
@@ -36,6 +73,7 @@ public class Storage {
         storage.get(i - 1).unmarkDone();
         System.out.println("Ok, I've marked this task as not done yet:");
         System.out.println(storage.get(i - 1).toString());
+        save();
     }
 
     /**
@@ -52,6 +90,7 @@ public class Storage {
         } else {
             System.out.println("Now you have " + storage.size() + " tasks in the list.");
         }
+        save();
     }
 
     /**
@@ -67,5 +106,6 @@ public class Storage {
         } else {
             System.out.println("Now you have " + storage.size() + " tasks in the list.");
         }
+        save();
     }
 }

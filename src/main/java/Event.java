@@ -15,6 +15,22 @@ public class Event extends Task{
         this.eventTime = eventTime;
     }
 
+    public Event(int i, String description, String eventTime) {
+        super(description);
+        this.eventTime = eventTime;
+        if (i == 1) {
+            this.markDone();
+        }
+    }
+
+    @Override
+    public String toStore() {
+        String status = super.isDone ? "1" : "0";
+        String temp = "E" + " | " + status + " | " + super.description + " | " + this.eventTime;
+        return temp;
+    }
+
+
     /**
      * Overriding method of toString() for Event.
      * @return the string representing Event task.
