@@ -7,7 +7,6 @@ import duke.task.Event;
 import duke.task.ToDo;
 import duke.tasklist.TaskList;
 
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -38,9 +37,6 @@ public class Parser {
                 throw new DukeException("☹ OOPS!!! Task number does not exist.");
             } else {
                 return new MarkCommand(number);
-                //taskList.getTask(number - 1).markAsDone();
-                //System.out.println("Nice! I've marked this task as done:\n"
-                //        + taskList.getTask(number - 1).toString());
             }
         } else if (fullCommand.length() >= 7 && (fullCommand.startsWith("unmark") &&
                 (Character.isWhitespace(fullCommand.charAt(6))) &&
@@ -50,9 +46,6 @@ public class Parser {
                 throw new DukeException("☹ OOPS!!! Task number does not exist.");
             } else {
                 return new UnmarkCommand(number);
-                //taskList.getTask(number - 1).markAsNotDone();
-                //System.out.println("OK, I've marked this task as not done yet:\n"
-                //        + taskList.getTask(number - 1).toString());
             }
         } else if (fullCommand.length() >= 7 && (fullCommand.startsWith("delete") &&
                 (Character.isWhitespace(fullCommand.charAt(6))) &&
@@ -67,10 +60,6 @@ public class Parser {
             throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
         } else if (fullCommand.startsWith("todo") && Character.isWhitespace(fullCommand.charAt(4))) {
             return new AddCommand(new ToDo(fullCommand));
-            //taskList.add(new ToDo(fullCommand));
-            //System.out.println("Got it. I've added this task:");
-            //System.out.println(taskList.latestTask() + "\nNow you have " + taskList.taskListSize() +
-            //        " tasks in the list.");
         } else if (fullCommand.equals("deadline") || (fullCommand.startsWith("deadline")
                 && fullCommand.substring(9).isBlank())) {
             throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
@@ -83,9 +72,6 @@ public class Parser {
                 } catch (DateTimeParseException e) {
                     throw new DukeException("☹ OOPS!!! Please use the correct date format!");
                 }
-                //System.out.println("Got it. I've added this task:");
-                //System.out.println(taskList.latestTask() + "\nNow you have " + taskList.taskListSize() +
-                //        " tasks in the list.");
             }
         } else if (fullCommand.equals("event") || (fullCommand.startsWith("event") && fullCommand.substring(6).isBlank())) {
             throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.");
@@ -98,14 +84,9 @@ public class Parser {
                 } catch (DateTimeParseException e) {
                     throw new DukeException("☹ OOPS!!! Please use the correct date format!");
                 }
-               // System.out.println("Got it. I've added this task:");
-               // System.out.println(taskList.latestTask() + "\nNow you have "
-               //         + taskList.taskListSize() +
-               //         " tasks in the list.");
             }
         } else {
             throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
     }
-
 }

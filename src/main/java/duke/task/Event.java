@@ -28,11 +28,4 @@ public class Event extends Task {
         }
         return null;
     }
-
-    /*
-    @Override
-    public String saveString() {
-        return "D " + "| " + getStringStatusIcon() + " | " + getSubstring() + "|" + at + "\n";
-    }
-    */
 }

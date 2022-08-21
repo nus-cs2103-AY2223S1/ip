@@ -1,14 +1,13 @@
-package duke.command;
+package duke.duke;
+
+import duke.command.Command;
 import duke.exception.DukeException;
 import duke.parser.Parser;
 import duke.storage.Storage;
 import duke.tasklist.TaskList;
 import duke.ui.Ui;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-
-import static java.lang.Integer.parseInt;
 
 public class Duke {
 
@@ -16,16 +15,12 @@ public class Duke {
     private TaskList tasks;
     private Ui ui;
 
-    private Parser parser;
-
-    public Duke(String filePath) throws IOException {
+    public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
     }
 
-   // private static ArrayList<Task> tasks = new ArrayList<>();
-
-    public void run() throws DukeException, IOException {
+    public void run() throws IOException {
         ui.showGreetings();
         tasks = new TaskList(storage.loadFile());
         boolean isExit = false;
@@ -40,7 +35,7 @@ public class Duke {
             }
         }
     }
-    public static void main(String[] args) throws DukeException, IOException, FileNotFoundException {
+    public static void main(String[] args) throws IOException {
         new Duke("data/duke.txt").run();
     }
 }

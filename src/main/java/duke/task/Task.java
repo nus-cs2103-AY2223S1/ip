@@ -18,16 +18,6 @@ public class Task {
         return "[" + getStatusIcon() + "] " + description;
     }
 
-    /*
-    public String saveString() {
-        return description;
-    }
-
-    public String getStringStatusIcon() {
-        return (isDone ? "1" : "0");
-    }
-    */
-
     public void markAsDone() {
         this.isDone = true;
     }
