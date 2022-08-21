@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -107,7 +106,7 @@ public class Henry {
     private LocalDateTime parseDateTime(String date, String time) {
         String[] tokens = date.split("-");
         String[] timeTokens = time.split(":");
-        return LocalDate.of(Integer.parseInt(tokens[0]), Integer.parseInt(tokens[1]), Integer.parseInt(tokens[2]))
+        return LocalDate.of(Integer.parseInt(tokens[2]), Integer.parseInt(tokens[1]), Integer.parseInt(tokens[0]))
                         .atTime(Integer.parseInt(timeTokens[0]), Integer.parseInt(timeTokens[1]));
     }
 
@@ -144,8 +143,11 @@ public class Henry {
                 case EVENT:
                     handleAddTask(command);
                     break;
-                default:
+                case DELETE:
                     deleteTask(command);
+                    break;
+                default:
+                    help();
                     break;
                 }
             } else {
@@ -153,55 +155,47 @@ public class Henry {
             }
         } catch (NoSuchCommandException e1) {
             System.out.println(NoSuchCommandException.ERROR_MESSAGE);
-        } catch (ImproperCommandSyntaxException e3) {
-            switch (e3.getErrorType()) {
-            case 0:
-                System.out.println(ImproperCommandSyntaxException.ERROR_MESSAGE);
-                break;
-            case 1:
-                System.out.println(ImproperCommandSyntaxException.ERROR_MESSAGE_NO_BY);
-                break;
-            default:
-                System.out.println(ImproperCommandSyntaxException.ERROR_MESSAGE_NO_AT);
-                break;
-            }
-        } catch (IndexOutOfBoundsException e5) {
-            output("COMMAND SYNTAX ERROR");
-        } catch (NumberFormatException e6) {
-            output("COMMAND HAS THE WRONG FORMAT! USE DD-MM-YYYY HH:MM FORMAT");
+        } catch (IndexOutOfBoundsException | NumberFormatException e5) {
+            throw new ImproperCommandSyntaxException();
         } catch (IOException e7) {
             output("FILE NOT FOUND");
+        } catch (ImproperCommandSyntaxException e3) {
+            System.out.println(ImproperCommandSyntaxException.ERROR_MESSAGE);
         }
     }
 
-    public void output(String message) {
+    private void output(String message) {
         System.out.println(formatResponse(message));
     }
 
-    public void echo(String input) {
-        System.out.println(formatResponse(input));
+    private void echo(String input) {
+        output(input);
     }
 
-    public void deleteTask(String command) throws IndexOutOfBoundsException, NumberFormatException {
+    private void help() {
+
+    }
+
+    private void deleteTask(String command) throws IndexOutOfBoundsException, NumberFormatException {
         int index = Integer.parseInt(command.split(" ")[1]);
         String removed = tasks.remove(index).toString();
         output("NOTED. I REMOVED THIS TASK:\n\t\t\t" + removed + "\n\t\tNOW YOU HAVE " + tasks.size()
                + (tasks.size() == 1 ? " TASK" : " TASKS") + " IN YOUR LIST.");
     }
 
-    public void markTask(String command) throws IndexOutOfBoundsException, NumberFormatException {
+    private void markTask(String command) throws IndexOutOfBoundsException, NumberFormatException {
         int index = Integer.parseInt(command.split(" ")[1]);
         tasks.get(index).setComplete(true);
         output("I'VE MARKED THIS TASK AS DONE:\n\t\t\t" + tasks.get(index));
     }
 
-    public void unmarkTask(String command) throws IndexOutOfBoundsException, NumberFormatException {
+    private void unmarkTask(String command) throws IndexOutOfBoundsException, NumberFormatException {
         int index = Integer.parseInt(command.split(" ")[1]);
         tasks.get(index).setComplete(false);
         output("I'VE MARKED THIS TASK AS NOT DONE: \n" + tasks.get(index));
     }
 
-    public void handleAddTask(String command) throws ImproperCommandSyntaxException, IOException {
+    private void handleAddTask(String command) throws ImproperCommandSyntaxException, IOException {
         Task task;
         if (command.matches("deadline (.+) /at (\\d){1,3}-(\\d){1,3}-(\\d){4} (\\d){2}:(\\d){2}")) {
             int indexSlash = command.indexOf('/');

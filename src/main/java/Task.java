@@ -1,4 +1,5 @@
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Task {
     protected String description;
@@ -14,7 +15,7 @@ public class Task {
         this.type = type;
         this.description = description;
         this.date = date;
-        this.isDone = false;
+        this.isDone = isDone;
     }
 
     public String getStatusIcon() {
@@ -27,28 +28,30 @@ public class Task {
 
     @Override
     public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         switch (type) {
         case TODO:
             return "[T]" + getStatusIcon() + " " + description;
         case DEADLINE:
             return "[D]" + getStatusIcon() + " " + description + " (by: "
-                   + date.toString().replace("T", " ") + ")";
+                   + date.format(formatter).replace("T", " ") + ")";
         default:
             return "[E]" + getStatusIcon() + " " + description + " (at: "
-                   + date.toString().replace("T", " ") + ")";
+                   + date.format(formatter).replace("T", " ") + ")";
         }
     }
 
     public String toSimpleString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         switch (type) {
         case TODO:
             return "T | " + (isDone ? 1 : 0) + " | " + description;
         case DEADLINE:
             return "D | " + (isDone ? 1 : 0) + " | " + description + " | (by: "
-                   + date.toString().replace("T", " ") + ")";
+                   + date.format(formatter).replace("T", " ") + ")";
         default:
-            return "E |" + (isDone ? 1 : 0) + " | " + description + " | (by: "
-                   + date.toString().replace("T", " ") + ")";
+            return "E | " + (isDone ? 1 : 0) + " | " + description + " | (by: "
+                   + date.format(formatter).replace("T", " ") + ")";
         }
     }
 }
