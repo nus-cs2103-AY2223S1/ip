@@ -29,9 +29,9 @@ public class DukeException extends Exception {
         } else if (message.equals("unmark")) {
             this.msg = "OOPS!!! The description of an event cannot be empty.";
         } else if (message.equals("deadline format")) {
-            this.msg = "OOPS!!! The formatting of the deadline message is wrong.";
+            this.msg = "OOPS!!! The formatting of the deadline message is wrong (deadline 'thing' /by yyyy-mm-dd).";
         } else if (message.equals("event format")) {
-            this.msg = "OOPS!!! The formatting of the event message is wrong.";
+            this.msg = "OOPS!!! The formatting of the event message is wrong (event 'event' /at yyyy-mm-dd).";
         } else if (message.equals("unknown")) {
             this.msg = "OOPS!!! I'm sorry, but I don't know what that means :-(";
         } else if (message.equals("non integer input when marking")) {

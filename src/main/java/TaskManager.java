@@ -1,3 +1,4 @@
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 /**
@@ -140,19 +141,27 @@ public class TaskManager {
                 case "todo":
                     return handle(Action_type.TODO, message.substring(5));
                 case "deadline": {
-                    String[] tempSplit = message.split(" /by ");
-                    if (tempSplit.length == 1) {
+                    try {
+                        String[] tempSplit = message.split(" /by ");
+                        if (tempSplit.length == 1) {
+                            throw new DukeException("deadline format");
+                        } else {
+                            return handle(Action_type.DEADLINE, message.substring(9));
+                        }
+                    } catch (DateTimeParseException e) {
                         throw new DukeException("deadline format");
-                    } else {
-                        return handle(Action_type.DEADLINE, message.substring(9));
                     }
                 }
                 case "event": {
-                    String[] tempSplit = message.split(" /at ");
-                    if (tempSplit.length == 1) {
+                    try {
+                        String[] tempSplit = message.split(" /at ");
+                        if (tempSplit.length == 1) {
+                            throw new DukeException("event format");
+                        } else {
+                            return handle(Action_type.EVENT, message.substring(6));
+                        }
+                    } catch (DateTimeParseException e) {
                         throw new DukeException("event format");
-                    } else {
-                        return handle(Action_type.EVENT, message.substring(6));
                     }
                 }
                 case "delete":

@@ -1,8 +1,8 @@
 todo borrow book
-deadline return book /by Sunday
-event project meeting /at Mon 2-4pm
+deadline return book /by 2022-12-24
+event project meeting /at 2021-04-02
 todo cs2103t assignment
-deadline cs2109s ps0 /by the coming Sun 2359
+deadline cs2109s ps0 /by 2022-01-12
 list
 mark 3
 mark 4
@@ -14,7 +14,9 @@ help
 mark apple
 mark 123
 deadline sleep
+deadline sleep /by april
 event sleep
+eevent sleep /at friday
 todo
 delete 123
 delete
