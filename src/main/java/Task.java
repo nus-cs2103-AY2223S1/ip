@@ -89,4 +89,10 @@ public abstract class Task {
         return String.format("[%s][%s] %s", this.getTaskTypeCode(), this.getStatusIcon(),
                 this.description);
     }
+
+    // Internal method used to save a task as a string in a file.
+    // This should be consistent with the documentation of loadFile in Main class.
+    String toFileSaveString() {
+        return String.format("%s\n%s\n%d\n", getTaskTypeCode(), description, isDone ? 1 : 0);
+    }
 }

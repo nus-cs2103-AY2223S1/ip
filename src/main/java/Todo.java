@@ -22,4 +22,9 @@ public class Todo extends Task {
     public String getTaskTypeCode() {
         return "T";
     }
+
+    @Override
+    String toFileSaveString() {
+        return super.toFileSaveString();
+    }
 }

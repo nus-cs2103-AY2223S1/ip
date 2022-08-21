@@ -1,3 +1,9 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -32,7 +38,58 @@ import java.util.Scanner;
 public class Jude {
     private static List<Task> tasks = new ArrayList<>();
 
-    // checks index to ensure index not out of bounds
+    /*
+     * Loads file in order to load the tasks
+     * The format is as follows (in separate lines, no extra newlines in between):
+     * - typeOfTask (which can be 'T', 'D' or 'E'), representing todo, deadline and event tasks
+     *   respectively.
+     * - Name of task.
+     * - Whether the task is marked as done, 1 if so and 0 otherwise.
+     * - Any dates which may be required by the type. For events, the start date is stored on top
+     *   of the end date.
+     *
+     * In between two tasks, there can be extra newlines.
+     */
+    private static void loadFile(File file) throws FileNotFoundException {
+        Scanner sc = new Scanner(file);
+        tasks = new ArrayList<Task>();
+        while (sc.hasNextLine()) {
+            String taskType = sc.nextLine();
+            if (taskType.isBlank()) {
+                // ignore blank lines in between tasks
+                continue;
+            }
+
+            String taskName = sc.nextLine();
+            String done = sc.nextLine();
+            boolean isDone = Integer.parseInt(done) == 1;
+
+            Task task = null;
+            if (taskType.equals("T")) {
+                task = new Todo(taskName, isDone);
+            } else if (taskType.equals("D")) {
+                String deadline = sc.nextLine();
+                task = new Deadline(taskName, isDone, deadline);
+            } else if (taskType.equals("E")){
+                String eventTime = sc.nextLine();
+                task = new Event(taskName, isDone, eventTime);
+            } else {
+                throw new RuntimeException("Jude cannot understand the input file.");
+            }
+            tasks.add(task);
+        }
+    }
+
+    private static void saveFile(File file) throws IOException {
+        FileWriter fw = new FileWriter(file);
+        for (int i = 0; i < tasks.size(); i++) {
+            Task task = tasks.get(i);
+            fw.write(task.toFileSaveString());
+        }
+        fw.close();
+    }
+
+    // Checks index to ensure index not out of bounds.
     private static void checkIndex(int index) {
         if (index < 0 || index >= tasks.size()) {
             throw new IllegalArgumentException("Invalid index");
@@ -44,7 +101,17 @@ public class Jude {
      *
      * @param args not used for now
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        // Solution below adapted from
+        // https://stackoverflow.com/questions/3634853/how-to-create-a-directory-in-java
+        Files.createDirectories(Paths.get("data"));
+        File file = new File("data/tasks.txt");
+
+        // Solution below adapted from
+        // https://www.w3schools.com/java/java_files_create.asp
+        file.createNewFile();
+        loadFile(file);
+
         System.out.println("Hello! I'm Jude.");
         System.out.println("What can I do for you?");
 
@@ -106,6 +173,7 @@ public class Jude {
 
                     if (taskAdded != null) {
                         tasks.add(taskAdded);
+                        saveFile(file);
                         System.out.printf("The following %s task has been added:\n  ", tokens[0]);
                         System.out.println(taskAdded);
                         System.out.printf("The task list now contains %d task(s).\n", tasks.size());
@@ -118,6 +186,7 @@ public class Jude {
                     // Solution below adapted from
                     // https://nus-cs2103-ay2223s1.github.io/website/schedule/week2/project.html
                     task.markAsDone();
+                    saveFile(file);
 
                     System.out.println("The following task has been marked as done");
                     System.out.println(task);
@@ -126,6 +195,7 @@ public class Jude {
                     checkIndex(index);
                     Task task = tasks.get(index);
                     task.markAsUndone();
+                    saveFile(file);
                     System.out.println("The following task has been marked as undone");
                     System.out.println(task);
                 } else if (tokens[0].equals("delete")) {
@@ -133,6 +203,7 @@ public class Jude {
                     checkIndex(index);
                     Task task = tasks.get(index);
                     tasks.remove(index);
+                    saveFile(file);
                     System.out.println("The following task has been removed:");
                     System.out.println(task);
                     System.out.printf("The task list now contains %d task(s).\n", tasks.size());

@@ -47,4 +47,9 @@ public class Event extends Task {
     public String toString() {
         return String.format("%s (at: %s)", super.toString(), this.when);
     }
+
+    @Override
+    String toFileSaveString() {
+        return String.format("%s%s\n", super.toFileSaveString(), when);
+    }
 }
