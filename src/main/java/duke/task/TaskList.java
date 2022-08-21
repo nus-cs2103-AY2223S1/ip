@@ -1,8 +1,10 @@
 package duke.task;
 
-import duke.exception.InvalidIndexException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import duke.exception.InvalidIndexException;
+
 
 public class TaskList {
     private ArrayList<Task> tasks;
