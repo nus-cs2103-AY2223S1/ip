@@ -71,6 +71,34 @@ abstract class Task {
     }
 
     /**
+     * Represents the completion status to be added into the file.
+     *
+     * @return String representation of status
+     */
+    public String completionStatusForFile() {
+        return this.completed ? "1" : "0";
+    }
+
+    /**
+     * Crafts message for file given various parameters.
+     *
+     * @param arr array consisting of various strings
+     * @return String message
+     */
+    public String craftStringForFile(String[] arr) {
+        int length = arr.length;
+        String res = "";
+        for (int i = 0; i < length; i++) {
+            if (i == 0) {
+                res += arr[i];
+            } else {
+                res += " | " + arr[i];
+            }
+        }
+        return res;
+    }
+
+    /**
      * Represents a todo task.
      */
     private static class ToDo extends Task {
@@ -108,6 +136,16 @@ abstract class Task {
         @Override
         public String toString() {
             return this.workTypeBox() + this.checkBox() + " " + todo;
+        }
+
+        /**
+         * Crafts message to be added into text file.
+         *
+         * @return String message
+         */
+        @Override
+        public String textFileMessage() {
+            return craftStringForFile(new String[]{"T", completionStatusForFile(), this.todo});
         }
     }
 
@@ -157,6 +195,16 @@ abstract class Task {
         public String toString() {
             return this.workTypeBox() + this.checkBox() + " " + todo + " (by: " + date + ")";
         }
+
+        /**
+         * Crafts message to be added into text file.
+         *
+         * @return String message
+         */
+        @Override
+        public String textFileMessage() {
+            return craftStringForFile(new String[]{"D", completionStatusForFile(), this.todo, this.date});
+        }
     }
 
     /**
@@ -205,6 +253,16 @@ abstract class Task {
         public String toString() {
             return this.workTypeBox() + this.checkBox() + " " + todo + " (at: " + date + ")";
         }
+
+        /**
+         * Crafts message to be added into text file.
+         *
+         * @return String message
+         */
+        @Override
+        public String textFileMessage() {
+            return craftStringForFile(new String[]{"E", completionStatusForFile(), this.todo, this.date});
+        }
     }
 
     /**
@@ -213,4 +271,11 @@ abstract class Task {
      * @return String representation of the work type
      */
     abstract String workTypeBox();
+
+    /**
+     * Crafts message to be added into text file.
+     *
+     * @return String message
+     */
+    abstract String textFileMessage();
 }

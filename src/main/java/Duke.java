@@ -1,4 +1,7 @@
+import java.io.IOException;
 import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.File;
 
 /**
  * Represents a Duke class
@@ -26,6 +29,17 @@ public class Duke {
      */
     public static void main(String[] args) {
 
+        File dataFile = new File("data");
+        File txtFile = new File("data/duke.txt");
+        FileWriter fw = null;
+        try {
+            dataFile.mkdir();
+            txtFile.createNewFile();
+            fw = new FileWriter("data/duke.txt", false);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         TaskManager manager = new TaskManager(100);
 
         Scanner scan = new Scanner(System.in);
@@ -37,6 +51,13 @@ public class Duke {
 
             if (response.equals("bye")) {
                 System.out.println(TaskManager.reply(bye_message));
+                String message = manager.craftTextMessage();
+                try {
+                    fw.write(message);
+                    fw.close();
+                } catch (NullPointerException | IOException e) {
+                    e.printStackTrace();
+                }
                 conversation = false;
             } else {
                 try {

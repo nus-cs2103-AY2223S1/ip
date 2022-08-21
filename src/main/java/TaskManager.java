@@ -77,6 +77,29 @@ public class TaskManager {
     }
 
     /**
+     * Crafts a message to be added into the file
+     *
+     * @return String representing the message
+     */
+    public String craftTextMessage() {
+        int length = arr.size();
+        String result = "";
+        for (int x = 0; x < length; x++) {
+            Task task = arr.get(x);
+            if (task == null) {
+                break;
+            } else {
+                if (x == 0) {
+                    result += task.textFileMessage();
+                } else {
+                    result += "\n" + task.textFileMessage();
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
      * Crafts a sentence about the marking and un-marking of tasks.
      *
      * @param task Task being mentioned
@@ -204,7 +227,6 @@ public class TaskManager {
         } else if (action == Action_type.LIST) {
             return craftList();
         } else if (action == Action_type.MARK) {
-//            try {
             int location = Integer.parseInt(message) - 1;
             Task task = arr.get(location);
             task.markComplete();
