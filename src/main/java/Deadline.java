@@ -18,6 +18,18 @@ public class Deadline extends Task {
         this.date = date;
     }
 
+    /**
+     * Constructor of Deadline.
+     *
+     * @param taskName The Task's name.
+     * @param date The date of deadline.
+     * @param isDone True if the task is done, false otherwise.
+     */
+    public Deadline(String taskName, String date, boolean isDone) {
+        super(taskName, isDone);
+        this.date = date;
+    }
+
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by:" + date + ")";

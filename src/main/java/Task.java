@@ -20,6 +20,17 @@ public class Task {
         this.isDone = false;
     }
 
+    /**
+     * Constructor for a Task, initializes both task name and isDone.
+     *
+     * @param taskName The title of the task.
+     * @param isDone True if task is already done, false if not done.
+     */
+    public Task(String taskName, boolean isDone) {
+        this.taskName = taskName;
+        this.isDone = isDone;
+    }
+
     public String getStatusIcon() {
         return (this.isDone ? "[X] " : "[ ] ");
     }
