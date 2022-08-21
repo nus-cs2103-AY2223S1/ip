@@ -4,14 +4,14 @@ import java.util.Scanner;
 public class Duke {
     static ArrayList<Task> vocabList = new ArrayList<Task>();
 
-    public static void echo(String msg) {
+    private static void echo(String msg) {
         String lineBlock = "     -----------------------------------------";
         System.out.println(lineBlock);
         System.out.println("     " + msg);
         System.out.println(lineBlock);
     }
 
-    static void list(ArrayList<Task> vocabList) {
+    private static void list(ArrayList<Task> vocabList) {
         String lineBlock = "     -----------------------------------------";
         String listMessage = "     Here are the tasks in your list:";
 
@@ -22,6 +22,15 @@ public class Duke {
             System.out.println(String.format("     %d. %s", i+1, nextTask.toString()));
         }
         System.out.println(lineBlock);
+    }
+
+    private static void delete(ArrayList<Task> vocabList, int taskNumber) throws DukeException {
+        if (taskNumber > vocabList.size()) {
+            throw new DukeException("Oops!! This task number is invalid. Try to delete another task! xx");
+        }
+        Task deleted = vocabList.remove(taskNumber);
+        echo(String.format("Noted. I've removed this task:\n         %s\n     Now you have %d tasks in the list.", 
+            deleted.toString(), vocabList.size()));
     }
 
     public static void main(String[] args) {
@@ -51,6 +60,19 @@ public class Duke {
 
                     case "list":
                     list(vocabList);
+                    break;
+
+                    case "delete":
+                    try {
+                        int taskNumber = Integer.parseInt(taskArray[1]) - 1;
+                        delete(vocabList, taskNumber);
+                    } catch (DukeException e) {
+                        echo(e.getMessage());
+                    } catch (IndexOutOfBoundsException e) {
+                        echo("Which task would you like me to delete? ^^");
+                    } catch (NumberFormatException e) {
+                        echo("Oops! You can't delete that! Delete a task number instead.");
+                    }
                     break;
 
                     case "mark":
