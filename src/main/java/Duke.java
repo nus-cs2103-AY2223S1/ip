@@ -1,5 +1,11 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.Path;
+import java.util.List;
 
 public class Duke {
     public static final String BORDER = ">>========================="
@@ -8,6 +14,7 @@ public class Duke {
     private static ArrayList<Task> taskList = new ArrayList<Task>();
     private static boolean isRunning = true;
 
+    // encapsulate in a TaskList class later with other methods
     public static void list() {
         if (taskList.size() == 0) {
             System.out.println("  You don't have any tasks. Make yourself useful.");
@@ -19,27 +26,88 @@ public class Duke {
         }
     }
 
+    public static String convertTasksToSaveFormat() {
+        StringBuilder sb = new StringBuilder();
+        taskList.forEach(t -> sb.append(t.toSaveFormat() + "\n"));
+        return sb.toString();
+    }
+
+    public static void saveTasks() {
+        try {
+            String home = System.getProperty("user.home");
+            Path dir = Paths.get(home, "duke", "data");
+            File taskFileDirectory = new File(dir.toString());
+            Path path = Paths.get(dir.toString(), "duke.txt");
+            File taskFile = new File(path.toString());
+            if (Files.exists(dir)) {
+                taskFile.createNewFile();
+                Files.write(path, convertTasksToSaveFormat().getBytes());
+            } else {
+                taskFileDirectory.mkdirs();
+                taskFile.createNewFile();
+                Files.write(path, convertTasksToSaveFormat().getBytes());
+            }
+        } catch (IOException e) {
+            System.out.println("Error: Unable to save tasks.");
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void loadTasks() {
+        try {
+            String home = System.getProperty("user.home");
+            Path dir = Paths.get(home, "duke", "data");
+            Path path = Paths.get(dir.toString(), "duke.txt");
+            if (Files.exists(dir) && Files.exists(path)) {
+                List<String> allLines = Files.readAllLines(path);
+                for (String line : allLines) {
+                    String[] parsedTask = line.split(" \\| ", 4);
+                    boolean isDone = parsedTask[1].compareTo("1") == 0;
+                    System.out.println(isDone);
+                    switch (parsedTask[0]) {
+                    case "T":
+                        ToDo todo = new ToDo(parsedTask[2], isDone);
+                        taskList.add(todo);
+                        break;
+                    case "D":
+                        Deadline deadline = new Deadline(parsedTask[2], parsedTask[3], isDone);
+                        taskList.add(deadline);
+                        break;
+                    case "E":
+                        Event event = new Event(parsedTask[2], parsedTask[3], isDone);
+                        taskList.add(event);
+                        break;
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error: Unable to load tasks.");
+            e.printStackTrace();
+        }
+    }
+
     public static String commandGuide(String keyword, Command cmd) {
         String msg = "";
         switch (cmd) {
-            case TODO:
-                msg = "  Type \"" + keyword + " <description>\" to add a new todo.";
-                break;
-            case DEADLINE:
-                msg = "  Type \"" + keyword + " <description> /<time>\" to add a new deadline.";
-                break;
-            case EVENT:
-                msg = "  Type \"" + keyword + " <description> /<time>\" to add a new event.";
-                break;
-            case MARK:
-                msg = "  Type \"" + keyword + " <task number>\" to mark a task as complete.";
-                break;
-            case UNMARK:
-                msg = "  Type \"" + keyword + " <task number>\" to mark a task as incomplete.";
-                break;
-            case DELETE:
-                msg = "  Type \"" + keyword + " <task number>\" to delete a task.";
-                break;
+        case TODO:
+            msg = "  Type \"" + keyword + " <description>\" to add a new todo.";
+            break;
+        case DEADLINE:
+            msg = "  Type \"" + keyword + " <description> /<time>\" to add a new deadline.";
+            break;
+        case EVENT:
+            msg = "  Type \"" + keyword + " <description> /<time>\" to add a new event.";
+            break;
+        case MARK:
+            msg = "  Type \"" + keyword + " <task number>\" to mark a task as complete.";
+            break;
+        case UNMARK:
+            msg = "  Type \"" + keyword + " <task number>\" to mark a task as incomplete.";
+            break;
+        case DELETE:
+            msg = "  Type \"" + keyword + " <task number>\" to delete a task.";
+            break;
         }
         return msg;
     }
@@ -48,6 +116,7 @@ public class Duke {
     public static void addTask(String description) {
         ToDo todo = new ToDo(description);
         taskList.add(todo);
+        saveTasks();
         System.out.println("  Seriously? Another one?\n" + "  Give me strength...\n"
                 + "    " + todo + "\n" + "  You have " + taskList.size() + " task"
                 + (taskList.size() > 1 ? "s" : "") + ". Bummer.");
@@ -61,6 +130,7 @@ public class Duke {
             task = new Event(description, time);
         }
         taskList.add(task);
+        saveTasks();
         System.out.println("  Seriously? Another one?\n" + "  Give me strength...\n"
                 + "    " + task + "\n" + "  You have " + taskList.size() + " task"
                 + (taskList.size() > 1 ? "s" : "") + ". Bummer.");
@@ -69,6 +139,7 @@ public class Duke {
     public static void deleteTask(int num) {
         try {
             Task removed = taskList.remove(num - 1);
+            saveTasks();
             System.out.println("  Good riddance, I say.\n" + "    " + removed
                 + "\n  You have " + taskList.size() + " task"
                     + (taskList.size() == 1 ? "" : "s") + ".");
@@ -86,6 +157,7 @@ public class Duke {
     public static void markTask(int num) {
         try {
             taskList.get(num - 1).mark();
+            saveTasks();
         } catch (IndexOutOfBoundsException e) {
             System.out.println("  Brilliant. You've asked me to mark an imaginary task as complete.\n"
                     + "  Task number " + num + " does not exist.");
@@ -95,6 +167,7 @@ public class Duke {
     public static void unmarkTask(int num) {
         try {
             taskList.get(num - 1).unmark();
+            saveTasks();
         } catch (IndexOutOfBoundsException e) {
             System.out.println("  Brilliant. You've asked me to mark an imaginary task as incomplete.\n"
                     + "  Task number " + num + " does not exist.");
@@ -198,7 +271,7 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-
+        loadTasks();
         String mort = "                               .---.        .-----------\n"
                 + "                              /     \\  __  /    ------\n"
                 + "                             / /     \\(  )/    -----\n"
