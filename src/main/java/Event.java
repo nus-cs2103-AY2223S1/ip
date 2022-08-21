@@ -13,6 +13,11 @@ public class Event extends Task {
         this.at = at;
     }
 
+    /**
+     * Formats and outputs the string representation of an Event viable for writing
+     * into text file.
+     * @return formatted txt file string representation of an Event.
+     */
     @Override
     public String formatFileText() {
         String s = String.format("E | %s | %s | %s\n", super.getStatusIcon(), this.description, this.at);

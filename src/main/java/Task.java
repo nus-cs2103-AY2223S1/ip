@@ -47,11 +47,17 @@ public class Task {
      * @return formatted string representation of a Task.
      */
     public String toString() {
-        String outputString = String.format("[%s] %s", getStatusIcon(), getDescription()); // format completion status and description String
+        String outputString = String.format("[%s] %s", getStatusIcon(), getDescription());
         return outputString;
     }
 
+    /**
+     * Formats and outputs the string representation of a Task viable for writing
+     * into text file.
+     * @return formatted txt file string representation of a Task.
+     */
     public String formatFileText() {
-        return null;
+        String s = String.format("Task | %s | %s", this.getStatusIcon(), this.getDescription());
+        return s;
     }
 }

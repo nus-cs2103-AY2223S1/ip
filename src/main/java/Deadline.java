@@ -13,6 +13,11 @@ public class Deadline extends Task {
         this.by = by;
     }
 
+    /**
+     * Formats and outputs the string representation of a Deadline viable for writing
+     * into text file.
+     * @return formatted txt file string representation of a Deadline.
+     */
     @Override
     public String formatFileText() {
         String s = String.format("D | %s | %s | %s\n", super.getStatusIcon(), this.description, this.by);

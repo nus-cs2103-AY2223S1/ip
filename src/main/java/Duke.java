@@ -135,6 +135,12 @@ public class Duke {
         }
     }
 
+    /**
+     * Writes all events on the ArrayList to a txt File. The directory and file
+     * is created if it does not exist.
+     * @param filePath
+     * @param inputList
+     */
     public static void writeToFile(String filePath, ArrayList<Task> inputList)  {
         try {
             File dir = new File(filePath);
@@ -153,6 +159,14 @@ public class Duke {
         }
     }
 
+    /**
+     * Reads all tasks in file and adds them to an ArrayList. Throws a
+     * FileNotFoundException if no such file exists.
+     * @param filePath
+     * @return ArrayList with all saved tasks added
+     * @throws FileNotFoundException
+     * @throws DukeException
+     */
     public static ArrayList<Task> readFile(String filePath) throws FileNotFoundException, DukeException {
         File f = new File(filePath);
         ArrayList<Task> arrayInput = new ArrayList<>();
