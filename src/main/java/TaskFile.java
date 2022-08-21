@@ -29,6 +29,7 @@ public class TaskFile {
 
     public void readFile(TaskList taskList) throws DukeException {
         File file = new File(filePath);
+        createFile(file);
         try {
             Scanner sc = new Scanner(file);
             while (sc.hasNext()) {
@@ -52,7 +53,7 @@ public class TaskFile {
                 task.changeStatus(status.equals("X"), false);
             }
         } catch (IOException e) {
-            createFile(file);
+            throw new DukeException("Something went wrong! Please try again.");
         }
     }
 }

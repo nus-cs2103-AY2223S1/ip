@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class Duke {
     protected TaskList tasks = new TaskList();
+    protected TaskFile taskFile = new TaskFile();
 
     public enum Command {
         BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE
@@ -30,10 +31,8 @@ public class Duke {
         Scanner in = new Scanner(System.in);
         String input;
 
-        TaskFile taskFile = new TaskFile();
-
         try {
-            taskFile.readFile(duke.tasks);
+            duke.taskFile.readFile(duke.tasks);
             do {
                 input = in.nextLine();
                 String[] splitInputArray = input.split(" ", 2);
@@ -67,7 +66,7 @@ public class Duke {
                 } catch (DukeException e) {
                     System.out.println(e.getMessage());
                 }
-                taskFile.saveToFile(duke.tasks);
+                duke.taskFile.saveToFile(duke.tasks);
             } while (!input.equals("bye"));
         } catch (DukeException e) {
             System.out.println(e.getMessage());
