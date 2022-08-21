@@ -2,6 +2,7 @@ package commands;
 
 import exceptions.DukeException;
 import managers.TaskManager;
+import ui.Ui;
 
 /**
  * Encapsulates an executable command
@@ -16,7 +17,7 @@ public interface Command {
      * not result in a modification of the task manager object
      *
      * @param taskManager Task Manager object to manage the list of tasks
-     * @return Status message
+     * @param ui The UI object in charge of display operations and user interactions
      */
-    String execute(TaskManager taskManager) throws DukeException;
+    void execute(TaskManager taskManager, Ui ui) throws DukeException;
 }

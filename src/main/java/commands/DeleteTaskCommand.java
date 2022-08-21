@@ -3,6 +3,7 @@ package commands;
 import exceptions.DukeException;
 import models.task.Task;
 import managers.TaskManager;
+import ui.Ui;
 
 public class DeleteTaskCommand implements Command {
     public static final String COMMAND_WORD = "delete";
@@ -20,7 +21,7 @@ public class DeleteTaskCommand implements Command {
     }
 
     @Override
-    public String execute(TaskManager taskManager) throws DukeException {
+    public void execute(TaskManager taskManager, Ui ui) throws DukeException {
         // Retrieve the task index (1-indexed) to delete the task
         if (this.arguments.length() == 0) {
             throw new DukeException(DeleteTaskCommand.MISSING_TASK_INDEX_ERROR);
@@ -39,11 +40,11 @@ public class DeleteTaskCommand implements Command {
             throw new DukeException(DeleteTaskCommand.TASK_NUMBER_IS_INVALID_ERROR);
         }
 
-        return String.format(
+        ui.print(String.format(
                 "%s\n\t%s\n%s",
                 DeleteTaskCommand.DELETE_TASK_MESSAGE,
                 task,
                 taskManager.getStatus()
-        );
+        ));
     }
 }

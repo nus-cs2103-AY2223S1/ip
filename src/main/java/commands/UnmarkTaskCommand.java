@@ -3,6 +3,7 @@ package commands;
 import exceptions.DukeException;
 import managers.TaskManager;
 import models.task.Task;
+import ui.Ui;
 
 public class UnmarkTaskCommand implements Command {
     public static final String COMMAND_WORD = "unmark";
@@ -10,8 +11,6 @@ public class UnmarkTaskCommand implements Command {
     private static final String MISSING_TASK_INDEX_ERROR = "You are missing a task number!\n" +
             "Use the 'list' command to view the tasks and their number.";
     private static final String NAN_TASK_NUMBER_ERROR = "The task number you provided is not a number!";
-    private static final String TASK_NUMBER_IS_INVALID_ERROR = "The task number you provided is not valid!\n" +
-            "Use the 'list' command to view the tasks and their number.";
 
     private final String arguments;
 
@@ -20,7 +19,7 @@ public class UnmarkTaskCommand implements Command {
     }
 
     @Override
-    public String execute(TaskManager taskManager) throws DukeException {
+    public void execute(TaskManager taskManager, Ui ui) throws DukeException {
         // Retrieve the task index (1-indexed) to mark the task as undone
         if (this.arguments.length() == 0) {
             throw new DukeException(UnmarkTaskCommand.MISSING_TASK_INDEX_ERROR);
@@ -32,15 +31,9 @@ public class UnmarkTaskCommand implements Command {
             throw new DukeException(UnmarkTaskCommand.NAN_TASK_NUMBER_ERROR);
         }
 
-        try {
-            Task task = taskManager.get(taskNumber);
-            task.markAsUndone();
-            Task updatedTask = taskManager.update(taskNumber, task);
-            return String.format("%s\n\t%s", UnmarkTaskCommand.MARK_TASK_AS_UNDONE_MESSAGE, updatedTask);
-        } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(UnmarkTaskCommand.TASK_NUMBER_IS_INVALID_ERROR);
-        } catch (DukeException e) {
-            return e.getMessage();
-        }
+        Task task = taskManager.get(taskNumber);
+        task.markAsUndone();
+        Task updatedTask = taskManager.update(taskNumber, task);
+        ui.print(String.format("%s\n\t%s", UnmarkTaskCommand.MARK_TASK_AS_UNDONE_MESSAGE, updatedTask));
     }
 }

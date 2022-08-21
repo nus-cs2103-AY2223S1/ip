@@ -3,6 +3,7 @@ package commands;
 import exceptions.DukeException;
 import models.task.Task;
 import managers.TaskManager;
+import ui.Ui;
 import utils.DukeValidator;
 
 import java.time.LocalDate;
@@ -31,7 +32,7 @@ public class ListTasksCommand implements Command {
     }
 
     @Override
-    public String execute(TaskManager taskManager) throws DukeException {
+    public void execute(TaskManager taskManager, Ui ui) throws DukeException {
         if (this.arguments.length() > 0) {
             Matcher matchTasksOn = ListTasksCommand.MATCH_TASKS_ON.matcher(this.arguments);
             if (matchTasksOn.matches()) {
@@ -42,7 +43,7 @@ public class ListTasksCommand implements Command {
                             return taskDate != null && taskDate.isEqual(date);
                         }
                 );
-                return TaskManager.display(filteredList);
+                ui.print(TaskManager.display(filteredList));
             }
             Matcher matchTasksBefore = ListTasksCommand.MATCH_TASKS_BEFORE.matcher(this.arguments);
             if (matchTasksBefore.matches()) {
@@ -53,11 +54,11 @@ public class ListTasksCommand implements Command {
                             return taskDate != null && taskDate.isBefore(date);
                         }
                 );
-                return TaskManager.display(filteredList);
+                ui.print(TaskManager.display(filteredList));
             }
             throw new DukeException(ListTasksCommand.ERROR_UNKNOWN_OPTION);
         }
 
-        return TaskManager.display(taskManager.list());
+        ui.print(TaskManager.display(taskManager.list()));
     }
 }

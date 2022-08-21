@@ -5,7 +5,7 @@ import exceptions.DukeException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-abstract  public class Serializable<T> {
+abstract public class Serializable<T> {
     // Use the double slash to escape the pipe character
     private static final String formatterRead = " \\| ", formatterWrite = formatterRead.replace("\\", "");
     private final String serialized;

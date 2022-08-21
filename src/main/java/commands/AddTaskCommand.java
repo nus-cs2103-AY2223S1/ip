@@ -6,7 +6,7 @@ import managers.TaskManager;
 
 import java.util.function.Supplier;
 
-abstract public class AddTaskCommand implements Command {
+abstract class AddTaskCommand implements Command {
     public static final String ADD_TASK_MESSAGE = "Got it. I've added this task:";
 
     /**

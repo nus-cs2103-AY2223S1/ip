@@ -3,6 +3,7 @@ package commands;
 import exceptions.DukeException;
 import managers.TaskManager;
 import models.task.ToDo;
+import ui.Ui;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -22,12 +23,12 @@ public class AddToDoTaskCommand extends AddTaskCommand implements Command {
     }
 
     @Override
-    public String execute(TaskManager taskManager) throws DukeException {
+    public void execute(TaskManager taskManager, Ui ui) throws DukeException {
         Matcher matcher = AddToDoTaskCommand.MATCH_TODO_TASK.matcher(this.arguments);
         if (!matcher.matches()) {
             throw new DukeException(AddToDoTaskCommand.INVALID_TODO_TASK_ERROR);
         }
 
-        return this.addTask(taskManager, () -> new ToDo(this.arguments.strip()));
+        ui.print(this.addTask(taskManager, () -> new ToDo(this.arguments.strip())));
     }
 }
