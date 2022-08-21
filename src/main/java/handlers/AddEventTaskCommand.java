@@ -26,9 +26,6 @@ public class AddEventTaskCommand extends AddTaskCommand implements DukeCommand {
         String description = matcher.group("taskDescription").strip();
         String datetimeString = matcher.group("taskDatetime").strip();
         LocalDate datetime = DukeValidator.parseDate(datetimeString);
-        if (datetime == null) {
-            throw new DukeException(AddEventTaskCommand.INVALID_EVENT_TASK_ERROR);
-        }
         return this.addTask(taskManager, () -> new Event(description, datetime));
     }
 }

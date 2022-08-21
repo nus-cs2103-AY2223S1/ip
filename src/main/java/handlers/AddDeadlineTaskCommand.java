@@ -27,9 +27,6 @@ public class AddDeadlineTaskCommand extends AddTaskCommand implements DukeComman
         String description = matcher.group("taskDescription").strip();
         String datelineString = matcher.group("taskDeadline").strip();
         LocalDate dateline = DukeValidator.parseDate(datelineString);
-        if (dateline == null) {
-            throw new DukeException(AddDeadlineTaskCommand.INVALID_DEADLINE_TASK_ERROR);
-        }
         return this.addTask(taskManager, () -> new Deadline(description, dateline));
     }
 }
