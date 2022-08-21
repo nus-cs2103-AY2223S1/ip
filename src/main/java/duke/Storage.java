@@ -13,21 +13,32 @@ import java.nio.charset.StandardCharsets;
 
 import java.io.IOException;
 
+/**
+ * Implementation of StorageInterface that interacts with a text file for
+ * storage.
+ */
 public class Storage implements StorageInterface {
     private Path filePath;
 
+    /**
+     * Constructor for Storage.
+     * 
+     * @param filePath path of storage file.
+     */
     public Storage(Path filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Constructor for Storage.
+     * 
+     * @param filePath path of storage file.
+     */
     public Storage(String filePath) {
         this(Paths.get(filePath));
     }
 
-    boolean isFileExist() {
-        return Files.exists(filePath);
-    }
-
+    @Override
     public List<Task> readFile() throws DukeException {
         if (!isFileExist()) {
             throw new DukeException("Storage file is empty!");
@@ -44,23 +55,13 @@ public class Storage implements StorageInterface {
         }
     }
 
+    @Override
     public void save(Task task) throws DukeException {
         String toAppend = task.toStorageFormat();
         appendLine(toAppend);
     }
 
-    void appendLine(String line) throws DukeException {
-        if (!isFileExist()) {
-            createFile();
-        }
-        try {
-            line += System.lineSeparator();
-            Files.write(filePath, line.getBytes(), StandardOpenOption.APPEND);
-        } catch (IOException e) {
-            throw new DukeException("Error occured when writing to storage file!", e);
-        }
-    }
-
+    @Override
     public void updateLine(int lineIndex, String updatedLine) throws DukeException {
         try {
             List<String> lines = Files.readAllLines(filePath, StandardCharsets.UTF_8);
@@ -71,12 +72,34 @@ public class Storage implements StorageInterface {
         }
     }
 
-    void createFile() throws DukeException {
+    private boolean isFileExist() {
+        return Files.exists(filePath);
+    }
+
+    private void createFile() throws DukeException {
         try {
             Files.createDirectories(filePath.getParent());
             Files.createFile(filePath);
         } catch (IOException e) {
             throw new DukeException("Error occured when creating storage file!", e);
+        }
+    }
+
+    /**
+     * Append line to end of storage file.
+     * 
+     * @param line line of text to append.
+     * @throws DukeException when error updating file.
+     */
+    private void appendLine(String line) throws DukeException {
+        if (!isFileExist()) {
+            createFile();
+        }
+        try {
+            line += System.lineSeparator();
+            Files.write(filePath, line.getBytes(), StandardOpenOption.APPEND);
+        } catch (IOException e) {
+            throw new DukeException("Error occured when writing to storage file!", e);
         }
     }
 }

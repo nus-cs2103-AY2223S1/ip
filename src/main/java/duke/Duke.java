@@ -12,6 +12,12 @@ public class Duke {
     private StorageInterface storage;
     private TaskList taskList;
 
+    /**
+     * Constructor for Duke.
+     * Initialises, Ui, TaskList and Storage used by the application.
+     * 
+     * @param storagePath filepath to use to store Tasks.
+     */
     Duke(String storagePath) {
         this.ui = new Ui();
         this.storage = new Storage(storagePath);
@@ -28,6 +34,10 @@ public class Duke {
         }
     }
 
+    /**
+     * Loop that listens for user input and executes Commands corresponding to the
+     * inputs.
+     */
     void listenForInputs() {
         boolean isExit = false;
         while (!isExit) {
@@ -42,16 +52,18 @@ public class Duke {
         }
     }
 
+    /**
+     * Shows welcome messge and start listening for user input.
+     */
     public void run() {
         ui.showWelcome();
         this.listenForInputs();
     }
 
     /**
-     * Main function for the chatbot.
+     * Entry point to applicaiton.
      * 
-     * @param args
-     *            System arguments. Not used for this program.
+     * @param args System arguments.
      */
 
     public static void main(String[] args) {

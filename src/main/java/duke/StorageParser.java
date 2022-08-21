@@ -9,31 +9,41 @@ import duke.task.Todo;
 
 import java.util.NoSuchElementException;
 
-public class StorageParser {
+/**
+ * Class to parse text in storage file.
+ */
+public abstract class StorageParser {
     private static final String DELIMITER = "\\s*[|]\\s*";
     private static final String TODO_INDICATOR = "T";
     private static final String DEADLINE_INDICATOR = "D";
     private static final String EVENT_INDICATOR = "E";
 
-    static Scanner createScanner(String input) {
+    private static Scanner createScanner(String input) {
         Scanner scanner = new Scanner(input);
         scanner.useDelimiter(DELIMITER);
         return scanner;
     }
 
-    public static Task parse(String input) throws DukeException {
-        try (Scanner scanner = createScanner(input)) {
+    /**
+     * Parse a line of text in storage file into a Task.
+     * 
+     * @param line line of text in storage file format.
+     * @return Task that was parsed from line.
+     * @throws DukeException when error parsing the text.
+     */
+    public static Task parse(String line) throws DukeException {
+        try (Scanner scanner = createScanner(line)) {
             String taskIndicator = scanner.next();
             Task task;
             switch (taskIndicator) {
             case (TODO_INDICATOR):
-                task = parseTodo(input);
+                task = parseTodo(line);
                 break;
             case (DEADLINE_INDICATOR):
-                task = parseDeadline(input);
+                task = parseDeadline(line);
                 break;
             case (EVENT_INDICATOR):
-                task = parseEvent(input);
+                task = parseEvent(line);
                 break;
             default:
                 throw new DukeException("Unknown task");
@@ -46,8 +56,15 @@ public class StorageParser {
         return number != 0;
     }
 
-    static Todo parseTodo(String input) throws DukeException {
-        try (Scanner lineScanner = createScanner(input)) {
+    /**
+     * Parses line of text into a Todo Task.
+     * 
+     * @param line line of text in storage file format.
+     * @return Todo that was parsed from line.
+     * @throws DukeException when error parsing the text.
+     */
+    static Todo parseTodo(String line) throws DukeException {
+        try (Scanner lineScanner = createScanner(line)) {
             lineScanner.next();
             boolean status = intToBoolean(lineScanner.nextInt());
             String description = lineScanner.next();
@@ -57,8 +74,15 @@ public class StorageParser {
         }
     }
 
-    static Deadline parseDeadline(String input) throws DukeException {
-        try (Scanner lineScanner = createScanner(input)) {
+    /**
+     * Parses line of text into a Deadline Task.
+     * 
+     * @param line line of text in storage file format.
+     * @return Deadline that was parsed from line.
+     * @throws DukeException when error parsing the text.
+     */
+    static Deadline parseDeadline(String line) throws DukeException {
+        try (Scanner lineScanner = createScanner(line)) {
             lineScanner.next();
             boolean status = intToBoolean(lineScanner.nextInt());
             String description = lineScanner.next();
@@ -69,8 +93,15 @@ public class StorageParser {
         }
     }
 
-    static Event parseEvent(String input) throws DukeException {
-        try (Scanner lineScanner = createScanner(input)) {
+    /**
+     * Parses line of text into an Event Task.
+     * 
+     * @param line line of text in storage file format.
+     * @return Event that was parsed from line.
+     * @throws DukeException when error parsing the text.
+     */
+    static Event parseEvent(String line) throws DukeException {
+        try (Scanner lineScanner = createScanner(line)) {
             lineScanner.next();
             boolean status = intToBoolean(lineScanner.nextInt());
             String description = lineScanner.next();

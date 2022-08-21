@@ -1,56 +1,84 @@
 package duke.task;
 
-import duke.DukeException;
-
-import java.time.LocalDate;
-
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
-public class Task {
+/**
+ * Abstract superclass for handling Tasks.
+ */
+public abstract class Task {
     protected static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("d MMM yyyy");
     private final String description;
     private boolean isComplete;
 
+    /**
+     * Constructor for Task.
+     * 
+     * @param description description of Task.
+     * @param isComplete whether Task is complete.
+     */
     Task(String description, boolean isComplete) {
         this.description = description;
         this.isComplete = isComplete;
     }
 
+    /**
+     * Constructor for Task. {@code isComplete} defaults to {@code true}.
+     * 
+     * @param description description of Task.
+     */
     public Task(String description) {
         this(description, false);
     }
 
+    /**
+     * Sets {@code isComplete} to {@code true}
+     */
     public void mark() {
         this.isComplete = true;
     }
 
+    /**
+     * Sets {@code isComplete} to {@code false}
+     */
     public void unmark() {
         this.isComplete = false;
     }
 
+    /**
+     * Returns Task description.
+     * 
+     * @return Task description
+     */
     String getDescription() {
         return this.description;
     }
 
+    /**
+     * Returns {@code isComplete} status String.
+     * 
+     * @return {@code isComplete} status String.
+     */
     String getStatusIcon() {
         return isComplete ? "[X]" : "[ ]";
     }
 
+    /**
+     * Returns {@code isComplete} status in integer format.
+     * 
+     * @return {@code isComplete} status.
+     *         {@code 0} signfies incomplete. {@code 1} signifies complete.
+     */
     int getStatusNumber() {
         return isComplete ? 1 : 0;
     }
 
+    /**
+     * Converts Task to a String format used by Storage.
+     * 
+     * @return Storage-readable String.
+     */
     public String toStorageFormat() {
         return this.getStatusNumber() + " | " + this.description;
-    }
-
-    static LocalDate parseDate(String dateString) throws DukeException {
-        try {
-            return LocalDate.parse(dateString);
-        } catch (DateTimeParseException e) {
-            throw new DukeException("Date format is invalid!", e);
-        }
     }
 
     @Override
