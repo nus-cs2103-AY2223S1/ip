@@ -9,6 +9,10 @@ public abstract class Task {
         this.description = description;
     }
 
+    public boolean getIsDone() {
+        return isDone;
+    }
+
     /**
      * Checks whether fields are valid. To be called when creating Task via factory methods.
      * @throws TaskDescriptionEmpty
@@ -31,6 +35,28 @@ public abstract class Task {
 
     public void markAsUndone() {
         this.isDone = false;
+    }
+
+    public abstract String serialise();
+
+    public static Task unserialise(String s) {
+        String[] words = s.split(" \\| ");
+        Task task;
+        switch (words[0]) {
+            case ("T"):
+                task = ToDo.unserialise(words);
+                break;
+            case ("D"):
+                task = Deadline.unserialise(words);
+                break;
+            case ("E"):
+                task = Event.unserialise(words);
+                break;
+            default:
+                task = null;
+                break;
+        }
+        return task;
     }
 
     @Override

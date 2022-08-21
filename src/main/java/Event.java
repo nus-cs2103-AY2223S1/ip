@@ -15,6 +15,21 @@ public class Event extends Task {
         return event;
     }
 
+    public String serialise() {
+        return String.format("%s | %s | %s | %s",
+                typeIcon,
+                this.getIsDone() ? 1 : 0,
+                this.getDescription(),
+                this.time);
+    }
+
+    public static Event unserialise(String[] words) {
+        return new Event(
+                words[1] == "1",
+                words[2],
+                words[3]);
+    }
+
     @Override
     public String toString() {
         return String.format("[%s]%s (at: %s)", typeIcon, super.toString(), this.time);

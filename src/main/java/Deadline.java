@@ -15,6 +15,21 @@ public class Deadline extends Task {
         return deadline;
     }
 
+    public String serialise() {
+        return String.format("%s | %s | %s | %s",
+                typeIcon,
+                this.getIsDone() ? 1 : 0,
+                this.getDescription(),
+                this.time);
+    }
+
+    public static Deadline unserialise(String[] words) {
+        return new Deadline(
+                words[1] == "1",
+                words[2],
+                words[3]);
+    }
+
     @Override
     public String toString() {
         return String.format("[%s]%s (by: %s)", typeIcon, super.toString(), this.time);

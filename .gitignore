@@ -14,3 +14,7 @@ src/main/resources/docs/
 bin/
 
 /text-ui-test/ACTUAL.TXT
+
+# Others
+# Ignore data files
+data/

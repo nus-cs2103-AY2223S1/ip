@@ -1,16 +1,28 @@
 import exceptions.NoSuchTask;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Class that stores Tasks.
  */
 public class TaskStore {
     private final List<Task> store;
+    private final FileWriter writer;
 
     public TaskStore() {
         this.store = new ArrayList<>();
+        try {
+            this.writer = new FileWriter(getAndInitialiseFilePath().toFile(), true);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -32,6 +44,11 @@ public class TaskStore {
 
     public String addTask(Task task) {
         this.store.add(task);
+        try {
+            this.saveToFile();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         StringBuilder sb = new StringBuilder();
         sb.append(String.format("Got it. I've added this task:\n\t%s", task.toString()));
         sb.append("\n");
@@ -46,6 +63,11 @@ public class TaskStore {
         } catch (IndexOutOfBoundsException ex) {
             throw new NoSuchTask(this.size());
         }
+        try {
+            this.saveToFile();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         StringBuilder sb = new StringBuilder();
         sb.append(String.format("Noted. I've removed this task:\n\t%s", task.toString()));
         sb.append("\n");
@@ -56,15 +78,59 @@ public class TaskStore {
     public String markTaskAsDone(int index) throws NoSuchTask {
         Task task = getTask(index);
         task.markAsDone();
+        try {
+            this.saveToFile();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         return String.format("Nice! I've marked this task as done:\n\t%s", task);
     }
 
     public String markTaskAsUndone(int index) throws NoSuchTask {
         Task task = getTask(index);
         task.markAsUndone();
+        try {
+            this.saveToFile();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         return String.format("OK, I've marked this task as not done yet:\n\t%s", task);
     }
 
+    /**
+     * Returns a Path object pointing to the file used to store Hazell data locally.
+     *
+     * Before doing so, it ensures that the folder exists.
+     * @return Path to file used by Hazell chatbot
+     * @throws IOException
+     */
+    private static Path getAndInitialiseFilePath() throws IOException {
+        String currentDir = System.getProperty("user.dir");
+        Path dataDir = Paths.get(currentDir, "data");
+        if (!Files.exists(dataDir)) {
+            Files.createDirectory(dataDir);
+        }
+        return Paths.get(currentDir, "data", "hazell.txt");
+    }
+
+    public void saveToFile() throws IOException {
+        FileWriter writer = new FileWriter(getAndInitialiseFilePath().toFile(), false);
+        for (Task task : this.store) {
+            writer.write(task.serialise());
+            writer.write("\n");
+        }
+        writer.close();
+    }
+
+    public static TaskStore createFromFile() throws IOException {
+        Scanner sc = new Scanner(getAndInitialiseFilePath().toFile());
+        TaskStore store = new TaskStore();
+        while (sc.hasNextLine()) {
+            Task task = Task.unserialise(sc.nextLine().strip());
+            store.store.add(task);
+        }
+        return store;
+    }
 
     /**
      * List detailed information about all tasks in this store.
