@@ -4,12 +4,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Class that represents storage to load tasks from file and save tasks in the file.
  */
 public class Storage {
     private final String filePath;
+    private final DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     /**
      * Constructor for Storage.
@@ -37,9 +40,9 @@ public class Storage {
                 if (task[0].equals("T")) {
                     tasks.add(new Todo(task[2], isDone));
                 } else if (task[0].equals("D")) {
-                    tasks.add(new Deadline(task[2], isDone, task[3]));
+                    tasks.add(new Deadline(task[2], isDone, LocalDateTime.parse(task[3], timeFormat)));
                 } else if (task[0].equals("E")) {
-                    tasks.add(new Event(task[2], isDone, task[3]));
+                    tasks.add(new Event(task[2], isDone, LocalDateTime.parse(task[3], timeFormat)));
                 }
             }
         } catch (FileNotFoundException e) {
