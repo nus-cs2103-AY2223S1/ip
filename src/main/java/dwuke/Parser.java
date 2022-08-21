@@ -1,15 +1,6 @@
 package dwuke;
 
-import dwuke.command.Command;
-import dwuke.command.DeadlineCommand;
-import dwuke.command.DeleteCommand;
-import dwuke.command.EventCommand;
-import dwuke.command.ExitCommand;
-import dwuke.command.InvalidCommand;
-import dwuke.command.ListCommand;
-import dwuke.command.MarkCommand;
-import dwuke.command.TodoCommand;
-import dwuke.command.UnmarkCommand;
+import dwuke.command.*;
 import dwuke.task.TaskList;
 import dwuke.task.Todo;
 import dwuke.task.Deadline;
@@ -52,6 +43,8 @@ public class Parser {
                     return new EventCommand(taskList, new Event(arguments[0], arguments[1]));
                 case DeleteCommand.COMMAND_WORD:
                     return new DeleteCommand(taskList, Integer.parseInt(argument) - 1);
+                case FindCommand.COMMAND_WORD:
+                    return new FindCommand(taskList, argument);
                 default:
                     throw new DwukeException("am sowwy, but me dun know wat that means :-(");
             }
