@@ -42,6 +42,24 @@ public class TaskList {
         TaskList.tasks.remove(index);
     }
 
+    public String findTask(String text) {
+        String tasks = "";
+        int counter = 0;
+
+        for (int i = 0; i < TaskList.tasks.size(); i++) {
+            if (TaskList.tasks.get(i).getDescription().contains(text)) {
+                tasks += (counter + 1) + "." + TaskList.tasks.get(i) + "\n";
+                counter++;
+            }
+        }
+
+        if (counter > 0) {
+            return tasks.trim();
+        }
+
+        return "No tasks found!";
+    }
+
     public static int length() {
         return TaskList.tasks.size();
     }
