@@ -49,4 +49,12 @@ public class Ui {
   public String getLastCommand() {
     return lastCommand;
   }
+  
+  public void setLastInput(String lastInput) {
+    this.lastInput = lastInput;
+  }
+  
+  public void setLastCommand(String lastCommand) {
+    this.lastCommand = lastCommand;
+  }
 }
