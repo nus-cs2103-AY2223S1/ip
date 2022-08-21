@@ -9,12 +9,12 @@
     ____________________________________________________________
     ____________________________________________________________
      Got it. I've added this task:
-       [D][ ] return book (by: Sunday)
+       [D][ ] return book (by: 2022-12-24)
      Now you have 2 tasks in the list.
     ____________________________________________________________
     ____________________________________________________________
      Got it. I've added this task:
-       [E][ ] project meeting (at: Mon 2-4pm)
+       [E][ ] project meeting (at: 2021-04-02)
      Now you have 3 tasks in the list.
     ____________________________________________________________
     ____________________________________________________________
@@ -24,20 +24,20 @@
     ____________________________________________________________
     ____________________________________________________________
      Got it. I've added this task:
-       [D][ ] cs2109s ps0 (by: the coming Sun 2359)
+       [D][ ] cs2109s ps0 (by: 2022-01-12)
      Now you have 5 tasks in the list.
     ____________________________________________________________
     ____________________________________________________________
      Here are the task(s) in your list:
      1.[T][ ] borrow book
-     2.[D][ ] return book (by: Sunday)
-     3.[E][ ] project meeting (at: Mon 2-4pm)
+     2.[D][ ] return book (by: 2022-12-24)
+     3.[E][ ] project meeting (at: 2021-04-02)
      4.[T][ ] cs2103t assignment
-     5.[D][ ] cs2109s ps0 (by: the coming Sun 2359)
+     5.[D][ ] cs2109s ps0 (by: 2022-01-12)
     ____________________________________________________________
     ____________________________________________________________
      Nice! I've marked this task as done:
-       [E][X] project meeting (at: Mon 2-4pm)
+       [E][X] project meeting (at: 2021-04-02)
     ____________________________________________________________
     ____________________________________________________________
      Nice! I've marked this task as done:
@@ -46,22 +46,22 @@
     ____________________________________________________________
      Here are the task(s) in your list:
      1.[T][ ] borrow book
-     2.[D][ ] return book (by: Sunday)
-     3.[E][X] project meeting (at: Mon 2-4pm)
+     2.[D][ ] return book (by: 2022-12-24)
+     3.[E][X] project meeting (at: 2021-04-02)
      4.[T][X] cs2103t assignment
-     5.[D][ ] cs2109s ps0 (by: the coming Sun 2359)
+     5.[D][ ] cs2109s ps0 (by: 2022-01-12)
     ____________________________________________________________
     ____________________________________________________________
      OK, I've marked this task as not done yet:
-       [E][ ] project meeting (at: Mon 2-4pm)
+       [E][ ] project meeting (at: 2021-04-02)
     ____________________________________________________________
     ____________________________________________________________
      Here are the task(s) in your list:
      1.[T][ ] borrow book
-     2.[D][ ] return book (by: Sunday)
-     3.[E][ ] project meeting (at: Mon 2-4pm)
+     2.[D][ ] return book (by: 2022-12-24)
+     3.[E][ ] project meeting (at: 2021-04-02)
      4.[T][X] cs2103t assignment
-     5.[D][ ] cs2109s ps0 (by: the coming Sun 2359)
+     5.[D][ ] cs2109s ps0 (by: 2022-01-12)
     ____________________________________________________________
     ____________________________________________________________
      OOPS!!! The description of an event cannot be empty.
@@ -76,10 +76,16 @@
      OOPS!!! The index number is out of bounds :-(
     ____________________________________________________________
     ____________________________________________________________
-     OOPS!!! The formatting of the deadline message is wrong.
+     OOPS!!! The formatting of the deadline message is wrong (deadline 'thing' /by yyyy-mm-dd).
     ____________________________________________________________
     ____________________________________________________________
-     OOPS!!! The formatting of the event message is wrong.
+     OOPS!!! The formatting of the deadline message is wrong (deadline 'thing' /by yyyy-mm-dd).
+    ____________________________________________________________
+    ____________________________________________________________
+     OOPS!!! The formatting of the event message is wrong (event 'event' /at yyyy-mm-dd).
+    ____________________________________________________________
+    ____________________________________________________________
+     OOPS!!! I'm sorry, but I don't know what that means :-(
     ____________________________________________________________
     ____________________________________________________________
      OOPS!!! The description of a todo cannot be empty.
@@ -92,15 +98,15 @@
     ____________________________________________________________
     ____________________________________________________________
      Noted. I've removed the task:
-       [D][ ] return book (by: Sunday)
+       [D][ ] return book (by: 2022-12-24)
      Now you have 4 tasks in the list.
     ____________________________________________________________
     ____________________________________________________________
      Here are the task(s) in your list:
      1.[T][ ] borrow book
-     2.[E][ ] project meeting (at: Mon 2-4pm)
+     2.[E][ ] project meeting (at: 2021-04-02)
      3.[T][X] cs2103t assignment
-     4.[D][ ] cs2109s ps0 (by: the coming Sun 2359)
+     4.[D][ ] cs2109s ps0 (by: 2022-01-12)
     ____________________________________________________________
     ____________________________________________________________
      Bye. Hope to see you again soon!

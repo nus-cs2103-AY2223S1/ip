@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 /**
  * Represents a Task Class.
  *
@@ -162,7 +164,7 @@ abstract class Task {
         /**
          * Represents the date to complete the task by.
          */
-        private final String date;
+        private final LocalDate date;
 
         /**
          * Returns a Deadline task, a constructor method.
@@ -173,7 +175,7 @@ abstract class Task {
             super();
             String[] split = s.split(" /by ");
             this.todo = split[0];
-            this.date = split[1];
+            this.date = LocalDate.parse(split[1]);
         }
 
         /**
@@ -220,7 +222,7 @@ abstract class Task {
         /**
          * Represents the date of event.
          */
-        private final String date;
+        private final LocalDate date;
 
         /**
          * Returns an Event task, a constructor method.
@@ -231,7 +233,7 @@ abstract class Task {
             super();
             String[] split = s.split(" /at ");
             this.todo = split[0];
-            this.date = split[1];
+            this.date = LocalDate.parse(split[1]);
         }
 
         /**
