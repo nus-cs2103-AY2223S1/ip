@@ -17,7 +17,7 @@ public class SaveManager {
         }
     }
 
-    private static ArrayList<Task> Read() {
+    public static ArrayList<Task> Read() {
         try {
             FileInputStream readData = new FileInputStream(FILENAME);
             ObjectInputStream readStream = new ObjectInputStream(readData);
