@@ -1,6 +1,8 @@
 package duke;
 
 import java.util.Scanner;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import duke.task.Task;
 
@@ -56,11 +58,34 @@ public class Ui {
         formatAndPrint(List.<String>of(messages));
     }
 
+    List<String> formatTaskList(List<Task> tasks) {
+        List<String> indexedList = IntStream.range(0,
+                tasks.size()).mapToObj((index) -> String.format("%d. %s", index + 1, tasks.get(index).toString()))
+                .collect(Collectors.toList());
+        return indexedList;
+    }
+
     void displayUpdateMessage(Task task, String updateMessage, Optional<Integer> taskListSize) {
         List<String> toPrint = new ArrayList<>();
         toPrint.add(updateMessage);
         toPrint.add(leftPad(task.toString()));
         taskListSize.ifPresent((size) -> toPrint.add("There are now " + size + " tasks in the list."));
+        formatAndPrint(toPrint);
+    }
+
+    public void displayTaskList(List<Task> tasks) {
+        List<String> toPrint = formatTaskList(tasks);
+        formatAndPrint(toPrint);
+    }
+
+    public void displayTaskListSearch(List<Task> tasks) {
+        if (tasks.size() == 0) {
+            formatAndPrint("No task matched your query!");
+            return;
+        }
+        List<String> toPrint = new ArrayList<>();
+        toPrint.add("Here is what I found: ");
+        toPrint.addAll(formatTaskList(tasks));
         formatAndPrint(toPrint);
     }
 

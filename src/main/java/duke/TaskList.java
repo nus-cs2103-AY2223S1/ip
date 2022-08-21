@@ -1,10 +1,8 @@
 package duke;
 
 import java.util.List;
-import java.util.ArrayList;
-
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.ArrayList;
 
 import duke.task.Task;
 
@@ -65,11 +63,14 @@ public class TaskList {
         return getTask(index);
     }
 
-    public List<String> getLogs() {
-        List<String> indexedList = IntStream.range(0, logs.size())
-                .mapToObj((index) -> String.format("%d. %s", index + 1, logs.get(index).toString()))
+    public List<Task> getTasks() {
+        return this.logs;
+    }
+
+    public List<Task> find(String query) {
+        return this.logs.stream()
+                .filter((task) -> task.getDescription().contains(query))
                 .collect(Collectors.toList());
-        return indexedList;
     }
 
     private String outOfBoundsMessage(int index) {
@@ -78,6 +79,6 @@ public class TaskList {
 
     @Override
     public String toString() {
-        return String.join("\n", getLogs());
+        return getTasks().toString();
     }
 }

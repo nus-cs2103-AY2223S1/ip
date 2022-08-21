@@ -73,4 +73,32 @@ public class CommandTest {
                 outContent.toString());
     }
 
+    @Test
+    void execute_findCommand() throws DukeException {
+        String divider = "    ____________________________________________________________"
+                + System.lineSeparator();
+        Task todo = new Todo("Test task");
+        Command.setTaskList(new TaskList(List.of(todo)));
+
+        Command command = new FindCommand("Test");
+        command.execute();
+
+        String firstExpected = divider
+                + "     Here is what I found: "
+                + System.lineSeparator()
+                + "     1. " + todo.toString() + System.lineSeparator()
+                + divider;
+        assertEquals(firstExpected,
+                outContent.toString());
+
+        command = new FindCommand("bad");
+        command.execute();
+        String secondExpected = firstExpected
+                + divider
+                + "     No task matched your query!" + System.lineSeparator()
+                + divider;
+        assertEquals(secondExpected,
+                outContent.toString());
+
+    }
 }

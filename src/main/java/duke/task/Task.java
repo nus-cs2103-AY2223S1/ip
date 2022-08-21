@@ -29,7 +29,7 @@ public class Task {
         this.isComplete = false;
     }
 
-    String getDescription() {
+    public String getDescription() {
         return this.description;
     }
 

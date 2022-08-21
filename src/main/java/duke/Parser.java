@@ -9,6 +9,7 @@ import duke.command.AddCommand;
 import duke.command.ByeCommand;
 import duke.command.Command;
 import duke.command.DeleteCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.UnknownCommand;
@@ -30,6 +31,7 @@ public abstract class Parser {
     private static final String MARK = "mark";
     private static final String UNMARK = "unmark";
     private static final String DELETE = "delete";
+    private static final String FIND = "find";
     private static final String DEADLINE_INDICATOR_PATTERN = "\\s*/by\\s*";
     private static final String EVENT_INDICATOR_PATTERN = "\\s*/at\\s*";
 
@@ -88,6 +90,9 @@ public abstract class Parser {
         case DELETE:
             command = parseDelete(getCommandArgument(commandArguments));
             break;
+        case FIND:
+            command = parseFind(getCommandArgument(commandArguments));
+            break;
         default:
             command = parseUnknown(commandIndicator);
             break;
@@ -145,6 +150,10 @@ public abstract class Parser {
     static Command parseDelete(String input) throws DukeException {
         int index = parseIndex(input);
         return new DeleteCommand(index);
+    }
+
+    static Command parseFind(String input) throws DukeException {
+        return new FindCommand(input);
     }
 
     static Command parseUnknown(String input) {
