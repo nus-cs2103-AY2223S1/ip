@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Duke {
     private boolean end;
-    private ArrayList<String> l;
+    private ArrayList<Task> l;
 
     public Duke() {
         this.end = false;
@@ -26,8 +26,14 @@ public class Duke {
             this.end = true;
         } else if (s.equals("list")) {
             printList();
+        } else if (s.startsWith("mark")) {
+            int markNum = Integer.parseInt(s.replace("mark ", ""));
+            mark(markNum);
+        } else if (s.startsWith("unmark")) {
+            int unmarkNum = Integer.parseInt(s.replace("unmark ", ""));
+            unmark(unmarkNum);
         } else {
-            addList(s);
+            addList(new Task(s));
         }
     }
 
@@ -61,15 +67,33 @@ public class Duke {
     private void printList() {
         printLine();
         for (int i = 0; i < l.size(); i++) {
-            print(String.format("%d. %s", i + 1, this.l.get(i)));
+            print(String.format("%d.%s", i + 1, this.l.get(i)));
         }
         printLine();
     }
 
-    private void addList(String s) {
-        this.l.add(s);
+    private void addList(Task t) {
+        this.l.add(t);
         printLine();
-        print("added: " + s);
+        print("added: " + t.description);
+        printLine();
+    }
+
+    private void mark(int i) {
+        Task t = this.l.get(i - 1);
+        t.markDone();
+        printLine();
+        print("Nice! I've marked this task as done:");
+        print("  " + t.toString());
+        printLine();
+    }
+
+    private void unmark(int i) {
+        Task t = this.l.get(i - 1);
+        t.unmarkDone();
+        printLine();
+        print("OK, I've marked this task as not done yet:");
+        print("  " + t.toString());
         printLine();
     }
 
