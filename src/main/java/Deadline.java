@@ -2,7 +2,6 @@ import java.time.LocalDateTime;
 
 public class Deadline extends Task {
     /** The deadline of the task. **/
-//    protected String by;
     protected LocalDateTime by;
 
     /**
