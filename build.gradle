@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'application'
+    id "com.github.johnrengelman.shadow" version "7.1.2"
 }
 
 group 'org.example'
@@ -12,6 +13,19 @@ repositories {
 
 application {
     mainClassName = "duke.Duke"
+}
+
+jar {
+    manifest {
+        attributes 'Class-Path': 'duke.Duke'
+    }
+}
+
+// Sets the name of the 'jar' file produced.
+shadowJar {
+    archiveBaseName.set('duke')
+    archiveClassifier.set('')
+    archiveVersion.set('')
 }
 
 run {
