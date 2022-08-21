@@ -10,18 +10,33 @@ import java.util.List;
 
 public class UserInputHistory {
     private ArrayList<Task> userInputHistory = new ArrayList<>();
-    Path path = Paths.get(System.getProperty("user.dir"),"src", "main", "java", "userinputhistory.txt");
+    private Path path;
+
+    private void getPath() throws DukeException {
+        String pathString = System.getProperty("user.dir");
+                if (pathString.contains("ip")) {
+                    pathString = pathString.substring(0, pathString.indexOf("ip") + 2);
+                    this.path = Paths.get(pathString, "src", "main", "java", "userinputhistory.txt");
+                } else {
+                    throw new DukeException("Cannot run from outside of ip folder of Duke");
+                }
+    }
+
     private void createIfDoesntExist() {
         try {
+            getPath();
             if (!Files.exists(path)) {
                 Files.createFile(path);
             }
         } catch (IOException e) {
             System.out.println("IOException: " + e);
+        } catch (DukeException e) {
+            System.out.println("DukeException: " + e);
         }
-
     }
+
     private void appendToFile(String s)  {
+        createIfDoesntExist();
         try {
             Files.write(path, s.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
         } catch (IOException e) {
@@ -29,10 +44,14 @@ public class UserInputHistory {
         }
     }
 
+    /**
+     * Removes everything from file at path.
+     * Rewrites to file from userInputHistory arraylist.
+     * @param index index of line to delete (1-indexed)
+     */
     private void deleteLine(int index) {
         try {
-            // remove everything from file
-            // rewrite from arraylist
+            createIfDoesntExist();
             String temp = "";
             List<String> history = Files.readAllLines(path);
             Files.write(path, temp.getBytes(StandardCharsets.UTF_8));
@@ -48,51 +67,16 @@ public class UserInputHistory {
         }
     }
 
-    private void  syncUserInputHistory() throws IOException {
-        createIfDoesntExist();
-        userInputHistory.removeAll(userInputHistory);
-        List<String> history = Files.readAllLines(path);
-        int historyLen = history.size();
-        String line, taskType, description, date;
-        Task t = new Task("");
-        for (int i = 0; i < historyLen; i++ ) {
-            line = history.get(i);
-            taskType = line.substring(1,2);
-            switch (taskType) {
-            case "T":
-                description = line.substring(6);
-                t = new Task(description);
-                break;
-            case "E":
-                description = line.substring(6, line.indexOf("("));
-                date = line.substring(line.indexOf(")"));
-                t = new Event(description, date);
-                break;
-            case "D":
-                description = line.substring(6, line.indexOf("("));
-                date = line.substring(line.indexOf("(by: ") + 5, line.indexOf(")"));
-                t = new Deadline(description, date);
-                break;
-            }
-            userInputHistory.add(t);
-        }
-    }
-
     /**
      * Method to add Task to history
      * @param s String description to add to userInputHistory
      */
     public void addTaskToHistory(String s) {
-        try {
-            syncUserInputHistory();
             Task newTask = new Task(s);
             appendToFile(newTask.toString() + "\n");
             userInputHistory.add(newTask);
             System.out.printf("Noted down: %s\n There are %d items on your list now. \n", s, userInputHistory.size());
             System.out.print(">>");
-        } catch (IOException e) {
-            System.out.println("IOException: " + e);
-        }
     }
 
     /**
@@ -101,17 +85,12 @@ public class UserInputHistory {
      * @param at
      */
     public void addEventToHistory(String description, String at) {
-        try {
-            syncUserInputHistory();
             Event newEvent = new Event(description, at);
             appendToFile(newEvent.toString() + "\n");
             userInputHistory.add(newEvent);
             //echo request
             System.out.printf("Noted down: %s\n There are %d items on your list now. \n", description, userInputHistory.size());
             System.out.print(">>");
-        } catch (IOException e) {
-            System.out.println("IOException: " + e);
-        }
     }
 
     /**
@@ -120,36 +99,28 @@ public class UserInputHistory {
      * @param by
      */
     public void addDeadlineToHistory(String description, String by) {
-        try {
-            syncUserInputHistory();
             Deadline newDeadline = new Deadline(description, by);
             appendToFile(newDeadline.toString() + "\n");
-           userInputHistory.add(newDeadline);
+            userInputHistory.add(newDeadline);
             //echo request
             System.out.printf("Noted down: %s\n There are %d items on your list now. \n", description, userInputHistory.size());
             System.out.print(">>");
-        } catch (IOException e) {
-            System.out.println("IOException: " + e);
-        }
     }
 
     /**
      * Method to show history
      */
-    public void showHistory() {
+    public void showHistory() throws IOException{
+        createIfDoesntExist();
         int count = 1;
         System.out.print("______\n");
         System.out.println("Tasks in your list are: ");
-        try {
-            syncUserInputHistory();
-            List<String> history = Files.readAllLines(path);;
+
+            List<String> history = Files.readAllLines(path);
             for (String s: history) {
                 System.out.printf("%d. %s\n", count, s);
                 count++;
             }
-        } catch (IOException e) {
-            System.out.println("IOException: " + e);
-        }
         System.out.printf("Total: %d\n", userInputHistory.size());
         System.out.print("______\n");
         System.out.print(">>");
@@ -160,8 +131,7 @@ public class UserInputHistory {
      * @param n index to retrieve
      * @return task at index n - 1 in the userInputHistory arraylist
      */
-    public Task getTask(int n) throws IOException {
-            syncUserInputHistory();
+    public Task getTask(int n)  {
             return userInputHistory.get(n - 1);
     }
 
@@ -170,8 +140,6 @@ public class UserInputHistory {
      * @param n index to be deleted
      */
     public void deleteTask(int n)  {
-        try {
-            syncUserInputHistory();
             Task taskToModify = userInputHistory.get(n - 1);
             userInputHistory.remove(n - 1);
             deleteLine(n);
@@ -179,9 +147,6 @@ public class UserInputHistory {
             System.out.printf("Total: %d\n", userInputHistory.size());
             System.out.print("______\n");
             System.out.print(">>");
-        } catch (IOException e) {
-            System.out.println("IOException: " + e);
-        }
     }
 
     /**
@@ -189,9 +154,8 @@ public class UserInputHistory {
      * @param s extracts task number from user input
      * @return index of the task in the list plus one
      */
-    public int getTaskNumber(String s) throws DukeException, IOException{
+    public int getTaskNumber(String s) throws DukeException{
         // credit: https://stackoverflow.com/questions/14974033/extract-digits-from-string-stringutils-java
-        syncUserInputHistory();
         String numberOnly= s.replaceAll("[^0-9]", "");
         int n;
         if (numberOnly.length() <= 0) {
