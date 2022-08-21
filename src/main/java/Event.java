@@ -18,4 +18,8 @@ public class Event extends Task {
          */
         return "[E]" + super.toString() + " (at: " + this.period + ")";
     }
+
+    public String toStorageFormat() {
+        return "E | " + super.toStorageFormat() + " | " + this.period;
+    }
 }

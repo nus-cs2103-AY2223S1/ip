@@ -14,4 +14,8 @@ public class ToDo extends Task {
          */
         return "[T]" + super.toString();
     }
+
+    public String toStorageFormat() {
+        return "T | " + super.toStorageFormat();
+    }
 }

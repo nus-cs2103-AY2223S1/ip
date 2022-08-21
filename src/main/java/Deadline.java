@@ -18,4 +18,8 @@ public class Deadline extends Task {
          */
         return "[D]" + super.toString() + " (by: " + this.date + ")";
     }
+
+    public String toStorageFormat() {
+        return "D | " + super.toStorageFormat() + " | " + this.date;
+    }
 }
