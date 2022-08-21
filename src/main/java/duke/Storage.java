@@ -22,7 +22,7 @@ public class Storage {
 
     /**
      * Load the data from the specified filePath. Creates an empty file if not found.
-     * @return ArrayList<Task> used to initialise TaskList
+     * @return ArrayList containing Task used to initialise TaskList
      * @throws DukeException if file was wrongly modified, causing errors in reading the file.
      */
     public ArrayList<Task> loadFile() throws DukeException {

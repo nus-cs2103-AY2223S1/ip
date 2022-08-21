@@ -9,6 +9,10 @@ public abstract class Task {
     private String description;
     private boolean done;
 
+    /**
+     * Create a task.
+     * @param description Description of task.
+     */
     public Task(String description) {
         this.description = description;
         this.done = false;
@@ -53,6 +57,15 @@ public abstract class Task {
      */
     public boolean isOn(LocalDate date) {
         return false;
+    }
+
+    /*
+     * Return whether the description includes the search query
+     * @param searchQuery String to search.
+     * @return whether the description includes the search query
+     */
+    public boolean descriptionIncludes(String searchQuery) {
+        return description.contains(searchQuery);
     }
 
     /**

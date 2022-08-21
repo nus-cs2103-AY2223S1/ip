@@ -115,6 +115,18 @@ public class TaskList implements Iterable<Task> {
     }
 
     /**
+     * Returns a filtered task list where description contains the search query.
+     * @param searchQuery String to search for.
+     * @return ArrayList of type Task matching the search description.
+     */
+    public ArrayList<Task> searchTasks(String searchQuery) {
+        ArrayList<Task> filteredTaskList = this.taskArrayList.stream()
+                .filter(task -> task.descriptionIncludes(searchQuery))
+                .collect(toCollection(ArrayList::new));
+        return filteredTaskList;
+    }
+
+    /**
      * Returns iterator so TaskList is iterable
      * @return Iterator to iterate tasks.
      */

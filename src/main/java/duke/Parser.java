@@ -6,6 +6,7 @@ import duke.command.AddCommand;
 import duke.command.Command;
 import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.TaskOnDateCommand;
@@ -58,6 +59,9 @@ public class Parser {
             break;
         case "on":
             resultCommand = new TaskOnDateCommand(LocalDate.parse(argsString));
+            break;
+        case "find":
+            resultCommand = new FindCommand(argsString);
             break;
         default:
             throw new DukeException("I don't know this command!");
