@@ -9,6 +9,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'no.priv.garshol.duke:duke:1.2'
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.0'
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.5.0'
 }
