@@ -2,6 +2,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
+
 /**
  * A chatbot named Tako that
  * supports various tasks.
@@ -94,7 +97,9 @@ public class Tako {
                     }
                     String[] splitDeadline = splitInput[1].split(" /by ", 2);
                     if (splitDeadline.length == 2) {
-                        Deadline deadline = new Deadline(splitDeadline[0], splitDeadline[1]);
+                        LocalDateTime dateTime = LocalDateTime.parse(
+                                splitDeadline[1].replace(' ', 'T'));
+                        Deadline deadline = new Deadline(splitDeadline[0], dateTime);
                         tasks.add(deadline);
                         System.out.println("added: " + deadline);
                         System.out.println("Total tasks: " + tasks.size());
@@ -108,7 +113,9 @@ public class Tako {
                     }
                     String[] splitEvent = splitInput[1].split(" /at ", 2);
                     if (splitEvent.length == 2) {
-                        Event event = new Event(splitEvent[0], splitEvent[1]);
+                        LocalDateTime dateTime = LocalDateTime.parse(
+                                splitEvent[1].replace(' ', 'T'));
+                        Event event = new Event(splitEvent[0], dateTime);
                         tasks.add(event);
                         System.out.println("added: " + event);
                         System.out.println("Total tasks: " + tasks.size());
@@ -142,6 +149,10 @@ public class Tako {
                 }
             } catch (EmptyDescriptionException | InvalidInputException e) {
                 System.out.println(e.getMessage());
+            } catch (DateTimeParseException e) {
+                System.out.println("Invalid date and time.\n"
+                        + "Date and time should be of the format: yyyy-mm-dd hh:mm\n"
+                        + "For example: 2019-10-15 10:30");
             }
         }
     }
