@@ -124,11 +124,16 @@ public class Duke {
                 case "deadline":
                     String[] deadlineBy = s.substring(8).trim().split("/by");
                     if (deadlineBy.length <= 1) {
-                        throw new DukeException("Error. The description and due date of a deadline\n\tshould be separated" +
-                                " by a \"/by\".");
+                        throw new DukeException("Error. The description and due date of a deadline\n\tshould be " +
+                                "separated" + " by a \"/by\".");
                     }
                     String deadline = deadlineBy[0].trim();
                     String by = deadlineBy[1].trim();
+                    // Regex adapted from:
+                    // stackoverflow.com/questions/37732/what-is-the-regex-pattern-for-datetime-2008-09-01-123545
+                    if (!by.trim().matches("(\\d{4})-(\\d{2})-(\\d{2}) (\\d{2})(\\d{2})")) {
+                        throw new DukeException("Invalid datetime entered.");
+                    }
                     Duke.add(deadline, TaskType.DEADLINE, by);
                     break;
                 case "event":
