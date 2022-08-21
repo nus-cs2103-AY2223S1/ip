@@ -3,7 +3,7 @@
  * Contains description of task and task completion status.
  */
 public class Task {
-    private String description;
+    private final String description;
     private boolean isDone;
 
     Task(String description, boolean isDone) {
@@ -23,6 +23,15 @@ public class Task {
     void unmarkAsDone() {
         this.isDone = false;
     }
+
+    String getStorageFormat() {
+        return this.getStatusBit() + " | " + this.description;
+    }
+
+    int getStatusBit() {
+        return isDone ? 1 : 0;
+    }
+
     String getStatusIcon() {
         return isDone ? "[X]" : "[ ]";
     }

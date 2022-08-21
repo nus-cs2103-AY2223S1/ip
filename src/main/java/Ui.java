@@ -7,7 +7,7 @@ public class Ui {
 
     public static void showError(Exception e) {
         System.out.println(LINE_DIVIDER);
-        String[] lines = e.getMessage().split("\n");
+        String[] lines = e.getMessage().split(System.lineSeparator());
         for (String line : lines) {
             System.out.println(INDENTATION + line);
         }

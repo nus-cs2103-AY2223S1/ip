@@ -8,6 +8,9 @@ abstract public class CommandParser {
                 input.toLowerCase() : input.toLowerCase().substring(0, input.indexOf(" "));
         String[] commandAndArguments = input.split(" ", 2);
         String[] args = new String[0];
+        if (commandAndArguments.length > 1) {
+            args = commandAndArguments[1].split(" ", 1);
+        }
 
         switch (inputCommand) {
         case "help":

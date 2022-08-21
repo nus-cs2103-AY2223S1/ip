@@ -34,7 +34,7 @@ public class TaskList {
         return tasks.get(index);
     }
 
-    List<String> getAllTasks() {
+    List<String> getAllTasksInDisplayFormat() {
         List<String> numberedTaskList = new ArrayList<>();
         for (int i = 0; i < tasks.size(); i++) {
             numberedTaskList.add(String.format("%d.%s", i + 1, tasks.get(i).toString()));
@@ -42,8 +42,28 @@ public class TaskList {
         return numberedTaskList;
     }
 
+    List<String> getAllTasksInStorageFormat() {
+        List<String> numberedTaskList = new ArrayList<>();
+        for (int i = 0; i < tasks.size(); i++) {
+            numberedTaskList.add(tasks.get(i).getStorageFormat());
+        }
+        return numberedTaskList;
+    }
+
+    List<String> exportTasks() {
+        List<String> export = new ArrayList<>();
+        for (Task task : tasks) {
+
+        }
+        return export;
+    }
+
+    void importTasks(List<String> tasks) {
+
+    }
+
     @Override
     public String toString() {
-        return String.join("/n", getAllTasks());
+        return String.join("/n", getAllTasksInDisplayFormat());
     }
 }

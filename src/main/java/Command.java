@@ -44,7 +44,7 @@ public abstract class Command {
 
         @Override
         public void execute(TaskList taskList) throws DukeException {
-            String[] tasks = taskList.getAllTasks().toArray(new String[0]);
+            String[] tasks = taskList.getAllTasksInDisplayFormat().toArray(new String[0]);
             if (tasks.length == 0) {
                 Ui.printMessages(new String[]{"No tasks"});
             } else {
@@ -69,7 +69,7 @@ public abstract class Command {
         @Override
         public void execute(TaskList taskList) throws DukeException {
             if (!isNumberOfArgumentsCorrect()) {
-                throw new DukeException("Wrong number of arguments provided.\nUsage: " + MarkCommand.usage);
+                throw new DukeException("Wrong number of arguments provided." + System.lineSeparator() + "Usage: " + MarkCommand.usage);
             }
             try {
                 int taskIndex = Integer.parseInt(args[0]) - 1;
@@ -99,7 +99,7 @@ public abstract class Command {
         @Override
         public void execute(TaskList taskList) throws DukeException {
             if (!isNumberOfArgumentsCorrect()) {
-                throw new DukeException("Wrong number of arguments provided.\nUsage: " + UnmarkCommand.usage);
+                throw new DukeException("Wrong number of arguments provided." + System.lineSeparator() + "Usage: " + UnmarkCommand.usage);
             }
             try {
                 int taskIndex = Integer.parseInt(args[0]) - 1;
@@ -129,7 +129,7 @@ public abstract class Command {
         @Override
         public void execute(TaskList taskList) throws DukeException {
             if (!isNumberOfArgumentsCorrect()) {
-                throw new DukeException("Wrong number of arguments provided.\nUsage: " + ToDoCommand.usage);
+                throw new DukeException("Wrong number of arguments provided." + System.lineSeparator() + "Usage: " + ToDoCommand.usage);
             }
             Task taskAdded = taskList.addTask(new ToDo(args[0]));
             Ui.printTaskChange("Got it. I've added this task:", taskAdded, taskList);
@@ -152,7 +152,7 @@ public abstract class Command {
         @Override
         public void execute(TaskList taskList) throws DukeException {
             if (!isNumberOfArgumentsCorrect()) {
-                throw new DukeException("Wrong number of arguments provided.\nUsage: " + EventCommand.usage);
+                throw new DukeException("Wrong number of arguments provided." + System.lineSeparator() + "Usage: " + EventCommand.usage);
             }
             Task taskAdded = taskList.addTask((new Event(args[0], args[1])));
             Ui.printTaskChange("Got it. I've added this event:", taskAdded, taskList);
@@ -175,7 +175,7 @@ public abstract class Command {
         @Override
         public void execute(TaskList taskList) throws DukeException {
             if (!isNumberOfArgumentsCorrect()) {
-                throw new DukeException("Wrong number of arguments provided.\nUsage: " + DeadlineCommand.usage);
+                throw new DukeException("Wrong number of arguments provided." + System.lineSeparator() + "Usage: " + DeadlineCommand.usage);
             }
             Task taskAdded = taskList.addTask((new Deadline(args[0], args[1])));
             Ui.printTaskChange("Got it. I've added this task:", taskAdded, taskList);
@@ -198,7 +198,7 @@ public abstract class Command {
         @Override
         public void execute(TaskList taskList) throws DukeException {
             if (!isNumberOfArgumentsCorrect()) {
-                throw new DukeException("Wrong number of arguments provided.\nUsage: " + DeleteCommand.usage);
+                throw new DukeException("Wrong number of arguments provided." + System.lineSeparator() + "Usage: " + DeleteCommand.usage);
             }
             try {
                 int taskIndex = Integer.parseInt(args[0]) - 1;

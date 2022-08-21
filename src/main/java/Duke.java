@@ -18,18 +18,23 @@ public class Duke {
         System.out.println(LOGO);
         Ui.printMessages(new String[]{"Hello! I'm Duke", "What can I do for you?"});
 
+        try {
+            StorageOperation.readStorageToTaskList(taskList);
+        } catch (DukeException e) {
+            Ui.showError(e);
+        }
+
         boolean isExit = false;
         while (!isExit && Ui.in.hasNextLine()) {
             try {
                 String input = Ui.in.nextLine();
-                Command c = Parser.parse(input);
+                Command c = CommandParser.parse(input);
                 c.execute(taskList);
+                StorageOperation.writeTaskListToStorage(taskList);
                 isExit = c.isExit();
             } catch (DukeException e) {
                 Ui.showError(e);
             }
         }
     }
-
-
 }
