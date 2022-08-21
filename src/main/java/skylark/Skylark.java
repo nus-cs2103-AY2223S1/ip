@@ -1,5 +1,6 @@
 package skylark;
 
+import java.io.File;
 import java.util.Scanner;
 
 public class Skylark {
@@ -11,7 +12,9 @@ public class Skylark {
 
     public Skylark() {
         this.scan = new Scanner(System.in);
-        this.taskList = new TaskList("data/text.txt");
+        String filePath = System.getProperty("user.dir")
+                + File.separator + "data" + File.separator + "text.txt";
+        this.taskList = new TaskList(filePath);
 
         Printer.printText(Skylark.TEXT_HELLO);
     }

@@ -94,14 +94,26 @@ public class Storage {
     public void saveToFile(ArrayList<Task> taskArrayList) throws SkylarkException {
         try {
             File file = new File(this.filePath);
+
+            if (file.exists() && !file.canWrite()) {
+                boolean isWritable = file.setWritable(true);
+                if (!isWritable) {
+                    throw new SkylarkException("File is not writable!");
+                }
+            }
+
             FileWriter fileWriter = new FileWriter(file);
             for (Task currentTask : taskArrayList) {
                 // Reference: https://www.baeldung.com/java-string-newline
                 fileWriter.write(currentTask.toStringFile() + System.lineSeparator());
             }
             fileWriter.close();
-        } catch (IOException e) {
-            throw new SkylarkException("IOException occurred when writing to file");
+        } catch (IOException ioException) {
+            throw new SkylarkException("IOException occurred when writing to file: "
+                    + ioException.getMessage());
+        } catch (SecurityException securityException) {
+            throw new SkylarkException("SecurityException occurred when writing to file: "
+                    + securityException.getMessage());
         }
     }
 }
