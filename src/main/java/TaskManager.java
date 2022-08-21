@@ -19,7 +19,7 @@ public class TaskManager {
     /**
      * Deletes a task.
      * @param number the task number
-     * @return true if the task was deleted, false otherwise
+     * @return {@code true} if the task was deleted, {@code false} otherwise
      */
     public boolean deleteTask(int number) {
         if (number > tasks.size()) {
@@ -32,7 +32,7 @@ public class TaskManager {
     /**
      * Marks a task as completed.
      * @param number the task number
-     * @return true if the task is modified, false otherwise
+     * @return {@code true} if the task is modified, {@code false} otherwise
      */
     public boolean checkTask(int number) {
         if (number > tasks.size()) {
@@ -44,7 +44,7 @@ public class TaskManager {
     /**
      * Marks a task as incomplete.
      * @param number the task number
-     * @return true if the task is modified, false otherwise
+     * @return {@code true} if the task is modified, {@code false} otherwise
      */
     public boolean uncheckTask(int number) {
         if (number > tasks.size()) {

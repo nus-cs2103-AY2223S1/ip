@@ -17,7 +17,7 @@ abstract public class Task {
     /**
      * Sets whether the task is completed.
      * @param completed the task status
-     * @return true if the status is modified, false otherwise
+     * @return {@code true} if the status is modified, {@code false} otherwise
      */
     public boolean setCompleted(boolean completed) {
         if (completed == this.isCompleted) {
