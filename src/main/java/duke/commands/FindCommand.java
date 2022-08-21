@@ -1,6 +1,5 @@
 package duke.commands;
 
-import duke.DukeException;
 import duke.storage.StorageFile;
 import duke.task.TaskList;
 import duke.ui.Ui;
@@ -22,7 +21,7 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, StorageFile storage) throws DukeException {
+    public void execute(TaskList taskList, Ui ui, StorageFile storage) {
         taskList.findTask(keyword);
     }
 }

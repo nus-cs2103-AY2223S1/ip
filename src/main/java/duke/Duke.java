@@ -12,9 +12,9 @@ import duke.ui.Ui;
  */
 public class Duke {
 
-    private Ui ui;
     private StorageFile storage;
     private TaskList taskList;
+    private Ui ui;
 
     public static void main(String[] args) {
         new Duke().run();
@@ -39,10 +39,12 @@ public class Duke {
     }
 
     /**
-     * Prints the exit message and exits.
+     * Prints the exit message.
+     * Unloads the Jansi library and exits.
      */
     private void exit() {
         ui.showExit();
+        ui.unloadJansi();
         System.exit(0);
     }
 

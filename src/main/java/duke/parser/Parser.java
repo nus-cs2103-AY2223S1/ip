@@ -4,6 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import duke.DukeException;
+import duke.commands.ColourCommand;
 import duke.commands.Command;
 import duke.commands.DeadlineCommand;
 import duke.commands.DeleteCommand;
@@ -29,6 +30,8 @@ public class Parser {
     private static final Pattern TASK_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
     private static final Pattern DESCRIPTION_FORMAT = Pattern.compile("(?<description>.+)");
     private static final Pattern FIND_FORMAT = Pattern.compile("^\\S+$");
+    private static final Pattern COLOUR_FORMAT = Pattern
+            .compile("\\b(black|red|green|yellow|blue|magenta|cyan|white)\\b");
     private static final Pattern DEADLINE_FORMAT = Pattern.compile("(?<description>.+\\S+)/by\\S+(?<dateTime>.+)");
     private static final Pattern EVENT_FORMAT = Pattern.compile("(?<description>.+\\S+)/at\\S+(?<dateTime>.+)");
 
@@ -66,6 +69,8 @@ public class Parser {
             return prepareDelete(arguments);
         case FindCommand.COMMAND_WORD:
             return prepareFind(arguments);
+        case ColourCommand.COMMAND_WORD:
+            return prepareColour(arguments);
         case HelpCommand.COMMAND_WORD: // Fallthrough
         default:
             return new HelpCommand();
@@ -104,7 +109,15 @@ public class Parser {
         if (!matcher.matches()) {
             return new InvalidCommand(Messages.ERROR_INVALID_ARGUMENTS);
         }
-        return new FindCommand(args);
+        return new FindCommand(args.trim());
+    }
+
+    private Command prepareColour(String args) {
+        final Matcher matcher = COLOUR_FORMAT.matcher(args.trim());
+        if (!matcher.matches()) {
+            return new InvalidCommand(Messages.ERROR_INVALID_ARGUMENTS);
+        }
+        return new ColourCommand(args.trim());
     }
 
     private Command prepareDelete(String args) {
@@ -159,7 +172,7 @@ public class Parser {
         if (!matcher.matches()) {
             throw new DukeException(Messages.MESSAGE_EMPTY_DESCRIPTION);
         }
-        return args;
+        return args.trim();
     }
 
     private String[] parseArgsAsDescriptionAndDateTime(String taskType, String args) throws DukeException {
