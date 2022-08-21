@@ -2,6 +2,8 @@
  * This class encapsulates a to-do set by the user.
  */
 public class Todo extends Task {
+    public static final char SYMBOL = 'T';
+
     Todo(String description) throws DwukeException {
         super(description);
     }
@@ -30,7 +32,7 @@ public class Todo extends Task {
      */
     @Override
     public String encode() {
-        return "T;" + super.encode();
+        return SYMBOL + ";" + super.encode();
     }
 
     /**
@@ -40,6 +42,6 @@ public class Todo extends Task {
      */
     @Override
     public String toString() {
-        return "[T]" + super.toString();
+        return "[" + SYMBOL + "]" + super.toString();
     }
 }

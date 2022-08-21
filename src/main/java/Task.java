@@ -36,18 +36,6 @@ public abstract class Task {
     }
 
     /**
-     * Changes the description of this task to the new description.
-     *
-     * @throws DwukeException If the new description is empty.
-     */
-    public void changeDescription(String newDescription) throws DwukeException {
-        if (newDescription.equals("")) {
-            throw new DwukeException("da descwiption of a twask cannot be empty.");
-        }
-        this.description = newDescription;
-    }
-
-    /**
      * Encodes the Task into a String.
      *
      * @return The Task encoded as String.

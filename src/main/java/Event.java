@@ -1,36 +1,20 @@
 import java.time.LocalDate;
-import java.time.DateTimeException;
 
 /**
  * This class encapsulates an event set by the user.
  */
 public class Event extends Task {
+    public static final char SYMBOL = 'E';
     private LocalDate date;
 
-    Event(String str) throws DwukeException, DateTimeException {
-        super(str);
-        String[] arguments = getArguments(str);
-        this.changeDescription(arguments[0]);
-        this.date = Date.parse(arguments[1]);
+    Event(String description, String date) throws DwukeException {
+        super(description, false);
+        this.date = Date.parse(date);
     }
 
     Event(String description, boolean isDone, String date) throws DwukeException {
         super(description, isDone);
         this.date = Date.parse(date);
-    }
-
-    private static String[] getArguments(String str) throws DwukeException {
-        int index = str.indexOf("/at");
-
-        if (index == -1) throw new DwukeException("'/at' not fwound");
-
-        try {
-            String description = str.substring(0, index - 1);
-            String date = str.substring(index + 4);
-            return new String[]{description, date};
-        } catch (StringIndexOutOfBoundsException e) {
-            throw new DwukeException("da descwiption and date cannot be empty");
-        }
     }
 
     /**
@@ -53,7 +37,7 @@ public class Event extends Task {
      */
     @Override
     public String encode() {
-        return "E;" + super.encode() + ";" + this.date;
+        return SYMBOL + ";" + super.encode() + ";" + Date.storageFormat(this.date);
     }
 
     /**
@@ -63,7 +47,7 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + Date.format(this.date) + ")";
+        return "[" + SYMBOL + "]" + super.toString() + " (at: " + Date.displayFormat(this.date) + ")";
     }
 }
 

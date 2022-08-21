@@ -3,11 +3,11 @@ import java.util.Scanner;
 /**
  * The user interface of Dwuke.
  */
-public class UI {
+public class Ui {
     private static final int lineLength = 60;
     private Scanner sc;
 
-    UI() {
+    Ui() {
         this.sc = new Scanner(System.in);
     }
 

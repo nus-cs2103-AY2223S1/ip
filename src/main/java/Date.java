@@ -19,12 +19,22 @@ public class Date {
     }
 
     /**
-     * Converts the given LocalDate object into a String, displayed in `d MMM yyy` format.
+     * Converts the given LocalDate object into a String for display, in `d MMM yyy` format.
      *
      * @return A String representing the LocalDate.
      */
-    public static String format(LocalDate localDate) {
+    public static String displayFormat(LocalDate localDate) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy");
+        return localDate.format(formatter);
+    }
+
+    /**
+     * Converts the given LocalDate object into a String for storage, in `dd-MM-yyyy` format.
+     *
+     * @return A String representing the LocalDate.
+     */
+    public static String storageFormat(LocalDate localDate) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         return localDate.format(formatter);
     }
 }

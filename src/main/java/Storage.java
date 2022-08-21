@@ -28,8 +28,7 @@ public class Storage {
         TaskList taskList = null;
         try {
             createFile();
-            List<String> encodedTasks = Files.readAllLines(this.filePath, Charset.defaultCharset());
-            taskList = this.decodeTaskList(encodedTasks);
+            taskList = TaskList.decode(Files.readAllLines(this.filePath));
         } catch (IOException | DwukeException e) {
             e.printStackTrace();
         }
@@ -37,14 +36,13 @@ public class Storage {
     }
 
     /**
-     * Stores the given TaskList in the filePath.
+     * Saves the given TaskList in the filePath.
      *
      * @param taskList The TaskList to be saved.
      */
     public void save(TaskList taskList) {
         try {
-            List<String> encodedTasks = this.encodeTaskList(taskList);
-            Files.write(this.filePath, encodedTasks);
+            Files.write(this.filePath, taskList.encode());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -53,7 +51,7 @@ public class Storage {
     /**
      * Creates the directory and/or file if they have not been created yet.
      *
-     * @throws IOException If the directory or file does not exist.
+     * @throws IOException If there is a problem with creating the directory or file.
      */
     public void createFile() throws IOException {
         if (Files.notExists(this.folderPath)) {
@@ -62,48 +60,5 @@ public class Storage {
         if (Files.notExists(this.filePath)) {
             Files.createFile(this.filePath);
         }
-    }
-
-    /**
-     * Returns an encoded String representation of the given TaskList.
-     *
-     * @param taskList The TaskList to encode.
-     * @return a String representation of the given TaskList.
-     */
-    public List<String> encodeTaskList(TaskList taskList) {
-        List<String> encodedTasks = new ArrayList<>();
-        for (int i = 0; i < taskList.size(); i++) {
-            encodedTasks.add(taskList.get(i).encode());
-        }
-        return encodedTasks;
-    }
-
-    /**
-     * Returns a decoded TaskList, to be used by Duke.
-     *
-     * @param encodedTasks the encoded text used to store the TaskList.
-     * @return a TaskList based on the encoded text.
-     */
-    public TaskList decodeTaskList(List<String> encodedTasks) throws DwukeException {
-        TaskList decodedTasks = new TaskList();
-        for (String s : encodedTasks) {
-            Character taskType = s.charAt(0);
-            String content = s.substring(2);
-
-            switch(taskType) {
-                case ('T'):
-                    decodedTasks.add(Todo.decode(content));
-                    break;
-                case ('D'):
-                    decodedTasks.add(Deadline.decode(content));
-                    break;
-                case ('E'):
-                    decodedTasks.add(Event.decode(content));
-                    break;
-                default:
-                    break;
-            }
-        }
-        return decodedTasks;
     }
 }

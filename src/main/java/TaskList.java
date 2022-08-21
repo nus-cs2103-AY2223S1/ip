@@ -54,16 +54,6 @@ public class TaskList {
     }
 
     /**
-     * Returns the task at the specific position in the list.
-     *
-     * @param pos The position of the task in the list.
-     * @return The removed task.
-     */
-    public Task get(int pos) {
-        return this.tasks.get(pos);
-    }
-
-    /**
      * Removes the task at the specific position in the list.
      *
      * @param pos The position of the task in the list.
@@ -72,6 +62,48 @@ public class TaskList {
     public Task remove(int pos) {
         Task task = this.tasks.remove(pos);
         return task;
+    }
+
+    /**
+     * Returns an encoded String representation of this TaskList.
+     *
+     * @return An encoded String representation of this TaskList.
+     */
+    public List<String> encode() {
+        List<String> encodedTasks = new ArrayList<>();
+        for (Task task : tasks) {
+            encodedTasks.add(task.encode());
+        }
+        return encodedTasks;
+    }
+
+    /**
+     * Returns a decoded TaskList, to be used by Duke.
+     *
+     * @param encodedTasks the encoded text used to store the TaskList.
+     * @return a TaskList based on the encoded text.
+     */
+    public static TaskList decode(List<String> encodedTasks) throws DwukeException {
+        TaskList decodedTasks = new TaskList();
+        for (String s : encodedTasks) {
+            Character taskType = s.charAt(0);
+            String content = s.substring(2);
+
+            switch(taskType) {
+                case Todo.SYMBOL:
+                    decodedTasks.add(Todo.decode(content));
+                    break;
+                case Deadline.SYMBOL:
+                    decodedTasks.add(Deadline.decode(content));
+                    break;
+                case Event.SYMBOL:
+                    decodedTasks.add(Event.decode(content));
+                    break;
+                default:
+                    break;
+            }
+        }
+        return decodedTasks;
     }
 
     /**

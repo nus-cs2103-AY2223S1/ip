@@ -1,5 +1,4 @@
 T;0;this
-T;1;that
-E;1;those;mon 2
-D;0;die;wed 5
-D;1;hell;3
+E;1;hello;12-02-1927
+D;1;die;29-12-2000
+E;0;hi;09-09-2009

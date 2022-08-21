@@ -2,7 +2,7 @@
  * Driver class of Dwuke.
  */
 public class Dwuke {
-    private UI ui;
+    private Ui ui;
     private Storage storage;
     private TaskList taskList;
 
@@ -10,7 +10,7 @@ public class Dwuke {
      * Constructor for Dwuke.
      */
     public Dwuke() {
-        this.ui = new UI();
+        this.ui = new Ui();
         this.storage = new Storage();
         this.taskList = storage.load();
     }
