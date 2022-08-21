@@ -1,10 +1,13 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
     private boolean end;
+    private ArrayList<String> l;
 
     public Duke() {
         this.end = false;
+        this.l = new ArrayList<>();
     }
 
     private void run() {
@@ -21,8 +24,10 @@ public class Duke {
     private void output(String s) {
         if (s.equals("bye")) {
             this.end = true;
+        } else if (s.equals("list")) {
+            printList();
         } else {
-            echo(s);
+            addList(s);
         }
     }
 
@@ -53,9 +58,18 @@ public class Duke {
         printLine();
     }
 
-    private void echo(String s) {
+    private void printList() {
         printLine();
-        print(s);
+        for (int i = 0; i < l.size(); i++) {
+            print(String.format("%d. %s", i + 1, this.l.get(i)));
+        }
+        printLine();
+    }
+
+    private void addList(String s) {
+        this.l.add(s);
+        printLine();
+        print("added: " + s);
         printLine();
     }
 
