@@ -1,8 +1,9 @@
-import java.awt.desktop.SystemEventListener;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -36,11 +37,17 @@ public class Jean {
                 throw new JeanException("You must give a deadline!"
                                         + "\nVous devez donner un délai!");
             } else {
-                add(new Deadline(input.substring(9, sep), input.substring(sep + 4)),
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+                LocalDateTime dateTime = LocalDateTime.parse(input.substring(sep + 4), formatter);
+                add(new Deadline(input.substring(9, sep), dateTime),
                         taskList);
             }
         } catch (JeanException e) {
             System.out.println(e.getMessage());
+        } catch (DateTimeParseException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Please give a valid deadline in the format of yyyy-MM-dd HHmm!"
+                               + "\nVeuillez indiquer une date limite valide au format yyyy-MM-dd HHmm!");
         }
     }
 
@@ -177,7 +184,9 @@ public class Jean {
                         temp = new Todo(info[2]);
                         break;
                     case "D":
-                        temp = new Deadline(info[2], info[3]);
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+                        LocalDateTime dateTime = LocalDateTime.parse(info[3], formatter);
+                        temp = new Deadline(info[2], dateTime);
                         break;
                     case "E":
                         temp = new Event(info[2], info[3]);
