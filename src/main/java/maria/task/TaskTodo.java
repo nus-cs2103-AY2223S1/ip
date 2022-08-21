@@ -8,11 +8,11 @@ public class TaskTodo extends Task{
     /**
      * Creates a Todo Task.
      * @param name The name of the task
-     * @param done Whether the task is completed
+     * @param isDone Whether the task is completed
      * @throws TaskNoNameException If the name is empty
      */
-    public TaskTodo(String name, boolean done) throws TaskNoNameException {
-        super(name, done);
+    public TaskTodo(String name, boolean isDone) throws TaskNoNameException {
+        super(name, isDone);
     }
 
     /**

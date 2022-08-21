@@ -15,13 +15,14 @@ public class TaskEvent extends Task{
     /**
      * Creates an Event Task.
      * @param name The name of the task
-     * @param done Whether the task is completed
+     * @param isDone Whether the task is completed
      * @param startTime The starting time for the event
      * @param endTime The ending time for the event
      * @throws TaskNoNameException If the name is empty
      */
-    public TaskEvent(String name, boolean done, LocalDate startTime, LocalDate endTime) throws TaskNoNameException {
-        super(name, done);
+    public TaskEvent(String name, boolean isDone, LocalDate startTime, LocalDate endTime)
+            throws TaskNoNameException {
+        super(name, isDone);
         this.startTime = startTime;
         this.endTime = endTime;
     }

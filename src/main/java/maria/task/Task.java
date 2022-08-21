@@ -6,22 +6,22 @@ package maria.task;
 public abstract class Task {
 
     private final String name;
-    private boolean done;
+    private boolean isDone;
 
     /**
      * Creates a task.
      * @param name The name of the task
-     * @param done If the task is completed
+     * @param isDone If the task is completed
      * @throws TaskNoNameException If the name is empty
      */
-    public Task(String name, boolean done) throws TaskNoNameException {
+    public Task(String name, boolean isDone) throws TaskNoNameException {
 
         if (name.isEmpty()) {
             throw new TaskNoNameException("The name for a task cannot be empty.");
         }
 
         this.name = name;
-        this.done = done;
+        this.isDone = isDone;
     }
 
     /**
@@ -29,7 +29,7 @@ public abstract class Task {
      * @param done If the task is done
      */
     public void setDone(boolean done) {
-        this.done = done;
+        this.isDone = done;
     }
 
     /**
@@ -47,7 +47,7 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        return "[" + (this.done ? "X" : " ") + "] " + this.name;
+        return "[" + (this.isDone ? "X" : " ") + "] " + this.name;
     }
 
     /**
@@ -55,7 +55,7 @@ public abstract class Task {
      * @return The storage string representation of the task
      */
     public String toStorageString() {
-        return this.name + "|||" + this.done;
+        return this.name + "|||" + this.isDone;
     }
 
 }

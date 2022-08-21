@@ -14,12 +14,12 @@ public class TaskDeadline extends Task{
     /**
      * Creates a Deadline Task.
      * @param name The name of the task
-     * @param done Whether the task is completed
+     * @param isDone Whether the task is completed
      * @param deadline The time in which the task must be completed by
      * @throws TaskNoNameException If the name is empty
      */
-    public TaskDeadline(String name, boolean done, LocalDate deadline) throws TaskNoNameException {
-        super(name, done);
+    public TaskDeadline(String name, boolean isDone, LocalDate deadline) throws TaskNoNameException {
+        super(name, isDone);
         this.deadline = deadline;
     }
 
