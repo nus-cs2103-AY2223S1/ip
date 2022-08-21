@@ -4,6 +4,7 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.nio.file.Path;
+import java.time.LocalDate;
 
 public class Duke {
     enum Command {
@@ -43,7 +44,7 @@ public class Duke {
                          list.add(new Event(task[1].equals("X"), task[2], task[3]));
                      }
                      if (task[0].equals("D")) {
-                         list.add(new Deadline(task[1].equals("X"), task[2], task[3]));
+                         list.add(new Deadline(task[1].equals("X"), task[2], LocalDate.parse(task[3])));
                      }
                      line = br.readLine();
                  }
@@ -128,7 +129,7 @@ public class Duke {
                     case deadline:
                         String[] dl = command[1].split("/by ", 2);
                         try {
-                            list.add(new Deadline(dl[0], dl[1]));
+                            list.add(new Deadline(dl[0],LocalDate.parse(dl[1])));
                             count = list.size();
                             System.out.println("Added Task");
                             System.out.println(list.get(count - 1));
@@ -142,6 +143,7 @@ public class Duke {
                 }
             } catch (IllegalArgumentException e) {
                 System.out.println("That is not a valid command");
+
             }
         }
 
