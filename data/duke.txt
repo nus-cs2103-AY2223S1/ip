@@ -1,3 +1,2 @@
-[T][ ] cry
 [T][ ] bye tile
-[T][X] ms
+[T][ ] ms

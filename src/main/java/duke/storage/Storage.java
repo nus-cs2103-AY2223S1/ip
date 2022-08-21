@@ -1,4 +1,12 @@
-package main.java;
+package duke.storage;
+
+import duke.tasklist.TaskList;
+import duke.parser.Parser;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.ToDo;
+import duke.ui.Ui;
 
 import java.io.*;
 import java.util.ArrayList;

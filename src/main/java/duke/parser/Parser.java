@@ -1,11 +1,16 @@
-package main.java;
+package duke.parser;
+
+import duke.command.*;
+import duke.exception.DukeException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.ToDo;
+import duke.tasklist.TaskList;
+
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Scanner;
 
 import static java.lang.Integer.parseInt;
 

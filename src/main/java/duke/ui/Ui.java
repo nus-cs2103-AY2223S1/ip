@@ -1,4 +1,6 @@
-package main.java;
+package duke.ui;
+import duke.tasklist.TaskList;
+
 import java.io.PrintStream;
 import java.util.Scanner;
 public class Ui {
