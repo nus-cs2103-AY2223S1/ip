@@ -6,7 +6,7 @@ import duke.exceptions.DukeException;
  * Todo is a Task without any date/time attached to it.
  */
 public class Todo extends Task {
-    public final static DukeException emptyDescription = new DukeException("Description of Todo cannot be empty!");
+    public static final DukeException EMPTY_DESCRIPTION = new DukeException("Description of Todo cannot be empty!");
 
     /**
      * Constructor for a Todo, with a description.

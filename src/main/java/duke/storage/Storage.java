@@ -1,12 +1,5 @@
 package duke.storage;
 
-import duke.exceptions.DukeException;
-import duke.task.TaskList;
-import duke.task.Task;
-import duke.task.Todo;
-import duke.task.Deadline;
-import duke.task.Event;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -14,6 +7,13 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
+
+import duke.exceptions.DukeException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.Todo;
 
 public class Storage {
     private final String directoryPath;
@@ -46,7 +46,7 @@ public class Storage {
                 return tasks;
             }
         } catch (IOException e) {
-            throw DukeException.badData;
+            throw DukeException.BAD_DATA;
         }
 
         try (Scanner scanner = new Scanner(file)) {
@@ -55,17 +55,17 @@ public class Storage {
                 String[] split = line.split(" \\| ");
                 Task task;
                 switch (split[0]) {
-                    case "T":
-                        task = Todo.create(split[1], split[2]);
-                        break;
-                    case "D":
-                        task = Deadline.create(split[1], split[2], split[3]);
-                        break;
-                    case "E":
-                        task = Event.create(split[1], split[2], split[3]);
-                        break;
-                    default:
-                        throw DukeException.badData;
+                case "T":
+                    task = Todo.create(split[1], split[2]);
+                    break;
+                case "D":
+                    task = Deadline.create(split[1], split[2], split[3]);
+                    break;
+                case "E":
+                    task = Event.create(split[1], split[2], split[3]);
+                    break;
+                default:
+                    throw DukeException.BAD_DATA;
                 }
 
                 tasks.addTask(task);

@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'application'
     id "com.github.johnrengelman.shadow" version "7.1.2"
+    id 'checkstyle'
 }
 
 group 'org.example'
@@ -34,6 +35,10 @@ run {
 
 test {
     useJUnitPlatform()
+}
+
+checkstyle {
+    toolVersion = '10.2'
 }
 
 dependencies {

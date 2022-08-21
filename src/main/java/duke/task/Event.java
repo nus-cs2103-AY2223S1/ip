@@ -1,15 +1,15 @@
 package duke.task;
 
-import duke.exceptions.DukeException;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
+import duke.exceptions.DukeException;
 
 /**
  * Event is a Task that starts at a specific time and ends at a specific time.
  */
 public class Event extends Task {
-    public final static DukeException wrongFormat =
+    public static final DukeException WRONG_FORMAT =
             new DukeException("Wrong format for Event!\nShould be 'event <description> /at YYYY-MM-DD'.");
 
     /** Date of the event. */
