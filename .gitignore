@@ -14,5 +14,4 @@ src/main/resources/docs/
 bin/
 
 /text-ui-test/ACTUAL.TXT
-/text-ui-test/ACTUAL2.TXT
 text-ui-test/EXPECTED-UNIX.TXT

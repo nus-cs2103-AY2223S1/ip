@@ -1,7 +1,6 @@
 import java.util.ArrayList;
-
 public class BotList {
-    private ArrayList<Task> internalArray;
+    private final ArrayList<Task> internalArray;
 
     BotList() {
         this.internalArray = new ArrayList<Task>();
