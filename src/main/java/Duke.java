@@ -1,13 +1,24 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Duke {
     public static void main(String[] args) {
         String input = "";
         Scanner scan = new Scanner(System.in);
         ArrayList<Task> list = new ArrayList<>();
-        String[] validinputs = {"delete", "mark", "unmark", "todo", "deadline", "event"};
+        String[] validInputs = {"delete", "mark", "unmark", "todo", "deadline", "event"};
+        String logFilePath = "data/duke.txt";
+        File logDir = new File("data");
+        File taskLog = new File(logFilePath);
+
+        if (!logDir.exists()) {
+            logDir.mkdirs();
+            System.out.println("data folder created");
+        }
 
         System.out.println("Hello! I'm Duke" + "\n" + "What can I do for you?");
 
@@ -21,7 +32,7 @@ public class Duke {
                         System.out.println(i+1 + "." + list.get(i).toString());
                     }
                 } else if (!input.equals("bye")) { // Only adds input to list if it is not "bye"
-                    if (split.length > 0 && Arrays.asList(validinputs).contains(split[0])) {
+                    if (split.length > 0 && Arrays.asList(validInputs).contains(split[0])) {
                         switch (split[0]) {
                             case "delete": { // Checks for delete
                                 int index = Integer.parseInt(split[1]) - 1;
@@ -83,11 +94,41 @@ public class Duke {
                         throw new DukeException(); // Invalid input
                     }
                 }
+                writeToFile(logFilePath, getLogString(list));
             } catch (DukeException e) {
                 System.out.println(e.getDescription());
+            } catch (IOException e) {
+                System.out.println("Something went wrong!" + e.getMessage());
             }
         }
 
         System.out.println("Bye. Hope to see you again soon!"); // Exits when user types "bye"
+    }
+
+    private static void writeToFile(String filepath, String textToAdd) throws IOException {
+        FileWriter copyTasks = new FileWriter(filepath);
+        copyTasks.write(textToAdd);
+        copyTasks.close();
+    }
+
+    private static String getLogString(ArrayList<Task> tasks) {
+        String retString = "";
+
+        for (Task value : tasks) {
+            String logTask = "";
+            if (value instanceof Todo) {
+                Todo task = (Todo) value;
+                logTask = String.format("T | %s | %s", task.getStatusIcon(), task.getDescription());
+            } else if (value instanceof Deadline) {
+                Deadline task = (Deadline) value;
+                logTask = String.format("D | %s | %s | %s", task.getStatusIcon(), task.getDescription(), task.by);
+            } else {
+                Event task = (Event) value;
+                logTask = String.format("E | %s | %s | %s", task.getStatusIcon(), task.getDescription(), task.when);
+            }
+        retString = retString + logTask + System.lineSeparator();
+        }
+
+        return retString;
     }
 }
