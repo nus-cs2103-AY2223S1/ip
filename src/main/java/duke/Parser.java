@@ -14,10 +14,20 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Represents a Parser to parse user inputs.
+ */
 public class Parser {
-
+    /** ArrayList of unknown commands */
     private static List<String> UNKNOWN_COMMANDS = Arrays.asList("todo", "deadline", "event");
 
+    /**
+     * Parses the user inputs.
+     *
+     * @param command user input.
+     * @return Command object for the next action.
+     * @throws DukeException exception thrown when inputs are not recognised.
+     */
     public Command parse(String command) throws DukeException {
         String task;
         String[] inputs = command.split(" ");
