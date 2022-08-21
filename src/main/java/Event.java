@@ -1,5 +1,8 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Event extends Task {
-    String atWhen = null;
+    LocalDate atWhen = null;
 
     public Event() {
         super();
@@ -14,11 +17,13 @@ public class Event extends Task {
             throw new DukeException("☹ OOPS!!! Please indicate when the event is happening with '/at'.");
         }
         super.addName(userInput.substring(6, index));
-        this.atWhen = userInput.substring(index + 5);
+
+
+        this.atWhen = LocalDate.parse(userInput.substring(index + 5).replace('/', '-'));
     }
 
     @Override
     public String getStatus() {
-        return String.format("[E]%s (at: %s)", super.getStatus(), this.atWhen);
+        return String.format("[E]%s (at: %s)", super.getStatus(), this.atWhen.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
     }
 }
