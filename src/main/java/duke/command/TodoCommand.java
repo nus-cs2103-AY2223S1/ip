@@ -9,16 +9,12 @@ import duke.Storage;
 public class TodoCommand extends Command {
     String desc;
 
-    public TodoCommand(String desc) {
-        try {
-            if (desc.isEmpty()) {
-                throw new InvalidDescriptionException();
-            }
-
-            this.desc = desc;
-        } catch (InvalidDescriptionException e) {
-            System.out.println(e.getMessage());
+    public TodoCommand(String desc) throws InvalidDescriptionException {
+        if (desc.isEmpty()) {
+            throw new InvalidDescriptionException();
         }
+
+        this.desc = desc;
     }
 
     @Override
