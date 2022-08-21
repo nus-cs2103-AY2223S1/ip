@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -17,7 +21,15 @@ public class Duke {
         String EVENT = "event";
         String DELETE = "delete";
 
+
+
         Scanner sc = new Scanner(System.in);
+        try {
+            File dukeFile = new File("duke.txt");
+            ReadFileContent(dukeFile);
+        } catch (FileNotFoundException e) {
+
+        }
 
         System.out.println("Hello! I'm Duke\nWhat can I do for you?");
 
@@ -111,8 +123,65 @@ public class Duke {
             }
 
         }
-
+        AddToSaveList();
         Bye();
+    }
+
+    public static void ReadFileContent(File file) throws FileNotFoundException {
+        Scanner s = new Scanner(file);
+        int curr = 0;
+        while(s.hasNext()) {
+            String currLine = s.nextLine();
+            String[] spiltCurrLine = currLine.split(",", 2);
+            if (spiltCurrLine[0].equals("T")) {
+                String[] spiltCurrTodo = spiltCurrLine[1].split(",", 2);
+                ToDo currTodo = new ToDo(spiltCurrTodo[1]);
+                if (spiltCurrTodo[0].equals("1")) {
+                    currTodo.markAsDone();
+                } else {
+                    currTodo.markAsNotDone();
+                }
+                AddToListQuiet(currTodo);
+            } else if (spiltCurrLine[0].equals("D")) {
+                String[] spiltCurrDeadline = spiltCurrLine[1].split(",", 3);
+                Deadline currDeadline = new Deadline(spiltCurrDeadline[1], spiltCurrDeadline[2]);
+                if (spiltCurrDeadline[0].equals("1")) {
+                    currDeadline.markAsDone();
+                } else {
+                    currDeadline.markAsNotDone();
+                }
+                AddToListQuiet(currDeadline);
+            } else if (spiltCurrLine[0].equals("E")) {
+                String[] spiltCurrEvent = spiltCurrLine[1].split(",", 3);
+                Event currEvent =  new Event(spiltCurrEvent[1], spiltCurrEvent[2]);
+                if (spiltCurrEvent[0] .equals("1")) {
+                    currEvent.markAsDone();
+                } else {
+                    currEvent.markAsNotDone();
+                }
+                AddToListQuiet(currEvent);
+            } else {
+                System.out.println("error");
+                continue;
+            }
+        }
+
+    }
+
+    public static void WriteFileContent(String filePath, String textToWrite) throws IOException {
+        FileWriter fw = new FileWriter(filePath);
+        fw.write(textToWrite);
+        fw.close();
+    }
+
+    public static void AppendFileContent(String filePath, String textToAppend) throws IOException {
+        FileWriter fw = new FileWriter(filePath, true);
+        fw.write(textToAppend);
+        fw.close();
+    }
+
+    public static void AddToListQuiet(Task task) {
+        listOfThings.add(task);
     }
 
     public static void AddToList(Task task) {
@@ -125,6 +194,20 @@ public class Duke {
             System.out.println("Now you have " + listOfThings.size() + " tasks in the list.");
         }
         System.out.println("--------------------------------");
+    }
+
+    public static void AddToSaveList() {
+        try {
+            for (int i = 0; i < listOfThings.size(); i++) {
+                if (i == 0) {
+                    WriteFileContent("duke.txt", listOfThings.get(i).TaskSaveInfo());
+                } else {
+                    AppendFileContent("duke.txt", "\n" + listOfThings.get(i).TaskSaveInfo());
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Cannot save task to hard disk" + e.getMessage());
+        }
     }
 
     public static void ListOut() {

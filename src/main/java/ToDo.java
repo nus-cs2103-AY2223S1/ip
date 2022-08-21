@@ -8,4 +8,9 @@ public class ToDo extends Task {
     public String TaskInfo() {
         return "[T] [" + getStatusIcon() + "] " + description;
     }
+
+    @Override
+    public String TaskSaveInfo() {
+        return "T," + getSavedStatusIcon() + "," + description;
+    }
 }

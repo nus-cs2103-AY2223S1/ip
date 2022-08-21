@@ -7,12 +7,12 @@ public class Task {
         this.isDone = false;
     }
 
-    public String getStatusIcon() {
+    protected String getStatusIcon() {
         return (isDone ? "X" : " ");
     }
 
-    public String getDescription() {
-        return description;
+    protected String getSavedStatusIcon() {
+        return (isDone ? "1" : "0");
     }
 
     public void markAsDone(){
@@ -25,6 +25,10 @@ public class Task {
 
     public String TaskInfo() {
         return "[] [" + getStatusIcon() + "] " + description;
+    }
+
+    public String TaskSaveInfo() {
+        return "," + getSavedStatusIcon() + "," + description;
     }
 
 
