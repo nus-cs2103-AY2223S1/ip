@@ -1,11 +1,7 @@
 package duke;
 
-import duke.task.Deadline;
-import duke.task.Event;
 import duke.task.Task;
-import duke.task.ToDo;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,7 +50,7 @@ public class TaskList {
         return task;
     }
 
-    public Task addTasks(Task task) {
+    public Task addTask(Task task) {
         this.tasks.add(task);
         return task;
     }
