@@ -32,6 +32,15 @@ public class Todo extends Task {
     }
 
     /**
+     * The method to change the tasklist format to write in tasks.txt
+     * @return String
+     */
+    public String formatChange() {
+        String mark = isDone ? "1" : "0";
+        return "T | " + mark + " | " + this.description;
+    }
+
+    /**
      * Overridden toString method for Todo task details
      * @return String
      */
@@ -46,8 +55,9 @@ public class Todo extends Task {
      * @param ui
      */
     @Override
-    public void execute(TaskList task, UI ui) {
+    public void execute(TaskList task, UI ui, Storage storage) {
         task.add(this);
         ui.showAddOnTask(task, (task.size() - 1));
+        storage.write(task.getTasks());
     }
 }

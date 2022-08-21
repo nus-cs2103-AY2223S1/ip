@@ -18,8 +18,9 @@ public class Mark extends Task {
      * @param ui
      */
     @Override
-    public void execute(TaskList task, UI ui) {
+    public void execute(TaskList task, UI ui, Storage storage) {
         task.markDone(num);
         ui.showDoneTask(task, num);
+        storage.write(task.getTasks());
     }
 }
