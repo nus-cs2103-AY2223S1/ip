@@ -33,6 +33,9 @@ public class Parser {
         case "delete":
             return new DeleteCommand(Integer.parseInt(fullCommand.substring(6).trim()) - 1);
 
+        case "find":
+            return new FindCommand(fullCommand.substring(4).trim());
+
         case "todo":
             return new TodoCommand(fullCommand.substring(4).trim());
 

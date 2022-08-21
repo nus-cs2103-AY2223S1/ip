@@ -23,6 +23,10 @@ public class Task {
         return (this.isDone ? "1" : "0");
     }
 
+    public String getDescription() {
+        return this.description;
+    }
+
     @Override
     public String toString() {
         return "[" + this.getStatus() + "] " + this.description;
