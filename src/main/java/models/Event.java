@@ -13,15 +13,26 @@ import java.time.LocalDate;
 
 public class Event extends Task {
     protected LocalDate datetime;
+    private static final TaskType taskType = TaskType.EVENT;
 
     public Event(String description, LocalDate datetime) {
         super(description);
         this.datetime = datetime;
     }
 
+    public Event(String description, LocalDate datetime, boolean isDone) {
+        super(description, isDone);
+        this.datetime = datetime;
+    }
+
     @Override
     public String getTaskTypeIcon() {
-        return TaskType.EVENT.toString();
+        return Event.taskType.toString();
+    }
+
+    @Override
+    public TaskSerializable serialize() {
+        return new TaskSerializable(Event.taskType, super.description, super.isDone, this.datetime);
     }
 
     @Override

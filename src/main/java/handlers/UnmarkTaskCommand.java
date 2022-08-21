@@ -25,14 +25,15 @@ public class UnmarkTaskCommand implements DukeCommand {
             throw new DukeException(UnmarkTaskCommand.NAN_TASK_NUMBER_ERROR);
         }
 
-        Task task;
         try {
-            task = taskManager.get(taskNumber);
+            Task task = taskManager.get(taskNumber);
+            task.markAsUndone();
+            Task updatedTask = taskManager.update(taskNumber, task);
+            return String.format("%s\n\t%s", UnmarkTaskCommand.MARK_TASK_AS_UNDONE_MESSAGE, updatedTask);
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException(UnmarkTaskCommand.TASK_NUMBER_IS_INVALID_ERROR);
+        } catch (DukeException e) {
+            return e.getMessage();
         }
-
-        task.markAsUndone();
-        return String.format("%s\n\t%s", UnmarkTaskCommand.MARK_TASK_AS_UNDONE_MESSAGE, task);
     }
 }

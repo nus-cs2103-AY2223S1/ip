@@ -2,6 +2,9 @@ package models;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import database.TaskDatabase;
+import exceptions.DukeException;
+
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -14,30 +17,35 @@ import java.util.stream.Collectors;
  */
 public class TaskManager {
     // The list of tasks, accessed using 0-based indices
-    private final List<Task> taskList;
     private static final String NO_TASKS_AVAILABLE = "There are currently no tasks available. Add one now!";
     private static final String TASK_LIST_STATUS_MESSAGE = "Now you have %s task(s) in the list.";
+    private static final String TASK_LIST_CANNOT_READ_STATUS_MESSAGE = "Uh oh, I cannot read the tasks in the list!";
 
-    public TaskManager() {
-        this.taskList = new ArrayList<>();
-    }
+    private final TaskDatabase taskDatabase;
 
-    public TaskManager(List<Task> taskList) {
-        this.taskList = taskList;
+    public TaskManager(TaskDatabase taskDatabase) {
+        this.taskDatabase = taskDatabase;
     }
 
     /**
      * Adds the received task into the task list
      *
      * @param task Task received from the caller
+     * @throws DukeException If the task cannot be added
      */
-    public void add(Task task) {
-        this.taskList.add(task);
+    public Task add(Task task) throws DukeException {
+        return this.taskDatabase.addTask(task);
     }
 
-    public TaskManager where(Predicate<? super Task> condition) {
-        List<Task> taskList = this.taskList.stream().filter(condition).collect(Collectors.toList());
-        return new TaskManager(taskList);
+    /**
+     * Updates the specified task corresponding to the given task index
+     * @param taskNumber The 1-based task number, possibly corresponding to a particular task
+     * @param task the task to be updated
+     * @return The updated task
+     * @throws DukeException If the task cannot be updated
+     */
+    public Task update(int taskNumber, Task task) throws DukeException {
+        return this.taskDatabase.updateTask(taskNumber - 1, task);
     }
 
     /**
@@ -45,13 +53,10 @@ public class TaskManager {
      *
      * @param taskNumber The 1-based task number, possibly corresponding to a particular task
      * @return The deleted task
+     * @throws DukeException If the task cannot be deleted
      */
-    public Task delete(int taskNumber) throws IndexOutOfBoundsException {
-        if (!this.isValidTask(taskNumber)) {
-            throw new IndexOutOfBoundsException();
-        }
-        int taskIndex = this.getTaskIndexFromTaskNumber(taskNumber);
-        return this.taskList.remove(taskIndex);
+    public Task delete(int taskNumber) throws DukeException {
+        return this.taskDatabase.deleteTask(taskNumber - 1);
     }
 
     /**
@@ -59,22 +64,20 @@ public class TaskManager {
      *
      * @param taskNumber An index (1-index) corresponding to a particular task
      * @return Task corresponding to the particular task number
+     * @throws DukeException If the task cannot be read
      */
-    public Task get(int taskNumber) throws IndexOutOfBoundsException {
-        if (!this.isValidTask(taskNumber)) {
-            throw new IndexOutOfBoundsException();
-        }
-        int taskIndex = this.getTaskIndexFromTaskNumber(taskNumber);
-        return this.taskList.get(taskIndex);
+    public Task get(int taskNumber) throws DukeException {
+        return this.taskDatabase.findTask(taskNumber - 1);
     }
 
     /**
      * Returns the number of tasks in the task manager list
      *
      * @return Number of tasks in the task manager list
+     * @throws DukeException If the tasks cannot be read
      */
-    public int count() {
-        return this.taskList.size();
+    private int count() throws DukeException {
+        return this.taskDatabase.count();
     }
 
     /**
@@ -82,41 +85,47 @@ public class TaskManager {
      * @return Status of the task manager
      */
     public String getStatus() {
-        return String.format(TASK_LIST_STATUS_MESSAGE, this.count());
+        try {
+            return String.format(TaskManager.TASK_LIST_STATUS_MESSAGE, this.count());
+        } catch (DukeException e) {
+            return String.format("%s: %s", TaskManager.TASK_LIST_CANNOT_READ_STATUS_MESSAGE, e.getMessage());
+        }
     }
 
     /**
-     * Utility method to check if the provided 1-based task number is valid, i.e. there exists a
-     * task corresponding to the specified task number
-     *
-     * @param taskNumber The 1-based task number, possibly corresponding to a particular task
-     * @return true if the task index corresponds to a valid task, and false otherwise
+     * Returns the list of tasks in the database
+     * @return List of tasks
+     * @throws DukeException If the tasks cannot be read
      */
-    private boolean isValidTask(int taskNumber) {
-        int taskIndex = this.getTaskIndexFromTaskNumber(taskNumber);
-        return taskIndex >= 0 && taskIndex < this.count();
+    public List<Task> list() throws DukeException {
+        return this.taskDatabase.readAllTasks();
     }
 
     /**
-     * Utility method to retrieve the task index from the task number by applying a transformation
-     * operation to deduct 1 from the task number to convert it to a 0-based index
-     *
-     * @param taskNumber The provided task number in 1-based index
-     * @return The corresponding task index in 0-based index
+     * Returns the filtered list of tasks in the database based on the predicate
+     * @param condition The predicate to test if the task should be returned
+     * @return List of tasks
+     * @throws DukeException If the tasks cannot be read
      */
-    private int getTaskIndexFromTaskNumber(int taskNumber) {
-        return taskNumber - 1;
+    public List<Task> list(Predicate<? super Task> condition) throws DukeException {
+        return this.taskDatabase.filter(condition);
     }
 
-    @Override
-    public String toString() {
-        if (this.taskList.size() == 0) {
+    /**
+     * Displays the list of tasks in numerical order by implicitly invoking the string representation
+     * of the tasks
+     * @param tasks The tasks to be displayed
+     * @return String representation of the tasks
+     */
+    public static String display(List<Task> tasks) {
+        if (tasks.size() == 0) {
             return TaskManager.NO_TASKS_AVAILABLE;
         }
+
         StringBuilder taskManagerDisplay = new StringBuilder();
-        for (int i = 0; i < this.taskList.size(); i++) {
+        for (int i = 0; i < tasks.size(); i++) {
             // Implicitly invoke the display of the task defined in the Task class
-            taskManagerDisplay.append(String.format("%d. %s\n", i + 1, this.taskList.get(i)));
+            taskManagerDisplay.append(String.format("%d. %s\n", i + 1, tasks.get(i)));
         }
         return taskManagerDisplay.toString();
     }

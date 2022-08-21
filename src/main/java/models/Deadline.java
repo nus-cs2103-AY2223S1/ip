@@ -13,15 +13,26 @@ import java.time.LocalDate;
 
 public class Deadline extends Task {
     protected LocalDate deadline;
+    private static final TaskType taskType = TaskType.DEADLINE;
 
     public Deadline(String description, LocalDate deadline) {
         super(description);
         this.deadline = deadline;
     }
 
+    public Deadline(String description, LocalDate deadline, boolean isDone) {
+        super(description, isDone);
+        this.deadline = deadline;
+    }
+
     @Override
     public String getTaskTypeIcon() {
-        return TaskType.DEADLINE.toString();
+        return Deadline.taskType.toString();
+    }
+
+    @Override
+    public TaskSerializable serialize() {
+        return new TaskSerializable(Deadline.taskType, super.description, super.isDone, this.deadline);
     }
 
     @Override

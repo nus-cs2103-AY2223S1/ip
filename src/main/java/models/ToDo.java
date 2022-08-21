@@ -9,13 +9,24 @@ import java.time.LocalDate;
  */
 
 public class ToDo extends Task {
+    private static final TaskType taskType = TaskType.TODO;
+
     public ToDo(String description) {
         super(description);
     }
 
+    public ToDo(String description, boolean isDone) {
+        super(description, isDone);
+    }
+
+    @Override
+    public TaskSerializable serialize() {
+        return new TaskSerializable(ToDo.taskType, super.description, super.isDone, null);
+    }
+
     @Override
     public String getTaskTypeIcon() {
-        return TaskType.TODO.toString();
+        return ToDo.taskType.toString();
     }
 
     @Override

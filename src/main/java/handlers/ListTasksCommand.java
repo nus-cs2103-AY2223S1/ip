@@ -1,10 +1,12 @@
 package handlers;
 
 import exceptions.DukeException;
+import models.Task;
 import models.TaskManager;
 import utils.DukeValidator;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,26 +29,28 @@ public class ListTasksCommand implements DukeCommand {
             Matcher matchTasksOn = ListTasksCommand.MATCH_TASKS_ON.matcher(arguments);
             if (matchTasksOn.find()) {
                 LocalDate date = DukeValidator.parseDate(matchTasksOn.group("date"));
-                return taskManager.where(
+                List<Task> filteredList = taskManager.list(
                         task -> {
                             LocalDate taskDate = task.getDate();
                             return taskDate != null && taskDate.isEqual(date);
                         }
-                ).toString();
+                );
+                return TaskManager.display(filteredList);
             }
             Matcher matchTasksBefore = ListTasksCommand.MATCH_TASKS_BEFORE.matcher(arguments);
             if (matchTasksBefore.find()) {
                 LocalDate date = DukeValidator.parseDate(matchTasksBefore.group("date"));
-                return taskManager.where(
+                List<Task> filteredList = taskManager.list(
                         task -> {
                             LocalDate taskDate = task.getDate();
                             return taskDate != null && taskDate.isBefore(date);
                         }
-                ).toString();
+                );
+                return TaskManager.display(filteredList);
             }
             throw new DukeException(ListTasksCommand.ERROR_UNKNOWN_OPTION);
         }
 
-        return taskManager.toString();
+        return TaskManager.display(taskManager.list());
     }
 }
