@@ -12,6 +12,11 @@ public class ToDo extends Task {
     }
 
     @Override
+    public String getTask() {
+        return String.format("T | " + super.getTask());
+    }
+
+    @Override
     public String getStatus() {
         return String.format("[T]%s", super.getStatus());
     }

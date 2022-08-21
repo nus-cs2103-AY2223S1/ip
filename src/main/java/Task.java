@@ -1,4 +1,4 @@
-public class Task {
+public abstract class Task {
     private String name = null;
     private boolean done = false;
 
@@ -14,8 +14,10 @@ public class Task {
         this.name = name;
     }
 
+    public String getTask() { return String.format("%c | %s", (done == true ? '1' : '0'), this.name); };
+
     public String getStatus() {
-        return String.format("[%c] %s", (done==true? 'X' : ' '), this.name);
+        return String.format("[%c] %s", (done == true ? 'X' : ' '), this.name);
     }
 
 }

@@ -18,6 +18,11 @@ public class Event extends Task {
     }
 
     @Override
+    public String getTask() {
+        return String.format("E | " + super.getTask() + " | " + this.atWhen);
+    }
+
+    @Override
     public String getStatus() {
         return String.format("[E]%s (at: %s)", super.getStatus(), this.atWhen);
     }

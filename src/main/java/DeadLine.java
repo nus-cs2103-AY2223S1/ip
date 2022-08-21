@@ -18,6 +18,11 @@ public class DeadLine extends Task {
     }
 
     @Override
+    public String getTask() {
+        return String.format("D | " + super.getTask() + " | " + this.byWhen);
+    }
+
+    @Override
     public String getStatus() {
         return String.format("[D]%s (by: %s)", super.getStatus(), this.byWhen);
     }

@@ -1,8 +1,18 @@
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.List;
 
+import java.io.File;
+import java.io.FileWriter;
+
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 public class Duke {
+
+    private static List<Task> list;
+
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -11,10 +21,18 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
 
-        List<Task> list = new ArrayList<Task>();
+        list = new ArrayList<Task>();
+
+        try {
+            readFileIO();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
         System.out.println(reply("Hello! I'm Duke. What can I do for you?"));
         Scanner userInput = new Scanner(System.in);
+
+
         while (true) {
             Task newTask = null;
             String userText = userInput.nextLine();
@@ -75,6 +93,68 @@ public class Duke {
                     System.out.println(reply(e.getMessage()));
                 }
             }
+
+            try {
+                writeToFile();
+            } catch (Exception e) {
+                System.out.println(reply(e.getMessage()));
+            }
+        }
+    }
+
+    private static void writeToFile() throws Exception {
+        FileWriter fw = new FileWriter("data/duke.txt");
+        String dataWritten = "";
+
+        for (int i = 0; i < Duke.list.size(); i++) {
+            dataWritten += Duke.list.get(i).getTask();
+
+            if (i != Duke.list.size() - 1) {
+                dataWritten+= "\n";
+            }
+        }
+
+        fw.write(dataWritten);
+        fw.close();
+    }
+
+    private static void readFileIO() throws Exception {
+        Path path = Paths.get("data/duke.txt");
+        if (!Files.exists(path)) {
+            Files.createDirectories(Path.of("data"));
+        }
+
+
+        File f = new File("data/duke.txt");
+
+        if (!f.exists()) {
+            f.createNewFile();
+        }
+        Scanner s = new Scanner(f);
+        while (s.hasNext()) {
+            String[] inputArr = s.nextLine().split(" \\| ");
+
+            String taskType = inputArr[0];
+            Task newTask = null;
+
+            if (taskType.equals("T")) {
+                newTask = new ToDo();
+                newTask.addName("todo " + inputArr[2]);
+            } else if (taskType.equals("E")) {
+                newTask = new Event();
+                newTask.addName("event " + inputArr[2] + " /at " + inputArr[3]);
+            } else if (taskType.equals("D")) {
+                newTask = new DeadLine();
+                newTask.addName("deadline " + inputArr[2] + " /by " + inputArr[3]);
+            } else {
+                throw new DukeException("File is corrupted!");
+            }
+
+            if (inputArr[1].equals("1")) {
+                newTask.markAsDone();
+            }
+
+            Duke.list.add(newTask);
         }
     }
 
