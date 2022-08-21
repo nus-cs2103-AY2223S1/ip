@@ -9,6 +9,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
+
 public class Storage {
     private String fileLocation;
     private static final int ISDONE_MARKER = 4;
@@ -48,14 +52,16 @@ public class Storage {
                     break;
 
                 case 'D':
-                    taskDesc = line.substring(DESC_MARKER, line.lastIndexOf('|')).trim();
-                    taskTime = line.substring(line.lastIndexOf('|') + 1).trim();
+                    taskDesc = line.substring(DESC_MARKER, line.indexOf('(')).trim();
+                    taskTime = line.substring(line.indexOf('(') + 1, line.indexOf(')')).trim();
+
                     tasks.add(new Deadline(taskDesc, taskIsDone, taskTime));
                     break;
 
                 case 'E':
-                    taskDesc = line.substring(DESC_MARKER, line.lastIndexOf('|')).trim();
-                    taskTime = line.substring(line.lastIndexOf('|') + 1).trim();
+                    taskDesc = line.substring(DESC_MARKER, line.indexOf('(')).trim();
+                    taskTime = line.substring(line.indexOf('(') + 1, line.indexOf(')')).trim();
+
                     tasks.add(new Event(taskDesc, taskIsDone, taskTime));
                     break;
                 }

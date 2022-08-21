@@ -10,7 +10,7 @@ public class Deadline extends Task {
     public Deadline(String description, String by) throws DateTimeParseException {
         super(description);
         DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
-        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd MMM yyyy | E | h:mma");
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd MMM yyyy, h:mma");
         LocalDateTime dateTime = LocalDateTime.parse(by.trim(), inputFormatter);
 
         this.by = dateTime.format(outputFormatter);
@@ -28,6 +28,6 @@ public class Deadline extends Task {
 
     @Override
     public String toStringData() {
-        return "D | " + super.toStringData() + " | " + by;
+        return "D | " + super.toStringData() + " (" + by + ")";
     }
 }
