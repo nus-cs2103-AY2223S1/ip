@@ -1,6 +1,4 @@
-[D][ ] CS2103T Week 2 iP (by: next tutorial)
-[T][ ] buy milk
-[T][✓]  home[D][ ] send email (by: afternoon)
-[T][ ] have lunch
-[E][✓]  Welcome Tea 
-[E][ ]  Welcome Tea  (at: (at: 2oclock))
+[T][ ] newTask
+[E][ ] e1 (at: 2022-04-05)
+[E][ ] 32 (at: 2021-04-02)
+[D][✓]  e1 

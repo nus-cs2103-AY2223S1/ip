@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Duke {
     DukeToStorage dukeToStorage;
-    enum CommandType {TODO, MARK, UNMARK, DEADLINE, EVENT, BYE, LIST, DELETE};
+    enum CommandType {TODO, MARK, UNMARK, DEADLINE, EVENT, BYE, LIST, DELETE, ISTODAY, LONGDESCRIPTION};
 
     /**
      * Greets user.
@@ -40,7 +40,7 @@ public class Duke {
         CommandType command = TypeConverter.getCommand(userInput);
         int n, numOfElements;
         if (command == null) {
-            throw new DukeException( "Enter a valid command (todo, event, deadline, list, mark, unmark, bye)\n>>");
+            throw new DukeException( "Enter a valid command (todo, event, deadline, list, mark, unmark, bye, longdescription, istoday)\n>>");
         } else {
             switch(command) {
             case BYE:
@@ -63,6 +63,7 @@ public class Duke {
             case EVENT:
                 Event e = TypeConverter.stringToEvent(userInput);
                 dukeToStorage.addEventToHistory(e);
+                break;
             case DEADLINE:
                 Deadline d = TypeConverter.stringToDeadline(userInput);
                 dukeToStorage.addDeadlineToHistory(d);
@@ -76,14 +77,22 @@ public class Duke {
                 n = TypeConverter.getTaskNumber(userInput, numOfElements);
                 dukeToStorage.deleteTask(n);
                 break;
+            case ISTODAY:
+                numOfElements = dukeToStorage.numberOfTasksInList();
+                n = TypeConverter.getTaskNumber(userInput, numOfElements);
+                dukeToStorage.isToday(n);
+                break;
+            case LONGDESCRIPTION:
+                numOfElements = dukeToStorage.numberOfTasksInList();
+                n = TypeConverter.getTaskNumber(userInput, numOfElements);
+                dukeToStorage.longDescription(n);
+                break;
             default:
                 throw new DukeException("Enter a valid command (todo, event, deadline, list, mark, unmark, bye)\n>>");
             }
 
         }
     }
-
-
 
     public static void main(String[] args) {
         Duke dukeProgram = new Duke();

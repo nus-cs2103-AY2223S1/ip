@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -149,5 +150,20 @@ public class DukeToStorage {
 
     public int numberOfTasksInList() {
         return userInputHistory.size();
+    }
+
+    public void isToday(int n) {
+        Task dt = userInputHistory.get(n - 1);
+        boolean isToday = dt.isToday();
+        if (isToday) {
+            System.out.printf("Task is due today\n>>", n);
+        } else {
+            System.out.printf("Task is not due today\n>>", n);
+        }
+    }
+
+    public void longDescription(int n) {
+        Task dt = userInputHistory.get(n - 1);
+        System.out.printf("%s\n>>", dt.longDescription());
     }
 }
