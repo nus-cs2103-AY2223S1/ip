@@ -4,34 +4,36 @@ import java.util.Scanner;
 public class Duke extends Chatbot {
     private static final String GREETING = "Hi friend! How may I help you?";
     private static final String FAREWELL = "See you soon, friend!";
-    private static final String TRIGGER_FAREWELL = "bye";
-    private static final String TRIGGER_LIST = "list";
-    private LinkedList<String> keywords = new LinkedList<>();
     private LinkedList<Task> tasks = new LinkedList<>();
 
     public static void main(String[] args) {
         Duke duke = new Duke();
         duke.sayHello();
 
-        // initialize keywords
-        duke.keywords.add(Duke.TRIGGER_FAREWELL);
-        duke.keywords.add(Duke.TRIGGER_LIST);
-
         while(true) {
             String action = duke.listen();
 
-            if (duke.keywords.contains(action)) {
+            if (KeywordChecker.containsExactKeyword(action)) {
                 switch (action) {
-                    case Duke.TRIGGER_FAREWELL:
+                    case KeywordChecker.EXACT_KEYWORD_BYE:
                         duke.sayGoodbye();
                         break;
-                    case Duke.TRIGGER_LIST:
+                    case KeywordChecker.EXACT_KEYWORD_LIST:
                         duke.listTasks(duke);
                         break;
                 }
 
-                if (action.equals(Duke.TRIGGER_FAREWELL)) {
+                if (action.equals(KeywordChecker.EXACT_KEYWORD_BYE)) {
                     break;
+                }
+            } else if (KeywordChecker.containsNonexactKeyword(action)) {
+                switch (KeywordChecker.getNonexactKeyword(action)) {
+                    case KeywordChecker.NONEXACT_KEYWORD_MARK:
+                        duke.markTask(duke, KeywordChecker.getSpecifier(action));
+                        break;
+                    case KeywordChecker.NONEXACT_KEYWORD_UNMARK:
+                        duke.unmarkTask(duke, KeywordChecker.getSpecifier(action));
+                        break;
                 }
             } else {
                 duke.tasks.add(new Task(action));
@@ -40,12 +42,29 @@ public class Duke extends Chatbot {
         }
     }
 
-    public void listTasks(Duke chatSession) {
-        chatSession.tasks.forEach(
-                task -> {
-                    System.out.println(String.format("%d. %s", task.getId(), task.getDescription()));
-                }
-        );
+    public void listTasks(Duke interaction) {
+        interaction.tasks.forEach(
+                task -> { System.out.println(String.format("%d.[%s] %s",
+                        tasks.indexOf(task) + 1,
+                        task.getStatus() ? "X" : " ",
+                        task.getDescription()));
+                });
+    }
+
+    public void markTask(Duke interaction, int id) {
+        Task task = interaction.tasks.get(id - 1);
+        task.markAsDone();
+        this.echo(String.format("Task %d: [%s] marked as done!",
+                id,
+                task.getDescription()));
+    }
+
+    public void unmarkTask(Duke interaction, int id) {
+        Task task  = interaction.tasks.get(id - 1);
+        task.markAsNotDone();
+        this.echo(String.format("Task %d [%s] marked as not done!",
+                id,
+                task.getDescription()));
     }
 
     @Override
@@ -66,7 +85,6 @@ public class Duke extends Chatbot {
     @Override
     public String listen() {
         Scanner scanner = new Scanner(System.in);
-        String userInput = scanner.nextLine();
-        return userInput;
+        return scanner.nextLine();
     }
 }
