@@ -13,6 +13,16 @@ public class Todo extends Task {
     }
 
     /**
+     * Returns Todo as a String formatted to be a line in file.
+     *
+     * @return String representing todo.
+     */
+    @Override
+    public String getFileFormat() {
+        return String.format("T | %d | %s", this.isDone ? 1 : 0, this.description);
+    }
+
+    /**
      * Returns a String that represents the Todo.
      *
      * @return a String that represents the Todo

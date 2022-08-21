@@ -34,6 +34,15 @@ public class Task {
     }
 
     /**
+     * Returns Task as a String formatted to be a line in file.
+     *
+     * @return Task in the format of a line in file.
+     */
+    public String getFileFormat() {
+        return "";
+    }
+
+    /**
      * Returns a String that represents the Task.
      *
      * @return a String that represents the Task
