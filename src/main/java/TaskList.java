@@ -9,6 +9,12 @@ public class TaskList {
         System.out.println("added: " + description);
     }
 
+    public void markTaskAsDone(int taskNum) {
+        taskList[taskNum].markAsDone();
+        System.out.println("Nice! I've marked this task as done:");
+        System.out.println(taskList[taskNum].toString());
+    }
+
     public void printTasks() {
         for (int i = 0; i < currLastIndex; i++) {
             System.out.println((i + 1) + ". " + taskList[i].toString());

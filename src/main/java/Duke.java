@@ -20,7 +20,8 @@ public class Duke {
             } else if (input.equals("list")) {
                 taskList.printTasks();
                 continue;
-            } else if (input.substring(0,4).equals("mark")) {
+            } else if (input.length() >= 6 && input.substring(0,4).equals("mark")) {
+                taskList.markTaskAsDone(Integer.valueOf(input.substring(5)) - 1);
                 continue;
             }
             taskList.addTask(input);
