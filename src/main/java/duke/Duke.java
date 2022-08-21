@@ -1,12 +1,13 @@
 package duke;
 
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 import duke.exception.InvalidTaskIndexException;
 import duke.task.TaskList;
 
 public class Duke {
-    private static final TaskList taskList = new TaskList();
+    private static final TaskList taskList = new TaskList(Paths.get(System.getProperty("user.dir"), "data", "duke.txt"));
 
     private static void run(Scanner sc) {
         String command = sc.nextLine();
@@ -39,7 +40,7 @@ public class Duke {
             case "delete":
                 try {
                     int taskIndex = Integer.parseInt(commandSplit[1]);
-                    Duke.taskList.deletetask(taskIndex);
+                    Duke.taskList.deleteTask(taskIndex);
                 } catch (NumberFormatException e) {
                     System.out.println(commandSplit[1] + " is not a valid task index");
                 } catch (InvalidTaskIndexException e) {

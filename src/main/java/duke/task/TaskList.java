@@ -1,18 +1,72 @@
 package duke.task;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import duke.exception.DukeException;
 import duke.exception.InvalidTaskIndexException;
 
 public class TaskList {
     private final ArrayList<Task> tasks;
+    private final Path storage;
     public enum TaskType {
         DEADLINE, EVENT, TODO
     }
 
-    public TaskList() {
+    public TaskList(Path storagePath) {
         this.tasks = new ArrayList<>();
+        this.storage = storagePath;
+        try {
+            Files.createDirectories(storagePath.getParent());
+            if (Files.exists(storagePath)) {
+                this.readTasksFromStorage();
+            } else {
+                Files.createFile(storagePath);
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void readTasksFromStorage() {
+        try {
+            List<String> lines = Files.readAllLines(this.storage);
+            for (String task : lines) {
+                String[] taskSplit = task.split(" \\| ");
+                Task newTask;
+                switch (taskSplit[0]) {
+                case "T":
+                    newTask = new Todo(taskSplit[2]);
+                    break;
+                case "D":
+                    newTask = new Deadline(taskSplit[2], taskSplit[3]);
+                    break;
+                case "E":
+                    newTask = new Event(taskSplit[2], taskSplit[3]);
+                    break;
+                default:
+                    throw new DukeException("Invalid task description in storage: " + task);
+                }
+                if (taskSplit[1].equals("1")) {
+                    newTask.markAsDone();
+                }
+                this.tasks.add(newTask);
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading from " + this.storage + ": " + e.getMessage());
+        }
+    }
+
+    public void writeTasksToStorage() {
+        try {
+            Files.write(this.storage, this.tasks.stream().map(Task::toStorage).collect(Collectors.toList()));
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void addTask(Task t) {
@@ -20,6 +74,7 @@ public class TaskList {
         System.out.println("Got it. I've added this task:");
         System.out.println("  " + t);
         System.out.println("Now you have " + this.tasks.size() + " tasks in the list.");
+        this.writeTasksToStorage();
     }
 
     public void addTask(TaskType taskType, String desc) {
@@ -52,7 +107,7 @@ public class TaskList {
         this.addTask(newTask);
     }
 
-    public void deletetask(int taskIndex) {
+    public void deleteTask(int taskIndex) {
         if (taskIndex < 1 || taskIndex > this.tasks.size()) {
             throw new InvalidTaskIndexException(taskIndex);
         }
@@ -60,6 +115,7 @@ public class TaskList {
         System.out.println("Noted. I've removed this task:");
         System.out.println("  " + t);
         System.out.println("Now you have " + this.tasks.size() + " tasks in the list.");
+        this.writeTasksToStorage();
     }
 
     public void listTasks() {
@@ -76,6 +132,7 @@ public class TaskList {
         this.tasks.get(taskIndex - 1).markAsDone();
         System.out.println("Nice! I've marked this task as done:");
         System.out.println("  " + this.tasks.get(taskIndex - 1));
+        this.writeTasksToStorage();
     }
 
     public void markTaskAsNotDone(int taskIndex) {
@@ -85,5 +142,6 @@ public class TaskList {
         this.tasks.get(taskIndex - 1).markAsNotDone();
         System.out.println("OK, I've marked this task as not done yet:");
         System.out.println("  " + this.tasks.get(taskIndex - 1));
+        this.writeTasksToStorage();
     }
 }
