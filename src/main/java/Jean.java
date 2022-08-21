@@ -1,3 +1,7 @@
+import java.time.DateTimeException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -31,11 +35,17 @@ public class Jean {
                 throw new JeanException("You must give a deadline!" +
                                         "\nVous devez donner un délai!");
             } else {
-                add(new Deadline(input.substring(9, sep), input.substring(sep + 4)),
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+                LocalDateTime dateTime = LocalDateTime.parse(input.substring(sep + 4), formatter);
+                add(new Deadline(input.substring(9, sep), dateTime),
                         taskList);
             }
         } catch (JeanException e) {
             System.out.println(e.getMessage());
+        } catch (DateTimeParseException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Please give a valid deadline in the format of yyyy-MM-dd HHmm!"
+                               + "\nVeuillez indiquer une date limite valide au format yyyy-MM-dd HHmm!");
         }
     }
 
