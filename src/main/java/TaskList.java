@@ -1,20 +1,19 @@
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
- * Manage all interactions between Duke and UserInputHistory file storage
+ * Manage all interactions between Duke and UserInputHistory file storage.
  */
-public class DukeToStorage {
+public class TaskList {
     private ArrayList<Task> userInputHistory = new ArrayList<>();
-    private UserInputHistory file = new UserInputHistory();
+    private Storage file = new Storage();
 
     /**
      * Called by Duke to start storage.
      * Syncs userInputHistory array with disk storage.
      */
-    public DukeToStorage()  {
+    public TaskList()  {
         try {
             syncArrayListWithFile();
         } catch (IOException e) {
@@ -36,7 +35,7 @@ public class DukeToStorage {
         Task currTask;
         int n = linesInFile.size(), i = 0;
         for (; i < n; i ++) {
-            currTask = TypeConverter.fileLineToTask(linesInFile.get(i));
+            currTask = StorageReader.fileLineToTask(linesInFile.get(i));
             userInputHistory.add(currTask);
             System.out.println(currTask);
         }
@@ -50,8 +49,7 @@ public class DukeToStorage {
         String str = t.toString() + "\n";
         if (file.appendLine(str)) {
             userInputHistory.add(t);
-            System.out.printf("Noted down: %s\n There are %d items on your list now. \n", t, userInputHistory.size());
-            System.out.print(">>");
+            Formatter.uiTaskDescription(t.description, numberOfTasksInList());
         }
     }
 
@@ -63,8 +61,7 @@ public class DukeToStorage {
         String str = d.toString() + "\n";
         if (file.appendLine(str)) {
             userInputHistory.add(d);
-            System.out.printf("Noted down: %s\n There are %d items on your list now. \n", d, userInputHistory.size());
-            System.out.print(">>");
+            Formatter.uiTaskDescription(d.description, numberOfTasksInList());
         }
     }
 
@@ -76,8 +73,7 @@ public class DukeToStorage {
         String str = e.toString() + "\n";
         if (file.appendLine(str)) {
             userInputHistory.add(e);
-            System.out.printf("Noted down: %s\n There are %d items on your list now. \n", e, userInputHistory.size());
-            System.out.print(">>");
+            Formatter.uiTaskDescription(e.description, numberOfTasksInList());
         }
     }
 
@@ -86,16 +82,13 @@ public class DukeToStorage {
      */
     public void showHistory() throws IOException{
         int count = 1;
-        System.out.print("______\n");
-        System.out.println("Tasks in your list are: ");
+        StringBuffer listElements = new StringBuffer();
         List<String> history = file.getAllLines();
         for (String s: history) {
-            System.out.printf("%d. %s\n", count, s);
+            listElements.append(String.format("%d. %s\n", count, s));
             count++;
         }
-        System.out.printf("Total: %d\n", userInputHistory.size());
-        System.out.print("______\n");
-        System.out.print(">>");
+        Formatter.uiHistory(listElements, numberOfTasksInList());
     }
 
     /**
@@ -103,7 +96,7 @@ public class DukeToStorage {
      * @param n index to asked for by user.
      * @return task at index n - 1 in the userInputHistory arraylist
      */
-    public Task getTask(int n)  {
+    private Task getTask(int n)  {
         return userInputHistory.get(n - 1);
     }
 
@@ -115,10 +108,7 @@ public class DukeToStorage {
         Task taskToModify = userInputHistory.get(n - 1);
         if (file.deleteLine(n)) {
             userInputHistory.remove(n - 1);
-            System.out.printf("Task removed: \n%s\n", taskToModify);
-            System.out.printf("Total: %d\n", userInputHistory.size());
-            System.out.print("______\n");
-            System.out.print(">>");
+            Formatter.uiDeleteTask(taskToModify, numberOfTasksInList());
         }
     }
 
@@ -130,8 +120,7 @@ public class DukeToStorage {
         Task taskToModify = userInputHistory.get(n - 1);
         taskToModify.markAsDone();
         if (file.changeLine(n, taskToModify.toString())) {
-            System.out.printf("Marked task %d \n%s\n", n, taskToModify);
-            System.out.print(">>");
+            Formatter.uiMarkingTask("Marked", numberOfTasksInList(), taskToModify);
         }
     }
 
@@ -143,8 +132,7 @@ public class DukeToStorage {
         Task taskToModify = userInputHistory.get(n - 1);
         taskToModify.markAsNotDone();
         if (file.changeLine(n, taskToModify.toString())) {
-            System.out.printf("Unmarked task %d \n%s\n", n, taskToModify);
-            System.out.print(">>");
+            Formatter.uiMarkingTask("Unmarked", numberOfTasksInList(), taskToModify);
         }
     }
 
@@ -152,18 +140,24 @@ public class DukeToStorage {
         return userInputHistory.size();
     }
 
+    /**
+     * Checks if task is due today.
+     * @param n
+     */
     public void isToday(int n) {
         Task dt = userInputHistory.get(n - 1);
+        String output;
         boolean isToday = dt.isToday();
         if (isToday) {
-            System.out.printf("Task is due today\n>>", n);
+            output = "Task is due today>>";
         } else {
-            System.out.printf("Task is not due today\n>>", n);
+            output = "Task is not due today>>";
         }
+        Formatter.specialOperations(output);
     }
 
     public void longDescription(int n) {
         Task dt = userInputHistory.get(n - 1);
-        System.out.printf("%s\n>>", dt.longDescription());
+        Formatter.specialOperations(dt.longDescription());
     }
 }

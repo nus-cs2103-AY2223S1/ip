@@ -22,11 +22,19 @@ public class Event extends Task{
         return status;
     }
 
+    /**
+     * Check if deadline is today.
+     * @return true if deadline is today.
+     */
     @Override
     public boolean isToday() {
         return date.isEqual(LocalDate.now());
     }
 
+    /**
+     * Returns formatted description of the Deadline.
+     * @return string representing formatted description.
+     */
     @Override
     public String longDescription() {
         String status;

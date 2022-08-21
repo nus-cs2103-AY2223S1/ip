@@ -1,11 +1,10 @@
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
 public class Duke {
-    DukeToStorage dukeToStorage;
-    enum CommandType {TODO, MARK, UNMARK, DEADLINE, EVENT, BYE, LIST, DELETE, ISTODAY, LONGDESCRIPTION};
+    TaskList taskList;
+    enum CommandType {TODO, MARK, UNMARK, DEADLINE, EVENT, BYE, LIST, DELETE, ISTODAY, LONGDESCRIPTION}
 
     /**
      * Greets user.
@@ -28,7 +27,7 @@ public class Duke {
      * Intialises duke storage and greets user.
      */
     public Duke() {
-        this.dukeToStorage = new DukeToStorage();
+        this.taskList = new TaskList();
         greetUser();
     }
 
@@ -37,7 +36,7 @@ public class Duke {
      * @param userInput text entered by user that must be handled.
      */
     private void handleInput(String userInput) throws DukeException, IOException{
-        CommandType command = TypeConverter.getCommand(userInput);
+        CommandType command = Parser.getCommand(userInput);
         int n, numOfElements;
         if (command == null) {
             throw new DukeException( "Enter a valid command (todo, event, deadline, list, mark, unmark, bye, longdescription, istoday)\n>>");
@@ -48,44 +47,44 @@ public class Duke {
                 System.exit(0);
                 break;
             case LIST:
-                dukeToStorage.showHistory();
+                taskList.showHistory();
                 break;
             case MARK:
-                numOfElements  = dukeToStorage.numberOfTasksInList();
-                n = TypeConverter.getTaskNumber(userInput, numOfElements);
-                dukeToStorage.markTask(n);
+                numOfElements  = taskList.numberOfTasksInList();
+                n = Parser.getTaskNumber(userInput, numOfElements);
+                taskList.markTask(n);
                 break;
             case UNMARK:
-                numOfElements  = dukeToStorage.numberOfTasksInList();
-                n = TypeConverter.getTaskNumber(userInput, numOfElements);
-                dukeToStorage.unMarkTask(n);
+                numOfElements  = taskList.numberOfTasksInList();
+                n = Parser.getTaskNumber(userInput, numOfElements);
+                taskList.unMarkTask(n);
                 break;
             case EVENT:
-                Event e = TypeConverter.stringToEvent(userInput);
-                dukeToStorage.addEventToHistory(e);
+                Event e = Parser.stringToEvent(userInput);
+                taskList.addEventToHistory(e);
                 break;
             case DEADLINE:
-                Deadline d = TypeConverter.stringToDeadline(userInput);
-                dukeToStorage.addDeadlineToHistory(d);
+                Deadline d = Parser.stringToDeadline(userInput);
+                taskList.addDeadlineToHistory(d);
                 break;
             case TODO:
-                Task t = TypeConverter.stringToTask(userInput);
-                dukeToStorage.addTaskToHistory(t);
+                Task t = Parser.stringToTask(userInput);
+                taskList.addTaskToHistory(t);
                 break;
             case DELETE:
-                numOfElements = dukeToStorage.numberOfTasksInList();
-                n = TypeConverter.getTaskNumber(userInput, numOfElements);
-                dukeToStorage.deleteTask(n);
+                numOfElements = taskList.numberOfTasksInList();
+                n = Parser.getTaskNumber(userInput, numOfElements);
+                taskList.deleteTask(n);
                 break;
             case ISTODAY:
-                numOfElements = dukeToStorage.numberOfTasksInList();
-                n = TypeConverter.getTaskNumber(userInput, numOfElements);
-                dukeToStorage.isToday(n);
+                numOfElements = taskList.numberOfTasksInList();
+                n = Parser.getTaskNumber(userInput, numOfElements);
+                taskList.isToday(n);
                 break;
             case LONGDESCRIPTION:
-                numOfElements = dukeToStorage.numberOfTasksInList();
-                n = TypeConverter.getTaskNumber(userInput, numOfElements);
-                dukeToStorage.longDescription(n);
+                numOfElements = taskList.numberOfTasksInList();
+                n = Parser.getTaskNumber(userInput, numOfElements);
+                taskList.longDescription(n);
                 break;
             default:
                 throw new DukeException("Enter a valid command (todo, event, deadline, list, mark, unmark, bye)\n>>");
@@ -104,7 +103,6 @@ public class Duke {
                 dukeProgram.handleInput(s);
             } catch (InputMismatchException ime) {
                 System.out.print(ime);
-                System.exit(0);
             } catch (DukeException de) {
                 System.out.print(de);
             } catch (IOException ioe) {

@@ -1,5 +1,5 @@
 /**
- * Class to encapsulate Task object
+ * Class to encapsulate Task object.
  */
 public class Task {
     protected String description;

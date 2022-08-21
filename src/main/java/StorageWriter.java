@@ -1,50 +1,18 @@
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.io.IOException;
 import java.nio.file.StandardOpenOption;
-import java.util.ArrayList;
 import java.util.List;
+import java.nio.file.Path;
 
 /**
- * Manages all direct interactions between DukeToStorage and file storage.
+ * Encapsulates all write operations to disk file storage.
  */
-public class UserInputHistory {
-    private Path path;
+public class StorageWriter {
+    Path path;
 
-    public UserInputHistory() {
-        createIfDoesntExist();
-    }
-
-    /**
-     * Gets location of disk storage file.
-     * @throws DukeException when Duke program run outside of Duke folder.
-     */
-    private void getPath() throws DukeException {
-        String pathString = System.getProperty("user.dir");
-                if (pathString.contains("ip")) {
-                    pathString = pathString.substring(0, pathString.indexOf("ip") + 2);
-                    this.path = Paths.get(pathString, "src", "main", "java", "userinputhistory.txt");
-                } else {
-                    throw new DukeException("Cannot run from outside of ip folder of Duke");
-                }
-    }
-
-    /**
-     * Creates file at path for disk storage.
-     */
-    public void createIfDoesntExist() {
-        try {
-            getPath();
-            if (!Files.exists(path)) {
-                Files.createFile(path);
-            }
-        } catch (IOException e) {
-            System.out.println("IOException: " + e);
-        } catch (DukeException e) {
-            System.out.println("DukeException: " + e);
-        }
+    public StorageWriter(Path path) {
+        this.path = path;
     }
 
     /**
@@ -52,7 +20,7 @@ public class UserInputHistory {
      * @param s line to be appended.
      * @return true if appended successfully.
      */
-    public boolean appendLine(String s)  {
+    public  boolean appendLine(String s)  {
         try {
             Files.write(path, s.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
             return true;
@@ -99,17 +67,4 @@ public class UserInputHistory {
         return deleteLine(index) & appendLine(newString);
     }
 
-    /**
-     * Return contents of file history.
-     * @return arraylist containing all the lines in the file.
-     */
-    public List<String> getAllLines() {
-        List<String> list = new ArrayList<>();
-        try {
-            return Files.readAllLines(path);
-        } catch (IOException e) {
-            System.out.println("IOException: " + e);
-        }
-        return list;
-    }
 }
