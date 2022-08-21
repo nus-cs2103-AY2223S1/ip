@@ -1,4 +1,6 @@
+import java.io.IOException;
 import java.util.ArrayList;
+import java.io.FileWriter;
 
 public class TaskList {
     private ArrayList<Task> tasks = new ArrayList<>(100);
@@ -23,6 +25,21 @@ public class TaskList {
             System.out.println("  you now have 1 task in the list. type list to see it!");
         } else {
             System.out.println("  now you have " + tasks.size() + " tasks in the list. type list to view them.");
+        }
+    }
+
+    public void addFromFile(String[] info) {
+        Task t;
+        if (info[0].equals("T")) {
+            t = new ToDo(info[2]);
+        } else if (info[0].equals("D")) {
+            t = new Deadline(info[2], info[3]);
+        } else {
+            t = new Event(info[2], info[3], info[4]);
+        }
+        add(t);
+        if (info[1].equals("1")) {
+            t.setDone();
         }
     }
 
@@ -78,6 +95,18 @@ public class TaskList {
             }
         } catch (IndexOutOfBoundsException e) {
             System.out.println(Duke.sadFace + "please enter an integer from 1 - " + tasks.size());
+        }
+    }
+
+    public void writeToFile() {
+        try {
+            FileWriter fw = new FileWriter("src/main/data/list.txt");
+            for (Task task : tasks) {
+                fw.write(task.fileDescription() + "\n");
+            }
+            fw.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
     }
 }

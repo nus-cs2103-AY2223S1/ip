@@ -1,5 +1,8 @@
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
-import java.util.ArrayList;
+import java.io.File;
+import java.io.FileWriter;
 
 public class Duke {
     public static String start = '\u25B8' + " ";
@@ -7,6 +10,33 @@ public class Duke {
     private static TaskList tasks = new TaskList();
 
     public static void main(String[] args) {
+        File data = new File("src/main/data/");
+        File list = new File("src/main/data/list.txt");
+
+        //create a file to store the task list if it does not exist
+        try {
+            if (!list.exists()) {
+                if (!data.exists()) {
+                    data.mkdir();
+                }
+                list.createNewFile();
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            return;
+        }
+
+        //read contents from file containing the task list
+        try {
+            Scanner listSc = new Scanner(list);
+            while (listSc.hasNext()) {
+                String[] info = listSc.nextLine().split(" \\| ");
+                tasks.addFromFile(info);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -21,6 +51,7 @@ public class Duke {
             String input = sc.nextLine();
             String[] arr = input.split(" ", 2);
             if (arr[0].equals("bye")) {
+                tasks.writeToFile();
                 System.out.println(start + "bye! i hope to see you again soon! :)");
                 break;
             }

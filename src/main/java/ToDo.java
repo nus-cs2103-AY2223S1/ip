@@ -5,6 +5,11 @@ public class ToDo extends Task{
     }
 
     @Override
+    public String fileDescription() {
+        return "T | " + super.fileDescription();
+    }
+
+    @Override
     public String toString() {
         return "[T]" + super.toString();
     }

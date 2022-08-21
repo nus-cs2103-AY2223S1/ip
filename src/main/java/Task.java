@@ -15,6 +15,14 @@ public class Task {
         this.isDone = false;
     }
 
+    public String fileDescription() {
+        if (isDone) {
+            return "1 | " + this.description;
+        } else {
+            return "0 | " + this.description;
+        }
+    }
+
     @Override
     public String toString() {
         String done;
