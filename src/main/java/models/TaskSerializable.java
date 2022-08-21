@@ -3,6 +3,7 @@ package models;
 import exceptions.DukeException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.regex.Pattern;
 
 public class TaskSerializable extends Serializable<Task>{
@@ -11,11 +12,7 @@ public class TaskSerializable extends Serializable<Task>{
     private final boolean taskIsDone;
     private final Object taskMetaData;
 
-    private static final Pattern MATCH_TASK_DATA = Pattern.compile("(?<taskType>[TDE])\\s\\|\\s" +
-            "(?<taskCompleted>[01])\\s\\|\\s" +
-            "(?<taskDescription>(.+))(\\s\\|\\s" +
-            "(?<taskMeta>(.+)))?"
-    );
+    private static final Pattern MATCH_TASK_DATA = Pattern.compile("(?<taskType>[TDE])\\s\\|\\s(?<taskCompleted>[01])\\s\\|\\s(?<taskDescription>(.+))(\\s\\|\\s(?<taskMeta>(.+)))?");
 
     public TaskSerializable(
             TaskType taskType,
@@ -34,8 +31,8 @@ public class TaskSerializable extends Serializable<Task>{
         super(serializedString, TaskSerializable.MATCH_TASK_DATA);
         String[] originalData = super.get();
         this.taskType = TaskType.fromString(originalData[0]);
-        this.taskDescription = originalData[1];
-        this.taskIsDone = originalData[2].equals("1");
+        this.taskIsDone = originalData[1].equals("1");
+        this.taskDescription = originalData[2];
         this.taskMetaData = originalData.length > 3 ? originalData[3] : null;
     }
 
@@ -49,8 +46,8 @@ public class TaskSerializable extends Serializable<Task>{
         ArrayList<String> data = new ArrayList<>(){
             {
                 add(taskType.toString());
-                add(taskDescription);
                 add(taskIsDoneStatus);
+                add(taskDescription);
             }
         };
         if (taskMetaData != null) {

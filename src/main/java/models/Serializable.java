@@ -6,7 +6,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 abstract  public class Serializable<T> {
-    private static final String formatter = " \\| ";
+    // Use the double slash to escape the pipe character
+    private static final String formatterRead = " \\| ", formatterWrite = formatterRead.replace("\\", "");
     private final String serialized;
     private final String[] originalData;
 
@@ -14,7 +15,7 @@ abstract  public class Serializable<T> {
 
     public Serializable(String[] data) {
         this.originalData = data;
-        this.serialized = String.join(Serializable.formatter, data);
+        this.serialized = String.join(Serializable.formatterWrite, data);
     }
 
     public Serializable(String serializedString, Pattern regexMatch) throws DukeException {
@@ -23,7 +24,7 @@ abstract  public class Serializable<T> {
             throw new DukeException(Serializable.ERROR_MATCHING_SERIALIZABLE_REGEX);
         }
         this.serialized = serializedString;
-        this.originalData = serializedString.split(Serializable.formatter);
+        this.originalData = serializedString.split(Serializable.formatterRead);
     }
 
     /**
