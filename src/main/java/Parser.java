@@ -1,3 +1,6 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 public class Parser {
     public static Command parse(String input) {
         input = input.strip();
@@ -35,6 +38,15 @@ public class Parser {
             return new Command.EmptyCommand(args);
         default:
             return new Command.UnknownCommand(args);
+        }
+    }
+
+    public static LocalDate parseDate(String dateString) throws DukeException {
+        try {
+            return LocalDate.parse(dateString);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Invalid date format, please enter yyyy-mm-dd." +
+                    System.lineSeparator() + "Example: 2022-08-22, 2022-12-02");
         }
     }
 }

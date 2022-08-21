@@ -1,8 +1,10 @@
+import java.time.format.DateTimeFormatter;
 /**
  * Represents a task.
  * Contains description of task and task completion status.
  */
 public class Task {
+    protected final static DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd MMM yyyy");
     private String description;
     private boolean isDone;
 
