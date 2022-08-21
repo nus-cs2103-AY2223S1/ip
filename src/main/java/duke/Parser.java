@@ -13,6 +13,7 @@ import duke.command.AddCommand;
 import duke.command.ByeCommand;
 import duke.command.Command;
 import duke.command.DeleteCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.UnknownCommand;
@@ -34,15 +35,16 @@ public abstract class Parser {
     private static final String MARK = "mark";
     private static final String UNMARK = "unmark";
     private static final String DELETE = "delete";
+    private static final String FIND = "find";
     private static final String DEADLINE_INDICATOR_PATTERN = "\\s*/by\\s*";
     private static final String EVENT_INDICATOR_PATTERN = "\\s*/at\\s*";
 
     /**
      * Parses input into Command indicator and arguments.
-     * 
+     *
      * @param input user input.
-     * @return
-     * @throws DukeException
+     * @return A command indicator and arguments pair.
+     * @throws DukeException when error parsing input.
      */
     static Map.Entry<String, Optional<String>> getCommandAndArguments(String input) throws DukeException {
         Scanner scanner = new Scanner(input);
@@ -66,7 +68,7 @@ public abstract class Parser {
 
     /**
      * Retrieves Optional argument or throws DukeException if Optional is empty.
-     * 
+     *
      * @param argument arugment wrapped in Optional.
      * @return argument in the Optional.
      * @throws DukeException when argument is empty.
@@ -77,7 +79,7 @@ public abstract class Parser {
 
     /**
      * Parses input into corresponding Command object.
-     * 
+     *
      * @param input user input.
      * @return Command object.
      * @throws DukeException when error in parsing or executing command.
@@ -113,6 +115,9 @@ public abstract class Parser {
         case DELETE:
             command = parseDelete(getCommandArgument(commandArguments));
             break;
+        case FIND:
+            command = parseFind(getCommandArgument(commandArguments));
+            break;
         default:
             command = parseUnknown(commandIndicator);
             break;
@@ -122,7 +127,7 @@ public abstract class Parser {
 
     /**
      * Returns a ByeCommand.
-     * 
+     *
      * @return ByeCommand.
      */
     static Command parseBye() {
@@ -131,7 +136,7 @@ public abstract class Parser {
 
     /**
      * Returns a ListCommand.
-     * 
+     *
      * @return ListCommand.
      */
     static Command parseList() {
@@ -140,7 +145,7 @@ public abstract class Parser {
 
     /**
      * Returns an AddCommand that adds a Todo.
-     * 
+     *
      * @param input Command arguments.
      * @return AddCommand.
      */
@@ -151,7 +156,7 @@ public abstract class Parser {
 
     /**
      * Returns an AddCommand that adds a Deadline.
-     * 
+     *
      * @param input command arguments.
      * @return AddCommand.
      * @throws DukeException when command arugments are invalid.
@@ -170,7 +175,7 @@ public abstract class Parser {
 
     /**
      * Returns an AddCommand that adds an Event.
-     * 
+     *
      * @param input command arguments.
      * @return AddCommand.
      * @throws DukeException when command arugments are invalid.
@@ -189,7 +194,7 @@ public abstract class Parser {
 
     /**
      * Returns a MarkCommand
-     * 
+     *
      * @param input command arguments.
      * @return MarkCommand.
      * @throws DukeException when error parsing index or index out of range.
@@ -201,7 +206,7 @@ public abstract class Parser {
 
     /**
      * Returns an UnmarkCommand
-     * 
+     *
      * @param input command arguments.
      * @return UnmarkCommand.
      * @throws DukeException when error parsing index or index out of range.
@@ -213,7 +218,7 @@ public abstract class Parser {
 
     /**
      * Returns a DeleteCommand.
-     * 
+     *
      * @param input command arguments.
      * @return DeleteCommand.
      * @throws DukeException when error parsing index or index out of range.
@@ -224,8 +229,18 @@ public abstract class Parser {
     }
 
     /**
+     * Returns a FindCommand.
+     *
+     * @param input query text.
+     * @return FindCommand.
+     */
+    static Command parseFind(String input) {
+        return new FindCommand(input);
+    }
+
+    /**
      * Returns an UnknownCommand.
-     * 
+     *
      * @param input command indicator.
      * @return UnknownCommand.
      */
@@ -235,7 +250,7 @@ public abstract class Parser {
 
     /**
      * Parses command arguments to task index in 0-based index.
-     * 
+     *
      * @param input command arugments.
      * @return index given by user.
      * @throws DukeException when index not an integer or no index detected.
@@ -252,7 +267,7 @@ public abstract class Parser {
 
     /**
      * Converts date string to LocalDate.
-     * 
+     *
      * @param dateString dateString to convert to LocalDate.
      * @return LocalDate.
      * @throws DukeException when {@code dateString} is in an invalid format.

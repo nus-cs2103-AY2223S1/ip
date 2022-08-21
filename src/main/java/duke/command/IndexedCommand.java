@@ -8,7 +8,7 @@ public abstract class IndexedCommand extends Command {
 
     /**
      * Constructor for IndexedCommand.
-     * 
+     *
      * @param index index of Task in TaskList.
      */
     IndexedCommand(int index) {

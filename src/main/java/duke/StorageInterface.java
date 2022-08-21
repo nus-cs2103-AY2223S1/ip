@@ -11,7 +11,7 @@ public interface StorageInterface {
 
     /**
      * Read storage file and return data in file as a list of Tasks.
-     * 
+     *
      * @return list of tasks stored in file.
      * @throws DukeException when error reading storage file.
      */
@@ -19,7 +19,7 @@ public interface StorageInterface {
 
     /**
      * Saves task in storage file.
-     * 
+     *
      * @param task task to save.
      * @throws DukeException when error updating storage file.
      */
@@ -27,7 +27,7 @@ public interface StorageInterface {
 
     /**
      * Update line in storage file.
-     * 
+     *
      * @param lineIndex index to update (0-based indexing).
      * @param updatedLine new line to update existing line in file.
      * @throws DukeException when error updating storage file.

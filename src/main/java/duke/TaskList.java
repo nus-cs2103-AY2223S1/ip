@@ -3,7 +3,6 @@ package duke;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import duke.task.Task;
 
@@ -15,7 +14,7 @@ public class TaskList {
 
     /**
      * Constructor for TaskList.
-     * 
+     *
      * @param tasks Initial list of tasks.
      */
     public TaskList(List<Task> tasks) {
@@ -31,7 +30,7 @@ public class TaskList {
 
     /**
      * Return number of tasks in TaskList.
-     * 
+     *
      * @return number of tasks.
      */
     public int size() {
@@ -40,7 +39,7 @@ public class TaskList {
 
     /**
      * Add task to list.
-     * 
+     *
      * @param task task to add.
      * @return Task which was added.
      */
@@ -51,7 +50,7 @@ public class TaskList {
 
     /**
      * Delete task at specified index from list.
-     * 
+     *
      * @param index index of task to delete.
      * @return Task which was deleted
      * @throws DukeException when index specified is out of range.
@@ -66,7 +65,7 @@ public class TaskList {
 
     /**
      * Returns task at specified index.
-     * 
+     *
      * @param index index of task.
      * @return Task at specified index.
      * @throws DukeException when index specified is out of range.
@@ -81,7 +80,7 @@ public class TaskList {
 
     /**
      * Mark task at index as complete.
-     * 
+     *
      * @param index index of task to mark.
      * @return Updated Task that was marked.
      * @throws DukeException when index specified is out of range.
@@ -97,7 +96,7 @@ public class TaskList {
 
     /**
      * Mark task at index as incomplete.
-     * 
+     *
      * @param index index of task to unmark.
      * @return Updated Task that was unmarked.
      * @throws DukeException when index specified is out of range.
@@ -112,16 +111,24 @@ public class TaskList {
     }
 
     /**
-     * Get a list of strings that corresponding to the list of tasks.
+     * Returns a list of tasks in the TaskList.
      * Each string is prefixed with their corresponding index in the list.
-     * 
-     * @return List of task strings.
+     *
+     * @return List of tasks.
      */
-    public List<String> getLogs() {
-        List<String> indexedList = IntStream.range(0, logs.size())
-                .mapToObj((index) -> String.format("%d. %s", index + 1, logs.get(index).toString()))
+    public List<Task> getTasks() {
+        return this.logs;
+    }
+
+    /**
+     * Returns a list of tasks that matches the query text.
+     *
+     * @return List of matched tasks.
+     */
+    public List<Task> find(String query) {
+        return this.logs.stream()
+                .filter((task) -> task.getDescription().contains(query))
                 .collect(Collectors.toList());
-        return indexedList;
     }
 
     private String outOfBoundsMessage(int index) {
@@ -130,6 +137,6 @@ public class TaskList {
 
     @Override
     public String toString() {
-        return String.join("\n", getLogs());
+        return getTasks().toString();
     }
 }

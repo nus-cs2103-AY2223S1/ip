@@ -13,7 +13,7 @@ public class Event extends Task {
 
     /**
      * Constructor for Deadline.
-     * 
+     *
      * @param description description of task.
      * @param isComplete whether task is complete.
      * @param by event date.
@@ -25,7 +25,7 @@ public class Event extends Task {
 
     /**
      * Constructor for Deadline. {@code isComplete} defaults to {@code false}.
-     * 
+     *
      * @param description description of task.
      * @param by event date.
      */
@@ -35,7 +35,7 @@ public class Event extends Task {
 
     /**
      * Constructor for Deadline.
-     * 
+     *
      * @param description description of task.
      * @param isComplete whether task is complete.
      * @param by event date in String format.
@@ -46,7 +46,7 @@ public class Event extends Task {
 
     /**
      * Constructor for Deadline. {@code isComplete} defaults to {@code false};
-     * 
+     *
      * @param description description of task.
      * @param by event date in String format.
      */
@@ -56,7 +56,7 @@ public class Event extends Task {
 
     /**
      * Returns deadline of task as a LocalDate object.
-     * 
+     *
      * @return deadline of task.
      */
     LocalDate getDate() {
@@ -65,7 +65,7 @@ public class Event extends Task {
 
     /**
      * Returns deadline of task as a formatted String.
-     * 
+     *
      * @return deadline of task.
      */
     String getFormattedDate() {

@@ -25,7 +25,7 @@ public abstract class StorageParser {
 
     /**
      * Parse a line of text in storage file into a Task.
-     * 
+     *
      * @param line line of text in storage file format.
      * @return Task that was parsed from line.
      * @throws DukeException when error parsing the text.
@@ -57,7 +57,7 @@ public abstract class StorageParser {
 
     /**
      * Parses line of text into a Todo Task.
-     * 
+     *
      * @param line line of text in storage file format.
      * @return Todo that was parsed from line.
      * @throws DukeException when error parsing the text.
@@ -75,7 +75,7 @@ public abstract class StorageParser {
 
     /**
      * Parses line of text into a Deadline Task.
-     * 
+     *
      * @param line line of text in storage file format.
      * @return Deadline that was parsed from line.
      * @throws DukeException when error parsing the text.
@@ -94,7 +94,7 @@ public abstract class StorageParser {
 
     /**
      * Parses line of text into an Event Task.
-     * 
+     *
      * @param line line of text in storage file format.
      * @return Event that was parsed from line.
      * @throws DukeException when error parsing the text.

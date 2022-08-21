@@ -9,7 +9,7 @@ import duke.task.Task;
 public class MarkCommand extends IndexedCommand {
     /**
      * Constructor for MarkCommand.
-     * 
+     *
      * @param index index of Task .
      */
     public MarkCommand(int index) {

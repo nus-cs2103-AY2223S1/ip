@@ -12,7 +12,7 @@ public abstract class Task {
 
     /**
      * Constructor for Task.
-     * 
+     *
      * @param description description of Task.
      * @param isComplete whether Task is complete.
      */
@@ -23,7 +23,7 @@ public abstract class Task {
 
     /**
      * Constructor for Task. {@code isComplete} defaults to {@code true}.
-     * 
+     *
      * @param description description of Task.
      */
     public Task(String description) {
@@ -46,16 +46,16 @@ public abstract class Task {
 
     /**
      * Returns Task description.
-     * 
+     *
      * @return Task description
      */
-    String getDescription() {
+    public String getDescription() {
         return this.description;
     }
 
     /**
      * Returns {@code isComplete} status String.
-     * 
+     *
      * @return {@code isComplete} status String.
      */
     String getStatusIcon() {
@@ -64,7 +64,7 @@ public abstract class Task {
 
     /**
      * Returns {@code isComplete} status in integer format.
-     * 
+     *
      * @return {@code isComplete} status.
      *         {@code 0} signfies incomplete. {@code 1} signifies complete.
      */
@@ -74,7 +74,7 @@ public abstract class Task {
 
     /**
      * Converts Task to a String format used by Storage.
-     * 
+     *
      * @return Storage-readable String.
      */
     public String toStorageFormat() {

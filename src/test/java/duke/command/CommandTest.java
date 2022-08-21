@@ -1,13 +1,14 @@
 package duke.command;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.AfterEach;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import duke.DukeException;
 import duke.StorageStub;
@@ -17,7 +18,6 @@ import duke.task.Task;
 import duke.task.Todo;
 
 public class CommandTest {
-
     private final StorageStub storageStub = new StorageStub(List.<Task>of());
     private final TaskList taskList = new TaskList();
     private final Ui ui = new Ui();
@@ -66,11 +66,39 @@ public class CommandTest {
         command.execute();
 
         String secondExpected = firstExpected
-                + divider +
-                "     1. " + todo.toString() + System.lineSeparator()
+                + divider
+                + "     1. " + todo.toString() + System.lineSeparator()
                 + divider;
         assertEquals(secondExpected,
                 outContent.toString());
     }
 
+    @Test
+    void execute_findCommand() throws DukeException {
+        String divider = "    ____________________________________________________________"
+                + System.lineSeparator();
+        Task todo = new Todo("Test task");
+        Command.setTaskList(new TaskList(List.of(todo)));
+
+        Command command = new FindCommand("Test");
+        command.execute();
+
+        String firstExpected = divider
+                + "     Here is what I found: "
+                + System.lineSeparator()
+                + "     1. " + todo.toString() + System.lineSeparator()
+                + divider;
+        assertEquals(firstExpected,
+                outContent.toString());
+
+        command = new FindCommand("bad");
+        command.execute();
+        String secondExpected = firstExpected
+                + divider
+                + "     No task matched your query!" + System.lineSeparator()
+                + divider;
+        assertEquals(secondExpected,
+                outContent.toString());
+
+    }
 }

@@ -9,7 +9,7 @@ import duke.task.Task;
 public class UnmarkCommand extends IndexedCommand {
     /**
      * Constructor for UnmarkCommand.
-     * 
+     *
      * @param index index of Task to mark as incomplete.
      */
     public UnmarkCommand(int index) {

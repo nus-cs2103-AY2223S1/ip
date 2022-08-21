@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import duke.task.Task;
 
@@ -30,7 +32,7 @@ public class Ui {
 
     /**
      * Read user input.
-     * 
+     *
      * @return user input.
      * @throws DukeException when error reading input.
      */
@@ -44,7 +46,7 @@ public class Ui {
 
     /**
      * Pads the text.
-     * 
+     *
      * @param text text to pad.
      * @return Left padded text.
      */
@@ -54,7 +56,7 @@ public class Ui {
 
     /**
      * Format texts before displaying them to the user.
-     * 
+     *
      * @param texts texts to display to the user.
      */
     public void formatAndPrint(List<? extends String> texts) {
@@ -65,7 +67,7 @@ public class Ui {
 
     /**
      * Format text before displaying it to the user.
-     * 
+     *
      * @param text text to display to ther user.
      */
     void formatAndPrint(String text) {
@@ -74,7 +76,7 @@ public class Ui {
 
     /**
      * Displays error message to the user.
-     * 
+     *
      * @param errorMessage message to display.
      */
     void displayErrorMessage(String errorMessage) {
@@ -92,7 +94,7 @@ public class Ui {
 
     /**
      * Wrapper funtion for displaying update message.
-     * 
+     *
      * @param task task that was added / deleted / updated.
      * @param updateMessage message to display first.
      * @param taskListSize size of TaskList.
@@ -106,8 +108,51 @@ public class Ui {
     }
 
     /**
+     * Returns a list of strings corresponding to the task in the list.
+     * Each string is prefixed with their corresponding index in the list.
+     *
+     * @param tasks list of tasks.
+     *
+     * @return List of task Strings.
+     */
+    List<String> formatTaskList(List<Task> tasks) {
+        List<String> indexedList = IntStream.range(0,
+                tasks.size()).mapToObj((index) -> String.format("%d. %s", index + 1, tasks.get(index).toString()))
+                .collect(Collectors.toList());
+        return indexedList;
+    }
+
+    /**
+     * Displays a list of tasks that is formatted by {@code formatTaskList}.
+     *
+     * @param tasks list of tasks.
+     */
+    public void displayTaskList(List<Task> tasks) {
+        List<String> toPrint = formatTaskList(tasks);
+        formatAndPrint(toPrint);
+    }
+
+    /**
+     * Displays a list of tasks that is formatted by {@code formatTaskList} along
+     * with a search message. Will display a unsuccessful message if task list is
+     * empty.
+     *
+     * @param tasks list of tasks.
+     */
+    public void displayTaskListSearch(List<Task> tasks) {
+        if (tasks.isEmpty()) {
+            formatAndPrint("No task matched your query!");
+            return;
+        }
+        List<String> toPrint = new ArrayList<>();
+        toPrint.add("Here is what I found: ");
+        toPrint.addAll(formatTaskList(tasks));
+        formatAndPrint(toPrint);
+    }
+
+    /**
      * Displays add task message.
-     * 
+     *
      * @param task task that was added.
      * @param taskListSize size of TaskList.
      */
@@ -117,7 +162,7 @@ public class Ui {
 
     /**
      * Displays delete task message.
-     * 
+     *
      * @param task task that was deleted.
      * @param taskListSize size of TaskList.
      */
@@ -127,9 +172,8 @@ public class Ui {
 
     /**
      * Displays mark task message.
-     * 
+     *
      * @param task task that was marked.
-     * @param taskListSize size of TaskList.
      */
     public void displayMarkTaskMessage(Task task) {
         displayUpdateMessage(task, "I have marked this task as done: ", Optional.empty());
@@ -137,9 +181,8 @@ public class Ui {
 
     /**
      * Displays unmark task message.
-     * 
+     *
      * @param task task that was unmarked.
-     * @param taskListSize size of TaskList.
      */
     public void displayUnmarkTaskMessage(Task task) {
         displayUpdateMessage(task, "I have unmarked the completion of this task: ", Optional.empty());
@@ -154,7 +197,7 @@ public class Ui {
 
     /**
      * Displays unknown command message.
-     * 
+     *
      * @param input unknown command text.
      */
     public void displayUnknownCommandMessage(String input) {

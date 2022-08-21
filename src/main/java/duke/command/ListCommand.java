@@ -16,6 +16,6 @@ public class ListCommand extends Command {
      */
     @Override
     public void execute() {
-        Command.ui.formatAndPrint(Command.taskList.getLogs());
+        Command.ui.displayTaskList(Command.taskList.getTasks());
     }
 }

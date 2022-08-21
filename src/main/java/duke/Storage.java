@@ -20,7 +20,7 @@ public class Storage implements StorageInterface {
 
     /**
      * Constructor for Storage.
-     * 
+     *
      * @param filePath path of storage file.
      */
     public Storage(Path filePath) {
@@ -29,7 +29,7 @@ public class Storage implements StorageInterface {
 
     /**
      * Constructor for Storage.
-     * 
+     *
      * @param filePath path of storage file.
      */
     public Storage(String filePath) {
@@ -85,7 +85,7 @@ public class Storage implements StorageInterface {
 
     /**
      * Append line to end of storage file.
-     * 
+     *
      * @param line line of text to append.
      * @throws DukeException when error updating file.
      */

@@ -13,7 +13,7 @@ public class Deadline extends Task {
 
     /**
      * Constructor for Deadline.
-     * 
+     *
      * @param description description of task.
      * @param isComplete whether task is complete.
      * @param by deadline date.
@@ -25,7 +25,7 @@ public class Deadline extends Task {
 
     /**
      * Constructor for Deadline. {@code isComplete} defaults to {@code false}.
-     * 
+     *
      * @param description description of task.
      * @param by deadline date.
      */
@@ -35,7 +35,7 @@ public class Deadline extends Task {
 
     /**
      * Constructor for Deadline.
-     * 
+     *
      * @param description description of task.
      * @param isComplete whether task is complete.
      * @param by deadline date in String format.
@@ -46,7 +46,7 @@ public class Deadline extends Task {
 
     /**
      * Constructor for Deadline. {@code isComplete} defaults to {@code false}.
-     * 
+     *
      * @param description description of task.
      * @param by deadline date in String format.
      */
@@ -56,7 +56,7 @@ public class Deadline extends Task {
 
     /**
      * Returns deadline of task as a LocalDate object.
-     * 
+     *
      * @return deadline of task.
      */
     LocalDate getDate() {
@@ -65,7 +65,7 @@ public class Deadline extends Task {
 
     /**
      * Returns deadline of task as a formatted String.
-     * 
+     *
      * @return deadline of task.
      */
     String getFormattedDate() {

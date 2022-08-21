@@ -16,7 +16,7 @@ public abstract class Command {
 
     /**
      * Sets Ui object to be used for all Commands;
-     * 
+     *
      * @param ui Ui object to be used.
      */
     public static void setUi(Ui ui) {
@@ -25,7 +25,7 @@ public abstract class Command {
 
     /**
      * Sets TaskList object to be used for all Commands;
-     * 
+     *
      * @param taskList TaskList object to be used.
      */
     public static void setTaskList(TaskList taskList) {
@@ -34,7 +34,7 @@ public abstract class Command {
 
     /**
      * Sets Storage object to be used for all Commands;
-     * 
+     *
      * @param storage Storage object to be used.
      */
     public static void setStorage(StorageInterface storage) {
@@ -43,7 +43,7 @@ public abstract class Command {
 
     /**
      * Returns if application should exit.
-     * 
+     *
      * @return isExit variable.
      */
     public boolean isExit() {
@@ -52,7 +52,7 @@ public abstract class Command {
 
     /**
      * Executes Command.
-     * 
+     *
      * @throws DukeException
      *             Exception might occur when saving tasks to Storage.
      */

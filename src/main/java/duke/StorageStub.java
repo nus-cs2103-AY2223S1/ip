@@ -13,7 +13,7 @@ public class StorageStub implements StorageInterface {
 
     /**
      * Constructor for Storge stub
-     * 
+     *
      * @param tasks initial list of tasks.
      */
     public StorageStub(List<Task> tasks) {
