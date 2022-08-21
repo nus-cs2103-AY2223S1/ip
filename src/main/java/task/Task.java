@@ -9,19 +9,19 @@ public abstract class Task {
     }
 
     protected void mark() {
-        this.isDone = true;
+        isDone = true;
     }
 
     protected void unmark() {
-        this.isDone = false;
+        isDone = false;
     }
 
     private String getStatusIcon() {
-        return (this.isDone ? "[X]" : "[ ]");
+        return isDone ? "[X]" : "[ ]";
     }
 
     @Override
     public String toString() {
-        return this.getStatusIcon() + this.description;
+        return this.getStatusIcon() + description;
     }
 }

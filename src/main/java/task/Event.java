@@ -9,7 +9,7 @@ public class Event extends Task {
     }
 
     private String getDate() {
-        return "(at:" + this.date + ")";
+        return "(at:" + date + ")";
     }
 
     @Override

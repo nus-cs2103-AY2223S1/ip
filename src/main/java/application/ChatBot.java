@@ -55,32 +55,32 @@ public class ChatBot {
                 throw new InvalidCaseException();
         }
 
-        this.taskList.add(task);
+        taskList.add(task);
         this.displayMessage("\t" + "Got it. I've added this task:" + "\n\t\t" + task + "\n"
-                          + "\t" + "Now you have " + this.taskList.size() + " tasks in the list." + "\n");
+                          + "\t" + "Now you have " + taskList.size() + " tasks in the list." + "\n");
     }
 
     private void handleDeleteTask(ArrayList<String> parsedLine) throws InvalidInputException {
         int entry = Integer.parseInt(parsedLine.get(0));
-        if (this.taskList.isInRange(entry)) {
-            Task removed = this.taskList.remove(entry);
+        if (taskList.isInRange(entry)) {
+            Task removed = taskList.remove(entry);
             this.displayMessage("\t" + "Noted. I've removed this task:" + "\n\t\t"
                               + "\t" + removed + "\n"
-                              + "\t" + "Now you have " + this.taskList.size() + " tasks left in the list." + "\n");
+                              + "\t" + "Now you have " + taskList.size() + " tasks left in the list." + "\n");
         } else {
             throw new InvalidInputException();
         }
     }
 
     private void handleList() {
-        this.displayMessage("\t" + "Here are the tasks in your list:" + "\n" + this.taskList);
+        this.displayMessage("\t" + "Here are the tasks in your list:" + "\n" + taskList);
     }
 
     private void handleMark(ArrayList<String> parsedLine) throws InvalidInputException {
         int entry = Integer.parseInt(parsedLine.get(0));
-        if (this.taskList.isInRange(entry)) {
-            Task task = this.taskList.get(entry);
-            this.taskList.markTask(entry);
+        if (taskList.isInRange(entry)) {
+            Task task = taskList.get(entry);
+            taskList.markTask(entry);
             this.displayMessage("\t" + "Great! I've marked this task." + "\n\t\t" + task + "\n");
         } else {
             throw new InvalidInputException();
@@ -89,9 +89,9 @@ public class ChatBot {
 
     private void handleUnmark(ArrayList<String> parsedLine) throws InvalidInputException {
         int entry = Integer.parseInt(parsedLine.get(0));
-        if (this.taskList.isInRange(entry)) {
-            Task task = this.taskList.get(entry);
-            this.taskList.unmarkTask(entry);
+        if (taskList.isInRange(entry)) {
+            Task task = taskList.get(entry);
+            taskList.unmarkTask(entry);
             this.displayMessage("\t" + "Ok, I've unmarked this task." + "\n\t\t" + task + "\n");
         } else {
             throw new InvalidInputException();

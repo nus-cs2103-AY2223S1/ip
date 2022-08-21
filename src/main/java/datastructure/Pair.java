@@ -14,10 +14,10 @@ public class Pair<S, T> {
     }
 
     public S getLeft() {
-        return this.left;
+        return left;
     }
 
     public T getRight() {
-        return this.right;
+        return right;
     }
 }
