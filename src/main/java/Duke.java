@@ -1,4 +1,8 @@
 import java.io.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -29,12 +33,13 @@ public class Duke {
             if (c == 'T') {
                 arrayList.add(new Todo(taskname));
             } else {
-                String time = array[3];
+                String date = array[3];
+                LocalDate d = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MMM-d"));
 
                 if (c == 'E') {
-                    arrayList.add(new Event(taskname, time));
+                    arrayList.add(new Event(taskname, d));
                 } else {
-                    arrayList.add(new Deadline(taskname, time));
+                    arrayList.add(new Deadline(taskname, d));
                 }
             }
 
@@ -76,10 +81,12 @@ public class Duke {
             } else {
                 System.out.println("Creating save file for first time use");
             }
-
         } catch (IOException e) {
             System.out.println("An error occurred creating save file");
-            e.printStackTrace();
+            return;
+        } catch (DateTimeParseException e) {
+            System.out.println("Invalid date found in save file!");
+            return;
         }
 
         String logo = " ____        _        \n"
@@ -134,7 +141,7 @@ public class Duke {
             } else if (str.equals("todo") || str.equals("deadline") || str.equals("event")) {
 
                 String taskname = "";
-                String time = "";
+                String date = "";
                 int i = 1;
 
                 while (i < strArray.length && strArray[i].charAt(0) != '/') {
@@ -145,7 +152,7 @@ public class Duke {
                 while (i < strArray.length) { //means now strArray[i] == /by or /at
 
                     if (strArray[i].charAt(0) != '/') {
-                        time += strArray[i] + " ";
+                        date += strArray[i] + " ";
                     }
 
                     i++;
@@ -162,27 +169,49 @@ public class Duke {
                     System.out.println(" " + todo);
                     System.out.println("Now you have " + arrayList.size() + " task(s) in the list.");
 
-                } else if (str.equals("deadline")) {
-                    if (time.equals("")) {
-                        throw new DukeException("Date/Time cannot be empty!");
-                    }
-
-                    Task deadline = new Deadline(taskname.trim(), time.trim());
-                    arrayList.add(deadline);
-                    System.out.println("Got it. I've added this task:");
-                    System.out.println(" " + deadline);
-                    System.out.println("Now you have " + arrayList.size() + " task(s) in the list.");
-
                 } else {
-                    if (time.equals("")) {
+                    if (date.equals("")) {
                         throw new DukeException("Date/Time cannot be empty!");
                     }
 
-                    Task event = new Event(taskname.trim(), time.trim());
-                    arrayList.add(event);
-                    System.out.println("Got it. I've added this task:");
-                    System.out.println(" " + event);
-                    System.out.println("Now you have " + arrayList.size() + " task(s) in the list.");
+                    String[] tArray = date.trim().split(" ");
+                    String time = "";
+                    if (tArray.length > 2) {
+                        throw new DukeException("Date and time has too many spaces!");
+                    } else if (tArray.length == 2) {
+                        time = tArray[1];
+                    }
+
+                    date = tArray[0];
+
+                    //matches the yyyy-MMM-d format
+                    if (!date.trim().matches("[0-9]{4}-((Jan)|(Feb)|(Mar)|(Apr)|(May)|(Jun)|(Jul)|(Aug)|(Sep)|(Oct)|(Nov)|(Dec))-[0-9]{1,2}")) {
+                        throw new DukeException("Date/Time must match the YYYY-MMM-DD format!");
+                    }
+
+                    LocalDate d = null;
+                    LocalDateTime dateTime = null; //no time functionality for now
+
+                    try {
+                        d = LocalDate.parse(date.trim(), DateTimeFormatter.ofPattern("yyyy-MMM-d"));
+                    } catch (DateTimeParseException e) {
+                        System.out.println("Please provide a sensible date and time! Exiting...");
+                        return;
+                    }
+
+                    if (str.equals("deadline")) {
+                        Task deadline = new Deadline(taskname.trim(), d);
+                        arrayList.add(deadline);
+                        System.out.println("Got it. I've added this task:");
+                        System.out.println(" " + deadline);
+                        System.out.println("Now you have " + arrayList.size() + " task(s) in the list.");
+                    } else {
+                        Task event = new Event(taskname.trim(), d);
+                        arrayList.add(event);
+                        System.out.println("Got it. I've added this task:");
+                        System.out.println(" " + event);
+                        System.out.println("Now you have " + arrayList.size() + " task(s) in the list.");
+                    }
                 }
 
                 SaveData(savedData);

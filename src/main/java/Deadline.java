@@ -1,20 +1,25 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Deadline extends Task {
 
-    private String time;
+    private LocalDate time;
     private final char type = 'D';
 
-    public Deadline(String taskname, String time) {
+    public Deadline(String taskname, LocalDate time) {
         super(taskname);
         this.time = time;
     }
 
     @Override
     public String toString() {
-        return String.format("[%c] %s (by: %s)", this.type, super.toString(), this.time);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE, d MMM yyyy");
+        return String.format("[%c] %s (by: %s)", this.type, super.toString(), this.time.format(formatter));
     }
 
     @Override
-    public String toSavedString() {
-        return "" + this.type + "#" + super.toSavedString() + "#" + this.time;
+    public String toSavedString() { //internal representation in save file
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-d");
+        return "" + this.type + "#" + super.toSavedString() + "#" + this.time.format(formatter);
     }
 }
