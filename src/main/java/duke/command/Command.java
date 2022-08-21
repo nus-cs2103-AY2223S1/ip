@@ -7,7 +7,7 @@ import duke.Ui;
 public abstract class Command {
     public abstract void execute(Storage storage, TaskList taskList, Ui ui);
 
-    public boolean isExit() {
+    public boolean canExit() {
         return false;
     }
 }

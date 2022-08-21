@@ -7,7 +7,7 @@ import duke.Ui;
 public class ByeCommand extends Command {
 
     @Override
-    public boolean isExit() {
+    public boolean canExit() {
         return true;
     }
 

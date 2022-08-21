@@ -21,11 +21,11 @@ public class Storage {
 
     public Storage(String filePath) throws DukeException {
         this.filePath = filePath;
-        this.file = new File(this.filePath);
+        file = new File(this.filePath);
         try {
             // Does not overwrite directory or file if it already exists.
-            this.file.getParentFile().mkdir();
-            this.file.createNewFile();
+            file.getParentFile().mkdir();
+            file.createNewFile();
         } catch (IOException e) {
             throw new DukeException("Directory or file cannot be located. New file is created.");
         }
@@ -34,7 +34,7 @@ public class Storage {
     public List<Task> load() throws DukeException {
         List<Task> tasks = new ArrayList<>();
         try {
-            Scanner scanner = new Scanner(this.file);
+            Scanner scanner = new Scanner(file);
             while (scanner.hasNext()) {
                 tasks.add(parse(scanner.nextLine()));
             }
@@ -52,7 +52,7 @@ public class Storage {
         }
 
         try {
-            FileWriter fw = new FileWriter(this.filePath);
+            FileWriter fw = new FileWriter(filePath);
             fw.write(String.join(System.lineSeparator(), data));
             fw.close();
         } catch (IOException e) {

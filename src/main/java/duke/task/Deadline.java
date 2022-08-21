@@ -22,11 +22,11 @@ public class Deadline extends Task {
 
     @Override
     public String stringify() {
-        return String.format("%s | %s | %s", "D", super.stringify(), this.by);
+        return String.format("%s | %s | %s", "D", super.stringify(), by);
     }
 
     @Override
     public String toString() {
-        return String.format("[D]%s (by: %s)", super.toString(), this.printDate());
+        return String.format("[D]%s (by: %s)", super.toString(), printDate());
     }
 }

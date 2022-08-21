@@ -17,7 +17,7 @@ public class Ui {
     private Scanner scanner;
 
     public Ui() {
-        this.scanner = new Scanner(System.in);
+        scanner = new Scanner(System.in);
     }
 
     public void printGreeting() {
@@ -26,7 +26,7 @@ public class Ui {
     }
 
     public String read() {
-        return this.scanner.nextLine();
+        return scanner.nextLine();
     }
 
     public void close() {

@@ -9,26 +9,26 @@ public class Duke {
 
     public Duke(String filePath) {
         try {
-            this.ui = new Ui();
-            this.storage = new Storage(filePath);
-            this.taskList = new TaskList(this.storage.load());
+            ui = new Ui();
+            storage = new Storage(filePath);
+            taskList = new TaskList(storage.load());
         } catch (DukeException e) {
-            this.ui.printErrorMessage(e.getMessage());
-            this.taskList = new TaskList();
+            ui.printErrorMessage(e.getMessage());
+            taskList = new TaskList();
         }
     }
 
     public void run() {
+        ui.printGreeting();
         boolean isExit = false;
-        this.ui.printGreeting();
         while (!isExit) {
             try {
-                String userInput = this.ui.read();
+                String userInput = ui.read();
                 Command command = Parser.parseInput(userInput);
-                command.execute(this.storage, this.taskList, this.ui);
-                isExit = command.isExit();
+                command.execute(storage, taskList, ui);
+                isExit = command.canExit();
             } catch (DukeException e) {
-                this.ui.printErrorMessage(e.getMessage());
+                ui.printErrorMessage(e.getMessage());
             }
         }
     }
