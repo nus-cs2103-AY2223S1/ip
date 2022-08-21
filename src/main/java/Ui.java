@@ -16,13 +16,13 @@ public class Ui {
 
         System.out.println("==========================");
         System.out.println("Hey, I am Maria. I can manage your tasks for you"); // Welcome text
-        System.out.println("Type 'todo' to create a todo.");
-        System.out.println("Type 'deadline' to create a task with deadline.");
-        System.out.println("Type 'event' to create an event with a start and end time.");
+        System.out.println("Type 'todo <name> <done (true/false)>' to create a todo.");
+        System.out.println("Type 'deadline <name> <done (true/false)> <deadline (YYYY-MM-DD)>' to create a task with deadline.");
+        System.out.println("Type 'event <name> <done (true/false)> <start (YYYY-MM-DD)> <end (YYYY-MM-DD)>' to create an event with a start and end time.");
         System.out.println("Type 'list' to list out all your tasks.");
-        System.out.println("Type 'mark' to complete a task.");
-        System.out.println("Type 'unmark' to un-complete a task.");
-        System.out.println("Type 'delete' to remove a task.");
+        System.out.println("Type 'mark <index>' to complete a task.");
+        System.out.println("Type 'unmark <index>' to un-complete a task.");
+        System.out.println("Type 'delete <index>' to remove a task.");
         System.out.println("Type 'bye' to finish the conversation.");
         System.out.println("==========================");
 

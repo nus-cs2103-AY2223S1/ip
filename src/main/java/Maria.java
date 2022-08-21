@@ -8,11 +8,13 @@ public class Maria {
 
         this.ui = new Ui();
         this.storage = new Storage("tasks.mariadata");
-        this.taskList = StorageConverter.stringToTasks(this.storage);
+        this.taskList = StorageConverter.stringToTasks(this.storage, this.ui);
 
     }
 
     public void run() {
+
+        this.ui.showInstructions();
 
         while (true) {
 
@@ -24,16 +26,11 @@ public class Maria {
 
     }
 
-    private String makeTodo() {
-        return TaskTodo.makeTodo(this.scanner, this.taskList);
-    }
+    public static void main(String[] args) {
 
-    private String makeDeadline() {
-        return TaskDeadline.makeDeadline(this.scanner, this.taskList);
-    }
+        Maria maria = new Maria();
+        maria.run();
 
-    private String makeEvent() {
-        return TaskEvent.makeEvent(this.scanner, this.taskList);
     }
 
 }

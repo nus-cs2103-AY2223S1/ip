@@ -9,9 +9,9 @@ public class CommandUnmarkTask extends Command {
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
 
-        taskList.get(this.index).setDone(false);
+        taskList.get(this.index - 1).setDone(false);
         taskList.mutatedTask();
-        ui.showText("Your task " + taskList.get(this.index) + " has been un-completed.");
+        ui.showText("Your task " + taskList.get(this.index - 1) + " has been un-completed.");
 
     }
 }

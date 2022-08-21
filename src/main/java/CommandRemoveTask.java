@@ -9,8 +9,8 @@ public class CommandRemoveTask extends Command {
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
 
-        String taskStr = taskList.get(this.index).toString();
-        taskList.remove(this.index);
+        String taskStr = taskList.get(this.index - 1).toString();
+        taskList.remove(this.index - 1);
         ui.showText("Your task " + taskStr + " has been deleted.");
 
     }

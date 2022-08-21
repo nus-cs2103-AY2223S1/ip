@@ -15,7 +15,7 @@ public class StorageConverter {
 
     }
 
-    public static TaskList stringToTasks(Storage storage) {
+    public static TaskList stringToTasks(Storage storage, Ui ui) {
 
         TaskList tasks = new TaskList(storage);
 
@@ -32,13 +32,7 @@ public class StorageConverter {
 
         for (String taskStr : tasksStrArr) {
             if (!taskStr.isEmpty()) {
-                try {
-                    tasks.add(Task.createTaskFromStorageString(taskStr));
-                } catch (TaskNoNameException | IllegalTaskTypeException e) {
-                    System.out.println("File is corrupted. Please delete the tasks file and retry.");
-                    System.out.println(e.getMessage());
-                    System.exit(-1);
-                }
+                Parser.parseStorage(taskStr).execute(tasks, ui, storage);
             }
         }
 

@@ -9,9 +9,9 @@ public class CommandMarkTask extends Command {
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
 
-        taskList.get(this.index).setDone(true);
+        taskList.get(this.index - 1).setDone(true);
         taskList.mutatedTask();
-        ui.showText("Your task " + taskList.get(this.index) + " has been completed.");
+        ui.showText("Your task " + taskList.get(this.index - 1) + " has been completed.");
 
     }
 }

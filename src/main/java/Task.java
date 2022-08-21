@@ -26,28 +26,4 @@ public abstract class Task {
         return this.name + "|||" + this.done;
     }
 
-    public static Task createTaskFromStorageString(String taskStr)
-            throws TaskNoNameException, IllegalTaskTypeException {
-
-        String[] tokens = taskStr.split("\\|\\|\\|");
-        String name = tokens[0];
-        boolean done = Boolean.parseBoolean(tokens[1]);
-        String taskType = tokens[2];
-
-        switch (taskType) {
-        case "todo":
-            return new TaskTodo(name, done);
-        case "deadline":
-            String deadline = tokens[3];
-            return new TaskDeadline(name, done, deadline);
-        case "event":
-            String start = tokens[3];
-            String end = tokens[4];
-            return new TaskEvent(name, done, start, end);
-        default:
-            throw new IllegalTaskTypeException("Task type " + taskType + " is invalid.");
-        }
-
-    }
-
 }
