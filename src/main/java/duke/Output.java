@@ -13,7 +13,7 @@ public enum Output{
           + "| | | | | | | |/ / _ \\\n\t "
           + "| |_| | |_| |   <  __/\n\t "
           + "|____/ \\__,_|_|\\_\\___|\n\n\t "
-          + "Hello! I'm duke.Duke\n\t "
+          + "Hello! I'm Duke\n\t "
           + "What can I do for you?\n"),
   GOODBYE ("Bye. Hope to see you again soon!\n"),
   LIST("Here are the task(s) in your list:\n"),
