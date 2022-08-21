@@ -12,7 +12,12 @@ public class Dwuke {
     public Dwuke() {
         this.ui = new Ui();
         this.storage = new Storage();
-        this.taskList = storage.load();
+        try {
+            this.taskList = storage.load();
+        } catch (DwukeException e) {
+            ui.showErrorMessage(e);
+            this.taskList = new TaskList();
+        }
     }
 
     /**
@@ -28,18 +33,19 @@ public class Dwuke {
      * Reads the user input and executes it, until the user issues the exit command.
      */
     public void loop() {
-        String userInput = this.ui.getUserInput();
         while (true) {
-            Command command = Parser.parseInput(userInput, this.taskList);
+            try {
+                Command command = Parser.parseInput(this.ui.getUserInput(), this.taskList);
 
-            if (command instanceof ExitCommand) {
-                return;
+                if (command instanceof ExitCommand) {
+                    return;
+                }
+
+                this.ui.echo(command.execute());
+                this.storage.save(this.taskList);
+            } catch (DwukeException e) {
+                this.ui.showErrorMessage(e);
             }
-
-            this.ui.echo(command.execute());
-            this.storage.save(this.taskList);
-
-            userInput = this.ui.getUserInput();
         }
     }
 

@@ -21,34 +21,62 @@ public class Ui {
     }
 
     /**
+     * Prints a line.
+     */
+    public void showLine() {
+        String line = "-".repeat(lineLength);
+        System.out.println(line);
+    }
+
+    /**
      * Prints the given text for the user.
      *
      * @param text The text to print.
      */
     public void echo(String text) {
-        String line = "-".repeat(lineLength);
         String indentedText = text.replaceAll("(?m)^", "\t");
-        System.out.println(line + "\n" + indentedText + "\n" + line);
+
+        this.showLine();
+        System.out.println(indentedText);
+        this.showLine();
     }
 
     /**
      * Prints a welcome message for the user.
      */
     public void showWelcomeMessage() {
-        String line = "-".repeat(lineLength);
         String welcomeText = "hewwo UwU! am dwuke\nwat can me do fow u?";
         String indentedText = welcomeText.replaceAll("(?m)^", "\t");
-        System.out.println(line + "\n" + indentedText + "\n" + line);
+
+        this.showLine();
+        System.out.println(indentedText);
+        this.showLine();
     }
 
     /**
      * Prints a goodbye message for the user.
      */
     public void showGoodbyeMessage() {
-        String line = "-".repeat(lineLength);
         String goodbyeText = "bwye. am hope to UwU u soon";
         String indentedText = goodbyeText.replaceAll("(?m)^", "\t");
-        System.out.println(line + "\n" + indentedText + "\n" + line);
+
+        this.showLine();
+        System.out.println(indentedText);
+        this.showLine();
+    }
+
+    /**
+     * Prints an error message from the given Exception.
+     *
+     * @param e The Exception which message to print.
+     */
+    public void showErrorMessage(Exception e) {
+        String errorText = e.getMessage();
+        String indentedText = errorText.replaceAll("(?m)^", "\t");
+
+        this.showLine();
+        System.out.println(indentedText);
+        this.showLine();
     }
 
     /**

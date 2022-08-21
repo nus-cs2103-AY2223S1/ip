@@ -23,28 +23,28 @@ public class Storage {
      * Loads the TaskList that is stored in the filePath.
      *
      * @return The TaskList that has been loaded.
+     * @throws DwukeException If there is a problem with reading the file.
      */
-    public TaskList load() {
-        TaskList taskList = null;
+    public TaskList load() throws DwukeException {
         try {
             createFile();
-            taskList = TaskList.decode(Files.readAllLines(this.filePath));
-        } catch (IOException | DwukeException e) {
-            e.printStackTrace();
+            return TaskList.decode(Files.readAllLines(this.filePath));
+        } catch (IOException e) {
+            throw new DwukeException(e.getMessage());
         }
-        return taskList;
     }
 
     /**
      * Saves the given TaskList in the filePath.
      *
      * @param taskList The TaskList to be saved.
+     * @throws DwukeException If there is a problem with writing to the file.
      */
-    public void save(TaskList taskList) {
+    public void save(TaskList taskList) throws DwukeException {
         try {
             Files.write(this.filePath, taskList.encode());
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new DwukeException(e.getMessage());
         }
     }
 
