@@ -1,8 +1,10 @@
 public class Task {
     private String name;
+    private TaskType type;
     private boolean marked = false;
 
-    public Task(String name) {
+    public Task(TaskType type, String name) {
+        this.type = type;
         this.name = name;
     }
 

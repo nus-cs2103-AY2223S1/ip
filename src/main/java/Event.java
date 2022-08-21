@@ -1,8 +1,8 @@
 public class Event extends Task {
     String time;
 
-    public Event (String name, String time) {
-        super(name);
+    public Event (TaskType type, String name, String time) {
+        super(type, name);
         this.time = time;
     }
 
