@@ -6,6 +6,8 @@ import duke.task.Task;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * duke.StorageList is a class that stores a list of strings
@@ -99,12 +101,31 @@ public class StorageList {
     int i = 1;
     for (Task t : list) {
       if (t instanceof Deadline && ((Deadline) t).getDateTime().equals(date)) {
-        sb.append("\t " + i + ". " + t.toString() + "\n");
+        sb.append("\t " + i + "." + t.toString() + "\n");
         i++;
       }
     }
     return sb.toString();
   }
+
+    /**
+     * An overloaded method that return the String representation of the list of task in which the regex is matched.
+     * @param regex Regular expression to be matched
+     * @return String representation of the list of task with correct regex
+     */
+    public String toString(String regex) {
+        StringBuilder sb = new StringBuilder();
+        Pattern pattern = Pattern.compile(regex);
+        int i = 1;
+        for (Task t : list) {
+            Matcher matcher = pattern.matcher(t.getDescription());
+            if (matcher.find()) {
+                sb.append("\t " + i + "." + t.toString() + "\n");
+                i++;
+            }
+        }
+        return sb.toString();
+    }
 
   /**
    * Returns the list of strings

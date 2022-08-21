@@ -32,6 +32,8 @@ public class Parser {
         return new LoadCommand();
       case "date":
         return new MatchCommand();
+      case "find":
+        return new FindCommand();
       default:
         throw new DukeException("I'm sorry, but I don't know what that means :-(");
     }
