@@ -25,9 +25,14 @@ public class Duke {
     private static Boolean runDuke = false;
 
     /**
-     * `Ui` object of `Duke` to handle user-interface.
+     * `Ui` object to handle user-interface.
      */
     private static Ui ui;
+
+    /**
+     * `Storage` object to handle reading and writing task list to disk.
+     */
+    private static Storage storage;
 
     /**
      * 'java.util.function' to add task to 'taskList'.
@@ -240,37 +245,7 @@ public class Duke {
         commands.get(command).accept(userInput);
     }
 
-    /**
-     * Method to write `taskList` to text file.
-     * @param outputDirectory Directory to output text file.
-     * @param filename        Name of text file to ouput.
-     * @throws IOException
-     */
-    private static void writeToFile(String outputDirectory, String filename)
-                throws IOException {
-        File outFile = new File(outputDirectory + "/" + filename);
-        FileWriter fw = new FileWriter(outFile);
-        fw.write(taskList.toFile());
-        fw.close();
-    }
 
-    /**
-     * Method to add tasks from lines in file.
-     * @param data             Single line of data in file.
-     * @param lineNumberInFile Line number of current line.
-     */
-    private static void addFromFile(String data, int lineNumberInFile) {
-        String[] dataArgs = data.split("\\|");
-        if ((dataArgs[0].equals("deadline") && dataArgs.length == 4) ||
-                (dataArgs[0].equals("event") && dataArgs.length == 4) ||
-                (dataArgs[0].equals("todo") && dataArgs.length == 3)) {
-            // Only add task if format in file is correct.
-            taskList.addFromFile(dataArgs);
-        } else {
-            System.out.printf("Line %d: Error in format of saved file!%n" +
-                    "Line will be ignored.%n%n", lineNumberInFile);
-        }
-    }
 
 
     /**
@@ -278,55 +253,29 @@ public class Duke {
      * @param args Command line arguments not used.
      */
     public static void main(String[] args) {
-        runDuke = true;
-        ui = new Ui();
-
-        // Create Scanner object for user inputs.
-        Scanner sc1 = new Scanner(System.in);
-        String userInput;
         String OUTPUT_DIRECTORY = "data";
         String OUTPUT_FILENAME = "list.txt";
-        int lineNumberInFile = 1;
 
-        try {
-            // Try to read task list from file.
-            File currList = new File(OUTPUT_DIRECTORY + "/"
-                        + OUTPUT_FILENAME);
-            Scanner sc2 = new Scanner(currList);
-            while (sc2.hasNextLine()) {
-                String data = sc2.nextLine();
-                if (! data.equals("")) {
-                    // Parse non-empty lines and add the tasks to 'taskList'.
-                    addFromFile(data, lineNumberInFile);
-                }
-                lineNumberInFile++;
-            }
-            sc2.close();
-        } catch (FileNotFoundException e) {
-            // If file does not exist, check if directory exists. If
-            // directory does not exist, create the directory.
-            File outDir = new File(OUTPUT_DIRECTORY);
-            if (!outDir.exists()) {
-                outDir.mkdir();
-            }
-        }
+        runDuke = true;
+        ui = new Ui();
+        storage = new Storage(OUTPUT_DIRECTORY, OUTPUT_FILENAME, taskList);
+
+        // Create Scanner object for user inputs.
+        Scanner sc = new Scanner(System.in);
+        String userInput;
 
         // Run Duke.
-        while (runDuke && sc1.hasNextLine()) {
-            userInput = sc1.nextLine();
+        while (runDuke && sc.hasNextLine()) {
+            userInput = sc.nextLine();
             try {
-                String temp = taskList.toString();
                 handleUserInputs(userInput);
-                if (! taskList.toString().equals(temp)) {
-                    // Only write to file if there was a change.
-                    writeToFile(OUTPUT_DIRECTORY, OUTPUT_FILENAME);
-                }
+                storage.writeToFile(taskList);
             } catch (DukeException e) {
                 System.out.println(e.getMessage());
             } catch (IOException e) {
                 System.out.println("Error writing to file: " + e.getMessage());
             }
         }
-        sc1.close();
+        sc.close();
     }
 }
