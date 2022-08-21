@@ -53,6 +53,19 @@ public class TaskStore {
         return sb.toString();
     }
 
+    public String markTaskAsDone(int index) throws NoSuchTask {
+        Task task = getTask(index);
+        task.markAsDone();
+        return String.format("Nice! I've marked this task as done:\n\t%s", task);
+    }
+
+    public String markTaskAsUndone(int index) throws NoSuchTask {
+        Task task = getTask(index);
+        task.markAsUndone();
+        return String.format("OK, I've marked this task as not done yet:\n\t%s", task);
+    }
+
+
     /**
      * List detailed information about all tasks in this store.
      * @return String Details

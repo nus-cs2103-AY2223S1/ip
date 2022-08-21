@@ -37,14 +37,12 @@ public class Hazell {
                     reply(String.format("Here are the tasks in your list:\n%s", taskStore.toString()));
                 } else if (command.startsWith("mark")) {
                     int index = Integer.parseInt(command.getTrailingArgs().get(0)) - 1;
-                    Task task = taskStore.getTask(index);
-                    task.markAsDone();
-                    reply(String.format("Nice! I've marked this task as done:\n\t%s", task.toString()));
+                    String response = taskStore.markTaskAsDone(index);
+                    reply(response);
                 } else if (command.startsWith("unmark")) {
                     int index = Integer.parseInt(command.getTrailingArgs().get(0)) - 1;
-                    Task task = taskStore.getTask(index);
-                    task.markAsUndone();
-                    reply(String.format("OK, I've marked this task as not done yet:\n\t%s", task.toString()));
+                    String response = taskStore.markTaskAsUndone(index);
+                    reply(response);
                 } else if (command.startsWith("todo")) {
                     String description = String.join(" ", command.getTrailingArgs());
                     String response = taskStore.addTask(ToDo.create(description));
