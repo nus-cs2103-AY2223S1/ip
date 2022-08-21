@@ -159,7 +159,9 @@ public class TaskList {
 
         switch (dataArgs[0]) {
         case ("deadline"):
-            newTask = new Deadline(dataArgs[2], getDate(dataArgs[3]), isDone);
+            LocalDate deadline = LocalDate.parse(dataArgs[3],
+                    DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            newTask = new Deadline(dataArgs[2], deadline, isDone);
             break;
 
         case ("event"):
