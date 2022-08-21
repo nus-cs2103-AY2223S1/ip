@@ -25,14 +25,13 @@ public class MarkTaskCommand implements DukeCommand {
             throw new DukeException(MarkTaskCommand.NAN_TASK_NUMBER_ERROR);
         }
 
-        Task task;
         try {
-            task = taskManager.get(taskNumber);
-        } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(MarkTaskCommand.TASK_NUMBER_IS_INVALID_ERROR);
+            Task task = taskManager.get(taskNumber);
+            task.markAsDone();
+            Task updatedTask = taskManager.update(taskNumber, task);
+            return String.format("%s\n\t%s", MarkTaskCommand.MARK_TASK_AS_DONE_MESSAGE, updatedTask);
+        } catch (DukeException e) {
+            return e.getMessage();
         }
-
-        task.markAsDone();
-        return String.format("%s\n\t%s", MarkTaskCommand.MARK_TASK_AS_DONE_MESSAGE, task);
     }
 }

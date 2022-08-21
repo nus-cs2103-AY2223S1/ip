@@ -1,5 +1,6 @@
 package handlers;
 
+import exceptions.DukeException;
 import models.Task;
 import models.TaskManager;
 
@@ -17,12 +18,16 @@ abstract public class AddTaskCommand implements DukeCommand{
      */
     public String addTask(TaskManager taskManager, Supplier<? extends Task> taskSupplier) {
         Task task = taskSupplier.get();
-        taskManager.add(task);
-        return String.format(
-                "%s\n\t%s\n%s",
-                AddTaskCommand.ADD_TASK_MESSAGE,
-                task,
-                taskManager.getStatus()
-        );
+        try {
+            task = taskManager.add(task);
+            return String.format(
+                    "%s\n\t%s\n%s",
+                    AddTaskCommand.ADD_TASK_MESSAGE,
+                    task,
+                    taskManager.getStatus()
+            );
+        } catch (DukeException e) {
+            return e.getMessage();
+        }
     }
 }

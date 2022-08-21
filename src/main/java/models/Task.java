@@ -14,6 +14,11 @@ abstract public class Task {
         this.isDone = false;
     }
 
+    public Task(String description, boolean isDone) {
+        this.description = description;
+        this.isDone = isDone;
+    }
+
     /**
      * Marks the current task as done
      */
@@ -45,6 +50,13 @@ abstract public class Task {
     private String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
     }
+
+    /**
+     * Returns a serializable format of the task
+     *
+     * @return Serializable format of the task
+     */
+    abstract public TaskSerializable serialize();
 
     public String toString() {
         return String.format("[%s] [%s] %s", this.getTaskTypeIcon(), this.getStatusIcon(), this.description);
