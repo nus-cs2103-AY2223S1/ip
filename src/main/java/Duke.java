@@ -10,94 +10,101 @@ public class Duke {
     public static void main(String[] args) {
 
         printWelcomeMsg();
+        Scanner scanner = new Scanner(System.in);
 
-        //interaction with user
-        while(isRunning) {
-            try {
-                Scanner scanner = new Scanner(System.in);
-                String userInput = scanner.nextLine();
+        while (isRunning && scanner.hasNextLine()) {
 
-                if (userInput.equals("bye")) {
+            String userInput = scanner.nextLine();
 
-                    printEndingMsg();
-                    isRunning = false;
+            if (userInput.equals("bye")) {
 
-                } else if (userInput.equals("list")) {
+                printEndingMsg();
+                isRunning = false;
 
-                    displayTasks(list);
+            } else if (userInput.equals("list")) {
 
-                } else if (userInput.contains("mark")
-                        || userInput.contains("unmark")
-                        || userInput.contains("todo")
-                        || userInput.contains("deadline")
-                        || userInput.contains("event")
-                        || userInput.contains("delete")) {
+                displayTasks(list);
 
-                    operations(userInput);
-                } else {
-                    throw new DukeException();
+            } else if (containsOperationWord(userInput)) {
+
+                try {
+                    performOperations(userInput);
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    printWithFormat(" ☹ OOPS!!! The description of a " + userInput + " cannot be empty.");
                 }
-            } catch (DukeException e) {
-                printWithFormat("☹ OOPS!!! I'm sorry, but I don't know what that means");
+
+            } else {
+
+                try {
+                    throw new InvalidCommandException();
+                } catch (InvalidCommandException e) {
+                    printWithFormat("☹ OOPS!!! I'm sorry, but I don't know what that means");
+                }
+
             }
         }
     }
 
-    private static void operations(String userInput) {
+    private static boolean containsOperationWord(String userInput) {
+        return userInput.toLowerCase().contains("mark")
+                || userInput.toLowerCase().contains("unmark")
+                || userInput.toLowerCase().contains("todo")
+                || userInput.toLowerCase().contains("deadline")
+                || userInput.toLowerCase().contains("event")
+                || userInput.toLowerCase().contains("delete");
+    }
 
-        try {
-            String[] tokens = userInput.split("\\s+", 2);
-            String firstWord = tokens[0];
+    private static void performOperations(String userInput) {
+        String[] tokens = userInput.split("\\s+", 2);
+        String firstWord = tokens[0];
 
-            switch (firstWord) {
-                case "mark":
-                case "unmark":
+        switch (firstWord) {
+            case "mark":
+            case "unmark":
 
-                    int taskNumber = Integer.parseInt(tokens[1]);
-                    markingOfTask(firstWord, taskNumber); //and print
+                int taskNumber = Integer.parseInt(tokens[1]);
+                markingOfTask(firstWord, taskNumber); //and print
 
+                break;
 
-                    break;
+            case "delete":
+                int taskNo = Integer.parseInt(tokens[1]);
+                deleteTask(taskNo);
 
-                case "delete":
-                    int taskNo = Integer.parseInt(tokens[1]);
-                    deleteTask(taskNo);
-                    break;
+                break;
 
-                case "todo": {
+            case "todo": {
 
-                    String taskContent = tokens[1];
-                    ToDos toDos = new ToDos(taskContent);
-                    addTaskToList(toDos); //and print
+                String taskContent = tokens[1];
+                ToDos toDos = new ToDos(taskContent);
+                addTaskToList(toDos); //and print
 
-
-                    break;
-                }
-                case "deadline": {
-
-                    String[] token = splitDeadlineInput(userInput);
-                    String taskContent = token[0];
-                    String date = token[1];
-
-                    Deadline deadline = new Deadline(taskContent, date);
-                    addTaskToList(deadline);
-
-                    break;
-                }
-                case "event": {
-                    String[] token = splitEventInput(userInput);
-                    String taskContent = token[0];
-                    String date = token[1];
-
-                    Event event = new Event(taskContent, date);
-                    addTaskToList(event);
-                    break;
-                }
+                break;
             }
-        } catch (ArrayIndexOutOfBoundsException e) {
-            printWithFormat(" ☹ OOPS!!! The description of a " + userInput + " cannot be empty.");
+            case "deadline": {
+
+                String[] token = splitDeadlineInput(userInput);
+                String taskContent = token[0];
+                String date = token[1];
+
+                Deadline deadline = new Deadline(taskContent, date);
+                addTaskToList(deadline);
+
+                break;
+            }
+            case "event": {
+                String[] token = splitEventInput(userInput);
+                String taskContent = token[0];
+                String date = token[1];
+
+                Event event = new Event(taskContent, date);
+                addTaskToList(event);
+
+                break;
+            }
         }
     }
+
 
     private static String[] splitEventInput(String userInput) {
         String[] result = new String[2];
@@ -130,7 +137,7 @@ public class Duke {
     private static void deleteTask(int number) {
         Task task = list.get(number - 1);
         list.remove(task);
-        printWithFormat("Noted. I've removed this task:\n"+ task+"\nNow you have " + list.size() + " tasks in the list.");
+        printWithFormat("Noted. I've removed this task:\n     "+ task+"\n     Now you have " + list.size() + " tasks in the list.");
     }
 
     private static void addTaskToList(Task task) {
@@ -165,8 +172,8 @@ public class Duke {
 
     private static void printWithFormat(String text) {
 
-        String startHorizontalLines = "     ________________________________________\n";
-        String endHorizontalLines = "\n     ________________________________________\n";
+        String startHorizontalLines = "     _______________________________________________________\n";
+        String endHorizontalLines = "\n     _______________________________________________________\n";
 
         System.out.println(startHorizontalLines + "     " + text + endHorizontalLines);
     }
