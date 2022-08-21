@@ -1,8 +1,15 @@
+/** Todo class to represent a todo.
+ * @author Silas Tay A0233425M
+ */
 public class Todo extends Task {
     public Todo(String description) {
         super(description);
     }
 
+    /**
+     * Returns String representation of Todo
+     * @return String representation of Todo
+     */
     @Override
     public String toString() {
         String completionString = this.isDone ? "[T][x]" : "[T][ ]";

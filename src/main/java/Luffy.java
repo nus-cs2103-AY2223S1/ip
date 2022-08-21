@@ -1,6 +1,9 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
+/** Luffy is a tasklist program. Built for CS2103T Individual Project 2022 S1.
+ * @author Silas Tay A0233425M
+ */
 public class Luffy {
     public static void main(String[] args) {
         String logo = "██╗░░░░░██╗░░░██╗███████╗███████╗██╗░░░██╗\n"
