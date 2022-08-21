@@ -38,7 +38,7 @@ public class Duke {
                 status[c - 1] = 0;
 //                System.out.println(status[c - 1]);
                 System.out.println("OK, I've marked this task as not done yet: ");
-                System.out.println("[ ] " + arr[c - 1]);
+                System.out.println("[" + taskType[c - 1] + "][ ] " + arr[c - 1]);
                 a = sc.nextLine();
             } else if (a.contains("mark")) {
                 char b = a.charAt(5);
@@ -50,7 +50,31 @@ public class Duke {
 //                System.out.println(c - 1);
 //                System.out.println(status[0]);
                 System.out.println("Nice! I've marked this task as done:");
-                System.out.println("[X] " + arr[c - 1]);
+                System.out.println("[" + taskType[c - 1] + "][X] " + arr[c - 1]);
+                a = sc.nextLine();
+            } else if (a.contains("delete")) {
+                char b = a.charAt(7);
+                int c = Character.getNumericValue(b);
+                int numberTasksLeft = pos - 1;
+                String deletedTask = arr[c - 1];
+
+                if (status[c - 1] == 0) {
+                    System.out.println("Noted. I've removed this task:\n" +
+                            "[" + taskType[c - 1] + "][ ] " + deletedTask + "\n" +
+                            "Now you have " + (numberTasksLeft) + " tasks in the list.");
+                } else {
+                    System.out.println("Noted. I've removed this task:\n" +
+                            "[" + taskType[c - 1] + "][X] " + deletedTask + "\n" +
+                            "Now you have " + (numberTasksLeft) + " tasks in the list.");
+                }
+
+                pos--;
+                for (int i = (c - 1); i <= numberTasksLeft; i++) {
+                    arr[i] = arr[i + 1];
+                    status[i] = status[i + 1];
+                    taskType[i] = taskType[i + 1];
+                }
+
                 a = sc.nextLine();
             } else if (a.contains("todo")) {
                 try {
