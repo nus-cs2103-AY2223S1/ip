@@ -82,12 +82,12 @@ public class Duke {
 
     public static void main(String[] args) {
         String logo =
-                  "    _              \n"
-                + "   | |    _   _ _____   ___ _  \n"
+                  "    _\n"
+                + "   | |    _   _ _____   ___ _\n"
                 + "   | |   | | | |  __ \\ /     |\n"
-                + "   | |__ | |_| | |  | |    | |   \n"
-                + "   |____| \\__,_|_|  |_|\\__/|_|   \n";
-        System.out.println(sep + "\nHello. ⛅️\n   This is \n" + logo + "\n   How may I assist you today?\n" + sep);
+                + "   | |__ | |_| | |  | |    | |\n"
+                + "   |____| \\__,_|_|  |_|\\__/|_|\n";
+        System.out.println(sep + "\nHello. ⛅️\n   This is\n" + logo + "\n   How may I assist you today?\n" + sep);
         sc = new Scanner(System.in);
         Task.tasks = new ArrayList<Task>();
         handleCommands(sc);
