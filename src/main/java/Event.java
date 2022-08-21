@@ -1,14 +1,29 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.time.DateTimeException;
+
 public class Event extends Task {
 
     protected String when;
+    protected LocalDate whenDate;
 
     public Event(String description, String when) {
         super(description);
         this.when = when;
+        try {
+            whenDate = LocalDate.parse(this.when);
+        } catch (DateTimeException e) {
+
+        }
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + when + ")";
+        if (whenDate != null) {
+            return "[E]" + super.toString() + " (at: " + whenDate.toString() + ")";
+        } else {
+            return "[E]" + super.toString() + " (at: " + when + ")";
+        }
     }
 }

@@ -70,7 +70,7 @@ public class Duke {
                                 if (split.length < 2) {
                                     throw new DukeException("deadline");
                                 } else {
-                                    String[] temp = split[1].split("/by", 2);
+                                    String[] temp = split[1].split(" /by ", 2);
                                     list.add(new Deadline(temp[0], temp[1]));
                                     System.out.println("Got it. I've added this task:" + "\n\t" +
                                             list.get(list.size() - 1).toString());
@@ -81,7 +81,7 @@ public class Duke {
                                 if (split.length < 2) {
                                     throw new DukeException("event");
                                 } else {
-                                    String[] temp = split[1].split("/at", 2);
+                                    String[] temp = split[1].split(" /at ", 2);
                                     list.add(new Event(temp[0], temp[1]));
                                     System.out.println("Got it. I've added this task:" + "\n\t" +
                                             list.get(list.size() - 1).toString());
