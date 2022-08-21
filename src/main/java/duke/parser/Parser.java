@@ -23,6 +23,8 @@ public class Parser {
           return new ExitCommand();
         case "list":
           return new ListCommand();
+        case "find":
+          return new FindCommand(inputs[1]);
         case "mark":
           return (new MarkCommand(Integer.parseInt(inputs[1]) - 1));
         case "unmark":

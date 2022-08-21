@@ -31,6 +31,26 @@ public class ParserTest {
   }
 
   @Test
+  void testFind() {
+    try {
+      Command command = Parser.parse("find hello");
+      assertEquals(false, command.isExit());
+      assertTrue(command instanceof FindCommand);
+    } catch (Exception e) {
+      fail();
+    }
+
+    try {
+      Parser.parse("find");
+      fail();
+    } catch (DukeException e) {
+      assertEquals("Invalid input format!", e.getMessage());
+    } catch (Exception e) {
+      fail();
+    }
+  }
+
+  @Test
   void testMark() {
     try {
       Command command = Parser.parse("mark 0");

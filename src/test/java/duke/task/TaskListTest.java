@@ -42,5 +42,15 @@ public class TaskListTest {
     } catch (DukeException e) {
       assertEquals("Task 1 does not exist!", e.getMessage());
     }
+
+    try {
+      taskList.add(new Todo("hello", false));
+      taskList.add(new Todo("hi", false));
+      TaskList filtered = taskList.filter("hello");
+      assertEquals(1, filtered.getTaskList().size());
+      assertEquals("1) [T][ ] hello\n", filtered.toString());
+    } catch (Exception e) {
+      fail();
+    }
   }
 }
