@@ -21,6 +21,16 @@ public class TaskList {
         tasks.add(task);
     }
 
+    public ArrayList<Task> find(String s) {
+        ArrayList<Task> result = new ArrayList<>();
+        for (Task task : tasks) {
+            if (task.contains(s)) {
+                result.add(task);
+            }
+        }
+        return result;
+    }
+
     public Task markTask(int index) {
         Task task = tasks.get(index);
         task.markAsDone();
