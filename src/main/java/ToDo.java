@@ -3,8 +3,24 @@ public class ToDo extends Task {
         super(description);
     }
 
+    public static ToDo decode(String encoded, boolean completed) {
+        ToDo todo = new ToDo(encoded);
+        todo.setDone(completed);
+        return todo;
+    }
+
     @Override
-    public String toString() {
-        return String.format("[T]%s", super.toString());
+    public Type getType() {
+        return Type.TODO;
+    }
+
+    @Override
+    public String encodeData() {
+        return this.description;
+    }
+
+    @Override
+    public String getDisplayText() {
+        return this.description;
     }
 }

@@ -6,9 +6,32 @@ import static java.lang.Integer.parseInt;
 
 public class Duke {
     private final ArrayList<Task> tasks;
+    private final Storage storage;
 
     public Duke(String name) {
         this.tasks = new ArrayList<>(100);
+        String fileName = "tasks.txt";
+
+        Storage storage;
+        try {
+            storage = new Storage(fileName);
+        } catch (DukeException e) {
+            this.speak("Unable to save tasks to disk.");
+            storage = null;
+        }
+        this.storage = storage;
+
+        if (storage != null) {
+            try {
+                ArrayList<Task> tasksFromFile = this.storage.loadTasks();
+                if (tasksFromFile.size() > 0) {
+                    this.tasks.addAll(tasksFromFile);
+                    this.speak("%d tasks loaded from file.", tasksFromFile.size());
+                }
+            } catch (DukeException e) {
+                this.speak(e.getMessage());
+            }
+        }
         speak("Hello! I'm %s\nWhat do you need to do?", name);
     }
 
@@ -36,7 +59,7 @@ public class Duke {
         input = input.strip();
         try {
             try {
-                switch (Commands.getCommand(command.toLowerCase())) {
+                switch (Commands.getCommand(command)) {
                     case BYE:
                         goodbye();
                         return false;
@@ -79,8 +102,19 @@ public class Duke {
      */
     private void addTodo(String input) throws DukeException {
         ToDo todo = new ToDo(input);
-        this.tasks.add(todo);
+        addTask(todo);
         speak("Got it. I've added this todo:\n  %s\nNow you have %d tasks in your list", todo, tasks.size());
+    }
+
+    private Task deleteTask(int idx) throws DukeException, IndexOutOfBoundsException {
+        Task task = tasks.remove(idx);
+        if (storage != null) storage.saveTasks(tasks);
+        return task;
+    }
+
+    private void addTask(Task task) throws DukeException {
+        tasks.add(task);
+        if (storage != null) storage.saveTasks(tasks);
     }
 
     /**
@@ -93,7 +127,7 @@ public class Duke {
         if (input.matches("^.* /at .*$")) {
             String[] parts = input.split(" /at ");
             Event event = new Event(parts[0].strip(), parts[1].strip());
-            this.tasks.add(event);
+            addTask(event);
             speak("Got it. I've added this event:\n  %s\nNow you have %d tasks in your list", event, tasks.size());
         } else {
             throw new DukeException("Invalid event format");
@@ -110,7 +144,7 @@ public class Duke {
         if (input.matches("^.* /by .*$")) {
             String[] parts = input.split(" /by ");
             Deadline deadline = new Deadline(parts[0].strip(), parts[1].strip());
-            tasks.add(deadline);
+            addTask(deadline);
             speak("Got it. I've added this deadline:\n  %s\nNow you have %d tasks in your list", deadline, tasks.size());
         } else {
             throw new DukeException("Invalid event format");
@@ -143,6 +177,7 @@ public class Duke {
         } else {
             speak("Ok, I've marked this task as not done yet:\n  %s", task);
         }
+        if (storage != null) storage.saveTasks(tasks);
     }
 
     /**
@@ -154,7 +189,7 @@ public class Duke {
     private void delete(String input) throws DukeException {
         try {
             if (input.matches("^[0-9]+$")) {
-                Task task = tasks.remove(parseInt(input.strip()) - 1);
+                Task task = deleteTask(parseInt(input.strip()) - 1);
                 speak("Noted. I've removed this task:\n  %s\nNow you have %d tasks in your list", task, tasks.size());
             } else {
                 throw new DukeException("Failed to delete task %s", input);

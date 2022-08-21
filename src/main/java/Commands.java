@@ -1,5 +1,6 @@
 public enum Commands {
-    TODO("todo"), EVENT("event"), DEADLINE("deadline"), MARK("mark"), UNMARK("unmark"), DELETE("delete"), LIST("list"), BYE("bye");
+    TODO("todo"), EVENT("event"), DEADLINE("deadline"), MARK("mark"),
+            UNMARK("unmark"), DELETE("delete"), LIST("list"), BYE("bye");
     public final String command;
 
     Commands(String command) {
@@ -8,7 +9,7 @@ public enum Commands {
 
     public static Commands getCommand(String command) throws IllegalArgumentException {
         for (Commands c : Commands.values()) {
-            if (c.command.equals(command)) {
+            if (c.command.compareToIgnoreCase(command) == 0) {
                 return c;
             }
         }
