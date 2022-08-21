@@ -47,6 +47,11 @@ public class Duke {
                 store.add(newTask);
                 System.out.println("Successfully added new task:\n" + newTask +
                         "\nYou have " + store.size() + " task(s) in the list.");
+            } else if (cmd.equals("delete")) {
+                int TaskNo = input.getTaskNumber();
+                Task removed = store.remove(TaskNo);
+                System.out.println("Understood. I have removed this task:\n" + removed +
+                        "\nYou have " + store.size() + " task(s) in the list.");
             } else {
                 throw new DukeException("Unknown command. Please enter a valid command");
             }
