@@ -37,6 +37,8 @@ public class Parser {
             return new Command(CommandType.UNMARK, tasks, input, ui);
         } else if (input.length() >= 6 && input.substring(0, 6).equals("delete")) {
             return new Command(CommandType.DELETE, tasks, input, ui);
+        } else if (input.length() >= 4 && input.substring(0, 4).equals("find")) {
+            return new Command(CommandType.FIND, tasks, input, ui);
         } else {
             return new Command(CommandType.INVALID, tasks, input, ui);
         }
