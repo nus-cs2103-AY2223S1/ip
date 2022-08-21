@@ -1,9 +1,19 @@
-import java.io.*;
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
+
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 
 public class Duke {
     private Scanner scanner;
@@ -66,54 +76,56 @@ public class Duke {
      * @throws IOException Thrown if Buffered reader fails the reading of data
      */
     public void load(File file) throws DukeException, IOException {
-        BufferedReader br = new BufferedReader(new FileReader(file));
-        String data = br.readLine();
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String data = br.readLine();
 
-        while (data != null) {
-            String[] dataDetails = data.split(" \\| ");
-            String command = dataDetails[0];
-            boolean marked; // 1 = marked, 0 = unmarked
-            String description = dataDetails[2];
-            Task task;
+            while (data != null) {
+                String[] dataDetails = data.split(" \\| ");
+                String command = dataDetails[0];
+                boolean marked; // 1 = marked, 0 = unmarked
+                String description = dataDetails[2];
+                Task task;
 
-            if (!dataDetails[1].equals("1")) {
-                if (!dataDetails[1].equals("0")) {
-                    throw new DukeException("☹ OOPS!!! The save file is corrupted, please delete the file and retry!");
+                if (!dataDetails[1].equals("1")) {
+                    if (!dataDetails[1].equals("0")) {
+                        throw new DukeException("☹ OOPS!!! The save file is corrupted, please delete the file and retry!");
+                    } else {
+                        marked = false;
+                    }
                 } else {
-                    marked = false;
+                    marked = true;
                 }
-            } else {
-                marked = true;
-            }
 
-            switch (command) {
-            case("T"):
-                task = new Todo(description);
-                break;
-            case("D"):
-                if (dataDetails.length != 4) {
-                    throw new DukeException("☹ OOPS!!! A Deadline task is corrupted!");
+                switch (command) {
+                case("T"):
+                    task = new Todo(description);
+                    break;
+                case("D"):
+                    if (dataDetails.length != 4) {
+                        throw new DukeException("☹ OOPS!!! A Deadline task is corrupted!");
+                    }
+                    Date deadlineDate = parseDate(dataDetails[3]);
+                    task = new Deadline(description, deadlineDate);
+                    break;
+                case("E"):
+                    if (dataDetails.length != 4) {
+                        throw new DukeException("☹ OOPS!!! An Event task is corrupted!");
+                    }
+                    Date eventDate = parseDate(dataDetails[3]);
+                    task = new Event(description, eventDate);
+                    break;
+                default:
+                    throw new DukeException("☹ OOPS!!! The save file is corrupted, please delete the file and retry!");
                 }
-                task = new Deadline(description, dataDetails[3]);
-                break;
-            case("E"):
-                if (dataDetails.length != 4) {
-                    throw new DukeException("☹ OOPS!!! An Event task is corrupted!");
+
+                if (marked) {
+                    task.markAsDone();
                 }
-                task = new Event(description, dataDetails[3]);
-                break;
-            default:
-                throw new DukeException("☹ OOPS!!! The save file is corrupted, please delete the file and retry!");
-            }
+                addTask(task);
 
-            if (marked) {
-                task.markAsDone();
+                data = br.readLine();
             }
-            addTask(task);
-
-            data = br.readLine();
         }
-
         System.out.println("I have reloaded your saved file ☺!");
     }
 
@@ -243,12 +255,17 @@ public class Duke {
      * @throws DukeException Exception if deadline task has no description
      */
     public void deadlineTask(String[] input) throws DukeException {
-        String[] deadlineDetails = input[1].split(" /by ", 2);
+        try {
+            String[] deadlineDetails = input[1].split(" /by ", 2);
 
-        if (deadlineDetails.length == 2) {
-            Deadline deadline = new Deadline(deadlineDetails[0], deadlineDetails[1]);
-            addTask(deadline);
-        } else {
+            if (deadlineDetails.length == 2) {
+                Date date = parseDate(deadlineDetails[1]);
+                Deadline deadline = new Deadline(deadlineDetails[0], date);
+                addTask(deadline);
+            } else {
+                throw new DukeException("☹ OOPS!!! Please follow the syntax for an 'deadline' command: event [description] /by [date].");
+            }
+        } catch (IndexOutOfBoundsException e) {
             throw new DukeException("☹ OOPS!!! Please follow the syntax for an 'deadline' command: event [description] /by [date].");
         }
     }
@@ -259,14 +276,37 @@ public class Duke {
      * @throws DukeException Exception if event task has no description
      */
     public void eventTask(String[] input) throws DukeException {
-        String[] eventDetails = input[1].split(" /at ", 2);
+        try {
+            String[] eventDetails = input[1].split(" /at ", 2);
 
-        if (eventDetails.length == 2) {
-            Event event = new Event(eventDetails[0], eventDetails[1]);
-            addTask(event);
-        } else {
+            if (eventDetails.length == 2) {
+                Date date = parseDate(eventDetails[1]);
+                Event event = new Event(eventDetails[0], date);
+                addTask(event);
+            } else {
+                throw new DukeException("☹ OOPS!!! Please follow the syntax for an 'event' command: event [description] /at [date].");
+            } 
+        } catch (IndexOutOfBoundsException e) {
             throw new DukeException("☹ OOPS!!! Please follow the syntax for an 'event' command: event [description] /at [date].");
         }
+    }
+
+    /**
+     * Handles the parsing of dates for Deadlines/Events
+     * @param input String input of date
+     * @return Date object used to construct Deadline/Event
+     * @throws DukeException Exception if date format is wrong
+     */
+    public Date parseDate(String input) throws DukeException{
+        try {
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate parsed = LocalDate.parse(input, dtf);
+
+            return new Date(parsed);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("☹ OOPS!!! Please follow the Date and Time Format: yyyy-MM-dd [2000-01-01]");
+        }
+
     }
 
     /**
