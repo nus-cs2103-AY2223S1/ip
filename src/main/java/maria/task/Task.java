@@ -1,3 +1,5 @@
+package maria.task;
+
 public abstract class Task {
 
     private final String name;

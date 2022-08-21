@@ -1,5 +1,4 @@
-import java.util.List;
-import java.util.Scanner;
+package maria.task;
 
 public class TaskTodo extends Task{
 

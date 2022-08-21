@@ -1,3 +1,5 @@
+package maria;
+
 import java.util.Scanner;
 
 public class Ui {
@@ -15,7 +17,7 @@ public class Ui {
     public void showInstructions() {
 
         System.out.println("==========================");
-        System.out.println("Hey, I am Maria. I can manage your tasks for you"); // Welcome text
+        System.out.println("Hey, I am maria.Maria. I can manage your tasks for you"); // Welcome text
         System.out.println("Type 'todo <name> <done (true/false)>' to create a todo.");
         System.out.println("Type 'deadline <name> <done (true/false)> <deadline (YYYY-MM-DD)>' to create a task with deadline.");
         System.out.println("Type 'event <name> <done (true/false)> <start (YYYY-MM-DD)> <end (YYYY-MM-DD)>' to create an event with a start and end time.");
@@ -37,7 +39,7 @@ public class Ui {
     }
 
     public String readCommand() {
-        System.out.print("Type in your command for Maria: ");
+        System.out.print("Type in your command for maria.Maria: ");
         return this.scanner.nextLine();
     }
 

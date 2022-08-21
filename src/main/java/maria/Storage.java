@@ -1,6 +1,6 @@
-import java.io.BufferedWriter;
+package maria;
+
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;

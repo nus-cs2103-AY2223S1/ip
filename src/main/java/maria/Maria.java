@@ -1,3 +1,9 @@
+package maria;
+
+import maria.command.Command;
+import maria.task.TaskList;
+import maria.util.StorageConverter;
+
 public class Maria {
 
     private final Ui ui;

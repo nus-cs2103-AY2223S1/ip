@@ -1,3 +1,9 @@
+package maria.command;
+
+import maria.Storage;
+import maria.Ui;
+import maria.task.TaskList;
+
 public class CommandExit extends Command {
 
     @Override

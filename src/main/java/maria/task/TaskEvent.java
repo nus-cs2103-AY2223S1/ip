@@ -1,6 +1,8 @@
+package maria.task;
+
+import maria.util.DukeDateTimeFormatter;
+
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Scanner;
 
 public class TaskEvent extends Task{
 
