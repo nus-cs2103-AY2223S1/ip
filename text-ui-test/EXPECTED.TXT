@@ -19,8 +19,10 @@ The task list now contains 2 task(s).
   [T][ ] task3
 The task list now contains 3 task(s).
 
+> Please input a valid date, e.g. 21 Aug 2022, Aug 21 2022 or 2022-08-21.
+
 > The following deadline task has been added:
-  [D][ ] task4 (by: Monday)
+  [D][ ] task4 (by: 22 Aug 2022 00:00)
 The task list now contains 4 task(s).
 
 > The following event task has been added:
@@ -33,7 +35,7 @@ The task list now contains 5 task(s).
 > 1.[T][X] task1
 2.[T][ ] task2
 3.[T][ ] task3
-4.[D][ ] task4 (by: Monday)
+4.[D][ ] task4 (by: 22 Aug 2022 00:00)
 5.[E][ ] task5 (at: Monday 4pm-5pm)
 
 > The following task has been marked as done
@@ -42,7 +44,7 @@ The task list now contains 5 task(s).
 > 1.[T][X] task1
 2.[T][X] task2
 3.[T][ ] task3
-4.[D][ ] task4 (by: Monday)
+4.[D][ ] task4 (by: 22 Aug 2022 00:00)
 5.[E][ ] task5 (at: Monday 4pm-5pm)
 
 > The following task has been marked as done
@@ -51,16 +53,16 @@ The task list now contains 5 task(s).
 > 1.[T][X] task1
 2.[T][X] task2
 3.[T][ ] task3
-4.[D][ ] task4 (by: Monday)
+4.[D][ ] task4 (by: 22 Aug 2022 00:00)
 5.[E][X] task5 (at: Monday 4pm-5pm)
 
 > The following task has been marked as done
-[D][X] task4 (by: Monday)
+[D][X] task4 (by: 22 Aug 2022 00:00)
 
 > 1.[T][X] task1
 2.[T][X] task2
 3.[T][ ] task3
-4.[D][X] task4 (by: Monday)
+4.[D][X] task4 (by: 22 Aug 2022 00:00)
 5.[E][X] task5 (at: Monday 4pm-5pm)
 
 > The following task has been marked as done
@@ -69,7 +71,7 @@ The task list now contains 5 task(s).
 > 1.[T][X] task1
 2.[T][X] task2
 3.[T][ ] task3
-4.[D][X] task4 (by: Monday)
+4.[D][X] task4 (by: 22 Aug 2022 00:00)
 5.[E][X] task5 (at: Monday 4pm-5pm)
 
 > The following task has been marked as undone
@@ -78,7 +80,7 @@ The task list now contains 5 task(s).
 > 1.[T][ ] task1
 2.[T][X] task2
 3.[T][ ] task3
-4.[D][X] task4 (by: Monday)
+4.[D][X] task4 (by: 22 Aug 2022 00:00)
 5.[E][X] task5 (at: Monday 4pm-5pm)
 
 > The following task has been marked as undone
@@ -87,7 +89,7 @@ The task list now contains 5 task(s).
 > 1.[T][ ] task1
 2.[T][ ] task2
 3.[T][ ] task3
-4.[D][X] task4 (by: Monday)
+4.[D][X] task4 (by: 22 Aug 2022 00:00)
 5.[E][X] task5 (at: Monday 4pm-5pm)
 
 > The following task has been marked as undone
@@ -96,16 +98,16 @@ The task list now contains 5 task(s).
 > 1.[T][ ] task1
 2.[T][ ] task2
 3.[T][ ] task3
-4.[D][X] task4 (by: Monday)
+4.[D][X] task4 (by: 22 Aug 2022 00:00)
 5.[E][ ] task5 (at: Monday 4pm-5pm)
 
 > The following task has been marked as undone
-[D][ ] task4 (by: Monday)
+[D][ ] task4 (by: 22 Aug 2022 00:00)
 
 > 1.[T][ ] task1
 2.[T][ ] task2
 3.[T][ ] task3
-4.[D][ ] task4 (by: Monday)
+4.[D][ ] task4 (by: 22 Aug 2022 00:00)
 5.[E][ ] task5 (at: Monday 4pm-5pm)
 
 > The following task has been marked as undone
@@ -114,7 +116,7 @@ The task list now contains 5 task(s).
 > 1.[T][ ] task1
 2.[T][ ] task2
 3.[T][ ] task3
-4.[D][ ] task4 (by: Monday)
+4.[D][ ] task4 (by: 22 Aug 2022 00:00)
 5.[E][ ] task5 (at: Monday 4pm-5pm)
 
 > Invalid index
@@ -151,8 +153,10 @@ The task list now contains 5 task(s).
 
 > Description of event task cannot be empty.
 
+> Please input a valid date, e.g. 21 Aug 2022, Aug 21 2022 or 2022-08-21.
+
 > The following deadline task has been added:
-  [D][ ] Task 6 (by: Tuesday)
+  [D][ ] Task 6 (by: 23 Aug 2022 00:00)
 The task list now contains 6 task(s).
 
 > The following event task has been added:
@@ -162,9 +166,9 @@ The task list now contains 7 task(s).
 > 1.[T][ ] task1
 2.[T][ ] task2
 3.[T][ ] task3
-4.[D][ ] task4 (by: Monday)
+4.[D][ ] task4 (by: 22 Aug 2022 00:00)
 5.[E][ ] task5 (at: Monday 4pm-5pm)
-6.[D][ ] Task 6 (by: Tuesday)
+6.[D][ ] Task 6 (by: 23 Aug 2022 00:00)
 7.[E][ ] Task 7 (at: Tuesday 1am-2am)
 
 > The following task has been marked as done
@@ -176,9 +180,9 @@ The task list now contains 6 task(s).
 
 > 1.[T][ ] task1
 2.[T][ ] task3
-3.[D][ ] task4 (by: Monday)
+3.[D][ ] task4 (by: 22 Aug 2022 00:00)
 4.[E][ ] task5 (at: Monday 4pm-5pm)
-5.[D][ ] Task 6 (by: Tuesday)
+5.[D][ ] Task 6 (by: 23 Aug 2022 00:00)
 6.[E][ ] Task 7 (at: Tuesday 1am-2am)
 
 > Invalid index
@@ -189,9 +193,9 @@ The task list now contains 6 task(s).
 
 > 1.[T][ ] task1
 2.[T][ ] task3
-3.[D][ ] task4 (by: Monday)
+3.[D][ ] task4 (by: 22 Aug 2022 00:00)
 4.[E][ ] task5 (at: Monday 4pm-5pm)
-5.[D][ ] Task 6 (by: Tuesday)
+5.[D][ ] Task 6 (by: 23 Aug 2022 00:00)
 6.[E][ ] Task 7 (at: Tuesday 1am-2am)
 
 > Goodbye! Have a nice day!
