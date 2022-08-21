@@ -57,7 +57,11 @@ public class Storage {
                 boolean completed = entries[1].equals("1");
                 switch (type) {
                     case DEADLINE:
-                        tasks.add(Deadline.decode(entries[2], completed));
+                        try {
+                            tasks.add(Deadline.decode(entries[2], completed));
+                        } catch (DukeException e) {
+                            break;
+                        }
                         break;
                     case EVENT:
                         tasks.add(Event.decode(entries[2], completed));
