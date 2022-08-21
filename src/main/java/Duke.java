@@ -113,7 +113,7 @@ public class Duke {
                         + DIVIDER);
                 break;
             case "deadline":
-                args = item.split("/by");
+                args = item.split("/by ");
                 try{
                     currTask = new Deadline(args[0], args[1]);
                     tasks.add(currTask);
@@ -126,7 +126,7 @@ public class Duke {
                 }
                 break;
             case "event":
-                args = item.split("/at");
+                args = item.split("/at ");
                 try{
                     currTask = new Event(args[0], args[1]);
                     tasks.add(currTask);
