@@ -1,18 +1,31 @@
-public class Deadline extends Task{
-    protected String by;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
-    public Deadline(String description, String by) {
+public class Deadline extends Task{
+    protected LocalDate by;
+
+    public Deadline(String description, String by) throws DukeException {
         super(description);
-        this.by = by;
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate localDate = LocalDate.parse(by, formatter);
+            this.by = localDate;
+        } catch (DateTimeParseException e) {
+            throw new DukeException("The date included should follow this format: " +
+                    "dd/MM/yyyy");
+        }
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + String.format(" (by: %s)", this.by);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy");
+        String date = this.by.format(formatter);
+        return "[D]" + super.toString() + String.format(" (by: %s)", date);
     }
 
     @Override
-    public String getDate() {
+    public LocalDate getDate() {
         return this.by;
     }
 

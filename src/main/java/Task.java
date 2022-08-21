@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 public abstract class Task {
     protected String description;
     protected boolean isDone;
@@ -40,10 +42,6 @@ public abstract class Task {
     }
 
     @Override
-    /**
-     * Returns a string representation of the task object.
-     * @return A string representation of the task object.
-     */
     public String toString() {
         return String.format("[%s] %s", this.getStatusIcon(), this.description);
     }
@@ -60,7 +58,7 @@ public abstract class Task {
         return this.description;
     }
 
-    public abstract String getDate();
+    public abstract LocalDate getDate();
 
     public abstract String getTaskType();
 }

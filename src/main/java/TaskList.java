@@ -2,9 +2,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
-
 
 public class TaskList {
     private final ArrayList<Task> tasks;
@@ -228,6 +231,8 @@ public class TaskList {
             }
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
+        } catch (DukeException e) {
+            System.out.println("\t" + e.getMessage());
         } finally {
             if (reader != null) {
                 reader.close();
@@ -249,7 +254,7 @@ public class TaskList {
                 String taskType = task.getTaskType();
                 boolean isDone = task.getisDone();
                 String description = task.getDescription();
-                String date = task.getDate();
+                String date = task.getDate().format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
                 String dataToCopy;
                 if (taskType.equals("T")) {
                     dataToCopy = String.format("T,%s,%s,%s", isDone, description,
@@ -278,4 +283,28 @@ public class TaskList {
         }
     }
 
+    public void getTasks(String date) throws DukeException {
+        try {
+            LocalDate parsedDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            StringBuilder stringBuilder = new StringBuilder("\tYour tasks for today include:");
+            int count = 1;
+            for (Task task : this.tasks) {
+                if (task.getTaskType().equals("D") || task.getTaskType().equals("E")) {
+                    if (task.getDate().equals(parsedDate)) {
+                        String formatted = String.format("\n\t%d. %s", count, task);
+                        stringBuilder.append(formatted);
+                        count++;
+                    }
+                }
+            }
+            if (count == 1) {
+                System.out.println(String.format("\tNo tasks on %s",
+                        parsedDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy"))));
+            } else {
+                System.out.println(stringBuilder);
+            }
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Please key in a valid date in this format: dd/MM/yyyy");
+        }
+    }
 }

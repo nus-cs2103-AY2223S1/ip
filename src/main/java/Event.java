@@ -1,18 +1,31 @@
-public class Event extends Task {
-    protected String at;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
-    public Event(String description, String at) {
+public class Event extends Task {
+    protected LocalDate at;
+
+    public Event(String description, String at) throws DukeException {
         super(description);
-        this.at = at;
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate localDate = LocalDate.parse(at, formatter);
+            this.at = localDate;
+        } catch (DateTimeParseException e) {
+            throw new DukeException("The date included should follow this format: " +
+                    "dd/MM/yyyy");
+        }
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + String.format(" (at: %s)", this.at);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy");
+        String date = this.at.format(formatter);
+        return "[E]" + super.toString() + String.format(" (at: %s)", date);
     }
 
     @Override
-    public String getDate() {
+    public LocalDate getDate() {
         return this.at;
     }
 
