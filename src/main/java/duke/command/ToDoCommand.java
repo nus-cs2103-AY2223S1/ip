@@ -5,11 +5,23 @@ import duke.TaskList;
 import duke.Ui;
 import duke.task.ToDo;
 
+/**
+ * Command to execute adding a ToDo to a TaskList
+ * @author Nephelite
+ * @version 0.1
+ */
 public class ToDoCommand extends Command {
     private String command;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Constructor for a ToDoCommand
+     * @param command the command
+     * @param tasks TaskList Duke is using
+     * @param ui Ui Duke is using
+     * @since 0.1
+     */
     public ToDoCommand(String command, TaskList tasks, Ui ui) {
         this.command = command;
         this.tasks = tasks;

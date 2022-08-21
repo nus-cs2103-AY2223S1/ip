@@ -4,17 +4,35 @@ import duke.DukeException;
 import duke.TaskList;
 import duke.Ui;
 
+/**
+ * Command to execute marking a task
+ * @author Nephelite
+ * @version 0.1
+ */
 public class MarkCommand extends Command {
     private String[] splitCommands;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Constructor for a MarkCommand
+     * @param splitCommands the commands split apart into an array
+     * @param tasks TaskList Duke is using
+     * @param ui Ui Duke is using
+     * @since 0.1
+     */
     public MarkCommand(String[] splitCommands, TaskList tasks, Ui ui) {
         this.splitCommands = splitCommands;
         this.tasks = tasks;
         this.ui = ui;
     }
 
+    /**
+     * Checks if a String is a number
+     * @param string
+     * @return true if string is a number. Otherwise, false
+     * @since 0.1
+     */
     private boolean isNumber(String string) {
         char[] numberArray = string.toCharArray();
         for (char c : numberArray) {
