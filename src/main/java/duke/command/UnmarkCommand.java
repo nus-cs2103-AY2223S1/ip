@@ -1,8 +1,9 @@
 package duke.command;
 
 import duke.FileStorage;
-import duke.task.TaskList;
 import duke.Ui;
+import duke.task.TaskList;
+
 
 /**
  * Command used to mark a particular task in the taskList as uncompleted.

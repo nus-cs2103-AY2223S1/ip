@@ -1,8 +1,9 @@
 package duke.task;
 
-import duke.exception.InvalidIndexException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import duke.exception.InvalidIndexException;
 
 /**
  * Encapsulates the various commands and operations for tasks.

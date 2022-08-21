@@ -1,9 +1,10 @@
 package duke.command;
 
 import duke.FileStorage;
+import duke.Ui;
 import duke.task.Task;
 import duke.task.TaskList;
-import duke.Ui;
+
 
 /**
  * Command used to add a todo task into the taskList.
