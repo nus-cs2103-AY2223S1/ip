@@ -4,8 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-
-
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
 
 public class Duke {
 
@@ -22,16 +22,19 @@ public class Duke {
         if (first.equals("deadline")) {
             String[] arr = s.split("/by");
             String desc = arr[0];
-            String time = arr[1];
-            Deadline t = new Deadline(desc, time);
+            String time = arr[1].strip();
+            LocalDate d = LocalDate.parse(time);
+
+            Deadline t = new Deadline(desc, d);
             lst.add(t);
         }
 
         else if (first.equals("event")) {
             String[] arr = s.split("/at");
             String desc = arr[0];
-            String time = arr[1];
-            Event t = new Event(desc, time);
+            String time = arr[1].strip();
+            LocalDate d = LocalDate.parse(time);
+            Event t = new Event(desc, d);
             lst.add(t);
         }
 
