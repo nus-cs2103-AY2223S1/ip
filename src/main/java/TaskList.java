@@ -1,7 +1,6 @@
 import exceptions.EmptyNameException;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class TaskList {
     private ArrayList<Task> taskList;
@@ -25,7 +24,7 @@ public class TaskList {
                 System.out.println(name);
 
             } else {
-                String[] split1 = split[1].split("/");
+                String[] split1 = split[1].split("/", 2);
                 String name = split1[0];
                 String info = split1[1];
                 if(type.equals(TaskTypeEnum.deadline.toString())){
