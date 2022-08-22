@@ -64,17 +64,16 @@ public class Duck {
                             Todo newTodo = new Todo(arguments, false);
                             list.add(newTodo);
                             System.out.println("Added todo " + newTodo + " Quack!");
-
                             break;
                         case "DEADLINE":
                             String[] deadlineArgs = arguments.split("/by");
-                            Deadline newDeadline = new Deadline(deadlineArgs[0], false, deadlineArgs[1]);
+                            Deadline newDeadline = new Deadline(deadlineArgs[0].trim(), false, deadlineArgs[1].trim());
                             list.add(newDeadline);
                             System.out.println("Added new Deadline " + newDeadline + " Quack!");
                             break;
                         case "EVENT":
                             String[] eventArgs = arguments.split("/at");
-                            Event newEvent = new Event(eventArgs[0], false, eventArgs[1]);
+                            Event newEvent = new Event(eventArgs[0].trim(), false, eventArgs[1].trim());
                             list.add(newEvent);
                             System.out.println("Added new Event " + newEvent + " Quack!");
                             break;
