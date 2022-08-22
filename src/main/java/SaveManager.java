@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -41,10 +42,10 @@ public class SaveManager {
                 output.add(new ToDo(saveLine[2], saveLine[1].equals("1")));
                 break;
             case "E":
-                output.add(new Event(saveLine[2], saveLine[3], saveLine[1].equals("1")));
+                output.add(new Event(saveLine[2], LocalDate.parse(saveLine[3]), saveLine[1].equals("1")));
                 break;
             case "D":
-                output.add(new Deadline(saveLine[2], saveLine[3], saveLine[1].equals("1")));
+                output.add(new Deadline(saveLine[2], LocalDate.parse(saveLine[3]), saveLine[1].equals("1")));
                 break;
             }
         }

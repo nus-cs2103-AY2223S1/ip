@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -76,6 +78,8 @@ public class Duke {
                 this.outputMessage(Messages.WRONG_COMMAND_FORMAT[messageState]);
             } catch (MissingArgumentException e) {
                 this.outputMessage(Messages.MISSING_TIME[messageState]);
+            } catch (DateTimeParseException e) {
+                this.outputMessage(Messages.INVALID_TIME[messageState]);
             }
             break;
         case "event":
@@ -85,6 +89,8 @@ public class Duke {
                 this.outputMessage(Messages.WRONG_COMMAND_FORMAT[messageState]);
             } catch (MissingArgumentException e) {
                 this.outputMessage(Messages.MISSING_TIME[messageState]);
+            } catch (DateTimeParseException e) {
+                this.outputMessage(Messages.INVALID_TIME[messageState]);
             }
             break;
         case "delete":
@@ -172,11 +178,11 @@ public class Duke {
         } else if (type == TaskType.DEADLINE) {
             checkCommandTag(command, DEADLINE_TAG);
             String[] args = splitTag(command[1], DEADLINE_TAG);
-            task = new Deadline(args[0], args[1]);
+            task = new Deadline(args[0], LocalDate.parse(args[1]));
         } else {
             checkCommandTag(command, EVENT_TAG);
             String[] args = splitTag(command[1], EVENT_TAG);
-            task = new Event(args[0], args[1]);
+            task = new Event(args[0], LocalDate.parse(args[1]));
         }
         this.taskList.add(task);
         this.outputMessage(Messages.ADD_LIST[this.messageState]);
