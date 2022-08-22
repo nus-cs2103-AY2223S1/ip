@@ -1,7 +1,7 @@
+package duke;
+
 import java.time.DateTimeException;
-import java.util.Date;
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class Duke {
 

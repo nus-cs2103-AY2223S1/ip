@@ -1,3 +1,5 @@
+package duke;
+
 public class Parser {
     public static String[] parseInput(String s) throws InvalidTaskException, EmptyDescriptionException{
         s = s.trim();
@@ -82,7 +84,6 @@ public class Parser {
         } else {
             throw new InvalidTaskException("No valid task descriptor");
         }
-
-
     }
+
 }

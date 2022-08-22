@@ -1,3 +1,5 @@
+package duke;
+
 public class EmptyDescriptionException extends DukeException{
     String typeOf;
     public EmptyDescriptionException(String message, String typeOf) {
