@@ -4,6 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -52,22 +53,27 @@ public class Storage {
      *
      * @throws FileNotFoundException If file cannot be opened by Scanner.
      */
-    protected void load() throws FileNotFoundException {
+    protected ArrayList<Task> load() throws FileNotFoundException {
+        ArrayList<Task> tempList = new ArrayList<>();
+
         if (this.file.exists() && !this.file.isDirectory()) {
             Scanner fileScanner = new Scanner(this.file);
             while (fileScanner.hasNext()) {
                 String line = fileScanner.nextLine();
                 String[] details = line.split(" \\| ");
 
-                // Loads tasks into array list.
                 try {
-                    if (details[0].equals("T")) {
-                        Duke.TASKS.add(new ToDo(details[2], details[1].equals("1")));
-                    } else if (details[0].equals("D")) {
-                        Duke.TASKS.add(new Deadline(details[2], details[3], details[1].equals("1")));
-                    } else if (details[0].equals("E")) {
-                        Duke.TASKS.add(new Event(details[2], details[3], details[1].equals("1")));
-                    } else {
+                    switch (details[0]) {
+                    case "T":
+                        tempList.add(new ToDo(details[2], details[1].equals("1")));
+                        break;
+                    case "D":
+                        tempList.add(new Deadline(details[2], details[3], details[1].equals("1")));
+                        break;
+                    case "E":
+                        tempList.add(new Event(details[2], details[3], details[1].equals("1")));
+                        break;
+                    default:
                         throw new DukeException("File contains lines that cannot be validated as a Task.");
                     }
                 } catch (DukeException e) {
@@ -81,6 +87,8 @@ public class Storage {
                 System.out.println(e.getMessage());
             }
         }
+
+        return tempList;
     }
 
     /**
@@ -100,9 +108,10 @@ public class Storage {
     /**
      * Saves tasks into a duke.txt file.
      *
+     * @param tasks All the tasks to save.
      */
-    protected void save() {
-        for (Task t : Duke.TASKS) {
+    public void save(TaskList tasks) {
+        for (Task t : tasks.getTasks()) {
             // 1 denotes task is done, 0 denotes task is not done.
             String taskDone = t.isDone ? "1" : "0";
             try {
