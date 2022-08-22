@@ -89,4 +89,12 @@ public class TaskList {
         Ui.toggleTask(currTask);
         Storage.save(tasks);
     }
+
+    /**
+     * Calls Ui to print tasks containing regex in pretty UI
+     * @param regex
+     */
+    public void find(String regex) {
+        Ui.find(tasks, regex);
+    }
 }
