@@ -9,7 +9,7 @@ public class Duke {
     public static void main(String[] args) throws DukeException {
         Scanner sc = new Scanner(System.in);
         Task[] taskList = new Task[100];
-        int indCount = 0;
+        int IND_COUNT = 0;
         String buffLine = "    _____________________________________";
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -39,12 +39,12 @@ public class Duke {
                     userReply = sc.nextLine();
                 } else if (userReply.toLowerCase().startsWith("todo")) {
                     try {
-                        taskList[indCount] = new ToDos(userReply.substring(5, userReply.length()));
+                        taskList[IND_COUNT] = new ToDos(userReply.substring(5, userReply.length()));
                         System.out.println(buffLine + "\n" + "    Got it. I've added this task: ");
-                        taskList[indCount].fullDesc();
-                        System.out.println("    Now you have " + String.valueOf(indCount + 1)
+                        taskList[IND_COUNT].fullDesc();
+                        System.out.println("    Now you have " + String.valueOf(IND_COUNT + 1)
                                 + " tasks in this list." + "\n" + buffLine);
-                        indCount++;
+                        IND_COUNT++;
                         userReply = sc.nextLine();
                     } catch (StringIndexOutOfBoundsException t) {
                         System.out.println("☹ OOPS!!! The description of a todo cannot be empty.");
@@ -53,13 +53,13 @@ public class Duke {
                 } else if (userReply.toLowerCase().startsWith("deadline")) {
                     try {
                         int splitPoint = userReply.indexOf("/");
-                        taskList[indCount] = new Deadlines(userReply.substring(9, splitPoint - 1),
+                        taskList[IND_COUNT] = new Deadlines(userReply.substring(9, splitPoint - 1),
                                 userReply.substring(splitPoint + 1, userReply.length()));
                         System.out.println("    Got it. I've added this task: ");
-                        taskList[indCount].fullDesc();
-                        System.out.println("    Now you have " + String.valueOf(indCount + 1)
+                        taskList[IND_COUNT].fullDesc();
+                        System.out.println("    Now you have " + String.valueOf(IND_COUNT + 1)
                                 + " tasks in this list." + "\n" + buffLine);
-                        indCount++;
+                        IND_COUNT++;
                         userReply = sc.nextLine();
                     } catch (StringIndexOutOfBoundsException t) {
                         System.out.println("☹ OOPS!!! The description of a todo cannot be empty.");
@@ -67,17 +67,17 @@ public class Duke {
                     }
                 } else if (userReply.toLowerCase().startsWith("event")) {
                     int splitPoint = userReply.indexOf("/");
-                    taskList[indCount] = new Events(userReply.substring(6, splitPoint - 1),
+                    taskList[IND_COUNT] = new Events(userReply.substring(6, splitPoint - 1),
                         userReply.substring(splitPoint + 1, userReply.length()));
                     System.out.println("    Got it. I've added this task: ");
-                    taskList[indCount].fullDesc();
-                    System.out.println("    Now you have " + String.valueOf(indCount + 1)
+                    taskList[IND_COUNT].fullDesc();
+                    System.out.println("    Now you have " + String.valueOf(IND_COUNT + 1)
                             + " tasks in this list." + "\n" + buffLine);
-                    indCount++;
+                    IND_COUNT++;
                     userReply = sc.nextLine();
                 } else if (userReply.toLowerCase().startsWith("list")){
                     System.out.println(buffLine);
-                    for (int i = 0; i <  indCount; i++) {
+                    for (int i = 0; i <  IND_COUNT; i++) {
                         System.out.println("    " + (i + 1) + ". " + taskList[i].stringDesc());
                     }
                     System.out.println(buffLine);
@@ -85,11 +85,11 @@ public class Duke {
                 } else if (userReply.toLowerCase().startsWith("delete")) {
                     System.out.println(buffLine + "\n    Noted. I've removed this task: ");
                     taskList[Character.getNumericValue(userReply.charAt(7)) - 1].fullDesc();
-                    for (int i = userReply.charAt(7) - 1; i < indCount; i++) {
+                    for (int i = userReply.charAt(7) - 1; i < IND_COUNT; i++) {
                         taskList[i] = taskList[i + 1];
                     }
-                    indCount--;
-                    System.out.println("    Now you have " + String.valueOf(indCount) +
+                    IND_COUNT--;
+                    System.out.println("    Now you have " + String.valueOf(IND_COUNT) +
                             " tasks in this list." + "\n" + buffLine);
                     userReply = sc.nextLine();
                 }
