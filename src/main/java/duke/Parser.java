@@ -39,6 +39,8 @@ public class Parser {
             return DukeCommandType.DEADLINE;
         case "event":
             return DukeCommandType.EVENT;
+        case "find":
+            return DukeCommandType.FIND;
         default:
             return DukeCommandType.UNKNOWN;
         }

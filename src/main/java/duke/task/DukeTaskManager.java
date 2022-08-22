@@ -1,9 +1,11 @@
 package duke.task;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import duke.command.DukeCommandType;
 import duke.ui.DukeUi;
@@ -76,15 +78,18 @@ public class DukeTaskManager {
             return String.format("Now you have %d tasks in the list\n", size);
         }
     }
+    public void dukeShowAllTasks(){
+        String description = "List of tasks to be done:\n";
+        dukeShowList(description, dukeTasks);
+    }
 
-    public void dukeShowList() {
-        String tasks = "List of tasks to be done:\n";
-        int size = dukeTasks.size();
+    private void dukeShowList(String description, List<Task> tasks) {
+        int size = tasks.size();
         int margin = String.valueOf(size).length();
         for (int i = 0; i < dukeTasks.size(); i++) {
-            tasks += String.format("%" + margin + "d. %s\n", i + 1, dukeTasks.get(i));
+            description += String.format("%" + margin + "d. %s\n", i + 1, dukeTasks.get(i));
         }
-        DukeUi.dukePrint(tasks);
+        DukeUi.dukePrint(description);
     }
 
     private void dukeMarkTask(int i) {
@@ -115,6 +120,12 @@ public class DukeTaskManager {
         } else {
             DukeUi.dukePrint("Error. Task is not in the list\n");
         }
+    }
+
+    public void dukeFindTasksContaining(String query) {
+        String description = "Here are the matching tasks in your list:\n";
+        dukeShowList(description,
+                dukeTasks.stream().filter(task -> task.toString().contains(query)).collect(Collectors.toList()));
     }
 
     public void dukeUpdateTaskStatus(DukeCommandType type, String str) {
