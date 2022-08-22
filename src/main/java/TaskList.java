@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -10,8 +13,35 @@ public class TaskList {
     /** This represents the todo-list to be populated with tasks */
     private ArrayList<Task> items = new ArrayList<>();
 
+    private static String storageDirectory = "./data".replace('/', File.separatorChar);
+    private String filename = "/savedList.txt".replace('/', File.separatorChar);
+    private File storageFileLocation = new File(storageDirectory + filename);
+
+    public TaskList() {
+        File dir = new File(storageDirectory);
+        if (!dir.exists()) {
+            dir.mkdir();
+        }
+        if (!storageFileLocation.exists()) {
+            System.out.println("No previous list found. Creating List ...");
+            try {
+                storageFileLocation.createNewFile();
+            } catch (IOException e) {
+                System.out.println("Uhoh. An error occurred while creating the list. List was not created");
+                System.out.println("Storage of the list will not be persistent.");
+            }
+            System.out.println("New list has been created");
+        }
+        items = FileParser.parseFile(storageFileLocation);
+        if (items.size() > 0) {
+            System.out.println("Here is the list that you have saved previously:");
+            System.out.println(this.toString());
+        }
+    }
+
     /**
      * Insert a new task into the todo-list.
+     * 
      * @param newItem The task to be added
      * @return Prompts indicating the result of the insertion
      * @throws ArrayIndexOutOfBoundsException
@@ -53,7 +83,7 @@ public class TaskList {
         } else {
             return "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
         }
-
+        saveList();
         return String.format(
             "Got it. I've added this task:\n %s\nNow you have %d tasks in the list.",
             items.get( items.size() - 1).toString(),
@@ -62,6 +92,7 @@ public class TaskList {
 
     /**
      * Mark an item in the list as done.
+     * 
      * @param index The index of the task to be marked as done
      * @return Prompt indicating the result of the marking
      * @throws ArrayIndexOutOfBoundsException
@@ -72,11 +103,14 @@ public class TaskList {
         if (index >=  items.size()) {
             throw new ArrayIndexOutOfBoundsException();
         }
-        return items.get(index).markTask();
+        String result = items.get(index).markTask();
+        saveList();
+        return result;
     }
 
     /**
      * Unmark an item in the list.
+     * 
      * @param index The index of the task to be unmarked as done
      * @return Prompt indicating the result of the unmarking
      * @throws ArrayIndexOutOfBoundsException
@@ -87,7 +121,9 @@ public class TaskList {
         if (index >=  items.size()) {
             throw new ArrayIndexOutOfBoundsException();
         }
-        return items.get(index).unmarkTask();
+        String result = items.get(index).unmarkTask();
+        saveList();
+        return result;
     }
 
     public String deleteItem(int index) 
@@ -96,14 +132,17 @@ public class TaskList {
         if (index >=  items.size()) {
             throw new ArrayIndexOutOfBoundsException();
         }
+        Task removedItem = items.remove(index);
+        saveList();     
         return String.format(
             "Noted. I've removed this task:\n %s\nNow you have %d tasks in the list.",
-            items.remove(index).toString(),
+            removedItem.toString(),
             items.size());
     }
 
     /**
      * Print the output in customised format.
+     * 
      * @param list The list to print
      * @return String representation of the todo-list
      */
@@ -118,4 +157,19 @@ public class TaskList {
         }
         return res;
     }
+
+    private void saveList() {
+        try {
+            FileWriter listWriter = new FileWriter(storageFileLocation);
+            for (Task task : items) {
+                listWriter.write(task.encodeForStorage() + "\n");
+            }
+            listWriter.close();
+
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
 }

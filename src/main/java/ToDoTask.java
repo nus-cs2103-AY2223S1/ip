@@ -8,15 +8,10 @@ public class ToDoTask extends Task{
      * @param description A description of the todo
      */
     public ToDoTask(String description) {
-        super(description);
+        super(description, TaskType.TODO);
     }
 
-    /**
-     * Returns tthe string representation of the todo
-     * @return String representation of the todo
-     */
-    @Override
-    public String toString() {
-        return String.format("[T]%s", super.toString());
+    public ToDoTask(String description, boolean isMarked) {
+        super(description, TaskType.TODO, isMarked);
     }
 }

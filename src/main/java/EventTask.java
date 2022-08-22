@@ -13,7 +13,12 @@ public class EventTask extends Task{
      * @param period The time period for the event
      */
     public EventTask(String description, String period) {
-        super(description);
+        super(description, TaskType.EVENT);
+        this.period = period;
+    }
+
+    public EventTask(String description, String period, boolean isMarked) {
+        super(description, TaskType.EVENT, isMarked);
         this.period = period;
     }
 
@@ -23,6 +28,11 @@ public class EventTask extends Task{
      */
     @Override
     public String toString() {
-        return String.format("[E]%s (at: %s)", super.toString(), this.period);
+        return String.format("%s (at: %s)", super.toString(), this.period);
+    }
+
+    @Override
+    public String encodeForStorage() {
+        return String.format("%s|%s", super.encodeForStorage(), this.period);
     }
 }

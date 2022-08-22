@@ -12,10 +12,14 @@ public class DeadlineTask extends Task{
      * @param deadline The time at which the task will expire
      */
     public DeadlineTask(String description, String deadline) {
-        super(description);
+        super(description, TaskType.DEADLINE);
         this.deadline = deadline;
     }
 
+    public DeadlineTask(String description, String deadline, boolean isMarked) {
+        super(description, TaskType.DEADLINE, isMarked);
+        this.deadline = deadline;
+    }
 
     /**
      * Returns tthe string representation of the deadline.
@@ -23,6 +27,11 @@ public class DeadlineTask extends Task{
      */
     @Override
     public String toString() {
-        return String.format("[D]%s (by: %s)", super.toString(), this.deadline);
+        return String.format("%s (by: %s)", super.toString(), this.deadline);
+    }
+
+    @Override
+    public String encodeForStorage() {
+        return String.format("%s|%s", super.encodeForStorage(), this.deadline);
     }
 }
