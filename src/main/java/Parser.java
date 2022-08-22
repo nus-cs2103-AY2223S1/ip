@@ -10,6 +10,18 @@ public class Parser {
     private static final String eventBreak = "/at ";
     private static final String deadlineBreak = "/by ";
 
+    public static Pair<String, String> parseInput(String input) {
+        String[] splitInput = input.trim().split(" ", 2);
+        String command = splitInput[0].toLowerCase();
+        String args;
+        try {
+            args = splitInput[1];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            args = "";
+        }
+        return new Pair<String, String>(command, args);
+    }
+
     public static Pair<String, LocalDateTime> parseEvent(String input) throws DaveException {
         if (input.equals("")) {
             throw new DaveException("( ; ω ; ) Oh nyo!!! The description of an event cannot be empty!");

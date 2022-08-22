@@ -21,15 +21,7 @@ public class Dave2 {
         System.out.println(printable);
     }
 
-    public static void inputHandling(String input) {
-        String[] splitInput = input.trim().split(" ", 2);
-        String command = splitInput[0].toLowerCase();
-        String args;
-        try {
-            args = splitInput[1];
-        } catch (ArrayIndexOutOfBoundsException e) {
-            args = "";
-        }
+    public static void commandLogic(String command, String args) {
         try {
             switch (command) {
                 case "bye":
@@ -79,7 +71,8 @@ public class Dave2 {
             System.out.println(line + "Hello, I'm\n" + logo + "\nHow can I help ùwú?\n" + line);
 
             while (running) {
-                inputHandling(scanner.nextLine());
+                Pair<String, String> inputData = Parser.parseInput(scanner.nextLine());
+                commandLogic(inputData.getHead(), inputData.getTail());
             }
 
             saveState.save(tasks);
