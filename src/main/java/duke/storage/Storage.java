@@ -14,9 +14,17 @@ import duke.task.Deadline;
 import duke.task.TaskList;
 import duke.ui.DukeException;
 
+/**
+ * Class that loads in file data and save file data of the program.
+ */
 public class Storage {
     private final File file;
 
+    /**
+     * Constructor of Storage.
+     * Checks if file and directory exists, if it does not, create one its place.
+     * @throws IOException If an error occurs when making the file.
+     */
     public Storage() throws IOException {
         File directory = new File("data/");
         if (!directory.exists()) {
@@ -31,6 +39,12 @@ public class Storage {
         this.file = file;
     }
 
+    /**
+     * Loads in the file data of previous Tasks when the program is first started.
+     * @return The ArrayList of Tasks from the saved file.
+     * @throws DukeException If data in file has some errors.
+     * @throws IOException If error occurs when reading the file.
+     */
     public ArrayList<Task> loadFile() throws DukeException, IOException {
         Scanner sc = new Scanner(file);
         ArrayList<Task> tasks = new ArrayList<>();
@@ -59,6 +73,11 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Updates the file according to current Tasks in program.
+     * @param tasks The list of Tasks currently in program.
+     * @throws IOException If error occurs when creating FileWriter.
+     */
     public void writeFile(TaskList tasks) throws IOException {
         FileWriter fw = new FileWriter("data/duke.txt");
         StringBuilder sb = new StringBuilder();

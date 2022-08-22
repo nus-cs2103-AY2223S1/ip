@@ -11,12 +11,20 @@ import java.io.IOException;
 
 import java.time.format.DateTimeParseException;
 
+/**
+ * Main class for Duke program.
+ * Keeps track of tasks for user.
+ */
 public class Duke {
     private TaskList tasks;
     private Ui ui;
     private Storage storage;
     private boolean isEnd;
 
+    /**
+     * Constructor for Duke class to initialise program.
+     * Initialises the TaskList, Ui, and Storage.
+     */
     public Duke() {
         this.ui = new Ui();
         try {
@@ -30,6 +38,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Main driver function for Duke program.
+     */
     private void run() {
         this.ui.printIntro();
         while (!this.isEnd) {
