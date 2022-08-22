@@ -1,6 +1,8 @@
 public class Events extends Task {
+
     private static final int SKIP_EVENT_COMMAND = 6;
     private static final int SKIP_AT_COMMAND = 4;
+    private static final String ID = "[E]";
     private final String time;
 
     private static String process(String command, boolean getDetail) {
@@ -21,18 +23,23 @@ public class Events extends Task {
     }
 
     @Override
-    public Task markDone() {
+    String getId() {
+        return ID;
+    }
+
+    @Override
+    Task markDone() {
         return new Events(super.getDetail(), true, this.time);
     }
 
     @Override
-    public Task unmarkDone() {
+    Task unmarkDone() {
         return new Events(super.getDetail(), false, this.time);
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString()
+        return ID + super.toString()
                 + String.format("(at: %s)", this.time);
     }
 }

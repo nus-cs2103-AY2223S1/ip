@@ -1,4 +1,7 @@
 public class ToDos extends Task {
+
+    private static final String ID = "[T]";
+
     ToDos(String detail, boolean isDone) {
         super(detail, isDone);
     }
@@ -6,6 +9,10 @@ public class ToDos extends Task {
         super(detail);
     }
 
+    @Override
+    String getId() {
+        return ID;
+    }
     @Override
     public Task markDone() {
         return new ToDos(super.getDetail(), true);
@@ -18,6 +25,6 @@ public class ToDos extends Task {
 
     @Override
     public String toString() {
-        return "[T]" + super.toString();
+        return ID + super.toString();
     }
 }

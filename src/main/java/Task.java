@@ -15,6 +15,8 @@ abstract class Task {
 
     abstract Task unmarkDone();
 
+    abstract String getId();
+
     String getDetail() {
         return this.detail;
     }
@@ -26,7 +28,7 @@ abstract class Task {
     @Override
     public boolean equals(Object otherTask) {
         if (otherTask instanceof Task) {
-            return ((Task) otherTask).detail.equals(this.detail);
+            return ((Task) otherTask).getDetail().equals(this.detail);
         }
         return false;
     }

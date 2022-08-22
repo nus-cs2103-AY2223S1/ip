@@ -1,6 +1,7 @@
 public class Deadlines extends Task {
     private static final int SKIP_DEADLINE_COMMAND = 9;
     private static final int SKIP_BY_COMMAND = 4;
+    private static final String ID = "[D]";
     private final String time;
 
     private static String process(String command, boolean getDetail) {
@@ -30,8 +31,13 @@ public class Deadlines extends Task {
     }
 
     @Override
+    String getId() {
+        return ID;
+    }
+
+    @Override
     public String toString() {
-        return "[D]" + super.toString()
+        return ID + super.toString()
                 + String.format("(by: %s)", this.time);
     }
 }
