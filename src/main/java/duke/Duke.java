@@ -1,9 +1,11 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+package duke;
+
+import exceptions.DukeException;
+import utils.Parser;
+import utils.Storage;
+import utils.TaskList;
+import utils.Ui;
+
 import java.util.Scanner;
 
 /**
@@ -43,7 +45,6 @@ public class Duke {
         Ui.welcomeUser();
         Scanner sc = new Scanner(System.in);
         while (sc.hasNext()) {
-            this.taskList.printTaskList();
             String s = sc.nextLine();
             String[] arr = s.split(" ");
             if (s.equals("bye")) {

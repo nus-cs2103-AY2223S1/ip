@@ -1,4 +1,7 @@
-import java.util.List;
+package utils;
+
+import duke.Duke;
+import exceptions.DukeException;
 
 public class Parser {
 
@@ -58,7 +61,6 @@ public class Parser {
                         i = Integer.parseInt(arr[1]) - 1;
                         if (i >= 0 && i < taskList.getSize()) {
                             taskList.delete(i);
-                            System.out.println("delete item at index " + i);
                             storage.save(taskList);
                         } else {
                             Ui.sendMessage("Please enter an integer within range.");

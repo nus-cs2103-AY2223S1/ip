@@ -1,3 +1,7 @@
+package utils;
+
+import entities.Task;
+
 import java.util.List;
 
 public class Ui {

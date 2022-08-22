@@ -1,3 +1,5 @@
+package exceptions;
+
 /**
  * Custom exception class for handling exception unique to Duke.
  */

@@ -1,6 +1,8 @@
+package entities;
+
+import entities.Task;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 public class Deadline extends Task {
     /**
