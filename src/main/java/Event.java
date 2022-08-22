@@ -20,4 +20,17 @@ public class Event extends Task {
     public String toString() {
         return "[E]" + super.toString() + " (at: " + this.at + ")";
     }
+
+    /**
+     * Gets the string representation of this task for storage in a file.
+     *
+     * @return a String containing the task name, description, whether it is
+     *         completed, and the due date.
+     */
+    public String encode() {
+        return String.format("%s # %s # %s",
+                "E",
+                super.encode(),
+                this.at);
+    }
 }

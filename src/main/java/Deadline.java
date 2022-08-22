@@ -20,4 +20,17 @@ public class Deadline extends Task {
     public String toString() {
         return "[D]" + super.toString() + " (by: " + by + ")";
     }
+
+    /**
+     * Gets the string representation of this task for storage in a file.
+     *
+     * @return a String containing the task name, description, whether it is
+     *         completed, and the due date.
+     */
+    public String encode() {
+        return String.format("%s # %s # %s",
+                "D",
+                super.encode(),
+                this.by);
+    }
 }

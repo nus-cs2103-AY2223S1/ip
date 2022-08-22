@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public class Duke {
     private static ArrayList<Task> inputs = new ArrayList<>();
+    private static FileHandler fileHandler = new FileHandler();
 
     /**
      * The main program loop.
@@ -20,6 +21,7 @@ public class Duke {
                            + "\nWhat can I do for you?");
 
         Scanner sc = new Scanner(System.in);
+        Duke.inputs = Duke.fileHandler.getTasks();
 
         boolean flag = true; // flag indicating if the loop should continue
         while (flag && sc.hasNextLine()) {
@@ -126,6 +128,9 @@ public class Duke {
 
         // Print message
         printAddedTask(newDeadline);
+
+        // Update data file
+        Duke.fileHandler.saveTasks(Duke.inputs);
     }
 
     /**
@@ -149,6 +154,9 @@ public class Duke {
 
         // Print message
         printAddedTask(newDeadline);
+
+        // Update data file
+        Duke.fileHandler.saveTasks(Duke.inputs);
     }
 
     /**
@@ -182,6 +190,9 @@ public class Duke {
 
         // Print message
         printAddedTask(newDeadline);
+
+        // Update data file
+        Duke.fileHandler.saveTasks(Duke.inputs);
     }
 
     /**
@@ -232,6 +243,9 @@ public class Duke {
         // Print message
         System.out.println("Nice! I've marked this task as done:\n"+
                            selectedTask);
+
+        // Update data file
+        Duke.fileHandler.saveTasks(Duke.inputs);
     }
 
     /**
@@ -256,6 +270,9 @@ public class Duke {
         // Print message
         System.out.println("OK, I've marked this task as not done yet:\n"+
                            selectedTask);
+
+        // Update data file
+        Duke.fileHandler.saveTasks(Duke.inputs);
     }
 
 
@@ -273,5 +290,8 @@ public class Duke {
         System.out.println(removedTask);
         System.out.println(String.format("Now you have %d tasks in the list.",
                                          inputs.size()));
+
+        // Update data file
+        Duke.fileHandler.saveTasks(Duke.inputs);
     }
 }
