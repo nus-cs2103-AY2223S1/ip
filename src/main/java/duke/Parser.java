@@ -5,7 +5,17 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Parser class deals with making sense of the user command.
+ */
 public class Parser {
+    /**
+     * Parses the command typed by the user.
+     *
+     * @param str the string input by the user
+     * @param tasks the TaskList
+     * @throws DukeException if command is invalid
+     */
     public static void parseCommand(String str, TaskList tasks) throws DukeException {
         String[] splitStr = str.split(" ", 2);
         switch (splitStr[0]) {
@@ -35,6 +45,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses a string into type LocalDateTime.
+     *
+     * @param str a string that represents date and time
+     * @return a LocalDateTime representing the date and time
+     * @throws DukeException if the given input is not in the specified format
+     */
     public static LocalDateTime parseDateTime(String str) throws DukeException {
         String[] dateTimeFormat = {
                 "yyyy/MM/dd HHmm",

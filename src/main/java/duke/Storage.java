@@ -8,13 +8,29 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Storage class deals with loading tasks from the file and saving tasks in the file.
+ */
 public class Storage {
     private String filePath;
 
+    /**
+     * Constructor for Storage.
+     *
+     * @param filePath the string that represents the path of the text file to
+     *                 load tasks from or save tasks in
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Returns an ArrayList of Task Objects that is loaded from the text file.
+     * Returns an empty ArrayList if the text file is empty or does not exist.
+     *
+     * @return an ArrayList of Task Objects
+     * @throws DukeException if there is an error in accessing the file
+     */
     public ArrayList<Task> loadData() throws DukeException {
         ArrayList<Task> tasks = new ArrayList<>();
         if (createDukeTextFile()) {
@@ -61,6 +77,12 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Takes in an ArrayList of Task objects and saves them in the text file.
+     *
+     * @param tasks An ArrayList of Task objects
+     * @throws DukeException if there is an error with writing to the text file
+     */
     public void saveData(ArrayList<Task> tasks) throws DukeException {
         try {
             FileWriter writer = new FileWriter(filePath);
@@ -74,6 +96,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Creates a Duke.txt text file.
+     *
+     * @return true if the text file already exists; fakse otherwise
+     * @throws DukeException if an error occured during file creation
+     */
     public boolean createDukeTextFile() throws DukeException {
         boolean isAlreadyCreated = false;
         File dataFolder = new File("data");
