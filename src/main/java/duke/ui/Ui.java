@@ -3,6 +3,7 @@ package duke.ui;
 import duke.task.Task;
 import duke.task.TaskList;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -116,6 +117,17 @@ public class Ui {
     public void printException(Exception e) {
         printLine();
         print(e.getMessage());
+    }
+
+    /**
+     * Prints out all the Tasks that matches the filter.
+     * @param tasks The list of Tasks that match filter.
+     */
+    public void printFilteredTasks(ArrayList<Task> tasks) {
+        print("Here are the matching tasks in your list:");
+        for (int i = 0; i < tasks.size(); i++) {
+            print(String.format("%d. %s", i + 1, tasks.get(i)));
+        }
     }
 
     /**

@@ -6,6 +6,7 @@ import duke.command.UnMarkCommand;
 import duke.command.ByeCommand;
 import duke.command.DeleteCommand;
 import duke.command.ListCommand;
+import duke.command.FindCommand;
 import duke.command.Command;
 
 import duke.task.Deadline;
@@ -29,6 +30,7 @@ public class Parser {
         DEADLINE,
         EVENT,
         DELETE,
+        FIND,
         ELSE
     }
 
@@ -71,6 +73,10 @@ public class Parser {
             int delNum = Integer.parseInt(command.replace("delete ", ""));
             return new DeleteCommand(delNum);
             // Fallthrough
+        case FIND:
+            String findKey = command.replace("find ", "");
+            return new FindCommand(findKey);
+            // Fallthrough
         default:
             throw new DukeException("I'm sorry, but I don't know what that means :-(");
             // Fallthrough
@@ -99,6 +105,8 @@ public class Parser {
             return Inputs.EVENT;
         } else if (command.startsWith("delete")) {
             return Inputs.DELETE;
+        } else if (command.startsWith("find")) {
+            return Inputs.FIND;
         } else {
             return Inputs.ELSE;
         }

@@ -64,4 +64,14 @@ public class TaskList {
     public ArrayList<Task> getTasks() {
         return this.tasks;
     }
+
+    public ArrayList<Task> filterTasks(String keyWord) {
+        ArrayList<Task> result = new ArrayList<>();
+        for (Task t : this.tasks) {
+            if (t.getDescription().contains(keyWord)) {
+                result.add(t);
+            }
+        }
+        return result;
+    }
 }
