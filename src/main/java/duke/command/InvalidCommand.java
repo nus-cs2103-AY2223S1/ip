@@ -1,4 +1,4 @@
-package dwuke.command;
+package duke.command;
 
 /**
  * This class encapsulates an invalid command from the user.

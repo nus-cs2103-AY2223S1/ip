@@ -1,11 +1,11 @@
-package dwuke;
+package duke;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
- * This class deals with dates in Dwuke.
+ * This class deals with dates in Duke.
  */
 public class Date {
     /**

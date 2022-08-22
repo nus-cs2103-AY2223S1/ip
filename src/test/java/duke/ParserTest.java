@@ -1,4 +1,4 @@
-package dwuke;
+package duke;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -27,8 +27,8 @@ public class ParserTest {
                     new String[]{"", ""},
                     Parser.splitArgument("", "/at"));
             fail(); // the test should not reach this line
-        } catch (DwukeException e) {
-            assertEquals("oops!!! /at not fwound", e.getMessage());
+        } catch (DukeException e) {
+            assertEquals("Oops! /at not found.", e.getMessage());
         }
     }
 }

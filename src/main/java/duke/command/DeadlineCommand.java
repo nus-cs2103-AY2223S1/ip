@@ -1,7 +1,7 @@
-package dwuke.command;
+package duke.command;
 
-import dwuke.task.Deadline;
-import dwuke.task.TaskList;
+import duke.task.Deadline;
+import duke.task.TaskList;
 
 /**
  * This class encapsulates a deadline command from the user.

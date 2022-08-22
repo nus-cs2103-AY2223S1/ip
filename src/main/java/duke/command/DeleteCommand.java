@@ -1,14 +1,15 @@
-package dwuke.command;
+package duke.command;
 
-import dwuke.DwukeException;
-import dwuke.task.Task;
-import dwuke.task.TaskList;
+import duke.DukeException;
+import duke.task.Task;
+import duke.task.TaskList;
 
 /**
  * This class encapsulates a delete command from the user.
  */
 public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
+
     private TaskList taskList;
     private int pos;
 
@@ -17,11 +18,11 @@ public class DeleteCommand extends Command {
      *
      * @param taskList The TaskList.
      * @param pos      The position.
-     * @throws DwukeException If the position is not in the TaskList.
+     * @throws DukeException If the position is not in the TaskList.
      */
-    public DeleteCommand(TaskList taskList, int pos) throws DwukeException {
+    public DeleteCommand(TaskList taskList, int pos) throws DukeException {
         if (pos < 0 || pos > taskList.size() - 1) {
-            throw new DwukeException("da wist doesn't have a task with da number :3");
+            throw new DukeException("The list doesn't have a task with that number.");
         }
         this.taskList = taskList;
         this.pos = pos;
@@ -35,7 +36,8 @@ public class DeleteCommand extends Command {
     @Override
     public String execute() {
         Task task = this.taskList.remove(this.pos);
-        return "me've wemoved dis task:\n" + task
-                + "\nnow you have " + this.taskList.size() + " tasks in da wist uWu";
+        return "I've removed this task:\n"
+                + task
+                + "\nNow you have " + this.taskList.size() + " tasks in your list.";
     }
 }

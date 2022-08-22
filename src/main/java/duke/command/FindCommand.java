@@ -1,12 +1,13 @@
-package dwuke.command;
+package duke.command;
 
-import dwuke.task.TaskList;
+import duke.task.TaskList;
 
 /**
  * This class encapsulates a find command from the user.
  */
 public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
+
     private TaskList taskList;
     private String keyword;
 
@@ -29,6 +30,7 @@ public class FindCommand extends Command {
     @Override
     public String execute() {
         TaskList matchingTasks = this.taskList.findTasks(this.keyword);
-        return "hewe awe da matching tasks in youw wist:\n" + matchingTasks;
+        return "Here are the matching tasks in your list:\n"
+                + matchingTasks;
     }
 }

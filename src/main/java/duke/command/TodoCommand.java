@@ -1,7 +1,7 @@
-package dwuke.command;
+package duke.command;
 
-import dwuke.task.TaskList;
-import dwuke.task.Todo;
+import duke.task.TaskList;
+import duke.task.Todo;
 
 /**
  * This class encapsulates a to-do command from the user.

@@ -1,5 +1,0 @@
-T;0;this
-E;1;hello;12-02-1927
-D;1;die;29-12-2000
-E;0;hi;09-09-2009
-T;1;hello there

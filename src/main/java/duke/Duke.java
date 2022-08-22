@@ -1,33 +1,34 @@
-package dwuke;
+package duke;
 
-import dwuke.command.Command;
-import dwuke.command.ExitCommand;
-import dwuke.task.TaskList;
+import duke.command.Command;
+import duke.command.ExitCommand;
+import duke.task.TaskList;
 
 /**
- * Driver class of Dwuke.
+ * Driver class of Duke.
  */
-public class Dwuke {
+public class Duke {
     private Ui ui;
     private Storage storage;
     private TaskList taskList;
 
     /**
-     * Creates a new Dwuke to talk to.
+     * Creates a new Duke to talk to.
      */
-    public Dwuke() {
+    public Duke() {
         this.ui = new Ui();
         this.storage = new Storage();
+
         try {
             this.taskList = storage.load();
-        } catch (DwukeException e) {
+        } catch (DukeException e) {
             ui.showErrorMessage(e);
             this.taskList = new TaskList();
         }
     }
 
     /**
-     * Runs Dwuke until it is stopped.
+     * Runs Duke until it is stopped.
      */
     public void run() {
         this.start();
@@ -49,21 +50,21 @@ public class Dwuke {
 
                 this.ui.echo(command.execute());
                 this.storage.save(this.taskList);
-            } catch (DwukeException e) {
+            } catch (DukeException e) {
                 this.ui.showErrorMessage(e);
             }
         }
     }
 
     /**
-     * Starts Dwuke by displaying a welcome message.
+     * Starts Duke by displaying a welcome message.
      */
     public void start() {
         this.ui.showWelcomeMessage();
     }
 
     /**
-     * Stops Dwuke after displaying a goodbye message.
+     * Stops Duke after displaying a goodbye message.
      */
     public void stop() {
         this.ui.showGoodbyeMessage();
@@ -71,12 +72,12 @@ public class Dwuke {
     }
 
     /**
-     * Runs Dwuke from here.
+     * Runs Duke from here.
      *
      * @param args Ignore.
      */
     public static void main(String[] args) {
-        Dwuke dwuke = new Dwuke();
-        dwuke.run();
+        Duke duke = new Duke();
+        duke.run();
     }
 }

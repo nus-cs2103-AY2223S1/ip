@@ -1,6 +1,6 @@
-package dwuke.task;
+package duke.task;
 
-import dwuke.DwukeException;
+import duke.DukeException;
 
 /**
  * This class encapsulates a task set by the user.
@@ -13,11 +13,11 @@ public abstract class Task {
      * Creates a Task with the given description.
      *
      * @param description The description for the Task.
-     * @throws DwukeException If the description is empty.
+     * @throws DukeException If the description is empty.
      */
-    Task(String description) throws DwukeException {
+    Task(String description) throws DukeException {
         if (description.equals("")) {
-            throw new DwukeException("da descwiption of a twask cannot be empty.");
+            throw new DukeException("The description of a task cannot be empty.");
         }
         this.description = description;
         this.isDone = false;
@@ -28,11 +28,11 @@ public abstract class Task {
      *
      * @param description The description for the Task.
      * @param isDone      The completion status of the Task.
-     * @throws DwukeException If the description is empty.
+     * @throws DukeException If the description is empty.
      */
-    Task(String description, boolean isDone) throws DwukeException {
+    Task(String description, boolean isDone) throws DukeException {
         if (description.equals("")) {
-            throw new DwukeException("da descwiption of a twask cannot be empty.");
+            throw new DukeException("The description of a task cannot be empty.");
         }
         this.description = description;
         this.isDone = isDone;
@@ -43,7 +43,7 @@ public abstract class Task {
      *
      * @param isDone The new isDone status of this Task.
      */
-    public void setIsDone(boolean isDone) {
+    public void setDone(boolean isDone) {
         this.isDone = isDone;
     }
 
@@ -62,7 +62,11 @@ public abstract class Task {
      * @return The String encoded from this Task.
      */
     public String encode() {
-        return (this.isDone ? "1" : "0") + ";" + this.description;
+        String status = this.isDone ? "1" : "0";
+        String s = String.format("%s;%s",
+                status,
+                this.description);
+        return s;
     }
 
     /**
@@ -73,6 +77,9 @@ public abstract class Task {
     @Override
     public String toString() {
         String status = this.isDone ? "X" : " ";
-        return "[" + status + "] " + this.description;
+        String s = String.format("[%s] %s",
+                status,
+                this.description);
+        return s;
     }
 }

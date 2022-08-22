@@ -1,7 +1,7 @@
-package dwuke.command;
+package duke.command;
 
-import dwuke.task.Task;
-import dwuke.task.TaskList;
+import duke.task.Task;
+import duke.task.TaskList;
 
 /**
  * This class encapsulates an add command from the user.
@@ -29,7 +29,8 @@ public class AddCommand extends Command {
     @Override
     public String execute() {
         this.taskList.add(this.task);
-        return "me've added dis task:\n  " + this.task
-                + "\nnow you have " + this.taskList.size() + " tasks in da wist uWu";
+        return "I've added this task:\n  "
+                + this.task
+                + "\nNow you have " + this.taskList.size() + " tasks in your list.";
     }
 }

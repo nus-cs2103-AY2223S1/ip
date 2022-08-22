@@ -1,9 +1,9 @@
-package dwuke;
+package duke;
 
 import java.util.Scanner;
 
 /**
- * The user interface of Dwuke.
+ * The user interface of Duke.
  */
 public class Ui {
     private static final int lineLength = 60;
@@ -27,6 +27,7 @@ public class Ui {
      */
     public void showLine() {
         String line = "-".repeat(lineLength);
+
         System.out.println(line);
     }
 
@@ -47,7 +48,7 @@ public class Ui {
      * Prints a welcome message for the user.
      */
     public void showWelcomeMessage() {
-        String welcomeText = "hewwo UwU! am dwuke\nwat can me do fow u?";
+        String welcomeText = "Hello! I'm Duke.\nWhat can I do for you?";
         String indentedText = welcomeText.replaceAll("(?m)^", "\t");
 
         this.showLine();
@@ -59,7 +60,7 @@ public class Ui {
      * Prints a goodbye message for the user.
      */
     public void showGoodbyeMessage() {
-        String goodbyeText = "bwye. am hope to UwU u soon";
+        String goodbyeText = "Bye! Hope to see you again.";
         String indentedText = goodbyeText.replaceAll("(?m)^", "\t");
 
         this.showLine();

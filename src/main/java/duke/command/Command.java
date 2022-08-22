@@ -1,4 +1,4 @@
-package dwuke.command;
+package duke.command;
 
 /**
  * This class encapsulates a command from the user.

@@ -1,14 +1,15 @@
-package dwuke.command;
+package duke.command;
 
-import dwuke.DwukeException;
-import dwuke.task.Task;
-import dwuke.task.TaskList;
+import duke.DukeException;
+import duke.task.Task;
+import duke.task.TaskList;
 
 /**
  * This class encapsulates an unmark command from the user.
  */
 public class UnmarkCommand extends Command {
     public static final String COMMAND_WORD = "unmark";
+
     private TaskList taskList;
     private int pos;
 
@@ -17,11 +18,11 @@ public class UnmarkCommand extends Command {
      *
      * @param taskList The TaskList.
      * @param pos      The position.
-     * @throws DwukeException If the position is not in the TaskList.
+     * @throws DukeException If the position is not in the TaskList.
      */
-    public UnmarkCommand(TaskList taskList, int pos) throws DwukeException {
+    public UnmarkCommand(TaskList taskList, int pos) throws DukeException {
         if (pos < 0 || pos > taskList.size() - 1) {
-            throw new DwukeException("da wist doesn't have a task with da number :3");
+            throw new DukeException("The list doesn't have a task with that number.");
         }
         this.taskList = taskList;
         this.pos = pos;
@@ -35,7 +36,8 @@ public class UnmarkCommand extends Command {
      */
     @Override
     public String execute() {
-        Task task = this.taskList.setIsDone(this.pos, false);
-        return "okies, me've mawked dis task as not done yet:\n" + task;
+        Task task = this.taskList.setDone(this.pos, false);
+        return "Okay, I've marked this task as not done yet:\n"
+                + task;
     }
 }

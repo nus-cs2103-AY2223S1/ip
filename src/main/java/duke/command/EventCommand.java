@@ -1,7 +1,7 @@
-package dwuke.command;
+package duke.command;
 
-import dwuke.task.Event;
-import dwuke.task.TaskList;
+import duke.task.Event;
+import duke.task.TaskList;
 
 /**
  * This class encapsulates an event command from the user.

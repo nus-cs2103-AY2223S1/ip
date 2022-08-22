@@ -1,9 +1,9 @@
-package dwuke.task;
+package duke.task;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import dwuke.DwukeException;
+import duke.DukeException;
 
 /**
  * Stores a list of tasks entered by the user.
@@ -44,9 +44,9 @@ public class TaskList {
      * @param isDone The new isDone status of the Task.
      * @return The Task with its new status.
      */
-    public Task setIsDone(int pos, boolean isDone) {
+    public Task setDone(int pos, boolean isDone) {
         Task task = this.tasks.get(pos);
-        task.setIsDone(isDone);
+        task.setDone(isDone);
         return task;
     }
 
@@ -57,12 +57,11 @@ public class TaskList {
      * @return The removed Task.
      */
     public Task remove(int pos) {
-        Task task = this.tasks.remove(pos);
-        return task;
+        return this.tasks.remove(pos);
     }
 
     /**
-     * Finds all Tasks in this TaskList that contains the given keyword.
+     * Finds all Tasks in this TaskList that contain the given keyword.
      *
      * @param keyword The keyword to search.
      * @return A TaskList containing all matching Tasks.
@@ -95,12 +94,12 @@ public class TaskList {
      *
      * @param encodedTasks the list of Strings to be decoded.
      * @return A TaskList decoded from the given list.
-     * @throws DwukeException If the text(s) in the list is empty, or the format of the date(s) in the list is wrong.
+     * @throws DukeException If the text(s) in the list is empty, or the format of the date(s) in the list is wrong.
      */
-    public static TaskList decode(List<String> encodedTasks) throws DwukeException {
+    public static TaskList decode(List<String> encodedTasks) throws DukeException {
         TaskList decodedTasks = new TaskList();
         for (String s : encodedTasks) {
-            Character taskType = s.charAt(0);
+            char taskType = s.charAt(0);
             String content = s.substring(2);
 
             switch (taskType) {

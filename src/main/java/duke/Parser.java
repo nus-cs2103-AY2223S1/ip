@@ -1,20 +1,20 @@
-package dwuke;
+package duke;
 
-import dwuke.command.Command;
-import dwuke.command.DeadlineCommand;
-import dwuke.command.DeleteCommand;
-import dwuke.command.EventCommand;
-import dwuke.command.ExitCommand;
-import dwuke.command.FindCommand;
-import dwuke.command.InvalidCommand;
-import dwuke.command.ListCommand;
-import dwuke.command.MarkCommand;
-import dwuke.command.TodoCommand;
-import dwuke.command.UnmarkCommand;
-import dwuke.task.Deadline;
-import dwuke.task.Event;
-import dwuke.task.TaskList;
-import dwuke.task.Todo;
+import duke.command.Command;
+import duke.command.DeadlineCommand;
+import duke.command.DeleteCommand;
+import duke.command.EventCommand;
+import duke.command.ExitCommand;
+import duke.command.FindCommand;
+import duke.command.InvalidCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.TodoCommand;
+import duke.command.UnmarkCommand;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.TaskList;
+import duke.task.Todo;
 
 /**
  * This class parses the user input into Commands.
@@ -31,7 +31,6 @@ public class Parser {
         String[] words = userInput.split(" ", 2);
         String commandWord = words[0];
         String argument = words.length > 1 ? words[1] : "";
-        String[] arguments;
 
         try {
             switch (commandWord) {
@@ -46,7 +45,7 @@ public class Parser {
             case TodoCommand.COMMAND_WORD:
                 return new TodoCommand(taskList, new Todo(argument));
             case DeadlineCommand.COMMAND_WORD:
-                arguments = splitArgument(argument, DeadlineCommand.COMMAND_SEPARATOR);
+                String[] arguments = splitArgument(argument, DeadlineCommand.COMMAND_SEPARATOR);
                 return new DeadlineCommand(taskList, new Deadline(arguments[0], arguments[1]));
             case EventCommand.COMMAND_WORD:
                 arguments = splitArgument(argument, EventCommand.COMMAND_SEPARATOR);
@@ -56,12 +55,12 @@ public class Parser {
             case FindCommand.COMMAND_WORD:
                 return new FindCommand(taskList, argument);
             default:
-                throw new DwukeException("am sowwy, but me dun know wat that means :-(");
+                throw new DukeException("I'm sorry, but I don't know what that means.");
             }
-        } catch (DwukeException e) {
+        } catch (DukeException e) {
             return new InvalidCommand(e.getMessage());
         } catch (NumberFormatException e) {
-            return new InvalidCommand("oops!!! dats not a pwopew numbew");
+            return new InvalidCommand("Oops! That's not a proper number.");
         }
     }
 
@@ -71,12 +70,12 @@ public class Parser {
      * @param argument         The String to split.
      * @param commandSeparator The String to split the argument by.
      * @return An array containing the description and date.
-     * @throws DwukeException If the command separator is not found, or if the description or date is empty.
+     * @throws DukeException If the command separator is not found, or if the description or date is empty.
      */
-    public static String[] splitArgument(String argument, String commandSeparator) throws DwukeException {
+    public static String[] splitArgument(String argument, String commandSeparator) throws DukeException {
         int index = argument.indexOf(commandSeparator);
         if (index == -1) {
-            throw new DwukeException(commandSeparator + " not fwound");
+            throw new DukeException(commandSeparator + " not found.");
         }
 
         try {
@@ -84,7 +83,7 @@ public class Parser {
             String date = argument.substring(index + 4);
             return new String[]{description, date};
         } catch (StringIndexOutOfBoundsException e) {
-            throw new DwukeException("da descwiption and date cannot be empty");
+            throw new DukeException("The description and date cannot be empty");
         }
     }
 }

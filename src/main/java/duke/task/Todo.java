@@ -1,6 +1,6 @@
-package dwuke.task;
+package duke.task;
 
-import dwuke.DwukeException;
+import duke.DukeException;
 
 /**
  * This class encapsulates a to-do set by the user.
@@ -12,9 +12,9 @@ public class Todo extends Task {
      * Creates a To-do with the given description.
      *
      * @param description The description for the To-do.
-     * @throws DwukeException If the description is empty.
+     * @throws DukeException If the description is empty.
      */
-    public Todo(String description) throws DwukeException {
+    public Todo(String description) throws DukeException {
         super(description);
     }
 
@@ -23,9 +23,9 @@ public class Todo extends Task {
      *
      * @param description The description for the To-do.
      * @param isDone      The completion status of the To-do.
-     * @throws DwukeException If the description is empty.
+     * @throws DukeException If the description is empty.
      */
-    Todo(String description, boolean isDone) throws DwukeException {
+    Todo(String description, boolean isDone) throws DukeException {
         super(description, isDone);
     }
 
@@ -34,12 +34,12 @@ public class Todo extends Task {
      *
      * @param s The String to decode.
      * @return The To-do decoded from the String.
-     * @throws DwukeException If the String is empty.
+     * @throws DukeException If the String is empty.
      */
-    public static Todo decode(String s) throws DwukeException {
-        String[] parts = s.split(";");
-        boolean isDone = parts[0].equals("1");
-        return new Todo(parts[1], isDone);
+    public static Todo decode(String s) throws DukeException {
+        String[] arguments = s.split(";");
+        boolean isDone = arguments[0].equals("1");
+        return new Todo(arguments[1], isDone);
     }
 
     /**
@@ -49,7 +49,10 @@ public class Todo extends Task {
      */
     @Override
     public String encode() {
-        return SYMBOL + ";" + super.encode();
+        String s = String.format("%c;%s",
+                SYMBOL,
+                super.encode());
+        return s;
     }
 
     /**
@@ -59,6 +62,9 @@ public class Todo extends Task {
      */
     @Override
     public String toString() {
-        return "[" + SYMBOL + "]" + super.toString();
+        String s = String.format("[%c]%s",
+                SYMBOL,
+                super.toString());
+        return s;
     }
 }

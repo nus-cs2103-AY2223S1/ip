@@ -1,11 +1,11 @@
-package dwuke;
+package duke;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import dwuke.task.TaskList;
+import duke.task.TaskList;
 
 /**
  * This class saves and retrieves Tasks to and fro the hard disk.
@@ -16,7 +16,7 @@ public class Storage {
 
     Storage() {
         String userDir = System.getProperty("user.dir");
-        this.filePath = Paths.get(userDir + "/data/dwuke.txt");
+        this.filePath = Paths.get(userDir + "/data/duke.txt");
         this.folderPath = Paths.get(userDir + "/data");
     }
 
@@ -24,14 +24,14 @@ public class Storage {
      * Loads the TaskList that is stored in the filePath.
      *
      * @return The TaskList that has been loaded.
-     * @throws DwukeException If there is a problem with reading the file.
+     * @throws DukeException If there is a problem with reading the file.
      */
-    public TaskList load() throws DwukeException {
+    public TaskList load() throws DukeException {
         try {
             createFile();
             return TaskList.decode(Files.readAllLines(this.filePath));
         } catch (IOException e) {
-            throw new DwukeException(e.getMessage());
+            throw new DukeException(e.getMessage());
         }
     }
 
@@ -39,13 +39,13 @@ public class Storage {
      * Saves the given TaskList in the filePath.
      *
      * @param taskList The TaskList to be saved.
-     * @throws DwukeException If there is a problem with writing to the file.
+     * @throws DukeException If there is a problem with writing to the file.
      */
-    public void save(TaskList taskList) throws DwukeException {
+    public void save(TaskList taskList) throws DukeException {
         try {
             Files.write(this.filePath, taskList.encode());
         } catch (IOException e) {
-            throw new DwukeException(e.getMessage());
+            throw new DukeException(e.getMessage());
         }
     }
 

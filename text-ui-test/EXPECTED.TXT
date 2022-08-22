@@ -1,95 +1,95 @@
 ------------------------------------------------------------
-	hewwo UwU! am dwuke
-	wat can me do fow u?
+	Hello! I'm Duke.
+	What can I do for you?
 ------------------------------------------------------------
 ------------------------------------------------------------
-	me've added dis task:
+	I've added this task:
 	  [T][ ] read CS2103T textbook
-	now you have 1 tasks in da wist uWu
+	Now you have 1 tasks in your list.
 ------------------------------------------------------------
 ------------------------------------------------------------
-	me've added dis task:
+	I've added this task:
 	  [T][ ] read CS2100 textbook
-	now you have 2 tasks in da wist uWu
+	Now you have 2 tasks in your list.
 ------------------------------------------------------------
 ------------------------------------------------------------
-	me've added dis task:
+	I've added this task:
 	  [D][ ] finish math assignment (by: 21 Aug 2022)
-	now you have 3 tasks in da wist uWu
+	Now you have 3 tasks in your list.
 ------------------------------------------------------------
 ------------------------------------------------------------
-	nwice! me've mawked dis task as done:
+	Nice! I've marked this task as done:
 	[T][X] read CS2103T textbook
 ------------------------------------------------------------
 ------------------------------------------------------------
-	oops!!! dats not a pwopew date
+	Oops! That's not a proper date.
 ------------------------------------------------------------
 ------------------------------------------------------------
-	me've added dis task:
+	I've added this task:
 	  [E][ ] career talk (at: 6 Sep 2020)
-	now you have 4 tasks in da wist uWu
+	Now you have 4 tasks in your list.
 ------------------------------------------------------------
 ------------------------------------------------------------
-	oops!!! da wist doesn't have a task with da number :3
+	Oops! The list doesn't have a task with that number.
 ------------------------------------------------------------
 ------------------------------------------------------------
-	nwice! me've mawked dis task as done:
+	Nice! I've marked this task as done:
 	[D][X] finish math assignment (by: 21 Aug 2022)
 ------------------------------------------------------------
 ------------------------------------------------------------
-	okies, me've mawked dis task as not done yet:
+	Okay, I've marked this task as not done yet:
 	[T][ ] read CS2103T textbook
 ------------------------------------------------------------
 ------------------------------------------------------------
-	oops!!! da descwiption of a twask cannot be empty.
+	Oops! The description of a task cannot be empty.
 ------------------------------------------------------------
 ------------------------------------------------------------
-	nwice! me've mawked dis task as done:
+	Nice! I've marked this task as done:
 	[E][X] career talk (at: 6 Sep 2020)
 ------------------------------------------------------------
 ------------------------------------------------------------
-	oops!!! da wist doesn't have a task with da number :3
+	Oops! The list doesn't have a task with that number.
 ------------------------------------------------------------
 ------------------------------------------------------------
-	oops!!! da descwiption and date cannot be empty
+	Oops! The description and date cannot be empty
 ------------------------------------------------------------
 ------------------------------------------------------------
-	hewe awe da tasks in youw wist:
+	Here are the tasks in your list:
 	1.[T][ ] read CS2103T textbook
 	2.[T][ ] read CS2100 textbook
 	3.[D][X] finish math assignment (by: 21 Aug 2022)
 	4.[E][X] career talk (at: 6 Sep 2020)
 ------------------------------------------------------------
 ------------------------------------------------------------
-	hewe awe da matching tasks in youw wist:
+	Here are the matching tasks in your list:
 	1.[T][ ] read CS2103T textbook
 	2.[T][ ] read CS2100 textbook
 ------------------------------------------------------------
 ------------------------------------------------------------
-	me've wemoved dis task:
+	I've removed this task:
 	[T][ ] read CS2100 textbook
-	now you have 3 tasks in da wist uWu
+	Now you have 3 tasks in your list.
 ------------------------------------------------------------
 ------------------------------------------------------------
-	oops!!! /at not fwound
+	Oops! /at not found.
 ------------------------------------------------------------
 ------------------------------------------------------------
-	oops!!! da wist doesn't have a task with da number :3
+	Oops! The list doesn't have a task with that number.
 ------------------------------------------------------------
 ------------------------------------------------------------
-	hewe awe da matching tasks in youw wist:
+	Here are the matching tasks in your list:
 	1.[E][X] career talk (at: 6 Sep 2020)
 ------------------------------------------------------------
 ------------------------------------------------------------
-	hewe awe da matching tasks in youw wist:
+	Here are the matching tasks in your list:
 
 ------------------------------------------------------------
 ------------------------------------------------------------
-	hewe awe da tasks in youw wist:
+	Here are the tasks in your list:
 	1.[T][ ] read CS2103T textbook
 	2.[D][X] finish math assignment (by: 21 Aug 2022)
 	3.[E][X] career talk (at: 6 Sep 2020)
 ------------------------------------------------------------
 ------------------------------------------------------------
-	bwye. am hope to UwU u soon
+	Bye! Hope to see you again.
 ------------------------------------------------------------

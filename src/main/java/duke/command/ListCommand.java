@@ -1,12 +1,13 @@
-package dwuke.command;
+package duke.command;
 
-import dwuke.task.TaskList;
+import duke.task.TaskList;
 
 /**
  * This class encapsulates a list command from the user.
  */
 public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
+
     private TaskList taskList;
 
     /**
@@ -25,6 +26,7 @@ public class ListCommand extends Command {
      */
     @Override
     public String execute() {
-        return "hewe awe da tasks in youw wist:\n" + this.taskList;
+        return "Here are the tasks in your list:\n"
+                + this.taskList;
     }
 }
