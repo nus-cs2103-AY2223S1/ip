@@ -1,7 +1,11 @@
-public class Event extends Task {
-    private String period;
+import java.time.LocalDate;
 
-    public Event(String name, String period) {
+
+public class Event extends Task {
+    private LocalDate date;
+
+
+    public Event(String name, LocalDate date) {
         /**
          * Constructor for Event class. Sets the event name and time period.
          *
@@ -9,17 +13,21 @@ public class Event extends Task {
          * @param period The time period where the event will take place.
          */
         super(name);
-        this.period = period;
+        this.date = date;
+    }
+
+    public boolean isOnDate(LocalDate date) {
+        return this.date.equals(date);
     }
 
     public String toString() {
         /**
          * String representation of an event. Also indicates if the event is done.
          */
-        return "[E]" + super.toString() + " (at: " + this.period + ")";
+        return "[E]" + super.toString() + " (at: " + this.date.toString() + ")";
     }
 
     public String toStorageFormat() {
-        return "E | " + super.toStorageFormat() + " | " + this.period;
+        return "E | " + super.toStorageFormat() + " | " + this.date.toString();
     }
 }

@@ -9,6 +9,8 @@ import java.io.FileWriter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.Files;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 
 public class Roger {
@@ -47,6 +49,25 @@ public class Roger {
         }
     }
 
+    private void list(LocalDate date) {
+        System.out.println("Nephew have to do these things on " + date.toString() + ":");
+
+        for (int i = 0; i < tasks.size(); ++i) {
+            Task task = tasks.get(i);
+            if (task instanceof Event) {
+                Event event = (Event) task;
+                if (event.isOnDate(date)) {
+                    System.out.println(String.valueOf(i+1) + ". " + task.toString());
+                }
+            } else if (task instanceof Deadline) {
+                Deadline deadline = (Deadline) task;
+                if (deadline.isOnDate(date)) {
+                    System.out.println(String.valueOf(i+1) + ". " + task.toString());
+                }
+            }
+        }
+    }
+
     private void add(String taskName) {
         Task task = new Task(taskName);
         this.tasks.add(task);
@@ -67,7 +88,7 @@ public class Roger {
         System.out.println("Nephew now have " + Integer.toString(this.tasks.size()) + " tasks in the list.");
     }
 
-    private void addDeadline(String taskName, String date) {
+    private void addDeadline(String taskName, LocalDate date) {
         Deadline deadline = new Deadline(taskName, date);
         this.tasks.add(deadline);
         System.out.println("Nephew got new deadline, hurry up before I beat you:");
@@ -75,8 +96,8 @@ public class Roger {
         System.out.println("Nephew now have " + Integer.toString(this.tasks.size()) + " tasks in the list.");
     }
 
-    private void addEvent(String taskName, String period) {
-        Event event = new Event(taskName, period);
+    private void addEvent(String taskName, LocalDate date) {
+        Event event = new Event(taskName, date);
         this.tasks.add(event);
         System.out.println("Nephew so busy, got new event:");
         System.out.println("  " + event);
@@ -106,69 +127,80 @@ public class Roger {
         System.out.println("Nephew now have " + Integer.toString(this.tasks.size()) + " tasks in the list.");
     }
 
-    private void handleAddToDo(String input) throws RogerInvalidInputException {
-        String taskName;
+    private void handleList(String arguments) throws RogerInvalidInputException {
+        LocalDate date;
+
+        String firstArg = arguments.split(" ")[0];
+        if (firstArg.isBlank()) {
+            this.list();
+            return;
+        }
 
         try {
-            taskName = input.substring(5);
-        } catch (StringIndexOutOfBoundsException e) {
-            throw new RogerInvalidInputException("Nephew must tell me the to-do name!");
+            date = LocalDate.parse(firstArg);
+        } catch (DateTimeParseException e) {
+            throw new RogerInvalidInputException("Nephew, what you doing? List tasks with `list` or `list <yyyy-mm-dd>`");
+        }
+
+        this.list(date);
+    }
+
+    private void handleAddToDo(String arguments) throws RogerInvalidInputException {
+        String taskName = arguments;
+
+        if (taskName.equals("")) {
+            throw new RogerInvalidInputException("Nephew, what you doing? Add to-do with `todo <name>`");
         }
 
         this.addToDo(taskName);
     }
 
-    private void handleAddDeadline(String input) throws RogerInvalidInputException {
-        int dateIdx = input.indexOf("/by");
+    private void handleAddDeadline(String arguments) throws RogerInvalidInputException {
+        String taskName;
+        LocalDate date;
 
-        if (dateIdx == -1) {
-            if (input.length() <= 9) {
-                throw new RogerInvalidInputException("Nephew must tell me the deadline name!");
-            } else {
-                throw new RogerInvalidInputException("Nephew must tell me when is the deadline, with /by");
-            }
+        int dateKeywordIndex = arguments.indexOf("/by");
+        if (dateKeywordIndex < 0) {
+            throw new RogerInvalidInputException("Nephew, what you doing? Add deadlines with `deadline <name> /by <yyyy-mm-dd>`");
         }
 
-        String taskName = input.substring(9, dateIdx - 1);
-        String date = input.substring(dateIdx + 4);
-
-        if (taskName.isBlank()) {
-            throw new RogerInvalidInputException("Nephew must tell me the deadline name!");
+        try {
+            taskName = arguments.substring(0, dateKeywordIndex - 1);
+            date = LocalDate.parse(arguments.substring(dateKeywordIndex + 4));
+        } catch (AssertionError | ArrayIndexOutOfBoundsException | DateTimeParseException e) {
+            throw new RogerInvalidInputException("Nephew, what you doing? Add deadlines with `deadline <name> /by <yyyy-mm-dd>`");
         }
 
         this.addDeadline(taskName, date);
     }
 
-    private void handleAddEvent(String input) throws RogerInvalidInputException {
-        int periodIdx = input.indexOf("/at");
+    private void handleAddEvent(String arguments) throws RogerInvalidInputException {
+        String taskName;
+        LocalDate date;
 
-        if (periodIdx == -1) {
-            if (input.length() <= 6) {
-                throw new RogerInvalidInputException("Nephew must tell me the event name!");
-            } else {
-                throw new RogerInvalidInputException("Nephew must tell me when is the event, with /at");
-            }
+        int dateKeywordIndex = arguments.indexOf("/at");
+        if (dateKeywordIndex < 0) {
+            throw new RogerInvalidInputException("Nephew, what you doing? Add events with `event <name> /at <yyyy-mm-dd>`");
         }
 
-        String taskName = input.substring(6, periodIdx - 1);
-        String period = input.substring(periodIdx + 4);
-
-        if (period.isBlank()) {
-            throw new RogerInvalidInputException("Nephew must tell me the event name!");
+        try {
+            taskName = arguments.substring(0, dateKeywordIndex - 1);
+            date = LocalDate.parse(arguments.substring(dateKeywordIndex + 4));
+        } catch (AssertionError | ArrayIndexOutOfBoundsException | DateTimeParseException e) {
+            throw new RogerInvalidInputException("Nephew, what you doing? Add event with `event <name> /at <yyyy-mm-dd>`");
         }
 
-        this.addEvent(taskName, period);
+        this.addEvent(taskName, date);
     }
 
-    private void handleMark(String input) throws RogerInvalidInputException {
+    private void handleMark(String arguments) throws RogerInvalidInputException {
         int idx;
 
         try {
-            idx = Integer.parseInt(input.substring(5));
-        } catch (StringIndexOutOfBoundsException e) {
-            throw new RogerInvalidInputException("Nephew must tell me which task to mark!");
-        } catch (NumberFormatException e) {
-            throw new RogerInvalidInputException("Nephew must give me the task number!");
+            String firstArg = arguments.split(" ")[0];
+            idx = Integer.parseInt(firstArg);
+        } catch (StringIndexOutOfBoundsException | NumberFormatException e) {
+            throw new RogerInvalidInputException("Nephew, what you doing? Mark tasks as done with `mark <task number>`");
         }
 
         if (idx < 1 || this.tasks.size() < idx) {
@@ -178,15 +210,14 @@ public class Roger {
         this.markAsDone(idx);
     }
 
-    private void handleUnmark(String input) throws RogerInvalidInputException {
+    private void handleUnmark(String arguments) throws RogerInvalidInputException {
         int idx;
 
         try {
-            idx = Integer.parseInt(input.substring(7));
-        } catch (StringIndexOutOfBoundsException e) {
-            throw new RogerInvalidInputException("Nephew must tell me which task to unmark!");
-        } catch (NumberFormatException e) {
-            throw new RogerInvalidInputException("Nephew must give me the task number!");
+            String firstArg = arguments.split(" ")[0];
+            idx = Integer.parseInt(firstArg);
+        } catch (StringIndexOutOfBoundsException | NumberFormatException e) {
+            throw new RogerInvalidInputException("Nephew, what you doing? Unmark tasks with `unmark <task number>`");
         }
 
         if (idx < 1 || this.tasks.size() < idx) {
@@ -196,15 +227,14 @@ public class Roger {
         this.unmarkAsDone(idx);
     }
 
-    private void handleDelete(String input) throws RogerInvalidInputException {
+    private void handleDelete(String arguments) throws RogerInvalidInputException {
         int idx;
 
         try {
-            idx = Integer.parseInt(input.substring(7));
-        } catch (StringIndexOutOfBoundsException e) {
-            throw new RogerInvalidInputException("Nephew must tell me which task to delete!");
-        } catch (NumberFormatException e) {
-            throw new RogerInvalidInputException("Nephew must give me the task number!");
+            String firstArg = arguments.split(" ")[0];
+            idx = Integer.parseInt(firstArg);
+        } catch (StringIndexOutOfBoundsException | NumberFormatException e) {
+            throw new RogerInvalidInputException("Nephew, what you doing? Delete tasks with `delete <task number>`");
         }
 
         if (idx < 1 || this.tasks.size() < idx) {
@@ -231,7 +261,7 @@ public class Roger {
                 throw new IOException("Corrupted data file.");
             }
             String name = line.substring(7, nameDateSeparator - 1);
-            String date = line.substring(nameDateSeparator + 1);
+            LocalDate date = LocalDate.parse(line.substring(nameDateSeparator + 1));
 
             Task task;
             switch (type) {
@@ -290,29 +320,40 @@ public class Roger {
             roger.tasks = new ArrayList<>();
         }
 
-        while (true) {
+        repl: while (true) {
             String input = scanner.nextLine();
+            int i = input.indexOf(" ");
+            String command = i < 0 ? input : input.substring(0, i);
+            String arguments = i < 0 ? "" : input.substring(i + 1);
 
             try {
-                if (input.equals("bye")) {
-                    roger.sayGoodbye();
-                    break;
-                } else if (input.equals("list")) {
-                    roger.list();
-                } else if (input.startsWith("mark")) {
-                    roger.handleMark(input);
-                } else if (input.startsWith("unmark")) {
-                    roger.handleUnmark(input);
-                } else if (input.startsWith("todo")) {
-                    roger.handleAddToDo(input);
-                } else if (input.startsWith("deadline")) {
-                    roger.handleAddDeadline(input);
-                } else if (input.startsWith("event")) {
-                    roger.handleAddEvent(input);
-                } else if (input.startsWith("delete")) {
-                    roger.handleDelete(input);
-                } else {
-                    roger.handleUnknownInput();
+                switch (command) {
+                    case "bye":
+                        Roger.sayGoodbye();
+                        break repl;
+                    case "list":
+                        roger.handleList(arguments);
+                        break;
+                    case "mark":
+                        roger.handleMark(arguments);
+                        break;
+                    case "unmark":
+                        roger.handleUnmark(arguments);
+                        break;
+                    case "todo":
+                        roger.handleAddToDo(arguments);
+                        break;
+                    case "deadline":
+                        roger.handleAddDeadline(arguments);
+                        break;
+                    case "event":
+                        roger.handleAddEvent(arguments);
+                        break;
+                    case "delete":
+                        roger.handleDelete(arguments);
+                        break;
+                    default:
+                        roger.handleUnknownInput();
                 }
             } catch (RogerInvalidInputException e) {
                 System.out.println(e.getMessage());
