@@ -99,4 +99,22 @@ public class TaskList {
             throw new DukeException(outOfBoundsMessage);
         }
     }
+
+    /**
+     * Returns a filtered TaskList based on a query.
+     *
+     * @param query String to match in tasks.
+     * @return TaskList with tasks where description contains query.
+     */
+    public TaskList filter(String query) {
+        TaskList result = new TaskList();
+        for (int i = 0; i < this.taskList.size(); i++) {
+            Task t = this.taskList.get(i);
+            if (t.getDescription().contains(query)) {
+                result.add(t);
+            }
+        }
+        return result;
+    }
+
 }

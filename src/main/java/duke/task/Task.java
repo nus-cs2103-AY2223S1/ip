@@ -10,6 +10,15 @@ public class Task {
     }
 
     /**
+     * Returns the task description.
+     *
+     * @return Task description.
+     */
+    public String getDescription() {
+        return this.description;
+    }
+
+    /**
      * Sets the isDone property to true.
      */
     public void mark() {
