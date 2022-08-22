@@ -14,7 +14,7 @@ public class Deadline extends ListObject{
 
     @Override
     public String toString(){
-        return "[D]" + super.toString() + " (by: " + doBy + ")";
+        return "\n[D]" + super.toString() + " (by: " + doBy + ")";
     }
 
 }

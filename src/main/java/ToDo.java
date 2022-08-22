@@ -7,7 +7,7 @@ public class ToDo extends ListObject{
 
     @Override
     public String toString(){
-        return "[T]" + super.toString();
+        return "\n[T]" + super.toString();
     }
 
 }
