@@ -1,0 +1,53 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class TaskList {
+    private List<Task> taskList;
+
+    public TaskList() {
+        this.taskList = new ArrayList<>();
+    }
+
+    public TaskList(String[] data) {
+        // TODO: Create this together with readFromStorage
+    }
+
+    public Task get(int i) {
+        return this.taskList.get(i);
+    }
+
+    public int size() {
+       return this.taskList.size();
+    }
+
+    public void addTask(Task task) {
+        this.taskList.add(task);
+    }
+
+    public void markTask(int index) {
+        this.taskList.get(index).setIsComplete(true);
+    }
+
+    public void unmarkTask(int index) {
+        this.taskList.get(index).setIsComplete(false);
+    }
+
+    /**
+     * Deletes a task at a specified (zero-indexed) index in the task
+     * list, and returns the deleted task.
+     *
+     * Case where list is empty should be guarded against.
+     *
+     * @param index Index of task to be deleted, zero-indexed
+     * @return The deleted task
+     */
+    public Task deleteTask(int index) {
+        Task deletedTask = this.taskList.get(index);
+        this.taskList.remove(index);
+        return deletedTask;
+    }
+
+    public boolean isEmpty() {
+        return this.taskList.size() > 0;
+    }
+}
