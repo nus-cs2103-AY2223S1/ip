@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
+    //test
     public static void main(String[] args) {
         ArrayList<Task> arr = new ArrayList();
         // Task[] arr = new Task[100];
