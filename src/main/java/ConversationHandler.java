@@ -1,12 +1,12 @@
 import utils.IOUtils;
 
 import java.util.Scanner;
-public class CommandListener {
+public class ConversationHandler {
 
     private Scanner in;
     private boolean active = true;
 
-    public CommandListener() {
+    public ConversationHandler() {
         IOUtils.printContentWithHR("Hello! I'm " + Main.name + "\n" + "What can I do for you?");
         this.in = new Scanner(System.in);
         this.active = true;
