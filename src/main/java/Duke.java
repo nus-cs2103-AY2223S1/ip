@@ -1,3 +1,6 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 public class Duke {
 
@@ -60,8 +63,9 @@ public class Duke {
                 description += next + " ";
             }
             sc.next();
-            String date = sc.nextLine();
-            Deadline deadline = new Deadline(description, date);
+            String next = sc.nextLine();
+            String[] date = next.split(" ");
+            Deadline deadline = new Deadline(description, date[1]);
             lst.add(deadline);
             System.out.println("Got it. I've added this task: ");
             System.out.println("\t" + deadline.toString());
@@ -80,8 +84,9 @@ public class Duke {
                 description += next + " ";
             }
             sc.next();
-            String date = sc.nextLine();
-            Event event = new Event(description, date);
+            String next = sc.nextLine();
+            String[] date = next.split(" ");
+            Event event = new Event(description, date[1]);
             lst.add(event);
             System.out.println("Got it. I've added this task: ");
             System.out.println("\t" + event.toString());
