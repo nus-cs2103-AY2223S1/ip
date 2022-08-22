@@ -4,7 +4,7 @@ public class Event extends Task {
     private String periodDateTime;
 
     public Event(String name, String periodDateTime) {
-        super(name);
+        super(name.trim());
         this.periodDateTime = periodDateTime;
     }
 

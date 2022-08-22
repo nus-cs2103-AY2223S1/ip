@@ -5,11 +5,11 @@ public class Task {
     private Boolean isDone = false;
 
     public Task(String name) {
-        this.name = name;
+        this.name = name.trim();
     }
 
     public Task(String name, Boolean isDone) {
-        this.name = name;
+        this.name = name.trim();
         this.isDone = isDone;
     }
 
@@ -24,6 +24,8 @@ public class Task {
     public String getName() {
         return this.name;
     }
+
+    public Boolean getIsDone() { return this.isDone; }
 
     public String getStatus() {
         return this.isDone ? "[X]" : "[ ]";

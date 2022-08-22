@@ -6,7 +6,7 @@ public class Deadline extends Task {
     private String endDateTime;
 
     public Deadline(String name, String endDateTime) {
-        super(name);
+        super(name.trim());
         this.endDateTime = endDateTime;
     }
 

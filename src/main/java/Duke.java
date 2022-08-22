@@ -9,6 +9,8 @@ import objects.Todo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -244,6 +246,22 @@ public class Duke {
         }
     }
 
+    public static void saveTasks() throws IOException {
+
+        FileWriter fw = new FileWriter(FILE_PATH);
+        for (Task task : tasks) {
+            String isDoneSymbol = task.getIsDone() ? "1" : "0";
+            if (task instanceof Todo) {
+                fw.write("T | " + isDoneSymbol + " | " + task.getName() + "\n");
+            } else if (task instanceof Deadline) {
+                fw.write("D | " + isDoneSymbol + " | " + task.getName() + " | " + ((Deadline) task).getDateTime() + "\n");
+            } else if (task instanceof Event) {
+                fw.write("E | " + isDoneSymbol + " | " + task.getName() + " | " + ((Event) task).getDateTime() + "\n");
+            }
+        }
+        fw.close();
+    }
+
     /**
      * Main function of the app.
      *
@@ -256,7 +274,7 @@ public class Duke {
      *
      * @param args
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         System.out.println("Hello there! My name's Duck...");
         System.out.println("Please type in a command...");
         Scanner input = new Scanner(System.in);
@@ -264,55 +282,57 @@ public class Duke {
         try {
             // Load the tasks from the file tasks.txt
             loadTasks();
+
+            while (true) {
+                try {
+                    // Scan input from the user
+                    String inputLine = input.nextLine();
+                    String[] inputs = inputLine.split(" ");
+                    String command = inputs[0];
+
+                    if (inputLine.equals(Command.BYE.name().toLowerCase())) {
+                        endSession(input);
+                        return;
+                    } else if (inputLine.equals(Command.LIST.name().toLowerCase())) {
+                        showTasks();
+                    } else if (command.equals(Command.MARK.name().toLowerCase())) {
+                        // inputs[1] is the index number of the task to be marked
+                        if (inputs.length < 2) {
+                            throw new InvalidTaskIndexException();
+                        }
+                        markTaskAsDone(Integer.parseInt(inputs[1]));
+                    } else if (command.equals(Command.UNMARK.name().toLowerCase())) {
+                        // inputs[1] is the index number of the task to be unmarked
+                        if (inputs.length < 2) {
+                            throw new InvalidTaskIndexException();
+                        }
+                        markTaskAsNotDone(Integer.parseInt(inputs[1]));
+                    } else if (command.equals(Command.TODO.name().toLowerCase())) {
+                        addTodo(inputs);
+                    } else if (command.equals(Command.DEADLINE.name().toLowerCase())) {
+                        addDeadline(inputs);
+                    } else if (command.equals(Command.EVENT.name().toLowerCase())) {
+                        addEvent(inputs);
+                    } else if (command.equals(Command.DELETE.name().toLowerCase())) {
+                        // inputs[1] is the index number of the task to be marked
+                        if (inputs.length < 2) {
+                            throw new InvalidTaskIndexException();
+                        }
+                        deleteTask(Integer.parseInt(inputs[1]));
+                    } else {
+                        // when none of the commands match
+                        throw new UnknownCommandException();
+                    }
+                } catch (EmptyNameException | UnknownCommandException | NoTasksException | InvalidTaskIndexException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
         } catch (FileNotFoundException e1) {
             System.out.println(e1);
             endSession(input);
             return;
-        }
-
-        while (true) {
-            try {
-                // Scan input from the user
-                String inputLine = input.nextLine();
-                String[] inputs = inputLine.split(" ");
-                String command = inputs[0];
-
-                if (inputLine.equals(Command.BYE.name().toLowerCase())) {
-                    endSession(input);
-                    return;
-                } else if (inputLine.equals(Command.LIST.name().toLowerCase())) {
-                    showTasks();
-                } else if (command.equals(Command.MARK.name().toLowerCase())) {
-                    // inputs[1] is the index number of the task to be marked
-                    if (inputs.length < 2) {
-                        throw new InvalidTaskIndexException();
-                    }
-                    markTaskAsDone(Integer.parseInt(inputs[1]));
-                } else if (command.equals(Command.UNMARK.name().toLowerCase())) {
-                    // inputs[1] is the index number of the task to be unmarked
-                    if (inputs.length < 2) {
-                        throw new InvalidTaskIndexException();
-                    }
-                    markTaskAsNotDone(Integer.parseInt(inputs[1]));
-                } else if (command.equals(Command.TODO.name().toLowerCase())) {
-                    addTodo(inputs);
-                } else if (command.equals(Command.DEADLINE.name().toLowerCase())) {
-                    addDeadline(inputs);
-                } else if (command.equals(Command.EVENT.name().toLowerCase())) {
-                    addEvent(inputs);
-                } else if (command.equals(Command.DELETE.name().toLowerCase())) {
-                    // inputs[1] is the index number of the task to be marked
-                    if (inputs.length < 2) {
-                        throw new InvalidTaskIndexException();
-                    }
-                    deleteTask(Integer.parseInt(inputs[1]));
-                } else {
-                    // when none of the commands match
-                    throw new UnknownCommandException();
-                }
-            } catch (EmptyNameException | UnknownCommandException | NoTasksException | InvalidTaskIndexException e) {
-                System.out.println(e.getMessage());
-            }
+        } finally {
+            saveTasks();
         }
     }
 }
