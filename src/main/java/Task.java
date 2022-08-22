@@ -1,4 +1,4 @@
-public class Task {
+public abstract class Task {
     private boolean marked;
     private String name;
 
@@ -23,4 +23,6 @@ public class Task {
     public void unmark() {
         this.marked = false;
     }
+
+    public abstract String toCSV();
 }

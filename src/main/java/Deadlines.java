@@ -12,6 +12,11 @@ public class Deadlines extends Task {
 
     @Override
     public String toString() {
-        return "[" + TaskType.DL +"]" + "[" + this.getStatusIcon() + "] " + this.getName() +  " (by:" + this.getDeadline() + ")";
+        return "[" + TaskType.D +"]" + "[" + this.getStatusIcon() + "] " + this.getName() +  " (by:" + this.getDeadline() + ")";
+    }
+
+    @Override
+    public String toCSV() {
+        return TaskType.D + "," + this.getStatusIcon()  + "," + this.getName() + "," + this.getDeadline();
     }
 }
