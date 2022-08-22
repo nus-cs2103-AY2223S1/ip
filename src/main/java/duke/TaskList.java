@@ -31,6 +31,13 @@ public class TaskList {
         taskCount = tasks.size();
     }
 
+    /**
+     * Adds a task to the TaskList.
+     *
+     * @param splitStr the string input
+     * @param type the type of task
+     * @throws DukeException if the input is invalid
+     */
     public void addTask(String[] splitStr, Duke.TaskType type) throws DukeException {
         if (splitStr.length < 2) {
             throw new DukeException("The description of a task cannot be empty.");
@@ -69,6 +76,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Deletes a task from the list.
+     *
+     * @param splitStr the string input
+     * @throws DukeException if the input does not specify an int after delete
+     */
     public void deleteTask(String[] splitStr) throws DukeException{
         if (splitStr.length < 2) {
             throw new DukeException("Please specify task number to delete.");
@@ -91,6 +104,12 @@ public class TaskList {
         tasks.remove(deleteNo - 1);
     }
 
+    /**
+     * Marks a task as done.
+     *
+     * @param splitStr the string input
+     * @throws DukeException if the input does not specify a valid number after mark
+     */
     public void mark(String[] splitStr) throws DukeException {
         if (splitStr.length < 2) {
             throw new DukeException("Please specify task number to mark.");
@@ -111,6 +130,12 @@ public class TaskList {
         ui.printMessage("Nice! I've marked this task as done:\n       " + tasks.get(markNo - 1));
     }
 
+    /**
+     * Marks a task as undone.
+     *
+     * @param splitStr the string input
+     * @throws DukeException if the input does not specify a valid number after unmark
+     */
     public void unmark(String[] splitStr) throws DukeException {
         if (splitStr.length < 2) {
             throw new DukeException("Please specify task number to unmark.");
@@ -131,11 +156,45 @@ public class TaskList {
         ui.printMessage("Nice! I've marked this task as not done yet:\n       " + tasks.get(unmarkNo - 1));
     }
 
+    /**
+     * Find a task by searching for a keyword.
+     *
+     * @param splitStr the string input
+     * @throws DukeException if the input does not specify a keyword
+     */
+    public void findTasks(String[] splitStr) throws DukeException {
+        int i = 1;
+        String line = "    ____________________________________________________________";
+        if (splitStr.length < 2) {
+            throw new DukeException("Please specify keyword to search.");
+        }
+        String keyword = splitStr[1].trim();
+        System.out.println(line);
+        System.out.println("     Here are the matching tasks in your list:");
+        for (Task t : tasks) {
+            String[] words = t.splitDescriptionToWords();
+            for (String word : words) {
+                if (keyword.equals(word)) {
+                    System.out.println("     " + i + "." + t);
+                    i++;
+                    break;
+                }
+            }
+        }
+        if (i == 1) {
+            System.out.println("     No results found!");
+        }
+        System.out.println(line);
+    }
+
+    /**
+     * Prints the entire TaskList.
+     */
     public void printTaskList() {
         int i = 1;
         String line = "    ____________________________________________________________";
         System.out.println(line);
-        System.out.println("     Here are the tasks in your list");
+        System.out.println("     Here are the tasks in your list:");
         for (Task t : tasks) {
             System.out.println("     " + i + "." + t);
             i++;
@@ -143,6 +202,11 @@ public class TaskList {
         System.out.println(line);
     }
 
+    /**
+     * Returns the ArrayLIst of Task objects
+     *
+     * @return ArrayLIst of Task objects
+     */
     public ArrayList<Task> getTasks() {
         return tasks;
     }

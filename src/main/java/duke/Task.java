@@ -44,6 +44,15 @@ abstract public class Task {
     }
 
     /**
+     * Splits the description of the task into individual words.
+     *
+     * @return An array of strings
+     */
+    public String[] splitDescriptionToWords() {
+        return description.split(" ");
+    }
+
+    /**
      * Returns the string representation of the Task.
      *
      * @return a string that represents the task
