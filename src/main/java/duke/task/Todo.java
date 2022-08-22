@@ -1,3 +1,4 @@
+package duke.task;
 public class Todo extends Task {
     /**
      * Child class of Task without any date/time attached to it

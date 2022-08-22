@@ -1,3 +1,4 @@
+package duke.task;
 public class Event extends Task {
     /**
      * Child class of Task with a date and time

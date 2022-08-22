@@ -1,3 +1,4 @@
+package duke.exception;
 public class InvalidCommandException extends Exception {
     /**
      * Exception for invalid command

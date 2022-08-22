@@ -1,6 +1,8 @@
+package duke.helper;
+
 import java.io.IOException;
 import java.io.FileWriter;
-
+import duke.task.*;
 public class FileWriting {
     /**
      * Class to update .txt file

@@ -1,3 +1,4 @@
+package duke.exception;
 public class NoDescriptionException extends Exception {
     /**
      * Exception for input with no description

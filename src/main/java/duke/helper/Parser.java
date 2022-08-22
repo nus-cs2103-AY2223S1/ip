@@ -1,3 +1,7 @@
+package duke.helper;
+
+import duke.task.*;
+import duke.exception.*;
 public class Parser {
 
     public static void parse(String in, TaskList list) {
@@ -41,7 +45,7 @@ public class Parser {
                     throw new InvalidCommandException();
                 } else if (task.getClass() == ErrorTask.class) {
                     throw new InvalidDateException();
-                } else if (task.description.length() < 1) {
+                } else if (task.getDescription().length() < 1) {
                     throw new NoDescriptionException();
                 } else {
                     list.add(task);
