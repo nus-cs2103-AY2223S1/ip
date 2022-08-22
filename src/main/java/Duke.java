@@ -2,15 +2,22 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
+
+    public static final String GREETING_MESSAGE = "Hello! I'm Duke\nWhat can I do for you?";
+    public static final String GOODBYE_MESSAGE = "Bye. Hope to see you again soon!";
     public static void main(String[] args) {
-        Action greet = new Greet();
-        System.out.println(greet);
+        System.out.println(GREETING_MESSAGE);
+
         ArrayList<Task> taskList = new ArrayList<Task>();
         Scanner in = new Scanner(System.in);
         String s = in.nextLine();
-        while(!s.equals("bye")) {
-            String parts[] = s.split(" ", 0);
-            if (s.equals("list")) {
+        String parts[] = s.split(" ", 0);
+        String command = parts[0];
+
+
+        while(!command.equals("bye")) {
+
+            if (command.equals("list")) {
                 String listOutput = "Here are the tasks in your list:\n";
                 int index = 1;
                 for (Task t : taskList) {
@@ -19,14 +26,15 @@ public class Duke {
                 }
                 System.out.println(listOutput);
             }
-            else if (parts.length >= 1 && (parts[0].equals("mark") || parts[0].equals("unmark"))) {
+
+            else if (command.equals("mark") || command.equals("unmark")) {
                 try {
-                    if (parts[0].equals("mark")) {
+                    if (command.equals("mark")) {
                         int pos = Integer.parseInt(parts[1]) - 1;
                         Task markedTask = taskList.get(pos).mark();
                         taskList.set(pos, markedTask);
                         System.out.println("Nice! I've marked this task as done:\n " + markedTask);
-                    } else if (parts[0].equals("unmark")) {
+                    } else if (command.equals("unmark")) {
                         int pos = Integer.parseInt(parts[1]) - 1;
                         Task unmarkedTask = taskList.get(pos).unmark();
                         taskList.set(pos, unmarkedTask);
@@ -40,7 +48,8 @@ public class Duke {
                     System.out.println("☹ OOPS!!! Your list only has " + taskList.size() + " tasks.");
                 }
             }
-            else if (parts.length >= 1 && (parts[0].equals("todo") || parts[0].equals("deadline") || parts[0].equals("event"))) {
+
+            else if (command.equals("todo") || command.equals("deadline") || command.equals("event")) {
                 try {
                     if (parts.length == 1) {
                         throw new EmptyTaskException();
@@ -60,11 +69,11 @@ public class Duke {
                     }
 
                     Task task = new Task("DummyTask");
-                    if (parts[0].equals("todo")) {
+                    if (command.equals("todo")) {
                         task = new ToDo(taskName);
-                    } else if (parts[0].equals("deadline")) {
+                    } else if (command.equals("deadline")) {
                         task = new Deadline(taskName);
-                    } else if (parts[0].equals("event")) {
+                    } else if (command.equals("event")) {
                         task = new Event(taskName);
                     }
                     taskList.add(task);
@@ -74,7 +83,8 @@ public class Duke {
                     System.out.println("☹ OOPS!!! The description of a todo cannot be empty.");
                 }
             }
-            else if (parts.length >= 1 && (parts[0].equals("delete"))) {
+
+            else if (command.equals("delete")) {
                 try {
                     int pos = Integer.parseInt(parts[1]) - 1;
                     Task removedTask = taskList.get(pos);
@@ -88,6 +98,7 @@ public class Duke {
                     System.out.println("☹ OOPS!!! Your list only has " + taskList.size() + " tasks.");
                 }
             }
+
             else {
                 try {
                     throw new InvalidCommandException();
@@ -98,8 +109,10 @@ public class Duke {
             }
 
             s = in.nextLine();
+            parts = s.split(" ", 0);
+            command = parts[0];
         }
-        Action bye = new Bye();
-        System.out.println(bye);
+
+        System.out.println(GOODBYE_MESSAGE);
     }
 }
