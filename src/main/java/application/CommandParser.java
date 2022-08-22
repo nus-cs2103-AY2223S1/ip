@@ -6,7 +6,7 @@ import exception.InvalidInputException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class LineParser {
+public class CommandParser {
     public static Pair<Case, ArrayList<String>> parse(String line) throws InvalidInputException {
         if (line == null) {
             throw new InvalidInputException();
@@ -18,13 +18,13 @@ public class LineParser {
             Scanner sc = new Scanner(line);
             ArrayList<String> parsed = new ArrayList<>();
 
-            String firstWord = sc.next();
-            if ((firstWord.equals("mark") || firstWord.equals("unmark") || firstWord.equals("delete"))
+            String command = sc.next();
+            if ((command.equals("mark") || command.equals("unmark") || command.equals("delete"))
                     && sc.hasNextInt()) {
                 Case cs;
-                if (firstWord.equals("mark")) {
+                if (command.equals("mark")) {
                     cs = Case.MARK;
-                } else if (firstWord.equals("unmark")) {
+                } else if (command.equals("unmark")) {
                     cs = Case.UNMARK;
                 } else {
                     cs = Case.DELETE;
@@ -33,18 +33,18 @@ public class LineParser {
                 if (!sc.hasNext()) {
                     return Pair.of(cs, parsed);
                 }
-            } else if (firstWord.equals("todo") && sc.hasNext()) {
+            } else if (command.equals("todo") && sc.hasNext()) {
                 parsed.add(sc.nextLine());
                 return Pair.of(Case.TODO, parsed);
-            } else if (firstWord.equals("deadline") && sc.hasNext()) {
-                sc.useDelimiter("/by");
+            } else if (command.equals("deadline") && sc.hasNext()) {
+                sc.useDelimiter(" /by ");
                 parsed.add(sc.next());
                 if (sc.hasNext()) {
                     parsed.add(sc.next());
                     return Pair.of(Case.DEADLINE, parsed);
                 }
-            } else if (firstWord.equals("event") && sc.hasNext()) {
-                sc.useDelimiter("/at");
+            } else if (command.equals("event") && sc.hasNext()) {
+                sc.useDelimiter(" /at ");
                 parsed.add(sc.next());
                 if (sc.hasNext()) {
                     parsed.add(sc.next());

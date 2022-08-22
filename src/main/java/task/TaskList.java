@@ -45,4 +45,14 @@ public class TaskList extends ArrayList<Task> {
 
         return result;
     }
+
+    public String encodeAll() {
+        String result = "";
+
+        for (int entry = 1; entry < this.size() + 1; entry++) {
+            result += this.get(entry).encode() + "\n";
+        }
+
+        return result;
+    }
 }
