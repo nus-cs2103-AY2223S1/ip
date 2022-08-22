@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Duke {
     private static ArrayList<Task> inputs = new ArrayList<>();
-//  private static duke.Storage storage = new duke.Storage("./data/duke.txt");
     private Storage storage;
     private TaskList taskList;
     private Ui ui;
@@ -44,7 +43,17 @@ public class Duke {
      * @param args
      */
     public static void main(String[] args) {
-        Duke duke = new Duke("./data/duke.txt");
+//        File currentDirFile = new File(".");
+//        String helper = currentDirFile.getAbsolutePath();
+//        String currentDir = "";
+//        try {
+//            currentDir = helper.substring(0, helper.length() - currentDirFile.getCanonicalPath().length());
+//        } catch (java.io.IOException e) {
+//            System.out.println(e);
+//        }
+
+        String filePath = System.getProperty("user.home") + "/duke.txt";
+        Duke duke = new Duke(filePath);
         duke.run();
     }
 }

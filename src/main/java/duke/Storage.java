@@ -32,7 +32,7 @@ public class Storage {
         if (!dataFile.exists()) {
             // If not, create it
             try {
-                dataFile.createNewFile();
+                this.dataFile.createNewFile();
             } catch (java.io.IOException e) {
                 System.out.println(e);
             }
