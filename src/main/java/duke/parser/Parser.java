@@ -16,13 +16,28 @@ import duke.command.UnmarkCommand;
 import duke.exception.DukeException;
 import duke.exception.EmptyCommandException;
 
+/**
+ * Parser for Duke application.
+ *
+ * @author Farrel Dwireswara Salim
+ */
 public class Parser {
     private boolean isListening;
 
+    /**
+     * Constructs a new instance of Parser.
+     */
     public Parser() {
         this.isListening = true;
     }
 
+    /**
+     * Parses the given string to a Command object.
+     *
+     * @param text the string to be parsed.
+     * @return the Command which represents the corresponding string input.
+     * @throws DukeException If the string to be parsed is not valid.
+     */
     public Command parseText(String text) throws DukeException {
         List<String> commands = Arrays.stream(text.trim().split(" ", 2))
                 .map(String::trim).collect(Collectors.toList());

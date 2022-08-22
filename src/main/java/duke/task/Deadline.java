@@ -6,10 +6,22 @@ import java.time.LocalDate;
 
 import duke.exception.DeadlineException;
 
+/**
+ * Deadline task for Duke application
+ *
+ * @author Farrel Dwireswara Salim
+ */
 public class Deadline extends Task {
     private String deadlineString;
     private LocalDate deadline;
 
+    /**
+     * Constructs a new Deadline instance.
+     *
+     * @param description the description of the task.
+     * @param deadlineString the string which represents the deadline of the task.
+     * @throws DeadlineException If deadlineString is not valid.
+     */
     public Deadline(String description, String deadlineString) throws DeadlineException {
         super(description);
         try {
@@ -21,12 +33,22 @@ public class Deadline extends Task {
         }
     }
 
+    /**
+     * Gets the string representation of the Deadline.
+     *
+     * @return the string which represents current Deadline.
+     */
     @Override
     public String toString() {
         return String.format("[D]%s (by: %s)", super.toString(),
                 this.deadline.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
     }
 
+    /**
+     * Transforms the Deadline to a string that is compatible to Duke's storage.
+     *
+     * @return the string to be saved in storage.
+     */
     @Override
     public String toStorageRepresentation() {
         return "D|" + super.toStorageRepresentation() + "|" + this.deadlineString;

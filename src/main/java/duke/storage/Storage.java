@@ -17,9 +17,21 @@ import duke.task.Task;
 import duke.task.TaskList;
 import duke.task.ToDo;
 
+/**
+ * The storage for Duke application.
+ *
+ * @author Farrel Dwireswara Salim.
+ */
 public class Storage {
     private final String filePath;
 
+    /**
+     * Constructs a new Storage instance.
+     *
+     * @param directoryName the name of the directory where storage is located.
+     * @param fileName the name of the file to store the tasks.
+     * @throws DukeException If the storage fails to be created.
+     */
     public Storage(String directoryName, String fileName) throws DukeException {
         this.filePath = directoryName + "/" + fileName;
 
@@ -41,6 +53,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Transforms the txt file in storage to its corresponding TaskList.
+     *
+     * @return the resulting TaskList, else if the storage fails to transform the txt file,
+     * return an empty TaskList.
+     */
     public TaskList loadTasksInStorage() {
         TaskList loadedTaskList;
 
@@ -81,6 +99,12 @@ public class Storage {
         return loadedTaskList;
     }
 
+    /**
+     * Save the list of string to Duke's storage.
+     *
+     * @param taskListString the list of string to be saved.
+     * @throws DukeException If the storage fails to save the list of string.
+     */
     public void saveTasksInStorage(List<String> taskListString) throws DukeException {
         try {
             FileWriter storageWriter = new FileWriter(this.filePath);
