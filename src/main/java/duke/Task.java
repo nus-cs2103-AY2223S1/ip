@@ -1,3 +1,5 @@
+package duke;
+
 import java.time.LocalDate;
 
 /**
@@ -65,9 +67,9 @@ abstract class Task {
     }
 
     /**
-     * Gets the deadline of the Task, if any.
+     * Gets the deadline of the duke.Task, if any.
      *
-     * @return A LocalDate representing the Task's deadline if it exists
+     * @return A LocalDate representing the duke.Task's deadline if it exists
      *         null if no such deadline exists
      */
     public LocalDate getDeadline() {

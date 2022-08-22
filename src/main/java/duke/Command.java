@@ -1,3 +1,5 @@
+package duke;
+
 public enum Command {
     BYE("bye"),
     LIST("list"),
@@ -14,7 +16,7 @@ public enum Command {
     /**
      * Constructor for the enumeration constants.
      *
-     * @param name The name of the Command
+     * @param name The name of the duke.Command
      */
     Command(String name) {
         this.name = name;

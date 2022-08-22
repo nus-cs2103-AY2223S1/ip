@@ -1,16 +1,16 @@
-import java.util.Scanner;
+package duke;
+
 import java.util.ArrayList;
-import java.time.LocalDate;
 
 public class Duke {
     private static ArrayList<Task> inputs = new ArrayList<>();
-//  private static Storage storage = new Storage("./data/duke.txt");
+//  private static duke.Storage storage = new duke.Storage("./data/duke.txt");
     private Storage storage;
     private TaskList taskList;
     private Ui ui;
 
     /**
-     * Constructor for a Duke instance.
+     * Constructor for a duke.Duke instance.
      *
      * @param filePath the path to the file for data storage
      */

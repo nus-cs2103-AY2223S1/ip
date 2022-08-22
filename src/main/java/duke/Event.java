@@ -1,46 +1,48 @@
+package duke;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Deadline extends Task {
-    protected LocalDate by;
+public class Event extends Task {
+    protected LocalDate at;
     /**
-     * Constructor for a deadline instance.
+     * Constructor for a event instance.
      *
-     * @param description the description of the task
-     * @param by the due date of the task
+     * @param description the description of the event
+     * @param at the time of the event
      */
-    public Deadline(String description, String by) throws DukeException {
+    public Event(String description, String at) throws DukeException {
         super(description);
         try {
-            this.by = LocalDate.parse(by);
+            this.at = LocalDate.parse(at);
         } catch (java.time.format.DateTimeParseException e) {
             throw new DukeException("Invalid Date Format, please input it as YYYY-MM-DD");
         }
     }
 
     /**
-     * String representation of the deadline.
+     * String representation of the event.
      *
-     * @return String representing this task
+     * @return String representing this event
      */
     @Override
     public String toString() {
-        return "[D]" +
+        return "[E]" +
                 super.toString() +
-                " (by: " +
-                this.by.format(DateTimeFormatter.ofPattern("MMM d yyyy")) +
+                " (at: " +
+                this.at.format(DateTimeFormatter.ofPattern("MMM d yyyy")) +
                 ")";
     }
 
     /**
-     * Gets the deadline of the Task, if any.
+     * Gets the deadline of the duke.Task, if any.
      *
-     * @return A LocalDate representing the Task's deadline if it exists
+     * @return A LocalDate representing the duke.Task's deadline if it exists
      *         null if no such deadline exists
      */
     @Override
     public LocalDate getDeadline() {
-        return this.by;
+        return this.at;
     }
 
     /**
@@ -51,8 +53,8 @@ public class Deadline extends Task {
      */
     public String encode() {
         return String.format("%s # %s # %s",
-                "D",
+                "E",
                 super.encode(),
-                this.by);
+                this.at);
     }
 }

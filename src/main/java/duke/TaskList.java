@@ -1,3 +1,5 @@
+package duke;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -33,7 +35,7 @@ public class TaskList {
     }
 
     /**
-     * Add a Deadline to the items list.
+     * Add a duke.Deadline to the items list.
      *
      * @param input A String to be added to the list.
      *
@@ -69,7 +71,7 @@ public class TaskList {
     }
 
     /**
-     * Add a Deadline to the items list.
+     * Add a duke.Deadline to the items list.
      *
      * @param input A String to be added to the list.
      *

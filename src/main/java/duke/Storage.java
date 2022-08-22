@@ -1,3 +1,5 @@
+package duke;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -15,7 +17,7 @@ public class Storage {
     private File dataFile;
 
     /**
-     * Constructor for an instance of Storage.
+     * Constructor for an instance of duke.Storage.
      *
      * @param filepath The path to the file used to store data
      */
@@ -72,13 +74,13 @@ public class Storage {
     }
 
     /**
-     * Decodes a line in the data file and returns the Task it represents.
+     * Decodes a line in the data file and returns the duke.Task it represents.
      *
-     * @param code The encoded Task saved in the file as a String
+     * @param code The encoded duke.Task saved in the file as a String
      *
-     * @return The Task saved in the data file.
+     * @return The duke.Task saved in the data file.
      *
-     * @throws DukeException if the date passed into Deadline or Event is invalid
+     * @throws DukeException if the date passed into duke.Deadline or duke.Event is invalid
      */
     private Task decode(String code) throws DukeException {
         String[] components = code.split(" # ");
