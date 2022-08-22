@@ -1,7 +1,7 @@
 package duke;
 
 /**
- * An exception that is specific to duke.Duke.
+ * An exception that is specific to Duke.
  *
  * @author Lai Han Wen
  */
@@ -14,9 +14,9 @@ public class DukeException extends Exception {
     }
 
     /**
-     * Returns the String representation of a duke.DukeException.
+     * Returns the String representation of a DukeException.
      *
-     * @return the String representation of a duke.DukeException.
+     * @return the String representation of a DukeException.
      */
     @Override
     public String toString() {

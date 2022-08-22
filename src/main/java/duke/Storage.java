@@ -25,7 +25,7 @@ public class Storage {
             for (Task t : list.getList()) {
                 if (t.toString().charAt(1) == 'D') {
                     Deadline d = (Deadline) t;
-                    fw.write(d.toFile() + "\n");
+                    fw.write(d.toStringOri() + "\n");
                     continue;
                 }
                 fw.write(t + "\n");
@@ -71,11 +71,6 @@ public class Storage {
         }
     }
 
-    /**
-     * Loads the data from "duke.txt" file into an arraylist. If file does
-     * not exist, create "data" folder and create "duke.txt" file in it.
-     * @return an arraylist of tasks
-     */
     public ArrayList<Task> load() throws DukeException {
         File file = new File(this.filePath);
         ArrayList<Task> tasks = new ArrayList<>(); // to be returned

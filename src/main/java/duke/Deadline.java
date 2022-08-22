@@ -1,7 +1,7 @@
 package duke;
 
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
 
 /**
  * A task that needs to be done before a specific date/time.
@@ -28,8 +28,7 @@ public class Deadline extends Task {
                 by.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
     }
 
-    public String toFile() {
+    public String toStringOri() {
         return "[D]" + super.toString() + " (by: " + by + ")";
     }
-
 }

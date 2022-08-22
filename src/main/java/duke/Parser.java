@@ -4,6 +4,8 @@ import java.util.Objects;
 
 public class Parser {
 
+    public Parser() {}
+
     /**
      * Parses user command into a String array.
      *
@@ -17,11 +19,11 @@ public class Parser {
      */
     public String[] parseCommand(String command) {
 
-        String[] arr = this.isUnknown(); // to be returned
+        String[] arr = this.getUnknownArray(); // to be returned
 
         if (command.contains("todo")) {
             try {
-                arr = this.isTodo(command);
+                arr = this.getTodoArray(command);
             } catch (DukeException e) {
                 System.out.println(e);
             }
@@ -30,7 +32,7 @@ public class Parser {
 
         if (command.contains("deadline")) {
             try {
-                arr = this.isDeadline(command);
+                arr = this.getDeadlineArray(command);
             } catch (DukeException e) {
                 System.out.println(e);
             }
@@ -39,7 +41,7 @@ public class Parser {
 
         if (command.contains("event")) {
             try {
-                arr = this.isEvent(command);
+                arr = this.getEventArray(command);
             } catch (DukeException e) {
                 System.out.println(e);
             }
@@ -47,29 +49,29 @@ public class Parser {
         }
 
         if (command.contains("delete")) {
-            arr = this.isDelete(command);
+            arr = this.getDeleteArray(command);
             return arr;
         }
 
         if (command.contains("mark")) {
-            arr = this.isMark(command);
+            arr = this.getMarkArray(command);
             return arr;
         }
 
         if (Objects.equals(command, "list")) {
-            arr = this.isList();
+            arr = this.getListArray();
             return arr;
         }
 
         if (Objects.equals(command, "bye")) {
-            arr = this.isBye();
+            arr = this.getByeArray();
             return arr;
         }
 
         return arr; // reaches here if input is unknown
     }
 
-    private String[] isTodo(String input) throws DukeException {
+    private String[] getTodoArray(String input) throws DukeException {
         if (input.replace(" ", "").length() == 4) {
             throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
         }
@@ -77,7 +79,7 @@ public class Parser {
         return new String[]{"T", description};
     }
 
-    private String[] isDeadline(String input) throws DukeException {
+    private String[] getDeadlineArray(String input) throws DukeException {
         if (input.replace(" ", "").length() == 8) {
             throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
         }
@@ -86,7 +88,7 @@ public class Parser {
         return new String[]{"D", description, by};
     }
 
-    private String[] isEvent(String input) throws DukeException {
+    private String[] getEventArray(String input) throws DukeException {
         if (input.replace(" ", "").length() == 5) {
             throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.");
         }
@@ -95,27 +97,27 @@ public class Parser {
         return new String[]{"E", description, at};
     }
 
-    private String[] isDelete(String input) {
+    private String[] getDeleteArray(String input) {
         String numString = input.replace("delete", "")
                 .replace(" ", "");
         return new String[]{"d", numString};
     }
 
-    private String[] isMark(String input) {
+    private String[] getMarkArray(String input) {
         String numString = input.replace("mark", "")
                 .replace(" ", "");
         return new String[]{"M", numString};
     }
 
-    private String[] isList() {
+    private String[] getListArray() {
         return new String[]{"L"};
     }
 
-    private String[] isBye() {
+    private String[] getByeArray() {
         return new String[]{"B"};
     }
 
-    private String[] isUnknown() {
+    private String[] getUnknownArray() {
         return new String[]{"U"};
     }
 }
