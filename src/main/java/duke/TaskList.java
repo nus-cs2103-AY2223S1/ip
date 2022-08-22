@@ -29,7 +29,7 @@ public class TaskList {
     }
 
     /**
-     * Return number of tasks in TaskList.
+     * Returns number of tasks in TaskList.
      *
      * @return number of tasks.
      */
@@ -49,7 +49,7 @@ public class TaskList {
     }
 
     /**
-     * Delete task at specified index from list.
+     * Deletes task at specified index from list.
      *
      * @param index index of task to delete.
      * @return Task which was deleted
@@ -79,7 +79,7 @@ public class TaskList {
     }
 
     /**
-     * Mark task at index as complete.
+     * Marks task at index as complete.
      *
      * @param index index of task to mark.
      * @return Updated Task that was marked.
@@ -95,7 +95,7 @@ public class TaskList {
     }
 
     /**
-     * Mark task at index as incomplete.
+     * Marks task at index as incomplete.
      *
      * @param index index of task to unmark.
      * @return Updated Task that was unmarked.

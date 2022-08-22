@@ -17,7 +17,7 @@ public class MarkCommand extends IndexedCommand {
     }
 
     /**
-     * Update TaskList and Storage and displays mark task message.
+     * Updates TaskList and Storage and displays mark task message.
      */
     @Override
     public void execute() throws DukeException {

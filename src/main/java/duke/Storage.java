@@ -84,7 +84,7 @@ public class Storage implements StorageInterface {
     }
 
     /**
-     * Append line to end of storage file.
+     * Appends line to end of storage file.
      *
      * @param line line of text to append.
      * @throws DukeException when error updating file.

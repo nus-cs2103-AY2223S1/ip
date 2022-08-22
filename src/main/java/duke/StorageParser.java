@@ -24,7 +24,7 @@ public abstract class StorageParser {
     }
 
     /**
-     * Parse a line of text in storage file into a Task.
+     * Parses a line of text in storage file into a Task.
      *
      * @param line line of text in storage file format.
      * @return Task that was parsed from line.

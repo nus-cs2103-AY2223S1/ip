@@ -31,7 +31,7 @@ public class Ui {
     }
 
     /**
-     * Read user input.
+     * Reads user input.
      *
      * @return user input.
      * @throws DukeException when error reading input.
@@ -55,7 +55,7 @@ public class Ui {
     }
 
     /**
-     * Format texts before displaying them to the user.
+     * Formats texts before displaying them to the user.
      *
      * @param texts texts to display to the user.
      */
@@ -66,7 +66,7 @@ public class Ui {
     }
 
     /**
-     * Format text before displaying it to the user.
+     * Formats text before displaying it to the user.
      *
      * @param text text to display to ther user.
      */

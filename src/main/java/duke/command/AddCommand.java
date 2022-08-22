@@ -20,7 +20,7 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Add task to TaskList, Storage and displays update message.
+     * Adds task to TaskList, Storage and displays update message.
      */
     @Override
     public void execute() throws DukeException {

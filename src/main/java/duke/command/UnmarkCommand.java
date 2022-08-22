@@ -17,7 +17,7 @@ public class UnmarkCommand extends IndexedCommand {
     }
 
     /**
-     * Update TaskList and Storage and displays unmark task message.
+     * Updates TaskList and Storage and displays unmark task message.
      */
     @Override
     public void execute() throws DukeException {

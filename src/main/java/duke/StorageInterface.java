@@ -26,7 +26,7 @@ public interface StorageInterface {
     public void save(Task task) throws DukeException;
 
     /**
-     * Update line in storage file.
+     * Updates line in storage file.
      *
      * @param lineIndex index to update (0-based indexing).
      * @param updatedLine new line to update existing line in file.
