@@ -1,9 +1,12 @@
+import java.time.LocalDate;
+
 public class Event extends Task {
     protected String by;
-
+    protected LocalDate localDate;
     public Event(String description, String by) {
         super(description);
         this.by = by;
+        this.localDate = LocalDate.parse(by);
     }
 
 
