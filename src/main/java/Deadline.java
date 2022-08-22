@@ -12,6 +12,7 @@ public class Deadline extends Task{
     public Deadline(String taskDescription, String date, boolean isCompleted) {
         super(taskDescription, isCompleted);
         this.date = date;
+        this.dateProper = LocalDate.parse(date);
     }
 
     @Override

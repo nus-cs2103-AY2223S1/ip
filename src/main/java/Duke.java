@@ -116,8 +116,8 @@ public class Duke {
             tempLine = s.nextLine();
             String[] tempWords = tempLine.split(" , ");
             boolean isCompleted = tempWords[1].contains("true");
-            System.out.println(Arrays.toString(tempWords));
-            System.out.println(tempLine);
+//            System.out.println(Arrays.toString(tempWords));
+//            System.out.println(tempLine);
             if (tempWords[0].equals("T")) {
                 userTasks.add(new ToDo(tempWords[2], isCompleted));
             } else if (tempWords[0].equals("E")) {

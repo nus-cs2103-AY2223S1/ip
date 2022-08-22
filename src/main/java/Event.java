@@ -13,6 +13,7 @@ public class Event extends Task{
     public Event(String taskDescription, String dateTime, boolean isCompleted) {
         super(taskDescription, isCompleted);
         this.dateTime = dateTime;
+        this.dateTimeProper = LocalDateTime.parse(dateTime);
     }
 
     @Override
