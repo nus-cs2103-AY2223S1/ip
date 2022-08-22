@@ -1,0 +1,49 @@
+import java.time.DateTimeException;
+import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.temporal.TemporalAccessor;
+
+public class DateParser {
+    // DateTimeFormatter for the formats of date/time
+    private static final DateTimeFormatter format = new DateTimeFormatterBuilder()
+            .appendOptional(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"))
+            .appendOptional(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))
+            .appendOptional(DateTimeFormatter.ofPattern("dd-MM-yyyy"))
+            .appendOptional(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+            .appendOptional(DateTimeFormatter.ofPattern("dd MM yyyy HH:mm"))
+            .appendOptional(DateTimeFormatter.ofPattern("dd MM yyyy"))
+            .toFormatter();
+
+    /**
+     * Converts a String of date to LocalDate object
+     *
+     * @param date The String representation of the date.
+     * @return The LocalDate object of the date.
+     * @throws DateTimeException if the text cannot be parsed
+     */
+    public static LocalDateTime parseToDate(String date) throws DateTimeException {
+        // https://stackoverflow.com/questions/48280447/java-8-datetimeformatter-with-optional-part
+        LocalDateTime dateTime;
+        TemporalAccessor temporalAccessor = DateParser.format.parseBest(date, LocalDateTime::from, LocalDate::from);
+        if (temporalAccessor instanceof LocalDateTime) {
+            dateTime = (LocalDateTime)temporalAccessor;
+        } else {
+            dateTime = ((LocalDate)temporalAccessor).atStartOfDay();
+        }
+        System.out.println(dateTime);
+        return dateTime;
+    }
+
+    /**
+     * Converts a LocalDate object to the String representation.
+     *
+     * @param date The LocalDate object of the date.
+     * @return The String representation of the date.
+     */
+    public static String dateToString(LocalDateTime date) {
+        DateTimeFormatter stringFormat = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
+        return date.format(stringFormat);
+    }
+}
