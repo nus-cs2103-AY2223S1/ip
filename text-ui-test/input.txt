@@ -1,0 +1,13 @@
+hello
+todo sleep
+deadline cs2103t project /by next friday 12pm
+event cs2103t lecture /at friday 4-6pm
+todo
+list
+event
+mark
+mark 3
+mark 7
+delete me
+delete 2
+bye

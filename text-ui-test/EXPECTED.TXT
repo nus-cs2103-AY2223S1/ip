@@ -1,7 +1,26 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
+woof! I'm scruffles the task tracking doggo
+what can I woof for you today?
+grrr >:( i don't know what hello is woof woof!
+woof! the task is added woof!
+[T][ ] sleep
+you now have 1 tasks in the list woof!
+woof! the task is added woof!
+[D][ ] cs2103t project (by: next friday 12pm)
+you now have 2 tasks in the list woof!
+woof! the task is added woof!
+[E][ ] cs2103t lecture (at: friday 4-6pm)
+you now have 3 tasks in the list woof!
+grrrr >:( there is no task name woof woof!
+1.[T][ ] sleep
+2.[D][ ] cs2103t project (by: next friday 12pm)
+3.[E][ ] cs2103t lecture (at: friday 4-6pm)
+grrrr >:( there is no task name woof woof!
+grrrr >:( you need to mark something woof woof!
+woof! the task is now marked as done woof!
+[E][X] cs2103t lecture (at: friday 4-6pm)
+grrrr >:( there is no number 7 item in the list woof woof!
+grrrr >:( you need to input an integer woof woof!
+woof! the task is now deleted woof!
+[D][ ] cs2103t project (by: next friday 12pm)
+you now have 2 tasks in the list woof!
+woof see you again woof!
