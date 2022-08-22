@@ -1,0 +1,3 @@
+T,0, go to the gym
+E,0, watch movie with friends , Vivo
+D,0, homework , Sunday

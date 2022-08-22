@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class TaskList {
     private ArrayList<Task> list;
@@ -40,6 +41,10 @@ public class TaskList {
         }
         this.list.get(index).markNotDone();
         return this.list.get(index).toString();
+    }
+
+    public Iterator<Task> toSave() {
+        return this.list.iterator();
     }
 
     @Override

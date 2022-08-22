@@ -1,6 +1,8 @@
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.*;
 
 public class Duke {
     private static final String HORIZONTAL_LINE = "____________________________________________________________\n";
@@ -13,7 +15,7 @@ public class Duke {
     private final Scanner sc;
     private TaskList taskList;
     private enum Commands {
-        TODO, DEADLINE, EVENT, LIST, BYE, MARK, UNMARK, DELETE
+        TODO, DEADLINE, EVENT, LIST, BYE, MARK, UNMARK, DELETE, SAVE
     }
     private final HashMap<String, Commands> commandMap = new HashMap<>(Map.of(
             "todo", Commands.TODO,
@@ -23,7 +25,8 @@ public class Duke {
             "bye", Commands.BYE,
             "mark", Commands.MARK,
             "unmark", Commands.UNMARK,
-            "delete", Commands.DELETE
+            "delete", Commands.DELETE,
+            "save", Commands.SAVE
     ));
 
     public Duke() {
@@ -80,6 +83,52 @@ public class Duke {
         }
     }
 
+    public void loadData() {
+        try {
+            File f = new File("data/duke.txt");
+            Scanner sc = new Scanner(f);
+            reply("Reading duke.txt ...");
+            while (sc.hasNextLine()) {
+                String line = sc.nextLine();
+                String[] inputs = line.split(",");
+                System.out.println(Arrays.toString(inputs));
+                switch (inputs[0]) {
+                    case "T":
+                        this.taskList.addTask(new ToDo(inputs[2]));
+                        break;
+                    case "D":
+                        this.taskList.addTask(new Deadline(inputs[2], inputs[3]));
+                        break;
+                    case "E":
+                        this.taskList.addTask(new Event(inputs[2], inputs[3]));
+                        break;
+                    default:
+                        throw new DukeException("Invalid input from file.");
+                }
+            }
+            sc.close();
+            reply("Successfully loaded saved contents.\n" + this.taskList.toString());
+        } catch (FileNotFoundException fileError) {
+            reply("Error in loading data. File not found.");
+        } catch (DukeException dukeError) {
+            reply(dukeError.getMessage());
+        }
+    }
+
+    public String saveData() {
+        try {
+            FileWriter fw = new FileWriter("data/duke.txt", false);
+            Iterator<Task> it = this.taskList.toSave();
+            while (it.hasNext()) {
+                fw.write(it.next().toStringSaveFormat());
+            }
+            fw.close();
+            return "Successfully saved contents into duke.txt" ;
+        } catch (IOException e) {
+            return "Error in saving data.";
+        }
+    }
+
     public void commandHandler() {
         while (sc.hasNext()) {
             StringBuilder stringBuilder = new StringBuilder();
@@ -112,6 +161,9 @@ public class Duke {
                     case DELETE:
                         reply(this.taskList.removeTask(sc.nextInt() - 1));
                         break;
+                    case SAVE:
+                        reply(saveData());
+                        break;
                     case BYE:
                         reply("Bye. Hope to see you again soon!");
                         sc.close();
@@ -128,6 +180,7 @@ public class Duke {
 
     public static void main(String[] args) {
         Duke dk = new Duke();
+        dk.loadData();
         dk.commandHandler();
     }
 }
