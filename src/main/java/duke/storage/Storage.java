@@ -1,8 +1,12 @@
-package storage;
+package duke.storage;
 
-import data.TaskList;
-import data.exception.DukeException;
-import tasks.*;
+import duke.data.TaskList;
+import duke.data.exception.DukeException;
+import duke.tasks.Deadline;
+import duke.tasks.Event;
+import duke.tasks.Task;
+import duke.tasks.ToDo;
+
 import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -98,7 +102,7 @@ public class Storage {
             // StringBuilder stringBuilder = new StringBuilder();
             int len = tasks.getSize();
             for (int i = 0; i < len; i++) {
-                // stringBuilder.append(this.convertToString(tasks.getTask(i)));
+                // stringBuilder.append(this.convertToString(duke.ui.tasks.getTask(i)));
                 fileWriter.write(this.convertToString(tasks.getTask(i)));
             }
 

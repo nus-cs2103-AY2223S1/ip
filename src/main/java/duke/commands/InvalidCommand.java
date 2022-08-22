@@ -1,9 +1,9 @@
-package commands;
+package duke.commands;
 
-import data.*;
-import data.exception.DukeException;
-import storage.Storage;
-import ui.Ui;
+import duke.ui.Ui;
+import duke.data.TaskList;
+import duke.data.exception.DukeException;
+import duke.storage.Storage;
 
 public class InvalidCommand extends Command {
 

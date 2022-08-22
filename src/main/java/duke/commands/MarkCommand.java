@@ -1,10 +1,10 @@
-package commands;
+package duke.commands;
 
-import data.exception.DukeException;
-import storage.Storage;
-import data.TaskList;
-import ui.Ui;
-import tasks.Task;
+import duke.ui.Ui;
+import duke.data.TaskList;
+import duke.data.exception.DukeException;
+import duke.storage.Storage;
+import duke.tasks.Task;
 
 public class MarkCommand extends Command {
 

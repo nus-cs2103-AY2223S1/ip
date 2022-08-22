@@ -1,32 +1,32 @@
-package tasks;
+package duke.tasks;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Deadline extends Task {
-    protected LocalDate by;
+public class Event extends Task {
+    protected LocalDate at;
 
-    public Deadline(String description, String by) {
+    public Event(String description, String at) {
         super(description);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate localDate = LocalDate.parse(by, formatter);
-        this.by = localDate;
+        LocalDate localDate = LocalDate.parse(at, formatter);
+        this.at = localDate;
     }
 
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy");
-        String date = this.by.format(formatter);
-        return "[D]" + super.toString() + String.format(" (by: %s)", date);
+        String date = this.at.format(formatter);
+        return "[E]" + super.toString() + String.format(" (at: %s)", date);
     }
 
     @Override
     public LocalDate getDate() {
-        return this.by;
+        return this.at;
     }
 
     @Override
     public String getTaskType() {
-        return "D";
+        return "E";
     }
 }

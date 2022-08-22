@@ -1,10 +1,10 @@
-package commands;
+package duke.commands;
 
-import data.exception.DukeException;
-import storage.Storage;
-import data.TaskList;
-import ui.Ui;
-import tasks.Event;
+import duke.ui.Ui;
+import duke.data.TaskList;
+import duke.tasks.Event;
+import duke.data.exception.DukeException;
+import duke.storage.Storage;
 
 public class EventCommand extends Command{
 
