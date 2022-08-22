@@ -7,6 +7,8 @@ import tasks.Event;
 import exceptions.DukeException;
 import tasklist.TaskList;
 
+import java.time.format.DateTimeParseException;
+
 /**
  * Handler class that manages user input to Duke.
  * TODO more JavaDocs
@@ -191,18 +193,29 @@ public class DukeParser {
         case "event":
             if (divider == null || !divider.equals("/at")) {
                 throw new DukeException("Oops! To create an event, please format your input in " +
-                        "this manner:\n<Event Name> /at <Event Date and Time of Occurrence>");
+                        "this manner:\n<Event Name> /at dd-mm-yyyy hh:mm");
             }
-            newTask = new Event(this.restOfInputString.substring(0, slashIndex - 1),
-                    this.restOfInputString.substring(slashIndex + 4));
+            try {
+                newTask = new Event(this.restOfInputString.substring(0, slashIndex - 1),
+                        this.restOfInputString.substring(slashIndex + 4));
+            } catch (DateTimeParseException e) {
+                throw new DukeException("Oops! Events must have a date of occurrence, formatted " +
+                        "as dd-mm-yyyy hh:mm.");
+            }
             break;
         case "deadline":
             if (divider == null || !divider.equals("/by")) {
                 throw new DukeException("Oops! To create a deadline, please format your input in " +
-                        "this manner:\n<Deadline Name> /by <Deadline>");
+                        "this manner:\n<Deadline Name> /by dd-mm-yyyy hh:mm");
             }
-            newTask = new Deadline(this.restOfInputString.substring(0, slashIndex - 1),
-                    this.restOfInputString.substring(slashIndex + 4));
+            try {
+                newTask = new Deadline(this.restOfInputString.substring(0, slashIndex - 1),
+                        this.restOfInputString.substring(slashIndex + 4));
+            } catch (DateTimeParseException e) {
+                throw new DukeException("Oops! Deadlines must have a valid deadline, " +
+                        "formatted as dd-mm-yyyy hh:mm.");
+            }
+
             break;
         }
 
