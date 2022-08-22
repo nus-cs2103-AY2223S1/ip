@@ -1,5 +1,10 @@
+package jarvis.command;
+
+import jarvis.JarvisException;
+import jarvis.storage.Storage;
+import jarvis.task.TaskList;
+
 import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 
 public abstract class Command {
@@ -21,7 +26,7 @@ public abstract class Command {
                 .toArray(String[]::new)).orElse(null);
     }
 
-    String getKeyCommand() {
+    public String getKeyCommand() {
         return this.keyCommand;
     }
 

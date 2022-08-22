@@ -1,3 +1,8 @@
+package jarvis.storage;
+
+import jarvis.JarvisException;
+import jarvis.task.*;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -68,7 +73,7 @@ public class Storage {
                     taskString.append("E|");
                 }
 
-                if (task.isDone) {
+                if (task.getIsDone()) {
                     taskString.append("1|");
                 } else {
                     taskString.append("0|");
