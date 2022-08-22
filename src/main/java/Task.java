@@ -27,7 +27,7 @@ public abstract class Task {
         completedTask = false;
     }
 
-    private String getStatusIcon() {
+    protected String getStatusIcon() {
         /**
          * Checks whether the task is marked, and update the status icon
          * to be an "X".
@@ -36,13 +36,15 @@ public abstract class Task {
         return (completedTask ? "X" : " ");
     }
 
-    private String getTaskDescription() {
+    protected String getTaskDescription() {
         /**
          * Gets description for this task.
          */
 
         return taskDescription;
     }
+
+    public abstract String parse();
 
     @Override
     public String toString() {
