@@ -24,7 +24,7 @@ public class Duke {
 
     public static void greetUser() {
         System.out.println("\t______________________________________________________");
-        System.out.println("\tHey there! I'm Arias!");
+        System.out.println("\tHey there! I'm Duke!");
         System.out.println("\tHow may I help you? :)");
         System.out.println("\t______________________________________________________\n");
     }
