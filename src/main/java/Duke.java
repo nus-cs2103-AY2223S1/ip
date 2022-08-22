@@ -1,7 +1,5 @@
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
+import java.util.function.Function;
 
 public class Duke {
     private static final String startUpMessage  = "Hello! I'm Duke\n"
@@ -23,6 +21,15 @@ public class Duke {
     private static final String noTimeGivenMessage  = "Please provide the relevant time for this type of task,\n"
                                                     + "by typing \"/\" followed by the time.";
     private static final ArrayList<Task> tasks = new ArrayList<>();
+
+    private static final Map<String, Function<String[], Task>> taskMaker = Map.of(
+            "todo"
+            , (input) -> new TodoTask(input[1])
+            , "deadline"
+            , (input) -> new DeadlineTask(input[1], input[2])
+            , "event"
+            , (input) -> new EventTask(input[1], input[2])
+            );
     public static void main(String[] args) {
         System.out.println(startUpMessage);
         Scanner sc = new Scanner(System.in);
@@ -62,21 +69,6 @@ public class Duke {
                     } catch (NumberFormatException e) {
                         System.out.println(invalidInputMessage);
                     }
-                } else if (inputSplit[0].equals("todo")) {
-                    Task newTask = new TodoTask(inputSplit[1]);
-                    tasks.add(newTask);
-                    System.out.println(addTaskMessage + newTask);
-                    System.out.println(String.format("Now you have %d tasks in the list.", tasks.size()));
-                } else if (inputSplit[0].equals("deadline")) {
-                    Task newTask = new DeadlineTask(inputSplit[1], inputSplit[2]);
-                    tasks.add(newTask);
-                    System.out.println(addTaskMessage + newTask);
-                    System.out.println(String.format("Now you have %d tasks in the list.", tasks.size()));
-                } else if (inputSplit[0].equals("event")) {
-                    Task newTask = new EventTask(inputSplit[1], inputSplit[2]);
-                    tasks.add(newTask);
-                    System.out.println(addTaskMessage + newTask);
-                    System.out.println(String.format("Now you have %d tasks in the list.", tasks.size()));
                 } else if (inputSplit[0].equals("delete")) {
                     try {
                         int taskNum = Integer.parseInt(inputSplit[1]);
@@ -93,7 +85,12 @@ public class Duke {
                     } catch (NumberFormatException e) {
                         System.out.println(invalidInputMessage);
                     }
-                } else {
+                } else if (taskMaker.containsKey(inputSplit[0])) {
+                    Task newTask = taskMaker.get(inputSplit[0]).apply(inputSplit);
+                    tasks.add(newTask);
+                    System.out.println(addTaskMessage + newTask);
+                    System.out.println(String.format("Now you have %d tasks in the list.", tasks.size()));
+                }  else {
                     throw new DukeException(invalidInputMessage);
                 }
             } catch (DukeException e) {
@@ -143,8 +140,9 @@ public class Duke {
             if (input.lastIndexOf("/") == -1) {
                 throw new DukeException(noTimeGivenMessage);
             }
-            result[0] = input.contains("deadline") ? input.substring(0,8) : input.substring(0,5);
-            result[1] = input.substring(input.contains("deadline") ? 8 : 5, input.lastIndexOf('/'));
+            boolean isDeadline = input.contains("deadline");
+            result[0] = isDeadline ? input.substring(0,8) : input.substring(0,5);
+            result[1] = input.substring(isDeadline ? 8 : 5, input.lastIndexOf('/'));
             result[2] = input.substring(input.lastIndexOf("/") + 1);
             if (result[1].length() == 0) {
                 throw new DukeException(noDescriptionMessage);
