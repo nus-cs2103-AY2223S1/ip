@@ -6,127 +6,44 @@ import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class Duke {
-    private static TaskList data;
-    private enum Commands {list, mark, unmark, todo, event, deadline, delete};
+    private TaskList data;
+    private Storage storage;
+    private Ui ui;
+    private Parser parser;
 
-    // marks task as complete or not complete
-    public static String setTaskCompletion(String input, boolean isComplete) throws DukeException {
-        String res = input.substring(isComplete ? 4 : 6).trim();
-        Task task = data.get(data.getIndex(res));
-        if (isComplete) task.markDone();
-        else task.markNotDone();
-        data.saveData();
-        return (isComplete ? "Nice! I've marked this task as done:\n" : "OK, I've marked this task as not done yet:\n")
-                + task;
-    }
-
-    // create a todo task
-    public static String createTodo(String input) throws DukeException {
-        String description = input.substring(4).trim();
-        if (description.length() == 0) throw new InvalidInput("The description of a todo cannot be empty.");
-        ToDo task = new ToDo(description);
-        data.add(task);
-        return "Got it. I've added this task:\n" + task + "\nNow you have " + data.size() + " tasks.";
-    }
-
-    // create event task
-    public static String createEvent(String input) throws DukeException {
-        String[] info = input.substring(5).split("/at");
-        if (info.length != 2) throw new InvalidInput("Ensure input format is correct.");
-        String description = info[0].strip();
-        if (description.length() == 0)
-            throw new InvalidInput("The description of event cannot be empty.");
+    public void run() {
+        data = new TaskList();
+        ui = new Ui();
+        parser = new Parser();
         try {
-            LocalDate date = LocalDate.parse(info[1].strip());
-            Event task = new Event(description, date);
-            data.add(task);
-            return "Got it. I've added this task:\n" + task + "\nNow you have " + data.size() + " tasks.";
-        } catch (DateTimeParseException e) {
-            throw new InvalidInput("Date format should be yyyy-mm-dd");
-        }
-    }
-
-    // create deadline task
-    public static String createDeadline(String input) throws DukeException {
-        String[] info = input.substring(8).split("/by");
-        if (info.length != 2) throw new InvalidInput("Ensure input format is correct.");
-        String description = info[0].strip();
-        if (description.length() == 0)
-            throw new InvalidInput("The description of deadline cannot be empty.");
-        try {
-            LocalDate date = LocalDate.parse(info[1].strip());
-            Deadline task = new Deadline(description, date);
-            data.add(task);
-            return "Got it. I've added this task:\n" + task + "\nNow you have " + data.size() + " tasks.";
-        } catch (DateTimeParseException e) {
-            throw new InvalidInput("Date format should be yyyy-mm-dd");
-        }
-    }
-
-    // delete a specified task
-    public static String deleteTask(String input) throws DukeException {
-        String res = input.substring(6).trim();
-        int target_index = data.getIndex(res);
-        Task task = data.get(target_index);
-        data.remove(target_index);
-        return "Noted. I've removed this task:\n" + task + "\nNow you have " + data.size() + " tasks.";
-    }
-
-    public static String reply(String input) throws DukeException {
-        Commands command;
-        try {
-            command = Commands.valueOf(input.split(" ")[0]);
-        } catch (IllegalArgumentException e) {
-            throw new UnknownCommand();
-        }
-        switch (command) {
-            case list:
-                return data.listData();
-            case mark:
-                return setTaskCompletion(input, true);
-            case unmark:
-                return setTaskCompletion(input, false);
-            case todo:
-                return createTodo(input);
-            case event:
-                return createEvent(input);
-            case deadline:
-                return createDeadline(input);
-            case delete:
-                return deleteTask(input);
-            default:
-                throw new UnknownCommand();
-        }
-    }
-
-    public static void main(String[] args) {
-        try {
-            data = new TaskList();
-            data.loadData();
+            storage = new Storage();
+            storage.loadData(data);
         } catch (DukeException e) {
-            System.out.println(e);
+            ui.printError(e);
             return;
         }
-        System.out.println("Quack! I'm Duck\nWhat can I do for you?");
+        ui.helloMessage();
         Scanner sc = new Scanner(System.in);
         while (sc.hasNextLine()) {
-            System.out.println("____________________________________________________________");
+            ui.printDivider();
             System.out.println("Duck:");
             String input = sc.nextLine();
-            if (input.equals("bye")) {
-                sc.close();
-                System.out.println("Quack! Hope to see you again soon!");
-                System.out.println("____________________________________________________________");
-                return;
-            } else {
-                try {
-                    String reply = reply(input);
-                    System.out.println(reply);
-                } catch (DukeException e) {
-                    System.out.println(e);
+            try {
+                Command command = parser.parse(input);
+                command.execute(data, ui, storage);
+                if ("exit".equals(command.getCommand())) {
+                    sc.close();
+                    return;
                 }
+            } catch (DukeException e) {
+                ui.printError(e);
             }
-            System.out.println("____________________________________________________________");
+            ui.printDivider();
         }
+    }
+
+
+    public static void main(String[] args) {
+        new Duke().run();
     }
 }
