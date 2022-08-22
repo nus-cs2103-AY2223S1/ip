@@ -29,7 +29,7 @@ public class Event extends Task {
     }
 
     /**
-     * Override <Code>toString</Code> method to return status and
+     * Overrides <Code>toString</Code> method to return status and
      * description of <Code>Event</Code> object.
      * @return [E][COMPLETION STATUS][TASK DESCRIPTION]
      */
@@ -39,7 +39,7 @@ public class Event extends Task {
     }
 
     /**
-     * To produce a <Code>String</Code> with "|" delimiters for
+     * Produces a <Code>String</Code> with "|" delimiters for
      * storing the <Code>Event</Code>'s data into a text file.
      * @return "event|[COMPLETION STATUS]|[TASK DESCRIPTION]|[TASK VENUE]"
      */
