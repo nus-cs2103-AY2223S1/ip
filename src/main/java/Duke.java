@@ -1,9 +1,18 @@
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Duke {
     protected static Storage storage = new Storage("data/tasks.txt");
     protected static ArrayList<Task> tasks = storage.load();
+    protected static DateTimeFormatter parserFormats = new DateTimeFormatterBuilder()
+            .appendOptional(DateTimeFormatter.ISO_LOCAL_DATE)
+            .appendOptional(DateTimeFormatter.ofPattern("d MMM uuuu"))
+            .appendOptional(DateTimeFormatter.ofPattern("yyyyMMdd"))
+            .toFormatter();
 
     public static void processTask(String input, String type) {
         String[] arr = input.split(" ", 2);
@@ -23,21 +32,30 @@ public class Duke {
         if (type.equals("deadline")) {
             try {
                 String[] details = desc.split(" /by ");
-                temp = new Deadline(details[0], details[1]);
+                String by = LocalDate.parse(details[1], parserFormats).
+                        format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+                temp = new Deadline(details[0], by);
                 tasks.add(temp);
-            }
-            catch(ArrayIndexOutOfBoundsException e) {
+            } catch(ArrayIndexOutOfBoundsException e) {
                 printOut("Oops! Your deadline should have a due date after /by.");
+                return;
+            } catch (DateTimeParseException e) {
+                printOut("Please enter a valid date!");
                 return;
             }
         }
         if (type.equals("event")) {
             try {
                 String[] details = desc.split(" /at ");
-                temp = new Event(details[0], details[1]);
+                String at = LocalDate.parse(details[1], parserFormats).
+                        format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+                temp = new Event(details[0], at);
                 tasks.add(temp);
             } catch(ArrayIndexOutOfBoundsException e) {
                 printOut("Oops! Your event should have a date after /at.");
+                return;
+            } catch (DateTimeParseException e) {
+                printOut("Please enter a valid date!");
                 return;
             }
         }
