@@ -10,9 +10,9 @@ The main function is located in Duke.java.
 After starting the program, you can enter `help` for information on supported commands and corresponding syntax. 
 
 
-  ___  _ _       _       
- / _ \| (_)_   _(_) __ _
-| | | | | \ \ / / |/ _` |
-| |_| | | |\ V /| | (_| |
- \___/|_|_| \_/ |_|\__,_|
-
+  ___  _ _       _         
+ / _ \| (_)_   _(_) __ _  
+| | | | | \ \ / / |/ _` |  
+| |_| | | |\ V /| | (_| |  
+ \___/|_|_| \_/ |_|\__,_|  
+  
