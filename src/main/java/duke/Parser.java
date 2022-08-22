@@ -5,15 +5,15 @@ import java.util.Objects;
 public class Parser {
 
     /**
-     * Parses user command into a String array. First element of the array
-     * is the type of command; i.e. "T" for todo, "D" for deadline, "E" for
-     * event, "d" for delete, "M" for mark, "L" for list, "B" for bye and "U"
-     * for unknown input. Second element of the array is either: the description
-     * of a todo/deadline/event task or the number of task to be marked/deleted.
-     * The third element of the array is the time for deadline/event tasks.
+     * Parses user command into a String array.
      *
      * @param command User input
-     * @return a String array
+     * @return A String array. First element of the array is the type of command;
+     *         i.e. "T" for todo, "D" for deadline, "E" for event, "d" for delete,
+     *         "M" for mark, "L" for list, "B" for bye and "U" for unknown input.
+     *         Second element of the array is either: the description of a todo/
+     *         deadline/event task or the number of task to be marked/deleted.
+     *         The third element of the array is the time for deadline/event tasks.
      */
     public String[] parseCommand(String command) {
 

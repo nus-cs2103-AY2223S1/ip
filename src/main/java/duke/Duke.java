@@ -27,7 +27,10 @@ public class Duke {
 
     public void run() {
         this.ui.showWelcomeMessage();
+        this.runCommandLoopUntilExit();
+    }
 
+    public void runCommandLoopUntilExit() {
         String command; // User input
         String[] arr;
         String action;
@@ -84,7 +87,6 @@ public class Duke {
             }
 
         }
-
     }
 
     public Task executeTodo(String description) {
