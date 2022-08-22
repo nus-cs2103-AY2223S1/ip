@@ -27,7 +27,7 @@ public class Event extends Task {
         return "[E]" + super.toString() + " (at: " + this.date.toString() + ")";
     }
 
-    public String toStorageFormat() {
-        return "E | " + super.toStorageFormat() + " | " + this.date.toString();
+    public LocalDate getDate() {
+        return this.date;
     }
 }

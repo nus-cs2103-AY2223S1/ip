@@ -4,13 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.lang.NumberFormatException;
 import java.lang.StringIndexOutOfBoundsException;
-import java.io.File;
-import java.io.FileWriter;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.Files;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.stream.Collectors;
 
 
 public class Roger {
@@ -18,10 +15,6 @@ public class Roger {
 
     private static void sayGoodbye() {
         System.out.println("Bye bye niece and nephew.");
-    }
-
-    private static void echo(String input) {
-        System.out.println(input);
     }
 
     private static void sayHello() {
@@ -68,18 +61,6 @@ public class Roger {
         }
     }
 
-    private void add(String taskName) {
-        Task task = new Task(taskName);
-        this.tasks.add(task);
-        System.out.println("Nephew got new task to do:");
-        System.out.println(task);
-        System.out.println("Nephew now have " + Integer.toString(this.tasks.size()) + " tasks in the list.");
-    }
-
-    private void add(Event event) {
-        this.tasks.add(event);
-    }
-
     private void addToDo(String taskName) {
         ToDo toDo = new ToDo(taskName);
         this.tasks.add(toDo);
@@ -114,14 +95,12 @@ public class Roger {
     private void unmarkAsDone(int taskNum) {
         Task task = tasks.get(taskNum - 1);
         task.unmarkAsDone();
-
         System.out.println("Haven't done yet, mark what mark? Unmarked this task:");
         System.out.println(task);
     }
 
     private void deleteTask(int taskNum) {
         Task task = this.tasks.remove(taskNum - 1);
-
         System.out.println("Haiya so lazy. Deleted this task:");
         System.out.println(task);
         System.out.println("Nephew now have " + Integer.toString(this.tasks.size()) + " tasks in the list.");
@@ -248,60 +227,6 @@ public class Roger {
         System.out.println("Uncle really don't understand.");
     }
 
-    private static List<Task> readTasksFromFile(Path path) throws IOException {
-        List<String> tasksFile;
-        tasksFile = Files.readAllLines(path);
-        List<Task> tasks = new ArrayList<>();
-        
-        for (String line : tasksFile) {
-            char type = line.charAt(0);
-            boolean isDone = line.charAt(4) == 1;
-            int nameDateSeparator = line.substring(7).indexOf('|');
-            if (nameDateSeparator <= 7) {
-                throw new IOException("Corrupted data file.");
-            }
-            String name = line.substring(7, nameDateSeparator - 1);
-            LocalDate date = LocalDate.parse(line.substring(nameDateSeparator + 1));
-
-            Task task;
-            switch (type) {
-                case 'T':
-                    task = new ToDo(name);
-                    break;
-                case 'D':
-                    task = new Deadline(name, date);
-                    break;
-                case 'E':
-                    task = new Event(name, date);
-                    break;
-                default:
-                    throw new IOException("Corrupted data file.");
-            }
-            if (isDone) {
-                task.markAsDone();
-            }
-
-            tasks.add(task);
-        }
-        
-        return tasks;
-    }
-    
-    private static void writeTasksToFile(List<Task> tasks, Path path) throws IOException {
-        try {
-            Files.delete(path);
-        } catch (IOException ignored) {}
-
-        File file = new File(String.valueOf(path.toAbsolutePath()));
-        file.getParentFile().mkdirs();
-        file.createNewFile();
-        FileWriter fw = new FileWriter(file);
-        for (Task task : tasks) {
-            fw.append(task.toStorageFormat() + '\n');
-        }
-        fw.close();
-    }
-
     public static void main(String[] args) {
         /**
          * Logic for Roger program. Takes user input and matches it
@@ -310,21 +235,26 @@ public class Roger {
          */
         Roger roger = new Roger();
         Scanner scanner = new Scanner(System.in);
+        Storage storage = new Storage(Paths.get("data/database.txt"));
 
-        roger.sayHello();
-
-        Path path = Paths.get("data/database.txt");
+        List<String> taskStrings;
         try {
-            roger.tasks = Roger.readTasksFromFile(path);
+            taskStrings = storage.load();
         } catch (IOException e) {
-            roger.tasks = new ArrayList<>();
+            taskStrings = new ArrayList<>();
         }
+
+        for (String taskString : taskStrings) {
+            roger.tasks.add(StorageParser.toTask(taskString));
+        }
+
+        Roger.sayHello();
 
         repl: while (true) {
             String input = scanner.nextLine();
-            int i = input.indexOf(" ");
-            String command = i < 0 ? input : input.substring(0, i);
-            String arguments = i < 0 ? "" : input.substring(i + 1);
+            int cmdArgSeparator = input.indexOf(" ");
+            String command = cmdArgSeparator < 0 ? input : input.substring(0, cmdArgSeparator);
+            String arguments = cmdArgSeparator < 0 ? "" : input.substring(cmdArgSeparator + 1);
 
             try {
                 switch (command) {
@@ -357,14 +287,15 @@ public class Roger {
                 }
             } catch (RogerInvalidInputException e) {
                 System.out.println(e.getMessage());
-                continue;
             }
         }
 
         try {
-            Roger.writeTasksToFile(roger.tasks, path);
+            List<String> newTaskStrings = roger.tasks.stream()
+                    .map(StorageParser::toTaskString)
+                    .collect(Collectors.toList());
+            storage.write(newTaskStrings);
         } catch (IOException e) {
-            System.out.println(e.getMessage());
             System.out.println("Unable to write tasks to database. Check the path provided.");
         }
     }

@@ -26,7 +26,7 @@ public class Deadline extends Task {
         return "[D]" + super.toString() + " (by: " + this.date.toString() + ")";
     }
 
-    public String toStorageFormat() {
-        return "D | " + super.toStorageFormat() + " | " + this.date.toString();
+    public LocalDate getDate() {
+        return this.date;
     }
 }

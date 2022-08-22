@@ -37,7 +37,11 @@ public abstract class Task {
         return "[" + (this.isDone ? "X" : " ") + "] " + this.name;
     }
 
-    public String toStorageFormat() {
-        return (this.isDone ? "1" : "0") + " | " + this.name;
+    public String getName() {
+        return this.name;
+    }
+
+    public boolean isDone() {
+        return this.isDone;
     }
 }
