@@ -1,5 +1,8 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.io.File;
+import java.io.IOException;
+import java.io.FileWriter;
 
 public class Duke {
     private static ArrayList<Task> tasks = new ArrayList<>();
@@ -17,10 +20,11 @@ public class Duke {
         prettyPrint(introMsg);
 
         Scanner in = new Scanner(System.in);
-
+        loadTasks();
         while (isRunning) {
             try {
                 handleInput(in);
+                saveTasks();
             } catch (DukeException de) {
                 prettyPrint(de.getMessage());
             }
@@ -126,5 +130,50 @@ public class Duke {
     private static void prettyPrint(String s) {
         String divider = "____________________________________________________________\n";
         System.out.println(divider + "\t" + s + "\n" + divider);
+    }
+    
+    private static void saveTasks() {
+        try {
+            File savedTasks = new File("data/dukeData.txt");
+            FileWriter fw = new FileWriter(savedTasks);
+            for (Task task : tasks) {
+                fw.write(task.saveString());
+                fw.write(System.lineSeparator());
+            }
+            fw.close();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+    
+    private static void loadTasks() {
+        try {
+            File savedTasks = new File("data/dukeData.txt");
+            if (savedTasks.exists()) {
+                Scanner s = new Scanner(savedTasks);
+                while (s.hasNext()) {
+                    String task = s.nextLine();
+                    switch (task.charAt(0)) {
+                        case 'T':
+                            tasks.add(ToDo.taskFromSave(task));
+                            break;
+                        case 'E':
+                            tasks.add(Event.taskFromSave(task));
+                            break;
+                        case 'D':
+                            tasks.add(Deadline.taskFromSave(task));
+                            break;
+                    }
+                }
+            } else {
+                String localDir = System.getProperty("user.dir");
+                File folder = new File(localDir + "/data");
+                folder.mkdir();
+                File savedTasks2 = new File("data/dukeData.txt");
+                savedTasks2.createNewFile();
+            }
+        } catch (IOException e) {
+            System.out.println(e);
+        }
     }
 }

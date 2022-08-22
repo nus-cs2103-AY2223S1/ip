@@ -14,6 +14,10 @@ public class Task {
     public void markNotDone() {
         this.isDone = false;
     }
+    
+    public String saveString() {
+        return (isDone ? 1 : 0) + " | " + description;
+    }
 
     @Override
     public String toString() {
