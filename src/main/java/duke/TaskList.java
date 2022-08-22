@@ -3,20 +3,32 @@ package duke;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+/**
+ * TaskList class contains the task list that has operations such as
+ * to add or delete tasks in the list.
+ */
 public class TaskList {
     private final ArrayList<Task> tasks;
     private int taskCount;
     private Ui ui;
 
+    /**
+     * Constructor for TaskList. An empty ArrayList of type Task is created.
+     */
+    public TaskList() {
+        tasks = new ArrayList<>();
+        taskCount = 0;
+    }
+
+    /**
+     * Constructor for TaskList that takes in an ArrayList of Task objects.
+     *
+     * @param arr an ArrayList of Task objects
+     */
     public TaskList(ArrayList<Task> arr) {
         tasks = arr;
         ui = new Ui();
         taskCount = tasks.size();
-    }
-
-    public TaskList() {
-        tasks = new ArrayList<>();
-        taskCount = 0;
     }
 
     public void addTask(String[] splitStr, Duke.TaskType type) throws DukeException {

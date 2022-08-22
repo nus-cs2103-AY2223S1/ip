@@ -2,6 +2,9 @@ package duke;
 
 import java.util.Scanner;
 
+/**
+ * Duke is a program that helps the user manage their tasks.
+ */
 public class Duke {
     private static final Scanner sc = new Scanner(System.in);
     private Storage storage;
@@ -14,6 +17,12 @@ public class Duke {
         EVENT
     }
 
+    /**
+     * Constructor for Duke.
+     *
+     * @param filePath the String that represents the relative path of the text document
+     *                 to load or save from
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -25,6 +34,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Runs the core part of the code
+     */
     public void run() {
         ui.printGreetings();
         String str = sc.nextLine().trim();
