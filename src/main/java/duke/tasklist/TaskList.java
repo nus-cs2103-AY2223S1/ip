@@ -1,6 +1,6 @@
-package tasklist;
+package duke.tasklist;
 
-import tasks.Task;
+import duke.tasks.Task;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -19,6 +19,14 @@ public class TaskList {
      */
     public TaskList() {
         this.taskList = new ArrayList<>();
+    }
+
+    /**
+     * Overloaded constructor to allow for loading of previously generated tasks.
+     * @param taskList Array of existing tasks parsed by Storage
+     */
+    public TaskList(List<Task> taskList) {
+        this.taskList = taskList;
     }
 
     /**
@@ -70,13 +78,29 @@ public class TaskList {
     public int getSize() {
         return taskList.size();
     }
+
+    /**
+     * Returns write string version of TaskList
+     * @return TaskList in writeString format, to be written into data.txt
+     */
+    public String getWriteString() {
+        String result = "";
+        for (Task task: this.taskList) {
+            result += task.getSaveString() + "\n";
+        }
+        return result;
+    }
+
     @Override
     public String toString() {
         int counter = 1;
         String res = "Here are the tasks that you have added to the list:\n";
         for (Task task : this.taskList) {
             if (task != null) {
-                res += counter + ". " + task + "\n";
+                res += counter + ". " + task;
+                if (counter != taskList.size()) {
+                    res += "\n";
+                }
                 counter++;
             }
         }
