@@ -1,3 +1,5 @@
+package duke;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -18,7 +20,7 @@ public class Deadline extends Task {
 
     public String SaveString() {
         return String.format("D | %s | %s | %s\n", super.isDone ? "1" : "0",
-                super.description, date);
+                super.description, date.format(formatter));
     }
 
     @Override
