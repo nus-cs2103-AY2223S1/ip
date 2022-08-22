@@ -1,3 +1,4 @@
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.io.File;
@@ -22,6 +23,44 @@ public class Duke {
         }
         catch (IOException e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    public static void loadFile(File file)  {
+        try {
+            Scanner sc = new Scanner(file);
+            while (sc.hasNextLine()) {
+                String message = sc.nextLine();
+                String[] messageArr = message.split("#");
+                if (messageArr[0].equals("T")) {
+                    ToDo todo = new ToDo(messageArr[2]);
+                    if (messageArr[1].equals("1")) {
+                        todo.setCompleted();
+                    }
+                    TaskList.add(todo);
+                }
+
+                if (messageArr[0].equals("D")) {
+                    Deadline deadline = new Deadline(messageArr[2],messageArr[3],messageArr[4]);
+                    if (messageArr[1].equals("1")) {
+                        deadline.setCompleted();
+                    }
+                    TaskList.add(deadline);
+                }
+
+                if (messageArr[0].equals("E")) {
+                    Event event = new Event(messageArr[2],messageArr[3]);
+                    if (messageArr[1].equals("1")) {
+                        event.setCompleted();
+                    }
+                    TaskList.add(event);
+                }
+
+
+
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found!");
         }
     }
 
@@ -63,13 +102,12 @@ public class Duke {
     }
 
     public static String listToString() {
-        String newList = "";
-        int count = 1;
+        String message = "";
         for (Task item: TaskList) {
-            newList += (count + "." + item.toString() + "\n");
-            count++;
+           message += item.parse();
+           message += "\n";
         }
-        return newList;
+        return message;
     }
 
     public static void echo(String command) throws DukeException {
@@ -78,7 +116,11 @@ public class Duke {
             System.out.println(bye);
         } else if (command.trim().equals("list")) {
             String newList = "Here are the tasks in your list:\n";
-            newList += listToString();
+            int count = 1;
+            for (Task item: TaskList) {
+                newList += (count + "." + item.toString() + "\n");
+                count++;
+            }
             System.out.println(newList);
 
         } else {
@@ -91,7 +133,7 @@ public class Duke {
                     }
             } else if (command.trim().startsWith("deadline")) {
                 int end = command.indexOf('/');
-                String name = command.substring(9, end);
+                String name = command.substring(9, end - 1);
                 try {
                     String dateTime = command.substring(end + 4);
                     // an array containing a date and time respectively
@@ -108,7 +150,7 @@ public class Duke {
 
             } else if (command.trim().startsWith("event")) {
                 int end = command.indexOf('/');
-                String name = command.substring(6, end );
+                String name = command.substring(6, end - 1 );
                 String time = command.substring(end + 4);
                 Event event = new Event(name,time);
                 addTask(event);
@@ -152,6 +194,8 @@ public class Duke {
             catch (IOException e) {
                 System.out.println(e.getMessage());
             }
+        } else {
+            loadFile(newFile);
         }
 
         while (true) {

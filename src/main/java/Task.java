@@ -1,4 +1,4 @@
- class Task {
+ abstract class Task {
     private boolean completed = false;
     private String name;
 
@@ -22,7 +22,9 @@
         if (completed) {
             return "[X] " + name;
         } else {
-            return "[] " + name;
+            return "[ ] " + name;
         }
     }
+
+    abstract String parse();
 }
