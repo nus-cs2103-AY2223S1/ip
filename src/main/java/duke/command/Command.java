@@ -1,9 +1,7 @@
 package duke.command;
 
 import duke.DukeException;
-import duke.task.Task;
 import duke.task.TaskList;
-import duke.util.UI;
 
 public abstract class Command {
     private static final String WRONG_ARGS_COUNT = "Wrong number of arguments provided!";
@@ -11,7 +9,7 @@ public abstract class Command {
     protected final CommandType command;
     protected final String[] args;
 
-    private Command(CommandType command, String[] args) {
+    protected Command(CommandType command, String[] args) {
         this.command = command;
         this.args = args;
     }
@@ -67,127 +65,4 @@ public abstract class Command {
 
     public abstract void runSpecialTask(TaskList tasks) throws DukeException;
 
-    private static class ListCommand extends Command {
-        public ListCommand(String[] args) {
-            super(CommandType.LIST, args);
-        }
-
-        @Override
-        public void runSpecialTask(TaskList tasks) {
-            tasks.print();
-        }
-    }
-
-    private static class UpdateStatusCommand extends Command {
-        private final String WRONG_ARGUMENT = "This command expects a number argument!";
-        private final String INDEX_OUT_OF_BOUND = "This command expects an index between 1 and number of tasks.";
-
-        private final boolean isDone;
-
-        public UpdateStatusCommand(String[] args, boolean isDone) {
-            super(CommandType.UPDATE_STATUS, args);
-            this.isDone = isDone;
-        }
-
-        @Override
-        public void runSpecialTask(TaskList tasks) throws DukeException {
-            int index;
-            try {
-                index = Integer.parseInt(args[0]) - 1;
-            } catch (NumberFormatException e) {
-                throw new DukeException(WRONG_ARGUMENT);
-            }
-            if (index < 0 || index >= tasks.size()) {
-                throw new DukeException(INDEX_OUT_OF_BOUND);
-            }
-            Task task = tasks.get(index);
-            task.setDone(isDone);
-            tasks.save();
-            UI.print(String.format("I've %s this task\n\t", this.isDone ? "checked" : "unchecked") + task);
-        }
-    }
-
-    private static class AddTaskCommand extends Command {
-        public AddTaskCommand(CommandType command, String[] args) {
-            super(command, args);
-        }
-
-        @Override
-        public void runSpecialTask(TaskList tasks) {
-            Task task = Task.of(this.command, this.args);
-            tasks.add(task);
-            tasks.save();
-            UI.print("I've added the following task:\n\t" + task);
-        }
-    }
-
-    // TODO: Merge this with UpdateStatusCommand to form CommandWithIndex
-    private static class DeleteTaskCommand extends Command {
-        private final String WRONG_ARGUMENT = "This command expects a number argument!";
-        private final String INDEX_OUT_OF_BOUND = "This command expects an index between 1 and number of tasks.";
-
-        public DeleteTaskCommand(String[] args) {
-            super(CommandType.DELETE, args);
-        }
-
-        @Override
-        public void runSpecialTask(TaskList tasks) throws DukeException {
-            int index;
-            try {
-                index = Integer.parseInt(args[0]) - 1;
-            } catch (NumberFormatException e) {
-                throw new DukeException(WRONG_ARGUMENT);
-            }
-            if (index < 0 || index >= tasks.size()) {
-                throw new DukeException(INDEX_OUT_OF_BOUND);
-            }
-            Task task = tasks.get(index);
-            tasks.remove(index);
-            tasks.save();
-            UI.print("I've removed this task\n\t" + task);
-        }
-    }
-
-    private static class ByeCommand extends Command {
-        private final String BYE_MESSAGE = "Bye! Hope to see you soon!";
-
-        public ByeCommand(String[] args) {
-            super(CommandType.BYE, args);
-        }
-
-        @Override
-        public void runSpecialTask(TaskList tasks) {
-            UI.print(BYE_MESSAGE);
-        }
-    }
-
-    private static class BadCommand extends Command {
-        private static final String BAD_COMMAND = "The command was not understood.";
-
-        public BadCommand(String[] args) {
-            super(CommandType.BAD, args);
-        }
-
-        @Override
-        public void execute(TaskList tasks) throws DukeException {
-            // bypass compatibility check
-            this.runSpecialTask(tasks);
-        }
-
-        @Override
-        public void runSpecialTask(TaskList tasks) throws DukeException {
-            throw new DukeException(BAD_COMMAND);
-        }
-    }
-
-    private static class EmptyCommand extends Command {
-        public EmptyCommand(String[] args) {
-            super(CommandType.EMPTY, args);
-        }
-
-        @Override
-        public void runSpecialTask(TaskList tasks) {
-            // does nothing
-        }
-    }
 }

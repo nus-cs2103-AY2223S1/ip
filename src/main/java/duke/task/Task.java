@@ -1,18 +1,13 @@
 package duke.task;
 
-import duke.DukeException;
 import duke.command.CommandType;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 public abstract class Task {
     private final String description;
     private final char symbol;
     private boolean isDone;
 
-    private Task(String description, char symbol) {
+    protected Task(String description, char symbol) {
         this.description = description;
         this.symbol = symbol;
         this.isDone = false;
@@ -41,64 +36,6 @@ public abstract class Task {
             return new EventTask(args);
         default:
             return null;
-        }
-    }
-
-    private static class TodoTask extends Task {
-        public TodoTask(String[] args) {
-            super(args[0], 'T');
-        }
-    }
-
-    private static class DeadlineTask extends Task {
-        private final LocalDateTime deadline;
-        private static final DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd-MM-yy HHmm");
-        private static final DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("hh:mm a, MMM d, yyyy");
-
-        public DeadlineTask(String[] args) {
-            super(args[0], 'D');
-            try {
-                System.out.println(args[1]);
-                this.deadline = LocalDateTime.parse(args[1], inputFormatter);
-            }  catch (DateTimeParseException e) {
-                e.printStackTrace();
-                throw new DukeException("The Date/Time was not understood");
-            }
-        }
-
-        @Override
-        public String toString() {
-            return super.toString() + " (by: " + this.deadline.format(outputFormatter) + ")";
-        }
-
-        @Override
-        public String toSaveString() {
-            return super.toSaveString() + " | " + this.deadline.format(inputFormatter);
-        }
-    }
-
-    private static class EventTask extends Task {
-        private final LocalDateTime time;
-        private static final DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd-MM-yy HHmm");
-        private static final DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("hh:mm a, MMM d, yyyy");
-
-        public EventTask(String[] args) {
-            super(args[0], 'E');
-            try {
-                this.time = LocalDateTime.parse(args[1], inputFormatter);
-            }  catch (DateTimeParseException e) {
-                throw new DukeException("The Date/Time was not understood");
-            }
-        }
-
-        @Override
-        public String toString() {
-            return super.toString() + " (at: " + this.time.format(outputFormatter) + ")";
-        }
-
-        @Override
-        public String toSaveString() {
-            return super.toSaveString() + " | " + this.time.format(inputFormatter);
         }
     }
 }
