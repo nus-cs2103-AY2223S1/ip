@@ -1,16 +1,22 @@
-import exceptions.IncorrectArgumentException;
-import exceptions.MissingArgumentException;
-import exceptions.TaskNotFoundException;
-import exceptions.UnknownCommandException;
-
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import events.Deadline;
 import events.Event;
 import events.Task;
 import events.Todo;
+import exceptions.IncorrectArgumentException;
+import exceptions.MissingArgumentException;
+import exceptions.TaskNotFoundException;
+import exceptions.UnknownCommandException;
 
 public class Duke {
     static private final String exitCommand = "bye";
@@ -24,6 +30,8 @@ public class Duke {
     static private final String unmarkCommand = "unmark";
     static private final String deleteCommand = "delete";
     static private final String exitMessage = "Goodbye and have a nice day!";
+    static private final String delimiter = "@@@";
+    static private final String nullSymbol = "$_$";
 
     /**
      * Returns a boolean corresponding to whether the given string is numeric.
@@ -67,9 +75,96 @@ public class Duke {
         System.out.println(exitMessage);
     }
 
+    /**
+     * Starts up the duke machine and load the data from the hard disk.
+     * The method also creates the folder and data file if it does not exist.
+     */
+    private static void startUp(TaskController taskController) {
+
+    }
+
+    /**
+     * Read Tasks from the Data File.
+     */
+    private static TaskController initializeTaskControllerFromDataFile() {
+        try {
+            Duke.ensureDataFileExist();
+            TaskController taskController = new TaskController();
+            List<Task> initTask = new ArrayList<>();
+
+            File dataFile = new File("src/main/java/data/data.txt");
+            try {
+                Scanner sc = new Scanner(dataFile);
+                while (sc.hasNextLine()) {
+                    String taskString = sc.nextLine();
+                    if (taskString != "") {
+                        String[] taskArgs = taskString.split(delimiter);
+                        initTask.add(Task.of(taskArgs[0], taskArgs[1], taskArgs[2], taskArgs[3]));
+                    }
+                }
+                sc.close();
+                taskController.loadTasks(initTask);
+                return taskController;
+            } catch (Exception e) {
+                throw new RuntimeException(
+                        "This cannot happen has the data file is ensured to be there");
+            }
+        } catch (Exception e) {
+            return new TaskController();
+        }
+    }
+
+    /**
+     * Write Tasks to the Data File.
+     */
+    private static void writeDataToFile(List<String> tasks) {
+        FileWriter writer;
+        try {
+            writer = new FileWriter("src/main/java/data/data.txt");
+            for (int i = 0; i < tasks.size(); i++) {
+                try {
+                    writer.write(tasks.get(i) + "\n" + "");
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+            try {
+                writer.close();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    private static File ensureDataFileExist() throws IOException, SecurityException {
+        String dataDirPathString = "src/main/java/data/";
+        Path dataDirPath = Paths.get(dataDirPathString);
+        boolean dataDirExists = Files.isDirectory(dataDirPath);
+
+        String dataFilePathString = dataDirPathString + "data.txt";
+        Path dataFilePath = Paths.get(dataFilePathString);
+        boolean dataFileExists = Files.exists(dataFilePath);
+        if (!(dataDirExists && dataFileExists)) {
+            return createDataFile();
+        }
+        return new File(dataFilePathString);
+    }
+
+    private static File createDataFile() throws IOException, SecurityException {
+        File dataFile = new File("src/main/java/data/data.txt");
+        dataFile.getParentFile().mkdirs();
+        dataFile.createNewFile();
+        return dataFile;
+    }
+
     public static void main(String[] args) {
         // Set up
-        TaskController taskController = new TaskController();
+        TaskController taskController = Duke.initializeTaskControllerFromDataFile();
 
         Duke.greet();
 
@@ -98,8 +193,10 @@ public class Duke {
                         if (commandArgsCopy.length > 0) {
                             Task newTodo = new Todo(todoText);
                             taskController.addTask(newTodo);
+                            Duke.writeDataToFile(taskController.exportTaskList());
                         } else {
-                            throw new MissingArgumentException("The description of the todo cannot be empty!");
+                            throw new MissingArgumentException(
+                                    "The description of the todo cannot be empty!");
                         }
                         break;
 
@@ -112,8 +209,10 @@ public class Duke {
 
                             Task newDeadline = new Deadline(deadlineTitle, deadline);
                             taskController.addTask(newDeadline);
+                            Duke.writeDataToFile(taskController.exportTaskList());
                         } else {
-                            throw new MissingArgumentException("Deadlines need a /by command");
+                            throw new MissingArgumentException(
+                                    "Deadlines need a /by command");
                         }
                         break;
 
@@ -126,8 +225,10 @@ public class Duke {
 
                             Task newEvent = new Event(eventTitle, eventDateTime);
                             taskController.addTask(newEvent);
+                            Duke.writeDataToFile(taskController.exportTaskList());
                         } else {
-                            throw new MissingArgumentException("Events need a /at command");
+                            throw new MissingArgumentException(
+                                    "Events need a /at command");
                         }
                         break;
 
@@ -136,7 +237,8 @@ public class Duke {
                             int idx = Integer.parseInt(commandArgs[1]);
                             taskController.markTask(idx - 1);
                         } else {
-                            throw new IncorrectArgumentException("Sorry the second argument is not a number");
+                            throw new IncorrectArgumentException(
+                                    "Sorry the second argument is not a number");
                         }
                         break;
 
@@ -145,7 +247,8 @@ public class Duke {
                             int idx = Integer.parseInt(commandArgs[1]);
                             taskController.unmarkTask(idx - 1);
                         } else {
-                            throw new IncorrectArgumentException("Sorry the second argument is not a number");
+                            throw new IncorrectArgumentException(
+                                    "Sorry the second argument is not a number");
                         }
                         break;
 
@@ -154,7 +257,8 @@ public class Duke {
                             int idx = Integer.parseInt(commandArgs[1]);
                             taskController.deleteTask(idx - 1);
                         } else {
-                            throw new IncorrectArgumentException("Sorry the second argument is not a number");
+                            throw new IncorrectArgumentException(
+                                    "Sorry the second argument is not a number");
                         }
                         break;
 
@@ -163,9 +267,11 @@ public class Duke {
                         break;
 
                     default:
-                        throw new UnknownCommandException("Sorry I don't understand that command");
+                        throw new UnknownCommandException(
+                                "Sorry I don't understand that command");
                 }
-            } catch (UnknownCommandException | MissingArgumentException | TaskNotFoundException | IncorrectArgumentException e) {
+            } catch (UnknownCommandException | MissingArgumentException | TaskNotFoundException
+                    | IncorrectArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }

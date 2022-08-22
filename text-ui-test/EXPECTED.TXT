@@ -4,7 +4,7 @@ Enter Command:
 ___________________________ 
 
 Your wish is my command. I've added this task:
-[T][ ] borrow book
+[T] [ ] borrow book
 ___________________________ 
 
 Enter Command: 
@@ -13,7 +13,7 @@ ___________________________
 
 Here are the tasks in your list
 
-1: [T][ ] borrow book
+1: [T] [ ] borrow book
 
 ___________________________ 
 
@@ -50,7 +50,7 @@ Enter Command:
 ___________________________ 
 
 Your wish is my command. I've added this task:
-[T][ ] read book
+[T] [ ] read book
 ___________________________ 
 
 Enter Command: 
@@ -66,25 +66,25 @@ Enter Command:
 ___________________________ 
 
 Your wish is my command. I've added this task:
-[T][ ] join sports club
+[T] [ ] join sports club
 ___________________________ 
 
 Enter Command: 
 I've marked this task as done:
-[T][X] read book
+[T] [X] read book
 Enter Command: 
 
 ___________________________ 
 
 Here are the tasks in your list
 
-1: [T][ ] borrow book
+1: [T] [ ] borrow book
 2: [D] [ ] return book (by: Sunday)
 3: [E] [ ] project meeting (at: Mon 2-4pm)
 4: [D] [ ] do homework (by: no idea :-p)
-5: [T][X] read book
+5: [T] [X] read book
 6: [D] [ ] return book (by: June 6th)
-7: [T][ ] join sports club
+7: [T] [ ] join sports club
 
 ___________________________ 
 
@@ -102,12 +102,12 @@ ___________________________
 
 Here are the tasks in your list
 
-1: [T][ ] borrow book
+1: [T] [ ] borrow book
 2: [D] [ ] return book (by: Sunday)
 3: [D] [ ] do homework (by: no idea :-p)
-4: [T][X] read book
+4: [T] [X] read book
 5: [D] [ ] return book (by: June 6th)
-6: [T][ ] join sports club
+6: [T] [ ] join sports club
 
 ___________________________ 
 

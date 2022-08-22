@@ -92,4 +92,16 @@ public class TaskController {
         }
         System.out.println("\n___________________________ \n");
     }
+
+    public void loadTasks(List<Task> initTask) {
+        initTask.forEach(task -> this.tasks.add(task));
+    }
+
+    public List<String> exportTaskList() {
+        List<String> result = new ArrayList<>();
+        for (int i = 0; i < this.tasks.size(); i++) {
+            result.add(this.tasks.get(i).exportString());
+        }
+        return result;
+    }
 }

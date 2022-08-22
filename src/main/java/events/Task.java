@@ -1,4 +1,7 @@
 package events;
+
+import java.util.Arrays;
+
 public class Task {
     private final String text;
     private Boolean isComplete;
@@ -27,5 +30,43 @@ public class Task {
         return this.isComplete
                 ? String.format("[X] %s", this.text)
                 : String.format("[ ] %s", this.text);
+    }
+
+    public static Task of(String type, String done, String text, String extraText) throws Exception {
+        switch (type) {
+            case "E":
+                Event newEvent = new Event(text, extraText);
+                if (done == "1") {
+                    newEvent.setComplete();
+                }
+                return newEvent;
+
+            case "D":
+                Deadline newDeadline = new Deadline(text, extraText);
+                if (done == "1") {
+                    newDeadline.setComplete();
+                }
+                return newDeadline;
+
+            case "T":
+                Todo newTodo = new Todo(text);
+                if (done == "1") {
+                    newTodo.setComplete();
+                }
+                return newTodo;
+
+            default:
+                throw new Exception("Impossible for task to be not e d or t");
+        }
+    }
+
+    public String exportString() {
+        return String.format(
+                "%s%d%s%s%s",
+                "@@@",
+                this.isComplete ? 1 : 0,
+                "@@@",
+                this.text,
+                "@@@");
     }
 }
