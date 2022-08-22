@@ -1,13 +1,12 @@
 import exceptions.EmptyNameException;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class TaskList {
-    private ArrayList<Task> taskList;
+    private final ArrayList<Task> taskList;
 
     public TaskList() {
-        this.taskList = new ArrayList<>();
+        taskList = new ArrayList<>();
     }
 
     public void addTask(String command) {
@@ -22,7 +21,6 @@ public class TaskList {
             if(type.equals(TaskTypeEnum.todo.toString())){
                 String name = split[1];
                 task = new Todo(name);
-                System.out.println(name);
 
             } else {
                 String[] split1 = split[1].split("/");
@@ -36,7 +34,8 @@ public class TaskList {
             }
 
             if(task != null){
-                this.taskList.add(task);
+                taskList.add(task);
+
                 System.out.println("Got it. I've added this task:");
                 System.out.println(task);
                 displayNumberOfItemsInList();
@@ -61,7 +60,6 @@ public class TaskList {
         task.markTaskAsDone();
         System.out.println("Nice! I've marked this task as done:");
         System.out.println(task);
-
     }
 
     public void setTaskAsUndone(int index) {
@@ -83,6 +81,42 @@ public class TaskList {
 
     public void displayNumberOfItemsInList() {
         System.out.println("Now you have " + taskList.size() +  " tasks in the list.");
+    }
+
+    public void readTaskFromLoader(String command) {
+        try {
+            Task task = null;
+            String[] split = command.split("\\|");
+
+            if(split.length < 2) {
+                throw new EmptyNameException();
+            }
+            String type = split[0];
+            String marked = split[1];
+            if(type.equals("todo")){
+                String name = split[2];
+                task = new Todo(name);
+
+
+            } else {
+                String name = split[2];
+                String info = split[3];
+                if(type.equals("deadline")){
+                    task = new Deadline(name, info);
+                } else {
+                    task = new Event(name, info);
+                }
+            }
+            if(marked.equals("1")){
+                task.markTaskAsDone();
+            }
+
+            taskList.add(task);
+
+        } catch (EmptyNameException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
 }
