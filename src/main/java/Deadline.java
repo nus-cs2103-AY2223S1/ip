@@ -1,7 +1,9 @@
-public class Deadline extends Task {
-    private String date;
+import java.time.LocalDate;
 
-    public Deadline(String name, String date) {
+public class Deadline extends Task {
+    private LocalDate date;
+
+    public Deadline(String name, LocalDate date) {
         /**
          * Constructor for Deadline class. Sets the deadline name and date.
          *
@@ -12,10 +14,14 @@ public class Deadline extends Task {
         this.date = date;
     }
 
+    public boolean isOnDate(LocalDate date) {
+        return this.date.equals(date);
+    }
+
     public String toString() {
         /**
          * String representation of a deadline. Also indicates if the deadline is done.
          */
-        return "[D]" + super.toString() + " (by: " + this.date + ")";
+        return "[D]" + super.toString() + " (by: " + this.date.toString() + ")";
     }
 }
