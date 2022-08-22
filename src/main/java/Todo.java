@@ -5,6 +5,10 @@ public class Todo extends Task {
 
     @Override
     public String toString() {
-        return "[" + TaskType.TD +"]" + "[" + this.getStatusIcon() + "] " + this.getName();
+        return "[" + TaskType.T +"]" + "[" + this.getStatusIcon() + "] " + this.getName();
+    }
+    @Override
+    public String toCSV() {
+        return TaskType.T + "," + this.getStatusIcon()  + "," + this.getName();
     }
 }

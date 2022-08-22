@@ -1,5 +1,5 @@
 public enum TaskType {
-    TD,
-    DL,
-    EV
+    T,
+    D,
+    E
 }

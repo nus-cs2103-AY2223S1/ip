@@ -12,6 +12,10 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[" + TaskType.EV +"]" + "[" + this.getStatusIcon() + "] " + this.getName() +  " (at:" + this.getTime() + ")";
+        return "[" + TaskType.E +"]" + "[" + this.getStatusIcon() + "] " + this.getName() +  " (at:" + this.getTime() + ")";
+    }
+    @Override
+    public String toCSV() {
+        return TaskType.E + "," + this.getStatusIcon()  + "," + this.getName() + "," + this.getTime();
     }
 }

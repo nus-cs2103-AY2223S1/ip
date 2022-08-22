@@ -1,8 +1,13 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Duke {
+    private final String FILE_PATH_DIR =  "data"; //"../../../data";
     private boolean acceptingInput;
     private ArrayList<Task> storage;
     private Scanner inputScanner;
@@ -13,6 +18,15 @@ public class Duke {
             if (totalString.equals("bye")){
                 acceptingInput = false;
                 System.out.println("Bye. Hope to see you again soon!");
+                try {
+                    FileWriter fw = new FileWriter(FILE_PATH_DIR + "/duke.txt");
+                    for (int i = 0; i < storage.size(); i++) {
+                        fw.write(storage.get(i).toCSV() + System.lineSeparator());
+                    }
+                    fw.close();
+                } catch (IOException e) {
+                    System.out.println("Something went wrong: " + e.getMessage());
+                }
             } else if (totalString.equals("list")) {
                 for (int i = 0; i < storage.size(); i++) {
                     int index = i+ 1;
@@ -26,7 +40,7 @@ public class Duke {
                 int index = Integer.parseInt(inputStringArray[1]) - 1;
                 if (index < 0 || index >= storage.size()) {
                     throw new DukeException("Please enter between 1 to the last element of the list");
-                } else if (!storage.get(index).isMarked()) {
+                } else if (storage.get(index).isMarked()) {
                     throw new DukeException("That task is already marked!");
                 }
 
@@ -70,7 +84,7 @@ public class Duke {
                     }
 
                     String[] nameArray = Arrays.asList(inputStringArray).subList(1,inputStringArray.length).toArray(new String[0]);
-                    String taskName = Arrays.stream(nameArray).reduce("", (a,b) -> a + " "+ b);
+                    String taskName = Arrays.stream(nameArray).reduce("", (a,b) -> a + " "+ b).trim();
                     Todo newTask = new Todo(taskName);
                     storage.add(newTask);
                     System.out.println("Got it. I've added this task:");
@@ -83,10 +97,10 @@ public class Duke {
 
                     int splitter = Arrays.asList(inputStringArray).indexOf("/by");
                     String[] nameArray = Arrays.asList(inputStringArray).subList(1,splitter).toArray(new String[0]);
-                    String taskName = Arrays.stream(nameArray).reduce("", (a,b) -> a + " "+ b);
+                    String taskName = Arrays.stream(nameArray).reduce("", (a,b) -> a + " "+ b).trim();
 
                     String[] deadlineArray = Arrays.asList(inputStringArray).subList(splitter + 1,inputStringArray.length).toArray(new String[0]);
-                    String deadlineName = Arrays.stream(deadlineArray).reduce("", (a,b) -> a + " "+ b);
+                    String deadlineName = Arrays.stream(deadlineArray).reduce("", (a,b) -> a + " "+ b).trim();
 
                     Deadlines newTask = new Deadlines(taskName, deadlineName);
                     storage.add(newTask);
@@ -101,10 +115,10 @@ public class Duke {
 
                     int splitter = Arrays.asList(inputStringArray).indexOf("/at");
                     String[] nameArray = Arrays.asList(inputStringArray).subList(1,splitter).toArray(new String[0]);
-                    String taskName = Arrays.stream(nameArray).reduce("", (a,b) -> a + " "+ b);
+                    String taskName = Arrays.stream(nameArray).reduce("", (a,b) -> a + " "+ b).trim();
 
                     String[] eventArray = Arrays.asList(inputStringArray).subList(splitter + 1,inputStringArray.length).toArray(new String[0]);
-                    String eventName = Arrays.stream(eventArray).reduce("", (a,b) -> a + " "+ b);
+                    String eventName = Arrays.stream(eventArray).reduce("", (a,b) -> a + " "+ b).trim();
 
                     Event newTask = new Event(taskName,eventName);
                     storage.add(newTask);
@@ -117,6 +131,42 @@ public class Duke {
                 }
             }
     }
+    public void initialise() {
+        storage = new ArrayList<>();
+        File fileDir =  new File(FILE_PATH_DIR);
+        fileDir.mkdir();
+        File f = new File(FILE_PATH_DIR + "/duke.txt");
+
+        try {
+            f.createNewFile();
+            Scanner s = new Scanner(f); // create a Scanner using the File as the source
+            while (s.hasNext()) {
+                storage.add(parseLine(s.nextLine()));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Task parseLine(String entry) {
+        String[] entryArray  = entry.split(",");
+        String taskType = entryArray[0];
+        String name = entryArray[2];
+        boolean isMarked = entryArray[1].equals("X");
+        Task newTask;
+        if (taskType.equals("T")) {
+            newTask = new Todo(name);
+        } else if (taskType.equals("D")) {
+            newTask = new Deadlines(name, entryArray[3]);
+        } else {
+            newTask = new Event(name, entryArray[3]);
+        }
+
+        if (isMarked) {
+            newTask.markAsDone();
+        }
+        return newTask;
+    }
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -124,8 +174,8 @@ public class Duke {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         Duke currentSession = new Duke();
+        currentSession.initialise();
         currentSession.acceptingInput = true;
-        currentSession.storage = new ArrayList<>();
         currentSession.inputScanner = new Scanner(System.in);
         System.out.println("Hello from Duke");
         System.out.println("What can I do for you?");
