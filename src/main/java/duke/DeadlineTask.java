@@ -1,28 +1,27 @@
+package duke;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 /**
- * The EventTask is a Task that has at event time.
+ * The  DeadlineTask class is a Task that takes a deadline.
  */
-public class EventTask extends Task {
+public class DeadlineTask extends Task {
 
     protected static final String COLON = ":";
 
     protected LocalDate date;
     protected LocalTime time;
-
     /**
-     * Constructor of a EventTask object
-     * @param description      Name of the task
-     * @param at               Date of the event.
+     * Constructor for a DeadlineTask object.
+     * @param description    Name of the task.
+     * @param by             Date of the deadline.
      */
-    public EventTask(String description, String at) throws DukeException {
+    public DeadlineTask(String description, String by) throws DukeException {
         super(description);
-        String[] dateParts = at.split(" ");
+        String[] dateParts = by.split(" ");
         if (dateParts.length != 2) {
-            throw new DukeException("Event Date and Time is specified wrongly");
+            throw new DukeException("Deadline Date and Time is specified wrongly");
         }
         this.date = LocalDate.parse(dateParts[0]);
         String temp = "";
@@ -38,11 +37,12 @@ public class EventTask extends Task {
     public String dateTimeString() {
         return this.date.toString() + " " + this.time.toString().replace(":", "");
     }
+
     @Override
     public String toString() {
         DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("MMM dd yyyy");
         DateTimeFormatter formatterTime =DateTimeFormatter.ofPattern("h:mm a");
-        return "[E]" + super.toString() + " (at: "
+        return "[D]" + super.toString() + " (by: "
                 + this.date.format(formatterDate) + " "
                 + this.time.format(formatterTime) + ")";
     }

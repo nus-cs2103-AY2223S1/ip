@@ -1,3 +1,4 @@
+package duke;
 /**
  * DukeException takes in errors of the user input.
  */

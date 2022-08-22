@@ -1,4 +1,5 @@
-import java.io.FileNotFoundException;
+package duke;
+
 import java.io.IOException;
 import java.util.regex.Pattern;
 

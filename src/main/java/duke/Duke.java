@@ -1,11 +1,7 @@
+package duke;
+
 import java.time.format.DateTimeParseException;
-import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.regex.Pattern;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.File;
 
 /**
  * The main class to run Duke.

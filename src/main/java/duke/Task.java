@@ -1,3 +1,4 @@
+package duke;
 /**
  * The task class.
  */

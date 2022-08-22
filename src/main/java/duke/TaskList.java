@@ -1,7 +1,6 @@
-import java.io.File;
-import java.io.FileNotFoundException;
+package duke;
+
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class TaskList {
