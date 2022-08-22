@@ -1,23 +1,12 @@
 import java.io.IOException;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 import java.util.Scanner;
-import java.util.ArrayList;
 import java.util.List;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-
 
 public class Duke {
     private Scanner scanner;
-    private List<Task> list;
+    private List<Task> taskList;
+    private Storage storage;
     private final String PATH_FILE = "src/data/duke.txt";
     private final String PATH_DIRECTORY = "src/data";
 
@@ -38,113 +27,14 @@ public class Duke {
      * Initializing the application 
      */
     public void initialize() throws DukeException, IOException {
-        list = new ArrayList<>(100);
         scanner = new Scanner(System.in);
         System.out.println(greeting);
-
-        File file = new File(PATH_FILE);
-        File directory = new File(PATH_DIRECTORY);
-
-        try {
-            if (directory.exists()) {
-                System.out.println("Directory located... \n");
-            } else {
-                System.out.println("Creating a directory to store save file... \n");
-                Files.createDirectories(Path.of(PATH_DIRECTORY));
-            }
-
-            if (file.createNewFile()) {
-                System.out.println("Creating a new save file...");
-            } else {
-                System.out.println("Previous save file located, loading contents of save file...");
-                load(file);
-            }
-
-        } catch (IOException e) {
-            throw new IOException("Something went wrong: " + e.getMessage());
-        } catch (DukeException e) {
-            throw new DukeException("Something went wrong: " + e.getMessage());
-        }
+        storage = new Storage(PATH_FILE, PATH_DIRECTORY);
+        taskList = storage.load();
 
         listen();
     }
 
-    /**
-     * Parses the save file to load previously saved contents
-     * @param file File to be parsed
-     * @throws DukeException Thrown if any input in save file is wrong
-     * @throws IOException Thrown if Buffered reader fails the reading of data
-     */
-    public void load(File file) throws DukeException, IOException {
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            String data = br.readLine();
-
-            while (data != null) {
-                String[] dataDetails = data.split(" \\| ");
-                String command = dataDetails[0];
-                boolean marked; // 1 = marked, 0 = unmarked
-                String description = dataDetails[2];
-                Task task;
-
-                if (!dataDetails[1].equals("1")) {
-                    if (!dataDetails[1].equals("0")) {
-                        throw new DukeException("☹ OOPS!!! The save file is corrupted, please delete the file and retry!");
-                    } else {
-                        marked = false;
-                    }
-                } else {
-                    marked = true;
-                }
-
-                switch (command) {
-                case("T"):
-                    task = new Todo(description);
-                    break;
-                case("D"):
-                    if (dataDetails.length != 4) {
-                        throw new DukeException("☹ OOPS!!! A Deadline task is corrupted!");
-                    }
-                    Date deadlineDate = parseDate(dataDetails[3]);
-                    task = new Deadline(description, deadlineDate);
-                    break;
-                case("E"):
-                    if (dataDetails.length != 4) {
-                        throw new DukeException("☹ OOPS!!! An Event task is corrupted!");
-                    }
-                    Date eventDate = parseDate(dataDetails[3]);
-                    task = new Event(description, eventDate);
-                    break;
-                default:
-                    throw new DukeException("☹ OOPS!!! The save file is corrupted, please delete the file and retry!");
-                }
-
-                if (marked) {
-                    task.markAsDone();
-                }
-                addTask(task);
-
-                data = br.readLine();
-            }
-        }
-        System.out.println("I have reloaded your saved file ☺!");
-    }
-
-    /**
-     * Writes all current tasks on the save file
-     */
-    public void saveData() throws IOException {
-        System.out.println("☺ Saving your data before you go...");
-        FileWriter fw = new FileWriter(PATH_FILE);
-        try {
-            for (Task task : list) {
-                String data = task.saveData();
-                fw.write(data + System.lineSeparator());
-            }
-            fw.close();
-        } catch (IOException e) {
-            throw new IOException("Something went wrong: " + e.getMessage());
-        }
-    }
 
     /**
      * Prints all values of list currently
@@ -153,12 +43,12 @@ public class Duke {
         System.out.println("____________________________________________________________\n");
         
         // Empty list
-        if (list.size() == 0) {
+        if (taskList.size() == 0) {
             System.out.print("List is currently empty! \n");
         }
 
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println((i+1) + ". " +list.get(i) + "\n");
+        for (int i = 0; i < taskList.size(); i++) {
+            System.out.println((i+1) + ". " +taskList.get(i) + "\n");
         }
 
         System.out.println("____________________________________________________________\n");
@@ -170,10 +60,10 @@ public class Duke {
     public void mark(String input) throws DukeException {
         int index = Integer.parseInt(input) - 1;
         try {
-            list.get(index).markAsDone();
+            taskList.get(index).markAsDone();
             System.out.println("____________________________________________________________\n" +
                     "Nice! I've marked this task as done: \n" +
-                    list.get(index) + "\n" +
+                    taskList.get(index) + "\n" +
                     "____________________________________________________________\n");
         } catch (NullPointerException e) {
             throw new DukeException("☹ OOPS!!! There is no task created for this index!");
@@ -189,10 +79,10 @@ public class Duke {
         int index = Integer.parseInt(input) - 1;
 
         try {
-            list.get(index).markAsUndone();
+            taskList.get(index).markAsUndone();
             System.out.println("____________________________________________________________\n" +
                     "OK, I've marked this task as not done yet: \n" +
-                    list.get(index) + "\n" +
+                    taskList.get(index) + "\n" +
                     "____________________________________________________________\n");
         } catch (NullPointerException e) {
             throw new DukeException("☹ OOPS!!! There is no task created for this index!");
@@ -205,8 +95,8 @@ public class Duke {
      * Adds a task to the list
      */
     public void addTask(Task task) {
-        list.add(task);
-        int numOfTasks = list.size();
+        taskList.add(task);
+        int numOfTasks = taskList.size();
 
         System.out.println("____________________________________________________________\n" +
                             "Got it. I've added this task: \n" +
@@ -221,9 +111,9 @@ public class Duke {
     public void deleteTask(String input) throws DukeException {
         try {
             int i = Integer.parseInt(input.split(" ", 2)[0]);
-            Task task = list.get(i);
-            list.remove(i);
-            int numOfTasks = list.size();
+            Task task = taskList.get(i);
+            taskList.remove(i);
+            int numOfTasks = taskList.size();
 
             System.out.println("____________________________________________________________\n" +
                     "Noted. I've removed this task: \n" +
@@ -259,7 +149,7 @@ public class Duke {
             String[] deadlineDetails = input[1].split(" /by ", 2);
 
             if (deadlineDetails.length == 2) {
-                Date date = parseDate(deadlineDetails[1]);
+                Date date = Parser.parseDate(deadlineDetails[1]);
                 Deadline deadline = new Deadline(deadlineDetails[0], date);
                 addTask(deadline);
             } else {
@@ -280,7 +170,7 @@ public class Duke {
             String[] eventDetails = input[1].split(" /at ", 2);
 
             if (eventDetails.length == 2) {
-                Date date = parseDate(eventDetails[1]);
+                Date date = Parser.parseDate(eventDetails[1]);
                 Event event = new Event(eventDetails[0], date);
                 addTask(event);
             } else {
@@ -289,24 +179,6 @@ public class Duke {
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException("☹ OOPS!!! Please follow the syntax for an 'event' command: event [description] /at [date].");
         }
-    }
-
-    /**
-     * Handles the parsing of dates for Deadlines/Events
-     * @param input String input of date
-     * @return Date object used to construct Deadline/Event
-     * @throws DukeException Exception if date format is wrong
-     */
-    public Date parseDate(String input) throws DukeException{
-        try {
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            LocalDate parsed = LocalDate.parse(input, dtf);
-
-            return new Date(parsed);
-        } catch (DateTimeParseException e) {
-            throw new DukeException("☹ OOPS!!! Please follow the Date and Time Format: yyyy-MM-dd [2000-01-01]");
-        }
-
     }
 
     /**
@@ -323,7 +195,7 @@ public class Duke {
 
             switch (command) {
                 case ("bye"):
-                    saveData();
+                    this.storage.saveData(taskList);
                     System.out.println(goodbye);
                     System.exit(0);
                     break;
