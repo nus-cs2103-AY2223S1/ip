@@ -1,16 +1,14 @@
-package duke.ui;
+package duke.duke.ui;
 
 import duke.command.*;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Todo;
+import duke.ui.DukeException;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
-/**
- * A class that parses the input from user into something program can understand.
- */
 public class Parser {
     private enum Inputs {
         BYE,
@@ -24,15 +22,7 @@ public class Parser {
         ELSE
     }
 
-    /**
-     * Static method that first parses the input into something the program can understand
-     * and then returns a Command.
-     * @param command A String command that the user inputs
-     * @return The Command that user wants to execute.
-     * @throws DukeException If there is an invalid command.
-     * @throws DateTimeParseException If there is an error in Date and Time input.
-     */
-    public static Command parse(String command) throws DukeException, DateTimeParseException {
+    public static Command parse(String command) throws duke.ui.DukeException, DateTimeParseException {
         switch (getInput(command)) {
         case BYE:
             return new ByeCommand();
@@ -61,11 +51,6 @@ public class Parser {
         }
     }
 
-    /**
-     * Static method that converts user's String input into and enum that program understands.
-     * @param s The user input.
-     * @return An enum that the program understands.
-     */
     private static Inputs getInput(String s) {
         if (s.equals("bye")) {
             return Inputs.BYE;
