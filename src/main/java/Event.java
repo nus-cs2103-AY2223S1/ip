@@ -6,9 +6,22 @@ public class Event extends Task {
         this.at = at;
     }
 
+    public String getDescription() {
+        return super.description;
+    }
+
+    public String getEventAt() {
+        return this.at;
+    }
+
     @Override
     public String toString() {
         return "[E]" + super.toString() + "(at: " + this.at + ")";
+    }
+
+    @Override
+    public String getTaskType() {
+        return "E";
     }
 
 
