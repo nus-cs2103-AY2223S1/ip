@@ -1,3 +1,7 @@
+package duke.command;
+
+import duke.task.TasksList;
+
 public class ListCommand extends Command {
     private TasksList tasksList;
 

@@ -1,11 +1,11 @@
+Loading from save...
+
 Hello, I'm Duke!
  ____        _
 |  _ \ _   _| | _____
 | | | | | | | |/ / _ \
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
-
-Loading from save...
 
 Duke: What can I do for you?
 Duke: Here are the tasks in your list:
@@ -15,12 +15,20 @@ Duke: Got it! Duke has added this task:
 [T][ ] uninstall League of Legends
 Duke: Now you have 1 task in the list.
 
-Duke: Got it! Duke has added this task:
-[D][ ] MA1521 HW 1 (by: 31 April)
-Duke: Now you have 2 tasks in the list.
+☹ OOPS!!! Duke got an error!
+Duke: Uh oh! Please enter your date/time in this format:
+dd mm yyyy hh:mm(optional)
 
 Duke: Got it! Duke has added this task:
-[E][ ] birthday (at: 8 August 00:00)
+[D][ ] MA1521 HW 1 (by: Apr 30 2022 12:00)
+Duke: Now you have 2 tasks in the list.
+
+☹ OOPS!!! Duke got an error!
+Duke: Uh oh! Please enter your date/time in this format:
+dd mm yyyy hh:mm(optional)
+
+Duke: Got it! Duke has added this task:
+[E][ ] birthday (at: Aug 08 2023 00:00)
 Duke: Now you have 3 tasks in the list.
 
 Duke: Got it! Duke has added this task:
@@ -41,8 +49,8 @@ Duke: Now you have 3 tasks in the list.
 
 Duke: Here are the tasks in your list:
 1. [T][ ] uninstall League of Legends
-2. [D][ ] MA1521 HW 1 (by: 31 April)
-3. [E][ ] birthday (at: 8 August 00:00)
+2. [D][ ] MA1521 HW 1 (by: Apr 30 2022 12:00)
+3. [E][ ] birthday (at: Aug 08 2023 00:00)
 
 ☹ OOPS!!! Duke got an error!
 Duke: Please specify the task to mark by its id:
@@ -71,30 +79,30 @@ Duke: Nice! I've marked this task as done:
 
 Duke: Here are the tasks in your list:
 1. [T][X] uninstall League of Legends
-2. [D][ ] MA1521 HW 1 (by: 31 April)
-3. [E][ ] birthday (at: 8 August 00:00)
+2. [D][ ] MA1521 HW 1 (by: Apr 30 2022 12:00)
+3. [E][ ] birthday (at: Aug 08 2023 00:00)
 
 Duke: Nice! I've marked this task as done:
-[D][X] MA1521 HW 1 (by: 31 April)
+[D][X] MA1521 HW 1 (by: Apr 30 2022 12:00)
 
 Duke: Nice! I've marked this task as done:
-[E][X] birthday (at: 8 August 00:00)
+[E][X] birthday (at: Aug 08 2023 00:00)
 
 Duke: Here are the tasks in your list:
 1. [T][X] uninstall League of Legends
-2. [D][X] MA1521 HW 1 (by: 31 April)
-3. [E][X] birthday (at: 8 August 00:00)
+2. [D][X] MA1521 HW 1 (by: Apr 30 2022 12:00)
+3. [E][X] birthday (at: Aug 08 2023 00:00)
 
 Duke: OK, I've marked this task as not done yet:
-[E][ ] birthday (at: 8 August 00:00)
+[E][ ] birthday (at: Aug 08 2023 00:00)
 
 Duke: OK, I've marked this task as not done yet:
-[D][ ] MA1521 HW 1 (by: 31 April)
+[D][ ] MA1521 HW 1 (by: Apr 30 2022 12:00)
 
 Duke: Here are the tasks in your list:
 1. [T][X] uninstall League of Legends
-2. [D][ ] MA1521 HW 1 (by: 31 April)
-3. [E][ ] birthday (at: 8 August 00:00)
+2. [D][ ] MA1521 HW 1 (by: Apr 30 2022 12:00)
+3. [E][ ] birthday (at: Aug 08 2023 00:00)
 
 ☹ OOPS!!! Duke got an error!
 Duke: Please specify what task you wish to do:

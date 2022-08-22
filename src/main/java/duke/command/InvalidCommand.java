@@ -1,3 +1,7 @@
+package duke.command;
+
+import duke.DukeException;
+
 public class InvalidCommand extends Command {
     @Override
     public void execute() throws DukeException {

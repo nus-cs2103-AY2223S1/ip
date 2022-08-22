@@ -1,3 +1,9 @@
+package duke.command;
+
+import duke.task.TasksList;
+import duke.Storage;
+import duke.DukeException;
+
 public class AddCommand extends Command {
     private TasksList tasksList;
     private Storage storage;
@@ -11,7 +17,7 @@ public class AddCommand extends Command {
 
     @Override
     public void execute() throws DukeException {
-        tasksList.addTask(words, storage);
+        tasksList.addTask(this.words, this.storage);
     }
 
     public static boolean isCommand(String s) {

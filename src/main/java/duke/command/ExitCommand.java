@@ -1,3 +1,10 @@
+package duke.command;
+
+import duke.task.TasksList;
+import duke.Storage;
+import duke.DukeException;
+import duke.Ui;
+
 public class ExitCommand extends Command {
     private TasksList tasksList;
     private Storage storage;

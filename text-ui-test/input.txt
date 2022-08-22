@@ -1,7 +1,9 @@
 list
 todo uninstall League of Legends
 deadline MA1521 HW 1 /by 31 April
+deadline MA1521 HW 1 /by 31 04 2022 12:00
 event birthday /at 8 August 00:00
+event birthday /at 08 08 2023
 todo delete this task
 delete
 delete random line

@@ -1,9 +1,15 @@
-public class UnmarkCommand extends Command {
+package duke.command;
+
+import duke.task.TasksList;
+import duke.Storage;
+import duke.DukeException;
+
+public class DeleteCommand extends Command {
     private TasksList tasksList;
     private Storage storage;
     private String[] words;
 
-    public UnmarkCommand(TasksList tasksList, Storage storage, String[] words) {
+    public DeleteCommand(TasksList tasksList, Storage storage, String[] words) {
         this.tasksList = tasksList;
         this.storage = storage;
         this.words = words;
@@ -11,10 +17,10 @@ public class UnmarkCommand extends Command {
 
     @Override
     public void execute() throws DukeException {
-        tasksList.unmarkTask(words, storage);
+        tasksList.deleteTask(words, storage);
     }
 
     public static boolean isCommand(String s) {
-        return s.equals("unmark");
+        return s.equals("delete");
     }
 }
