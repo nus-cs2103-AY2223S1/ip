@@ -8,21 +8,41 @@ import java.util.regex.Pattern;
 import duke.command.DukeCommandType;
 import duke.ui.DukeUi;
 
+/**
+ * Encapsulates a task manager for Duke
+ */
 public class DukeTaskManager {
     private List<Task> dukeTasks;
 
+    /**
+     * Constructor for a new DukeTaskManager. Sets the current tasks to an empty list of task
+     */
     public DukeTaskManager() {
         this.dukeTasks = new ArrayList<Task>();
     }
 
+    /**
+     * Constructor for a new DukeTaskManager. Sets the current tasks to the input tasks
+     *
+     * @param dukeTasks A list of tasks
+     */
     public DukeTaskManager(List<Task> dukeTasks) {
         this.dukeTasks = dukeTasks;
     }
 
+    /**
+     * Returns the list of tasks currently stored
+     */
     public List<Task> getTasks() {
         return dukeTasks;
     }
 
+    /**
+     * Adds a new task to the current list of tasks
+     *
+     * @param type Type of the task to be added
+     * @param args Description of the task
+     */
     public void dukeAddTask(DukeCommandType type, String args) {
         if (args.isEmpty()) {
             DukeUi.dukePrint("Description cannot be empty\n");
@@ -64,12 +84,22 @@ public class DukeTaskManager {
     private void dukeAddToList(Task task) {
         dukeTasks.add(task);
         DukeUi.dukePrint(String.format("Got it. I've added this task: \n %s\n %s\n",
-                task.toString(), getNoOfTasks()));
+                task.toString(), getNoOfTasksRemaining()));
         return;
     }
 
-    protected String getNoOfTasks() {
-        int size = dukeTasks.size();
+    /**
+     * Returns the number of tasks stored currently
+     */
+    protected int getNoOfTasks() {
+        return dukeTasks.size();
+    }
+
+    /**
+     * Returns the string representation of the tasks
+     */
+    protected String getNoOfTasksRemaining() {
+        int size = getNoOfTasks();
         if (size <= 1) {
             return String.format("Now you have %d task in the list\n", size);
         } else {

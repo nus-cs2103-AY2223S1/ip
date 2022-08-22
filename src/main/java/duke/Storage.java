@@ -11,11 +11,18 @@ import java.util.List;
 
 import duke.task.Task;
 
-
+/**
+ * Encapsulates a Storage
+ */
 public class Storage {
 
     private static final String FILE_NAME = "data.txt";
 
+    /**
+     * Returns an array list of tasks stored from previous runs
+     *
+     * @return List of Tasks
+     * */
     public static ArrayList<Task> loadData() {
         try {
             FileInputStream fin = new FileInputStream(FILE_NAME);
@@ -32,6 +39,9 @@ public class Storage {
         return new ArrayList<Task>();
     }
 
+    /**
+     * Saves the current tasks stored in Duke into a text file
+     * */
     public static void saveData(List<Task> dukeTasks) {
         try {
             FileOutputStream fos = new FileOutputStream(FILE_NAME);

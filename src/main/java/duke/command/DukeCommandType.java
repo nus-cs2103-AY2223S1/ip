@@ -1,5 +1,8 @@
 package duke.command;
 
+/**
+ * Enumeration of the type of commands available in Duke
+ */
 public enum DukeCommandType {
     EXIT,
     LIST,

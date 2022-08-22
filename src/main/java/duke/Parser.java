@@ -3,8 +3,17 @@ package duke;
 import duke.command.Command;
 import duke.command.DukeCommandType;
 
+/**
+ * Encapsulates a Parser
+ */
 public class Parser {
 
+    /**
+     * Returns a command to be executed from a string of input
+     *
+     * @param line Input from the user
+     * @return A Duke command
+     * */
     public static Command getCommand(String line) {
         String parsedCommand = parseCommand(line);
         String command = parsedCommand.split(" ")[0];

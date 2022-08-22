@@ -5,10 +5,18 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.regex.Pattern;
 
-
+/**
+ * Encapsulates a Deadline
+ */
 public class Deadline extends Task {
     private String by;
 
+    /**
+     * Constructor for a Deadline
+     *
+     * @param name Name / Description of the deadline
+     * @param by Description of when the deadline task is to be completed by
+     */
     public Deadline(String name, String by) {
         super(name, 'D');
         this.by = parseDateTime(by);
@@ -40,6 +48,10 @@ public class Deadline extends Task {
         return deadline.toString();
     }
 
+    /**
+     * Returns string representation of the deadline consisting of the string representation of Deadline, [D], the completion
+     * status of the deadline and the deadline description
+     * */
     @Override
     public String toString() {
         return String.format(super.toString() + " (by: %s)", by);

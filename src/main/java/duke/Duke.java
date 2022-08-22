@@ -5,7 +5,9 @@ import duke.command.DukeCommandType;
 import duke.task.DukeTaskManager;
 import duke.ui.DukeUi;
 
-
+/**
+ * Duke is a Personal Assistant Chatbot that helps users to organise their tasks using a command line interface
+ */
 public class Duke {
 
     private static DukeTaskManager taskManager;
