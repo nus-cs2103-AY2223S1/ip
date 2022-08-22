@@ -1,4 +1,10 @@
-import java.sql.Time;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -6,8 +12,8 @@ import java.util.Scanner;
 public class Duke {
     private List<Task> tasks;
 
-    public Duke() {
-        tasks = new ArrayList<>();
+    public Duke(ArrayList<Task> tasks) {
+        this.tasks = tasks;
     }
 
     private void run() throws DukeException {
@@ -20,12 +26,18 @@ public class Duke {
             } else {
                 doubleCommand(strings);
             }
+            try {
+                save();
+            } catch (IOException e) {
+                System.out.println("Error!: " + e);
+            }
         }
     }
 
 
     public static void main(String[] args) {
-        Duke duke = new Duke();
+        ArrayList<Task> tasks = read();
+        Duke duke = new Duke(tasks);
         System.out.println("Hello! I'm Duke\nWhat can I do for you?");
         while (true) {
             try {
@@ -156,6 +168,79 @@ public class Duke {
                 throw new InputException();
         }
     }
+
+    private void save() throws IOException {
+        //duke.txt will always exist since we have already created it upon loading up the duke program
+        //however, users may delete the directory and hence we still need to check for the existence
+
+        //reference from https://stackoverflow.com/a/28620461
+        String savePath = System.getProperty("user.dir") + System.getProperty("file.separator") + "duke";
+        File saveLocation = new File(savePath);
+        if (!saveLocation.exists()) {
+            saveLocation.mkdir();
+            File myFile = new File(savePath, "duke.txt");
+            PrintWriter textFileWriter = new PrintWriter(new FileWriter(myFile));
+            for (int i = 0; i < tasks.size(); i++) {
+                textFileWriter.write(tasks.get(i).toString() + "\n");
+            }
+            textFileWriter.close();
+        } else {
+            File myFile = new File(savePath, "duke.txt");
+            PrintWriter textFileWriter = new PrintWriter(new FileWriter(myFile));
+            for (int i = 0; i < tasks.size(); i++) {
+                textFileWriter.write(tasks.get(i).toString() + "\n");
+            }
+            textFileWriter.close();
+        }
+    }
+
+    private static ArrayList<Task> read() {
+        ArrayList<Task> tasks = new ArrayList<>();
+        String path = System.getProperty("user.dir") + System.getProperty("file.separator") + "duke";
+        File saveLocation = new File(path);
+        if (!saveLocation.exists()) {
+            saveLocation.mkdir();
+            File myFile = new File(path, "duke.txt");
+            return tasks;
+        } else {
+            try {
+                BufferedReader reader = new BufferedReader(new FileReader(new File(path, "duke.txt")));
+                String line;
+                try {
+                    //reference from https://stackoverflow.com/a/16104650
+                    while ((line = reader.readLine()) != null) {
+                        parseLine(line, tasks);
+                    }
+                } catch (IOException e) {
+                    System.out.println("Error: " + e);
+                }
+            } catch (FileNotFoundException e) {
+                System.out.println("Error: " + e );
+                System.out.println("Don't worry I'll create the file when you create your task list!");
+            }
+        }
+        return tasks;
+    }
+
+    private static void parseLine(String txt, ArrayList<Task> list) {
+        char eventType = txt.charAt(1);
+        char done = txt.charAt(4);
+        boolean isDone = done == 'X';
+        //regex reference from https://stackoverflow.com/a/17779833
+        String[] event = txt.substring(7).split("\\(");
+        switch (eventType) {
+            case 'T':
+                list.add(new ToDo(event[0]));
+                break;
+            case 'D':
+                String time = event[1].substring(0,event[1].indexOf(")"));
+                list.add(new Deadline(event[0], time));
+                break;
+            case 'E':
+                time = event[1].substring(0,event[1].indexOf(")"));
+                list.add(new Event(event[0], time));
+                break;
+        }
+        list.get(list.size() - 1).setDone(isDone);
+    }
 }
-
-
