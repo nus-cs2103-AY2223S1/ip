@@ -11,7 +11,7 @@ public class ByeCommand extends Command {
     }
 
     @Override
-    public void runSpecialTask(TaskList tasks) {
+    public void execute(TaskList tasks) {
         UI.print(BYE_MESSAGE);
     }
 }

@@ -28,7 +28,7 @@ public class Duke {
                     break;
                 }
             } catch (DukeException e) {
-                UI.print(e.toString());
+                UI.print(e.getMessage());
             }
         }
     }

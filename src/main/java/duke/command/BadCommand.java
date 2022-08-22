@@ -12,12 +12,6 @@ public class BadCommand extends Command {
 
     @Override
     public void execute(TaskList tasks) throws DukeException {
-        // bypass compatibility check
-        this.runSpecialTask(tasks);
-    }
-
-    @Override
-    public void runSpecialTask(TaskList tasks) throws DukeException {
         throw new DukeException(BAD_COMMAND);
     }
 }

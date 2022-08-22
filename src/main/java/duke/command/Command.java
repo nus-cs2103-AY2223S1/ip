@@ -9,7 +9,10 @@ public abstract class Command {
     protected final CommandType command;
     protected final String[] args;
 
-    protected Command(CommandType command, String[] args) {
+    protected Command(CommandType command, String[] args) throws DukeException {
+        if (!command.isCompatible(args)) {
+            throw new DukeException(WRONG_ARGS_COUNT);
+        }
         this.command = command;
         this.args = args;
     }
@@ -45,8 +48,6 @@ public abstract class Command {
             return new DeleteTaskCommand(args);
         case "bye":
             return new ByeCommand(args);
-        case "":
-            return new EmptyCommand(args);
         default:
             return new BadCommand(args);
         }
@@ -56,13 +57,6 @@ public abstract class Command {
         return command == CommandType.BYE;
     }
 
-    public void execute(TaskList tasks) throws DukeException {
-        if (!this.command.isCompatible(args)) {
-            throw new DukeException(WRONG_ARGS_COUNT);
-        }
-        this.runSpecialTask(tasks);
-    }
-
-    public abstract void runSpecialTask(TaskList tasks) throws DukeException;
+    public abstract void execute(TaskList tasks) throws DukeException;
 
 }

@@ -8,7 +8,7 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public void runSpecialTask(TaskList tasks) {
+    public void execute(TaskList tasks) {
         tasks.print();
     }
 }

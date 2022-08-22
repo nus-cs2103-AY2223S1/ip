@@ -10,7 +10,7 @@ public class AddTaskCommand extends Command {
     }
 
     @Override
-    public void runSpecialTask(TaskList tasks) {
+    public void execute(TaskList tasks) {
         Task task = Task.of(this.command, this.args);
         tasks.add(task);
         tasks.save();

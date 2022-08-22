@@ -17,7 +17,7 @@ public class UpdateStatusCommand extends Command {
     }
 
     @Override
-    public void runSpecialTask(TaskList tasks) throws DukeException {
+    public void execute(TaskList tasks) throws DukeException {
         int index;
         try {
             index = Integer.parseInt(args[0]) - 1;

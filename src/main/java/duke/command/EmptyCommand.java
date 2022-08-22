@@ -3,12 +3,12 @@ package duke.command;
 import duke.task.TaskList;
 
 public class EmptyCommand extends Command {
-    public EmptyCommand(String[] args) {
-        super(CommandType.EMPTY, args);
+    public EmptyCommand() {
+        super(CommandType.EMPTY, new String[]{});
     }
 
     @Override
-    public void runSpecialTask(TaskList tasks) {
+    public void execute(TaskList tasks) {
         // does nothing
     }
 }
