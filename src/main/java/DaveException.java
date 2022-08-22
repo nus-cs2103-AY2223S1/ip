@@ -1,6 +1,6 @@
 public class DaveException extends Exception {
 
-    private String error;
+    private final String error;
 
     public DaveException(String error) {
         this.error = error;
