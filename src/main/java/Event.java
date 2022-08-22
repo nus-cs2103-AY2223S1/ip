@@ -11,12 +11,11 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[" + TaskType.E + "]" + super.toString() + " (at: "
-                + DateParser.dateToString(this.date) + ")";
+        return "[" + TaskType.E + "]" + super.toString() + " (at: " + DateParser.dateToString(this.date) + ")";
     }
 
     @Override
     public String toCommand() {
-        return TaskType.E + " | " + super.toCommand() + " /at " + this.date;
+        return TaskType.E + " | " + super.toCommand() + " /at " + DateParser.dateToCommand(this.date);
     }
 }

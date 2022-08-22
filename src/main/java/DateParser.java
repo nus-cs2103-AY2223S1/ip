@@ -32,7 +32,6 @@ public class DateParser {
         } else {
             dateTime = ((LocalDate)temporalAccessor).atStartOfDay();
         }
-        System.out.println(dateTime);
         return dateTime;
     }
 
@@ -44,6 +43,17 @@ public class DateParser {
      */
     public static String dateToString(LocalDateTime date) {
         DateTimeFormatter stringFormat = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
+        return date.format(stringFormat);
+    }
+
+    /**
+     * Converts a LocalDate object to command for save file.
+     *
+     * @param date The LocalDate object of the date.
+     * @return The String representation of the command.
+     */
+    public static String dateToCommand(LocalDateTime date) {
+        DateTimeFormatter stringFormat = DateTimeFormatter.ofPattern("dd MM yyyy HH:mm");
         return date.format(stringFormat);
     }
 }

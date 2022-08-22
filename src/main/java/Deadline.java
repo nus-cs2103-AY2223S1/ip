@@ -11,12 +11,11 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return "[" + TaskType.D + "]" + super.toString() + " (by: "
-                + DateParser.dateToString(this.date) + ")";
+        return "[" + TaskType.D + "]" + super.toString() + " (by: " + DateParser.dateToString(this.date) + ")";
     }
 
     @Override
     public String toCommand() {
-        return TaskType.D + " | " + super.toCommand() + " /by " + this.date;
+        return TaskType.D + " | " + super.toCommand() + " /by " + DateParser.dateToCommand(this.date);
     }
 }

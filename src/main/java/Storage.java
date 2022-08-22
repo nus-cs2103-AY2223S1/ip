@@ -9,20 +9,14 @@ public class Storage {
 
     public Storage() {
         this.path = Paths.get(System.getProperty("user.dir"), "data", "duke.txt");
-        try {
-            initialiseSaveFile(this.path);
-        } catch (DukeException e) {
-            System.out.println(e);
-        }
     }
 
     /**
      * Creates save file if it does not already exist.
      *
-     * @param path The path to the save file
      * @throws DukeException if error occurs while creating save directory or save file
      */
-    public void initialiseSaveFile(Path path) throws DukeException {
+    public void initialiseSaveFile() throws DukeException {
         Path dataPath = Paths.get(System.getProperty("user.dir"), "data");
         if (!Files.exists(dataPath)) {
             // Create 'data' directory if it does not exist
