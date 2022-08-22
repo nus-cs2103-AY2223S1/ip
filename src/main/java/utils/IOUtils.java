@@ -7,5 +7,6 @@ public class IOUtils {
         System.out.println(IOUtils.line);
         System.out.println(s);
         System.out.println(IOUtils.line);
+        System.out.println("");
     }
 }
