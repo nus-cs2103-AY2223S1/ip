@@ -21,7 +21,7 @@ public class Duke {
 
     /**
      * Constructor for Duke.
-     * @param filePath Path to storage file
+     * @param filePath Path to storage file.
      */
     public Duke(Path filePath) {
         this.ui = new Ui();
@@ -56,7 +56,7 @@ public class Duke {
 
     /**
      * Entry point for the Duke class.
-     * @param args unused
+     * @param args Unused parameter.
      */
     public static void main(String[] args) {
         Path storagePath = Paths.get(System.getProperty("user.dir"), "data", "duke.txt");

@@ -19,9 +19,8 @@ public class TaskList {
     }
 
     /**
-     * Constructs a list of tasks from a list of strings
-     * stored in the hard disk.
-     * @param taskStrings List of strings, each representing a task
+     * Constructs a list of tasks from a list of strings stored in the hard disk.
+     * @param taskStrings List of strings, each representing a task.
      */
     public TaskList(List<String> taskStrings) {
         this();
@@ -40,8 +39,8 @@ public class TaskList {
 
     /**
      * Deletes a task from the list of tasks.
-     * @param taskIndex index of the task to be deleted
-     * @return the deleted task
+     * @param taskIndex Index of the task to be deleted.
+     * @return The deleted task.
      */
     public Task deleteTask(int taskIndex) {
         if (taskIndex < 1 || taskIndex > this.tasks.size()) {

@@ -20,8 +20,8 @@ public class AddEventCommand extends Command {
 
     /**
      * Constructor for an AddEventCommand.
-     * @param desc description of the event
-     * @param at date of the event
+     * @param desc Description of the event.
+     * @param at Date of the event.
      */
     public AddEventCommand(String desc, LocalDate at) {
         this.desc = desc;

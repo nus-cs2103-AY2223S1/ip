@@ -20,8 +20,8 @@ public class AddDeadlineCommand extends Command {
 
     /**
      * Constructor for an AddDeadlineCommand.
-     * @param desc description of the task
-     * @param by deadline of the task
+     * @param desc Description of the task.
+     * @param by Deadline of the task.
      */
     public AddDeadlineCommand(String desc, LocalDate by) {
         this.desc = desc;

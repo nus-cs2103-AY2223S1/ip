@@ -38,8 +38,8 @@ public class Ui {
 
     /**
      * Displays a task that has been added.
-     * @param newTask task that has just been added
-     * @param tasks list of tasks that was added to
+     * @param newTask Task that has just been added.
+     * @param tasks List of tasks that was added to.
      */
     public void showAddTask(Task newTask, TaskList tasks) {
         System.out.println("Got it. I've added this task:");
@@ -49,7 +49,7 @@ public class Ui {
 
     /**
      * Displays the tasks currently in the list of tasks.
-     * @param tasks list of tasks
+     * @param tasks List of tasks.
      */
     public void showTasks(TaskList tasks) {
         System.out.println("Here are the tasks in your list:");
@@ -60,7 +60,7 @@ public class Ui {
 
     /**
      * Displays a task that has been marked as done.
-     * @param t task that has been marked as done
+     * @param t Task that has been marked as done.
      */
     public void showMarkTask(Task t) {
         System.out.println("Nice! I've marked this task as done:");
@@ -69,7 +69,7 @@ public class Ui {
 
     /**
      * Displays a task that has been marked as not done.
-     * @param t task that has been marked as not done
+     * @param t Task that has been marked as not done.
      */
     public void showUnmarkTask(Task t) {
         System.out.println("OK, I've marked this task as not done yet:");
@@ -82,8 +82,8 @@ public class Ui {
 
     /**
      * Displays a task that has been deleted.
-     * @param deletedTask task that has been deleted from the list of tasks
-     * @param tasks list of tasks
+     * @param deletedTask Task that has been deleted from the list of tasks.
+     * @param tasks List of tasks.
      */
     public void showDeleteTask(Task deletedTask, TaskList tasks) {
         System.out.println("Noted. I've removed this task:");
