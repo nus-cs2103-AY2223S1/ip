@@ -73,6 +73,12 @@ public class Duke {
                         Task event = this.tasks.add(new Event(meta));
                         Ui.showTaskStatus(addedMessage, event);
                         break;
+                    case "find":
+                        if (meta == null) throw new DukeException("Query cannot be empty");
+                        TaskList filtered = this.tasks.filter(meta);
+                        if (filtered.getSize() == 0) throw new DukeException("No results found");
+                        Ui.showTasksList(filtered);
+                        break;
                     default:
                         throw new DukeException(invalidCommandMessage);
                 }

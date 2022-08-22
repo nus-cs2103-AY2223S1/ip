@@ -9,6 +9,15 @@ public class Task {
         this.isDone = false;
     }
 
+    /**
+     * Returns the task description.
+     *
+     * @return Task description.
+     */
+    public String getDescription() {
+        return this.description;
+    }
+
     public void mark() {
         this.isDone = true;
     }
