@@ -17,8 +17,17 @@ abstract class Task {
         System.out.println("OK, I've marked this task as not done yet:\n " + this.toString());
     }
 
+    public void setStatus(boolean status) {
+        this.isDone = status;
+    }
+
     public String getStatusIcon() {
         return (isDone ? "X" : " ");
+    }
+
+    public String toSave() {
+        int status = this.isDone ? 1 : 0;
+        return status + "," + this.taskDescription;
     }
 
     @Override
