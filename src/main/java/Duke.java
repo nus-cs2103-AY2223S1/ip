@@ -17,8 +17,8 @@ public class Duke {
         System.out.println("Hello! I'm Duke\nWhat can I do for you?");
         System.out.println("------------------------------");
         File file = new File(OUTPUT_FILE_PATH);
-        ArrayList<Task> tasks = new ArrayList<>();
-        ArrayList<String> commands = new ArrayList<>();
+        ArrayList<Task> tasks = new ArrayList<>();      // lists of tasks
+        ArrayList<String> commands = new ArrayList<>(); // list of commands that would generate tasks; same length as tasks
 
         try {
             Scanner scanner = new Scanner(file);
@@ -65,6 +65,7 @@ public class Duke {
                     }
                     if (markI >= 1 && markI <= tasks.size()) {   // ensure i given is within range
                         tasks.get(markI - 1).mark();
+                        commands.set(markI - 1, commands.get(markI - 1).strip().concat(" /done"));
                     } else {
                         toBePrinted = toBePrinted.concat(
                             String.format(
@@ -83,6 +84,7 @@ public class Duke {
                     }
                     if (unmarkI >= 1 && unmarkI <= tasks.size()) {   // ensure i given is within range
                         tasks.get(unmarkI - 1).unmark();
+                        commands.set(unmarkI - 1, commands.get(unmarkI - 1).replace("/done", "").strip());
                     } else {
                         toBePrinted = toBePrinted.concat(
                             String.format(
@@ -92,11 +94,15 @@ public class Duke {
                     }
                     break;
                 case "todo":
+                    boolean todoIsDone = command.contains("/done");
+                    if (todoIsDone) {
+                        command = command.replace("/done", "");
+                    }
                     String todoText = command.replaceFirst("todo", "").strip();
                     if (todoText.isEmpty()) {
                         toBePrinted = toBePrinted.concat("🙁 OOPS!!! The description of a todo cannot be empty.\n");
                     } else {
-                        tasks.add(new Todo(false, todoText, isPrinting));
+                        tasks.add(new Todo(todoIsDone, todoText, isPrinting));
                         commands.add(command);
                         toBePrinted = toBePrinted.concat(
                             String.format(
@@ -106,6 +112,10 @@ public class Duke {
                     }
                     break;
                 case "deadline":
+                    boolean deadlineIsDone = command.contains("/done");
+                    if (deadlineIsDone) {
+                        command = command.replace("/done", "");
+                    }
                     String[] c1 = command.split("/by");
                     String deadlineText = c1[0].replaceFirst("deadline", "").strip();
                     String deadlineTime = c1.length > 1 ? c1[1].strip() : "";
@@ -114,7 +124,7 @@ public class Duke {
                     } else if (deadlineTime.isEmpty()) {
                         toBePrinted = toBePrinted.concat("🙁 OOPS!!! Provide a time for the deadline.\n");
                     } else {
-                        tasks.add(new Deadline(false, deadlineText, deadlineTime, isPrinting));
+                        tasks.add(new Deadline(deadlineIsDone, deadlineText, deadlineTime, isPrinting));
                         commands.add(command);
                         toBePrinted = toBePrinted.concat(
                             String.format(
@@ -124,6 +134,10 @@ public class Duke {
                     }
                     break;
                 case "event":
+                    boolean eventIsDone = command.contains("/done");
+                    if (eventIsDone) {
+                        command = command.replace("/done", "");
+                    }
                     String[] c2 = command.split("/at");
                     String eventText = c2[0].replaceFirst("event", "").strip();
                     String eventTime = c2.length > 1 ? c2[1].strip() : "";
@@ -132,7 +146,7 @@ public class Duke {
                     } else if (eventTime.isEmpty()) {
                         toBePrinted = toBePrinted.concat("🙁 OOPS!!! Provide a time for the event.\n");
                     } else {
-                        tasks.add(new Event(false, eventText, eventTime, isPrinting));
+                        tasks.add(new Event(eventIsDone, eventText, eventTime, isPrinting));
                         commands.add(command);
                         toBePrinted = toBePrinted.concat(
                                 String.format(
