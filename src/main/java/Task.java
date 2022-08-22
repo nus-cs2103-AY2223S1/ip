@@ -2,10 +2,12 @@ public abstract class Task {
     private boolean isDone;
     private String text;
 
-    public Task(boolean isDone, String text) {
+    public Task(boolean isDone, String text, boolean isPrinting) {
         this.isDone = isDone;
         this.text = text;
-        System.out.printf("Got it. I've added this task:\n  ");
+        if (isPrinting) {
+            System.out.printf("Got it. I've added this task:\n  ");
+        }
     }
 
     public void mark() {

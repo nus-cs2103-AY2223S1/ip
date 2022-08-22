@@ -1,10 +1,12 @@
 public class Event extends Task {
     private String time;
 
-    public Event(boolean isDone, String text, String time) {
-        super(isDone, text);
+    public Event(boolean isDone, String text, String time, boolean isPrinting) {
+        super(isDone, text, isPrinting);
         this.time = time;
-        System.out.println(this.toString());
+        if (isPrinting) {
+            System.out.println(this.toString());
+        }
     }
 
     @Override

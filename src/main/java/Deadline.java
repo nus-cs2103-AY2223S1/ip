@@ -1,10 +1,12 @@
 public class Deadline extends Task {
     private String deadline;
 
-    public Deadline(boolean isDone, String text, String deadline) {
-        super(isDone, text);
+    public Deadline(boolean isDone, String text, String deadline, boolean isPrinting) {
+        super(isDone, text, isPrinting);
         this.deadline = deadline;
-        System.out.println(this.toString());
+        if (isPrinting) {
+            System.out.println(this.toString());
+        }
     }
 
     @Override
