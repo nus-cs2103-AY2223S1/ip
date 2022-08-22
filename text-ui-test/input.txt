@@ -3,8 +3,17 @@ todo
 todo 1
 deadline 1
 deadline 1 /by mon
+deadline 1 /by 23-8-2022
+deadline 2 /by 2022-08-23
+deadline 3 /by 2022-08-23 1800
+deadline 3 /by 2022-08-23 18:00
 event 1
 event 1 /at mon
+event 1 /at 23-8-2022
+event 1 /at 2022-08-23
+event 2 /by 2022-08-23
+event 3 /by 2022-08-23 1800
+event 3 /by 2022-08-23 18:00
 list
 mark
 mark 1

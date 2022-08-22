@@ -1,4 +1,6 @@
-import java.sql.Time;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -10,8 +12,7 @@ public class Duke {
         tasks = new ArrayList<>();
     }
 
-    private void run() throws DukeException {
-        Scanner reader = new Scanner(System.in);
+    private void run(Scanner reader) throws DukeException {
         while (true) {
             String input = reader.nextLine();
             String[] strings = input.split(" ", 2);
@@ -27,9 +28,10 @@ public class Duke {
     public static void main(String[] args) {
         Duke duke = new Duke();
         System.out.println("Hello! I'm Duke\nWhat can I do for you?");
+        Scanner reader = new Scanner(System.in);
         while (true) {
             try {
-                duke.run();
+                duke.run(reader);
             } catch (DukeException e) {
                 System.out.println(e);
             }
@@ -94,14 +96,22 @@ public class Duke {
                 if (arg.length == 1 || arg[1].isEmpty()) {
                     throw new TaskException();
                 } else {
-                    String[] split = arg[1].split("/");
+                    String[] split = arg[1].split("/", 2);
                     if (split.length < 2) {
                         throw new TimeException();
                     } else {
-                        Task task = new Deadline(split[0], split[1]);
-                        tasks.add(task);
-                        System.out.println("Got it. I've added this task:\n" + task);
-                        System.out.println("Now you have " + tasks.size() + " tasks in the list");
+                        try {
+                            if (split[1].substring(3).length() < 11) {
+                                split[1] = split[1] + " 23:59";
+                            }
+                            LocalDateTime time = LocalDateTime.parse(split[1].substring(3), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+                            Task task = new Deadline(split[0], time);
+                            tasks.add(task);
+                            System.out.println("Got it. I've added this task:\n" + task);
+                            System.out.println("Now you have " + tasks.size() + " tasks in the list");
+                        } catch (DateTimeParseException e) {
+                            System.out.println("Please use the specified date-time format: yyyy-MM-dd HH:mm, or yyyy-MM-dd if you want the time to be 23:59");
+                        }
                     }
                 }
                 break;
@@ -121,14 +131,22 @@ public class Duke {
                 if (arg.length == 1) {
                     throw new TaskException();
                 } else {
-                    String[] split = arg[1].split("/");
+                    String[] split = arg[1].split("/", 2);
                     if (split.length < 2) {
                         throw new TimeException();
                     } else {
-                        Task task = new Event(split[0], split[1]);
-                        tasks.add(task);
-                        System.out.println("Got it. I've added this task:\n" + task);
-                        System.out.println("Now you have " + tasks.size() + " tasks in the list");
+                        try {
+                            if (split[1].substring(3).length() < 11) {
+                                split[1] = split[1] + " 23:59";
+                            }
+                            LocalDateTime time = LocalDateTime.parse(split[1].substring(3), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+                            Task task = new Event(split[0], time);
+                            tasks.add(task);
+                            System.out.println("Got it. I've added this task:\n" + task);
+                            System.out.println("Now you have " + tasks.size() + " tasks in the list");
+                        } catch (DateTimeParseException e) {
+                            System.out.println("Please use the specified date-time format: yyyy-MM-dd HH:mm, or yyyy-MM-dd if you want the time to be 23:59");
+                        }
                     }
                 }
                 break;
