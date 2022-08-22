@@ -2,11 +2,22 @@ package duke;
 
 import duke.command.Command;
 
+/**
+ * The main class for the Duke program.
+ *
+ * @author dexter-sim
+ * @version 0.1
+ */
 public class Duke {
     private Storage storage;
     private TaskList taskList;
     private Ui ui;
 
+    /**
+     * Creates a Duke object with specified file path to load and store tasks.
+     *
+     * @param filePath The file path to the local file responsible for loading and saving.
+     */
     public Duke(String filePath) {
         try {
             this.ui = new Ui();
@@ -18,6 +29,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Runs the Duke program.
+     */
     public void run() {
         boolean isExit = false;
         this.ui.printGreeting();
