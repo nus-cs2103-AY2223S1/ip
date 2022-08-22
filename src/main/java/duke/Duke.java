@@ -83,6 +83,11 @@ public class Duke {
                 continue;
             }
 
+            if (Objects.equals(action, "F")) {
+                this.ui.showTasksWithKeyword(arr[1], this.tasks);
+                continue;
+            }
+
             if (Objects.equals(action, "U")) {
                 this.ui.showUnknownInputError();
                 continue;

@@ -24,7 +24,7 @@ public class Parser {
      */
     public String[] parseCommand(String command) {
 
-        String[] arr = this.getUnknownArray(); // to be returned
+        String[] arr = this.getUnknownInputArray(); // to be returned
 
         if (command.contains("todo")) {
             try {
@@ -65,6 +65,11 @@ public class Parser {
 
         if (Objects.equals(command, "list")) {
             arr = this.getListArray();
+            return arr;
+        }
+
+        if (command.contains("find")) {
+            arr = this.getFindArray(command);
             return arr;
         }
 
@@ -122,8 +127,13 @@ public class Parser {
         return new String[]{"B"};
     }
 
-    private String[] getUnknownArray() {
+    private String[] getUnknownInputArray() {
         return new String[]{"U"};
+    }
+
+    private String[] getFindArray(String input) {
+        String keyword = input.substring(5);
+        return new String[]{"F", keyword};
     }
 }
 
