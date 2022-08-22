@@ -2,40 +2,22 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
-    private static final ArrayList<Task> data = new ArrayList<>();
+    private static TaskList data;
     private enum Commands {list, mark, unmark, todo, event, deadline, delete};
 
-    // lists all the tasks
-    public static String listData() {
-        if (data.size() == 0) return "Nothing here...";
-        StringBuilder output = new StringBuilder();
-        for (int i = 0; i < data.size(); i++) {
-            Task task = data.get(i);
-            output.append(i+1).append(". ").append(task).append("\n");
-        }
-        return output.substring(0, output.length()-1);
-    }
-
-    // checks if number input is valid and returns the index of the task
-    public static int getIndex(String res) throws InvalidInput {
-        if (!res.matches("[0-9]+")) throw new InvalidInput("Input is not a number");
-        int target_index = Integer.parseInt(res) - 1;
-        if (target_index < 0 || target_index >= data.size()) throw new InvalidInput("Please input a correct number");
-        return target_index;
-    }
-
     // marks task as complete or not complete
-    public static String setTaskCompletion(String input, boolean isComplete) throws InvalidInput{
+    public static String setTaskCompletion(String input, boolean isComplete) throws DukeException {
         String res = input.substring(isComplete ? 4 : 6).trim();
-        Task task = data.get(getIndex(res));
+        Task task = data.get(data.getIndex(res));
         if (isComplete) task.markDone();
         else task.markNotDone();
+        data.saveData();
         return (isComplete ? "Nice! I've marked this task as done:\n" : "OK, I've marked this task as not done yet:\n")
                 + task;
     }
 
     // create a todo task
-    public static String createTodo(String input) throws InvalidInput {
+    public static String createTodo(String input) throws DukeException {
         String description = input.substring(4).trim();
         if (description.length() == 0) throw new InvalidInput("The description of a todo cannot be empty.");
         ToDo task = new ToDo(description);
@@ -44,7 +26,7 @@ public class Duke {
     }
 
     // create event task
-    public static String createEvent(String input) throws InvalidInput{
+    public static String createEvent(String input) throws DukeException {
         String[] info = input.substring(5).split("/at");
         if (info.length != 2) throw new InvalidInput("Ensure input format is correct.");
         String description = info[0].strip();
@@ -57,7 +39,7 @@ public class Duke {
     }
 
     // create deadline task
-    public static String createDeadline(String input) throws InvalidInput {
+    public static String createDeadline(String input) throws DukeException {
         String[] info = input.substring(8).split("/by");
         if (info.length != 2) throw new InvalidInput("Ensure input format is correct.");
         String description = info[0].strip();
@@ -70,9 +52,9 @@ public class Duke {
     }
 
     // delete a specified task
-    public static String deleteTask(String input) throws InvalidInput {
+    public static String deleteTask(String input) throws DukeException {
         String res = input.substring(6).trim();
-        int target_index = getIndex(res);
+        int target_index = data.getIndex(res);
         Task task = data.get(target_index);
         data.remove(target_index);
         return "Noted. I've removed this task:\n" + task + "\nNow you have " + data.size() + " tasks.";
@@ -87,7 +69,7 @@ public class Duke {
         }
         switch (command) {
             case list:
-                return listData();
+                return data.listData();
             case mark:
                 return setTaskCompletion(input, true);
             case unmark:
@@ -106,6 +88,13 @@ public class Duke {
     }
 
     public static void main(String[] args) {
+        try {
+            data = new TaskList();
+            data.loadData();
+        } catch (DukeException e) {
+            System.out.println(e);
+            return;
+        }
         System.out.println("Quack! I'm Duck\nWhat can I do for you?");
         Scanner sc = new Scanner(System.in);
         while (sc.hasNextLine()) {

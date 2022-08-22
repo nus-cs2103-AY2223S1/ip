@@ -7,6 +7,10 @@ public class Event extends Task {
     }
 
     @Override
+    public String stringToSave() {
+        return "E|" + ("X".equals(super.getStatusIcon()) ? "1|" : "0|") + super.description + "|" + this.time;
+    }
+    @Override
     public String toString() {
         return "[E][" + super.getStatusIcon() + "] " + super.description + " (at: " + this.time + ")";
     }
