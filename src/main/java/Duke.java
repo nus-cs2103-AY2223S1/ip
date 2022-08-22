@@ -1,17 +1,39 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
     /*
-    * A method that takes in a string input and performs actions based on the string input
-    * */
-    public static void DukeTask() throws DukeException {
+     * A method that takes in a string input and performs actions based on the string input
+     * */
+    public static void DukeTask() throws DukeException, IOException {
         Scanner scanner = new Scanner(System.in);
+        String pathName = "data/Duke2.txt";
+        File f = new File(pathName);
+        if(f.createNewFile()){
+            System.out.println("new file created");
+        } else {
+            System.out.println("File already exists");
+        }
+        Scanner filescanner = new Scanner(f);
         System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?");
         List<Task> lst = new ArrayList<>();
         int count=0;
+        //This part, im loading all the strings in the pre existing file
+        String[] loadedTasks = new String[100];
+        int taskNum = 0;
+        while(filescanner.hasNextLine()){
+            String task = filescanner.nextLine();
+            loadedTasks[taskNum] = task;
+            taskNum++;
+        }
+        final int fileTask = taskNum; //we do not want to modify the fileTask after
+
         String str;
 
         do{
@@ -44,7 +66,8 @@ public class Duke {
                 lst.add(task);
                 count++;
                 System.out.println(task.toString());
-                System.out.println("Now you have "+ count + " tasks in the list.");
+                int total = fileTask+count;
+                System.out.println("Now you have "+ total + " tasks in the list.");
             } else if(str.equals("todo")){
                 String todoDes = scanner.nextLine();
                 if(todoDes.equals("")){
@@ -55,7 +78,8 @@ public class Duke {
                 lst.add(task);
                 count++;
                 System.out.println(task.toString());
-                System.out.println("Now you have "+ count + " tasks in the list.");
+                int total = fileTask+count;
+                System.out.println("Now you have "+ total + " tasks in the list.");
             } else if(str.equals("event")){
                 System.out.println("Got it. I've added this task: ");
                 String description = "";
@@ -72,12 +96,19 @@ public class Duke {
                 lst.add(task);
                 count++;
                 System.out.println(task.toString());
-                System.out.println("Now you have "+ count + " tasks in the list.");
+                int total = fileTask+count;
+                System.out.println("Now you have "+ total + " tasks in the list.");
             }
-            else if(str.equals("list")){
+            else if(str.equals("list")){ //To print out the list, we read from the file first, then read from the current tasks
                 System.out.println("Here are the tasks in your list");
-                for(int i=0;i<count;i++){
-                    System.out.println(i+1 +"."+lst.get(i));
+                for(int i=0; i<fileTask;i++){
+                    System.out.println(i+1+"."+loadedTasks[i]);
+                }
+                if(!lst.isEmpty()) {
+                    for (int i = 0; i < count; i++) {
+                        System.out.println(i + 1+ fileTask + "." + lst.get(i));
+                        taskNum++;
+                    }
                 }
                 scanner.nextLine();
             }
@@ -97,22 +128,41 @@ public class Duke {
                 scanner.nextLine();
             }
             else{
+                for(int i=0;i<count;i++){
+                    writeToFile(pathName,(lst.get(i).toString()));
+                }
                 throw new DukeException(":( OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
 
         }  while(!str.equals("bye"));
 
         if (str.equals("bye")) {
+            for(int i=0;i<count;i++){
+                writeToFile(pathName,lst.get(i).toString());
+            }
             System.out.println("Bye. Hope to see you again soon!");
         }
 
     }
 
+    private static void writeToFile(String filePath, String textToAdd) throws IOException {
+        FileWriter fw = new FileWriter(filePath,true);
+        fw.write(textToAdd);
+        fw.write(System.getProperty("line.separator"));
+        fw.close();
+
+
+    }
+
     public static void main(String[] args)  {
-          try {
-              DukeTask();
-          }catch(DukeException e) {
-              System.out.println(e.getMessage());
-          }
+        try {
+            DukeTask();
+        }catch(DukeException e) {
+            System.out.println(e.getMessage());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
