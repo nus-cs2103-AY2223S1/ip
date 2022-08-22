@@ -41,7 +41,7 @@ public class Duke {
                 return;
             }
             case LIST: {
-                taskManager.dukeShowList();
+                taskManager.dukeShowAllTasks();
                 break;
             }
             case MARK:
@@ -56,6 +56,10 @@ public class Duke {
                 //Fallthrough
             case DEADLINE: {
                 taskManager.dukeAddTask(commandType, args);
+                break;
+            }
+            case FIND: {
+                taskManager.dukeFindTasksContaining(args);
                 break;
             }
             default: {

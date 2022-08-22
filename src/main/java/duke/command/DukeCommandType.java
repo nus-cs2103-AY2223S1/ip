@@ -12,5 +12,6 @@ public enum DukeCommandType {
     TODO,
     EVENT,
     DEADLINE,
+    FIND,
     UNKNOWN
 }
