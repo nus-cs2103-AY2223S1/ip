@@ -1,6 +1,7 @@
 //only exceptions in example caught
 //without automatic ui testing
 //not using arraylist
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Duke {
@@ -22,21 +23,21 @@ public class Duke {
 
         while (!userReply.equals("bye")) {
             try {
-                if (userReply.startsWith("mark")) {
+                if (userReply.toLowerCase().startsWith("mark")) {
                     int pos = Character.getNumericValue(userReply.charAt(5));
                     taskList[pos - 1].markAsDone();
                     System.out.println(buffLine + "\n" + "    Nice! I've marked this task as done: ");
                     taskList[pos - 1].fullDesc();
                     System.out.println(buffLine);
                     userReply = sc.nextLine();
-                } else if (userReply.startsWith("unmark")) {
+                } else if (userReply.toLowerCase().startsWith("unmark")) {
                     int pos = Character.getNumericValue(userReply.charAt(7));
                     taskList[pos - 1].markAsUndone();
                     System.out.println(buffLine + "\n" + "    Ok, I've marked this task as not done yet: ");
                     taskList[pos - 1].fullDesc();
                     System.out.println(buffLine);
                     userReply = sc.nextLine();
-                } else if (userReply.startsWith("todo")) {
+                } else if (userReply.toLowerCase().startsWith("todo")) {
                     try {
                         taskList[indCount] = new ToDos(userReply.substring(5, userReply.length()));
                         System.out.println(buffLine + "\n" + "    Got it. I've added this task: ");
@@ -49,7 +50,7 @@ public class Duke {
                         System.out.println("☹ OOPS!!! The description of a todo cannot be empty.");
                         userReply = sc.nextLine();
                     }
-                } else if (userReply.startsWith("deadline")) {
+                } else if (userReply.toLowerCase().startsWith("deadline")) {
                     try {
                         int splitPoint = userReply.indexOf("/");
                         taskList[indCount] = new Deadlines(userReply.substring(9, splitPoint - 1),
@@ -64,7 +65,7 @@ public class Duke {
                         System.out.println("☹ OOPS!!! The description of a todo cannot be empty.");
                         userReply = sc.nextLine();
                     }
-                } else if (userReply.startsWith("event")) {
+                } else if (userReply.toLowerCase().startsWith("event")) {
                     int splitPoint = userReply.indexOf("/");
                     taskList[indCount] = new Events(userReply.substring(6, splitPoint - 1),
                         userReply.substring(splitPoint + 1, userReply.length()));
@@ -74,14 +75,14 @@ public class Duke {
                             + " tasks in this list." + "\n" + buffLine);
                     indCount++;
                     userReply = sc.nextLine();
-                } else if (userReply.equals("list")){
+                } else if (userReply.toLowerCase().startsWith("list")){
                     System.out.println(buffLine);
                     for (int i = 0; i <  indCount; i++) {
                         System.out.println("    " + (i + 1) + ". " + taskList[i].stringDesc());
                     }
                     System.out.println(buffLine);
                     userReply = sc.nextLine();
-                } else if (userReply.startsWith("delete")) {
+                } else if (userReply.toLowerCase().startsWith("delete")) {
                     System.out.println(buffLine + "\n    Noted. I've removed this task: ");
                     taskList[Character.getNumericValue(userReply.charAt(7)) - 1].fullDesc();
                     for (int i = userReply.charAt(7) - 1; i < indCount; i++) {
