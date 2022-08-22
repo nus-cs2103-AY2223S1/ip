@@ -1,5 +1,5 @@
 import java.util.Scanner;
-import java.util.ArrayList;
+import java.time.LocalDate;
 
 public class Duke {
     public static void main(String[] args) {
@@ -9,8 +9,7 @@ public class Duke {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
-
-        myPrinter(" Hello! I'm Duke\n What can I do for you?");
+        System.out.println(" Hello! I'm Duke\n What can I do for you?");
         TaskList myTasks = new TaskList();
         Scanner scanner = new Scanner(System.in);
 
@@ -37,14 +36,14 @@ public class Duke {
                     break;
                 case "deadline":
                     myTasks.addTask(new Deadline(
-                        userInput.substring(9).split("/by")[0],
-                        userInput.split("/by")[1]));
+                        userInput.substring(9).split("/by")[0], LocalDate.parse(
+                        userInput.split("/by ")[1])));
                     myTasks.saveTasks();
                     break;
                 case "event":
                     myTasks.addTask(new Event(
-                        userInput.substring(6).split("/at")[0], 
-                        userInput.split("/at")[1]));
+                        userInput.substring(6).split("/at")[0], LocalDate.parse(
+                        userInput.split("/at ")[1])));
                     myTasks.saveTasks();
                     break;
                 case "delete":
@@ -56,19 +55,5 @@ public class Duke {
             }
         }
         scanner.close();
-    }
-
-    private static void myPrinter(String myString) {
-        System.out.println("____________________________________________________________");
-        System.out.println(myString);
-        System.out.println("____________________________________________________________");
-    }
-
-    private static void printItem(int itemNumber, ArrayList<Task> myList) {
-        System.out.println("____________________________________________________________");
-        System.out.println("["
-                + myList.get(itemNumber).getStatusIcon() + "] "
-                + myList.get(itemNumber).getDescription());
-        System.out.println("____________________________________________________________");
     }
 }

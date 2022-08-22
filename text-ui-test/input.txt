@@ -1,8 +1,8 @@
 todo read book
 list
-todo buy book
+deadline sell book /by 2019-05-12
 list
-deadline sell book /by Sunday
+event buy book /at 2022-05-12
 list
-event project meeting /at Mon 2-4pm
+delete 2
 list

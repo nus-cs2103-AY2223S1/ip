@@ -5,33 +5,29 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
-____________________________________________________________
  Hello! I'm Duke
  What can I do for you?
-____________________________________________________________
 Got it. I've added this task:
 [T][ ] read book
-Now you have 1 in the list.
+Now you have 1 task(s) in the list.
 Here are the tasks in your list: 
 1.[T][ ] read book
 Got it. I've added this task:
-[T][ ] buy book
+[D][ ] sell book  (by: May 12 2019)
+Now you have 2 task(s) in the list.
+Here are the tasks in your list: 
+1.[T][ ] read book
+2.[D][ ] sell book  (by: May 12 2019)
+Got it. I've added this task:
+[E][ ] buy book  (at: May 12 2022)
+Now you have 3 task(s) in the list.
+Here are the tasks in your list: 
+1.[T][ ] read book
+2.[D][ ] sell book  (by: May 12 2019)
+3.[E][ ] buy book  (at: May 12 2022)
+Noted. I've removed this task:
+[D][ ] sell book  (by: May 12 2019)
 Now you have 2 in the list.
 Here are the tasks in your list: 
 1.[T][ ] read book
-2.[T][ ] buy book
-Got it. I've added this task:
-[D][ ] sell book  (by: Sunday)
-Now you have 3 in the list.
-Here are the tasks in your list: 
-1.[T][ ] read book
-2.[T][ ] buy book
-3.[D][ ] sell book  (by: Sunday)
-Got it. I've added this task:
-[E][ ] project meeting  (at: Mon 2-4pm)
-Now you have 4 in the list.
-Here are the tasks in your list: 
-1.[T][ ] read book
-2.[T][ ] buy book
-3.[D][ ] sell book  (by: Sunday)
-4.[E][ ] project meeting  (at: Mon 2-4pm)
+2.[E][ ] buy book  (at: May 12 2022)

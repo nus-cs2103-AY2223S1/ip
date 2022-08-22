@@ -19,6 +19,9 @@ then
     exit 1
 fi
 
+# create empty txt for testing
+> duke.txt
+
 # run the program, feed commands from input.txt file and redirect the output to the ACTUAL.TXT
 java -classpath ../bin Duke < ./text-ui-test/input.txt > ./text-ui-test/ACTUAL.TXT
 
@@ -27,6 +30,7 @@ diff ./text-ui-test/ACTUAL.TXT ./text-ui-test/EXPECTED.TXT
 if [ $? -eq 0 ]
 then
     echo "Test result: PASSED"
+    rm ./duke.txt
     exit 0
 else
     echo "Test result: FAILED"
