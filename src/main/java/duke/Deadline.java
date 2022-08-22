@@ -28,8 +28,7 @@ public class Deadline extends Task {
                 by.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
     }
 
-    public String toFile() {
+    public String toStringOri() {
         return "[D]" + super.toString() + " (by: " + by + ")";
     }
-
 }

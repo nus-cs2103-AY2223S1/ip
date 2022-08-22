@@ -1,5 +1,6 @@
 package duke;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ui {
@@ -60,6 +61,22 @@ public class Ui {
         for (Task t : list.getList()) {
             String s = Integer.toString(count);
             System.out.println(s + ". " + t);
+            count++;
+        }
+    }
+
+    public void showTasksWithKeyword(String keyword, TaskList list) {
+        ArrayList<Task> tempList = new ArrayList<>();
+        for (Task t : list.getList()) {
+            if (t.toString().contains(keyword)) {
+                tempList.add(t);
+            }
+        }
+        System.out.println("Here are the matching tasks in your list:");
+        int count = 1;
+        for (Task t : tempList) {
+            String num = Integer.toString(count);
+            System.out.println(num + ". " + t);
             count++;
         }
     }
