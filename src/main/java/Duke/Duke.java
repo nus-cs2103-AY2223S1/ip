@@ -109,6 +109,15 @@ public class Duke {
             }
         }
 
+        public void findList(String target) {
+            System.out.println("Here are the tasks in your list with the keyword:");
+            for (int i = 0; i < count(); i++) {
+                if (all.get(i).getDescription().indexOf(target) != -1) {
+                    System.out.printf("%s. %s\n", i + 1, all.get(i).toString());
+                }
+            }
+        }
+
         public void addTask(Task task) {
             all.add(task);
             ui.added(task);
@@ -246,6 +255,25 @@ public class Duke {
         }
     }
 
+    private class FindCommand extends Command {
+        private String target;
+
+        public FindCommand(String target) {
+            super();
+            this.target = target;
+        }
+
+        @Override
+        public void execute()  {
+            taskList.findList(target);
+        }
+
+        @Override
+        public boolean isExit () {
+            return false;
+        }
+    }
+
     private class MarkCommand extends Command {
         private boolean isMark;
         private int index;
@@ -313,7 +341,7 @@ public class Duke {
     }
 
     private class Parser {
-        private String list, todo, ddl, event, mark, unmark, exit, delete;
+        private String list, todo, ddl, event, mark, unmark, exit, delete, find;
 
         public Parser() {
             list = "list";
@@ -324,6 +352,7 @@ public class Duke {
             mark = "mark";
             exit = "bye";
             delete = "delete";
+            find = "find";
         }
 
         public Command parse(String s) throws DukeException {
@@ -337,8 +366,7 @@ public class Duke {
             } else {
                 String identifier = s.substring(0, space);
                 String description = s.substring(space + 1);
-                System.out.println(identifier);
-                System.out.println(description);
+
                 if (identifier.equals(todo)) {
                     return new AddCommand(TaskType.TODO, description);
                 } else if (identifier.equals(event)) {
@@ -351,6 +379,8 @@ public class Duke {
                     return new MarkCommand(true, extractIndex(s));
                 } else if (identifier.equals(unmark)) {
                     return new MarkCommand(false, extractIndex(s));
+                } else if (identifier.equals(find)) {
+                    return new FindCommand(description);
                 } else {
                     throw new DukeException("Cannot find matching key word!");
                 }
@@ -458,6 +488,10 @@ public class Duke {
 
         public void markAsUndone() {
             isDone = false;
+        }
+
+        public String getDescription() {
+            return description;
         }
     }
 
