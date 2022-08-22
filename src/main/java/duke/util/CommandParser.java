@@ -1,3 +1,9 @@
+package duke.util;
+
+import duke.legacy.Actionable;
+import duke.legacy.Command;
+import duke.legacy.CommandType;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,7 +13,7 @@ public class CommandParser {
     private static final String BY_DATE_DELIMITER = "/by";
     private static final String AT_DATE_DELIMITER = "/at";
 
-    static int getIndexOfFirstOccurrence(String input, String pattern) {
+    public static int getIndexOfFirstOccurrence(String input, String pattern) {
         int indexOfFirstOccurrence = input.indexOf(pattern);
         if (indexOfFirstOccurrence == -1) {
             indexOfFirstOccurrence = input.length();
@@ -15,20 +21,20 @@ public class CommandParser {
         return indexOfFirstOccurrence;
     }
 
-    static int getIndexOfFirstWhiteSpace(String input) {
+    public static int getIndexOfFirstWhiteSpace(String input) {
         return getIndexOfFirstOccurrence(input, " ");
     }
 
-    static int getIndexOfFirstDelimiter(String input) {
+    public static int getIndexOfFirstDelimiter(String input) {
         return getIndexOfFirstOccurrence(input, DELIMITER);
     }
 
-    static String getFirstWord(String input) {
+    public static String getFirstWord(String input) {
         int indexOfFirstWhiteSpace = getIndexOfFirstWhiteSpace(input);
         return input.substring(0, indexOfFirstWhiteSpace);
     }
 
-    static String getByDate(String input) {
+    public static String getByDate(String input) {
         int indexOfDelimiter = input.indexOf(BY_DATE_DELIMITER);
         if (indexOfDelimiter == -1) {
             return null;
@@ -36,7 +42,7 @@ public class CommandParser {
         return input.substring(indexOfDelimiter + BY_DATE_DELIMITER.length(), input.length());
     }
 
-    static String getAtDate(String input) {
+    public static String getAtDate(String input) {
         int indexOfDelimiter = input.indexOf(AT_DATE_DELIMITER);
         if (indexOfDelimiter == -1) {
             return null;
@@ -44,7 +50,7 @@ public class CommandParser {
         return input.substring(indexOfDelimiter + AT_DATE_DELIMITER.length(), input.length());
     }
 
-    static String getTaskTitle(String input) {
+    public static String getTaskTitle(String input) {
         int indexOfStart = getIndexOfFirstWhiteSpace(input);
         int indexOfEnd = indexOfStart
                 + getIndexOfFirstDelimiter(input.substring(indexOfStart + 1, input.length()))
@@ -52,7 +58,7 @@ public class CommandParser {
         return input.substring(indexOfStart + 1, indexOfEnd);
     }
 
-    static int getTaskIndexFromCommand(String input) {
+    public static int getTaskIndexFromCommand(String input) {
         int indexOfFirstWhiteSpace = CommandParser.getIndexOfFirstWhiteSpace(input);
         String tailSubString = input.substring(indexOfFirstWhiteSpace, input.length());
         tailSubString = tailSubString.replace(" ", "");
@@ -67,24 +73,5 @@ public class CommandParser {
             // which will be handled in the higher layer
         }
         return taskIndex;
-    }
-
-    private Map<String, CommandType> commandTypeMap;
-
-    CommandParser() {
-        commandTypeMap = new HashMap<>();
-        CommandType[] commandTypes = CommandType.class.getEnumConstants();
-        for (CommandType type: commandTypes) {
-            commandTypeMap.put(type.getCommandString(), type);
-        }
-    }
-
-    Actionable parse(String commandString) {
-        return new Command(CommandType.EXIT) {
-            @Override
-            public void takeAction() {
-
-            }
-        };
     }
 }

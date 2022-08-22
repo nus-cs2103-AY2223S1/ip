@@ -1,9 +1,8 @@
+package duke.legacy;
+
+@Deprecated
 public enum CommandType {
     EXIT("bye");
-
-
-
-
 
     private String commandString;
 

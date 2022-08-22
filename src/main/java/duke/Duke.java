@@ -1,10 +1,16 @@
+package duke;
+
+import duke.task.Task;
+import duke.util.CommandParser;
+import duke.util.OutputFormatter;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
 
-    private static final String GREETING_MESSAGE = "Hi there! I' am Duke, your personal time manager."
+    private static final String GREETING_MESSAGE = "Hi there! I' am duke.Duke, your personal time manager."
             + "\nWhat can I help you?";
     private static final String EXIT_OUTPUT_STRING = "Bye! See you next time!";
     private static final String EXIT_COMMAND_STRING = "bye";

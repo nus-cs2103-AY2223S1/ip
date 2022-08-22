@@ -1,10 +1,14 @@
+package duke.task;
+
+import duke.util.CommandParser;
+
 public abstract class Task {
 
     private static final String TODO_TASK_COMMAND_STRING = "todo";
     private static final String EVENT_TASK_COMMAND_STRING = "event";
     private static final String DEADLINE_TASK_COMMAND_STRING = "deadline";
 
-    // TODO: Try to combine the string literals in line with TaskType
+    // TODO: Try to combine the string literals in line with duke.task.TaskType
 
     public static Task valueOf(String input) {
         String firstWord = CommandParser.getFirstWord(input);
@@ -45,11 +49,11 @@ public abstract class Task {
         this.taskType = taskType;
     }
 
-    void markDone() {
+    public void markDone() {
         done = true;
     }
 
-    void markUndone() {
+    public void markUndone() {
         done = false;
     }
 

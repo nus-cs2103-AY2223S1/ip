@@ -1,3 +1,6 @@
+package duke.legacy;
+
+@Deprecated
 public abstract class Command implements Actionable {
 
     CommandType commandType;

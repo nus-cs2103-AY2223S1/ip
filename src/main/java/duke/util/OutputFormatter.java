@@ -1,3 +1,5 @@
+package duke.util;
+
 public class OutputFormatter {
     private static final String HORIZONTAL_BAR = "-------------------------";
 

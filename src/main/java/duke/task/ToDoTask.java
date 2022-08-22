@@ -1,3 +1,5 @@
+package duke.task;
+
 public class ToDoTask extends Task {
 
     private static final String LABEL = "T";
