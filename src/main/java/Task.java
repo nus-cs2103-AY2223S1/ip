@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -38,8 +40,8 @@ public class Task {
         return description;
     }
 
-    public String getDateline() {
-        return "";
+    public LocalDate getDateline() {
+        return null;
     }
 
     @Override
