@@ -22,23 +22,44 @@ public class ConversationHandler {
     }
 
     public String commandHandler(String input) {
-        switch (input) {
+//        We get the first word, since that determines the command
+        switch (input.split(" ", 2)[0]) {
             case "Bye":
             case "bye":
-                this.close();
-                return "Bye. Hope to see you again!";
+                return this.closeCommand(input);
 
             case "list":
             case "List":
-                return this.enumerateList();
+                return this.listCommand(input);
 
+            case "mark":
+            case "Mark":
+                return this.markCommand(input);
+//            case
+//
+//            case
+//            case
             default:
                 this.list.add(new Task(input));
                 return "added: " + input;
         }
     }
 
-    private String enumerateList() {
+    private String markCommand(String input) {
+//        TODO: error handling here
+        int index = Integer.parseInt(input.split(" ")[1]);
+
+//        List is 1-indexed in cli
+        Task task = this.list.get(index - 1);
+        task.setDone();
+
+        return "Nice! I've marked this as done: \n" + task;
+    }
+//    private String unMarkCommand() {
+//
+//    }
+
+    private String listCommand(String input) {
         String returnMsg = "";
         int index = 1;
 
@@ -49,9 +70,10 @@ public class ConversationHandler {
         return returnMsg;
     }
 
-    private void close() {
+    private String closeCommand(String input) {
         this.in.close();
         this.active = false;
+        return "Bye. Hope to see you again!";
     }
 
 
