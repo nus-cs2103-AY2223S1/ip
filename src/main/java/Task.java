@@ -7,11 +7,6 @@ public class Task {
         this.isDone = false;
     }
 
-    public String getDescription() {
-        int status = isDone ? 1 : 0;
-        return status + " | " + this.name;
-    }
-
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
     }
@@ -23,11 +18,6 @@ public class Task {
 
     void unmark() {
         this.isDone = false;
-    }
-
-    String writeToFile() {
-        int status = isDone ? 1 : 0;
-        return status + "|" + this.name;
     }
 
     @Override

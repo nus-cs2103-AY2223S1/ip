@@ -1,7 +1,3 @@
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-
 public class Deadline extends Task  {
     private String deadline;
 
@@ -10,10 +6,6 @@ public class Deadline extends Task  {
         this.deadline = deadline;
     }
 
-    @Override
-    String writeToFile() {
-        return "D|" + super.writeToFile();
-    }
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (" + deadline + ")";
