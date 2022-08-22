@@ -40,14 +40,14 @@ public abstract class Task {
      */
     public static Task of(Task_type x, String details) {
         switch (x) {
-            case TODO:
-                return new ToDo(details);
-            case DEADLINE:
-                return new Deadline(details);
-            case EVENT:
-                return new Event(details);
-            default:
-                return null;
+        case TODO:
+            return new ToDo(details);
+        case DEADLINE:
+            return new Deadline(details);
+        case EVENT:
+            return new Event(details);
+        default:
+            return null;
         }
     }
 

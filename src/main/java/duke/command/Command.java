@@ -65,56 +65,56 @@ public abstract class Command {
             }
         } else {
             switch (keyword) {
-                case "todo":
-                    return new AddCommand(Task.Task_type.TODO, s.substring(5), null);
-                case "deadline": {
-                    try {
-                        String[] tempSplit = s.substring(9).split(" /by ");
-                        if (tempSplit.length == 1) {
-                            throw new DukeException("deadline format");
-                        } else {
-                            return new AddCommand(Task.Task_type.DEADLINE, tempSplit[0], LocalDate.parse(tempSplit[1]));
-                        }
-                    } catch (DateTimeParseException e) {
+            case "todo":
+                return new AddCommand(Task.Task_type.TODO, s.substring(5), null);
+            case "deadline": {
+                try {
+                    String[] tempSplit = s.substring(9).split(" /by ");
+                    if (tempSplit.length == 1) {
                         throw new DukeException("deadline format");
+                    } else {
+                        return new AddCommand(Task.Task_type.DEADLINE, tempSplit[0], LocalDate.parse(tempSplit[1]));
                     }
+                } catch (DateTimeParseException e) {
+                    throw new DukeException("deadline format");
                 }
-                case "event": {
-                    try {
-                        String[] tempSplit = s.substring(6).split(" /at ");
-                        if (tempSplit.length == 1) {
-                            throw new DukeException("event format");
-                        } else {
-                            return new AddCommand(Task.Task_type.EVENT, tempSplit[0], LocalDate.parse(tempSplit[1]));
-                        }
-                    } catch (DateTimeParseException e) {
+            }
+            case "event": {
+                try {
+                    String[] tempSplit = s.substring(6).split(" /at ");
+                    if (tempSplit.length == 1) {
                         throw new DukeException("event format");
+                    } else {
+                        return new AddCommand(Task.Task_type.EVENT, tempSplit[0], LocalDate.parse(tempSplit[1]));
                     }
+                } catch (DateTimeParseException e) {
+                    throw new DukeException("event format");
                 }
-                case "delete":
-                    try {
-                        int location = Integer.parseInt(s.substring(7)) - 1;
-                        return new DeleteCommand(location);
-                    } catch (NumberFormatException e) {
-                        throw new DukeException("non integer input when deleting");
-                    }
+            }
+            case "delete":
+                try {
+                    int location = Integer.parseInt(s.substring(7)) - 1;
+                    return new DeleteCommand(location);
+                } catch (NumberFormatException e) {
+                    throw new DukeException("non integer input when deleting");
+                }
 
-                case "mark":
-                    try {
-                        int location = Integer.parseInt(s.substring(5)) - 1;
-                        return new MarkCommand(true, location);
-                    } catch (NumberFormatException e) {
-                        throw new DukeException("non integer input when marking");
-                    }
-                case "unmark":
-                    try {
-                        int location = Integer.parseInt(s.substring(7)) - 1;
-                        return new MarkCommand(false, location);
-                    } catch (NumberFormatException e) {
-                        throw new DukeException("non integer input when marking");
-                    }
-                default:
-                    throw new DukeException("unknown");
+            case "mark":
+                try {
+                    int location = Integer.parseInt(s.substring(5)) - 1;
+                    return new MarkCommand(true, location);
+                } catch (NumberFormatException e) {
+                    throw new DukeException("non integer input when marking");
+                }
+            case "unmark":
+                try {
+                    int location = Integer.parseInt(s.substring(7)) - 1;
+                    return new MarkCommand(false, location);
+                } catch (NumberFormatException e) {
+                    throw new DukeException("non integer input when marking");
+                }
+            default:
+                throw new DukeException("unknown");
             }
         }
     }
