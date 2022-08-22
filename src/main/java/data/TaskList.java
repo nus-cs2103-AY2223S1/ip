@@ -1,11 +1,12 @@
 package data;
 
 import data.tasks.Task;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TaskList {
-
+public class TaskList implements Serializable {
+    private static final long serialVersionUID = 1L;
     private final List<Task> tasks;
 
     public TaskList() {

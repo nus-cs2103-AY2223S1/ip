@@ -1,6 +1,8 @@
 package data.tasks;
 
-public abstract class Task {
+import java.io.Serializable;
+
+public abstract class Task implements Serializable {
 
     protected final String title;
     protected boolean marked;
