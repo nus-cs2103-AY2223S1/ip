@@ -1,19 +1,21 @@
 package application;
 
-import taskfilemanager.TaskFileManager;
 import datastructure.Pair;
 
 import exception.InvalidCaseException;
 import exception.InvalidInputException;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-
 import task.Deadline;
+import task.Event;
 import task.Task;
 import task.TaskList;
 import task.ToDo;
-import task.Event;
+
+import taskfilemanager.TaskFileManager;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
 
 public class ChatBot {
     private final TaskFileManager fileManager = TaskFileManager.of("duke.txt");
@@ -36,7 +38,7 @@ public class ChatBot {
         this.displayMessage("\t" + "Bye! Till we next meet!" + "\n");
     }
 
-    private void handleAddTask(Case cs, ArrayList<String> parsedLine) {
+    private void handleAddTask(Case cs, ArrayList<String> parsedLine) throws InvalidInputException {
         Task task;
 
         switch (cs) {
@@ -93,6 +95,12 @@ public class ChatBot {
         }
     }
 
+    private void handleCheck(ArrayList<String> parsedLine) throws InvalidInputException {
+        TaskList timedTaskList = taskList.filterTaskList(parsedLine.get(0));
+        this.displayMessage("\t" + "Here are the tasks in your list:" + "\n"
+                + timedTaskList);
+    }
+
     private void handleUnexpected() {
         this.displayMessage("\t" + "Seems like you've entered something incorrectly, try again!" + "\n");
     }
@@ -132,6 +140,11 @@ public class ChatBot {
                 case TODO: case DEADLINE: case EVENT:
                     this.handleAddTask(cs, parsedLine);
                     break;
+                case CHECK:
+                    this.handleCheck(parsedLine);
+                    break;
+                default:
+                    this.handleUnexpected();
                 }
             } catch (InvalidInputException e) {
                 this.handleUnexpected();

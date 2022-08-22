@@ -1,6 +1,7 @@
 package application;
 
 import datastructure.Pair;
+
 import exception.InvalidInputException;
 
 import java.util.ArrayList;
@@ -50,6 +51,9 @@ public class CommandParser {
                     parsed.add(sc.next());
                     return Pair.of(Case.EVENT, parsed);
                 }
+            } else if (command.equals("check") && sc.hasNext()) {
+                parsed.add(sc.nextLine());
+                return Pair.of(Case.CHECK, parsed);
             }
             throw new InvalidInputException();
         }

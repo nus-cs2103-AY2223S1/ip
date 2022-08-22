@@ -1,6 +1,8 @@
 package taskfilemanager;
 
+import exception.InvalidInputException;
 import exception.InvalidTaskFileException;
+
 import task.Deadline;
 import task.Event;
 import task.Task;
@@ -9,7 +11,7 @@ import task.ToDo;
 import java.util.Scanner;
 
 public class TaskLineParser {
-    public static Task parseLine(String line) throws InvalidTaskFileException {
+    public static Task parseLine(String line) throws InvalidInputException {
         Scanner sc = new Scanner(line);
         sc.useDelimiter(",,,");
 

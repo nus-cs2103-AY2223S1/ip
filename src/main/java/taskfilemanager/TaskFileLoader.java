@@ -1,5 +1,7 @@
 package taskfilemanager;
 
+import exception.InvalidInputException;
+import exception.InvalidTaskFileException;
 import task.TaskList;
 
 import java.io.File;
@@ -25,6 +27,9 @@ public class TaskFileLoader {
             sc.close();
             return taskList;
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        } catch (InvalidInputException e) {
             e.printStackTrace();
             return null;
         }
