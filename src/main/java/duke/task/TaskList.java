@@ -1,3 +1,9 @@
+package duke.task;
+
+import duke.DukeException;
+import duke.command.CommandType;
+import duke.util.UI;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;

@@ -1,8 +1,13 @@
+package duke.task;
+
+import duke.DukeException;
+import duke.command.CommandType;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-abstract class Task {
+public abstract class Task {
     private final String description;
     private final char symbol;
     private boolean isDone;

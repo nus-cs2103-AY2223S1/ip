@@ -1,4 +1,11 @@
-abstract class Command {
+package duke.command;
+
+import duke.DukeException;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.util.UI;
+
+public abstract class Command {
     private static final String WRONG_ARGS_COUNT = "Wrong number of arguments provided!";
 
     protected final CommandType command;
@@ -45,6 +52,10 @@ abstract class Command {
         default:
             return new BadCommand(args);
         }
+    }
+
+    public boolean isExit() {
+        return command == CommandType.BYE;
     }
 
     public void execute(TaskList tasks) throws DukeException {

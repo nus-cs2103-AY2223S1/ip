@@ -1,4 +1,6 @@
-enum CommandType {
+package duke.command;
+
+public enum CommandType {
     LIST(0),
     UPDATE_STATUS(1),
     TODO(1),
@@ -15,7 +17,7 @@ enum CommandType {
         this.argsCount = argsCount;
     }
 
-    boolean isCompatible(String[] args) {
+    public boolean isCompatible(String[] args) {
         return this.argsCount == args.length;
     }
 }
