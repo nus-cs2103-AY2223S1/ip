@@ -24,7 +24,7 @@ public class Ui {
         return sc.nextLine();
     }
 
-    public void printGoodbye() {
+    public static void printGoodbye() {
         System.out.println("Bye. Hope to see you again soon!");
     }
 
@@ -34,31 +34,31 @@ public class Ui {
        }
     }
 
-    public void printMarkTask(Task task) {
+    public static void printMarkTask(Task task) {
         System.out.format("Nice! I've marked this task as done: %s\n", task);
     }
 
-    public void printUnmarkTask(Task task) {
+    public static void printUnmarkTask(Task task) {
         System.out.format("OK, I've marked this task as not done yet: %s\n", task);
     }
 
-    public void printAddTask(Task task, TaskList taskList) {
+    public static void printAddTask(Task task, TaskList taskList) {
         System.out.format("Got it. I've added this task:\n  %s\nNow you have %s %s in the list.\n", task, taskList.size(), taskList.size() != 1 ? "tasks" : "task");
     }
 
-    public void printDeleteTask(Task task, TaskList taskList) {
+    public static void printDeleteTask(Task task, TaskList taskList) {
         System.out.format("Noted. I've removed this task:\n %s\nNow you have %s %s in the list.\n", task, taskList.size(), taskList.size() != 1 ? "tasks" : "task");
     }
 
-    public void printCreateNewDirectory(String dirName) {
+    public static void printCreateNewDirectory(String dirName) {
         System.out.printf("Creating new directory '%s' to store data...\n", dirName);
     }
 
-    public void printCreateNewStorage(String storageName) {
+    public static void printCreateNewStorage(String storageName) {
         System.out.printf("Creating new file '%s' to store data...\n", storageName);
     }
 
-    public void printSaving() {
+    public static void printSaving() {
         System.out.println("Saving...");
     }
 }
