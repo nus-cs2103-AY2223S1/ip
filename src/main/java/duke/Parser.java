@@ -41,6 +41,14 @@ public class Parser {
             return new DeleteCommand(Integer.parseInt(split[1]));
         }
 
+        if (split[0].equals("find")) {
+            String keyword = userInput.substring(4).trim();
+            if (keyword.length() == 0) {
+                throw new DukeException("OOPS!!! The keyword cannot be empty :-(");
+            }
+            return new FindCommand(keyword);
+        }
+
         if (split[0].equals("todo")) {
             String description = userInput.substring(4).trim();
             if (description.length() == 0) {

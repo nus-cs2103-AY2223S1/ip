@@ -32,6 +32,16 @@ public abstract class Task {
     }
 
     /**
+     * Returns a boolean if the description contains specified keyword.
+     *
+     * @param keyword A string to be checked.
+     * @return If description contains specified keyword.
+     */
+    public boolean match(String keyword) {
+        return description.contains(keyword);
+    }
+
+    /**
      * Marks the task as complete.
      */
     public void mark() {

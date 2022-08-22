@@ -105,6 +105,22 @@ public class TaskList {
         return task;
     }
 
+    /**
+     * Returns a TaskList with a specified keyword.
+     *
+     * @param keyword The string to be checked.
+     * @return A TaskList containing the tasks that match with the keyword.
+     */
+    public TaskList findMatchingTasks(String keyword) {
+        List<Task> matchingTasks = new ArrayList<>();
+        for (Task task : tasks) {
+            if (task.match(keyword)) {
+                matchingTasks.add(task);
+            }
+        }
+        return new TaskList(matchingTasks);
+    }
+
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
