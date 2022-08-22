@@ -19,13 +19,14 @@ public class Duke {
         while (true) {
             try {
                 String input = scanner.nextLine();
-                String command = input.split(" ")[0];
-                if (input.equals("bye")) {
+                Commands command = Commands.parseCommand(input.split(" ")[0])
+                        .orElseThrow(() -> new DukeException("Sorry, I don't understand you. Please try again."));
+                if (command == Commands.bye) {
                     printWithLineBreak("Goodbye! Hope to see you again!");
                     break;
-                } else if (input.equals("list")) {
+                } else if (command == Commands.list) {
                     printWithLineBreak(printArray(list));
-                } else if (command.equals("mark")) {
+                } else if (command == Commands.mark) {
                     try {
                         int index = Integer.parseInt(input.split(" ")[1]) - 1;
                         list.get(index).setDone();
@@ -33,7 +34,7 @@ public class Duke {
                     } catch (Exception e) {
                         throw new DukeException("Invalid Index given!");
                     }
-                } else if (command.equals("unmark")) {
+                } else if (command == Commands.unmark) {
                     try {
                         int index = Integer.parseInt(input.split(" ")[1]) - 1;
 
@@ -42,7 +43,7 @@ public class Duke {
                     } catch (Exception e) {
                         throw new DukeException("Invalid Index given!");
                     }
-                } else if (command.equals("todo")) {
+                } else if (command == Commands.todo) {
                     try {
                         String description = input.split(" ", 2)[1];
                         Todo todo = new Todo(description);
@@ -55,7 +56,7 @@ public class Duke {
                             throw new DukeException("The description of a todo cannot be empty.");
                         }
                     }
-                } else if (command.equals("deadline")) {
+                } else if (command == Commands.deadline) {
                     try {
                         String description = input.split(" ", 2)[1].split("/")[0];
                         String date = input.split(" ", 2)[1].split("/")[1].split(" ")[1];
@@ -70,7 +71,7 @@ public class Duke {
                             throw new DukeException("The description of a deadline cannot be empty.");
                         }
                     }
-                } else if (command.equals("event")) {
+                } else if (command == Commands.event) {
                     try {
                         String description = input.split(" ", 2)[1].split("/")[0];
                         String date = input.split(" ", 2)[1].split("/")[1].split(" ", 2)[1];
@@ -84,7 +85,7 @@ public class Duke {
                             throw new DukeException("The description of a event cannot be empty.");
                         }
                     }
-                } else if (command.equals("delete")) {
+                } else if (command == Commands.delete) {
                     try {
                         int index = Integer.parseInt(input.split(" ")[1]) - 1;
                         Task deleted = list.get(index);
@@ -113,6 +114,9 @@ public class Duke {
     }
 
     public static String printArray(ArrayList<Task> list) {
+        if (list.size() == 0) {
+            return "You have no tasks in your list.";
+        }
         String result = "Here are the tasks in your list:\n";
         for (int i = 0; i < list.size(); i++) {
             result += "\t" + (i + 1) + ". " + list.get(i) + "\n";
