@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -124,18 +128,92 @@ public class Duke {
         System.out.println(LINE);
     }
 
-    public static void main(String[] args) {
+    public static ArrayList<Task> loadTask() throws IOException {
+        try {
+            File taskFile = new File("data/duke.txt");
+            if (!taskFile.exists()) {
+                return taskList;
+            } else {
+                Scanner sc = new Scanner(taskFile);
+                taskList = new ArrayList<>();
+                while (sc.hasNext()) {
+                    String taskString = sc.nextLine();
+                    String[] taskStringInArray = taskString.split(" \\| ");
+                    String taskType = taskStringInArray[0];
+                    if (taskStringInArray.length > 1) {
+                        boolean isDone = taskStringInArray[1].equals("1");
+                        String taskDesription = taskStringInArray[2];
+                        Task t;
+
+                        switch (taskType) {
+                        case "T":
+                            t = new Todo(taskDesription);
+                            break;
+
+                        case "D":
+                            if (taskStringInArray.length < 3) {
+                                throw new DukeException("Deadline required");
+                            }
+                            String deadline = taskStringInArray[3];
+                            t = new Deadline(taskDesription, deadline);
+                            break;
+
+                        case "E":
+                            if (taskStringInArray.length < 3) {
+                                throw new DukeException("Event time required");
+                            }
+                            String eventTime = taskStringInArray[3];
+                            t = new Event(taskDesription, eventTime);
+                            break;
+                        default:
+                            throw new DukeException("File error");
+                        }
+
+
+                        if (isDone) {
+                            t.markAsDone();
+                        }
+
+                        taskList.add(t);
+                    }
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("no file");
+        }
+        return taskList;
+    }
+
+    public static void save() {
+        try {
+            File file = new File("data/duke.txt");
+            File directory = new File("data");
+
+            if (!directory.exists()) {
+                directory.mkdir();
+            }
+
+            FileWriter myWriter = new FileWriter(file);
+            for (Task t: taskList) {
+                myWriter.write(t.toStringFileFormat() + System.lineSeparator());
+            }
+            myWriter.close();
+        } catch (IOException e) {
+            throw new DukeException("Save issue");
+        }
+    }
+
+        public static void main(String[] args) {
         //System.out.println(LOGO);
         System.out.println(GREETING);
         System.out.println(LINE);
-
-        taskList = new ArrayList<>(100);
 
         Scanner sc = new Scanner(System.in);
         boolean running = true;
 
         while (running) {
             try {
+                loadTask();
                 String str1 = sc.nextLine();
                 String[] wordArray = str1.strip().split(" ", 2);
                 String word1 = wordArray[0].toLowerCase();
@@ -185,6 +263,7 @@ public class Duke {
                         throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
 
                 }
+                save();
 
             } catch (InputMismatchException e) {
                 System.out.println(LINE);
@@ -195,6 +274,9 @@ public class Duke {
                 System.out.println(LINE);
                 System.out.println(e);
                 System.out.println(LINE);
+
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
             }
         }
     }

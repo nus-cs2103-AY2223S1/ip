@@ -9,7 +9,12 @@ public class Event extends Task {
     }
 
     @Override
+    public String toStringFileFormat() {
+        return "E | " + super.toStringFileFormat() + "|" + this.at;
+    }
+
+    @Override
     public String toString() {
-        return "[T]" + super.toString() + "(at:" + at + ")";
+        return "[E]" + super.toString() + "(at:" + at + ")";
     }
 }
