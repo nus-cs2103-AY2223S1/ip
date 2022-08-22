@@ -26,6 +26,11 @@ public class Task {
     public String addString(int i) {
         return "";
     }
+
+    public String saveString() {
+        return "";
+    }
+
     public String toString() {
         return String.format("%s %s", this.getStatusIcon(), this.description);
     }

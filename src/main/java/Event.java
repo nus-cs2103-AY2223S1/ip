@@ -21,6 +21,15 @@ public class Event extends Task {
         return "[E]" + super.toString() + " (at: " + at + ")";
     }
 
+    @Override
+    public String saveString() {
+        if (this.isDone) {
+            return "E" + "X " + this.description + "/at" + this.at + "\n";
+        } else {
+            return "E  " + this.description + "/at" + this.at + "\n";
+        }
+    }
+
     public void setAt(String date) {
         at = date;
     }
