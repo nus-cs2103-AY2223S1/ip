@@ -38,6 +38,10 @@ public class Parser {
         case "list":
             return new ListCommand();
 
+        case "find":
+            checkForMissingArgs(splitInput);
+            return new FindCommand(splitInput[1]);
+
         case "delete":
             checkForMissingArgs(splitInput);
             return new DeleteCommand(Integer.parseInt(splitInput[1]));

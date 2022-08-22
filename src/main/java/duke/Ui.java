@@ -20,6 +20,18 @@ public class Ui {
         }
     }
 
+    public void showList(TaskList tl, String filter) {
+        List<Task> taskList = tl.getTasks();
+        int index = 1;
+        System.out.println("Here are the matching tasks in your list nya:");
+        for (Task t : taskList) {
+            if (t.description.contains(filter)) {
+                System.out.println(index + "." + t);
+                index++;
+            }
+        }
+    }
+
     public void showWelcomeMessage() {
         System.out.print("Hi I'm catBot!\nHow can I help you nya?\n");
     }
