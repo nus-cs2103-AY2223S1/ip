@@ -43,4 +43,8 @@ public class Deadline extends Task {
         // return "[D]" + super.toString() + " (by: " + this.by + ")";
         return "[D]" + super.toString() + " (by: " + this.getFormattedDateTime() + ")";
     }
+
+    public String getRemarks() {
+        return this.by;
+    }
 }
