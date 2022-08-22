@@ -1,3 +1,6 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Task {
@@ -10,6 +13,7 @@ public class Task {
         this.description = description;
         this.isDone = false;
         tasks.add(this);
+        updateTasks();
     }
 
     public void print(Task task) {
@@ -31,11 +35,13 @@ public class Task {
     public void unmark() {
         this.setStatusIcon(false);
         System.out.println(sep + "\nMarked as uncompleted 🌩\n  " + this.toString() + "\n" + sep);
+        updateTasks();
     }
 
     public void mark() {
         this.setStatusIcon(true);
         System.out.println(sep + "\nMarked as completed 🌈️\n  " + this.toString() + "\n" + sep);
+        updateTasks();
     }
 
     public static void delete(int num) {
@@ -45,6 +51,7 @@ public class Task {
         } else {
             System.out.println(sep + "\nLuna has removed:\n" + removed + "\nThere are currently ️" + Task.tasks.size() + " tasks in your list 🌻\n" + sep);
         }
+        updateTasks();
     }
 
     public static void list() {
@@ -57,6 +64,22 @@ public class Task {
             }
         }
         System.out.println(sep);
+    }
+
+    public static void updateTasks() {
+        try {
+            FileWriter writer = new FileWriter("./data/Luna.txt");
+            String content = "  Luna finds the following items saved in your list 🍃";
+            for (int  i = 0; i < tasks.size(); i++) {
+                content += "\n      " + tasks.get(i).toString();
+            }
+            writer.write(content);
+            writer.close();
+        } catch (IOException e) {
+//            System.out.println("⚡️Luna has encountered an error while updating tasks⚡️" +
+//                                "\n️Please exit and try again ️⛈");
+        }
+
     }
 
     @Override

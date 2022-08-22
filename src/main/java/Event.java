@@ -5,10 +5,11 @@ public class Event extends Task {
         super(description);
         this.at = at;
         super.print(this);
+        updateTasks();
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (at: " + at + ")";
+        return "[E]" + super.toString() + " (at: " + at + ")";
     }
 }

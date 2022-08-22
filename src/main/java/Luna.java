@@ -1,5 +1,12 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.io.FileReader;
+import java.io.File;
+import java.io.FileWriter;
+import java.util.stream.Stream;
 
 public class Luna {
     private static String sep = "\n✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨\n";
@@ -27,11 +34,34 @@ public class Luna {
         Task.delete(num);
     }
 
-    public static void print(Task task) {
-        if (Task.tasks.size() == 1) {
-            System.out.println(sep + "\nLuna has added:\n" + task.toString() + "\nThere is currently " + Task.tasks.size() + " task in your list 🌻\n" + sep);
-        } else {
-            System.out.println(sep + "\nLuna has added:\n" + task.toString() + "\nThere are currently " + Task.tasks.size() + " tasks in your list 🌻\n" + sep);
+    public static void loadTasks() {
+        String fileName = "./data/luna.txt";
+
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            Stream<String> content = reader.lines();
+
+            content.forEach(s -> System.out.println(s));
+            System.out.println("\n" + sep);
+        } catch (FileNotFoundException e1) {
+            try {
+                File file = new File(fileName);
+                file.getParentFile().mkdirs();
+                file.createNewFile();
+
+                FileWriter writer = new FileWriter(file);
+                writer.write("  Luna finds the following items saved in your list 🍃");
+                writer.close();
+
+                System.out.println("  You do not have anything to do yet!\n  Tell Luna your tasks for the day ☀️\n" + sep);
+            } catch (IOException e1a) {
+                System.out.println("⚡️Luna has encountered an error while loading tasks⚡️" +
+                                    "\n️Please exit and try again ️⛈");
+                e1a.printStackTrace();
+            }
+        } catch (IOException e2) {
+            System.out.println("⚡️Luna has encountered an error while loading tasks⚡️" +
+                                "\n️Please exit and try again ⛈");
         }
     }
 
@@ -50,21 +80,18 @@ public class Luna {
                         throw new LunaException("Please enter a task to do 🌷");
                     }
                     Task curr = new Todo(cmd.substring(5));
-//                    print(curr);
                 } else if (cmd.startsWith("deadline")) {
                     if (cmd.length() <= 9) {
                         throw new LunaException("Please enter a task and deadline 🌷");
                     }
                     String[] cmds = cmd.split(" /by ");
-                    Task curr = new Deadline(cmds[0], cmds[1]);
-//                    print(curr);
+                    Task curr = new Deadline(cmds[0].substring(9), cmds[1]);
                 } else if (cmd.startsWith("event")) {
                     if (cmd.length() <= 6) {
                         throw new LunaException("Please enter an event and date 🌷");
                     }
                     String[] cmds = cmd.split(" /at ");
-                    Task curr = new Event(cmds[0], cmds[1]);
-//                    print(curr);
+                    Task curr = new Event(cmds[0].substring(6), cmds[1]);
                 } else if (cmd.startsWith("delete")) {
                     delete(cmd);
                 }
@@ -87,7 +114,8 @@ public class Luna {
                 + "   | |   | | | |  __ \\ /     |\n"
                 + "   | |__ | |_| | |  | |    | |\n"
                 + "   |____| \\__,_|_|  |_|\\__/|_|\n";
-        System.out.println(sep + "\nHello. ⛅️\n   This is\n" + logo + "\n   How may I assist you today?\n" + sep);
+        System.out.println(sep + "\nHello. ⛅️\n   This is\n" + logo);
+        loadTasks();
         sc = new Scanner(System.in);
         Task.tasks = new ArrayList<Task>();
         handleCommands(sc);

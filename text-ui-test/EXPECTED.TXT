@@ -35,7 +35,7 @@ There are currently 2 tasks in your list 🌻
 ✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨
 
 Luna has added:
-[D][ ] event task (at: date)
+[E][ ] event task (at: date)
 There are currently 3 tasks in your list 🌻
 
 ✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨
@@ -49,7 +49,7 @@ There are currently 3 tasks in your list 🌻
 
 2. [D][ ] deadline task (by: date)
 
-3. [D][ ] event task (at: date)
+3. [E][ ] event task (at: date)
 
 ✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨
 
