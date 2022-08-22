@@ -1,19 +1,14 @@
 package task;
 
-public class Event extends Task {
-    private String date;
+import exception.InvalidInputException;
 
-    public Event(String description, String date) {
-        super(description);
-        this.date = date;
-    }
-
-    private String getDate() {
-        return "(at:" + date + ")";
+public class Event extends TimedTask {
+    public Event(String description, String dateTime) throws InvalidInputException {
+        super(description, dateTime);
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + this.getDate();
+        return "[E]" + super.toString() + "(at: " + super.getDateString() + ", " + super.getTimeString() + ")";
     }
 }

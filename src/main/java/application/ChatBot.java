@@ -8,11 +8,7 @@ import exception.InvalidInputException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import task.Deadline;
-import task.Task;
-import task.TaskList;
-import task.ToDo;
-import task.Event;
+import task.*;
 
 public class ChatBot {
     private final TaskList taskList = new TaskList();
@@ -38,7 +34,7 @@ public class ChatBot {
         this.displayMessage("\t" + "Bye! Till we next meet!" + "\n");
     }
 
-    private void handleAddTask(Case cs, ArrayList<String> parsedLine) {
+    private void handleAddTask(Case cs, ArrayList<String> parsedLine) throws InvalidInputException {
         Task task;
 
         switch (cs) {
@@ -98,6 +94,12 @@ public class ChatBot {
         }
     }
 
+    private void handleCheck(ArrayList<String> parsedLine) throws InvalidInputException {
+        TaskList timedTaskList = taskList.filterTaskList(parsedLine.get(0));
+        this.displayMessage("\t" + "Here are the tasks in your list:" + "\n"
+                + timedTaskList);
+    }
+
     private void handleUnexpected() {
         this.displayMessage("\t" + "Seems like you've entered something incorrectly, try again!" + "\n");
     }
@@ -130,11 +132,14 @@ public class ChatBot {
                 case DELETE:
                     this.handleDeleteTask(parsedLine);
                     break;
-                case TODO:
-                case DEADLINE:
-                case EVENT:
+                case TODO: case DEADLINE: case EVENT:
                     this.handleAddTask(cs, parsedLine);
                     break;
+                case CHECK:
+                    this.handleCheck(parsedLine);
+                    break;
+                default:
+                    this.handleUnexpected();
                 }
             } catch (InvalidInputException e) {
                 this.handleUnexpected();

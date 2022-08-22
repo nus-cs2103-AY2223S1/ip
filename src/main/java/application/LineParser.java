@@ -50,6 +50,9 @@ public class LineParser {
                     parsed.add(sc.next());
                     return Pair.of(Case.EVENT, parsed);
                 }
+            } else if (firstWord.equals("check") && sc.hasNext()) {
+                parsed.add(sc.nextLine());
+                return Pair.of(Case.CHECK, parsed);
             }
             throw new InvalidInputException();
         }

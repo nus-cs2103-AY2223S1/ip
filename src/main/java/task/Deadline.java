@@ -1,19 +1,14 @@
 package task;
 
-public class Deadline extends Task {
-    private String deadline;
+import exception.InvalidInputException;
 
-    public Deadline(String description, String deadline) {
-        super(description);
-        this.deadline = deadline;
-    }
-
-    private String getDeadline() {
-        return "(by:" + deadline + ")";
+public class Deadline extends TimedTask {
+    public Deadline(String description, String dateTime) throws InvalidInputException {
+        super(description, dateTime);
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + this.getDeadline();
+        return "[D]" + super.toString() + "(by: " + super.getDateString() + " at " + super.getTimeString() + ")";
     }
 }

@@ -1,5 +1,7 @@
 package task;
 
+import exception.InvalidInputException;
+
 import java.util.ArrayList;
 
 public class TaskList extends ArrayList<Task> {
@@ -38,11 +40,23 @@ public class TaskList extends ArrayList<Task> {
     @Override
     public String toString() {
         String result = "";
-
         for (int entry = 1; entry < this.size() + 1; entry++) {
             result += "\t" + entry + "." + this.get(entry).toString() + "\n";
         }
+        return result;
+    }
 
+    public TaskList filterTaskList(String date) throws InvalidInputException {
+        TaskList result = new TaskList();
+        for (int entry = 1; entry < this.size() + 1; entry++) {
+            Task task = this.get(entry);
+            if (task instanceof TimedTask) {
+                TimedTask timedTask = (TimedTask) task;
+                if (timedTask.hasMatchingDate(date)) {
+                    result.add(timedTask);
+                }
+            }
+        }
         return result;
     }
 }
