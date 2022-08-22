@@ -18,6 +18,7 @@ public class Parser {
         DEADLINE,
         EVENT,
         DELETE,
+        FIND,
         ELSE
     }
 
@@ -45,6 +46,9 @@ public class Parser {
         case DELETE:
             int delNum = Integer.parseInt(command.replace("delete ", ""));
             return new DeleteCommand(delNum);
+        case FIND:
+            String findKey = command.replace("find ", "");
+            return new FindCommand(findKey);
         default:
             throw new DukeException("I'm sorry, but I don't know what that means :-(");
         }
@@ -67,6 +71,8 @@ public class Parser {
             return Inputs.EVENT;
         } else if (s.startsWith("delete")) {
             return Inputs.DELETE;
+        } else if (s.startsWith("find")) {
+            return Inputs.FIND;
         } else {
             return Inputs.ELSE;
         }
