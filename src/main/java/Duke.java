@@ -1,3 +1,7 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -59,7 +63,12 @@ public class Duke {
                     } else if (deadlineTime.isEmpty()) {
                         System.out.println("🙁 OOPS!!! Provide a time for the deadline.");
                     } else {
-                        tasks.add(new Deadline(false, deadlineText, deadlineTime));
+                        try {
+                            tasks.add(new Deadline(false, deadlineText, LocalDateTime.parse(deadlineTime, DateTimeFormatter.ofPattern("dd/MM/yy HHmm"))));
+                        } catch (DateTimeParseException e) {
+                            System.out.println("🙁 OOPS!!! Provide a valid time (dd/MM/yy HHmm) for the deadline.");
+                            break;
+                        }
                         System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
                     }
                     break;
@@ -72,7 +81,12 @@ public class Duke {
                     } else if (eventTime.isEmpty()) {
                         System.out.println("🙁 OOPS!!! Provide a time for the event.");
                     } else {
-                        tasks.add(new Event(false, eventText, eventTime));
+                        try {
+                            tasks.add(new Event(false, eventText, LocalDateTime.parse(eventTime, DateTimeFormatter.ofPattern("dd/MM/yy HHmm"))));
+                        } catch (DateTimeParseException e) {
+                            System.out.println("🙁 OOPS!!! Provide a valid time (dd/MM/yy HHmm) for the event.");
+                            break;
+                        }
                         System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
                     }
                     break;
