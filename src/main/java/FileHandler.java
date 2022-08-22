@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -60,7 +61,7 @@ public class FileHandler {
                 String encodedTask = reader.nextLine();
                 output.add(decode(encodedTask));
             }
-        } catch (java.io.IOException e) {
+        } catch (IOException | DukeException e) {
             System.out.println(e);
         } finally {
             reader.close();
@@ -74,8 +75,10 @@ public class FileHandler {
      * @param code The encoded Task saved in the file as a String
      *
      * @return The Task saved in the data file.
+     *
+     * @throws DukeException if the date passed into Deadline or Event is invalid
      */
-    private Task decode(String code) {
+    private Task decode(String code) throws DukeException {
         String[] components = code.split(" # ");
 
         Task result;

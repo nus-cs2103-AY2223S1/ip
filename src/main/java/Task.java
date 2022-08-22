@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 /**
  * This class encapsulates a task created in the Chatbot.
  */
@@ -60,5 +62,15 @@ abstract class Task {
         return String.format("%s # %s",
                              this.isDone ? "done" : "not done",
                              this.description);
+    }
+
+    /**
+     * Gets the deadline of the Task, if any.
+     *
+     * @return A LocalDate representing the Task's deadline if it exists
+     *         null if no such deadline exists
+     */
+    public LocalDate getDeadline() {
+        return null;
     }
 }
