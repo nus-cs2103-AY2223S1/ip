@@ -1,6 +1,9 @@
-package Commands;
+package commands;
 
-import Duke.*;
+import data.*;
+import data.exception.DukeException;
+import storage.Storage;
+import ui.Ui;
 
 public class InvalidCommand extends Command {
 

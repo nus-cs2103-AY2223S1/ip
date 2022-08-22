@@ -1,4 +1,4 @@
-package Duke;
+package data.exception;
 
 public class DukeException extends Exception {
     public DukeException(String message) {

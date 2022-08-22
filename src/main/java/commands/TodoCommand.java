@@ -1,9 +1,9 @@
-package Commands;
+package commands;
 
-import Duke.Storage;
-import Duke.TaskList;
-import Duke.Ui;
-import Tasks.ToDo;
+import storage.Storage;
+import data.TaskList;
+import ui.Ui;
+import tasks.ToDo;
 
 public class TodoCommand extends Command {
 

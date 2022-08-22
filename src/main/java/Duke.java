@@ -1,5 +1,9 @@
-import Commands.*;
-import Duke.*;
+import commands.*;
+import data.*;
+import data.exception.DukeException;
+import parser.Parser;
+import storage.Storage;
+import ui.Ui;
 
 public class Duke {
 

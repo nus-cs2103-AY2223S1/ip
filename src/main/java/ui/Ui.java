@@ -1,6 +1,7 @@
-package Duke;
+package ui;
 
-import Tasks.*;
+import data.exception.DukeException;
+import tasks.*;
 
 import java.util.Scanner;
 

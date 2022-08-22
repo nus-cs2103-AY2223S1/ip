@@ -1,9 +1,9 @@
-package Commands;
+package commands;
 
-import Duke.Storage;
-import Duke.TaskList;
-import Duke.Ui;
-import Tasks.Event;
+import storage.Storage;
+import data.TaskList;
+import ui.Ui;
+import tasks.Event;
 
 public class EventCommand extends Command{
 

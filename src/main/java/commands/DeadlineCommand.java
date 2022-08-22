@@ -1,9 +1,9 @@
-package Commands;
+package commands;
 
-import Duke.Storage;
-import Duke.TaskList;
-import Duke.Ui;
-import Tasks.Deadline;
+import storage.Storage;
+import data.TaskList;
+import ui.Ui;
+import tasks.Deadline;
 
 public class DeadlineCommand extends Command {
 
