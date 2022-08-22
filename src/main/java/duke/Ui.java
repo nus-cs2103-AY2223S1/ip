@@ -1,9 +1,11 @@
 package duke;
 
+/**
+ * Defines <Code>Ui</Code> class.
+ * <p>This class is in charge of user interface operations. </p>
+ */
 public class Ui {
-    /**
-     * Application logo
-     */
+    /** <Code>String</Code> of application logo. */
     private static final String LOGO =
             " ____        _        \n" +
             "|  _ \\ _   _| | _____ \n" +
@@ -11,9 +13,7 @@ public class Ui {
             "| |_| | |_| |   <  __/\n" +
             "|____/ \\__,_|_|\\_\\___|\n";
 
-    /**
-     * Available commands
-     */
+    /** <Code>String</Code> of all available commands and their format. */
     private static final String AVAILABLE_COMMANDS =
             "Available commands:\n" +
                     "   deadline [TASK DESCRIPTION] /by [DUE DATE]\n" +
@@ -26,7 +26,7 @@ public class Ui {
                     "   bye\n";
 
     /**
-     * Constructor for `Ui` object.
+     * Constructor for <Code>Ui</Code>.
      */
     public Ui() {
         System.out.println("Hello from\n" +
@@ -35,14 +35,14 @@ public class Ui {
     }
 
     /**
-     * Method to display available commands to users.
+     * Displays available commands to users.
      */
     public void showAvailableCommands() {
         System.out.print(AVAILABLE_COMMANDS);
     }
 
     /**
-     * Show given String to user.
+     * Shows given String to user.
      */
     public void showUser(String string) {
         System.out.println(string);

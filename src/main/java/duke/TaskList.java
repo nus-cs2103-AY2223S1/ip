@@ -10,15 +10,19 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Defines <Code>TaskList</Code> class.
+ * <p>
+ *     Stores an <Code>ArrayList</Code> of <Code>Task</Code>.
+ * </p>
+ */
 public class TaskList {
-    /**
-     * 'List' object attribute to store String inputs given.
-     */
+    /** <Code>List</Code> to store <Code>String</Code> inputs given. */
     private static final List<Task> taskList = new ArrayList<>();
 
     /**
-     * Get description as String from input.
-     * @param input String of words given by user as input
+     * Gets description as <Code>String</Code> from input.
+     * @param input <Code>String</Code> of words given by user as input
      * @return      Return description of input task.
      */
     private String getDescription(String input) {
@@ -33,18 +37,18 @@ public class TaskList {
     }
 
     /**
-     * Get venue as String from input.
-     * @param input String of words given by user as input
-     * @return      Return venue of input task.
+     * Gets venue as <Code>String</Code> from user input.
+     * @param input <Code>String</Code> of words given by user as input
+     * @return      Return venue of input task as <Code>String</Code>.
      */
     private String getVenue(String input) {
         return input.substring(input.indexOf("/at ") + 4);
     }
 
     /**
-     * Get venue as LocalDate from input.
-     * @param input String of words given by user as input
-     * @return      Return date of input task.
+     * Gets date as <Code>LocalDate</Code> from user input.
+     * @param input <Code>String</Code> of words given by user as input.
+     * @return      Return date of input task as <Code>LocalDate</Code>.
      */
     private LocalDate getDate(String input) {
         DateTimeFormatter formatter
@@ -54,9 +58,11 @@ public class TaskList {
     }
 
     /**
-     * Method to add String input to 'inputList'.
-     * @param input String object to be added to 'inputList'.
-     * @return      String output to be shown to user.
+     * Adds <Code>Task</Code> from <Code>String</Code> input into
+     * <Code>TaskList</Code>.
+     * @param input <Code>String</Code> format <Code>Task</Code> of to be
+     *              added to <Code>TaskList</Code>.
+     * @return      <Code>String</Code> output to be shown to user.
      */
     public String add(String input) {
         String[] inputArr = input.split(" ");
@@ -83,9 +89,10 @@ public class TaskList {
 
 
     /**
-     * Method to delete a task.
-     * @param input String user input command to delete a task.
-     * @return      String output to be shown to user.
+     * Deletes a <Code>Task</Code> from <Code>TaskList</Code>.
+     * @param input <Code>String</Code> user input command to delete
+     *              a <Code>Task</Code>.
+     * @return      <Code>String</Code> output to be shown to user.
      */
     public String delete(String input) {
         int index = Integer.parseInt(input.split(" ")[1]) - 1;
@@ -98,8 +105,8 @@ public class TaskList {
     }
 
     /**
-     * Override 'toString' method of 'TaskList' object.
-     * @return      String output to be shown to user.
+     * Overrides <Code>toString</Code> method of <Code>TaskList</Code> object.
+     * @return <Code>Task</Code> output to be shown to user.
      */
     @Override
     public String toString() {
@@ -112,9 +119,9 @@ public class TaskList {
     }
 
     /**
-     * Mark 'Task' at given index as done.
+     * Marks <Code>Task</Code> with given index as done.
      * @param index Index of task to be done. 1 based indexing.
-     * @return      String output to be shown to user.
+     * @return      <Code>String</Code> output to be shown to user.
      */
     public String markDone(int index) {
         taskList.get(index - 1).markDone();
@@ -123,9 +130,9 @@ public class TaskList {
     }
 
     /**
-     * Mark 'Task' at given index as undone.
+     * Marks <Code>Task</Code> with given index as undone.
      * @param index Index of task to be undone. 1 based indexing.
-     * @return      String output to be shown to user.
+     * @return      <Code>String</Code> output to be shown to user.
      */
     public String markUnDone(int index) {
         taskList.get(index - 1).markUnDone();
@@ -135,16 +142,16 @@ public class TaskList {
     }
 
     /**
-     * Method to get number of tasks in 'taskList'.
-     * @return Number of tasks in 'taskList'.
+     * Gets number of <Code>Task</Code>s in <Code>TaskList</Code>.
+     * @return Number of tasks in <Code>TaskList</Code>.
      */
     public int getSize() {
         return taskList.size();
     }
 
     /**
-     * Return 'taskList' as format to be saved in hard disk.
-     * @return String of 'taskList' as format to be saved in file.
+     * Return <Code>TaskList</Code> as format to be saved in hard disk.
+     * @return String of <Code>TaskList</Code> as format to be saved in file.
      */
     public String toFile() {
         StringBuilder res = new StringBuilder();
@@ -155,9 +162,9 @@ public class TaskList {
     }
 
     /**
-     * Method to add tasks from file to `taskList`.
-     * @param dataArgs Array containing details of task to be
-     *                 added to `inputList`.
+     * Adds <Code>Task<Code> from file to <Code>TaskList<Code>.
+     * @param dataArgs Array containing details of <Code>Task<Code> to be
+     *                 added to <Code>TaskList<Code>.
      */
     public void addFromFile(String[] dataArgs) {
         Boolean isDone = dataArgs[1].equals("true");

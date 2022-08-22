@@ -6,35 +6,83 @@ import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 import java.util.function.BiFunction;
 
+/**
+ * Defines <Code>Parser</Code> class.
+ * <p>
+ *  <Code>Parser</Code> class is in charge of the following:
+ *  <ul>
+ *      <li>Parse user inputs given as `String`.</li>
+ *      <li>Check for erroneous inputs.</li>
+ *      <li>Return relevant command to handle input.</li>
+ *  </ul>
+ * </p>
+ */
 public class Parser {
     /**
-     * Point to current taskList. Used to keep track of size.
+     * Points to <Coed>Duke</Code>'s current taskList. Used to keep track
+     * of size.
      */
-    private TaskList taskList;
+    private final TaskList taskList;
 
     /**
-     * Constructor for `Parser` object.
-     * @param taskList
+     * Constructor for <Code>Parser</Code> object.
+     * @param taskList <Code>TaskList</Code> object belonging to
+     *                 <code>Duke</Code>.
      */
     public Parser(TaskList taskList) {
         this.taskList = taskList;
     }
 
     /**
-     * `BiFunction` to add task to `taskList`.
+     * <Code>BiFunction</Code> to add task to `taskList`.
+     * <p>
+     *  Accepts:
+     *  <ol>
+     *     <li<Code>TaskList</Code> object of the running <Code>Duke</Code>
+     *     program.</li>
+     *     <li>Full <Code>String</Code> input from user.</li>
+     *  </ol>
+     *  Returns:
+     *  <ol>
+     *     <li><Code>String</Code> output to be displayed to user.</li>
+     *  </ol>
+     * </p>
      */
     private static final BiFunction<TaskList, String, String> addTask
             = TaskList::add;
 
     /**
-     * `BiFunction` to delete task from `taskList`.
+     * <Code>BiFunction</Code> to delete task from <Code>taskList</Code>.
+     * <p>
+     *  Accepts:
+     *  <ol>
+     *     <li<Code>TaskList</Code> object of the running <Code>Duke</Code>
+     *     program.</li>
+     *     <li>Full <Code>String</Code> input from user.</li>
+     *  </ol>
+     *  Returns:
+     *  <ol>
+     *     <li><Code>String</Code> output to be displayed to user.</li>
+     *  </ol>
+     * </p>
      */
     private static final BiFunction<TaskList, String, String> deleteTask
             = TaskList::delete;
 
     /**
-     * `BiFunction` to mark task as done.
-     * input: Full String input from user.
+     * <Code>BiFunction</Code> to mark task as done.
+     * <p>
+     *  Accepts:
+     *  <ol>
+     *     <li<Code>TaskList</Code> object of the running <Code>Duke</Code>
+     *     program.</li>
+     *     <li>Full <Code>String</Code> input from user.</li>
+     *  </ol>
+     *  Returns:
+     *  <ol>
+     *     <li><Code>String</Code> output to be displayed to user.</li>
+     *  </ol>
+     * </p>
      */
     private static final BiFunction<TaskList, String, String> mark =
             (taskList, input) -> {
@@ -43,8 +91,19 @@ public class Parser {
     };
 
     /**
-     * `BiFunction` to mark task as undone.
-     * input: Full String input from user.
+     * <Code>BiFunction</Code> to mark task as undone.
+     * <p>
+     *  Accepts:
+     *  <ol>
+     *     <li<Code>TaskList</Code> object of the running <Code>Duke</Code>
+     *     program.</li>
+     *     <li>Full <Code>String</Code> input from user.</li>
+     *  </ol>
+     *  Returns:
+     *  <ol>
+     *     <li><Code>String</Code> output to be displayed to user.</li>
+     *  </ol>
+     * </p>
      */
     private static final BiFunction<TaskList, String, String> unmark =
             (taskList, input) -> {
@@ -53,7 +112,19 @@ public class Parser {
     };
 
     /**
-     * `BiFunction` to list out all tasks in 'taskList'.
+     * <Code>BiFunction</Code> to list out all tasks in <Code>taskList</Code>.
+     * <p>
+     *  Accepts:
+     *  <ol>
+     *     <li<Code>TaskList</Code> object of the running <Code>Duke</Code>
+     *     program.</li>
+     *     <li>Full <Code>String</Code> input from user.</li>
+     *  </ol>
+     *  Returns:
+     *  <ol>
+     *     <li><Code>String</Code> output to be displayed to user.</li>
+     *  </ol>
+     * </p>
      */
     private static final BiFunction<TaskList, String, String> list =
             (taskList, input) -> {
@@ -62,8 +133,19 @@ public class Parser {
     };
 
     /**
-     * `BiFunction` to exit program.
-     * input2: Full String input from user.
+     * <Code>BiFunction</Code> to exit program.
+     * <p>
+     *  Accepts:
+     *  <ol>
+     *     <li<Code>TaskList</Code> object of the running <Code>Duke</Code>
+     *     program.</li>
+     *     <li>Full <Code>String</Code> input from user.</li>
+     *  </ol>
+     *  Returns:
+     *  <ol>
+     *     <li><Code>String</Code> output to be displayed to user.</li>
+     *  </ol>
+     * </p>
      */
     private static final BiFunction<TaskList, String, String> quit =
             (taskList, input) -> {
@@ -72,7 +154,8 @@ public class Parser {
     };
 
     /**
-     * Add a HashMap of commands that maps to their respective functions.
+     * <Code>HashMap</Code> of commands that maps to their
+     * respective functions.
      */
     private static final HashMap<String,
             BiFunction<TaskList, String, String>> commands = new HashMap<>();
@@ -89,8 +172,8 @@ public class Parser {
     }
 
     /**
-     * Function to handle user inputs and check for errors.
-     * @param userInput      Full String input from user.
+     * Handles user inputs and check for errors.
+     * @param userInput      Full <Code>String</Code> input from user.
      * @throws DukeException Throw exception if command format is wrong.
      */
     public BiFunction<TaskList, String, String> handleUserInputs(

@@ -1,18 +1,17 @@
 package duke.task;
 
+/**
+ * Defines <Code>Task</Code> class.
+ */
 public abstract class Task {
-    /**
-     * Description of task.
-     */
+    /** Description of task. */
     protected String description;
 
-    /**
-     * Boolean object to determine if task is done or not.
-     */
+    /** <Code>Boolean</Code> object representing whether task is done. */
     protected boolean isDone;
 
     /**
-     * Constructor method for `Task`.
+     * Constructor for <Code>Task</Code>.
      * @param description Description of task.
      */
     public Task(String description) {
@@ -21,7 +20,7 @@ public abstract class Task {
     }
 
     /**
-     * Constructor method for `Task`.
+     * Constructor for <Code>Task</Code> with <Code>isDone</Code> known.
      * @param description Description of task.
      * @param isDone      Whether task is done.
      */
@@ -31,7 +30,7 @@ public abstract class Task {
     }
 
     /**
-     * Show if task is done.
+     * Shows whether task is done.
      * @return "X" if task is done, " " if task is not done.
      */
     public String getStatusIcon() {
@@ -39,21 +38,22 @@ public abstract class Task {
     }
 
     /**
-     * Setter method to mark task as done.
+     * Marks <Code>Task</Code> as done.
      */
     public void markDone() {
         this.isDone = true;
     }
 
     /**
-     * Setter method to mark task as undone.
+     * Marks <Code>Task</Code> as undone.
      */
     public void markUnDone() {
         this.isDone = false;
     }
 
     /**
-     * Override 'toString' method to return status and description of Task.
+     * Overrides <Code>toString</Code> method to return status
+     * and description of <Code>Task</Code>.
      * @return [[TASK STATUS]] [TASK DESCRIPTION]
      */
     @Override
@@ -63,7 +63,7 @@ public abstract class Task {
     }
 
     /**
-     * To produce a String with "|" delimiters for storing the task's data
+     * Produces <Code>String</Code> with "|" delimiters for storing task's data
      * into a text file.
      * @return "deadline|[COMPLETION STATUS]|[TASK DESCRIPTION]|[TASK DEADLINE]
      */
