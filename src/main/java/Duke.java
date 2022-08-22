@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.time.LocalDate;
 
 public class Duke {
     private static ArrayList<Task> inputs = new ArrayList<>();
@@ -34,37 +35,41 @@ public class Duke {
 
                 // Determine the action to perform
                 switch (command) {
-                    case BYE:
-                        System.out.println("Bye. Hope to see you again soon!");
-                        flag = false;
-                        break;
-                    case LIST:
-                        Duke.printItems();
-                        break;
-                    case MARK:
-                        int markindex = Integer.parseInt(inputText.substring(firstSpaceIdx + 1));
-                        Duke.mark(markindex);
-                        break;
-                    case UNMARK:
-                        int unmarkindex = Integer.parseInt(inputText.substring(firstSpaceIdx + 1));
-                        Duke.unmark(unmarkindex);
-                        break;
-                    case DELETE:
-                        int deleteindex = Integer.parseInt(inputText.substring(firstSpaceIdx + 1));
-                        Duke.delete(deleteindex);
-                        break;
-                    case DEADLINE:
-                        String deadlineInfo = inputText.substring(firstSpaceIdx + 1);
-                        Duke.addDeadline(deadlineInfo);
-                        break;
-                    case TODO:
-                        String todoInfo = inputText.substring(firstSpaceIdx + 1);
-                        Duke.addTodo(todoInfo);
-                        break;
-                    case EVENT:
-                        String eventInfo = inputText.substring(firstSpaceIdx + 1);
-                        Duke.addEvent(eventInfo);
-                        break;
+                case BYE:
+                    System.out.println("Bye. Hope to see you again soon!");
+                    flag = false;
+                    break;
+                case LIST:
+                    Duke.printItems();
+                    break;
+                case MARK:
+                    int markindex = Integer.parseInt(inputText.substring(firstSpaceIdx + 1));
+                    Duke.mark(markindex);
+                    break;
+                case UNMARK:
+                    int unmarkindex = Integer.parseInt(inputText.substring(firstSpaceIdx + 1));
+                    Duke.unmark(unmarkindex);
+                    break;
+                case DELETE:
+                    int deleteindex = Integer.parseInt(inputText.substring(firstSpaceIdx + 1));
+                    Duke.delete(deleteindex);
+                    break;
+                case DEADLINE:
+                    String deadlineInfo = inputText.substring(firstSpaceIdx + 1);
+                    Duke.addDeadline(deadlineInfo);
+                    break;
+                case TODO:
+                    String todoInfo = inputText.substring(firstSpaceIdx + 1);
+                    Duke.addTodo(todoInfo);
+                    break;
+                case EVENT:
+                    String eventInfo = inputText.substring(firstSpaceIdx + 1);
+                    Duke.addEvent(eventInfo);
+                    break;
+                case LISTALLONDATE:
+                    String listInfo = inputText.substring(firstSpaceIdx + 1);
+                    Duke.printAllOnDate(listInfo);
+                    break;
                 }
             } catch (DukeException exception) {
                 System.out.println(exception);
@@ -293,5 +298,20 @@ public class Duke {
 
         // Update data file
         Duke.fileHandler.saveTasks(Duke.inputs);
+    }
+
+    public static void printAllOnDate(String input) {
+        LocalDate date = LocalDate.parse(input);
+        for (Task task : Duke.inputs) {
+            // Check that task is not a To-do which has no deadline
+            if (task instanceof Todo) {
+                continue;
+            }
+
+            // If the deadline is equal to the date, print it
+            if (task.getDeadline().equals(date)) {
+                System.out.println(task);
+            }
+        }
     }
 }
