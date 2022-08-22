@@ -28,7 +28,9 @@ public class Event extends Task {
             throw new DukeException("You need to use \"/at\" to specify when the event is");
         }
         String time = m.group(3);
-        if (time == null) throw new DukeException("You didn't specify the time.");
+        if (time == null) {
+            throw new DukeException("You didn't specify the time.");
+        }
         try {
             this.time = LocalDate.parse(time);
         } catch (DateTimeParseException e) {
@@ -43,6 +45,6 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + this.time.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+        return String.format("[E]%s (at: %s)", super.toString(), this.time.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
     }
 }

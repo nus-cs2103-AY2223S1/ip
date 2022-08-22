@@ -24,8 +24,8 @@ public class Ui {
 
     private static void message(String msg) {
         final String indentedLine = indent + line;
-        final String indentedMessage = indent +
-                msg.replace(Character.toString(lineBreak), lineBreak + indent);
+        final String indentedMessage = indent
+                + msg.replace(Character.toString(lineBreak), lineBreak + indent);
         System.out.println(indentedLine + lineBreak + indentedMessage + lineBreak + indentedLine);
     }
 
@@ -44,10 +44,14 @@ public class Ui {
 
     public static void showTasksList(TaskList taskList) throws DukeException {
         String msg = "";
-        if (taskList.getSize() == 0) throw new DukeException(noTasksMessage);
+        if (taskList.getSize() == 0) {
+            throw new DukeException(noTasksMessage);
+        }
         for (int i = 0; i < taskList.getSize(); i++) {
             msg += i + 1 + ". " + taskList.get(i);
-            if (i < taskList.getSize() - 1) msg += lineBreak;
+            if (i < taskList.getSize() - 1)  {
+                msg += lineBreak;
+            }
         }
         message(msg);
     }
