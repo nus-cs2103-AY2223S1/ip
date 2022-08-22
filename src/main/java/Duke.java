@@ -2,39 +2,32 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Duke {
-    public static String[] keywords = {"bye", "list", "mark", "unmark", "todo", "deadline", "event", "delete"};
+    private Storage storage;
+    private TaskList tasks;
+    private Ui ui;
+    private Parser parser;
+
+    public Duke(String filePath) {
+        this.ui = new Ui();
+        this.parser = new Parser();
+        this.storage = new Storage(filePath);
+        this.tasks = new TaskList(this.storage.loadTasks());
+    }
+
     public enum Keyword {
         BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE
     }
 
-    public static Keyword getKeyword(Scanner scanner) throws DukeException {
-        String keyword = scanner.next();
-        if (Arrays.asList(keywords).contains(keyword)) {
-            return Keyword.valueOf(keyword.toUpperCase());
-        } else {
-            throw new DukeException("\t☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
-        }
-    }
-
-    public static void main(String[] args) {
-        Storage.loadTasks();
-
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-
-        System.out.println("What can I do for you?");
+    public void run() {
+        this.ui.showWelcome();
         Scanner scanner = new Scanner(System.in);
         Keyword keyword;
 
         while (true) {
             try {
-                keyword = getKeyword(scanner);
+                keyword = this.parser.getKeyword(scanner.next());
             } catch (DukeException e) {
-                System.out.println(e.getMessage());
+                this.ui.showError(e.getMessage());
                 break;
             }
             if (keyword == Keyword.BYE) {
@@ -42,15 +35,13 @@ public class Duke {
             } else if (keyword != null) {
                 switch (keyword) {
                     case LIST:
-                        Task.printList();
+                        this.ui.showTasks(this.tasks);
                         break;
                     case MARK:
-                        int markIndex = scanner.nextInt();
-                        Task.mark(markIndex);
+                        this.tasks.mark(this.parser.getIndex(scanner));
                         break;
                     case UNMARK:
-                        int unmarkIndex = scanner.nextInt();
-                        Task.unmark(unmarkIndex);
+                        this.tasks.unmark(this.parser.getIndex(scanner));
                         break;
                     case TODO:
                         String description = scanner.nextLine();
@@ -58,32 +49,30 @@ public class Duke {
                             description = description.substring(1);
                         }
                         try {
-                            Todo todo = new Todo(description, false);
-                            todo.add();
+                            this.tasks.add(new Todo(description, false));
                         } catch (DukeException e) {
-                            System.out.println(e.getMessage());
+                            this.ui.showError(e.getMessage());
                         }
                         break;
                     case DEADLINE:
-                        String[] deadlineSection = scanner.nextLine().split(" /by ");
-                        Deadline deadline = new Deadline(deadlineSection[0].substring(1), false, deadlineSection[1]);
-                        deadline.add();
+                        this.tasks.add(this.parser.createDeadline(scanner.nextLine()));
                         break;
                     case EVENT:
-                        String[] eventSections = scanner.nextLine().split(" /at ");
-                        Event event = new Event(eventSections[0].substring(1), false, eventSections[1]);
-                        event.add();
+                        this.tasks.add(this.parser.createEvent(scanner.nextLine()));
                         break;
                     case DELETE:
-                        int deleteIndex = scanner.nextInt();
-                        Task.delete(deleteIndex);
+                        this.tasks.delete(this.parser.getIndex(scanner));
                         break;
                 }
             } else {
                 break;
             }
         }
-        Storage.updateTasks(Task.getList());
-        System.out.println("Bye. Hope to see you again soon!");
+        this.storage.updateTasks(this.tasks.getList());
+        this.ui.showBye();
+    }
+
+    public static void main(String[] args) {
+        new Duke("./data/duke.txt").run();
     }
 }

@@ -1,19 +1,25 @@
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Storage {
-    private static String path = "./data/duke.txt";
-    public static void loadTasks() {
+    private String path;
+
+    public Storage(String path) {
+        this.path = path;
+    }
+    public List<Task> loadTasks() {
+        List<Task> tasks = new ArrayList<Task>();
         try {
             File dir = new File("./data");
             dir.mkdir();
 
-            File file = new File(path);
+            File file = new File(this.path);
             if (!file.exists()) {
                 file.createNewFile();
             }
 
-            FileReader fileReader = new FileReader(path);
+            FileReader fileReader = new FileReader(this.path);
             BufferedReader reader = new BufferedReader(fileReader);
 
             String next = reader.readLine();
@@ -26,16 +32,16 @@ public class Storage {
                 if(type.equals("T")) {
                     try {
                         Todo todo = new Todo(section[2], isDone);
-                        todo.add();
+                        tasks.add(todo);
                     } catch (DukeException e) {
                         System.out.println(e.getMessage());
                     }
                 } else if (type.equals("D")) {
                     Deadline deadline = new Deadline(section[2], isDone, section[3]);
-                    deadline.add();
+                    tasks.add(deadline);
                 } else {
                     Event event = new Event(section[2], isDone, section[3]);
-                    event.add();
+                    tasks.add(event);
                 }
                 next = reader.readLine();
             }
@@ -43,11 +49,12 @@ public class Storage {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+        return tasks;
     }
 
-    public static void updateTasks(List<Task> list) {
+    public void updateTasks(List<Task> list) {
         try {
-            FileWriter fileWriter = new FileWriter(path, false);
+            FileWriter fileWriter = new FileWriter(this.path, false);
             BufferedWriter writer = new BufferedWriter(fileWriter);
             list.forEach((task) -> {
                 try {
