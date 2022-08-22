@@ -1,4 +1,4 @@
-public class Task {
+public abstract class Task {
 
     private String desc;
     private boolean isDone;
@@ -9,6 +9,8 @@ public class Task {
         isDone = false;
     }
 
+    public abstract String getType();
+
     public Task() throws DokeException {
         throw new DokeException();
     }
@@ -18,10 +20,16 @@ public class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
+    public int getStatus() {
+        return isDone ? 1 : 0;
+    }
+
     //a method to get the description of the task
     public String getDesc() {
         return desc;
     }
+
+    public abstract String getTime();
 
     //a method to mark a task done
     public void markDone() throws DokeException {
