@@ -13,9 +13,19 @@ import jude.task.Event;
 import jude.task.Task;
 import jude.task.Todo;
 
+/**
+ * Loads list of tasks from a specified file in the task tracker chatbot.
+ */
 public class Storage {
     private String filePath;
 
+    /**
+     * Creates an instance of class {@code Storage} where the file to read from is specified in
+     * the argument {@code filePath}.
+     *
+     * @param filePath File which is read from.
+     * @throws IOException When system I/O fails.
+     */
     public Storage(String filePath) throws IOException {
         this.filePath = filePath;
         try {
@@ -37,7 +47,8 @@ public class Storage {
     }
 
     /**
-     * Loads file in order to load the tasks
+     * Loads tasks from the file specified in the constructor.
+     *
      * The format is as follows (in separate lines, no extra newlines in between):
      * - typeOfTask (which can be 'T', 'D' or 'E'), representing todo, deadline and event tasks
      *   respectively.
@@ -81,7 +92,13 @@ public class Storage {
         return tasks;
     }
 
-    // Saves list of tasks as a file.
+    /**
+     * Saves an updated list of tasks in the file indicated in the constructor when the {@code
+     * Storage} instance was created.
+     *
+     * @param tasks The list of tasks to save.
+     * @throws IOException When system I/O fails.
+     */
     public void save(TaskList tasks) throws IOException {
         FileWriter fw = new FileWriter(Paths.get(filePath).toFile());
         for (int i = 1; i <= tasks.size(); i++) {

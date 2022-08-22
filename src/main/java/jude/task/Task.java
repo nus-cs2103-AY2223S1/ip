@@ -1,18 +1,18 @@
 package jude.task;
 
 /**
- * The Task class models a task. A task has a description and an indicator depicting whether it has
- * been done.
+ * The {@code Task} class models a task. A task has a description and an indicator depicting whether
+ * it has been done.
  */
 public abstract class Task {
     private final String description;
     private boolean isDone;
 
     /**
-     * Creates a new Task object with a given description and whether it has been done.
+     * Creates a new {@code Task} object with a given description and whether it has been done.
      *
-     * @param description the description of the task
-     * @param isDone whether the task is marked as done
+     * @param description The description of the {@code Task}.
+     * @param isDone Whether the {@code Task} is marked as done.
      */
     public Task(String description, boolean isDone) {
         this.description = description;
@@ -20,36 +20,36 @@ public abstract class Task {
     }
 
     /**
-     * Returns whether the given Task object is marked as done.
+     * Returns whether the given {@code Task} object is marked as done.
      *
-     * @return whether the task is done
+     * @return Whether the task is done.
      */
     public boolean getIsDone() {
         return isDone;
     }
 
     /**
-     * Returns the description of the Task object
+     * Returns the description of the {@code Task} object.
      *
-     * @return description of the Task object
+     * @return Description of the {@code Task} object.
      */
     public String getDescription() {
         return description;
     }
 
     /**
-     * Sets whether the Task is done.
+     * Sets whether the {@code Task} is done.
      *
-     * @param isDone whether the Task is done
+     * @param isDone Whether the {@code Task} is done.
      */
     public void setIsDone(boolean isDone) {
         this.isDone = isDone;
     }
 
     /**
-     * Returns the status icon depicting whether the Task has been done.
+     * Returns the status icon depicting whether the {@code Task} has been done.
      *
-     * @return 'X' if Task is done, ' ' otherwise
+     * @return 'X' if {@code Task} is done, ' ' otherwise.
      */
     //@@author cheeheng-reused
     //Reused from https://nus-cs2103-ay2223s1.github.io/website/schedule/week2/project.html
@@ -59,32 +59,32 @@ public abstract class Task {
     }
 
     /**
-     * Sets the status of the Task to 'done'.
+     * Sets the status of the {@code Task} to 'done'.
      */
     public void markAsDone() {
         setIsDone(true);
     }
 
     /**
-     * Sets the status of the Task to 'not done'.
+     * Sets the status of the {@code Task} to 'not done'.
      */
     public void markAsUndone() {
         setIsDone(false);
     }
 
     /**
-     * Returns the task type code of the Task object. The task type code will be displayed on the
-     * command line interface.
+     * Returns the task type code of the {@code Task} object. The task type code will be displayed
+     * on the command line interface.
      *
-     * @return the task type code of the Task object
+     * @return The task type code of the {@code Task} object.
      */
     public abstract String getTaskTypeCode();
 
     /**
-     * Returns the String representation of the Task object, i.e.
+     * Returns the String representation of the {@code Task} object, i.e.
      *   a string in the format "[task type code][get status icon] description".
      *
-     * @return String representation of the Task object
+     * @return String representation of the {@code Task} object.
      */
     @Override
     public String toString() {
@@ -92,8 +92,18 @@ public abstract class Task {
                 description);
     }
 
-    // Internal method used to save a task as a string in a file.
-    // This should be consistent with the documentation of loadFile in Main class.
+    /**
+     * Returns a String representation of the {@code Task} object which in a format convenient to
+     * save and load files.
+     *
+     * The string returned is in the following format (with newlines in between components and in
+     * the end):
+     * Task Type Code
+     * Description
+     * 1 if the task is done, and 0 otherwise
+     *
+     * @return The String representation of the {@code Task} object.
+     */
     public String toFileSaveString() {
         return String.format("%s\n%s\n%d\n", getTaskTypeCode(), description, isDone ? 1 : 0);
     }

@@ -13,6 +13,9 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
 import java.util.Locale;
 
+/**
+ * The {@code Parser} class parses user commands in the task tracker chatbot and executes them.
+ */
 public class Parser {
 
     private final TaskList tasks;
@@ -97,7 +100,7 @@ public class Parser {
      *
      * @param command The command which will be provided to the parser.
      * @return true if the command terminates the program, i.e. bye command, false otherwise.
-     * @throws IOException
+     * @throws IOException When system I/O fails.
      */
     public boolean parse(String command) throws IOException {
         String[] tokens = command.split(" ", 2);

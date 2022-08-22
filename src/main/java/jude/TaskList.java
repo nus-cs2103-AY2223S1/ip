@@ -36,7 +36,7 @@ public class TaskList {
     /**
      * Deletes a task at a particular index (1-based).
      *
-     * @param index The index
+     * @param index The index.
      * @throws IllegalCommandException If index range is out of bounds.
      */
     public void delete(int index) {
@@ -47,7 +47,7 @@ public class TaskList {
     /**
      * Returns the task corresponding to the specified index (1-based).
      *
-     * @param index The index
+     * @param index The index.
      * @return The {@code Task} corresponding to the specified index.
      */
     public Task get(int index) {
