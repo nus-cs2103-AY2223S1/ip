@@ -35,40 +35,40 @@ public class TaskList {
         // move Ui calls to Parser instead.
         Task currTask;
         String[] args;
-        switch(type) {
-            case "todo":
-                currTask = new Todo(item);
+        switch (type) {
+        case "todo":
+            currTask = new Todo(item);
+            tasks.add(currTask);
+            Ui.addTask("todo", currTask, tasks.size());
+            Storage.save(tasks);
+            break;
+        case "deadline":
+            args = item.split("/by ");
+            try{
+                currTask = new Deadline(args[0], args[1]);
                 tasks.add(currTask);
-                Ui.addTask("todo", currTask, tasks.size());
+                Ui.addTask("deadline", currTask, tasks.size());
                 Storage.save(tasks);
-                break;
-            case "deadline":
-                args = item.split("/by ");
-                try{
-                    currTask = new Deadline(args[0], args[1]);
-                    tasks.add(currTask);
-                    Ui.addTask("deadline", currTask, tasks.size());
-                    Storage.save(tasks);
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    throw new DukeMissingInputException(type);
-                } catch (DateTimeParseException e) {
-                    throw new DukeUnknownDateException(type);
-                }
-                break;
-            case "event":
-                args = item.split("/at ");
-                try{
-                    currTask = new Event(args[0], args[1]);
-                    tasks.add(currTask);
-                    Ui.addTask("event", currTask, tasks.size());
-                    Storage.save(tasks);
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    throw new DukeMissingInputException(type);
-                } catch (DateTimeParseException e) {
-                    throw new DukeUnknownDateException(type);
-                }
-                break;
-        }
+            } catch (ArrayIndexOutOfBoundsException e) {
+                throw new DukeMissingInputException(type);
+            } catch (DateTimeParseException e) {
+                throw new DukeUnknownDateException(type);
+            }
+            break;
+        case "event":
+            args = item.split("/at ");
+            try{
+                currTask = new Event(args[0], args[1]);
+                tasks.add(currTask);
+                Ui.addTask("event", currTask, tasks.size());
+                Storage.save(tasks);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                throw new DukeMissingInputException(type);
+            } catch (DateTimeParseException e) {
+                throw new DukeUnknownDateException(type);
+            }
+            break;
+         }
     }
 
     /**

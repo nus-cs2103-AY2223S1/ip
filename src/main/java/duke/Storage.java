@@ -1,10 +1,10 @@
 package duke;
 
 import java.io.*;
-
 import java.util.ArrayList;
 
 public class Storage {
+    // Exceptions not handled
     private static final String FILENAME = "SaveData.txt";
 
     /**

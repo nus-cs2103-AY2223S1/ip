@@ -1,22 +1,21 @@
 package duke;
 
 import java.io.Serializable;
-
 public abstract class Task implements Serializable {
 
     private String item;
-    private boolean completed;
+    private boolean isCompleted;
 
     public Task(String item) {
         this.item = item;
-        this.completed = false;
+        this.isCompleted = false;
     }
 
     /**
      * Toggles the completed variable between true/false
      */
     public void completeToggle() {
-        this.completed = !this.completed;
+        this.isCompleted = !this.isCompleted;
     }
 
     /**
@@ -24,7 +23,7 @@ public abstract class Task implements Serializable {
      * @return completed
      */
     public boolean isCompleted() {
-        return this.completed;
+        return this.isCompleted;
     }
 
     /**
@@ -33,10 +32,9 @@ public abstract class Task implements Serializable {
      */
     @Override
     public String toString() {
-        if (completed) {
+        if (isCompleted) {
             return "[X] " + item;
         }
-
         return "[ ] " + item;
     }
 
