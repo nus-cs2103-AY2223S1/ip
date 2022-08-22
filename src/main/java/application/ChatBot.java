@@ -16,12 +16,8 @@ import task.ToDo;
 import task.Event;
 
 public class ChatBot {
-    private final TaskList taskList;
     private final TaskFileManager fileManager = TaskFileManager.of("duke.txt");
-
-    public ChatBot() {
-        taskList = fileManager.getTaskList();
-    }
+    private final TaskList taskList = fileManager.getTaskList();
 
     private void displayMessage(String message) {
         System.out.println("\t____________________________________________________________");
