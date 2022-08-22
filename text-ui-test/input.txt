@@ -27,5 +27,7 @@ unmark
 delete 5
 delete 4
 list me
+delete 6
 deadline deadline 2 /b 21/9
 bye
+list
