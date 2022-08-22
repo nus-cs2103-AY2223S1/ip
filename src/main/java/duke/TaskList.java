@@ -36,36 +36,36 @@ public class TaskList {
             throw new DukeException("The description of a task cannot be empty.");
         }
         switch (type) {
-            case TODO:
-                tasks.add(new Todo(splitStr[1]));
-                taskCount++;
-                ui.printMessage("Got it. I've added this task:\n       " + tasks.get(taskCount - 1)
-                        + "\n     Now you have " + taskCount + " tasks in the list");
-                break;
-            case DEADLINE:
-                String[] strDeadline = splitStr[1].split("/by", 2);
-                if (strDeadline.length < 2 || strDeadline[1].equals("")) {
-                    throw new DukeException("Please also specify the date and time.");
-                }
-                LocalDateTime deadlineDateTime = Parser.parseDateTime(strDeadline[1].trim());
-                tasks.add(new Deadline(strDeadline[0].trim(), deadlineDateTime));
-                taskCount++;
-                ui.printMessage("Got it. I've added this task:\n       " + tasks.get(taskCount - 1)
-                        + "\n     Now you have " + taskCount + " tasks in the list.");
-                break;
-            case EVENT:
-                String[] strEvent = splitStr[1].split("/at", 2);
-                if (strEvent.length < 2 || strEvent[1].equals("")) {
-                    throw new DukeException("Please also specify the date and time.");
-                }
-                LocalDateTime eventDateTime = Parser.parseDateTime(strEvent[1].trim());
-                tasks.add(new Event(strEvent[0].trim(), eventDateTime));
-                taskCount++;
-                ui.printMessage("Got it. I've added this task:\n       " + tasks.get(taskCount - 1)
-                        + "\n     Now you have " + taskCount + " tasks in the list.");
-                break;
-            default:
-                throw new DukeException("I'm sorry, but I don't know what that means!");
+        case TODO:
+            tasks.add(new Todo(splitStr[1]));
+            taskCount++;
+            ui.printMessage("Got it. I've added this task:\n       " + tasks.get(taskCount - 1)
+                    + "\n     Now you have " + taskCount + " tasks in the list");
+            break;
+        case DEADLINE:
+            String[] strDeadline = splitStr[1].split("/by", 2);
+            if (strDeadline.length < 2 || strDeadline[1].equals("")) {
+                throw new DukeException("Please also specify the date and time.");
+            }
+            LocalDateTime deadlineDateTime = Parser.parseDateTime(strDeadline[1].trim());
+            tasks.add(new Deadline(strDeadline[0].trim(), deadlineDateTime));
+            taskCount++;
+            ui.printMessage("Got it. I've added this task:\n       " + tasks.get(taskCount - 1)
+                    + "\n     Now you have " + taskCount + " tasks in the list.");
+            break;
+        case EVENT:
+            String[] strEvent = splitStr[1].split("/at", 2);
+            if (strEvent.length < 2 || strEvent[1].equals("")) {
+                throw new DukeException("Please also specify the date and time.");
+            }
+            LocalDateTime eventDateTime = Parser.parseDateTime(strEvent[1].trim());
+            tasks.add(new Event(strEvent[0].trim(), eventDateTime));
+            taskCount++;
+            ui.printMessage("Got it. I've added this task:\n       " + tasks.get(taskCount - 1)
+                    + "\n     Now you have " + taskCount + " tasks in the list.");
+            break;
+        default:
+            throw new DukeException("I'm sorry, but I don't know what that means!");
         }
     }
 
