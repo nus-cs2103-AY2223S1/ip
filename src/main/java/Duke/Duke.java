@@ -158,7 +158,7 @@ public class Duke {
                 } else {
                     newTask = null;
                 }
-//                System.out.println(newTask);
+
                 taskList.addTask(newTask);
             }
         }
@@ -389,7 +389,6 @@ public class Duke {
         }
 
     }
-
 
     public void run() {
         ui.welcome();
