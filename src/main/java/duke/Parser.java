@@ -62,6 +62,14 @@ public class Parser {
     };
 
     /**
+     * Finds word among the tasks in the task list.
+     */
+    private static final BiFunction<TaskList, String, String> find =
+            (taskList, input) -> {
+                return taskList.findWord(input.split(" ")[1]);
+            };
+
+    /**
      * `BiFunction` to exit program.
      * input2: Full String input from user.
      */
@@ -84,6 +92,7 @@ public class Parser {
         commands.put("mark", mark);
         commands.put("unmark", unmark);
         commands.put("list", list);
+        commands.put("find", find);
         commands.put("bye", quit);
 
     }
@@ -215,6 +224,14 @@ public class Parser {
                 }
                 break;
             }
+
+        case "find": {
+            if ((args.length != 2)) {
+                throw new DukeException("Wrong format! To find a word, type:\n"
+                        + "   find [WORD TO FIND]\n");
+            }
+            break;
+        }
 
             case "bye": {
                 if (!userInput.equals("bye")) {
