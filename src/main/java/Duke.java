@@ -1,4 +1,5 @@
-import java.io.File;
+import java.time.DateTimeException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class Duke {
@@ -16,6 +17,8 @@ public class Duke {
         int intCollect = Integer.parseInt(userInput.substring(5));
         try {
             storage.get(intCollect - 1).mark();
+            System.out.println("Nice! I've marked this task as done:\n"
+                    + storage.get(intCollect - 1).toString());
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException("Are you sure that you pressed the right number?");
         }
@@ -63,13 +66,18 @@ public class Duke {
             throw new DukeException("The description of a deadline cannot be empty.");
         }
         String[] box = userInput.substring(9).split(" /by ");
+        Deadline d = null;
         try {
-            storage.add(new Deadline(box[0], box[1]));
+            d = new Deadline(box[0], box[1]);
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new DukeException("Please follow the appropriate format for deadline!");
+        } catch (DateTimeException e) {
+            throw new DukeException("WRONG dead format! :( ");
         }
+
+        storage.add(d);
         System.out.println("Got it. I've added this task:\n"
-                +storage.get(storage.size() - 1).toString()
+                +storage.get(storage.size()-1).toString()
                 + "\nNow you have " + storage.size() + " tasks in the list.");
     }
 
@@ -83,10 +91,29 @@ public class Duke {
             storage.add(new Event(box[0], box[1]));
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new DukeException("Please follow the appropriate format for event!");
+        } catch (DateTimeException e) {
+            throw new DukeException("WRONG date format! :( ");
         }
         System.out.println("Got it. I've added this task:\n"
-                +storage.get(storage.size() - 1).toString()
+                +storage.get(storage.size()-1).toString()
                 + "\nNow you have " + storage.size() + " tasks in the list.");
+    }
+
+    public static void printDatedTask(String string) throws DukeException{
+        try {
+            LocalDate.parse(string);
+        } catch (DateTimeException e) {
+            throw new DukeException("WRONG date format!!");
+        }
+        LocalDate date = LocalDate.parse(string);
+        storage.forEach(x -> {
+                    if (x instanceof DatedTask) {
+                        DatedTask d = (DatedTask) x;
+                        if (d.date.equals(date)) {
+                            System.out.println(x.toString());
+                        }
+                    }
+                });
     }
     private static void incomprehensible() throws DukeException {
         throw new DukeException("I'm sorry, but I don't know what that means :-(");
@@ -156,6 +183,12 @@ public class Duke {
                 try {
                     delete(userInput);
                     FileManipulation.overwrite("data/dude.txt", f.apply(storage));
+                } catch (DukeException e) {
+                    System.out.println(e.toString());
+                }
+            } else if (userInput.startsWith("list task dated ")) {
+                try {
+                    printDatedTask(userInput.substring(16));
                 } catch (DukeException e) {
                     System.out.println(e.toString());
                 }

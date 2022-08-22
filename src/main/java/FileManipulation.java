@@ -26,15 +26,15 @@ public class FileManipulation {
                 }
                 arr.add(t);
             } else if (c == 'D') {
-                String[] strings = s.substring(8).split(" | ");
-                Deadline d = new Deadline(strings[0], strings[2]);
+                String[] strings = s.substring(8).split(" \\| ");
+                Deadline d = new Deadline(strings[0], strings[1]);
                 if (s.charAt(4) == '1') {
                     d.mark();
                 }
                 arr.add(d);
             } else {
-                String[] strings = s.substring(8).split(" | ");
-                Event e = new Event(strings[0], strings[2]);
+                String[] strings = s.substring(8).split(" \\| ");
+                Event e = new Event(strings[0], strings[1]);
                 if (s.charAt(4) == '1') {
                     e.mark();
                 }
