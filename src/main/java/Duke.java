@@ -17,30 +17,36 @@ public class Duke {
         Scanner scanner = new Scanner(System.in);
         while(!Objects.equals(input = scanner.nextLine(), "bye")) {
             String[] words = input.split(" ", 2);
-            switch(words[0]) {
-                case "list":
-                    displayList();
-                    break;
-                case "mark":
-                    mark(Integer.parseInt(words[1]));
-                    break;
-                case "unmark":
-                    unmark(Integer.parseInt(words[1]));
-                    break;
-                case "todo":
-                    addToDo(words[1]);
-                    break;
-                case "deadline":
-                    addDeadline(words[1]);
-                    break;
-                case "event":
-                    addEvent(words[1]);
-                    break;
-                default:
-                    addToList(input);
+            try {
+                switch (words[0]) {
+                    case "list":
+                        displayList();
+                        break;
+                    case "mark":
+                        mark(Integer.parseInt(words[1]));
+                        break;
+                    case "unmark":
+                        unmark(Integer.parseInt(words[1]));
+                        break;
+                    case "todo":
+                        addToDo(words[1]);
+                        break;
+                    case "deadline":
+                        addDeadline(words[1]);
+                        break;
+                    case "event":
+                        addEvent(words[1]);
+                        break;
+                    default:
+                        throw new DukeException("Come Again?");
 
-
+                }
+            } catch (DukeException dukeException) {
+                System.out.println(dukeException.getMessage());
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("We need a task description.");
             }
+
         }
 
         System.out.println("Bye");
@@ -57,7 +63,7 @@ public class Duke {
         taskList.add(new Task(input));
     }
 
-    private static void addToDo(String input) {
+    private static void addToDo(String input) throws DukeException {
         Todo newTodo = new Todo(input);
         taskList.add(newTodo);
         System.out.println("added: \n " + newTodo + "\nNow you have " + taskList.size() +
