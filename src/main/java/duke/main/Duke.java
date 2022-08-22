@@ -1,3 +1,11 @@
+package duke.main;
+
+import duke.command.Command;
+import duke.exception.DukeException;
+import duke.exception.MissingDescriptionException;
+import duke.exception.MissingIndexException;
+import duke.exception.MissingTimeException;
+
 import java.time.format.DateTimeParseException;
 
 public class Duke {

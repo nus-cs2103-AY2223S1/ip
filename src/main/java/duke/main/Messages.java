@@ -1,3 +1,5 @@
+package duke.main;
+
 public class Messages {
     public static String[] GREETING = {"Hi, I'm Duke.\nWhat can I do for you?\nI'll do my best! :)"};
     public static String[] BYE = {"NOOOOOO... Don't send me back to the void! T_T"};

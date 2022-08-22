@@ -1,3 +1,12 @@
+package duke.main;
+
+import duke.command.*;
+import duke.exception.MissingDescriptionException;
+import duke.exception.MissingIndexException;
+import duke.exception.MissingTimeException;
+import duke.task.Deadline;
+import duke.task.Event;
+
 import java.time.LocalDate;
 
 public class Parser {

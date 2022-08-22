@@ -1,17 +1,20 @@
-import java.time.LocalDate;
+package duke.command;
 
-public class MakeEventCommand extends Command {
+import duke.main.Storage;
+import duke.main.TaskList;
+import duke.main.Ui;
+import duke.task.ToDo;
+
+public class MakeToDoTaskCommand extends Command {
     private String description;
-    private LocalDate time;
 
-    public MakeEventCommand(String description, LocalDate time) {
+    public MakeToDoTaskCommand(String description) {
         this.description = description;
-        this.time = time;
     }
 
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
-        Event newTask = new Event(this.description, this.time);
+        ToDo newTask = new ToDo(this.description);
         taskList.addTask(newTask);
         ui.showTaskAdded(newTask, taskList.getTaskListLength());
     }

@@ -1,3 +1,5 @@
+package duke.task;
+
 public abstract class Task {
     public static String SAVE_SEPARATOR = "%#%";
 
