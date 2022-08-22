@@ -14,6 +14,10 @@ public abstract class Task {
         this.isDone = isDone;
     }
 
+    public boolean match(String keyword) {
+        return description.contains(keyword);
+    }
+
     public void mark() {
         this.isDone = true;
     }
