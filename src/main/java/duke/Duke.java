@@ -31,7 +31,7 @@ public class Duke {
 
         while(!str.equals("bye")) {
             try {
-                Parser.parseInput(str, tasks);
+                Parser.parseCommand(str, tasks);
             } catch (DukeException e) {
                 ui.printMessage(e.toString());
             }

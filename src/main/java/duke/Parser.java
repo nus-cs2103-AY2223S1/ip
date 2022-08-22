@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class Parser {
-    public static void parseInput(String str, TaskList tasks) throws DukeException {
+    public static void parseCommand(String str, TaskList tasks) throws DukeException {
         String[] splitStr = str.split(" ", 2);
         switch (splitStr[0]) {
             case "list":
