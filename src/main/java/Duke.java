@@ -1,56 +1,15 @@
 import java.util.Scanner;
-import java.util.*;
+import java.util.ArrayList;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Duke {
 
-    public static class Task {
-        protected String description;
-        protected boolean isDone;
-        protected enum Type {TODO, EVENT, DEADLINE}
-        protected Type type;
-
-        public Task(String description, String type) {
-            this.description = description;
-            this.isDone = false;
-            if ("todo".equals(type)) {
-                this.type = Type.TODO;
-            } else if ("event".equals(type)) {
-                this.type = Type.EVENT;
-            } else if ("deadline".equals(type)) {
-                this.type = Type.DEADLINE;
-            } else {
-                System.out.println("Invalid choice, please choose either todo, event or deadline");
-            }
-        }
-
-        public void setStatusIcon(boolean b) {
-            this.isDone = b;
-        }
-
-        public String getStatusIcon() {
-            return (isDone ? "X" : " "); // mark done task with X
-        }
-
-        public String getType() {
-            switch (this.type) {
-                case TODO:
-                    return "T";
-                case EVENT:
-                    return "E";
-                case DEADLINE:
-                    return "D";
-            };
-            return "";
-        }
-
-        public String toString() {
-            return "["+ this.getType() + "]" + "[" + this.getStatusIcon() + "] " + this.description;
-        }
-        //...
-    }
-
     public static String breaker = "____________________________________________________________\n";
-    private static ArrayList<Task> list = new ArrayList<>();
+
+    private static ArrayList<Task> Tasklist = new ArrayList<>();
     private static String[] commandWords = new String[]{"list", "mark", "unmark", "todo", "event", "deadline", "delete", "bye"};
     private static String start = "Hello! I'm Duke\nWhat can I do for you?";
     private static String end = "Bye. Hope to see you again soon!";
@@ -71,16 +30,41 @@ public class Duke {
         }
     }
 
+    protected static String dataFileName = "src/main/data/Duke.txt";
+    protected static String dataDirectory = "src/main/data";
+
     public static void main(String[] args) throws InvalidCommandException, EmptyMessageException {
 
-
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
         msg(start);
+
+        //loading past data from file
+        try {
+            File directory = new File(dataDirectory);
+            if (!directory.exists()){
+                directory.mkdir();
+            }
+
+            File f = new File(dataFileName);
+            if (!f.exists()){
+                f.createNewFile();
+            }
+
+            Scanner s = new Scanner(f);
+            int count = 0;
+            while (s.hasNext()) {
+                String[] temp = s.nextLine().split("\\|");
+                count++;
+                processInput(temp[0]);
+                if ("1".equals(temp[1])) {
+                    mark(count);
+                }
+            }
+        } catch (FileNotFoundException e) {
+            msg("invalid file name");
+            return;
+        } catch (IOException e) {
+            System.out.println("Something went wrong: " + e.getMessage());
+        }
 
         String text = "";
         while (!"bye".equals(text)) {
@@ -102,6 +86,15 @@ public class Duke {
 
     }
 
+    private static void writeToFile() throws IOException {
+        //structure: command|1 (1 for mark, 0 for unmark)
+        FileWriter fw = new FileWriter(dataFileName);
+        for (int i = 0; i < Tasklist.size(); i++) {
+            fw.write(Tasklist.get(i).getData() + "\n");
+        }
+        fw.close();
+    }
+
     private static boolean checkCommand(String s, int i) {
         return s.length() >= commandWords[i].length() && commandWords[i].equals(s.substring(0,commandWords[i].length()));
     }
@@ -109,7 +102,7 @@ public class Duke {
     private static void processInput(String text) throws EmptyMessageException, InvalidCommandException {
 
         if (checkCommand(text, 0)) {
-            displayList(list);
+            displayList(Tasklist);
         } else if (checkCommand(text, 1)) {
             int i = Integer.parseInt(text.substring(commandWords[1].length()+1, commandWords[1].length()+2));
             mark(i);
@@ -133,7 +126,7 @@ public class Duke {
                     } else {
                         text = text.substring(commandWords[i].length()+1);
                     }
-                    add(text, commandWords[i], list);
+                    add(text, commandWords[i], Tasklist);
                     break;
                 }
             }
@@ -141,7 +134,11 @@ public class Duke {
                 throw new InvalidCommandException();
             }
         }
-
+        try {
+            writeToFile();
+        } catch (IOException e) {
+            System.out.println("Something went wrong: " + e.getMessage());
+        }
     }
 
     public static void msg(String s) {
@@ -168,19 +165,19 @@ public class Duke {
     }
 
     public static void mark(int i) {
-        Task task = list.get(i-1);
+        Task task = Tasklist.get(i-1);
         task.setStatusIcon(true);
         msg("Nice! I've marked this task as done:\n" + "\t" + task);
     }
 
     public static void unmark(int i) {
-        Task task = list.get(i-1);
+        Task task = Tasklist.get(i-1);
         task.setStatusIcon(false);
         msg("OK, I've marked this task as not done yet:\n" + "\t" + task);
     }
 
     public static void delete(int i) {
-        msg("Noted. I've removed this task:\n\t" + list.get(i-1) +"\nNow you have " + (list.size()-1) + " tasks in the list.");
-        list.remove(i-1);
+        msg("Noted. I've removed this task:\n\t" + Tasklist.get(i-1) +"\nNow you have " + (Tasklist.size()-1) + " tasks in the list.");
+        Tasklist.remove(i-1);
     }
 }
