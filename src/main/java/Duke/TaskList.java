@@ -1,3 +1,7 @@
+package Duke;
+
+import Tasks.*;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -6,7 +10,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class TaskList {
@@ -15,8 +18,8 @@ public class TaskList {
     final static private String FILE_PATH = "./data/duke.txt";
     final static private String TEMP_FILE_PATH = "./data/temp.txt";
 
-    public TaskList() {
-        this.tasks = new ArrayList<>();
+    public TaskList(ArrayList<Task> tasks) {
+        this.tasks = tasks;
     }
 
     /**
@@ -66,7 +69,6 @@ public class TaskList {
                 }
             }
         }
-
 
         System.out.println(header + numOfTasks);
     }
@@ -231,8 +233,6 @@ public class TaskList {
             }
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
-        } catch (DukeException e) {
-            System.out.println("\t" + e.getMessage());
         } finally {
             if (reader != null) {
                 reader.close();
@@ -283,28 +283,45 @@ public class TaskList {
         }
     }
 
-    public void getTasks(String date) throws DukeException {
-        try {
-            LocalDate parsedDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-            StringBuilder stringBuilder = new StringBuilder("\tYour tasks for today include:");
-            int count = 1;
-            for (Task task : this.tasks) {
-                if (task.getTaskType().equals("D") || task.getTaskType().equals("E")) {
-                    if (task.getDate().equals(parsedDate)) {
-                        String formatted = String.format("\n\t%d. %s", count, task);
-                        stringBuilder.append(formatted);
-                        count++;
-                    }
+    public String getTasks(String date) {
+        LocalDate parsedDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        StringBuilder stringBuilder = new StringBuilder("\tYour tasks for today include:");
+        int count = 1;
+        for (Task task : this.tasks) {
+            if (task.getTaskType().equals("D") || task.getTaskType().equals("E")) {
+                if (task.getDate().equals(parsedDate)) {
+                    String formatted = String.format("\n\t%d. %s", count, task);
+                    stringBuilder.append(formatted);
+                    count++;
                 }
             }
-            if (count == 1) {
-                System.out.println(String.format("\tNo tasks on %s",
-                        parsedDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy"))));
-            } else {
-                System.out.println(stringBuilder);
-            }
-        } catch (DateTimeParseException e) {
-            throw new DukeException("Please key in a valid date in this format: dd/MM/yyyy");
         }
+
+        if (count == 1) {
+             return String.format("\tNo tasks on %s", parsedDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy")));
+        } else {
+            return stringBuilder.toString();
+        }
+    }
+
+    public void addToList(Task task) {
+        this.tasks.add(task);
+    }
+
+    public int getSize() {
+        return this.tasks.size();
+    }
+
+    public Task getTask(int i) {
+        return this.tasks.get(i);
+    }
+
+    public Task deleteTask(int i) throws DukeException {
+        if (i > this.tasks.size()) {
+            throw new DukeException("No such task exist!");
+        }
+        Task task = this.tasks.get(i - 1);
+        this.tasks.remove(i - 1);
+        return task;
     }
 }

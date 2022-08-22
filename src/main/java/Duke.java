@@ -1,18 +1,20 @@
-import java.util.Scanner;
+import Commands.*;
+import Duke.*;
 
 public class Duke {
-    final static private String GREETING = "Hello! I'm Duke\nWhat can I do for you? ^_^";
-    final static private String EXIT = "\tBye. Hope to see you again soon :D";
-    private enum Command {
-        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, TASKS
-    }
+
     final private TaskList tasks;
+    private Ui ui;
+    private Storage storage;
 
     /**
      * Constructor.
      */
     public Duke() {
-        this.tasks = new TaskList();
+        Storage storage = new Storage("./data/duke.txt");
+        this.ui = new Ui();
+        this.storage = storage;
+        this.tasks = new TaskList(storage.load());
     }
 
     /**
@@ -24,67 +26,30 @@ public class Duke {
         return "\t" + message;
     }
 
-    public static void main(String[] args) {
+    public void run() {
         String logo = " ____        _\n"
                 + "|  _ \\ _   _| | _____\n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
+        this.ui.printWelcome();
+        boolean isExit = false;
 
-        Duke duke = new Duke();
-        System.out.println(Duke.GREETING);
-        duke.tasks.read();
-        Scanner scanner = new Scanner(System.in);
-        boolean run = true;
-        while (run) {
+        while (!isExit) {
             try {
-                try {
-                    Command command = Command.valueOf(scanner.next().toUpperCase());
-                    String message = scanner.nextLine().trim();
-                    switch (command) {
-                        case BYE:
-                            System.out.println(Duke.EXIT);
-                            run = false;
-                            scanner.close();
-                            break;
-                        case LIST:
-                            System.out.println(duke.tasks.list());
-                            break;
-                        case MARK:
-                            if (message.length() == 0) {
-                                throw new DukeException("Please mark using this format: mark <task-number>");
-                            }
-                            duke.tasks.changeStatus(message, true);
-                            break;
-                        case UNMARK:
-                            if (message.length() == 0) {
-                                throw new DukeException("Please unmark using this format: mark <task-number>");
-                            }
-                            duke.tasks.changeStatus(message, false);
-                            break;
-                        case TODO:
-                            duke.tasks.addTodo(message);
-                            break;
-                        case DEADLINE:
-                            duke.tasks.addDeadline(message);
-                            break;
-                        case EVENT:
-                            duke.tasks.addEvent(message);
-                            break;
-                        case DELETE:
-                            duke.tasks.delete(message);
-                            break;
-                        case TASKS:
-                            duke.tasks.getTasks(message);
-                    }
-                } catch (IllegalArgumentException e) {
-                    scanner.nextLine(); // to clear the scanner buffer
-                    throw new DukeException("I don't know what this means :(");
-                }
+                String input = this.ui.input();
+                Command command = Parser.parse(input);
+                command.execute(this.ui, this.storage, this.tasks);
+                isExit = command.isExit();
             } catch (DukeException e) {
-                System.out.println("\t" + e.getMessage());
+                this.ui.printException(e);
             }
         }
+    }
+
+    public static void main(String[] args) {
+        Duke duke = new Duke();
+        duke.run();
     }
 }

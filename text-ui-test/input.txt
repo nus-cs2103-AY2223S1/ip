@@ -1,4 +1,4 @@
-deadline submit report /by 10 dec 2022
+deadline submit report /by 10/12/2022
 todo read book
 deadline submit project /by 18/08/2022
 event project meeting /at 20/09/2022

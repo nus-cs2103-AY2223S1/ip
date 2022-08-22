@@ -1,20 +1,16 @@
+package Tasks;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 public class Event extends Task {
     protected LocalDate at;
 
-    public Event(String description, String at) throws DukeException {
+    public Event(String description, String at) {
         super(description);
-        try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDate localDate = LocalDate.parse(at, formatter);
-            this.at = localDate;
-        } catch (DateTimeParseException e) {
-            throw new DukeException("The date included should follow this format: " +
-                    "dd/MM/yyyy");
-        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate localDate = LocalDate.parse(at, formatter);
+        this.at = localDate;
     }
 
     @Override
