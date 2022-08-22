@@ -1,4 +1,8 @@
-public class ToDo extends Task{
+package task;
+
+import task.Task;
+
+public class ToDo extends Task {
 
     public ToDo(String description) {
         this.description = description;

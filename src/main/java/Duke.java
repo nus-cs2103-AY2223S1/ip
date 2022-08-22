@@ -1,3 +1,9 @@
+import command.Command;
+import task.Deadline;
+import task.Event;
+import task.Task;
+import task.ToDo;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -5,11 +11,7 @@ import java.util.Scanner;
 public class Duke {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String horizontalLn = "_____________________________________________________________";
 
-        System.out.println(horizontalLn);
-        System.out.printf("Hey there! I'm Bob\nWhat can I do for you?\n");
-        System.out.println(horizontalLn);
 
         List<Task> toDoList = new ArrayList<>();
         boolean scIsOpen = true;
