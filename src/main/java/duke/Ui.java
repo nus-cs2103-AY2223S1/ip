@@ -32,6 +32,18 @@ public class Ui {
         }
     }
 
+    public void showList(TaskList tl, String filter) {
+        List<Task> taskList = tl.getTasks();
+        int index = 1;
+        System.out.println("Here are the matching tasks in your list nya:");
+        for (Task t : taskList) {
+            if (t.description.contains(filter)) {
+                System.out.println(index + "." + t);
+                index++;
+            }
+        }
+    }
+
     /**
      * Displays the welcome message to the user.
      */
