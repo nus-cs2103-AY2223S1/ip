@@ -1,0 +1,7 @@
+event Tuition /at Mon 2-3pm
+todo Eat dinner
+deadline Math assignment submission /by Friday
+mark 2
+unmark 0
+list
+bye
