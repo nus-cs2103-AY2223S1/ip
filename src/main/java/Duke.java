@@ -36,6 +36,7 @@ public class Duke {
             e.printStackTrace();
         }
 
+
         while (input.hasNext()) {
             PrintStream fileOut = new PrintStream("duke.txt");
             PrintStream console = System.out;
@@ -59,12 +60,7 @@ public class Duke {
                 System.out.println(divider);
                 System.out.println("Bye. Hope to see you again soon!");
                 System.out.println(divider);
-                FileWriter dukeWriter = new FileWriter("duke.txt");
-                for (int i = 0; i < storage.size(); i++) {
-                    dukeWriter.write((i + 1) + ". " + storage.get(i).toString()+ "\n");
-
-                }
-                dukeWriter.close();
+                writeToFile();
                 System.exit(0);
 
             } else if (text.startsWith("delete")) {
@@ -83,12 +79,6 @@ public class Duke {
                                     deleted.toString() +
                                     "\nNow you have " + storage.size() + " tasks in the list");
                             System.out.println(divider);
-                            FileWriter dukeWriter = new FileWriter("duke.txt");
-                            for (int i = 0; i < storage.size(); i++) {
-                                dukeWriter.write((i + 1) + ". " + storage.get(i).toString()+ "\n");
-
-                            }
-                            dukeWriter.close();
                         } else {
                             System.out.println(divider);
                             System.out.println("The task you want to delete does not exist.");
@@ -101,8 +91,6 @@ public class Duke {
                     System.out.println("Invalid command please add a space between delete and the list item you would like to interact with. \n" +
                             "Additionally ensure you have entered a number after delete.");
                     System.out.println(divider);
-                } catch (IOException e) {
-                    e.printStackTrace();
                 }
 
             } else if (text.startsWith("todo")) {
@@ -121,12 +109,6 @@ public class Duke {
                     System.out.println(divider);
                     System.out.println("Got it. I've added this task. \n" + item.toString() + "\nNow you have " + storage.size() + " tasks in the list");
                     System.out.println(divider);
-                    FileWriter dukeWriter = new FileWriter("duke.txt");
-                    for (int i = 0; i < storage.size(); i++) {
-                        dukeWriter.write((i + 1) + ". " + storage.get(i).toString()+ "\n");
-
-                    }
-                    dukeWriter.close();
                 }
 
             } else if (text.startsWith("deadline")) {
@@ -137,12 +119,6 @@ public class Duke {
                     System.out.println(divider);
                     System.out.println("Got it. I've added this task. \n" + item.toString() + "\nNow you have " + storage.size() + " tasks in the list");
                     System.out.println(divider);
-                    FileWriter dukeWriter = new FileWriter("duke.txt");
-                    for (int i = 0; i < storage.size(); i++) {
-                        dukeWriter.write((i + 1) + ". " + storage.get(i).toString()+ "\n");
-
-                    }
-                    dukeWriter.close();
                 } catch (ArrayIndexOutOfBoundsException error) {
                     System.out.println(divider);
                     System.out.println("Please provide a deadline and a by time e.g. deadline <description of the deadline> /by <time of the deadline>");
@@ -157,12 +133,6 @@ public class Duke {
                     System.out.println(divider);
                     System.out.println("Got it. I've added this task. \n" + item.toString() + "\nNow you have " + storage.size() + " tasks in the list");
                     System.out.println(divider);
-                    FileWriter dukeWriter = new FileWriter("duke.txt");
-                    for (int i = 0; i < storage.size(); i++) {
-                        dukeWriter.write((i + 1) + ". " + storage.get(i).toString()+ "\n");
-
-                    }
-                    dukeWriter.close();
                 } catch (ArrayIndexOutOfBoundsException error) {
                     System.out.println(divider);
                     System.out.println("Please provide a event and an at time e.g. event <description of the event> /at <time of the event>");
@@ -184,12 +154,6 @@ public class Duke {
                                         storage.get(Integer.parseInt(text.replace("mark ", "")) - 1).toString() +
                                         "\nNow you have " + storage.size() + " tasks in the list");
                                 System.out.println(divider);
-                                FileWriter dukeWriter = new FileWriter("duke.txt");
-                                for (int i = 0; i < storage.size(); i++) {
-                                    dukeWriter.write((i + 1) + ". " + storage.get(i).toString()+ "\n");
-
-                                }
-                                dukeWriter.close();
                             } else {
                                 System.out.println(divider);
                                 System.out.println("This task is already marked done");
@@ -223,12 +187,6 @@ public class Duke {
                                         storage.get(Integer.parseInt(text.replace("unmark ", "")) - 1).toString() +
                                         "\nNow you have " + storage.size() + " tasks in the list");
                                 System.out.println(divider);
-                                FileWriter dukeWriter = new FileWriter("duke.txt");
-                                for (int i = 0; i < storage.size(); i++) {
-                                    dukeWriter.write((i + 1) + ". " + storage.get(i).toString()+ "\n");
-
-                                }
-                                dukeWriter.close();
                             } else {
                                 System.out.println(divider);
                                 System.out.println("This task has already been marked not done");
@@ -284,7 +242,30 @@ public class Duke {
                     System.out.println(divider);
                 }
             }
+            writeToFile();
         }
+    }
+
+    /**
+     * Method writeToFile.
+     * Writes the list to the text file.
+     *
+     * @throws IOException
+     */
+    public static void writeToFile() throws IOException {
+        FileWriter dukeWriter = new FileWriter("duke.txt");
+        for (int i = 0; i < storage.size(); i++) {
+            if (storage.get(i).getClass() == ToDo.class) {
+                dukeWriter.write("ToDo / " + storage.get(i).getIsDone() + " / " + storage.get(i).getDescription() + "\n");
+            }
+            if (storage.get(i).getClass() == Event.class) {
+                dukeWriter.write("Event / " + ((Event) storage.get(i)).getIsDone() + " / " + ((Event) storage.get(i)).getDescription() + " / " + ((Event) storage.get(i)).getAt() + "\n");
+            }
+            if (storage.get(i).getClass() == Deadline.class) {
+                dukeWriter.write("Deadline / " + ((Deadline) storage.get(i)).getIsDone() + " / " + ((Deadline) storage.get(i)).getDescription() + " / " + ((Deadline) storage.get(i)).getBy() + "\n");
+            }
+        }
+        dukeWriter.close();
     }
 
     /**

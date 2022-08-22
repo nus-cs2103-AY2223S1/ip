@@ -30,4 +30,13 @@ public class Event extends Task {
     public String toString() {
         return "[E]" + super.toString() + " (at: " + at + ")";
     }
+
+    /**
+     * Method getAt()
+     *
+     * @return String representation of the at attribute.
+     */
+    public String getAt() {
+        return this.at;
+    }
 }
