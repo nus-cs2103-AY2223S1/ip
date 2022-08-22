@@ -84,6 +84,17 @@ public class Duke {
                             throw new DukeException("The description of a event cannot be empty.");
                         }
                     }
+                } else if (command.equals("delete")) {
+                    try {
+                        int index = Integer.parseInt(input.split(" ")[1]) - 1;
+                        Task deleted = list.get(index);
+                        list.remove(index);
+                        printWithLineBreak(
+                                "Noted, I've removed this task:\n" + deleted + "\nNow you have " + list.size()
+                                        + " tasks in your list.");
+                    } catch (Exception e) {
+                        throw new DukeException("Invalid Index given!");
+                    }
                 } else {
                     throw new DukeException("Sorry, I don't understand you. Please try again.");
                 }
