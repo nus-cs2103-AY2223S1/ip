@@ -5,6 +5,7 @@ public class DukeException extends Exception{
     protected static final String UNKNOWN_COMMAND = "I don't know what that means";
     protected static final String INVALID_INDEX = "The task number is invalid";
     protected static final String INVALID_FORMAT = "The task format is invalid";
+    protected static final String INVALID_DATE_FORMAT = "The date format is invalid";
 
     public DukeException(String message) {
         super(message);
@@ -28,5 +29,9 @@ public class DukeException extends Exception{
 
     public static DukeException DukeInvalidFormatException() {
         return new DukeException(INVALID_FORMAT);
+    }
+
+    public static DukeException DukeInvalidDateFormatException() {
+        return new DukeException(INVALID_DATE_FORMAT);
     }
 }

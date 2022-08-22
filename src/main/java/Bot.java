@@ -2,11 +2,13 @@ public class Bot {
 
     protected final String name;
     protected final TaskList taskList;
+    protected final Parser parser;
     protected static final String BORDER = "____________________________________________________________";
 
     public Bot() {
         this.name = "Bocil";
         this.taskList = new TaskList();
+        this.parser = new Parser();
     }
 
     public String introduce() {
@@ -40,10 +42,10 @@ public class Bot {
                         task = new Todo(name);
                     } else if (command.equals("deadline")) {
                         String[] details = name.split("\\s+/by\\s+");
-                        task = new Deadline(details[0], details[1]);
+                        task = new Deadline(details[0], this.parser.parseDate(details[1]));
                     } else {
                         String[] details = name.split("\\s+/at\\s+");
-                        task = new Event(details[0], details[1]);
+                        task = new Event(details[0], this.parser.parseDate(details[1]));
                     }
                 } catch (ArrayIndexOutOfBoundsException e) {
                     throw DukeException.DukeInvalidFormatException();

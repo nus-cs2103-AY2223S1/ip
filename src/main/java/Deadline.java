@@ -1,8 +1,11 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Deadline extends Task {
 
-    protected final String time;
+    protected final LocalDate time;
 
-    public Deadline(String name, String time) {
+    public Deadline(String name, LocalDate time) {
         super(name);
         this.time = time;
     }
@@ -12,7 +15,7 @@ public class Deadline extends Task {
     }
 
     public String getTime() {
-        return this.time;
+        return this.time.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
     public String getType() {
         return "D";
