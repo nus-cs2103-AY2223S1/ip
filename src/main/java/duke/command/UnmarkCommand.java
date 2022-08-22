@@ -25,6 +25,7 @@ public class UnmarkCommand extends Command {
     @Override
     public void execute(TaskList list, FileStorage storage, Ui ui) {
         list.markTaskUndone(index);
+        storage.writeToFile(list.getList());
         ui.printMarkTaskUndone(list.retrieveTask(index));
     }
 }

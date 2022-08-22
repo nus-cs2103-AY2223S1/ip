@@ -19,6 +19,5 @@ public class ExitCommand extends Command {
     @Override
     public void execute(TaskList list, FileStorage storage, Ui ui) {
         ui.printOutro();
-        storage.writeToFile(list.getList());
     }
 }

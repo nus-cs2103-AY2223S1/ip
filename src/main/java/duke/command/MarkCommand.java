@@ -25,6 +25,7 @@ public class MarkCommand extends Command {
     @Override
     public void execute(TaskList list, FileStorage storage, Ui ui) {
         list.markTaskDone(index);
+        storage.writeToFile(list.getList());
         ui.printMarkTaskDone(list.retrieveTask(index));
     }
 }

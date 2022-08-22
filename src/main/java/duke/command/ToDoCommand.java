@@ -26,6 +26,7 @@ public class ToDoCommand extends Command {
     @Override
     public void execute(TaskList list, FileStorage storage, Ui ui) {
         list.addTask(task);
+        storage.writeToFile(list.getList());
         ui.printAddedTask(list, task);
     }
 }
