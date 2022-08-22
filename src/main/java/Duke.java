@@ -12,6 +12,14 @@ public class Duke {
     private static String DEADLINE_TAG = " /by ";
     private static String EVENT_TAG = " /at ";
 
+    public Duke(ArrayList<Task> taskList) {
+        this.taskList = taskList;
+    }
+
+    public ArrayList<Task> getTaskList() {
+        return this.taskList;
+    }
+
     private void outputMessage(String message) {
         String[] messageLines = message.split("\n");
         for (String line : messageLines) {
@@ -22,76 +30,76 @@ public class Duke {
     private boolean parseMessage(String message) {
         String[] command = message.split(" ", 2);
         switch (command[0]) {
-            case "bye":
-                this.outputMessage(Messages.BYE[this.messageState]);
-                return false;
-            case "list":
-                this.outputMessage(Messages.BEFORE_LIST[this.messageState]);
-                this.printList();
-                this.outputMessage(Messages.AFTER_LIST[this.messageState]);
-                break;
-            case "mark":
-                try {
-                    this.handleTaskStatus(command, TaskStatus.MARK);
-                } catch (InvalidIndexException e) {
-                    this.outputMessage(Messages.INVALID_INDEX[messageState]);
-                } catch (MissingDescriptionException e) {
-                    this.outputMessage(Messages.WRONG_COMMAND_FORMAT[messageState]);
-                } catch (NumberFormatException e) {
-                    this.outputMessage(Messages.NOT_A_NUMBER[messageState]);
-                }
-                break;
-            case "unmark":
-                try {
-                    this.handleTaskStatus(command, TaskStatus.UNMARK);
-                } catch (InvalidIndexException e) {
-                    this.outputMessage(Messages.INVALID_INDEX[messageState]);
-                } catch (MissingDescriptionException e) {
-                    this.outputMessage(Messages.WRONG_COMMAND_FORMAT[messageState]);
-                } catch (NumberFormatException e) {
-                    this.outputMessage(Messages.NOT_A_NUMBER[messageState]);
-                }
-                break;
-            case "todo":
-                try {
-                    this.handleTaskType(command, TaskType.TODO);
-                } catch (MissingDescriptionException e) {
-                    this.outputMessage(Messages.WRONG_COMMAND_FORMAT[messageState]);
-                } catch (MissingArgumentException e) {
-                    e.printStackTrace();
-                }
-                break;
-            case "deadline":
-                try {
-                    this.handleTaskType(command, TaskType.DEADLINE);
-                } catch (MissingDescriptionException e) {
-                    this.outputMessage(Messages.WRONG_COMMAND_FORMAT[messageState]);
-                } catch (MissingArgumentException e) {
-                    this.outputMessage(Messages.MISSING_TIME[messageState]);
-                }
-                break;
-            case "event":
-                try {
-                    this.handleTaskType(command, TaskType.EVENT);
-                } catch (MissingDescriptionException e) {
-                    this.outputMessage(Messages.WRONG_COMMAND_FORMAT[messageState]);
-                } catch (MissingArgumentException e) {
-                    this.outputMessage(Messages.MISSING_TIME[messageState]);
-                }
-                break;
-            case "delete":
-                try {
-                    handleDelete(command);
-                } catch (InvalidIndexException e) {
-                    this.outputMessage(Messages.INVALID_INDEX[messageState]);
-                } catch (MissingDescriptionException e) {
-                    this.outputMessage(Messages.WRONG_COMMAND_FORMAT[messageState]);
-                } catch (NumberFormatException e) {
-                    this.outputMessage(Messages.NOT_A_NUMBER[messageState]);
-                }
-                break;
-            default:
-                this.outputMessage(Messages.INVALID_COMMAND[this.messageState]);
+        case "bye":
+            this.outputMessage(Messages.BYE[this.messageState]);
+            return false;
+        case "list":
+            this.outputMessage(Messages.BEFORE_LIST[this.messageState]);
+            this.printList();
+            this.outputMessage(Messages.AFTER_LIST[this.messageState]);
+            break;
+        case "mark":
+            try {
+                this.handleTaskStatus(command, TaskStatus.MARK);
+            } catch (InvalidIndexException e) {
+                this.outputMessage(Messages.INVALID_INDEX[messageState]);
+            } catch (MissingDescriptionException e) {
+                this.outputMessage(Messages.WRONG_COMMAND_FORMAT[messageState]);
+            } catch (NumberFormatException e) {
+                this.outputMessage(Messages.NOT_A_NUMBER[messageState]);
+            }
+            break;
+        case "unmark":
+            try {
+                this.handleTaskStatus(command, TaskStatus.UNMARK);
+            } catch (InvalidIndexException e) {
+                this.outputMessage(Messages.INVALID_INDEX[messageState]);
+            } catch (MissingDescriptionException e) {
+                this.outputMessage(Messages.WRONG_COMMAND_FORMAT[messageState]);
+            } catch (NumberFormatException e) {
+                this.outputMessage(Messages.NOT_A_NUMBER[messageState]);
+            }
+            break;
+        case "todo":
+            try {
+                this.handleTaskType(command, TaskType.TODO);
+            } catch (MissingDescriptionException e) {
+                this.outputMessage(Messages.WRONG_COMMAND_FORMAT[messageState]);
+            } catch (MissingArgumentException e) {
+                e.printStackTrace();
+            }
+            break;
+        case "deadline":
+            try {
+                this.handleTaskType(command, TaskType.DEADLINE);
+            } catch (MissingDescriptionException e) {
+                this.outputMessage(Messages.WRONG_COMMAND_FORMAT[messageState]);
+            } catch (MissingArgumentException e) {
+                this.outputMessage(Messages.MISSING_TIME[messageState]);
+            }
+            break;
+        case "event":
+            try {
+                this.handleTaskType(command, TaskType.EVENT);
+            } catch (MissingDescriptionException e) {
+                this.outputMessage(Messages.WRONG_COMMAND_FORMAT[messageState]);
+            } catch (MissingArgumentException e) {
+                this.outputMessage(Messages.MISSING_TIME[messageState]);
+            }
+            break;
+        case "delete":
+            try {
+                handleDelete(command);
+            } catch (InvalidIndexException e) {
+                this.outputMessage(Messages.INVALID_INDEX[messageState]);
+            } catch (MissingDescriptionException e) {
+                this.outputMessage(Messages.WRONG_COMMAND_FORMAT[messageState]);
+            } catch (NumberFormatException e) {
+                this.outputMessage(Messages.NOT_A_NUMBER[messageState]);
+            }
+            break;
+        default:
+            this.outputMessage(Messages.INVALID_COMMAND[this.messageState]);
         }
         return true;
     }
@@ -193,11 +201,13 @@ public class Duke {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println(logo);
-        Duke duke = new Duke();
+        SaveManager saveManager = new SaveManager(SaveManager.FILE_PATH);
+        Duke duke = new Duke(saveManager.load());
         duke.greet();
         Scanner scanner = new Scanner(System.in);
         do {
+            saveManager.save(duke.getTaskList());
             System.out.print("You: ");
-        } while(duke.parseMessage(scanner.nextLine()));
+        } while (duke.parseMessage(scanner.nextLine()));
     }
 }
