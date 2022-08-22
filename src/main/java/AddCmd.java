@@ -26,7 +26,7 @@ public class AddCmd extends Command {
             }
 
             str = name.substring("deadline".length() + 1);
-            splitS = str.split("/by", 2);
+            splitS = str.split("/by ", 2);
 
             if (splitS[0].equals("")) {
                 throw new DukeException("The description of a deadline cannot be empty.");
@@ -44,7 +44,7 @@ public class AddCmd extends Command {
             }
 
             str = name.substring("event".length() + 1);
-            splitS = str.split("/at", 2);
+            splitS = str.split("/at ", 2);
 
             if (splitS[0].equals("")) {
                 throw new DukeException("The description of an event cannot be empty.");
