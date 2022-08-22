@@ -1,13 +1,15 @@
 package duke;
 
-import duke.task.TaskList;
-
 import java.util.Scanner;
 
+import duke.task.TaskList;
+
+
+
 /**
- * The Duke.Duke class that instantiates instances of duke.
+ * The Duke class that instantiates instances of duke.
  *
- * Duke.Duke is a ChatBot that performs different actions
+ * Duke is a ChatBot that performs different actions
  * based on commands provided by user.
  *
  * CS2103T IP
@@ -25,6 +27,11 @@ public class Duke {
     private Ui ui;
     private Parser parser;
 
+    /**
+     * Constructor for ChatBot, Duke.
+     *
+     * @param filePath Location of savefile.
+     */
     public Duke(String filePath) {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
@@ -32,6 +39,9 @@ public class Duke {
         this.parser = new Parser(this.ui);
     }
 
+    /**
+     * Executes the ChatBot Program.
+     */
     public void run() {
         // Greets User
         ui.greetings();

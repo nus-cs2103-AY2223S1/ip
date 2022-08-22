@@ -1,25 +1,22 @@
 package duke;
 
-import duke.exception.DukeInvalidTimeException;
-
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.TaskList;
-import duke.task.ToDo;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import duke.exception.DukeInvalidTimeException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.ToDo;
 /**
- * A Duke.Storage class that stores the task in task list.
+ * The Storage class that stores the task in task list.
  *
  * CS2103T iP
  * AY22/23 Semester 1
@@ -27,8 +24,13 @@ import java.util.List;
  */
 public class Storage {
     /** Save location of task list */
-    File file;
+    private File file;
 
+    /**
+     * Constructor for Storage
+     *
+     * @param filePath Location of save file.
+     */
     public Storage(String filePath) {
         this.file = new File(filePath);
     }
@@ -36,19 +38,19 @@ public class Storage {
     /**
      * Saves Tasks into save file.
      *
-     * @param tasks The List of Duke.Task.Task to write from.
+     * @param tasks The List of Task to write from.
      */
     public void save(TaskList tasks) {
         // Create Directory or File if it does not exist
         try {
-            if (!file.exists()) {
-                File directory = new File(file.getParent());
+            if (!this.file.exists()) {
+                File directory = new File(this.file.getParent());
 
                 if (!directory.exists()) {
                     directory.mkdirs();
                 }
 
-                file.createNewFile();
+                this.file.createNewFile();
             }
         } catch (IOException e) {
             System.out.println("Exception Occurred: " + e.getMessage());
@@ -61,7 +63,7 @@ public class Storage {
             String done;
             String desc;
             String date;
-            FileWriter fileWriter = new FileWriter(file.getAbsoluteFile(), false);
+            FileWriter fileWriter = new FileWriter(this.file.getAbsoluteFile(), false);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
             for (Task task : tasks.getTaskList()) {
@@ -75,6 +77,7 @@ public class Storage {
                 bufferedWriter.newLine();
                 line = "";
             }
+
             bufferedWriter.close();
         } catch (IOException e) {
             System.out.println("Hmm... Error while saving Duke.Task.Task to file");
@@ -87,13 +90,13 @@ public class Storage {
     public List<Task> load() {
         List<Task> tasks = new ArrayList<>();
 
-        if (!file.exists()) {
+        if (!this.file.exists()) {
             System.out.println("Save file does not exist");
             return tasks;
         }
 
         try {
-            FileReader fileReader = new FileReader(file.getAbsoluteFile());
+            FileReader fileReader = new FileReader(this.file.getAbsoluteFile());
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
             String line = bufferedReader.readLine();
@@ -103,15 +106,17 @@ public class Storage {
                 String[] arr = line.split(" > ");
                 String type = arr[0];
                 switch (type) {
-                    case "T" :
-                        tasks.add(new ToDo(arr[1], arr[2]));
-                        break;
-                    case "E" :
-                        tasks.add(new Event(arr[1], arr[2], arr[3]));
-                        break;
-                    case "D" :
-                        tasks.add(new Deadline(arr[1], arr[2], arr[3]));
-                        break;
+                case "T":
+                    tasks.add(new ToDo(arr[1], arr[2]));
+                    break;
+                case "E":
+                    tasks.add(new Event(arr[1], arr[2], arr[3]));
+                    break;
+                case "D":
+                    tasks.add(new Deadline(arr[1], arr[2], arr[3]));
+                    break;
+                default:
+                    // Does Nothing
                 }
 
                 line = bufferedReader.readLine();

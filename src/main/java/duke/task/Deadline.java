@@ -1,9 +1,9 @@
 package duke.task;
 
-import duke.exception.DukeInvalidTimeException;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
+import duke.exception.DukeInvalidTimeException;
 
 /**
  * Deadline class that stores the Description and State of Deadline.
@@ -39,7 +39,7 @@ public class Deadline extends Task {
      * @param by The due date of the Deadline.
      */
     public Deadline(String description, String done, String by) throws DukeInvalidTimeException {
-        super(description, done,"E");
+        super(description, done, "E");
         this.by = by;
         this.dateTime = this.getDateTime();
     }
@@ -71,7 +71,7 @@ public class Deadline extends Task {
 
         if (hour == 0) {
             return dateStr + " " + "12am";
-        } else if(min != 0) {
+        } else if (min != 0) {
             String hourStr = String.valueOf(hourHand);
             String minStr = min < 10 ? "0" + min : String.valueOf(min);
             String amPm = hour < 12 ? "am" : "pm";
@@ -101,6 +101,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[" + this.getType() + "]" + super.toString()  + " (by: " + this.dateTime + ")";
+        return "[" + this.getType() + "]" + super.toString() + " (by: " + this.dateTime + ")";
     }
 }

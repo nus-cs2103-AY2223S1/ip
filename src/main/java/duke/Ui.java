@@ -3,6 +3,15 @@ package duke;
 import duke.task.Task;
 import duke.task.TaskList;
 
+/**
+ * The Ui class for Duke.
+ *
+ * It consists of methods that deals with interaction with users.
+ *
+ * CS2103T IP
+ * AY22/23 Semester 1
+ * @author Tan Jia Rong
+ */
 public class Ui {
     private static final String BOT_NAME = "duke";
 
@@ -50,7 +59,7 @@ public class Ui {
     /**
      * Prints message on task completion
      *
-     * @param task Duke.Task.Task that is completed.
+     * @param task Task that is completed.
      */
     public void markMessage(Task task) {
         System.out.println("\n-----------------------------------------");
@@ -62,7 +71,7 @@ public class Ui {
     /**
      * Prints message on task completion undo-ed
      *
-     * @param task Completed Duke.Task.Task that is undo-ed
+     * @param task Completed Task that is undo-ed
      */
     public void unmarkMessage(Task task) {
         System.out.println("\n-----------------------------------------");
@@ -90,7 +99,7 @@ public class Ui {
      * Prints message on task addition.
      *
      * @param size Size of task list after addition.
-     * @param task Duke.Task.Task added.
+     * @param task Task added.
      */
     public void addMessage(int size, Task task) {
         System.out.println("\n-----------------------------------------");
@@ -104,7 +113,7 @@ public class Ui {
      * Prints message on task deletion.
      *
      * @param size Size of task list after deletion.
-     * @param task Duke.Task.Task deleted.
+     * @param task Task deleted.
      */
     public void deleteMessage(int size, Task task) {
         System.out.println("\n-----------------------------------------");
@@ -114,6 +123,11 @@ public class Ui {
         System.out.println("-----------------------------------------\n");
     }
 
+    /**
+     * Prints help message.
+     *
+     * Shows the list of available commands.
+     */
     public void helpMessage() {
         System.out.println("\n-----------------------------------------");
         System.out.println("Here are the list of available commands");

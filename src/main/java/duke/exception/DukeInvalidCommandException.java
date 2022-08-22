@@ -9,7 +9,9 @@ package duke.exception;
  * @author Tan Jia Rong
  */
 public class DukeInvalidCommandException extends DukeException {
-
+    /**
+     * Constructor for DukeInvalidCommandException.
+     */
     public DukeInvalidCommandException() {
         super("OOPS!!! I'm sorry, but I don't know what that means :-(");
     }

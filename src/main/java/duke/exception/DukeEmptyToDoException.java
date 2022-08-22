@@ -9,7 +9,9 @@ package duke.exception;
  * @author Tan Jia Rong
  */
 public class DukeEmptyToDoException extends DukeException {
-
+    /**
+     * Constructor for DukeEmptyToDoException.
+     */
     public DukeEmptyToDoException() {
         super("OOPS!!! The description of a todo cannot be empty.");
     }

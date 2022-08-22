@@ -5,19 +5,37 @@ import duke.exception.DukeEmptyEventException;
 import duke.exception.DukeEmptyToDoException;
 import duke.exception.DukeException;
 import duke.exception.DukeInvalidCommandException;
-
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.TaskList;
 import duke.task.ToDo;
 
+/**
+ * The Parser class that parses user commands.
+ *
+ * CS2103T IP
+ * AY22/23 Semester 1
+ * @author Tan Jia Rong
+ */
 public class Parser {
     private Ui ui;
 
+    /**
+     * Constructor for Parser.
+     *
+     * @param ui The Ui of the ChatBot.
+     */
     public Parser(Ui ui) {
         this.ui = ui;
     }
 
+    /**
+     * Executes user inputs.
+     *
+     * @param command Task/Action to be executed
+     * @param description Description of the Task/Action to be executed.
+     * @param tasks TaskList where results are stored
+     */
     public void execute(String command, String description, TaskList tasks) {
         try {
             if (command.equalsIgnoreCase("list")) {
@@ -37,13 +55,13 @@ public class Parser {
                 }
                 tasks.add(new ToDo(description));
             } else if (command.equalsIgnoreCase("deadline")) {
-                if(description.isEmpty()) {
+                if (description.isEmpty()) {
                     throw new DukeEmptyDeadlineException();
                 }
                 String[] input = description.split(" /by ");
                 tasks.add(new Deadline(input[0], input[1]));
             } else if (command.equalsIgnoreCase("event")) {
-                if(description.isEmpty()) {
+                if (description.isEmpty()) {
                     throw new DukeEmptyEventException();
                 }
                 String[] input = description.split(" /at ");
@@ -59,6 +77,4 @@ public class Parser {
             ui.printErr("Input is invalid. Type help for list of available commands");
         }
     }
-
-
 }

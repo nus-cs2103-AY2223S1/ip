@@ -9,7 +9,9 @@ package duke.exception;
  * @author Tan Jia Rong
  */
 public class DukeOutOfBoundException extends DukeException {
-
+    /**
+     * Constructor for DukeOutOfBoundException.
+     */
     public DukeOutOfBoundException() {
         super("Boo... Task don't exist :(");
     }

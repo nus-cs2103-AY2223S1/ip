@@ -8,7 +8,9 @@ package duke.exception;
  * @author Tan Jia Rong
  */
 public class DukeException extends Exception {
-
+    /**
+     * Constructor for DukeException.
+     */
     public DukeException(String message) {
         super(message);
     }

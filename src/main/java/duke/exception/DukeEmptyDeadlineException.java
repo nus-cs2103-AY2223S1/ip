@@ -10,6 +10,9 @@ package duke.exception;
  */
 public class DukeEmptyDeadlineException extends DukeException {
 
+    /**
+     * Constructor for DukeEmptyDeadlineException.
+     */
     public DukeEmptyDeadlineException() {
         super("OOPS!!! The description of a deadline cannot be empty!\n"
                 + "Remember to add a /by (time)!!");

@@ -1,9 +1,9 @@
 package duke.task;
 
-import duke.exception.DukeInvalidTimeException;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
+import duke.exception.DukeInvalidTimeException;
 
 /**
  * Event class that stores the Description and State of Event.
@@ -37,7 +37,7 @@ public class Event extends Task {
      * @param at The timing of the Event.
      */
     public Event(String description, String done, String at) throws DukeInvalidTimeException {
-        super(description, done,"E");
+        super(description, done, "E");
         this.at = at;
         this.dateTime = this.getDateTime();
     }
@@ -69,7 +69,7 @@ public class Event extends Task {
 
         if (hour == 0) {
             return dateStr + " " + "12am";
-        } else if(min != 0) {
+        } else if (min != 0) {
             String hourStr = String.valueOf(hourHand);
             String minStr = min < 10 ? "0" + min : String.valueOf(min);
             String amPm = hour < 12 ? "am" : "pm";
@@ -99,6 +99,6 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[" + this.getType() + "]" + super.toString()  + " (at: " + this.dateTime + ")";
+        return "[" + this.getType() + "]" + super.toString() + " (at: " + this.dateTime + ")";
     }
 }

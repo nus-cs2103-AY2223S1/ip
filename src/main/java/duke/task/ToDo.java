@@ -25,7 +25,7 @@ public class ToDo extends Task {
      * @param done Completeness of Duke.Task.ToDo Task.
      */
     public ToDo(String description, String done) {
-        super(description, done,"T");
+        super(description, done, "T");
     }
 
     /**
