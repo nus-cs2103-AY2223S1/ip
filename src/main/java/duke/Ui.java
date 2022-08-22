@@ -22,7 +22,7 @@ public class Ui {
         System.out.println("FAILED! Could not find storage file containing your tasks");
         System.out.println("Add a task to generate one!!!");
     }
-
+    
     public void showLoadingSuccess() {
         System.out.println("Yay! Your tasks were loaded successfully!");
     }
@@ -37,26 +37,26 @@ public class Ui {
     
     public void showAddTask(Task task, TaskList tasks) {
         System.out.println("Got it. I've added this task:");
-        this.showTask(task);
-        this.showNumTasks(tasks);
+        showTask(task);
+        showNumTasks(tasks);
     }
     
     public void showDeleteTask(Task task, TaskList tasks) {
         System.out.println("Okie, I've deleted this task: ");
-        this.showTask(task);
-        this.showNumTasks(tasks);
+        showTask(task);
+        showNumTasks(tasks);
     }
     
     public void showMarkTask(Task task, TaskList tasks) {
         System.out.println("Sure! I've marked this task as done: ");
-        this.showTask(task);
-        this.showNumTasks(tasks);
+        showTask(task);
+        showNumTasks(tasks);
     }
     
     public void showUnmarkTask(Task task, TaskList tasks) {
         System.out.println("Sure! I've unmarked this task as done: ");
-        this.showTask(task);
-        this.showNumTasks(tasks);
+        showTask(task);
+        showNumTasks(tasks);
     }
     
     public void showNumTasks(TaskList tasks) {
@@ -70,5 +70,4 @@ public class Ui {
     public void showIsLoading() {
         System.out.println("Loading tasks from disk.......");
     }
-    
 }

@@ -1,11 +1,12 @@
 package duke.task;
 
-import duke.Parser;
-
 import java.time.LocalDateTime;
+
+import duke.Parser;
 
 public class Task {
     protected String description;
+    
     protected boolean isDone;
 
     public Task(String description) {
@@ -19,7 +20,6 @@ public class Task {
         boolean isComplete = taskSplit[1].equals("1");
         String taskDescription = taskSplit[2];
         Task task;
-        
         if (taskSymbol.equals("T")) {
             task = new Todo(taskDescription);
         } else if (taskSymbol.equals("D")) {
@@ -29,7 +29,6 @@ public class Task {
             LocalDateTime atDateTime = Parser.parseDateTime(taskSplit[3]);
             task = new Event(taskDescription, atDateTime);
         }
-        
         if (isComplete) {
             task.markAsDone();
         }
@@ -41,24 +40,24 @@ public class Task {
     }
 
     public void markAsDone() {
-        this.isDone = true;
+        isDone = true;
     }
 
     public void unmarkAsDone() {
-        this.isDone = false;
+        isDone = false;
     }
 
     public String getDescription() {
-        return this.description;
+        return description;
     }
 
     @Override
     public String toString() {
-        return "[" + this.getStatusIcon() + "] " + this.getDescription();
+        return "[" + getStatusIcon() + "] " + getDescription();
     }
     
     public String toFileFormatString() {
-        int i = this.isDone ? 1 : 0;
+        int i = isDone ? 1 : 0;
         return "|" + i + "|";
     }
 }

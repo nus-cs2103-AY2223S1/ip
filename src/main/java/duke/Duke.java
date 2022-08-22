@@ -1,12 +1,11 @@
 package duke;
 
-import duke.command.Command;
-import duke.exception.DukeException;
-import duke.task.TaskList;
-
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+import duke.command.Command;
+import duke.exception.DukeException;
+import duke.task.TaskList;
 
 public class Duke {
     private final Ui ui;
@@ -14,36 +13,35 @@ public class Duke {
     private TaskList tasks;
     
     public Duke(String pathString) {
-        this.ui = new Ui();
-        this.storage = new Storage(pathString);
+        ui = new Ui();
+        storage = new Storage(pathString);
         ui.showIsLoading();
         try {
-            this.tasks = new TaskList(storage.load());
+            tasks = new TaskList(storage.load());
             ui.showLoadingSuccess();
-        } catch(FileNotFoundException fnfe) {
+        } catch (FileNotFoundException fnfe) {
             ui.showLoadingError();
-            this.tasks = new TaskList();
+            tasks = new TaskList();
         }
     }
 
     public void start() {
         Scanner scanner = new Scanner(System.in);
-        this.ui.showWelcome();
-
+        ui.showWelcome();
         boolean isExit = false;
-
         while (!isExit) {
             try {
-                this.ui.showPrompt();
+                ui.showPrompt();
                 String fullCommand = scanner.nextLine();
                 Command command = Parser.parse(fullCommand);
-                command.execute(this.tasks, this.ui, this.storage);
+                command.execute(tasks, ui, storage);
                 isExit = command.isExit();
             } catch (DukeException de) {
                 ui.showError(de.getMessage());
             }
         }
     }
+    
     public static void main(String[] args) {
         Duke duke = new Duke("storage/tasks.txt");
         duke.start();
