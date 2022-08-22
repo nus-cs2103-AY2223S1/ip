@@ -1,19 +1,26 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Scanner;
 
-public class StorageOperation {
-    public static final String PATH_TO_DATA_DIRECTORY = "./data/";
-    public static final String TASK_LIST_STORAGE_NAME = "duke.txt";
+public class Storage {
+    public final String dataPath;
+    public final String storageName;
 
-    public static void writeTaskListToStorage(TaskList taskList) throws DukeException {
+    Storage(String dataPath, String storageName) {
+        this.dataPath = dataPath;
+        this.storageName = storageName;
+    }
+
+    public void writeTaskListToStorage(TaskList taskList) throws DukeException {
         try {
-            File directory = new File(PATH_TO_DATA_DIRECTORY);
+            File directory = new File(dataPath);
             if (!directory.exists() || !directory.isDirectory()) {
                 directory.mkdir();
             }
-            File file = new File(PATH_TO_DATA_DIRECTORY + "/" + TASK_LIST_STORAGE_NAME);
+            File file = new File(dataPath + "/" + storageName);
             FileWriter fw = new FileWriter(file);
             StringBuilder toWrite = new StringBuilder();
             for (String taskString : taskList.getAllTasksInStorageFormat()) {
@@ -26,18 +33,19 @@ public class StorageOperation {
         }
     }
 
-    public static void readStorageToTaskList(TaskList taskList) throws DukeException {
+    public List<Task> load() throws DukeException {
         try {
-            File file = new File(PATH_TO_DATA_DIRECTORY + "/" + TASK_LIST_STORAGE_NAME);
+            List<Task> tasks = new ArrayList<>();
+            File file = new File(dataPath + "/" + storageName);
             if (!file.exists()) {
                 throw new DukeException("Storage file does not exist yet");
             }
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
                 String taskString = scanner.nextLine();
-                taskList.addTask(StorageParser.parseTaskString(taskString));
+                tasks.add(StorageParser.parseTaskString(taskString));
             }
-
+            return tasks;
         } catch (IOException e) {
             throw new DukeException("Error reading from storage file");
         }

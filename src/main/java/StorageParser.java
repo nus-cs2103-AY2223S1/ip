@@ -13,7 +13,7 @@ public class StorageParser {
         throw new DukeException("Failed to parse task from storage");
     }
 
-    private static ToDo parseToDo(String[] arguments) throws DukeException {
+    private static Todo parseToDo(String[] arguments) throws DukeException {
         String parseErrorMessage = "Failed to parse todo from storage";
         if (arguments.length != 2) {
             throw new DukeException(parseErrorMessage);
@@ -21,7 +21,7 @@ public class StorageParser {
         try {
             boolean isDone = Integer.parseInt(arguments[0]) == 1 ? true : false;
             String description = arguments[1];
-            return new ToDo(description, isDone);
+            return new Todo(description, isDone);
         } catch (NumberFormatException e) {
             throw new DukeException(parseErrorMessage);
         }

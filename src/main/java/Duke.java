@@ -1,13 +1,21 @@
 public class Duke {
-    private static final String LOGO = " ____        _        \n"
-            + "|  _ \\ _   _| | _____ \n"
-            + "| | | | | | | |/ / _ \\\n"
-            + "| |_| | |_| |   <  __/\n"
-            + "|____/ \\__,_|_|\\_\\___|\n";
-    private final TaskList taskList;
+    public static final String PATH_TO_DATA_DIRECTORY = "./data/";
+    public static final String TASK_LIST_STORAGE_NAME = "duke.txt";
+    private final Storage storage;
+    private final Ui ui;
+    private TaskList taskList;
 
     public Duke() {
-        this.taskList = new TaskList();
+        ui = new Ui();
+        storage = new Storage(PATH_TO_DATA_DIRECTORY, TASK_LIST_STORAGE_NAME);
+        try {
+            taskList = new TaskList(storage.load());
+        } catch (DukeException e) {
+            ui.showError(e);
+            taskList = new TaskList();
+        }
+        Command.setUi(ui);
+        Command.setTaskList(taskList);
     }
 
     public static void main(String[] args) {
@@ -15,25 +23,17 @@ public class Duke {
     }
 
     public void run() {
-        System.out.println(LOGO);
-        Ui.printMessages(new String[]{"Hello! I'm Duke", "What can I do for you?"});
-
-        try {
-            StorageOperation.readStorageToTaskList(taskList);
-        } catch (DukeException e) {
-            Ui.showError(e);
-        }
-
+        ui.showWelcome();
         boolean isExit = false;
         while (!isExit && Ui.in.hasNextLine()) {
             try {
                 String input = Ui.in.nextLine();
-                Command c = Parser.parse(input);
-                c.execute(taskList);
-                StorageOperation.writeTaskListToStorage(taskList);
+                Command c = Parser.parseCommand(input);
+                c.execute();
+                storage.writeTaskListToStorage(taskList);
                 isExit = c.isExit();
             } catch (DukeException e) {
-                Ui.showError(e);
+                ui.showError(e);
             }
         }
     }

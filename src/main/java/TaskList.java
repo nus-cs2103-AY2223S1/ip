@@ -7,6 +7,10 @@ import java.util.ArrayList;
 public class TaskList {
     private final List<Task> tasks;
 
+    TaskList(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+
     TaskList() {
         this.tasks = new ArrayList<>();
     }
@@ -20,18 +24,35 @@ public class TaskList {
         return task;
     }
 
-    Task deleteTask(int index) {
-        return tasks.remove(index);
+    String getIndexOutOfBoundsExceptionMessage() {
+        return this.size() > 0 ? String.format("Task index out of range. Please choose from index 1 to %d", this.size()) :
+                "Tasks index out of range. There are no tasks.";
     }
 
-    Task markTask(int index) {
-        tasks.get(index).markAsDone();
-        return tasks.get(index);
+    Task deleteTask(int index) throws DukeException {
+        try {
+            return tasks.remove(index);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(getIndexOutOfBoundsExceptionMessage());
+        }
     }
 
-    Task unmarkTask(int index) {
-        tasks.get(index).unmarkAsDone();
-        return tasks.get(index);
+    Task markTask(int index) throws DukeException {
+        try {
+            tasks.get(index).markAsDone();
+            return tasks.get(index);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(getIndexOutOfBoundsExceptionMessage());
+        }
+    }
+
+    Task unmarkTask(int index) throws DukeException {
+        try {
+            tasks.get(index).unmarkAsDone();
+            return tasks.get(index);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(getIndexOutOfBoundsExceptionMessage());
+        }
     }
 
     List<String> getAllTasksInDisplayFormat() {
@@ -48,18 +69,6 @@ public class TaskList {
             numberedTaskList.add(tasks.get(i).getStorageFormat());
         }
         return numberedTaskList;
-    }
-
-    List<String> exportTasks() {
-        List<String> export = new ArrayList<>();
-        for (Task task : tasks) {
-
-        }
-        return export;
-    }
-
-    void importTasks(List<String> tasks) {
-
     }
 
     @Override

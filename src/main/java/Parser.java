@@ -5,64 +5,90 @@ public class Parser {
     private static final String DEADLINE_INDICATOR = "\\s*/by\\s*";
     private static final String EVENT_INDICATOR = "\\s*/at\\s*";
 
-    public static Command parse(String input) throws DukeException {
+    public static Command parseCommand(String input) throws DukeException {
         input = input.strip();
         String inputCommand = input.indexOf(" ") == -1 ?
                 input.toLowerCase() : input.toLowerCase().substring(0, input.indexOf(" "));
         String[] commandAndArguments = input.split(" ", 2);
-        String[] args = new String[0];
+        String args = "";
         if (commandAndArguments.length > 1) {
-            args = commandAndArguments[1].split(" ", 1);
+            args = commandAndArguments[1].strip();
         }
 
         switch (inputCommand) {
         case "help":
-            return new Command.HelpCommand(args);
+            return new HelpCommand();
         case "bye":
-            return new Command.ByeCommand(args);
+            return new ByeCommand();
         case "list":
-            return new Command.ListCommand(args);
+            return new ListCommand();
         case "mark":
-            return new Command.MarkCommand(args);
+            verifyArgumentsIsNotEmpty(args);
+            return new MarkCommand(parseTaskIndex(args));
         case "unmark":
-            return new Command.UnmarkCommand(args);
+            verifyArgumentsIsNotEmpty(args);
+            return new UnmarkCommand(parseTaskIndex(args));
         case "todo":
-            return new Command.ToDoCommand(args);
+            verifyArgumentsIsNotEmpty(args);
+            return new AddCommand(parseTodoArguments(args));
         case "event":
-            args = parseEventArguments(commandAndArguments);
-            return new Command.EventCommand(args);
+            verifyArgumentsIsNotEmpty(args);
+            return new AddCommand(parseEventArguments(args));
         case "deadline":
-            args = parseDeadlineArguments(commandAndArguments);
-            return new Command.DeadlineCommand(args);
+            verifyArgumentsIsNotEmpty(args);
+            return new AddCommand(parseDeadlineArguments(args));
         case "delete":
-            return new Command.DeleteCommand(args);
+            verifyArgumentsIsNotEmpty(args);
+            return new DeleteCommand(parseTaskIndex(args));
         case "":
-            return new Command.EmptyCommand(args);
+            return new EmptyCommand();
         default:
-            return new Command.UnknownCommand(args);
+            return new UnknownCommand();
         }
     }
 
-    private static String[] parseDeadlineArguments(String[] commandAndArguments) throws DukeException {
+    private static void verifyArgumentsIsNotEmpty(String args) throws DukeException {
+        if (args == "") {
+            throw new DukeException("Invalid command format, no argument provided");
+        }
+    }
+
+    private static int parseTaskIndex(String args) throws DukeException {
+        String parseErrorMessage = "Please provide an integer for task index";
+        try {
+            return Integer.parseInt(args) - 1;
+        } catch (NumberFormatException e) {
+            throw new DukeException(parseErrorMessage);
+        }
+    }
+
+    private static Task parseTodoArguments(String args) throws DukeException {
+        try {
+            return new Todo(args);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new DukeException("Invalid format for todo command");
+        }
+    }
+
+    private static Task parseDeadlineArguments(String args) throws DukeException {
         String formatErrorMessage = "Invalid format for deadline command";
-        return parseArgumentsWithDelimiter(commandAndArguments, DEADLINE_INDICATOR, formatErrorMessage);
+        String[] arguments = parseArgumentsWithDelimiter(args, DEADLINE_INDICATOR, formatErrorMessage);
+        return new Deadline(arguments[0], arguments[1]);
     }
 
-    private static String[] parseEventArguments(String[] commandAndArguments) throws DukeException {
+    private static Task parseEventArguments(String args) throws DukeException {
         String formatErrorMessage = "Invalid format for event command";
-        return parseArgumentsWithDelimiter(commandAndArguments, EVENT_INDICATOR, formatErrorMessage);
+        String[] arguments = parseArgumentsWithDelimiter(args, EVENT_INDICATOR, formatErrorMessage);
+        return new Event(arguments[0], arguments[1]);
     }
 
-    private static String[] parseArgumentsWithDelimiter(String[] commandAndArguments, String delimiter,
+    private static String[] parseArgumentsWithDelimiter(String args, String delimiter,
                                                         String formatErrorMessage) throws DukeException {
-        if (commandAndArguments.length <= 1) {
+        String[] arguments = args.split(delimiter, 2);
+        if (arguments.length <= 1) {
             throw new DukeException(formatErrorMessage);
         }
-        String[] args = commandAndArguments[1].split(delimiter, 2);
-        if (args.length <= 1) {
-            throw new DukeException(formatErrorMessage);
-        }
-        return stripArguments(args);
+        return stripArguments(arguments);
     }
 
     private static String[] stripArguments(String[] args) {

@@ -1,12 +1,16 @@
-todo borrow book
-deadline return book /by Sunday
-event project meeting /at Mon 2-4pm
-mark 2
 list
-unmark 2
+todo a
+deadline b /by 2022-11-22
+event c /at 2022-09-01
+list
+mark 5
+list
+unmark 5
 help
-delete 2
+delete 7
+delete 6
 list
+delete 5
 mark 10
 unmark 10
 gibberish

@@ -1,9 +1,9 @@
-public class ToDo extends Task {
-    ToDo(String description, boolean isDone) {
+public class Todo extends Task {
+    Todo(String description, boolean isDone) {
         super(description, isDone);
     }
 
-    ToDo(String description) {
+    Todo(String description) {
         super(description);
     }
 

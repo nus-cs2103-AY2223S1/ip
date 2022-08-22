@@ -4,85 +4,113 @@
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
+Hello! I'm Duke, What can I do for you?
     ____________________________________________________________
-     Hello! I'm Duke
-     What can I do for you?
-    ____________________________________________________________
-    ____________________________________________________________
-     Got it. I've added this task:
-     [T][ ] borrow book
-     Now you have 1 tasks in the list.
+     1.[T][X] read book
+     2.[D][ ] return book (by: 25 Dec 2022)
+     3.[E][ ] project meeting (at: 15 Sep 2022)
+     4.[T][X] join sports club
     ____________________________________________________________
     ____________________________________________________________
      Got it. I've added this task:
-     [D][ ] return book (by: Sunday)
-     Now you have 2 tasks in the list.
+     [T][ ] a
+     Now you have 5 tasks in the list.
     ____________________________________________________________
     ____________________________________________________________
-     Got it. I've added this event:
-     [E][ ] project meeting (at: Mon 2-4pm)
-     Now you have 3 tasks in the list.
+     Got it. I've added this task:
+     [D][ ] b (by: 22 Nov 2022)
+     Now you have 6 tasks in the list.
+    ____________________________________________________________
+    ____________________________________________________________
+     Got it. I've added this task:
+     [E][ ] c (at: 01 Sep 2022)
+     Now you have 7 tasks in the list.
+    ____________________________________________________________
+    ____________________________________________________________
+     1.[T][X] read book
+     2.[D][ ] return book (by: 25 Dec 2022)
+     3.[E][ ] project meeting (at: 15 Sep 2022)
+     4.[T][X] join sports club
+     5.[T][ ] a
+     6.[D][ ] b (by: 22 Nov 2022)
+     7.[E][ ] c (at: 01 Sep 2022)
     ____________________________________________________________
     ____________________________________________________________
      Nice! I've marked this task as done:
-     [D][X] return book (by: Sunday)
+     [T][X] a
     ____________________________________________________________
     ____________________________________________________________
-     1.[T][ ] borrow book
-     2.[D][X] return book (by: Sunday)
-     3.[E][ ] project meeting (at: Mon 2-4pm)
+     1.[T][X] read book
+     2.[D][ ] return book (by: 25 Dec 2022)
+     3.[E][ ] project meeting (at: 15 Sep 2022)
+     4.[T][X] join sports club
+     5.[T][X] a
+     6.[D][ ] b (by: 22 Nov 2022)
+     7.[E][ ] c (at: 01 Sep 2022)
     ____________________________________________________________
     ____________________________________________________________
      Ok, I've marked this task as not done yet:
-     [D][ ] return book (by: Sunday)
+     [T][ ] a
     ____________________________________________________________
     ____________________________________________________________
      Here are the list of commands:
-     0. help
-     1. bye
-     2. list
-     3. mark <task index>
-     4. unmark <task index>
-     5. todo <task description>
-     6. event <event description> /at <time>
-     7. deadline <task description> /by <time>
+     1. help
+     2. bye
+     3. list
+     4. mark <task index>
+     5. unmark <task index>
+     6. todo <task description>
+     7. event <event description> /at <date>
+     8. deadline <task description> /by <date>
+     9. delete <task index>
     ____________________________________________________________
     ____________________________________________________________
      Noted. I've removed this task:
-     [D][ ] return book (by: Sunday)
-     Now you have 2 tasks in the list.
+     [E][ ] c (at: 01 Sep 2022)
+     Now you have 6 tasks in the list.
     ____________________________________________________________
     ____________________________________________________________
-     1.[T][ ] borrow book
-     2.[E][ ] project meeting (at: Mon 2-4pm)
+     Noted. I've removed this task:
+     [D][ ] b (by: 22 Nov 2022)
+     Now you have 5 tasks in the list.
     ____________________________________________________________
     ____________________________________________________________
-     Task index out of range
+     1.[T][X] read book
+     2.[D][ ] return book (by: 25 Dec 2022)
+     3.[E][ ] project meeting (at: 15 Sep 2022)
+     4.[T][X] join sports club
+     5.[T][ ] a
     ____________________________________________________________
     ____________________________________________________________
-     Task index out of range
+     Noted. I've removed this task:
+     [T][ ] a
+     Now you have 4 tasks in the list.
+    ____________________________________________________________
+    ____________________________________________________________
+     Task index out of range. Please choose from index 1 to 4
+    ____________________________________________________________
+    ____________________________________________________________
+     Task index out of range. Please choose from index 1 to 4
     ____________________________________________________________
     ____________________________________________________________
      Unknown command provided!
      Here are the list of commands:
-     0. help
-     1. bye
-     2. list
-     3. mark <task index>
-     4. unmark <task index>
-     5. todo <task description>
-     6. event <event description> /at <time>
-     7. deadline <task description> /by <time>
+     1. help
+     2. bye
+     3. list
+     4. mark <task index>
+     5. unmark <task index>
+     6. todo <task description>
+     7. event <event description> /at <date>
+     8. deadline <task description> /by <date>
+     9. delete <task index>
     ____________________________________________________________
     ____________________________________________________________
-     Wrong number of arguments provided.
-     Usage: todo <task description>
+     Invalid command format, no argument provided
     ____________________________________________________________
     ____________________________________________________________
-     Wrong number of arguments provided.
-     Usage: deadline <task description> /by <time>
+     Invalid format for deadline command
     ____________________________________________________________
     ____________________________________________________________
-     Wrong number of arguments provided.
-     Usage: event <event description> /at <time>
+     Invalid format for event command
     ____________________________________________________________
