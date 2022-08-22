@@ -146,7 +146,7 @@ public class DukeTaskManager {
         if ((0 <= i) && (i < dukeTasks.size())) {
             Task remove = dukeTasks.remove(i);
             String str = remove.toString();
-            DukeUi.dukePrint(String.format("OK, I've remove this task:\n %s\n %s", str, getNoOfTasks()));
+            DukeUi.dukePrint(String.format("OK, I've remove this task:\n %s\n %s", str, getNoOfTasksRemaining()));
         } else {
             DukeUi.dukePrint("Error. Task is not in the list\n");
         }
