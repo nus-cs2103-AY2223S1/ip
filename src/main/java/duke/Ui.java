@@ -4,6 +4,14 @@ import duke.task.Task;
 
 import java.util.Scanner;
 
+/**
+ * Ui deals with interactions with the user
+ *
+ * @author Samsation
+ * @version CS2103T AY 22/23 Sem 1
+ *
+ */
+
 public class Ui {
 
     private static final String LOGO = "\t ____        _\n"
@@ -15,53 +23,103 @@ public class Ui {
 
     private Scanner sc;
 
+    /**
+     * A constructor for Ui.
+     */
     public Ui() {
         this.sc = new Scanner(System.in);
     }
 
+    /**
+     * A method that reads the next line of user input.
+     *
+     * @return The user input.
+     */
     public String readCommand() {
         return sc.nextLine();
     }
 
+    /**
+     * A method that prints LINE.
+     */
     public void showLine() {
         System.out.println(LINE);
     }
 
+    /**
+     * A method that prints the welcome message.
+     */
     public void showWelcome() {
         System.out.printf("%s%n%s%s%s%s%n", LINE, LOGO, LINE,"\n\tHello! I'm Duke\n\tWhat can I do for you?\n", LINE);
     }
 
+    /**
+     * A method that prints the farewell message.
+     */
     public void showBye() {
         System.out.println("\tBye. Hope to see you again soon!");
         sc.close();
     }
 
+    /**
+     * A method that prints the TaskList.
+     *
+     * @param tasks TaskList to be displayed.
+     */
     public void showList(TaskList tasks) {
         System.out.println(tasks.toString());
     }
 
+    /**
+     * A method that prints the mark-message.
+     *
+     * @param task The Task to be marked.
+     */
     public void showMark(Task task) {
         System.out.printf("%s%s%n", "\tNice! I've marked this task as done:\n\t  ", task);
     }
 
+    /**
+     * A method that prints the un-mark-message.
+     *
+     * @param task The Task to be un-marked.
+     */
     public void showUnmark(Task task) {
         System.out.printf("%s%s%n", "\tOK, I've marked this task as not done yet:\n\t  ", task);
     }
 
+    /**
+     * A method that prints the add-message.
+     *
+     * @param task The Task to be added.
+     * @param size Size of the TaskList after Task has been added.
+     */
     public void showAdd(Task task, int size) {
         System.out.printf("%s%s%s%s%s", "\tGot it. I've added this task:\n\t  ", task, "\n\tNow you have ",
                 size, " task(s) in the list.\n");
     }
 
+    /**
+     * A method that prints the delete-message.
+     *
+     * @param task The Task to be deleted.
+     * @param size Size of the TaskList after Task has been deleted.
+     */
     public void showDelete(Task task, int size) {
         System.out.printf("%s%s%s%s%s", "\tNoted. I've removed this task:\n\t  ", task, "\n\tNow you have ",
                 size, " task(s) in the list.\n");
     }
 
+    /**
+     * A method that prints the error message when date file cannot be found.
+     */
     public void showLoadingError() {
         System.out.printf("%s%s", LINE, "\n\tSave data does not exist.\n");
     }
 
+    /**
+     * A method that prints an error message.
+     */
     public void showError(String errorMessage) {
         System.out.println(errorMessage);
     }

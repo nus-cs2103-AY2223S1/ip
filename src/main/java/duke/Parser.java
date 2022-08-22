@@ -13,12 +13,28 @@ import duke.command.UnmarkCommand;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
+
+/**
+ * Parser deals with making sense of the user command.
+ *
+ * @author Samsation
+ * @version CS2103T AY 22/23 Sem 1
+ *
+ */
+
 public class Parser {
 
     private enum CommandTag {
         BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE
     }
 
+    /**
+     * A method that creates a new Command according to the user input.
+     *
+     * @param inputCommand Input command from the user.
+     * @return A specific-typed Command corresponding to the user input.
+     * @throws DukeException If the user input is unrecognised.
+     */
     public static Command parse(String inputCommand) throws DukeException {
         try {
             String[] splitInputCommand = inputCommand.trim().split(" ", 2);
