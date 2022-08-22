@@ -1,4 +1,8 @@
 package DukeBot;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -6,14 +10,7 @@ public class Duke {
 
     private static ArrayList<Task> tasks = new ArrayList<>();
 
-
-    // public static void loadFile(File file) {
-    //     try {
-    //         Scanner sc = new Scanner(file);
-    //     } catch (FileNotFoundException e) {
-    //         Path path = Paths.get("../Duke.txt");
-    //     }
-    // }
+    private static File fileToRead;
 
     public static void list() {
         System.out.println("    Here are the tasks in your list:");
@@ -22,13 +19,13 @@ public class Duke {
         }
     }
 
-    public static void mark(int taskNumber) throws MarkToggleException {
+    public static void mark(int taskNumber) throws DukeException {
         tasks.get(taskNumber).markComplete();
         System.out.println("    Nice! I've marked this task as done:");
         System.out.println(String.format("      %s", tasks.get(taskNumber)));
     }
 
-    public static void unmark(int taskNumber) throws MarkToggleException {
+    public static void unmark(int taskNumber) throws DukeException {
         tasks.get(taskNumber).markIncomplete();
         System.out.println("    OK, I've marked this task as not done yet");
         System.out.println(String.format("      %s", tasks.get(taskNumber)));
@@ -44,7 +41,14 @@ public class Duke {
 
     public static void main(String[] args) {
         System.out.println("Working Directory = " + System.getProperty("user.dir"));
-
+        fileToRead = new File(Paths.get(System.getProperty("user.dir"), "src", "main", "tasks.txt").toUri());
+        if (!fileToRead.exists()) {
+            try {
+                fileToRead.createNewFile();
+            } catch (IOException e) {
+                throw new DukeException("Unable to create \"tasks.txt\"");
+            }
+        }
         System.out.println("-----------------------------------------------");
         System.out.println("| Hi this is Thesh. What can I do for you? |");
         System.out.println("-----------------------------------------------");
@@ -61,7 +65,7 @@ public class Duke {
                     String taskNumberString = command.split(" ")[1];
                     int taskNumber = Integer.parseInt(taskNumberString);
                     Duke.mark(taskNumber - 1);
-                } catch (MarkToggleException e) {
+                } catch (DukeException e) {
                     System.out.println(e);
                 } catch (NumberFormatException e) {
                     System.out.println("    please only input a number after 'mark'.");
@@ -73,7 +77,7 @@ public class Duke {
                     String taskNumberString = command.split(" ")[1];
                     int taskNumber = Integer.parseInt(taskNumberString);
                     Duke.unmark(taskNumber - 1);
-                } catch (MarkToggleException e) {
+                } catch (DukeException e) {
                     System.out.println(e);
                 } catch (NumberFormatException e) {
                     System.out.println("    please only input a number after 'unmark'.");

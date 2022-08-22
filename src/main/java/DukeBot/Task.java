@@ -30,9 +30,9 @@ public abstract class Task {
      *
      * @throws MarkToggleException if Task is already complete.
      */
-    public void markComplete() throws MarkToggleException {
+    public void markComplete() throws DukeException {
         if (this.isComplete) {
-            throw new MarkToggleException();
+            throw new DukeException("Tried to mark an already completed task.");
         }
         this.isComplete = true;
     }
@@ -64,9 +64,9 @@ public abstract class Task {
      *
      * @throws MarkToggleException if Task is incomplete.
      */
-    public void markIncomplete() throws MarkToggleException {
+    public void markIncomplete() throws DukeException {
         if (!this.isComplete) {
-            throw new MarkToggleException();
+            throw new DukeException("Tried to unmark an incomplete task.");
         }
         this.isComplete = false;
     }
