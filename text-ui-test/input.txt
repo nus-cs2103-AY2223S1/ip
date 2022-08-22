@@ -1,7 +1,9 @@
 todo go buy dinner
 deadline do homework /by 2/12/2019 1800
 deadline do another homework /by 2019/12/02 1800
+event go there /at 2022/02/01 1920
 event meeting /at 2019-10-15
+todo Another task
 list
 mark 2
 unmark 2
@@ -16,9 +18,8 @@ deadline
 deadline s
 event
 event s
-delete 2
-delete yes
 delete 0
+delete yes
 list
 
 bye
