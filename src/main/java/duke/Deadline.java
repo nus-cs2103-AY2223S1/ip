@@ -16,6 +16,10 @@ public class Deadline extends Task {
         return date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
     }
 
+    /**
+     * Returns String representation of Deadline object.
+     * @return String representation
+     */
     @Override
     public String toString() {
 

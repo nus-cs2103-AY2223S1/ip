@@ -15,6 +15,10 @@ public class Event extends Task{
         return date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
     }
 
+    /**
+     * Returns String representation of an Event object
+     * @return String representation
+     */
     @Override
     public String toString() {
         return "[E]" + super.toString() + " at: " + dateFormat(date);

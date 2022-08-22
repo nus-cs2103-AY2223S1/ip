@@ -12,15 +12,25 @@ public abstract class Task implements Serializable {
         this.completed = false;
     }
 
-    // this is implemented as a toggle; could be problematic in future
+    /**
+     * Toggles the completed variable between true/false
+     */
     public void completeToggle() {
         this.completed = !this.completed;
     }
 
+    /**
+     * Returns the completed variable
+     * @return completed
+     */
     public boolean isCompleted() {
         return this.completed;
     }
 
+    /**
+     * Returns String representation of a task. This is built on by subclasses
+     * @return String representation
+     */
     @Override
     public String toString() {
         if (completed) {

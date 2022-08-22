@@ -7,7 +7,9 @@ import java.util.ArrayList;
 public class Ui {
     private static final String DIVIDER = "-------------------------------------\n";
 
-    // greet method contains the greeting message
+    /**
+     * Prints the greeting message
+     */
     public static void greet() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -21,10 +23,16 @@ public class Ui {
         System.out.println(DIVIDER + message + DIVIDER);
     }
 
+    /**
+     * Prints the exit message
+     */
     public static void exit() {
         System.out.println(DIVIDER + "Bye. Hope to see you again soon!\n" + DIVIDER);
     }
 
+    /**
+     * Prints the TaskList ArrayList<Task> in pretty UI
+     */
     public static void listPrint(ArrayList<Task> input) {
         if (input.isEmpty()) {
             System.out.println(DIVIDER + "List is empty\n" + DIVIDER);
@@ -37,18 +45,33 @@ public class Ui {
         }
     }
 
+    /**
+     * Prints the newly added task to TaskList
+     * @param type Type of Task
+     * @param currTask Task object
+     * @param size New size of TaskList
+     */
     public static void addTask(String type, Task currTask, int size) {
         System.out.printf(DIVIDER + "OK, I've added this %s:\n %s\n"
                 +"Number of tasks in list: %d\n" + DIVIDER + "\n",
                 type, currTask, size);
     }
 
+    /**
+     * Prints the newly deleted task from TaskList
+     * @param currTask Task object
+     * @param size New size of TaskList
+     */
     public static void deleteTask(Task currTask, int size) {
         System.out.printf(DIVIDER + "OK, I've removed this task:\n"
                 +"  %s \nNumber of tasks in list: %d\n" + DIVIDER + "\n",
                 currTask, size);
     }
 
+    /**
+     * Prints the newly toggled task from TaskList
+     * @param currTask Task Object
+     */
     public static void toggleTask(Task currTask) {
         if(currTask.isCompleted()) {
             System.out.println(DIVIDER + "Nice! I've marked this task as done:\n"
@@ -59,6 +82,10 @@ public class Ui {
         }
     }
 
+    /**
+     * Prints any exception message handled by Parser in pretty UI
+     * @param e Exception
+     */
     public static void printException(DukeException e) {
         System.out.println(DIVIDER + e.getMessage() + DIVIDER);
     }

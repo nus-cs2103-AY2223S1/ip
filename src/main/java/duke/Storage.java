@@ -7,6 +7,10 @@ import java.util.ArrayList;
 public class Storage {
     private static final String FILENAME = "SaveData.txt";
 
+    /**
+     * Writes the ArrayList<Task> input to the specified save file
+     * @param  array ArrayList<Task>
+     */
     public static void save(ArrayList<Task> array) {
         try {
             FileOutputStream writeData = new FileOutputStream(FILENAME);
@@ -19,6 +23,10 @@ public class Storage {
         }
     }
 
+    /**
+     * Returns an ArrayList<Task> retrieved from the specified save file
+     * @return ArrayList<Task>
+     */
     public static ArrayList<Task> read() {
         try {
             FileInputStream readData = new FileInputStream(FILENAME);

@@ -8,17 +8,31 @@ import java.util.ArrayList;
 public class TaskList {
     private ArrayList<Task> tasks;
 
+    /**
+     * Creates a TaskList object from a reference input ArrayList<Task>
+     * @param input ArrayList<Task>
+     */
     public TaskList(ArrayList<Task> input) {
         this.tasks = input;
     }
 
+    /**
+     * Commands Ui class to print out the ArrayList<Task> in pretty UI
+     */
     public void list() {
+        //move Ui calls to Parser instead. Function is redundant.
         Ui.listPrint(tasks);
     }
 
-    // atodo, deadline and event breaks if no input is entered after each command (1 for atodo, 2 for others)
-    // atodo creates an empty task if no input after command (unresolved)
+    /**
+     * Adds a Task item to the ArrayList<Task> accounting for the Type and Item
+     * @param type Type of Task
+     * @param item Additional Arguments for specified Task
+     * @throws DukeException if inputs are missing or dates are incorrect
+     */
     public void listAdd(String type, String item) throws DukeException {
+        // atodo creates an empty task if no input after command (unresolved)
+        // move Ui calls to Parser instead.
         Task currTask;
         String[] args;
         switch(type) {
@@ -57,7 +71,11 @@ public class TaskList {
         }
     }
 
-    // breaks if no input is entered after mark, or input isn't int, or index out of range
+    /**
+     * Deletes the Task item from the ArrayList<Task> at specified index (1-indexed)
+     * @param indexString String representation of 1-indexed index
+     * @throws DukeException if argument is of wrong format or OOB error
+     */
     public void listDelete(String indexString) throws DukeException {
         int index = 0;
         try {
@@ -73,7 +91,11 @@ public class TaskList {
         Storage.save(tasks);
     }
 
-    // breaks if no input is entered after mark, or input isn't int, or index out of range
+    /**
+     * Toggles the Task item completion from ArrayList<Task> at specified index (1-indexed)
+     * @param indexString String representation of 1-indexed index
+     * @throws DukeException if argument is of wrong format or OOB error
+     */
     public void listToggle(String indexString) throws DukeException{
         int index = 0;
         try {

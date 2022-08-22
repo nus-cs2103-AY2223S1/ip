@@ -9,12 +9,24 @@ public class Parser {
     private Storage sto;
     private TaskList tasks;
 
+    /**
+     * Creates an instance of a Parser object
+     * @param ui
+     * @param sto
+     * @param tl
+     */
     public Parser(Ui ui, Storage sto, TaskList tl) {
         this.ui = ui;
         this.sto = sto;
         this.tasks = tl;
     }
 
+    /**
+     * Accepts user input and generates duke output accordingly
+     * @param input
+     * @return boolean end to determine execution finish
+     * @throws DukeException when runtime errors occur
+     */
     public boolean handler(String input) throws DukeException {
         String[] args = input.split(" ", 2);
         boolean end = false;
