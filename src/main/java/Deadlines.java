@@ -18,4 +18,10 @@ public class Deadlines extends Task {
         return this.taskType + this.getStatusIcon() +
                 " " + this.description + " (" + this.deadline + ")";
     }
+
+    @Override
+    public String textDesc() {
+        return "D : " + this.getStatusIcon() + " : " +
+                this.description + " : " + this.deadline + "\n";
+    }
 }

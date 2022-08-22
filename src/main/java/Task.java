@@ -26,4 +26,8 @@ public class Task {
     public String stringDesc() {
         return this.getStatusIcon() + " " + this.description;
     }
+
+    public String textDesc() {
+        return this.description;
+    }
 }

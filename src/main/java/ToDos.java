@@ -16,4 +16,9 @@ public class ToDos extends Task {
         return this.taskType +
                 this.getStatusIcon() + " " + this.description;
     }
+
+    @Override
+    public String textDesc() {
+        return "T : " + this.getStatusIcon() + " : " + this.description + "\n";
+    }
 }

@@ -18,4 +18,10 @@ public class Events extends Task {
         return this.taskType + this.getStatusIcon() +
                 " " + this.description + " (" + this.duration + ")";
     }
+
+    @Override
+    public String textDesc() {
+        return "E : " + this.getStatusIcon() + " : " +
+                this.description + " : " + this.duration + "\n" ;
+    }
 }
