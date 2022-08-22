@@ -1,7 +1,5 @@
 package jduke.data;
 
-import jduke.Jduke;
-import jduke.data.exception.JdukeException;
 import jduke.task.Deadline;
 import jduke.task.Event;
 import jduke.task.Task;
@@ -12,13 +10,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class TaskList {
-    private static final String TODO_FORMAT = "todo <description>";
-    private static final String EVENT_FORMAT = "event <description> /at <dd/mm/yyyy> <hhmm | optional>";
-    private static final String DEADLINE_FORMAT = "deadline <description> /by <dd/mm/yyyy> <hhmm | optional>";
-    private static final String LIST_FORMAT = "list <dd/mm/yyyy | optional>";
-    private static final String MARK_FORMAT = "mark <integer>";
-    private static final String UNMARK_FORMAT = "unmark <integer>";
-    private static final String DELETE_FORMAT = "delete <integer>";
     private ArrayList<Task> tasks;
 
     public TaskList() {
@@ -46,15 +37,13 @@ public class TaskList {
         }
     }
 
-    public void listTasks(String params) throws JdukeException {
-        if (!(params.matches("[0-9]{1,2}/[0-9]{1,2}/[0-9]{4}") || params.matches(""))) {
-            throw new JdukeException("invalid LIST format", LIST_FORMAT);
-        }
+    public String listTasks(String params) {
+        StringBuilder sb = new StringBuilder();
         if (tasks.size() == 0) {
-            System.out.println("|  no tasks found");
+            return "|  no tasks found";
         } else if (params.equals("")) {
             for (int pos = 0; pos < tasks.size(); pos++) {
-                System.out.printf("%d ==> %s%n", pos + 1, tasks.get(pos));
+                sb.append(String.format("%d ==> %s%n", pos + 1, tasks.get(pos)));
             }
         } else {
             LocalDate date = LocalDate.parse(params,
@@ -63,92 +52,54 @@ public class TaskList {
             for (int pos = 0; pos < tasks.size(); pos++) {
                 if (tasks.get(pos).isEqualDate(date)) {
                     hasTask = true;
-                    System.out.printf("%d ==> %s%n", pos + 1, tasks.get(pos));
+                    sb.append(String.format("%d ==> %s%n", pos + 1, tasks.get(pos)));
                 }
             }
             if (!hasTask) {
-                System.out.println("|  no tasks found");
+                return "|  no tasks found";
             }
         }
+        return sb.toString();
     }
 
-    public void printLastTask() {
-        System.out.printf(
-                "|  added task:%n|    %s%n|  %d%s in list%n",
-                tasks.get(tasks.size() - 1),
-                tasks.size(),
-                (tasks.size() == 1 ? " task" : " tasks")
-        );
+    public void addTodo(ToDo todo) {
+        tasks.add(todo);
     }
 
-    public void addTodo(String params) throws JdukeException {
-        if (!params.toLowerCase().matches("[^ ](.*)")) {
-            throw new JdukeException("invalid TODO format", TODO_FORMAT);
-        }
-        tasks.add(new ToDo(params));
-        printLastTask();
+    public void addDeadline(Deadline deadline) {
+        tasks.add(deadline);
     }
 
-    public void addDeadline(String params) throws JdukeException {
-        if (!(params.toLowerCase().matches(
-                "[^ ](.*) /by [0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{4}")
-                || params.toLowerCase().matches("[^ ](.*) /by [0-9]{1,2}/[0-9]{1,2}/[0-9]{4}"))) {
-            throw new JdukeException("invalid DEADLINE format", DEADLINE_FORMAT);
-        }
-        String[] deadlineParams = params.split(" /by ", 2);
-        tasks.add(new Deadline(deadlineParams[0], deadlineParams[1]));
-        printLastTask();
-    }
-    public void addEvent(String params) throws JdukeException {
-        if (!(params.toLowerCase().matches(
-                "[^ ](.*) /at [0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{4}")
-                || params.toLowerCase().matches("[^ ](.*) /at [0-9]{1,2}/[0-9]{1,2}/[0-9]{4}"))) {
-            throw new JdukeException("invalid EVENT format", EVENT_FORMAT);
-        }
-        String[] eventParams = params.split(" /at ", 2);
-        tasks.add(new Event(eventParams[0], eventParams[1]));
-        printLastTask();
+    public void addEvent(Event event) {
+        tasks.add(event);
     }
 
-    public int handleTaskPos(String params, Jduke.Command command) throws JdukeException {
-        if (!params.matches("([0-9]+)")) {
-            switch (command) {
-            case MARK:
-                throw new JdukeException("invalid MARK format", MARK_FORMAT);
-            case UNMARK:
-                throw new JdukeException("invalid UNMARK format", UNMARK_FORMAT);
-            case DELETE:
-                throw new JdukeException("invalid DELETE format", DELETE_FORMAT);
-            }
-        }
+    public String markTask(String params) {
         int pos = Integer.parseInt(params) - 1;
         if (pos < 0 || tasks.size() <= pos) {
-            throw new JdukeException(
-                    "invalid task number",
-                    String.format("max index is %d", tasks.size())
-            );
+            return String.format("|  invalid task number%n|  max id is %d%n", tasks.size());
         }
-        return pos;
-    }
-    public void unmarkTask(String params) throws JdukeException {
-        int pos = handleTaskPos(params, Jduke.Command.UNMARK);
-        tasks.get(pos).markAsUndone();
-        System.out.printf("|  unmarked task:%n|    %s%n", tasks.get(pos));
-    }
-    public void markTask(String params) throws JdukeException {
-        int pos = handleTaskPos(params, Jduke.Command.MARK);
         tasks.get(pos).markAsDone();
-        System.out.printf("|  marked task:%n|    %s%n", tasks.get(pos));
+        return String.format("|  marked task:%n|    %s%n", tasks.get(pos));
     }
-    public void deleteTask(String params) throws JdukeException {
-        int pos = handleTaskPos(params, Jduke.Command.DELETE);
-        System.out.printf(
-                "|  deleted task:%n|    %s%n|  %d%s in list%n",
-                tasks.get(pos),
-                (tasks.size() - 1),
-                (tasks.size() == 2 ? " task" : " tasks")
-        );
+
+    public String unmarkTask(String params) {
+        int pos = Integer.parseInt(params) - 1;
+        if (pos < 0 || tasks.size() <= pos) {
+            return String.format("|  invalid task number%n|  max id is %d%n", tasks.size());
+        }
+        tasks.get(pos).markAsUndone();
+        return String.format("|  unmarked task:%n|    %s%n", tasks.get(pos));
+    }
+
+    public String deleteTask(String params) {
+        int pos = Integer.parseInt(params) - 1;
+        if (pos < 0 || tasks.size() <= pos) {
+            return String.format("|  invalid task number%n|  max id is %d%n", tasks.size());
+        }
+        String removedTask = tasks.get(pos).toString();
         tasks.remove(pos);
+        return String.format("|  deleted task:%n|    %s%n", removedTask);
     }
 
     public ArrayList<String> getTasksToStore() {

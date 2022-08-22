@@ -1,16 +1,14 @@
 |  Welcome to JDuke -- Version 1.0
 |  What can I do for you?
 
-jduke> |  Error:
-|  cannot understand command
+jduke> |  cannot understand command
 
-jduke> |  Error:
+jduke> |  cannot understand command
 |  invalid TODO format
 |    todo <description>
 
 jduke> |  added task:
 |    [T][ ] cry
-|  7 tasks in list
 
 jduke> 1 ==> [T][X] read book
 2 ==> [D][ ] return book (by: Jun 06 2000)
@@ -23,65 +21,60 @@ jduke> 1 ==> [T][X] read book
 jduke> |  marked task:
 |    [T][X] read book
 
-jduke> |  Error:
+jduke> |  cannot understand command
 |  invalid MARK format
 |    mark <integer>
 
-jduke> |  Error:
-|  invalid task number
-|    max index is 7
+jduke> |  invalid task number
+|  max id is 7
 
-jduke> |  Error:
+jduke> |  cannot understand command
 |  invalid DEADLINE format
 |    deadline <description> /by <dd/mm/yyyy> <hhmm | optional>
 
-jduke> |  Error:
+jduke> |  cannot understand command
 |  invalid UNMARK format
 |    unmark <integer>
 
 jduke> |  added task:
 |    [D][ ] CS2103T Week 2 (by: Aug 18 2022)
-|  8 tasks in list
 
-jduke> |  Error:
+jduke> |  cannot understand command
 |  invalid DEADLINE format
 |    deadline <description> /by <dd/mm/yyyy> <hhmm | optional>
 
 jduke> 8 ==> [D][ ] CS2103T Week 2 (by: Aug 18 2022)
 
 jduke> |  no tasks found
-
-jduke> |  Error:
+jduke> |  cannot understand command
 |  invalid LIST format
 |    list <dd/mm/yyyy | optional>
 
-jduke> |  Error:
+jduke> |  cannot understand command
 |  invalid EVENT format
 |    event <description> /at <dd/mm/yyyy> <hhmm | optional>
 
-jduke> |  Error:
+jduke> |  cannot understand command
 |  invalid EVENT format
 |    event <description> /at <dd/mm/yyyy> <hhmm | optional>
 
-jduke> |  Error:
+jduke> |  cannot understand command
 |  invalid EVENT format
 |    event <description> /at <dd/mm/yyyy> <hhmm | optional>
 
-jduke> |  Error:
+jduke> |  cannot understand command
 |  invalid DEADLINE format
 |    deadline <description> /by <dd/mm/yyyy> <hhmm | optional>
 
 jduke> |  added task:
 |    [T][ ] cry harder
-|  9 tasks in list
 
-jduke> |  Error:
+jduke> |  cannot understand command
 |  invalid EVENT format
 |    event <description> /at <dd/mm/yyyy> <hhmm | optional>
 
 jduke> |  added task:
 |    [E][ ] end of sem (at: Dec 10 2022)
-|  10 tasks in list
 
 jduke> 1 ==> [T][X] read book
 2 ==> [D][ ] return book (by: Jun 06 2000)
@@ -94,7 +87,7 @@ jduke> 1 ==> [T][X] read book
 9 ==> [T][ ] cry harder
 10 ==> [E][ ] end of sem (at: Dec 10 2022)
 
-jduke> |  Error:
+jduke> |  cannot understand command
 |  invalid MARK format
 |    mark <integer>
 
@@ -103,13 +96,11 @@ jduke> |  marked task:
 
 jduke> |  deleted task:
 |    [D][X] return book (by: Jun 06 2000)
-|  9 tasks in list
 
-jduke> |  Error:
-|  invalid task number
-|    max index is 9
+jduke> |  invalid task number
+|  max id is 9
 
-jduke> |  Error:
+jduke> |  cannot understand command
 |  invalid MARK format
 |    mark <integer>
 

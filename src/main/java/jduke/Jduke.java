@@ -1,5 +1,7 @@
 package jduke;
 
+import jduke.commands.ByeCommand;
+import jduke.commands.Command;
 import jduke.data.TaskList;
 import jduke.data.exception.JdukeException;
 import jduke.parser.Parser;
@@ -7,65 +9,54 @@ import jduke.storage.Storage;
 import jduke.ui.Ui;
 
 public class Jduke {
-    public enum Command {
-        LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE
-    }
-
-    private TaskList list;
+    private TaskList tasklist;
     private Storage storage;
     private Ui ui;
 
-    public Jduke(String filePath) {
+    private Jduke(String filePath) {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
         try {
-            this.list = new TaskList(storage.load());
+            this.tasklist = new TaskList(storage.load());
         } catch (JdukeException e) {
             this.ui.showErrorMessage(e.getMessage());
-            this.list = new TaskList();
+            this.tasklist = new TaskList();
         }
     }
 
-    public void run() {
+    private void start() {
         this.ui.showGreeting();
-        String input = this.ui.getUserCommand();
-        while (!input.equals("bye")) {
-            try {
-                Command mainCmd = Parser.parseMainCommand(input);
-                String cmdParams = Parser.parseCommandParams(input);
-                switch (mainCmd) {
-                case LIST:
-                    list.listTasks(cmdParams);
-                    break;
-                case MARK:
-                    list.markTask(cmdParams);
-                    break;
-                case UNMARK:
-                    list.unmarkTask(cmdParams);
-                    break;
-                case TODO:
-                    list.addTodo(cmdParams);
-                    break;
-                case DEADLINE:
-                    list.addDeadline(cmdParams);
-                    break;
-                case EVENT:
-                    list.addEvent(cmdParams);
-                    break;
-                case DELETE:
-                    list.deleteTask(cmdParams);
-                    break;
-                }
-                if (!mainCmd.equals(Command.LIST)) {
-                    storage.saveAllTasks(list.getTasksToStore());
-                }
-            } catch (JdukeException e) {
-                this.ui.showErrorMessage(e.getMessage());
-            } finally {
-                input = this.ui.getUserCommand();
-            }
-        }
+    }
+    private void exit() {
         this.ui.showGoodbye();
+        System.exit(0);
+    }
+
+    private void runCommandLoop() {
+        Command command;
+        do {
+            String input = this.ui.getUserCommand();
+            command = new Parser().parseCommand(input);
+            String result = executeCommand(command);
+            this.ui.showToUser(result);
+        } while (!ByeCommand.isBye(command));
+    }
+    private String executeCommand(Command command) {
+        try {
+            command.setData(tasklist);
+            String result = command.execute();
+            storage.saveAllTasks(tasklist.getTasksToStore());
+            return result;
+        } catch (JdukeException e) {
+            this.ui.showErrorMessage(e.getMessage());
+        }
+        return "";
+    }
+
+    private void run() {
+        start();
+        runCommandLoop();
+        exit();
     }
     public static void main(String[] args) {
         new Jduke("data/tasks.txt").run();
