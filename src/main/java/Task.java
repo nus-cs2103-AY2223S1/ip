@@ -7,12 +7,21 @@ public class Task {
         this.done = false;
     }
 
+
     void Done() {
         this.done = true;
     }
 
     void unDone() {
         this.done = false;
+    }
+
+    boolean getDone() {
+        return this.done;
+    }
+
+    String getName() {
+        return this.name;
     }
 
     @Override
