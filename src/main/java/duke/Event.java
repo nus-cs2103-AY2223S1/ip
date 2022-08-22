@@ -1,3 +1,5 @@
+package duke;
+
 public class Event extends Task {
     /** The time of the event. **/
     protected String at;
@@ -14,9 +16,9 @@ public class Event extends Task {
     }
 
     /**
-     * Formats and outputs the string representation of an Event viable for writing
+     * Formats and outputs the string representation of an duke.Event viable for writing
      * into text file.
-     * @return formatted txt file string representation of an Event.
+     * @return formatted txt file string representation of an duke.Event.
      */
     @Override
     public String formatFileText() {

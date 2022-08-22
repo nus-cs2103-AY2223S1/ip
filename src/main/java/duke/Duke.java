@@ -1,17 +1,19 @@
+package duke;
+
 import java.util.Scanner;
 
 public class Duke {
-    /** The storage component of Duke. */
+    /** The storage component of duke.Duke. */
     private Storage storage;
-    /** The tasks component of Duke. */
+    /** The tasks component of duke.Duke. */
     private TaskList tasks;
-    /** The parse component of Duke. */
+    /** The parse component of duke.Duke. */
     private Parser parser;
-    /** The ui component of Duke. */
+    /** The ui component of duke.Duke. */
     private Ui ui;
 
     /**
-     * The class constructor for Duke. Initializes all necessary
+     * The class constructor for duke.Duke. Initializes all necessary
      * objects for usage. Reads and loads previous tasks if available.
      * @param filePath
      */
@@ -23,8 +25,8 @@ public class Duke {
     }
 
     /**
-     * The core functionality of Duke is started using this command. One-half
-     * of the decision making tree of Duke. Ends the process when encounters
+     * The core functionality of duke.Duke is started using this command. One-half
+     * of the decision making tree of duke.Duke. Ends the process when encounters
      * "bye", and handles all exceptions.
      */
     public void run() {

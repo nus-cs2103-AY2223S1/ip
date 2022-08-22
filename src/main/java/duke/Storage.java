@@ -1,3 +1,5 @@
+package duke;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -12,7 +14,7 @@ public class Storage {
     protected File file;
 
     /**
-     * The class constructor for Storage.
+     * The class constructor for duke.Storage.
      * @param filePath where tasks are saved to and loaded from.
      */
     public Storage(String filePath) {
@@ -20,10 +22,10 @@ public class Storage {
     }
 
     /**
-     * Re-initializes a Todo object from its string representation
+     * Re-initializes a duke.Todo object from its string representation
      * in the saved file.
      * @param input String of the task.
-     * @return Todo object.
+     * @return duke.Todo object.
      */
     public Todo loadTodo(String input) {
         String[] taskType = input.split(" ", 2);
@@ -33,12 +35,12 @@ public class Storage {
     }
 
     /**
-     * Re-initializes a Deadline object from its string representation
+     * Re-initializes a duke.Deadline object from its string representation
      * in the saved file. An exception would never occur as the deadline
      * string representation in the saved file has already been properly
      * formatted.
      * @param input String of the task.
-     * @return Deadline object.
+     * @return duke.Deadline object.
      */
     public Deadline loadDeadline(String input) {
         String[] taskType = input.split(" ", 2);
@@ -53,10 +55,10 @@ public class Storage {
     }
 
     /**
-     * Re-initializes a Event object from its string representation
+     * Re-initializes a duke.Event object from its string representation
      * in the saved file.
      * @param input String of the task.
-     * @return Event object.
+     * @return duke.Event object.
      */
     public Event loadEvent(String input) {
         String[] taskType = input.split(" ", 2);
@@ -66,10 +68,10 @@ public class Storage {
     }
 
     /**
-     * Reads all tasks in file and adds them to the TaskList. If no previous
-     * file has been found, it returns an empty TaskList.
-     * @param list the TaskList containing the tasks.
-     * @return TaskList with all saved tasks added
+     * Reads all tasks in file and adds them to the duke.TaskList. If no previous
+     * file has been found, it returns an empty duke.TaskList.
+     * @param list the duke.TaskList containing the tasks.
+     * @return duke.TaskList with all saved tasks added
      */
     public TaskList loadFile(TaskList list) {
         try {
@@ -110,10 +112,10 @@ public class Storage {
     }
 
     /**
-     * Writes all events on the TaskList to a txt File. The directory and file
+     * Writes all events on the duke.TaskList to a txt File. The directory and file
      * is created if it does not exist.
      * @param filePath where tasks are saved to and loaded from.
-     * @param inputList the TaskList where all tasks are to be saved.
+     * @param inputList the duke.TaskList where all tasks are to be saved.
      */
     public static void writeToFile(String filePath, TaskList inputList)  {
         try {

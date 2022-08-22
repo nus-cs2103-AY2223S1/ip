@@ -1,13 +1,15 @@
+package duke;
+
 /**
  * This class handles the parsing of the user input command.
  * This is the other half of the decision making tree.
  */
 public class Parser {
-    /** The TaskList where new tasks are added to. */
+    /** The duke.TaskList where new tasks are added to. */
     private TaskList tasks;
 
     /**
-     * The class constructor for Parser.
+     * The class constructor for duke.Parser.
      * @param tasks where tasks are to be added.
      */
     public Parser(TaskList tasks) {

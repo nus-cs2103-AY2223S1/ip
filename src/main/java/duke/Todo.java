@@ -1,3 +1,5 @@
+package duke;
+
 public class Todo extends Task {
     /**
      * The class constructor, which utilizes the superclass
@@ -21,9 +23,9 @@ public class Todo extends Task {
     }
 
     /**
-     * Formats and outputs the string representation of Todo Task viable for writing
+     * Formats and outputs the string representation of duke.Todo duke.Task viable for writing
      * into text file.
-     * @return formatted txt file string representation of a Todo.
+     * @return formatted txt file string representation of a duke.Todo.
      */
     @Override
     public String toString() {

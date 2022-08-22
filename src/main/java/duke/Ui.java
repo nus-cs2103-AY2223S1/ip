@@ -1,3 +1,5 @@
+package duke;
+
 /**
  * This class handles all main interactions with the user, including
  * outputting any error messages if any.
@@ -12,7 +14,7 @@ public class Ui {
      * Outputs a salutation, indicating the programme has started running.
      */
     public void start() {
-        System.out.println("Hello! I'm Duke\nWhat can I do for you?");
+        System.out.println("Hello! I'm duke.Duke\nWhat can I do for you?");
     }
 
     /**
@@ -25,7 +27,7 @@ public class Ui {
     /**
      * Outputs any error message, which briefly describes its origin, and ways
      * to fix it.
-     * @param e DukeException
+     * @param e duke.DukeException
      */
     public void showError(DukeException e) {
         System.out.println(e);
@@ -33,7 +35,7 @@ public class Ui {
 
     /**
      * Outputs the string representation of all tasks that has been
-     * added to the arraylist via the Task toString method.
+     * added to the arraylist via the duke.Task toString method.
      * @param tasks
      */
     public void printList(TaskList tasks) {

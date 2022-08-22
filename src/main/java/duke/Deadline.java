@@ -1,3 +1,5 @@
+package duke;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -44,9 +46,9 @@ public class Deadline extends Task {
     }
 
     /**
-     * Formats and outputs the string representation of a Deadline viable for writing
+     * Formats and outputs the string representation of a duke.Deadline viable for writing
      * into text file.
-     * @return formatted txt file string representation of a Deadline.
+     * @return formatted txt file string representation of a duke.Deadline.
      */
     @Override
     public String formatFileText() {
