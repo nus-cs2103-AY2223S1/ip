@@ -19,6 +19,12 @@ public class Storage {
         this.filePath = filePath;
     }
 
+    /**
+     * Returns a Task object from an individual line in the save file.
+     *
+     * @param line Individual line in the save file.
+     * @return Task from the line if it is able to be parsed, else null.
+     */
     private static Task parseTaskLine(String line) {
         String[] tokens = line.split("\\|");
         Task t;
@@ -32,13 +38,20 @@ public class Storage {
                 case "E": t = new Event(meta); break;
                 default: throw new Exception();
             }
-            if (done == 1) t.mark();
+            if (done == 1) {
+                t.mark();
+            }
             return t;
         } catch (Exception e) {
             return null;
         }
     }
 
+    /**
+     * Returns an ArrayList containing all the parsed tasks.
+     *
+     * @return ArrayList containing all the parsed tasks.
+     */
     public ArrayList<Task> load() {
         File f = new File(this.filePath);
         ArrayList<Task> res = new ArrayList<>();
@@ -47,7 +60,9 @@ public class Storage {
             String line = reader.readLine();
             while (line != null) {
                 Task t = parseTaskLine(line);
-                if (t != null) res.add(t);
+                if (t != null) {
+                    res.add(t);
+                }
                 line = reader.readLine();
             }
             reader.close();
@@ -64,6 +79,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Saves all the tasks in the TaskList to a save file.
+     *
+     * @param taskList TaskList object containing all the tasks to be saved
+     */
     public void save(TaskList taskList) {
         String res = "";
         for (int i = 0; i < taskList.getSize(); i++) {
@@ -71,7 +91,6 @@ public class Storage {
                 String saveText = taskList.get(i).saveText();
                 res += saveText + '\n';
             } catch (DukeException e) {
-
             }
         }
         try {

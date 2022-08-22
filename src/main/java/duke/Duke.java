@@ -30,11 +30,19 @@ public class Duke {
         this.tasks = new TaskList(storage.load());
     }
 
+    /**
+     * Terminates Duke application.
+     *
+     */
     public void terminate() {
         this.isTerminated = true;
         Ui.showTermination();
     }
 
+    /**
+     * Runs Duke application.
+     *
+     */
     public void run() {
         Ui.showGreeting();
         Scanner scanner = new Scanner(System.in);
@@ -44,8 +52,12 @@ public class Duke {
                 String direction = currentCommand.getDirection();
                 String meta = currentCommand.getMeta();
                 switch (direction) {
-                    case "bye": this.terminate(); break;
-                    case "list": Ui.showTasksList(this.tasks); break;
+                    case "bye":
+                        this.terminate();
+                        break;
+                    case "list":
+                        Ui.showTasksList(this.tasks);
+                        break;
                     case "unmark":
                         Task unmarked = this.tasks.unmark(currentCommand.extractIndex());
                         Ui.showTaskStatus(unmarkMessage, unmarked);
