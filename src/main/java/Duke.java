@@ -45,41 +45,41 @@ public class Duke {
     }
 
     public void loop(Scanner sc) {
-        String input = sc.nextLine().trim();
+        while (sc.hasNext()) {
+            String input = sc.nextLine().trim();
 
-        if ("bye".equals(input)) {
-            System.out.println("Bye. Hope to see you again soon!");
-            return;
-        } else if ("list".equals(input)) {
-            System.out.println("Here are the tasks in your list:");
-            System.out.print(inputListToString());
-        } else if (Pattern.matches("mark \\d+", input)) {
-            int index = Integer.parseInt(input.split("\\s+")[1]) - 1;
-            Task taskToMark = taskList.get(index);
-            taskToMark.mark();
-            System.out.println("Nice! I've marked this task as done:");
-            System.out.println(taskToMark);
-        } else if (Pattern.matches("unmark \\d+", input)) {
-            int index = Integer.parseInt(input.split("\\s+")[1]) - 1;
-            Task taskToUnmark = taskList.get(index);
-            taskToUnmark.unmark();
-            System.out.println("OK, I've marked this task as not done yet:");
-            System.out.println(taskToUnmark);
-        } else {
-            try {
-                TaskTypes type = getTaskType(input);
-                int i = input.indexOf(' ');
-                String taskString = input.substring(i + 1);
-                Task newTask = addNewTask(taskString, type);
-                String response = String.format("Got it. I've added this task:\n  " +
-                        "%s\nNow you have %d tasks in the list.", newTask, taskList.size());
-                System.out.println(response);
-            } catch (NoSuchTaskException e) {
-                System.out.println("Error: " + e);
+            if ("bye".equals(input)) {
+                System.out.println("Bye. Hope to see you again soon!");
+                return;
+            } else if ("list".equals(input)) {
+                System.out.println("Here are the tasks in your list:");
+                System.out.print(inputListToString());
+            } else if (Pattern.matches("mark \\d+", input)) {
+                int index = Integer.parseInt(input.split("\\s+")[1]) - 1;
+                Task taskToMark = taskList.get(index);
+                taskToMark.mark();
+                System.out.println("Nice! I've marked this task as done:");
+                System.out.println(taskToMark);
+            } else if (Pattern.matches("unmark \\d+", input)) {
+                int index = Integer.parseInt(input.split("\\s+")[1]) - 1;
+                Task taskToUnmark = taskList.get(index);
+                taskToUnmark.unmark();
+                System.out.println("OK, I've marked this task as not done yet:");
+                System.out.println(taskToUnmark);
+            } else {
+                try {
+                    TaskTypes type = getTaskType(input);
+                    int i = input.indexOf(' ');
+                    String taskString = input.substring(i + 1);
+                    Task newTask = addNewTask(taskString, type);
+                    String response = String.format("Got it. I've added this task:\n  " +
+                            "%s\nNow you have %d tasks in the list.", newTask, taskList.size());
+                    System.out.println(response);
+                } catch (NoSuchTaskException e) {
+                    System.out.println("Error: " + e);
+                }
             }
         }
-
-        loop(sc);
     }
 
     private String inputListToString() {
