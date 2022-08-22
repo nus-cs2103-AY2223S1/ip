@@ -1,5 +1,6 @@
 package duke;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import duke.task.Task;
@@ -67,7 +68,7 @@ public class Ui {
      * @param tasks TaskList to be displayed.
      */
     public void showList(TaskList tasks) {
-        System.out.println(tasks.toString());
+        System.out.printf("%s%n%s%n", "\tHere are the task(s) in your list: ", tasks.toString());
     }
 
     /**
@@ -110,8 +111,21 @@ public class Ui {
                 size, " task(s) in the list.\n");
     }
 
+    public void showFind(ArrayList<Task> foundTasks) {
+        String lst = "";
+        int size = foundTasks.size();
+        for (int i = 0; i < size; i++) {
+            if (i == size - 1) {
+                lst += String.format("\t%d.%s", i + 1, foundTasks.get(i));
+            } else {
+                lst += String.format("\t%d.%s\n", i + 1, foundTasks.get(i));
+            }
+        }
+        System.out.printf("%s%n%s%n", "\tHere are the matching task(s) in your list: ", lst);
+    }
+
     /**
-     * A method that prints the error message when date file cannot be found.
+     * A method that prints the error message when data file cannot be found.
      */
     public void showLoadingError() {
         System.out.printf("%s%s", LINE, "\n\tSave data does not exist.\n");

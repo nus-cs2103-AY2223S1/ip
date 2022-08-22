@@ -59,6 +59,10 @@ public class Task {
         this.isDone = false;
     }
 
+    public boolean hasKeyword(String keyword) {
+        return description.contains(keyword);
+    }
+
     /**
      * A method that creates a specific Task type given the input details.
      *

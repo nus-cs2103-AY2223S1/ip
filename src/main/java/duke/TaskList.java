@@ -130,6 +130,16 @@ public class TaskList {
         return tasks.remove(index);
     }
 
+    public ArrayList<Task> findTask(String keyword) {
+        ArrayList<Task> foundTasks = new ArrayList<>();
+        for (Task task : tasks) {
+            if (task.hasKeyword(keyword)) {
+                foundTasks.add(task);
+            }
+        }
+        return foundTasks;
+    }
+
     /**
      * Converts list into data to be saved in Storage.
      *
