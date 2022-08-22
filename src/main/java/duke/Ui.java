@@ -49,6 +49,7 @@ public class Ui {
         System.out.println("Roger nya! I've removed this task:\n  " + task.toString());
         System.out.println("Now you have " + size + " task(s) left in the list.");
     }
+    
     public void showLine() {
 
     }
