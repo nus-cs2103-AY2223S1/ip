@@ -1,8 +1,14 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Duke {
     private static boolean isRunning = true;
+    private static boolean hasFinishedLoading = false;
     private static ArrayList<Task> tasks = new ArrayList<>();
     private static Scanner sc = new Scanner(System.in);
     
@@ -23,7 +29,64 @@ public class Duke {
     private String eventAt = "/at";
     private String delete = "delete";
     private String space = " ";
-    
+    private String filePath = "C:/Data/Duke.txt";
+
+    //@@author chengda300
+    //Reused from https://nus-cs2103-ay2223s1.github.io/website/schedule/week3/topics.html
+    // with minor modifications
+    public void loadData(String filePath) throws FileNotFoundException {
+        File f = new File(filePath);
+        Scanner s = new Scanner(f);
+        while (s.hasNext()) {
+            String input = s.nextLine();
+            if (input.startsWith(mark + space)) {
+                String parameter = input.substring((mark + space).length());
+                markTask(parameter);
+            } else if (input.startsWith(unmark + space)) {
+                String parameter = input.substring((unmark + space).length());
+                unmarkTask(parameter);
+            } else if (input.startsWith(todo + space)) {
+                String parameter = input.substring((todo + space).length());
+                addTodo(parameter);
+            } else if (input.startsWith(deadline + space)) {
+                String parameter = input.substring((deadline + space).length());
+                addDeadline(parameter);
+            } else if (input.startsWith(event + space)) {
+                String parameter = input.substring((event + space).length());
+                addEvent(parameter);
+            } else if (input.startsWith(delete + space)) {
+                String parameter = input.substring((delete + space).length());
+                deleteTask(parameter);
+            } else {
+                System.out.println("There is an error processing this command: " + input);
+            }
+            /*
+            if (fullTaskInformation.startsWith(todo)) {
+                addTodo(fullTaskInformation.substring((todo + space).length()));
+            } else if (fullTaskInformation.startsWith(deadline)) {
+                addDeadline(fullTaskInformation.substring((deadline + space).length()));
+            } else if (fullTaskInformation.startsWith(event)) {
+                addEvent(fullTaskInformation.substring((event + space).length()));
+            } else {
+                System.out.println("An error occurred while loading this task: "
+                        + fullTaskInformation);
+            }
+            */
+        }
+    }
+    //@@author
+
+    //@@author chengda300
+    //Reused from https://nus-cs2103-ay2223s1.github.io/website/schedule/week3/topics.html
+    public static void writeToFile(String filePath, String textToAdd) throws IOException {
+        if (hasFinishedLoading) {
+            FileWriter fw = new FileWriter(filePath, true);
+            fw.write(textToAdd);
+            fw.close();
+        }
+    }
+    //@@author
+
     public void addTodo(String s) {
         if (s.isBlank()) {
             System.out.println("The task is empty, what do you really mean?");
@@ -32,12 +95,17 @@ public class Duke {
             tasks.add(t);
             System.out.println("Successfully added: " + t);
             System.out.println("You have " + tasks.size() + " tasks in the list now");
+            try {
+                writeToFile(filePath, todo + space + s + "\n");
+            } catch (IOException e) {
+                System.out.println("This command could not be saved due to an unknown error.");
+            }
         }
     }
 
     public void addDeadline(String s) {
         if (!s.contains(space + deadlineBy + space)) {
-            if (s.startsWith(deadlineBy) || s.endsWith(deadlineBy)) {
+            if (s.startsWith(deadlineBy)) {
                 System.out.println("The task is empty, what do you really mean?");
             } else {
                 System.out.println("The deadline is empty, do you mean it has no deadline?");
@@ -57,13 +125,18 @@ public class Duke {
                 tasks.add(t);
                 System.out.println("Successfully added: " + t);
                 System.out.println("You have " + tasks.size() + " tasks in the list now");
+                try {
+                    writeToFile(filePath, this.deadline + space + s + "\n");
+                } catch (IOException e) {
+                    System.out.println("This command could not be saved due to an unknown error.");
+                }
             }
         }
     }
 
     public void addEvent(String s) {
         if (!s.contains(space + eventAt + space)) {
-            if (s.startsWith(eventAt) || s.endsWith(eventAt)) {
+            if (s.startsWith(eventAt)) {
                 System.out.println("The event is empty, what do you really mean?");
             } else {
                 System.out.println("The time is empty, do you mean it never starts?");
@@ -81,6 +154,11 @@ public class Duke {
                 tasks.add(e);
                 System.out.println("Successfully added: " + e);
                 System.out.println("You have " + tasks.size() + " tasks in the list now");
+                try {
+                    writeToFile(filePath, this.event + space + s + "\n");
+                } catch (IOException exception) {
+                    System.out.println("This command could not be saved due to an unknown error.");
+                }
             }
         }
     }
@@ -100,6 +178,11 @@ public class Duke {
             } else {
                 Task t = tasks.get(index);
                 t.markTask();
+                try {
+                    writeToFile(filePath, mark + space + input + "\n");
+                } catch (IOException e) {
+                    System.out.println("This command could not be saved due to an unknown error.");
+                }
             }
         } catch (NumberFormatException e) {
             System.out.println("I cannot mark a task that does not exist!");
@@ -114,6 +197,11 @@ public class Duke {
             } else {
                 Task t = tasks.get(index);
                 t.unmarkTask();
+                try {
+                    writeToFile(filePath, unmark + space + input + "\n");
+                } catch (IOException e) {
+                    System.out.println("This command could not be saved due to an unknown error.");
+                }
             }
         } catch (NumberFormatException e) {
             System.out.println("I cannot unmark a task that does not exist!");
@@ -130,6 +218,11 @@ public class Duke {
                 tasks.remove(t);
                 System.out.println("Successfully deleted: " + t);
                 System.out.println("You have " + tasks.size() + " tasks in the list now");
+                try {
+                    writeToFile(filePath, delete + space + input + "\n");
+                } catch (IOException e) {
+                    System.out.println("This command could not be saved due to an unknown error.");
+                }
             }
         } catch (NumberFormatException e) {
             System.out.println("I cannot delete a task that does not exist!");
@@ -211,6 +304,12 @@ public class Duke {
     public static void main(String[] args) {
         Duke duke = new Duke();
         System.out.println("Hello from dude\n" + duke.logo);
+        try {
+            duke.loadData(duke.filePath);
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found.");
+        }
+        duke.hasFinishedLoading = true;
         while (duke.isRunning) {
             String input = duke.sc.nextLine();
             if (input.equals(duke.bye)) {
