@@ -9,6 +9,7 @@ public class Duke {
 
         System.out.println("Hello! I'm Piggy");
         System.out.println("What can I oink for you?");
+        System.out.println("Use the following format for datetime: yyyy-MM-dd HH:mm");
 
         String input;
         while (true) {
