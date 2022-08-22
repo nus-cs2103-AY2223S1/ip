@@ -37,6 +37,12 @@ public class DukeException extends RuntimeException {
         }
     }
 
+    public static class ReadAttributeException extends DukeException.RuntimeException {
+        public ReadAttributeException(String className, String formattedString, String message) {
+            super("When reading from '" + formattedString + "' in class " + className + ":\n" + message);
+        }
+    }
+
     public static class TaskNotFoundException extends DukeException.RuntimeException {
         public TaskNotFoundException(int idTask) {
             super("Task No.: " + String.valueOf(idTask) + " is not found in the task list. \n" +

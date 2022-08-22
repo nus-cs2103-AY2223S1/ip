@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 public class Duke {
     private boolean isTerminated;
     private MessagePrinter mp;
-    private ArrayList<Task> tasks;
+    private TaskList tasks;
 
     private final String logo = " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
@@ -64,7 +64,7 @@ public class Duke {
     }
 
     private void initialize() {
-        this.tasks = new ArrayList<>();
+        this.tasks = new TaskList();
         initializeActionConsumerMap();
         this.mp = new MessagePrinter(3, 100, '-');
     }
@@ -78,10 +78,12 @@ public class Duke {
         mp.printMessage("Hello from\n" + this.logo + "\n" + HELLO_MESSAGE);
     }
 
+    //      Removed Functionality
     public void echo(String msg) {
         mp.printMessage(msg);
     }
-//      Removed Functionality since introduction of Event, ToDo, Deadline
+
+//    Removed Functionality
 //    public void add(String msg) {
 //        Task task = new Task(msg);
 //        tasks.add(task);
@@ -93,18 +95,12 @@ public class Duke {
         if (tasks.size() == 0) {
             message = "Currently no tasks in the list.";
         } else {
-            message = message + Stream.iterate(0, x -> x + 1)
-                    .limit(tasks.size())
-                    .map(x -> x + 1 + ". " + tasks.get(x).toString())
-                    .reduce("", (x, y) -> x + y + "\n");
+            message = message + this.tasks.toString();
         }
         mp.printMessage(message);
     }
 
     public void mark(int idTask) throws DukeException.TaskNotFoundException {
-        if (idTask > this.tasks.size() || idTask <= 0) {
-            throw new DukeException.TaskNotFoundException(idTask);
-        }
         String successMsg = "Nice! I've marked this task as done:";
         Task task = this.tasks.get(idTask - 1);
         task.markAsDone();
@@ -112,9 +108,6 @@ public class Duke {
     }
 
     public void unmark(int idTask) throws DukeException.TaskNotFoundException {
-        if (idTask > this.tasks.size() || idTask <= 0) {
-            throw new DukeException.TaskNotFoundException(idTask);
-        }
         String successMsg = "OK, I've marked this task as not done yet:";
         Task task = this.tasks.get(idTask - 1);
         task.markAsNotDone();
@@ -163,9 +156,6 @@ public class Duke {
     }
 
     public void delete(int idTask) {
-        if (idTask > this.tasks.size() || idTask <= 0) {
-            throw new DukeException.TaskNotFoundException(idTask);
-        }
         String successMsg = "Noted. I've removed this task:";
         Task task = this.tasks.remove(idTask - 1);
         successMsg = successMsg + "\n" + task + "\n" +
