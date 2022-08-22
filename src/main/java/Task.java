@@ -1,4 +1,4 @@
-public class Task {
+abstract public class Task {
     protected String description;
     protected boolean isDone;
 
@@ -15,6 +15,7 @@ public class Task {
         this.isDone = false;
     }
 
+    abstract public String toStringSaveFormat();
     @Override
     public String toString() {
         return String.format("[%s] %s", this.isDone ? "X" : " ", this.description);
