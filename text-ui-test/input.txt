@@ -1,2 +1,9 @@
-todo asd
+list
+todo item before tmr
+event birthday today
+event birthday /at today
+list
+delete 2
+mark 1
 bye
+

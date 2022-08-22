@@ -1,3 +1,11 @@
 Hello! Got any grapes?
-Added todo [T] [ ] asd Quack!
+Item does not exist!! Quack!
+Added todo [T] [ ] item before tmr Quack!
+Quack!!!!! EVENT BIRTHDAY TODAY Arguments are missing!
+Added new Event [E] [ ] birthday  (at:  today) Quack!
+1. [T] [ ] item before tmr
+2. [E] [ ] birthday  (at:  today)
+[E] [ ] birthday  (at:  today)
+ Is gone!! Quack!
+Quack, marked! [T] [X] item before tmr
 Quack!
