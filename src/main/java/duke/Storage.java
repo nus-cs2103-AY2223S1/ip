@@ -38,7 +38,7 @@ public class Storage {
      * @throws IOException if the file is unable to read for any other reason
      */
     public static List<Task> readItems() {
-        //1) Create file
+        //1) Try to create file and directory, if it does not already exist
         try {
             File directory = new File(DIRECTORY_NAME);
             directory.mkdir();

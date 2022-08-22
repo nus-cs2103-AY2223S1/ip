@@ -12,65 +12,78 @@ public class Parser {
     private static final List<String> PERMISSIBLE_TASKS = new ArrayList<>(
             Arrays.asList("todo", "event", "deadline"));
 
+    private static final String ENDING_MESSAGE = "That's all? Hope to see you again soon :)";
     /**
      * parseData takes in a user's command as a string
      * and makes sense of the command by calling TaskList's appropriate functionality
      * @param input
      * @param taskList
      */
-    public static void parseData(String input, TaskList taskList) {
+    public static String parseData(String input, TaskList taskList) {
 
         //TODO: Update with a switch statement for parsing data
+
+        //Case 0: bye
+        if (input.startsWith("bye")) {
+            return Ui.displayMessage(ENDING_MESSAGE);
+
         //Case 1: Mark
-        if (input.startsWith("mark")) {
+        } else if (input.startsWith("mark")) {
             //split by space, then the second value
             int taskIndex = Integer.valueOf(input.split(" ", 0)[1]) - 1;
-            taskList.markTask(taskIndex);
+            return taskList.markTask(taskIndex);
 
         //Case 2: Unmark
         } else if (input.startsWith("unmark")) {
             int taskIndex = Integer.valueOf(input.split(" ", 0)[1]) - 1;
-            taskList.unmarkTask(taskIndex);
+            return taskList.unmarkTask(taskIndex);
 
         //Case 3: List
         } else if (input.equals("list")) {
-            taskList.list();
+            return taskList.list();
 
         //Case 4: Delete
         } else if (input.startsWith("delete")) {
             int taskIndex = Integer.valueOf(input.split(" ", 0)[1]) - 1;
 
-            taskList.deleteTask(taskIndex);
+            return taskList.deleteTask(taskIndex);
+        //Case 5: Find all inputs with keyword
 
         } else if (input.startsWith("find")) {
             String[] tempArr = input.split(" ", 2); //split into 2
             String keyword = tempArr[1]; //the remainder of the input minus whitespace
-            taskList.findTask(keyword);
-        //Case 5: Add a valid task
+            return taskList.findTask(keyword);
+
+        //Case 6: Add a valid task
         } else {
 
             try {
                 validateTask(input);
             } catch (InvalidCommandException ice) {
-                Ui.displayException(ice);
-                Ui.displayMessage("This was your invalid command: " + input);
+                String message = "";
+                message += Ui.displayException(ice) + '\n';
+                message += Ui.displayMessage("This was your invalid command: " + input) + "\n";
+                return message;
             } catch (EmptyTaskException ete) {
-                Ui.displayException(ete);
+                String message = "";
+                message += Ui.displayException(ete);
                 String[] tempArr = input.split(" ", 0);
                 if (tempArr[0].equals("todo")) {
-                    Ui.displayMessage("todo requires at least a task description");
+                    return message + "\n" +
+                            Ui.displayMessage("todo requires at least a task description");
                 } else {
-                    Ui.displayMessage("Event/Deadline requires both a task description and a date");
+                    return message + "\n" +
+                            Ui.displayMessage("Event/Deadline requires both a task description and a date");
                 }
             }
 
             Task newTask = generateTask(input);
-            taskList.addTask(newTask);
+            return taskList.addTask(newTask);
         }
     }
     /**
      * helper method for input validation whenever an add task command is given
-     * @param String input
+     * @param  input of type string
      * @throws InvalidCommandException if the command is not
      * in our list of permissible tasks
      * @throws EmptyTaskException if the correct command is given
