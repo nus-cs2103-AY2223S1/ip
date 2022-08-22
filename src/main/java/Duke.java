@@ -95,7 +95,7 @@ public class Duke {
                         if (descAndDateTime.length != 2) {
                             throw new DukeException("Exception: No date-time.");
                         }
-                        Task task = new Deadline(descAndDateTime[0], descAndDateTime[1]);
+                        Task task = new Deadline(descAndDateTime[0], Parser.parseDateTime(descAndDateTime[1]));
                         storedTasks.add(task);
                         System.out.printf("Got it! I stored this task:\n" + task +
                                 "\nNow you have %d tasks in the list.\n", storedTasks.size());
@@ -113,7 +113,7 @@ public class Duke {
                         if (descAndDateTime.length != 2) {
                             throw new DukeException("Exception: No date-time.");
                         }
-                        Task task = new Event(descAndDateTime[0], descAndDateTime[1]);
+                        Task task = new Event(descAndDateTime[0], Parser.parseDateTime(descAndDateTime[1]));
                         storedTasks.add(task);
                         System.out.printf("Got it! I stored this task:\n" + task +
                                 "\nNow you have %d tasks in the list.\n", storedTasks.size());

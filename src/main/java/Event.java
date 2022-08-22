@@ -1,13 +1,15 @@
-public class Event extends Task {
-    private String dateTime;
+import java.time.LocalDateTime;
 
-    public Event(String description, String dateTime) {
+public class Event extends Task {
+    private LocalDateTime dateTime;
+
+    public Event(String description, LocalDateTime dateTime) {
         super(description, TaskType.EVENT);
         this.dateTime = dateTime;
     }
 
     @Override
     public String toString() {
-        return String.format("[%s] %s (at: %s)", super.getTaskIcon(), super.toString(), this.dateTime);
+        return String.format("[%s] %s (at: %s)", super.getTaskIcon(), super.toString(), Parser.displayDateTime(this.dateTime));
     }
 }
