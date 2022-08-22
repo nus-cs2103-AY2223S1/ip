@@ -1,13 +1,19 @@
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.io.File;
-import java.io.FileWriter;
 
+/**
+ * Represents a robot that takes in tasks given by user through CLI, and other requests such as
+ * listing all tasks, deleting tasks, adding tasks and marking tasks.
+ *
+ * @author Elgin
+ */
 public class Duke {
     /** List of items. */
     private static final ArrayList<Task> tasks = new ArrayList<>();
@@ -66,8 +72,8 @@ public class Duke {
 
         if (!isMarkDone) {
             Duke.tasks.get(index - 1).unmark();
-            System.out.println(Duke.formatText("OK, I've marked this task as not done yet:\n" +
-                    Duke.tasks.get(index - 1)));
+            System.out.println(Duke.formatText("OK, I've marked this task as not done yet:\n"
+                    + Duke.tasks.get(index - 1)));
         } else {
             Duke.tasks.get(index - 1).markAsDone();
             System.out.println(Duke.formatText("Nice! I've marked this task as done:\n" + Duke.tasks.get(index - 1)));
@@ -82,9 +88,9 @@ public class Duke {
     private static void createToDoTask(String description) {
         Duke.tasks.add(new ToDo(description));
 
-        System.out.println(Duke.formatText("Got it. I've added this task:\n" + "  " +
-                Duke.tasks.get(Duke.tasks.size() - 1) + "\n" +
-                "Now you have " + Duke.tasks.size() + " tasks in the list."));
+        System.out.println(Duke.formatText("Got it. I've added this task:\n" + "  "
+                + Duke.tasks.get(Duke.tasks.size() - 1) + "\n"
+                + "Now you have " + Duke.tasks.size() + " tasks in the list."));
     }
 
     /**
@@ -103,9 +109,9 @@ public class Duke {
 
         Duke.tasks.add(new Deadline(detailsFragments[0], detailsFragments[1].trim()));
 
-        System.out.println(Duke.formatText("Got it. I've added this task:\n" + "  " +
-                Duke.tasks.get(Duke.tasks.size() - 1) + "\n" +
-                "Now you have " + Duke.tasks.size() + " tasks in the list."));
+        System.out.println(Duke.formatText("Got it. I've added this task:\n" + "  "
+                + Duke.tasks.get(Duke.tasks.size() - 1) + "\n"
+                + "Now you have " + Duke.tasks.size() + " tasks in the list."));
     }
 
     /**
@@ -123,9 +129,9 @@ public class Duke {
 
         Duke.tasks.add(new Event(detailsFragments[0], detailsFragments[1].trim()));
 
-        System.out.println(Duke.formatText("Got it. I've added this task:\n" + "  " +
-                Duke.tasks.get(Duke.tasks.size() - 1) + "\n" +
-                "Now you have " + Duke.tasks.size() + " tasks in the list."));
+        System.out.println(Duke.formatText("Got it. I've added this task:\n" + "  "
+                + Duke.tasks.get(Duke.tasks.size() - 1) + "\n"
+                + "Now you have " + Duke.tasks.size() + " tasks in the list."));
     }
 
     /**
@@ -147,9 +153,9 @@ public class Duke {
             throw new DukeException("Invalid index, choose a valid item index!");
         }
 
-        System.out.println(Duke.formatText("Noted. I've removed this task:\n  " +
-                Duke.tasks.get(deleteIndex - 1) + "\n" +
-                "Now you have " + (Duke.tasks.size() - 1) + " tasks in the list"));
+        System.out.println(Duke.formatText("Noted. I've removed this task:\n  "
+                + Duke.tasks.get(deleteIndex - 1) + "\n"
+                + "Now you have " + (Duke.tasks.size() - 1) + " tasks in the list"));
 
         Duke.tasks.remove(deleteIndex - 1);
     }
@@ -202,11 +208,11 @@ public class Duke {
                 if (t instanceof ToDo) {
                     Duke.writeToFile("T | " + taskDone + " | " + t.taskName + "\n", false);
                 } else if (t instanceof Deadline) {
-                    Duke.writeToFile("D | " + taskDone + " | " + t.taskName + " | " +
-                            ((Deadline) t).date + "\n", false);
+                    Duke.writeToFile("D | " + taskDone + " | " + t.taskName + " | "
+                            + ((Deadline) t).date + "\n", false);
                 } else if (t instanceof Event) {
-                    Duke.writeToFile("E | " + taskDone + " | " + t.taskName + " | " +
-                            ((Event) t).date + "\n", false);
+                    Duke.writeToFile("E | " + taskDone + " | " + t.taskName + " | "
+                            + ((Event) t).date + "\n", false);
                 }
             } catch (IOException e) {
                 System.out.println(e.getMessage());
@@ -313,17 +319,23 @@ public class Duke {
      * @return Formatted String that has proper indentation and wrapped around horizontal lines.
      */
     protected static String formatText(String text) {
-        final String HORIZONTAL_LINE = "\t---------------------------------------------------------------------\n";
+        // CODESTYLE.OFF: LocalFinalVariableName
+        final String horizontalLine = "\t---------------------------------------------------------------------\n";
 
         String[] lines = text.split("\\r?\\n");
-        StringBuilder formattedText = new StringBuilder(HORIZONTAL_LINE);
+        StringBuilder formattedText = new StringBuilder(horizontalLine);
         for (String line : lines) {
             formattedText.append("\t").append(line).append("\n");
         }
 
-        return formattedText + HORIZONTAL_LINE;
+        return formattedText + horizontalLine;
     }
 
+    /**
+     * Runs when program is first executed.
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         Duke.greetUser();
 
