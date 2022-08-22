@@ -3,38 +3,38 @@
  * over the course of the development process, i will try to make this as close to the ics file format as possible
  * @author albertZhangTJ
  */
-public class calendar_entry {
+public class CalendarEntry {
     private String title;
-    private boolean is_completed;
+    private boolean isCompleted;
 
-    public calendar_entry(String title){
+    public CalendarEntry(String title){
         this.title=title;
-        this.is_completed=false;
+        this.isCompleted =false;
     }
 
-    public int mark_as_completed(){
-        if (this.is_completed){
+    public int markAsCompleted(){
+        if (this.isCompleted){
             //I know this is not what exactly http status code 208 means
             //but it is the closest one that I can think of
             //to represent the idea "It was already done. Not what u expected but it's alright"
             return 208;
         }
-        this.is_completed=true;
+        this.isCompleted =true;
         return 200;
     }
 
-    public int mark_as_incomplete(){
-        if (!this.is_completed){
+    public int markAsIncomplete(){
+        if (!this.isCompleted){
             return 208;
         }
-        this.is_completed=false;
+        this.isCompleted =false;
         return 200;
     }
 
     @Override
     public String toString(){
         String ans="";
-        if (this.is_completed){
+        if (this.isCompleted){
             ans=ans+"[X] ";
         }
         else {

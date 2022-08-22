@@ -1,36 +1,33 @@
-import jdk.jshell.spi.ExecutionControl;
-
 import java.security.InvalidParameterException;
-import java.util.Locale;
 
-public class event_dispatcher {
+public class EventDispatcher {
 
-    private calendar table;
-    private IO_handler ui;
+    private Calendar table;
+    private UiHandler ui;
 
-    public event_dispatcher(calendar table, IO_handler ui){
+    public EventDispatcher(Calendar table, UiHandler ui){
         this.table=table;
         this.ui=ui;
     }
 
     private int help(){
-        ui.cout(IO_handler.generate_section(IO_handler.generate_help_msg()));
+        ui.cout(UiHandler.generateSection(UiHandler.generateHelpMsg()));
         return 200;
     }
     private int list(){
-        ui.cout(IO_handler.generate_section(this.table.toString()));
+        ui.cout(UiHandler.generateSection(this.table.toString()));
         return 200;
     }
 
     @Deprecated
     private int add(String[] entry_info){
-        calendar_entry entry=new calendar_entry(entry_info[0]);
+        CalendarEntry entry=new CalendarEntry(entry_info[0]);
         this.table.add_entry(entry);
-        ui.cout(IO_handler.generate_section("Added: "+entry.toString()+"\n"));
+        ui.cout(UiHandler.generateSection("Added: "+entry.toString()+"\n"));
         return 200;
     }
 
-    private int mark_as_done_undone(String input){
+    private int markAsDoneUndone(String input){
         String[] args=input.toLowerCase().split(" ");
         if (args.length!=2){
             throw new InvalidParameterException("Sorry, which entry do you want me to mark/unmark?");
@@ -39,7 +36,7 @@ public class event_dispatcher {
         if (args[0].equals("mark")){
             int status=this.table.mark_as_done(Integer.parseInt(args[1]));
             if (status==200 || status==208) {
-                ui.cout(IO_handler.generate_section("Jawohl, I have marked the following event as completed:\n     " +
+                ui.cout(UiHandler.generateSection("Jawohl, I have marked the following event as completed:\n     " +
                         this.table.get_entry(Integer.parseInt(args[1]))+"\n"));
             }
             return status;
@@ -47,7 +44,7 @@ public class event_dispatcher {
         if (args[0].equals("unmark")){
             int status=this.table.mark_as_undone(Integer.parseInt(args[1]));
             if (status==200 || status==208) {
-                ui.cout(IO_handler.generate_section("Jawohl, I have marked the following event as incomplete:\n     " +
+                ui.cout(UiHandler.generateSection("Jawohl, I have marked the following event as incomplete:\n     " +
                         this.table.get_entry(Integer.parseInt(args[1]))+"\n"));
             }
             return status;
@@ -64,18 +61,18 @@ public class event_dispatcher {
             throw new InvalidParameterException("Sorry, which entry do you want me to delete?");
             //return 400;
         }
-        ui.cout(IO_handler.generate_section("Jawohl, I have removed the following entry from your calendar:\n     " +
+        ui.cout(UiHandler.generateSection("Jawohl, I have removed the following entry from your calendar:\n     " +
                 this.table.delete_entry(Integer.parseInt(args[1]))+"\n"));
         return 200;
     }
 
-    private int add_entry_to_calendar(String input){
+    private int addEntryToCalendar(String input){
         String[] args=input.toLowerCase().split(" ");
         if (args[0].equals("todo") && args.length>=2){
-            calendar_entry_todo entry=new calendar_entry_todo(input.substring(5));
+            CalendarEntryTodo entry=new CalendarEntryTodo(input.substring(5));
             int status=this.table.add_entry(entry);
             if (status==200){
-                ui.cout(IO_handler.generate_section("Verstehe, added: "+entry.toString()+"\n"));
+                ui.cout(UiHandler.generateSection("Verstehe, added: "+entry.toString()+"\n"));
             }
             return status;
         }
@@ -87,10 +84,10 @@ public class event_dispatcher {
             input=input.substring(9);
             String time=input.substring(input.indexOf("/by")+4);
             String title=input.substring(0, input.indexOf("/by")-1);
-            calendar_entry_deadline entry=new calendar_entry_deadline(title, time);
+            CalendarEntryDeadline entry=new CalendarEntryDeadline(title, time);
             int status=this.table.add_entry(entry);
             if (status==200){
-                ui.cout(IO_handler.generate_section("Verstehe, added: "+entry.toString()+"\n"));
+                ui.cout(UiHandler.generateSection("Verstehe, added: "+entry.toString()+"\n"));
             }
             return status;
         }
@@ -102,10 +99,10 @@ public class event_dispatcher {
             input=input.substring(6);
             String time=input.substring(input.indexOf("/at")+4);
             String title=input.substring(0, input.indexOf("/at")-1);
-            calendar_entry_event entry=new calendar_entry_event(title, time.split(" - ")[0], time.split(" - ")[1]);
+            CalendarEntryEvent entry=new CalendarEntryEvent(title, time.split(" - ")[0], time.split(" - ")[1]);
             int status=this.table.add_entry(entry);
             if (status==200){
-                ui.cout(IO_handler.generate_section("Verstehe, added: "+entry.toString()+"\n"));
+                ui.cout(UiHandler.generateSection("Verstehe, added: "+entry.toString()+"\n"));
             }
             return status;
         }
@@ -118,7 +115,7 @@ public class event_dispatcher {
      * @param input the array of string that contains the command and parameters
      * @return status code (adapted from http, with exceptions such as status 0 represents exit)
      */
-    public int dispatch_command(String input) throws Exception{
+    public int dispatchCommand(String input) throws Exception{
         if (input==null){
             throw new InvalidParameterException("command string array is not expected to be null, internal error");
         }
@@ -138,10 +135,10 @@ public class event_dispatcher {
             return help();
         }
         if (splited_input[0].equals("mark") || splited_input[0].equals("unmark")){
-            return mark_as_done_undone(input);
+            return markAsDoneUndone(input);
         }
         if (splited_input[0].equals("todo") || splited_input[0].equals("event") || splited_input[0].equals("deadline")){
-            return add_entry_to_calendar(input);
+            return addEntryToCalendar(input);
         }
         if (splited_input[0].equals("delete")){
             return delete(input);
@@ -157,18 +154,18 @@ public class event_dispatcher {
      * this function will print error msg (if any)
      * @return status code
      */
-    public int start_working(){
-        ui.cout(ui.get_greeting());
+    public int startWorking(){
+        ui.cout(ui.getGreeting());
         while (true){
             try {
-                int status=this.dispatch_command(ui.get_command());
-                ui.print_status_msg(status);
+                int status=this.dispatchCommand(ui.getCommand());
+                ui.printStatusMsg(status);
                 if (status==0){
                     break;
                 }
             }
             catch (Throwable e){
-                ui.cout(IO_handler.generate_section(e.getMessage()+"\n"));
+                ui.cout(UiHandler.generateSection(e.getMessage()+"\n"));
             }
         }
         return 0;

@@ -1,6 +1,6 @@
-public class calendar_entry_todo extends calendar_entry{
+public class CalendarEntryTodo extends CalendarEntry {
 
-    public calendar_entry_todo(String title){
+    public CalendarEntryTodo(String title){
         super(title);
     }
 

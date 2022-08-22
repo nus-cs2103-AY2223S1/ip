@@ -1,7 +1,5 @@
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Scanner;
 /**
  * This class handles all IO related tasks
@@ -10,17 +8,17 @@ import java.util.Scanner;
  * having these encapsulated functions would make the core could a lot cleaner
  * @author albertZhangTJ
  */
-public class IO_handler {
+public class UiHandler {
 
     private Scanner sc;
     private PrintStream out;
 
-    public IO_handler(){
+    public UiHandler(){
         this.sc=new Scanner(System.in);
         this.out=System.out;
     }
 
-    public IO_handler(InputStream stream, PrintStream ostream){
+    public UiHandler(InputStream stream, PrintStream ostream){
         this.sc=new Scanner(stream);
         this.out=ostream;
     }
@@ -30,7 +28,7 @@ public class IO_handler {
      * generated using figlet http://www.figlet.org/
      * @return The logo for CLI
      */
-    public static String get_logo(){
+    public static String getLogo(){
         String logo ="  ___  _ _       _       \n"+
                 " / _ \\| (_)_   _(_) __ _\n"+
                 "| | | | | \\ \\ / / |/ _` |\n"+
@@ -40,13 +38,13 @@ public class IO_handler {
         return logo;
     }
 
-    public static String generate_section(String content){
+    public static String generateSection(String content){
         return "=====================================================\n"+
                 content+
                 "=====================================================\n\n";
     }
 
-    public static String generate_help_msg(){
+    public static String generateHelpMsg(){
         return "Currently the following commands are supported:\n"+
                 "    todo {title}\n"+
                 "    deadline {title} /by {time}\n"+
@@ -58,13 +56,13 @@ public class IO_handler {
                 "    help\n";
     }
 
-    public String get_greeting(){
-        String result=get_logo();
+    public String getGreeting(){
+        String result= getLogo();
 
         result=result+"Hello, this is Olivia, your personal assistant\n";
         result=result+"Hallo, ich bin Olivia, Ihre persönliche Assistentin\n";
         result=result+"    For help message on how to communicate with me, type help\n";
-        return generate_section(result);
+        return generateSection(result);
     }
 
     /**
@@ -80,28 +78,28 @@ public class IO_handler {
     /**
      *
      */
-    public String get_command(){
+    public String getCommand(){
         cout("> ");
         String input=sc.nextLine();
         return input;
     }
 
     @Deprecated
-    public void print_status_msg(int status_code){
+    public void printStatusMsg(int status_code){
         if (status_code==400 || status_code==500){
-            cout(generate_section("Sorry, I don't seem to understand you.\nMaybe there is a syntax error or the command is unsupported?\n"));
+            cout(generateSection("Sorry, I don't seem to understand you.\nMaybe there is a syntax error or the command is unsupported?\n"));
         }
         else if (status_code==200 || status_code==208){
             return;
         }
         else if (status_code==501){
-            cout(generate_section("My apologies, this feature has yet to be implemented, please look out for updates!\n"));
+            cout(generateSection("My apologies, this feature has yet to be implemented, please look out for updates!\n"));
         }
         else if (status_code==0){
-            cout(generate_section("See you later! \nAuf Wiedersehen!\n"));
+            cout(generateSection("See you later! \nAuf Wiedersehen!\n"));
         }
         else {
-            cout(generate_section("Sorry, some internal error has occured\n"));
+            cout(generateSection("Sorry, some internal error has occured\n"));
         }
     }
 }

@@ -1,6 +1,6 @@
-public class calendar_entry_deadline extends  calendar_entry{
+public class CalendarEntryDeadline extends CalendarEntry {
     private String time;
-    public calendar_entry_deadline(String title, String time){
+    public CalendarEntryDeadline(String title, String time){
         super(title);
         this.time=time;
     }
