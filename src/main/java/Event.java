@@ -10,6 +10,6 @@ public class Event extends Task{
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + "(" + this.time.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy")) + ")";
+        return "[E]" + super.toString() + "(" + this.time.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm")) + ")";
     }
 }

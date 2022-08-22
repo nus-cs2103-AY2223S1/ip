@@ -230,6 +230,7 @@ public class Duke {
                     while ((line = reader.readLine()) != null) {
                         parseLine(line, tasks);
                     }
+                    reader.close();
                 } catch (IOException e) {
                     System.out.println("Error: " + e);
                 }
@@ -252,11 +253,11 @@ public class Duke {
                 list.add(new ToDo(event[0]));
                 break;
             case 'D':
-                String time = event[1].substring(0,event[1].indexOf(")"));
+                LocalDateTime time = LocalDateTime.parse(event[1].substring(0,event[1].indexOf(")")),DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm"));
                 list.add(new Deadline(event[0], time));
                 break;
             case 'E':
-                time = event[1].substring(0,event[1].indexOf(")"));
+                time = LocalDateTime.parse(event[1].substring(0,event[1].indexOf(")")),DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm"));
                 list.add(new Event(event[0], time));
                 break;
         }
