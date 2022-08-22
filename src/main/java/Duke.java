@@ -2,57 +2,146 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Duke {
-    static boolean running = true;
-    static ArrayList<Task> tasks = new ArrayList<>();
-    static Scanner sc = new Scanner(System.in);
+    private static boolean isRunning = true;
+    private static ArrayList<Task> tasks = new ArrayList<>();
+    private static Scanner sc = new Scanner(System.in);
+    
+    private String logo = " ____            _\n"
+            + "|  _ \\ _   _  __| | ___\n"
+            + "| | | | | | |/ _  |/ _ \\\n"
+            + "| |_| | |_| | |_| |  __/\n"
+            + "|____/ \\__,_|\\__,_|\\___|\n";
+    
+    private String bye = "bye";
+    private String list = "list";
+    private String mark = "mark";
+    private String unmark = "unmark";
+    private String todo = "todo";
+    private String deadline = "deadline";
+    private String deadlineBy = "/by";
+    private String event = "event";
+    private String eventAt = "/at";
+    private String delete = "delete";
+    private String space = " ";
+    
     public void addTodo(String s) {
-        Todo t = new Todo(s);
-        tasks.add(t);
-        System.out.println("added: " + t);
-        System.out.println("You have " + tasks.size() + " tasks in the list now");
+        if (s.isBlank()) {
+            System.out.println("The task is empty, what do you really mean?");
+        } else {
+            Todo t = new Todo(s);
+            tasks.add(t);
+            System.out.println("Successfully added: " + t);
+            System.out.println("You have " + tasks.size() + " tasks in the list now");
+        }
     }
 
-    public void addDeadline(String s, String by) {
-        Deadline t = new Deadline(s, by);
-        tasks.add(t);
-        System.out.println("added: " + t);
-        System.out.println("You have " + tasks.size() + " tasks in the list now");
+    public void addDeadline(String s) {
+        if (!s.contains(space + deadlineBy + space)) {
+            if (s.startsWith(deadlineBy) || s.endsWith(deadlineBy)) {
+                System.out.println("The task is empty, what do you really mean?");
+            } else {
+                System.out.println("The deadline is empty, do you mean it has no deadline?");
+                System.out.println("If it is, please add it as a todo instead.");
+            }
+        } else {
+            String task = s.substring(0, s.indexOf(deadlineBy) - space.length());
+            String deadline = s.substring(s.indexOf(deadlineBy) + deadlineBy.length()
+                    + space.length());
+            if (task.isBlank()) {
+                System.out.println("The task is empty, what do you really mean?");
+            } else if (deadline.isBlank()) {
+                System.out.println("The deadline is empty, do you mean it has no deadline?");
+                System.out.println("If it is, please add it as a todo instead.");
+            } else {
+                Deadline t = new Deadline(task, deadline);
+                tasks.add(t);
+                System.out.println("Successfully added: " + t);
+                System.out.println("You have " + tasks.size() + " tasks in the list now");
+            }
+        }
     }
 
-    public void addEvent(String s, String at) {
-        Event t = new Event(s, at);
-        tasks.add(t);
-        System.out.println("added: " + t);
-        System.out.println("You have " + tasks.size() + " tasks in the list now");
+    public void addEvent(String s) {
+        if (!s.contains(space + eventAt + space)) {
+            if (s.startsWith(eventAt) || s.endsWith(eventAt)) {
+                System.out.println("The event is empty, what do you really mean?");
+            } else {
+                System.out.println("The time is empty, do you mean it never starts?");
+            }
+        } else {
+            String event = s.substring(0, s.indexOf(eventAt) - space.length());
+            String time = s.substring(s.indexOf(eventAt) + eventAt.length()
+                    + space.length());
+            if (event.isBlank()) {
+                System.out.println("The event is empty, what do you really mean?");
+            } else if (time.isBlank()) {
+                System.out.println("The time is empty, do you mean it never starts?");
+            } else {
+                Event e = new Event(event, time);
+                tasks.add(e);
+                System.out.println("Successfully added: " + e);
+                System.out.println("You have " + tasks.size() + " tasks in the list now");
+            }
+        }
     }
 
     public void getList() {
         for (int i = 0; i < tasks.size(); i++) {
-            System.out.println(i + 1 + "." + tasks.get(i));
+            System.out.println((i + 1) + "." + tasks.get(i));
         }
         System.out.println("There are " + tasks.size() + " tasks in the list.");
     }
 
-    public void mark(Task t) {
-        t.mark(t);
+    public void markTask(String input) {
+        try {
+            int index = Integer.parseInt(input);
+            if (index >= tasks.size() || index < 0) {
+                System.out.println("I cannot mark a task that does not exist!");
+            } else {
+                Task t = tasks.get(index);
+                t.markTask();
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("I cannot mark a task that does not exist!");
+        }
     }
 
-    public void unmark(Task t) {
-        t.unmark(t);
+    public void unmarkTask(String input) {
+        try {
+            int index = Integer.parseInt(input);
+            if (index >= tasks.size() || index < 0) {
+                System.out.println("I cannot unmark a task that does not exist!");
+            } else {
+                Task t = tasks.get(index);
+                t.unmarkTask();
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("I cannot unmark a task that does not exist!");
+        }
     }
 
-    public void delete(int i) {
-        Task t = tasks.get(i);
-        tasks.remove(i);
-        System.out.println("I have deleted this task:\n  " + t + "\n"
-                + "Now you have " + tasks.size() + " tasks on the list.");
+    public void deleteTask(String input) {
+        try {
+            int index = Integer.parseInt(input);
+            if (index >= tasks.size() || index < 0) {
+                System.out.println("I cannot delete a task that does not exist!");
+            } else {
+                Task t = tasks.get(index);
+                tasks.remove(t);
+                System.out.println("Successfully deleted: " + t);
+                System.out.println("You have " + tasks.size() + " tasks in the list now");
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("I cannot delete a task that does not exist!");
+        }
     }
+    
     //@@author chengda300
     //Reused from https://nus-cs2103-ay2223s1.github.io/website/schedule/week2/project.html
     // with minor modifications
     public class Task {
-        protected boolean isDone;
-        protected String description;
+        private boolean isDone;
+        private String description;
 
         public Task(String desc) {
             this.description = desc;
@@ -60,17 +149,17 @@ public class Duke {
         }
 
         public String getStatusIcon() {
-            return isDone ? "X" : " ";
+            return this.isDone ? "X" : " ";
         }
 
-        public void mark(Task t) {
-            t.isDone = true;
-            System.out.println("Successfully marked this task as done: " + t);
+        public void markTask() {
+            this.isDone = true;
+            System.out.println("Successfully marked this task as done: " + this);
         }
 
-        public void unmark(Task t) {
-            t.isDone = false;
-            System.out.println("Successfully marked this task as not done: " + t);
+        public void unmarkTask() {
+            this.isDone = false;
+            System.out.println("Successfully marked this task as not done: " + this);
         }
 
         @Override
@@ -80,8 +169,7 @@ public class Duke {
     }
 
     public class Deadline extends Task {
-
-        protected String by;
+        private String by;
 
         public Deadline(String description, String by) {
             super(description);
@@ -106,8 +194,7 @@ public class Duke {
     }
 
     public class Event extends Task {
-
-        protected String at;
+        private String at;
 
         public Event(String description, String at) {
             super(description);
@@ -121,101 +208,37 @@ public class Duke {
     }
     //@@author
 
-    public class DukeException extends Exception {
-        public DukeException(String message) {
-            super(message);
-        }
-
-        public class MissingFieldException extends DukeException {
-            public MissingFieldException(String message) {
-                super(message);
-            }
-        }
-    }
-
     public static void main(String[] args) {
-        Duke d = new Duke();
-        String logo = " ____            _\n"
-                + "|  _ \\ _   _  __| | ___\n"
-                + "| | | | | | |/ _  |/ _ \\\n"
-                + "| |_| | |_| | |_| |  __/\n"
-                + "|____/ \\__,_|\\__,_|\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        while (d.running) {
-            String input = d.sc.nextLine();
-            if (input.equals("bye")) {
+        Duke duke = new Duke();
+        System.out.println("Hello from dude\n" + duke.logo);
+        while (duke.isRunning) {
+            String input = duke.sc.nextLine();
+            if (input.equals(duke.bye)) {
                 System.out.println("Byebye! See you again soon!");
-                d.running = false;
-            } else if (input.equals("list")) {
-                d.getList();
-            } else if (input.startsWith("mark")) {
-                try {
-                    int index = Integer.parseInt(input.substring(5)) - 1;
-                    if (index >= tasks.size() || index < 0) {
-                        System.out.println("I cannot mark a task that does not exist!");
-                    } else {
-                        Task t = tasks.get(index);
-                        d.mark(t);
-                    }
-                } catch (NumberFormatException e) {
-                    System.out.println("I cannot mark a task that does not exist!");
-                }
-            } else if (input.startsWith("unmark")) {
-                try {
-                    int index = Integer.parseInt(input.substring(7)) - 1;
-                    if (index >= tasks.size() || index < 0) {
-                        System.out.println("I cannot unmark a task that does not exist!");
-                    } else {
-                        Task t = tasks.get(index);
-                        d.unmark(t);
-                    }
-                } catch (NumberFormatException e) {
-                    System.out.println("I cannot unmark a task that does not exist!");
-                }
-            } else if (input.startsWith("todo")) {
-                if (input.length() < 6) {
-                    System.out.println("The task is empty! What do you mean exactly?");
-                } else {
-                    d.addTodo(input.substring(5));
-                }
-            } else if (input.startsWith("deadline")) {
-                if (! input.contains("/by")) {
-                    System.out.println("Specify a deadline type task by typing "
-                            + "deadline <task> /by <deadline>");
-                } else if (input.indexOf("/by") < 11) {
-                    System.out.println("You did not specify a task.");
-                } else if (input.indexOf("/by") + 4 >= input.length()) {
-                    System.out.println("You did not specify a deadline.");
-                } else {
-                    d.addDeadline(input.substring(9, input.indexOf("/by") - 1),
-                            input.substring(input.indexOf("/by") + 4));
-                }
-            } else if (input.startsWith("event")) {
-                if (! input.contains("/at")) {
-                    System.out.println("Specify an event type task by typing "
-                            + "event <task> /at <time>");
-                } else if (input.indexOf("/at") < 8) {
-                    System.out.println("You did not specify a task.");
-                } else if (input.indexOf("/at") + 4 >= input.length()) {
-                    System.out.println("You did not specify a deadline.");
-                } else {
-                    d.addEvent(input.substring(6, input.indexOf("/at") - 1),
-                            input.substring(input.indexOf("/at") + 4));
-                }
-            } else if (input.startsWith("delete")) {
-                try {
-                    int index = Integer.parseInt(input.substring(7)) - 1;
-                    if (index >= tasks.size() || index < 0) {
-                        System.out.println("I cannot delete a task that does not exist!");
-                    } else {
-                        d.delete(index);
-                    }
-                } catch (NumberFormatException e) {
-                    System.out.println("I cannot delete a task that does not exist!");
-                }
+                duke.isRunning = false;
+            } else if (input.equals(duke.list)) {
+                duke.getList();
+            } else if (input.startsWith(duke.mark + duke.space)) {
+                String parameter = input.substring((duke.mark + duke.space).length());
+                duke.markTask(parameter);
+            } else if (input.startsWith(duke.unmark + duke.space)) {
+                String parameter = input.substring((duke.unmark + duke.space).length());
+                duke.unmarkTask(parameter);
+            } else if (input.startsWith(duke.todo + duke.space)) {
+                String parameter = input.substring((duke.todo + duke.space).length());
+                duke.addTodo(parameter);
+            } else if (input.startsWith(duke.deadline + duke.space)) {
+                String parameter = input.substring((duke.deadline + duke.space).length());
+                duke.addDeadline(parameter);
+            } else if (input.startsWith(duke.event + duke.space)) {
+                String parameter = input.substring((duke.event + duke.space).length());
+                duke.addEvent(parameter);
+            } else if (input.startsWith(duke.delete + duke.space)) {
+                String parameter = input.substring((duke.delete + duke.space).length());
+                duke.deleteTask(parameter);
             } else {
-                System.out.println("Sorry, I cannot understand what you mean. I can only understand"
-                        + "todo, deadline, event, mark, unmark, delete, list, bye");
+                System.out.println("Sorry, I cannot understand what you exactly mean.");
+                System.out.println("Certain commands require input parameters.");
             }
         }
     }
