@@ -38,9 +38,25 @@ public class Drake {
                 System.out.println("I've marked this task as not done (yet ;))");
                 list.get(taskNo - 1).unmarkAsDone();
                 System.out.println(list.get(taskNo - 1));
-            } else {
-                System.out.println("added: " + command);
-                list.add(new Task(command));
+            } else if (command.startsWith("todo")) {
+                System.out.println("I've added this task:");
+                list.add(new Todo(command.substring("todo ".length())));
+                System.out.println(list.get(list.size() - 1));
+                System.out.println("You now have " + list.size() + " tasks in the list");
+            } else if (command.startsWith("deadline")) {
+                System.out.println("I've added this task:");
+                String filtered = command.substring("deadline ".length());
+                String[] commands = filtered.split("/by");
+                list.add(new Deadline(commands[0], commands[1]));
+                System.out.println(list.get(list.size() - 1));
+                System.out.println("You now have " + list.size() + " tasks in the list");
+            } else if (command.startsWith("event")) {
+                System.out.println("I've added this task:");
+                String filtered = command.substring("event ".length());
+                String[] commands = filtered.split("/at");
+                list.add(new Event(commands[0], commands[1]));
+                System.out.println(list.get(list.size() - 1));
+                System.out.println("You now have " + list.size() + " tasks in the list");
             }
             System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
             command = sc.nextLine();
