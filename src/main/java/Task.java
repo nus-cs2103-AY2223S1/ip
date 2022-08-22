@@ -34,6 +34,14 @@ public class Task {
     }
 
     /**
+     * Sets the isDone field of a loaded Task to be true. Mainly used for loading
+     * tasks from a file. No output to prevent spamming the console.
+     */
+    public void loadDone() {
+        this.isDone = true; // mark task as true
+    }
+
+    /**
      * Retrieves the description of a task.
      * @return description of task.
      */

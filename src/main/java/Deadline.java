@@ -1,4 +1,5 @@
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
     /** The deadline of the task. **/
@@ -49,7 +50,8 @@ public class Deadline extends Task {
      */
     @Override
     public String formatFileText() {
-        String s = String.format("D | %s | %s | %s\n", super.getStatusIcon(), this.description, this.by);
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        String s = String.format("D | %s | %s | %s\n", super.getStatusIcon(), this.description, this.by.format(format));
         return s;
     }
 
