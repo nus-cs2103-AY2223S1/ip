@@ -13,6 +13,11 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.shape.Circle;
+import javafx.geometry.Insets;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 
 /**
  * An example of a custom control using FXML.
@@ -35,6 +40,16 @@ public class DialogueBox extends HBox {
             e.printStackTrace();
         }
 
+        Circle circle = new Circle();
+        circle.setCenterX(50);
+        circle.setCenterY(50);
+        circle.setRadius(60);
+        displayPicture.setClip(circle);
+        dialog.setStyle("-fx-background-color: #00ffc4;" + "-fx-background-radius: 0;");
+        dialog.setPadding(new Insets(15));
+        dialog.setFont(Font.font("Courier New", FontWeight.SEMI_BOLD, FontPosture.REGULAR, 12));
+
+
         dialog.setText(text);
         displayPicture.setImage(img);
     }
@@ -47,6 +62,14 @@ public class DialogueBox extends HBox {
         Collections.reverse(tmp);
         getChildren().setAll(tmp);
         setAlignment(Pos.TOP_LEFT);
+        Circle circle = new Circle();
+        circle.setCenterX(55);
+        circle.setCenterY(50);
+        circle.setRadius(60);
+        displayPicture.setClip(circle);
+        dialog.setStyle("-fx-background-color: #00ffc4;" + "-fx-background-radius: 0;");
+        dialog.setPadding(new Insets(15));
+        dialog.setFont(Font.font("Comic Sans MS", FontWeight.SEMI_BOLD, FontPosture.REGULAR, 13));
     }
 
     public static DialogueBox getUserDialog(String text, Image img) {
