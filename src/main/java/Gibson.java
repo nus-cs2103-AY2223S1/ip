@@ -1,10 +1,9 @@
 import java.util.Scanner;
-import java.util.ArrayList;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
 public class Gibson {
-    private static ArrayList<Task> list = new ArrayList<Task>();
+    private static TaskList taskList = new TaskList();
     private static final String line = "____________________________________________________________";
     private static final String logo = " _____ ______ ____   _____  ____  _   _\n" +
             "/ _____|_   _|  _ \\ / ____|/ __ \\| \\ | |\n" +
@@ -32,23 +31,19 @@ public class Gibson {
                 break;
             // LIST
             } else if (input.equals("list")) {
-                int count = 1;
                 System.out.println(line);
                 System.out.println("Here are the task(s) in your list: ");
-                for (Task t : list) {
-                    System.out.println(count + "." + t.toString());
-                    count++;
-                }
+                System.out.println(taskList.toString());
                 System.out.println(line);
             // MARK
             } else if (Pattern.matches("mark [0-9]+", input)) {
                 int number = getTrailingInt(input) - 1;
                 int index = number - 1;
                 try {
-                list.get(index).mark();
+                taskList.get(index).mark();
                 System.out.println(line);
                 System.out.println("Nice! I've marked this task as done:");
-                System.out.println(list.get(index).toString());
+                System.out.println(taskList.get(index).toString());
                 System.out.println(line);
                 } catch (IndexOutOfBoundsException e) {
                     System.out.println("There is not task numbered as " + number + ".");
@@ -59,10 +54,10 @@ public class Gibson {
                 int number = getTrailingInt(input);
                 int index = number - 1;
                 try {
-                    list.get(index).unmark();
+                    taskList.get(index).unmark();
                     System.out.println(line);
                     System.out.println("OK, I've marked this task as not done yet:");
-                    System.out.println(list.get(index).toString());
+                    System.out.println(taskList.get(index).toString());
                     System.out.println(line);
                 } catch (IndexOutOfBoundsException e) {
                     System.out.println(line);
@@ -108,12 +103,12 @@ public class Gibson {
                 int number = getTrailingInt(input);
                 int index = number - 1;
                 try {
-                    Task t = list.get(index);
-                    list.remove(index);
+                    Task t = taskList.get(index);
+                    taskList.remove(index);
                     System.out.println(line);
                     System.out.println("Noted. I've removed this task:");
                     System.out.println(t.toString());
-                    System.out.println("Now you have " + list.size() + " task(s) in the list.");
+                    System.out.println("Now you have " + taskList.size() + " task(s) in the list.");
                     System.out.println(line);
                 } catch (IndexOutOfBoundsException e) {
                     System.out.println("There is not task numbered as " + number + ".");
@@ -130,10 +125,10 @@ public class Gibson {
 
     // Add task to list and print an acknowledgement
     private static void addTask(Task task) {
-        list.add(task);
+        taskList.add(task);
         System.out.println(line);
         System.out.println("Got it. I've added this task:\n" + task);
-        System.out.println("Now you have " + list.size() + " task(s) in the list.");
+        System.out.println("Now you have " + taskList.size() + " task(s) in the list.");
         System.out.println(line);
     }
 
