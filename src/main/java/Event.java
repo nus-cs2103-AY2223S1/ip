@@ -1,3 +1,6 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 public class Event extends Task{
     private String at;
     public Event(String description) throws DukeException{
@@ -8,15 +11,21 @@ public class Event extends Task{
             throw (new DukeException("OOPS!!! The description of a event cannot be empty."));
         }
         try {
-            super.correctDescrition(description.split(" /")[0].split(" ", 2)[1]);
-            this.at = description.split("/")[1].split("at ")[1];
-        }catch (IndexOutOfBoundsException ie){
-            throw(new DukeException("OOPS!!! The description of a event is still not complete."));
+            super.correctDescrition(description.split("on")[0].split(" ", 2)[1]);
+            super.getFullDescription(description.split(" ",2)[1]);
+            this.at = description.split("on")[1];
+        }catch (Exception ie){
+            throw(new DukeException("OOPS!!! The description of a event is still not correct."));
         }
-
     }
     @Override
     public String printTask(){
-        return "[E]"+super.printTask()+" (at:"+this.at+")";
+        try {
+            return "[E]" + super.printTask() + " (at:"
+                    + super.showTime() + ")";
+        }catch (DukeException d){
+            return "[E]" + super.printTask() + " (at:"
+                    + this.at + ")";
+        }
     }
 }

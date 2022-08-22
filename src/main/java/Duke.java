@@ -32,7 +32,9 @@ public class Duke {
                     taskList.addTask(new Event(ans));
                 } else if(ans.split(" ")[0].equals("delete")){
                     taskList.delete(Integer.valueOf(ans.split(" ")[1]));
-                }else{
+                } else if (ans.split(" ")[0].equals("Get")) {
+                    System.out.println(taskList.getASpecificDay(ans));
+                } else{
                     throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
             }catch (DukeException de){

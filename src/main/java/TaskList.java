@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 public class TaskList {
@@ -44,5 +45,26 @@ public class TaskList {
     public void markUndone(int i){
         this.taskList.get(i).taskUndone();
         System.out.println("OK, I've marked this task as not done yet:\n"+this.taskList.get(i).printTask());
+    }
+    public String getASpecificDay(String s){
+        try {
+            String day = s.split(" ")[1];
+            LocalDate d = LocalDate.parse(day);
+            String res="";
+            for (int i = 0; i < this.taskList.size(); i++){
+                if (this.taskList.get(i).getDay() != null){
+                    if (this.taskList.get(i).getDay().equals(d)){
+                        res += this.taskList.get(i).printTask() + "\n";
+                    }
+                }
+            }
+            if (res.equals("")){
+                return "You don't have tasks on this day.";
+            }else {
+                return res;
+            }
+        }catch (Exception e){
+            return "the input format is not correct " + e.getMessage();
+        }
     }
 }
