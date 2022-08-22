@@ -1,4 +1,8 @@
 import java.io.FileNotFoundException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.FormatStyle;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.io.File;  // Import the File class
@@ -52,18 +56,21 @@ public class Actions { //actions that Duke does
             e.printStackTrace();
         }
     }
+
     /**
      * The current chatbot functionality which takes in user input and reacts accordingly to the input.
      */
     public static void toDoList() {
         ArrayList<Task> ls = new ArrayList<>();
         File taskList = new File("./src/main/data/duke.txt");
+        if (!taskList.exists()) {
+            createFile(taskList);
+        }
         try {
             Scanner myReader = new Scanner(taskList);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
                 char key = data.charAt(1);
-                System.out.println(key);
                 String temp = data.substring(7);
                 if (key == 'T') { //todo
                     Todo task = new Todo(temp);
@@ -71,18 +78,22 @@ public class Actions { //actions that Duke does
                 }
                 else if (key == 'D') { //deadline
                     String parts[] = temp.split(" \\(by: ", 2);
-                    Deadline task = new Deadline(parts[0], parts[1].substring(0, parts[1].length() - 1)); //to handle the ) at the end
+                    String dateEnglish = parts[1].substring(0, 11); //handle ) at the end
+                    LocalDate inputDate = LocalDate.parse(dateEnglish, DateTimeFormatter.ofPattern("MMM dd yyyy"));
+                    Deadline task = new Deadline(parts[0], inputDate);
                     ls.add(task);
                 }
                 else { //event
                     String parts[] = temp.split(" \\(at: ", 2);
-                    Event task = new Event(parts[0], parts[1].substring(0, parts[1].length() - 1)); //to handle the ) at the end
+                    String dateEnglish = parts[1].substring(0, 11); //to handle the ) at the end
+                    LocalDate inputDate = LocalDate.parse(dateEnglish, DateTimeFormatter.ofPattern("MMM dd yyyy"));
+                    Event task = new Event(parts[0], inputDate);
                     ls.add(task);
                 }
             }
             myReader.close();
         } catch (FileNotFoundException e) {
-            createFile(taskList);
+            System.out.println("File not found exception thrown");
         }
         String input;
         System.out.println("Hello! I'm Duke, what's up today?");
@@ -116,7 +127,7 @@ public class Actions { //actions that Duke does
                     String[] temp = input.split(" /by ", 2);
                     String by = temp[1];
                     String deadlineDesc = temp[0].split("deadline ")[1];
-                    Deadline deadlineTask = new Deadline(deadlineDesc, by);
+                    Deadline deadlineTask = new Deadline(deadlineDesc, LocalDate.parse(by));
                     ls.add(deadlineTask);
                     deadlineTask.addTaskMessage();
                     taskNumberMessage(ls);
@@ -125,7 +136,7 @@ public class Actions { //actions that Duke does
                     String[] temp1 = input.split(" /at ", 2);
                     String at = temp1[1];
                     String eventDesc = temp1[0].split("event ", 2)[1];
-                    Event eventTask = new Event(eventDesc, at);
+                    Event eventTask = new Event(eventDesc, LocalDate.parse(at));
                     ls.add(eventTask);
                     eventTask.addTaskMessage();
                     taskNumberMessage(ls);
@@ -151,7 +162,6 @@ public class Actions { //actions that Duke does
 
             FileWriter myWriter = new FileWriter("./src/main/data/duke.txt");
             for (Task curr: ls) {
-                System.out.println("writing");
                 myWriter.write(curr.toString());
                 myWriter.write("\n");
             }
@@ -164,6 +174,8 @@ public class Actions { //actions that Duke does
 
             catch (IOException e){
                 System.out.println("Cannot write to file!");
+            } catch (DateTimeParseException e) {
+                System.out.println("Cannot parse this date!");
             }
             input = sc.nextLine();
 

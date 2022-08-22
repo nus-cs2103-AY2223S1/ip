@@ -1,5 +1,6 @@
 todo wake up
-deadline sleep /by 9pm
-event do tutorial /at 10am
+list
+deadline sleep /by 2022-12-12
+event do tutorial /at 2022-08-30
 list
 bye
