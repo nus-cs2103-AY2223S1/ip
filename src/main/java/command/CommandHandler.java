@@ -18,5 +18,5 @@ public abstract class CommandHandler {
 
     abstract public boolean validateCommand(List<String> commandTokens);
 
-    abstract public List<String> run(List<String> commandTokens) throws CommandException;
+    abstract public CommandResponse run(List<String> commandTokens) throws CommandException;
 }

@@ -3,6 +3,7 @@ import command.CommandException;
 import command.CommandFactory;
 import command.CommandHandler;
 
+import command.CommandResponse;
 import data.TaskList;
 
 import java.io.IOException;
@@ -131,9 +132,12 @@ public class Duke {
                     respond("Bye. Hope to see you again soon!");
                     continue;
                 }
+
                 CommandHandler commandHandler = commandFactory.getCommandHandler(command, taskList);
-                respond(commandHandler.run(tokens));
-                if (!save()) {
+                CommandResponse commandResponse = commandHandler.run(tokens);
+                respond(commandResponse.responseList);
+
+                if (commandResponse.triggerSave && !save()) {
                     respondError(String.format("Failed to save to cache (%s)", CACHE_PATH));
                     terminate = true;
                 }

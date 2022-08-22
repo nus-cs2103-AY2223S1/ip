@@ -22,7 +22,7 @@ public class CommandDeadlineHandler extends CommandHandler {
     }
 
     @Override
-    public List<String> run(List<String> commandTokens) throws CommandException {
+    public CommandResponse run(List<String> commandTokens) throws CommandException {
         if (!validateCommand(commandTokens)) {
             throw new CommandException(
                 "Invalid parameters passed to `deadline` command! (Expected: deadline <task-title> /by <deadline>)"

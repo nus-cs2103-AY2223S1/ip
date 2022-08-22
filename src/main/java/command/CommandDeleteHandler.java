@@ -19,12 +19,10 @@ public class CommandDeleteHandler extends CommandHandler {
     }
 
     @Override
-    public List<String> run(List<String> commandTokens) throws CommandException {
+    public CommandResponse run(List<String> commandTokens) throws CommandException {
         if (!validateCommand(commandTokens)) {
             throw new CommandException("The `delete` command only expects 1 parameter!");
         }
-
-        List<String> responseList = new ArrayList<>();
 
         String taskIdxStr = commandTokens.get(1);
         try {
@@ -33,13 +31,10 @@ public class CommandDeleteHandler extends CommandHandler {
                 throw new CommandException("Invalid task selected!");
             } else {
                 Task deletedTask = taskList.deleteTask(taskIdx - 1);
-                responseList.addAll(CommandUtils.generateDeleteTaskResponse(deletedTask,
-                    taskList.size()));
+                return CommandUtils.generateDeleteTaskResponse(deletedTask, taskList.size());
             }
         } catch (NumberFormatException error) {
             throw new CommandException("Invalid task selected!");
         }
-
-        return responseList;
     }
 }

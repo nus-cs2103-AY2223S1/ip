@@ -23,7 +23,7 @@ public class CommandEventHandler extends CommandHandler {
     }
 
     @Override
-    public List<String> run(List<String> commandTokens) throws CommandException {
+    public CommandResponse run(List<String> commandTokens) throws CommandException {
         if (!validateCommand(commandTokens)) {
             throw new CommandException(
                 "Invalid parameters passed to `event` command! (Expected: event <event-title> /at <timing>)");

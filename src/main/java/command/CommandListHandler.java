@@ -17,7 +17,7 @@ public class CommandListHandler extends CommandHandler {
     }
 
     @Override
-    public List<String> run(List<String> commandTokens) throws CommandException{
+    public CommandResponse run(List<String> commandTokens) throws CommandException{
         if (!validateCommand(commandTokens)) {
             throw new CommandException("The `list` command expects no parameters!");
         }
@@ -32,6 +32,6 @@ public class CommandListHandler extends CommandHandler {
             }
         }
 
-        return responseList;
+        return new CommandResponse(responseList, false);
     }
 }

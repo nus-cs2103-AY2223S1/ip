@@ -22,7 +22,7 @@ public class CommandMarkHandler extends CommandHandler {
     }
 
     @Override
-    public List<String> run(List<String> commandTokens) throws CommandException{
+    public CommandResponse run(List<String> commandTokens) throws CommandException{
         if (!validateCommand(commandTokens)) {
             throw new CommandException("The `mark` command only expects 1 parameter!");
         }
@@ -49,6 +49,6 @@ public class CommandMarkHandler extends CommandHandler {
             throw new CommandException("Invalid task selected!");
         }
 
-        return responseList;
+        return new CommandResponse(responseList, true);
     }
 }
