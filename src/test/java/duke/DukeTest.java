@@ -7,21 +7,18 @@ import java.time.format.DateTimeFormatter;
 
 import org.junit.jupiter.api.Test;
 
-import duke.task.Deadline;
-import duke.task.Event;
 import duke.task.Task;
 import duke.task.TaskList;
-import duke.task.ToDo;
 
 public class DukeTest {
     @Test
     public void addTodo_descriptionToDo_success() {
-        String descToDo = "Test todo for Duke !";
+        // Test description = "Test todo for Duke !"
         String expected = "";
         String actual = "";
         try {
             TaskList taskList = new TaskList();
-            Task todo = new ToDo(descToDo);
+            Task todo = new ToDoStub();
             expected = generateExpectedOutput(todo);
             taskList.addTaskToList(todo);
             actual = taskList.getAddedTaskOutput();
@@ -34,14 +31,14 @@ public class DukeTest {
 
     @Test
     public void addDeadline_descriptionDeadlineLocalDateTime_success() {
-        String descDeadline = "Finish Assignment 1";
+        // Test description = "Finish Assignment 1";
         String dateTime = "16 Aug 2023 1955";
         DateTimeFormatter dateTimeFormatter = DateHandler.getDateTimeFormatter();
         String expected = "";
         String actual = "";
         try {
             TaskList taskList = new TaskList();
-            Task deadline = new Deadline(descDeadline, LocalDateTime.parse(dateTime, dateTimeFormatter));
+            Task deadline = new DeadlineStub(LocalDateTime.parse(dateTime, dateTimeFormatter));
             expected = generateExpectedOutput(deadline);
             taskList.addTaskToList(deadline);
             actual = taskList.getAddedTaskOutput();
@@ -54,14 +51,14 @@ public class DukeTest {
 
     @Test
     public void addEvent_descriptionEventLocalDateTime_success() {
-        String descEvent = "Dinner Date";
+        // Test description = "Dinner Date"
         String dateTime = "25 Dec 2029 1835";
         DateTimeFormatter dateTimeFormatter = DateHandler.getDateTimeFormatter();
         String expected = "";
         String actual = "";
         try {
             TaskList taskList = new TaskList();
-            Task event = new Event(descEvent, LocalDateTime.parse(dateTime, dateTimeFormatter));
+            Task event = new EventStub(LocalDateTime.parse(dateTime, dateTimeFormatter));
             expected = generateExpectedOutput(event);
             taskList.addTaskToList(event);
             actual = taskList.getAddedTaskOutput();
