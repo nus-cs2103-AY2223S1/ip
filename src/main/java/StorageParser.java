@@ -85,27 +85,27 @@ public class StorageParser {
 
     private static String toTaskString(Event event) {
         return String.format(
-                "%s | %s | &s | &t",
+                "%s | %s | %s | %s",
                 EVENT_TASK_TYPE,
                 event.isDone() ? TASK_DONE_INDICATOR : TASK_NOT_DONE_INDICATOR,
                 event.getName(),
-                event.getDate()
+                event.getDate().toString()
         );
     }
 
     private static String toTaskString(Deadline deadline) {
         return String.format(
-                "%s | %s | &s | &t",
+                "%s | %s | %s | %s",
                 DEADLINE_TASK_TYPE,
                 deadline.isDone() ? TASK_DONE_INDICATOR : TASK_NOT_DONE_INDICATOR,
                 deadline.getName(),
-                deadline.getDate()
+                deadline.getDate().toString()
         );
     }
 
     private static String toTaskString(ToDo todo) {
         return String.format(
-                "%s | %s | &s",
+                "%s | %s | %s",
                 TODO_TASK_TYPE,
                 todo.isDone() ? TASK_DONE_INDICATOR : TASK_NOT_DONE_INDICATOR,
                 todo.getName()
