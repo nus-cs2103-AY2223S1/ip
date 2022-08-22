@@ -12,7 +12,7 @@ public class TaskList {
 
     public void deleteTask(String stringDex) throws DukeException {
         int index = Integer.parseInt(stringDex);
-        if (index >= itemList.size()) {
+        if (index > itemList.size()) {
             throw new DukeException("Item to be deleted not found");
         } else {
             System.out.println("Noted. I've removed this task:");
