@@ -1,3 +1,9 @@
+package Duke.Task;
+
+import Duke.Processor.Storage;
+import Duke.Processor.TaskList;
+import Duke.UI;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -8,7 +14,7 @@ public class Event extends Task {
     protected LocalDateTime time;
 
     /**
-     * The constructor for Event task
+     * The constructor for Duke.Task.Event task
      * @param description
      * @param isDone
      */
@@ -18,8 +24,8 @@ public class Event extends Task {
     }
 
     /**
-     * the method to mark as done the Event task
-     * @return Event object
+     * the method to mark as done the Duke.Task.Event task
+     * @return Duke.Task.Event object
      */
     @Override
     public Event markDone() {
@@ -28,8 +34,8 @@ public class Event extends Task {
     }
 
     /**
-     * the method to mark as undone the Event task
-     * @return Event object
+     * the method to mark as undone the Duke.Task.Event task
+     * @return Duke.Task.Event object
      */
     @Override
     public Event markUndone() {
@@ -43,11 +49,12 @@ public class Event extends Task {
      */
     public String formatChange() {
         String mark = isDone ? "1" : "0";
-        return "E | " + mark + " | " + this.description + " | " + this.time;
+        return "E | " + mark + " | " + this.description + " | " +
+                this.time.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 
     /**
-     * Overridden toString method for Event task details
+     * Overridden toString method for Duke.Task.Event task details
      * @return String
      */
     @Override
@@ -57,7 +64,7 @@ public class Event extends Task {
     }
 
     /**
-     * The execute version to process given Event task
+     * The execute version to process given Duke.Task.Event task
      * @param task
      * @param ui
      */

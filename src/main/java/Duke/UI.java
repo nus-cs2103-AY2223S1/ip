@@ -1,3 +1,8 @@
+package Duke;
+
+import Duke.Processor.TaskList;
+import Duke.Task.Task;
+
 /**
  * Class to represent the user interfaces
  */
@@ -20,7 +25,7 @@ public class UI {
      */
     public void exit() {
         System.out.println(indentation + underline);
-        System.out.println(indentation + "Bye. Hope to see you again soon!");
+        System.out.println(indentation + "Bye! Hope to see you again soon!");
         System.out.println(indentation + underline);
     }
 

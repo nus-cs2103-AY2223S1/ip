@@ -1,11 +1,17 @@
+package Duke.Task;
+
+import Duke.Processor.Storage;
+import Duke.Processor.TaskList;
+import Duke.UI;
+
 /**
- * Class to represent "Unmark" tasks.
+ * Class to represent "Duke.Task.Unmark" tasks.
  */
 public class Unmark extends Task {
     int num;
 
     /**
-     * The constructor for Mark task
+     * The constructor for Duke.Task.Mark task
      */
     public Unmark(int num) {
         super("unmark", false);

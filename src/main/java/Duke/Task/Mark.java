@@ -1,11 +1,17 @@
+package Duke.Task;
+
+import Duke.Processor.Storage;
+import Duke.Processor.TaskList;
+import Duke.UI;
+
 /**
- * Class to represent "Mark" tasks.
+ * Class to represent "Duke.Task.Mark" tasks.
  */
 public class Mark extends Task {
     int num;
 
     /**
-     * The constructor for Mark task
+     * The constructor for Duke.Task.Mark task
      */
     public Mark(int num) {
         super("mark", false);

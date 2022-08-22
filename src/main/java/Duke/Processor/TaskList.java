@@ -1,3 +1,7 @@
+package Duke.Processor;
+
+import Duke.Task.Task;
+
 import java.util.ArrayList;
 
 /**
@@ -32,7 +36,7 @@ public class TaskList {
     /**
      * Method to remove a task.
      * @param i
-     * @return Task taskDeleted
+     * @return Duke.Task.Task taskDeleted
      */
     public Task delete(int i) {
         return task.remove(i);
@@ -65,7 +69,7 @@ public class TaskList {
     /**
      * Method to get a specific task.
      * @param i
-     * @return Task object
+     * @return Duke.Task.Task object
      */
     public Task get(int i) {
         return task.get(i);

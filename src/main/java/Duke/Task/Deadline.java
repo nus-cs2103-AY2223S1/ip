@@ -1,14 +1,20 @@
+package Duke.Task;
+
+import Duke.Processor.Storage;
+import Duke.Processor.TaskList;
+import Duke.UI;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Class to represent "Deadline" tasks.
+ * Class to represent "Duke.Task.Deadline" tasks.
  */
 public class Deadline extends Task {
     protected LocalDateTime time;
 
     /**
-     * The constructor for Deadline task
+     * The constructor for Duke.Task.Deadline task
      * @param description
      * @param isDone
      */
@@ -18,8 +24,8 @@ public class Deadline extends Task {
     }
 
     /**
-     * the method to mark as done the Deadline task
-     * @return Deadline object
+     * the method to mark as done the Duke.Task.Deadline task
+     * @return Duke.Task.Deadline object
      */
     @Override
     public Deadline markDone() {
@@ -28,8 +34,8 @@ public class Deadline extends Task {
     }
 
     /**
-     * the method to mark as undone the Deadline task
-     * @return Deadline object
+     * the method to mark as undone the Duke.Task.Deadline task
+     * @return Duke.Task.Deadline object
      */
     @Override
     public Deadline markUndone() {
@@ -43,11 +49,12 @@ public class Deadline extends Task {
      */
     public String formatChange() {
         String mark = isDone ? "1" : "0";
-        return "D | " + mark + " | " + this.description + " | " + this.time;
+        return "D | " + mark + " | " + this.description + " | " +
+                this.time.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 
     /**
-     * Overridden toString method for Deadline task details
+     * Overridden toString method for Duke.Task.Deadline task details
      * @return String
      */
     @Override

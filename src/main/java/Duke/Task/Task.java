@@ -1,10 +1,16 @@
+package Duke.Task;
+
+import Duke.Processor.Storage;
+import Duke.Processor.TaskList;
+import Duke.UI;
+
 /**
  * Class to represent the tasks.
  */
 public abstract class Task {
     protected String description;
     protected Boolean isDone;
-    protected Boolean isBye;
+    public Boolean isBye;
 
     /**
      * The constructor for task.
@@ -27,7 +33,7 @@ public abstract class Task {
 
     /**
      * The method to change the current status.
-     * @return Task object
+     * @return Duke.Task.Task object
      */
     public Task markDone() {
         this.isDone = true;
@@ -36,7 +42,7 @@ public abstract class Task {
 
     /**
      * The method to change the current status.
-     * @return Task object
+     * @return Duke.Task.Task object
      */
     public Task markUndone() {
         this.isDone = false;

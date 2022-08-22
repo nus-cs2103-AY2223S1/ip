@@ -1,11 +1,17 @@
+package Duke.Task;
+
+import Duke.Processor.Storage;
+import Duke.Processor.TaskList;
+import Duke.UI;
+
 /**
- * Class to represent "Delete" tasks.
+ * Class to represent "Duke.Task.Delete" tasks.
  */
 public class Delete extends Task {
     int num;
 
     /**
-     * The constructor for Delete task
+     * The constructor for Duke.Task.Delete task
      */
     public Delete(int num) {
         super("delete", false);

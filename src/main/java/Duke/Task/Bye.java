@@ -1,5 +1,7 @@
+package Duke.Task;
+
 /**
- * Class to represent "Bye" tasks.
+ * Class to represent "Duke.Task.Bye" tasks.
  */
 public class Bye extends Task {
     /**

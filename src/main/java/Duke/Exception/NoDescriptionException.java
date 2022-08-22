@@ -1,9 +1,11 @@
+package Duke.Exception;
+
 /**
- * Class to represent NoDescriptionException.
+ * Class to represent Duke.Exception.NoDescriptionException.
  */
 public class NoDescriptionException extends Exception {
     /**
-     * The Constructor for NoCommandException
+     * The Constructor for Duke.Exception.NoCommandException
      * @param message
      */
     public NoDescriptionException(String message) {

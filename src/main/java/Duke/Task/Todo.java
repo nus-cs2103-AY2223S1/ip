@@ -1,9 +1,15 @@
+package Duke.Task;
+
+import Duke.Processor.Storage;
+import Duke.Processor.TaskList;
+import Duke.UI;
+
 /**
  * Class to represent "To Do" tasks.
  */
 public class Todo extends Task {
     /**
-     * The constructor for Todo task
+     * The constructor for Duke.Task.Todo task
      * @param description
      * @param isDone
      */
@@ -12,8 +18,8 @@ public class Todo extends Task {
     }
 
     /**
-     * the method to mark as done the Todo task
-     * @return Todo object
+     * the method to mark as done the Duke.Task.Todo task
+     * @return Duke.Task.Todo object
      */
     @Override
     public Todo markDone() {
@@ -22,8 +28,8 @@ public class Todo extends Task {
     }
 
     /**
-     * the method to mark as undone the Todo task
-     * @return Todo object
+     * the method to mark as undone the Duke.Task.Todo task
+     * @return Duke.Task.Todo object
      */
     @Override
     public Todo markUndone() {
@@ -41,7 +47,7 @@ public class Todo extends Task {
     }
 
     /**
-     * Overridden toString method for Todo task details
+     * Overridden toString method for Duke.Task.Todo task details
      * @return String
      */
     @Override
@@ -50,7 +56,7 @@ public class Todo extends Task {
     }
 
     /**
-     * The execute version to process given Todo task
+     * The execute version to process given Duke.Task.Todo task
      * @param task
      * @param ui
      */

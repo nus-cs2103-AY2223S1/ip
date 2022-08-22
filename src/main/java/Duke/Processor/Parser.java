@@ -1,3 +1,20 @@
+package Duke.Processor;
+
+import Duke.Exception.NoCommandException;
+import Duke.Exception.NoDescriptionException;
+import Duke.Exception.NoTimeException;
+import Duke.Exception.WrongTimeFormatException;
+import Duke.Task.Bye;
+import Duke.Task.Deadline;
+import Duke.Task.Delete;
+import Duke.Task.Event;
+import Duke.Task.List;
+import Duke.Task.Mark;
+import Duke.Task.Task;
+import Duke.Task.Todo;
+import Duke.Task.Unmark;
+import Duke.UI;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -16,7 +33,7 @@ public class Parser {
      * The method to mark done command task process
      * @param chat
      * @param tasklist
-     * @return Task object
+     * @return Duke.Task.Task object
      * @throws NoDescriptionException
      * @throws NoCommandException
      */
@@ -29,7 +46,7 @@ public class Parser {
      * The method to mark undone command task process
      * @param chat
      * @param tasklist
-     * @return Task object
+     * @return Duke.Task.Task object
      * @throws NoDescriptionException
      * @throws NoCommandException
      */
@@ -39,10 +56,10 @@ public class Parser {
     }
 
     /**
-     * The method for Todo, Deadline, Event command task process
+     * The method for Duke.Task.Todo, Duke.Task.Deadline, Duke.Task.Event command task process
      * @param chat
      * @param tasklist
-     * @return Task object
+     * @return Duke.Task.Task object
      * @throws NoDescriptionException
      * @throws NoCommandException
      */
@@ -108,7 +125,7 @@ public class Parser {
      * The method to delete task.
      * @param tasklist
      * @param chat
-     * @return Task object
+     * @return Duke.Task.Task object
      * @throws NoDescriptionException
      * @throws NoCommandException
      */
@@ -116,7 +133,7 @@ public class Parser {
 
         int order = tasklist.size();
         if (chat.split(" ").length == 1)  {
-            throw new NoDescriptionException("Delete");
+            throw new NoDescriptionException("Duke.Task.Delete");
         } else {
             int num = Integer.parseInt(chat.split(" ")[1]) - 1;
             return new Delete(num);
@@ -127,7 +144,7 @@ public class Parser {
      * The method to parse the command.
      * @param chat
      * @param tasklist
-     * @return Task object
+     * @return Duke.Task.Task object
      */
     public static Task parse(String chat, TaskList tasklist) {
 

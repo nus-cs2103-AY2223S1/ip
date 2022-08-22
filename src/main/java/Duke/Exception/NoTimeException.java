@@ -1,9 +1,11 @@
+package Duke.Exception;
+
 /**
- * Class to represent NoTimeException.
+ * Class to represent Duke.Exception.NoTimeException.
  */
 public class NoTimeException extends Exception {
     /**
-     * The Constructor for NoTimeException
+     * The Constructor for Duke.Exception.NoTimeException
      * @param message
      */
     public NoTimeException(String message) {

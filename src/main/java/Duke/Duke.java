@@ -1,9 +1,16 @@
-/**
- * @author Marciano Renzo William
- */
+package Duke;
+
+import Duke.Processor.Parser;
+import Duke.Processor.Storage;
+import Duke.Processor.TaskList;
+import Duke.Task.Task;
 
 import java.io.IOException;
 import java.util.Scanner;
+
+/**
+ * @author Marciano Renzo William
+ */
 
 /**
  * This is the Main Class that contains the Main method.
@@ -14,7 +21,7 @@ public class Duke {
     private Storage storage;
 
     /**
-     * Private constructor of Duke.
+     * Private constructor of Duke.Duke.
      */
     private Duke(String filePath) {
         ui = new UI();

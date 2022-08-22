@@ -1,9 +1,15 @@
+package Duke.Task;
+
+import Duke.Processor.Storage;
+import Duke.Processor.TaskList;
+import Duke.UI;
+
 /**
- * Class to represent "List" tasks.
+ * Class to represent "Duke.Task.List" tasks.
  */
 public class List extends Task {
     /**
-     * The constructor for List task
+     * The constructor for Duke.Task.List task
      */
     public List() {
         super("list", false);
