@@ -28,20 +28,24 @@ public class TaskManager {
 
     public void addTask(String input) {
         if (input.toLowerCase().startsWith("todo")) {
-            Todo todo = new Todo(input.substring("todo ".length()));
-            this.addDescription(todo);
+            if (input.split(" ").length == 1) {
+                SakuraException.invalidTodo();
+            } else {
+                Todo todo = new Todo(input.substring("todo ".length()));
+                this.addDescription(todo);
+            }
         } else if (input.toLowerCase().startsWith("deadline")) {
             try {
-                String[] strArr = input.split("/by", 2);
-                Deadline deadline = new Deadline(strArr[0], strArr[1].substring(3));
+                String[] strArr = input.split(" /by ", 2);
+                Deadline deadline = new Deadline(strArr[0], strArr[1]);
                 this.addDescription(deadline);
             } catch (ArrayIndexOutOfBoundsException e) {
                 SakuraException.invalidDeadline();
             }
         } else if (input.toLowerCase().startsWith("event")) {
             try {
-                String[] strArr = input.split("/at", 2);
-                Event event  = new Event(strArr[0], strArr[1].substring(3));
+                String[] strArr = input.split(" /at ", 2);
+                Event event  = new Event(strArr[0], strArr[1]);
                 this.addDescription(event);
             } catch (ArrayIndexOutOfBoundsException e) {
                 SakuraException.invalidEvent();
