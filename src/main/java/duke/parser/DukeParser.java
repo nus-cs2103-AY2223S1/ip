@@ -1,16 +1,17 @@
-package parser;
+package duke.parser;
 
-import tasks.Task;
-import tasks.Deadline;
-import tasks.Todo;
-import tasks.Event;
-import exceptions.DukeException;
-import tasklist.TaskList;
+import duke.storage.Storage;
+import duke.tasks.Task;
+import duke.tasks.Deadline;
+import duke.tasks.Todo;
+import duke.tasks.Event;
+import duke.exceptions.DukeException;
+import duke.tasklist.TaskList;
 
 import java.time.format.DateTimeParseException;
 
 /**
- * Handler class that manages user input to Duke.
+ * Handler class that manages user input to duke.Duke.
  * TODO more JavaDocs
  */
 public class DukeParser {
@@ -25,7 +26,7 @@ public class DukeParser {
     /**
      * Default constructor for the DukeParser object.
      *
-     * @param taskList A reference of Duke's ArrayList of Tasks
+     * @param taskList A reference of duke.Duke's ArrayList of Tasks
      */
     public DukeParser(TaskList taskList) {
         this.taskList = taskList;
@@ -36,7 +37,7 @@ public class DukeParser {
     }
 
     /**
-     * Handles user input, and preps parser for instruction execution
+     * Handles user input, and preps duke.parser for instruction execution
      *
      * @param inputString The string that we would like to parse.
      */
@@ -54,7 +55,7 @@ public class DukeParser {
 
     }
 
-    public void execute() throws DukeException {
+    public void execute(Storage st) throws DukeException {
         if (this.keyword == null) {
             throw new DukeException("Error: Parser has not been loaded with an instruction yet!");
         }
@@ -74,21 +75,27 @@ public class DukeParser {
             break;
         case "mark":
             this.numericalInstructionHandler();
+            st.save(this.taskList);
             break;
         case "unmark":
             this.numericalInstructionHandler();
+            st.save(this.taskList);
             break;
         case "delete":
             this.numericalInstructionHandler();
+            st.save(this.taskList);
             break;
         case "todo":
             this.addTaskInstructionHandler();
+            st.save(this.taskList);
             break;
         case "event":
             this.addTaskInstructionHandler();
+            st.save(this.taskList);
             break;
         case "deadline":
             this.addTaskInstructionHandler();
+            st.save(this.taskList);
             break;
         default:
             System.out.println(BREAK_LINES);
@@ -111,7 +118,7 @@ public class DukeParser {
     }
 
     /**
-     * Handles a list instruction by printing user's tasks to the screen.
+     * Handles a list instruction by printing user's duke.tasks to the screen.
      */
     public void listInstructionHandler() {
         System.out.println(BREAK_LINES);
@@ -120,7 +127,7 @@ public class DukeParser {
     }
 
     /**
-     * Handles a bye instruction by exiting Duke.
+     * Handles a bye instruction by exiting duke.Duke.
      */
     public void byeInstructionHandler() {
         System.out.println(BREAK_LINES);
@@ -172,7 +179,7 @@ public class DukeParser {
     public void addTaskInstructionHandler() throws DukeException {
         System.out.println(BREAK_LINES);
         if (this.restOfInputString.equals("")) {
-            throw new DukeException("Oops! Descriptions for tasks cannot be blank!");
+            throw new DukeException("Oops! Descriptions for duke.tasks cannot be blank!");
         }
 
         int slashIndex = this.restOfInputString.indexOf("/");
