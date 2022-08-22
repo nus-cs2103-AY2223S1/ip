@@ -43,10 +43,18 @@ public class Task {
 
         switch (taskType) {
             case DEADLINE:
-                task = new Deadline(taskSubstrings[2], taskSubstrings[3]);
+                try {
+                    task = new Deadline(taskSubstrings[2], taskSubstrings[3]);
+                } catch (DukeException e) {
+                    throw new RuntimeException(e.getMessage());
+                }
                 break;
             case EVENT:
-                task = new Event(taskSubstrings[2], taskSubstrings[3]);
+                try {
+                    task = new Event(taskSubstrings[2], taskSubstrings[3]);
+                } catch (DukeException e) {
+                    throw new RuntimeException(e.getMessage());
+                }
                 break;
             case TODO:
                 task = new ToDo(taskSubstrings[2]);
