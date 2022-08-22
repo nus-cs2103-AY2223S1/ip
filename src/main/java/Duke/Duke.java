@@ -33,6 +33,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Method to run the program.
+     */
     public void run() {
         ui.printGreetings();
         boolean isStillRunning = true;
