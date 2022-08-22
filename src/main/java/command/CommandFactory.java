@@ -5,28 +5,30 @@ import data.TaskList;
 public class CommandFactory {
 
     public Command parseCommand(String commandStr) throws CommandException {
+        String commandToken = commandStr.split(" ")[0];
         try {
-            return Command.valueOf(commandStr.toUpperCase());
+            return Command.valueOf(commandToken.toUpperCase());
         } catch (IllegalArgumentException error) {
             throw new CommandException("Unknown command!");
         }
     }
 
-    public CommandHandler getCommandHandler(Command command, TaskList taskList) {
+    public CommandHandler getCommandHandler(Command command, String commandStr)
+        throws CommandException {
         switch (command) {
             case LIST:
-                return new CommandListHandler(taskList);
+                return new CommandListHandler(commandStr);
             case MARK:
             case UNMARK:
-                return new CommandMarkHandler(taskList);
+                return new CommandMarkHandler(commandStr);
             case TODO:
-                return new CommandTodoHandler(taskList);
+                return new CommandTodoHandler(commandStr);
             case DEADLINE:
-                return new CommandDeadlineHandler(taskList);
+                return new CommandDeadlineHandler(commandStr);
             case EVENT:
-                return new CommandEventHandler(taskList);
+                return new CommandEventHandler(commandStr);
             case DELETE:
-                return new CommandDeleteHandler(taskList);
+                return new CommandDeleteHandler(commandStr);
         }
 
         return null;

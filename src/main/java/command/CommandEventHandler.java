@@ -2,39 +2,33 @@ package command;
 
 import data.TaskList;
 import data.tasks.TaskEvent;
-import util.CommandUtils;
 
 import java.util.List;
+import java.util.regex.MatchResult;
+import java.util.regex.Pattern;
+
+import util.CommandUtils;
 
 public class CommandEventHandler extends CommandHandler {
 
-    CommandEventHandler(TaskList taskList) {
-        super(taskList);
-    }
+    private static final Pattern commandRegexPattern = Pattern.compile("^event (.+) /at (.+)");
 
-    @Override
-    public boolean validateCommand(List<String> commandTokens) {
-        // 1. Contains the timing marker
-        // 2. There is a data specified after the timing marker
-        // 3. Timing marker is not right after command as it implies no task description
-        int timingMarkerIdx = commandTokens.indexOf(TaskEvent.timingMarker);
-        return commandTokens.size() > 1 && timingMarkerIdx != -1
-            && timingMarkerIdx != commandTokens.size() - 1 && timingMarkerIdx != 1;
-    }
-
-    @Override
-    public List<String> run(List<String> commandTokens) throws CommandException {
-        if (!validateCommand(commandTokens)) {
+    CommandEventHandler(String commandStr) throws CommandException {
+        super(commandStr, commandRegexPattern);
+        if (!isCommandValid()) {
             throw new CommandException(
-                "Invalid parameters passed to `event` command! (Expected: event <event-title> /at <timing>)");
+                "Invalid `event` command format (expected: event event-title /at datetime)");
         }
+    }
 
-        int timingMarkerIdx = commandTokens.indexOf(TaskEvent.timingMarker);
-        String eventDesc = gatherCommandTokens(commandTokens, 1, timingMarkerIdx, " ");
-        String timing = gatherCommandTokens(commandTokens, timingMarkerIdx + 1,
-            commandTokens.size(), " ");
+    @Override
+    public List<String> run(TaskList taskList) {
+        MatchResult regexMatchResult = commandRegexMatcher.toMatchResult();
 
-        TaskEvent eventTask = new TaskEvent(eventDesc, timing);
+        String eventTitle = regexMatchResult.group(1);
+        String eventDateTimeStr = regexMatchResult.group(2);
+
+        TaskEvent eventTask = new TaskEvent(eventTitle, eventDateTimeStr);
         taskList.addTask(eventTask);
 
         return CommandUtils.generateAddTaskResponse(eventTask, taskList.size());

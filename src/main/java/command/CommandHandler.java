@@ -2,21 +2,24 @@ package command;
 
 import data.TaskList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public abstract class CommandHandler {
 
-    protected final TaskList taskList;
+    protected final String commandStr;
+    protected final Pattern commandRegexPattern;
+    protected final Matcher commandRegexMatcher;
 
-    public CommandHandler(TaskList taskList) {
-        this.taskList = taskList;
+    public CommandHandler(String commandStr, Pattern commandRegexPattern) {
+        this.commandStr = commandStr;
+        this.commandRegexPattern = commandRegexPattern;
+        this.commandRegexMatcher = commandRegexPattern.matcher(commandStr);
     }
 
-    protected static String gatherCommandTokens(List<String> tokens, int start, int end,
-        String delimiter) {
-        return String.join(delimiter, tokens.subList(start, end));
+    protected boolean isCommandValid() {
+        return commandRegexMatcher.find();
     }
 
-    abstract public boolean validateCommand(List<String> commandTokens);
-
-    abstract public List<String> run(List<String> commandTokens) throws CommandException;
+    abstract public List<String> run(TaskList taskList) throws CommandException;
 }
