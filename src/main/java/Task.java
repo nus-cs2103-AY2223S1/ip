@@ -1,4 +1,3 @@
-import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,7 +12,6 @@ public class Task {
         this.description = description;
         this.isDone = false;
         tasks.add(this);
-        updateTasks();
     }
 
     public void print(Task task) {

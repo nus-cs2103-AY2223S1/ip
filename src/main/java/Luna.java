@@ -65,6 +65,17 @@ public class Luna {
         }
     }
 
+    public static void printCommands() {
+        System.out.println("  Luna commands" +
+                            "\n    🌸 list                             | View all tasks on your agenda" +
+                            "\n    🌷 todo \"task\"                      | Add a task to your agenda" +
+                            "\n    🌺 deadline \"task\" /by \"yyyy-mm-dd\" | Add a task to complete by the specified deadline" +
+                            "\n    🌹 event \"event\" /at \"yyyy-mm-dd\"    | Add an event on the specified date" +
+                            "\n    🪷 mark \"num\"                       | Mark the (num)th item in your list as completed"+
+                            "\n    🌻 unmark \"num\"                     | Mark the (num)th item in your list as uncompleted" +
+                            "\n    🥀 bye                              | Quit Luna\n");
+    }
+
     public static void handleCommands(Scanner sc) {
         String cmd = sc.nextLine();
         while (!cmd.equals("bye")) {
@@ -115,6 +126,7 @@ public class Luna {
                 + "   | |__ | |_| | |  | |    | |\n"
                 + "   |____| \\__,_|_|  |_|\\__/|_|\n";
         System.out.println(sep + "\nHello. ⛅️\n   This is\n" + logo);
+        printCommands();
         loadTasks();
         sc = new Scanner(System.in);
         Task.tasks = new ArrayList<Task>();
