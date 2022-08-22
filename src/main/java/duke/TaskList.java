@@ -1,5 +1,8 @@
+package duke;
+
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Scanner;
 
 public class TaskList {
     private ArrayList<Task> list;
@@ -8,7 +11,29 @@ public class TaskList {
         this.list = new ArrayList<>();
     }
 
-    public String addTask(Task task) {
+    public TaskList(Scanner sc) {
+        while (sc.hasNextLine()) {
+            String line = sc.nextLine();
+            String[] inputs = line.split(",");
+            switch (inputs[0]) {
+            case "T":
+                add(new ToDo(inputs[2]));
+                break;
+            case "D":
+                add(new Deadline(inputs[2], inputs[3]));
+                break;
+            case "E":
+                add(new Event(inputs[2], inputs[3]));
+                break;
+            default:
+                throw new DukeException("Invalid input from file.");
+            }
+        }
+        sc.close();
+        Ui.showMsg("Successfully loaded saved contents.\n" + toString());
+    }
+
+    public String add(Task task) {
         this.list.add(task);
         StringBuilder stringBuilder = new StringBuilder("Got it. I've added this task:\n");
         stringBuilder.append(task);
@@ -16,7 +41,7 @@ public class TaskList {
         return stringBuilder.toString();
     }
 
-    public String removeTask(int index) throws DukeException {
+    public String remove(int index) throws DukeException {
         if (index < 0 || index >= this.list.size()) {
             throw new DukeException("Something went wrong!\nPlease select at task to be removed within the list.");
         }

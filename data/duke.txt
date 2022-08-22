@@ -1,3 +1,3 @@
-T,0, go to the gym
-E,0, watch movie with friends , Vivo
-D,0, homework , Sunday
+T,1,go to the gym
+E,0,national day,2022-08-01
+D,0,homework lab1,2022-09-08
