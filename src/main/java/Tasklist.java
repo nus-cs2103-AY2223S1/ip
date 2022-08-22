@@ -1,18 +1,20 @@
+import java.util.ArrayList;
+
 public class Tasklist {
-    private Task[] taskArray;
+    private ArrayList<Task> taskArray;
     private int count = 0;
 
-    public Tasklist(int size){
-        this.taskArray = new Task[size];
+    public Tasklist(){
+        this.taskArray = new ArrayList<>();
     }
 
     public void add(Task task){
-        this.taskArray[this.count] = task;
+        this.taskArray.add(task);
         this.count += 1;
     }
 
-    public Task getTask(int position) throws ArrayIndexOutOfBoundsException{
-        return taskArray[position - 1];
+    public Task getTask(int position) throws IndexOutOfBoundsException{
+        return taskArray.get(position - 1);
     }
 
     public int getCount(){
@@ -24,7 +26,7 @@ public class Tasklist {
             Task currTask = getTask(position);
             currTask.markAsDone();
             return true;
-        } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
+        } catch (IndexOutOfBoundsException e) {
             return false;
         }
     }
@@ -34,16 +36,23 @@ public class Tasklist {
             Task currTask = getTask(position);
             currTask.unmark();
             return true;
-        } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
+        } catch (IndexOutOfBoundsException e) {
             return false;
         }
+    }
+
+    public Task deleteTaskAtPos(int position) throws IndexOutOfBoundsException {
+        Task deletedTask = getTask(position);
+        this.taskArray.remove(position - 1);
+        this.count -= 1;
+        return deletedTask;
     }
 
     @Override
     public String toString(){
         String stringedList = "";
         for (int i = 0; i < this.count; i++) {
-            stringedList += (i + 1) + ". " + this.taskArray[i].toString() + "\n";
+            stringedList += (i + 1) + ". " + getTask(i + 1).toString() + "\n";
         }
         return "Here are the tasks in your list:\n" + stringedList;
     }
