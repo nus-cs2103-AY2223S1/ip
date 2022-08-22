@@ -7,11 +7,11 @@ package duke.exception;
  * @version CS2103T AY22/23 Sem 1
  */
 public class DukeException extends Exception {
+
     /**
      * Represents a message.
      */
     private String msg;
-
 
     /**
      * Constructor for DukeException.
