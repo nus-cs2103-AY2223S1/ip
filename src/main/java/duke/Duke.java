@@ -43,7 +43,6 @@ public class Duke {
                 Parser currentCommand = new Parser(scanner.nextLine());
                 String direction = currentCommand.getDirection();
                 String meta = currentCommand.getMeta();
-                if (meta == null) throw new DukeException("Description cannot be empty");
                 switch (direction) {
                     case "bye": this.terminate(); break;
                     case "list": Ui.showTasksList(this.tasks); break;
@@ -60,14 +59,17 @@ public class Duke {
                         Ui.showTaskStatus(deleteMessage, deleted);
                         break;
                     case "todo":
+                        if (meta == null) throw new DukeException("Description cannot be empty");
                         Task todo = this.tasks.add(new Todo(meta));
                         Ui.showTaskStatus(addedMessage, todo);
                         break;
                     case "deadline":
+                        if (meta == null) throw new DukeException("Description cannot be empty");
                         Task deadline = this.tasks.add(new Deadline(meta));
                         Ui.showTaskStatus(addedMessage, deadline);
                         break;
                     case "event":
+                        if (meta == null) throw new DukeException("Description cannot be empty");
                         Task event = this.tasks.add(new Event(meta));
                         Ui.showTaskStatus(addedMessage, event);
                         break;
