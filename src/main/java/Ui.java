@@ -1,12 +1,18 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ui {
     private Scanner scanner;
     private Parser parser;
+    private TaskList taskList;
 
     public Ui() {
         this.scanner = new Scanner(System.in);
-        this.parser = new Parser();
+    }
+
+    public void updateTaskList(TaskList taskList) {
+        this.taskList = taskList;
+        this.parser = new Parser(this.taskList);
     }
 
     public void printGreeting() {
@@ -25,4 +31,6 @@ public class Ui {
         Command command = this.parser.getCommand(input);
         return this.parser.executeCommand(command, input);
     }
+
+
 }

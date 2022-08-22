@@ -1,4 +1,9 @@
 public class Parser {
+    private TaskList taskList;
+
+    public Parser(TaskList taskList) {
+        this.taskList = taskList;
+    }
 
     /**
      * Gets the command word from the given input line.
@@ -44,35 +49,35 @@ public class Parser {
             System.out.println("Bye. Hope to see you again soon!");
             return true;
         case LIST:
-            Duke.printItems();
+            this.taskList.printItems();
             break;
         case MARK:
             int markindex = Integer.parseInt(inputText.substring(firstSpaceIdx + 1));
-            Duke.mark(markindex);
+            this.taskList.mark(markindex);
             break;
         case UNMARK:
             int unmarkindex = Integer.parseInt(inputText.substring(firstSpaceIdx + 1));
-            Duke.unmark(unmarkindex);
+            this.taskList.unmark(unmarkindex);
             break;
         case DELETE:
             int deleteindex = Integer.parseInt(inputText.substring(firstSpaceIdx + 1));
-            Duke.delete(deleteindex);
+            this.taskList.delete(deleteindex);
             break;
         case DEADLINE:
             String deadlineInfo = inputText.substring(firstSpaceIdx + 1);
-            Duke.addDeadline(deadlineInfo);
+            this.taskList.addDeadline(deadlineInfo);
             break;
         case TODO:
             String todoInfo = inputText.substring(firstSpaceIdx + 1);
-            Duke.addTodo(todoInfo);
+            this.taskList.addTodo(todoInfo);
             break;
         case EVENT:
             String eventInfo = inputText.substring(firstSpaceIdx + 1);
-            Duke.addEvent(eventInfo);
+            this.taskList.addEvent(eventInfo);
             break;
         case LISTALLONDATE:
             String listInfo = inputText.substring(firstSpaceIdx + 1);
-            Duke.printAllOnDate(listInfo);
+            this.taskList.printAllOnDate(listInfo);
             break;
         }
         return false;
