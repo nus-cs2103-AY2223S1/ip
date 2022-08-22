@@ -18,10 +18,10 @@
 	OOPS!!! Invalid task selected!
 	--------------------------------------------------
 	--------------------------------------------------
-	OOPS!!! Invalid task selected!
+	OOPS!!! `mark`/`unmark` command expects a single number argument (e.g. `mark 1`, `unmark 2`)
 	--------------------------------------------------
 	--------------------------------------------------
-	OOPS!!! Invalid task selected!
+	OOPS!!! `mark`/`unmark` command expects a single number argument (e.g. `mark 1`, `unmark 2`)
 	--------------------------------------------------
 	--------------------------------------------------
 	Got it. I've added this task:
@@ -29,7 +29,7 @@
 	Now you have 1 tasks in the list
 	--------------------------------------------------
 	--------------------------------------------------
-	OOPS!!! The `todo` command expects a description!
+	OOPS!!! `todo` command expects a description (`todo todo-task-title`)
 	--------------------------------------------------
 	--------------------------------------------------
 	Got it. I've added this task:
@@ -37,10 +37,10 @@
 	Now you have 2 tasks in the list
 	--------------------------------------------------
 	--------------------------------------------------
-	OOPS!!! Invalid parameters passed to `deadline` command! (Expected: deadline <task-title> /by <deadline>)
+	OOPS!!! Invalid `deadline` command format (expected: deadline deadline-title /by datetime)
 	--------------------------------------------------
 	--------------------------------------------------
-	OOPS!!! Invalid parameters passed to `deadline` command! (Expected: deadline <task-title> /by <deadline>)
+	OOPS!!! Invalid `deadline` command format (expected: deadline deadline-title /by datetime)
 	--------------------------------------------------
 	--------------------------------------------------
 	Got it. I've added this task:
@@ -48,10 +48,10 @@
 	Now you have 3 tasks in the list
 	--------------------------------------------------
 	--------------------------------------------------
-	OOPS!!! Invalid parameters passed to `event` command! (Expected: event <event-title> /at <timing>)
+	OOPS!!! Invalid `event` command format (expected: event event-title /at datetime)
 	--------------------------------------------------
 	--------------------------------------------------
-	OOPS!!! Invalid parameters passed to `event` command! (Expected: event <event-title> /at <timing>)
+	OOPS!!! Invalid `event` command format (expected: event event-title /at datetime)
 	--------------------------------------------------
 	--------------------------------------------------
 	OOPS!!! Invalid task selected!
@@ -107,7 +107,7 @@
 	OOPS!!! Invalid task selected!
 	--------------------------------------------------
 	--------------------------------------------------
-	OOPS!!! Invalid task selected!
+	OOPS!!! `delete` command expects a single number argument (e.g. `delete 1`)
 	--------------------------------------------------
 	--------------------------------------------------
 	Got it. I've added this task:
