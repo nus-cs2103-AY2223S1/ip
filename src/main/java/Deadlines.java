@@ -3,14 +3,10 @@ import java.time.format.DateTimeFormatter;
 
 public class Deadlines extends Task {
     private LocalDateTime deadline;
-    public Deadlines(String task, String deadline) throws DukeException {
-        super(task);
-        this.deadline = ConvertDateTime(deadline);
-    }
 
-    public Deadlines(String task, String deadline, boolean done) {
+    public Deadlines(String task, String deadline, boolean done) throws DukeException {
         super(task, done);
-        this.deadline = deadline;
+        this.deadline = ConvertDateTime(deadline);
     }
 
     @Override

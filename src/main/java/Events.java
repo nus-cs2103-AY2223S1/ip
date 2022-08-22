@@ -3,14 +3,9 @@ import java.time.LocalDateTime;
 public class Events extends Task {
     private LocalDateTime timing;
 
-    public Events(String task, String timing) throws DukeException {
-        super(task);
-        this.timing = ConvertDateTime(timing);
-    }
-
-    public Events (String task, String timing, boolean done) {
+    public Events (String task, String timing, boolean done) throws DukeException {
         super(task, done);
-        this.timing = timing;
+        this.timing = ConvertDateTime(timing);
     }
 
     @Override
