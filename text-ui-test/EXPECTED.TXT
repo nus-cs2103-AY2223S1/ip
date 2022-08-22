@@ -1,6 +1,9 @@
 Hello there! My name's Duck...
 Please type in a command...
-You can't do that! There are no tasks added yet...
+1.[T][ ] borrow book
+Noted. I've removed this task:
+  [T][ ] borrow book
+Now you have 0 tasks in the list.
 Got it. I've added this task:
   [T][ ] borrow book
 Now you have 1 task in the list.
