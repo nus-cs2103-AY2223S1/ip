@@ -6,12 +6,105 @@
 
 Hello! I'm Duke
 What can I do for you?
-added: do 1
-added: do 2
-1. do 1
-2. do 2
-added: do 3
-1. do 1
-2. do 2
-3. do 3
+
+added: [T][ ] todo 1
+Now, you have 1 task(s) in the list.
+
+added: [D][ ] deadline 1 (by: Mon)
+Now, you have 2 task(s) in the list.
+
+Here are the tasks in your list:
+1. [T][ ] todo 1
+2. [D][ ] deadline 1 (by: Mon)
+
+added: [E][ ] event 1 (at: Tues)
+Now, you have 3 task(s) in the list.
+
+added: [T][ ] todo 2
+Now, you have 4 task(s) in the list.
+
+Here are the tasks in your list:
+1. [T][ ] todo 1
+2. [D][ ] deadline 1 (by: Mon)
+3. [E][ ] event 1 (at: Tues)
+4. [T][ ] todo 2
+
+There is no task with index 5
+
+Nice! I've marked this task as done:
+[T][X] todo 1
+
+Here are the tasks in your list:
+1. [T][X] todo 1
+2. [D][ ] deadline 1 (by: Mon)
+3. [E][ ] event 1 (at: Tues)
+4. [T][ ] todo 2
+
+This task is already marked as undone:
+[D][ ] deadline 1 (by: Mon)
+
+Here are the tasks in your list:
+1. [T][X] todo 1
+2. [D][ ] deadline 1 (by: Mon)
+3. [E][ ] event 1 (at: Tues)
+4. [T][ ] todo 2
+
+This task is already marked as done:
+[T][X] todo 1
+
+Nice! I've marked this task as done:
+[E][X] event 1 (at: Tues)
+
+OK, I've marked this task as not done yet:
+[E][ ] event 1 (at: Tues)
+
+Here are the tasks in your list:
+1. [T][X] todo 1
+2. [D][ ] deadline 1 (by: Mon)
+3. [E][ ] event 1 (at: Tues)
+4. [T][ ] todo 2
+
+mar is an invalid command.
+
+Description of command is required.
+
+Description of event must be followed by /at then followed by time of event.
+
+added: [E][ ] event 2 (at: 20/09)
+Now, you have 5 task(s) in the list.
+
+Here are the tasks in your list:
+1. [T][X] todo 1
+2. [D][ ] deadline 1 (by: Mon)
+3. [E][ ] event 1 (at: Tues)
+4. [T][ ] todo 2
+5. [E][ ] event 2 (at: 20/09)
+
+There is no task with index 6
+
+Noted. I've removed this task:
+[T][ ] todo 2
+Now you have 4 task(s) in the list
+
+4.1 is not an integer.
+
+m is not an integer.
+
+m 12 m is not an integer.
+
+Description of command is required.
+
+There is no task with index 5
+
+Noted. I've removed this task:
+[E][ ] event 2 (at: 20/09)
+Now you have 3 task(s) in the list
+
+Here are the tasks in your list:
+1. [T][X] todo 1
+2. [D][ ] deadline 1 (by: Mon)
+3. [E][ ] event 1 (at: Tues)
+
+Description of deadline must be followed by /by then followed by time of deadline.
+
 Bye. Hope to see you again soon!
