@@ -126,7 +126,7 @@ public class TaskList {
 				throw new DukeException("There's no deadline task!");
 			}
 			part2 = parts[1];
-			String[] deadlineParts =  part2.split("/by ", 2);
+			String[] deadlineParts =  part2.split(" /by ", 2);
 			if (deadlineParts[0].equals("")){
 				throw new DukeException("There's no deadline task!");
 			}
@@ -154,7 +154,7 @@ public class TaskList {
 				throw new DukeException("There's no event task!");
 			}
 			part2 = parts[1];
-			String[] eventParts = part2.split("/at ", 2);
+			String[] eventParts = part2.split(" /at ", 2);
 			if (eventParts[0].equals("")){
 				throw new DukeException("There's no event task!");
 			}

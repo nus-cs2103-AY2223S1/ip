@@ -24,9 +24,9 @@ public class Duke {
         } catch (IOException e) {
             System.out.println("Something went wrong: " + e.getMessage());
         } catch (DateTimeParseException e) {
-            System.out.println("Date and Time format error: check input or file, " + e);
+            System.out.println("Date and Time format error: check input or file, " + e.getMessage());
         } catch (DukeException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException(e.getMessage());
         }
     }
 
