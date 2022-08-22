@@ -4,7 +4,38 @@ import java.time.LocalDate;
 
 public class Duke {
     private static ArrayList<Task> inputs = new ArrayList<>();
-    private static Storage storage = new Storage();
+    private static Storage storage = new Storage("./data/duke.txt");
+    //private Storage storage;
+    private TaskList taskList;
+    private Ui ui;
+
+    /**
+     * Constructor for a Duke instance.
+     *
+     * @param filePath the path to the file for data storage
+     */
+    public Duke(String filePath) {
+        //this.storage = new Storage(filePath);
+        this.ui = new Ui();
+        this.taskList = new TaskList(this.storage.getTasks());
+    }
+
+    /**
+     * The main application.
+     */
+    public void run() {
+        this.ui.printGreeting();
+
+        boolean exit = false;
+        while (!exit) {
+            try {
+                exit = this.ui.handleInput();
+            } catch (DukeException e) {
+                System.out.println(e);
+            }
+        }
+    }
+
 
     /**
      * The main program loop.
@@ -12,69 +43,64 @@ public class Duke {
      * @param args
      */
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n"
-                           + logo
-                           + "\nWhat can I do for you?");
+        Duke duke = new Duke("./data/duke.txt");
 
-        Scanner sc = new Scanner(System.in);
-        Duke.inputs = Duke.storage.getTasks();
+       duke.run();
 
-        boolean flag = true; // flag indicating if the loop should continue
-        while (flag && sc.hasNextLine()) {
-            // Read input from console
-            String inputText = sc.nextLine();
-            try {
-                // Get first word
-                int firstSpaceIdx = inputText.indexOf(" ");
-                Command command = Duke.getCommand(inputText, firstSpaceIdx);
-
-                // Determine the action to perform
-                switch (command) {
-                case BYE:
-                    System.out.println("Bye. Hope to see you again soon!");
-                    flag = false;
-                    break;
-                case LIST:
-                    Duke.printItems();
-                    break;
-                case MARK:
-                    int markindex = Integer.parseInt(inputText.substring(firstSpaceIdx + 1));
-                    Duke.mark(markindex);
-                    break;
-                case UNMARK:
-                    int unmarkindex = Integer.parseInt(inputText.substring(firstSpaceIdx + 1));
-                    Duke.unmark(unmarkindex);
-                    break;
-                case DELETE:
-                    int deleteindex = Integer.parseInt(inputText.substring(firstSpaceIdx + 1));
-                    Duke.delete(deleteindex);
-                    break;
-                case DEADLINE:
-                    String deadlineInfo = inputText.substring(firstSpaceIdx + 1);
-                    Duke.addDeadline(deadlineInfo);
-                    break;
-                case TODO:
-                    String todoInfo = inputText.substring(firstSpaceIdx + 1);
-                    Duke.addTodo(todoInfo);
-                    break;
-                case EVENT:
-                    String eventInfo = inputText.substring(firstSpaceIdx + 1);
-                    Duke.addEvent(eventInfo);
-                    break;
-                case LISTALLONDATE:
-                    String listInfo = inputText.substring(firstSpaceIdx + 1);
-                    Duke.printAllOnDate(listInfo);
-                    break;
-                }
-            } catch (DukeException exception) {
-                System.out.println(exception);
-            }
-        }
+//        Scanner sc = new Scanner(System.in);
+//        Duke.inputs = Duke.storage.getTasks();
+//
+//        boolean flag = true; // flag indicating if the loop should continue
+//        while (flag && sc.hasNextLine()) {
+//            // Read input from console
+//            String inputText = sc.nextLine();
+//            try {
+//                // Get first word
+//                int firstSpaceIdx = inputText.indexOf(" ");
+//                Command command = Duke.getCommand(inputText, firstSpaceIdx);
+//
+//                // Determine the action to perform
+//                switch (command) {
+//                case BYE:
+//                    System.out.println("Bye. Hope to see you again soon!");
+//                    flag = false;
+//                    break;
+//                case LIST:
+//                    Duke.printItems();
+//                    break;
+//                case MARK:
+//                    int markindex = Integer.parseInt(inputText.substring(firstSpaceIdx + 1));
+//                    Duke.mark(markindex);
+//                    break;
+//                case UNMARK:
+//                    int unmarkindex = Integer.parseInt(inputText.substring(firstSpaceIdx + 1));
+//                    Duke.unmark(unmarkindex);
+//                    break;
+//                case DELETE:
+//                    int deleteindex = Integer.parseInt(inputText.substring(firstSpaceIdx + 1));
+//                    Duke.delete(deleteindex);
+//                    break;
+//                case DEADLINE:
+//                    String deadlineInfo = inputText.substring(firstSpaceIdx + 1);
+//                    Duke.addDeadline(deadlineInfo);
+//                    break;
+//                case TODO:
+//                    String todoInfo = inputText.substring(firstSpaceIdx + 1);
+//                    Duke.addTodo(todoInfo);
+//                    break;
+//                case EVENT:
+//                    String eventInfo = inputText.substring(firstSpaceIdx + 1);
+//                    Duke.addEvent(eventInfo);
+//                    break;
+//                case LISTALLONDATE:
+//                    String listInfo = inputText.substring(firstSpaceIdx + 1);
+//                    Duke.printAllOnDate(listInfo);
+//                    break;
+//                }
+//            } catch (DukeException exception) {
+//                System.out.println(exception);
+//            }
+//        }
     }
 
     /**

@@ -11,18 +11,20 @@ import java.util.Scanner;
  * @version CS2103T AY22/23 Semester 1
  */
 public class Storage {
-    private final String FILEPATH;
+    private String filepath;
     private File dataFile;
 
     /**
-     * Constructor for an instance of FileHandler.
+     * Constructor for an instance of Storage.
+     *
+     * @param filepath The path to the file used to store data
      */
-    public Storage() {
+    public Storage(String filepath) {
         // Initialise file path
-        this.FILEPATH  = "./data/duke.txt";
+        this.filepath = filepath;
 
         // Create an object representing the data file
-        this.dataFile = new File(this.FILEPATH);
+        this.dataFile = new File(this.filepath);
 
         // Check if dataFile exists
         if (!dataFile.exists()) {
@@ -42,7 +44,7 @@ public class Storage {
      */
     public void saveTasks(ArrayList<Task> tasklist) {
         try {
-            FileWriter writer = new FileWriter(this.FILEPATH);
+            FileWriter writer = new FileWriter(this.filepath);
             for (Task task : tasklist) {
                 writer.write(task.encode() + "\n");
             }
