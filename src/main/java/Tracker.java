@@ -2,13 +2,24 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.io.File;
+import java.io.IOException;
 public class Tracker {
     public static List<Task> list = new ArrayList<>();
+    public static String filePath = "data/list.txt";
 
-    public void printList() {
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println((i + 1) + ". " + list.get(i));
+    public void printList(String filePath) {
+        Scanner fileScanner;
+        try {
+            fileScanner = new Scanner(new File(filePath));
+            int i  = 1;
+            while(fileScanner.hasNext()) {
+                System.out.println(i++ + ". " + fileScanner.nextLine());
+            }
+        } catch (IOException e) {
+            System.out.println("Oops file not found/ not created yet");
         }
+
     }
 
 
@@ -99,9 +110,10 @@ public class Tracker {
     public void simulate() {
         Scanner sc = new Scanner(System.in);
         String input = sc.nextLine();
+
         while (!input.equals("bye")) {
             if (input.equals("list")) {
-                printList();
+                printList(filePath);
             } else {
                 String[] command = input.split(" ");
                 try {

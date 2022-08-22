@@ -1,0 +1,3 @@
+[T][ ] sleep
+[D][ ] homework (by: tomorrow)
+[E][ ] school at: tomorrow
