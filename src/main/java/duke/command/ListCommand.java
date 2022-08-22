@@ -12,7 +12,7 @@ import duke.Ui;
  *
  */
 
-public class ListCommand extends Command{
+public class ListCommand extends Command {
     /**
      * A constructor for ListCommand.
      */

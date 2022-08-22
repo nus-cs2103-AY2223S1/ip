@@ -14,9 +14,6 @@ import duke.command.MarkCommand;
 import duke.command.ToDoCommand;
 import duke.command.UnmarkCommand;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
-
 /**
  * Parser deals with making sense of the user command.
  *

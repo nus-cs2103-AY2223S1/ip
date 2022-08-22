@@ -12,7 +12,7 @@ import duke.Ui;
  *
  */
 
-public class ByeCommand extends Command{
+public class ByeCommand extends Command {
     /**
      * A constructor for ByeCommand.
      */

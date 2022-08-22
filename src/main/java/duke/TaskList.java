@@ -8,10 +8,6 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
 
-import java.io.FileNotFoundException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-
 /**
  * TaskList contains the list of Task(s) and operations to modify the list.
  *
@@ -130,6 +126,12 @@ public class TaskList {
         return tasks.remove(index);
     }
 
+    /**
+     * A method that searches the TaskList for Task(s) with the specified keyword.
+     *
+     * @param keyword The keyword to search for.
+     * @return The list of Task(s) found with the specified keyword.
+     */
     public ArrayList<Task> findTask(String keyword) {
         ArrayList<Task> foundTasks = new ArrayList<>();
         for (Task task : tasks) {

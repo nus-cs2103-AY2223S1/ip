@@ -28,7 +28,7 @@ public abstract class Command {
      * A method that checks if the Command ended the session with Duke.
      * @return Has the Command ended the session with Duke.
      */
-    public boolean isExit()  {
+    public boolean isExit() {
         return this.isExit;
     }
 

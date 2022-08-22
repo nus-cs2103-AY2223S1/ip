@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
  *
  */
 
-public class Event extends Task{
+public class Event extends Task {
     private LocalDate at;
 
     /**

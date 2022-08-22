@@ -14,7 +14,7 @@ import duke.Ui;
  *
  */
 
-public class DeadlineCommand extends Command{
+public class DeadlineCommand extends Command {
     private String description;
     private LocalDate date;
 

@@ -59,6 +59,12 @@ public class Task {
         this.isDone = false;
     }
 
+    /**
+     * A method that checks if a Task description contains the specified keyword.
+     *
+     * @param keyword The keyword to search for.
+     * @return Is the keyword in the Task description.
+     */
     public boolean hasKeyword(String keyword) {
         return description.contains(keyword);
     }

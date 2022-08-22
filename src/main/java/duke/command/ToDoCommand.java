@@ -12,7 +12,7 @@ import duke.Ui;
  *
  */
 
-public class ToDoCommand extends Command{
+public class ToDoCommand extends Command {
     private String description;
 
     /**

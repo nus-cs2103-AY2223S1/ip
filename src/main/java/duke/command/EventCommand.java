@@ -14,7 +14,7 @@ import duke.Ui;
  *
  */
 
-public class EventCommand extends Command{
+public class EventCommand extends Command {
     private String description;
     private LocalDate date;
 

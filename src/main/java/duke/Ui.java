@@ -111,6 +111,11 @@ public class Ui {
                 size, " task(s) in the list.\n");
     }
 
+    /**
+     * A method that prints the list of Task(s) containing the specified keyword.
+     *
+     * @param foundTasks The list of Task(s) to be displayed.
+     */
     public void showFind(ArrayList<Task> foundTasks) {
         String lst = "";
         int size = foundTasks.size();

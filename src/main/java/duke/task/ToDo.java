@@ -8,7 +8,7 @@ package duke.task;
  *
  */
 
-public class ToDo extends Task{
+public class ToDo extends Task {
     /**
      * A constructor for ToDo.
      *
