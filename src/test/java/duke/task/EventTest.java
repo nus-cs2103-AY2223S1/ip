@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Unit test for `Event` class.
+ * Defines unit test for <Code>Event</Code> class.
  */
 public class EventTest {
     /** Dummy event used for testing. */
@@ -13,7 +13,7 @@ public class EventTest {
             "EVENT DESCRIPTION", "EVENT VENUE");
 
     /**
-     * Tests `toString` method of `Event` class.
+     * Tests <Code>toString</Code> method of <Code>Event</Code> class.
      */
     @Test
     public void testStringConversion() {
@@ -23,7 +23,7 @@ public class EventTest {
     }
 
     /**
-     * Tests `toFileFormat` method of `Event` class.
+     * Tests <Code>toFileFormat</Code> method of <Code>Event</Code> class.
      */
     @Test
     public void testFileFormatConversion() {
