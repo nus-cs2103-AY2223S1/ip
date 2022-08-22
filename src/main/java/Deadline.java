@@ -1,8 +1,8 @@
 public class Deadline extends Task {
 
-    private final String deadline;
+    private final LocalDate deadline;
 
-    public Deadline(String description, String deadline) {
+    public Deadline(String description, LocalDate deadline) {
         super(description);
         this.deadline = deadline;
     }
@@ -14,6 +14,7 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return "[D][" + super.getStatusIcon() + "] " + super.description + " (by: " + this.deadline + ")";
+        return "[D][" + super.getStatusIcon() + "] " + super.description + " (by: "
+                + this.deadline.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 }
