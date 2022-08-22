@@ -10,4 +10,9 @@ public class Event extends Task {
     public String toString() {
         return "[" + TaskType.E + "]" + super.toString() + " (at: " + this.date + ")";
     }
+
+    @Override
+    public String toCommand() {
+        return TaskType.E + " | " + super.toCommand() + " /at " + this.date;
+    }
 }

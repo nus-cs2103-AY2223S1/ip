@@ -10,4 +10,9 @@ public class Deadline extends Task {
     public String toString() {
         return "[" + TaskType.D + "]" + super.toString() + " (by: " + this.date + ")";
     }
+
+    @Override
+    public String toCommand() {
+        return TaskType.D + " | " + super.toCommand() + " /by " + this.date;
+    }
 }

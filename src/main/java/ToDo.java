@@ -7,4 +7,9 @@ public class ToDo extends Task {
     public String toString() {
         return "[" + TaskType.T + "]" + super.toString();
     }
+
+    @Override
+    public String toCommand() {
+        return TaskType.T + " | " + super.toCommand();
+    }
 }

@@ -8,13 +8,38 @@ public class TasksList {
         this.tasksList = new ArrayList<>();
     }
 
+    public boolean isEmpty() {
+        return this.tasksList.size() == 0;
+    }
+
+    /**
+     * Add Task (ToDo, Deadline, Event) to the list of tasks.
+     *
+     * @param command The command represented by an array of Strings.
+     * @throws DukeException if command is invalid
+     */
+    public void addTask(String[] command, Storage storage) throws DukeException {
+        String taskType = command[0];
+        switch (taskType) {
+        case "todo":
+            addTodo(command, storage);
+            break;
+        case "deadline":
+            addDeadline(command, storage);
+            break;
+        case "event":
+            addEvent(command, storage);
+            break;
+        }
+    }
+
     /**
      * Add To-do task to the list of tasks.
      *
      * @param command The command represented by an array of Strings.
      * @throws DukeException
      */
-    public void addTodo(String[] command) throws DukeException {
+    public void addTodo(String[] command, Storage storage) throws DukeException {
         if (command.length == 1) {
             throw new DukeException("Duke: Please specify what task you wish to do:\n" +
                     "todo <task>");
@@ -28,6 +53,7 @@ public class TasksList {
         String line = String.format("Duke: Now you have %d task%s in the list.",
                 len, len != 1 ? "s" : "");
         System.out.println(line);
+        storage.addTaskToSave(newTask);
     }
 
     /**
@@ -36,7 +62,7 @@ public class TasksList {
      * @param command The command represented by an array of Strings.
      * @throws DukeException
      */
-    public void addDeadline(String[] command) throws DukeException {
+    public void addDeadline(String[] command, Storage storage) throws DukeException {
         if (command.length == 1) {
             throw new DukeException("Duke: Please specify what task you wish to do:\n" +
                     "deadline <task> /by <date/time>");
@@ -54,6 +80,7 @@ public class TasksList {
         String line = String.format("Duke: Now you have %d task%s in the list.",
                 len, len != 1 ? "s" : "");
         System.out.println(line);
+        storage.addTaskToSave(newTask);
     }
 
     /**
@@ -62,7 +89,7 @@ public class TasksList {
      * @param command The command represented by an array of Strings.
      * @throws DukeException
      */
-    public void addEvent(String[] command) throws DukeException {
+    public void addEvent(String[] command, Storage storage) throws DukeException {
         if (command.length == 1) {
             throw new DukeException("Duke: Please specify what task you wish to do:\n" +
                     "event <task> /at <date/time>");
@@ -80,6 +107,7 @@ public class TasksList {
         String line = String.format("Duke: Now you have %d task%s in the list.",
                 len, len != 1 ? "s" : "");
         System.out.println(line);
+        storage.addTaskToSave(newTask);
     }
 
     /**
@@ -87,12 +115,12 @@ public class TasksList {
      */
     public void listTasks() {
         System.out.println("Duke: Here are the tasks in your list:");
-        if (tasksList.size() == 0) {
+        if (isEmpty()) {
             System.out.println("*No tasks! ^_^*");
             return;
         }
         for (int i = 0; i < tasksList.size(); i++) {
-            String line = String.format("%d. %s", i + 1, tasksList.get(i));
+            String line = String.format("%d. %s", i + 1, this.tasksList.get(i));
             System.out.println(line);
         }
     }
@@ -103,7 +131,7 @@ public class TasksList {
      * @param command The command represented by an array of Strings.
      * @throws DukeException
      */
-    public void markTask(String[] command) throws DukeException {
+    public void markTask(String[] command, Storage storage) throws DukeException {
         if (command.length == 1) {
             throw new DukeException("Duke: Please specify the task to mark by its id:\n" +
                     "mark <id>");
@@ -115,9 +143,12 @@ public class TasksList {
                 throw new DukeException("Duke: Invalid task id!");
             }
             this.tasksList.get(id - 1).mark();
+            storage.markTaskInSave(id - 1);
         } catch (NumberFormatException e) {
             throw new DukeException("Duke: Please specify the task to mark by its integer id:\n" +
                     "mark <id>");
+        } catch (DukeException e) {
+            throw e;
         }
     }
 
@@ -127,7 +158,7 @@ public class TasksList {
      * @param command The command represented by an array of Strings.
      * @throws DukeException
      */
-    public void unmarkTask(String[] command) throws DukeException {
+    public void unmarkTask(String[] command, Storage storage) throws DukeException {
         if (command.length == 1) {
             throw new DukeException("Duke: Please specify the task to unmark by its id:\n" +
                     "unmark <id>");
@@ -139,6 +170,7 @@ public class TasksList {
                 throw new DukeException("Duke: Invalid task id!");
             }
             this.tasksList.get(id - 1).unmark();
+            storage.unmarkTaskInSave(id - 1);
         } catch (NumberFormatException e) {
             throw new DukeException("Duke: Please specify the task to unmark by its integer id:\n" +
                     "mark <id>");
@@ -151,7 +183,7 @@ public class TasksList {
      * @param command The command represented by an array of Strings.
      * @throws DukeException
      */
-    public void deleteTask(String[] command) throws DukeException {
+    public void deleteTask(String[] command, Storage storage) throws DukeException {
         if (command.length == 1) {
             throw new DukeException("Duke: Please specify the task to be deleted by its id:\n" +
                     "delete <id>");
@@ -168,9 +200,60 @@ public class TasksList {
             String line = String.format("Duke: Now you have %d task%s in the list.",
                     len - 1, len - 1 != 1 ? "s" : "");
             System.out.println(line);
+            storage.deleteTaskFromSave(id - 1);
         } catch (NumberFormatException e) {
             throw new DukeException("Duke: Please specify the task to delete by its integer id:\n" +
                     "mark <id>");
+        }
+    }
+
+    /**
+     * Converts the tasks in the current tasks list to StringBuilder
+     *
+     * @return The StringBuilder of all the tasks in the list.
+     */
+    public StringBuilder toStringBuilder() {
+        StringBuilder sb = new StringBuilder();
+        for (Task t : this.tasksList) {
+            sb.append(t.toCommand() + "\n");
+        }
+        return sb;
+    }
+
+    /**
+     * Load the given task into the task list.
+     *
+     * @param line The String representing the task from the save file.
+     */
+    public void loadFromSave(String line) {
+        String[] command = line.split(" \\| ", 3);
+        String taskType = command[0];
+        String completionStatus = command[1];
+        String details = command[2];
+        switch (taskType) {
+        case "T":
+            Task todo = new ToDo(details);
+            this.tasksList.add(todo);
+            if (completionStatus.equals("1")) {
+                todo.completeTask();
+            }
+            break;
+        case "D":
+            String[] deadlineDate = details.split(" /by ", 2);
+            Task deadline = new Deadline(deadlineDate[0], deadlineDate[1]);
+            this.tasksList.add(deadline);
+            if (completionStatus.equals("1")) {
+                deadline.completeTask();
+            }
+            break;
+        case "E":
+            String[] eventDate = details.split(" /at ", 2);
+            Task event = new Event(eventDate[0], eventDate[1]);
+            this.tasksList.add(event);
+            if (completionStatus.equals("1")) {
+                event.completeTask();
+            }
+            break;
         }
     }
 }
