@@ -1,11 +1,15 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Todo {
 
-    private final String title;
-    private boolean completed;
+    protected final String title;
+    protected boolean completed;
 
-    public Todo(String title) {
+    public Todo(String title, boolean completed) {
         this.title = title;
-        this.completed = false;
+        this.completed = completed;
     }
     /**
      * @return String where string is the objects title
@@ -30,6 +34,10 @@ public class Todo {
      **/
     public void unCompleteTask() {
         this.completed = false;
+    }
+
+    public void writeToFile(FileWriter writer) throws IOException {
+        writer.write(String.format("T;%s;%d\n", this.title, this.completed ? 1 : 0));
     }
     public String toString() {
         String s = completed ? "[X]" : "[ ]";
