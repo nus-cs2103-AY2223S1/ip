@@ -107,7 +107,6 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        System.out.println("Working Directory = " + System.getProperty("user.dir"));
         try {
             Duke.loadFile();
         } catch (DukeException e) {
@@ -171,7 +170,12 @@ public class Duke {
                                 "  'deadline <action> /by <deadline>'");
                         continue;
                     }
-                    newTask = new Deadline(commands[0], commands[1]);
+                    try {
+                        newTask = new Deadline(commands[0], commands[1]);
+                    } catch (DukeException e) {
+                        System.out.println(e);
+                        continue;
+                    }
                 } else if (command.startsWith("event")) {
                     command = command.replace("event ", "");
                     String[] commands = command.split(" /at ");
@@ -180,7 +184,12 @@ public class Duke {
                                 "  'event <event> /at <timing>'");
                         continue;
                     }
-                    newTask = new Event(commands[0], commands[1]);
+                    try {
+                        newTask = new Event(commands[0], commands[1]);
+                    } catch (DukeException e) {
+                        System.out.println(e);
+                        continue;
+                    }
                 } else {
                     System.out.println("    OOPS!!! I'm sorry, but I don't know what that means :-(");
                     continue;

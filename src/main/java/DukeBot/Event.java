@@ -1,11 +1,20 @@
 package DukeBot;
+
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.LocalDate;
+
 public class Event extends Task {
 
-    private String timing;
+    private LocalDate time;
 
-    public Event(String description, String timing) {
+    public Event(String description, String time) throws DukeException {
         super(description);
-        this.timing = timing;
+        try {
+            this.time = LocalDate.parse(time, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        } catch (DateTimeParseException e) {
+            throw new DukeException("DateTime not in yyyy-MM-dd format");
+        }
     }
 
     /**
@@ -25,7 +34,7 @@ public class Event extends Task {
      */
     @Override
     public String getTime() {
-        return timing;
+        return time.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 
     /**
@@ -35,6 +44,8 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[%s]%s (at: " + this.timing + ")", this.getTaskType(), super.toString());
+        return String.format("[%s]%s (at: "
+                + this.time.format(DateTimeFormatter.ofPattern("MMM dd yyyy"))
+                + ")", this.getTaskType(), super.toString());
     }
 }
