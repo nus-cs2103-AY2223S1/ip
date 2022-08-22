@@ -12,6 +12,7 @@ import java.io.IOException;
  * Inherits from Command abstract class.
  */
 public class DeleteCommand extends Command {
+
     private final int num;
 
     /**

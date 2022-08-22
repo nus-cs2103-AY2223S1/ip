@@ -9,11 +9,12 @@ import java.util.Scanner;
  * A class that deals with user interaction with the program.
  */
 public class Ui {
+
     private final Scanner sc;
 
     /**
      * Constructor for Ui.
-     * Initialises a Scanner
+     * Initialises a Scanner.
      */
     public Ui() {
         this.sc = new Scanner(System.in);
@@ -118,7 +119,7 @@ public class Ui {
     }
 
     /**
-     * Gets the next user input.
+     * Returns the next user input.
      * @return The next line of Scanner.
      */
     public String nextLine() {

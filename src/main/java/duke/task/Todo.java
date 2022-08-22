@@ -34,7 +34,7 @@ public class Todo extends Task {
     }
 
     /**
-     * The String representation of Todo.
+     * Returns the String representation of Todo.
      * @return The String representation of Todo showing the status and description.
      */
     @Override

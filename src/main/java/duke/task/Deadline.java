@@ -33,7 +33,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Getter for by variable.
+     * Returns the for by variable.
      * @return The by variable.
      */
     public LocalDate getBy() {
@@ -41,7 +41,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * The String representation of Deadline.
+     * Returns the String representation of Deadline.
      * @return The String representation of Deadline showing the type, status, and description.
      */
     @Override

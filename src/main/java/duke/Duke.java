@@ -1,8 +1,11 @@
 package duke;
 
 import duke.command.Command;
+
 import duke.storage.Storage;
+
 import duke.task.TaskList;
+
 import duke.ui.DukeException;
 import duke.ui.Parser;
 import duke.ui.Ui;
@@ -16,6 +19,7 @@ import java.time.format.DateTimeParseException;
  * Keeps track of tasks for user.
  */
 public class Duke {
+
     private TaskList tasks;
     private Ui ui;
     private Storage storage;

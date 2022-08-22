@@ -33,7 +33,7 @@ public class Event extends Task {
     }
 
     /**
-     * Getter for at variable.
+     * Returns the for at variable.
      * @return The at variable.
      */
     public LocalDate getAt() {
@@ -41,7 +41,7 @@ public class Event extends Task {
     }
 
     /**
-     * The String representation of Event.
+     * Returns the String representation of Event.
      * @return The String representation of Event showing the status and description.
      */
     @Override

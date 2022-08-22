@@ -12,6 +12,7 @@ import java.io.IOException;
  * Inherits from Command abstract class.
  */
 public class UnMarkCommand extends Command {
+
     private final int num;
 
     /**

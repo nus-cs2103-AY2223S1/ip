@@ -4,6 +4,7 @@ package duke.task;
  * Abstract class representing a Task.
  */
 public abstract class Task {
+
     private String description;
     private boolean isDone;
 
@@ -27,7 +28,7 @@ public abstract class Task {
     }
 
     /**
-     * Gets the completion symbol for task.
+     * Returns the completion symbol for task.
      * @return An icon representing done or not done.
      */
     public String getStatusIcon() {
@@ -49,7 +50,7 @@ public abstract class Task {
     }
 
     /**
-     * Getter for description.
+     * Returns the for description.
      * @return The description of Task.
      */
     public String getDescription() {
@@ -57,7 +58,7 @@ public abstract class Task {
     }
 
     /**
-     * Getter for isDone.
+     * Returns isDone.
      * @return The completion status of Task.
      */
     public boolean getIsDone() {
@@ -65,7 +66,7 @@ public abstract class Task {
     }
 
     /**
-     * The String representation of Task.
+     * Returns the String representation of Task.
      * @return The String representation of Task showing the status and description.
      */
     @Override

@@ -12,6 +12,7 @@ import java.io.IOException;
  * Inherits from Command abstract class.
  */
 public class AddCommand extends Command {
+
     private final Task task;
 
     /**

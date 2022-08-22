@@ -6,8 +6,7 @@ import java.util.ArrayList;
  * Class that contains all the Task in program.
  */
 public class TaskList {
-    private final ArrayList<duke.task.Task> tasks;
-
+    private final ArrayList<Task> tasks;
     /**
      * Constructor for TaskList.
      * Initialises an ArrayList of Task.
@@ -21,7 +20,7 @@ public class TaskList {
      * Initialises an ArrayList of Task.
      * @param tasks The list of tasks from saved file.
      */
-    public TaskList(ArrayList<duke.task.Task> tasks) {
+    public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
 
@@ -29,7 +28,7 @@ public class TaskList {
      * Adds a Task.
      * @param task The Task to be added.
      */
-    public void addTask(duke.task.Task task) {
+    public void addTask(Task task) {
         this.tasks.add(task);
     }
 
@@ -42,23 +41,7 @@ public class TaskList {
     }
 
     /**
-     * Marks a Task as not done.
-     * @param num The index of Task to be marked as not done.
-     */
-    public void unMarkTask(int num) {
-        this.tasks.get(num).markDone();
-    }
-
-    /**
-     * Marks a Task as done.
-     * @param num The index of task to be marked as done.
-     */
-    public void markTask(int num) {
-        this.tasks.get(num).unMarkDone();
-    }
-
-    /**
-     * Gets the number of Tasks currently in TaskList.
+     * Returns the number of Tasks currently in TaskList.
      * @return The size of the list.
      */
     public int getSize() {
@@ -66,16 +49,16 @@ public class TaskList {
     }
 
     /**
-     * Gets a specific Task from TaskList.
+     * Returns a specific Task from TaskList.
      * @param num The index of Task in TaskList.
      * @return The specific Task.
      */
-    public duke.task.Task getTask(int num) {
+    public Task getTask(int num) {
         return this.tasks.get(num);
     }
 
     /**
-     * Getter for tasks.
+     * Returns the list of all Tasks.
      * @return The list of all Tasks in program.
      */
     public ArrayList<Task> getTasks() {

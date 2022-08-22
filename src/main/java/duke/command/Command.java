@@ -11,6 +11,7 @@ import java.io.IOException;
  * Each and every other command will inherit from Command super class.
  */
 public abstract class Command {
+
     private boolean isEnd = false;
 
     /**
