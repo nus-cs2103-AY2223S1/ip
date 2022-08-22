@@ -7,8 +7,11 @@ import java.util.Scanner;
 public class DukeFile {
 
     protected final String filePath;
+    protected final Parser parser;
+    protected static final String BORDER = "____________________________________________________________";
 
     DukeFile(String fileDirectoryString, String fileName) {
+        this.parser = new Parser();
         File fileDirectory = new File(fileDirectoryString);
         if (!fileDirectory.exists()) {
             fileDirectory.mkdir();
@@ -26,7 +29,7 @@ public class DukeFile {
         }
     }
 
-    public Task createTask(String inputLine) {
+    public Task createTask(String inputLine) throws DukeException {
         String[] split = inputLine.split("\\|\\|");
         String command = split[0];
         boolean isDone = Boolean.parseBoolean(split[1]);
@@ -36,16 +39,16 @@ public class DukeFile {
                 task = new Todo(split[2], isDone);
                 break;
             case "D":
-                task = new Deadline(split[2], split[3], isDone);
+                task = new Deadline(split[2], parser.parseTime(split[3]), isDone);
                 break;
             case "E":
-                task = new Event(split[2], split[3], isDone);
+                task = new Event(split[2], parser.parseTime(split[3]), isDone);
                 break;
         }
         return task;
     }
 
-    public TaskList readFile() {
+    public TaskList readFile() throws DukeException {
         TaskList taskList = new TaskList();
         File file = new File(this.filePath);
         try {
