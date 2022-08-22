@@ -3,6 +3,10 @@ import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -145,6 +149,15 @@ public class Duke {
         printSpacer();
     }
 
+    private static String parseDate(String s) {
+        try {
+            LocalDate date = LocalDate.parse(s);
+            return date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        } catch (DateTimeParseException e) {
+            return s;
+        }
+    }
+
     private static void addDeadline(String s) throws DeadlineFormatException {
         if (s.length() <= 9) {
             throw new DeadlineFormatException();
@@ -153,7 +166,7 @@ public class Duke {
         if (stuff.length < 2) {
             throw new DeadlineFormatException();
         }
-        tasks.add(new Deadline(stuff[0], stuff[1]));
+        tasks.add(new Deadline(stuff[0], parseDate(stuff[1])));
         tasksLength++;
         System.out.println("Got it. I've added this task:");
         System.out.println(tasks.get(tasksLength - 1).toString());
@@ -169,7 +182,7 @@ public class Duke {
         if (stuff.length < 2) {
             throw new EventFormatException();
         }
-        tasks.add(new Event(stuff[0], stuff[1]));
+        tasks.add(new Event(stuff[0], parseDate(stuff[1])));
         tasksLength++;
         System.out.println("Got it. I've added this task:");
         System.out.println(tasks.get(tasksLength - 1).toString());
