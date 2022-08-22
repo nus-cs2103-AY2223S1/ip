@@ -7,11 +7,10 @@ import java.lang.StringIndexOutOfBoundsException;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-import java.util.stream.Collectors;
 
 
 public class Roger {
-    private List<Task> tasks = new ArrayList<>();
+    private TaskList tasks = new TaskList();
 
     private static void sayGoodbye() {
         System.out.println("Bye bye niece and nephew.");
@@ -36,26 +35,26 @@ public class Roger {
 
         System.out.println("Nephew got a lot of things to do:");
 
-        for (int i = 0; i < tasks.size(); ++i) {
-            Task task = tasks.get(i);
-            System.out.println(String.valueOf(i+1) + ". " + task.toString());
+        for (int taskNum = 1; taskNum < tasks.getLength() + 1; ++taskNum) {
+            Task task = tasks.get(taskNum);
+            System.out.println(String.valueOf(taskNum) + ". " + task.toString());
         }
     }
 
     private void list(LocalDate date) {
         System.out.println("Nephew have to do these things on " + date.toString() + ":");
 
-        for (int i = 0; i < tasks.size(); ++i) {
-            Task task = tasks.get(i);
+        for (int taskNum = 1; taskNum < tasks.getLength() + 1; ++taskNum) {
+            Task task = tasks.get(taskNum);
             if (task instanceof Event) {
                 Event event = (Event) task;
                 if (event.isOnDate(date)) {
-                    System.out.println(String.valueOf(i+1) + ". " + task.toString());
+                    System.out.println(String.valueOf(taskNum) + ". " + task.toString());
                 }
             } else if (task instanceof Deadline) {
                 Deadline deadline = (Deadline) task;
                 if (deadline.isOnDate(date)) {
-                    System.out.println(String.valueOf(i+1) + ". " + task.toString());
+                    System.out.println(String.valueOf(taskNum) + ". " + task.toString());
                 }
             }
         }
@@ -66,7 +65,7 @@ public class Roger {
         this.tasks.add(toDo);
         System.out.println("Nephew got new to-do:");
         System.out.println("  " + toDo.toString());
-        System.out.println("Nephew now have " + Integer.toString(this.tasks.size()) + " tasks in the list.");
+        System.out.println("Nephew now have " + Integer.toString(this.tasks.getLength()) + " tasks in the list.");
     }
 
     private void addDeadline(String taskName, LocalDate date) {
@@ -74,7 +73,7 @@ public class Roger {
         this.tasks.add(deadline);
         System.out.println("Nephew got new deadline, hurry up before I beat you:");
         System.out.println("  " + deadline);
-        System.out.println("Nephew now have " + Integer.toString(this.tasks.size()) + " tasks in the list.");
+        System.out.println("Nephew now have " + Integer.toString(this.tasks.getLength()) + " tasks in the list.");
     }
 
     private void addEvent(String taskName, LocalDate date) {
@@ -82,28 +81,28 @@ public class Roger {
         this.tasks.add(event);
         System.out.println("Nephew so busy, got new event:");
         System.out.println("  " + event);
-        System.out.println("Nephew now have " + Integer.toString(this.tasks.size()) + " tasks in the list.");
+        System.out.println("Nephew now have " + Integer.toString(this.tasks.getLength()) + " tasks in the list.");
     }
 
     private void markAsDone(int taskNum) {
-        Task task = tasks.get(taskNum - 1);
+        Task task = this.tasks.get(taskNum);
         task.markAsDone();
         System.out.println("Fuiyoh, nephew so efficient! Finished this task:");
         System.out.println(task);
     }
 
     private void unmarkAsDone(int taskNum) {
-        Task task = tasks.get(taskNum - 1);
+        Task task = this.tasks.get(taskNum);
         task.unmarkAsDone();
         System.out.println("Haven't done yet, mark what mark? Unmarked this task:");
         System.out.println(task);
     }
 
     private void deleteTask(int taskNum) {
-        Task task = this.tasks.remove(taskNum - 1);
+        Task task = this.tasks.delete(taskNum);
         System.out.println("Haiya so lazy. Deleted this task:");
         System.out.println(task);
-        System.out.println("Nephew now have " + Integer.toString(this.tasks.size()) + " tasks in the list.");
+        System.out.println("Nephew now have " + Integer.toString(this.tasks.getLength()) + " tasks in the list.");
     }
 
     private void handleList(String arguments) throws RogerInvalidInputException {
@@ -126,11 +125,9 @@ public class Roger {
 
     private void handleAddToDo(String arguments) throws RogerInvalidInputException {
         String taskName = arguments;
-
         if (taskName.equals("")) {
             throw new RogerInvalidInputException("Nephew, what you doing? Add to-do with `todo <name>`");
         }
-
         this.addToDo(taskName);
     }
 
@@ -182,7 +179,7 @@ public class Roger {
             throw new RogerInvalidInputException("Nephew, what you doing? Mark tasks as done with `mark <task number>`");
         }
 
-        if (idx < 1 || this.tasks.size() < idx) {
+        if (idx < 1 || this.tasks.getLength() < idx) {
             throw new RogerInvalidInputException("Task " + String.valueOf(idx) + " doesn't exist, just like my love for Aunty Helen.");
         }
 
@@ -199,7 +196,7 @@ public class Roger {
             throw new RogerInvalidInputException("Nephew, what you doing? Unmark tasks with `unmark <task number>`");
         }
 
-        if (idx < 1 || this.tasks.size() < idx) {
+        if (idx < 1 || this.tasks.getLength() < idx) {
             throw new RogerInvalidInputException("Task " + String.valueOf(idx) + " doesn't exist, just like my love for Aunty Helen.");
         }
 
@@ -216,7 +213,7 @@ public class Roger {
             throw new RogerInvalidInputException("Nephew, what you doing? Delete tasks with `delete <task number>`");
         }
 
-        if (idx < 1 || this.tasks.size() < idx) {
+        if (idx < 1 || this.tasks.getLength() < idx) {
             throw new RogerInvalidInputException("Task " + String.valueOf(idx) + " doesn't exist, just like my love for Aunty Helen.");
         }
 
@@ -240,12 +237,12 @@ public class Roger {
         List<String> taskStrings;
         try {
             taskStrings = storage.load();
-        } catch (IOException e) {
+            for (String taskString : taskStrings) {
+                roger.tasks.add(StorageParser.toTask(taskString));
+            }
+        } catch (IOException | IllegalArgumentException e) {
+            System.out.println("data/database.txt is corrupted. Starting over with a fresh database.");
             taskStrings = new ArrayList<>();
-        }
-
-        for (String taskString : taskStrings) {
-            roger.tasks.add(StorageParser.toTask(taskString));
         }
 
         Roger.sayHello();
@@ -291,9 +288,7 @@ public class Roger {
         }
 
         try {
-            List<String> newTaskStrings = roger.tasks.stream()
-                    .map(StorageParser::toTaskString)
-                    .collect(Collectors.toList());
+            List<String> newTaskStrings = roger.tasks.toTaskStrings();
             storage.write(newTaskStrings);
         } catch (IOException e) {
             System.out.println("Unable to write tasks to database. Check the path provided.");
