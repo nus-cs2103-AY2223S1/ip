@@ -28,4 +28,23 @@ public abstract class Task {
         return "[" + getStatusIcon() + "] " + description;
     }
 
+    public String save() {
+        return (isDone ? "1" : "0") + " | " + this.description;
+    }
+
+    public static Task load(String task) {
+        String[] split = task.split(" \\| ", 4);
+        String taskType = split[0];
+        boolean isDone = split[1].equals("1");
+        String description = split[2];
+        String time = split.length == 4 ? split[3] : null;
+
+        if (taskType.equals("T")) {
+            return new ToDo(description, isDone);
+        } else if (taskType.equals("E")) {
+            return new Event(description, time, isDone);
+        } else {
+            return new Deadline(description, time, isDone);
+        }
+    }
 }

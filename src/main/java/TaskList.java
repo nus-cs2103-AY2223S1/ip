@@ -7,6 +7,13 @@ public class TaskList {
         this.list = new ArrayList<>();
     }
 
+    public TaskList(ArrayList<String> taskList) {
+        this.list = new ArrayList<>();
+        for (String task : taskList) {
+            this.list.add(Task.load(task));
+        }
+    }
+
     public int getSize() {
         return this.list.size();
     }
@@ -21,5 +28,13 @@ public class TaskList {
 
     public Task removeTask(int num) {
         return this.list.remove(num);
+    }
+
+    public ArrayList<String> save() {
+        ArrayList<String> taskList = new ArrayList<>();
+        for (Task task : list) {
+            taskList.add(task.save());
+        }
+        return taskList;
     }
 }
