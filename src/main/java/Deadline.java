@@ -1,11 +1,11 @@
 import java.time.LocalDate;
 
 public class Deadline extends Task {
-    private LocalDate date;
+    private final LocalDate date;
 
-    public Deadline(String description, LocalDate date) {
+    public Deadline(String description, String by) {
         super(description);
-        this.date = date;
+        this.date = LocalDate.parse(by);
     }
 
     @Override
