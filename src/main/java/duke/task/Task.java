@@ -35,18 +35,18 @@ public abstract class Task {
      * Marks the task as complete.
      */
     public void mark() {
-        this.isDone = true;
+        isDone = true;
     }
 
     /**
      * Marks the task as incomplete.
      */
     public void unmark() {
-        this.isDone = false;
+        isDone = false;
     }
 
     private String getStatusIcon() {
-        return this.isDone ? "X" : " ";
+        return isDone ? "X" : " ";
     }
 
     /**
@@ -55,11 +55,11 @@ public abstract class Task {
      * @return A string corresponding to the task.
      */
     public String stringify() {
-        return String.format("%d | %s", this.isDone ? 1 : 0, this.description);
+        return String.format("%d | %s", isDone ? 1 : 0, description);
     }
 
     @Override
     public String toString() {
-        return String.format("[%s] %s", this.getStatusIcon(), this.description);
+        return String.format("[%s] %s", getStatusIcon(), description);
     }
 }

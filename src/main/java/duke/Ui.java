@@ -26,7 +26,7 @@ public class Ui {
      * Creates ui object to handle input and output.
      */
     public Ui() {
-        this.scanner = new Scanner(System.in);
+        scanner = new Scanner(System.in);
     }
 
     /**
@@ -43,7 +43,7 @@ public class Ui {
      * @return A line of user input.
      */
     public String read() {
-        return this.scanner.nextLine();
+        return scanner.nextLine();
     }
 
     /**

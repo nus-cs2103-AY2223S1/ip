@@ -25,7 +25,7 @@ public abstract class Command {
      *
      * @return False.
      */
-    public boolean isExit() {
+    public boolean canExit() {
         return false;
     }
 }

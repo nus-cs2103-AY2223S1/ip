@@ -18,7 +18,7 @@ public class TaskList {
      * Creates a TaskList with an empty ArrayList.
      */
     public TaskList() {
-        this.tasks = new ArrayList<>();
+        tasks = new ArrayList<>();
     }
 
     /**
@@ -36,7 +36,7 @@ public class TaskList {
      * @return A list of tasks.
      */
     public List<Task> getTasks() {
-        return this.tasks;
+        return tasks;
     }
 
     /**
@@ -45,7 +45,7 @@ public class TaskList {
      * @return Size of the list.
      */
     public int size() {
-        return this.tasks.size();
+        return tasks.size();
     }
 
     /**
@@ -56,10 +56,10 @@ public class TaskList {
      * @throws DukeException If index is negative or greater than size of list.
      */
     public Task markTask(int index) throws DukeException {
-        if (index < 0 || index >= this.size()) {
+        if (index < 0 || index >= size()) {
             throw new DukeException("Task number does not exist.");
         }
-        Task task = this.tasks.get(index);
+        Task task = tasks.get(index);
         task.mark();
         return task;
     }
@@ -75,7 +75,7 @@ public class TaskList {
         if (index < 0 || index >= this.size()) {
             throw new DukeException("Task number does not exist.");
         }
-        Task task = this.tasks.get(index);
+        Task task = tasks.get(index);
         task.unmark();
         return task;
     }
@@ -91,8 +91,7 @@ public class TaskList {
         if (index < 0 || index >= this.size()) {
             throw new DukeException("Task number does not exist.");
         }
-        Task task = this.tasks.remove(index);
-        return task;
+        return tasks.remove(index);
     }
 
     /**
@@ -102,15 +101,15 @@ public class TaskList {
      * @return Task from input parameter.
      */
     public Task addTask(Task task) {
-        this.tasks.add(task);
+        tasks.add(task);
         return task;
     }
 
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
-        for (int i = 0; i < this.tasks.size(); i++) {
-            result.append(String.format("%d. %s\n", 1 + i, this.tasks.get(i).toString()));
+        for (int i = 0; i < tasks.size(); i++) {
+            result.append(String.format("%d. %s\n", 1 + i, tasks.get(i).toString()));
         }
         return result.toString();
     }

@@ -33,7 +33,7 @@ public class ToDoCommand extends Command {
      */
     @Override
     public void execute(Storage storage, TaskList taskList, Ui ui) {
-        ui.printAddTask(taskList.addTask(new ToDo(this.description)));
+        ui.printAddTask(taskList.addTask(new ToDo(description)));
         ui.printSizeOfList(taskList.size());
         storage.save(taskList.getTasks());
     }
