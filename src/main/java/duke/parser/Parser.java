@@ -9,6 +9,7 @@ import duke.command.Command;
 import duke.command.DeadlineCommand;
 import duke.command.DeleteCommand;
 import duke.command.EventCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.ToDoCommand;
@@ -46,6 +47,8 @@ public class Parser {
             return new DeadlineCommand(description);
         } else if (mainCommand.equals("event")) {
             return new EventCommand(description);
+        } else if (mainCommand.equals("find")) {
+            return new FindCommand(description);
         } else if (mainCommand.isEmpty()) {
             throw new EmptyCommandException();
         } else {

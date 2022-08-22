@@ -29,4 +29,15 @@ public abstract class Task {
     public String toStorageRepresentation() {
         return this.getStatusIcon() + "|" + this.description;
     }
+
+    /**
+     * Returns true if the description of current Task matches with the keyword.
+     *
+     * @param keyWord the keyword string.
+     * @return true if Task matches the keyword, false otherwise.
+     */
+    public boolean isContainKeyWord(String keyWord) {
+        return this.description.contains(keyWord);
+    }
+
 }

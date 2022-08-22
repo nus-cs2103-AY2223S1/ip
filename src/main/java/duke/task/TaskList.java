@@ -19,6 +19,15 @@ public class TaskList {
         return this.tasks.size();
     }
 
+    /**
+     * Returns true if the TaskList is empty.
+     *
+     * @return true if the current TaskList is empty, false otherwise.
+     */
+    public boolean isEmpty() {
+        return this.tasks == null || this.tasks.isEmpty();
+    }
+
     public void addTask(Task newTask) {
         this.tasks.add(newTask);
     }
@@ -41,17 +50,25 @@ public class TaskList {
         return selectedTask;
     }
 
+    /**
+     * Filters current TaskList to get all Tasks that matches the keyword.
+     *
+     * @param keyWord the keyword string.
+     * @return the TaskList which contains all the matched Tasks.
+     */
+    public TaskList filterByKeyWord(String keyWord) {
+        return new TaskList(this.tasks.stream()
+                .filter(task -> task.isContainKeyWord(keyWord))
+                .collect(Collectors.toList()));
+    }
+
     @Override
     public String toString() {
-        if (tasks.isEmpty()) {
-            return "You have no tasks at the moment.";
-        }
-
         String tasksString = "";
         for (int i = 0; i < tasks.size(); i++) {
             tasksString += String.format("%d. %s\n", i + 1, this.tasks.get(i));
         }
-        return "Here are the tasks in your list\n" + tasksString;
+        return tasksString;
     }
 
     public List<String> toStorageRepresentation() {
