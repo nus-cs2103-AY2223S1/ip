@@ -1,11 +1,61 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
-    private static ArrayList<Task> allTasks = new ArrayList<>();
+    private static final ArrayList<Task> allTasks = readFile();
 
     public enum RequestType {
         MARK, UNMARK, TODO, EVENT, DEADLINE, DELETE, LIST
+    }
+
+    public static void writeFile(ArrayList<Task> arr) {
+        try {
+            File file = new File("duke.txt");
+            FileWriter fw = new FileWriter(file);
+            String textAdd = "";
+            for (int i = 0; i < arr.size(); i++) {
+                if (i == 0) {
+                    textAdd += arr.get(i).storedString();
+                } else {
+                    textAdd += "\n" + arr.get(i).storedString();
+                }
+            }
+            fw.write(textAdd);
+            fw.close();
+        } catch (IOException e) {
+            System.out.println("Something went wrong " + e.getMessage());
+        }
+    }
+
+    public static ArrayList<Task> readFile() {
+        File file = new File("duke.txt");
+        try {
+            Scanner s = new Scanner(file);
+            ArrayList<Task> output = new ArrayList<>();
+            while (s.hasNext()) {
+                String task = s.nextLine();
+                String[] splitTask = task.split(" \\| ");
+                Task toAdd;
+                if (splitTask[0].equals("T")) {
+                    toAdd = new ToDo(splitTask[2]);
+                } else if (splitTask[0].equals("E")) {
+                    toAdd = new Event(splitTask[2], splitTask[3]);
+                } else {
+                    toAdd = new Deadline(splitTask[2], splitTask[3]);
+                }
+                if (splitTask[1].equals("1")) {
+                    toAdd.markDone();
+                }
+                output.add(toAdd);
+            }
+            return output;
+        } catch (FileNotFoundException e) {
+            return new ArrayList<>();
+        }
     }
 
     public static void main(String[] args) {
@@ -49,6 +99,7 @@ public class Duke {
             request = sc.nextLine();
         }
         exitMessage();
+        writeFile(allTasks);
         sc.close();
     }
 

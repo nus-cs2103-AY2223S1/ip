@@ -19,6 +19,14 @@ public class Task {
         isDone = false;
     }
 
+    public String statusIcon() {
+        return isDone ? "1" : "0";
+    }
+
+    public String storedString() {
+        return statusIcon() + " | " + description;
+    }
+
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;
