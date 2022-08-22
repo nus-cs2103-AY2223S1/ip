@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 public abstract class Task implements Serializable {
     private String name;
-    private boolean completed;
+    private boolean isComplete;
     private char type;
 
     /**
@@ -15,12 +15,14 @@ public abstract class Task implements Serializable {
      *
      * @param name Name of the task
      * @param type Type of the task
-     * @param completed Status of current task, true if task is completed false otherwise
+     * @param isComplete Status of current task, true if task is completed false otherwise
      */
-    public Task(String name, char type, boolean completed) {
+
+
+    public Task(String name, char type, boolean isComplete) {
         this.name = name;
         this.type = type;
-        this.completed = completed;
+        this.isComplete = isComplete;
     }
 
     /**
@@ -37,14 +39,14 @@ public abstract class Task implements Serializable {
      * Updates the status of the task to be completed
      */
     public void markComplete() {
-        this.completed = true;
+        this.isComplete = true;
     }
 
     /**
      * Updates the status of the task to be incomplete
      */
     public void markIncomplete() {
-        this.completed = false;
+        this.isComplete= false;
     }
 
     /**
@@ -53,6 +55,6 @@ public abstract class Task implements Serializable {
      * */
     @Override
     public String toString() {
-        return String.format("[%c][%s] %s", type, completed ? "X" : " ", name);
+        return String.format("[%c][%s] %s", type, isComplete ? "X" : " ", name);
     }
 }
