@@ -13,22 +13,22 @@ public class DeadlineResponse extends DukeResponse {
             throw new DukeException("The description of a deadline cannot be empty.");
         }
 
-        if (!data.contains("/by")) {
+        if (!data.contains("/by ")) {
             throw new DukeException("Please enter deadline of task.");
         }
 
-        int splitIndex = data.indexOf("/");
+        int splitIndex = data.indexOf("/by ");
         String description = data.substring(0, splitIndex).trim();
         if (description.isEmpty()) {
             throw new DukeException("The description of a deadline cannot be empty.");
         }
 
-        String dateTime = data.substring(splitIndex + 3).trim();
-        if (dateTime.isEmpty()) {
+        String dateTimeStr = data.substring(splitIndex + 3).trim();
+        if (dateTimeStr.isEmpty()) {
             throw new DukeException("Please enter deadline of task.");
         }
 
-        Deadline d = new Deadline(description, dateTime);
+        Deadline d = new Deadline(description, super.parseStrToDate(dateTimeStr));
         super.message(list.add(d));
     }
 }

@@ -13,22 +13,22 @@ public class EventResponse extends DukeResponse {
             throw new DukeException("The description of an event cannot be empty.");
         }
 
-        if (!data.contains("/at")) {
+        if (!data.contains("/at ")) {
             throw new DukeException("Please enter event time.");
         }
 
-        int splitIndex = data.indexOf("/");
+        int splitIndex = data.indexOf("/at ");
         String description = data.substring(0, splitIndex).trim();
         if (description.isEmpty()) {
             throw new DukeException("The description of an event cannot be empty.");
         }
 
-        String dateTime = data.substring(splitIndex + 3).trim();
-        if (dateTime.isEmpty()) {
+        String dateTimeStr = data.substring(splitIndex + 3).trim();
+        if (dateTimeStr.isEmpty()) {
             throw new DukeException("Please enter event time.");
         }
 
-        Event e = new Event(description, dateTime);
+        Event e = new Event(description, super.parseStrToDate(dateTimeStr));
         super.message(list.add(e));
     }
 }
