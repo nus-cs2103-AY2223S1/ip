@@ -1,13 +1,11 @@
 package parser;
 
-import java.util.List;
-import java.util.ArrayList;
-
 import tasks.Task;
 import tasks.Deadline;
 import tasks.Todo;
 import tasks.Event;
 import exceptions.DukeException;
+import tasklist.TaskList;
 
 /**
  * Handler class that manages user input to Duke.
@@ -17,7 +15,7 @@ public class DukeParser {
 
     private final String BREAK_LINES = "=================================";
 
-    private List<Task> taskList;
+    private TaskList taskList;
     private String keyword;
     private String restOfInputString;
     private Boolean exitDuke = false;
@@ -27,7 +25,7 @@ public class DukeParser {
      *
      * @param taskList A reference of Duke's ArrayList of Tasks
      */
-    public DukeParser(List<Task> taskList) {
+    public DukeParser(TaskList taskList) {
         this.taskList = taskList;
     }
 
@@ -114,15 +112,8 @@ public class DukeParser {
      * Handles a list instruction by printing user's tasks to the screen.
      */
     public void listInstructionHandler() {
-        int counter = 1;
         System.out.println(BREAK_LINES);
-        System.out.println("Here are the tasks that you have added to the list: ");
-        for (Task task : this.taskList) {
-            if (task != null) {
-                System.out.println(counter + ". " + task);
-                counter++;
-            }
-        }
+        System.out.println(this.taskList);
         System.out.println(BREAK_LINES);
     }
 
@@ -153,27 +144,19 @@ public class DukeParser {
 
         // Actual logic
         System.out.println(BREAK_LINES);
-        if (instructionNum >= this.taskList.size() || instructionNum < 0) {
+        if (instructionNum >= this.taskList.getSize() || instructionNum < 0) {
             throw new DukeException("Invalid index provided. Try again?");
         }
 
         switch (this.keyword) {
         case "mark":
-            this.taskList.get(instructionNum).markAsDone();
-            System.out.println("Nice! I've marked this task as having been completed:");
-            System.out.println(this.taskList.get(instructionNum));
+            this.taskList.markTaskComplete(instructionNum);
             break;
         case "unmark":
-            this.taskList.get(instructionNum).markAsUndone();
-            System.out.println("Okay, I've marked this task as not done yet:");
-            System.out.println(this.taskList.get(instructionNum));
+            this.taskList.markTaskIncomplete(instructionNum);
             break;
         case "delete":
-            Task removedTask = this.taskList.get(instructionNum);
-            this.taskList.remove(instructionNum);
-            System.out.println("Okay, I've removed this task:");
-            System.out.println(removedTask);
-            System.out.println("You now have " + this.taskList.size() + " tasks in your list.");
+            this.taskList.deleteTask(instructionNum);
             break;
         }
 
@@ -223,9 +206,7 @@ public class DukeParser {
             break;
         }
 
-        taskList.add(newTask);
-        System.out.println("Got it, i've added this task to your list:\n  " + newTask);
-        System.out.println("You now have " + taskList.size() + " tasks in your list.");
+        this.taskList.addTaskToList(newTask);
         System.out.println(BREAK_LINES);
     }
 

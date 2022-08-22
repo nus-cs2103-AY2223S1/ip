@@ -1,16 +1,15 @@
 import exceptions.DukeException;
 import tasks.Task;
 import parser.DukeParser;
-
+import tasklist.TaskList;
 
 import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class Duke {
 
     // String array used to store tasks
-    private static final List<Task> tasks = new ArrayList<>();
+    private static final TaskList taskList = new TaskList();
 
     // Currently, the main function takes in user input and echoes it to the user
     public static void main(String[] args) {
@@ -26,7 +25,7 @@ public class Duke {
 
         // Init variables to use
         Scanner sc = new Scanner(System.in);
-        DukeParser parser = new DukeParser(tasks);
+        DukeParser parser = new DukeParser(taskList);
 
         while(!parser.exitDuke()) {
             String input = sc.nextLine();
