@@ -48,7 +48,7 @@ public class Henry {
         try {
             command.setData(taskList);
             CommandResult result = command.execute();
-            storage.appendToFile(taskList.toString());
+            storage.appendToFile(taskList.toSimpleString());
             return result;
         } catch (Exception e) {
             ui.output(e.getMessage());
@@ -56,7 +56,7 @@ public class Henry {
         }
     }
 
-    public void close() throws IOException {
+    public void close() {
         ui.close();
         isActivated = false;
     }

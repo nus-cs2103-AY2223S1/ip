@@ -10,12 +10,12 @@ import java.util.regex.Pattern;
 public class Parser {
 
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<command>\\S*)(?<args>.*)");
-    private static final Pattern DEADLINE_FORMAT = Pattern.compile("deadline (?<desc>.+) /by "
-                                                                   + "(?<dateTime>\\d{1,3}-\\d{1,3}-\\d{4} "
+    private static final Pattern DEADLINE_FORMAT = Pattern.compile("(?<desc>.+) /by "
+                                                                   + "(?<dateTime>\\d{2}-\\d{2}-\\d{4} "
                                                                    + "\\d{2}:\\d{2})");
 
-    private static final Pattern EVENT_FORMAT = Pattern.compile("event (?<desc>.+) /at "
-                                                                + "(?<dateTime>\\d{1,3}-\\d{1,3}-\\d{4} "
+    private static final Pattern EVENT_FORMAT = Pattern.compile("(?<desc>.+) /at "
+                                                                + "(?<dateTime>\\d{2}-\\d{2}-\\d{4} "
                                                                 + "\\d{2}:\\d{2})");
     private static final String DATE_FORMATTER = "dd-MM-yyyy HH:mm";
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMATTER);
@@ -80,7 +80,7 @@ public class Parser {
         String description = matcher.group("desc");
         String dateTime = matcher.group("dateTime");
         try {
-            return new DeadlineCommand(description, LocalDateTime.parse(dateTime, formatter));
+            return new EventCommand(description, LocalDateTime.parse(dateTime, formatter));
         } catch (NumberFormatException e) {
             return new ErrorCommand("DATE AND TIME NUMBERS ARE OUT OF RANGE!");
         }

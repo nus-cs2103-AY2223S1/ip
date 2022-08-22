@@ -7,11 +7,11 @@ import java.time.LocalDateTime;
 public class EventCommand extends Command {
 
     public static final String COMMAND_WORD = "event";
-    public static final String MESSAGE_SUCCESS = "OK. I ADDED THIS TASK TO MY LIST:\n\t\t\t: %1$s.";
+    public static final String MESSAGE_SUCCESS = "OK. I ADDED THIS TASK TO MY LIST:\n\t\t\t %1$s.";
     private final Task task;
 
     public EventCommand(String description, LocalDateTime dateTime) {
-        this.task = new Task(Commands.TODO, description, dateTime);
+        this.task = new Task(Commands.EVENT, description, dateTime);
     }
 
     @Override

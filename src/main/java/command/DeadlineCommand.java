@@ -11,7 +11,7 @@ public class DeadlineCommand extends Command {
     private final Task task;
 
     public DeadlineCommand(String description, LocalDateTime dateTime) {
-        this.task = new Task(Commands.TODO, description, dateTime);
+        this.task = new Task(Commands.DEADLINE, description, dateTime);
     }
 
     @Override

@@ -47,6 +47,7 @@ public class Task {
 
     public String toSimpleString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        description = description.trim();
         switch (type) {
         case TODO:
             return "T | " + (isDone ? 1 : 0) + " | " + description;
@@ -54,7 +55,7 @@ public class Task {
             return "D | " + (isDone ? 1 : 0) + " | " + description + " | (by: "
                    + date.format(formatter).replace("T", " ") + ")";
         default:
-            return "E | " + (isDone ? 1 : 0) + " | " + description + " | (by: "
+            return "E | " + (isDone ? 1 : 0) + " | " + description + " | (at: "
                    + date.format(formatter).replace("T", " ") + ")";
         }
     }

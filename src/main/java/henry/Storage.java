@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -52,7 +53,6 @@ public class Storage {
             String prefix;
             String cleaned;
             prefix = tokens[0].trim();
-
             switch (prefix) {
             case "T":
                 type = Commands.TODO;
@@ -87,7 +87,7 @@ public class Storage {
     }
 
     public void appendToFile(String textToAdd) throws IOException {
-        FileWriter fw = new FileWriter(filePath, true);
+        FileWriter fw = new FileWriter(filePath);
         fw.write(textToAdd + "\n");
         fw.close();
     }
