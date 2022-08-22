@@ -16,7 +16,7 @@ public class BadFormatException extends DukeException {
             return ret;
         } else {
             String ret = line + "\n Oh no, the format of a " + this.taskType + " is: " + this.taskType
-                    + " <YOUR TASK HERE> " + " <ALL TASK IDs>\n" + line;
+                    + " <YOUR TASK HERE> " + " <TASK ID>\n" + line;
             return ret;
         }
     }

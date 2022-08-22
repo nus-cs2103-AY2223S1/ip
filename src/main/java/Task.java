@@ -18,4 +18,8 @@ public class Task {
             return "[X] " + this.name;
         }
     }
+
+    public String fileForm() {
+        return this.finished + " " + this.name;
+    }
 }

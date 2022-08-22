@@ -51,11 +51,8 @@ The following task has been deleted:
 [T][/] borrow book
 _______________________________________
 _______________________________________
-The following task has been deleted:
-hi
+ Please provide input that is within the length of the list.
 _______________________________________
-_______________________________________
-Nice! I've marked this task as done:
 _______________________________________
 ohai, please provide proper input :<<<<<
 _______________________________________

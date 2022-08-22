@@ -1,0 +1,3 @@
+D false return book   Sunday
+E false project meeting   Mon 2-4pm
+D true return to home   idk
