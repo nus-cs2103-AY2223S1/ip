@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
-    private static ArrayList<Task> allTasks = new ArrayList<>();
+    private static final ArrayList<Task> allTasks = new ArrayList<>();
 
     public enum RequestType {
         MARK, UNMARK, TODO, EVENT, DEADLINE, DELETE, LIST
@@ -85,7 +85,7 @@ public class Duke {
     }
 
     public static void deleteTask(String request) throws DukeException {
-        Integer index = Integer.parseInt(request.substring(7));
+        int index = Integer.parseInt(request.substring(7));
         if (index < 1 || index > allTasks.size()) {
             throw new InvalidIndexException();
         } else {
@@ -97,7 +97,7 @@ public class Duke {
     }
 
     public static void markTask(String request) throws DukeException {
-        Integer index = Integer.parseInt(request.substring(5));
+        int index = Integer.parseInt(request.substring(5));
         if (index < 1 || index > allTasks.size()) {
             throw new InvalidIndexException();
         } else {
@@ -108,7 +108,7 @@ public class Duke {
     }
 
     public static void unMarkTask(String request) throws DukeException {
-        Integer index = Integer.parseInt(request.substring(7));
+        int index = Integer.parseInt(request.substring(7));
         if (index < 1 || index > allTasks.size()) {
             throw new InvalidIndexException();
         } else {
@@ -130,7 +130,11 @@ public class Duke {
     public static void deadlineTask(String request) throws DukeException {
         if (request.matches("(?i)^deadline\\s.+\\s\\/(by)\\s.+")) {
             String[] deadline = request.substring(9).split("\\/(by)\\s", 2);
-            addTask(new Deadline(deadline[0], deadline[1]));
+            if (DateConverter.isValidDate(deadline[1])) {
+                addTask(new Deadline(deadline[0], DateConverter.convertToLocalDate(deadline[1])));
+            } else {
+                echo("Hmm, You need to use yyyy-mm-dd for date format.");
+            }
         } else {
             throw new InvalidDeadlineException();
         }
