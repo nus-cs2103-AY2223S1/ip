@@ -1,26 +1,29 @@
+package duke.task;
+
+import duke.DukeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Event extends Task {
+public class Deadline extends Task {
     private LocalDate time;
 
-    private static final String metaPattern = "(^.+)(\\s?+/at\\s?+)(.+)?$";
+    private static final String metaPattern = "(^.+)(\\s?+/by\\s?+)(.+)?$";
     private static String extractDescription(String meta) throws DukeException {
         Matcher m = Pattern.compile(metaPattern).matcher(meta);
         if (!m.find()) {
-            throw new DukeException("You need to use \"/at\" to specify when the event is");
+            throw new DukeException("You need to use \"/by\" to specify when the event is");
         }
         return m.group(1);
     }
 
-    public Event(String meta) throws DukeException {
+    public Deadline(String meta) throws DukeException {
         super(extractDescription(meta));
         Matcher m = Pattern.compile(metaPattern).matcher(meta);
         if (!m.find()) {
-            throw new DukeException("You need to use \"/at\" to specify when the event is");
+            throw new DukeException("You need to use \"/by\" to specify when the event is");
         }
         String time = m.group(3);
         if (time == null) throw new DukeException("You didn't specify the time.");
@@ -33,11 +36,11 @@ public class Event extends Task {
 
     @Override
     public String saveText() {
-        return String.format("E|%d|%s /at %s", this.isDone ? 1 : 0, this.description, this.time);
+        return String.format("D|%d|%s /by %s", this.isDone ? 1 : 0, this.description, this.time);
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + this.time.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+        return "[D]" + super.toString() + " (by: " + this.time.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 }

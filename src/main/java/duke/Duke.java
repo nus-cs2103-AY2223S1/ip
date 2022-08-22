@@ -1,3 +1,11 @@
+package duke;
+
+import duke.task.Task;
+import duke.task.Todo;
+import duke.task.Event;
+import duke.task.Deadline;
+import duke.task.TaskList;
+
 import java.util.Scanner;
 
 public class Duke {
@@ -35,6 +43,7 @@ public class Duke {
                 Parser currentCommand = new Parser(scanner.nextLine());
                 String direction = currentCommand.getDirection();
                 String meta = currentCommand.getMeta();
+                if (meta == null) throw new DukeException("Description cannot be empty");
                 switch (direction) {
                     case "bye": this.terminate(); break;
                     case "list": Ui.showTasksList(this.tasks); break;
