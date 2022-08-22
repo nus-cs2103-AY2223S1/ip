@@ -64,7 +64,7 @@ public class Storage {
             String done = sc.nextLine();
             boolean isDone = Integer.parseInt(done) == 1;
 
-            Task task = null;
+            Task task;
             if (taskType.equals("T")) {
                 task = new Todo(taskName, isDone);
             } else if (taskType.equals("D")) {

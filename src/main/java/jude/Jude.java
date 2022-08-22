@@ -62,7 +62,7 @@ public class Jude {
     /**
      * Runs the task tracker.
      *
-     * @param args not used for now
+     * @param args Not used for now.
      */
     public static void main(String[] args) throws IOException {
         new Jude("data/tasks.txt").run();

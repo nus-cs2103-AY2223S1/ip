@@ -5,7 +5,7 @@ package jude.task;
  * been done.
  */
 public abstract class Task {
-    private String description;
+    private final String description;
     private boolean isDone;
 
     /**
@@ -25,7 +25,7 @@ public abstract class Task {
      * @return whether the task is done
      */
     public boolean getIsDone() {
-        return this.isDone;
+        return isDone;
     }
 
     /**
@@ -34,7 +34,7 @@ public abstract class Task {
      * @return description of the Task object
      */
     public String getDescription() {
-        return this.description;
+        return description;
     }
 
     /**
@@ -62,14 +62,14 @@ public abstract class Task {
      * Sets the status of the Task to 'done'.
      */
     public void markAsDone() {
-        this.setIsDone(true);
+        setIsDone(true);
     }
 
     /**
      * Sets the status of the Task to 'not done'.
      */
     public void markAsUndone() {
-        this.setIsDone(false);
+        setIsDone(false);
     }
 
     /**
@@ -88,8 +88,8 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        return String.format("[%s][%s] %s", this.getTaskTypeCode(), this.getStatusIcon(),
-                this.description);
+        return String.format("[%s][%s] %s", getTaskTypeCode(), getStatusIcon(),
+                description);
     }
 
     // Internal method used to save a task as a string in a file.

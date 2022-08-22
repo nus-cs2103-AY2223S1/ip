@@ -25,7 +25,7 @@ public class Event extends Task {
      * @return the time range which the Event is scheduled to take table.
      */
     public String getStartTime() {
-        return this.when;
+        return when;
     }
 
 
@@ -47,7 +47,7 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return String.format("%s (at: %s)", super.toString(), this.when);
+        return String.format("%s (at: %s)", super.toString(), when);
     }
 
     @Override
