@@ -2,31 +2,32 @@ package command;
 
 import data.TaskList;
 import data.tasks.Task;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.MatchResult;
+import java.util.regex.Pattern;
+
 import util.CommandUtils;
 
 public class CommandDeleteHandler extends CommandHandler {
 
-    CommandDeleteHandler(TaskList taskList) {
-        super(taskList);
-    }
+    private static final Pattern commandRegexPattern = Pattern.compile("^delete (\\d+)");
 
-    @Override
-    public boolean validateCommand(List<String> commandTokens) {
-        // There must be a task index followed by the `delete` command
-        return commandTokens.size() == 2;
-    }
-
-    @Override
-    public List<String> run(List<String> commandTokens) throws CommandException {
-        if (!validateCommand(commandTokens)) {
-            throw new CommandException("The `delete` command only expects 1 parameter!");
+    CommandDeleteHandler(String commandStr) throws CommandException {
+        super(commandStr, commandRegexPattern);
+        if (!isCommandValid()) {
+            throw new CommandException(
+                "`delete` command expects a single number argument (e.g. `delete 1`)");
         }
+    }
 
+    @Override
+    public List<String> run(TaskList taskList) throws CommandException {
         List<String> responseList = new ArrayList<>();
 
-        String taskIdxStr = commandTokens.get(1);
+        MatchResult regexMatchResult = commandRegexMatcher.toMatchResult();
+        String taskIdxStr = regexMatchResult.group(1);
         try {
             int taskIdx = Integer.parseInt(taskIdxStr);
             if (taskIdx <= 0 || taskIdx > taskList.size()) {
@@ -37,7 +38,8 @@ public class CommandDeleteHandler extends CommandHandler {
                     taskList.size()));
             }
         } catch (NumberFormatException error) {
-            throw new CommandException("Invalid task selected!");
+            throw new CommandException(
+                String.format("`delete` expects a number argument. Got: %s", taskIdxStr));
         }
 
         return responseList;

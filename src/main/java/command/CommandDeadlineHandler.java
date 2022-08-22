@@ -2,39 +2,33 @@ package command;
 
 import data.TaskList;
 import data.tasks.TaskDeadline;
+
 import java.util.List;
+import java.util.regex.MatchResult;
+import java.util.regex.Pattern;
+
 import util.CommandUtils;
 
 public class CommandDeadlineHandler extends CommandHandler {
 
-    CommandDeadlineHandler(TaskList taskList) {
-        super(taskList);
-    }
+    private static final Pattern commandRegexPattern = Pattern.compile("^deadline (.+) /by (.+)");
 
-    @Override
-    public boolean validateCommand(List<String> commandTokens) {
-        // 1. Contains the deadline marker
-        // 2. There is a data specified after the deadline marker
-        // 3. Deadline marker is not right after command as it implies no task description
-        int deadlineMarkerIdx = commandTokens.indexOf(TaskDeadline.deadlineMarker);
-        return commandTokens.size() > 1 && deadlineMarkerIdx != -1
-            && deadlineMarkerIdx != commandTokens.size() - 1 && deadlineMarkerIdx != 1;
-    }
-
-    @Override
-    public List<String> run(List<String> commandTokens) throws CommandException {
-        if (!validateCommand(commandTokens)) {
+    CommandDeadlineHandler(String commandStr) throws CommandException {
+        super(commandStr, commandRegexPattern);
+        if (!isCommandValid()) {
             throw new CommandException(
-                "Invalid parameters passed to `deadline` command! (Expected: deadline <task-title> /by <deadline>)"
-            );
+                "Invalid `deadline` command format (expected: deadline deadline-title /by datetime)");
         }
+    }
 
-        int deadlineMarkerIdx = commandTokens.indexOf(TaskDeadline.deadlineMarker);
-        String deadlineDesc = gatherCommandTokens(commandTokens, 1, deadlineMarkerIdx, " ");
-        String deadline = gatherCommandTokens(commandTokens, deadlineMarkerIdx + 1,
-            commandTokens.size(), " ");
+    @Override
+    public List<String> run(TaskList taskList) {
+        MatchResult regexMatchResult = commandRegexMatcher.toMatchResult();
 
-        TaskDeadline deadlineTask = new TaskDeadline(deadlineDesc, deadline);
+        String deadlineTaskTitle = regexMatchResult.group(1);
+        String deadlineDateTimeStr = regexMatchResult.group(2);
+
+        TaskDeadline deadlineTask = new TaskDeadline(deadlineTaskTitle, deadlineDateTimeStr);
         taskList.addTask(deadlineTask);
 
         return CommandUtils.generateAddTaskResponse(deadlineTask, taskList.size());
