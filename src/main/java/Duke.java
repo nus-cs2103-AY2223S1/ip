@@ -1,13 +1,47 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
-    //test
+    private static void printFileContents(String filePath) throws FileNotFoundException {
+        File f = new File(filePath);
+        Scanner s = new Scanner(f);
+        while (s.hasNext()) {
+            System.out.println(s.nextLine());
+        }
+    }
+
+    private static void writeToFile(String filePath, String text) throws IOException {
+        File f = new File(filePath);
+        f.createNewFile();
+        FileWriter fw = new FileWriter(filePath, true);
+        fw.write(text);
+        fw.close();
+    }
+
+    private static String arrToText(ArrayList<Task> arr) {
+        int len = arr.size();
+        String text = "";
+        for (int i = 0; i < len; i++) {
+            text += arr.get(i).toStr();
+            text += "\n";
+        }
+        return text;
+    }
+
     public static void main(String[] args) {
         ArrayList<Task> arr = new ArrayList();
         // Task[] arr = new Task[100];
         int count = 0;
         System.out.println("Hello! I'm Duke\nWhat can I do for you?");
+        try {
+            printFileContents("duke.txt");
+        } catch (FileNotFoundException e) {
+            System.out.println("Data yet to be created");
+        }
 
         Scanner sc = new Scanner(System.in);
 
@@ -25,11 +59,23 @@ public class Duke {
                 int index = Integer.valueOf(str);
                 arr.get(index - 1).mark();
                 System.out.println("Nice! I've marked this task as done:\n" + arr.get(index - 1).toStr());
+                String text = arrToText(arr);
+                try {
+                    writeToFile("duke.txt", text);
+                } catch (IOException e) {
+                    System.out.println("Error saving file: " +e.getMessage());
+                }
             } else if (item.startsWith("unmark")) {
                 String str = item.replace("unmark ", "");
                 int index = Integer.valueOf(str);
                 arr.get(index - 1).unmark();
                 System.out.println("OK, I've marked this task as not done yet:\n" + arr.get(index - 1).toStr());
+                String text = arrToText(arr);
+                try {
+                    writeToFile("duke.txt", text);
+                } catch (IOException e) {
+                    System.out.println("Error saving file: " +e.getMessage());
+                }
             } else if (item.startsWith("todo")) {
                 try {
                     String str = item.replace("todo", "");
@@ -40,6 +86,12 @@ public class Duke {
                                     "Now you have %d tasks in the list.",
                             arr.get(count - 1).toStr(),
                             count));
+                    String text = arrToText(arr);
+                    try {
+                        writeToFile("duke.txt", text);
+                    } catch (IOException e) {
+                        System.out.println("Error saving file: " +e.getMessage());
+                    }
                 } catch (MissingDescriptionException err) {
                     System.out.println("OOPS!!! The description of a todo cannot be empty.");
                 }
@@ -54,6 +106,12 @@ public class Duke {
                                     "Now you have %d tasks in the list.",
                             arr.get(count - 1).toStr(),
                             count));
+                    String text = arrToText(arr);
+                    try {
+                        writeToFile("duke.txt", text);
+                    } catch (IOException e) {
+                        System.out.println("Error saving file: " +e.getMessage());
+                    }
                 } catch (MissingDescriptionException err) {
                     System.out.println("OOPS!!! The description of a deadline cannot be empty.");
                 } catch (ArrayIndexOutOfBoundsException e) {
@@ -70,6 +128,12 @@ public class Duke {
                                     "Now you have %d tasks in the list.",
                             arr.get(count - 1).toStr(),
                             count));
+                    String text = arrToText(arr);
+                    try {
+                        writeToFile("duke.txt", text);
+                    } catch (IOException e) {
+                        System.out.println("Error saving file: " +e.getMessage());
+                    }
                 } catch (MissingDescriptionException err) {
                     System.out.println("OOPS!!! The description of an event cannot be empty.");
                 } catch (ArrayIndexOutOfBoundsException e) {
@@ -86,7 +150,12 @@ public class Duke {
                             t.toStr(),
                             count);
                     System.out.println(str);
-
+                    String text = arrToText(arr);
+                    try {
+                        writeToFile("duke.txt", text);
+                    } catch (IOException e) {
+                        System.out.println("Error saving file: " +e.getMessage());
+                    }
                 } catch (IndexOutOfBoundsException e) {
                     System.out.println("OOPS!!! No such task exists.");
                 }
