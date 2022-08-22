@@ -14,7 +14,7 @@ public class Event extends Task {
 
     @Override
     public String toSaveData() {
-        return "E " + (super.isDone ? "1 " : "0 ") + this.description + " " + this.time;
+        return "E|" + (super.isDone ? "1|" : "0|") + this.description + "|" + this.time;
     }
 
     @Override

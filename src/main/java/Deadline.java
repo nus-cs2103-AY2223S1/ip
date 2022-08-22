@@ -14,7 +14,7 @@ public class Deadline extends Task {
 
     @Override
     public String toSaveData() {
-        return "D " + (super.isDone ? "1 " : "0 ") + this.description + " " + this.by;
+        return "D|" + (super.isDone ? "1|" : "0|") + this.description + "|" + this.by;
     }
 
     @Override

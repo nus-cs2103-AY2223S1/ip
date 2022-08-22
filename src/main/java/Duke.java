@@ -69,7 +69,7 @@ public class Duke {
     }
 
     private static void addTaskFromFileToWorkingList(String t) {
-        String[] entries = t.split(" ");
+        String[] entries = t.split("\\|");
         switch (entries[0]) {
         case "T":
             if (entries[1].equals("1")) {
