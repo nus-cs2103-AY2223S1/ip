@@ -5,7 +5,8 @@ import java.util.Scanner;
 public class Duke {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        List<Task> list = new ArrayList<>();
+        TaskWriter taskWriter = new TaskWriter("./tasks.txt");
+        List<Task> list = taskWriter.readTasks();
 
         System.out.println("Hello! I'm Piggy");
         System.out.println("What can I oink for you?");
@@ -70,8 +71,8 @@ public class Duke {
                 } catch (DukeException err) {
                     System.out.println(err);
                 }
-
             }
+            taskWriter.writeTasks(list);
         }
 
         System.out.println("Bye. Hope to oink you again soon!");
