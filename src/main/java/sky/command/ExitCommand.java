@@ -1,3 +1,9 @@
+package sky.command;
+
+import sky.Storage;
+import sky.TaskList;
+import sky.Ui;
+
 /**
  * The ExitCommand class deals with exiting the program.
  */

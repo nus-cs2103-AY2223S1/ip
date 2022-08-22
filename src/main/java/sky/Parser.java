@@ -1,3 +1,7 @@
+package sky;
+
+import sky.command.*;
+
 /**
  * The Parser class deals with making sense of the user command.
  */

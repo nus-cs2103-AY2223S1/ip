@@ -1,3 +1,8 @@
+package sky;
+
+import sky.command.Command;
+import sky.exception.TextNoMeaningException;
+
 import java.util.Scanner;
 
 public class Sky {

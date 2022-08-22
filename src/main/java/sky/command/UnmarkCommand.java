@@ -1,10 +1,17 @@
+package sky.command;
+
+import sky.Storage;
+import sky.task.Task;
+import sky.TaskList;
+import sky.Ui;
+
 /**
- * The DeleteCommand class deals with deleting a task from taskList.
+ * The UnmarkCommand class deals with marking a task as incomplete.
  */
-public class DeleteCommand extends Command {
+public class UnmarkCommand extends Command {
     private String fullCommand;
 
-    public DeleteCommand(String fullCommand) {
+    public UnmarkCommand(String fullCommand) {
         this.fullCommand = fullCommand;
     }
 
@@ -15,17 +22,15 @@ public class DeleteCommand extends Command {
             // Minus one as arrayList is zero-indexed
             int taskNum = Integer.parseInt(taskNumInString) - 1;
             Task task = taskList.getTask(taskNum);
-            taskList.removeTask(task);
+            task.markAsUndone();
             storage.reWriteDataFile(taskList);
-            System.out.println("  Splendid. I've removed this task: \n" +
-                    "    " + task +
-                    "\n  Now you have " + taskList.size() +
-                    (taskList.size() <= 1 ? " task in the list.": " tasks in the list."));
+            System.out.println("  Well, that's disappointing. I've marked this task as undone: \n" +
+                    "    " + task);
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("  You have either not entered any number to indicate which task I should delete, \n" +
+            System.out.println("  You have either not entered any number to indicate which task I should unmark, \n" +
                     "  or you entered an invalid task number.");
         } catch (NumberFormatException e) {
-            System.out.println("  Are you new? Enter a number after typing delete.");
+            System.out.println("  Are you new? Enter a number after typing unmark.");
         }
     }
 

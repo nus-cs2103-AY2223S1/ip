@@ -1,6 +1,8 @@
+package sky.exception;
+
 public class TextNoMeaningException extends Exception {
     String message;
-    TextNoMeaningException(String str) {
+    public TextNoMeaningException(String str) {
         message = str;
     }
 

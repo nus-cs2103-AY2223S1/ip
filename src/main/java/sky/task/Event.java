@@ -1,3 +1,5 @@
+package sky.task;
+
 public class Event extends Task {
     protected String duration;
 
