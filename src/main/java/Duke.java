@@ -3,28 +3,26 @@ import java.util.Scanner;
 
 public class Duke {
 
-    public static final String GREETING_MESSAGE = "Hello! I'm Duke\nWhat can I do for you?";
-    public static final String GOODBYE_MESSAGE = "Bye. Hope to see you again soon!";
+    public static final String GREETING_MESSAGE = "Hello! I'm RyanBot ☺\nWhat can I do for you?";
+    public static final String GOODBYE_MESSAGE = "Bye. Please don't leave me :( Hope to see you again soon!";
+    public static boolean listChanged = false;
+    public static ArrayList<Task> taskList = new ArrayList<Task>();
+
     public static void main(String[] args) {
         System.out.println(GREETING_MESSAGE);
 
-        ArrayList<Task> taskList = new ArrayList<Task>();
         Scanner in = new Scanner(System.in);
         String s = in.nextLine();
         String parts[] = s.split(" ", 0);
         String command = parts[0];
 
+        Storage storage = new Storage("duke.txt");
 
         while(!command.equals("bye")) {
 
             if (command.equals("list")) {
-                String listOutput = "Here are the tasks in your list:\n";
-                int index = 1;
-                for (Task t : taskList) {
-                    listOutput += index + "."+ t;
-                    index++;
-                }
-                System.out.println(listOutput);
+                String list = getList();
+                System.out.println(list);
             }
 
             else if (command.equals("mark") || command.equals("unmark")) {
@@ -34,11 +32,13 @@ public class Duke {
                         Task markedTask = taskList.get(pos).mark();
                         taskList.set(pos, markedTask);
                         System.out.println("Nice! I've marked this task as done:\n " + markedTask);
+                        listChanged = true;
                     } else if (command.equals("unmark")) {
                         int pos = Integer.parseInt(parts[1]) - 1;
                         Task unmarkedTask = taskList.get(pos).unmark();
                         taskList.set(pos, unmarkedTask);
                         System.out.println("OK, I've marked this task as not done yet:\n " + unmarkedTask);
+                        listChanged = true;
                     }
                 }
                 catch (ArrayIndexOutOfBoundsException ex) {
@@ -78,6 +78,7 @@ public class Duke {
                     }
                     taskList.add(task);
                     System.out.println("Got it. I've added this task:\n" + task + "Now you have " + taskList.size() + " tasks in the list.\n");
+                    listChanged = true;
                 }
                 catch (EmptyTaskException ex){
                     System.out.println("☹ OOPS!!! The description of a todo cannot be empty.");
@@ -90,6 +91,7 @@ public class Duke {
                     Task removedTask = taskList.get(pos);
                     taskList.remove(pos);
                     System.out.println("Noted. I've removed this task:\n " + removedTask + "Now you have " + taskList.size() + " tasks in the list.\n");
+                    listChanged = true;
                 }
                 catch (ArrayIndexOutOfBoundsException ex) {
                     System.out.println("☹ OOPS!!! You did not specify which task to be delete.");
@@ -108,11 +110,28 @@ public class Duke {
                 }
             }
 
+            if (listChanged) {
+                String list = getList();
+                storage.write(list);
+                listChanged = false;
+            }
+
+
             s = in.nextLine();
             parts = s.split(" ", 0);
             command = parts[0];
         }
 
         System.out.println(GOODBYE_MESSAGE);
+    }
+
+    public static String getList() {
+        String listOutput = "Here are the tasks in your list:\n";
+        int index = 1;
+        for (Task t : taskList) {
+            listOutput += index + "."+ t;
+            index++;
+        }
+        return listOutput;
     }
 }
