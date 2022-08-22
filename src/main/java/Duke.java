@@ -1,14 +1,39 @@
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
+    public static final String OUTPUT_FILE_FOLDER = "data";
+    public static final String OUTPUT_FILE_NAME = "duke.txt";
+    public static final String OUTPUT_FILE_PATH = OUTPUT_FILE_FOLDER + "/" + OUTPUT_FILE_NAME;
+
     public static void main(String[] args) {
         System.out.println("------------------------------");
         System.out.println("Hello! I'm Duke\nWhat can I do for you?");
         System.out.println("------------------------------");
         Scanner scanner = new Scanner(System.in);
         ArrayList<Task> tasks = new ArrayList<>();
-        while(true) {
+        ArrayList<String> commands = new ArrayList<>();
+
+        try {
+            if (!Files.exists(Paths.get(OUTPUT_FILE_FOLDER))) {
+                Files.createDirectories(Paths.get(OUTPUT_FILE_FOLDER));
+            }
+            readLine(scanner, tasks, commands, OUTPUT_FILE_PATH);
+        } catch (IOException e) {
+            System.out.print(e);
+            return;
+        }
+    }
+
+    // supposedly should stop when reaches end of file, but blocks if using system.in
+    public static void readLine(Scanner scanner, ArrayList<Task> tasks, ArrayList<String> commands, String filePath)
+            throws IOException {
+        while(scanner.hasNext()) {
+            FileWriter fw = new FileWriter(filePath);
             String command = scanner.nextLine();
             String[] commandArr = command.split(" ");
             System.out.println("------------------------------");
@@ -47,6 +72,7 @@ public class Duke {
                         System.out.println("🙁 OOPS!!! The description of a todo cannot be empty.");
                     } else {
                         tasks.add(new Todo(false, todoText));
+                        commands.add(command);
                         System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
                     }
                     break;
@@ -60,6 +86,7 @@ public class Duke {
                         System.out.println("🙁 OOPS!!! Provide a time for the deadline.");
                     } else {
                         tasks.add(new Deadline(false, deadlineText, deadlineTime));
+                        commands.add(command);
                         System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
                     }
                     break;
@@ -73,6 +100,7 @@ public class Duke {
                         System.out.println("🙁 OOPS!!! Provide a time for the event.");
                     } else {
                         tasks.add(new Event(false, eventText, eventTime));
+                        commands.add(command);
                         System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
                     }
                     break;
@@ -87,6 +115,7 @@ public class Duke {
                     if (deleteI >= 1 && deleteI <= tasks.size()) {   // ensure i given is within range
                         String taskToString = tasks.get(deleteI - 1).toString();
                         tasks.remove(deleteI - 1);
+                        commands.remove(deleteI - 1);
                         System.out.printf("Noted. I've removed this task:\n  %s\n", taskToString);
                     } else {
                         System.out.printf("🙁 OOPS!!! Provide a valid number (from 1 to %d) to delete a task.\n", tasks.size());
@@ -113,6 +142,8 @@ public class Duke {
                     }
             }
             System.out.println("------------------------------");
+            fw.write(commands.stream().reduce((s, prev) -> String.format("%s\n%s", s, prev)).orElse(""));
+            fw.close();
         }
     }
 }
