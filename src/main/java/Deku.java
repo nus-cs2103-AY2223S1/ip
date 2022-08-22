@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 import java.util.*;
 
 public class Deku {
@@ -21,7 +24,7 @@ public class Deku {
     /*
     * Method to start the chat-bot
     */
-    public void start() {
+    public void start() throws IOException {
         Scanner scanner = new Scanner(System.in);
         this.introduction();
         boolean active = true;
@@ -78,7 +81,7 @@ public class Deku {
     /*
     * Default main method
     */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Deku dekuBot = new Deku();
         dekuBot.start();
     }

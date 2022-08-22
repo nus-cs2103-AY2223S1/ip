@@ -1,3 +1,10 @@
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 public class BotList {
     private final ArrayList<Task> internalArray;
@@ -15,6 +22,7 @@ public class BotList {
     String add(Task task) {
         StringBuilder output = new StringBuilder("I've added this task:\n").append(task);
         this.internalArray.add(task);
+        save();
         return output.append("\n").append(this.getNoTasks()).toString();
     }
 
@@ -26,6 +34,7 @@ public class BotList {
     */
     String mark(int taskIndex) {
         this.internalArray.get(taskIndex - 1).setCompletionStatus(true);
+        save();
         return "Good Job! This task is now completed:\n" + this.internalArray.get(taskIndex - 1);
     }
 
@@ -37,6 +46,7 @@ public class BotList {
      */
     String unmark(int taskIndex) {
         this.internalArray.get(taskIndex - 1).setCompletionStatus(false);
+        save();
         return "This task is now yet to be done:\n" + this.internalArray.get(taskIndex - 1);
     }
 
@@ -44,14 +54,31 @@ public class BotList {
         return "Now you have " + (this.internalArray.size()) + " task(s) in total.";
     }
 
-    String delete(int taskIndex) {
-        Task task = this.internalArray.remove(taskIndex - 1);
-        return "Noted.\n" + task.toString() + "\nhas been deleted.\n" + getNoTasks();
-
+    private void save() {
+        Path directoryPath = Paths.get(System.getProperty("user.dir"), "data");
+        Path filePath = directoryPath.resolve("save.txt");
+        File directory = new File(directoryPath.toUri());
+        directory.mkdir();
+        try {
+            File file = new File(filePath.toUri());
+            file.delete();
+            file.createNewFile();
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file, true));
+            for (int i = 0; i < internalArray.size(); i++) {
+                writer.write(internalArray.get(i).parseSaveFormat());
+                writer.newLine();
+            }
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(-1);
+        }
     }
 
-    private void save() {
-
+    String delete(int taskIndex) {
+        Task task = this.internalArray.remove(taskIndex - 1);
+        save();
+        return "Noted.\n" + task.toString() + "\nhas been deleted.\n" + getNoTasks();
     }
 
     @Override

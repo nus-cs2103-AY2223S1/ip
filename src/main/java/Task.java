@@ -58,7 +58,7 @@ public class Task {
                 output += current + " ";
             }
         }
-        return output.substring(0, output.length()-1);
+        return (output.equals("")) ? output : output.substring(0, output.length()-1);
     }
 
     private String getTask() {
@@ -89,6 +89,6 @@ public class Task {
 
     @Override
     public String toString() {
-        return ICON + completionIcon + " - " + parseTask();
+        return "[" + ICON + "]" + completionIcon + " - " + parseTask();
     }
 }
