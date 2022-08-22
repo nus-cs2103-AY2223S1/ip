@@ -5,7 +5,7 @@ public class Duke {
         hello();
 
         Scanner sc = new Scanner(System.in);
-        DukeControl dc = new DukeControl();
+        DukeControl dc = new DukeControl("../../../data/aRC.txt");
 
         System.out.print("\n");
         String input = sc.nextLine();
@@ -13,7 +13,7 @@ public class Duke {
         // Keeps reading user input until the user types "bye"
         while(!input.equals("bye")) {
             try {
-                dc.evaluate(input);
+                dc.run(input);
             } catch (DukeException e) {
                 System.out.println(e);
             }

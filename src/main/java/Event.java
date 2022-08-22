@@ -2,7 +2,7 @@ public class Event extends Task {
     /**
      * The time of Event
      */
-    protected String time;
+    private String time;
 
     /**
      * Constructor for Event

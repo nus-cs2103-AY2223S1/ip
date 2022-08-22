@@ -2,12 +2,12 @@ public abstract class Task {
     /**
      * The title of the Task
      */
-    protected String title;
+    private String title;
 
     /**
      * The completion status of the Task
      */
-    protected boolean isDone;
+    private boolean isDone;
 
     /**
      * Constructor for Task

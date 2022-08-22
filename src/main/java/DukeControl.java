@@ -1,18 +1,18 @@
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class DukeControl {
-    /**
-     * Arraylist contains a list of user's tasks
-     */
-    protected ArrayList<Task> arrayList;
+    private Storage storage;
+    private TaskList tasklist;
 
     /**
      * Constructor for DukeControl
      * Initializes arrayList
      */
-    public DukeControl() {
-        this.arrayList = new ArrayList<>();
+    public DukeControl(String filePath) {
+        // Todo
+        // this.storage.load(this.taskList)
+        this.storage = new Storage(filePath);
+        this.tasklist = new TaskList();
     }
 
     /**
@@ -20,7 +20,7 @@ public class DukeControl {
      * @param input User input represented by a String
      * @throws DukeException Throws a DukeException specific to this program
      */
-    public void evaluate(String input) throws DukeException {
+    public void run(String input) throws DukeException {
         String[] command = input.split(" ");
         String mainCommand = command[0];
         String[] commandArgs = Arrays.copyOfRange(command, 1, command.length);
@@ -61,10 +61,7 @@ public class DukeControl {
         if (commandArgs.length != 0) {
             throw new InvalidArgumentException();
         } else {
-            System.out.println("Listing the tasks in your list...");
-            for (int i = 0; i < this.arrayList.size(); i++) {
-                System.out.println(String.format("\t%d. %s", i + 1, this.arrayList.get(i)));
-            }
+            this.tasklist.listTasks();
         }
     }
 
@@ -76,10 +73,10 @@ public class DukeControl {
     public void parseMark(String[] commandArgs) throws InvalidArgumentException {
         if (commandArgs.length != 1) {
             throw new InvalidArgumentException();
-        } else if (Integer.parseInt(commandArgs[0]) <= 0 || Integer.parseInt(commandArgs[0]) > this.arrayList.size()) {
+        } else if (Integer.parseInt(commandArgs[0]) <= 0 || Integer.parseInt(commandArgs[0]) > this.tasklist.numTasks()) {
             throw new InvalidArgumentException();
         } else {
-            this.arrayList.get(Integer.parseInt(commandArgs[0]) - 1).mark();
+            this.tasklist.getTask(Integer.parseInt(commandArgs[0]) - 1).mark();
         }
     }
 
@@ -91,10 +88,10 @@ public class DukeControl {
     public void parseUnmark(String[] commandArgs) throws InvalidArgumentException {
         if (commandArgs.length != 1) {
             throw new InvalidArgumentException();
-        } else if (Integer.parseInt(commandArgs[0]) <= 0 || Integer.parseInt(commandArgs[0]) > this.arrayList.size()) {
+        } else if (Integer.parseInt(commandArgs[0]) <= 0 || Integer.parseInt(commandArgs[0]) > this.tasklist.numTasks()) {
             throw new InvalidArgumentException();
         } else {
-            this.arrayList.get(Integer.parseInt(commandArgs[0]) - 1).unmark();
+            this.tasklist.getTask(Integer.parseInt(commandArgs[0]) - 1).unmark();
         }
     }
 
@@ -109,7 +106,7 @@ public class DukeControl {
         if (title == "") {
             throw new EmptyTitleException();
         } else {
-            this.addTask(new Todo(title));
+            this.tasklist.addTask(new Todo(title));
         }
     }
 
@@ -131,7 +128,7 @@ public class DukeControl {
             } else if (deadline == "") {
                 throw new InvalidArgumentException();
             } else {
-                this.addTask(new Deadline(title, deadline));
+                this.tasklist.addTask(new Deadline(title, deadline));
             }
         }
     }
@@ -154,7 +151,7 @@ public class DukeControl {
             } else if (time == "") {
                 throw new InvalidArgumentException();
             } else {
-                this.addTask(new Event(title, time));
+                this.tasklist.addTask(new Event(title, time));
             }
         }
     }
@@ -167,32 +164,10 @@ public class DukeControl {
     public void parseDelete(String[] commandArgs) throws InvalidArgumentException {
         if (commandArgs.length != 1) {
             throw new InvalidArgumentException();
-        } else if (Integer.parseInt(commandArgs[0]) <= 0 || Integer.parseInt(commandArgs[0]) > this.arrayList.size()) {
+        } else if (Integer.parseInt(commandArgs[0]) <= 0 || Integer.parseInt(commandArgs[0]) > this.tasklist.numTasks()) {
             throw new InvalidArgumentException();
         } else {
-            this.deleteTask(Integer.parseInt(commandArgs[0]) - 1);
+            this.tasklist.deleteTask(Integer.parseInt(commandArgs[0]) - 1);
         }
-    }
-
-    /**
-     * Adds a new Task to arraylist
-     * @param newTask The new Task to be added
-     */
-    public void addTask(Task newTask) {
-        this.arrayList.add(newTask);
-        System.out.println(String.format(
-                "Got it. I've added this task:\n\t%s\nNow you have %d task%s in the list.",
-                newTask, this.arrayList.size(), this.arrayList.size() == 1 ? "" : "s"));
-    }
-
-    /**
-     * Deletes a Task from arraylist
-     * @param index The index of the Task to be deleted
-     */
-    public void deleteTask(int index) {
-        Task deletedTask = this.arrayList.remove(index);
-        System.out.println(String.format(
-                "Noted. I've removed this task:\n\t%s\nNow you have %d task%s in the list.",
-                deletedTask, this.arrayList.size(), this.arrayList.size() == 1 ? "" : "s"));
     }
 }

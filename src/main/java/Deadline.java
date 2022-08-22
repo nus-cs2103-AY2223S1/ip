@@ -2,7 +2,7 @@ public class Deadline extends Task {
     /**
      * The deadline of Deadline
      */
-    protected String deadline;
+    private String deadline;
 
     /**
      * Constructor for Deadline
