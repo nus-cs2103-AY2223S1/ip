@@ -3,11 +3,11 @@ package duke.task;
 import java.time.format.DateTimeFormatter;
 
 public abstract class Task {
+    public static final DateTimeFormatter INPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    public static final DateTimeFormatter OUTPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy");
+
     protected String description;
     protected boolean isDone;
-
-    public static final DateTimeFormatter inputDateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    public static final DateTimeFormatter outputDateFormat = DateTimeFormatter.ofPattern("MMM dd yyyy");
 
     public Task(String description) {
         this.description = description;

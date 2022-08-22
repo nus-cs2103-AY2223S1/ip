@@ -12,11 +12,11 @@ public class Event extends Task {
 
     @Override
     public String toStorage() {
-        return "E|" + super.toStorage() + "|" + this.at.format(Event.inputDateFormat);
+        return "E|" + super.toStorage() + "|" + this.at.format(Event.INPUT_DATE_FORMAT);
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + this.at.format(Event.outputDateFormat) + ")";
+        return "[E]" + super.toString() + " (at: " + this.at.format(Event.OUTPUT_DATE_FORMAT) + ")";
     }
 }

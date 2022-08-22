@@ -1,5 +1,10 @@
 package duke.parser;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import duke.command.AddDeadlineCommand;
 import duke.command.AddEventCommand;
 import duke.command.AddTodoCommand;
@@ -9,18 +14,11 @@ import duke.command.ExitCommand;
 import duke.command.ListCommand;
 import duke.command.MarkTaskCommand;
 import duke.command.UnmarkTaskCommand;
-
 import duke.exception.DukeException;
-
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Parser {
     public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
@@ -35,7 +33,7 @@ public class Parser {
         }
         String commandWord = matcher.group("commandWord");
         String arguments = matcher.group("arguments");
-        
+
         switch(commandWord) {
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
@@ -74,10 +72,10 @@ public class Parser {
             newTask = new Todo(desc);
             break;
         case "D":
-            newTask = new Deadline(desc, LocalDate.parse(date, Deadline.inputDateFormat));
+            newTask = new Deadline(desc, LocalDate.parse(date, Deadline.INPUT_DATE_FORMAT));
             break;
         case "E":
-            newTask = new Event(desc, LocalDate.parse(date, Deadline.inputDateFormat));
+            newTask = new Event(desc, LocalDate.parse(date, Deadline.INPUT_DATE_FORMAT));
             break;
         default:
             throw new DukeException("Invalid task format in storage: " + taskString);
@@ -100,7 +98,7 @@ public class Parser {
         }
         LocalDate at;
         try {
-            at = LocalDate.parse(dateString, Event.inputDateFormat);
+            at = LocalDate.parse(dateString, Event.INPUT_DATE_FORMAT);
         } catch (DateTimeParseException e) {
             throw new DukeException("Invalid date format");
         }
@@ -119,7 +117,7 @@ public class Parser {
         }
         LocalDate by;
         try {
-            by = LocalDate.parse(dateString, Deadline.inputDateFormat);
+            by = LocalDate.parse(dateString, Deadline.INPUT_DATE_FORMAT);
         } catch (DateTimeParseException e) {
             throw new DukeException("Invalid date format");
         }

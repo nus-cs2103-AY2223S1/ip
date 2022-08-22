@@ -1,14 +1,14 @@
 package duke;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import duke.command.Command;
 import duke.exception.DukeException;
 import duke.parser.Parser;
 import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
-
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class Duke {
     private final Storage storage;

@@ -1,12 +1,12 @@
 package duke.storage;
 
-import duke.task.TaskList;
-import duke.exception.DukeException;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+
+import duke.exception.DukeException;
+import duke.task.TaskList;
 
 public class Storage {
     private final Path filePath;
