@@ -1,8 +1,10 @@
-import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.ArrayList;
+import java.util.Scanner;
 
+/**
+ * A Personal Assistant Chatbot that helps a person keep track of several things like tasks.
+ *
+ */
 public class Duke {
     public static void main(String[] args) {
         String logo = " ____        _        \n"
