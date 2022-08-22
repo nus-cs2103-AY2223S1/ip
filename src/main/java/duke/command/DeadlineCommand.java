@@ -1,12 +1,12 @@
 package duke.command;
 
+import java.time.LocalDate;
+
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 
-import java.time.LocalDate;
-
-public class DeadlineCommand extends Command{
+public class DeadlineCommand extends Command {
     private String description;
     private LocalDate date;
 

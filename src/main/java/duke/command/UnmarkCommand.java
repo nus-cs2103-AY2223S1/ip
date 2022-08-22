@@ -5,7 +5,7 @@ import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 
-public class UnmarkCommand extends Command{
+public class UnmarkCommand extends Command {
     private int index;
 
     public UnmarkCommand(int index) {

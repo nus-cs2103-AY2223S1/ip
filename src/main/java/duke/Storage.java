@@ -27,7 +27,7 @@ public class Storage {
         }
     }
 
-    public ArrayList<String> load() throws FileNotFoundException{
+    public ArrayList<String> load() throws FileNotFoundException {
         ArrayList<String> data = new ArrayList<>();
         File f = new File(filePath);
         Scanner sc = new Scanner(f);

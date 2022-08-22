@@ -4,7 +4,7 @@ import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
-public class MarkCommand extends Command{
+public class MarkCommand extends Command {
     private int index;
 
     public MarkCommand(int index) {
