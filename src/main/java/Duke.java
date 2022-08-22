@@ -102,10 +102,10 @@ public class Duke {
         for (int i = 1; i < inputs.length - 1; i++) {
             todoName.append(inputs[i]).append(" ");
         }
-        // To prevent space at the end of the string
+        // Edge case: When inputs.length is 2, the todoName is not captured by the loop above.
         todoName.append(inputs[inputs.length - 1]);
 
-        Todo newTodo = new Todo(todoName.toString());
+        Todo newTodo = new Todo(todoName.toString().trim());
         tasks.add(newTodo);
         System.out.println("Got it. I've added this task:");
         System.out.println("  " + newTodo);
@@ -134,14 +134,14 @@ public class Duke {
                 endDateTime.append(inputs[i]).append(" ");
             }
         }
-        // To prevent space at the end of the string
+        // Edge case: When name or date is only one string, they are not captured by the loop above.
         if (!readDateTime) {
-            deadlineName.append(inputs[inputs.length - 1]).append(" ");
+            deadlineName.append(inputs[inputs.length - 1]);
         } else {
             endDateTime.append(inputs[inputs.length - 1]);
         }
 
-        Deadline newDeadline = new Deadline(deadlineName.toString(), endDateTime.toString());
+        Deadline newDeadline = new Deadline(deadlineName.toString().trim(), endDateTime.toString().trim());
         tasks.add(newDeadline);
         System.out.println("Got it. I've added this task:");
         System.out.println("  " + newDeadline);
@@ -170,17 +170,17 @@ public class Duke {
                 periodDateTime.append(inputs[i]).append(" ");
             }
         }
-        // To prevent space at the end of the string
+        // Edge case: When name or date is only one string, they are not captured by the loop above.
         if (!readDateTime) {
-            eventName.append(inputs[inputs.length - 1]).append(" ");
+            eventName.append(inputs[inputs.length - 1]);
         } else {
             periodDateTime.append(inputs[inputs.length - 1]);
         }
 
-        Event newEvent = new Event(eventName.toString(), periodDateTime.toString());
+        Event newEvent = new Event(eventName.toString().trim(), periodDateTime.toString().trim());
         tasks.add(newEvent);
         System.out.println("Got it. I've added this task:");
-        System.out.println("  " + newEvent.toString());
+        System.out.println("  " + newEvent);
         printNumberOfTasks();
     }
 
