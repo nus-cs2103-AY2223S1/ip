@@ -1,18 +1,86 @@
-import java.util.*;
+import java.io.*;
+import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
 import java.lang.*;
 
+
 public class Duke {
-    public static void main(String[] args) throws DukeException {
+    public static void main(String[] args) throws DukeException, FileNotFoundException {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
+
+        //first intialise an empty list of tasks, and update it if necessary after reading from duke.txt
         List<Task> tasks = new ArrayList<Task>();
         int taskIndex = 0;
+
+
+        //Here we read from our Duke.txt file if there is a list of tasks successfully saved
+        //otherwise we create a new file to store our tasks
+        try {
+            /*
+            File directory = new File("./");
+            System.out.println(directory.getAbsolutePath());
+             */
+            File taskFile = new File("./src/main/data/duke.txt");
+            Scanner taskReader = new Scanner(taskFile);
+            while (taskReader.hasNextLine()) {
+                taskIndex += 1;
+                String data = taskReader.nextLine();
+                String[] parts = data.split("\\|");
+                String taskType = parts[0];
+                int status = Integer.valueOf(parts[1]);
+                String task = parts[2];
+                if (taskType.equals("D") | taskType.equals("E")) {
+                    String time = parts[3];
+                    if (taskType.equals("D")) {
+                        Deadline newDeadline = new Deadline(task, time);
+                        tasks.add(newDeadline);
+                        if (status == 1) {
+                            newDeadline.mark();
+                        }
+                    } else {
+                        Event newEvent = new Event(task,time);
+                        tasks.add(newEvent);
+                        if (status == 1) {
+                            newEvent.mark();
+                        }
+                    }
+                } else if (taskType.equals("T")) {
+                    Task newTask = new Todo(task);
+                    tasks.add(newTask);
+                    if (status == 1) {
+                        newTask.mark();
+                    }
+                }
+            }
+
+            taskReader.close();
+        } catch (FileNotFoundException e) {
+            try {
+                File taskFile = new File("./src/main/data/duke.txt");
+                if (taskFile.createNewFile()) {
+                    System.out.println("File created: " + taskFile.getName());
+                }
+            } catch (IOException ex) {
+                System.out.println("File cannot be created!");
+                ex.printStackTrace();
+            }
+        }
+
         String indent = "    ";
         String line = "-------------------------------------------------";
+
+        //once we have updated our tasks list, we print it out for the user
+        for (int j = 0; j < taskIndex; j++) {
+            int taskNum = j + 1;
+            System.out.println(indent + taskNum + ". " + tasks.get(j));
+        }
+
         System.out.println(line);
         System.out.println(indent + "Hello! I'm Duke");
         System.out.println(indent + "What can I do for you?");
@@ -54,7 +122,7 @@ public class Duke {
                     taskIndex += 1;
                     System.out.println(indent + "Now you have " + taskIndex + " tasks in the list");
                 } else {
-                     throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+                    throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
                 }
             } else if (input.startsWith("event")) {
                 String event = input.substring(0, input.indexOf("/"));
@@ -80,6 +148,15 @@ public class Duke {
             if (input.equals("bye")) {
                 System.exit(0);
             }
+
+            //here after reading each input we write back to our file to update our task list
+            // To do this we manually overwrite our current file content
+            // (we have max 100 tasks so its not that bad i hope :( )
+            PrintWriter prw = new PrintWriter(new File("./src/main/data/duke.txt"));
+            for (Task task : tasks) {
+                prw.println(task.writeToFile());
+            }
+            prw.close();
         }
     }
 }
