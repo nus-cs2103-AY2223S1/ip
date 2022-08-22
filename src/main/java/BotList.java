@@ -50,6 +50,10 @@ public class BotList {
 
     }
 
+    private void save() {
+
+    }
+
     @Override
     public String toString() {
         String niceMessage = "Here are your tasks:\n";

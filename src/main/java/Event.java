@@ -1,14 +1,8 @@
 import java.util.List;
 
-public class Event extends Task {
-    private final String ICON = "[E]";
-
+public class Event extends Task{
     Event(List<String> task) throws DekuExceptions {
-        super(task, "event");
+        super(task, "event", "[E]");
     }
 
-    @Override
-    public String toString() {
-        return this.ICON + super.toString();
-    }
 }
