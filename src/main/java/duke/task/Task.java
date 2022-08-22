@@ -38,9 +38,7 @@ public abstract class Task {
         return this.description;
     }
 
-    public boolean isDateEqual(LocalDate date) {
-        throw new UnsupportedOperationException();
-    }
+    public abstract boolean isDateEqual(LocalDate date);
     public boolean isQueryPresent(String query) {
         return this.description.contains(query);
     }
