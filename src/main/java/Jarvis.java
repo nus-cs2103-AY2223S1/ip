@@ -3,14 +3,18 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Jarvis {
-    private static final String GREET_MESSAGE = "Hello! I am Jarvis! What can I do for you?";
+    private Storage storage;
+
+    public Jarvis() {
+        this.storage = new Storage(System.getProperty("user.dir") + "/data/tasks.txt");
+    }
 
     private static void printMessage(String message) {
         System.out.println(">> " + message);
     }
 
     private static void greet() {
-        Jarvis.printMessage(GREET_MESSAGE);
+        Jarvis.printMessage("Hello! I am Jarvis! What can I do for you?");
     }
 
     private static Command parseUserCommand(Scanner sc) throws JarvisException {
@@ -36,11 +40,16 @@ public class Jarvis {
         }
     }
 
-    public static void run() {
+    public void run() {
         Jarvis.greet();
 
         Scanner sc = new Scanner(System.in);
-        List<Task> tasks = new ArrayList<>();
+        List<Task> tasks = null;
+        try {
+            tasks = storage.loadTasks();
+        } catch (JarvisException e) {
+            Jarvis.printMessage("Error loading tasks.");
+        }
         boolean terminated = false;
 
         while (!terminated) {
@@ -56,7 +65,8 @@ public class Jarvis {
             } catch (JarvisException e) {
                 Jarvis.printMessage(e.getMessage());
             }
-
         }
+
+        storage.saveTasks(tasks);
     }
 }
