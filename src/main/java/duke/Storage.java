@@ -38,7 +38,9 @@ public class Storage {
                 case "E": t = new Event(meta); break;
                 default: throw new Exception();
             }
-            if (done == 1) t.mark();
+            if (done == 1) {
+                t.mark();
+            }
             return t;
         } catch (Exception e) {
             return null;
@@ -58,7 +60,9 @@ public class Storage {
             String line = reader.readLine();
             while (line != null) {
                 Task t = parseTaskLine(line);
-                if (t != null) res.add(t);
+                if (t != null) {
+                    res.add(t);
+                }
                 line = reader.readLine();
             }
             reader.close();
@@ -87,7 +91,6 @@ public class Storage {
                 String saveText = taskList.get(i).saveText();
                 res += saveText + '\n';
             } catch (DukeException e) {
-
             }
         }
         try {

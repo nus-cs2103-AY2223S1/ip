@@ -35,6 +35,6 @@ public class Task {
     @Override
     public String toString() {
         char statusIcon = this.isDone ? 'X' : ' ';
-        return "[" + statusIcon + "] " + this.description;
+        return String.format("[%s] %s", statusIcon, this.description);
     }
 }

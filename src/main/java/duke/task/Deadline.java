@@ -26,7 +26,9 @@ public class Deadline extends Task {
             throw new DukeException("You need to use \"/by\" to specify when the event is");
         }
         String time = m.group(3);
-        if (time == null) throw new DukeException("You didn't specify the time.");
+        if (time == null) {
+            throw new DukeException("You didn't specify the time.");
+        }
         try {
             this.time = LocalDate.parse(time);
         } catch (DateTimeParseException e) {
@@ -41,6 +43,6 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + this.time.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+        return String.format("[D]%s (by: %s)", super.toString(), this.time.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
     }
 }
