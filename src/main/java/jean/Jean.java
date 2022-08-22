@@ -16,17 +16,10 @@ public class Jean {
     private TaskList tasks;
     private Ui ui;
 
-    public Jean(String filePath) {
-        ui = new Ui();
-        storage = new Storage(filePath);
-        try {
-            tasks = new TaskList(storage.load());
-        } catch (JeanException e) {
-            ui.showJeanError(e.getMessage());
-            tasks = new TaskList();
-        } catch (IOException e) {
-            ui.showGeneralError(e.getMessage());
-        }
+    public Jean(Ui ui, Storage storage, TaskList tasks) {
+        this.ui = ui;
+        this.storage = storage;
+        this.tasks = tasks;
     }
 
     public void run() {
@@ -51,6 +44,17 @@ public class Jean {
     }
 
     public static void main(String[] args) {
-        new Jean("data/list.txt").run();
+        Ui ui = new Ui();
+        Storage storage = new Storage("data/list.txt");
+        TaskList tasks = null;
+        try {
+            tasks = new TaskList(storage.load());
+        } catch (JeanException e) {
+            ui.showJeanError(e.getMessage());
+            tasks = new TaskList();
+        } catch (IOException e) {
+            ui.showGeneralError(e.getMessage());
+        }
+        new Jean(ui, storage, tasks).run();
     }
 }
