@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 
 /**
@@ -18,16 +19,21 @@ public class StorageParser {
         String[] args = taskString.split(" | ");
         String taskType = args[0];
 
-        switch (taskType) {
-            case EVENT_TASK_TYPE:
-                return StorageParser.toEvent(args);
-            case DEADLINE_TASK_TYPE:
-                return StorageParser.toDeadline(args);
-            case TODO_TASK_TYPE:
-                return StorageParser.toToDo(args);
-            default:
-                throw new IllegalArgumentException("taskString does not have a valid task type ('E', 'D', 'T').");
+        try {
+            switch (taskType) {
+                case EVENT_TASK_TYPE:
+                    return StorageParser.toEvent(args);
+                case DEADLINE_TASK_TYPE:
+                    return StorageParser.toDeadline(args);
+                case TODO_TASK_TYPE:
+                    return StorageParser.toToDo(args);
+                default:
+                    throw new IllegalArgumentException("taskString does not have a valid task type ('E', 'D', 'T').");
+            }
+        } catch (DateTimeParseException e) {
+            throw new IllegalArgumentException("Unable to parse taskString");
         }
+
     }
 
     private static Event toEvent(String[] args) {
