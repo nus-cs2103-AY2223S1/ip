@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -92,6 +93,7 @@ public class Duke {
                         break;
 
                     case DEADLINE:
+                        System.out.println(reply.substring(9).split(" /by ")[1]);
                         try {
                             String deadlineDescriptionWithDate = reply.substring(9);
                             String deadlineDescription = deadlineDescriptionWithDate.split(" /by ")[0];
@@ -104,6 +106,8 @@ public class Duke {
                             throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.", e);
                         } catch (ArrayIndexOutOfBoundsException e) {
                             throw new DukeException("☹ OOPS!!! You're missing some descriptions for your deadline.", e);
+                        } catch (DateTimeParseException e) {
+                            throw new DukeException("☹ OOPS!!! You need to use yyyy-mm-dd for date format.", e);
                         }
                         break;
 
@@ -120,6 +124,8 @@ public class Duke {
                             throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.", e);
                         } catch (ArrayIndexOutOfBoundsException e) {
                             throw new DukeException("☹ OOPS!!! You're missing some descriptions for your event.", e);
+                        } catch (DateTimeParseException e) {
+                            throw new DukeException("☹ OOPS!!! You need to use yyyy-mm-dd for date format.", e);
                         }
                         break;
 
