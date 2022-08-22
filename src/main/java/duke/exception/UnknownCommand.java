@@ -1,7 +1,7 @@
-package duke.exceptions;
+package duke.exception;
 
 public class UnknownCommand extends DukeException {
     public UnknownCommand() {
-        super("Unknown Command!");
+        super("Unknown duke.commands.Command!");
     }
 }

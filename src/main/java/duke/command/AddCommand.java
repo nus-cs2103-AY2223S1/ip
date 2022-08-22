@@ -1,5 +1,8 @@
-import duke.exceptions.DukeException;
-import duke.exceptions.InvalidInput;
+package duke.command;
+
+import duke.*;
+import duke.exception.DukeException;
+import duke.task.*;
 
 import java.time.LocalDate;
 

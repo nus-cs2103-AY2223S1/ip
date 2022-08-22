@@ -1,5 +1,9 @@
-import duke.exceptions.DukeException;
-import duke.exceptions.InvalidInput;
+package duke;
+
+import duke.exception.DukeException;
+import duke.exception.InvalidInput;
+import duke.task.Task;
+
 import java.util.ArrayList;
 
 public class TaskList {

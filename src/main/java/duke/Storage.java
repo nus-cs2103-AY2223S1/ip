@@ -1,4 +1,8 @@
-import duke.exceptions.DukeException;
+package duke;
+
+import duke.exception.DukeException;
+import duke.task.*;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;

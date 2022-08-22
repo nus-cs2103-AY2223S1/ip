@@ -1,5 +1,6 @@
-import duke.exceptions.DukeException;
-import duke.exceptions.UnknownCommand;
+package duke;
+
+import duke.exception.DukeException;
 
 public class Ui {
 
