@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -44,29 +46,37 @@ public class Duke {
     }
 
     // create event task
-    public static String createEvent(String input) throws InvalidInput{
+    public static String createEvent(String input) throws DukeException {
         String[] info = input.substring(5).split("/at");
         if (info.length != 2) throw new InvalidInput("Ensure input format is correct.");
         String description = info[0].strip();
-        String at = info[1].strip();
-        if (description.length() == 0 || at.length() == 0)
+        if (description.length() == 0)
             throw new InvalidInput("The description of event cannot be empty.");
-        Event task = new Event(description, at);
-        data.add(task);
-        return "Got it. I've added this task:\n" + task + "\nNow you have " + data.size() + " tasks.";
+        try {
+            LocalDate date = LocalDate.parse(info[1].strip());
+            Event task = new Event(description, date);
+            data.add(task);
+            return "Got it. I've added this task:\n" + task + "\nNow you have " + data.size() + " tasks.";
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Incorrect date format. Format should be yyyy-mm-dd");
+        }
     }
 
     // create deadline task
-    public static String createDeadline(String input) throws InvalidInput {
+    public static String createDeadline(String input) throws DukeException {
         String[] info = input.substring(8).split("/by");
         if (info.length != 2) throw new InvalidInput("Ensure input format is correct.");
         String description = info[0].strip();
-        String by = info[1].strip();
-        if (description.length() == 0 || by.length() == 0)
+        if (description.length() == 0)
             throw new InvalidInput("The description of deadline cannot be empty.");
-        Deadline task = new Deadline(description, by);
-        data.add(task);
-        return "Got it. I've added this task:\n" + task + "\nNow you have " + data.size() + " tasks.";
+        try {
+            LocalDate date = LocalDate.parse(info[1].strip());
+            Deadline task = new Deadline(description, date);
+            data.add(task);
+            return "Got it. I've added this task:\n" + task + "\nNow you have " + data.size() + " tasks.";
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Incorrect date format. Format should be yyyy-mm-dd");
+        }
     }
 
     // delete a specified task
