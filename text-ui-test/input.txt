@@ -1,3 +1,4 @@
+list
 todo borrow book
 deadline return book /by 2022-12-24
 event project meeting /at 2021-04-02
@@ -22,4 +23,7 @@ delete 123
 delete
 delete 2
 list
+find
+find cs
+find 20
 bye

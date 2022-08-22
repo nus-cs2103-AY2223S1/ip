@@ -30,6 +30,7 @@ public abstract class Command {
         DEADLINE,
         DELETE,
         EVENT,
+        FIND,
         LIST,
         MARK,
         TODO,
@@ -54,7 +55,8 @@ public abstract class Command {
         String keyword = splitResponse[0];
         if (splitResponse.length == 1) {
             if (keyword.equals("todo") || keyword.equals("deadline") || keyword.equals("event") ||
-                    keyword.equals("delete") || keyword.equals("mark") || keyword.equals("unmark")) {
+                    keyword.equals("delete") || keyword.equals("mark") || keyword.equals("unmark") ||
+            keyword.equals("find")) {
                 throw new DukeException(keyword);
             } else if (keyword.equals("list")) {
                 return new ListCommand();
@@ -99,6 +101,7 @@ public abstract class Command {
                     throw new DukeException("non integer input when deleting");
                 }
 
+
             case "mark":
                 try {
                     int location = Integer.parseInt(s.substring(5)) - 1;
@@ -113,6 +116,9 @@ public abstract class Command {
                 } catch (NumberFormatException e) {
                     throw new DukeException("non integer input when marking");
                 }
+            case "find":
+                String substring = s.substring(5);
+                return new FindCommand(substring);
             default:
                 throw new DukeException("unknown");
             }
@@ -236,6 +242,33 @@ public abstract class Command {
             String message = tasks.craftTextMessage();
             storage.editStorage(message);
             ui.sayBye();
+        }
+    }
+
+    /**
+     * Represents a Final Command class.
+     */
+    public static class FindCommand extends Command {
+
+        private String s;
+        /**
+         * Creates Final Command through a constructor method.
+         */
+        public FindCommand(String s) {
+            this.s = s;
+        }
+
+        /**
+         * Executes task.
+         * @param tasks list of tasks
+         * @param ui user interface being used
+         * @param storage place where text is stored
+         * @throws IOException if there is such an exception
+         */
+        @Override
+        public void execute(TaskManager tasks, Ui ui, Storage storage) throws IOException {
+            String res = tasks.findAndCraft(this.s);
+            ui.sendMessage(Action_keyword.FIND, null, 0, res);
         }
     }
 

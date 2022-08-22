@@ -40,5 +40,12 @@ public class DukeTest {
                 "[T][ ] finish CS2103T assignment");
     }
 
+    /**
+     * Tests whether the contains method in Task Class works.
+     */
+    @Test
+    public void TaskContainsTest(){
+        assertEquals(Task.of(Task.Task_type.TODO, "ACHIEVE SUCCESS").contains("SU"), true);
+    }
 
 }

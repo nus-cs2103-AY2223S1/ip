@@ -101,13 +101,25 @@ public class Ui {
                     INDENTATION + EXTRA_INDENTATION + task + "\n" +
                     INDENTATION + "Now you have " + numOfTasks + (numOfTasks < 2 ? " task" : " tasks") + " in the list."));
         } else if (keyword == Command.Action_keyword.LIST) {
-            System.out.println(formatMessage(message));
+            if (message.equals("")) {
+                System.out.println(formatMessage("There are currently no tasks in your list"));
+            } else {
+                System.out.println(formatMessage("Here are the task(s) in your list:\n" +
+                        INDENTATION + message));
+            }
         } else if (keyword == Command.Action_keyword.MARK) {
             System.out.println(formatMessage("Nice! I've marked this task as done:\n" +
                     INDENTATION + EXTRA_INDENTATION + task));
         } else if (keyword == Command.Action_keyword.UNMARK) {
             System.out.println(formatMessage("OK, I've marked this task as not done yet:\n" +
                     INDENTATION + EXTRA_INDENTATION + task));
+        } else if (keyword == Command.Action_keyword.FIND) {
+            if (message.equals("")) {
+                System.out.println(formatMessage("Sorry, there are matching tasks in your list"));
+            } else {
+                System.out.println(formatMessage("Here are the matching tasks in your list:\n" +
+                        INDENTATION + message));
+            }
         }
     }
 }

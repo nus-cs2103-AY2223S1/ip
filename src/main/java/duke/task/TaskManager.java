@@ -42,13 +42,39 @@ public class TaskManager {
      */
     public String craftList() {
         int length = arr.size();
-        String result = "Here are the task(s) in your list:";
+        String result = "";
         for (int x = 0; x < length; x++) {
             Task task = arr.get(x);
             if (task == null) {
                 break;
             } else {
-                result += "\n" + INDENTATION + (x + 1) + "." + task;
+                if (x == 0) {
+                    result += (x + 1) + "." + task;
+                } else {
+                    result += "\n" + INDENTATION + (x + 1) + "." + task;
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Finds tasks that contain a certain string.
+     * @param s String
+     * @return message shows the matching tasks
+     */
+    public String findAndCraft(String s) {
+        int counter = 1;
+        String result = "";
+        for (int i = 0; i < arr.size(); i++) {
+            Task task = arr.get(i);
+            if (task.contains(s)) {
+                if (counter == 1) {
+                    result += counter + "." + task;
+                } else {
+                    result += "\n" + INDENTATION + counter + "." + task;
+                }
+                counter++;
             }
         }
         return result;
