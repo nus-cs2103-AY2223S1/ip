@@ -1,10 +1,3 @@
-package blink;
-
-import blink.task.Deadlines;
-import blink.task.Events;
-import blink.task.Task;
-import blink.task.ToDos;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 

@@ -1,11 +1,3 @@
-package blink.command;
-
-import blink.BlinkException;
-import blink.Storage;
-import blink.TaskList;
-import blink.Ui;
-import blink.task.Events;
-
 public class EventCommand extends Command {
     private String desc;
     private String date;

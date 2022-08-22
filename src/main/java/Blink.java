@@ -1,6 +1,5 @@
-package blink;
 
-import blink.command.Command;
+import java.io.IOException;
 
 import java.time.DateTimeException;
 
@@ -43,7 +42,7 @@ public class Blink {
     }
 
     public static void main(String[] args) {
-        String path = System.getProperty("user.home") + "/blink/blink.txt";
+        String path = System.getProperty("user.home") + "/Blink/blink.txt";
         Blink blink = new Blink(path);
         blink.run();
     }

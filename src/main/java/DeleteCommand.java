@@ -1,10 +1,3 @@
-package blink.command;
-
-import blink.Storage;
-import blink.task.Task;
-import blink.TaskList;
-import blink.Ui;
-
 public class DeleteCommand extends Command {
     private int num;
 
