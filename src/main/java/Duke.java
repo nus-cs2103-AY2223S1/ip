@@ -6,21 +6,29 @@ public class Duke {
     private static final String WELCOME_MESSAGE = "\t-------------------------------\n"
             + "\tHello, I'm Duke!\n" + "\tWhat can I do for you?\n" + "\t-------------------------------";
 
+    private static final String BYE_MESSAGE = "\tBye! Hope to see you again";
     public static void main(String[] args) {
-        System.out.println(WELCOME_MESSAGE);
+        Duke duke = new Duke();
         Scanner sc = new Scanner(System.in);
-        boolean end = false;
+
+        System.out.println(WELCOME_MESSAGE);
+
+        String input = sc.nextLine().trim();
+
+        while (!input.equals(Commands.BYE)) {
+            duke.run(input);
+            input = sc.nextLine().trim();
+        }
+        // cleaning up and shutting down Duke
+        System.out.println(BYE_MESSAGE);
+        sc.close();
+    }
+    public void run(String input) {
         try {
-            while (!end) {
-                String input = sc.nextLine().trim();
                 String[] inputString = input.split(" ", 2);
                 String command = inputString[0];
                 System.out.println("\t-------------------------------");
                 switch (command) {
-                case Commands.BYE:
-                    System.out.println("\tBye! Hope to see you again");
-                    end = true;
-                    break;
                 case Commands.LIST:
                     Task.listTasks();
                     break;
@@ -51,6 +59,9 @@ public class Duke {
                     }
                     if (inputString[1].contains("/by")) {
                         String[] deadlineDetails = inputString[1].split("/by");
+                        if (deadlineDetails.length == 1) {
+                            throw new DukeException("Please be sure to specify both description and deadline");
+                        }
                         String description = deadlineDetails[0].trim();
                         String deadline = deadlineDetails[1].trim();
                         if (description.length() == 0) {
@@ -74,6 +85,10 @@ public class Duke {
                     }
                     if (inputString[1].contains("/at")) {
                         String[] eventDetails = inputString[1].split("/at");
+                        if (eventDetails.length == 1) {
+                            throw new DukeException("Please be sure to specify both description and timing" +
+                                    " for your event");
+                        }
                         String description = eventDetails[0].trim();
                         String timing = eventDetails[1].trim();
                         if (description.length() == 0) {
@@ -98,18 +113,16 @@ public class Duke {
                     Task.delete(taskNumber - 1); // since we store tasks 0-indexed in ArrayList
                     break;
                 default:
-                    System.out.println("Oops! I've no idea what you're talking about!");
+                    System.out.println("\tOops! I've no idea what you're talking about!");
                 }
                 System.out.println("\t-------------------------------");
-            }
         } catch (DukeException e) {
-            System.out.println(String.format("\t", e.getMessage()));
+            System.out.printf("\t%s\n", e.getMessage());
+            System.out.println("\t-------------------------------");
         } catch (NumberFormatException e) {
-            System.out.println("Please make sure you enter a task number correctly!");
-        } finally {
-            sc.close();
+            System.out.println("\tPlease make sure you enter a task number correctly!");
+            System.out.println("\t-------------------------------");
         }
     }
-
 }
 
