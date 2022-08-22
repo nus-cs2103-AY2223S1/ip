@@ -11,7 +11,7 @@ public class DeleteCommand extends Command {
     private final int targetIndex;
 
     /**
-     * Contructor for DeleteCommand which inherits Command
+     * Contructs an instance of DeleteCommand which inherits Command
      * @param targetIndex number on the list to be deleted
      * @return DeleteCommand object
      * @see Command

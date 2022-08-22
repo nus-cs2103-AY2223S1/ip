@@ -11,7 +11,7 @@ public class UnMarkCommand extends Command {
     private final int targetIndex;
 
     /**
-     * Constructor for UnMarkCommand which inherits Command.
+     * Constructs an instance of UnMarkCommand which inherits Command.
      * @param targetIndex refers to the task number on the list.
      * @see Command
      */

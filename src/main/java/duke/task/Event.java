@@ -7,7 +7,7 @@ public class Event extends Task {
     private LocalDateTime at;
 
     /**
-     * Constructor for an Event instance, which inherits Task.
+     * Constructs an Event instance, which inherits Task.
      * @param description
      * @param at
      * @return an event instance

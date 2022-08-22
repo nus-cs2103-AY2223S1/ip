@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatterBuilder;
 
 public class DateHandler {
     /**
-     * Configures a DateTimeFormatter
+     * Returns a pre-configured DateTimeFormatter
      * @return a DateTimeFormatter instance
      * @see DateTimeFormatterBuilder
      */
@@ -27,7 +27,7 @@ public class DateHandler {
     }
 
     /**
-     * Convert dateString to LocalDateTime
+     * Returns an instance of LocalDateTime from conversion of dateString to LocalDateTime
      * @param dateString
      * @return a LocalDateTime object
      * @see LocalDateTime

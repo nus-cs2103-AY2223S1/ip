@@ -11,7 +11,7 @@ public class MarkCommand extends Command {
     private final int targetIndex;
 
     /**
-     * Constructor for MarkCommand which inherits Command
+     * Constructs an instance of MarkCommand which inherits Command
      * @param targetIndex number on the list to be deleted
      * @return an instance of MarkCommand
      * @see Command

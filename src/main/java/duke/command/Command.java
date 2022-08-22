@@ -24,7 +24,7 @@ public class Command {
     }
 
     /**
-     * Determines whether exit command is given
+     * Returns true if command is instanceof ExitCommand otherwise false
      * @param command
      * @return whether given command is instanceof ExitCommand.
      * @see ExitCommand

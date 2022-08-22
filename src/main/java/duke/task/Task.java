@@ -11,7 +11,7 @@ public class Task {
     private LocalDateTime date;
 
     /**
-     * Constructor for a Task instance.
+     * Constructs a Task instance.
      * @param description task information
      * @param type task type Enum
      * @see TaskType

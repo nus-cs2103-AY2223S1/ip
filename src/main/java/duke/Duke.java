@@ -10,7 +10,7 @@ public class Duke {
     private final Storage storage;
 
     /**
-     * Constructor for Duke, creates a Ui and Storage instance.
+     * Constructs an instance of Duke, creates a Ui and Storage instance.
      * @return Duke object instance.
      * @throws Storage.InvalidStorageFilePathException
      * @throws IOException
@@ -23,7 +23,7 @@ public class Duke {
     }
 
     /**
-     * Function to start running duke.
+     * Starts Duke
      */
     public void run() {
         ui.startMessage();
@@ -42,7 +42,7 @@ public class Duke {
     }
 
     /**
-     * Start point for Duke
+     * Start point for the Duke class
      * @param args
      * @throws Storage.InvalidStorageFilePathException
      * @throws IOException

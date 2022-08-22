@@ -33,8 +33,8 @@ public class Storage {
     }
 
     /**
-     * Loads saved data from the target filename.txt to a TaskList instance.
-     * @return a TaskList instance with the loaded data from filename.txt
+     * Returns a TaskList instance from saved data contained in todolist.txt.
+     * @return a TaskList instance with the loaded data from todolist.txt
      * @throws IOException
      * @throws StorageOperationException
      * @see TaskList
@@ -57,7 +57,7 @@ public class Storage {
     }
 
     /**
-     * Writes data to targetfile.txt from taskList
+     * Writes data to targetfile.txt from taskList and returns an instance of TaskList.
      * @param taskList
      * @return a tasklist if needed
      * @throws IOException

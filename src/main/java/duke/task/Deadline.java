@@ -7,7 +7,7 @@ public class Deadline extends Task {
     private LocalDateTime by;
 
     /**
-     * Constructor for a Deadline
+     * Constructs an instance of Deadline which inherits from Task
      * @param description Description of a Deadline task.
      * @param by Date string of the deadline of a task.
      * @return a Deadline object

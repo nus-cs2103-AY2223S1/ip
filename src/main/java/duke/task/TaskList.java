@@ -42,7 +42,7 @@ public class TaskList {
     }
 
     /**
-     * Search function with the given query string
+     * Retuns an instance of TaskList which contains search result from the given query string
      * @param query is the target search term for task description in the list.
      * @return a tasklist with the filtered result
      */
@@ -55,7 +55,7 @@ public class TaskList {
     }
 
     /**
-     * Remove a task from list via id and outputs the status.
+     * Removes a task from list via id and outputs the status.
      * @param id refers to the task number on the list.
      */
     public void removeTaskFromList(int id) {
@@ -75,7 +75,7 @@ public class TaskList {
     }
 
     /**
-     * Add a task to the list
+     * Adds a task to the list
      * @param task task to be added to list
      * @see Task
      */
@@ -91,7 +91,7 @@ public class TaskList {
     }
 
     /**
-     * List all tasks as numbered list.
+     * Lists all tasks as numbered list.
      */
     public void listTasks() {
         if (taskList.isEmpty()) {
@@ -110,7 +110,7 @@ public class TaskList {
     }
 
     /**
-     * Mark a task as done with regards to given task number.
+     * Marks a task as done with regards to given task number.
      * @param id refers to the task number on the list.
      * @see Task
      */
@@ -127,7 +127,7 @@ public class TaskList {
     }
 
     /**
-     * Mark a task as undone with regards to given task number.
+     * Marks a task as undone with regards to given task number.
      * @param id refers to the task number on the list.
      * @see Task
      */
@@ -144,8 +144,8 @@ public class TaskList {
     }
 
     /**
-     * Get last added task output. Reccomended for testing purposes.
-     * @return output regarding to last action.
+     * Returns last added task output. Recommended for testing purposes.
+     * @return output regarding last action.
      */
     public String getAddedTaskOutput() {
         Task lastAddedTask = new Task("", TaskType.TASK);

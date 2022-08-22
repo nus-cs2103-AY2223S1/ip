@@ -11,7 +11,7 @@ public class FindCommand extends Command {
     private final String query;
 
     /**
-     * Constructor for FindCommand which inherits from Command.
+     * Constructs an instance of FindCommand which inherits from Command.
      * @param query is the target search term
      * @return an instance of FindCommand.
      */
