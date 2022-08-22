@@ -9,8 +9,12 @@ import sky.Ui;
  */
 public class ListCommand extends Command {
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
-        taskList.printTasks();
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
+        String s = taskList.printTasks();
+        if (!s.equals("")) {
+            ui.displayText(s);
+        }
+        return s;
     }
 
     @Override

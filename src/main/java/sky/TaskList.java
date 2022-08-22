@@ -19,10 +19,12 @@ public class TaskList {
         this.taskList = taskList;
     }
 
-    public void printTasks() {
+    public String printTasks() {
+        String s = "";
         for (int i = 0; i < this.taskList.size(); i++) {
-            System.out.println("  " + (i + 1) + "." + this.taskList.get(i));
+            s+= "  " + (i + 1) + "." + this.taskList.get(i) + (i == this.taskList.size() - 1 ? "" : "\n");
         }
+        return s;
     }
 
     public Task getTask(int taskNum) {

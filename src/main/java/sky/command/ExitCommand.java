@@ -9,8 +9,10 @@ import sky.Ui;
  */
 public class ExitCommand extends Command {
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
+        String s = "  Bye. May all your endeavours fly high!";
         ui.endConvo();
+        return s;
     }
 
     @Override

@@ -24,4 +24,8 @@ public class Ui {
     public void endConvo() {
         System.out.println("  Bye. May all your endeavours fly high!");
     }
+
+    public void displayText(String s) {
+        System.out.println(s);
+    }
 }
