@@ -10,6 +10,11 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Loads tasks from file or saves tasks into file.
+ *
+ * @author Lai Han Wen
+ */
 public class Storage {
 
     private final String filePath;
@@ -18,6 +23,11 @@ public class Storage {
         this.filePath = filePath;
     }
 
+    /**
+     * Saves the given list of tasks in the specified file.
+     *
+     * @param list TaskList to be saved in the file.
+     */
     public void save(TaskList list) {
         try {
             FileWriter fw = new FileWriter(filePath);
@@ -25,7 +35,7 @@ public class Storage {
             for (Task t : list.getList()) {
                 if (t.toString().charAt(1) == 'D') {
                     Deadline d = (Deadline) t;
-                    fw.write(d.toFile() + "\n");
+                    fw.write(d.toStringOri() + "\n");
                     continue;
                 }
                 fw.write(t + "\n");
@@ -72,9 +82,11 @@ public class Storage {
     }
 
     /**
-     * Loads the data from "duke.txt" file into an arraylist. If file does
-     * not exist, create "data" folder and create "duke.txt" file in it.
-     * @return an arraylist of tasks
+     * Loads the data from the specified file into an arraylist. Throws
+     * DukeException if file does not exist.
+     *
+     * @return Arraylist of tasks loaded from file.
+     * @throws DukeException if file does not exist.
      */
     public ArrayList<Task> load() throws DukeException {
         File file = new File(this.filePath);

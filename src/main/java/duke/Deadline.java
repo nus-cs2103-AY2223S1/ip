@@ -1,7 +1,7 @@
 package duke;
 
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
 
 /**
  * A task that needs to be done before a specific date/time.
@@ -18,9 +18,10 @@ public class Deadline extends Task {
     }
 
     /**
-     * Returns the String representation of a deadline task.
+     * Returns the String representation of a deadline task, where the
+     * date is in format month_day_year, e.g., Oct 15 2019.
      *
-     * @return the String representation of a deadline task.
+     * @return The String representation of a deadline task.
      */
     @Override
     public String toString() {
@@ -28,8 +29,13 @@ public class Deadline extends Task {
                 by.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
     }
 
-    public String toFile() {
+    /**
+     * Returns the String representation of a deadline task, where the
+     * date is in format yyyy-mm-dd, e.g., 2020-08-25.
+     *
+     * @return The String representation of a deadline task.
+     */
+    public String toStringOri() {
         return "[D]" + super.toString() + " (by: " + by + ")";
     }
-
 }
