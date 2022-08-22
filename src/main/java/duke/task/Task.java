@@ -57,13 +57,13 @@ public abstract class Task {
         done = false;
     }
 
-    protected String getStringRepresentation(String label) {
+    protected String getStringRepresentation(String label, String displayedTitle) {
         return "["
                 + (done ? "X" : " ")
                 + "] "
                 + "["
                 + label
                 + "] "
-                + taskTitle;
+                + displayedTitle;
     }
 }

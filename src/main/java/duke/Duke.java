@@ -25,7 +25,9 @@ public class Duke {
     private static final String DELETE_COMMAND_STRING = "delete";
     private static final String DELETE_ERROR_STRING = "Oops! Do check the index range, and the format should be \"delete <index>\"";
     private static final String DELETE_OUTPUT_STRING = "Sure, I have removed this task from the list: ";
-
+    public static final String DELIMITER = "/";
+    public static final String BY_DATE_DELIMITER = "/by";
+    public static final String AT_DATE_DELIMITER = "/at";
 
     List<Task> taskList;
 
@@ -50,8 +52,10 @@ public class Duke {
             stringBuilder
                     .append(i + 1)
                     .append(". ")
-                    .append(taskList.get(i))
-                    .append('\n');
+                    .append(taskList.get(i));
+            if (i < len - 1) {
+                stringBuilder.append('\n');
+            }
         }
         return stringBuilder.toString();
     }

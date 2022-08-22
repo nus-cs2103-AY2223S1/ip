@@ -1,5 +1,8 @@
 package duke.task;
 
+import duke.Duke;
+import duke.util.CommandParser;
+
 public class DeadlineTask extends Task {
 
     private static final String LABEL = "D";
@@ -13,6 +16,6 @@ public class DeadlineTask extends Task {
 
     @Override
     public String toString() {
-        return super.getStringRepresentation(LABEL);
+        return super.getStringRepresentation(LABEL, Duke.BY_DATE_DELIMITER + " " + deadline);
     }
 }

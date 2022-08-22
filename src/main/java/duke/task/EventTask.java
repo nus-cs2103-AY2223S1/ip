@@ -1,5 +1,7 @@
 package duke.task;
 
+import duke.Duke;
+
 public class EventTask extends Task {
 
     private static final String LABEL = "E";
@@ -13,6 +15,6 @@ public class EventTask extends Task {
 
     @Override
     public String toString() {
-        return super.getStringRepresentation(LABEL);
+        return super.getStringRepresentation(LABEL, Duke.BY_DATE_DELIMITER + " " + dateTime);
     }
 }

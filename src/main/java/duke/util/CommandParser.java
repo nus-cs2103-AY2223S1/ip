@@ -1,5 +1,6 @@
 package duke.util;
 
+import duke.Duke;
 import duke.legacy.Actionable;
 import duke.legacy.Command;
 import duke.legacy.CommandType;
@@ -9,9 +10,9 @@ import java.util.Map;
 
 public class CommandParser {
 
-    private static final String DELIMITER = "/";
-    private static final String BY_DATE_DELIMITER = "/by";
-    private static final String AT_DATE_DELIMITER = "/at";
+    private static final String DELIMITER = Duke.DELIMITER;
+    private static final String BY_DATE_DELIMITER = Duke.BY_DATE_DELIMITER;
+    private static final String AT_DATE_DELIMITER = Duke.AT_DATE_DELIMITER;
 
     public static int getIndexOfFirstOccurrence(String input, String pattern) {
         int indexOfFirstOccurrence = input.indexOf(pattern);
