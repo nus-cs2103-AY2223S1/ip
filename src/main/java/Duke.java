@@ -16,7 +16,7 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
         String echo = sc.next();
 
-
+//Solution below adapted from https://github.com/24Donovan24/ip
         while (!echo.equals("bye")) {
 
             switch (echo) {
@@ -43,6 +43,43 @@ public class Duke {
                     Task unfinishedTask = taskList.get(index);
                     unfinishedTask.markAsNotDone();
                     System.out.println("OK, I've marked this task as not done yet:" + "\n" + unfinishedTask);
+                    break;
+                }
+
+                case "todo": {
+                    String description = sc.nextLine();
+                    Task toDo = new ToDo(description);
+                    taskList.add(toDo);
+                    System.out.println(horizontalLine);
+                    System.out.println("Got it. I've added this task:" + "\n" + toDo + "\n" + "Now you have " + taskList.size()
+                    + " tasks in your list.");
+                    System.out.println(horizontalLine);
+                    break;
+                }
+
+                case "deadline": {
+                    String input = sc.nextLine();
+                    String description = input.substring(0, input.indexOf("/") - 1 );
+                    String by = input.substring(input.indexOf("/") + 4);
+                    Task deadLine = new Deadline(description, by);
+                    taskList.add(deadLine);
+                    System.out.println(horizontalLine);
+                    System.out.println("Got it. I've added this task:" + "\n" + deadLine + "\n" + "Now you have " + taskList.size()
+                            + " tasks in your list.");
+                    System.out.println(horizontalLine);
+                    break;
+                }
+
+                case "event": {
+                    String input = sc.nextLine();
+                    String description = input.substring(0, input.indexOf("/") - 1);
+                    String at = input.substring(input.indexOf("/") + 4);
+                    Task event = new Event(description, at);
+                    taskList.add(event);
+                    System.out.println(horizontalLine);
+                    System.out.println("Got it. I've added this task:" + "\n" + event + "\n" + "Now you have " + taskList.size()
+                            + " tasks in your list.");
+                    System.out.println(horizontalLine);
                     break;
                 }
 
