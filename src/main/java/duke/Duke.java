@@ -5,8 +5,8 @@ import java.util.Scanner;
 import java.util.function.BiFunction;
 
 /**
- * Defines Duke class.
- * Main class for the Duke application.
+ * Defines <Code>Duke</Code> class.
+ * <p>Main class for the Duke application.</p>
  */
 public class Duke {
     /** Directory path on disk to find/save task list. */
@@ -15,20 +15,20 @@ public class Duke {
     /** Filename to save task list on disk. */
     private static final String OUTPUT_FILENAME = "list.txt";
 
-    /** `TaskList` object to store `Tasks` given by user. */
+    /** <Code>TaskList</Code> to store <Code>Tasks</Code> created by user. */
     private final TaskList taskList = new TaskList();
 
-    /** `Ui` object to handle user-interface. */
+    /** <Code>Ui</Code> to handle user-interface. */
     private final Ui ui;
 
-    /** `Storage` object to handle reading and writing task list to disk. */
+    /** <Code>Storage</Code> to handle reading and writing task list to disk. */
     private final Storage storage;
 
-    /** `Parser` object to parse and handle user inputs. */
+    /** <Code>Parser</Code> to parse and handle user inputs. */
     private final Parser parser;
 
     /**
-     * Constructor of `Duke` object.
+     * Constructor of <Code>Duke</Code> object.
      * @param directory Directory path on disk to find/save task list.
      * @param filename  Filename to save task list on disk.
      */
@@ -39,12 +39,16 @@ public class Duke {
     }
 
     /**
-     * Runs `Duke` program and begin accepting user inputs.
-     * While running, the program does the following in repeat:
-     *      1. Take in user input.
-     *      2. Execute command depending on given user input.
-     *      3. Print output (if any).
-     *      4. Save tasks onto hard disk (if changes were made).
+     * Runs <Code>Duke</Code> program and begin accepting user inputs.
+     * <p>
+     *  While running, the program does the following in repeat:
+     *  <ol>
+     *      <li>Take in user input.</li>
+     *      <li>Execute command depending on given user input.</li>
+     *      <li>Print output (if any).</li>
+     *      <li>Save tasks onto hard disk (if changes were made).</li>
+     *  </ol>
+     * </p>
      */
     private void run() {
         // Create Scanner object for user inputs.
