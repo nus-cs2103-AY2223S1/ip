@@ -1,16 +1,22 @@
 package tasks;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Event extends Task {
 
-    private String eventDateTime;
+    private LocalDateTime eventDateTime;
 
     public Event(String description, String eventDateTime) {
         super(description);
-        this.eventDateTime = eventDateTime;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        this.eventDateTime = LocalDateTime.parse(eventDateTime, formatter);
     }
 
     @Override
     public String toString() {
-        return String.format("[E]%s (at: %s)", super.toString(), this.eventDateTime);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
+        String formatted = this.eventDateTime.format(formatter);
+        return String.format("[E]%s (on: %s)", super.toString(), formatted);
     }
 }
