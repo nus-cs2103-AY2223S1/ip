@@ -4,15 +4,36 @@ import duke.Parser;
 
 import java.time.LocalDateTime;
 
+/**
+ * Represents a task.
+ *
+ * @author njxue
+ * @version v0.1
+ */
 public class Task {
+    
+    /** Description of the task. **/
     protected String description;
+    
+    /** Describes if the task is completed or not */
     protected boolean isDone;
 
+    /**
+     * Creates a <code>Task</code> object.
+     * 
+     * @param description Description of the task.
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;
     }
-    
+
+    /**
+     * Returns a <code>Task</code> object from a string.
+     * 
+     * @param fileFormatString String representation of the <code>Task</code> object, in file format. 
+     * @return New <code>Task</code> object.
+     */
     public static Task parse(String fileFormatString) {
         String[] taskSplit = fileFormatString.split("\\|");
         String taskSymbol = taskSplit[0];
@@ -36,27 +57,44 @@ public class Task {
         return task;
     }
 
+    /**
+     * Returns the status icon, which represents whether the task is completed.
+     * 
+     * @return 'X' if the task is completed, returns a whitespace otherwise.
+     */
     public String getStatusIcon() {
         return isDone ? "X" : " ";
     }
 
+    /**
+     * Marks the task as completed.
+     */
     public void markAsDone() {
         this.isDone = true;
     }
 
+    /**
+     * Unmarks the test as completed.
+     */
     public void unmarkAsDone() {
         this.isDone = false;
     }
 
-    public String getDescription() {
-        return this.description;
-    }
-
+    /**
+     * Returns string representation of the task.
+     * 
+     * @return String representation of the task.
+     */
     @Override
     public String toString() {
-        return "[" + this.getStatusIcon() + "] " + this.getDescription();
+        return "[" + this.getStatusIcon() + "] " + this.description;
     }
-    
+
+    /**
+     * Returns the formatted task, which is to be written into the storage file.
+     *
+     * @return Formatted task, which is to be written into the storage file.
+     */
     public String toFileFormatString() {
         int i = this.isDone ? 1 : 0;
         return "|" + i + "|";

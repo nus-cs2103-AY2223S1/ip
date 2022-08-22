@@ -17,7 +17,20 @@ import duke.exception.UnknownCommandException;
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 
+/**
+ * The <code>Parser</code> parses input from the user and returns the corresponding commands to execute.
+ * 
+ * @author njxue
+ * @version v0.1
+ */
 public class Parser {
+    /**
+     * Returns a <code>LocalDateTime</code> object from an appropriately-formatted string.
+     * 
+     * @param dateTimeString String representation of a <code>LocalDateTime</code> object. 
+     *                       The expected format is <code>YYYY-MM-DDTHH:MM</code> or <code>YYYY-MM-DD</code>.
+     * @return <code>LocalDateTime</code> object corresponding to the <code>dateTimeString</code>.
+     */
     public static LocalDateTime parseDateTime(String dateTimeString) {
         String[] dateTimeSplit = dateTimeString.split("[ T]");
         String isoDateFormat = "";
@@ -28,7 +41,13 @@ public class Parser {
         }
         return LocalDateTime.parse(isoDateFormat);
     }
- 
+
+    /**
+     * Checks if a given string contains only digits.
+     * 
+     * @param str The target string.
+     * @return True if <code>str</code> contains only digits. Returns false otherwise.
+     */
     private static boolean isDigit(String str) {
         for (char c : str.toCharArray()) {
             if (!Character.isDigit(c)) {
@@ -37,6 +56,16 @@ public class Parser {
         }
         return true;
     }
+
+    /**
+     * Parses the full input from the user and returns the correct <code>Command</code> object.
+     * 
+     * @param fullCommand Full input from the user.
+     * @return <code>Command</code> object corresponding to the user's input.
+     * @throws DukeException If the user provides an empty command, or if the command is not a recognised command.
+     * @throws DateTimeException If the string representation of a <code>LocalDateTime</code> cannot be parsed
+     *                          correctly due to incorrect formatting.  
+     */
     public static Command parse(String fullCommand) throws DukeException, DateTimeException {
         String[] fullCommandSplit = fullCommand.split(" ", 2);
         String command = fullCommandSplit[0].strip();

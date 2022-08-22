@@ -17,10 +17,24 @@ import java.io.IOException;
 import java.io.FileWriter;
 import java.io.FileNotFoundException;
 
+/**
+ * Represents the <code>Storage</code> object responsible for loading and saving tasks during a Duke session.
+ * 
+ * @author njxue
+ * @version v0.1
+ */
 public class Storage {
+    /** <code>Path</code> object representing the relative path to the file to load and save the tasks. **/
     private final Path path;
+
+    /** String representation of the relative path to the file to load and save the tasks. **/
     private final String pathString;
-    
+
+    /**
+     * Creates a new <code>Storage</code> object.
+     * 
+     * @param filePath String representation of the relative path to the file to load and save the tasks.
+     */
     public Storage(String filePath) {
         this.path = Paths.get(filePath);
         this.pathString = path.toString();
@@ -31,7 +45,13 @@ public class Storage {
             parent.mkdirs();
         }
     }
-    
+
+    /**
+     * Loads the task from the file located in the specified path in <code>path</code>.
+     *
+     * @return <code>List</code> of previously saved tasks.
+     * @throws FileNotFoundException If the file located in <code>path</code> does not exist.
+     */
     public List<Task> load() throws FileNotFoundException {
         File file = new File(pathString);
         Scanner sc = new Scanner(file);
@@ -42,7 +62,13 @@ public class Storage {
         }
         return tasks;
     }
-    
+
+    /**
+     * Saves the task to the file located in the specified path in <code>path</code>.
+     * 
+     * @param tasks <code>TaskList</code> containing the list of tasks to be saved.
+     * @throws DukeException If the file located in <code>path</code> does not exist.
+     */
     public void save(TaskList tasks) throws DukeException {
         File file = new File(pathString);
         try {
