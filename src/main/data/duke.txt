@@ -1,0 +1,4 @@
+T|1|read book
+D|1|return book
+E|0|project meeting
+T|1|join sports club
