@@ -16,16 +16,16 @@ public class Duke {
     private static final String OUTPUT_FILENAME = "list.txt";
 
     /** <Code>TaskList</Code> to store <Code>Tasks</Code> created by user. */
-    private final TaskList TASKLIST = new TaskList();
+    private final TaskList taskList = new TaskList();
 
     /** <Code>Ui</Code> to handle user-interface. */
-    private final Ui UI;
+    private final Ui Ui;
 
     /** <Code>Storage</Code> to handle reading and writing task list to disk. */
-    private final Storage STORAGE;
+    private final Storage storage;
 
     /** <Code>Parser</Code> to parse and handle user inputs. */
-    private final Parser PARSER;
+    private final Parser parser;
 
     /**
      * Constructor of <Code>Duke</Code> object.
@@ -33,9 +33,9 @@ public class Duke {
      * @param filename  Filename to save task list on disk.
      */
     private Duke(String directory, String filename) {
-        UI = new Ui();
-        STORAGE = new Storage(directory, filename, TASKLIST);
-        PARSER = new Parser(TASKLIST);
+        Ui = new Ui();
+        storage = new Storage(directory, filename, taskList);
+        parser = new Parser(taskList);
     }
 
     /**
@@ -65,23 +65,23 @@ public class Duke {
                 // Parse input to get command to call. Checks to user input
                 // are also made here.
                 BiFunction<TaskList, String, String> command =
-                        PARSER.handleUserInputs(userInput);
+                        parser.handleUserInputs(userInput);
                 // Apply command on input.
-                String output = command.apply(TASKLIST, userInput);
+                String output = command.apply(taskList, userInput);
                 // Print any output.
                 if (output.equals("exit sequence initiated")) {
                     runDuke = false;
-                    UI.showUser("Bye. Hope to see you again soon!");
+                    Ui.showUser("Bye. Hope to see you again soon!");
                     break;
                 } else {
                     System.out.println(output);
                 }
                 // Write to disk.
-                STORAGE.writeToFile(TASKLIST);
+                storage.writeToFile(taskList);
             } catch (DukeException e) {
-                UI.showUser(e.getMessage());
+                Ui.showUser(e.getMessage());
             } catch (IOException e) {
-                UI.showUser("Error writing to file: " + e.getMessage());
+                Ui.showUser("Error writing to file: " + e.getMessage());
             }
         }
         sc.close();

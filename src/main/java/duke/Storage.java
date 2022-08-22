@@ -84,14 +84,14 @@ public class Storage {
     private static void addLineFromFile(String data, int lineNumberInFile,
                                         TaskList taskList) {
         String[] dataArgs = data.split("\\|");
-        if ((dataArgs[0].equals("deadline") && dataArgs.length == 4) ||
-                (dataArgs[0].equals("event") && dataArgs.length == 4) ||
-                (dataArgs[0].equals("todo") && dataArgs.length == 3)) {
+        if ((dataArgs[0].equals("deadline") && dataArgs.length == 4)
+                || (dataArgs[0].equals("event") && dataArgs.length == 4)
+                || (dataArgs[0].equals("todo") && dataArgs.length == 3)) {
             // Only add task if format in file is correct.
             taskList.addFromFile(dataArgs);
         } else {
-            System.out.printf("Line %d: Error in format of saved file!%n" +
-                    "Line will be ignored.%n%n", lineNumberInFile);
+            System.out.printf("Line %d: Error in format of saved file!%n"
+                    + "Line will be ignored.%n%n", lineNumberInFile);
         }
     }
 }

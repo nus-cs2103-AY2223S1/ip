@@ -1,14 +1,14 @@
 package duke;
 
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.ToDo;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.ToDo;
 
 /**
  * Defines <Code>TaskList</Code> class.
@@ -30,7 +30,7 @@ public class TaskList {
             return input.substring(9, input.indexOf("/by ") - 1);
         } else if (input.startsWith("event")) {
             return input.substring(6, input.indexOf("/at ") - 1);
-        } else if (input.startsWith("todo")){
+        } else if (input.startsWith("todo")) {
             return input.substring(5);
         }
         return null;
@@ -51,8 +51,8 @@ public class TaskList {
      * @return      Return date of input task as <Code>LocalDate</Code>.
      */
     private LocalDate getDate(String input) {
-        DateTimeFormatter formatter
-                = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        DateTimeFormatter formatter =
+                DateTimeFormatter.ofPattern("yyyy/MM/dd");
         String dateString = input.substring(input.indexOf("/by ") + 4);
         return LocalDate.parse(dateString, formatter);
     }
@@ -69,15 +69,20 @@ public class TaskList {
 
         Task newTask = null;
         switch (inputArr[0]) {
-            case "deadline":
-                newTask = new Deadline(getDescription(input), getDate(input));
-                break;
-            case "event":
-                newTask = new Event(getDescription(input), getVenue(input));
-                break;
-            case "todo":
-                newTask = new ToDo(getDescription(input));
-                break;
+        case "deadline":
+            newTask = new Deadline(getDescription(input), getDate(input));
+            break;
+
+        case "event":
+            newTask = new Event(getDescription(input), getVenue(input));
+            break;
+
+        case "todo":
+            newTask = new ToDo(getDescription(input));
+            break;
+
+        default:
+            return "No task added.";
         }
 
         taskList.add(newTask);
@@ -162,9 +167,9 @@ public class TaskList {
     }
 
     /**
-     * Adds <Code>Task<Code> from file to <Code>TaskList<Code>.
-     * @param dataArgs Array containing details of <Code>Task<Code> to be
-     *                 added to <Code>TaskList<Code>.
+     * Adds <Code>Task</Code> from file to <Code>TaskList</Code>.
+     * @param dataArgs Array containing details of <Code>Task</Code> to be
+     *                 added to <Code>TaskList</Code>.
      */
     public void addFromFile(String[] dataArgs) {
         Boolean isDone = dataArgs[1].equals("true");
@@ -183,6 +188,9 @@ public class TaskList {
 
         case ("todo"):
             newTask = new ToDo(dataArgs[2], isDone);
+            break;
+
+        default:
             break;
         }
         taskList.add(newTask);

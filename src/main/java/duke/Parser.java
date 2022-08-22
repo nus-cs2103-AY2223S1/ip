@@ -19,26 +19,11 @@ import java.util.function.BiFunction;
  */
 public class Parser {
     /**
-     * Points to <Coed>Duke</Code>'s current taskList. Used to keep track
-     * of size.
-     */
-    private final TaskList TASKLIST;
-
-    /**
-     * Constructor for <Code>Parser</Code> object.
-     * @param taskList <Code>TaskList</Code> object belonging to
-     *                 <Code>Duke</Code>.
-     */
-    public Parser(TaskList taskList) {
-        this.TASKLIST = taskList;
-    }
-
-    /**
      * <Code>BiFunction</Code> to add task to `taskList`.
      * <p>
      *  Accepts:
      *  <ol>
-     *     <li<Code>TaskList</Code> object of the running <Code>Duke</Code>
+     *     <li><Code>TaskList</Code> object of the running <Code>Duke</Code>
      *     program.</li>
      *     <li>Full <Code>String</Code> input from user.</li>
      *  </ol>
@@ -48,15 +33,15 @@ public class Parser {
      *  </ol>
      * </p>
      */
-    private static final BiFunction<TaskList, String, String> addTask
-            = TaskList::add;
+    private static final BiFunction<TaskList, String, String> addTask =
+            TaskList::add;
 
     /**
      * <Code>BiFunction</Code> to delete task from <Code>taskList</Code>.
      * <p>
      *  Accepts:
      *  <ol>
-     *     <li<Code>TaskList</Code> object of the running <Code>Duke</Code>
+     *     <li><Code>TaskList</Code> object of the running <Code>Duke</Code>
      *     program.</li>
      *     <li>Full <Code>String</Code> input from user.</li>
      *  </ol>
@@ -66,15 +51,15 @@ public class Parser {
      *  </ol>
      * </p>
      */
-    private static final BiFunction<TaskList, String, String> deleteTask
-            = TaskList::delete;
+    private static final BiFunction<TaskList, String, String> deleteTask =
+            TaskList::delete;
 
     /**
      * <Code>BiFunction</Code> to mark task as done.
      * <p>
      *  Accepts:
      *  <ol>
-     *     <li<Code>TaskList</Code> object of the running <Code>Duke</Code>
+     *     <li><Code>TaskList</Code> object of the running <Code>Duke</Code>
      *     program.</li>
      *     <li>Full <Code>String</Code> input from user.</li>
      *  </ol>
@@ -84,8 +69,8 @@ public class Parser {
      *  </ol>
      * </p>
      */
-    private static final BiFunction<TaskList, String, String> mark
-            = (taskList, input) -> {
+    private static final BiFunction<TaskList, String, String> mark = (
+            taskList, input) -> {
         int i = Integer.parseInt(input.split(" ")[1]);
         return taskList.markDone(i);
     };
@@ -95,7 +80,7 @@ public class Parser {
      * <p>
      *  Accepts:
      *  <ol>
-     *     <li<Code>TaskList</Code> object of the running <Code>Duke</Code>
+     *     <li><Code>TaskList</Code> object of the running <Code>Duke</Code>
      *     program.</li>
      *     <li>Full <Code>String</Code> input from user.</li>
      *  </ol>
@@ -105,8 +90,8 @@ public class Parser {
      *  </ol>
      * </p>
      */
-    private static final BiFunction<TaskList, String, String> unmark
-            = (taskList, input) -> {
+    private static final BiFunction<TaskList, String, String> unmark = (
+            taskList, input) -> {
         int i = Integer.parseInt(input.split(" ")[1]);
         return taskList.markUnDone(i);
     };
@@ -116,7 +101,7 @@ public class Parser {
      * <p>
      *  Accepts:
      *  <ol>
-     *     <li<Code>TaskList</Code> object of the running <Code>Duke</Code>
+     *     <li><Code>TaskList</Code> object of the running <Code>Duke</Code>
      *     program.</li>
      *     <li>Full <Code>String</Code> input from user.</li>
      *  </ol>
@@ -126,8 +111,8 @@ public class Parser {
      *  </ol>
      * </p>
      */
-    private static final BiFunction<TaskList, String, String> list
-            = (taskList, input) -> {
+    private static final BiFunction<TaskList, String, String> list = (
+            taskList, input) -> {
         // List inputs in 'userInput' list.
         return taskList.toString();
     };
@@ -137,26 +122,7 @@ public class Parser {
      * <p>
      *  Accepts:
      *  <ol>
-     *     <li<Code>TaskList</Code> object of the running <Code>Duke</Code>
-     *     program.</li>
-     *     <li>Full <Code>String</Code> input from user.</li>
-     *  </ol>
-     *  Returns:
-     *  <ol>
-     *     <li><Code>String</Code> output to be displayed to user.</li>
-     *  </ol>
-     * </p>     */
-    private static final BiFunction<TaskList, String, String> find =
-            (taskList, input) -> {
-                return taskList.findWord(input.split(" ")[1]);
-            };
-
-    /**
-     * <Code>BiFunction</Code> to exit program.
-     * <p>
-     *  Accepts:
-     *  <ol>
-     *     <li<Code>TaskList</Code> object of the running <Code>Duke</Code>
+     *     <li><Code>TaskList</Code> object of the running <Code>Duke</Code>
      *     program.</li>
      *     <li>Full <Code>String</Code> input from user.</li>
      *  </ol>
@@ -166,8 +132,28 @@ public class Parser {
      *  </ol>
      * </p>
      */
-    private static final BiFunction<TaskList, String, String> quit
-            = (taskList, input) -> {
+    private static final BiFunction<TaskList, String, String> find = (
+            taskList, input) -> {
+        return taskList.findWord(input.split(" ")[1]);
+    };
+
+    /**
+     * <Code>BiFunction</Code> to exit program.
+     * <p>
+     *  Accepts:
+     *  <ol>
+     *     <li><Code>TaskList</Code> object of the running <Code>Duke</Code>
+     *     program.</li>
+     *     <li>Full <Code>String</Code> input from user.</li>
+     *  </ol>
+     *  Returns:
+     *  <ol>
+     *     <li><Code>String</Code> output to be displayed to user.</li>
+     *  </ol>
+     * </p>
+     */
+    private static final BiFunction<TaskList, String, String> quit = (
+            taskList, input) -> {
         // Exit
         return "exit sequence initiated";
     };
@@ -188,7 +174,21 @@ public class Parser {
         commands.put("list", list);
         commands.put("find", find);
         commands.put("bye", quit);
+    }
 
+    /**
+     * Points to <Code>Duke</Code>'s current taskList. Used to keep track
+     * of size.
+     */
+    private final TaskList taskList;
+
+    /**
+     * Constructor for <Code>Parser</Code> object.
+     * @param taskList <Code>TaskList</Code> object belonging to
+     *                 <Code>Duke</Code>.
+     */
+    public Parser(TaskList taskList) {
+        this.taskList = taskList;
     }
 
     /**
@@ -203,18 +203,18 @@ public class Parser {
         // Error checking based on command.
         switch(command) {
         case "deadline": {
-            if ((userInput.indexOf(" ") != 8) ||
-                    (userInput.indexOf("/by ") <= 9)) {
+            if ((userInput.indexOf(" ") != 8)
+                    || (userInput.indexOf("/by ") <= 9)) {
                 // Should have a " " delimiter followed by "/by:"
                 throw new DukeException("Wrong format! To add a new "
                         + "deadline, please enter the following:\n"
                         + "   deadline [TASK DESCRIPTION] /by [DUE DATE]\n");
             }
-            String dateString
-                    = userInput.substring(userInput.indexOf("/by") + 4);
+            String dateString =
+                    userInput.substring(userInput.indexOf("/by") + 4);
             try {
-                DateTimeFormatter formatter
-                        = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+                DateTimeFormatter formatter =
+                        DateTimeFormatter.ofPattern("yyyy/MM/dd");
                 LocalDate.parse(dateString, formatter);
             } catch (DateTimeParseException e) {
                 throw new DukeException("Wrong date format! To add a new "
@@ -225,28 +225,28 @@ public class Parser {
             break;
         }
 
-            case "event": {
-                if ((userInput.indexOf(" ") != 5) ||
-                        (userInput.indexOf("/at ") <= 6)) {
-                    // Should have a " " delimiter followed by "/at"
-                    throw new DukeException("Wrong format! To add a new "
-                            + "event, please enter the following:\n"
-                            + "   event [TASK DESCRIPTION] /at [VENUE]\n");
-                }
-                break;
+        case "event": {
+            if ((userInput.indexOf(" ") != 5)
+                    || (userInput.indexOf("/at ") <= 6)) {
+                // Should have a " " delimiter followed by "/at"
+                throw new DukeException("Wrong format! To add a new "
+                        + "event, please enter the following:\n"
+                        + "   event [TASK DESCRIPTION] /at [VENUE]\n");
             }
+            break;
+        }
 
-            case "todo": {
-                if ((args.length < 2)) {
-                    throw new DukeException("Wrong format! To create a "
-                            + "'todo' task, type:\n   todo [DESCRIPTION]\n");
-                }
-                break;
+        case "todo": {
+            if ((args.length < 2)) {
+                throw new DukeException("Wrong format! To create a "
+                        + "'todo' task, type:\n   todo [DESCRIPTION]\n");
             }
+            break;
+        }
 
         case "delete": {
             int index;
-            int size = TASKLIST.getSize();
+            int size = taskList.getSize();
             if ((args.length != 2)) {
                 throw new DukeException("Wrong format! To delete a task, "
                         + "type:\n   delete [TASK NUMBER]\n");
@@ -268,56 +268,56 @@ public class Parser {
 
         case "mark": {
             int index;
-            int size = TASKLIST.getSize();
+            int size = taskList.getSize();
             if ((args.length != 2)) {
                 throw new DukeException("Wrong format! To mark a task as "
                         + "done, type:\n   mark [TASK NUMBER]\n");
             }
 
-                try {
-                    index = Integer.parseInt(args[1]);
-                } catch (NumberFormatException e) {
-                    throw new DukeException("Task number must be an integer!\n"
-                            + "   mark [TASK NUMBER]\n");
-                }
-                if (index < 0 || index >= size) {
-                    throw new DukeException("Task number is invalid."
-                            + String.format("You have %d tasks!\n", size)
-                            + "   mark [TASK NUMBER]\n");
-                }
-                break;
+            try {
+                index = Integer.parseInt(args[1]);
+            } catch (NumberFormatException e) {
+                throw new DukeException("Task number must be an integer!\n"
+                        + "   mark [TASK NUMBER]\n");
             }
+            if (index < 0 || index >= size) {
+                throw new DukeException("Task number is invalid."
+                        + String.format("You have %d tasks!\n", size)
+                        + "   mark [TASK NUMBER]\n");
+            }
+            break;
+        }
 
         case "unmark": {
             int index;
-            int size = TASKLIST.getSize();
+            int size = taskList.getSize();
             if ((args.length != 2)) {
                 throw new DukeException("Wrong format! To unmark a task "
                         + "as done, type:\n   unmark [TASK NUMBER]\n");
             }
 
-                try {
-                    index = Integer.parseInt(args[1]);
-                } catch (NumberFormatException e) {
-                    throw new DukeException("Task number must be an integer!\n"
-                            + "   unmark [TASK NUMBER]\n");
-                }
-                if (index < 0 || index >= size) {
-                    throw new DukeException("Task number is invalid.\n"
-                            + String.format("You have %d tasks!\n", size)
-                            + "   mark [TASK NUMBER]\n");
-                }
-                break;
+            try {
+                index = Integer.parseInt(args[1]);
+            } catch (NumberFormatException e) {
+                throw new DukeException("Task number must be an integer!\n"
+                        + "   unmark [TASK NUMBER]\n");
             }
+            if (index < 0 || index >= size) {
+                throw new DukeException("Task number is invalid.\n"
+                        + String.format("You have %d tasks!\n", size)
+                        + "   mark [TASK NUMBER]\n");
+            }
+            break;
+        }
 
-            case "list": {
-                if (!userInput.equals("list")) {
-                    // Whole input should only be "list"
-                    throw new DukeException("Wrong format! To list tasks, "
-                            + "type:\n   list\n");
-                }
-                break;
+        case "list": {
+            if (!userInput.equals("list")) {
+                // Whole input should only be "list"
+                throw new DukeException("Wrong format! To list tasks, "
+                        + "type:\n   list\n");
             }
+            break;
+        }
 
         case "find": {
             if ((args.length != 2)) {
@@ -327,21 +327,20 @@ public class Parser {
             break;
         }
 
-            case "bye": {
-                if (!userInput.equals("bye")) {
-                    // Whole input should only be "bye"
-                    throw new DukeException("Wrong format! To exit, type:\n"
-                            + "   bye\n");
-                }
-                break;
+        case "bye": {
+            if (!userInput.equals("bye")) {
+                // Whole input should only be "bye"
+                throw new DukeException("Wrong format! To exit, type:\n"
+                        + "   bye\n");
             }
+            break;
+        }
 
-            default: {
-                // Case where no commands are matched.
-                throw new DukeException("Sorry, I did not quite get that! "
-                        + String.format("(%s)\n", userInput));
-            }
-
+        default: {
+            // Case where no commands are matched.
+            throw new DukeException("Sorry, I did not quite get that! "
+                    + String.format("(%s)\n", userInput));
+        }
         }
         // Call respective 'Consumer' object on input once it has been verified.
         return commands.get(command);

@@ -6,16 +6,16 @@ package duke;
  */
 public class Ui {
     /** <Code>String</Code> of application logo. */
-    private static final String LOGO
-            = " ____        _        \n"
+    private static final String LOGO =
+            " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
 
     /** <Code>String</Code> of all available commands and their format. */
-    private static final String AVAILABLE_COMMANDS
-            = "Available commands:\n"
+    private static final String AVAILABLE_COMMANDS =
+            "Available commands:\n"
             + "   deadline [TASK DESCRIPTION] /by [DUE DATE]\n"
             + "   event    [TASK DESCRIPTION] /at [VENUE]\n"
             + "   todo     [TASK DESCRIPTION]\n"
