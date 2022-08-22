@@ -56,21 +56,21 @@ public class Duke {
         try {
             switch (type) {
                 case TODO:
-                    String input = sc.next() + sc.nextLine();
+                    String input = sc.nextLine().trim();
                     if (input.isBlank()) {
                         throw new DukeException("Something went wrong! Could not read TODO.");
                     }
                     msg = this.taskList.addTask(new ToDo(input));
                     break;
                 case DEADLINE:
-                    arguments = (sc.next() + sc.nextLine()).split("\\s/by\\s");
+                    arguments = sc.nextLine().trim().split("\\s/by\\s");
                     if (arguments.length < 2 || arguments[0].isBlank() || arguments[1].isBlank()) {
                         throw new DukeException("Something went wrong! Could not read DEADLINE.");
                     }
                     msg = this.taskList.addTask(new Deadline(arguments[0], arguments[1]));
                     break;
                 case EVENT:
-                    arguments = (sc.next() + sc.nextLine()).split("\\s/at\\s");
+                    arguments = sc.nextLine().trim().split("\\s/at\\s");
                     if (arguments.length < 2 || arguments[0].isBlank() || arguments[1].isBlank()) {
                         throw new DukeException("Something went wrong! Could not read EVENT.");
                     }

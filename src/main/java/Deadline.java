@@ -10,7 +10,7 @@ public class Deadline extends Task {
 
     @Override
     public String toStringSaveFormat() {
-        return String.format("D,%s,%s,%s\n", isDone ? "1" : "0", this.description, this.dueDate);
+        return String.format("D,%s,%s,%s\n", isDone ? "1" : "0", this.description, this.date);
     }
 
     @Override
