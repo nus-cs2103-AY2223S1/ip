@@ -28,6 +28,9 @@ public class Duke {
                     case "unmark":
                         unmark(Integer.parseInt(words[1]));
                         break;
+                    case "delete":
+                        delete(Integer.parseInt(words[1]));
+                        break;
                     case "todo":
                         addToDo(words[1]);
                         break;
@@ -98,4 +101,10 @@ public class Duke {
         System.out.println("Marked as not done: \n" + taskList.get(index - 1));
     }
 
+    private static void delete(int index) {
+        System.out.println("Deleted: \n" + taskList.get(index -1) + "\nNow you have " + (taskList.size() - 1) +
+                " tasks on the list.");
+        taskList.remove(index -1);
+
+    }
 }
