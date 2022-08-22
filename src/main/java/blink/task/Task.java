@@ -1,3 +1,7 @@
+package blink.task;
+
+import blink.BlinkException;
+
 import java.time.LocalDate;
 
 abstract public class Task {
@@ -9,7 +13,7 @@ abstract public class Task {
         this.isDone = false;
     }
 
-    public static Task of(String input) throws BlinkException{
+    public static Task of(String input) throws BlinkException {
         String[] info = input.split("\\|", 3);
         switch(info[0].strip()) {
             case "T":
@@ -64,7 +68,7 @@ abstract public class Task {
         return "[" + this.getStatusIcon() + "] " + this.description;
     }
 
-    abstract String saveString();
+    public abstract String saveString();
 
-    abstract boolean checkDate(LocalDate anoDate);
+    public abstract boolean checkDate(LocalDate anoDate);
 }

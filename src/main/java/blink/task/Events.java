@@ -1,3 +1,5 @@
+package blink.task;
+
 import java.time.LocalDate;
 
 public class Events extends Task{

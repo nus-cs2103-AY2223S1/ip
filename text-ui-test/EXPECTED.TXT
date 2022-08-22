@@ -1,6 +1,6 @@
 No save file detected
 --------------------------------------
-Hello! Blink here
+Hello! blink.blink here
 What can I do for you today?
 --------------------------------------
 Alright, this task has been successfully added!
@@ -62,11 +62,11 @@ Here are the tasks in your list:
 4. [D][ ] study (by: forever)
 5. [E][X] Eat (at: sometime when i wan 2 ;3)
 --------------------------------------
-Task have been removed successfully
+task have been removed successfully
 [E][ ] dota TI finals (at: 29-30 Oct)
 Now you have 4 task remaining
 --------------------------------------
-Task have been removed successfully
+task have been removed successfully
 [E][X] Eat (at: sometime when i wan 2 ;3)
 Now you have 3 task remaining
 --------------------------------------

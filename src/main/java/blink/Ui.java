@@ -1,3 +1,7 @@
+package blink;
+
+import blink.task.Task;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -12,7 +16,7 @@ public class Ui {
 
     public void showWelcome() {
         System.out.println(Ui.SPACING + "\n" +
-                "Hello! Blink here\n" +
+                "Hello! Blink.Blink here\n" +
                 "What can I do for you today?\n" +
                 Ui.SPACING);
     }
@@ -49,7 +53,7 @@ public class Ui {
     }
 
     public void deleteTask(TaskList tasks, Task task) {
-        System.out.println("Task has been deleted successfully.\n" + task +
+        System.out.println("Blink.Task has been deleted successfully.\n" + task +
                "\n" + tasks.deleted());
     }
 
