@@ -8,6 +8,11 @@ public class Task {
         this.name = name;
     }
 
+    public Task(String name, Boolean isDone) {
+        this.name = name;
+        this.isDone = isDone;
+    }
+
     public void markAsDone() {
         this.isDone = true;
     }

@@ -7,6 +7,8 @@ import objects.Event;
 import objects.Task;
 import objects.Todo;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -15,6 +17,8 @@ public class Duke {
     public enum Command {
         BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE
     }
+
+    private static final String FILE_PATH = "src/main/java/data/tasks.txt";
 
     private static List<Task> tasks = new ArrayList<>();
 
@@ -201,6 +205,42 @@ public class Duke {
         printNumberOfTasks();
     }
 
+    public static void loadTasks() throws FileNotFoundException {
+        File dataFile = new File(FILE_PATH);
+        Scanner sc = new Scanner(dataFile);
+        while (sc.hasNext()) {
+            String[] dataChunk = sc.nextLine().split(" \\| ");
+            switch (dataChunk[0]) {
+            // Task is a Todo
+            case "T": {
+                // "1" means done, "0" means not done
+                Boolean isDone = dataChunk[1].equals("1");
+                String name = dataChunk[2];
+                tasks.add(new Todo(name, isDone));
+                break;
+            }
+            // Task is a Deadline
+            case "D": {
+                // "1" means done, "0" means not done
+                Boolean isDone = dataChunk[1].equals("1");
+                String name = dataChunk[2] + " ";
+                String endDateTime = dataChunk[3];
+                tasks.add(new Deadline(name, endDateTime));
+                break;
+            }
+            // Task is an Event
+            case "E": {
+                // "1" means done, "0" means not done
+                Boolean isDone = dataChunk[1].equals("1");
+                String name = dataChunk[2] + " ";
+                String periodDateTime = dataChunk[3];
+                tasks.add(new Event(name, periodDateTime));
+                break;
+            }
+            }
+        }
+    }
+
     /**
      * Main function of the app.
      *
@@ -218,11 +258,22 @@ public class Duke {
         System.out.println("Please type in a command...");
         Scanner input = new Scanner(System.in);
 
+        try {
+            // Load the tasks from the file tasks.txt
+            loadTasks();
+        } catch (FileNotFoundException e1) {
+            System.out.println(e1);
+            endSession(input);
+            return;
+        }
+
         while (true) {
-            String inputLine = input.nextLine();
-            String[] inputs = inputLine.split(" ");
-            String command = inputs[0];
             try {
+                // Scan input from the user
+                String inputLine = input.nextLine();
+                String[] inputs = inputLine.split(" ");
+                String command = inputs[0];
+
                 if (inputLine.equals(Command.BYE.name().toLowerCase())) {
                     endSession(input);
                     return;
