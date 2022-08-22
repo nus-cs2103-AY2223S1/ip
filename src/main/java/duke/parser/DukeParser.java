@@ -179,7 +179,7 @@ public class DukeParser {
     public void addTaskInstructionHandler() throws DukeException {
         System.out.println(BREAK_LINES);
         if (this.restOfInputString.equals("")) {
-            throw new DukeException("Oops! Descriptions for tasks cannot be blank!");
+            throw new DukeException("Oops! Descriptions for duke.tasks cannot be blank!");
         }
 
         int slashIndex = this.restOfInputString.indexOf("/");
